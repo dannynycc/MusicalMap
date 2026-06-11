@@ -178,7 +178,7 @@ function render() {
   shows.forEach((s) => {
     if (typeof s.lat !== "number" || typeof s.lng !== "number") return;
     const m = L.marker([s.lat, s.lng], { icon: posterMarkerIcon(s), riseOnHover: true })
-      .bindPopup(popupHtml(s), { maxWidth: 400, className: "mm-popup" })
+      .bindPopup(popupHtml(s), { maxWidth: 620, className: "mm-popup" })
       .bindTooltip(tooltipHtml(s), { direction: "top", offset: [0, -68], className: "mm-tip", opacity: 1 });
     // at low zoom, clicking flies in first so the card shows at a sensible scale
     m.on("click", () => { if (map.getZoom() < 9) map.flyTo(m.getLatLng(), 12, { animate: true }); });
