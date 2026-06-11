@@ -36,6 +36,21 @@ def main():
         sources.append({"file": name, "count": len(rows), "meta": blob.get("meta", {})})
         print(f"  {name}: {len(rows)} shows")
 
+    # Apply manual coordinate/field corrections (source data errors).
+    overrides_path = DATA / "overrides.json"
+    applied = 0
+    if overrides_path.exists():
+        overrides = json.loads(overrides_path.read_text(encoding="utf-8"))
+        for sid, patch in overrides.items():
+            if sid.startswith("_") or sid not in by_id:
+                continue
+            for k, v in patch.items():
+                if not k.startswith("_"):
+                    by_id[sid][k] = v
+            by_id[sid]["source"] += "+override"
+            applied += 1
+        print(f"  applied {applied} override(s)")
+
     shows = list(by_id.values())
     verified = sum(1 for s in shows if s.get("verified"))
     out = {

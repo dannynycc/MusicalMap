@@ -25,8 +25,19 @@ LISTING_URL = "https://www.broadway-show-tickets.com/musicals/"
 USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) MusicalMap/0.1"
 
 
+BROWSER_HEADERS = {
+    "User-Agent": (
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+        "(KHTML, like Gecko) Chrome/124.0 Safari/537.36"
+    ),
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+    "Accept-Language": "en-US,en;q=0.9",
+    "Referer": "https://www.broadway-show-tickets.com/musicals/",
+}
+
+
 def fetch_html(url):
-    req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
+    req = urllib.request.Request(url, headers=BROWSER_HEADERS)
     with urllib.request.urlopen(req, timeout=30) as r:
         return r.read().decode("utf-8")
 
@@ -48,12 +59,23 @@ def clean_date(v):
 
 
 def detail_url(show_page_uid):
-    """showPageUid 'www.broadway-show-tickets.com.musicals.<slug>' -> detail URL."""
+    """showPageUid 'www.broadway-show-tickets.com.<section>.<slug>' -> detail URL.
+
+    Section is NOT always 'musicals' — some shows live under '/plays/'
+    (e.g. Masquerade), so read the section straight from the uid.
+    """
     parts = show_page_uid.split(".")
-    if "musicals" in parts:
-        slug = parts[parts.index("musicals") + 1]
-        return f"https://www.broadway-show-tickets.com/musicals/{slug}/"
+    if len(parts) >= 5:  # www . broadway-show-tickets . com . <section> . <slug>
+        section, slug = parts[3], parts[4]
+        return f"https://www.broadway-show-tickets.com/{section}/{slug}/"
     return None
+
+
+def clean_text(v):
+    """Strip whitespace incl. non-breaking spaces the source sometimes injects."""
+    if not v:
+        return None
+    return v.replace("\xa0", " ").strip() or None
 
 
 # All these shows are in NYC. The source occasionally returns swapped lat/lng or
@@ -83,8 +105,8 @@ def parse_detail(html):
     loc = (data.get("props", {}).get("pageProps", {}).get("tourGroupData", {}) or {}).get(
         "startLocation"
     ) or {}
-    venue = (loc.get("addressLine1") or "").strip() or None
-    city = (loc.get("cityName") or "").strip() or None
+    venue = clean_text(loc.get("addressLine1"))
+    city = clean_text(loc.get("cityName"))
     lat = loc.get("latitude")
     lng = loc.get("longitude")
     lat = round(float(lat), 6) if isinstance(lat, (int, float)) else None
@@ -102,7 +124,7 @@ def main():
 
     shows, no_venue = [], []
     for tgid, s in tgm.items():
-        title = (s.get("title") or "").strip()
+        title = clean_text(s.get("title"))
         if not title or not s.get("available", True):
             continue
         url = detail_url(s.get("showPageUid", ""))

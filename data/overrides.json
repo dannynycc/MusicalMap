@@ -1,0 +1,14 @@
+{
+  "_note": "Manual corrections applied by build_shows.py AFTER merge, keyed by show id. Use when a source returns wrong or missing coordinates (e.g. it matched a same-named venue in another city). Any field here overrides the scraped value. Keys starting with _ are ignored.",
+  "bway-39821": {
+    "lat": 40.7589,
+    "lng": -73.9846,
+    "_why": "Source returned Palace Theatre, Manchester UK; corrected to NYC Palace Theatre (1564 Broadway)"
+  },
+  "bway-42103": {
+    "venue": "Masquerade — 218 W 57th St (immersive)",
+    "lat": 40.765673,
+    "lng": -73.981256,
+    "_why": "Immersive show, no formal theatre name. Verified address 218 W 57th St, NYC (5-floor venue), geocoded via OSM"
+  }
+}
