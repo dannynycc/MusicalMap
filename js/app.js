@@ -31,12 +31,14 @@ function safeUrl(u) {
 
 // CDN-side thumbnailing: request a small CROPPED square-ish poster for markers
 // and list thumbnails. Contentful / imgix / craft.cloud take different params.
+const addQs = (u, qs) => u + (u.includes("?") ? "&" : "?") + qs;
 function thumb(url, w, h) {
   const u = safeUrl(url);
   if (!u) return null;
-  if (u.includes("ctfassets.net")) return `${u}?w=${w}&h=${h}&fit=fill&fm=webp&q=70`;
-  if (u.includes("imgix") || u.includes("headout")) return `${u}?w=${w}&h=${h}&fit=crop&auto=format&q=70`;
-  if (u.includes("craft.cloud")) return `${u}?width=${w}&height=${h}&fit=crop`;
+  if (u.includes("ctfassets.net")) return addQs(u, `w=${w}&h=${h}&fit=fill&fm=webp&q=70`);
+  if (u.includes("imgix") || u.includes("headout")) return addQs(u, `w=${w}&h=${h}&fit=crop&auto=format&q=70`);
+  if (u.includes("craft.cloud")) return addQs(u, `width=${w}&height=${h}&fit=crop`);
+  if (u.includes("livenationinternational.com")) return addQs(u, `format=webp&width=${w}&quality=75`);
   return u;
 }
 
@@ -44,9 +46,10 @@ function thumb(url, w, h) {
 function posterFull(url, w) {
   const u = safeUrl(url);
   if (!u) return null;
-  if (u.includes("ctfassets.net")) return `${u}?w=${w}&fm=webp&q=80`;
-  if (u.includes("imgix") || u.includes("headout")) return `${u}?w=${w}&auto=format&q=80`;
-  if (u.includes("craft.cloud")) return `${u}?width=${w}`;
+  if (u.includes("ctfassets.net")) return addQs(u, `w=${w}&fm=webp&q=80`);
+  if (u.includes("imgix") || u.includes("headout")) return addQs(u, `w=${w}&auto=format&q=80`);
+  if (u.includes("craft.cloud")) return addQs(u, `width=${w}`);
+  if (u.includes("livenationinternational.com")) return addQs(u, `format=webp&width=${w}&quality=80`);
   return u;
 }
 
@@ -100,7 +103,6 @@ const els = {
   list: document.getElementById("show-list"),
   count: document.getElementById("count"),
   search: document.getElementById("search"),
-  filters: document.querySelectorAll('#filters input[type="checkbox"]'),
   note: document.getElementById("data-note"),
   tRange: document.getElementById("time-range"),
   tDate: document.getElementById("time-date"),
@@ -121,7 +123,7 @@ function fallbackGlyph(show) {
 function posterMarkerIcon(show) {
   return L.divIcon({
     className: "mm-icon",
-    html: `<div class="poster-pin ${esc(show.type)} ${show.image ? "" : "noimg"}" style="${posterStyle(show, 110, 150)}">${fallbackGlyph(show)}</div>`,
+    html: `<div class="poster-pin ${show.image ? "" : "noimg"}" style="${posterStyle(show, 110, 150)}">${fallbackGlyph(show)}</div>`,
     iconSize: [52, 72],
     iconAnchor: [26, 72],
     popupAnchor: [0, -70],
@@ -150,7 +152,6 @@ function tooltipHtml(show) {
 }
 
 function popupHtml(show) {
-  const tag = show.type === "tour" ? "巡演" : "常駐";
   const poster = posterFull(show.image, 400);
   const img = poster ? `<img class="pop-poster" src="${esc(poster)}" alt="">` : "";
   const links = Array.isArray(show.ticket_links) ? show.ticket_links.filter((l) => safeUrl(l.url)) : [];
@@ -166,7 +167,6 @@ function popupHtml(show) {
   const tourLine = show.type === "tour" && tname ? `<div class="p-row"><b>${esc(tname)}</b></div>` : "";
   const unverified = show.verified ? "" : `<div class="p-row warn">⚠ 未驗證（示範資料）</div>`;
   return `<div class="popup">${img}<div class="pop-body">
-      <span class="p-tag ${esc(show.type)}">${tag}</span>
       <p class="p-title">${esc(canonTitle(show))}</p>
       ${tourLine}
       <div class="p-row"><b>${esc(show.venue)}</b></div>
@@ -177,16 +177,9 @@ function popupHtml(show) {
 }
 
 // ---------- Filtering ----------
-function activeTypes() {
-  const on = new Set();
-  els.filters.forEach((cb) => { if (cb.checked) on.add(cb.dataset.filter); });
-  return on;
-}
 function visibleShows() {
   const q = els.search.value.trim().toLowerCase();
-  const types = activeTypes();
   return ALL.filter((s) => {
-    if (!types.has(s.type)) return false;
     if (!isPlayingNow(s, selectedDate)) return false;
     if (!q) return true;
     return [s.title, s.city, s.venue, s.tour_name].some((f) => (f || "").toLowerCase().includes(q));
@@ -304,14 +297,13 @@ function showGroupItem(items) {
     <div class="show-item${multi ? " has-children" : ""}"${multi ? "" : ` data-id="${esc(first.id)}"`}>
       <div class="thumb ${imgShow.image ? "" : "noimg"}" style="${posterStyle(imgShow, 60, 84)}">${fallbackGlyph(imgShow)}</div>
       <div class="info">
-        <div class="title"><span class="type-dot ${esc(first.type)}"></span>${esc(title)}${badge}${multi ? `<span class="loc-count">${items.length} 地</span>` : ""}</div>
+        <div class="title">${esc(title)}${badge}${multi ? `<span class="loc-count">${items.length} 地</span>` : ""}</div>
         <div class="meta">${sub}</div>
       </div>
       ${multi ? `<span class="chev">▾</span>` : ""}
     </div>
     ${multi ? `<ul class="sublist">${items.map((s) => `
       <li class="sub-item" data-id="${esc(s.id)}">
-        <span class="type-dot ${esc(s.type)}"></span>
         <span class="sub-venue">${esc(s.venue)}</span>
         <span class="sub-city">${esc(s.city)}</span>
       </li>`).join("")}</ul>` : ""}`;
@@ -379,7 +371,6 @@ async function boot() {
 
 els.search.addEventListener("input", render);
 els.search.addEventListener("keydown", (e) => { if (e.key === "Escape") { els.search.value = ""; render(); } });
-els.filters.forEach((cb) => cb.addEventListener("change", render));
 
 // ---------- Time bar (slider + calendar, kept in sync) ----------
 function setDate(d, { fromSlider = false, fromPicker = false } = {}) {

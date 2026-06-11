@@ -34,13 +34,21 @@ def group_key(title):
     together (e.g. 'SIX' == 'SIX: The Musical', 'Mamma Mia!' == 'Mamma Mia',
     'Les Misérables' == 'Les Miserables'). Diacritics are stripped BEFORE the
     ascii filter, otherwise 'é' becomes a word break and spellings diverge."""
-    t = unicodedata.normalize("NFKD", title or "").encode("ascii", "ignore").decode()
+    t = re.sub(r"[–—]", "-", title or "")  # en/em-dash → '-' BEFORE ascii-strip drops them
+    t = unicodedata.normalize("NFKD", t).encode("ascii", "ignore").decode()
     t = t.lower().strip()
     t = re.sub(r"^the\s+", "", t)
     t = re.sub(r"^disney(?:'s| presents)\s+", "", t)
+    # any dash/colon marketing subtitle that mentions "musical", in any language
+    # ("– Das Hit-Musical auf Schweizerdeutsch", ": The Broadway Musical", …)
+    t = re.sub(r"\s*[:\-–—]\s*[^:]*musical.*$", "", t)
     t = re.sub(r"\s*[:\-–—]\s*(a\s+new\s+musical|the\s+musical|reimagined).*$", "", t)
-    t = re.sub(r"\s+(the\s+musical|a\s+new\s+musical)$", "", t)
+    # trailing "…(the) Xxx Yyy Musical" brand tails without a dash
+    t = re.sub(r"\s+(?:the\s+)?(?:[\w'!\-]+\s+){0,4}musical$", "", t)
     t = re.sub(r"[^a-z0-9]+", " ", t).strip()
+    if not t:  # over-stripped (e.g. a title that IS just "…Musical") — fall back
+        t = re.sub(r"[^a-z0-9]+", " ",
+                   unicodedata.normalize("NFKD", title or "").encode("ascii", "ignore").decode().lower()).strip()
     return GROUP_ALIASES.get(t, t)
 
 # Curated sources (precise data). Order matters for de-dup: later files win.
