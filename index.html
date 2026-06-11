@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MusicalMap — 全球音樂劇即時地圖</title>
+
+  <!-- Leaflet -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div id="app">
+    <aside id="sidebar">
+      <header id="brand">
+        <h1>MusicalMap</h1>
+        <p class="tagline">此刻全球正在上演的音樂劇</p>
+      </header>
+
+      <div id="controls">
+        <input id="search" type="search" placeholder="搜尋劇名、城市、劇院…" autocomplete="off" />
+        <div id="filters">
+          <label class="chip"><input type="checkbox" data-filter="resident" checked /> 常駐 <span class="dot resident"></span></label>
+          <label class="chip"><input type="checkbox" data-filter="tour" checked /> 巡演 <span class="dot tour"></span></label>
+        </div>
+      </div>
+
+      <div id="count"></div>
+      <ul id="show-list"></ul>
+
+      <footer id="foot">
+        <span id="data-note"></span>
+      </footer>
+    </aside>
+
+    <main id="map"></main>
+  </div>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
