@@ -10,5 +10,64 @@
     "lat": 40.765673,
     "lng": -73.981256,
     "_why": "Immersive show, no formal theatre name. Verified address 218 W 57th St, NYC (5-floor venue), geocoded via OSM"
+  },
+  "_tm_note": "Ticketmaster start dates = earliest AVAILABLE ticket (expired perfs vanish), not true opening. True run dates below researched from official sites/press 2026-06-12; onsale_only cleared once verified.",
+  "tm-anastasia-sydney-lyric": {
+    "start_date": "2026-04-07",
+    "end_date": "2026-07-19",
+    "onsale_only": false,
+    "_why": "Official/press: opened 7 Apr 2026, season through 19 Jul 2026 (TM only sells to 7/18)"
+  },
+  "tm-the-lion-king-capitol-theatre-sydney": {
+    "start_date": "2026-04-18",
+    "onsale_only": false,
+    "_why": "Disney/Variety: Sydney season opened 18 Apr 2026 at Capitol Theatre; end kept as TM last scheduled (extended beyond initial 9 Aug)"
+  },
+  "tm-hair-the-tribal-love-rock-musical-theatre-royal-sydney": {
+    "start_date": "2026-06-06",
+    "end_date": "2026-07-11",
+    "onsale_only": false,
+    "_why": "Theatre Royal Sydney official: 6 Jun – 11 Jul 2026"
+  },
+  "tm-mj-the-michael-jackson-musical-crown-theatre-perth": {
+    "start_date": "2026-06-06",
+    "onsale_only": false,
+    "_why": "mjthemusical.com.au: Perth from 6 Jun 2026, until 19 Jul (TM end matches)"
+  },
+  "tm-monty-python-s-spamalot-planet-royale": {
+    "start_date": "2026-05-20",
+    "onsale_only": false,
+    "_why": "BWW/press: Planet Royale Perth from 20 May 2026; end kept as TM last scheduled 13 Jun (extended past announced 7 Jun)"
+  },
+  "tm-tootsie-teatro-at-the-italian-forum": {
+    "start_date": "2026-05-26",
+    "onsale_only": false,
+    "_why": "Teatro Italian Forum: previews 26 May, opening night 29 May, season to 21 Jun 2026 (TM end matches)"
+  },
+  "tm-are-ya-dancin-a-showband-story-gaiety-theatre": {
+    "start_date": "2026-06-09",
+    "onsale_only": false,
+    "_why": "Gaiety Dublin: 9–13 Jun 2026 summer run"
+  },
+  "tm-priscilla-queen-of-the-desert-bord-gais-energy-theatre": {
+    "start_date": "2026-06-08",
+    "onsale_only": false,
+    "_why": "Bord Gáis Energy Theatre: 8–13 Jun 2026 (30th anniversary tour)"
+  },
+  "tm-heathers-the-civic-auckland": {
+    "start_date": "2026-06-10",
+    "onsale_only": false,
+    "_why": "Auckland Live: The Civic 10–14 Jun 2026"
+  },
+  "tm-tera-te-auahi-sir-howard-morrison-centre": {
+    "start_date": "2026-06-10",
+    "onsale_only": false,
+    "_why": "Press/BWW: premieres Sir Howard Morrison Centre from 10 Jun 2026"
+  },
+  "tm-mamma-mia-das-hit-musical-auf-schweizerdeutsch-maag-halle": {
+    "start_date": "2026-05-06",
+    "venue": "MAAG Halle",
+    "onsale_only": false,
+    "_why": "mamma-mia-musical.ch official: MAAG Halle Zürich 06.05.–14.06.2026 (Swiss German production)"
   }
 }
