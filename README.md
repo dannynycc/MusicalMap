@@ -27,13 +27,13 @@ scrapers/  ──產出──>  data/*.json  ──merge──>  data/shows.json
 | `data/shows.json` | **前端唯一讀的檔**，由 build 產生 |
 | `data/broadway.json` | Broadway scraper 輸出（broadway-show-tickets.com） |
 | `data/westend.json` | West End scraper 輸出（londontheatre.co.uk） |
-| `data/wicked_tour.json` | Wicked 北美巡演 scraper 輸出（tour.wickedthemusical.com） |
+| `data/tours.json` | 北美巡演彙總 scraper 輸出（broadway.org，28 劇 297 站） |
 | `data/overrides.json` | 人工座標/欄位修正（依 show id；修來源錯誤，build 時套用） |
 | `data/venues.json` | venue→座標 geocode 快取（手動可編） |
 | `scrapers/geocode.py` | Nominatim geocoding + 永久快取 |
 | `scrapers/broadway.py` | Broadway scraper（解析 `__NEXT_DATA__`，含 NYC 座標檢查） |
 | `scrapers/westend.py` | West End scraper（解析 `__NEXT_DATA__` + geocode） |
-| `scrapers/wicked_tour.py` | Wicked 巡演 scraper（巡演資料的範式） |
+| `scrapers/broadway_tours.py` | **全美巡演彙總** scraper（broadway.org/tours，一次抓所有巡演劇） |
 | `scrapers/build_shows.py` | 合併所有 source、套 overrides、同劇合併、海報繼承 → `shows.json` |
 
 ---
@@ -75,7 +75,7 @@ python -m http.server 8753            # 瀏覽器開 http://localhost:8753/
 # 2) 重新抓資料
 python scrapers/westend.py            # West End（首次 geocode ~50s，之後走快取）
 python scrapers/broadway.py           # Broadway（進 28 個細節頁拿 venue+座標）
-python scrapers/wicked_tour.py        # Wicked 北美巡演
+python scrapers/broadway_tours.py     # 全美巡演（broadway.org，28 劇 297 站）
 python scrapers/build_shows.py        # 合併成 data/shows.json
 ```
 
@@ -85,8 +85,8 @@ python scrapers/build_shows.py        # 合併成 data/shows.json
 
 ## 現況 / 待辦
 
-- ✅ West End（52）、Broadway（28）、Wicked 巡演（17）：全部自動抓取，含座標與海報，共 97 筆。
-- ✅ 座標修正機制：NYC 範圍檢查、lat/lng 對調偵測、`overrides.json` 人工修正、geocode 快取。
-- ✅ 同劇合併、巡演海報繼承、多地點地圖 overview。
-- 🟡 巡演目前只有 Wicked 一條（每個劇的官方巡演站結構不同）。待辦：擴充其他劇的巡演來源（如 Phantom、Hamilton、Les Mis UK tour）。
+- ✅ West End（52）、Broadway（28）、北美巡演（broadway.org，28 劇 297 站）：全部自動抓取，含座標與海報，共 377 筆；**目前正在上演 76 個 marker**（含 19 個正在巡演的劇）。
+- ✅ 座標修正機制：NYC 範圍檢查、lat/lng 對調偵測、城市中心點 fallback、`overrides.json` 人工修正、geocode 快取。
+- ✅ 同劇合併（標題正規化）、巡演各自海報、cluster 圈圈隨數量縮放、多地點地圖 overview。
+- 🟡 國際製作（日本、西班牙、世界巡演等）尚未納入。待辦：接 broadway.org/broadway-shows-international。
 - 🟡 West End 少數冷門場館 geocode 為近似位置（可編 `data/venues.json` 校正）。

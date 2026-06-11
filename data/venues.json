@@ -308,5 +308,765 @@
     "lat": 39.959891,
     "lng": -82.998942,
     "query": "Ohio Theatre, Columbus, OH, USA"
+  },
+  "landmark theatre|syracuse, ny": {
+    "lat": 43.047308,
+    "lng": -76.152614,
+    "query": "Landmark Theatre, Syracuse, NY, USA"
+  },
+  "stranahan theater and great hall|toledo, oh": {
+    "lat": null,
+    "lng": null,
+    "query": "Stranahan Theater And Great Hall, Toledo, OH, USA"
+  },
+  "hippodrome theatre|baltimore, md": {
+    "lat": 39.289765,
+    "lng": -76.62141,
+    "query": "Hippodrome Theatre, Baltimore, MD, USA"
+  },
+  "hershey, pa|hershey, pa": {
+    "lat": 40.288386,
+    "lng": -76.661936,
+    "query": "Hershey, PA, Hershey, PA, USA"
+  },
+  "starlight theatre|kansas city, mo": {
+    "lat": 39.007581,
+    "lng": -94.53281,
+    "query": "Starlight Theatre, Kansas City, MO, USA"
+  },
+  "eccles theater|salt lake city, ut": {
+    "lat": 40.766324,
+    "lng": -111.89036,
+    "query": "Eccles Theater, Salt Lake City, UT, USA"
+  },
+  "keller auditorium|portland, or": {
+    "lat": 45.512414,
+    "lng": -122.67815,
+    "query": "Keller Auditorium, Portland, OR, USA"
+  },
+  "the plaza theatre|el paso, tx": {
+    "lat": null,
+    "lng": null,
+    "query": "The Plaza Theatre, El Paso, TX, USA"
+  },
+  "centennial hall|tucson, az": {
+    "lat": 32.230913,
+    "lng": -110.955437,
+    "query": "Centennial Hall, Tucson, AZ, USA"
+  },
+  "asu gammage|tempe, az": {
+    "lat": null,
+    "lng": null,
+    "query": "ASU Gammage, Tempe, AZ, USA"
+  },
+  "san diego civic theatre|san diego, ca": {
+    "lat": null,
+    "lng": null,
+    "query": "San Diego Civic Theatre, San Diego, CA, USA"
+  },
+  "curran theatre|san francisco, ca": {
+    "lat": 37.786831,
+    "lng": -122.410604,
+    "query": "Curran Theatre, San Francisco, CA, USA"
+  },
+  "pantages theatre|los angeles, ca": {
+    "lat": 34.102206,
+    "lng": -118.325768,
+    "query": "Pantages Theatre, Los Angeles, CA, USA"
+  },
+  "san jose center for the perf. arts|san jose, ca": {
+    "lat": null,
+    "lng": null,
+    "query": "San Jose Center For The Perf. Arts, San Jose, CA, USA"
+  },
+  "the smith center|las vegas, nv": {
+    "lat": 36.168781,
+    "lng": -115.151819,
+    "query": "The Smith Center, Las Vegas, NV, USA"
+  },
+  "segerstrom center for the arts|costa mesa, ca": {
+    "lat": 33.692379,
+    "lng": -117.88195,
+    "query": "Segerstrom Center for the Arts, Costa Mesa, CA, USA"
+  },
+  "popejoy hall|albuquerque, nm": {
+    "lat": 35.082089,
+    "lng": -106.620014,
+    "query": "Popejoy Hall, Albuquerque, NM, USA"
+  },
+  "buell theatre|denver, co": {
+    "lat": 39.744364,
+    "lng": -104.997624,
+    "query": "Buell Theatre, Denver, CO, USA"
+  },
+  "southern alberta jubilee auditorium|calgary, ab": {
+    "lat": null,
+    "lng": null,
+    "query": "Southern Alberta Jubilee Auditorium, Calgary, AB, USA"
+  },
+  "northern alberta jubilee auditorium|edmonton, ab": {
+    "lat": null,
+    "lng": null,
+    "query": "Northern Alberta Jubilee Auditorium, Edmonton, AB, USA"
+  },
+  "queen elizabeth theatre|vancouver, bc": {
+    "lat": null,
+    "lng": null,
+    "query": "Queen Elizabeth Theatre, Vancouver, BC, USA"
+  },
+  "morrison center for the perf. arts|boise, id": {
+    "lat": null,
+    "lng": null,
+    "query": "Morrison Center for the Perf. Arts, Boise, ID, USA"
+  },
+  "paramount theatre|seattle, wa": {
+    "lat": 47.613245,
+    "lng": -122.331356,
+    "query": "Paramount Theatre, Seattle, WA, USA"
+  },
+  "shea&#039;s performing arts center|buffalo, ny": {
+    "lat": null,
+    "lng": null,
+    "query": "Shea&#039;s Performing Arts Center, Buffalo, NY, USA"
+  },
+  "adrienne arsht center|miami, fl": {
+    "lat": 25.789469,
+    "lng": -80.188012,
+    "query": "Adrienne Arsht Center, Miami, FL, USA"
+  },
+  "straz center for the performing arts|tampa, fl": {
+    "lat": 27.951616,
+    "lng": -82.463985,
+    "query": "Straz Center for the Performing Arts, Tampa, FL, USA"
+  },
+  "broward center for the perf. arts|fort lauderdale, fl": {
+    "lat": null,
+    "lng": null,
+    "query": "Broward Center For The Perf. Arts, Fort Lauderdale, FL, USA"
+  },
+  "dr. phillips center for the performing arts: walt disney  theater|orlando, fl": {
+    "lat": null,
+    "lng": null,
+    "query": "Dr. Phillips Center for the Performing Arts: Walt Disney  Theater, Orlando, FL, USA"
+  },
+  "hobby center for the perf. arts|houston, tx": {
+    "lat": null,
+    "lng": null,
+    "query": "Hobby Center For The Perf. Arts, Houston, TX, USA"
+  },
+  "majestic theatre|san antonio, tx": {
+    "lat": 29.426354,
+    "lng": -98.49062,
+    "query": "Majestic Theatre, San Antonio, TX, USA"
+  },
+  "bass concert hall @ u of tx at austin|austin, tx": {
+    "lat": null,
+    "lng": null,
+    "query": "Bass Concert Hall @ U of TX at Austin, Austin, TX, USA"
+  },
+  "saenger theatre|new orleans, la": {
+    "lat": 29.956393,
+    "lng": -90.072576,
+    "query": "Saenger Theatre, New Orleans, LA, USA"
+  },
+  "walton arts center|fayetteville, ar": {
+    "lat": 36.065862,
+    "lng": -94.164794,
+    "query": "Walton Arts Center, Fayetteville, AR, USA"
+  },
+  "fox theatre|st. louis, mo": {
+    "lat": 38.639122,
+    "lng": -90.232384,
+    "query": "Fox Theatre, St. Louis, MO, USA"
+  },
+  "tennessee performing arts center|nashville, tn": {
+    "lat": 36.164382,
+    "lng": -86.782153,
+    "query": "Tennessee Performing Arts Center, Nashville, TN, USA"
+  },
+  "tennessee theatre|knoxville, tn": {
+    "lat": 35.96425,
+    "lng": -83.917508,
+    "query": "Tennessee Theatre, Knoxville, TN, USA"
+  },
+  "hayes hall|naples, fl": {
+    "lat": null,
+    "lng": null,
+    "query": "Hayes Hall, Naples, FL, USA"
+  },
+  "ordway center for the perf. arts|st. paul, mn": {
+    "lat": null,
+    "lng": null,
+    "query": "Ordway Center For The Perf. Arts, St. Paul, MN, USA"
+  },
+  "james m. nederlander theatre|chicago, il": {
+    "lat": 41.884953,
+    "lng": -87.628869,
+    "query": "James M. Nederlander Theatre, Chicago, IL, USA"
+  },
+  "altria theater|richmond, va": {
+    "lat": 37.546203,
+    "lng": -77.452108,
+    "query": "Altria Theater, Richmond, VA, USA"
+  },
+  "national theatre|washington, dc": {
+    "lat": 38.896354,
+    "lng": -77.030499,
+    "query": "National Theatre, Washington, DC, USA"
+  },
+  "fisher theatre|detroit, mi": {
+    "lat": 42.369564,
+    "lng": -83.076938,
+    "query": "Fisher Theatre, Detroit, MI, USA"
+  },
+  "kravis center for the performing arts|west palm beach, fl": {
+    "lat": 26.706901,
+    "lng": -80.060073,
+    "query": "Kravis Center For The Performing Arts, West Palm Beach, FL, USA"
+  },
+  "blumenthal center: belk theater|charlotte, nc": {
+    "lat": 35.227393,
+    "lng": -80.841652,
+    "query": "Blumenthal Center: Belk Theater, Charlotte, NC, USA"
+  },
+  "peace center for the perf. arts|greenville, sc": {
+    "lat": null,
+    "lng": null,
+    "query": "Peace Center For The Perf. Arts, Greenville, SC, USA"
+  },
+  "emerson colonial theatre|boston, ma": {
+    "lat": 42.35231,
+    "lng": -71.065288,
+    "query": "Emerson Colonial Theatre, Boston, MA, USA"
+  },
+  "kentucky center for the perf. arts|louisville, ky": {
+    "lat": null,
+    "lng": null,
+    "query": "Kentucky Center For The Perf. Arts, Louisville, KY, USA"
+  },
+  "bass performance hall|fort worth, tx": {
+    "lat": 32.754753,
+    "lng": -97.329757,
+    "query": "Bass Performance Hall, Fort Worth, TX, USA"
+  },
+  "civic center music hall|oklahoma city, ok": {
+    "lat": 35.469067,
+    "lng": -97.52348,
+    "query": "Civic Center Music Hall, Oklahoma City, OK, USA"
+  },
+  "robinson performance hall|little rock, ar": {
+    "lat": null,
+    "lng": null,
+    "query": "Robinson Performance Hall, Little Rock, AR, USA"
+  },
+  "birmingham-jefferson concert hall|birmingham, al": {
+    "lat": 33.525309,
+    "lng": -86.812358,
+    "query": "Birmingham-Jefferson Concert Hall, Birmingham, AL, USA"
+  },
+  "jacksonville center for the performing arts: moran theatre|jacksonville, fl": {
+    "lat": null,
+    "lng": null,
+    "query": "Jacksonville Center for the Performing Arts: Moran Theatre, Jacksonville, FL, USA"
+  },
+  "pioneer center|reno, nv": {
+    "lat": 39.524293,
+    "lng": -119.811351,
+    "query": "Pioneer Center, Reno, NV, USA"
+  },
+  "safe credit union performing arts center|sacramento, ca": {
+    "lat": 38.577183,
+    "lng": -121.489415,
+    "query": "SAFE Credit Union Performing Arts Center, Sacramento, CA, USA"
+  },
+  "devos hall|grand rapids, mi": {
+    "lat": null,
+    "lng": null,
+    "query": "DeVos Hall, Grand Rapids, MI, USA"
+  },
+  "toronto, on|toronto, on": {
+    "lat": null,
+    "lng": null,
+    "query": "Toronto, ON, Toronto, ON, USA"
+  },
+  "auditorium theatre|rochester, ny": {
+    "lat": 43.16061,
+    "lng": -77.588574,
+    "query": "Auditorium Theatre, Rochester, NY, USA"
+  },
+  "bushnell|hartford, ct": {
+    "lat": 41.762793,
+    "lng": -72.68029,
+    "query": "Bushnell, Hartford, CT, USA"
+  },
+  "providence performing arts center|providence, ri": {
+    "lat": 41.821065,
+    "lng": -71.41197,
+    "query": "Providence Performing Arts Center, Providence, RI, USA"
+  },
+  "proctors|schenectady, ny": {
+    "lat": 42.811977,
+    "lng": -73.942007,
+    "query": "Proctors, Schenectady, NY, USA"
+  },
+  "uihlein hall at marcus performing arts center|milwaukee, wi": {
+    "lat": null,
+    "lng": null,
+    "query": "Uihlein Hall at Marcus Performing Arts Center, Milwaukee, WI, USA"
+  },
+  "clowes memorial hall|indianapolis, in": {
+    "lat": 39.840453,
+    "lng": -86.169984,
+    "query": "Clowes Memorial Hall, Indianapolis, IN, USA"
+  },
+  "wharton center for the performing arts|east lansing, mi": {
+    "lat": null,
+    "lng": null,
+    "query": "Wharton Center for the Performing Arts, East Lansing, MI, USA"
+  },
+  "auditorium theatre of roosevelt univ.|chicago, il": {
+    "lat": null,
+    "lng": null,
+    "query": "Auditorium Theatre of Roosevelt Univ., Chicago, IL, USA"
+  },
+  "hult center for the performing arts|eugene, or": {
+    "lat": 44.052686,
+    "lng": -123.093198,
+    "query": "Hult Center For The Performing Arts, Eugene, OR, USA"
+  },
+  "first interstate center for the arts|spokane, wa": {
+    "lat": 47.660586,
+    "lng": -117.417241,
+    "query": "First Interstate Center for the Arts, Spokane, WA, USA"
+  },
+  "mccallum theatre for the perf. arts|palm desert, ca": {
+    "lat": null,
+    "lng": null,
+    "query": "McCallum Theatre For The Perf. Arts, Palm Desert, CA, USA"
+  },
+  "washington pavilion|sioux falls, sd": {
+    "lat": 43.544258,
+    "lng": -96.728988,
+    "query": "Washington Pavilion, Sioux Falls, SD, USA"
+  },
+  "colorado springs, co|colorado springs, co": {
+    "lat": 38.812811,
+    "lng": -104.814843,
+    "query": "Colorado Springs, CO, Colorado Springs, CO, USA"
+  },
+  "ahmanson theatre|los angeles, ca": {
+    "lat": 34.058243,
+    "lng": -118.247344,
+    "query": "Ahmanson Theatre, Los Angeles, CA, USA"
+  },
+  "national arts centre: southam hall|ottawa, on": {
+    "lat": null,
+    "lng": null,
+    "query": "National Arts Centre: Southam Hall, Ottawa, ON, USA"
+  },
+  "academy of music: kimmel center|philadelphia, pa": {
+    "lat": null,
+    "lng": null,
+    "query": "Academy of Music: Kimmel Center, Philadelphia, PA, USA"
+  },
+  "place des arts|montreal, qc": {
+    "lat": null,
+    "lng": null,
+    "query": "Place Des Arts, Montreal, QC, USA"
+  },
+  "lied center for performing arts|lincoln, ne": {
+    "lat": 40.816339,
+    "lng": -96.704883,
+    "query": "Lied Center For Performing Arts, Lincoln, NE, USA"
+  },
+  "steven tanger center for the performing arts|greensboro, nc": {
+    "lat": 36.075654,
+    "lng": -79.789569,
+    "query": "Steven Tanger Center for the Performing Arts, Greensboro, NC, USA"
+  },
+  "overture center|madison, wi": {
+    "lat": 43.074134,
+    "lng": -89.388277,
+    "query": "Overture Center, Madison, WI, USA"
+  },
+  "fox cities performing arts center|appleton, wi": {
+    "lat": 44.262372,
+    "lng": -88.411524,
+    "query": "Fox Cities Performing Arts Center, Appleton, WI, USA"
+  },
+  "benedum center|pittsburgh, pa": {
+    "lat": 40.443091,
+    "lng": -79.999628,
+    "query": "Benedum Center, Pittsburgh, PA, USA"
+  },
+  "washington, dc|washington, dc": {
+    "lat": 38.88984,
+    "lng": -77.040269,
+    "query": "Washington, DC, Washington, DC, USA"
+  },
+  "benjamin &amp; marian schuster performing arts center|dayton, oh": {
+    "lat": null,
+    "lng": null,
+    "query": "Benjamin &amp; Marian Schuster Performing Arts Center, Dayton, OH, USA"
+  },
+  "opera house|boston, ma": {
+    "lat": 42.354258,
+    "lng": -71.062836,
+    "query": "Opera House, Boston, MA, USA"
+  },
+  "cibc theatre|chicago, il": {
+    "lat": 41.881175,
+    "lng": -87.628596,
+    "query": "CIBC Theatre, Chicago, IL, USA"
+  },
+  "forrest theatre|philadelphia, pa": {
+    "lat": 39.948498,
+    "lng": -75.15961,
+    "query": "Forrest Theatre, Philadelphia, PA, USA"
+  },
+  "evans, ga|evans, ga": {
+    "lat": 33.551024,
+    "lng": -82.117647,
+    "query": "Evans, GA, Evans, GA, USA"
+  },
+  "wilmington, nc|wilmington, nc": {
+    "lat": 34.213719,
+    "lng": -77.900743,
+    "query": "Wilmington, NC, Wilmington, NC, USA"
+  },
+  "the embassy theatre|fort wayne, in": {
+    "lat": null,
+    "lng": null,
+    "query": "The Embassy Theatre, Fort Wayne, IN, USA"
+  },
+  "bloomington, in|bloomington, in": {
+    "lat": 39.180236,
+    "lng": -86.509353,
+    "query": "Bloomington, IN, Bloomington, IN, USA"
+  },
+  "peoria civic center theatre|peoria, il": {
+    "lat": null,
+    "lng": null,
+    "query": "Peoria Civic Center Theatre, Peoria, IL, USA"
+  },
+  "adler theatre|davenport, ia": {
+    "lat": 41.522776,
+    "lng": -90.573492,
+    "query": "Adler Theatre, Davenport, IA, USA"
+  },
+  "the playhouse on rodney square|wilmington, de": {
+    "lat": null,
+    "lng": null,
+    "query": "The Playhouse on Rodney Square, Wilmington, DE, USA"
+  },
+  "lexington, ky|lexington, ky": {
+    "lat": 37.977718,
+    "lng": -84.528445,
+    "query": "Lexington, KY, Lexington, KY, USA"
+  },
+  "portland, me|portland, me": {
+    "lat": 43.653934,
+    "lng": -70.291099,
+    "query": "Portland, ME, Portland, ME, USA"
+  },
+  "new brunswick, nj|new brunswick, nj": {
+    "lat": 40.496843,
+    "lng": -74.446193,
+    "query": "New Brunswick, NJ, New Brunswick, NJ, USA"
+  },
+  "san antonio, tx|san antonio, tx": {
+    "lat": 29.419346,
+    "lng": -98.478046,
+    "query": "San Antonio, TX, San Antonio, TX, USA"
+  },
+  "at&amp;t performing arts center|dallas, tx": {
+    "lat": null,
+    "lng": null,
+    "query": "AT&amp;T Performing Arts Center, Dallas, TX, USA"
+  },
+  "victoria, bc|victoria, bc": {
+    "lat": null,
+    "lng": null,
+    "query": "Victoria, BC, Victoria, BC, USA"
+  },
+  "chapman music hall at tulsa pac|tulsa, ok": {
+    "lat": null,
+    "lng": null,
+    "query": "Chapman Music Hall At Tulsa PAC, Tulsa, OK, USA"
+  },
+  "the hanover theatre and conservatory for the performing arts|worcester, ma": {
+    "lat": null,
+    "lng": null,
+    "query": "The Hanover Theatre and Conservatory for the Performing Arts, Worcester, MA, USA"
+  },
+  "wang theatre at the boch center|boston, ma": {
+    "lat": null,
+    "lng": null,
+    "query": "Wang Theatre at the Boch Center, Boston, MA, USA"
+  },
+  "harrison opera house|norfolk, va": {
+    "lat": 36.858227,
+    "lng": -76.28994,
+    "query": "Harrison Opera House, Norfolk, VA, USA"
+  },
+  "orpheum theatre - memphis|memphis, tn": {
+    "lat": 35.140216,
+    "lng": -90.055549,
+    "query": "Orpheum Theatre - Memphis, Memphis, TN, USA"
+  },
+  "connor palace|cleveland, oh": {
+    "lat": 41.5015,
+    "lng": -81.680404,
+    "query": "Connor Palace, Cleveland, OH, USA"
+  },
+  "aronoff center: procter &amp; gamble hall|cincinnati, oh": {
+    "lat": null,
+    "lng": null,
+    "query": "Aronoff Center: Procter &amp; Gamble Hall, Cincinnati, OH, USA"
+  },
+  "murat centre|indianapolis, in": {
+    "lat": 39.774583,
+    "lng": -86.151075,
+    "query": "Murat Centre, Indianapolis, IN, USA"
+  },
+  "springfield, mo|springfield, mo": {
+    "lat": 37.177801,
+    "lng": -93.324798,
+    "query": "Springfield, MO, Springfield, MO, USA"
+  },
+  "cadillac palace theatre|chicago, il": {
+    "lat": 41.884074,
+    "lng": -87.633182,
+    "query": "Cadillac Palace Theatre, Chicago, IL, USA"
+  },
+  "orpheum theatre|san francisco, ca": {
+    "lat": 37.779162,
+    "lng": -122.414735,
+    "query": "Orpheum Theatre, San Francisco, CA, USA"
+  },
+  "municipal auditorium music hall|kansas city, mo": {
+    "lat": null,
+    "lng": null,
+    "query": "Municipal Auditorium Music Hall, Kansas City, MO, USA"
+  },
+  "showcenter complex|monterrey": {
+    "lat": null,
+    "lng": null,
+    "query": "Showcenter Complex, Monterrey, USA"
+  },
+  "city|toledo, oh|usa": {
+    "lat": 41.652914,
+    "lng": -83.537817,
+    "query": "Toledo, OH, USA"
+  },
+  "city|el paso, tx|usa": {
+    "lat": 31.7601,
+    "lng": -106.487048,
+    "query": "El Paso, TX, USA"
+  },
+  "city|tempe, az|usa": {
+    "lat": 33.425512,
+    "lng": -111.940016,
+    "query": "Tempe, AZ, USA"
+  },
+  "city|san diego, ca|usa": {
+    "lat": 32.71742,
+    "lng": -117.162772,
+    "query": "San Diego, CA, USA"
+  },
+  "city|san jose, ca|usa": {
+    "lat": 37.336166,
+    "lng": -121.890591,
+    "query": "San Jose, CA, USA"
+  },
+  "city|calgary, ab|canada": {
+    "lat": 51.045606,
+    "lng": -114.057541,
+    "query": "Calgary, AB, Canada"
+  },
+  "city|edmonton, ab|canada": {
+    "lat": 53.546205,
+    "lng": -113.491241,
+    "query": "Edmonton, AB, Canada"
+  },
+  "city|vancouver, bc|canada": {
+    "lat": 49.260872,
+    "lng": -123.113952,
+    "query": "Vancouver, BC, Canada"
+  },
+  "city|boise, id|usa": {
+    "lat": 43.616616,
+    "lng": -116.200886,
+    "query": "Boise, ID, USA"
+  },
+  "city|buffalo, ny|usa": {
+    "lat": 42.886416,
+    "lng": -78.878149,
+    "query": "Buffalo, NY, USA"
+  },
+  "city|fort lauderdale, fl|usa": {
+    "lat": 26.122308,
+    "lng": -80.143379,
+    "query": "Fort Lauderdale, FL, USA"
+  },
+  "city|orlando, fl|usa": {
+    "lat": 28.542122,
+    "lng": -81.379045,
+    "query": "Orlando, FL, USA"
+  },
+  "city|houston, tx|usa": {
+    "lat": 29.758938,
+    "lng": -95.367697,
+    "query": "Houston, TX, USA"
+  },
+  "city|austin, tx|usa": {
+    "lat": 30.271129,
+    "lng": -97.7437,
+    "query": "Austin, TX, USA"
+  },
+  "city|cleveland, oh|usa": {
+    "lat": 41.499657,
+    "lng": -81.693677,
+    "query": "Cleveland, OH, USA"
+  },
+  "city|naples, fl|usa": {
+    "lat": 26.142198,
+    "lng": -81.794294,
+    "query": "Naples, FL, USA"
+  },
+  "city|st. paul, mn|usa": {
+    "lat": 44.949749,
+    "lng": -93.093103,
+    "query": "St. Paul, MN, USA"
+  },
+  "city|greenville, sc|usa": {
+    "lat": 34.851354,
+    "lng": -82.398488,
+    "query": "Greenville, SC, USA"
+  },
+  "city|louisville, ky|usa": {
+    "lat": 38.254238,
+    "lng": -85.759407,
+    "query": "Louisville, KY, USA"
+  },
+  "city|little rock, ar|usa": {
+    "lat": 34.746507,
+    "lng": -92.289627,
+    "query": "Little Rock, AR, USA"
+  },
+  "city|jacksonville, fl|usa": {
+    "lat": 30.326225,
+    "lng": -81.657918,
+    "query": "Jacksonville, FL, USA"
+  },
+  "city|grand rapids, mi|usa": {
+    "lat": 42.963242,
+    "lng": -85.667864,
+    "query": "Grand Rapids, MI, USA"
+  },
+  "city|toronto, on|canada": {
+    "lat": 43.653482,
+    "lng": -79.383935,
+    "query": "Toronto, ON, Canada"
+  },
+  "city|milwaukee, wi|usa": {
+    "lat": 43.038648,
+    "lng": -87.909075,
+    "query": "Milwaukee, WI, USA"
+  },
+  "city|east lansing, mi|usa": {
+    "lat": 42.732031,
+    "lng": -84.472168,
+    "query": "East Lansing, MI, USA"
+  },
+  "city|chicago, il|usa": {
+    "lat": 41.875562,
+    "lng": -87.624421,
+    "query": "Chicago, IL, USA"
+  },
+  "city|palm desert, ca|usa": {
+    "lat": 33.728818,
+    "lng": -116.382571,
+    "query": "Palm Desert, CA, USA"
+  },
+  "city|ottawa, on|canada": {
+    "lat": 45.420878,
+    "lng": -75.690111,
+    "query": "Ottawa, ON, Canada"
+  },
+  "city|philadelphia, pa|usa": {
+    "lat": 39.952724,
+    "lng": -75.163526,
+    "query": "Philadelphia, PA, USA"
+  },
+  "city|montreal, qc|canada": {
+    "lat": 45.503182,
+    "lng": -73.569806,
+    "query": "Montreal, QC, Canada"
+  },
+  "city|des moines, ia|usa": {
+    "lat": 41.586865,
+    "lng": -93.624949,
+    "query": "Des Moines, IA, USA"
+  },
+  "city|dayton, oh|usa": {
+    "lat": 39.758948,
+    "lng": -84.191607,
+    "query": "Dayton, OH, USA"
+  },
+  "city|fort wayne, in|usa": {
+    "lat": 41.07999,
+    "lng": -85.138601,
+    "query": "Fort Wayne, IN, USA"
+  },
+  "city|peoria, il|usa": {
+    "lat": 40.693861,
+    "lng": -89.589101,
+    "query": "Peoria, IL, USA"
+  },
+  "city|wilmington, de|usa": {
+    "lat": 39.745947,
+    "lng": -75.546589,
+    "query": "Wilmington, DE, USA"
+  },
+  "city|dallas, tx|usa": {
+    "lat": 32.776272,
+    "lng": -96.796856,
+    "query": "Dallas, TX, USA"
+  },
+  "city|victoria, bc|canada": {
+    "lat": 48.428318,
+    "lng": -123.364953,
+    "query": "Victoria, BC, Canada"
+  },
+  "city|tulsa, ok|usa": {
+    "lat": 36.156312,
+    "lng": -95.992752,
+    "query": "Tulsa, OK, USA"
+  },
+  "city|worcester, ma|usa": {
+    "lat": 42.262562,
+    "lng": -71.801888,
+    "query": "Worcester, MA, USA"
+  },
+  "city|boston, ma|usa": {
+    "lat": 42.358834,
+    "lng": -71.05783,
+    "query": "Boston, MA, USA"
+  },
+  "city|cincinnati, oh|usa": {
+    "lat": 39.101281,
+    "lng": -84.512741,
+    "query": "Cincinnati, OH, USA"
+  },
+  "city|kansas city, mo|usa": {
+    "lat": 39.100105,
+    "lng": -94.578142,
+    "query": "Kansas City, MO, USA"
+  },
+  "city|monterrey|usa": {
+    "lat": 36.223108,
+    "lng": -121.387742,
+    "query": "Monterrey, USA"
   }
 }

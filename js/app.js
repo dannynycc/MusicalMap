@@ -48,7 +48,21 @@ L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r
   attribution: "&copy; OpenStreetMap &copy; CARTO",
   subdomains: "abcd", maxZoom: 19,
 }).addTo(map);
-const cluster = L.markerClusterGroup({ maxClusterRadius: 45, spiderfyOnMaxZoom: true, showCoverageOnHover: false });
+const cluster = L.markerClusterGroup({
+  maxClusterRadius: 45,
+  spiderfyOnMaxZoom: true,
+  showCoverageOnHover: false,
+  // size the bubble by how many shows it holds (bigger count → bigger circle)
+  iconCreateFunction: (c) => {
+    const n = c.getChildCount();
+    const size = Math.round(Math.max(32, Math.min(64, 24 + Math.sqrt(n) * 8)));
+    return L.divIcon({
+      html: `<div class="mm-cluster" style="width:${size}px;height:${size}px"><span>${n}</span></div>`,
+      className: "mm-cluster-wrap",
+      iconSize: [size, size],
+    });
+  },
+});
 map.addLayer(cluster);
 
 // ---------- State ----------
@@ -77,10 +91,10 @@ function fallbackGlyph(show) {
 function posterMarkerIcon(show) {
   return L.divIcon({
     className: "mm-icon",
-    html: `<div class="poster-pin ${esc(show.type)} ${show.image ? "" : "noimg"}" style="${posterStyle(show, 80, 112)}">${fallbackGlyph(show)}</div>`,
-    iconSize: [40, 56],
-    iconAnchor: [20, 56],
-    popupAnchor: [0, -54],
+    html: `<div class="poster-pin ${esc(show.type)} ${show.image ? "" : "noimg"}" style="${posterStyle(show, 110, 150)}">${fallbackGlyph(show)}</div>`,
+    iconSize: [52, 72],
+    iconAnchor: [26, 72],
+    popupAnchor: [0, -70],
   });
 }
 
@@ -150,8 +164,10 @@ function render() {
   shows.forEach((s) => {
     if (typeof s.lat !== "number" || typeof s.lng !== "number") return;
     const m = L.marker([s.lat, s.lng], { icon: posterMarkerIcon(s), riseOnHover: true })
-      .bindPopup(popupHtml(s), { maxWidth: 300, className: "mm-popup" })
-      .bindTooltip(tooltipHtml(s), { direction: "top", offset: [0, -52], className: "mm-tip", opacity: 1 });
+      .bindPopup(popupHtml(s), { maxWidth: 340, className: "mm-popup" })
+      .bindTooltip(tooltipHtml(s), { direction: "top", offset: [0, -68], className: "mm-tip", opacity: 1 });
+    // at low zoom, clicking flies in first so the card shows at a sensible scale
+    m.on("click", () => { if (map.getZoom() < 9) map.flyTo(m.getLatLng(), 12, { animate: true }); });
     cluster.addLayer(m);
     markerById[s.id] = m;
     latlngs.push([s.lat, s.lng]);

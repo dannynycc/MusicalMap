@@ -31,7 +31,7 @@ def group_key(title):
     return t
 
 # Order matters for de-dup: later files override earlier ids.
-SOURCE_FILES = ["broadway.json", "westend.json", "wicked_tour.json"]
+SOURCE_FILES = ["broadway.json", "westend.json", "tours.json"]
 
 
 def main():
