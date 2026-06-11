@@ -122,8 +122,9 @@ html, body {
 .leaflet-marker-icon:hover .poster-pin { transform: scale(1.35); }
 
 /* hover tooltip card */
-.mm-tip { background: none; border: none; box-shadow: none; padding: 0; }
+.mm-tip { background: none; border: none; box-shadow: none; padding: 0; white-space: normal; }
 .mm-tip::before { display: none; }
+.tt-title, .tt-sub { overflow-wrap: anywhere; }
 .tt {
   display: flex; gap: 12px; width: 300px; padding: 12px;
   background: var(--panel); border: 1px solid var(--border);
@@ -154,11 +155,15 @@ html, body {
 .p-row { font-size: 14px; color: var(--muted); margin: 4px 0; }
 .p-row b { color: var(--text); font-weight: 600; }
 .p-row.warn { color: #92670a; }
-.pop-cta {
+/* override Leaflet's default .leaflet-popup-content a colour (higher specificity) */
+.mm-popup .pop-cta {
   display: inline-block; margin-top: 11px; font-size: 13px; font-weight: 700;
-  color: var(--accent-ink); background: var(--accent); padding: 7px 13px; border-radius: 9px; text-decoration: none;
+  color: #ffffff !important; background: var(--accent); padding: 7px 13px;
+  border-radius: 9px; text-decoration: none;
 }
-.pop-cta:hover { filter: brightness(1.08); }
+.mm-popup .pop-cta:hover { filter: brightness(1.08); text-decoration: none; }
+.pop-cta.sm { padding: 4px 9px; font-size: 12px; margin: 4px 6px 0 0; }
+.pop-links { margin-top: 8px; font-size: 12px; color: var(--muted); }
 
 /* marker cluster — size scales with count via iconCreateFunction */
 .mm-cluster-wrap { background: none; border: none; }

@@ -1,9 +1,9 @@
 {
   "meta": {
     "source": "merged",
-    "generated_at": "2026-06-11 16:00 UTC",
-    "total": 390,
-    "verified": 390,
+    "generated_at": "2026-06-11 16:33 UTC",
+    "total": 515,
+    "verified": 515,
     "unverified": 0,
     "sources": [
       {
@@ -42,6 +42,10 @@
           "source": "broadway.org/international",
           "count": 13
         }
+      },
+      {
+        "file": "ticketmaster.json",
+        "count": 125
       }
     ]
   },
@@ -7065,6 +7069,3006 @@
       "verified": true,
       "source": "broadway.org/international",
       "group": "lion king"
+    },
+    {
+      "id": "tm-mj-the-michael-jackson-musical-crown-theatre-perth",
+      "title": "MJ The Michael Jackson Musical",
+      "type": "resident",
+      "venue": "Crown Theatre Perth",
+      "city": "Burswood",
+      "country": "Australia",
+      "lat": -31.959722,
+      "lng": 115.895276,
+      "start_date": "2026-06-11",
+      "end_date": "2026-07-19",
+      "ticket_url": "https://www.ticketmaster.com.au/mj-the-michael-jackson-musical-burswood-11-06-2026/event/25006349F3E8672B",
+      "ticket_links": [
+        {
+          "country": "AU",
+          "url": "https://www.ticketmaster.com.au/mj-the-michael-jackson-musical-burswood-11-06-2026/event/25006349F3E8672B"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/05b/618e346c-bfb5-4f86-bd99-f5050477f05b_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "mj the michael jackson musical"
+    },
+    {
+      "id": "tm-monty-python-s-spamalot-planet-royale",
+      "title": "Monty Python's Spamalot",
+      "type": "resident",
+      "venue": "Planet Royale",
+      "city": "Northbridge",
+      "country": "Australia",
+      "lat": -31.948379,
+      "lng": 115.856676,
+      "start_date": "2026-06-11",
+      "end_date": "2026-06-13",
+      "ticket_url": "https://www.ticketmaster.com.au/monty-pythons-spamalot-northbridge-11-06-2026/event/25006466A5AF7371",
+      "ticket_links": [
+        {
+          "country": "AU",
+          "url": "https://www.ticketmaster.com.au/monty-pythons-spamalot-northbridge-11-06-2026/event/25006466A5AF7371"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/839/92b58f5d-cacd-43df-9ee2-8bcc4e014839_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "monty python s spamalot"
+    },
+    {
+      "id": "tm-anastasia-sydney-lyric",
+      "title": "Anastasia",
+      "type": "resident",
+      "venue": "Sydney Lyric",
+      "city": "Pyrmont",
+      "country": "Australia",
+      "lat": -33.868828,
+      "lng": 151.19572,
+      "start_date": "2026-06-12",
+      "end_date": "2026-07-18",
+      "ticket_url": "https://www.ticketmaster.com.au/anastasia-the-broadway-musical-australia-pyrmont-12-06-2026/event/130062D3DB1344D9",
+      "ticket_links": [
+        {
+          "country": "AU",
+          "url": "https://www.ticketmaster.com.au/anastasia-the-broadway-musical-australia-pyrmont-12-06-2026/event/130062D3DB1344D9"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/186/914bfec0-450f-48a2-a15f-411e53c0b186_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "anastasia"
+    },
+    {
+      "id": "tm-the-lion-king-australia-capitol-theatre-sydney",
+      "title": "The Lion King (Australia)",
+      "type": "resident",
+      "venue": "Capitol Theatre, Sydney",
+      "city": "Haymarket",
+      "country": "Australia",
+      "lat": -33.87962,
+      "lng": 151.206329,
+      "start_date": "2026-06-12",
+      "end_date": "2026-10-04",
+      "ticket_url": "https://www.ticketmaster.com.au/disney-presents-the-lion-king-australia-haymarket-12-06-2026/event/13006329AFBD4056",
+      "ticket_links": [
+        {
+          "country": "AU",
+          "url": "https://www.ticketmaster.com.au/disney-presents-the-lion-king-australia-haymarket-12-06-2026/event/13006329AFBD4056"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/f5a/61bb08ba-8048-4037-a2aa-ea18cc5b6f5a_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "lion king australia"
+    },
+    {
+      "id": "tm-hair-the-tribal-love-rock-musical-opening-night-theatre-royal-sydney",
+      "title": "HAIR - THE TRIBAL LOVE-ROCK MUSICAL - Opening Night",
+      "type": "resident",
+      "venue": "Theatre Royal Sydney",
+      "city": "Sydney",
+      "country": "Australia",
+      "lat": -33.868934,
+      "lng": 151.208726,
+      "start_date": "2026-06-12",
+      "end_date": "2026-06-12",
+      "ticket_url": "https://www.ticketmaster.com.au/hair-the-tribal-loverock-musical-opening-sydney-12-06-2026/event/13006470BF7C4FAC",
+      "ticket_links": [
+        {
+          "country": "AU",
+          "url": "https://www.ticketmaster.com.au/hair-the-tribal-loverock-musical-opening-sydney-12-06-2026/event/13006470BF7C4FAC"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/832/2a584a19-d64b-4982-8a36-76f308ce3832_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "hair the tribal love rock musical opening night"
+    },
+    {
+      "id": "tm-tootsie-teatro-at-the-italian-forum",
+      "title": "Tootsie",
+      "type": "resident",
+      "venue": "Teatro - At The Italian Forum",
+      "city": "Leichhardt",
+      "country": "Australia",
+      "lat": -33.886956,
+      "lng": 151.158349,
+      "start_date": "2026-06-12",
+      "end_date": "2026-06-21",
+      "ticket_url": "https://www.ticketmaster.com.au/tootsie-leichhardt-12-06-2026/event/2500644B9B2D3FF8",
+      "ticket_links": [
+        {
+          "country": "AU",
+          "url": "https://www.ticketmaster.com.au/tootsie-leichhardt-12-06-2026/event/2500644B9B2D3FF8"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/a8e/11ef0f18-b853-405e-b03a-7b14e9664a8e_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "tootsie"
+    },
+    {
+      "id": "tm-hair-the-tribal-love-rock-musical-theatre-royal-sydney",
+      "title": "HAIR - THE TRIBAL LOVE-ROCK MUSICAL",
+      "type": "resident",
+      "venue": "Theatre Royal Sydney",
+      "city": "Sydney",
+      "country": "Australia",
+      "lat": -33.868934,
+      "lng": 151.208726,
+      "start_date": "2026-06-13",
+      "end_date": "2026-07-05",
+      "ticket_url": "https://www.ticketmaster.com.au/hair-the-tribal-loverock-musical-sydney-13-06-2026/event/13006470BF7C4FB1",
+      "ticket_links": [
+        {
+          "country": "AU",
+          "url": "https://www.ticketmaster.com.au/hair-the-tribal-loverock-musical-sydney-13-06-2026/event/13006470BF7C4FB1"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/832/2a584a19-d64b-4982-8a36-76f308ce3832_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "hair the tribal love rock musical"
+    },
+    {
+      "id": "tm-mj-the-michael-jackson-musical-auslan-interpreted-audio-described-crown-theatre-perth",
+      "title": "MJ The Michael Jackson Musical - AUSLAN Interpreted & Audio Described",
+      "type": "resident",
+      "venue": "Crown Theatre Perth",
+      "city": "Burswood",
+      "country": "Australia",
+      "lat": -31.959722,
+      "lng": 115.895276,
+      "start_date": "2026-06-28",
+      "end_date": "2026-06-28",
+      "ticket_url": "https://www.ticketmaster.com.au/mj-the-michael-jackson-musical-auslan-burswood-28-06-2026/event/25006349F79168EB",
+      "ticket_links": [
+        {
+          "country": "AU",
+          "url": "https://www.ticketmaster.com.au/mj-the-michael-jackson-musical-auslan-burswood-28-06-2026/event/25006349F79168EB"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/05b/618e346c-bfb5-4f86-bd99-f5050477f05b_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "mj the michael jackson musical auslan interpreted audio described"
+    },
+    {
+      "id": "tm-waitress-australia-sydney-lyric",
+      "title": "Waitress (Australia)",
+      "type": "resident",
+      "venue": "Sydney Lyric",
+      "city": "Pyrmont",
+      "country": "Australia",
+      "lat": -33.868828,
+      "lng": 151.19572,
+      "start_date": "2026-08-01",
+      "end_date": "2026-10-04",
+      "ticket_url": "https://www.ticketmaster.com.au/waitress-australia-pyrmont-01-08-2026/event/1300635691326DDF",
+      "ticket_links": [
+        {
+          "country": "AU",
+          "url": "https://www.ticketmaster.com.au/waitress-australia-pyrmont-01-08-2026/event/1300635691326DDF"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/9f3/94de8faf-f9d0-442d-9f24-51f6e194d9f3_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "waitress australia"
+    },
+    {
+      "id": "tm-waitress-opening-night-sydney-lyric",
+      "title": "Waitress - Opening Night",
+      "type": "resident",
+      "venue": "Sydney Lyric",
+      "city": "Pyrmont",
+      "country": "Australia",
+      "lat": -33.868828,
+      "lng": 151.19572,
+      "start_date": "2026-08-06",
+      "end_date": "2026-08-06",
+      "ticket_url": "https://www.ticketmaster.com.au/waitress-opening-night-pyrmont-06-08-2026/event/1300635691336DEF",
+      "ticket_links": [
+        {
+          "country": "AU",
+          "url": "https://www.ticketmaster.com.au/waitress-opening-night-pyrmont-06-08-2026/event/1300635691336DEF"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/9f3/94de8faf-f9d0-442d-9f24-51f6e194d9f3_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "waitress opening night"
+    },
+    {
+      "id": "tm-scotch-college-hadestown-thebarton-theatre",
+      "title": "Scotch College - Hadestown",
+      "type": "resident",
+      "venue": "Thebarton Theatre",
+      "city": "Torrensville",
+      "country": "Australia",
+      "lat": -34.923168,
+      "lng": 138.568989,
+      "start_date": "2026-08-06",
+      "end_date": "2026-08-09",
+      "ticket_url": "https://www.ticketmaster.com.au/scotch-college-hadestown-torrensville-06-08-2026/event/130064BDA84D6799",
+      "ticket_links": [
+        {
+          "country": "AU",
+          "url": "https://www.ticketmaster.com.au/scotch-college-hadestown-torrensville-06-08-2026/event/130064BDA84D6799"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/0c6/a5d026d4-0eff-4df4-868e-de03d92e00c6_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "scotch college hadestown"
+    },
+    {
+      "id": "tm-the-lion-king-auslan-interpreted-performance-capitol-theatre-sydney",
+      "title": "The Lion King - Auslan Interpreted Performance",
+      "type": "resident",
+      "venue": "Capitol Theatre, Sydney",
+      "city": "Haymarket",
+      "country": "Australia",
+      "lat": -33.87962,
+      "lng": 151.206329,
+      "start_date": "2026-08-12",
+      "end_date": "2026-08-12",
+      "ticket_url": "https://www.ticketmaster.com.au/disney-presents-the-lion-king-auslan-haymarket-12-08-2026/event/13006329AFD9425C",
+      "ticket_links": [
+        {
+          "country": "AU",
+          "url": "https://www.ticketmaster.com.au/disney-presents-the-lion-king-auslan-haymarket-12-08-2026/event/13006329AFD9425C"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/f5a/61bb08ba-8048-4037-a2aa-ea18cc5b6f5a_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "lion king auslan interpreted performance"
+    },
+    {
+      "id": "tm-beetlejuice-the-musical-preview-crown-theatre-perth",
+      "title": "BEETLEJUICE THE MUSICAL - PREVIEW",
+      "type": "resident",
+      "venue": "Crown Theatre Perth",
+      "city": "Burswood",
+      "country": "Australia",
+      "lat": -31.959722,
+      "lng": 115.895276,
+      "start_date": "2026-08-16",
+      "end_date": "2026-08-19",
+      "ticket_url": "https://www.ticketmaster.com.au/beetlejuice-the-musical-preview-burswood-16-08-2026/event/25006445EB5057AC",
+      "ticket_links": [
+        {
+          "country": "AU",
+          "url": "https://www.ticketmaster.com.au/beetlejuice-the-musical-preview-burswood-16-08-2026/event/25006445EB5057AC"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/9c5/75884fd6-d274-43d9-858b-637dbff999c5_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "beetlejuice the musical preview"
+    },
+    {
+      "id": "tm-beetlejuice-the-musical-crown-theatre-perth",
+      "title": "BEETLEJUICE THE MUSICAL",
+      "type": "resident",
+      "venue": "Crown Theatre Perth",
+      "city": "Burswood",
+      "country": "Australia",
+      "lat": -31.959722,
+      "lng": 115.895276,
+      "start_date": "2026-08-20",
+      "end_date": "2026-09-20",
+      "ticket_url": "https://www.ticketmaster.com.au/beetlejuice-the-musical-burswood-20-08-2026/event/25006449D2474762",
+      "ticket_links": [
+        {
+          "country": "AU",
+          "url": "https://www.ticketmaster.com.au/beetlejuice-the-musical-burswood-20-08-2026/event/25006449D2474762"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/9c5/75884fd6-d274-43d9-858b-637dbff999c5_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "beetlejuice"
+    },
+    {
+      "id": "tm-the-lion-king-audio-described-performance-capitol-theatre-sydney",
+      "title": "The Lion King - Audio Described Performance",
+      "type": "resident",
+      "venue": "Capitol Theatre, Sydney",
+      "city": "Haymarket",
+      "country": "Australia",
+      "lat": -33.87962,
+      "lng": 151.206329,
+      "start_date": "2026-08-23",
+      "end_date": "2026-08-23",
+      "ticket_url": "https://www.ticketmaster.com.au/disney-presents-the-lion-king-audio-haymarket-23-08-2026/event/13006329AFE242E1",
+      "ticket_links": [
+        {
+          "country": "AU",
+          "url": "https://www.ticketmaster.com.au/disney-presents-the-lion-king-audio-haymarket-23-08-2026/event/13006329AFE242E1"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/f5a/61bb08ba-8048-4037-a2aa-ea18cc5b6f5a_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "lion king audio described performance"
+    },
+    {
+      "id": "tm-the-lion-king-australia-relaxed-performance-capitol-theatre-sydney",
+      "title": "The Lion King (Australia) Relaxed Performance",
+      "type": "resident",
+      "venue": "Capitol Theatre, Sydney",
+      "city": "Haymarket",
+      "country": "Australia",
+      "lat": -33.87962,
+      "lng": 151.206329,
+      "start_date": "2026-08-29",
+      "end_date": "2026-08-29",
+      "ticket_url": "https://www.ticketmaster.com.au/the-lion-king-australia-relaxed-performance-haymarket-29-08-2026/event/13006329AFE342FB",
+      "ticket_links": [
+        {
+          "country": "AU",
+          "url": "https://www.ticketmaster.com.au/the-lion-king-australia-relaxed-performance-haymarket-29-08-2026/event/13006329AFE342FB"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/f5a/61bb08ba-8048-4037-a2aa-ea18cc5b6f5a_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "lion king australia relaxed performance"
+    },
+    {
+      "id": "tm-heathers-the-musical-roslyn-packer-theatre-walsh-bay",
+      "title": "Heathers the Musical",
+      "type": "resident",
+      "venue": "Roslyn Packer Theatre Walsh Bay",
+      "city": "Millers Point",
+      "country": "Australia",
+      "lat": -33.857349,
+      "lng": 151.204544,
+      "start_date": "2026-09-01",
+      "end_date": "2026-09-19",
+      "ticket_url": "https://www.ticketmaster.com.au/heathers-the-musical-millers-point-01-09-2026/event/1300634699F15FA8",
+      "ticket_links": [
+        {
+          "country": "AU",
+          "url": "https://www.ticketmaster.com.au/heathers-the-musical-millers-point-01-09-2026/event/1300634699F15FA8"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/091/8e15d46e-dc4f-4f22-9259-f657e431e091_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "heathers"
+    },
+    {
+      "id": "tm-menopause-the-musical-athenaeum-theatre-one",
+      "title": "Menopause The Musical",
+      "type": "resident",
+      "venue": "Athenaeum Theatre One",
+      "city": "Melbourne",
+      "country": "Australia",
+      "lat": -37.815216,
+      "lng": 144.967449,
+      "start_date": "2026-09-02",
+      "end_date": "2026-09-06",
+      "ticket_url": "https://www.ticketmaster.com.au/menopause-the-musical-melbourne-02-09-2026/event/1300648A8DD33A7D",
+      "ticket_links": [
+        {
+          "country": "AU",
+          "url": "https://www.ticketmaster.com.au/menopause-the-musical-melbourne-02-09-2026/event/1300648A8DD33A7D"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/bd7/646dfcae-ca6f-43c5-a26d-2f758a881bd7_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "menopause"
+    },
+    {
+      "id": "tm-beetlejuice-the-musical-auslan-interpreted-performance-crown-theatre-perth",
+      "title": "BEETLEJUICE THE MUSICAL - Auslan Interpreted Performance",
+      "type": "resident",
+      "venue": "Crown Theatre Perth",
+      "city": "Burswood",
+      "country": "Australia",
+      "lat": -31.959722,
+      "lng": 115.895276,
+      "start_date": "2026-09-06",
+      "end_date": "2026-09-06",
+      "ticket_url": "https://www.ticketmaster.com.au/beetlejuice-the-musical-auslan-interpreted-performance-burswood-06-09-2026/event/25006449D20C4741",
+      "ticket_links": [
+        {
+          "country": "AU",
+          "url": "https://www.ticketmaster.com.au/beetlejuice-the-musical-auslan-interpreted-performance-burswood-06-09-2026/event/25006449D20C4741"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/9c5/75884fd6-d274-43d9-858b-637dbff999c5_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "beetlejuice the musical auslan interpreted performance"
+    },
+    {
+      "id": "tm-my-fair-lady-uk-sydney-opera-house-joan-sutherland-theatre",
+      "title": "My Fair Lady (UK)",
+      "type": "resident",
+      "venue": "Sydney Opera House- Joan Sutherland Theatre",
+      "city": "Sydney",
+      "country": "Australia",
+      "lat": -33.869579,
+      "lng": 151.210004,
+      "start_date": "2026-09-12",
+      "end_date": "2026-10-30",
+      "ticket_url": "https://www.ticketmaster.com.au/my-fair-lady-uk-sydney-12-09-2026/event/1300632BB0593B56",
+      "ticket_links": [
+        {
+          "country": "AU",
+          "url": "https://www.ticketmaster.com.au/my-fair-lady-uk-sydney-12-09-2026/event/1300632BB0593B56"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/d50/af1583bd-8381-4500-8c8d-267e19695d50_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "my fair lady uk"
+    },
+    {
+      "id": "tm-carousel-foundry-theatre",
+      "title": "Carousel",
+      "type": "resident",
+      "venue": "Foundry Theatre",
+      "city": "Pyrmont",
+      "country": "Australia",
+      "lat": -33.868828,
+      "lng": 151.19572,
+      "start_date": "2026-10-15",
+      "end_date": "2026-10-17",
+      "ticket_url": "https://www.ticketmaster.com.au/carousel-pyrmont-15-10-2026/event/130064ACD9F7918A",
+      "ticket_links": [
+        {
+          "country": "AU",
+          "url": "https://www.ticketmaster.com.au/carousel-pyrmont-15-10-2026/event/130064ACD9F7918A"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/68e/5bd1d6d9-a649-490d-a4fa-b434a02e768e_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "carousel"
+    },
+    {
+      "id": "tm-the-book-of-mormon-australia-crown-theatre-perth",
+      "title": "The Book of Mormon (Australia)",
+      "type": "resident",
+      "venue": "Crown Theatre Perth",
+      "city": "Burswood",
+      "country": "Australia",
+      "lat": -31.959722,
+      "lng": 115.895276,
+      "start_date": "2026-10-20",
+      "end_date": "2026-11-08",
+      "ticket_url": "https://www.ticketmaster.com.au/the-book-of-mormon-australia-burswood-20-10-2026/event/2500649BAC882B04",
+      "ticket_links": [
+        {
+          "country": "AU",
+          "url": "https://www.ticketmaster.com.au/the-book-of-mormon-australia-burswood-20-10-2026/event/2500649BAC882B04"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/d1f/14a7f89b-ecdf-4bce-ac5e-f00d19a7fd1f_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "book of mormon australia"
+    },
+    {
+      "id": "tm-a-beautiful-noise-sydney-lyric",
+      "title": "A Beautiful Noise",
+      "type": "resident",
+      "venue": "Sydney Lyric",
+      "city": "Pyrmont",
+      "country": "Australia",
+      "lat": -33.868828,
+      "lng": 151.19572,
+      "start_date": "2026-11-14",
+      "end_date": "2026-11-17",
+      "ticket_url": "https://www.ticketmaster.com.au/a-beautiful-noise-pyrmont-14-11-2026/event/130064BD999046C8",
+      "ticket_links": [
+        {
+          "country": "AU",
+          "url": "https://www.ticketmaster.com.au/a-beautiful-noise-pyrmont-14-11-2026/event/130064BD999046C8"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/106/4a4a8269-101b-4369-9622-3260520ed106_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "a beautiful noise"
+    },
+    {
+      "id": "tm-whispering-jack-the-john-farnham-musical-preview-roslyn-packer-theatre-walsh-bay",
+      "title": "Whispering Jack: The John Farnham Musical - Preview",
+      "type": "resident",
+      "venue": "Roslyn Packer Theatre Walsh Bay",
+      "city": "Millers Point",
+      "country": "Australia",
+      "lat": -33.857349,
+      "lng": 151.204544,
+      "start_date": "2026-11-15",
+      "end_date": "2026-11-15",
+      "ticket_url": "https://www.ticketmaster.com.au/whispering-jack-the-john-farnham-musical-millers-point-15-11-2026/event/1300643ABE2F585F",
+      "ticket_links": [
+        {
+          "country": "AU",
+          "url": "https://www.ticketmaster.com.au/whispering-jack-the-john-farnham-musical-millers-point-15-11-2026/event/1300643ABE2F585F"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/07b/0ba4fbb7-61fa-4289-87ef-994863a2107b_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "whispering jack the john farnham musical preview"
+    },
+    {
+      "id": "tm-tera-te-auahi-sir-howard-morrison-centre",
+      "title": "Tera Te Auahi",
+      "type": "resident",
+      "venue": "Sir Howard Morrison Centre",
+      "city": "Rotorua",
+      "country": "New Zealand",
+      "lat": -38.13538,
+      "lng": 176.25412,
+      "start_date": "2026-06-12",
+      "end_date": "2026-06-13",
+      "ticket_url": "https://www.ticketmaster.co.nz/tera-te-auahi-rotorua-12-06-2026/event/24006470AF90259F",
+      "ticket_links": [
+        {
+          "country": "NZ",
+          "url": "https://www.ticketmaster.co.nz/tera-te-auahi-rotorua-12-06-2026/event/24006470AF90259F"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/341/9e7886f0-674b-4b6e-9da1-bece6ce29341_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "tera te auahi"
+    },
+    {
+      "id": "tm-heathers-the-musical-the-civic-auckland",
+      "title": "Heathers the Musical",
+      "type": "resident",
+      "venue": "The Civic, Auckland",
+      "city": "Auckland",
+      "country": "New Zealand",
+      "lat": -36.850731,
+      "lng": 174.764587,
+      "start_date": "2026-06-12",
+      "end_date": "2026-06-14",
+      "ticket_url": "https://www.ticketmaster.co.nz/heathers-the-musical-auckland-12-06-2026/event/24006341C29337D0",
+      "ticket_links": [
+        {
+          "country": "NZ",
+          "url": "https://www.ticketmaster.co.nz/heathers-the-musical-auckland-12-06-2026/event/24006341C29337D0"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/091/8e15d46e-dc4f-4f22-9259-f657e431e091_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "heathers"
+    },
+    {
+      "id": "tm-nyt-production-of-disney-s-the-little-mermaid-kiri-te-kanawa-theatre",
+      "title": "NYT production of Disney's The Little Mermaid",
+      "type": "resident",
+      "venue": "Kiri Te Kanawa Theatre",
+      "city": "Auckland",
+      "country": "New Zealand",
+      "lat": -36.851668,
+      "lng": 174.762097,
+      "start_date": "2026-06-26",
+      "end_date": "2026-06-28",
+      "ticket_url": "https://www.ticketmaster.co.nz/nyt-production-of-disneys-the-little-auckland-26-06-2026/event/24006462A0121E5F",
+      "ticket_links": [
+        {
+          "country": "NZ",
+          "url": "https://www.ticketmaster.co.nz/nyt-production-of-disneys-the-little-auckland-26-06-2026/event/24006462A0121E5F"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/0f4/ec519d22-aed6-4228-a1b8-3fc9627a10f4_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "nyt production of disney s the little mermaid"
+    },
+    {
+      "id": "tm-the-addams-family-musical-bruce-mason-centre",
+      "title": "The Addams Family Musical",
+      "type": "resident",
+      "venue": "Bruce Mason Centre",
+      "city": "Takapuna Beach",
+      "country": "New Zealand",
+      "lat": -36.783684,
+      "lng": 174.77359,
+      "start_date": "2026-07-10",
+      "end_date": "2026-07-11",
+      "ticket_url": "https://www.ticketmaster.co.nz/the-addams-family-musical-takapuna-beach-10-07-2026/event/2400648439E63D91",
+      "ticket_links": [
+        {
+          "country": "NZ",
+          "url": "https://www.ticketmaster.co.nz/the-addams-family-musical-takapuna-beach-10-07-2026/event/2400648439E63D91"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/248/ec5d1392-3eb8-4bab-8636-90a259d12248_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "addams family musical"
+    },
+    {
+      "id": "tm-h-r-the-musical-edinburgh-fringe-fundraiser-season-herald-theatre-aotea-centre",
+      "title": "H.R. The Musical - Edinburgh Fringe fundraiser season",
+      "type": "resident",
+      "venue": "Herald Theatre, Aotea Centre",
+      "city": "Auckland",
+      "country": "New Zealand",
+      "lat": -36.853996,
+      "lng": 174.762283,
+      "start_date": "2026-07-14",
+      "end_date": "2026-07-18",
+      "ticket_url": "https://www.ticketmaster.co.nz/hr-the-musical-edinburgh-fringe-fundraiser-auckland-14-07-2026/event/240064C395211CC3",
+      "ticket_links": [
+        {
+          "country": "NZ",
+          "url": "https://www.ticketmaster.co.nz/hr-the-musical-edinburgh-fringe-fundraiser-auckland-14-07-2026/event/240064C395211CC3"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/4ab/f40bc423-1d6d-4036-b5bd-6e38704b64ab_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "h r the musical edinburgh fringe fundraiser season"
+    },
+    {
+      "id": "tm-tarzan-sir-howard-morrison-centre",
+      "title": "Tarzan",
+      "type": "resident",
+      "venue": "Sir Howard Morrison Centre",
+      "city": "Rotorua",
+      "country": "New Zealand",
+      "lat": -38.13538,
+      "lng": 176.25412,
+      "start_date": "2026-08-05",
+      "end_date": "2026-08-08",
+      "ticket_url": "https://www.ticketmaster.co.nz/tarzan-rotorua-05-08-2026/event/240064B3E1C35121",
+      "ticket_links": [
+        {
+          "country": "NZ",
+          "url": "https://www.ticketmaster.co.nz/tarzan-rotorua-05-08-2026/event/240064B3E1C35121"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/aa3/5893a475-0f2b-4b53-b6b1-30827bd5aaa3_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "tarzan"
+    },
+    {
+      "id": "tm-judy-s-encore-bruce-mason-centre",
+      "title": "Judy's Encore",
+      "type": "resident",
+      "venue": "Bruce Mason Centre",
+      "city": "Takapuna Beach",
+      "country": "New Zealand",
+      "lat": -36.783684,
+      "lng": 174.77359,
+      "start_date": "2026-08-09",
+      "end_date": "2026-08-09",
+      "ticket_url": "https://www.ticketmaster.co.nz/judys-encore-takapuna-beach-09-08-2026/event/240064958647188A",
+      "ticket_links": [
+        {
+          "country": "NZ",
+          "url": "https://www.ticketmaster.co.nz/judys-encore-takapuna-beach-09-08-2026/event/240064958647188A"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/505/094cc7e4-94cc-489e-85a2-0a947f20f505_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "judy s encore"
+    },
+    {
+      "id": "tm-cabaret-preview-1-asb-waterfront-theatre",
+      "title": "Cabaret - Preview 1",
+      "type": "resident",
+      "venue": "ASB Waterfront Theatre",
+      "city": "Auckland",
+      "country": "New Zealand",
+      "lat": -36.842082,
+      "lng": 174.757729,
+      "start_date": "2026-09-22",
+      "end_date": "2026-09-22",
+      "ticket_url": "https://www.ticketmaster.co.nz/cabaret-preview-1-auckland-22-09-2026/event/2400636494F02AC6",
+      "ticket_links": [
+        {
+          "country": "NZ",
+          "url": "https://www.ticketmaster.co.nz/cabaret-preview-1-auckland-22-09-2026/event/2400636494F02AC6"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/78d/d5b032ea-d3a8-4565-bd80-e5a2183ec78d_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "cabaret preview 1"
+    },
+    {
+      "id": "tm-cabaret-preview-2-asb-waterfront-theatre",
+      "title": "Cabaret - Preview 2",
+      "type": "resident",
+      "venue": "ASB Waterfront Theatre",
+      "city": "Auckland",
+      "country": "New Zealand",
+      "lat": -36.842082,
+      "lng": 174.757729,
+      "start_date": "2026-09-23",
+      "end_date": "2026-09-23",
+      "ticket_url": "https://www.ticketmaster.co.nz/cabaret-preview-2-auckland-23-09-2026/event/24006364D4E740A7",
+      "ticket_links": [
+        {
+          "country": "NZ",
+          "url": "https://www.ticketmaster.co.nz/cabaret-preview-2-auckland-23-09-2026/event/24006364D4E740A7"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/78d/d5b032ea-d3a8-4565-bd80-e5a2183ec78d_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "cabaret preview 2"
+    },
+    {
+      "id": "tm-matilda-the-musical-nz-st-james-theatre-wellington",
+      "title": "Matilda the Musical (NZ)",
+      "type": "resident",
+      "venue": "St James Theatre Wellington",
+      "city": "Wellington",
+      "country": "New Zealand",
+      "lat": -41.293158,
+      "lng": 174.779682,
+      "start_date": "2026-09-23",
+      "end_date": "2026-10-11",
+      "ticket_url": "https://www.ticketmaster.co.nz/matilda-the-musical-nz-wellington-23-09-2026/event/240062FDB13A134B",
+      "ticket_links": [
+        {
+          "country": "NZ",
+          "url": "https://www.ticketmaster.co.nz/matilda-the-musical-nz-wellington-23-09-2026/event/240062FDB13A134B"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/173/3dc20c5f-e4b4-46e6-befb-2f6737ca9173_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "matilda the musical nz"
+    },
+    {
+      "id": "tm-cabaret-preview-3-asb-waterfront-theatre",
+      "title": "Cabaret - Preview 3",
+      "type": "resident",
+      "venue": "ASB Waterfront Theatre",
+      "city": "Auckland",
+      "country": "New Zealand",
+      "lat": -36.842082,
+      "lng": 174.757729,
+      "start_date": "2026-09-24",
+      "end_date": "2026-09-24",
+      "ticket_url": "https://www.ticketmaster.co.nz/cabaret-preview-3-auckland-24-09-2026/event/24006364D4E740A9",
+      "ticket_links": [
+        {
+          "country": "NZ",
+          "url": "https://www.ticketmaster.co.nz/cabaret-preview-3-auckland-24-09-2026/event/24006364D4E740A9"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/78d/d5b032ea-d3a8-4565-bd80-e5a2183ec78d_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "cabaret preview 3"
+    },
+    {
+      "id": "tm-cabaret-asb-waterfront-theatre",
+      "title": "Cabaret",
+      "type": "resident",
+      "venue": "ASB Waterfront Theatre",
+      "city": "Auckland",
+      "country": "New Zealand",
+      "lat": -36.842082,
+      "lng": 174.757729,
+      "start_date": "2026-09-26",
+      "end_date": "2026-10-18",
+      "ticket_url": "https://www.ticketmaster.co.nz/cabaret-auckland-26-09-2026/event/24006498A03C4D74",
+      "ticket_links": [
+        {
+          "country": "NZ",
+          "url": "https://www.ticketmaster.co.nz/cabaret-auckland-26-09-2026/event/24006498A03C4D74"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/78d/d5b032ea-d3a8-4565-bd80-e5a2183ec78d_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "cabaret"
+    },
+    {
+      "id": "tm-cabaret-relaxed-performance-asb-waterfront-theatre",
+      "title": "Cabaret - Relaxed Performance",
+      "type": "resident",
+      "venue": "ASB Waterfront Theatre",
+      "city": "Auckland",
+      "country": "New Zealand",
+      "lat": -36.842082,
+      "lng": 174.757729,
+      "start_date": "2026-10-04",
+      "end_date": "2026-10-04",
+      "ticket_url": "https://www.ticketmaster.co.nz/cabaret-relaxed-performance-auckland-04-10-2026/event/24006364DBB04278",
+      "ticket_links": [
+        {
+          "country": "NZ",
+          "url": "https://www.ticketmaster.co.nz/cabaret-relaxed-performance-auckland-04-10-2026/event/24006364DBB04278"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/78d/d5b032ea-d3a8-4565-bd80-e5a2183ec78d_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "cabaret relaxed performance"
+    },
+    {
+      "id": "tm-cabaret-nzsl-interpreted-asb-waterfront-theatre",
+      "title": "Cabaret - NZSL-Interpreted",
+      "type": "resident",
+      "venue": "ASB Waterfront Theatre",
+      "city": "Auckland",
+      "country": "New Zealand",
+      "lat": -36.842082,
+      "lng": 174.757729,
+      "start_date": "2026-10-10",
+      "end_date": "2026-10-10",
+      "ticket_url": "https://www.ticketmaster.co.nz/cabaret-nzslinterpreted-auckland-10-10-2026/event/24006364DBFC429D",
+      "ticket_links": [
+        {
+          "country": "NZ",
+          "url": "https://www.ticketmaster.co.nz/cabaret-nzslinterpreted-auckland-10-10-2026/event/24006364DBFC429D"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/78d/d5b032ea-d3a8-4565-bd80-e5a2183ec78d_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "cabaret nzsl interpreted"
+    },
+    {
+      "id": "tm-cabaret-ad-touch-tour-asb-waterfront-theatre",
+      "title": "Cabaret - AD & Touch Tour",
+      "type": "resident",
+      "venue": "ASB Waterfront Theatre",
+      "city": "Auckland",
+      "country": "New Zealand",
+      "lat": -36.842082,
+      "lng": 174.757729,
+      "start_date": "2026-10-11",
+      "end_date": "2026-10-11",
+      "ticket_url": "https://www.ticketmaster.co.nz/cabaret-ad-touch-tour-auckland-11-10-2026/event/24006364DBB0427A",
+      "ticket_links": [
+        {
+          "country": "NZ",
+          "url": "https://www.ticketmaster.co.nz/cabaret-ad-touch-tour-auckland-11-10-2026/event/24006364DBB0427A"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/78d/d5b032ea-d3a8-4565-bd80-e5a2183ec78d_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "cabaret ad touch tour"
+    },
+    {
+      "id": "tm-jesus-christ-superstar-the-civic-auckland",
+      "title": "Jesus Christ Superstar",
+      "type": "resident",
+      "venue": "The Civic, Auckland",
+      "city": "Auckland",
+      "country": "New Zealand",
+      "lat": -36.850731,
+      "lng": 174.764587,
+      "start_date": "2026-10-21",
+      "end_date": "2026-11-08",
+      "ticket_url": "https://www.ticketmaster.co.nz/jesus-christ-superstar-auckland-21-10-2026/event/2400646B92681B89",
+      "ticket_links": [
+        {
+          "country": "NZ",
+          "url": "https://www.ticketmaster.co.nz/jesus-christ-superstar-auckland-21-10-2026/event/2400646B92681B89"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/e57/e9aea21e-c18b-4ba4-bfbd-9033c709ae57_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "jesus christ superstar"
+    },
+    {
+      "id": "tm-jesus-christ-superstar-st-james-theatre-wellington",
+      "title": "Jesus Christ Superstar",
+      "type": "resident",
+      "venue": "St James Theatre Wellington",
+      "city": "Wellington",
+      "country": "New Zealand",
+      "lat": -41.293158,
+      "lng": 174.779682,
+      "start_date": "2026-11-18",
+      "end_date": "2026-11-28",
+      "ticket_url": "https://www.ticketmaster.co.nz/jesus-christ-superstar-wellington-18-11-2026/event/2400646CA0A72467",
+      "ticket_links": [
+        {
+          "country": "NZ",
+          "url": "https://www.ticketmaster.co.nz/jesus-christ-superstar-wellington-18-11-2026/event/2400646CA0A72467"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/e57/e9aea21e-c18b-4ba4-bfbd-9033c709ae57_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "jesus christ superstar"
+    },
+    {
+      "id": "tm-priscilla-queen-of-the-desert-touring-bord-gais-energy-theatre",
+      "title": "Priscilla Queen of the Desert (Touring)",
+      "type": "resident",
+      "venue": "Bord Gais Energy Theatre",
+      "city": "Dublin",
+      "country": "Ireland",
+      "lat": 53.344201,
+      "lng": -6.240274,
+      "start_date": "2026-06-11",
+      "end_date": "2026-06-13",
+      "ticket_url": "https://www.ticketmaster.ie/priscilla-queen-of-the-desert-touring-dublin-11-06-2026/event/1800631C8F38147E",
+      "ticket_links": [
+        {
+          "country": "IE",
+          "url": "https://www.ticketmaster.ie/priscilla-queen-of-the-desert-touring-dublin-11-06-2026/event/1800631C8F38147E"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/cee/f89969f1-792f-497f-b0c1-27ccfaabecee_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "priscilla queen of the desert touring"
+    },
+    {
+      "id": "tm-are-ya-dancin-a-showband-story-gaiety-theatre",
+      "title": "Are Ya Dancin'? - A Showband Story",
+      "type": "resident",
+      "venue": "Gaiety Theatre",
+      "city": "Dublin",
+      "country": "Ireland",
+      "lat": 53.340453,
+      "lng": -6.261572,
+      "start_date": "2026-06-11",
+      "end_date": "2026-06-13",
+      "ticket_url": "https://www.ticketmaster.ie/are-ya-dancin-a-showband-story-dublin-11-06-2026/event/180063518A74BFD9",
+      "ticket_links": [
+        {
+          "country": "IE",
+          "url": "https://www.ticketmaster.ie/are-ya-dancin-a-showband-story-dublin-11-06-2026/event/180063518A74BFD9"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/f3b/9a2e902f-d678-456b-8b45-6f472fd98f3b_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "are ya dancin a showband story"
+    },
+    {
+      "id": "tm-oklahoma-bord-gais-energy-theatre",
+      "title": "Oklahoma!",
+      "type": "resident",
+      "venue": "Bord Gais Energy Theatre",
+      "city": "Dublin",
+      "country": "Ireland",
+      "lat": 53.344201,
+      "lng": -6.240274,
+      "start_date": "2026-06-19",
+      "end_date": "2026-07-05",
+      "ticket_url": "https://www.ticketmaster.ie/oklahoma-dublin-19-06-2026/event/1800637A93E3D0C3",
+      "ticket_links": [
+        {
+          "country": "IE",
+          "url": "https://www.ticketmaster.ie/oklahoma-dublin-19-06-2026/event/1800637A93E3D0C3"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/d6d/e6de5f91-4530-46a5-8720-6e9d6b323d6d_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "oklahoma"
+    },
+    {
+      "id": "tm-legally-blonde-touring-bord-gais-energy-theatre",
+      "title": "Legally Blonde (Touring)",
+      "type": "resident",
+      "venue": "Bord Gais Energy Theatre",
+      "city": "Dublin",
+      "country": "Ireland",
+      "lat": 53.344201,
+      "lng": -6.240274,
+      "start_date": "2026-07-07",
+      "end_date": "2026-07-18",
+      "ticket_url": "https://www.ticketmaster.ie/legally-blonde-touring-dublin-07-07-2026/event/1800635FB23CFADB",
+      "ticket_links": [
+        {
+          "country": "IE",
+          "url": "https://www.ticketmaster.ie/legally-blonde-touring-dublin-07-07-2026/event/1800635FB23CFADB"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/024/7cd583ec-fcac-4efe-8a4f-5e0d26095024_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "legally blonde touring"
+    },
+    {
+      "id": "tm-the-bodyguard-bord-gais-energy-theatre",
+      "title": "The Bodyguard",
+      "type": "resident",
+      "venue": "Bord Gais Energy Theatre",
+      "city": "Dublin",
+      "country": "Ireland",
+      "lat": 53.344201,
+      "lng": -6.240274,
+      "start_date": "2026-08-04",
+      "end_date": "2026-08-08",
+      "ticket_url": "https://www.ticketmaster.ie/the-bodyguard-dublin-04-08-2026/event/18006346A8A2CC4F",
+      "ticket_links": [
+        {
+          "country": "IE",
+          "url": "https://www.ticketmaster.ie/the-bodyguard-dublin-04-08-2026/event/18006346A8A2CC4F"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/fd9/e1435468-e4f2-4c23-b7b8-61728c267fd9_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "bodyguard"
+    },
+    {
+      "id": "tm-annie-touring-bord-gais-energy-theatre",
+      "title": "Annie (Touring)",
+      "type": "resident",
+      "venue": "Bord Gais Energy Theatre",
+      "city": "Dublin",
+      "country": "Ireland",
+      "lat": 53.344201,
+      "lng": -6.240274,
+      "start_date": "2026-08-11",
+      "end_date": "2026-08-16",
+      "ticket_url": "https://www.ticketmaster.ie/annie-touring-dublin-11-08-2026/event/1800632C83350C3A",
+      "ticket_links": [
+        {
+          "country": "IE",
+          "url": "https://www.ticketmaster.ie/annie-touring-dublin-11-08-2026/event/1800632C83350C3A"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/58d/0fd40389-b660-40e3-a278-c973367ee58d_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "annie touring"
+    },
+    {
+      "id": "tm-mean-girls-touring-bord-gais-energy-theatre",
+      "title": "Mean Girls (Touring)",
+      "type": "resident",
+      "venue": "Bord Gais Energy Theatre",
+      "city": "Dublin",
+      "country": "Ireland",
+      "lat": 53.344201,
+      "lng": -6.240274,
+      "start_date": "2026-08-25",
+      "end_date": "2026-09-05",
+      "ticket_url": "https://www.ticketmaster.ie/mean-girls-touring-dublin-25-08-2026/event/1800634A774893C1",
+      "ticket_links": [
+        {
+          "country": "IE",
+          "url": "https://www.ticketmaster.ie/mean-girls-touring-dublin-25-08-2026/event/1800634A774893C1"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/f2a/0235db04-17df-477f-83f9-a9959e03ff2a_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "mean girls touring"
+    },
+    {
+      "id": "tm-some-guys-have-all-the-luck-rod-stewart-story-mount-errigal-hotel",
+      "title": "Some Guys Have All The Luck - Rod Stewart Story",
+      "type": "resident",
+      "venue": "Mount Errigal Hotel",
+      "city": "Co. Donegal",
+      "country": "Ireland",
+      "lat": 54.949638,
+      "lng": -7.715042,
+      "start_date": "2026-09-06",
+      "end_date": "2026-09-06",
+      "ticket_url": "https://www.ticketmaster.ie/some-guys-have-all-the-luck-co-donegal-06-09-2026/event/18006463E36CAF1F",
+      "ticket_links": [
+        {
+          "country": "IE",
+          "url": "https://www.ticketmaster.ie/some-guys-have-all-the-luck-co-donegal-06-09-2026/event/18006463E36CAF1F"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/0fe/594d3cd1-9f2b-4ffa-a3ed-1b9f335b80fe_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "some guys have all the luck rod stewart story"
+    },
+    {
+      "id": "tm-matilda-the-musical-touring-bord-gais-energy-theatre",
+      "title": "Matilda the Musical (Touring)",
+      "type": "resident",
+      "venue": "Bord Gais Energy Theatre",
+      "city": "Dublin",
+      "country": "Ireland",
+      "lat": 53.344201,
+      "lng": -6.240274,
+      "start_date": "2026-09-15",
+      "end_date": "2026-10-17",
+      "ticket_url": "https://www.ticketmaster.ie/matilda-the-musical-touring-dublin-15-09-2026/event/18006328F15BA733",
+      "ticket_links": [
+        {
+          "country": "IE",
+          "url": "https://www.ticketmaster.ie/matilda-the-musical-touring-dublin-15-09-2026/event/18006328F15BA733"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/6c0/9436779a-1b7d-4daf-b3c9-452bea2c36c0_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "matilda the musical touring"
+    },
+    {
+      "id": "tm-matilda-the-musical-chilled-performance-bord-gais-energy-theatre",
+      "title": "Matilda the Musical - Chilled Performance",
+      "type": "resident",
+      "venue": "Bord Gais Energy Theatre",
+      "city": "Dublin",
+      "country": "Ireland",
+      "lat": 53.344201,
+      "lng": -6.240274,
+      "start_date": "2026-10-18",
+      "end_date": "2026-10-18",
+      "ticket_url": "https://www.ticketmaster.ie/matilda-the-musical-chilled-performance-dublin-18-10-2026/event/18006328F184A863",
+      "ticket_links": [
+        {
+          "country": "IE",
+          "url": "https://www.ticketmaster.ie/matilda-the-musical-chilled-performance-dublin-18-10-2026/event/18006328F184A863"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/6c0/9436779a-1b7d-4daf-b3c9-452bea2c36c0_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "matilda the musical chilled performance"
+    },
+    {
+      "id": "tm-high-society-bord-gais-energy-theatre",
+      "title": "High Society",
+      "type": "resident",
+      "venue": "Bord Gais Energy Theatre",
+      "city": "Dublin",
+      "country": "Ireland",
+      "lat": 53.344201,
+      "lng": -6.240274,
+      "start_date": "2026-10-20",
+      "end_date": "2026-10-24",
+      "ticket_url": "https://www.ticketmaster.ie/high-society-dublin-20-10-2026/event/18006385B1F076C0",
+      "ticket_links": [
+        {
+          "country": "IE",
+          "url": "https://www.ticketmaster.ie/high-society-dublin-20-10-2026/event/18006385B1F076C0"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/5ef/902e80af-9413-4baa-a5ea-4ad2b74d05ef_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "high society"
+    },
+    {
+      "id": "tm-the-choir-of-man-bord-gais-energy-theatre",
+      "title": "The Choir Of Man",
+      "type": "resident",
+      "venue": "Bord Gais Energy Theatre",
+      "city": "Dublin",
+      "country": "Ireland",
+      "lat": 53.344201,
+      "lng": -6.240274,
+      "start_date": "2026-11-10",
+      "end_date": "2026-11-14",
+      "ticket_url": "https://www.ticketmaster.ie/the-choir-of-man-dublin-10-11-2026/event/18006356A241EDD9",
+      "ticket_links": [
+        {
+          "country": "IE",
+          "url": "https://www.ticketmaster.ie/the-choir-of-man-dublin-10-11-2026/event/18006356A241EDD9"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/7cd/e547ae58-d121-46ab-bfdf-cb1d6f87d7cd_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "choir of man"
+    },
+    {
+      "id": "tm-heathers-the-musical-bord-gais-energy-theatre",
+      "title": "Heathers the Musical",
+      "type": "resident",
+      "venue": "Bord Gais Energy Theatre",
+      "city": "Dublin",
+      "country": "Ireland",
+      "lat": 53.344201,
+      "lng": -6.240274,
+      "start_date": "2026-11-17",
+      "end_date": "2026-11-21",
+      "ticket_url": "https://www.ticketmaster.ie/heathers-the-musical-dublin-17-11-2026/event/1800644682145CBE",
+      "ticket_links": [
+        {
+          "country": "IE",
+          "url": "https://www.ticketmaster.ie/heathers-the-musical-dublin-17-11-2026/event/1800644682145CBE"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/e97/1306d017-c321-4c19-9e62-8ae5f762de97_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "heathers"
+    },
+    {
+      "id": "tm-robin-hood-gaiety-theatre",
+      "title": "Robin Hood",
+      "type": "resident",
+      "venue": "Gaiety Theatre",
+      "city": "Dublin",
+      "country": "Ireland",
+      "lat": 53.340453,
+      "lng": -6.261572,
+      "start_date": "2026-11-22",
+      "end_date": "2027-01-03",
+      "ticket_url": "https://www.ticketmaster.ie/robin-hood-dublin-22-11-2026/event/18006385E49E24B4",
+      "ticket_links": [
+        {
+          "country": "IE",
+          "url": "https://www.ticketmaster.ie/robin-hood-dublin-22-11-2026/event/18006385E49E24B4"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/44b/d0a200ae-a141-4860-8ae1-9f19a300044b_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "robin hood"
+    },
+    {
+      "id": "tm-mrs-doubtfire-bord-gais-energy-theatre",
+      "title": "Mrs. Doubtfire",
+      "type": "resident",
+      "venue": "Bord Gais Energy Theatre",
+      "city": "Dublin",
+      "country": "Ireland",
+      "lat": 53.344201,
+      "lng": -6.240274,
+      "start_date": "2026-12-02",
+      "end_date": "2027-01-03",
+      "ticket_url": "https://www.ticketmaster.ie/mrs-doubtfire-dublin-02-12-2026/event/180063639571B450",
+      "ticket_links": [
+        {
+          "country": "IE",
+          "url": "https://www.ticketmaster.ie/mrs-doubtfire-dublin-02-12-2026/event/180063639571B450"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/190/5ad6dc40-d46d-4903-9ccb-632678bc4190_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "mrs doubtfire"
+    },
+    {
+      "id": "tm-scrooge-a-cirque-spectacular-gleneagle-arena",
+      "title": "Scrooge: A Cirque Spectacular",
+      "type": "resident",
+      "venue": "Gleneagle Arena",
+      "city": "Co. Kerry",
+      "country": "Ireland",
+      "lat": 52.044335,
+      "lng": -9.502029,
+      "start_date": "2027-01-01",
+      "end_date": "2027-01-03",
+      "ticket_url": "https://www.ticketmaster.ie/scrooge-a-cirque-spectacular-co-kerry-01-01-2027/event/1800638C9B9EF373",
+      "ticket_links": [
+        {
+          "country": "IE",
+          "url": "https://www.ticketmaster.ie/scrooge-a-cirque-spectacular-co-kerry-01-01-2027/event/1800638C9B9EF373"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/4a3/956ba2ea-d57c-46b7-ab51-7aca565924a3_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "scrooge a cirque spectacular"
+    },
+    {
+      "id": "tm-dirty-dancing-the-classic-story-on-stage-bord-gais-energy-theatre",
+      "title": "Dirty Dancing - The Classic Story On Stage",
+      "type": "resident",
+      "venue": "Bord Gais Energy Theatre",
+      "city": "Dublin",
+      "country": "Ireland",
+      "lat": 53.344201,
+      "lng": -6.240274,
+      "start_date": "2027-03-02",
+      "end_date": "2027-03-13",
+      "ticket_url": "https://www.ticketmaster.ie/dirty-dancing-the-classic-story-on-dublin-02-03-2027/event/180064ADE17CD49D",
+      "ticket_links": [
+        {
+          "country": "IE",
+          "url": "https://www.ticketmaster.ie/dirty-dancing-the-classic-story-on-dublin-02-03-2027/event/180064ADE17CD49D"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/844/4ee61daf-10bf-4471-82fd-58e401db9844_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "dirty dancing the classic story on stage"
+    },
+    {
+      "id": "tm-cats-bord-gais-energy-theatre",
+      "title": "Cats",
+      "type": "resident",
+      "venue": "Bord Gais Energy Theatre",
+      "city": "Dublin",
+      "country": "Ireland",
+      "lat": 53.344201,
+      "lng": -6.240274,
+      "start_date": "2027-03-16",
+      "end_date": "2027-03-20",
+      "ticket_url": "https://www.ticketmaster.ie/cats-dublin-16-03-2027/event/18006496EB381063",
+      "ticket_links": [
+        {
+          "country": "IE",
+          "url": "https://www.ticketmaster.ie/cats-dublin-16-03-2027/event/18006496EB381063"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/e45/d8f5a516-301e-4da6-9fa7-ab7726c19e45_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "cats"
+    },
+    {
+      "id": "tm-six-touring-bord-gais-energy-theatre",
+      "title": "SIX (Touring)",
+      "type": "resident",
+      "venue": "Bord Gais Energy Theatre",
+      "city": "Dublin",
+      "country": "Ireland",
+      "lat": 53.344201,
+      "lng": -6.240274,
+      "start_date": "2027-04-13",
+      "end_date": "2027-04-17",
+      "ticket_url": "https://www.ticketmaster.ie/six-touring-dublin-13-04-2027/event/180064AE850D7C8E",
+      "ticket_links": [
+        {
+          "country": "IE",
+          "url": "https://www.ticketmaster.ie/six-touring-dublin-13-04-2027/event/180064AE850D7C8E"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/51f/04b46c4e-4db2-4a35-96b0-9b34460d751f_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "six touring"
+    },
+    {
+      "id": "tm-disney-princess-the-concert-3olympia-theatre",
+      "title": "Disney Princess: the Concert",
+      "type": "resident",
+      "venue": "3Olympia Theatre",
+      "city": "Dublin",
+      "country": "Ireland",
+      "lat": 53.344318,
+      "lng": -6.266114,
+      "start_date": "2027-04-21",
+      "end_date": "2027-04-22",
+      "ticket_url": "https://www.ticketmaster.ie/disney-princess-the-concert-dublin-21-04-2027/event/180064B5DF4BEB2A",
+      "ticket_links": [
+        {
+          "country": "IE",
+          "url": "https://www.ticketmaster.ie/disney-princess-the-concert-dublin-21-04-2027/event/180064B5DF4BEB2A"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/500/1454140c-e867-45d1-8022-5ec24698d500_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "disney princess the concert"
+    },
+    {
+      "id": "tm-steve-steinman-s-fuel-injected-magic-50th-anniversary-concert-3olympia-theatre",
+      "title": "Steve Steinman's Fuel Injected Magic: 50th Anniversary Concert",
+      "type": "resident",
+      "venue": "3Olympia Theatre",
+      "city": "Dublin",
+      "country": "Ireland",
+      "lat": 53.344318,
+      "lng": -6.266114,
+      "start_date": "2027-10-20",
+      "end_date": "2027-10-20",
+      "ticket_url": "https://www.ticketmaster.ie/steve-steinmans-fuel-injected-magic-50th-dublin-20-10-2027/event/18006463A245C611",
+      "ticket_links": [
+        {
+          "country": "IE",
+          "url": "https://www.ticketmaster.ie/steve-steinmans-fuel-injected-magic-50th-dublin-20-10-2027/event/18006463A245C611"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/083/2de87fca-8ef7-43d9-9831-271def88d083_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "steve steinman s fuel injected magic 50th anniversary concert"
+    },
+    {
+      "id": "tm-mamma-mia-the-party-tyrol",
+      "title": "MAMMA MIA! THE PARTY",
+      "type": "resident",
+      "venue": "Tyrol",
+      "city": "Stockholm",
+      "country": "Sweden",
+      "lat": 59.324127,
+      "lng": 18.096259,
+      "start_date": "2026-08-20",
+      "end_date": "2026-11-28",
+      "ticket_url": "https://www.ticketmaster.se/event/mamma-mia-the-party-tickets/588063009?language=en-us",
+      "ticket_links": [
+        {
+          "country": "SE",
+          "url": "https://www.ticketmaster.se/event/mamma-mia-the-party-tickets/588063009?language=en-us"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/08d/3e62af05-2974-4fea-836f-c0c75ed0008d_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "mamma mia the party"
+    },
+    {
+      "id": "tm-oh-what-a-night-sara-kulturhus-stage-1",
+      "title": "Oh What a Night",
+      "type": "resident",
+      "venue": "Sara kulturhus Stage 1",
+      "city": "Skellefteå",
+      "country": "Sweden",
+      "lat": 64.75208,
+      "lng": 20.95395,
+      "start_date": "2026-10-02",
+      "end_date": "2026-10-03",
+      "ticket_url": "https://www.ticketmaster.se/event/oh-what-a-night-tickets/1722632351?language=en-us",
+      "ticket_links": [
+        {
+          "country": "SE",
+          "url": "https://www.ticketmaster.se/event/oh-what-a-night-tickets/1722632351?language=en-us"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/b40/fc1a0079-7a88-478e-936c-58e59aeefb40_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "oh what a night"
+    },
+    {
+      "id": "tm-family-show-mamma-mia-the-party-tyrol",
+      "title": "FAMILY SHOW - MAMMA MIA! THE PARTY",
+      "type": "resident",
+      "venue": "Tyrol",
+      "city": "Stockholm",
+      "country": "Sweden",
+      "lat": 59.324127,
+      "lng": 18.096259,
+      "start_date": "2026-10-25",
+      "end_date": "2026-10-25",
+      "ticket_url": "https://www.ticketmaster.se/event/family-show-mamma-mia-the-party-tickets/1075577922?language=en-us",
+      "ticket_links": [
+        {
+          "country": "SE",
+          "url": "https://www.ticketmaster.se/event/family-show-mamma-mia-the-party-tickets/1075577922?language=en-us"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/08d/3e62af05-2974-4fea-836f-c0c75ed0008d_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "family show mamma mia the party"
+    },
+    {
+      "id": "tm-askepot-operaen-holmen",
+      "title": "ASKEPOT",
+      "type": "resident",
+      "venue": "Operaen, Holmen",
+      "city": "København K",
+      "country": "Denmark",
+      "lat": 55.68203,
+      "lng": 12.60202,
+      "start_date": "2026-07-30",
+      "end_date": "2026-08-21",
+      "ticket_url": "https://www.ticketmaster.dk/event/askepot-the-musical-tickets/114022126?language=en-us",
+      "ticket_links": [
+        {
+          "country": "DK",
+          "url": "https://www.ticketmaster.dk/event/askepot-the-musical-tickets/114022126?language=en-us"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/38e/f8e4698b-6f6a-45af-8bf0-babc44c0038e_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "askepot"
+    },
+    {
+      "id": "tm-tina-the-tina-turner-musical-falconersalen",
+      "title": "TINA – The Tina Turner Musical",
+      "type": "resident",
+      "venue": "Falconersalen",
+      "city": "Frederiksberg",
+      "country": "Denmark",
+      "lat": 55.67971,
+      "lng": 12.53344,
+      "start_date": "2026-08-26",
+      "end_date": "2026-09-25",
+      "ticket_url": "https://www.ticketmaster.dk/event/tina--the-tina-turner-musical-tickets/1369654755?language=en-us",
+      "ticket_links": [
+        {
+          "country": "DK",
+          "url": "https://www.ticketmaster.dk/event/tina--the-tina-turner-musical-tickets/1369654755?language=en-us"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/f30/1ea6e7a2-a519-434c-85e1-f0afd4e1df30_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "tina the tina turner musical"
+    },
+    {
+      "id": "tm-askepot-aalborghallen",
+      "title": "ASKEPOT",
+      "type": "resident",
+      "venue": "Aalborghallen",
+      "city": "Aalborg",
+      "country": "Denmark",
+      "lat": 57.04346,
+      "lng": 9.91332,
+      "start_date": "2026-09-02",
+      "end_date": "2026-09-05",
+      "ticket_url": "https://www.ticketmaster.dk/event/askepot-the-musical-tickets/131426710?language=en-us",
+      "ticket_links": [
+        {
+          "country": "DK",
+          "url": "https://www.ticketmaster.dk/event/askepot-the-musical-tickets/131426710?language=en-us"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/38e/f8e4698b-6f6a-45af-8bf0-babc44c0038e_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "askepot"
+    },
+    {
+      "id": "tm-guys-and-dolls-det-ny-teater",
+      "title": "Guys and Dolls",
+      "type": "resident",
+      "venue": "Det Ny Teater",
+      "city": "København V",
+      "country": "Denmark",
+      "lat": 55.67328,
+      "lng": 12.55545,
+      "start_date": "2026-09-17",
+      "end_date": "2026-11-29",
+      "ticket_url": "https://www.ticketmaster.dk/event/guys-and-dolls-tickets/2087967283?language=en-us",
+      "ticket_links": [
+        {
+          "country": "DK",
+          "url": "https://www.ticketmaster.dk/event/guys-and-dolls-tickets/2087967283?language=en-us"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/30e/fc2d9421-5b56-406d-a898-c8a2564b330e_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "guys and dolls"
+    },
+    {
+      "id": "tm-tina-the-tina-turner-musical-aalborghallen",
+      "title": "TINA – The Tina Turner Musical",
+      "type": "resident",
+      "venue": "Aalborghallen",
+      "city": "Aalborg",
+      "country": "Denmark",
+      "lat": 57.04346,
+      "lng": 9.91332,
+      "start_date": "2026-10-21",
+      "end_date": "2026-10-25",
+      "ticket_url": "https://www.ticketmaster.dk/event/tina--the-tina-turner-musical-tickets/66741502?language=en-us",
+      "ticket_links": [
+        {
+          "country": "DK",
+          "url": "https://www.ticketmaster.dk/event/tina--the-tina-turner-musical-tickets/66741502?language=en-us"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/f30/1ea6e7a2-a519-434c-85e1-f0afd4e1df30_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "tina the tina turner musical"
+    },
+    {
+      "id": "tm-tina-the-tina-turner-musical-sydjysk-sparekasse-skansen",
+      "title": "TINA – The Tina Turner Musical",
+      "type": "resident",
+      "venue": "Sydjysk Sparekasse Skansen",
+      "city": "Sønderborg",
+      "country": "Denmark",
+      "lat": 54.91433,
+      "lng": 9.76456,
+      "start_date": "2026-11-04",
+      "end_date": "2026-11-07",
+      "ticket_url": "https://www.ticketmaster.dk/event/tina--the-tina-turner-musical-tickets/1039209571?language=en-us",
+      "ticket_links": [
+        {
+          "country": "DK",
+          "url": "https://www.ticketmaster.dk/event/tina--the-tina-turner-musical-tickets/1039209571?language=en-us"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/f30/1ea6e7a2-a519-434c-85e1-f0afd4e1df30_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "tina the tina turner musical"
+    },
+    {
+      "id": "tm-et-juleeventyr-balletsalen-det-ny-teater",
+      "title": "Et Juleeventyr",
+      "type": "resident",
+      "venue": "Balletsalen, Det Ny Teater",
+      "city": "København V",
+      "country": "Denmark",
+      "lat": 55.67328,
+      "lng": 12.55545,
+      "start_date": "2026-11-19",
+      "end_date": "2026-12-19",
+      "ticket_url": "https://www.ticketmaster.dk/event/et-juleeventyr-tickets/120278805?language=en-us",
+      "ticket_links": [
+        {
+          "country": "DK",
+          "url": "https://www.ticketmaster.dk/event/et-juleeventyr-tickets/120278805?language=en-us"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/56f/880ff4d7-85f4-4af0-bc18-4de4cb62856f_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "et juleeventyr"
+    },
+    {
+      "id": "tm-the-julekalender-aalborghallen",
+      "title": "The Julekalender",
+      "type": "resident",
+      "venue": "Aalborghallen",
+      "city": "Aalborg",
+      "country": "Denmark",
+      "lat": 57.04346,
+      "lng": 9.91332,
+      "start_date": "2026-12-17",
+      "end_date": "2026-12-17",
+      "ticket_url": "https://www.ticketmaster.dk/event/the-julekalender-tickets/755812578?language=en-us",
+      "ticket_links": [
+        {
+          "country": "DK",
+          "url": "https://www.ticketmaster.dk/event/the-julekalender-tickets/755812578?language=en-us"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/a7f/031a2e31-6b3d-421d-adf0-6a8cfd52ea7f_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "julekalender"
+    },
+    {
+      "id": "tm-sunset-boulevard-det-ny-teater",
+      "title": "Sunset Boulevard",
+      "type": "resident",
+      "venue": "Det Ny Teater",
+      "city": "København V",
+      "country": "Denmark",
+      "lat": 55.67328,
+      "lng": 12.55545,
+      "start_date": "2027-02-11",
+      "end_date": "2027-05-02",
+      "ticket_url": "https://www.ticketmaster.dk/event/sunset-boulevard-tickets/1913535894?language=en-us",
+      "ticket_links": [
+        {
+          "country": "DK",
+          "url": "https://www.ticketmaster.dk/event/sunset-boulevard-tickets/1913535894?language=en-us"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/59c/b21a54e8-ff64-44a3-9645-d6aec4e9459c_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "sunset boulevard"
+    },
+    {
+      "id": "tm-ternet-ninja-aalborghallen",
+      "title": "Ternet Ninja",
+      "type": "resident",
+      "venue": "Aalborghallen",
+      "city": "Aalborg",
+      "country": "Denmark",
+      "lat": 57.04346,
+      "lng": 9.91332,
+      "start_date": "2027-06-19",
+      "end_date": "2027-06-20",
+      "ticket_url": "https://www.ticketmaster.dk/event/ternet-ninja-tickets/1197597060?language=en-us",
+      "ticket_links": [
+        {
+          "country": "DK",
+          "url": "https://www.ticketmaster.dk/event/ternet-ninja-tickets/1197597060?language=en-us"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/f34/ee9351ea-f6f4-4408-8075-5d3c5cc6ff34_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "ternet ninja"
+    },
+    {
+      "id": "tm-frost-aalborghallen",
+      "title": "FROST",
+      "type": "resident",
+      "venue": "Aalborghallen",
+      "city": "Aalborg",
+      "country": "Denmark",
+      "lat": 57.04346,
+      "lng": 9.91332,
+      "start_date": "2027-12-09",
+      "end_date": "2027-12-11",
+      "ticket_url": "https://www.ticketmaster.dk/event/frost-the-musical-tickets/406515270?language=en-us",
+      "ticket_links": [
+        {
+          "country": "DK",
+          "url": "https://www.ticketmaster.dk/event/frost-the-musical-tickets/406515270?language=en-us"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/f69/023dc5d8-f778-4f1d-9242-8f1adf254f69_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "frost"
+    },
+    {
+      "id": "tm-oliver-twist-koffers-produksjoner-chateau-neuf-storsalen",
+      "title": "OLIVER TWIST - Koffers produksjoner",
+      "type": "resident",
+      "venue": "Chateau Neuf,Storsalen",
+      "city": "Oslo",
+      "country": "Norway",
+      "lat": 59.93228,
+      "lng": 10.71255,
+      "start_date": "2026-10-06",
+      "end_date": "2026-10-18",
+      "ticket_url": "https://www.ticketmaster.no/event/oliver-twist-koffers-produksjoner-tickets/1263562545?language=en-us",
+      "ticket_links": [
+        {
+          "country": "NO",
+          "url": "https://www.ticketmaster.no/event/oliver-twist-koffers-produksjoner-tickets/1263562545?language=en-us"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/e/715/032dcbd7-2eca-49db-b1b0-9212e62ff715_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "oliver twist koffers produksjoner"
+    },
+    {
+      "id": "tm-mamma-mia-das-original-musical-festspiel-und-kongresshaus",
+      "title": "MAMMA MIA! - Das Original-Musical",
+      "type": "resident",
+      "venue": "Festspiel- und Kongresshaus",
+      "city": "Bregenz",
+      "country": "Austria",
+      "lat": 47.50479,
+      "lng": 9.73747,
+      "start_date": "2027-02-10",
+      "end_date": "2027-02-14",
+      "ticket_url": "https://www.ticketmaster.at/event/mamma-mia-das-original-musical-tickets/1460102403?language=en-us",
+      "ticket_links": [
+        {
+          "country": "AT",
+          "url": "https://www.ticketmaster.at/event/mamma-mia-das-original-musical-tickets/1460102403?language=en-us"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/4be/293e23c3-421a-4af4-87e8-1ebc8caaf4be_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "mamma mia das original musical"
+    },
+    {
+      "id": "tm-mamma-mia-das-original-musical-wiener-stadthalle-halle-f",
+      "title": "MAMMA MIA! - Das Original-Musical",
+      "type": "resident",
+      "venue": "Wiener Stadthalle - Halle F",
+      "city": "Vienna",
+      "country": "Austria",
+      "lat": 48.20236,
+      "lng": 16.33288,
+      "start_date": "2027-03-03",
+      "end_date": "2027-03-14",
+      "ticket_url": "https://www.ticketmaster.at/event/mamma-mia-das-original-musical-tickets/1270593463?language=en-us",
+      "ticket_links": [
+        {
+          "country": "AT",
+          "url": "https://www.ticketmaster.at/event/mamma-mia-das-original-musical-tickets/1270593463?language=en-us"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/4be/293e23c3-421a-4af4-87e8-1ebc8caaf4be_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "mamma mia das original musical"
+    },
+    {
+      "id": "tm-mamma-mia-das-hit-musical-auf-schweizerdeutsch-maag-halle",
+      "title": "MAMMA MIA! – Das Hit-Musical auf Schweizerdeutsch",
+      "type": "resident",
+      "venue": "Maag Halle",
+      "city": "Zürich",
+      "country": "Switzerland",
+      "lat": 47.38667,
+      "lng": 8.51722,
+      "start_date": "2026-06-11",
+      "end_date": "2026-06-14",
+      "ticket_url": "https://www.ticketmaster.ch/event/mamma-mia--das-hit-musical-auf-schweizerdeutsch-tickets/1302458587?language=en-us",
+      "ticket_links": [
+        {
+          "country": "CH",
+          "url": "https://www.ticketmaster.ch/event/mamma-mia--das-hit-musical-auf-schweizerdeutsch-tickets/1302458587?language=en-us"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/455/be67771b-36bc-4431-95f2-951f42d9b455_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "mamma mia das hit musical auf schweizerdeutsch"
+    },
+    {
+      "id": "tm-monte-cristo-vorst-nationaal-forest-national",
+      "title": "MONTE CRISTO",
+      "type": "resident",
+      "venue": "Vorst Nationaal/Forest National",
+      "city": "Forest (Brussels)",
+      "country": "Belgium",
+      "lat": 50.80999,
+      "lng": 4.32601,
+      "start_date": "2026-10-10",
+      "end_date": "2026-10-10",
+      "ticket_url": "https://www.ticketmaster.be/event/monte-cristo-tickets/199138985",
+      "ticket_links": [
+        {
+          "country": "BE",
+          "url": "https://www.ticketmaster.be/event/monte-cristo-tickets/199138985"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/6a9/bb32df6d-b4bb-42dd-acd2-8ee860b066a9_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "monte cristo"
+    },
+    {
+      "id": "tm-oliver-twist-capitole-gent",
+      "title": "Oliver Twist",
+      "type": "resident",
+      "venue": "Capitole Gent",
+      "city": "Ghent",
+      "country": "Belgium",
+      "lat": 51.04811,
+      "lng": 3.73222,
+      "start_date": "2026-11-06",
+      "end_date": "2026-11-08",
+      "ticket_url": "https://www.ticketmaster.be/event/oliver-twist-tickets/265862448",
+      "ticket_links": [
+        {
+          "country": "BE",
+          "url": "https://www.ticketmaster.be/event/oliver-twist-tickets/265862448"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/9b0/26523f88-cd8a-40ba-aa6c-4814ee5789b0_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "oliver twist"
+    },
+    {
+      "id": "tm-evita-50-years-the-golden-jubilee-stadsschouwburg-antwerpen",
+      "title": "Evita - 50 years, the golden jubilee",
+      "type": "resident",
+      "venue": "Stadsschouwburg Antwerpen",
+      "city": "Antwerp",
+      "country": "Belgium",
+      "lat": 51.21579,
+      "lng": 4.40989,
+      "start_date": "2026-11-13",
+      "end_date": "2026-11-15",
+      "ticket_url": "https://www.ticketmaster.be/event/evita-50-years-the-golden-jubilee-tickets/1047605359",
+      "ticket_links": [
+        {
+          "country": "BE",
+          "url": "https://www.ticketmaster.be/event/evita-50-years-the-golden-jubilee-tickets/1047605359"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/744/a285e9a0-8213-4aa7-8e48-bff351bdc744_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "evita 50 years the golden jubilee"
+    },
+    {
+      "id": "tm-grease-is-the-word-th-tre-royal",
+      "title": "Grease Is The Word",
+      "type": "resident",
+      "venue": "Théâtre Royal",
+      "city": "Mons",
+      "country": "Belgium",
+      "lat": 50.45429,
+      "lng": 3.95193,
+      "start_date": "2026-11-14",
+      "end_date": "2026-11-14",
+      "ticket_url": "https://www.ticketmaster.be/event/grease-is-the-word-tickets/611530393",
+      "ticket_links": [
+        {
+          "country": "BE",
+          "url": "https://www.ticketmaster.be/event/grease-is-the-word-tickets/611530393"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/8ba/bc7c6069-bf74-439a-88bc-44f46535a8ba_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "grease is the word"
+    },
+    {
+      "id": "tm-de-spiekpietjes-2026-trixxo-theater-hasselt",
+      "title": "DE SPIEKPIETJES 2026",
+      "type": "resident",
+      "venue": "Trixxo Theater Hasselt",
+      "city": "Hasselt",
+      "country": "Belgium",
+      "lat": 50.93311,
+      "lng": 5.36207,
+      "start_date": "2026-11-29",
+      "end_date": "2026-11-29",
+      "ticket_url": "https://www.ticketmaster.be/event/de-spiekpietjes-2026-tickets/1487410498",
+      "ticket_links": [
+        {
+          "country": "BE",
+          "url": "https://www.ticketmaster.be/event/de-spiekpietjes-2026-tickets/1487410498"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/db3/1920b854-934f-46fd-8c63-cbb22910edb3_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "de spiekpietjes 2026"
+    },
+    {
+      "id": "tm-lion-le-roi-est-de-retour-th-tre-royal",
+      "title": "LION - Le Roi est de retour",
+      "type": "resident",
+      "venue": "Théâtre Royal",
+      "city": "Mons",
+      "country": "Belgium",
+      "lat": 50.45429,
+      "lng": 3.95193,
+      "start_date": "2026-12-05",
+      "end_date": "2026-12-05",
+      "ticket_url": "https://www.ticketmaster.be/event/lion-le-roi-est-de-retour-tickets/1256417477",
+      "ticket_links": [
+        {
+          "country": "BE",
+          "url": "https://www.ticketmaster.be/event/lion-le-roi-est-de-retour-tickets/1256417477"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/86e/fdd4df2e-7d6f-42c8-92a3-ebfaafbb986e_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "lion le roi est de retour"
+    },
+    {
+      "id": "tm-oliver-twist-stadsschouwburg-antwerpen",
+      "title": "Oliver Twist",
+      "type": "resident",
+      "venue": "Stadsschouwburg Antwerpen",
+      "city": "Antwerp",
+      "country": "Belgium",
+      "lat": 51.21579,
+      "lng": 4.40989,
+      "start_date": "2026-12-09",
+      "end_date": "2026-12-29",
+      "ticket_url": "https://www.ticketmaster.be/event/oliver-twist-tickets/361474684",
+      "ticket_links": [
+        {
+          "country": "BE",
+          "url": "https://www.ticketmaster.be/event/oliver-twist-tickets/361474684"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/9b0/26523f88-cd8a-40ba-aa6c-4814ee5789b0_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "oliver twist"
+    },
+    {
+      "id": "tm-101-dalmati-rs-capitole-gent",
+      "title": "101 Dalmatiërs",
+      "type": "resident",
+      "venue": "Capitole Gent",
+      "city": "Ghent",
+      "country": "Belgium",
+      "lat": 51.04811,
+      "lng": 3.73222,
+      "start_date": "2026-12-23",
+      "end_date": "2027-01-03",
+      "ticket_url": "https://www.ticketmaster.be/event/101-dalmatiers-tickets/1830999535",
+      "ticket_links": [
+        {
+          "country": "BE",
+          "url": "https://www.ticketmaster.be/event/101-dalmatiers-tickets/1830999535"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/2f4/3267ca42-a504-4f56-a77a-1e0b459892f4_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "101 dalmati rs"
+    },
+    {
+      "id": "tm-oliver-twist-trixxo-theater-hasselt",
+      "title": "Oliver Twist",
+      "type": "resident",
+      "venue": "Trixxo Theater Hasselt",
+      "city": "Hasselt",
+      "country": "Belgium",
+      "lat": 50.93311,
+      "lng": 5.36207,
+      "start_date": "2027-01-08",
+      "end_date": "2027-01-10",
+      "ticket_url": "https://www.ticketmaster.be/event/oliver-twist-tickets/2048038050",
+      "ticket_links": [
+        {
+          "country": "BE",
+          "url": "https://www.ticketmaster.be/event/oliver-twist-tickets/2048038050"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/9b0/26523f88-cd8a-40ba-aa6c-4814ee5789b0_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "oliver twist"
+    },
+    {
+      "id": "tm-101-dalmati-rs-stadsschouwburg-antwerpen",
+      "title": "101 Dalmatiërs",
+      "type": "resident",
+      "venue": "Stadsschouwburg Antwerpen",
+      "city": "Antwerp",
+      "country": "Belgium",
+      "lat": 51.21579,
+      "lng": 4.40989,
+      "start_date": "2027-02-11",
+      "end_date": "2027-02-13",
+      "ticket_url": "https://www.ticketmaster.be/event/101-dalmatiers-tickets/842587355",
+      "ticket_links": [
+        {
+          "country": "BE",
+          "url": "https://www.ticketmaster.be/event/101-dalmatiers-tickets/842587355"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/2f4/3267ca42-a504-4f56-a77a-1e0b459892f4_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "101 dalmati rs"
+    },
+    {
+      "id": "tm-cinderella-de-musical-capitole-gent",
+      "title": "CINDERELLA, de musical",
+      "type": "resident",
+      "venue": "Capitole Gent",
+      "city": "Ghent",
+      "country": "Belgium",
+      "lat": 51.04811,
+      "lng": 3.73222,
+      "start_date": "2027-03-13",
+      "end_date": "2027-03-13",
+      "ticket_url": "https://www.ticketmaster.be/event/cinderella-de-musical-tickets/1121516752",
+      "ticket_links": [
+        {
+          "country": "BE",
+          "url": "https://www.ticketmaster.be/event/cinderella-de-musical-tickets/1121516752"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/0f6/aee35bfb-1592-439a-b982-2d7567b1d0f6_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "cinderella de musical"
+    },
+    {
+      "id": "tm-cinderella-de-musical-stadsschouwburg-antwerpen",
+      "title": "CINDERELLA, de musical",
+      "type": "resident",
+      "venue": "Stadsschouwburg Antwerpen",
+      "city": "Antwerp",
+      "country": "Belgium",
+      "lat": 51.21579,
+      "lng": 4.40989,
+      "start_date": "2027-03-27",
+      "end_date": "2027-03-29",
+      "ticket_url": "https://www.ticketmaster.be/event/cinderella-de-musical-tickets/1776518528",
+      "ticket_links": [
+        {
+          "country": "BE",
+          "url": "https://www.ticketmaster.be/event/cinderella-de-musical-tickets/1776518528"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/0f6/aee35bfb-1592-439a-b982-2d7567b1d0f6_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "cinderella de musical"
+    },
+    {
+      "id": "tm-cinderella-de-musical-trixxo-theater-hasselt",
+      "title": "CINDERELLA, de musical",
+      "type": "resident",
+      "venue": "Trixxo Theater Hasselt",
+      "city": "Hasselt",
+      "country": "Belgium",
+      "lat": 50.93311,
+      "lng": 5.36207,
+      "start_date": "2027-04-11",
+      "end_date": "2027-04-11",
+      "ticket_url": "https://www.ticketmaster.be/event/cinderella-de-musical-tickets/542533270",
+      "ticket_links": [
+        {
+          "country": "BE",
+          "url": "https://www.ticketmaster.be/event/cinderella-de-musical-tickets/542533270"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/0f6/aee35bfb-1592-439a-b982-2d7567b1d0f6_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "cinderella de musical"
+    },
+    {
+      "id": "tm-de-kleine-zeemeermin-de-musical-stadsschouwburg-antwerpen",
+      "title": "De Kleine Zeemeermin, de Musical",
+      "type": "resident",
+      "venue": "Stadsschouwburg Antwerpen",
+      "city": "Antwerp",
+      "country": "Belgium",
+      "lat": 51.21579,
+      "lng": 4.40989,
+      "start_date": "2027-04-25",
+      "end_date": "2027-04-25",
+      "ticket_url": "https://www.ticketmaster.be/event/de-kleine-zeemeermin-de-musical-tickets/395916543",
+      "ticket_links": [
+        {
+          "country": "BE",
+          "url": "https://www.ticketmaster.be/event/de-kleine-zeemeermin-de-musical-tickets/395916543"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/a6b/fbdf4217-5d68-46e8-b3b9-5fac8c0c6a6b_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "de kleine zeemeermin de musical"
+    },
+    {
+      "id": "tm-la-legende-de-monte-cristo-le-musical-vorst-nationaal-forest-national",
+      "title": "LA LEGENDE DE MONTE-CRISTO, Le Musical",
+      "type": "resident",
+      "venue": "Vorst Nationaal/Forest National",
+      "city": "Forest (Brussels)",
+      "country": "Belgium",
+      "lat": 50.80999,
+      "lng": 4.32601,
+      "start_date": "2027-05-20",
+      "end_date": "2027-05-20",
+      "ticket_url": "https://www.ticketmaster.be/event/la-legende-de-monte-cristo-le-musical-tickets/168916750",
+      "ticket_links": [
+        {
+          "country": "BE",
+          "url": "https://www.ticketmaster.be/event/la-legende-de-monte-cristo-le-musical-tickets/168916750"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/96e/f5aad51f-4969-4888-90a9-11264785696e_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "la legende de monte cristo le musical"
+    },
+    {
+      "id": "tm-de-tovenaar-van-oz-stadsschouwburg-antwerpen",
+      "title": "De Tovenaar van Oz",
+      "type": "resident",
+      "venue": "Stadsschouwburg Antwerpen",
+      "city": "Antwerp",
+      "country": "Belgium",
+      "lat": 51.21579,
+      "lng": 4.40989,
+      "start_date": "2027-12-03",
+      "end_date": "2027-12-28",
+      "ticket_url": "https://www.ticketmaster.be/event/de-tovenaar-van-oz-tickets/1064415410",
+      "ticket_links": [
+        {
+          "country": "BE",
+          "url": "https://www.ticketmaster.be/event/de-tovenaar-van-oz-tickets/1064415410"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/97a/0888719d-9c8b-407b-bfc2-c3fb96a7497a_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "de tovenaar van oz"
+    },
+    {
+      "id": "tm-hotel-california-the-original-eagles-tribute-grey-eagle-event-centre",
+      "title": "Hotel California - The Original Eagles Tribute",
+      "type": "resident",
+      "venue": "Grey Eagle Event Centre",
+      "city": "Calgary",
+      "country": "Canada",
+      "lat": 51.007506,
+      "lng": -114.147222,
+      "start_date": "2026-06-20",
+      "end_date": "2026-06-20",
+      "ticket_url": "https://www.ticketmaster.ca/hotel-california-the-original-eagles-tribute-calgary-alberta-06-20-2026/event/11006445BF1B94B0",
+      "ticket_links": [
+        {
+          "country": "CA",
+          "url": "https://www.ticketmaster.ca/hotel-california-the-original-eagles-tribute-calgary-alberta-06-20-2026/event/11006445BF1B94B0"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/fe0/b259afdc-0410-489c-a26b-f1066aa9efe0_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "hotel california the original eagles tribute"
+    },
+    {
+      "id": "tm-kinky-boots-canada-life-place",
+      "title": "Kinky Boots",
+      "type": "resident",
+      "venue": "Canada Life Place",
+      "city": "London",
+      "country": "Canada",
+      "lat": 42.982341,
+      "lng": -81.251879,
+      "start_date": "2026-06-23",
+      "end_date": "2026-06-24",
+      "ticket_url": "https://www.ticketmaster.ca/kinky-boots-london-ontario-06-23-2026/event/10006353B6A396DC",
+      "ticket_links": [
+        {
+          "country": "CA",
+          "url": "https://www.ticketmaster.ca/kinky-boots-london-ontario-06-23-2026/event/10006353B6A396DC"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/0ea/644c80e2-3bbf-4bac-ade7-85b9eaa4a0ea_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "kinky boots"
+    },
+    {
+      "id": "tm-john-cameron-mitchell-hedwig-25th-anniversary-movie-tour-the-danforth-music-hall",
+      "title": "John Cameron Mitchell: Hedwig 25th Anniversary Movie Tour",
+      "type": "resident",
+      "venue": "The Danforth Music Hall",
+      "city": "Toronto",
+      "country": "Canada",
+      "lat": 43.676449,
+      "lng": -79.357101,
+      "start_date": "2026-06-28",
+      "end_date": "2026-06-28",
+      "ticket_url": "https://www.ticketmaster.ca/john-cameron-mitchell-hedwig-25th-anniversary-toronto-ontario-06-28-2026/event/10006459F31B8177",
+      "ticket_links": [
+        {
+          "country": "CA",
+          "url": "https://www.ticketmaster.ca/john-cameron-mitchell-hedwig-25th-anniversary-toronto-ontario-06-28-2026/event/10006459F31B8177"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/890/ba987058-54c4-443a-b1f3-261c51477890_TABLET_LANDSCAPE_LARGE_16_9.jpg",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "john cameron mitchell hedwig 25th anniversary movie tour"
+    },
+    {
+      "id": "tm-john-cameron-mitchell-hedwig-25th-anniversary-movie-tour-th-tre-beanfield",
+      "title": "John Cameron Mitchell: Hedwig 25th Anniversary Movie Tour",
+      "type": "resident",
+      "venue": "Théâtre Beanfield",
+      "city": "Montreal",
+      "country": "Canada",
+      "lat": 45.482867,
+      "lng": -73.574973,
+      "start_date": "2026-06-30",
+      "end_date": "2026-06-30",
+      "ticket_url": "https://www.ticketmaster.ca/john-cameron-mitchell-hedwig-25th-anniversary-montreal-quebec-06-30-2026/event/3100645AB23A8DA2",
+      "ticket_links": [
+        {
+          "country": "CA",
+          "url": "https://www.ticketmaster.ca/john-cameron-mitchell-hedwig-25th-anniversary-montreal-quebec-06-30-2026/event/3100645AB23A8DA2"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/890/ba987058-54c4-443a-b1f3-261c51477890_TABLET_LANDSCAPE_LARGE_16_9.jpg",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "john cameron mitchell hedwig 25th anniversary movie tour"
+    },
+    {
+      "id": "tm-juliet-touring-royal-alexandra-theatre",
+      "title": "& Juliet (Touring)",
+      "type": "resident",
+      "venue": "Royal Alexandra Theatre",
+      "city": "Toronto",
+      "country": "Canada",
+      "lat": 0.0,
+      "lng": 0.0,
+      "start_date": "2026-07-07",
+      "end_date": "2026-08-27",
+      "ticket_url": "https://www.ticketmaster.ca/event/Z7r9jZ1A7PkGy",
+      "ticket_links": [
+        {
+          "country": "CA",
+          "url": "https://www.ticketmaster.ca/event/Z7r9jZ1A7PkGy"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/2d1/12d88370-dc1e-48db-9aa0-6ec7596022d1_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "juliet touring"
+    },
+    {
+      "id": "tm-vang-line-la-plus-grande-histoire-d-amour-d-am-rique-du-nord-avenir-centre",
+      "title": "Évangéline, la plus grande histoire d'amour d'Amérique du Nord",
+      "type": "resident",
+      "venue": "Avenir Centre",
+      "city": "Moncton",
+      "country": "Canada",
+      "lat": 46.085958,
+      "lng": -64.784148,
+      "start_date": "2026-07-24",
+      "end_date": "2026-07-25",
+      "ticket_url": "https://www.ticketmaster.ca/evangeline-la-plus-grande-histoire-damour-moncton-new-brunswick-07-24-2026/event/31006266DBE24E44",
+      "ticket_links": [
+        {
+          "country": "CA",
+          "url": "https://www.ticketmaster.ca/evangeline-la-plus-grande-histoire-damour-moncton-new-brunswick-07-24-2026/event/31006266DBE24E44"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/e/04a/21ad5db8-1d53-4f17-9fe7-74ff2691904a_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "vang line la plus grande histoire d amour d am rique du nord"
+    },
+    {
+      "id": "tm-mamma-mia-touring-national-arts-centre-centre-national-des-arts",
+      "title": "Mamma Mia! (Touring)",
+      "type": "resident",
+      "venue": "National Arts Centre / Centre national des Arts",
+      "city": "Ottawa",
+      "country": "Canada",
+      "lat": 45.423237,
+      "lng": -75.692228,
+      "start_date": "2026-07-28",
+      "end_date": "2026-08-02",
+      "ticket_url": "https://www.ticketmaster.ca/mamma-mia-touring-ottawa-ontario-07-28-2026/event/31006427C630681E",
+      "ticket_links": [
+        {
+          "country": "CA",
+          "url": "https://www.ticketmaster.ca/mamma-mia-touring-ottawa-ontario-07-28-2026/event/31006427C630681E"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/a7e/49752c7d-133d-4ff5-a477-ae98b5e43a7e_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "mamma mia touring"
+    },
+    {
+      "id": "tm-the-great-gatsby-touring-ed-mirvish-theatre",
+      "title": "The Great Gatsby (Touring)",
+      "type": "resident",
+      "venue": "Ed Mirvish Theatre",
+      "city": "Toronto",
+      "country": "Canada",
+      "lat": 0.0,
+      "lng": 0.0,
+      "start_date": "2026-08-04",
+      "end_date": "2026-09-06",
+      "ticket_url": "https://www.ticketmaster.ca/event/Z7r9jZ1A7raJf",
+      "ticket_links": [
+        {
+          "country": "CA",
+          "url": "https://www.ticketmaster.ca/event/Z7r9jZ1A7raJf"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/aab/7a0484aa-3480-450b-8f2f-8180d5ad0aab_TABLET_LANDSCAPE_LARGE_16_9.jpg",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "great gatsby touring"
+    },
+    {
+      "id": "tm-titanique-la-parodie-musicale-avec-des-chansons-de-c-line-dion-theatre-du-casino-du-lac-leamy",
+      "title": "Titanique, la parodie musicale avec des chansons de Céline Dion",
+      "type": "resident",
+      "venue": "Theatre du Casino du Lac-Leamy",
+      "city": "GATINEAU",
+      "country": "Canada",
+      "lat": 45.446179,
+      "lng": -75.725402,
+      "start_date": "2026-09-01",
+      "end_date": "2026-09-05",
+      "ticket_url": "https://www.ticketmaster.ca/titanique-la-parodie-musicale-avec-des-gatineau-quebec-09-01-2026/event/31006367E202E0E3",
+      "ticket_links": [
+        {
+          "country": "CA",
+          "url": "https://www.ticketmaster.ca/titanique-la-parodie-musicale-avec-des-gatineau-quebec-09-01-2026/event/31006367E202E0E3"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/5ab/bee28565-c644-4c60-b0cf-69e9a3c785ab_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "titanique la parodie musicale avec des chansons de c line dion"
+    },
+    {
+      "id": "tm-the-great-gatsby-touring-national-arts-centre-centre-national-des-arts",
+      "title": "The Great Gatsby (Touring)",
+      "type": "resident",
+      "venue": "National Arts Centre / Centre national des Arts",
+      "city": "Ottawa",
+      "country": "Canada",
+      "lat": 45.423237,
+      "lng": -75.692228,
+      "start_date": "2026-09-08",
+      "end_date": "2026-09-13",
+      "ticket_url": "https://www.ticketmaster.ca/the-great-gatsby-touring-ottawa-ontario-09-08-2026/event/310064A5CF07BB16",
+      "ticket_links": [
+        {
+          "country": "CA",
+          "url": "https://www.ticketmaster.ca/the-great-gatsby-touring-ottawa-ontario-09-08-2026/event/310064A5CF07BB16"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/aab/7a0484aa-3480-450b-8f2f-8180d5ad0aab_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "great gatsby touring"
+    },
+    {
+      "id": "tm-beetlejuice-firstontario-concert-hall",
+      "title": "Beetlejuice",
+      "type": "resident",
+      "venue": "FirstOntario Concert Hall",
+      "city": "Hamilton",
+      "country": "Canada",
+      "lat": 43.255791,
+      "lng": -79.871306,
+      "start_date": "2026-09-08",
+      "end_date": "2026-09-10",
+      "ticket_url": "https://www.ticketmaster.ca/beetlejuice-hamilton-ontario-09-08-2026/event/1000636CEBDCFD3B",
+      "ticket_links": [
+        {
+          "country": "CA",
+          "url": "https://www.ticketmaster.ca/beetlejuice-hamilton-ontario-09-08-2026/event/1000636CEBDCFD3B"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/f3a/0881ccb5-67a5-447c-9fa2-1fa34f713f3a_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "beetlejuice"
+    },
+    {
+      "id": "tm-beetlejuice-canada-life-place",
+      "title": "Beetlejuice",
+      "type": "resident",
+      "venue": "Canada Life Place",
+      "city": "London",
+      "country": "Canada",
+      "lat": 42.982341,
+      "lng": -81.251879,
+      "start_date": "2026-09-11",
+      "end_date": "2026-09-13",
+      "ticket_url": "https://www.ticketmaster.ca/beetlejuice-london-ontario-09-11-2026/event/1000636EC664E0F4",
+      "ticket_links": [
+        {
+          "country": "CA",
+          "url": "https://www.ticketmaster.ca/beetlejuice-london-ontario-09-11-2026/event/1000636EC664E0F4"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/f3a/0881ccb5-67a5-447c-9fa2-1fa34f713f3a_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "beetlejuice"
+    },
+    {
+      "id": "tm-juliet-touring-southern-alberta-jubilee-auditorium",
+      "title": "& Juliet (Touring)",
+      "type": "resident",
+      "venue": "Southern Alberta Jubilee Auditorium",
+      "city": "Calgary",
+      "country": "Canada",
+      "lat": 51.063097,
+      "lng": -114.092031,
+      "start_date": "2026-09-15",
+      "end_date": "2026-09-20",
+      "ticket_url": "https://www.ticketmaster.ca/juliet-touring-calgary-alberta-09-15-2026/event/110064AC785E3235",
+      "ticket_links": [
+        {
+          "country": "CA",
+          "url": "https://www.ticketmaster.ca/juliet-touring-calgary-alberta-09-15-2026/event/110064AC785E3235"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/2d1/12d88370-dc1e-48db-9aa0-6ec7596022d1_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "juliet touring"
+    },
+    {
+      "id": "tm-relive-the-music-50s-60s-70-s-show-thunder-bay-community-auditorium",
+      "title": "Relive the Music 50s, 60s & 70's Show",
+      "type": "resident",
+      "venue": "Thunder Bay Community Auditorium",
+      "city": "Thunder Bay",
+      "country": "Canada",
+      "lat": 48.422126,
+      "lng": -89.24411,
+      "start_date": "2026-09-17",
+      "end_date": "2026-09-17",
+      "ticket_url": "https://www.ticketmaster.ca/relive-the-music-50s-60s-70s-thunder-bay-ontario-09-17-2026/event/100064820F7A6BD2",
+      "ticket_links": [
+        {
+          "country": "CA",
+          "url": "https://www.ticketmaster.ca/relive-the-music-50s-60s-70s-thunder-bay-ontario-09-17-2026/event/100064820F7A6BD2"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/99f/d7ac9f6b-2f87-47ca-9679-2235a4f3399f_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "relive the music 50s 60s 70 s show"
+    },
+    {
+      "id": "tm-juliet-touring-northern-alberta-jubilee-auditorium",
+      "title": "& Juliet (Touring)",
+      "type": "resident",
+      "venue": "Northern Alberta Jubilee Auditorium",
+      "city": "Edmonton",
+      "country": "Canada",
+      "lat": 53.52289,
+      "lng": -113.526204,
+      "start_date": "2026-09-22",
+      "end_date": "2026-09-27",
+      "ticket_url": "https://www.ticketmaster.ca/juliet-touring-edmonton-alberta-09-22-2026/event/110064AC78FF3340",
+      "ticket_links": [
+        {
+          "country": "CA",
+          "url": "https://www.ticketmaster.ca/juliet-touring-edmonton-alberta-09-22-2026/event/110064AC78FF3340"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/2d1/12d88370-dc1e-48db-9aa0-6ec7596022d1_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "juliet touring"
+    },
+    {
+      "id": "tm-menopause-the-musical-casino-vancouver",
+      "title": "Menopause The Musical",
+      "type": "resident",
+      "venue": "Casino Vancouver",
+      "city": "Coquitlam",
+      "country": "Canada",
+      "lat": 49.227857,
+      "lng": -122.836568,
+      "start_date": "2026-09-22",
+      "end_date": "2026-09-22",
+      "ticket_url": "https://www.ticketmaster.ca/menopause-the-musical-coquitlam-british-columbia-09-22-2026/event/110064880DC8E883",
+      "ticket_links": [
+        {
+          "country": "CA",
+          "url": "https://www.ticketmaster.ca/menopause-the-musical-coquitlam-british-columbia-09-22-2026/event/110064880DC8E883"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/c0a/17a4606e-3bcd-4871-8c31-655376467c0a_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "menopause"
+    },
+    {
+      "id": "tm-la-cage-aux-folles-cabaret-du-casino-de-montreal",
+      "title": "La Cage Aux Folles",
+      "type": "resident",
+      "venue": "CABARET DU CASINO DE MONTREAL",
+      "city": "Montreal",
+      "country": "Canada",
+      "lat": 45.506708,
+      "lng": -73.525951,
+      "start_date": "2026-09-25",
+      "end_date": "2026-09-26",
+      "ticket_url": "https://www.ticketmaster.ca/la-cage-aux-folles-montreal-quebec-09-25-2026/event/31006490AE8D64C5",
+      "ticket_links": [
+        {
+          "country": "CA",
+          "url": "https://www.ticketmaster.ca/la-cage-aux-folles-montreal-quebec-09-25-2026/event/31006490AE8D64C5"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/bed/cfe8c4a7-551a-4631-a937-8f0ba019abed_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "la cage aux folles"
+    },
+    {
+      "id": "tm-juliet-touring-queen-elizabeth-theatre",
+      "title": "& Juliet (Touring)",
+      "type": "resident",
+      "venue": "Queen Elizabeth Theatre",
+      "city": "Vancouver",
+      "country": "Canada",
+      "lat": 49.277747,
+      "lng": -123.117482,
+      "start_date": "2026-09-29",
+      "end_date": "2026-10-04",
+      "ticket_url": "https://www.ticketmaster.ca/juliet-touring-vancouver-british-columbia-09-29-2026/event/110064A6C311D5BA",
+      "ticket_links": [
+        {
+          "country": "CA",
+          "url": "https://www.ticketmaster.ca/juliet-touring-vancouver-british-columbia-09-29-2026/event/110064A6C311D5BA"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/2d1/12d88370-dc1e-48db-9aa0-6ec7596022d1_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "juliet touring"
+    },
+    {
+      "id": "tm-menopause-the-musical-club-regent-event-centre",
+      "title": "Menopause The Musical",
+      "type": "resident",
+      "venue": "Club Regent Event Centre",
+      "city": "Winnipeg",
+      "country": "Canada",
+      "lat": 49.895419,
+      "lng": -97.04416,
+      "start_date": "2026-10-07",
+      "end_date": "2026-10-07",
+      "ticket_url": "https://www.ticketmaster.ca/menopause-the-musical-winnipeg-manitoba-10-07-2026/event/1100649E92B67506",
+      "ticket_links": [
+        {
+          "country": "CA",
+          "url": "https://www.ticketmaster.ca/menopause-the-musical-winnipeg-manitoba-10-07-2026/event/1100649E92B67506"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/c0a/17a4606e-3bcd-4871-8c31-655376467c0a_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "menopause"
+    },
+    {
+      "id": "tm-menopause-the-musical-thunder-bay-community-auditorium",
+      "title": "Menopause The Musical",
+      "type": "resident",
+      "venue": "Thunder Bay Community Auditorium",
+      "city": "Thunder Bay",
+      "country": "Canada",
+      "lat": 48.422126,
+      "lng": -89.24411,
+      "start_date": "2026-10-09",
+      "end_date": "2026-10-09",
+      "ticket_url": "https://www.ticketmaster.ca/menopause-the-musical-thunder-bay-ontario-10-09-2026/event/10006479E42D3779",
+      "ticket_links": [
+        {
+          "country": "CA",
+          "url": "https://www.ticketmaster.ca/menopause-the-musical-thunder-bay-ontario-10-09-2026/event/10006479E42D3779"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/c0a/17a4606e-3bcd-4871-8c31-655376467c0a_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "menopause"
+    },
+    {
+      "id": "tm-lama-d-aventures-en-aventures-cabaret-du-casino-de-montreal",
+      "title": "Lama: D'aventures en aventures",
+      "type": "resident",
+      "venue": "CABARET DU CASINO DE MONTREAL",
+      "city": "Montreal",
+      "country": "Canada",
+      "lat": 45.506708,
+      "lng": -73.525951,
+      "start_date": "2026-10-17",
+      "end_date": "2026-10-17",
+      "ticket_url": "https://www.ticketmaster.ca/lama-daventures-en-aventures-montreal-quebec-10-17-2026/event/310064599196EC0D",
+      "ticket_links": [
+        {
+          "country": "CA",
+          "url": "https://www.ticketmaster.ca/lama-daventures-en-aventures-montreal-quebec-10-17-2026/event/310064599196EC0D"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/e/874/32871078-a2b5-4bcd-9f8f-c5219b101874_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "lama d aventures en aventures"
+    },
+    {
+      "id": "tm-menopause-the-musical-algonquin-commons-theatre",
+      "title": "Menopause The Musical",
+      "type": "resident",
+      "venue": "Algonquin Commons Theatre",
+      "city": "Nepean",
+      "country": "Canada",
+      "lat": 45.349675,
+      "lng": -75.755817,
+      "start_date": "2026-10-19",
+      "end_date": "2026-10-20",
+      "ticket_url": "https://www.ticketmaster.ca/menopause-the-musical-nepean-ontario-10-19-2026/event/310064ACA9E78139",
+      "ticket_links": [
+        {
+          "country": "CA",
+          "url": "https://www.ticketmaster.ca/menopause-the-musical-nepean-ontario-10-19-2026/event/310064ACA9E78139"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/c0a/17a4606e-3bcd-4871-8c31-655376467c0a_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "menopause"
+    },
+    {
+      "id": "tm-menopause-the-musical-the-arena-at-pickering-casino-resort",
+      "title": "Menopause The Musical",
+      "type": "resident",
+      "venue": "The Arena at Pickering Casino Resort",
+      "city": "Pickering",
+      "country": "Canada",
+      "lat": 43.84332,
+      "lng": -79.054,
+      "start_date": "2026-10-22",
+      "end_date": "2026-10-22",
+      "ticket_url": "https://www.ticketmaster.ca/menopause-the-musical-pickering-ontario-10-22-2026/event/10006474C343DB25",
+      "ticket_links": [
+        {
+          "country": "CA",
+          "url": "https://www.ticketmaster.ca/menopause-the-musical-pickering-ontario-10-22-2026/event/10006474C343DB25"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/c0a/17a4606e-3bcd-4871-8c31-655376467c0a_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "menopause"
+    },
+    {
+      "id": "tm-m-nopause-la-parodie-musicale-cabaret-du-casino-de-montreal",
+      "title": "Ménopause, la parodie musicale",
+      "type": "resident",
+      "venue": "CABARET DU CASINO DE MONTREAL",
+      "city": "Montreal",
+      "country": "Canada",
+      "lat": 45.506708,
+      "lng": -73.525951,
+      "start_date": "2026-10-31",
+      "end_date": "2026-10-31",
+      "ticket_url": "https://www.ticketmaster.ca/menopause-la-parodie-musicale-montreal-quebec-10-31-2026/event/3100649788EA370F",
+      "ticket_links": [
+        {
+          "country": "CA",
+          "url": "https://www.ticketmaster.ca/menopause-la-parodie-musicale-montreal-quebec-10-31-2026/event/3100649788EA370F"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/4d7/ac249cad-10a4-4155-bcc2-625e5fa9f4d7_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "m nopause la parodie musicale"
+    },
+    {
+      "id": "tm-annul-il-tait-une-fois-no-l-th-tre-capitole",
+      "title": "ANNULÉ - Il était une fois... Noël",
+      "type": "resident",
+      "venue": "Théâtre Capitole",
+      "city": "Quebec",
+      "country": "Canada",
+      "lat": 46.813254,
+      "lng": -71.214215,
+      "start_date": "2026-11-25",
+      "end_date": "2026-11-29",
+      "ticket_url": "https://www.ticketmaster.ca/annule-il-etait-une-fois-noel-quebec-quebec-11-25-2026/event/31006381376013CF",
+      "ticket_links": [
+        {
+          "country": "CA",
+          "url": "https://www.ticketmaster.ca/annule-il-etait-une-fois-noel-quebec-quebec-11-25-2026/event/31006381376013CF"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/f6b/d1f7472b-fe7e-4a2e-af4b-6e3e32c44f6b_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "annul il tait une fois no l"
+    },
+    {
+      "id": "tm-bee-gees-celebration-th-tre-capitole",
+      "title": "Bee Gees Celebration",
+      "type": "resident",
+      "venue": "Théâtre Capitole",
+      "city": "Quebec",
+      "country": "Canada",
+      "lat": 46.813254,
+      "lng": -71.214215,
+      "start_date": "2026-12-16",
+      "end_date": "2027-01-02",
+      "ticket_url": "https://www.ticketmaster.ca/bee-gees-celebration-quebec-quebec-12-16-2026/event/310064A34EE30ECF",
+      "ticket_links": [
+        {
+          "country": "CA",
+          "url": "https://www.ticketmaster.ca/bee-gees-celebration-quebec-quebec-12-16-2026/event/310064A34EE30ECF"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/625/ab8e9619-d6d4-4c02-a6b5-2f6998508625_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "bee gees celebration"
+    },
+    {
+      "id": "tm-bee-gees-celebration-soir-e-du-jour-de-l-an-th-tre-capitole",
+      "title": "Bee Gees Celebration - Soirée du jour de l'an",
+      "type": "resident",
+      "venue": "Théâtre Capitole",
+      "city": "Quebec",
+      "country": "Canada",
+      "lat": 46.813254,
+      "lng": -71.214215,
+      "start_date": "2026-12-31",
+      "end_date": "2026-12-31",
+      "ticket_url": "https://www.ticketmaster.ca/bee-gees-celebration-soiree-du-jour-quebec-quebec-12-31-2026/event/310064AC3CFA0C8A",
+      "ticket_links": [
+        {
+          "country": "CA",
+          "url": "https://www.ticketmaster.ca/bee-gees-celebration-soiree-du-jour-quebec-quebec-12-31-2026/event/310064AC3CFA0C8A"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/625/ab8e9619-d6d4-4c02-a6b5-2f6998508625_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "bee gees celebration soir e du jour de l an"
+    },
+    {
+      "id": "tm-menopause-th-tre-manuvie",
+      "title": "Menopause",
+      "type": "resident",
+      "venue": "Théâtre Manuvie",
+      "city": "Brossard",
+      "country": "Canada",
+      "lat": 45.441163,
+      "lng": -73.44041,
+      "start_date": "2027-03-24",
+      "end_date": "2027-03-24",
+      "ticket_url": "https://www.ticketmaster.ca/menopause-brossard-quebec-03-24-2027/event/31006496B8E09AD4",
+      "ticket_links": [
+        {
+          "country": "CA",
+          "url": "https://www.ticketmaster.ca/menopause-brossard-quebec-03-24-2027/event/31006496B8E09AD4"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/4d7/ac249cad-10a4-4155-bcc2-625e5fa9f4d7_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "menopause"
+    },
+    {
+      "id": "tm-bat-out-of-hell-the-musical-casino-rama-resort",
+      "title": "Bat Out of Hell the Musical",
+      "type": "resident",
+      "venue": "Casino Rama Resort",
+      "city": "Rama",
+      "country": "Canada",
+      "lat": 44.626846,
+      "lng": -79.351832,
+      "start_date": "2027-08-12",
+      "end_date": "2027-08-12",
+      "ticket_url": "https://www.ticketmaster.ca/bat-out-of-hell-the-musical-rama-ontario-08-12-2027/event/100062F992BE198A",
+      "ticket_links": [
+        {
+          "country": "CA",
+          "url": "https://www.ticketmaster.ca/bat-out-of-hell-the-musical-rama-ontario-08-12-2027/event/100062F992BE198A"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/995/8328e8e6-0d7c-4847-942b-0b0298050995_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "group": "bat out of hell"
     }
   ]
 }

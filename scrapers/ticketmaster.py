@@ -1,0 +1,138 @@
+"""Global musicals via the Ticketmaster Discovery API.
+
+⚠️ REQUIRES A FREE API KEY — set env var TICKETMASTER_API_KEY.
+   Get one at https://developer.ticketmaster.com (register an app → Consumer Key).
+   Without the key every endpoint returns 401, so this scraper is UNTESTED until
+   a key is supplied; once it is, run it and verify the output before trusting it.
+
+Covers countries the other scrapers miss (Australia, NZ, much of Europe, etc.).
+Ticketmaster returns one event per performance date, so we aggregate events that
+share a show + venue into a single run (min start date → max end date).
+
+Output: data/ticketmaster.json   Run: TICKETMASTER_API_KEY=xxx python scrapers/ticketmaster.py
+"""
+
+import json
+import os
+import re
+import sys
+import io
+import time
+import urllib.request
+import urllib.parse
+from pathlib import Path
+
+sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
+
+DATA = Path(__file__).resolve().parent.parent / "data"
+API = "https://app.ticketmaster.com/discovery/v2/events.json"
+KEY = os.environ.get("TICKETMASTER_API_KEY")
+# One Discovery API spans every national Ticketmaster site; we sweep each market
+# by ISO country code. Dedupe is by (show, venue) so the same production showing
+# up under multiple country sites collapses into one record (collecting each
+# region's ticket link). Extend this list to widen coverage.
+COUNTRIES = ["AU", "NZ", "IE", "GB", "DE", "NL", "ES", "SE", "DK", "NO",
+             "FI", "AT", "CH", "BE", "PL", "MX", "US", "CA"]
+
+
+def clean_title(t):
+    """Strip promoter prefixes/suffixes Ticketmaster bakes into event names."""
+    t = t.strip()
+    t = re.sub(r"^(disney\s+presents\s+|disney'?s\s+|cameron\s+mackintosh'?s\s+)", "", t, flags=re.I)
+    t = re.sub(r"\s*[-–:]\s*(the\s+broadway\s+musical|the\s+musical|broadway).*$", "", t, flags=re.I)
+    return t.strip()
+
+
+def fetch(params):
+    url = API + "?" + urllib.parse.urlencode(params)
+    with urllib.request.urlopen(url, timeout=30) as r:
+        return json.loads(r.read().decode("utf-8"))
+
+
+def sweep_country(cc):
+    """Yield raw musical events for one country, paginating."""
+    page = 0
+    while True:
+        data = fetch({
+            "apikey": KEY,
+            "classificationName": "Musical",
+            "segmentName": "Arts & Theatre",
+            "countryCode": cc,
+            "size": 100,
+            "page": page,
+            "sort": "date,asc",
+        })
+        for ev in data.get("_embedded", {}).get("events", []):
+            yield ev
+        info = data.get("page", {})
+        page += 1
+        if page >= info.get("totalPages", 0) or page > 4:  # cap pages/country
+            break
+        time.sleep(0.3)
+
+
+def main():
+    if not KEY:
+        print("✗ TICKETMASTER_API_KEY not set — get a free key at "
+              "https://developer.ticketmaster.com and re-run. (no output written)")
+        return
+
+    runs = {}  # (show, venue) -> aggregated record
+    for cc in COUNTRIES:
+        try:
+            for ev in sweep_country(cc):
+                # classification gating: keep only genuine musicals
+                cl = (ev.get("classifications") or [{}])[0]
+                genre = ((cl.get("genre") or {}).get("name") or "").lower()
+                sub = ((cl.get("subGenre") or {}).get("name") or "").lower()
+                seg = ((cl.get("segment") or {}).get("name") or "").lower()
+                # "Musical" is the subGenre under genre "Theatre"
+                if seg != "arts & theatre" or "musical" not in (genre + " " + sub):
+                    continue
+                v = (ev.get("_embedded", {}).get("venues") or [{}])[0]
+                loc = v.get("location") or {}
+                title = clean_title(ev.get("name") or "")
+                venue = (v.get("name") or "").strip()
+                date = (ev.get("dates", {}).get("start", {}) or {}).get("localDate")
+                if not title or not venue or not loc.get("latitude"):
+                    continue
+                key = (title.lower(), venue.lower())
+                rec = runs.get(key)
+                if not rec:
+                    imgs = sorted(ev.get("images", []), key=lambda i: -(i.get("width") or 0))
+                    runs[key] = {
+                        "id": "tm-" + re.sub(r"[^a-z0-9]+", "-", f"{title}-{venue}".lower()).strip("-"),
+                        "title": title, "type": "resident",
+                        "venue": venue,
+                        "city": (v.get("city") or {}).get("name") or "",
+                        "country": (v.get("country") or {}).get("name") or cc,
+                        "lat": round(float(loc["latitude"]), 6),
+                        "lng": round(float(loc["longitude"]), 6),
+                        "start_date": date, "end_date": date,
+                        "ticket_url": ev.get("url"),
+                        # one ticket link per region/country, shown in the card
+                        "ticket_links": ([{"country": cc, "url": ev["url"]}] if ev.get("url") else []),
+                        "image": imgs[0]["url"] if imgs else None,
+                        "tour_name": None, "verified": True,
+                        "source": "ticketmaster",
+                    }
+                else:  # widen the run's date range + collect this region's link
+                    if date and (not rec["start_date"] or date < rec["start_date"]):
+                        rec["start_date"] = date
+                    if date and (not rec["end_date"] or date > rec["end_date"]):
+                        rec["end_date"] = date
+                    if ev.get("url") and not any(l["country"] == cc for l in rec["ticket_links"]):
+                        rec["ticket_links"].append({"country": cc, "url": ev["url"]})
+            print(f"  {cc}: {len(runs)} cumulative runs")
+        except Exception as e:  # noqa: BLE001
+            print(f"  [{cc}] failed: {e}")
+
+    shows = list(runs.values())
+    out = {"meta": {"source": "ticketmaster", "count": len(shows)}, "shows": shows}
+    (DATA / "ticketmaster.json").write_text(
+        json.dumps(out, ensure_ascii=False, indent=2), encoding="utf-8")
+    print(f"\nWrote {len(shows)} runs -> data/ticketmaster.json")
+
+
+if __name__ == "__main__":
+    main()

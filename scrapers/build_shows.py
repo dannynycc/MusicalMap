@@ -30,8 +30,21 @@ def group_key(title):
     t = re.sub(r"[^a-z0-9]+", " ", t).strip()
     return t
 
-# Order matters for de-dup: later files override earlier ids.
+# Curated sources (precise data). Order matters for de-dup: later files win.
 SOURCE_FILES = ["broadway.json", "westend.json", "tours.json", "intl.json"]
+# Ticketmaster is added only for countries the curated sources DON'T cover,
+# so it fills global gaps (Australia, NZ, Ireland, Nordics, Canada…) without
+# duplicating the well-curated US/UK/etc. productions.
+TM_FILE = "ticketmaster.json"
+
+
+def country_norm(c):
+    c = (c or "").lower()
+    if "united states" in c or c == "usa":
+        return "us"
+    if "great britain" in c or "united kingdom" in c or c == "uk":
+        return "gb"
+    return c.strip()
 
 
 def main():
@@ -48,6 +61,21 @@ def main():
             by_id[s["id"]] = s
         sources.append({"file": name, "count": len(rows), "meta": blob.get("meta", {})})
         print(f"  {name}: {len(rows)} shows")
+
+    # Ticketmaster gap-fill: keep only countries curated sources don't cover.
+    tm_path = DATA / TM_FILE
+    if tm_path.exists():
+        curated_countries = {country_norm(s.get("country")) for s in by_id.values()}
+        tm = json.loads(tm_path.read_text(encoding="utf-8")).get("shows", [])
+        kept = 0
+        for s in tm:
+            if country_norm(s.get("country")) in curated_countries:
+                continue  # already covered by a curated source
+            by_id[s["id"]] = s
+            kept += 1
+        print(f"  {TM_FILE}: +{kept} gap-fill ({len(tm)} total, "
+              f"{len(tm) - kept} skipped as already-covered countries)")
+        sources.append({"file": TM_FILE, "count": kept})
 
     # Apply manual coordinate/field corrections (source data errors).
     overrides_path = DATA / "overrides.json"

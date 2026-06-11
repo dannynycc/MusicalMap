@@ -54,11 +54,16 @@ function isPlayingNow(show, today = TODAY) {
 
 // ---------- Map ----------
 const map = L.map("map", { zoomControl: true, worldCopyJump: true }).setView([42, -40], 3);
-// Light, clean basemap (CARTO Voyager) — readable in dark mode, soft roads/water.
-L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png", {
+// Base layers: light street map (default) + satellite imagery, toggle top-right.
+const streets = L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png", {
   attribution: "&copy; OpenStreetMap &copy; CARTO",
   subdomains: "abcd", maxZoom: 19,
 }).addTo(map);
+const satellite = L.tileLayer(
+  "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}", {
+    attribution: "Tiles &copy; Esri, Maxar, Earthstar Geographics", maxZoom: 19,
+  });
+L.control.layers({ "地圖": streets, "衛星": satellite }, null, { position: "topright" }).addTo(map);
 const cluster = L.markerClusterGroup({
   maxClusterRadius: 45,
   spiderfyOnMaxZoom: true,
@@ -66,8 +71,9 @@ const cluster = L.markerClusterGroup({
   // size the bubble by how many shows it holds (bigger count → bigger circle)
   iconCreateFunction: (c) => {
     const n = c.getChildCount();
-    // linear scaling for an obvious size difference (small 30px → large 88px)
-    const size = Math.round(Math.max(30, Math.min(88, 22 + n * 2)));
+    // linear by count; cap high enough that typical counts (≤~45) don't all hit
+    // the ceiling — so 38 is genuinely bigger than 35.
+    const size = Math.round(Math.max(30, Math.min(96, 26 + n * 1.7)));
     const fs = Math.round(Math.max(12, size * 0.34));
     return L.divIcon({
       html: `<div class="mm-cluster" style="width:${size}px;height:${size}px;font-size:${fs}px"><span>${n}</span></div>`,
@@ -134,8 +140,15 @@ function popupHtml(show) {
   const tag = show.type === "tour" ? "巡演" : "常駐";
   const poster = posterFull(show.image, 400);
   const img = poster ? `<img class="pop-poster" src="${esc(poster)}" alt="">` : "";
-  const url = safeUrl(show.ticket_url);
-  const ticket = url ? `<a class="pop-cta" href="${esc(url)}" target="_blank" rel="noopener">前往官方售票頁 →</a>` : "";
+  const links = Array.isArray(show.ticket_links) ? show.ticket_links.filter((l) => safeUrl(l.url)) : [];
+  let ticket;
+  if (links.length > 1) {
+    ticket = `<div class="pop-links">各地售票：${links.map((l) =>
+      `<a class="pop-cta sm" href="${esc(safeUrl(l.url))}" target="_blank" rel="noopener">${esc(l.country)} →</a>`).join("")}</div>`;
+  } else {
+    const url = safeUrl(show.ticket_url) || (links[0] && safeUrl(links[0].url));
+    ticket = url ? `<a class="pop-cta" href="${esc(url)}" target="_blank" rel="noopener">前往官方售票頁 →</a>` : "";
+  }
   const tname = show.tour_name ? show.tour_name.replace(show.title, canonTitle(show)) : "";
   const tourLine = show.type === "tour" && tname ? `<div class="p-row"><b>${esc(tname)}</b></div>` : "";
   const unverified = show.verified ? "" : `<div class="p-row warn">⚠ 未驗證（示範資料）</div>`;
@@ -204,7 +217,8 @@ function render() {
       .forEach((items) => els.list.appendChild(showGroupItem(items)));
   }
 
-  els.count.textContent = `目前上演中：${shows.length} 部`;
+  const groups = new Set(shows.map((s) => s.group || s.title)).size;
+  els.count.textContent = `目前上演中：${groups} 部音樂劇 · ${shows.length} 個地點`;
 
   // fit to all markers once, on first load
   if (!didFitBounds && latlngs.length) {
@@ -313,8 +327,8 @@ async function boot() {
     const res = await fetch("data/shows.json", { cache: "no-store" });
     const data = await res.json();
     ALL = data.shows || [];
-    const updated = data.meta?.generated_at ? `更新於 ${esc(data.meta.generated_at)} · ` : "";
-    els.note.textContent = `${updated}共 ${ALL.length} 部（${data.meta?.verified ?? "?"} 已驗證）`;
+    const updated = data.meta?.generated_at ? `更新於 ${esc(data.meta.generated_at)}` : "";
+    els.note.textContent = `${updated} · 來源：Broadway · West End · 巡演 · 國際 · Ticketmaster`;
   } catch (e) {
     els.note.textContent = "⚠ 無法載入 data/shows.json（需用本機 server 開啟，見 README）";
     console.error(e);
