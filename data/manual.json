@@ -1,0 +1,70 @@
+{
+  "meta": {
+    "source": "manual-curated",
+    "note": "Hand-curated shows from regional venues/promoters no scraper covers yet (China venues, Live Nation FR, …). Each entry verified against the official ticketing page on the date in _checked. Add here whenever a gap is found; build merges automatically."
+  },
+  "shows": [
+    {
+      "id": "manual-phantom-shanghai-2026",
+      "title": "The Phantom of the Opera",
+      "type": "tour",
+      "venue": "上海大劇院 Lyric Theatre",
+      "city": "Shanghai",
+      "country": "China",
+      "lat": 31.231494,
+      "lng": 121.467311,
+      "start_date": "2026-09-29",
+      "end_date": "2026-11-29",
+      "ticket_url": "https://www.shgtheatre.com/shtheatre/index.html#/ticket/detail/22454",
+      "image": null,
+      "tour_name": "The Phantom of the Opera — 40週年上海告別季",
+      "verified": true,
+      "source": "shgtheatre.com (manual)",
+      "_checked": "2026-06-12"
+    },
+    {
+      "id": "manual-elisabeth-ostrava",
+      "title": "Elisabeth",
+      "type": "resident",
+      "venue": "Jiří Myron Theatre (NDM, repertory)",
+      "city": "Ostrava",
+      "country": "Czech Republic",
+      "lat": 49.836396,
+      "lng": 18.288236,
+      "start_date": "2024-12-12",
+      "end_date": "2027-06-30",
+      "ticket_url": "https://www.ndm.cz/en/operetta-musical/titul/6392-elisabeth/",
+      "image": null,
+      "tour_name": null,
+      "verified": true,
+      "source": "ndm.cz (manual)",
+      "_checked": "2026-06-12",
+      "_note": "Repertory production (selected dates only, premiered 2024-12-12, schedule runs into Jun 2027). NDM sells via own system — not on Ticketmaster CZ."
+    },
+    {
+      "id": "manual-romeo-juliette-paris",
+      "title": "Roméo et Juliette",
+      "type": "tour",
+      "venue": "Le Palais des Congrès de Paris",
+      "city": "Paris",
+      "country": "France",
+      "lat": 48.878449,
+      "lng": 2.283764,
+      "start_date": "2027-12-03",
+      "end_date": "2027-12-31",
+      "ticket_url": "https://www.livenation.fr/rom%C3%A9o-and-juliette-tickets-adp1652218",
+      "image": null,
+      "tour_name": "Roméo et Juliette — Tournée 2027-28",
+      "verified": true,
+      "source": "livenation.fr (manual)",
+      "_checked": "2026-06-12"
+    },
+    {"id": "manual-romeo-juliette-reims", "title": "Roméo et Juliette", "type": "tour", "venue": "Reims Arena", "city": "Reims", "country": "France", "lat": 49.264147, "lng": 4.032178, "start_date": "2028-02-18", "end_date": "2028-02-20", "ticket_url": "https://www.livenation.fr/rom%C3%A9o-and-juliette-tickets-adp1652218", "image": null, "tour_name": "Roméo et Juliette — Tournée 2027-28", "verified": true, "source": "livenation.fr (manual)", "_checked": "2026-06-12"},
+    {"id": "manual-romeo-juliette-dijon", "title": "Roméo et Juliette", "type": "tour", "venue": "Zénith de Dijon", "city": "Dijon", "country": "France", "lat": 47.355339, "lng": 5.05811, "start_date": "2028-02-25", "end_date": "2028-02-27", "ticket_url": "https://www.livenation.fr/rom%C3%A9o-and-juliette-tickets-adp1652218", "image": null, "tour_name": "Roméo et Juliette — Tournée 2027-28", "verified": true, "source": "livenation.fr (manual)", "_checked": "2026-06-12"},
+    {"id": "manual-romeo-juliette-amneville", "title": "Roméo et Juliette", "type": "tour", "venue": "Le Galaxie", "city": "Amnéville", "country": "France", "lat": 49.24576, "lng": 6.128201, "start_date": "2028-03-03", "end_date": "2028-03-05", "ticket_url": "https://www.livenation.fr/rom%C3%A9o-and-juliette-tickets-adp1652218", "image": null, "tour_name": "Roméo et Juliette — Tournée 2027-28", "verified": true, "source": "livenation.fr (manual)", "_checked": "2026-06-12"},
+    {"id": "manual-romeo-juliette-montpellier", "title": "Roméo et Juliette", "type": "tour", "venue": "Sud de France Arena", "city": "Montpellier", "country": "France", "lat": 43.573297, "lng": 3.951716, "start_date": "2028-03-10", "end_date": "2028-03-12", "ticket_url": "https://www.livenation.fr/rom%C3%A9o-and-juliette-tickets-adp1652218", "image": null, "tour_name": "Roméo et Juliette — Tournée 2027-28", "verified": true, "source": "livenation.fr (manual)", "_checked": "2026-06-12"},
+    {"id": "manual-romeo-juliette-nice", "title": "Roméo et Juliette", "type": "tour", "venue": "Palais Nikaïa", "city": "Nice", "country": "France", "lat": 43.678512, "lng": 7.198991, "start_date": "2028-03-17", "end_date": "2028-03-19", "ticket_url": "https://www.livenation.fr/rom%C3%A9o-and-juliette-tickets-adp1652218", "image": null, "tour_name": "Roméo et Juliette — Tournée 2027-28", "verified": true, "source": "livenation.fr (manual)", "_checked": "2026-06-12"},
+    {"id": "manual-romeo-juliette-lyon", "title": "Roméo et Juliette", "type": "tour", "venue": "LDLC Arena", "city": "Lyon-Décines", "country": "France", "lat": 45.769518, "lng": 4.979946, "start_date": "2028-03-24", "end_date": "2028-03-26", "ticket_url": "https://www.livenation.fr/rom%C3%A9o-and-juliette-tickets-adp1652218", "image": null, "tour_name": "Roméo et Juliette — Tournée 2027-28", "verified": true, "source": "livenation.fr (manual)", "_checked": "2026-06-12"},
+    {"id": "manual-romeo-juliette-aix", "title": "Roméo et Juliette", "type": "tour", "venue": "Arena du Pays d'Aix", "city": "Aix-en-Provence", "country": "France", "lat": 43.472664, "lng": 5.404927, "start_date": "2028-03-31", "end_date": "2028-04-02", "ticket_url": "https://www.livenation.fr/rom%C3%A9o-and-juliette-tickets-adp1652218", "image": null, "tour_name": "Roméo et Juliette — Tournée 2027-28", "verified": true, "source": "livenation.fr (manual)", "_checked": "2026-06-12"}
+  ]
+}

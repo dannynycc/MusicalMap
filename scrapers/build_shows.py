@@ -11,6 +11,7 @@ import json
 import re
 import sys
 import io
+import unicodedata
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -19,19 +20,31 @@ sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
 DATA = Path(__file__).resolve().parent.parent / "data"
 
 
+# Same production, differently branded across sources/regions — map to one key.
+GROUP_ALIASES = {
+    "mj the michael jackson": "mj",                 # Perth/TM long brand vs "MJ The Musical"
+    "mj the michael jackson musical": "mj",
+    "monty python s spamalot": "spamalot",
+    "les mis": "les miserables",                    # broadway.org slug-style title
+}
+
+
 def group_key(title):
     """Canonical key so the same show titled differently across sources groups
-    together (e.g. 'SIX' == 'SIX: The Musical', 'Mamma Mia!' == 'Mamma Mia').
-    Conservative: only strips leading 'the' and trailing musical/subtitle tags."""
-    t = (title or "").lower().strip()
+    together (e.g. 'SIX' == 'SIX: The Musical', 'Mamma Mia!' == 'Mamma Mia',
+    'Les Misérables' == 'Les Miserables'). Diacritics are stripped BEFORE the
+    ascii filter, otherwise 'é' becomes a word break and spellings diverge."""
+    t = unicodedata.normalize("NFKD", title or "").encode("ascii", "ignore").decode()
+    t = t.lower().strip()
     t = re.sub(r"^the\s+", "", t)
+    t = re.sub(r"^disney(?:'s| presents)\s+", "", t)
     t = re.sub(r"\s*[:\-–—]\s*(a\s+new\s+musical|the\s+musical|reimagined).*$", "", t)
     t = re.sub(r"\s+(the\s+musical|a\s+new\s+musical)$", "", t)
     t = re.sub(r"[^a-z0-9]+", " ", t).strip()
-    return t
+    return GROUP_ALIASES.get(t, t)
 
 # Curated sources (precise data). Order matters for de-dup: later files win.
-SOURCE_FILES = ["broadway.json", "westend.json", "tours.json", "intl.json"]
+SOURCE_FILES = ["broadway.json", "westend.json", "tours.json", "intl.json", "manual.json"]
 # Ticketmaster is added only for countries the curated sources DON'T cover,
 # so it fills global gaps (Australia, NZ, Ireland, Nordics, Canada…) without
 # duplicating the well-curated US/UK/etc. productions.

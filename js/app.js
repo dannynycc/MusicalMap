@@ -9,7 +9,7 @@
 const TODAY = new Date();
 const DAY_MS = 86400000;
 const TODAY0 = (() => { const d = new Date(); d.setHours(0, 0, 0, 0); return d; })();
-const MAX_DAYS = 365;                       // slider range: today → +1 year
+const MAX_DAYS = 730;                       // slider range: today → +2 years (data reaches 2028 tours)
 let selectedDate = new Date(TODAY0);        // the date the map is showing
 const isoDate = (d) =>
   `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
@@ -204,10 +204,27 @@ function render() {
   shows.forEach((s) => {
     if (typeof s.lat !== "number" || typeof s.lng !== "number") return;
     const m = L.marker([s.lat, s.lng], { icon: posterMarkerIcon(s), riseOnHover: true })
-      .bindPopup(popupHtml(s), { maxWidth: 620, className: "mm-popup" })
+      .bindPopup(popupHtml(s), {
+        maxWidth: Math.min(620, window.innerWidth - 60),  // never wider than the screen
+        className: "mm-popup",
+      })
       .bindTooltip(tooltipHtml(s), { direction: "top", offset: [0, -68], className: "mm-tip", opacity: 1 });
-    // at low zoom, clicking flies in first so the card shows at a sensible scale
-    m.on("click", () => { if (map.getZoom() < 9) map.flyTo(m.getLatLng(), 12, { animate: true }); });
+    // small card never coexists with the big card
+    m.on("popupopen", () => m.closeTooltip());
+    m.on("tooltipopen", () => { if (m.isPopupOpen()) m.closeTooltip(); });
+    // at low zoom: suppress the instantly-opened popup, fly in with ONE animation,
+    // then show the card at a sensible scale. (zoomToShowLayer alone won't zoom
+    // when the marker is already unclustered, so fly explicitly.)
+    m.on("click", () => {
+      if (map.getZoom() < 9) {
+        map.closePopup();
+        map.once("moveend", () => {
+          if (m._icon) m.openPopup();
+          else cluster.zoomToShowLayer(m, () => m.openPopup());  // got clustered at 12
+        });
+        map.flyTo(m.getLatLng(), 12, { animate: true, duration: 1.1 });
+      }
+    });
     cluster.addLayer(m);
     markerById[s.id] = m;
     latlngs.push([s.lat, s.lng]);
@@ -215,6 +232,9 @@ function render() {
 
   // sidebar — one row per show; a show playing in multiple cities (e.g. Wicked
   // in London + New York) is a single entry you can expand to see each location.
+  // Re-rendering (slider drag, search) must NOT collapse what the user expanded.
+  const openKeys = new Set(
+    [...els.list.querySelectorAll(".show-group.open")].map((el) => el.dataset.gkey));
   els.list.innerHTML = "";
   if (!shows.length) {
     els.list.innerHTML = `<li class="empty">沒有符合的音樂劇<br><span>試試清除搜尋或開啟其他篩選</span></li>`;
@@ -225,9 +245,14 @@ function render() {
       if (!byGroup.has(k)) byGroup.set(k, []);
       byGroup.get(k).push(s);
     });
-    [...byGroup.values()]
-      .sort((a, b) => displayTitle(a).localeCompare(displayTitle(b)))
-      .forEach((items) => els.list.appendChild(showGroupItem(items)));
+    [...byGroup.entries()]
+      .sort((a, b) => displayTitle(a[1]).localeCompare(displayTitle(b[1])))
+      .forEach(([k, items]) => {
+        const li = showGroupItem(items);
+        li.dataset.gkey = k;
+        if (openKeys.has(k)) li.classList.add("open");
+        els.list.appendChild(li);
+      });
   }
 
   const groups = new Set(shows.map((s) => s.group || s.title)).size;
@@ -318,11 +343,13 @@ function setActive(id) {
     el.classList.toggle("active", el.dataset.id === id));
 }
 
-// two-way sync: hovering a list row previews its marker
+// two-way sync: hovering a list row previews its marker.
+// Only when the marker is actually on screen as itself (m._icon exists) —
+// clustered/hidden markers would show an orphan card over a cluster bubble.
 function hoverShow(show, on) {
   const m = markerById[show.id];
   if (!m) return;
-  if (on) { if (!cluster.hasLayer(m) || map.getZoom() >= 6) m.openTooltip(); }
+  if (on) { if (m._icon && !m.isPopupOpen()) m.openTooltip(); }
   else m.closeTooltip();
 }
 
@@ -370,8 +397,15 @@ function setDate(d, { fromSlider = false, fromPicker = false } = {}) {
 els.tRange.max = MAX_DAYS;
 els.tDate.min = isoDate(TODAY0);
 els.tDate.max = isoDate(new Date(TODAY0.getTime() + MAX_DAYS * DAY_MS));
-els.tRange.addEventListener("input", () =>
-  setDate(new Date(TODAY0.getTime() + Number(els.tRange.value) * DAY_MS), { fromSlider: true }));
+// rAF-throttled: dragging fires dozens of input events; rebuild at most once a frame
+let sliderRaf = null;
+els.tRange.addEventListener("input", () => {
+  if (sliderRaf) return;
+  sliderRaf = requestAnimationFrame(() => {
+    sliderRaf = null;
+    setDate(new Date(TODAY0.getTime() + Number(els.tRange.value) * DAY_MS), { fromSlider: true });
+  });
+});
 els.tDate.addEventListener("change", () => {
   const d = new Date(els.tDate.value + "T00:00:00");
   if (!isNaN(d)) setDate(d, { fromPicker: true });

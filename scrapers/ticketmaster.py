@@ -123,7 +123,7 @@ def main():
                     imgs = sorted(ev.get("images", []), key=lambda i: -(i.get("width") or 0))
                     runs[key] = {
                         "id": "tm-" + re.sub(r"[^a-z0-9]+", "-", f"{title}-{venue}".lower()).strip("-"),
-                        "title": title, "type": "resident",
+                        "title": title, "type": "tour",  # TM runs are limited engagements / tour stops
                         "venue": venue,
                         "city": (v.get("city") or {}).get("name") or "",
                         "country": (v.get("country") or {}).get("name") or cc,

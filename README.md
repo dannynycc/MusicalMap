@@ -31,7 +31,8 @@ scrapers/  ──產出──>  data/*.json  ──merge──>  data/shows.json
 | `data/westend.json` | West End scraper 輸出（londontheatre.co.uk） |
 | `data/tours.json` | 北美巡演彙總 scraper 輸出（broadway.org，28 劇 297 站） |
 | `data/intl.json` | 國際製作 scraper 輸出（broadway.org/international，全球駐演） |
-| `data/ticketmaster.json` | Ticketmaster Discovery API 輸出（全球補洞，需 API key） |
+| `data/ticketmaster.json` | Ticketmaster Discovery API 輸出（全球補洞，需 API key；限期檔期歸「巡演」） |
+| `data/manual.json` | **人工策展**：自有售票系統的劇（上海大劇院、Live Nation FR、捷克 NDM…），隨發現隨補 |
 | `data/overrides.json` | 人工座標/欄位修正（依 show id；修來源錯誤，build 時套用） |
 | `data/venues.json` | venue→座標 geocode 快取（手動可編） |
 | `scrapers/geocode.py` | Nominatim geocoding + 永久快取 |
