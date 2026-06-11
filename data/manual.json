@@ -1,7 +1,7 @@
 {
   "meta": {
     "source": "manual-curated",
-    "note": "Hand-curated shows from regional venues/promoters no scraper covers yet (China venues, Live Nation FR, …). Each entry verified against the official ticketing page on the date in _checked. Add here whenever a gap is found; build merges automatically."
+    "note": "Hand-curated shows from regional venues/promoters no scraper covers yet (China venues, Live Nation FR, …). Each entry verified against the official ticketing page on the date in _checked. Add here whenever a gap is found; build merges automatically. Images from slow origin servers (no CDN, e.g. ndm.cz) are downloaded, compressed and self-hosted under assets/posters/ — GitHub Pages serves them fast."
   },
   "shows": [
     {
@@ -34,7 +34,7 @@
       "start_date": "2024-12-12",
       "end_date": "2027-06-30",
       "ticket_url": "https://www.ndm.cz/en/operetta-musical/inscenation/6392-elisabeth/",
-      "image": "https://www.ndm.cz/image4web/inscenation-promo/1200x540-elisabeth-2-jpg-1734005763.jpg",
+      "image": "assets/posters/elisabeth-ostrava.jpg",
       "tour_name": null,
       "verified": true,
       "source": "ndm.cz (manual)",
