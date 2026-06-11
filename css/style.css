@@ -140,10 +140,11 @@ html, body {
 
 /* popup */
 .mm-popup .leaflet-popup-content-wrapper { background: var(--panel); color: var(--text); border-radius: 14px; box-shadow: var(--shadow); }
-.mm-popup .leaflet-popup-content { margin: 0; width: 340px !important; }
+.mm-popup .leaflet-popup-content { margin: 0; width: 390px !important; }
 .mm-popup .leaflet-popup-tip { background: var(--panel); }
-.popup { display: flex; gap: 0; }
-.pop-poster { width: 140px; flex: none; background: #e2e8f0 center/cover no-repeat; border-radius: 14px 0 0 14px; }
+.popup { display: flex; gap: 0; align-items: flex-start; }
+/* full poster at natural aspect ratio — no crop, no letterbox bars */
+.pop-poster { width: 170px; flex: none; height: auto; display: block; border-radius: 14px 0 0 14px; }
 .pop-body { padding: 14px 16px; min-width: 0; }
 .p-tag { display: inline-block; font-size: 12px; padding: 2px 10px; border-radius: 6px; color: var(--accent-ink); font-weight: 700; }
 .p-tag.resident { background: var(--resident); }
@@ -166,7 +167,7 @@ html, body {
   border: 3px solid rgba(255,255,255,.85);
   box-shadow: 0 3px 10px rgba(15,23,42,.35);
 }
-.mm-cluster span { font-size: 13px; }
+.mm-cluster span { font-size: inherit; line-height: 1; }
 
 @media (max-width: 680px) {
   #app { flex-direction: column; }

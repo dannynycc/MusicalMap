@@ -22,13 +22,24 @@ function safeUrl(u) {
   } catch { return null; }
 }
 
-// CDN-side thumbnailing: request a small poster instead of the full image.
-// Contentful (West End) and imgix/headout (Broadway) take different params.
+// CDN-side thumbnailing: request a small CROPPED square-ish poster for markers
+// and list thumbnails. Contentful / imgix / craft.cloud take different params.
 function thumb(url, w, h) {
   const u = safeUrl(url);
   if (!u) return null;
   if (u.includes("ctfassets.net")) return `${u}?w=${w}&h=${h}&fit=fill&fm=webp&q=70`;
   if (u.includes("imgix") || u.includes("headout")) return `${u}?w=${w}&h=${h}&fit=crop&auto=format&q=70`;
+  if (u.includes("craft.cloud")) return `${u}?width=${w}&height=${h}&fit=crop`;
+  return u;
+}
+
+// Full uncropped poster (preserve aspect ratio) for the popup showcase.
+function posterFull(url, w) {
+  const u = safeUrl(url);
+  if (!u) return null;
+  if (u.includes("ctfassets.net")) return `${u}?w=${w}&fm=webp&q=80`;
+  if (u.includes("imgix") || u.includes("headout")) return `${u}?w=${w}&auto=format&q=80`;
+  if (u.includes("craft.cloud")) return `${u}?width=${w}`;
   return u;
 }
 
@@ -55,9 +66,11 @@ const cluster = L.markerClusterGroup({
   // size the bubble by how many shows it holds (bigger count → bigger circle)
   iconCreateFunction: (c) => {
     const n = c.getChildCount();
-    const size = Math.round(Math.max(32, Math.min(64, 24 + Math.sqrt(n) * 8)));
+    // linear scaling for an obvious size difference (small 30px → large 88px)
+    const size = Math.round(Math.max(30, Math.min(88, 22 + n * 2)));
+    const fs = Math.round(Math.max(12, size * 0.34));
     return L.divIcon({
-      html: `<div class="mm-cluster" style="width:${size}px;height:${size}px"><span>${n}</span></div>`,
+      html: `<div class="mm-cluster" style="width:${size}px;height:${size}px;font-size:${fs}px"><span>${n}</span></div>`,
       className: "mm-cluster-wrap",
       iconSize: [size, size],
     });
@@ -110,7 +123,7 @@ function tooltipHtml(show) {
     ? `<div class="tt-poster" style="background-image:url('${esc(poster)}')"></div>`
     : `<div class="tt-poster noimg"><span class="glyph">♪</span></div>`;
   return `<div class="tt">${img}<div class="tt-meta">
-      <div class="tt-title">${esc(show.title)}</div>
+      <div class="tt-title">${esc(canonTitle(show))}</div>
       <div class="tt-sub">${esc(show.venue)}</div>
       <div class="tt-sub">${esc(show.city)}, ${esc(show.country)}</div>
       <div class="tt-date">${fmtDates(show)}</div>
@@ -119,15 +132,16 @@ function tooltipHtml(show) {
 
 function popupHtml(show) {
   const tag = show.type === "tour" ? "巡演" : "常駐";
-  const poster = thumb(show.image, 220, 308);
-  const img = poster ? `<div class="pop-poster" style="background-image:url('${esc(poster)}')"></div>` : "";
+  const poster = posterFull(show.image, 400);
+  const img = poster ? `<img class="pop-poster" src="${esc(poster)}" alt="">` : "";
   const url = safeUrl(show.ticket_url);
-  const ticket = url ? `<a class="pop-cta" href="${esc(url)}" target="_blank" rel="noopener">訂票 / 詳情 →</a>` : "";
-  const tourLine = show.type === "tour" && show.tour_name ? `<div class="p-row"><b>${esc(show.tour_name)}</b></div>` : "";
+  const ticket = url ? `<a class="pop-cta" href="${esc(url)}" target="_blank" rel="noopener">前往官方售票頁 →</a>` : "";
+  const tname = show.tour_name ? show.tour_name.replace(show.title, canonTitle(show)) : "";
+  const tourLine = show.type === "tour" && tname ? `<div class="p-row"><b>${esc(tname)}</b></div>` : "";
   const unverified = show.verified ? "" : `<div class="p-row warn">⚠ 未驗證（示範資料）</div>`;
   return `<div class="popup">${img}<div class="pop-body">
       <span class="p-tag ${esc(show.type)}">${tag}</span>
-      <p class="p-title">${esc(show.title)}</p>
+      <p class="p-title">${esc(canonTitle(show))}</p>
       ${tourLine}
       <div class="p-row"><b>${esc(show.venue)}</b></div>
       <div class="p-row">${esc(show.city)}, ${esc(show.country)}</div>
@@ -164,7 +178,7 @@ function render() {
   shows.forEach((s) => {
     if (typeof s.lat !== "number" || typeof s.lng !== "number") return;
     const m = L.marker([s.lat, s.lng], { icon: posterMarkerIcon(s), riseOnHover: true })
-      .bindPopup(popupHtml(s), { maxWidth: 340, className: "mm-popup" })
+      .bindPopup(popupHtml(s), { maxWidth: 400, className: "mm-popup" })
       .bindTooltip(tooltipHtml(s), { direction: "top", offset: [0, -68], className: "mm-tip", opacity: 1 });
     // at low zoom, clicking flies in first so the card shows at a sensible scale
     m.on("click", () => { if (map.getZoom() < 9) map.flyTo(m.getLatLng(), 12, { animate: true }); });
@@ -199,8 +213,18 @@ function render() {
   }
 }
 
+// Canonical display names for shows whose official title differs from sources.
+// Keyed by the normalized `group` key (see build_shows.group_key).
+const TITLE_OVERRIDES = {
+  "phantom of the opera": "Phantom of the Opera", // official name dropped the "The"
+};
+function canonTitle(s) {
+  return TITLE_OVERRIDES[s.group] || s.title;
+}
+
 // the cleanest title in a group (shortest) — "SIX" over "SIX: The Musical"
 function displayTitle(items) {
+  if (TITLE_OVERRIDES[items[0].group]) return TITLE_OVERRIDES[items[0].group];
   return items.map((s) => s.title).sort((a, b) => a.length - b.length)[0];
 }
 
