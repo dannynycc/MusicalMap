@@ -1,10 +1,10 @@
 {
   "meta": {
     "source": "merged",
-    "generated_at": "2026-06-11 14:37 UTC",
-    "total": 82,
-    "verified": 80,
-    "unverified": 2,
+    "generated_at": "2026-06-11 15:03 UTC",
+    "total": 97,
+    "verified": 97,
+    "unverified": 0,
     "sources": [
       {
         "file": "broadway.json",
@@ -27,11 +27,11 @@
         }
       },
       {
-        "file": "tours.json",
-        "count": 2,
+        "file": "wicked_tour.json",
+        "count": 17,
         "meta": {
-          "source": "seed-sample (tours) — DO NOT TRUST; structure demo only",
-          "note": "Sample tour stops to demonstrate the moving-marker model. Each stop is its own record with a [start_date, end_date] city run. Replace with real scraped tour schedules."
+          "source": "tour.wickedthemusical.com",
+          "count": 17
         }
       }
     ]
@@ -49,10 +49,11 @@
       "start_date": "1997-10-15",
       "end_date": "2026-12-05",
       "ticket_url": "https://www.broadway-show-tickets.com/musicals/the-lion-king-tickets/",
-      "image": null,
+      "image": "https://cdn-imgix.headout.com/media/images/4961cf32-a464-4281-826c-eb62518aae17-1775618329205-373998%20vertical.jpg",
       "tour_name": null,
       "verified": true,
-      "source": "broadway-show-tickets.com"
+      "source": "broadway-show-tickets.com",
+      "group": "lion king"
     },
     {
       "id": "bway-508",
@@ -66,10 +67,11 @@
       "start_date": "2014-02-26",
       "end_date": "2026-12-31",
       "ticket_url": "https://www.broadway-show-tickets.com/musicals/aladdin-tickets/",
-      "image": null,
+      "image": "https://cdn-imgix.headout.com/media/images/4fff2f87-e48e-4548-8aac-bfbe16e8fa6e-1772689290764-358223.png",
       "tour_name": null,
       "verified": true,
-      "source": "broadway-show-tickets.com"
+      "source": "broadway-show-tickets.com",
+      "group": "aladdin"
     },
     {
       "id": "bway-512",
@@ -83,10 +85,11 @@
       "start_date": "2003-10-08",
       "end_date": "2027-01-03",
       "ticket_url": "https://www.broadway-show-tickets.com/musicals/wicked-tickets/",
-      "image": null,
+      "image": "https://cdn-imgix.headout.com/media/images/79059f2bed566c8f56467f3ef7389605-512.png",
       "tour_name": null,
       "verified": true,
-      "source": "broadway-show-tickets.com"
+      "source": "broadway-show-tickets.com",
+      "group": "wicked"
     },
     {
       "id": "bway-519",
@@ -100,10 +103,11 @@
       "start_date": "2023-02-17",
       "end_date": "2027-03-28",
       "ticket_url": "https://www.broadway-show-tickets.com/musicals/chicago-tickets/",
-      "image": null,
+      "image": "https://cdn-imgix.headout.com/media/images/66e07f1dce2f156d5206918e3e662ee1-519.png",
       "tour_name": null,
       "verified": true,
-      "source": "broadway-show-tickets.com"
+      "source": "broadway-show-tickets.com",
+      "group": "chicago"
     },
     {
       "id": "bway-730",
@@ -117,10 +121,11 @@
       "start_date": "2011-02-24",
       "end_date": "2026-11-28",
       "ticket_url": "https://www.broadway-show-tickets.com/musicals/the-book-of-mormon-tickets/",
-      "image": null,
+      "image": "https://cdn-imgix.headout.com/media/images/d66afba2-6e75-4846-9341-0b3e36699a05-1775548697541-373817.png",
       "tour_name": null,
       "verified": true,
-      "source": "broadway-show-tickets.com"
+      "source": "broadway-show-tickets.com",
+      "group": "book of mormon"
     },
     {
       "id": "bway-1293",
@@ -134,10 +139,11 @@
       "start_date": "2015-07-13",
       "end_date": "2027-01-03",
       "ticket_url": "https://www.broadway-show-tickets.com/musicals/hamilton-tickets/",
-      "image": null,
+      "image": "https://cdn-imgix.headout.com/media/images/0d2f261f-c0e0-4408-b28a-27950a26e991-1778060467801-388152.png",
       "tour_name": null,
       "verified": true,
-      "source": "broadway-show-tickets.com"
+      "source": "broadway-show-tickets.com",
+      "group": "hamilton"
     },
     {
       "id": "bway-6839",
@@ -151,10 +157,11 @@
       "start_date": "2025-10-16",
       "end_date": "2026-08-02",
       "ticket_url": "https://www.broadway-show-tickets.com/musicals/ragtime-tickets/",
-      "image": null,
+      "image": "https://cdn-imgix.headout.com/media/images/c9093a14-df9b-4772-bcb9-fed8fa2b8437-1761119319167-321214.jpg",
       "tour_name": null,
       "verified": true,
-      "source": "broadway-show-tickets.com"
+      "source": "broadway-show-tickets.com",
+      "group": "ragtime"
     },
     {
       "id": "bway-10017",
@@ -168,10 +175,11 @@
       "start_date": "2019-06-28",
       "end_date": "2026-08-29",
       "ticket_url": "https://www.broadway-show-tickets.com/musicals/moulin-rouge-the-musical-tickets/",
-      "image": null,
+      "image": "https://cdn-imgix.headout.com/media/images/2a538059-1d74-4a3f-b05f-510603e2e0d1-1775027874101-large-MR_065_Banner_Resizing_2022_heart-portal_v01_480x720.jpg",
       "tour_name": null,
       "verified": true,
-      "source": "broadway-show-tickets.com"
+      "source": "broadway-show-tickets.com",
+      "group": "moulin rouge"
     },
     {
       "id": "bway-10069",
@@ -185,10 +193,11 @@
       "start_date": "2019-03-22",
       "end_date": "2026-11-14",
       "ticket_url": "https://www.broadway-show-tickets.com/musicals/hadestown-tickets/",
-      "image": null,
+      "image": "https://cdn-imgix.headout.com/media/images/cf43939faa62255f2a620aa384e48cf1-10069.png",
       "tour_name": null,
       "verified": true,
-      "source": "broadway-show-tickets.com"
+      "source": "broadway-show-tickets.com",
+      "group": "hadestown"
     },
     {
       "id": "bway-11340",
@@ -202,10 +211,11 @@
       "start_date": "2020-10-03",
       "end_date": "2026-11-22",
       "ticket_url": "https://www.broadway-show-tickets.com/musicals/six-the-musical-tickets/",
-      "image": null,
+      "image": "https://cdn-imgix.headout.com/media/images/ee361875-e48c-4ed3-9b11-854ddb98f748-1775027715542-250505_SIX_ConcertBanners_480x720_RG3.jpg",
       "tour_name": null,
       "verified": true,
-      "source": "broadway-show-tickets.com"
+      "source": "broadway-show-tickets.com",
+      "group": "six"
     },
     {
       "id": "bway-11845",
@@ -219,10 +229,11 @@
       "start_date": "2021-12-06",
       "end_date": "2027-01-03",
       "ticket_url": "https://www.broadway-show-tickets.com/musicals/mj-the-musical-tickets/",
-      "image": null,
+      "image": "https://cdn-imgix.headout.com/media/images/82d22769-258e-4f5d-9a28-ff967e8c48ee-1775027766193-TodayTix_Poster_480x720_14601_MJ_Updated_Partner_assets_FR.jpg",
       "tour_name": null,
       "verified": true,
-      "source": "broadway-show-tickets.com"
+      "source": "broadway-show-tickets.com",
+      "group": "mj"
     },
     {
       "id": "bway-24863",
@@ -236,10 +247,11 @@
       "start_date": "2022-10-28",
       "end_date": "2026-10-17",
       "ticket_url": "https://www.broadway-show-tickets.com/musicals/and-juliet-tickets/",
-      "image": null,
+      "image": "https://cdn-imgix.headout.com/media/images/661d2a2c-0af8-4a3c-b315-48f5ef2d8304-1752990525265-293402.png",
       "tour_name": null,
       "verified": true,
-      "source": "broadway-show-tickets.com"
+      "source": "broadway-show-tickets.com",
+      "group": "juliet"
     },
     {
       "id": "bway-24867",
@@ -253,10 +265,11 @@
       "start_date": "2019-09-17",
       "end_date": "2027-07-03",
       "ticket_url": "https://www.broadway-show-tickets.com/musicals/little-shop-of-horrors-tickets/",
-      "image": null,
+      "image": "https://cdn-imgix.headout.com/media/images/dd1c2d42f587467e17e802a8e431f520-24867.png",
       "tour_name": null,
       "verified": true,
-      "source": "broadway-show-tickets.com"
+      "source": "broadway-show-tickets.com",
+      "group": "little shop of horrors"
     },
     {
       "id": "bway-26404",
@@ -270,10 +283,11 @@
       "start_date": "2024-03-16",
       "end_date": "2026-11-28",
       "ticket_url": "https://www.broadway-show-tickets.com/musicals/the-outsiders-tickets/",
-      "image": null,
+      "image": "https://cdn-imgix.headout.com/media/images/a48dabb3288c5ee7ffcd7c15f131f725-26404.jpg",
       "tour_name": null,
       "verified": true,
-      "source": "broadway-show-tickets.com"
+      "source": "broadway-show-tickets.com",
+      "group": "outsiders"
     },
     {
       "id": "bway-27042",
@@ -287,10 +301,11 @@
       "start_date": "2024-03-29",
       "end_date": "2027-01-03",
       "ticket_url": "https://www.broadway-show-tickets.com/musicals/the-great-gatsby-tickets/",
-      "image": null,
+      "image": "https://cdn-imgix.headout.com/media/images/17fc1c58-79ec-4119-94de-7662b7cb6d05-1772774949233-358573.png",
       "tour_name": null,
       "verified": true,
-      "source": "broadway-show-tickets.com"
+      "source": "broadway-show-tickets.com",
+      "group": "great gatsby"
     },
     {
       "id": "bway-27108",
@@ -304,10 +319,11 @@
       "start_date": null,
       "end_date": "2026-09-20",
       "ticket_url": "https://www.broadway-show-tickets.com/musicals/titanique-tickets/",
-      "image": null,
+      "image": "https://cdn-imgix.headout.com/media/images/4fcd1d141798e0a87af9ae0b92384ec2-27108.png",
       "tour_name": null,
       "verified": true,
-      "source": "broadway-show-tickets.com"
+      "source": "broadway-show-tickets.com",
+      "group": "titanique"
     },
     {
       "id": "bway-29075",
@@ -321,10 +337,11 @@
       "start_date": "2024-10-23",
       "end_date": null,
       "ticket_url": "https://www.broadway-show-tickets.com/musicals/death-becomes-her-tickets/",
-      "image": null,
+      "image": "https://cdn-imgix.headout.com/media/images/8f23f51f08fab4441533559d8b807b36-29075.png",
       "tour_name": null,
       "verified": true,
-      "source": "broadway-show-tickets.com"
+      "source": "broadway-show-tickets.com",
+      "group": "death becomes her"
     },
     {
       "id": "bway-31537",
@@ -338,10 +355,11 @@
       "start_date": "2024-12-23",
       "end_date": "2026-11-22",
       "ticket_url": "https://www.broadway-show-tickets.com/musicals/maybe-happy-ending-tickets/",
-      "image": null,
+      "image": "https://cdn-imgix.headout.com/media/images/9fe21052-39ab-481c-94b4-67a927e54383-1764845507122-333637.png",
       "tour_name": null,
       "verified": true,
-      "source": "broadway-show-tickets.com"
+      "source": "broadway-show-tickets.com",
+      "group": "maybe happy ending"
     },
     {
       "id": "bway-32609",
@@ -355,10 +373,11 @@
       "start_date": "2025-03-04",
       "end_date": "2026-11-28",
       "ticket_url": "https://www.broadway-show-tickets.com/musicals/operation-mincemeat-a-new-musical-tickets/",
-      "image": null,
+      "image": "https://cdn-imgix.headout.com/media/images/241e32ec2ce13835febe3350a4b63c27-32609.png",
       "tour_name": null,
       "verified": true,
-      "source": "broadway-show-tickets.com"
+      "source": "broadway-show-tickets.com",
+      "group": "operation mincemeat"
     },
     {
       "id": "bway-32610",
@@ -372,10 +391,11 @@
       "start_date": "2025-02-21",
       "end_date": null,
       "ticket_url": "https://www.broadway-show-tickets.com/musicals/buena-vista-social-club-tickets/",
-      "image": null,
+      "image": "https://cdn-imgix.headout.com/media/images/78a9e5b5-2143-4721-9a16-313a0f8d1215-1775028130484-BVSC-112095-022764-TonyWins-TodayTix-480x720.jpg",
       "tour_name": null,
       "verified": true,
-      "source": "broadway-show-tickets.com"
+      "source": "broadway-show-tickets.com",
+      "group": "buena vista social club"
     },
     {
       "id": "bway-35745",
@@ -389,10 +409,11 @@
       "start_date": "2025-07-17",
       "end_date": "2026-09-06",
       "ticket_url": "https://www.broadway-show-tickets.com/musicals/heathers-the-musical-tickets/",
-      "image": null,
+      "image": "https://cdn-imgix.headout.com/media/images/50c70643-24e9-48f4-9127-aa760fa99749-1752582584182-292457.png",
       "tour_name": null,
       "verified": true,
-      "source": "broadway-show-tickets.com"
+      "source": "broadway-show-tickets.com",
+      "group": "heathers"
     },
     {
       "id": "bway-36172",
@@ -406,10 +427,11 @@
       "start_date": "2025-04-26",
       "end_date": "2026-09-06",
       "ticket_url": "https://www.broadway-show-tickets.com/musicals/just-in-time-tickets/",
-      "image": null,
+      "image": "https://cdn-imgix.headout.com/media/images/d6498e35-eb5d-43a9-8107-1ea57a6a46c1-1752580495747-292401.png",
       "tour_name": null,
       "verified": true,
-      "source": "broadway-show-tickets.com"
+      "source": "broadway-show-tickets.com",
+      "group": "just in time"
     },
     {
       "id": "bway-37412",
@@ -423,10 +445,11 @@
       "start_date": "2025-12-16",
       "end_date": "2026-09-13",
       "ticket_url": "https://www.broadway-show-tickets.com/musicals/chess-tickets/",
-      "image": null,
+      "image": "https://cdn-imgix.headout.com/media/images/c9c7cb1b-3f8a-4dd6-a664-672617e6ef6b-1757487353039-310355.png",
       "tour_name": null,
       "verified": true,
-      "source": "broadway-show-tickets.com"
+      "source": "broadway-show-tickets.com",
+      "group": "chess"
     },
     {
       "id": "bway-37778",
@@ -440,10 +463,11 @@
       "start_date": "2025-11-17",
       "end_date": "2026-09-06",
       "ticket_url": "https://www.broadway-show-tickets.com/musicals/the-25th-annual-putnam-county-spelling-bee-tickets/",
-      "image": null,
+      "image": "https://cdn-imgix.headout.com/media/images/9b90be75-94d3-4a0a-b0a8-917c7371ad2d-1759136242557-315392.png",
       "tour_name": null,
       "verified": true,
-      "source": "broadway-show-tickets.com"
+      "source": "broadway-show-tickets.com",
+      "group": "25th annual putnam county spelling bee"
     },
     {
       "id": "bway-39050",
@@ -457,10 +481,11 @@
       "start_date": "2025-11-20",
       "end_date": "2026-07-06",
       "ticket_url": "https://www.broadway-show-tickets.com/musicals/two-strangers-carry-a-cake-across-new-york-tickets/",
-      "image": null,
+      "image": "https://cdn-imgix.headout.com/media/images/b4c74ca6-696d-4766-8b12-bf2dd74948c7-1767763045737-336393.png",
       "tour_name": null,
       "verified": true,
-      "source": "broadway-show-tickets.com"
+      "source": "broadway-show-tickets.com",
+      "group": "two strangers carry a cake across new york"
     },
     {
       "id": "bway-39500",
@@ -474,10 +499,11 @@
       "start_date": "2026-04-04",
       "end_date": "2026-09-06",
       "ticket_url": "https://www.broadway-show-tickets.com/musicals/schmigadoon-tickets/",
-      "image": null,
+      "image": "https://cdn-imgix.headout.com/media/images/2f4b7d7b-326c-4ce8-aa32-79f36654a1b3-1765437684683-335769%20vertical_.jpg",
       "tour_name": null,
       "verified": true,
-      "source": "broadway-show-tickets.com"
+      "source": "broadway-show-tickets.com",
+      "group": "schmigadoon"
     },
     {
       "id": "bway-39821",
@@ -491,10 +517,11 @@
       "start_date": "2026-03-27",
       "end_date": "2026-11-22",
       "ticket_url": "https://www.broadway-show-tickets.com/musicals/the-lost-boys-a-new-musical-tickets/",
-      "image": null,
+      "image": "https://cdn-imgix.headout.com/media/images/7392f195-74e6-4dde-8727-fd397e348ef5-1766595899056-338196.png",
       "tour_name": null,
       "verified": true,
-      "source": "broadway-show-tickets.com+override"
+      "source": "broadway-show-tickets.com+override",
+      "group": "lost boys"
     },
     {
       "id": "bway-42103",
@@ -508,10 +535,11 @@
       "start_date": "2025-03-12",
       "end_date": "2026-09-13",
       "ticket_url": "https://www.broadway-show-tickets.com/plays/masquerade-new-york-tickets/",
-      "image": null,
+      "image": "https://cdn-imgix.headout.com/media/images/6273d33b-d18a-4d67-a198-1f306cf526ad-1773329202312-360572.png",
       "tour_name": null,
       "verified": true,
-      "source": "broadway-show-tickets.com+override"
+      "source": "broadway-show-tickets.com+override",
+      "group": "masquerade phantom of the opera reimagined"
     },
     {
       "id": "westend-the-phantom-of-the-opera-tickets",
@@ -525,10 +553,11 @@
       "start_date": "2021-07-27",
       "end_date": null,
       "ticket_url": "https://www.londontheatre.co.uk/show/the-phantom-of-the-opera-tickets",
-      "image": null,
+      "image": "https://images.ctfassets.net/6pezt69ih962/spO4dvQ2d27GnxYWBxnBF/8c5b5f11521a16004fc4c9f8b6a2ec9f/480x720.jpg",
       "tour_name": null,
       "verified": true,
-      "source": "londontheatre.co.uk"
+      "source": "londontheatre.co.uk",
+      "group": "phantom of the opera"
     },
     {
       "id": "westend-the-lion-king-tickets",
@@ -542,10 +571,11 @@
       "start_date": "2021-08-18",
       "end_date": null,
       "ticket_url": "https://www.londontheatre.co.uk/show/the-lion-king-tickets",
-      "image": null,
+      "image": "https://images.ctfassets.net/6pezt69ih962/3FJhEKZg8sM6nRDgtp3Zi2/dfcff597d5d2ff4a2c99ff431f16a12e/480_x_720_Corrected.jpg",
       "tour_name": null,
       "verified": true,
-      "source": "londontheatre.co.uk"
+      "source": "londontheatre.co.uk",
+      "group": "lion king"
     },
     {
       "id": "westend-book-of-mormon-tickets",
@@ -559,10 +589,11 @@
       "start_date": "2024-11-07",
       "end_date": null,
       "ticket_url": "https://www.londontheatre.co.uk/show/book-of-mormon-tickets",
-      "image": null,
+      "image": "https://images.ctfassets.net/6pezt69ih962/43pvCu2hFdKU9FtVF9gHne/c08208c3a2489852c439664de82faae6/mormon_with_people.jpg",
       "tour_name": null,
       "verified": true,
-      "source": "londontheatre.co.uk"
+      "source": "londontheatre.co.uk",
+      "group": "book of mormon"
     },
     {
       "id": "westend-six-the-musical-tickets",
@@ -576,10 +607,11 @@
       "start_date": "2021-09-29",
       "end_date": null,
       "ticket_url": "https://www.londontheatre.co.uk/show/six-the-musical-tickets",
-      "image": null,
+      "image": "https://images.ctfassets.net/6pezt69ih962/3TO2fdHw7WqTXwET9RGqJO/97c8d60a3aad0a57474d2efa5d21b20b/SIX26045_TodayTix_480x720pxls.jpg",
       "tour_name": null,
       "verified": true,
-      "source": "londontheatre.co.uk"
+      "source": "londontheatre.co.uk",
+      "group": "six"
     },
     {
       "id": "westend-wicked-tickets",
@@ -593,10 +625,11 @@
       "start_date": "2021-09-15",
       "end_date": null,
       "ticket_url": "https://www.londontheatre.co.uk/show/wicked-tickets",
-      "image": null,
+      "image": "https://images.ctfassets.net/6pezt69ih962/7AkVwNyOeUOYeoYOgxNxah/f1080eedd215d88606fc81ef64468ba2/Wicked_TTG_480x720_1.jpg",
       "tour_name": null,
       "verified": true,
-      "source": "londontheatre.co.uk"
+      "source": "londontheatre.co.uk",
+      "group": "wicked"
     },
     {
       "id": "westend-mamma-mia-tickets",
@@ -610,10 +643,11 @@
       "start_date": "2021-08-25",
       "end_date": null,
       "ticket_url": "https://www.londontheatre.co.uk/show/mamma-mia-tickets",
-      "image": null,
+      "image": "https://images.ctfassets.net/6pezt69ih962/39KDloySXpIxKrTnJ70MR3/ce6ad196cfa88dd83aa214be5db811db/1695139147-1690397052-Mamma-Mia-480x720.jpg",
       "tour_name": null,
       "verified": true,
-      "source": "londontheatre.co.uk"
+      "source": "londontheatre.co.uk",
+      "group": "mamma mia"
     },
     {
       "id": "westend-hamilton-tickets",
@@ -627,10 +661,11 @@
       "start_date": "2021-08-19",
       "end_date": null,
       "ticket_url": "https://www.londontheatre.co.uk/show/hamilton-tickets",
-      "image": null,
+      "image": "https://images.ctfassets.net/6pezt69ih962/1LDjWFwIBcfRSEXA4BkL8T/860fedcfedf0a467703e9afa4caa67b0/prod_1580719924849_HamPoster.jpg",
       "tour_name": null,
       "verified": true,
-      "source": "londontheatre.co.uk"
+      "source": "londontheatre.co.uk",
+      "group": "hamilton"
     },
     {
       "id": "westend-sinatra-the-musical",
@@ -644,10 +679,11 @@
       "start_date": "2026-06-03",
       "end_date": "2027-04-10",
       "ticket_url": "https://www.londontheatre.co.uk/show/sinatra-the-musical",
-      "image": null,
+      "image": "https://images.ctfassets.net/6pezt69ih962/2EypHH7wvwte4Y29ZR0NfE/4f85ffbeaf7609d62b4acb2ab548cd9c/sinatra.png",
       "tour_name": null,
       "verified": true,
-      "source": "londontheatre.co.uk"
+      "source": "londontheatre.co.uk",
+      "group": "sinatra"
     },
     {
       "id": "westend-les-miserables-tickets",
@@ -661,10 +697,11 @@
       "start_date": "2021-09-25",
       "end_date": null,
       "ticket_url": "https://www.londontheatre.co.uk/show/les-miserables-tickets",
-      "image": null,
+      "image": "https://images.ctfassets.net/6pezt69ih962/47DmmERqPjWVTLnJFvHdU8/2a237f6cef4165a6c73c35d7ae5d68ab/MIS_Updated-Ticket-Agent_480x720_AW.jpg",
       "tour_name": null,
       "verified": true,
-      "source": "londontheatre.co.uk"
+      "source": "londontheatre.co.uk",
+      "group": "les mis rables"
     },
     {
       "id": "westend-moulin-rouge-the-musical-tickets",
@@ -678,10 +715,11 @@
       "start_date": "2021-11-12",
       "end_date": null,
       "ticket_url": "https://www.londontheatre.co.uk/show/moulin-rouge-the-musical-tickets",
-      "image": null,
+      "image": "https://images.ctfassets.net/6pezt69ih962/2IADtsJ2ZhlLl969nsQxEA/eeed62ddd7e0fdd69ce787e79f91c99e/MR-JAN25-BBs-TTG-PrimaryPortrait-480x720.jpg",
       "tour_name": null,
       "verified": true,
-      "source": "londontheatre.co.uk"
+      "source": "londontheatre.co.uk",
+      "group": "moulin rouge"
     },
     {
       "id": "westend-matilda-the-musical-tickets",
@@ -695,10 +733,11 @@
       "start_date": "2021-09-16",
       "end_date": null,
       "ticket_url": "https://www.londontheatre.co.uk/show/matilda-the-musical-tickets",
-      "image": null,
+      "image": "https://images.ctfassets.net/6pezt69ih962/k6qL80R5pVTdHj3qkhSBm/0928ade5b3764759c54499a2f9ee7d11/480x720.jpg",
       "tour_name": null,
       "verified": true,
-      "source": "londontheatre.co.uk"
+      "source": "londontheatre.co.uk",
+      "group": "matilda"
     },
     {
       "id": "westend-paddington-the-musical",
@@ -712,10 +751,11 @@
       "start_date": "2025-11-01",
       "end_date": null,
       "ticket_url": "https://www.londontheatre.co.uk/show/paddington-the-musical",
-      "image": null,
+      "image": "https://images.ctfassets.net/6pezt69ih962/4QHgN5f6z1dj2bx79vKaIR/ff993427e80e8abb181a05e01ee7690a/Paddington_480x720px.png",
       "tour_name": null,
       "verified": true,
-      "source": "londontheatre.co.uk"
+      "source": "londontheatre.co.uk",
+      "group": "paddington"
     },
     {
       "id": "westend-the-devil-wears-prada",
@@ -729,10 +769,11 @@
       "start_date": "2024-10-24",
       "end_date": null,
       "ticket_url": "https://www.londontheatre.co.uk/show/the-devil-wears-prada",
-      "image": null,
+      "image": "https://images.ctfassets.net/6pezt69ih962/2eW4bQMQMjScpxWiRH1NFn/9854067e52140a612f66b06f37a0acac/DWP-2025-12-TTG-Logo-480x720px-57021SA.jpg",
       "tour_name": null,
       "verified": true,
-      "source": "londontheatre.co.uk"
+      "source": "londontheatre.co.uk",
+      "group": "devil wears prada"
     },
     {
       "id": "westend-oliver",
@@ -746,10 +787,11 @@
       "start_date": "2024-12-14",
       "end_date": null,
       "ticket_url": "https://www.londontheatre.co.uk/show/oliver",
-      "image": null,
+      "image": "https://images.ctfassets.net/6pezt69ih962/420drnn3FSxXsNtsOtJh3m/bf54b084a38791adc09dd7efc2af7039/Oliver__TodayTix_480x720.jpg",
       "tour_name": null,
       "verified": true,
-      "source": "londontheatre.co.uk"
+      "source": "londontheatre.co.uk",
+      "group": "oliver"
     },
     {
       "id": "westend-hadestown-tickets",
@@ -763,10 +805,11 @@
       "start_date": "2024-02-10",
       "end_date": null,
       "ticket_url": "https://www.londontheatre.co.uk/show/hadestown-tickets",
-      "image": null,
+      "image": "https://images.ctfassets.net/6pezt69ih962/5i72ufeFcwqL06EMJbXu6A/810c1902b38baf1a7e6e1876b07886b4/480_x_720.jpg",
       "tour_name": null,
       "verified": true,
-      "source": "londontheatre.co.uk"
+      "source": "londontheatre.co.uk",
+      "group": "hadestown"
     },
     {
       "id": "westend-the-producers",
@@ -780,10 +823,11 @@
       "start_date": "2025-08-30",
       "end_date": "2026-09-19",
       "ticket_url": "https://www.londontheatre.co.uk/show/the-producers",
-      "image": null,
+      "image": "https://images.ctfassets.net/6pezt69ih962/3xZulObZPBklev9G6ELSRt/179c0895f80ee3c48c5ffac764506ed8/480x720_TTG.jpg",
       "tour_name": null,
       "verified": true,
-      "source": "londontheatre.co.uk"
+      "source": "londontheatre.co.uk",
+      "group": "producers"
     },
     {
       "id": "westend-kinky-boots-the-musical",
@@ -797,10 +841,11 @@
       "start_date": "2026-03-17",
       "end_date": "2026-07-11",
       "ticket_url": "https://www.londontheatre.co.uk/show/kinky-boots-the-musical",
-      "image": null,
+      "image": "https://images.ctfassets.net/6pezt69ih962/325PoWhXueuUKLrp7r8ty7/0fcb16d69c5d3100dd45636f8a4a1f0f/8406_75_KB_TTG_480x720_v1.png",
       "tour_name": null,
       "verified": true,
-      "source": "londontheatre.co.uk"
+      "source": "londontheatre.co.uk",
+      "group": "kinky boots"
     },
     {
       "id": "westend-jesus-christ-superstar",
@@ -814,10 +859,11 @@
       "start_date": "2026-06-20",
       "end_date": "2026-09-05",
       "ticket_url": "https://www.londontheatre.co.uk/show/jesus-christ-superstar",
-      "image": null,
+      "image": "https://images.ctfassets.net/6pezt69ih962/Rmz8c9aKFB8db9d5TxVAv/4bf7064c147116a92703489363c1aec0/8490_56_JCS_TTG_480x720_TLP.jpg",
       "tour_name": null,
       "verified": true,
-      "source": "londontheatre.co.uk"
+      "source": "londontheatre.co.uk",
+      "group": "jesus christ superstar the palladium"
     },
     {
       "id": "westend-beetlejuice-the-musical",
@@ -831,10 +877,11 @@
       "start_date": "2026-05-20",
       "end_date": null,
       "ticket_url": "https://www.londontheatre.co.uk/show/beetlejuice-the-musical",
-      "image": null,
+      "image": "https://images.ctfassets.net/6pezt69ih962/4zvwwGxyZE8AQZjtTuukOC/f0fc4bdac31b93b3c16c145add358a25/Beetle-2026-05-BBs-ItsShowtime-TTG-PrimaryPortrait-480x720.jpg",
       "tour_name": null,
       "verified": true,
-      "source": "londontheatre.co.uk"
+      "source": "londontheatre.co.uk",
+      "group": "beetlejuice"
     },
     {
       "id": "westend-avenue-q",
@@ -848,10 +895,11 @@
       "start_date": "2026-03-20",
       "end_date": "2027-01-03",
       "ticket_url": "https://www.londontheatre.co.uk/show/avenue-q",
-      "image": null,
+      "image": "https://images.ctfassets.net/6pezt69ih962/3PsrkynnwWvWgVYVs00USm/b89736fd8eb446fb6e5567b2adbf34a3/8523_02_AVEQ_TTG_Stars_480x720_v1.jpg",
       "tour_name": null,
       "verified": true,
-      "source": "londontheatre.co.uk"
+      "source": "londontheatre.co.uk",
+      "group": "avenue q"
     },
     {
       "id": "westend-the-boy-who-harnessed-the-wind",
@@ -865,10 +913,11 @@
       "start_date": "2026-04-29",
       "end_date": "2026-07-18",
       "ticket_url": "https://www.londontheatre.co.uk/show/the-boy-who-harnessed-the-wind",
-      "image": null,
+      "image": "https://images.ctfassets.net/6pezt69ih962/4WzPAZCmk093vVGK0kJ8my/f44dc3e91c312a4f9e938f4cdd29ce23/TBWHTW-480-x-720-TTIX.jpg",
       "tour_name": null,
       "verified": true,
-      "source": "londontheatre.co.uk"
+      "source": "londontheatre.co.uk",
+      "group": "boy who harnessed the wind"
     },
     {
       "id": "westend-rent",
@@ -882,10 +931,11 @@
       "start_date": "2026-09-26",
       "end_date": "2027-02-13",
       "ticket_url": "https://www.londontheatre.co.uk/show/rent",
-      "image": null,
+      "image": "https://images.ctfassets.net/6pezt69ih962/4vSjwCLNhSAgYIwwgqmSSS/8f2aa43a7d20617b54c6e53360f42852/480x720_RENT.jpg",
       "tour_name": null,
       "verified": true,
-      "source": "londontheatre.co.uk"
+      "source": "londontheatre.co.uk",
+      "group": "rent"
     },
     {
       "id": "westend-into-the-woods",
@@ -899,10 +949,11 @@
       "start_date": "2026-09-22",
       "end_date": null,
       "ticket_url": "https://www.londontheatre.co.uk/show/into-the-woods",
-      "image": null,
+      "image": "https://images.ctfassets.net/6pezt69ih962/5ooBTt3dlwZnSp4RUurpZ5/9e57ef749008138381cfe60cbf516047/ITW26_Q2_014_TicketButton_TTG480x720_AW.jpg",
       "tour_name": null,
       "verified": true,
-      "source": "londontheatre.co.uk"
+      "source": "londontheatre.co.uk",
+      "group": "into the woods"
     },
     {
       "id": "westend-burlesque",
@@ -916,10 +967,11 @@
       "start_date": "2026-09-12",
       "end_date": null,
       "ticket_url": "https://www.londontheatre.co.uk/show/burlesque",
-      "image": null,
+      "image": "https://images.ctfassets.net/6pezt69ih962/72fVTcTk6In704TW25IzzD/7070b20b74e5818cf15dbbbd77d1b705/Burlesque_480x720px.png",
       "tour_name": null,
       "verified": true,
-      "source": "londontheatre.co.uk"
+      "source": "londontheatre.co.uk",
+      "group": "burlesque"
     },
     {
       "id": "westend-billy-elliot-the-musical",
@@ -933,10 +985,11 @@
       "start_date": "2027-02-12",
       "end_date": null,
       "ticket_url": "https://www.londontheatre.co.uk/show/billy-elliot-the-musical",
-      "image": null,
+      "image": "https://images.ctfassets.net/6pezt69ih962/5JXlwcCeQTRwlLzP97pm1l/7f608c162f5fb6d68d24481c02bfd476/Billy_Elliot_480x720.png",
       "tour_name": null,
       "verified": true,
-      "source": "londontheatre.co.uk"
+      "source": "londontheatre.co.uk",
+      "group": "billy elliot"
     },
     {
       "id": "westend-jesus-christ-superstar-theatre-royal-drury-lane",
@@ -950,10 +1003,11 @@
       "start_date": "2026-10-16",
       "end_date": "2027-01-09",
       "ticket_url": "https://www.londontheatre.co.uk/show/jesus-christ-superstar-theatre-royal-drury-lane",
-      "image": null,
+      "image": "https://images.ctfassets.net/6pezt69ih962/6PhcvvfTGNyGQg0yvoEljV/5c43310b5dcf50595e31f9c33f8307f8/8490_56_JCS_TTG_480x720_TRDL.jpg",
       "tour_name": null,
       "verified": true,
-      "source": "londontheatre.co.uk"
+      "source": "londontheatre.co.uk",
+      "group": "jesus christ superstar theatre royal drury lane"
     },
     {
       "id": "westend-mermaids-and-pirates",
@@ -967,10 +1021,11 @@
       "start_date": "2026-07-21",
       "end_date": "2026-07-26",
       "ticket_url": "https://www.londontheatre.co.uk/show/mermaids-and-pirates",
-      "image": null,
+      "image": "https://images.ctfassets.net/6pezt69ih962/0YzLIh6iVE0xr51uNq5cy/7f1895be62bbd2e5c0fa65874766b8ba/M_P_TodayTix_assets_480x720__1_.jpg",
       "tour_name": null,
       "verified": true,
-      "source": "londontheatre.co.uk"
+      "source": "londontheatre.co.uk",
+      "group": "mermaids pirates"
     },
     {
       "id": "westend-all-that-west-end",
@@ -984,10 +1039,11 @@
       "start_date": "2026-06-20",
       "end_date": "2026-06-20",
       "ticket_url": "https://www.londontheatre.co.uk/show/all-that-west-end",
-      "image": null,
+      "image": "https://images.ctfassets.net/6pezt69ih962/4hT0ukSt4TgzBZDEqMjPW8/743a3427ae02bf4b9d6ea32de32ff6f3/Untitled_design__19_.png",
       "tour_name": null,
       "verified": true,
-      "source": "londontheatre.co.uk"
+      "source": "londontheatre.co.uk",
+      "group": "all that west end"
     },
     {
       "id": "westend-showstopper-the-improvised-musical",
@@ -1001,10 +1057,11 @@
       "start_date": "2023-05-22",
       "end_date": null,
       "ticket_url": "https://www.londontheatre.co.uk/show/showstopper-the-improvised-musical",
-      "image": null,
+      "image": "https://images.ctfassets.net/6pezt69ih962/7DBPKqe8AoK9IGMfrbva4h/a41ec0e5527a51710e39e030cef22f93/ST_Key_Art_480_x_720_RGB.jpg",
       "tour_name": null,
       "verified": true,
-      "source": "londontheatre.co.uk"
+      "source": "londontheatre.co.uk",
+      "group": "showstopper the improvised musical"
     },
     {
       "id": "westend-the-smartest-giant-in-town",
@@ -1018,10 +1075,11 @@
       "start_date": "2026-12-09",
       "end_date": "2027-01-03",
       "ticket_url": "https://www.londontheatre.co.uk/show/the-smartest-giant-in-town",
-      "image": null,
+      "image": "https://images.ctfassets.net/6pezt69ih962/4LB8L61KJVCeIUkg5JAtj1/ff60453c951933590c034198340bb496/TSGIT_480x720.jpg",
       "tour_name": null,
       "verified": true,
-      "source": "londontheatre.co.uk"
+      "source": "londontheatre.co.uk",
+      "group": "smartest giant in town"
     },
     {
       "id": "westend-abba-voyage-tickets",
@@ -1035,10 +1093,11 @@
       "start_date": "2022-05-27",
       "end_date": null,
       "ticket_url": "https://www.londontheatre.co.uk/show/abba-voyage-tickets",
-      "image": null,
+      "image": "https://images.ctfassets.net/6pezt69ih962/7441BAz4EmdBxcbDBq83qJ/3c4c6c6b253c1d7b975c5f9c3eaa171a/ABBA25_Q3_055_Q4_Creative_buttons_TTG_Minimum_assets_480x720_AW.jpg",
       "tour_name": null,
       "verified": true,
-      "source": "londontheatre.co.uk"
+      "source": "londontheatre.co.uk",
+      "group": "abba voyage"
     },
     {
       "id": "westend-come-alive",
@@ -1052,10 +1111,11 @@
       "start_date": "2024-09-23",
       "end_date": null,
       "ticket_url": "https://www.londontheatre.co.uk/show/come-alive",
-      "image": null,
+      "image": "https://images.ctfassets.net/6pezt69ih962/1JewzTJ6YR8dJir6DP6NtC/986d5a1cfe1ba23a853465d9f28b7518/CA_TTG_ASSETS_X6_OCT24_480x720.jpg",
       "tour_name": null,
       "verified": true,
-      "source": "londontheatre.co.uk"
+      "source": "londontheatre.co.uk",
+      "group": "come alive the greatest showman circus spectacular"
     },
     {
       "id": "westend-high-society",
@@ -1069,10 +1129,11 @@
       "start_date": "2026-05-19",
       "end_date": "2026-07-11",
       "ticket_url": "https://www.londontheatre.co.uk/show/high-society",
-      "image": null,
+      "image": "https://images.ctfassets.net/6pezt69ih962/5D7e6KpTS8SjbuAtsOwtdw/25df58a421e7c7043bf28805d96e1f77/HS_TODAYTIX_ASSETS_APR26_AW_480x720__1_.jpg",
       "tour_name": null,
       "verified": true,
-      "source": "londontheatre.co.uk"
+      "source": "londontheatre.co.uk",
+      "group": "high society"
     },
     {
       "id": "westend-death-note-the-musical",
@@ -1086,10 +1147,11 @@
       "start_date": "2026-07-30",
       "end_date": "2026-09-12",
       "ticket_url": "https://www.londontheatre.co.uk/show/death-note-the-musical",
-      "image": null,
+      "image": "https://images.ctfassets.net/6pezt69ih962/6wgrgHwUc9vUhAIpkEAPjh/996063646f3e5459c20ce8745145f28b/DN_TODAYTIX_ON_SALE_ASSETS_FEB26_AW_GENERIC_480x720.jpg",
       "tour_name": null,
       "verified": true,
-      "source": "londontheatre.co.uk"
+      "source": "londontheatre.co.uk",
+      "group": "death note"
     },
     {
       "id": "westend-dirty-dancing",
@@ -1103,10 +1165,11 @@
       "start_date": "2026-10-16",
       "end_date": null,
       "ticket_url": "https://www.londontheatre.co.uk/show/dirty-dancing",
-      "image": null,
+      "image": "https://images.ctfassets.net/6pezt69ih962/2xKeisXLsE4PbgKbIrXYFQ/d1cb8a0f06a90b1ca9ac78bb08ba14db/7336_09_DD_TTG_480x720.jpg",
       "tour_name": null,
       "verified": true,
-      "source": "londontheatre.co.uk"
+      "source": "londontheatre.co.uk",
+      "group": "dirty dancing the classic story on stage"
     },
     {
       "id": "westend-hot-mess",
@@ -1120,10 +1183,11 @@
       "start_date": "2026-06-13",
       "end_date": "2026-09-06",
       "ticket_url": "https://www.londontheatre.co.uk/show/hot-mess",
-      "image": null,
+      "image": "https://images.ctfassets.net/6pezt69ih962/13pCyyyoSgtDsp0x92I0Jx/3d88a0fb011af10933deeee90a721310/hotmess-agentassets-onsale_480_x_720.jpg",
       "tour_name": null,
       "verified": true,
-      "source": "londontheatre.co.uk"
+      "source": "londontheatre.co.uk",
+      "group": "hot mess"
     },
     {
       "id": "westend-heathers-the-musical",
@@ -1137,10 +1201,11 @@
       "start_date": "2026-07-09",
       "end_date": "2026-08-22",
       "ticket_url": "https://www.londontheatre.co.uk/show/heathers-the-musical",
-      "image": null,
+      "image": "https://images.ctfassets.net/6pezt69ih962/1dhCyF3wcNSVbqMOujqvmV/d2550eddd096bb89e5cc21673771b1f8/Heathers_MA_480x720.jpg",
       "tour_name": null,
       "verified": true,
-      "source": "londontheatre.co.uk"
+      "source": "londontheatre.co.uk",
+      "group": "heathers"
     },
     {
       "id": "westend-jersey-boys",
@@ -1154,10 +1219,11 @@
       "start_date": "2026-06-17",
       "end_date": "2026-06-27",
       "ticket_url": "https://www.londontheatre.co.uk/show/jersey-boys",
-      "image": null,
+      "image": "https://images.ctfassets.net/6pezt69ih962/6QHsBMJDqNPaj75mq550Wx/4a941a3d184af1c496d5974f52cd3974/JB_WIMBLEDON_TODAYTIX_ASSETS_MAY26_AW_480x720.jpg",
       "tour_name": null,
       "verified": true,
-      "source": "londontheatre.co.uk"
+      "source": "londontheatre.co.uk",
+      "group": "jersey boys"
     },
     {
       "id": "westend-ride-the-cyclone",
@@ -1171,10 +1237,11 @@
       "start_date": "2026-06-19",
       "end_date": "2026-08-22",
       "ticket_url": "https://www.londontheatre.co.uk/show/ride-the-cyclone",
-      "image": null,
+      "image": "https://images.ctfassets.net/6pezt69ih962/7Bu0mX4PlcFEt5FjqZBNIk/1871d9f2c61a3abc4f06c9d65d6f43d6/Ride_The_Cyclone_480_x_720.jpg",
       "tour_name": null,
       "verified": true,
-      "source": "londontheatre.co.uk"
+      "source": "londontheatre.co.uk",
+      "group": "ride the cyclone"
     },
     {
       "id": "westend-im-every-woman",
@@ -1188,10 +1255,11 @@
       "start_date": "2026-07-22",
       "end_date": "2026-09-27",
       "ticket_url": "https://www.londontheatre.co.uk/show/im-every-woman",
-      "image": null,
+      "image": "https://images.ctfassets.net/6pezt69ih962/3bMYTuSXUH8EzSiomZOJUP/1ff37a0eb90129a8a97be29657351512/260422_IEW_Wembley_TTG_480_x_720.jpg",
       "tour_name": null,
       "verified": true,
-      "source": "londontheatre.co.uk"
+      "source": "londontheatre.co.uk",
+      "group": "i m every woman"
     },
     {
       "id": "westend-malory-towers",
@@ -1205,10 +1273,11 @@
       "start_date": "2026-07-22",
       "end_date": "2026-08-02",
       "ticket_url": "https://www.londontheatre.co.uk/show/malory-towers",
-      "image": null,
+      "image": "https://images.ctfassets.net/6pezt69ih962/3IDW8rEBjWMMkgq2Onnv2n/81c43a12488012e59029ad6ae3b3db07/260318_MT_Todaytix_480x720.png",
       "tour_name": null,
       "verified": true,
-      "source": "londontheatre.co.uk"
+      "source": "londontheatre.co.uk",
+      "group": "malory towers"
     },
     {
       "id": "westend-dark-of-the-moon",
@@ -1222,10 +1291,11 @@
       "start_date": "2026-05-18",
       "end_date": "2026-08-08",
       "ticket_url": "https://www.londontheatre.co.uk/show/dark-of-the-moon",
-      "image": null,
+      "image": "https://images.ctfassets.net/6pezt69ih962/ucUPmOsuOJNtqLJY67wJi/19c4e3fefc8350b730f88bf45db857fb/DOTM_TTIX_480x720.jpg",
       "tour_name": null,
       "verified": true,
-      "source": "londontheatre.co.uk"
+      "source": "londontheatre.co.uk",
+      "group": "dark of the moon"
     },
     {
       "id": "westend-dog-man-the-musical",
@@ -1239,10 +1309,11 @@
       "start_date": "2026-07-29",
       "end_date": "2026-08-16",
       "ticket_url": "https://www.londontheatre.co.uk/show/dog-man-the-musical",
-      "image": null,
+      "image": "https://images.ctfassets.net/6pezt69ih962/1d6dMy4fVqcB8geMkFclPO/8bf37a804eb26ecda5956c45b44d74fd/DogMan_480x720_TT.jpg",
       "tour_name": null,
       "verified": true,
-      "source": "londontheatre.co.uk"
+      "source": "londontheatre.co.uk",
+      "group": "dog man"
     },
     {
       "id": "westend-a-life-in-four-seasons",
@@ -1256,10 +1327,11 @@
       "start_date": "2026-06-11",
       "end_date": "2026-06-14",
       "ticket_url": "https://www.londontheatre.co.uk/show/a-life-in-four-seasons",
-      "image": null,
+      "image": "https://images.ctfassets.net/6pezt69ih962/1dWmpsoLN2u0GTnHfnIg7V/abd238b91d39c83062025f751b2f2f5c/480x720_Four_Seasons.png",
       "tour_name": null,
       "verified": true,
-      "source": "londontheatre.co.uk"
+      "source": "londontheatre.co.uk",
+      "group": "a life in four seasons"
     },
     {
       "id": "westend-thelma-and-louise-a-new-musical",
@@ -1273,10 +1345,11 @@
       "start_date": "2026-09-03",
       "end_date": "2026-10-24",
       "ticket_url": "https://www.londontheatre.co.uk/show/thelma-and-louise-a-new-musical",
-      "image": null,
+      "image": "https://images.ctfassets.net/6pezt69ih962/w8ElBpEtKT4AEH2nrE7x5/6346b9361199f41f318a1856f23ccf49/EC_YoungVic_ThelmaAndLouise_TodayTix_480x720px.jpg",
       "tour_name": null,
       "verified": true,
-      "source": "londontheatre.co.uk"
+      "source": "londontheatre.co.uk",
+      "group": "thelma louise"
     },
     {
       "id": "westend-high-school-musical",
@@ -1290,10 +1363,11 @@
       "start_date": "2026-10-12",
       "end_date": "2027-01-03",
       "ticket_url": "https://www.londontheatre.co.uk/show/high-school-musical",
-      "image": null,
+      "image": "https://images.ctfassets.net/6pezt69ih962/6AFSs8Fz6A8V3XTkxQl4z5/a1e5061a05a63244cc962b6d172f7f62/HSM_480_x_720.png",
       "tour_name": null,
       "verified": true,
-      "source": "londontheatre.co.uk"
+      "source": "londontheatre.co.uk",
+      "group": "high school musical"
     },
     {
       "id": "westend-kimberly-akimbo",
@@ -1307,10 +1381,11 @@
       "start_date": "2026-08-28",
       "end_date": "2026-11-07",
       "ticket_url": "https://www.londontheatre.co.uk/show/kimberly-akimbo",
-      "image": null,
+      "image": "https://images.ctfassets.net/6pezt69ih962/1zLiGgHuUIOmReasEl5XyX/3b6ef573030583ce528420644379bb6b/Kimberly_Akimbo_TodayTix_480x720px__New_Artwork_.jpg",
       "tour_name": null,
       "verified": true,
-      "source": "londontheatre.co.uk"
+      "source": "londontheatre.co.uk",
+      "group": "kimberly akimbo"
     },
     {
       "id": "westend-the-last-man",
@@ -1324,10 +1399,11 @@
       "start_date": "2026-05-08",
       "end_date": "2026-06-13",
       "ticket_url": "https://www.londontheatre.co.uk/show/the-last-man",
-      "image": null,
+      "image": "https://images.ctfassets.net/6pezt69ih962/1QGYFsor3wIKHn4TcwtIQW/fdad42b30fdce113726c464e967916c1/TTG_TheLastMan_PT_480x720.png",
       "tour_name": null,
       "verified": true,
-      "source": "londontheatre.co.uk"
+      "source": "londontheatre.co.uk",
+      "group": "last man"
     },
     {
       "id": "westend-pride",
@@ -1341,10 +1417,11 @@
       "start_date": "2026-06-11",
       "end_date": "2026-09-12",
       "ticket_url": "https://www.londontheatre.co.uk/show/pride",
-      "image": null,
+      "image": "https://images.ctfassets.net/6pezt69ih962/01v85akZEByD4kcnPF6U0k/7fe6d8ff7c725225afeabdbb62608548/NTGDS_NC_Pride_TodayTix_OnSale_Rollout_600x900.jpg",
       "tour_name": null,
       "verified": true,
-      "source": "londontheatre.co.uk"
+      "source": "londontheatre.co.uk",
+      "group": "pride"
     },
     {
       "id": "westend-disneys-hercules",
@@ -1358,10 +1435,11 @@
       "start_date": "2025-06-06",
       "end_date": "2026-09-05",
       "ticket_url": "https://www.londontheatre.co.uk/show/disneys-hercules",
-      "image": null,
+      "image": "https://images.ctfassets.net/6pezt69ih962/4ghQlSDcywR8oAIYsIFbtM/11d9788788331575d5630f027eb427c1/HER492_TTG_WebAssets_480_x_720.jpg",
       "tour_name": null,
       "verified": true,
-      "source": "londontheatre.co.uk"
+      "source": "londontheatre.co.uk",
+      "group": "disney s hercules"
     },
     {
       "id": "westend-blueys-big-play-brighton",
@@ -1375,10 +1453,11 @@
       "start_date": "2026-07-10",
       "end_date": "2026-07-12",
       "ticket_url": "https://www.londontheatre.co.uk/show/blueys-big-play-brighton",
-      "image": null,
+      "image": "https://images.ctfassets.net/6pezt69ih962/3D8c8mm5dNqa4NX6G3ZnzM/2225b5113f3f0158c0a10c3864daee31/Bluey_480x720_Today_Tix.png",
       "tour_name": null,
       "verified": true,
-      "source": "londontheatre.co.uk"
+      "source": "londontheatre.co.uk",
+      "group": "bluey s big play brighton"
     },
     {
       "id": "westend-blueys-big-play-liverpool",
@@ -1392,44 +1471,317 @@
       "start_date": "2026-07-03",
       "end_date": "2026-07-05",
       "ticket_url": "https://www.londontheatre.co.uk/show/blueys-big-play-liverpool",
-      "image": null,
+      "image": "https://images.ctfassets.net/6pezt69ih962/4BWKG87cbdAaBy1qZ4byz5/0de11cf32d181690b9db53442c1db7e2/Bluey_480x720_Today_Tix__1_.png",
       "tour_name": null,
       "verified": true,
-      "source": "londontheatre.co.uk"
+      "source": "londontheatre.co.uk",
+      "group": "bluey s big play liverpool"
     },
     {
-      "id": "tour-phantom-us-1",
-      "title": "The Phantom of the Opera",
+      "id": "wicked-tour-dallas-tx-2026-05-06",
+      "title": "Wicked",
       "type": "tour",
-      "venue": "(sample venue — replace with scraped data)",
-      "city": "Chicago",
+      "venue": "Music Hall at Fair Park",
+      "city": "Dallas, TX",
       "country": "USA",
-      "lat": 41.8853,
-      "lng": -87.6266,
-      "start_date": "2026-06-02",
-      "end_date": "2026-06-22",
-      "ticket_url": null,
-      "image": null,
-      "tour_name": "The Phantom of the Opera — US Tour",
-      "verified": false,
-      "source": "seed-sample-DO-NOT-TRUST"
+      "lat": 32.78044,
+      "lng": -96.76585,
+      "start_date": "2026-05-06",
+      "end_date": "2026-06-14",
+      "ticket_url": "https://dallas.broadway.com/shows/wicked/",
+      "image": "https://cdn-imgix.headout.com/media/images/79059f2bed566c8f56467f3ef7389605-512.png",
+      "tour_name": "Wicked — North American Tour",
+      "verified": true,
+      "source": "tour.wickedthemusical.com",
+      "group": "wicked"
     },
     {
-      "id": "tour-phantom-us-2",
-      "title": "The Phantom of the Opera",
+      "id": "wicked-tour-omaha-ne-2026-06-17",
+      "title": "Wicked",
       "type": "tour",
-      "venue": "(sample venue — replace with scraped data)",
-      "city": "Denver",
+      "venue": "Orpheum Theater",
+      "city": "Omaha, NE",
       "country": "USA",
-      "lat": 39.7439,
-      "lng": -104.99,
-      "start_date": "2026-06-25",
-      "end_date": "2026-07-13",
-      "ticket_url": null,
-      "image": null,
-      "tour_name": "The Phantom of the Opera — US Tour",
-      "verified": false,
-      "source": "seed-sample-DO-NOT-TRUST"
+      "lat": 41.256223,
+      "lng": -95.936307,
+      "start_date": "2026-06-17",
+      "end_date": "2026-07-05",
+      "ticket_url": "https://ticketomaha.com/Productions/wicked",
+      "image": "https://cdn-imgix.headout.com/media/images/79059f2bed566c8f56467f3ef7389605-512.png",
+      "tour_name": "Wicked — North American Tour",
+      "verified": true,
+      "source": "tour.wickedthemusical.com",
+      "group": "wicked"
+    },
+    {
+      "id": "wicked-tour-minneapolis-mn-2026-07-08",
+      "title": "Wicked",
+      "type": "tour",
+      "venue": "Orpheum Theatre",
+      "city": "Minneapolis, MN",
+      "country": "USA",
+      "lat": 44.976641,
+      "lng": -93.278096,
+      "start_date": "2026-07-08",
+      "end_date": "2026-08-09",
+      "ticket_url": "https://hennepinarts.org/events/wicked",
+      "image": "https://cdn-imgix.headout.com/media/images/79059f2bed566c8f56467f3ef7389605-512.png",
+      "tour_name": "Wicked — North American Tour",
+      "verified": true,
+      "source": "tour.wickedthemusical.com",
+      "group": "wicked"
+    },
+    {
+      "id": "wicked-tour-kansas-city-mo-2026-08-12",
+      "title": "Wicked",
+      "type": "tour",
+      "venue": "Music Hall",
+      "city": "Kansas City, MO",
+      "country": "USA",
+      "lat": 39.098514,
+      "lng": -94.586706,
+      "start_date": "2026-08-12",
+      "end_date": "2026-08-30",
+      "ticket_url": "https://kansascity.broadway.com/shows/wicked/",
+      "image": "https://cdn-imgix.headout.com/media/images/79059f2bed566c8f56467f3ef7389605-512.png",
+      "tour_name": "Wicked — North American Tour",
+      "verified": true,
+      "source": "tour.wickedthemusical.com",
+      "group": "wicked"
+    },
+    {
+      "id": "wicked-tour-des-moines-ia-2026-09-02",
+      "title": "Wicked",
+      "type": "tour",
+      "venue": "Des Moines Civic Center",
+      "city": "Des Moines, IA",
+      "country": "USA",
+      "lat": null,
+      "lng": null,
+      "start_date": "2026-09-02",
+      "end_date": "2026-09-20",
+      "ticket_url": "https://www.desmoinesperformingarts.org/whats-on/events/2025-26/broadway/wicked",
+      "image": "https://cdn-imgix.headout.com/media/images/79059f2bed566c8f56467f3ef7389605-512.png",
+      "tour_name": "Wicked — North American Tour",
+      "verified": true,
+      "source": "tour.wickedthemusical.com",
+      "group": "wicked"
+    },
+    {
+      "id": "wicked-tour-boston-ma-2026-09-23",
+      "title": "Wicked",
+      "type": "tour",
+      "venue": "Citizens Opera House",
+      "city": "Boston, MA",
+      "country": "USA",
+      "lat": 42.354258,
+      "lng": -71.062836,
+      "start_date": "2026-09-23",
+      "end_date": "2026-11-15",
+      "ticket_url": "https://boston.broadway.com/shows/wicked-2/",
+      "image": "https://cdn-imgix.headout.com/media/images/79059f2bed566c8f56467f3ef7389605-512.png",
+      "tour_name": "Wicked — North American Tour",
+      "verified": true,
+      "source": "tour.wickedthemusical.com",
+      "group": "wicked"
+    },
+    {
+      "id": "wicked-tour-greensboro-nc-2026-11-18",
+      "title": "Wicked",
+      "type": "tour",
+      "venue": "Tanger Center for the Performing Arts",
+      "city": "Greensboro, NC",
+      "country": "USA",
+      "lat": null,
+      "lng": null,
+      "start_date": "2026-11-18",
+      "end_date": "2026-12-06",
+      "ticket_url": "https://www.tangercenter.com/wicked",
+      "image": "https://cdn-imgix.headout.com/media/images/79059f2bed566c8f56467f3ef7389605-512.png",
+      "tour_name": "Wicked — North American Tour",
+      "verified": true,
+      "source": "tour.wickedthemusical.com",
+      "group": "wicked"
+    },
+    {
+      "id": "wicked-tour-cleveland-oh-2026-12-09",
+      "title": "Wicked",
+      "type": "tour",
+      "venue": "KeyBank State Theatre",
+      "city": "Cleveland, OH",
+      "country": "USA",
+      "lat": null,
+      "lng": null,
+      "start_date": "2026-12-09",
+      "end_date": "2027-01-03",
+      "ticket_url": "https://www.playhousesquare.org/events/detail/wicked-3",
+      "image": "https://cdn-imgix.headout.com/media/images/79059f2bed566c8f56467f3ef7389605-512.png",
+      "tour_name": "Wicked — North American Tour",
+      "verified": true,
+      "source": "tour.wickedthemusical.com",
+      "group": "wicked"
+    },
+    {
+      "id": "wicked-tour-orlando-fl-2027-01-06",
+      "title": "Wicked",
+      "type": "tour",
+      "venue": "Dr. Phillips Center",
+      "city": "Orlando, FL",
+      "country": "USA",
+      "lat": 28.537657,
+      "lng": -81.376693,
+      "start_date": "2027-01-06",
+      "end_date": "2027-01-31",
+      "ticket_url": "https://www.drphillipscenter.org/events/tickets/2027/wicked/",
+      "image": "https://cdn-imgix.headout.com/media/images/79059f2bed566c8f56467f3ef7389605-512.png",
+      "tour_name": "Wicked — North American Tour",
+      "verified": true,
+      "source": "tour.wickedthemusical.com",
+      "group": "wicked"
+    },
+    {
+      "id": "wicked-tour-tampa-fl-2027-02-03",
+      "title": "Wicked",
+      "type": "tour",
+      "venue": "Straz Center",
+      "city": "Tampa, FL",
+      "country": "USA",
+      "lat": 27.951616,
+      "lng": -82.463985,
+      "start_date": "2027-02-03",
+      "end_date": "2027-02-28",
+      "ticket_url": "https://www.strazcenter.org/events/2627-season/broadway/wicked/",
+      "image": "https://cdn-imgix.headout.com/media/images/79059f2bed566c8f56467f3ef7389605-512.png",
+      "tour_name": "Wicked — North American Tour",
+      "verified": true,
+      "source": "tour.wickedthemusical.com",
+      "group": "wicked"
+    },
+    {
+      "id": "wicked-tour-atlanta-ga-2027-03-03",
+      "title": "Wicked",
+      "type": "tour",
+      "venue": "Fox Theatre",
+      "city": "Atlanta, GA",
+      "country": "USA",
+      "lat": 33.772643,
+      "lng": -84.385562,
+      "start_date": "2027-03-03",
+      "end_date": "2027-03-28",
+      "ticket_url": "https://atlanta.broadway.com/shows/wicked/",
+      "image": "https://cdn-imgix.headout.com/media/images/79059f2bed566c8f56467f3ef7389605-512.png",
+      "tour_name": "Wicked — North American Tour",
+      "verified": true,
+      "source": "tour.wickedthemusical.com",
+      "group": "wicked"
+    },
+    {
+      "id": "wicked-tour-durham-nc-2027-03-31",
+      "title": "Wicked",
+      "type": "tour",
+      "venue": "Durham Performing Arts Center",
+      "city": "Durham, NC",
+      "country": "USA",
+      "lat": 35.993268,
+      "lng": -78.902233,
+      "start_date": "2027-03-31",
+      "end_date": "2027-04-18",
+      "ticket_url": "https://www.dpacnc.com/events/detail/wicked-2027",
+      "image": "https://cdn-imgix.headout.com/media/images/79059f2bed566c8f56467f3ef7389605-512.png",
+      "tour_name": "Wicked — North American Tour",
+      "verified": true,
+      "source": "tour.wickedthemusical.com",
+      "group": "wicked"
+    },
+    {
+      "id": "wicked-tour-greenville-sc-2027-04-21",
+      "title": "Wicked",
+      "type": "tour",
+      "venue": "Peace Center",
+      "city": "Greenville, SC",
+      "country": "USA",
+      "lat": 34.853416,
+      "lng": -82.414348,
+      "start_date": "2027-04-21",
+      "end_date": "2027-05-09",
+      "ticket_url": "https://www.peacecenter.org/events/detail/27-wicked",
+      "image": "https://cdn-imgix.headout.com/media/images/79059f2bed566c8f56467f3ef7389605-512.png",
+      "tour_name": "Wicked — North American Tour",
+      "verified": true,
+      "source": "tour.wickedthemusical.com",
+      "group": "wicked"
+    },
+    {
+      "id": "wicked-tour-st-louis-mo-2027-05-12",
+      "title": "Wicked",
+      "type": "tour",
+      "venue": "The Fabulous Fox",
+      "city": "St. Louis, MO",
+      "country": "USA",
+      "lat": 38.639122,
+      "lng": -90.232384,
+      "start_date": "2027-05-12",
+      "end_date": "2027-05-30",
+      "ticket_url": "https://www.fabulousfox.com/events/detail/wicked",
+      "image": "https://cdn-imgix.headout.com/media/images/79059f2bed566c8f56467f3ef7389605-512.png",
+      "tour_name": "Wicked — North American Tour",
+      "verified": true,
+      "source": "tour.wickedthemusical.com",
+      "group": "wicked"
+    },
+    {
+      "id": "wicked-tour-san-antonio-tx-2027-06-02",
+      "title": "Wicked",
+      "type": "tour",
+      "venue": "The Majestic Theatre",
+      "city": "San Antonio, TX",
+      "country": "USA",
+      "lat": null,
+      "lng": null,
+      "start_date": "2027-06-02",
+      "end_date": "2027-06-20",
+      "ticket_url": "https://sanantonio.broadway.com/shows/wicked-2/",
+      "image": "https://cdn-imgix.headout.com/media/images/79059f2bed566c8f56467f3ef7389605-512.png",
+      "tour_name": "Wicked — North American Tour",
+      "verified": true,
+      "source": "tour.wickedthemusical.com",
+      "group": "wicked"
+    },
+    {
+      "id": "wicked-tour-houston-tx-2027-06-23",
+      "title": "Wicked",
+      "type": "tour",
+      "venue": "Hobby Center",
+      "city": "Houston, TX",
+      "country": "USA",
+      "lat": 29.761658,
+      "lng": -95.369706,
+      "start_date": "2027-06-23",
+      "end_date": "2027-07-25",
+      "ticket_url": "https://houston.broadway.com/shows/wicked-2/?_gl=1*xwilzy*_up*MQ..*_gs*MQ..&amp;gclid=CjwKCAiA1obMBhAbEiwAsUBbIkb793rEhm2QcLQ4_X_Wrxll7hHSRJZHmtZIOFuxtC9lTT3YIcusyxoCIBwQAvD_BwE",
+      "image": "https://cdn-imgix.headout.com/media/images/79059f2bed566c8f56467f3ef7389605-512.png",
+      "tour_name": "Wicked — North American Tour",
+      "verified": true,
+      "source": "tour.wickedthemusical.com",
+      "group": "wicked"
+    },
+    {
+      "id": "wicked-tour-columbus-oh-2027-07-28",
+      "title": "Wicked",
+      "type": "tour",
+      "venue": "Ohio Theatre",
+      "city": "Columbus, OH",
+      "country": "USA",
+      "lat": 39.959891,
+      "lng": -82.998942,
+      "start_date": "2027-07-28",
+      "end_date": "2027-08-15",
+      "ticket_url": "https://www.capa.com/productions/wicked/",
+      "image": "https://cdn-imgix.headout.com/media/images/79059f2bed566c8f56467f3ef7389605-512.png",
+      "tour_name": "Wicked — North American Tour",
+      "verified": true,
+      "source": "tour.wickedthemusical.com",
+      "group": "wicked"
     }
   ]
 }

@@ -8,6 +8,7 @@ Run:  python scrapers/build_shows.py
 """
 
 import json
+import re
 import sys
 import io
 from datetime import datetime, timezone
@@ -17,8 +18,20 @@ sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
 
 DATA = Path(__file__).resolve().parent.parent / "data"
 
+
+def group_key(title):
+    """Canonical key so the same show titled differently across sources groups
+    together (e.g. 'SIX' == 'SIX: The Musical', 'Mamma Mia!' == 'Mamma Mia').
+    Conservative: only strips leading 'the' and trailing musical/subtitle tags."""
+    t = (title or "").lower().strip()
+    t = re.sub(r"^the\s+", "", t)
+    t = re.sub(r"\s*[:\-–—]\s*(a\s+new\s+musical|the\s+musical|reimagined).*$", "", t)
+    t = re.sub(r"\s+(the\s+musical|a\s+new\s+musical)$", "", t)
+    t = re.sub(r"[^a-z0-9]+", " ", t).strip()
+    return t
+
 # Order matters for de-dup: later files override earlier ids.
-SOURCE_FILES = ["broadway.json", "westend.json", "tours.json"]
+SOURCE_FILES = ["broadway.json", "westend.json", "wicked_tour.json"]
 
 
 def main():
@@ -52,6 +65,25 @@ def main():
         print(f"  applied {applied} override(s)")
 
     shows = list(by_id.values())
+
+    # assign grouping key (same show across sources / locations)
+    for s in shows:
+        s["group"] = group_key(s["title"])
+
+    # image inheritance: a record with no poster (e.g. a tour stop) borrows the
+    # artwork from another record of the same show that has one.
+    poster_by_group = {}
+    for s in shows:
+        if s.get("image") and s["group"] not in poster_by_group:
+            poster_by_group[s["group"]] = s["image"]
+    filled = 0
+    for s in shows:
+        if not s.get("image") and poster_by_group.get(s["group"]):
+            s["image"] = poster_by_group[s["group"]]
+            filled += 1
+    if filled:
+        print(f"  inherited {filled} poster(s) for tour/empty records")
+
     verified = sum(1 for s in shows if s.get("verified"))
     out = {
         "meta": {

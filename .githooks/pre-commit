@@ -1,0 +1,18 @@
+#!/bin/sh
+# 提交防呆：改了原始碼/UI/scraper 卻沒更新 CHANGELOG.md 就擋下。
+# 啟用方式（每個 clone 設定一次）： git config core.hooksPath .githooks
+# 確定要略過： git commit --no-verify
+
+staged=$(git diff --cached --name-only)
+
+# 沒有原始碼類變更（例如只是 data/*.json 自動刷新）→ 放行
+echo "$staged" | grep -qE '\.(js|css|html|py|yml)$|^README|^docs/' || exit 0
+
+# 有更新 CHANGELOG → 放行
+echo "$staged" | grep -q '^CHANGELOG\.md$' && exit 0
+
+echo "✋ 提交被擋下：改了原始碼但沒更新 CHANGELOG.md"
+echo "   依 docs/WORKFLOW.md：更新 CHANGELOG（含台北日期時間）→ 決定版號 → 之後打 git tag。"
+echo "   先跑： Get-Date -Format \"yyyy-MM-dd HH:mm\""
+echo "   若確定略過： git commit --no-verify"
+exit 1

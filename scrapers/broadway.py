@@ -138,6 +138,9 @@ def main():
                 print(f"  [detail] {title}: {e}")
             time.sleep(0.5)  # be polite
 
+        vi = s.get("verticalImage") or {}
+        image = (vi.get("url") if isinstance(vi, dict) else None) or s.get("productImage")
+
         lat, lng, geo_status = fix_nyc(lat, lng)
         if geo_status == "swapped":
             print(f"  [fix] {title}: swapped lat/lng")
@@ -156,7 +159,7 @@ def main():
             "start_date": clean_date(s.get("reopeningDate")),
             "end_date": clean_date(s.get("closingDate")),
             "ticket_url": url or LISTING_URL,
-            "image": None,
+            "image": image,
             "tour_name": None,
             "verified": True,
             "source": "broadway-show-tickets.com",

@@ -2,7 +2,9 @@
 
 一張地圖，呈現**此刻全球正在上演的音樂劇** —— 常駐型（Broadway / West End）與巡演型（tour，顯示目前在哪座城市）。
 
-視覺參考 [stayplot.com](https://www.stayplot.com/)：深色地圖鋪滿畫面、marker + cluster、點擊跳 popup、側欄同步列表 + 搜尋 + 篩選。
+淺色地圖鋪滿畫面、海報縮圖當 marker + cluster、hover 預覽卡、點擊跳 popup、側欄一劇一列（同劇自動合併、可展開看各地點）+ 搜尋 + 篩選。
+
+線上版：https://dannynycc.github.io/MusicalMap/
 
 ---
 
@@ -13,23 +15,26 @@ scrapers/  ──產出──>  data/*.json  ──merge──>  data/shows.json
 ```
 
 - **呈現層**（`index.html` / `css` / `js`）只讀 `data/shows.json`，不在乎資料怎麼來。換來源不用動地圖。
-- **資料層**（`scrapers/`）每個來源各寫一支 scraper、各產一個 source 檔；`build_shows.py` 合併。re-scrape 單一來源不會蓋掉其他來源。
+- **資料層**（`scrapers/`）每個來源各寫一支 scraper、各產一個 source 檔；`build_shows.py` 合併、套用人工修正、做同劇合併與海報繼承。re-scrape 單一來源不會蓋掉其他來源。
 
 ### 檔案
 
 | 路徑 | 作用 |
 |---|---|
 | `index.html` | 頁面骨架，CDN 載入 Leaflet + MarkerCluster |
-| `js/app.js` | 地圖、marker、側欄、搜尋/篩選、popup；含「此刻是否上演」判斷與 XSS 跳脫 |
-| `css/style.css` | 深色 UI |
+| `js/app.js` | 地圖、海報 marker、側欄、搜尋/篩選、popup、同劇合併與多地點 overview；含「此刻是否上演」判斷與 XSS 跳脫 |
+| `css/style.css` | 淺色 UI（白底＋teal 主色） |
 | `data/shows.json` | **前端唯一讀的檔**，由 build 產生 |
-| `data/westend.json` | West End scraper 輸出（真實，verified:true） |
-| `data/broadway.json` | Broadway seed（手填，verified:false，待 scraper） |
-| `data/tours.json` | 巡演 seed-sample（**示範結構，勿信**） |
+| `data/broadway.json` | Broadway scraper 輸出（broadway-show-tickets.com） |
+| `data/westend.json` | West End scraper 輸出（londontheatre.co.uk） |
+| `data/wicked_tour.json` | Wicked 北美巡演 scraper 輸出（tour.wickedthemusical.com） |
+| `data/overrides.json` | 人工座標/欄位修正（依 show id；修來源錯誤，build 時套用） |
 | `data/venues.json` | venue→座標 geocode 快取（手動可編） |
 | `scrapers/geocode.py` | Nominatim geocoding + 永久快取 |
-| `scrapers/westend.py` | londontheatre.co.uk scraper（解析 `__NEXT_DATA__`） |
-| `scrapers/build_shows.py` | 合併所有 source → `shows.json` |
+| `scrapers/broadway.py` | Broadway scraper（解析 `__NEXT_DATA__`，含 NYC 座標檢查） |
+| `scrapers/westend.py` | West End scraper（解析 `__NEXT_DATA__` + geocode） |
+| `scrapers/wicked_tour.py` | Wicked 巡演 scraper（巡演資料的範式） |
+| `scrapers/build_shows.py` | 合併所有 source、套 overrides、同劇合併、海報繼承 → `shows.json` |
 
 ---
 
@@ -46,14 +51,17 @@ scrapers/  ──產出──>  data/*.json  ──merge──>  data/shows.json
   "start_date": "2006-09-27",  // ISO 日期或 null
   "end_date": null,            // null = 無限期/常駐中
   "ticket_url": "https://…",
-  "tour_name": null,           // 巡演才有，例 "Phantom — US Tour"
-  "verified": true,            // false = 手填示範，UI 顯示「未驗證」標
+  "image": "https://…",        // 海報；巡演沿用該劇海報
+  "tour_name": null,           // 巡演才有，例 "Wicked — North American Tour"
+  "group": "wicked",           // build 產生的正規化合併鍵（同劇同 key）
+  "verified": true,
   "source": "londontheatre.co.uk"
 }
 ```
 
-巡演的每一「站」是一筆獨立紀錄，用 `[start_date, end_date]` 表示在該城市的檔期。
-**「目前在哪座城市」** = 今天落在哪一站的日期區間（見 `app.js` 的 `isPlayingNow`）。
+- 巡演的每一「站」是一筆獨立紀錄，用 `[start_date, end_date]` 表示在該城市的檔期。
+  **「目前在哪座城市」** = 今天落在哪一站的日期區間（見 `app.js` 的 `isPlayingNow`）。
+- `group` 由 `build_shows.py` 的標題正規化產生，讓不同來源命名（`SIX` / `SIX: The Musical`）歸為同一齣。
 
 ---
 
@@ -62,22 +70,23 @@ scrapers/  ──產出──>  data/*.json  ──merge──>  data/shows.json
 ```bash
 # 1) 起本機 server（前端用 fetch 讀 JSON，必須走 http，不能直接開檔）
 cd D:/ClaudeCode/MusicalMap
-python -m http.server 8753
-# 瀏覽器開 http://localhost:8753/
+python -m http.server 8753            # 瀏覽器開 http://localhost:8753/
 
 # 2) 重新抓資料
-python scrapers/westend.py        # 抓 West End（首次 geocode ~50s，之後走快取）
-python scrapers/build_shows.py    # 合併成 data/shows.json
+python scrapers/westend.py            # West End（首次 geocode ~50s，之後走快取）
+python scrapers/broadway.py           # Broadway（進 28 個細節頁拿 venue+座標）
+python scrapers/wicked_tour.py        # Wicked 北美巡演
+python scrapers/build_shows.py        # 合併成 data/shows.json
 ```
+
+提交流程（CHANGELOG / 版號 / tag）見 **`docs/WORKFLOW.md`**；自動每日更新與部署見 `.github/workflows/update.yml`。
 
 ---
 
 ## 現況 / 待辦
 
-- ✅ West End：52 部音樂劇，自動抓取 + geocode（43 間有座標）
-- ⚠️ West End 9 間 venue geocode 失敗（名稱太模糊，如 "…Powered by TodayTix"）。
-  修法：編 `data/venues.json` 對應 slug 手填正確 `lat`/`lng`。
-- 🟡 Broadway：目前是 8 部手填 seed（`verified:false`）。
-  待辦：寫 `scrapers/broadway.py` 抓 broadway-show-tickets.com（劇名在列表頁、venue/日期在細節頁）。
-- 🟡 巡演：`data/tours.json` 只是示範結構，**勿當真實資料**。待辦：找巡演排程來源。
-- 未驗證資料在 UI 會顯示黃色「未驗證」標，popup 也有警語。
+- ✅ West End（52）、Broadway（28）、Wicked 巡演（17）：全部自動抓取，含座標與海報，共 97 筆。
+- ✅ 座標修正機制：NYC 範圍檢查、lat/lng 對調偵測、`overrides.json` 人工修正、geocode 快取。
+- ✅ 同劇合併、巡演海報繼承、多地點地圖 overview。
+- 🟡 巡演目前只有 Wicked 一條（每個劇的官方巡演站結構不同）。待辦：擴充其他劇的巡演來源（如 Phantom、Hamilton、Les Mis UK tour）。
+- 🟡 West End 少數冷門場館 geocode 為近似位置（可編 `data/venues.json` 校正）。

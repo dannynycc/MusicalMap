@@ -34,8 +34,9 @@ jobs:
         run: |
           # Don't fail the whole run if one source is temporarily down;
           # build_shows.py still merges whatever source files exist.
-          python scrapers/westend.py  || echo "::warning::West End scrape failed"
-          python scrapers/broadway.py || echo "::warning::Broadway scrape failed"
+          python scrapers/westend.py    || echo "::warning::West End scrape failed"
+          python scrapers/broadway.py   || echo "::warning::Broadway scrape failed"
+          python scrapers/wicked_tour.py || echo "::warning::Wicked tour scrape failed"
           python scrapers/build_shows.py
 
       - name: Commit refreshed data (if changed)

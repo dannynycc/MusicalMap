@@ -64,6 +64,16 @@ def clean_date(v):
     return None if v.lower() in ("", "null", "none") else v
 
 
+def media_url(node):
+    """Contentful media fields are {'file': {'url': '//…'}} dicts (or sometimes a
+    plain URL string). Return the URL or None."""
+    if isinstance(node, str):
+        return node
+    if isinstance(node, dict):
+        return (node.get("file") or {}).get("url") or node.get("url")
+    return None
+
+
 def normalize(p):
     slug = p.get("slug")
     if slug in SKIP_SLUGS:
@@ -80,6 +90,15 @@ def normalize(p):
         f"{venue_name}, London, UK",
     )
 
+    pm = p.get("productMedia") or {}
+    img = (
+        media_url(pm.get("posterImage"))
+        or media_url(pm.get("posterImageSquare"))
+        or media_url(pm.get("headerImage"))
+    )
+    if img and img.startswith("//"):
+        img = "https:" + img  # Contentful URLs are protocol-relative
+
     end = clean_date(p.get("bookingTo")) or clean_date(p.get("closingDate"))  # null = open-ended
     return {
         "id": f"westend-{slug}",
@@ -93,7 +112,7 @@ def normalize(p):
         "start_date": clean_date(p.get("startingDate")),
         "end_date": end,
         "ticket_url": SHOW_URL.format(slug=slug),
-        "image": None,
+        "image": img,
         "tour_name": None,
         "verified": True,
         "source": "londontheatre.co.uk",
