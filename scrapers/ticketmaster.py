@@ -31,16 +31,37 @@ KEY = os.environ.get("TICKETMASTER_API_KEY")
 # by ISO country code. Dedupe is by (show, venue) so the same production showing
 # up under multiple country sites collapses into one record (collecting each
 # region's ticket link). Extend this list to widen coverage.
-COUNTRIES = ["AU", "NZ", "IE", "GB", "DE", "NL", "ES", "SE", "DK", "NO",
-             "FI", "AT", "CH", "BE", "PL", "MX", "US", "CA"]
+# Only sweep countries the curated sources DON'T cover (US/UK/JP/DE/ES/FR/MX/NL
+# are already covered and dropped at build anyway). Smaller volumes here let us
+# fetch ALL pages, so end_date = the real last scheduled performance.
+COUNTRIES = ["AU", "NZ", "IE", "CA", "BE", "DK", "SE", "NO", "FI",
+             "AT", "CH", "PL", "IT", "PT", "CZ", "SG"]
 
 
 def clean_title(t):
-    """Strip promoter prefixes/suffixes Ticketmaster bakes into event names."""
-    t = t.strip()
+    """Normalize the noisy event names Ticketmaster uses so the same production
+    collapses to one record (accessibility/preview performances, region tags,
+    promoter prefixes, ALL-CAPS)."""
+    t = (t or "").strip()
+    if re.search(r"do not purchase|test event", t, re.I):
+        return ""  # junk/test listings
+    # promoter prefixes
     t = re.sub(r"^(disney\s+presents\s+|disney'?s\s+|cameron\s+mackintosh'?s\s+)", "", t, flags=re.I)
-    t = re.sub(r"\s*[-–:]\s*(the\s+broadway\s+musical|the\s+musical|broadway).*$", "", t, flags=re.I)
-    return t.strip()
+    # region / version parenthetical anywhere, e.g. "(Australia)", "(UK)", "(Touring)"
+    t = re.sub(r"\s*\((?:australia|uk|us|usa|touring|broadway|the\s+musical)\)", "", t, flags=re.I)
+    # accessibility / performance-type qualifiers after a dash (drop to end)
+    t = re.sub(
+        r"\s*[-–]\s*(auslan|audio[- ]?desc|relaxed|opening night|night with|previews?|"
+        r"captioned|matinee|sensory|signed|the broadway musical|the musical|broadway)\b.*$",
+        "", t, flags=re.I)
+    # trailing accessibility words without a dash
+    t = re.sub(r"\s+(relaxed performance|captioned.*|audio desc.*)$", "", t, flags=re.I)
+    # bare trailing "the musical"
+    t = re.sub(r"\s*(?:[-–:]\s*)?the\s+musical$", "", t, flags=re.I)
+    t = t.strip(" -–:")
+    if len(t) > 4 and t.isupper():       # de-shout ALL-CAPS titles
+        t = t.title()
+    return t
 
 
 def fetch(params):
@@ -66,9 +87,9 @@ def sweep_country(cc):
             yield ev
         info = data.get("page", {})
         page += 1
-        if page >= info.get("totalPages", 0) or page > 4:  # cap pages/country
+        if page >= info.get("totalPages", 0) or page > 24:  # gap countries are small; fetch (nearly) all
             break
-        time.sleep(0.3)
+        time.sleep(0.25)
 
 
 def main():
@@ -126,6 +147,14 @@ def main():
             print(f"  {cc}: {len(runs)} cumulative runs")
         except Exception as e:  # noqa: BLE001
             print(f"  [{cc}] failed: {e}")
+
+    # NOTE: start_date is the earliest *available* performance (the API drops
+    # expired dates), end_date the last scheduled performance. We keep them as-is
+    # (no faking) — for a "what's playing on date X" view, the real available
+    # window is the honest answer. onsale_only flags that these are availability
+    # dates, not a confirmed opening→closing run, so the UI can label them right.
+    for r in runs.values():
+        r["onsale_only"] = True
 
     shows = list(runs.values())
     out = {"meta": {"source": "ticketmaster", "count": len(shows)}, "shows": shows}

@@ -36,7 +36,14 @@
       </footer>
     </aside>
 
-    <main id="map"></main>
+    <main id="map">
+      <div id="timebar">
+        <button id="time-play" class="tb-btn" title="自動播放時間軸">▶</button>
+        <button id="time-today" class="tb-btn tb-now" title="回到今天">今天</button>
+        <input id="time-range" type="range" min="0" max="365" value="0" step="1" />
+        <input id="time-date" class="tb-date" type="date" />
+      </div>
+    </main>
   </div>
 
   <!-- Leaflet JS -->

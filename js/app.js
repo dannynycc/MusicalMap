@@ -7,6 +7,13 @@
  */
 
 const TODAY = new Date();
+const DAY_MS = 86400000;
+const TODAY0 = (() => { const d = new Date(); d.setHours(0, 0, 0, 0); return d; })();
+const MAX_DAYS = 365;                       // slider range: today → +1 year
+let selectedDate = new Date(TODAY0);        // the date the map is showing
+const isoDate = (d) =>
+  `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+const isToday = () => isoDate(selectedDate) === isoDate(TODAY0);
 
 // ---------- safety helpers (untrusted scraped data) ----------
 function esc(v) {
@@ -95,6 +102,10 @@ const els = {
   search: document.getElementById("search"),
   filters: document.querySelectorAll('#filters input[type="checkbox"]'),
   note: document.getElementById("data-note"),
+  tRange: document.getElementById("time-range"),
+  tDate: document.getElementById("time-date"),
+  tPlay: document.getElementById("time-play"),
+  tToday: document.getElementById("time-today"),
 };
 
 // ---------- Rendering helpers ----------
@@ -118,8 +129,10 @@ function posterMarkerIcon(show) {
 }
 
 function fmtDates(show) {
+  // Ticketmaster gives availability dates, not a confirmed run — label honestly.
+  if (show.onsale_only) return show.end_date ? `售票中 · 約演至 ${esc(show.end_date)}` : "售票中";
   if (show.type === "resident") return show.end_date ? `售票至 ${esc(show.end_date)}` : "常駐演出中";
-  return `${esc(show.start_date || "?")} – ${esc(show.end_date || "?")}`;
+  return `${esc(show.start_date || "?")} – ${esc(show.end_date || "?")}`;  // tour stop: real run
 }
 
 function tooltipHtml(show) {
@@ -174,7 +187,7 @@ function visibleShows() {
   const types = activeTypes();
   return ALL.filter((s) => {
     if (!types.has(s.type)) return false;
-    if (!isPlayingNow(s)) return false;
+    if (!isPlayingNow(s, selectedDate)) return false;
     if (!q) return true;
     return [s.title, s.city, s.venue, s.tour_name].some((f) => (f || "").toLowerCase().includes(q));
   });
@@ -218,7 +231,8 @@ function render() {
   }
 
   const groups = new Set(shows.map((s) => s.group || s.title)).size;
-  els.count.textContent = `目前上演中：${groups} 部音樂劇 · ${shows.length} 個地點`;
+  const label = isToday() ? "目前上演中" : `${isoDate(selectedDate)} 上演`;
+  els.count.textContent = `${label}：${groups} 部音樂劇 · ${shows.length} 個地點`;
 
   // fit to all markers once, on first load
   if (!didFitBounds && latlngs.length) {
@@ -339,4 +353,45 @@ async function boot() {
 els.search.addEventListener("input", render);
 els.search.addEventListener("keydown", (e) => { if (e.key === "Escape") { els.search.value = ""; render(); } });
 els.filters.forEach((cb) => cb.addEventListener("change", render));
+
+// ---------- Time bar (slider + calendar, kept in sync) ----------
+function setDate(d, { fromSlider = false, fromPicker = false } = {}) {
+  // clamp to [today, today + MAX_DAYS]
+  const t = Math.min(Math.max(d.getTime(), TODAY0.getTime()), TODAY0.getTime() + MAX_DAYS * DAY_MS);
+  selectedDate = new Date(t);
+  const offset = Math.round((selectedDate - TODAY0) / DAY_MS);
+  if (!fromSlider) els.tRange.value = offset;
+  if (!fromPicker) els.tDate.value = isoDate(selectedDate);
+  els.tToday.classList.toggle("tb-now", true);
+  els.tToday.style.visibility = offset === 0 ? "hidden" : "visible";
+  render();
+}
+
+els.tRange.max = MAX_DAYS;
+els.tDate.min = isoDate(TODAY0);
+els.tDate.max = isoDate(new Date(TODAY0.getTime() + MAX_DAYS * DAY_MS));
+els.tRange.addEventListener("input", () =>
+  setDate(new Date(TODAY0.getTime() + Number(els.tRange.value) * DAY_MS), { fromSlider: true }));
+els.tDate.addEventListener("change", () => {
+  const d = new Date(els.tDate.value + "T00:00:00");
+  if (!isNaN(d)) setDate(d, { fromPicker: true });
+});
+els.tToday.addEventListener("click", () => { stopPlay(); setDate(new Date(TODAY0)); });
+
+// play: step one week per tick to watch tours travel
+let playTimer = null;
+function stopPlay() {
+  if (playTimer) { clearInterval(playTimer); playTimer = null; els.tPlay.textContent = "▶"; els.tPlay.classList.remove("playing"); }
+}
+els.tPlay.addEventListener("click", () => {
+  if (playTimer) { stopPlay(); return; }
+  els.tPlay.textContent = "⏸"; els.tPlay.classList.add("playing");
+  playTimer = setInterval(() => {
+    const next = selectedDate.getTime() + 7 * DAY_MS;
+    if (next > TODAY0.getTime() + MAX_DAYS * DAY_MS) { stopPlay(); return; }
+    setDate(new Date(next));
+  }, 900);
+});
+
+setDate(new Date(TODAY0));
 boot();
