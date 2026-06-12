@@ -71,13 +71,13 @@ const cluster = L.markerClusterGroup({
   maxClusterRadius: 45,
   spiderfyOnMaxZoom: true,
   showCoverageOnHover: false,
-  // size the bubble by how many shows it holds (bigger count → bigger circle)
+  // size the bubble by how many shows it holds. Radius ∝ √n so the *area* tracks
+  // the count and big clusters stay visibly bigger (linear scaling saturated at
+  // the cap, making 39/83/109 look identical — user feedback).
   iconCreateFunction: (c) => {
     const n = c.getChildCount();
-    // linear by count; cap high enough that typical counts (≤~45) don't all hit
-    // the ceiling — so 38 is genuinely bigger than 35.
-    const size = Math.round(Math.max(30, Math.min(96, 26 + n * 1.7)));
-    const fs = Math.round(Math.max(12, size * 0.34));
+    const size = Math.round(Math.max(30, Math.min(112, 20 + Math.sqrt(n) * 8.5)));
+    const fs = Math.round(Math.max(12, size * 0.36));
     return L.divIcon({
       html: `<div class="mm-cluster" style="width:${size}px;height:${size}px;font-size:${fs}px"><span>${n}</span></div>`,
       className: "mm-cluster-wrap",

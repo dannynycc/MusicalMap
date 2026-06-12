@@ -17,14 +17,30 @@ DATA = Path(__file__).resolve().parent.parent / "data"
 # Traditional/Simplified Chinese folding so a venue/title is found whichever script
 # the user types (上海大劇院 = 上海大剧院, 台北 = 臺北 …). OpenCC is build-only; if
 # unavailable we degrade to no conversion (still searchable in the original script).
-try:
-    from opencc import OpenCC
-    _T2S, _S2T = OpenCC("t2s"), OpenCC("s2t")
-    def _t2s(s): return _T2S.convert(s)
-    def _s2t(s): return _S2T.convert(s)
-except Exception:  # noqa: BLE001 — opencc optional
-    def _t2s(s): return s
-    def _s2t(s): return s
+def _opencc(name):
+    """Return an OpenCC convert fn for `name`, or identity if unavailable —
+    each converter independent so one missing config can't disable the others."""
+    try:
+        from opencc import OpenCC
+        c = OpenCC(name)
+        return lambda s: c.convert(s)
+    except Exception:  # noqa: BLE001 — opencc optional
+        return lambda s: s
+
+
+_t2s = _opencc("t2s")   # Traditional → Simplified
+_s2t = _opencc("s2t")   # Simplified → Traditional
+
+# opencc-python-reimplemented ships no jp2t config, so map the Japanese shinjitai
+# that differ from BOTH Chinese forms (notably 芸→藝) to Traditional, so a Chinese
+# user typing 藝術 finds the Japanese-named 梅田芸術劇場.
+_JP2T_MAP = str.maketrans({
+    "芸": "藝", "国": "國", "会": "會", "県": "縣", "楽": "樂", "観": "觀", "庁": "廳",
+    "営": "營", "体": "體", "学": "學", "数": "數", "円": "圓", "売": "賣", "図": "圖",
+    "戦": "戰", "浜": "濱", "沢": "澤", "駅": "驛", "区": "區", "随": "隨", "続": "續",
+    "歓": "歡", "騒": "騷", "両": "兩", "齢": "齡", "豊": "豐", "戯": "戲",
+})
+def _jp2t(s): return (s or "").translate(_JP2T_MAP)
 
 # common Taiwanese variant character not always covered by t2s/s2t mappings
 _VARIANT = str.maketrans({"臺": "台"})
@@ -52,7 +68,9 @@ def search_blob(*parts):
     臺→台 folded forms, so any script/variant the user types matches."""
     seen = []
     for p in parts:
-        for form in {p, _t2s(p), _s2t(p), (p or "").translate(_VARIANT)}:
+        jt = _jp2t(p or "")                # Japanese shinjitai → Traditional (芸術→藝術)
+        forms = {p, _t2s(p), _s2t(p), (p or "").translate(_VARIANT), jt, _t2s(jt)}
+        for form in forms:
             f = _clean(form).lower()       # fold away all brackets/quotes/punct
             if f and f not in seen:
                 seen.append(f)
@@ -129,9 +147,16 @@ ZH = {
     "the book of mormon": "摩門經", "sunset boulevard": "日落大道",
 }
 
-CURRENCIES = ["TWD 新台幣", "USD 美元", "GBP 英鎊", "EUR 歐元", "JPY 日圓",
-              "KRW 韓元", "CNY 人民幣", "HKD 港幣", "SGD 新幣", "AUD 澳幣",
-              "CAD 加幣", "CHF 瑞郎", "CZK 捷克克朗", "MXN 墨西哥披索"]
+# Currencies covering every country in the dataset + common ones, ISO 4217.
+CURRENCIES = [
+    "TWD 新台幣", "USD 美元", "GBP 英鎊", "EUR 歐元", "JPY 日圓", "KRW 韓元",
+    "CNY 人民幣", "HKD 港幣", "SGD 新加坡幣", "AUD 澳幣", "NZD 紐西蘭幣",
+    "CAD 加幣", "CHF 瑞士法郎", "CZK 捷克克朗", "MXN 墨西哥披索", "THB 泰銖",
+    "MYR 馬來西亞令吉", "PHP 菲律賓披索", "IDR 印尼盾", "VND 越南盾", "INR 印度盧比",
+    "MOP 澳門幣", "SEK 瑞典克朗", "NOK 挪威克朗", "DKK 丹麥克朗", "PLN 波蘭茲羅提",
+    "HUF 匈牙利福林", "RON 羅馬尼亞列伊", "BRL 巴西雷亞爾", "ZAR 南非蘭特",
+    "AED 阿聯酋迪拉姆", "ILS 以色列新謝克爾", "TRY 土耳其里拉", "RUB 俄羅斯盧布",
+]
 
 
 # generic words that don't distinguish one theatre from another
@@ -170,6 +195,10 @@ def main():
         name = re.sub(r"\s{2,}", " ", htmllib.unescape(name)).strip()  # fix &#039; / &amp;
         city = (city or "").strip()
         nk = norm_venue(name, city)
+        if not nk:
+            # all distinctive words were the city name (e.g. "San Jose Center for the
+            # Performing Arts") — retry keeping city tokens so variants still dedupe.
+            nk = norm_venue(name, "")
         if not nk:
             # pure CJK/Hangul name (no Latin tokens) — DON'T drop it; key on the
             # bracket-stripped name so e.g. 大阪四季劇場 / 有明四季劇場 survive.
@@ -214,8 +243,13 @@ def main():
     for v in venues:
         idx.setdefault(ckey(v["city"]), []).append(v)
     def match(city, *names):
+        # probe with the FULL local name(s) only (not the English name): distinct
+        # halls of one building share an English name (National Taichung Theater 大/
+        # 中/小劇場) and must NOT collapse, while a true duplicate (same native name
+        # from a show) still merges.
+        probes = [_clean(n).lower() for n in names if n and len(_clean(n)) > 3]
         for v in idx.get(ckey(city), []):
-            if any(n and n.lower() in v["search"] for n in names if n):
+            if any(p in v["search"] for p in probes):
                 return v
         return None
     for fname in ("tw_venues.json", "jp_venues.json", "kr_venues.json", "cn_venues.json"):
@@ -231,7 +265,7 @@ def main():
             extra = zh or native
             display = f"{en} {extra}".strip() if (en and extra) else (en or extra)
             blob = search_blob(en, native, zh)
-            hit = match(city, en, zh, native)
+            hit = match(city, zh, native)   # match on full local name, not shared EN
             if hit:   # already present from a show — fold in the extra names/scripts
                 # concatenate blobs (keep phrases intact for multi-word matches like
                 # "blue square") rather than tokenizing, which would scramble order.
