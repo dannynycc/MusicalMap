@@ -11,6 +11,11 @@
 
 ---
 
+## [v0.20.1] - 2026-06-12 22:31
+### 修正
+- **同場館多場無法展開**:個人/公開地圖上,同一劇院的多場紀錄座標完全重疊(如臺中國家歌劇院 3 場),MarkerCluster 縮放無法分開。改為點擊 cluster 時若子點座標相同就直接 spiderfy 展開(me.js / u.js,實測點一下展開成 3 個海報)。
+- **國家兩廳院英文名**:Google 回「National Theater」→ 硬改為 **National Theater and Concert Hall**(實驗劇場標為 …(Experimental Theater));`tw_venues.py` 加 `EN_OVERRIDE` 保證 re-run 不被蓋回。
+
 ## [v0.20.0] - 2026-06-12 22:19
 ### 新增(公開分享 profile — 推廣用)
 - **`u.html?u=<使用者名稱>` 公開唯讀頁**:免登入即可看別人的音樂劇足跡(地圖+統計圖+清單,FlightRadar 風),類似 my.flightradar24 的分享頁。

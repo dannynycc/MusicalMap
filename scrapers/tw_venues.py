@@ -105,6 +105,13 @@ VENUES = [
 ]
 
 
+# Hardcoded English names where Google's is wrong/ambiguous (overrides geocode).
+EN_OVERRIDE = {
+    "國家戲劇院（國家兩廳院）": "National Theater and Concert Hall",
+    "國家兩廳院 實驗劇場": "National Theater and Concert Hall (Experimental Theater)",
+}
+
+
 def main():
     key = gg.load_key()
     force = "--all" in sys.argv
@@ -124,6 +131,7 @@ def main():
             if not en:  # ask Google for the English name explicitly
                 r2 = gg.places_new(query, key, language="en"); time.sleep(0.08)
                 en = r2[2] if (isinstance(r2, tuple) and r2 and r2[0] != "DENIED" and len(r2) >= 3) else gname
+            en = EN_OVERRIDE.get(zh, en)
             rec = {"zh": zh, "en": en, "city": city, "country": "Taiwan", "lat": lat, "lng": lng}
             print(f"  [{i}/{len(VENUES)}] {zh} → {en} @ {lat},{lng}", flush=True)
         else:

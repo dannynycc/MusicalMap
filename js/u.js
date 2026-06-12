@@ -78,7 +78,13 @@ function renderMap() {
     map = L.map("me-map", { worldCopyJump: true, minZoom: 1, maxBoundsViscosity: 1.0 }).setView([20, 0], 2);
     L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png",
       { attribution: "&copy; OpenStreetMap &copy; CARTO", subdomains: "abcd", maxZoom: 19 }).addTo(map);
-    layer = L.markerClusterGroup({ showCoverageOnHover: false, maxClusterRadius: 45 });
+    layer = L.markerClusterGroup({ showCoverageOnHover: false, maxClusterRadius: 45, spiderfyOnMaxZoom: true });
+    // markers stacked at one venue (e.g. 3 shows at 臺中國家歌劇院) share exact coords,
+    // so zoom-to-bounds can't separate them — spiderfy (fan out) on click instead.
+    layer.on("clusterclick", (a) => {
+      const ll = a.layer.getAllChildMarkers().map((m) => m.getLatLng());
+      if (ll.every((p) => p.equals(ll[0]))) { a.layer.spiderfy(); a.originalEvent?.preventDefault?.(); }
+    });
     map.addLayer(layer);
     map.setMaxBounds([[-85, -180], [85, 180]]);
     clampWorld(); window.addEventListener("resize", clampWorld);

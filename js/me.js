@@ -188,7 +188,12 @@ function renderMap() {
     map = L.map("me-map", { worldCopyJump: true, minZoom: 1, maxBoundsViscosity: 1.0 }).setView([20, 0], 2);
     L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png",
       { attribution: "&copy; OpenStreetMap &copy; CARTO", subdomains: "abcd", maxZoom: 19 }).addTo(map);
-    layer = L.markerClusterGroup({ showCoverageOnHover: false, maxClusterRadius: 45 });
+    layer = L.markerClusterGroup({ showCoverageOnHover: false, maxClusterRadius: 45, spiderfyOnMaxZoom: true });
+    // markers stacked at one venue share exact coords → spiderfy (fan out) on click.
+    layer.on("clusterclick", (a) => {
+      const ll = a.layer.getAllChildMarkers().map((m) => m.getLatLng());
+      if (ll.every((p) => p.equals(ll[0]))) { a.layer.spiderfy(); a.originalEvent?.preventDefault?.(); }
+    });
     map.addLayer(layer);
     map.setMaxBounds([[-85, -180], [85, 180]]);  // keep within one world (no void panning)
     clampWorld();
