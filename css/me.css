@@ -136,7 +136,10 @@ body { font-family: Roboto, Arial, "Microsoft JhengHei", sans-serif; background:
 
 /* multiple link inputs */
 #links-list { display: flex; flex-direction: column; gap: 6px; }
-.link-row { display: flex; gap: 6px; }
+.link-row { display: flex; gap: 6px; align-items: center; }
+.link-row.dragging { opacity: .5; }
+.link-drag { cursor: grab; color: var(--fr-muted); font-size: 16px; padding: 0 2px; user-select: none; }
+.link-drag:active { cursor: grabbing; }
 .link-row .link-input { flex: 1; border: 1px solid var(--fr-line); border-radius: 7px; padding: 9px 11px; font-size: 14px; font-family: inherit; }
 .link-row .link-input:focus { outline: none; border-color: var(--fr-orange); }
 .link-row .link-del { border: 1px solid var(--fr-line); background: #fff; border-radius: 7px; width: 36px; cursor: pointer; color: var(--fr-muted); font-size: 18px; line-height: 1; }

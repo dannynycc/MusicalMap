@@ -274,10 +274,13 @@ def main():
         # probe with the FULL local name(s) only (not the English name): distinct
         # halls of one building share an English name (National Taichung Theater 大/
         # 中/小劇場) and must NOT collapse, while a true duplicate (same native name
-        # from a show) still merges.
+        # from a show) still merges. Compare space-insensitively too, since a show's
+        # venue ("臺中國家歌劇院中劇院") and the curated one ("臺中國家歌劇院 中劇院")
+        # differ only by spacing.
         probes = [_clean(n).lower() for n in names if n and len(_clean(n)) > 3]
         for v in idx.get(ckey(city), []):
-            if any(p in v["search"] for p in probes):
+            blob = v["search"]; blob_ns = blob.replace(" ", "")
+            if any(p in blob or p.replace(" ", "") in blob_ns for p in probes):
                 return v
         return None
     for fname in ("tw_venues.json", "jp_venues.json", "kr_venues.json", "cn_venues.json",
@@ -299,7 +302,10 @@ def main():
                 # concatenate blobs (keep phrases intact for multi-word matches like
                 # "blue square") rather than tokenizing, which would scramble order.
                 hit["search"] = (hit["search"] + " " + blob).strip()
-                if _has_latin_only(hit["name"]) and extra:   # upgrade to bilingual display
+                # prefer the curated bilingual display when the existing name lacks the
+                # English part (e.g. a show venue "臺中國家歌劇院中劇院" → upgrade to
+                # "National Taichung Theater 臺中國家歌劇院 中劇院").
+                if en and en.lower() not in hit["name"].lower() and display:
                     hit["name"] = re.sub(r"\s{2,}", " ", display).strip()
                 merged += 1
                 continue

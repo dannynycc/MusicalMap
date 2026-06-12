@@ -301,16 +301,21 @@ function linksOf(s) {
   const arr = Array.isArray(s.links) ? s.links : (s.url ? [s.url] : []);
   return arr.map((u) => safeUrl(u)).filter(Boolean);
 }
+let draggingRow = null;
 function addLinkRow(value = "") {
   const row = document.createElement("div");
-  row.className = "link-row";
+  row.className = "link-row"; row.draggable = true;
+  const handle = document.createElement("span");
+  handle.className = "link-drag"; handle.title = "drag to reorder"; handle.textContent = "⠿";
   const inp = document.createElement("input");
   inp.type = "url"; inp.className = "link-input"; inp.placeholder = "https://… official site / ticket page";
   inp.value = value;
   const del = document.createElement("button");
   del.type = "button"; del.className = "link-del"; del.title = "remove"; del.textContent = "×";
   del.onclick = () => row.remove();
-  row.append(inp, del);
+  row.addEventListener("dragstart", () => { draggingRow = row; row.classList.add("dragging"); });
+  row.addEventListener("dragend", () => { draggingRow = null; row.classList.remove("dragging"); });
+  row.append(handle, inp, del);
   $("#links-list").appendChild(row);
 }
 const formLinks = () => [...document.querySelectorAll("#links-list .link-input")].map((i) => i.value.trim()).filter(Boolean);
@@ -354,6 +359,14 @@ function wireUi() {
   $("#btn-cancel").onclick = () => $("#add-dialog").close();
   $("#add-form").addEventListener("submit", onSave);
   $("#add-link").onclick = () => addLinkRow("");
+  $("#links-list").addEventListener("dragover", (e) => {     // reorder link rows by dragging
+    e.preventDefault();
+    if (!draggingRow) return;
+    const rows = [...$("#links-list").querySelectorAll(".link-row:not(.dragging)")];
+    const after = rows.find((r) => e.clientY < r.getBoundingClientRect().top + r.offsetHeight / 2);
+    if (after) $("#links-list").insertBefore(draggingRow, after);
+    else $("#links-list").appendChild(draggingRow);
+  });
   $("#pub-save").onclick = saveShare;
   $("#share-copy").onclick = () => {
     navigator.clipboard?.writeText($("#share-url").textContent);

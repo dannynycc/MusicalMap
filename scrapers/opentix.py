@@ -27,6 +27,17 @@ API = "https://search.opentix.life/search"
 EXCLUDE = ["老闆", "陽春麵", "演唱會", "工作坊"]   # plays / concerts / workshops mis-tagged as 音樂劇
 TW_TZ = timezone(timedelta(hours=8))
 
+# OPENTIX returns Chinese city names; map to English so they align with the curated
+# tw_venues.json cities (else the same hall appears twice — Chinese-city vs English-city).
+CITY_MAP = {
+    "臺北": "Taipei", "台北": "Taipei", "新北": "New Taipei", "基隆": "Keelung",
+    "桃園": "Taoyuan", "新竹": "Hsinchu", "苗栗": "Miaoli", "臺中": "Taichung", "台中": "Taichung",
+    "彰化": "Changhua", "南投": "Nantou", "雲林": "Yunlin", "嘉義": "Chiayi",
+    "臺南": "Tainan", "台南": "Tainan", "高雄": "Kaohsiung", "屏東": "Pingtung",
+    "宜蘭": "Yilan", "花蓮": "Hualien", "臺東": "Taitung", "台東": "Taitung",
+    "澎湖": "Penghu", "金門": "Kinmen", "連江": "Lienchiang", "馬祖": "Lienchiang",
+}
+
 
 def fetch():
     body = json.dumps({"language": "zh-CHT", "categoryFilter": ["戲劇-音樂劇"],
@@ -77,7 +88,7 @@ def main():
             "id": "opentix-" + str(pid),
             "title": zh_title or en_title,        # Taiwanese productions are known by their 中文 title
             "title_en": en_title,
-            "venue": v.get("name", ""), "city": v.get("city", ""), "country": "Taiwan",
+            "venue": v.get("name", ""), "city": CITY_MAP.get(v.get("city", ""), v.get("city", "")), "country": "Taiwan",
             "lat": lat, "lng": lng, "start_date": start, "end_date": end,
             "image": s.get("imageUrl"),
             "ticket_url": f"https://www.opentix.life/program/{pid}" if pid else None,
