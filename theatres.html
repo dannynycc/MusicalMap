@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>所有劇院 — MusicalMap</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header id="topbar">
+    <a id="brand" href="index.html">
+      <span class="logo">Musical<span class="logo-em">Map</span></span>
+      <span class="tagline">全球音樂劇場館地圖</span>
+    </a>
+    <nav id="topnav">
+      <a class="nav-link" href="index.html">🗺 演出地圖</a>
+      <a id="mine-link" class="nav-cta" href="me.html">⭐ 我的音樂劇足跡</a>
+    </nav>
+  </header>
+
+  <main id="map">
+    <div id="venue-panel">
+      <input id="vsearch" type="search" placeholder="搜尋劇院、城市…(中/英/原文皆可)" autocomplete="off" />
+      <div id="vcount"></div>
+    </div>
+  </main>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+  <script src="js/theatres.js"></script>
+</body>
+</html>

@@ -33,6 +33,26 @@ body { display: flex; flex-direction: column; height: 100vh; }
 #brand .logo-em { color: var(--accent); }
 #brand .tagline { font-size: 13px; color: var(--muted); }
 #topnav { display: flex; align-items: center; gap: 14px; }
+.nav-link { color: var(--text); text-decoration: none; font-size: 14px; font-weight: 600; }
+.nav-link:hover { color: var(--accent); }
+
+/* all-theatres page: floating search panel + small venue dots */
+#venue-panel {
+  position: absolute; z-index: 1000; top: 14px; left: 14px; width: min(330px, 80vw);
+  background: var(--panel); border: 1px solid var(--border); border-radius: 12px;
+  padding: 12px; box-shadow: var(--shadow);
+}
+#vsearch {
+  width: 100%; padding: 10px 13px; border-radius: 10px; border: 1px solid var(--border);
+  background: var(--panel-2); color: var(--text); font-size: 14px; outline: none;
+}
+#vsearch:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(15,118,110,.15); }
+#vcount { margin-top: 8px; font-size: 13px; color: var(--muted); font-weight: 600; }
+.venue-dot-wrap { background: none; border: none; }
+.venue-dot {
+  width: 12px; height: 12px; border-radius: 50%;
+  background: var(--accent); border: 2px solid #fff; box-shadow: 0 1px 3px rgba(15,23,42,.4);
+}
 .nav-cta {
   display: inline-flex; align-items: center; gap: 6px;
   background: var(--accent); color: var(--accent-ink); text-decoration: none;
