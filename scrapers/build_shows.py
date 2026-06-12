@@ -127,45 +127,32 @@ def main():
         sources.append({"file": name, "count": len(rows), "meta": blob.get("meta", {})})
         print(f"  {name}: {len(rows)} shows")
 
-    # Ticketmaster gap-fill. Coverage is judged at the right granularity:
-    # - countries fully covered by curated sources (US tours via broadway.org,
-    #   Japan via shiki…) → skip whole country;
-    # - GB: curated covers ONLY London (londontheatre.co.uk) — keep TM records
-    #   for other UK cities (regional touring circuit, e.g. Miss Saigon UK tour);
-    # - plus a (show, city) check so TM never duplicates an existing record.
-    # Cities (not whole countries) that curated sources own. US tours via
-    # broadway.org proved INCOMPLETE (no Beetlejuice NA tour) → only NYC is
-    # considered curated for the US; TM may add tour stops elsewhere.
-    CITY_ONLY_COVERED = {"gb": {"london"}, "us": {"new york"}}
+    # Ticketmaster merge — dedup purely by (show, city), NEVER by country.
+    # (Country-level "covered" was a bug: one manual AU record made the whole of
+    # Australia count as covered and wiped every TM AU stop, e.g. Sydney.)
+    # A TM stop whose (group, city) already exists → its link is attached to the
+    # existing record; otherwise it's added as a new marker.
     tm_enrich = {}
+    seen_show_city = {(group_key(s["title"]), city_key(s.get("city")))
+                      for s in by_id.values()}
     for tm_file in (TM_FILE, "tm_tours.json"):
         tm_path = DATA / tm_file
         if not tm_path.exists():
             continue
-        curated_countries = {country_norm(s.get("country")) for s in by_id.values()
-                             if "ticketmaster" not in (s.get("source") or "")}
-        seen_show_city = {(group_key(s["title"]), city_key(s.get("city")))
-                          for s in by_id.values()}
         tm = json.loads(tm_path.read_text(encoding="utf-8")).get("shows", [])
         kept = 0
         for s in tm:
-            cn = country_norm(s.get("country"))
             city = city_key(s.get("city"))
             gk = group_key(s["title"])
-            covered = False
-            if cn in curated_countries:
-                only = CITY_ONLY_COVERED.get(cn)
-                covered = (only is None) or (city in only)
-            if covered or (gk, city) in seen_show_city:
-                # don't add a duplicate marker — but keep TM as an extra
-                # purchase-link for the existing record (大型售票平台並列)
+            if (gk, city) in seen_show_city:
                 u = s.get("attraction_url") or s.get("ticket_url")
                 if u:
                     tm_enrich.setdefault((gk, city), u)
                 continue
             by_id[s["id"]] = s
+            seen_show_city.add((gk, city))  # also dedup TM-vs-TM across the two files
             kept += 1
-        print(f"  {tm_file}: +{kept} gap-fill")
+        print(f"  {tm_file}: +{kept}")
         sources.append({"file": tm_file, "count": kept})
 
     # shiki.jp is authoritative for Japan — drop other sources' Japan records of

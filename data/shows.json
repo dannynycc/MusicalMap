@@ -1,9 +1,9 @@
 {
   "meta": {
     "source": "merged",
-    "generated_at": "2026-06-12 05:03 UTC",
-    "total": 1084,
-    "verified": 1084,
+    "generated_at": "2026-06-12 05:33 UTC",
+    "total": 1125,
+    "verified": 1125,
     "unverified": 0,
     "sources": [
       {
@@ -126,11 +126,11 @@
       },
       {
         "file": "ticketmaster.json",
-        "count": 168
+        "count": 203
       },
       {
         "file": "tm_tours.json",
-        "count": 191
+        "count": 195
       }
     ]
   },
@@ -17170,6 +17170,544 @@
       "link_kind": "ticketing"
     },
     {
+      "id": "tm-anastasia-sydney-lyric",
+      "title": "Anastasia",
+      "type": "tour",
+      "venue": "Sydney Lyric",
+      "city": "Pyrmont",
+      "country": "Australia",
+      "lat": -33.868828,
+      "lng": 151.19572,
+      "start_date": "2026-04-07",
+      "end_date": "2026-07-19",
+      "ticket_url": "https://www.ticketmaster.com.au/anastasia-the-broadway-musical-australia-pyrmont-12-06-2026/event/130062D3DB1344D9",
+      "attraction_url": "https://www.ticketmaster.com/anastasia-the-broadway-musical-australia-tickets/artist/3606699",
+      "ticket_links": [
+        {
+          "country": "AU",
+          "url": "https://www.ticketmaster.com.au/anastasia-the-broadway-musical-australia-pyrmont-12-06-2026/event/130062D3DB1344D9"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/186/914bfec0-450f-48a2-a15f-411e53c0b186_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster+override",
+      "onsale_only": false,
+      "group": "anastasia",
+      "link_kind": "ticketing"
+    },
+    {
+      "id": "tm-the-lion-king-capitol-theatre-sydney",
+      "title": "The Lion King",
+      "type": "tour",
+      "venue": "Capitol Theatre, Sydney",
+      "city": "Haymarket",
+      "country": "Australia",
+      "lat": -33.87962,
+      "lng": 151.206329,
+      "start_date": "2026-04-18",
+      "end_date": "2026-10-04",
+      "ticket_url": "https://www.ticketmaster.com.au/disney-presents-the-lion-king-australia-haymarket-12-06-2026/event/13006329AFBD4056",
+      "attraction_url": "https://www.ticketmaster.com/disney-presents-the-lion-king-australia-tickets/artist/21441",
+      "ticket_links": [
+        {
+          "country": "AU",
+          "url": "https://www.ticketmaster.com.au/disney-presents-the-lion-king-australia-haymarket-12-06-2026/event/13006329AFBD4056"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/f5a/61bb08ba-8048-4037-a2aa-ea18cc5b6f5a_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster+override",
+      "onsale_only": false,
+      "group": "lion king",
+      "link_kind": "ticketing"
+    },
+    {
+      "id": "tm-hair-the-tribal-love-rock-musical-theatre-royal-sydney",
+      "title": "Hair - The Tribal Love-Rock Musical",
+      "type": "tour",
+      "venue": "Theatre Royal Sydney",
+      "city": "Sydney",
+      "country": "Australia",
+      "lat": -33.868934,
+      "lng": 151.208726,
+      "start_date": "2026-06-06",
+      "end_date": "2026-07-11",
+      "ticket_url": "https://www.ticketmaster.com.au/hair-the-tribal-loverock-musical-opening-sydney-12-06-2026/event/13006470BF7C4FAC",
+      "attraction_url": "https://www.ticketmaster.com/hair-tickets/artist/2844537",
+      "ticket_links": [
+        {
+          "country": "AU",
+          "url": "https://www.ticketmaster.com.au/hair-the-tribal-loverock-musical-opening-sydney-12-06-2026/event/13006470BF7C4FAC"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/832/2a584a19-d64b-4982-8a36-76f308ce3832_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster+override",
+      "onsale_only": false,
+      "group": "hair",
+      "link_kind": "ticketing"
+    },
+    {
+      "id": "tm-tootsie-teatro-at-the-italian-forum",
+      "title": "Tootsie",
+      "type": "tour",
+      "venue": "Teatro - At The Italian Forum",
+      "city": "Leichhardt",
+      "country": "Australia",
+      "lat": -33.886956,
+      "lng": 151.158349,
+      "start_date": "2026-05-26",
+      "end_date": "2026-06-21",
+      "ticket_url": "https://www.ticketmaster.com.au/tootsie-leichhardt-12-06-2026/event/2500644B9B2D3FF8",
+      "attraction_url": "https://www.ticketmaster.com/tootsie-touring-tickets/artist/2728443",
+      "ticket_links": [
+        {
+          "country": "AU",
+          "url": "https://www.ticketmaster.com.au/tootsie-leichhardt-12-06-2026/event/2500644B9B2D3FF8"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/a8e/11ef0f18-b853-405e-b03a-7b14e9664a8e_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster+override",
+      "onsale_only": false,
+      "group": "tootsie",
+      "link_kind": "ticketing"
+    },
+    {
+      "id": "tm-monty-python-s-spamalot-planet-royale",
+      "title": "Monty Python's Spamalot",
+      "type": "tour",
+      "venue": "Planet Royale",
+      "city": "Northbridge",
+      "country": "Australia",
+      "lat": -31.948379,
+      "lng": 115.856676,
+      "start_date": "2026-05-20",
+      "end_date": "2026-06-13",
+      "ticket_url": "https://www.ticketmaster.com.au/monty-pythons-spamalot-northbridge-12-06-2026/event/25006466A5AF7373",
+      "attraction_url": "https://www.ticketmaster.com/monty-pythons-spamalot-tickets/artist/927819",
+      "ticket_links": [
+        {
+          "country": "AU",
+          "url": "https://www.ticketmaster.com.au/monty-pythons-spamalot-northbridge-12-06-2026/event/25006466A5AF7373"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/839/92b58f5d-cacd-43df-9ee2-8bcc4e014839_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster+override",
+      "onsale_only": false,
+      "group": "spamalot",
+      "link_kind": "ticketing"
+    },
+    {
+      "id": "tm-mj-the-michael-jackson-musical-crown-theatre-perth",
+      "title": "MJ The Michael Jackson Musical",
+      "type": "tour",
+      "venue": "Crown Theatre Perth",
+      "city": "Burswood",
+      "country": "Australia",
+      "lat": -31.959722,
+      "lng": 115.895276,
+      "start_date": "2026-06-06",
+      "end_date": "2026-07-19",
+      "ticket_url": "https://www.ticketmaster.com.au/mj-the-michael-jackson-musical-burswood-12-06-2026/event/25006347D48759B1",
+      "attraction_url": "https://www.ticketmaster.com/mj-the-musical-tickets/artist/3019973",
+      "ticket_links": [
+        {
+          "label": "官方網站",
+          "url": "https://mjthemusical.com.au/",
+          "kind": "official"
+        },
+        {
+          "country": "AU",
+          "url": "https://www.ticketmaster.com.au/mj-the-michael-jackson-musical-burswood-12-06-2026/event/25006347D48759B1"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/05b/618e346c-bfb5-4f86-bd99-f5050477f05b_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster+override",
+      "onsale_only": false,
+      "group": "mj",
+      "link_kind": "ticketing"
+    },
+    {
+      "id": "tm-waitress-sydney-lyric",
+      "title": "Waitress",
+      "type": "tour",
+      "venue": "Sydney Lyric",
+      "city": "Pyrmont",
+      "country": "Australia",
+      "lat": -33.868828,
+      "lng": 151.19572,
+      "start_date": "2026-08-01",
+      "end_date": "2026-10-04",
+      "ticket_url": "https://www.ticketmaster.com.au/waitress-australia-pyrmont-01-08-2026/event/1300635691326DDF",
+      "attraction_url": "https://www.ticketmaster.com/waitress-australia-tickets/artist/2524457",
+      "ticket_links": [
+        {
+          "country": "AU",
+          "url": "https://www.ticketmaster.com.au/waitress-australia-pyrmont-01-08-2026/event/1300635691326DDF"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/9f3/94de8faf-f9d0-442d-9f24-51f6e194d9f3_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true,
+      "group": "waitress",
+      "link_kind": "ticketing"
+    },
+    {
+      "id": "tm-scotch-college-hadestown-thebarton-theatre",
+      "title": "Scotch College - Hadestown",
+      "type": "tour",
+      "venue": "Thebarton Theatre",
+      "city": "Torrensville",
+      "country": "Australia",
+      "lat": -34.923168,
+      "lng": 138.568989,
+      "start_date": "2026-08-06",
+      "end_date": "2026-08-09",
+      "ticket_url": "https://www.ticketmaster.com.au/scotch-college-hadestown-torrensville-06-08-2026/event/130064BDA84D6799",
+      "attraction_url": "https://www.ticketmaster.com/scotch-college-hadestown-teen-edition-tickets/artist/4477599",
+      "ticket_links": [
+        {
+          "country": "AU",
+          "url": "https://www.ticketmaster.com.au/scotch-college-hadestown-torrensville-06-08-2026/event/130064BDA84D6799"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/0c6/a5d026d4-0eff-4df4-868e-de03d92e00c6_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true,
+      "group": "scotch college hadestown",
+      "link_kind": "ticketing"
+    },
+    {
+      "id": "tm-beetlejuice-crown-theatre-perth",
+      "title": "Beetlejuice",
+      "type": "tour",
+      "venue": "Crown Theatre Perth",
+      "city": "Burswood",
+      "country": "Australia",
+      "lat": -31.959722,
+      "lng": 115.895276,
+      "start_date": "2026-08-16",
+      "end_date": "2026-09-20",
+      "ticket_url": "https://www.ticketmaster.com.au/beetlejuice-the-musical-preview-burswood-16-08-2026/event/25006445EB5057AC",
+      "attraction_url": "https://www.ticketmaster.com/beetlejuice-touring-tickets/artist/2867362",
+      "ticket_links": [
+        {
+          "label": "官方網站",
+          "url": "https://beetlejuicethemusical.com.au/",
+          "kind": "official"
+        },
+        {
+          "country": "AU",
+          "url": "https://www.ticketmaster.com.au/beetlejuice-the-musical-preview-burswood-16-08-2026/event/25006445EB5057AC"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/9c5/75884fd6-d274-43d9-858b-637dbff999c5_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true,
+      "group": "beetlejuice",
+      "link_kind": "ticketing"
+    },
+    {
+      "id": "tm-heathers-roslyn-packer-theatre-walsh-bay",
+      "title": "Heathers",
+      "type": "tour",
+      "venue": "Roslyn Packer Theatre Walsh Bay",
+      "city": "Millers Point",
+      "country": "Australia",
+      "lat": -33.857349,
+      "lng": 151.204544,
+      "start_date": "2026-09-01",
+      "end_date": "2026-09-19",
+      "ticket_url": "https://www.ticketmaster.com.au/heathers-the-musical-millers-point-01-09-2026/event/1300634699F15FA8",
+      "attraction_url": "https://www.ticketmaster.com/heathers-the-musical-tickets/artist/2075066",
+      "ticket_links": [
+        {
+          "country": "AU",
+          "url": "https://www.ticketmaster.com.au/heathers-the-musical-millers-point-01-09-2026/event/1300634699F15FA8"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/091/8e15d46e-dc4f-4f22-9259-f657e431e091_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true,
+      "group": "heathers",
+      "link_kind": "ticketing"
+    },
+    {
+      "id": "tm-menopause-athenaeum-theatre-one",
+      "title": "Menopause",
+      "type": "tour",
+      "venue": "Athenaeum Theatre One",
+      "city": "Melbourne",
+      "country": "Australia",
+      "lat": -37.815216,
+      "lng": 144.967449,
+      "start_date": "2026-09-02",
+      "end_date": "2026-09-06",
+      "ticket_url": "https://www.ticketmaster.com.au/menopause-the-musical-melbourne-02-09-2026/event/1300648A8DD33A7D",
+      "attraction_url": "https://www.ticketmaster.com/menopause-the-musical-tickets/artist/874566",
+      "ticket_links": [
+        {
+          "country": "AU",
+          "url": "https://www.ticketmaster.com.au/menopause-the-musical-melbourne-02-09-2026/event/1300648A8DD33A7D"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/bd7/646dfcae-ca6f-43c5-a26d-2f758a881bd7_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true,
+      "group": "menopause",
+      "link_kind": "ticketing"
+    },
+    {
+      "id": "tm-my-fair-lady-sydney-opera-house-joan-sutherland-theatre",
+      "title": "My Fair Lady",
+      "type": "tour",
+      "venue": "Sydney Opera House- Joan Sutherland Theatre",
+      "city": "Sydney",
+      "country": "Australia",
+      "lat": -33.869579,
+      "lng": 151.210004,
+      "start_date": "2026-09-12",
+      "end_date": "2026-10-30",
+      "ticket_url": "https://www.ticketmaster.com.au/my-fair-lady-uk-sydney-12-09-2026/event/1300632BB0593B56",
+      "attraction_url": "https://www.ticketmaster.com/my-fair-lady-australia-tickets/artist/3847839",
+      "ticket_links": [
+        {
+          "country": "AU",
+          "url": "https://www.ticketmaster.com.au/my-fair-lady-uk-sydney-12-09-2026/event/1300632BB0593B56"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/d50/af1583bd-8381-4500-8c8d-267e19695d50_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true,
+      "group": "my fair lady",
+      "link_kind": "ticketing"
+    },
+    {
+      "id": "tm-carousel-foundry-theatre",
+      "title": "Carousel",
+      "type": "tour",
+      "venue": "Foundry Theatre",
+      "city": "Pyrmont",
+      "country": "Australia",
+      "lat": -33.868828,
+      "lng": 151.19572,
+      "start_date": "2026-10-15",
+      "end_date": "2026-10-17",
+      "ticket_url": "https://www.ticketmaster.com.au/carousel-pyrmont-15-10-2026/event/130064ACD9F7918A",
+      "attraction_url": "https://www.ticketmaster.com/carousel-tickets/artist/896810",
+      "ticket_links": [
+        {
+          "country": "AU",
+          "url": "https://www.ticketmaster.com.au/carousel-pyrmont-15-10-2026/event/130064ACD9F7918A"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/68e/5bd1d6d9-a649-490d-a4fa-b434a02e768e_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true,
+      "group": "carousel",
+      "link_kind": "ticketing"
+    },
+    {
+      "id": "tm-the-book-of-mormon-crown-theatre-perth",
+      "title": "The Book of Mormon",
+      "type": "tour",
+      "venue": "Crown Theatre Perth",
+      "city": "Burswood",
+      "country": "Australia",
+      "lat": -31.959722,
+      "lng": 115.895276,
+      "start_date": "2026-10-20",
+      "end_date": "2026-11-08",
+      "ticket_url": "https://www.ticketmaster.com.au/the-book-of-mormon-australia-burswood-20-10-2026/event/2500649BAC882B04",
+      "attraction_url": "https://www.ticketmaster.com/the-book-of-mormon-australia-tickets/artist/2392520",
+      "ticket_links": [
+        {
+          "label": "官方網站",
+          "url": "https://thebookofmormonmusical.com/",
+          "kind": "official"
+        },
+        {
+          "country": "AU",
+          "url": "https://www.ticketmaster.com.au/the-book-of-mormon-australia-burswood-20-10-2026/event/2500649BAC882B04"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/d1f/14a7f89b-ecdf-4bce-ac5e-f00d19a7fd1f_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true,
+      "group": "book of mormon",
+      "link_kind": "ticketing"
+    },
+    {
+      "id": "tm-a-beautiful-noise-sydney-lyric",
+      "title": "A Beautiful Noise",
+      "type": "tour",
+      "venue": "Sydney Lyric",
+      "city": "Pyrmont",
+      "country": "Australia",
+      "lat": -33.868828,
+      "lng": 151.19572,
+      "start_date": "2026-11-14",
+      "end_date": "2026-12-20",
+      "ticket_url": "https://www.ticketmaster.com.au/a-beautiful-noise-pyrmont-14-11-2026/event/130064BD999046C8",
+      "attraction_url": "https://www.ticketmaster.com/a-beautiful-noise-tickets/artist/3110399",
+      "ticket_links": [
+        {
+          "country": "AU",
+          "url": "https://www.ticketmaster.com.au/a-beautiful-noise-pyrmont-14-11-2026/event/130064BD999046C8"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/106/4a4a8269-101b-4369-9622-3260520ed106_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true,
+      "group": "a beautiful noise",
+      "link_kind": "ticketing"
+    },
+    {
+      "id": "tm-whispering-jack-the-john-farnham-musical-roslyn-packer-theatre-walsh-bay",
+      "title": "Whispering Jack: The John Farnham Musical",
+      "type": "tour",
+      "venue": "Roslyn Packer Theatre Walsh Bay",
+      "city": "Millers Point",
+      "country": "Australia",
+      "lat": -33.857349,
+      "lng": 151.204544,
+      "start_date": "2026-11-15",
+      "end_date": "2026-12-27",
+      "ticket_url": "https://www.ticketmaster.com.au/whispering-jack-the-john-farnham-musical-millers-point-15-11-2026/event/1300643ABE2F585F",
+      "attraction_url": "https://www.ticketmaster.com/whispering-jack-the-john-farnham-musical-tickets/artist/4177597",
+      "ticket_links": [
+        {
+          "country": "AU",
+          "url": "https://www.ticketmaster.com.au/whispering-jack-the-john-farnham-musical-millers-point-15-11-2026/event/1300643ABE2F585F"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/07b/0ba4fbb7-61fa-4289-87ef-994863a2107b_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true,
+      "group": "whispering jack",
+      "link_kind": "ticketing"
+    },
+    {
+      "id": "tm-beetlejuice-capitol-theatre-sydney",
+      "title": "Beetlejuice",
+      "type": "tour",
+      "venue": "Capitol Theatre, Sydney",
+      "city": "Haymarket",
+      "country": "Australia",
+      "lat": -33.87962,
+      "lng": 151.206329,
+      "start_date": "2026-11-21",
+      "end_date": "2027-01-10",
+      "ticket_url": "https://www.ticketmaster.com.au/beetlejuice-touring-haymarket-21-11-2026/event/130064638A2C2089",
+      "attraction_url": "https://www.ticketmaster.com/beetlejuice-touring-tickets/artist/2867362",
+      "ticket_links": [
+        {
+          "label": "官方網站",
+          "url": "https://beetlejuicethemusical.com.au/",
+          "kind": "official"
+        },
+        {
+          "country": "AU",
+          "url": "https://www.ticketmaster.com.au/beetlejuice-touring-haymarket-21-11-2026/event/130064638A2C2089"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/9c5/75884fd6-d274-43d9-858b-637dbff999c5_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true,
+      "group": "beetlejuice",
+      "link_kind": "ticketing"
+    },
+    {
+      "id": "tm-a-very-musical-theatre-christmas-planet-royale",
+      "title": "A Very Musical Theatre Christmas",
+      "type": "tour",
+      "venue": "Planet Royale",
+      "city": "Northbridge",
+      "country": "Australia",
+      "lat": -31.948379,
+      "lng": 115.856676,
+      "start_date": "2026-12-18",
+      "end_date": "2026-12-19",
+      "ticket_url": "https://www.ticketmaster.com.au/a-very-musical-theatre-christmas-northbridge-18-12-2026/event/250064C1C86D3750",
+      "attraction_url": "https://www.ticketmaster.com/a-very-musical-theatre-christmas-tickets/artist/4481369",
+      "ticket_links": [
+        {
+          "country": "AU",
+          "url": "https://www.ticketmaster.com.au/a-very-musical-theatre-christmas-northbridge-18-12-2026/event/250064C1C86D3750"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/e64/d01a5d70-770b-4e1d-a9e7-c4cf7c61be64_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true,
+      "group": "a very musical theatre christmas",
+      "link_kind": "ticketing"
+    },
+    {
+      "id": "tm-moulin-rouge-sydney-lyric",
+      "title": "Moulin Rouge!",
+      "type": "tour",
+      "venue": "Sydney Lyric",
+      "city": "Pyrmont",
+      "country": "Australia",
+      "lat": -33.868828,
+      "lng": 151.19572,
+      "start_date": "2027-03-09",
+      "end_date": "2027-04-04",
+      "ticket_url": "https://www.ticketmaster.com.au/moulin-rouge-the-musical-australia-pyrmont-09-03-2027/event/1300644C7EAE399B",
+      "attraction_url": "https://www.ticketmaster.com/moulin-rouge-the-musical-australia-tickets/artist/2769840",
+      "ticket_links": [
+        {
+          "label": "官方網站",
+          "url": "https://moulinrougemusical.com/",
+          "kind": "official"
+        },
+        {
+          "country": "AU",
+          "url": "https://www.ticketmaster.com.au/moulin-rouge-the-musical-australia-pyrmont-09-03-2027/event/1300644C7EAE399B"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/f74/0f9607c5-30ce-4e9d-a04a-6377ef756f74_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true,
+      "group": "moulin rouge",
+      "link_kind": "ticketing"
+    },
+    {
       "id": "tm-tera-te-auahi-sir-howard-morrison-centre",
       "title": "Tera Te Auahi",
       "type": "tour",
@@ -17521,6 +18059,114 @@
       "link_kind": "ticketing"
     },
     {
+      "id": "tm-mamma-mia-the-party-the-o2",
+      "title": "Mamma Mia! The Party",
+      "type": "tour",
+      "venue": "The O2",
+      "city": "London",
+      "country": "Great Britain",
+      "lat": 51.501581,
+      "lng": 0.005519,
+      "start_date": "2026-06-12",
+      "end_date": "2026-07-16",
+      "ticket_url": "https://theatre.ticketmaster.co.uk/book/1GY5A-mamma-mia-the-party/#perf=1GY5A-144&date=2026-06-12&time=6.30PM",
+      "attraction_url": "https://www.ticketmaster.com/mamma-mia-the-party-tickets/artist/2141740",
+      "ticket_links": [
+        {
+          "country": "GB",
+          "url": "https://theatre.ticketmaster.co.uk/book/1GY5A-mamma-mia-the-party/#perf=1GY5A-144&date=2026-06-12&time=6.30PM"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/dd1/8cfa7d0c-241e-41b8-a131-75f4813bfdd1_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true,
+      "group": "mamma mia the party",
+      "link_kind": "ticketing"
+    },
+    {
+      "id": "tm-cabaret-playhouse-theatre",
+      "title": "Cabaret",
+      "type": "tour",
+      "venue": "Playhouse Theatre",
+      "city": "London",
+      "country": "Great Britain",
+      "lat": 51.506975,
+      "lng": -0.123719,
+      "start_date": "2026-06-12",
+      "end_date": "2026-07-16",
+      "ticket_url": "https://www.ticketmaster.co.uk/cabaret-london-12-06-2026/event/ZKr9uZKbZL4Ze310LZevO",
+      "attraction_url": "https://www.ticketmaster.co.uk/cabaret-tickets/artist/844059",
+      "ticket_links": [
+        {
+          "country": "GB",
+          "url": "https://www.ticketmaster.co.uk/cabaret-london-12-06-2026/event/ZKr9uZKbZL4Ze310LZevO"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/6ce/18980152-24f7-4447-b454-dfa98314f6ce_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true,
+      "group": "cabaret",
+      "link_kind": "ticketing"
+    },
+    {
+      "id": "tm-titanique-criterion-theatre",
+      "title": "Titanique",
+      "type": "tour",
+      "venue": "Criterion Theatre",
+      "city": "London",
+      "country": "Great Britain",
+      "lat": 51.509707,
+      "lng": -0.133724,
+      "start_date": "2026-06-12",
+      "end_date": "2026-07-15",
+      "ticket_url": "https://www.ticketmaster.co.uk/titanique-london-12-06-2026/event/ZKr9uZKbZL4ZeorGbZeFx",
+      "attraction_url": "https://www.ticketmaster.co.uk/titanique-tickets/artist/5482959",
+      "ticket_links": [
+        {
+          "country": "GB",
+          "url": "https://www.ticketmaster.co.uk/titanique-london-12-06-2026/event/ZKr9uZKbZL4ZeorGbZeFx"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/1f2/3812eff6-4904-4d2b-a9a7-32df4bee31f2_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true,
+      "group": "titanique",
+      "link_kind": "ticketing"
+    },
+    {
+      "id": "tm-shantify-underbelly-boulevard",
+      "title": "Shantify",
+      "type": "tour",
+      "venue": "Underbelly Boulevard",
+      "city": "London",
+      "country": "Great Britain",
+      "lat": 51.5126,
+      "lng": -0.13409,
+      "start_date": "2026-06-12",
+      "end_date": "2026-06-14",
+      "ticket_url": "https://theatre.ticketmaster.co.uk/book/1HWAL-shantify/#perf=1HWAL-D&date=2026-06-12&time=8.00PM",
+      "attraction_url": "https://www.ticketmaster.com/shantify-tickets/artist/4385644",
+      "ticket_links": [
+        {
+          "country": "GB",
+          "url": "https://theatre.ticketmaster.co.uk/book/1HWAL-shantify/#perf=1HWAL-D&date=2026-06-12&time=8.00PM"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/c/07d/fda8c807-42eb-4b81-9f16-f3a8367e107d_106371_TABLET_LANDSCAPE_LARGE_16_9.jpg",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true,
+      "group": "shantify",
+      "link_kind": "ticketing"
+    },
+    {
       "id": "tm-fame-alhambra-theatre",
       "title": "Fame",
       "type": "tour",
@@ -17629,6 +18275,33 @@
       "link_kind": "ticketing"
     },
     {
+      "id": "tm-shanay-holmes-live-in-concert-cadogan-hall",
+      "title": "Shanay Holmes - Live In Concert!",
+      "type": "tour",
+      "venue": "Cadogan Hall",
+      "city": "London",
+      "country": "Great Britain",
+      "lat": 51.493673,
+      "lng": -0.157586,
+      "start_date": "2026-07-11",
+      "end_date": "2026-07-11",
+      "ticket_url": "https://theatre.ticketmaster.co.uk/book/1J2BW-shanay-holmes/#perf=1J2BW-2&date=2026-07-11&time=7.30PM",
+      "attraction_url": "https://www.ticketmaster.com/shanay-holmes-tickets/artist/4429009",
+      "ticket_links": [
+        {
+          "country": "GB",
+          "url": "https://theatre.ticketmaster.co.uk/book/1J2BW-shanay-holmes/#perf=1J2BW-2&date=2026-07-11&time=7.30PM"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/3fa/0da16819-2dd1-45d8-9e19-fd4942ccc3fa_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true,
+      "group": "shanay holmes live in concert",
+      "link_kind": "ticketing"
+    },
+    {
       "id": "tm-operation-mincemeat-a-new-musical-royal-and-derngate",
       "title": "Operation Mincemeat: A New Musical",
       "type": "tour",
@@ -17653,6 +18326,60 @@
       "source": "ticketmaster",
       "onsale_only": true,
       "group": "operation mincemeat",
+      "link_kind": "ticketing"
+    },
+    {
+      "id": "tm-laura-benanti-underbelly-boulevard",
+      "title": "Laura Benanti",
+      "type": "tour",
+      "venue": "Underbelly Boulevard",
+      "city": "London",
+      "country": "Great Britain",
+      "lat": 51.5126,
+      "lng": -0.13409,
+      "start_date": "2026-07-14",
+      "end_date": "2026-07-16",
+      "ticket_url": "https://theatre.ticketmaster.co.uk/book/1HX9G-laura-benanti-nobody-cares/#perf=1HX9G-2&date=2026-07-14&time=7.00PM",
+      "attraction_url": "https://www.ticketmaster.com/laura-benanti-tickets/artist/1555743",
+      "ticket_links": [
+        {
+          "country": "GB",
+          "url": "https://theatre.ticketmaster.co.uk/book/1HX9G-laura-benanti-nobody-cares/#perf=1HX9G-2&date=2026-07-14&time=7.00PM"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/e96/9d469c54-aabe-4865-a79d-d51ce080be96_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true,
+      "group": "laura benanti",
+      "link_kind": "ticketing"
+    },
+    {
+      "id": "tm-trainspotting-theatre-royal-haymarket",
+      "title": "Trainspotting",
+      "type": "tour",
+      "venue": "Theatre Royal Haymarket",
+      "city": "London",
+      "country": "Great Britain",
+      "lat": 51.50884,
+      "lng": -0.13128,
+      "start_date": "2026-07-15",
+      "end_date": "2026-07-16",
+      "ticket_url": "https://theatre.ticketmaster.co.uk/book/1HWME-trainspotting-the-musical/#perf=1HWME-2&date=2026-07-15&time=7.30PM",
+      "attraction_url": "https://www.ticketmaster.com/trainspotting-the-musical-tickets/artist/4308314",
+      "ticket_links": [
+        {
+          "country": "GB",
+          "url": "https://theatre.ticketmaster.co.uk/book/1HWME-trainspotting-the-musical/#perf=1HWME-2&date=2026-07-15&time=7.30PM"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/39c/5f0a8de7-00b5-4a6a-bbb8-fed32018539c_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true,
+      "group": "trainspotting",
       "link_kind": "ticketing"
     },
     {
@@ -20030,6 +20757,33 @@
       "link_kind": "ticketing"
     },
     {
+      "id": "tm-mexodus-daryl-roth-theatre",
+      "title": "Mexodus",
+      "type": "tour",
+      "venue": "Daryl Roth Theatre",
+      "city": "New York",
+      "country": "United States Of America",
+      "lat": 40.735318,
+      "lng": -73.989443,
+      "start_date": "2026-06-11",
+      "end_date": "2026-06-14",
+      "ticket_url": "https://www.ticketmaster.com/mexodus-the-musical-new-york-new-york-06-11-2026/event/Z1r9uZruZqGZ17Jbr9",
+      "attraction_url": "https://www.ticketmaster.com/mexodus-tickets/artist/3806999",
+      "ticket_links": [
+        {
+          "country": "US",
+          "url": "https://www.ticketmaster.com/mexodus-the-musical-new-york-new-york-06-11-2026/event/Z1r9uZruZqGZ17Jbr9"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/18f/67c326f8-ca7a-417b-82f9-b123c61a118f_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true,
+      "group": "mexodus",
+      "link_kind": "ticketing"
+    },
+    {
       "id": "tm-menopause-harrah-s-cabaret-at-harrah-s-las-vegas",
       "title": "Menopause",
       "type": "tour",
@@ -20081,6 +20835,141 @@
       "source": "ticketmaster",
       "onsale_only": true,
       "group": "disneys aladdin kids",
+      "link_kind": "ticketing"
+    },
+    {
+      "id": "tm-six-new-york-ny-lena-horne-theatre",
+      "title": "Six (New York, NY)",
+      "type": "tour",
+      "venue": "Lena Horne Theatre",
+      "city": "New York",
+      "country": "United States Of America",
+      "lat": 40.760056,
+      "lng": -73.986816,
+      "start_date": "2026-06-11",
+      "end_date": "2026-06-21",
+      "ticket_url": "https://www.ticketmaster.com/six-new-york-ny-new-york-new-york-06-11-2026/event/Z1r9uZrrZbpZ1AvO-7e",
+      "attraction_url": "https://www.ticketmaster.com/six-new-york-ny-tickets/artist/2677195",
+      "ticket_links": [
+        {
+          "country": "US",
+          "url": "https://www.ticketmaster.com/six-new-york-ny-new-york-new-york-06-11-2026/event/Z1r9uZrrZbpZ1AvO-7e"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/26a/ae570422-5c6d-401a-8dae-8545b131126a_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true,
+      "group": "six new york ny",
+      "link_kind": "ticketing"
+    },
+    {
+      "id": "tm-wicked-ny-gershwin-theatre",
+      "title": "Wicked (NY)",
+      "type": "tour",
+      "venue": "Gershwin Theatre",
+      "city": "New York",
+      "country": "United States Of America",
+      "lat": 40.762542,
+      "lng": -73.985027,
+      "start_date": "2026-06-11",
+      "end_date": "2026-06-21",
+      "ticket_url": "https://www.ticketmaster.com/wicked-ny-new-york-new-york-06-11-2026/event/Z1r9uZrrZbpZ1AvpKFp",
+      "attraction_url": "https://www.ticketmaster.com/wicked-ny-tickets/artist/965961",
+      "ticket_links": [
+        {
+          "country": "US",
+          "url": "https://www.ticketmaster.com/wicked-ny-new-york-new-york-06-11-2026/event/Z1r9uZrrZbpZ1AvpKFp"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/963/bdfc3e57-f001-4729-9424-53d9ad83c963_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true,
+      "group": "wicked ny",
+      "link_kind": "ticketing"
+    },
+    {
+      "id": "tm-hamilton-ny-richard-rodgers-theatre",
+      "title": "Hamilton (NY)",
+      "type": "tour",
+      "venue": "Richard Rodgers Theatre",
+      "city": "New York",
+      "country": "United States Of America",
+      "lat": 40.759204,
+      "lng": -73.986763,
+      "start_date": "2026-06-11",
+      "end_date": "2026-06-21",
+      "ticket_url": "https://www.ticketmaster.com/hamilton-ny-new-york-new-york-06-11-2026/event/Z1r9uZrrZbpZ1AvqdA7",
+      "attraction_url": "https://www.ticketmaster.com/hamilton-ny-tickets/artist/2095830",
+      "ticket_links": [
+        {
+          "country": "US",
+          "url": "https://www.ticketmaster.com/hamilton-ny-new-york-new-york-06-11-2026/event/Z1r9uZrrZbpZ1AvqdA7"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/00f/b9aebee0-d1cb-4a5c-8e0e-0ca03fd4d00f_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true,
+      "group": "hamilton ny",
+      "link_kind": "ticketing"
+    },
+    {
+      "id": "tm-the-lion-king-new-york-ny-minskoff-theatre",
+      "title": "The Lion King (New York, NY)",
+      "type": "tour",
+      "venue": "Minskoff Theatre",
+      "city": "New York",
+      "country": "United States Of America",
+      "lat": 40.757986,
+      "lng": -73.985772,
+      "start_date": "2026-06-11",
+      "end_date": "2026-06-21",
+      "ticket_url": "https://www.ticketmaster.com/the-lion-king-new-york-ny-new-york-new-york-06-11-2026/event/Z1r9uZrrZbpZ1Avr9ZY",
+      "attraction_url": "https://www.ticketmaster.com/the-lion-king-new-york-ny-tickets/artist/1039581",
+      "ticket_links": [
+        {
+          "country": "US",
+          "url": "https://www.ticketmaster.com/the-lion-king-new-york-ny-new-york-new-york-06-11-2026/event/Z1r9uZrrZbpZ1Avr9ZY"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/7ae/48ba24c8-7e1c-4830-bff1-ad8451b847ae_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true,
+      "group": "lion king new york ny",
+      "link_kind": "ticketing"
+    },
+    {
+      "id": "tm-cats-the-jellicle-ball-broadhurst-theatre",
+      "title": "CATS: The Jellicle Ball",
+      "type": "tour",
+      "venue": "Broadhurst Theatre",
+      "city": "New York",
+      "country": "United States Of America",
+      "lat": 40.758093,
+      "lng": -73.987608,
+      "start_date": "2026-06-11",
+      "end_date": "2026-06-21",
+      "ticket_url": "https://www.ticketmaster.com/cats-the-jellicle-ball-new-york-new-york-06-11-2026/event/Z1r9uZruZqGZ17JeFg",
+      "attraction_url": "https://www.ticketmaster.com/cats-the-jellicle-ball-ny-tickets/artist/2202310",
+      "ticket_links": [
+        {
+          "country": "US",
+          "url": "https://www.ticketmaster.com/cats-the-jellicle-ball-new-york-new-york-06-11-2026/event/Z1r9uZruZqGZ17JeFg"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/ff0/da164784-dc07-4854-9fec-3fdc1f4e8ff0_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true,
+      "group": "cats the jellicle ball",
       "link_kind": "ticketing"
     },
     {
@@ -20386,6 +21275,33 @@
       "link_kind": "ticketing"
     },
     {
+      "id": "tm-phantom-of-the-opera-entry-requires-a-valid-photo-id-all-guests-must-be-13-any-guest-under-16-must-be-accompanied-by-an-adult-masquerade-nyc",
+      "title": "Phantom Of The Opera (Entry requires a valid photo ID. All guests must be 13+. Any guest under 16 must be accompanied by an adult)",
+      "type": "tour",
+      "venue": "Masquerade NYC",
+      "city": "New York",
+      "country": "United States Of America",
+      "lat": 40.765202,
+      "lng": -73.985298,
+      "start_date": "2026-06-12",
+      "end_date": "2026-06-21",
+      "ticket_url": "https://www.ticketmaster.com/event/Z7r9jZ1A7xapv",
+      "attraction_url": "https://www.ticketmaster.com/the-phantom-of-the-opera-touring-tickets/artist/1116096",
+      "ticket_links": [
+        {
+          "country": "US",
+          "url": "https://www.ticketmaster.com/event/Z7r9jZ1A7xapv"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/1c8/4c6416b3-a0d2-41ac-a495-e40cae8581c8_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true,
+      "group": "phantom of the opera entry requires a valid photo id all guests must be 13 any guest under 16 must be accompanied by an adult",
+      "link_kind": "ticketing"
+    },
+    {
       "id": "tm-west-side-story-paper-mill-playhouse",
       "title": "West Side Story",
       "type": "tour",
@@ -20491,6 +21407,33 @@
       "source": "ticketmaster",
       "onsale_only": true,
       "group": "west side story",
+      "link_kind": "ticketing"
+    },
+    {
+      "id": "tm-rock-never-dies-red-carpet-premeire-hard-rock-cafe-nyc",
+      "title": "Rock Never Dies: RED CARPET PREMEIRE",
+      "type": "tour",
+      "venue": "Hard Rock Cafe - NYC",
+      "city": "New York",
+      "country": "United States Of America",
+      "lat": 40.757141,
+      "lng": -73.986351,
+      "start_date": "2026-06-12",
+      "end_date": "2026-06-12",
+      "ticket_url": "https://www.ticketweb.com/event/rock-never-dies-red-carpet-hard-rock-cafe-tickets/14861743",
+      "attraction_url": "https://www.ticketmaster.com/rock-never-dies-tickets/artist/4383729",
+      "ticket_links": [
+        {
+          "country": "US",
+          "url": "https://www.ticketweb.com/event/rock-never-dies-red-carpet-hard-rock-cafe-tickets/14861743"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/c/07d/fda8c807-42eb-4b81-9f16-f3a8367e107d_106371_TABLET_LANDSCAPE_LARGE_16_9.jpg",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true,
+      "group": "rock never dies red carpet premeire",
       "link_kind": "ticketing"
     },
     {
@@ -20798,6 +21741,33 @@
       "source": "ticketmaster",
       "onsale_only": true,
       "group": "beetlejuice",
+      "link_kind": "ticketing"
+    },
+    {
+      "id": "tm-the-rocky-horror-show-studio-54",
+      "title": "The Rocky Horror Show",
+      "type": "tour",
+      "venue": "Studio 54",
+      "city": "New York",
+      "country": "United States Of America",
+      "lat": 40.765202,
+      "lng": -73.985298,
+      "start_date": "2026-06-12",
+      "end_date": "2026-06-20",
+      "ticket_url": "https://www.ticketmaster.com/event/Z7r9jZ1A7qVvk",
+      "attraction_url": "https://www.ticketmaster.com/the-rocky-horror-show-tickets/artist/804241",
+      "ticket_links": [
+        {
+          "country": "US",
+          "url": "https://www.ticketmaster.com/event/Z7r9jZ1A7qVvk"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/7fb/08694303-391b-4f27-b5c2-4918134e37fb_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true,
+      "group": "rocky horror show",
       "link_kind": "ticketing"
     },
     {
@@ -21114,11 +22084,6 @@
         {
           "country": "US",
           "url": "https://www.ticketmaster.com/event/Z7r9jZ1A70I_f"
-        },
-        {
-          "label": "Ticketmaster",
-          "url": "https://www.ticketmaster.com/event/Z7r9jZ1A7j8J6",
-          "kind": "ticketing"
         }
       ],
       "image": "https://s1.ticketm.net/dam/a/2c8/fcbeb34f-a604-4083-99ea-1f46ca1bd2c8_SOURCE",
@@ -21208,6 +22173,33 @@
       "source": "ticketmaster",
       "onsale_only": true,
       "group": "all",
+      "link_kind": "ticketing"
+    },
+    {
+      "id": "tm-rock-never-dies-hard-rock-cafe-nyc",
+      "title": "Rock Never Dies",
+      "type": "tour",
+      "venue": "Hard Rock Cafe - NYC",
+      "city": "New York",
+      "country": "United States Of America",
+      "lat": 40.757141,
+      "lng": -73.986351,
+      "start_date": "2026-06-13",
+      "end_date": "2026-06-20",
+      "ticket_url": "https://www.ticketweb.com/event/rock-never-dies-hard-rock-cafe-tickets/14861723",
+      "attraction_url": "https://www.ticketmaster.com/rock-never-dies-tickets/artist/4383729",
+      "ticket_links": [
+        {
+          "country": "US",
+          "url": "https://www.ticketweb.com/event/rock-never-dies-hard-rock-cafe-tickets/14861723"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/c/07d/fda8c807-42eb-4b81-9f16-f3a8367e107d_106371_TABLET_LANDSCAPE_LARGE_16_9.jpg",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true,
+      "group": "rock never dies",
       "link_kind": "ticketing"
     },
     {
@@ -21761,7 +22753,7 @@
       "end_date": "2027-04-18",
       "ticket_url": "https://www.ticketmaster.com/anastasia-the-musical-metairie-louisiana-04-09-2027/event/1B006486B562D836",
       "attraction_url": "https://www.ticketmaster.com/anastasia-the-musical-tickets/artist/3101016",
-      "image": null,
+      "image": "https://s1.ticketm.net/dam/a/186/914bfec0-450f-48a2-a15f-411e53c0b186_SOURCE",
       "tour_name": null,
       "verified": true,
       "onsale_only": true,
@@ -22861,6 +23853,27 @@
       "start_date": "2027-03-27",
       "end_date": "2027-03-27",
       "ticket_url": "https://www.ticketmaster.co.uk/disney-princess-the-concert-hull-27-03-2027/event/1F0064B2E7A4492E",
+      "attraction_url": "https://www.ticketmaster.com/disney-princess-the-concert-tickets/artist/2780104",
+      "image": "https://s1.ticketm.net/dam/a/500/1454140c-e867-45d1-8022-5ec24698d500_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "onsale_only": true,
+      "source": "ticketmaster",
+      "group": "disney princess the concert",
+      "link_kind": "ticketing"
+    },
+    {
+      "id": "tmt-disney-princess-the-concert-royal-festival-hall",
+      "title": "Disney Princess: the Concert",
+      "type": "tour",
+      "venue": "Royal Festival Hall",
+      "city": "London",
+      "country": "Great Britain",
+      "lat": 51.505777,
+      "lng": -0.116838,
+      "start_date": "2027-03-28",
+      "end_date": "2027-03-30",
+      "ticket_url": "https://www.ticketmaster.co.uk/disney-princess-the-concert-london-28-03-2027/event/1F0064C1F545B45C",
       "attraction_url": "https://www.ticketmaster.com/disney-princess-the-concert-tickets/artist/2780104",
       "image": "https://s1.ticketm.net/dam/a/500/1454140c-e867-45d1-8022-5ec24698d500_SOURCE",
       "tour_name": null,
@@ -24449,11 +25462,6 @@
           "label": "Ticketmaster",
           "url": "https://www.ticketmaster.com/event/Z7r9jZ1A70tZZ",
           "kind": "ticketing"
-        },
-        {
-          "label": "Ticketmaster",
-          "url": "https://www.ticketmaster.com/event/Z7r9jZ1A7jybv",
-          "kind": "ticketing"
         }
       ],
       "group": "les miserables",
@@ -24625,6 +25633,69 @@
       "link_kind": "ticketing"
     },
     {
+      "id": "tmt-matilda-centro-cultural-teatro-i",
+      "title": "Matilda The Musical",
+      "type": "tour",
+      "venue": "Centro Cultural Teatro I",
+      "city": "México",
+      "country": "Mexico",
+      "lat": 19.425159,
+      "lng": -99.15564,
+      "start_date": "2026-06-12",
+      "end_date": "2026-06-21",
+      "ticket_url": "https://www.ticketmaster.com.mx/matilda-el-musical-con-emilia-mexico-12-06-2026/event/1400649085E73CA4",
+      "attraction_url": "https://www.ticketmaster.com/matilda-the-musical-tickets/artist/1601714",
+      "image": "https://images.ctfassets.net/6pezt69ih962/k6qL80R5pVTdHj3qkhSBm/0928ade5b3764759c54499a2f9ee7d11/480x720.jpg",
+      "tour_name": null,
+      "verified": true,
+      "onsale_only": true,
+      "source": "ticketmaster",
+      "group": "matilda",
+      "link_kind": "ticketing"
+    },
+    {
+      "id": "tmt-matilda-auditorio-banamex",
+      "title": "Matilda The Musical",
+      "type": "tour",
+      "venue": "Auditorio Banamex",
+      "city": "Monterrey",
+      "country": "Mexico",
+      "lat": 25.677658,
+      "lng": -100.280858,
+      "start_date": "2026-07-04",
+      "end_date": "2026-07-04",
+      "ticket_url": "https://www.ticketmaster.com.mx/matilda-el-musical-monterrey-04-07-2026/event/14006490F8D5FB71",
+      "attraction_url": "https://www.ticketmaster.com/matilda-the-musical-tickets/artist/1601714",
+      "image": "https://images.ctfassets.net/6pezt69ih962/k6qL80R5pVTdHj3qkhSBm/0928ade5b3764759c54499a2f9ee7d11/480x720.jpg",
+      "tour_name": null,
+      "verified": true,
+      "onsale_only": true,
+      "source": "ticketmaster",
+      "group": "matilda",
+      "link_kind": "ticketing"
+    },
+    {
+      "id": "tmt-matilda-auditorio-telmex",
+      "title": "Matilda The Musical",
+      "type": "tour",
+      "venue": "Auditorio Telmex",
+      "city": "Zapopan",
+      "country": "Mexico",
+      "lat": 20.73324,
+      "lng": -103.38112,
+      "start_date": "2026-07-07",
+      "end_date": "2026-07-07",
+      "ticket_url": "https://www.ticketmaster.com.mx/matilda-the-musical-zapopan-07-07-2026/event/14006495B6C319E9",
+      "attraction_url": "https://www.ticketmaster.com/matilda-the-musical-tickets/artist/1601714",
+      "image": "https://images.ctfassets.net/6pezt69ih962/k6qL80R5pVTdHj3qkhSBm/0928ade5b3764759c54499a2f9ee7d11/480x720.jpg",
+      "tour_name": null,
+      "verified": true,
+      "onsale_only": true,
+      "source": "ticketmaster",
+      "group": "matilda",
+      "link_kind": "ticketing"
+    },
+    {
       "id": "tmt-matilda-lewis-family-playhouse",
       "title": "Matilda The Musical",
       "type": "tour",
@@ -24784,7 +25855,7 @@
       "end_date": "2026-10-31",
       "ticket_url": "https://www.ticketmaster.ca/menopause-la-parodie-musicale-montreal-quebec-10-31-2026/event/3100649788EA370F",
       "attraction_url": "https://www.ticketmaster.com/menopause-tickets/artist/865343",
-      "image": "https://s1.ticketm.net/dam/a/c0a/17a4606e-3bcd-4871-8c31-655376467c0a_SOURCE",
+      "image": "https://s1.ticketm.net/dam/a/bd7/646dfcae-ca6f-43c5-a26d-2f758a881bd7_SOURCE",
       "tour_name": null,
       "verified": true,
       "onsale_only": true,
@@ -24805,7 +25876,7 @@
       "end_date": "2027-02-04",
       "ticket_url": "https://www.ticketmaster.be/event/menopause-tickets/997008422",
       "attraction_url": "https://www.ticketmaster.com/menopause-tickets/artist/865343",
-      "image": "https://s1.ticketm.net/dam/a/c0a/17a4606e-3bcd-4871-8c31-655376467c0a_SOURCE",
+      "image": "https://s1.ticketm.net/dam/a/bd7/646dfcae-ca6f-43c5-a26d-2f758a881bd7_SOURCE",
       "tour_name": null,
       "verified": true,
       "onsale_only": true,
@@ -24826,7 +25897,7 @@
       "end_date": "2026-09-30",
       "ticket_url": "https://www.ticketmaster.com/gfour-productions-presents-menopause-the-musical-thousand-oaks-california-09-30-2026/event/0B0064B5DA646872",
       "attraction_url": "https://www.ticketmaster.com/menopause-the-musical-tickets/artist/874566",
-      "image": "https://s1.ticketm.net/dam/a/c0a/17a4606e-3bcd-4871-8c31-655376467c0a_SOURCE",
+      "image": "https://s1.ticketm.net/dam/a/bd7/646dfcae-ca6f-43c5-a26d-2f758a881bd7_SOURCE",
       "tour_name": null,
       "verified": true,
       "onsale_only": true,
@@ -24847,7 +25918,7 @@
       "end_date": "2026-10-18",
       "ticket_url": "https://www.ticketmaster.com/menopause-the-musical-bloomington-illinois-10-18-2026/event/0700646CB1866588",
       "attraction_url": "https://www.ticketmaster.com/menopause-the-musical-tickets/artist/874566",
-      "image": "https://s1.ticketm.net/dam/a/c0a/17a4606e-3bcd-4871-8c31-655376467c0a_SOURCE",
+      "image": "https://s1.ticketm.net/dam/a/bd7/646dfcae-ca6f-43c5-a26d-2f758a881bd7_SOURCE",
       "tour_name": null,
       "verified": true,
       "onsale_only": true,
@@ -24868,7 +25939,7 @@
       "end_date": "2026-10-29",
       "ticket_url": "https://www.ticketmaster.com/menopause-the-musical-effingham-illinois-10-29-2026/event/0700647798ED30CA",
       "attraction_url": "https://www.ticketmaster.com/menopause-the-musical-tickets/artist/874566",
-      "image": "https://s1.ticketm.net/dam/a/c0a/17a4606e-3bcd-4871-8c31-655376467c0a_SOURCE",
+      "image": "https://s1.ticketm.net/dam/a/bd7/646dfcae-ca6f-43c5-a26d-2f758a881bd7_SOURCE",
       "tour_name": null,
       "verified": true,
       "onsale_only": true,
@@ -24889,7 +25960,7 @@
       "end_date": "2026-11-03",
       "ticket_url": "https://www.ticketmaster.com/menopause-the-musical-burnsville-minnesota-11-03-2026/event/0600647BA354BF13",
       "attraction_url": "https://www.ticketmaster.com/menopause-the-musical-tickets/artist/874566",
-      "image": "https://s1.ticketm.net/dam/a/c0a/17a4606e-3bcd-4871-8c31-655376467c0a_SOURCE",
+      "image": "https://s1.ticketm.net/dam/a/bd7/646dfcae-ca6f-43c5-a26d-2f758a881bd7_SOURCE",
       "tour_name": null,
       "verified": true,
       "onsale_only": true,
@@ -24910,7 +25981,7 @@
       "end_date": "2026-11-19",
       "ticket_url": "https://www.ticketmaster.com/menopause-the-musical-englewood-new-jersey-11-19-2026/event/00006478934870E6",
       "attraction_url": "https://www.ticketmaster.com/menopause-the-musical-tickets/artist/874566",
-      "image": "https://s1.ticketm.net/dam/a/c0a/17a4606e-3bcd-4871-8c31-655376467c0a_SOURCE",
+      "image": "https://s1.ticketm.net/dam/a/bd7/646dfcae-ca6f-43c5-a26d-2f758a881bd7_SOURCE",
       "tour_name": null,
       "verified": true,
       "onsale_only": true,
@@ -24931,7 +26002,7 @@
       "end_date": "2026-11-22",
       "ticket_url": "https://www.ticketmaster.com/event/Z7r9jZ1A70d_P",
       "attraction_url": "https://www.ticketmaster.com/menopause-the-musical-tickets/artist/874566",
-      "image": "https://s1.ticketm.net/dam/a/c0a/17a4606e-3bcd-4871-8c31-655376467c0a_SOURCE",
+      "image": "https://s1.ticketm.net/dam/a/bd7/646dfcae-ca6f-43c5-a26d-2f758a881bd7_SOURCE",
       "tour_name": null,
       "verified": true,
       "onsale_only": true,
@@ -25588,6 +26659,39 @@
       "onsale_only": true,
       "source": "ticketmaster",
       "group": "outsiders",
+      "link_kind": "ticketing"
+    },
+    {
+      "id": "tmt-phantom-of-the-opera-masquerade-nyc",
+      "title": "The Phantom of the Opera",
+      "type": "tour",
+      "venue": "Masquerade NYC",
+      "city": "New York",
+      "country": "United States Of America",
+      "lat": 40.765202,
+      "lng": -73.985298,
+      "start_date": "2026-06-12",
+      "end_date": "2026-09-06",
+      "ticket_url": "https://www.ticketmaster.com/event/Z7r9jZ1A7xapv",
+      "attraction_url": "https://www.ticketmaster.com/the-phantom-of-the-opera-touring-tickets/artist/1116096",
+      "image": "https://images.ctfassets.net/6pezt69ih962/spO4dvQ2d27GnxYWBxnBF/8c5b5f11521a16004fc4c9f8b6a2ec9f/480x720.jpg",
+      "tour_name": null,
+      "verified": true,
+      "onsale_only": true,
+      "source": "ticketmaster",
+      "ticket_links": [
+        {
+          "label": "官方網站",
+          "url": "https://www.thephantomoftheopera.com/",
+          "kind": "official"
+        },
+        {
+          "label": "Ticketmaster",
+          "url": "https://www.ticketmaster.com/event/Z7r9jZ1A7xapv",
+          "kind": "ticketing"
+        }
+      ],
+      "group": "phantom of the opera",
       "link_kind": "ticketing"
     },
     {
