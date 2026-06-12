@@ -313,8 +313,9 @@ def main():
     # deep-discovered EU venues (Google Places crawl) — single-point POIs with no
     # sub-hall semantics, so here we MAY dedup by coordinate proximity (<=55 m) as
     # well as by name, to drop ones already present from shows/curated.
-    disc = DATA / "eu_discovered.json"
-    if disc.exists():
+    for disc_name in ("eu_discovered.json", "na_discovered.json"):
+      disc = DATA / disc_name
+      if disc.exists():
         dn = 0
         for v in json.loads(disc.read_text(encoding="utf-8")):
             if not v.get("lat"):
@@ -335,7 +336,7 @@ def main():
             rec = {"name": re.sub(r"\s{2,}", " ", display).strip(), "city": city,
                    "country": country, "lat": v["lat"], "lng": v["lng"], "search": blob}
             venues.append(rec); idx.setdefault(ckey(city), []).append(rec); dn += 1
-        print(f"  + {dn} discovered EU venues (deduped)")
+        print(f"  + {dn} discovered venues from {disc_name} (deduped)")
 
     # explicit alias merges — the SAME venue listed under name variants (user-confirmed).
     # Distinct halls in one building (Tokyo Forum Hall A/C, 大/中/小劇場…) are NOT here.
