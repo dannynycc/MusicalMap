@@ -5,7 +5,6 @@ const cfg = window.MM_CONFIG || {};
 const $ = (s) => document.querySelector(s);
 const esc = (v) => String(v ?? "").replace(/[&<>"']/g, (c) =>
   ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
-const FR_ORANGE = "#f89800";
 
 let sb = null;
 let CATALOG = { venues: [], cities: [], titles: [], currencies: [], posters: {} };
@@ -86,12 +85,16 @@ function topList(el, field) {
 
 function lineChart(id, labels, values) {
   if (charts[id]) charts[id].destroy();
+  const white = "#ffffff", grid = "rgba(255,255,255,.25)", tick = "rgba(255,255,255,.9)";
   charts[id] = new Chart($(id), {
     type: "line",
-    data: { labels, datasets: [{ data: values, borderColor: FR_ORANGE, backgroundColor: "rgba(248,152,0,.15)",
-      fill: true, tension: 0.3, pointBackgroundColor: FR_ORANGE, pointRadius: 3 }] },
+    data: { labels, datasets: [{ data: values, borderColor: white, backgroundColor: "rgba(255,255,255,.22)",
+      fill: true, tension: 0.3, pointBackgroundColor: white, pointBorderColor: white, pointRadius: 3, borderWidth: 2.5 }] },
     options: { plugins: { legend: { display: false } },
-      scales: { y: { beginAtZero: true, ticks: { precision: 0 } } } },
+      scales: {
+        y: { beginAtZero: true, ticks: { precision: 0, color: tick }, grid: { color: grid }, border: { color: grid } },
+        x: { ticks: { color: tick }, grid: { color: grid }, border: { color: grid } },
+      } },
   });
 }
 

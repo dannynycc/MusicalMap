@@ -36,22 +36,42 @@ body { font-family: Roboto, Arial, "Microsoft JhengHei", sans-serif; background:
 #map-wrap { margin: 22px 0; }
 #me-map { height: 460px; border-radius: 10px; border: 1px solid var(--fr-line); background: #dfe6ec; box-shadow: 0 1px 3px rgba(0,0,0,.08); }
 
-/* summary tiles — uppercase labels */
-#tiles { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; margin: 22px 0; }
-.tile { background: #fff; border: 1px solid var(--fr-line); border-radius: 10px; padding: 20px 14px; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,.05); }
-.tile .tn { font-size: 34px; font-weight: 900; color: var(--fr-orange); line-height: 1; }
-.tile .tl { font-size: 11px; color: var(--fr-muted); margin-top: 8px; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; }
+/* summary stat strip — dark FlightRadar hero bar with a rainbow underline */
+#tiles {
+  display: grid; grid-template-columns: repeat(5, 1fr); margin: 22px 0;
+  background: #2f3134; border-radius: 12px; position: relative; overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0,0,0,.18);
+}
+#tiles::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 5px;
+  background: linear-gradient(90deg,
+    #7cb342 0 14.28%, #f6a609 14.28% 28.56%, #e74c3c 28.56% 42.84%,
+    #9b59b6 42.84% 57.12%, #16a085 57.12% 71.4%, #3b9ae1 71.4% 85.68%, #5c6bc0 85.68%);
+}
+.tile { padding: 22px 14px 24px; text-align: center; border-right: 1px solid rgba(255,255,255,.08); }
+.tile:last-child { border-right: none; }
+.tile .tn { font-size: 36px; font-weight: 900; color: #fff; line-height: 1; }
+.tile .tl { font-size: 11px; color: rgba(255,255,255,.6); margin-top: 8px; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; }
 
-/* charts grid */
+/* charts grid — every card is a full solid colour (FlightRadar style) */
 #charts { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
-.chart-card { background: #fff; border: 1px solid var(--fr-line); border-radius: 10px; padding: 16px 18px; box-shadow: 0 1px 3px rgba(0,0,0,.05); }
-.chart-card h4 { margin: 0 0 12px; font-size: 13px; text-transform: uppercase; letter-spacing: .8px; color: var(--fr-muted); font-weight: 700; }
+.chart-card { border-radius: 12px; padding: 16px 18px 18px; color: #fff; box-shadow: 0 2px 10px rgba(0,0,0,.12); }
+.chart-card.c-green  { background: linear-gradient(160deg, #8bc34a, #6ea83a); }
+.chart-card.c-amber  { background: linear-gradient(160deg, #f7b733, #f59100); }
+.chart-card.c-red    { background: linear-gradient(160deg, #ec5b4d, #d8392a); }
+.chart-card.c-purple { background: linear-gradient(160deg, #a96bc0, #8e44ad); }
+.chart-card.c-teal   { background: linear-gradient(160deg, #1fb89c, #138a76); }
+.chart-card.c-blue   { background: linear-gradient(160deg, #4aa8ec, #2b86d4); }
+.chart-card.c-indigo { background: linear-gradient(160deg, #6e7ed6, #4f5fc0); }
+.chart-card h4 { margin: 0 0 14px; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; color: #fff; font-weight: 700; opacity: .95; }
 .chart-card canvas { max-height: 220px; }
-.bar-row { display: flex; align-items: center; gap: 10px; margin: 7px 0; font-size: 13px; }
-.bar-row .bk { width: 40%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.bar-row .bt { flex: 1; background: var(--fr-bg); border-radius: 4px; height: 14px; overflow: hidden; }
-.bar-row .bf { display: block; height: 100%; background: var(--fr-orange); }
-.bar-row .bv { width: 26px; text-align: right; color: var(--fr-muted); font-weight: 700; }
+/* bars: solid white fill on a translucent-white track, white labels */
+.bar-row { display: flex; align-items: center; gap: 10px; margin: 9px 0; font-size: 13px; color: #fff; }
+.bar-row .bk { width: 40%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 500; }
+.bar-row .bt { flex: 1; background: rgba(255,255,255,.28); border-radius: 4px; height: 14px; overflow: hidden; }
+.bar-row .bf { display: block; height: 100%; background: #fff; border-radius: 4px; }
+.bar-row .bv { width: 26px; text-align: right; color: #fff; font-weight: 700; }
+.chart-card .muted { color: rgba(255,255,255,.8); }
 
 /* log */
 #log-section { margin-top: 24px; }
