@@ -1,0 +1,79 @@
+"""Geo sanity audit — flag venues whose coordinates fall outside their stated
+country's bounding box (catches gross geocoding errors: wrong country/continent,
+swapped lat/lng, landmark-instead-of-venue matches that landed far away).
+
+Run: python scrapers/audit_geo.py
+Offline (no network) — pure bounding-box check over data/shows.json.
+"""
+
+import json
+import sys
+import io
+from pathlib import Path
+
+sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
+DATA = Path(__file__).resolve().parent.parent / "data"
+
+# (lat_min, lat_max, lng_min, lng_max) — generous national bounding boxes,
+# incl. outlying states/territories (e.g. USA covers Hawaii + Alaska).
+BBOX = {
+    "USA": (18.0, 72.0, -180.0, -66.0),
+    "UK": (49.5, 61.0, -8.8, 2.1),
+    "Ireland": (51.3, 55.5, -10.7, -5.9),
+    "Spain": (27.5, 43.9, -18.3, 4.4),       # incl. Canary Is.
+    "South Korea": (33.0, 38.7, 124.5, 131.0),
+    "Japan": (24.0, 45.6, 122.9, 146.0),
+    "Australia": (-43.7, -10.0, 112.9, 153.7),
+    "Canada": (41.6, 83.2, -141.1, -52.5),
+    "Belgium": (49.4, 51.6, 2.5, 6.5),
+    "Germany": (47.2, 55.1, 5.8, 15.1),
+    "New Zealand": (-47.5, -34.0, 166.3, 178.7),
+    "Denmark": (54.5, 57.8, 8.0, 15.2),
+    "Italy": (35.4, 47.1, 6.6, 18.6),
+    "France": (41.3, 51.2, -5.2, 9.7),
+    "Mexico": (14.3, 32.8, -118.5, -86.5),
+    "Sweden": (55.1, 69.1, 10.9, 24.2),
+    "Norway": (57.9, 71.4, 4.5, 31.2),
+    "Austria": (46.3, 49.1, 9.5, 17.2),
+    "Netherlands": (50.7, 53.7, 3.3, 7.3),
+    "China": (18.1, 53.6, 73.4, 135.1),
+    "Czech Republic": (48.5, 51.1, 12.0, 18.9),
+    "UAE": (22.6, 26.1, 51.5, 56.4),
+    "Switzerland": (45.8, 47.8, 5.9, 10.5),
+    "Hong Kong": (22.1, 22.6, 113.8, 114.5),
+    "Singapore": (1.1, 1.5, 103.6, 104.1),
+    "Taiwan": (21.9, 25.3, 119.3, 122.1),
+}
+
+
+def main():
+    shows = json.loads((DATA / "shows.json").read_text(encoding="utf-8"))["shows"]
+    no_bbox = set()
+    bad = {}     # (venue, city, country) -> (lat, lng)
+    checked = 0
+    for s in shows:
+        lat, lng = s.get("lat"), s.get("lng")
+        country = s.get("country")
+        if not isinstance(lat, (int, float)) or not isinstance(lng, (int, float)):
+            continue
+        box = BBOX.get(country)
+        if not box:
+            no_bbox.add(country)
+            continue
+        checked += 1
+        la0, la1, ln0, ln1 = box
+        if not (la0 <= lat <= la1 and ln0 <= lng <= ln1):
+            bad[(s.get("venue"), s.get("city"), country)] = (lat, lng)
+
+    print(f"checked {checked} located shows against {len(BBOX)} country boxes")
+    if no_bbox:
+        print(f"  (no bbox for: {', '.join(sorted(x for x in no_bbox if x))})")
+    print(f"OUT-OF-COUNTRY venues: {len(bad)}")
+    for (v, c, co), (la, ln) in sorted(bad.items(), key=lambda x: x[0][2] or ""):
+        print(f"  ✗ {co:14} {c or '?':18} {v or '?':40} -> {la}, {ln}")
+    if not bad:
+        print("  ✓ all located shows fall inside their country's bounding box")
+
+
+if __name__ == "__main__":
+    main()

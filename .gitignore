@@ -4,3 +4,9 @@ __pycache__/
 *.log
 tmp/
 preview_*.png
+# secrets — never commit API keys
+.gmaps_key
+*.gmaps_key
+scrapers/.gmaps_key
+# geo-audit debug artifacts
+data/_geo_*

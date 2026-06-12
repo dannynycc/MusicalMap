@@ -41,7 +41,10 @@ scrapers/  ──產出──>  data/*.json  ──merge──>  data/shows.json
 | `data/interpark.json` | 韓國 Interpark 輸出（world.nol.com 開放 API，真實開演日） |
 | `data/manual.json` | **人工策展**：自有售票系統的劇（上海大劇院、Live Nation FR、捷克 NDM…），隨發現隨補 |
 | `data/overrides.json` | 人工座標/欄位修正（依 show id；修來源錯誤，build 時套用） |
+| `data/venue_coords.json` | **場館級權威座標**（`venue\|city`→[lat,lng]，建築級 ≤~30m，由 Google 產生；build 時套用到該場館所有場次） |
 | `data/venues.json` | venue→座標 geocode 快取（手動可編） |
+| `scrapers/geocode_google.py` | **Google Places (New) 權威 geocode**（建築級 ≤30m，回填 venue_coords.json；金鑰走 .gitignore 不入庫） |
+| `scrapers/audit_geo.py` | 離線國家邊界框健全檢查（抓標到別國/null-island） |
 | `scrapers/geocode.py` | Nominatim geocoding + 永久快取 |
 | `scrapers/broadway.py` | Broadway scraper（解析 `__NEXT_DATA__`，含 NYC 座標檢查） |
 | `scrapers/westend.py` | West End scraper（解析 `__NEXT_DATA__` + geocode） |

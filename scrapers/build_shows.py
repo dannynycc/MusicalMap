@@ -103,6 +103,12 @@ def city_key(c):
     return (c or "").lower().split(",")[0].strip()
 
 
+def venue_key(venue, city):
+    """Stable key for venue-level coordinate corrections (data/venue_coords.json).
+    Matches on lowered venue name + city (state suffix stripped)."""
+    return f"{(venue or '').strip().lower()}|{city_key(city)}"
+
+
 def country_norm(c):
     c = (c or "").lower()
     if "united states" in c or c == "usa":
@@ -190,6 +196,22 @@ def main():
             del by_id[i]
         if drop:
             print(f"  dropped {len(drop)} stale Japan record(s) superseded by shiki.jp")
+
+    # Venue-level coordinate corrections (one fix → every show at that venue).
+    # Sources (Ticketmaster, geocoders) sometimes pin a venue to a same-named
+    # landmark or null-island (0,0); data/venue_coords.json holds verified coords
+    # keyed by "venue|city". Found via scrapers/audit_geo*.py.
+    vc_path = DATA / "venue_coords.json"
+    if vc_path.exists():
+        vcoords = {k: v for k, v in json.loads(vc_path.read_text(encoding="utf-8")).items()
+                   if not k.startswith("_")}
+        fixed = 0
+        for s in by_id.values():
+            v = vcoords.get(venue_key(s.get("venue"), s.get("city")))
+            if v and isinstance(v, list) and len(v) == 2:
+                s["lat"], s["lng"] = v[0], v[1]
+                fixed += 1
+        print(f"  fixed {fixed} show coord(s) from venue_coords.json ({len(vcoords)} venue fixes)")
 
     # Apply manual coordinate/field corrections (source data errors).
     overrides_path = DATA / "overrides.json"
