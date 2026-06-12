@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Musicals — MusicalMap</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/me.css" />
+</head>
+<body>
+  <header id="me-top">
+    <a id="me-brand" href="index.html">MusicalMap</a>
+    <nav>
+      <a href="index.html">🗺 全球地圖</a>
+      <span id="me-user"></span>
+      <button id="btn-login" class="btn-primary">使用 Google 登入</button>
+      <button id="btn-logout" class="btn-ghost" hidden>登出</button>
+    </nav>
+  </header>
+
+  <main id="me-main">
+    <!-- not signed in -->
+    <section id="signed-out" class="hero">
+      <h1>我的觀劇足跡</h1>
+      <p>登入後記錄你看過的每一場音樂劇 —— 自動生成你的 Top 劇目／城市／劇院、年度與每月統計，以及專屬的觀劇地圖。</p>
+      <button id="btn-login2" class="btn-primary big">使用 Google 登入開始</button>
+      <p id="cfg-warn" class="warn" hidden>⚠ 後端尚未設定（見 docs/SETUP_ACCOUNTS.md）。</p>
+    </section>
+
+    <!-- signed in -->
+    <section id="signed-in" hidden>
+      <!-- summary tiles -->
+      <div id="tiles"></div>
+
+      <div class="cols">
+        <div class="col-left">
+          <button id="btn-add" class="btn-primary">＋ 記錄一場音樂劇</button>
+          <h3>觀劇地圖</h3>
+          <div id="me-map"></div>
+          <h3>我的紀錄 <span id="log-count" class="muted"></span></h3>
+          <ul id="log-list"></ul>
+        </div>
+        <div class="col-right">
+          <h3>統計</h3>
+          <div class="chart-card"><h4>Top 劇目</h4><div id="c-shows"></div></div>
+          <div class="chart-card"><h4>Top 國家</h4><div id="c-countries"></div></div>
+          <div class="chart-card"><h4>Top 城市</h4><div id="c-cities"></div></div>
+          <div class="chart-card"><h4>Top 劇院</h4><div id="c-venues"></div></div>
+          <div class="chart-card"><h4>每年</h4><canvas id="c-year"></canvas></div>
+          <div class="chart-card"><h4>每月</h4><canvas id="c-month"></canvas></div>
+          <div class="chart-card"><h4>每週幾</h4><canvas id="c-weekday"></canvas></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- add/edit dialog -->
+  <dialog id="add-dialog">
+    <form id="add-form" method="dialog">
+      <h3 id="form-title">記錄一場音樂劇</h3>
+      <label>劇名<input name="title" autocomplete="off" required data-ac="titles" /></label>
+      <div class="row2">
+        <label>日期<input name="seen_date" type="date" /></label>
+        <label>時間<input name="seen_time" type="time" /></label>
+      </div>
+      <label>劇院<input name="venue" autocomplete="off" data-ac="venues" /></label>
+      <div class="row2">
+        <label>城市<input name="city" autocomplete="off" data-ac="cities" /></label>
+        <label>國家<input name="country" autocomplete="off" /></label>
+      </div>
+      <div class="row2">
+        <label>座位<input name="seat" placeholder="例 1F 12排 8號" /></label>
+        <label>票價<input name="price" type="number" step="0.01" placeholder="數字" /></label>
+      </div>
+      <label>幣別<input name="currency" placeholder="TWD / USD / GBP…" /></label>
+      <label>備註<textarea name="note" rows="2"></textarea></label>
+      <div id="ac-pop" class="ac-pop" hidden></div>
+      <div class="form-actions">
+        <button type="button" id="btn-cancel" class="btn-ghost">取消</button>
+        <button type="submit" class="btn-primary">儲存</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+  <script src="js/config.js"></script>
+  <script src="js/me.js"></script>
+</body>
+</html>

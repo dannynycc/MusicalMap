@@ -8,6 +8,8 @@
 
 線上版：https://dannynycc.github.io/MusicalMap/
 
+**My Musicals（個人觀劇足跡）**：登入(Google)後記錄看過的音樂劇,自動生成 Top 劇目/城市/劇院、年度/每月/每週統計與個人地圖(FlightRadar「My Flights」風格)。後端 Supabase(Postgres+Auth,RLS),前端仍純靜態。設定見 `docs/SETUP_ACCOUNTS.md`。
+
 ---
 
 ## 架構：資料層與呈現層分離

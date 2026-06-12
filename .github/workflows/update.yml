@@ -53,6 +53,7 @@ jobs:
           python scrapers/tm_tours.py    || echo "::warning::tm_tours sweep failed"
           python scrapers/ticketmaster.py || echo "::warning::ticketmaster scrape failed"
           python scrapers/build_shows.py
+          python scrapers/gen_catalog.py
         env:
           # set this repo secret to enable Ticketmaster refresh in CI; if unset
           # the scraper no-ops and the committed ticketmaster.json is kept.

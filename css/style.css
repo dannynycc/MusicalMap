@@ -30,6 +30,8 @@ html, body {
 #brand { padding: 18px 20px 14px; border-bottom: 1px solid var(--border); }
 #brand h1 { margin: 0; font-size: 22px; letter-spacing: .3px; color: var(--accent); font-weight: 800; }
 .tagline { margin: 4px 0 0; font-size: 13px; color: var(--muted); }
+#mine-link { display: inline-block; margin-top: 8px; font-size: 13px; font-weight: 600; color: var(--accent); text-decoration: none; }
+#mine-link:hover { text-decoration: underline; }
 
 #controls { padding: 14px 20px; border-bottom: 1px solid var(--border); }
 #search {
