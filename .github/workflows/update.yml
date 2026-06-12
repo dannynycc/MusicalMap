@@ -47,6 +47,8 @@ jobs:
           python scrapers/shiki.py       || echo "::warning::shiki scrape failed"
           python scrapers/takarazuka.py  || echo "::warning::takarazuka scrape failed"
           python scrapers/interpark.py   || echo "::warning::interpark scrape failed"
+          python scrapers/atg.py         || echo "::warning::atg scrape failed"
+          python scrapers/stage_de.py    || echo "::warning::stage scrape failed"
           python scrapers/ticketmaster.py || echo "::warning::ticketmaster scrape failed"
           python scrapers/build_shows.py
         env:

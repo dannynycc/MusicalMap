@@ -144,8 +144,8 @@ function popupHtml(show) {
   const links = Array.isArray(show.ticket_links) ? show.ticket_links.filter((l) => safeUrl(l.url)) : [];
   let ticket;
   if (links.length > 1) {
-    ticket = `<div class="pop-links">各地售票：${links.map((l) =>
-      `<a class="pop-cta sm" href="${esc(safeUrl(l.url))}" target="_blank" rel="noopener">${esc(l.country)} →</a>`).join("")}</div>`;
+    ticket = `<div class="pop-links">購票來源：${links.map((l) =>
+      `<a class="pop-cta sm" href="${esc(safeUrl(l.url))}" target="_blank" rel="noopener">${esc(l.label || l.country)} →</a>`).join("")}</div>`;
   } else {
     const url = safeUrl(show.ticket_url) || (links[0] && safeUrl(links[0].url));
     ticket = url ? `<a class="pop-cta" href="${esc(url)}" target="_blank" rel="noopener">前往官方售票頁 →</a>` : "";

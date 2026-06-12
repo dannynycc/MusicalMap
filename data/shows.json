@@ -1,9 +1,9 @@
 {
   "meta": {
     "source": "merged",
-    "generated_at": "2026-06-12 02:40 UTC",
-    "total": 595,
-    "verified": 595,
+    "generated_at": "2026-06-12 03:05 UTC",
+    "total": 604,
+    "verified": 604,
     "unverified": 0,
     "sources": [
       {
@@ -88,6 +88,57 @@
             "TOUCH FIVE @ TOUCH FIVE",
             "Someday @ MOOHA Art Center"
           ]
+        }
+      },
+      {
+        "file": "atg.json",
+        "count": 5,
+        "meta": {
+          "source": "atgtickets.com",
+          "count": 5,
+          "tour_cards_not_covered": [
+            "Annie",
+            "Back To The Future The Musical",
+            "Barnum",
+            "Billy Elliot the Musical",
+            "Burlesque The Musical",
+            "CATS",
+            "Dirty Dancing",
+            "Everybody&#x27;s Talking About Jamie",
+            "Grease",
+            "Heathers the Musical",
+            "High Society",
+            "Jersey Boys",
+            "Just For One Day - The Live Aid Musical",
+            "Legally Blonde",
+            "MAMMA MIA!",
+            "Matilda The Musical",
+            "Mean Girls",
+            "Miss Saigon",
+            "Moulin Rouge! The Musical",
+            "Mrs. Doubtfire The Musical",
+            "Operation Mincemeat: A New Musical",
+            "Pretty Woman The Musical",
+            "Singin&#x27; In The Rain",
+            "Six",
+            "Starlight Express",
+            "The Ballad of Johnny and June",
+            "The Bodyguard",
+            "The Choir of Man",
+            "The Karate Kid The Musical",
+            "The Rocky Horror Show",
+            "Tickets not yet released",
+            "Trainspotting The Musical",
+            "Waitress"
+          ]
+        }
+      },
+      {
+        "file": "stage_de.json",
+        "count": 13,
+        "meta": {
+          "source": "stage-entertainment.de",
+          "count": 13
         }
       },
       {
@@ -697,6 +748,16 @@
       "tour_name": null,
       "verified": true,
       "source": "londontheatre.co.uk",
+      "ticket_links": [
+        {
+          "label": "LondonTheatre",
+          "url": "https://www.londontheatre.co.uk/show/wicked-tickets"
+        },
+        {
+          "label": "ATG",
+          "url": "https://www.atgtickets.com/shows/wicked/apollo-victoria-theatre/"
+        }
+      ],
       "group": "wicked"
     },
     {
@@ -823,6 +884,16 @@
       "tour_name": null,
       "verified": true,
       "source": "londontheatre.co.uk",
+      "ticket_links": [
+        {
+          "label": "LondonTheatre",
+          "url": "https://www.londontheatre.co.uk/show/paddington-the-musical"
+        },
+        {
+          "label": "ATG",
+          "url": "https://www.atgtickets.com/shows/paddington-the-musical/savoy-theatre/"
+        }
+      ],
       "group": "paddington"
     },
     {
@@ -6928,42 +6999,6 @@
       "group": "harry potter and the cursed child"
     },
     {
-      "id": "intl-the-lion-king-hamburg",
-      "title": "The Lion King",
-      "type": "resident",
-      "venue": "Stage Theater Im Hafen",
-      "city": "Hamburg",
-      "country": "Germany",
-      "lat": 53.53989,
-      "lng": 9.97325,
-      "start_date": null,
-      "end_date": null,
-      "ticket_url": "https://www.disneytickets.de/der-konig-der-lowen-tickets",
-      "image": "https://cdn.craft.cloud/4027eea6-6e91-4e75-bd40-d01cbeb9c781/assets/shows/the-lion-king-2025-key-art.jpg",
-      "tour_name": null,
-      "verified": true,
-      "source": "broadway.org/international",
-      "group": "lion king"
-    },
-    {
-      "id": "intl-mj-hamburg",
-      "title": "MJ",
-      "type": "resident",
-      "venue": "Stage Theater an der Elbe Hamburg",
-      "city": "Hamburg",
-      "country": "Germany",
-      "lat": 53.53968,
-      "lng": 9.97461,
-      "start_date": null,
-      "end_date": null,
-      "ticket_url": "https://www.stage-entertainment.de/musicals-shows/mj-das-michael-jackson-musical-hamburg",
-      "image": "https://cdn.craft.cloud/4027eea6-6e91-4e75-bd40-d01cbeb9c781/assets/shows/mj-2024-1000.jpg",
-      "tour_name": null,
-      "verified": true,
-      "source": "broadway.org/international",
-      "group": "mj"
-    },
-    {
       "id": "intl-moulin-rouge-the-musical-cologne",
       "title": "Moulin Rouge! The Musical",
       "type": "resident",
@@ -7303,6 +7338,20 @@
       "tour_name": "宝塚歌劇",
       "verified": true,
       "source": "kageki.hankyu.co.jp",
+      "ticket_links": [
+        {
+          "label": "宝塚官網",
+          "url": "https://kageki.hankyu.co.jp/revue/2026/kurotokage/index.html"
+        },
+        {
+          "label": "宝塚官網",
+          "url": "https://kageki.hankyu.co.jp/revue/2026/ponoichizoku/index.html"
+        },
+        {
+          "label": "宝塚官網",
+          "url": "https://kageki.hankyu.co.jp/revue/2026/tenkyuunoartemis/index.html"
+        }
+      ],
       "group": ""
     },
     {
@@ -7321,42 +7370,20 @@
       "tour_name": "宝塚歌劇",
       "verified": true,
       "source": "kageki.hankyu.co.jp",
-      "group": ""
-    },
-    {
-      "id": "tkz-ponoichizoku-takarazuka-2026-07-11",
-      "title": "ポーの一族",
-      "type": "tour",
-      "venue": "宝塚大劇場",
-      "city": "Takarazuka (兵庫)",
-      "country": "Japan",
-      "lat": 34.8093,
-      "lng": 135.347,
-      "start_date": "2026-07-11",
-      "end_date": "2026-08-23",
-      "ticket_url": "https://kageki.hankyu.co.jp/revue/2026/ponoichizoku/index.html",
-      "image": "https://kageki.hankyu.co.jp/star/so7q6r00000002ny-img/og_snow.png",
-      "tour_name": "宝塚歌劇",
-      "verified": true,
-      "source": "kageki.hankyu.co.jp",
-      "group": ""
-    },
-    {
-      "id": "tkz-ponoichizoku-tokyo-2026-09-12",
-      "title": "ポーの一族",
-      "type": "tour",
-      "venue": "東京宝塚劇場",
-      "city": "Tokyo (日比谷)",
-      "country": "Japan",
-      "lat": 35.6735,
-      "lng": 139.7593,
-      "start_date": "2026-09-12",
-      "end_date": "2026-10-25",
-      "ticket_url": "https://kageki.hankyu.co.jp/revue/2026/ponoichizoku/index.html",
-      "image": "https://kageki.hankyu.co.jp/star/so7q6r00000002ny-img/og_snow.png",
-      "tour_name": "宝塚歌劇",
-      "verified": true,
-      "source": "kageki.hankyu.co.jp",
+      "ticket_links": [
+        {
+          "label": "宝塚官網",
+          "url": "https://kageki.hankyu.co.jp/revue/2026/kurotokage/index.html"
+        },
+        {
+          "label": "宝塚官網",
+          "url": "https://kageki.hankyu.co.jp/revue/2026/ponoichizoku/index.html"
+        },
+        {
+          "label": "宝塚官網",
+          "url": "https://kageki.hankyu.co.jp/revue/2026/tenkyuunoartemis/index.html"
+        }
+      ],
       "group": ""
     },
     {
@@ -7430,42 +7457,6 @@
       "verified": true,
       "source": "kageki.hankyu.co.jp",
       "group": "ryofu"
-    },
-    {
-      "id": "tkz-tenkyuunoartemis-takarazuka-2026-12-12",
-      "title": "天穹のアルテミス",
-      "type": "tour",
-      "venue": "宝塚大劇場",
-      "city": "Takarazuka (兵庫)",
-      "country": "Japan",
-      "lat": 34.8093,
-      "lng": 135.347,
-      "start_date": "2026-12-12",
-      "end_date": "2027-01-24",
-      "ticket_url": "https://kageki.hankyu.co.jp/revue/2026/tenkyuunoartemis/index.html",
-      "image": "https://kageki.hankyu.co.jp/star/so7q6r00000002mu-img/og_moon.png",
-      "tour_name": "宝塚歌劇",
-      "verified": true,
-      "source": "kageki.hankyu.co.jp",
-      "group": ""
-    },
-    {
-      "id": "tkz-tenkyuunoartemis-tokyo-2027-02-13",
-      "title": "天穹のアルテミス",
-      "type": "tour",
-      "venue": "東京宝塚劇場",
-      "city": "Tokyo (日比谷)",
-      "country": "Japan",
-      "lat": 35.6735,
-      "lng": 139.7593,
-      "start_date": "2027-02-13",
-      "end_date": "2027-03-28",
-      "ticket_url": "https://kageki.hankyu.co.jp/revue/2026/tenkyuunoartemis/index.html",
-      "image": "https://kageki.hankyu.co.jp/star/so7q6r00000002mu-img/og_moon.png",
-      "tour_name": "宝塚歌劇",
-      "verified": true,
-      "source": "kageki.hankyu.co.jp",
-      "group": ""
     },
     {
       "id": "ip-26007357",
@@ -7681,6 +7672,16 @@
       "tour_name": null,
       "verified": true,
       "source": "world.nol.com (Interpark)",
+      "ticket_links": [
+        {
+          "label": "售票連結",
+          "url": "https://world.nol.com/en/ticket/places/25000462/products/26006232"
+        },
+        {
+          "label": "售票連結",
+          "url": "https://world.nol.com/en/ticket/places/P1001005/products/P0004669"
+        }
+      ],
       "group": "beethoven"
     },
     {
@@ -7754,24 +7755,6 @@
       "verified": true,
       "source": "world.nol.com (Interpark)",
       "group": "musical death note daejeon"
-    },
-    {
-      "id": "ip-P0004669",
-      "title": "Beethoven",
-      "type": "tour",
-      "venue": "Sejong Center",
-      "city": "Seoul",
-      "country": "South Korea",
-      "lat": 37.5725,
-      "lng": 126.976,
-      "start_date": "2026-06-09",
-      "end_date": "2026-08-11",
-      "ticket_url": "https://world.nol.com/en/ticket/places/P1001005/products/P0004669",
-      "image": "https://ticketimage.interpark.com/Play/image/large/P0/P0004669_p.gif",
-      "tour_name": null,
-      "verified": true,
-      "source": "world.nol.com (Interpark)",
-      "group": "beethoven"
     },
     {
       "id": "ip-26005352",
@@ -8168,6 +8151,304 @@
       "verified": true,
       "source": "world.nol.com (Interpark)",
       "group": "nanta myeong dong"
+    },
+    {
+      "id": "atg-shows-tsp-presents-the-cher-show-theatre-royal-glasgow",
+      "title": "The Cher Show",
+      "type": "tour",
+      "venue": "Theatre Royal Glasgow",
+      "city": "Glasgow",
+      "country": "UK",
+      "lat": 55.866271,
+      "lng": -4.256233,
+      "start_date": null,
+      "end_date": "2026-06-13",
+      "ticket_url": "https://www.atgtickets.com/shows/tsp-presents-the-cher-show/theatre-royal-glasgow/",
+      "image": "https://res.cloudinary.com/dwzhqvxaz/image/upload/w_375,q_auto,f_auto/v1752075690/Titles/TSP%20presents%20The%20Cher%20Show/TSPpresentsTheCherShow_1920x1080_Title-Shot.jpg",
+      "tour_name": null,
+      "verified": true,
+      "source": "atgtickets.com",
+      "group": "cher show"
+    },
+    {
+      "id": "atg-shows-disneys-the-lion-king-lyceum-theatre",
+      "title": "Disney's The Lion King",
+      "type": "tour",
+      "venue": "Lyceum Theatre",
+      "city": "London",
+      "country": "UK",
+      "lat": 51.511481,
+      "lng": -0.120058,
+      "start_date": null,
+      "end_date": "2027-05-16",
+      "ticket_url": "https://www.atgtickets.com/shows/disneys-the-lion-king/lyceum-theatre/",
+      "image": "https://res.cloudinary.com/dwzhqvxaz/image/upload/w_375,q_auto,f_auto/v1766165028/Titles/The%20Lion%20King%20(Lyceum)/1920_x_1080.jpg",
+      "tour_name": null,
+      "verified": true,
+      "source": "atgtickets.com",
+      "group": "the lion king"
+    },
+    {
+      "id": "atg-shows-paddington-the-musical-relaxed-performance-savoy-theatre",
+      "title": "Paddington The Musical - Relaxed Performance",
+      "type": "tour",
+      "venue": "Savoy Theatre",
+      "city": "London",
+      "country": "UK",
+      "lat": 51.51018,
+      "lng": -0.120933,
+      "start_date": "2026-09-11",
+      "end_date": "2027-09-10",
+      "ticket_url": "https://www.atgtickets.com/shows/paddington-the-musical-relaxed-performance/savoy-theatre/",
+      "image": "https://res.cloudinary.com/dwzhqvxaz/image/upload/w_375,q_auto,f_auto/v1771427819/Titles/Paddington%20The%20Musical/1920x1080_Paddington.jpg",
+      "tour_name": null,
+      "verified": true,
+      "source": "atgtickets.com",
+      "group": "paddington the musical relaxed performance"
+    },
+    {
+      "id": "stage-bibi-tina-weihnachten-berlin",
+      "title": "TINA - The Tina Turner Musical",
+      "type": "resident",
+      "venue": "Stage Theater des Westens",
+      "city": "Berlin",
+      "country": "Germany",
+      "lat": 52.5054,
+      "lng": 13.3326,
+      "start_date": null,
+      "end_date": null,
+      "ticket_url": "https://www.stage-entertainment.de/musicals-shows/bibi-tina-weihnachten-berlin",
+      "image": "https://s1.ticketm.net/dam/a/f30/1ea6e7a2-a519-434c-85e1-f0afd4e1df30_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "stage-entertainment.de",
+      "group": "tina"
+    },
+    {
+      "id": "stage-der-teufel-traegt-prada-hamburg",
+      "title": "The Devil Wears Prada",
+      "type": "resident",
+      "venue": "Stage Theater Neue Flora",
+      "city": "Hamburg",
+      "country": "Germany",
+      "lat": 53.5615,
+      "lng": 9.9533,
+      "start_date": null,
+      "end_date": null,
+      "ticket_url": "https://www.stage-entertainment.de/musicals-shows/der-teufel-traegt-prada-hamburg",
+      "image": "https://mediaportal.stage-entertainment.com/m/6b4fda309325a8aa/original/SEN-PRA-Logokachel-Stacked-1080x1080px.jpg",
+      "tour_name": null,
+      "verified": true,
+      "source": "stage-entertainment.de",
+      "group": "devil wears prada"
+    },
+    {
+      "id": "stage-die-amme-berlin",
+      "title": "DIE AMME",
+      "type": "resident",
+      "venue": "Stage Theater des Westens",
+      "city": "Berlin",
+      "country": "Germany",
+      "lat": 52.5054,
+      "lng": 13.3326,
+      "start_date": null,
+      "end_date": null,
+      "ticket_url": "https://www.stage-entertainment.de/musicals-shows/die-amme-berlin",
+      "image": null,
+      "tour_name": null,
+      "verified": true,
+      "source": "stage-entertainment.de",
+      "group": "die amme"
+    },
+    {
+      "id": "stage-die-eiskoenigin-stuttgart",
+      "title": "Frozen",
+      "type": "resident",
+      "venue": "Stage Apollo Theater",
+      "city": "Stuttgart",
+      "country": "Germany",
+      "lat": 48.7861,
+      "lng": 9.2274,
+      "start_date": null,
+      "end_date": null,
+      "ticket_url": "https://www.stage-entertainment.de/musicals-shows/die-eiskoenigin-stuttgart",
+      "image": "https://mediaportal.stage-entertainment.com/m/169b7614a855799f/original/EIS_STU_Prio1_ElsaUndAnna_Finale_-c-JohanPersson_StageEntertainment.tif",
+      "tour_name": null,
+      "verified": true,
+      "source": "stage-entertainment.de",
+      "group": "frozen"
+    },
+    {
+      "id": "stage-disneys-der-koenig-der-loewen-hamburg",
+      "title": "The Lion King",
+      "type": "resident",
+      "venue": "Stage Theater im Hafen",
+      "city": "Hamburg",
+      "country": "Germany",
+      "lat": 53.5399,
+      "lng": 9.9733,
+      "start_date": null,
+      "end_date": null,
+      "ticket_url": "https://www.stage-entertainment.de/musicals-shows/disneys-der-koenig-der-loewen-hamburg",
+      "image": "https://cdn-imgix.headout.com/media/images/4961cf32-a464-4281-826c-eb62518aae17-1775618329205-373998%20vertical.jpg",
+      "tour_name": null,
+      "verified": true,
+      "source": "stage-entertainment.de",
+      "ticket_links": [
+        {
+          "label": "Stage",
+          "url": "https://www.stage-entertainment.de/musicals-shows/disneys-der-koenig-der-loewen-hamburg"
+        },
+        {
+          "label": "Broadway.org",
+          "url": "https://www.disneytickets.de/der-konig-der-lowen-tickets"
+        }
+      ],
+      "group": "lion king"
+    },
+    {
+      "id": "stage-disneys-tarzan-hamburg",
+      "title": "Tarzan",
+      "type": "resident",
+      "venue": "Stage Theater Neue Flora",
+      "city": "Hamburg",
+      "country": "Germany",
+      "lat": 53.5615,
+      "lng": 9.9533,
+      "start_date": null,
+      "end_date": null,
+      "ticket_url": "https://www.stage-entertainment.de/musicals-shows/disneys-tarzan-hamburg",
+      "image": "https://s1.ticketm.net/dam/a/aa3/5893a475-0f2b-4b53-b6b1-30827bd5aaa3_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "stage-entertainment.de",
+      "group": "tarzan"
+    },
+    {
+      "id": "stage-mj-das-michael-jackson-musical-hamburg",
+      "title": "MJ The Musical",
+      "type": "resident",
+      "venue": "Stage Theater an der Elbe",
+      "city": "Hamburg",
+      "country": "Germany",
+      "lat": 53.5397,
+      "lng": 9.9746,
+      "start_date": null,
+      "end_date": null,
+      "ticket_url": "https://www.stage-entertainment.de/musicals-shows/mj-das-michael-jackson-musical-hamburg",
+      "image": "https://cdn-imgix.headout.com/media/images/82d22769-258e-4f5d-9a28-ff967e8c48ee-1775027766193-TodayTix_Poster_480x720_14601_MJ_Updated_Partner_assets_FR.jpg",
+      "tour_name": null,
+      "verified": true,
+      "source": "stage-entertainment.de",
+      "group": "mj"
+    },
+    {
+      "id": "stage-salon-rosie-berlin",
+      "title": "Salon Rosie",
+      "type": "resident",
+      "venue": "Stage Theater des Westens",
+      "city": "Berlin",
+      "country": "Germany",
+      "lat": 52.5054,
+      "lng": 13.3326,
+      "start_date": null,
+      "end_date": null,
+      "ticket_url": "https://www.stage-entertainment.de/musicals-shows/salon-rosie-berlin",
+      "image": null,
+      "tour_name": null,
+      "verified": true,
+      "source": "stage-entertainment.de",
+      "group": "salon rosie"
+    },
+    {
+      "id": "stage-tanz-der-vampire-stuttgart",
+      "title": "TANZ DER VAMPIRE",
+      "type": "resident",
+      "venue": "Stage Apollo Theater",
+      "city": "Stuttgart",
+      "country": "Germany",
+      "lat": 48.7861,
+      "lng": 9.2274,
+      "start_date": null,
+      "end_date": null,
+      "ticket_url": "https://www.stage-entertainment.de/musicals-shows/tanz-der-vampire-stuttgart",
+      "image": "https://mediaportal.stage-entertainment.com/asset/1a156947-db00-4b95-93c6-f949b6e9b22a/SEN-TDV-Artwork-1920x1080px.jpg",
+      "tour_name": null,
+      "verified": true,
+      "source": "stage-entertainment.de",
+      "group": "tanz der vampire"
+    },
+    {
+      "id": "stage-und-julia-stuttgart",
+      "title": "& Juliet",
+      "type": "resident",
+      "venue": "Stage Palladium Theater",
+      "city": "Stuttgart",
+      "country": "Germany",
+      "lat": 48.7867,
+      "lng": 9.2295,
+      "start_date": null,
+      "end_date": null,
+      "ticket_url": "https://www.stage-entertainment.de/musicals-shows/und-julia-stuttgart",
+      "image": "https://mediaportal.stage-entertainment.com/m/3fba3f4e4af33f0a/original/-_JULIA_HH_Prio1_Roar_-C-JOHAN_PERSSON_STAGE_ENTERTAINMENT.tif",
+      "tour_name": null,
+      "verified": true,
+      "source": "stage-entertainment.de",
+      "group": "juliet"
+    },
+    {
+      "id": "stage-we-will-rock-you-stuttgart",
+      "title": "WE WILL ROCK YOU",
+      "type": "resident",
+      "venue": "Stage Palladium Theater",
+      "city": "Stuttgart",
+      "country": "Germany",
+      "lat": 48.7867,
+      "lng": 9.2295,
+      "start_date": null,
+      "end_date": null,
+      "ticket_url": "https://www.stage-entertainment.de/musicals-shows/we-will-rock-you-stuttgart",
+      "image": "https://mediaportal.stage-entertainment.com/m/3a9d8c4123f83864/original/WWRY-Keyvisual-1080x1080px.jpg",
+      "tour_name": null,
+      "verified": true,
+      "source": "stage-entertainment.de",
+      "group": "we will rock you"
+    },
+    {
+      "id": "stage-wir-sind-am-leben-berlin",
+      "title": "WIR SIND AM LEBEN",
+      "type": "resident",
+      "venue": "Stage Theater des Westens",
+      "city": "Berlin",
+      "country": "Germany",
+      "lat": 52.5054,
+      "lng": 13.3326,
+      "start_date": null,
+      "end_date": null,
+      "ticket_url": "https://www.stage-entertainment.de/musicals-shows/wir-sind-am-leben-berlin",
+      "image": null,
+      "tour_name": null,
+      "verified": true,
+      "source": "stage-entertainment.de",
+      "group": "wir sind am leben"
+    },
+    {
+      "id": "stage-zurueck-in-die-zukunft-hamburg",
+      "title": "Back to the Future: The Musical",
+      "type": "resident",
+      "venue": "Stage Operettenhaus",
+      "city": "Hamburg",
+      "country": "Germany",
+      "lat": 53.5495,
+      "lng": 9.9671,
+      "start_date": null,
+      "end_date": null,
+      "ticket_url": "https://www.stage-entertainment.de/musicals-shows/zurueck-in-die-zukunft-hamburg",
+      "image": "https://mediaportal.stage-entertainment.com/m/32480b6478d8692d/original/ZIZ_HH_Logo_540x540px.jpg",
+      "tour_name": null,
+      "verified": true,
+      "source": "stage-entertainment.de",
+      "group": "back to the future"
     },
     {
       "id": "manual-phantom-shanghai-2026",

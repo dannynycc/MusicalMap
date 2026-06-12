@@ -53,7 +53,36 @@ def group_key(title):
 
 # Curated sources (precise data). Order matters for de-dup: later files win.
 SOURCE_FILES = ["broadway.json", "westend.json", "tours.json", "intl.json",
-                "shiki.json", "takarazuka.json", "interpark.json", "manual.json"]
+                "shiki.json", "takarazuka.json", "interpark.json",
+                "atg.json", "stage_de.json", "manual.json"]
+
+# When several ticket sources list the SAME show in the SAME city, we keep one
+# record (highest priority = most authoritative venue data) and attach every
+# source's purchase link to the card. Lower index = higher priority.
+SOURCE_PRIORITY = ["shiki.jp", "kageki", "broadway-show-tickets", "londontheatre",
+                   "interpark", "stage-entertainment", "manual", "broadway.org",
+                   "atgtickets", "ticketmaster"]
+SOURCE_LABEL = {
+    "broadway-show-tickets": "Broadway官方票", "londontheatre": "LondonTheatre",
+    "broadway.org": "Broadway.org", "shiki.jp": "四季官網", "kageki": "宝塚官網",
+    "interpark": "Interpark", "atgtickets": "ATG", "stage-entertainment": "Stage",
+    "ticketmaster": "Ticketmaster", "manual": "官方售票", "shgtheatre": "上海大剧院",
+    "livenation": "Live Nation", "ndm.cz": "NDM",
+}
+
+
+def src_prio(src):
+    for i, p in enumerate(SOURCE_PRIORITY):
+        if p in (src or ""):
+            return i
+    return 99
+
+
+def src_label(src):
+    for k, v in SOURCE_LABEL.items():
+        if k in (src or ""):
+            return v
+    return "售票連結"
 # Ticketmaster is added only for countries the curated sources DON'T cover,
 # so it fills global gaps (Australia, NZ, Ireland, Nordics, Canada…) without
 # duplicating the well-curated US/UK/etc. productions.
@@ -139,6 +168,37 @@ def main():
             by_id[sid]["source"] += "+override"
             applied += 1
         print(f"  applied {applied} override(s)")
+
+    # Merge duplicates: same show + same city listed by multiple ticket sources
+    # → keep the most authoritative record, attach ALL purchase links to it.
+    from collections import defaultdict
+    dup = defaultdict(list)
+    for s in by_id.values():
+        dup[(group_key(s["title"]), (s.get("city") or "").lower())].append(s)
+    merged = 0
+    for recs in dup.values():
+        if len(recs) < 2:
+            continue
+        recs.sort(key=lambda s: (src_prio(s.get("source")),
+                                 s.get("start_date") is None and s.get("end_date") is None))
+        primary, rest = recs[0], recs[1:]
+        links = primary.get("ticket_links") or []
+        if primary.get("ticket_url") and not links:
+            links = [{"label": src_label(primary.get("source")), "url": primary["ticket_url"]}]
+        for r in rest:
+            u = r.get("ticket_url")
+            if u and all(l.get("url") != u for l in links):
+                links.append({"label": src_label(r.get("source")), "url": u})
+            for l in (r.get("ticket_links") or []):
+                if all(x.get("url") != l.get("url") for x in links):
+                    links.append({"label": l.get("label") or l.get("country") or src_label(r.get("source")),
+                                  "url": l.get("url")})
+            del by_id[r["id"]]
+            merged += 1
+        if len(links) > 1:
+            primary["ticket_links"] = links
+    if merged:
+        print(f"  merged {merged} duplicate show+city record(s); extra ticket links attached")
 
     shows = list(by_id.values())
 
