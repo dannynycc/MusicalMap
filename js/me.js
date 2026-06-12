@@ -5,6 +5,10 @@ const cfg = window.MM_CONFIG || {};
 const $ = (s) => document.querySelector(s);
 const esc = (v) => String(v ?? "").replace(/[&<>"']/g, (c) =>
   ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+// search normalization — must match scrapers/gen_catalog.py _clean(): lowercase,
+// fold 臺→台, strip every bracket/quote/separator (half/full-width, CJK, curly).
+const SEARCH_PUNCT = /[()\[\]{}（）［］｛｝「」『』【】〔〕《》〈〉<>＜＞"'`＂＇“”‘’｀、・·,，:：/／|｜~～\-－—–]+/g;
+const norm = (s) => (s || "").toLowerCase().replace(/臺/g, "台").replace(SEARCH_PUNCT, " ").replace(/\s+/g, " ").trim();
 
 let sb = null;
 let CATALOG = { venues: [], cities: [], titles: [], currencies: [], posters: {} };
@@ -127,13 +131,28 @@ function posterIcon(title, img) {
   });
 }
 
+// minimum zoom at which one world is at least as wide as the container, so there's
+// no empty grey gap beside the map (Leaflet shows void when world < container).
+function worldFillZoom() {
+  return Math.ceil(Math.log2(Math.max(1, map.getSize().x) / 256));
+}
+function clampWorld() {
+  map.invalidateSize();
+  const z = worldFillZoom();
+  map.setMinZoom(z);
+  if (map.getZoom() < z) map.setView([20, 0], z);
+}
+
 function renderMap() {
   if (!map) {
-    map = L.map("me-map", { worldCopyJump: true }).setView([25, 30], 2);
+    map = L.map("me-map", { worldCopyJump: true, minZoom: 1, maxBoundsViscosity: 1.0 }).setView([20, 0], 2);
     L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png",
       { attribution: "&copy; OpenStreetMap &copy; CARTO", subdomains: "abcd", maxZoom: 19 }).addTo(map);
     layer = L.markerClusterGroup({ showCoverageOnHover: false, maxClusterRadius: 45 });
     map.addLayer(layer);
+    map.setMaxBounds([[-85, -180], [85, 180]]);  // keep within one world (no void panning)
+    clampWorld();
+    window.addEventListener("resize", clampWorld);
   }
   layer.clearLayers();
   const pts = [];
@@ -224,18 +243,21 @@ function setupAutocomplete() {
   const pop = $("#ac-pop");
   document.querySelectorAll("[data-ac]").forEach((inp) => {
     inp.addEventListener("input", () => {
-      const q = inp.value.trim().toLowerCase();
+      // Normalize identically to the catalog search blobs: lowercase, 臺→台, and
+      // fold away every bracket/quote/punct width & style (（）［］「」＂＇""''…),
+      // so any script/variant and with-or-without-brackets all match.
+      const q = norm(inp.value);
       if (!q) { pop.hidden = true; return; }
       const kind = inp.dataset.ac;
+      const hay = (s) => norm(s).includes(q);
       let items;
-      if (kind === "venues") items = CATALOG.venues.filter((v) => v.name.toLowerCase().includes(q))
+      if (kind === "venues") items = CATALOG.venues.filter((v) => hay(v.search || v.name))
         .slice(0, 8).map((v) => ({ label: v.name, sub: [v.city, v.country].filter(Boolean).join(", "), pick: v.name, v }));
-      else if (kind === "cities") items = CATALOG.cities.filter((c) => c.city.toLowerCase().includes(q))
+      else if (kind === "cities") items = CATALOG.cities.filter((c) => hay(c.city))
         .slice(0, 8).map((c) => ({ label: c.city, sub: c.country, pick: c.city, country: c.country }));
-      else if (kind === "currencies") items = CATALOG.currencies.filter((c) => c.toLowerCase().includes(q))
+      else if (kind === "currencies") items = CATALOG.currencies.filter((c) => hay(c))
         .slice(0, 8).map((c) => ({ label: c, pick: c.split(" ")[0] }));
-      else items = CATALOG.titles.filter((t) =>
-        t.en.toLowerCase().includes(q) || (t.zh && t.zh.includes(q)))
+      else items = CATALOG.titles.filter((t) => hay(t.search || (t.en + " " + (t.zh || ""))))
         .slice(0, 10).map((t) => ({ label: t.en, sub: t.zh || "", pick: t.en }));
       if (!items.length) { pop.hidden = true; return; }
       pop.innerHTML = items.map((it, i) =>

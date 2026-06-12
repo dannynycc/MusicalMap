@@ -14,27 +14,99 @@ from pathlib import Path
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
 DATA = Path(__file__).resolve().parent.parent / "data"
 
-# Curated venues missing from the musical dataset (name, city, country, lat, lng)
+# Traditional/Simplified Chinese folding so a venue/title is found whichever script
+# the user types (上海大劇院 = 上海大剧院, 台北 = 臺北 …). OpenCC is build-only; if
+# unavailable we degrade to no conversion (still searchable in the original script).
+try:
+    from opencc import OpenCC
+    _T2S, _S2T = OpenCC("t2s"), OpenCC("s2t")
+    def _t2s(s): return _T2S.convert(s)
+    def _s2t(s): return _S2T.convert(s)
+except Exception:  # noqa: BLE001 — opencc optional
+    def _t2s(s): return s
+    def _s2t(s): return s
+
+# common Taiwanese variant character not always covered by t2s/s2t mappings
+_VARIANT = str.maketrans({"臺": "台"})
+
+# brackets/quotes in EVERY width & style — half-width, full-width, CJK, curly —
+# folded to spaces so "電通四季劇場[海]" and "電通四季劇場" match either way, and
+# typing with or without （）［］「」＂＇""'' makes no difference.
+_PUNCT = re.compile(r"""[()\[\]{}（）［］｛｝「」『』【】〔〕《》〈〉<>＜＞"'`＂＇“”‘’｀、・·,，:：/／|｜~～\-－—–]+""")
+
+
+def _clean(s):
+    return re.sub(r"\s+", " ", _PUNCT.sub(" ", s or "")).strip()
+
+
+_CJK = re.compile("[぀-ヿ㐀-鿿가-힯＀-￯]")
+
+
+def _has_latin_only(s):
+    """True if the name has no CJK/Hangul/Kana (i.e. already a Latin-script name)."""
+    return not _CJK.search(s or "")
+
+
+def search_blob(*parts):
+    """Lowercased searchable string: every part plus its simplified/traditional and
+    臺→台 folded forms, so any script/variant the user types matches."""
+    seen = []
+    for p in parts:
+        for form in {p, _t2s(p), _s2t(p), (p or "").translate(_VARIANT)}:
+            f = _clean(form).lower()       # fold away all brackets/quotes/punct
+            if f and f not in seen:
+                seen.append(f)
+    return " ".join(seen)
+
+# Curated venues missing from the musical dataset (name, city, country, lat, lng).
+# Taiwan / Japan / Korea now come from the richer data/{tw,jp,kr}_venues.json
+# (bilingual + Google coords); only the few remaining gaps are kept here.
 CURATED = [
-    ("National Theater (國家戲劇院)", "Taipei", "Taiwan", 25.0360, 121.5168),
-    ("National Concert Hall (國家音樂廳)", "Taipei", "Taiwan", 25.0349, 121.5167),
-    ("Taipei Performing Arts Center (臺北表演藝術中心)", "Taipei", "Taiwan", 25.0578, 121.5256),
-    ("National Taichung Theater (臺中國家歌劇院)", "Taichung", "Taiwan", 24.1631, 120.6406),
-    ("Weiwuying (衛武營國家藝術文化中心)", "Kaohsiung", "Taiwan", 22.6045, 120.3349),
-    ("Taipei Arena (臺北小巨蛋)", "Taipei", "Taiwan", 25.0515, 121.5510),
     ("Hong Kong Cultural Centre", "Hong Kong", "Hong Kong", 22.2940, 114.1700),
-    ("Esplanade Theatre", "Singapore", "Singapore", 1.2897, 103.8559),
-    ("Sands Theatre, Marina Bay Sands", "Singapore", "Singapore", 1.2847, 103.8590),
-    ("Tokyu Theatre Orb (東急シアターオーブ)", "Tokyo", "Japan", 35.6590, 139.7036),
-    ("Imperial Theatre (帝国劇場)", "Tokyo", "Japan", 35.6759, 139.7626),
-    ("Nissay Theatre (日生劇場)", "Tokyo", "Japan", 35.6736, 139.7616),
-    ("Seoul Arts Center (예술의전당)", "Seoul", "South Korea", 37.4786, 127.0119),
-    ("Sejong Center (세종문화회관)", "Seoul", "South Korea", 37.5725, 126.9760),
+    ("Esplanade Theatre (濱海藝術中心)", "Singapore", "Singapore", 1.2897, 103.8559),
+    ("Sands Theatre, Marina Bay Sands (濱海灣金沙劇院)", "Singapore", "Singapore", 1.2847, 103.8590),
     ("Sydney Opera House", "Sydney", "Australia", -33.8568, 151.2153),
     ("Théâtre du Châtelet", "Paris", "France", 48.8576, 2.3470),
     ("Teatro alla Scala", "Milan", "Italy", 45.4674, 9.1895),
     ("Raimund Theater", "Vienna", "Austria", 48.1969, 16.3438),
     ("Ronacher", "Vienna", "Austria", 48.2073, 16.3760),
+    # Philippines (Google-geocoded) — big international-tour houses in Metro Manila + Cebu/Davao
+    ("The Theatre at Solaire", "Pasay", "Philippines", 14.522812, 120.983461),
+    ("CCP Main Theater (Tanghalang Nicanor Abelardo)", "Pasay", "Philippines", 14.558412, 120.985911),
+    ("Newport Performing Arts Theater", "Pasay", "Philippines", 14.519111, 121.020059),
+    ("Meralco Theater", "Pasig", "Philippines", 14.589851, 121.063900),
+    ("SM Mall of Asia Arena", "Pasay", "Philippines", 14.531636, 120.984023),
+    ("Smart Araneta Coliseum", "Quezon City", "Philippines", 14.620667, 121.053397),
+    ("Cebu Cultural Center", "Cebu", "Philippines", 10.322537, 123.899211),
+    ("SMX Convention Center Davao", "Davao", "Philippines", 7.098812, 125.630241),
+    # Singapore (Esplanade + Sands already above) — remaining big-musical houses
+    ("The Star Theatre (星宇表演藝術中心)", "Singapore", "Singapore", 1.306842, 103.788440),
+    ("Resorts World Theatre (聖淘沙名勝世界劇場)", "Singapore", "Singapore", 1.255179, 103.821811),
+    ("Singapore Indoor Stadium (新加坡室內體育館)", "Singapore", "Singapore", 1.300571, 103.874394),
+    ("Victoria Theatre (維多利亞劇院)", "Singapore", "Singapore", 1.288621, 103.851462),
+    ("Drama Centre Theatre (戲劇中心劇院)", "Singapore", "Singapore", 1.297571, 103.854291),
+    # Thailand — big international-tour + flagship local houses (mostly Bangkok)
+    ("Muangthai Rachadalai Theatre (泰國創意劇場)", "Bangkok", "Thailand", 13.766803, 100.569473),
+    ("Thailand Cultural Centre Main Hall (泰國文化中心)", "Bangkok", "Thailand", 13.766677, 100.574196),
+    ("Prince Mahidol Hall (瑪希敦王子展演廳)", "Nakhon Pathom", "Thailand", 13.789575, 100.321160),
+    ("Aksra Theatre King Power (阿克薩拉劇院)", "Bangkok", "Thailand", 13.759503, 100.537886),
+    ("Ultra Arena Bravo BKK", "Bangkok", "Thailand", 13.750749, 100.572318),
+    ("KBank Siam Pic-Ganesha Theatre (暹羅百麗宮迦納薩劇院)", "Bangkok", "Thailand", 13.744902, 100.533775),
+    ("IMPACT Arena", "Nonthaburi", "Thailand", 13.912606, 100.547753),
+    ("Siam Niramit Phuket (暹羅夢幻劇場)", "Phuket", "Thailand", 7.932230, 98.375703),
+    # Malaysia — Kuala Lumpur / Selangor + Genting / Malacca / Penang
+    ("Istana Budaya (國家文化宮)", "Kuala Lumpur", "Malaysia", 3.174352, 101.703824),
+    ("Dewan Filharmonik Petronas (國油管弦樂廳)", "Kuala Lumpur", "Malaysia", 3.158212, 101.711526),
+    ("KLPAC Pentas 1", "Kuala Lumpur", "Malaysia", 3.185170, 101.686392),
+    ("Panggung Bandaraya DBKL (城市劇院)", "Kuala Lumpur", "Malaysia", 3.150255, 101.694893),
+    ("PJPAC Stage 1", "Petaling Jaya", "Malaysia", 3.148095, 101.617251),
+    ("DPAC Theatre", "Petaling Jaya", "Malaysia", 3.166679, 101.612253),
+    ("The Platform @ Menara Ken TTDI", "Kuala Lumpur", "Malaysia", 3.152374, 101.622372),
+    ("CPAC Dato' Pilus Hall", "Petaling Jaya", "Malaysia", 3.151542, 101.656779),
+    ("Axiata Arena (亞通體育館)", "Kuala Lumpur", "Malaysia", 3.053815, 101.693434),
+    ("Arena of Stars (雲星劇場)", "Genting Highlands", "Malaysia", 3.422520, 101.793710),
+    ("Encore Melaka (又見馬六甲)", "Malacca", "Malaysia", 2.187342, 102.220942),
+    ("Dewan Sri Pinang (檳城大會堂)", "George Town", "Malaysia", 5.421764, 100.340649),
 ]
 
 # Confident, standard Chinese names (searchable alongside English). Only well-
@@ -81,8 +153,14 @@ def norm_venue(name, city=""):
     return tuple(sorted(set(toks)))
 
 
+def vkey(venue, city):
+    return f"{(venue or '').strip().lower()}|{(city or '').lower().split(',')[0].strip()}"
+
+
 def main():
     shows = json.loads((DATA / "shows.json").read_text(encoding="utf-8"))["shows"]
+    vnames_path = DATA / "venue_names.json"   # vkey -> {en, native} for Asian venues
+    vnames = json.loads(vnames_path.read_text(encoding="utf-8")) if vnames_path.exists() else {}
 
     # venues — dedup by (normalized name, city); keep the longest/cleanest display
     vmerge = {}
@@ -93,7 +171,11 @@ def main():
         city = (city or "").strip()
         nk = norm_venue(name, city)
         if not nk:
-            return
+            # pure CJK/Hangul name (no Latin tokens) — DON'T drop it; key on the
+            # bracket-stripped name so e.g. 大阪四季劇場 / 有明四季劇場 survive.
+            nk = (re.sub(r"[\s()\[\]（）［］「」『』]+", "", name.lower()),)
+            if not nk[0]:
+                return
         k = (nk, city.lower().split(",")[0].strip())
         cur = vmerge.get(k)
         # prefer the shorter, cleaner display name (no "- City" / section suffix)
@@ -107,6 +189,64 @@ def main():
     for name, city, country, lat, lng in CURATED:
         add_venue(name, city, country, lat, lng)
 
+    # finalize venues: bilingual display ("English 原文") + a search blob covering
+    # English + native + simplified/traditional + 臺/台, so any script/variant matches.
+    venues = []
+    for v in vmerge.values():
+        raw, city = v["name"], v["city"]
+        bi = vnames.get(vkey(raw, city)) or {}
+        en, native = bi.get("en", ""), bi.get("native", "")
+        if en and native and native.strip() != en.strip():
+            display = f"{en} {native}"
+        elif en and not _has_latin_only(raw):       # raw is non-Latin → prefer English-led display
+            display = f"{en} {raw}" if raw not in en else en
+        else:
+            display = raw
+        v["name"] = re.sub(r"\s{2,}", " ", display).strip()
+        v["search"] = search_blob(raw, en, native)
+        venues.append(v)
+
+    # curated regional venue lists (Taiwan / Japan / Korea …) — bilingual halls that
+    # host musicals but have no "currently playing" run, so they only enrich the
+    # My-Musicals autocomplete. Display "English 原文"; search covers EN + native + 中文.
+    ckey = lambda c: (c or "").lower().split(",")[0].strip()
+    idx = {}  # city -> [venue dicts]; reused both to dedupe AND to enrich existing
+    for v in venues:
+        idx.setdefault(ckey(v["city"]), []).append(v)
+    def match(city, *names):
+        for v in idx.get(ckey(city), []):
+            if any(n and n.lower() in v["search"] for n in names if n):
+                return v
+        return None
+    for fname in ("tw_venues.json", "jp_venues.json", "kr_venues.json", "cn_venues.json"):
+        fp = DATA / fname
+        if not fp.exists():
+            continue
+        added = merged = 0
+        for v in json.loads(fp.read_text(encoding="utf-8")):
+            if not v.get("lat"):
+                continue
+            en, zh, native = v.get("en", ""), v.get("zh", ""), v.get("native", "")
+            city, country = v.get("city", ""), v.get("country", "")
+            extra = zh or native
+            display = f"{en} {extra}".strip() if (en and extra) else (en or extra)
+            blob = search_blob(en, native, zh)
+            hit = match(city, en, zh, native)
+            if hit:   # already present from a show — fold in the extra names/scripts
+                # concatenate blobs (keep phrases intact for multi-word matches like
+                # "blue square") rather than tokenizing, which would scramble order.
+                hit["search"] = (hit["search"] + " " + blob).strip()
+                if _has_latin_only(hit["name"]) and extra:   # upgrade to bilingual display
+                    hit["name"] = re.sub(r"\s{2,}", " ", display).strip()
+                merged += 1
+                continue
+            rec = {"name": re.sub(r"\s{2,}", " ", display).strip(), "city": city, "country": country,
+                   "lat": v["lat"], "lng": v["lng"], "search": blob}
+            venues.append(rec)
+            idx.setdefault(ckey(city), []).append(rec)
+            added += 1
+        print(f"  + {added} new, {merged} merged from {fname}")
+
     cities = sorted({(s.get("city"), s.get("country") or "") for s in shows if s.get("city")})
 
     # bilingual titles + poster per show-group
@@ -119,10 +259,10 @@ def main():
     titles = []
     for g, en in sorted(groups.items(), key=lambda x: x[1].lower()):
         zh = ZH.get(re.sub(r"[^a-z0-9 ]", "", g).strip())
-        titles.append({"en": en, "zh": zh, "group": g})
+        titles.append({"en": en, "zh": zh, "group": g, "search": search_blob(en, zh or "")})
 
     out = {
-        "venues": sorted(vmerge.values(), key=lambda v: v["name"]),
+        "venues": sorted(venues, key=lambda v: v["name"]),
         "cities": [{"city": c, "country": k} for c, k in cities],
         "titles": titles,
         "currencies": CURRENCIES,

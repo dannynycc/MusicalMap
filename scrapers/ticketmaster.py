@@ -20,13 +20,16 @@ import io
 import time
 import urllib.request
 import urllib.parse
+import urllib.error
 from pathlib import Path
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
 
 DATA = Path(__file__).resolve().parent.parent / "data"
 API = "https://app.ticketmaster.com/discovery/v2/events.json"
-KEY = os.environ.get("TICKETMASTER_API_KEY")
+_KEYFILE = Path(__file__).resolve().parent / ".tm_key"   # gitignored local key
+KEY = os.environ.get("TICKETMASTER_API_KEY") or (
+    _KEYFILE.read_text(encoding="utf-8").strip() if _KEYFILE.exists() else None)
 # One Discovery API spans every national Ticketmaster site; we sweep each market
 # by ISO country code. Dedupe is by (show, venue) so the same production showing
 # up under multiple country sites collapses into one record (collecting each
@@ -39,8 +42,26 @@ KEY = os.environ.get("TICKETMASTER_API_KEY")
 # non-London cities only. (Lesson from missing the Miss Saigon UK tour.)
 # US included not for new markers (Broadway/tours are curated) but so build can
 # ATTACH Ticketmaster purchase links to existing records (link enrichment).
-COUNTRIES = ["AU", "NZ", "GB", "IE", "CA", "BE", "DK", "SE", "NO", "FI",
-             "AT", "CH", "PL", "IT", "PT", "CZ", "SG", "US"]
+# Global deep sweep: every market the Ticketmaster Discovery API serves. Empty /
+# unsupported codes just return nothing and are skipped — dedupe by (show, venue)
+# collapses a production appearing under several national sites. Curated-source
+# countries (US/GB/…) stay in for ticket-link enrichment of existing records.
+COUNTRIES = [
+    # North America
+    "US", "CA", "MX",
+    # Oceania
+    "AU", "NZ",
+    # UK & Ireland
+    "GB", "IE",
+    # Western / Central / Northern / Southern / Eastern Europe
+    "AT", "BE", "CH", "CZ", "DE", "DK", "ES", "FI", "FR", "GR", "HU",
+    "IT", "LU", "NL", "NO", "PL", "PT", "RO", "SE", "SK", "HR", "SI",
+    "EE", "LV", "LT", "BG",
+    # Middle East / Africa
+    "AE", "IL", "TR", "ZA",
+    # Asia-Pacific
+    "SG",
+]
 
 
 def clean_title(t):
@@ -71,30 +92,55 @@ def clean_title(t):
 
 def fetch(params):
     url = API + "?" + urllib.parse.urlencode(params)
-    with urllib.request.urlopen(url, timeout=30) as r:
-        return json.loads(r.read().decode("utf-8"))
+    for attempt in range(4):
+        try:
+            with urllib.request.urlopen(url, timeout=30) as r:
+                return json.loads(r.read().decode("utf-8"))
+        except urllib.error.HTTPError as e:
+            if e.code in (429, 500, 502, 503, 504) and attempt < 3:
+                time.sleep(1.5 * (attempt + 1))   # transient server/rate hiccup → back off
+                continue
+            raise
+    return {}   # unreachable (loop returns or raises), but keeps the type checker happy
 
 
-def sweep_country(cc):
-    """Yield raw musical events for one country, paginating."""
+# Ticketmaster Discovery caps deep paging at 1000 items (page*size); requesting
+# beyond that returns HTTP 400. With size=100 the last valid page is 9. Big
+# markets (US/GB) hold >1000 musical events, so we ALSO sub-segment them by city
+# to reach past the 1000 ceiling.
+MAX_PAGE = 9
+BIG_MARKET_CITIES = {
+    "US": ["New York", "Chicago", "Los Angeles", "Las Vegas", "Boston", "Washington",
+           "San Francisco", "Philadelphia", "Atlanta", "Seattle", "Toronto"],
+    "GB": ["London", "Manchester", "Birmingham", "Glasgow", "Edinburgh", "Leeds",
+           "Liverpool", "Bristol", "Cardiff", "Nottingham"],
+}
+
+
+def sweep_country(cc, city=None):
+    """Yield raw musical events for one country (optionally one city), paginating
+    up to TM's 1000-item ceiling. A 400 past the ceiling ends paging gracefully."""
     page = 0
-    while True:
-        data = fetch({
-            "apikey": KEY,
-            "classificationName": "Musical",
-            "segmentName": "Arts & Theatre",
-            "countryCode": cc,
-            "size": 100,
-            "page": page,
-            "sort": "date,asc",
-        })
+    while page <= MAX_PAGE:
+        params = {
+            "apikey": KEY, "classificationName": "Musical", "segmentName": "Arts & Theatre",
+            "countryCode": cc, "size": 100, "page": page, "sort": "date,asc",
+        }
+        if city:
+            params["city"] = city
+        try:
+            data = fetch(params)
+        except urllib.error.HTTPError as e:
+            if e.code == 400:    # past the deep-paging ceiling → stop, keep what we have
+                break
+            raise
         for ev in data.get("_embedded", {}).get("events", []):
             yield ev
         info = data.get("page", {})
         page += 1
-        if page >= info.get("totalPages", 0) or page > 24:  # gap countries are small; fetch (nearly) all
+        if page >= info.get("totalPages", 0):
             break
-        time.sleep(0.25)
+        time.sleep(0.2)
 
 
 def main():
@@ -104,55 +150,57 @@ def main():
         return
 
     runs = {}  # (show, venue) -> aggregated record
+
+    def add_event(ev, cc):
+        cl = (ev.get("classifications") or [{}])[0]
+        genre = ((cl.get("genre") or {}).get("name") or "").lower()
+        sub = ((cl.get("subGenre") or {}).get("name") or "").lower()
+        seg = ((cl.get("segment") or {}).get("name") or "").lower()
+        if seg != "arts & theatre" or "musical" not in (genre + " " + sub):
+            return                                    # keep only genuine musicals
+        v = (ev.get("_embedded", {}).get("venues") or [{}])[0]
+        loc = v.get("location") or {}
+        title = clean_title(ev.get("name") or "")
+        venue = (v.get("name") or "").strip()
+        date = (ev.get("dates", {}).get("start", {}) or {}).get("localDate")
+        if not title or not venue or not loc.get("latitude"):
+            return
+        key = (title.lower(), venue.lower())
+        rec = runs.get(key)
+        if not rec:
+            att = (ev.get("_embedded", {}).get("attractions") or [{}])[0]
+            imgs = sorted(ev.get("images", []), key=lambda i: -(i.get("width") or 0))
+            runs[key] = {
+                "id": "tm-" + re.sub(r"[^a-z0-9]+", "-", f"{title}-{venue}".lower()).strip("-"),
+                "title": title, "type": "tour",  # TM runs are limited engagements / tour stops
+                "venue": venue,
+                "city": (v.get("city") or {}).get("name") or "",
+                "country": (v.get("country") or {}).get("name") or cc,
+                "lat": round(float(loc["latitude"]), 6),
+                "lng": round(float(loc["longitude"]), 6),
+                "start_date": date, "end_date": date,
+                "ticket_url": ev.get("url"),
+                "attraction_url": att.get("url"),
+                "ticket_links": ([{"country": cc, "url": ev["url"]}] if ev.get("url") else []),
+                "image": imgs[0]["url"] if imgs else None,
+                "tour_name": None, "verified": True,
+                "source": "ticketmaster",
+            }
+        else:  # widen the run's date range + collect this region's link
+            if date and (not rec["start_date"] or date < rec["start_date"]):
+                rec["start_date"] = date
+            if date and (not rec["end_date"] or date > rec["end_date"]):
+                rec["end_date"] = date
+            if ev.get("url") and not any(l["country"] == cc for l in rec["ticket_links"]):
+                rec["ticket_links"].append({"country": cc, "url": ev["url"]})
+
     for cc in COUNTRIES:
         try:
-            for ev in sweep_country(cc):
-                # classification gating: keep only genuine musicals
-                cl = (ev.get("classifications") or [{}])[0]
-                genre = ((cl.get("genre") or {}).get("name") or "").lower()
-                sub = ((cl.get("subGenre") or {}).get("name") or "").lower()
-                seg = ((cl.get("segment") or {}).get("name") or "").lower()
-                # "Musical" is the subGenre under genre "Theatre"
-                if seg != "arts & theatre" or "musical" not in (genre + " " + sub):
-                    continue
-                v = (ev.get("_embedded", {}).get("venues") or [{}])[0]
-                loc = v.get("location") or {}
-                title = clean_title(ev.get("name") or "")
-                venue = (v.get("name") or "").strip()
-                date = (ev.get("dates", {}).get("start", {}) or {}).get("localDate")
-                if not title or not venue or not loc.get("latitude"):
-                    continue
-                key = (title.lower(), venue.lower())
-                rec = runs.get(key)
-                if not rec:
-                    att = (ev.get("_embedded", {}).get("attractions") or [{}])[0]
-                    imgs = sorted(ev.get("images", []), key=lambda i: -(i.get("width") or 0))
-                    runs[key] = {
-                        "id": "tm-" + re.sub(r"[^a-z0-9]+", "-", f"{title}-{venue}".lower()).strip("-"),
-                        "title": title, "type": "tour",  # TM runs are limited engagements / tour stops
-                        "venue": venue,
-                        "city": (v.get("city") or {}).get("name") or "",
-                        "country": (v.get("country") or {}).get("name") or cc,
-                        "lat": round(float(loc["latitude"]), 6),
-                        "lng": round(float(loc["longitude"]), 6),
-                        "start_date": date, "end_date": date,
-                        "ticket_url": ev.get("url"),
-                        # stable show-level page (e.g. /ragtime-ny-tickets/artist/123) —
-                        # used when attaching TM as an extra purchase link
-                        "attraction_url": att.get("url"),
-                        # one ticket link per region/country, shown in the card
-                        "ticket_links": ([{"country": cc, "url": ev["url"]}] if ev.get("url") else []),
-                        "image": imgs[0]["url"] if imgs else None,
-                        "tour_name": None, "verified": True,
-                        "source": "ticketmaster",
-                    }
-                else:  # widen the run's date range + collect this region's link
-                    if date and (not rec["start_date"] or date < rec["start_date"]):
-                        rec["start_date"] = date
-                    if date and (not rec["end_date"] or date > rec["end_date"]):
-                        rec["end_date"] = date
-                    if ev.get("url") and not any(l["country"] == cc for l in rec["ticket_links"]):
-                        rec["ticket_links"].append({"country": cc, "url": ev["url"]})
+            for ev in sweep_country(cc):              # country-wide (first 1000 by date)
+                add_event(ev, cc)
+            for city in BIG_MARKET_CITIES.get(cc, []):  # big markets: dig past the ceiling per city
+                for ev in sweep_country(cc, city):
+                    add_event(ev, cc)
             print(f"  {cc}: {len(runs)} cumulative runs")
         except Exception as e:  # noqa: BLE001
             print(f"  [{cc}] failed: {e}")

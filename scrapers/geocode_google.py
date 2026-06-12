@@ -46,9 +46,13 @@ def load_key():
     sys.exit("No API key: set GOOGLE_MAPS_KEY or write scrapers/.gmaps_key")
 
 
-def places_new(query, key):
-    """Returns (lat, lng, name, addr, 'places-new') | ('DENIED', msg) | None."""
-    body = json.dumps({"textQuery": query, "maxResultCount": 1}).encode()
+def places_new(query, key, language=None):
+    """Returns (lat, lng, name, addr, 'places-new') | ('DENIED', msg) | None.
+    `language` (e.g. 'en') asks Google for the place name in that language."""
+    payload = {"textQuery": query, "maxResultCount": 1}
+    if language:
+        payload["languageCode"] = language
+    body = json.dumps(payload).encode()
     req = urllib.request.Request(PLACES_NEW, data=body, method="POST", headers={
         "Content-Type": "application/json", "X-Goog-Api-Key": key,
         "X-Goog-FieldMask": "places.location,places.displayName,places.formattedAddress"})
@@ -115,12 +119,21 @@ def vkey(venue, city):
 
 def main():
     key = load_key()
+    force = "--all" in sys.argv          # re-geocode everything (default: only new venues)
+    coords_path = DATA / "venue_coords.json"
+    existing = json.loads(coords_path.read_text(encoding="utf-8")) if coords_path.exists() else {}
+    have = {k for k in existing if not k.startswith("_")}
+
     shows = json.loads((DATA / "shows.json").read_text(encoding="utf-8"))["shows"]
     venues = {}
     for s in shows:
         v, c, co = s.get("venue"), s.get("city"), s.get("country")
         if v and (v, c) not in venues:
-            venues[(v, c)] = (s.get("lat"), s.get("lng"), co)
+            if force or vkey(v, c) not in have:      # incremental: skip already-known venues
+                venues[(v, c)] = (s.get("lat"), s.get("lng"), co)
+    if not venues:
+        print("No new venues to geocode (all present in venue_coords.json). Use --all to force.", flush=True)
+        return
 
     # pick the engine that the key actually has enabled (one probe call)
     probe_q = "Apollo Victoria Theatre, London, UK"
@@ -162,9 +175,13 @@ def main():
         if i % 50 == 0:
             print(f"  [{i}/{total}] … ok {len(coords)}, review {len(needs_review)}", flush=True)
 
+    # merge: keep all previously-verified venues, add/refresh the ones we just did
+    merged = {k: v for k, v in existing.items() if not k.startswith("_")}
+    merged.update(coords)
     out = {"_comment": "Authoritative venue coords (Google, building-level ~<=30m), keyed by "
-                       "'venue|city'. Applied in build_shows.py. Regenerate: scrapers/geocode_google.py"}
-    out.update(dict(sorted(coords.items())))
+                       "'venue|city'. Applied in build_shows.py. Regenerate: scrapers/geocode_google.py "
+                       "(incremental; --all to re-do every venue)."}
+    out.update(dict(sorted(merged.items())))
     (DATA / "venue_coords.json").write_text(json.dumps(out, ensure_ascii=False, indent=1), encoding="utf-8")
     (DATA / "_geo_google_report.json").write_text(json.dumps(
         {"checked": total, "geocoded": len(coords),

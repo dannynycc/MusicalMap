@@ -1,5 +1,5 @@
 {
- "_comment": "Authoritative venue coords (Google, building-level ~<=30m), keyed by 'venue|city'. Applied in build_shows.py. Regenerate: scrapers/geocode_google.py",
+ "_comment": "Authoritative venue coords (Google, building-level ~<=30m), keyed by 'venue|city'. Applied in build_shows.py. Regenerate: scrapers/geocode_google.py (incremental; --all to re-do every venue).",
  "3olympia theatre|dublin": [
   53.344309,
   -6.266065
@@ -84,6 +84,10 @@
   37.546198,
   -77.451698
  ],
+ "altınoluk amphi theater|balıkesir": [
+  39.57724,
+  26.740868
+ ],
  "amaturo theater at broward center|ft lauderdale": [
   26.119331,
   -80.149155
@@ -115,6 +119,10 @@
  "aronoff center: procter &amp; gamble hall|cincinnati": [
   39.103564,
   -84.51179
+ ],
+ "artscape opera house|cape town": [
+  -33.919818,
+  18.430111
  ],
  "asb waterfront theatre|auckland": [
   -36.842086,
@@ -163,6 +171,10 @@
  "barbican centre|london": [
   51.520208,
   -0.093786
+ ],
+ "barclays arena|hamburg": [
+  53.589333,
+  9.899105
  ],
  "bass concert hall @ u of tx at austin|austin": [
   30.286392,
@@ -240,6 +252,10 @@
   35.227317,
   -80.841542
  ],
+ "boch center shubert theatre|boston": [
+  42.350401,
+  -71.065401
+ ],
  "boch center wang theatre|boston": [
   42.350371,
   -71.064804
@@ -288,6 +304,14 @@
   39.744541,
   -104.997696
  ],
+ "burgberg|heinsberg": [
+  51.060156,
+  6.093399
+ ],
+ "bursa kültür park open air theatre|bursa": [
+  40.196763,
+  29.041519
+ ],
  "bushnell|hartford": [
   41.762595,
   -72.680897
@@ -297,6 +321,10 @@
   -73.525995
  ],
  "cadillac palace theatre|chicago": [
+  41.884239,
+  -87.633058
+ ],
+ "cadillac palace|chicago": [
   41.884239,
   -87.633058
  ],
@@ -359,6 +387,10 @@
  "centennial hall|tucson": [
   32.231477,
   -110.955463
+ ],
+ "center stage theater|atlanta": [
+  33.792215,
+  -84.387956
  ],
  "centerpoint legacy theatre|centerville": [
   40.923195,
@@ -568,6 +600,10 @@
   39.137246,
   -88.575118
  ],
+ "el cantoral|mexico": [
+  19.361982,
+  -99.166296
+ ],
  "embassy theatre|fort wayne": [
   41.075737,
   -85.139762
@@ -583,6 +619,10 @@
  "eugene o'neill theatre|new york": [
   40.761133,
   -73.985659
+ ],
+ "europahalle|trier": [
+  49.752092,
+  6.63669
  ],
  "evans, ga|evans": [
   33.533746,
@@ -611,6 +651,10 @@
  "fisher theatre|detroit": [
   42.369513,
   -83.076734
+ ],
+ "ford's theatre|washington": [
+  38.896676,
+  -77.025591
  ],
  "forrest theatre|philadelphia": [
   39.948539,
@@ -724,7 +768,15 @@
   42.26075,
   -71.803117
  ],
+ "harbiye cemil topuzlu açıkhava tiyatrosu|i̇stanbul": [
+  41.046061,
+  28.99003
+ ],
  "hard rock cafe - nyc|new york": [
+  40.757035,
+  -73.986611
+ ],
+ "hard rock cafe|new york": [
   40.757035,
   -73.986611
  ],
@@ -772,6 +824,10 @@
   29.761667,
   -95.369722
  ],
+ "hollywood pantages theatre|los angeles": [
+  34.101843,
+  -118.325609
+ ],
  "hongdae nanta theater|seoul": [
   37.553087,
   126.921119
@@ -779,6 +835,14 @@
  "hongik daehangno art center|seoul": [
   37.576664,
   127.001851
+ ],
+ "house of blues las vegas|las vegas": [
+  36.093044,
+  -115.175564
+ ],
+ "howard theatre|washington": [
+  38.915374,
+  -77.021089
  ],
  "hull city hall|hull": [
   53.743781,
@@ -803,6 +867,10 @@
  "ipswich regent theatre|ipswich": [
   52.057441,
   1.160287
+ ],
+ "i̇zmir kültürpark open air theatre|i̇zmir": [
+  38.428481,
+  27.145345
  ],
  "jacksonville center for the performing arts: moran theatre|jacksonville": [
   30.324873,
@@ -952,6 +1020,10 @@
   53.408873,
   -2.978285
  ],
+ "liverpool philharmonic hall|liverpool": [
+  53.401334,
+  -2.970268
+ ],
  "london coliseum|london": [
   51.509869,
   -0.126656
@@ -1032,6 +1104,14 @@
   53.54294,
   10.016439
  ],
+ "metronom theater|oberhausen": [
+  51.4913,
+  6.885566
+ ],
+ "metropol theater bremen|bremen": [
+  53.078346,
+  8.814134
+ ],
  "milton keynes theatre|milton keynes": [
   52.044081,
   -0.748787
@@ -1108,6 +1188,10 @@
   40.763178,
   -73.984539
  ],
+ "neptune theatre|seattle": [
+  47.661172,
+  -122.313981
+ ],
  "new amsterdam theatre|new york": [
   40.756091,
   -73.987788
@@ -1155,6 +1239,10 @@
  "noël coward theatre|london": [
   51.511145,
   -0.127226
+ ],
+ "o2 apollo manchester|manchester": [
+  53.469567,
+  -2.222142
  ],
  "off latina|madrid": [
   40.412046,
@@ -1264,6 +1352,10 @@
   47.613524,
   -122.331513
  ],
+ "pavilion theatre glasgow|glasgow": [
+  55.865082,
+  -4.255724
+ ],
  "peace center for the perf. arts|greenville": [
   34.847562,
   -82.401107
@@ -1344,6 +1436,10 @@
   41.821356,
   -71.412496
  ],
+ "punch l!ne club berlin|berlin": [
+  52.507322,
+  13.372329
+ ],
  "queen elizabeth hall - southbank centre|london": [
   51.5066,
   -0.116517
@@ -1367,6 +1463,10 @@
  "regent's park open air theatre|london": [
   51.52843,
   -0.154732
+ ],
+ "reggies rock club|chicago": [
+  41.853918,
+  -87.626852
  ],
  "reims arena|reims": [
   49.264153,
@@ -1668,6 +1768,10 @@
   52.478564,
   -1.910109
  ],
+ "taproot theatre|seattle": [
+  47.6907,
+  -122.356316
+ ],
  "tbs akasaka act theater|tokyo": [
   35.672842,
   139.735111
@@ -1679,6 +1783,10 @@
  "teatro alcázar|madrid": [
   40.417741,
   -3.699077
+ ],
+ "teatro aldama|méxico": [
+  19.438115,
+  -99.161705
  ],
  "teatro amaya|madrid": [
   40.435138,
@@ -1696,6 +1804,10 @@
   40.421126,
   -3.708278
  ],
+ "teatro at montecasino|johannesburg": [
+  -26.024761,
+  28.014918
+ ],
  "teatro bellas artes|madrid": [
   40.418243,
   -3.696481
@@ -1708,9 +1820,17 @@
   45.513517,
   10.213314
  ],
+ "teatro de los insurgentes|méxico": [
+  19.364163,
+  -99.18247
+ ],
  "teatro gran vía|madrid": [
   40.422317,
   -3.70883
+ ],
+ "teatro hidalgo|méxico": [
+  19.436677,
+  -99.141874
  ],
  "teatro infanta isabel|madrid": [
   40.422245,
@@ -1732,6 +1852,10 @@
   40.421966,
   -3.693728
  ],
+ "teatro milán|méxico": [
+  19.429999,
+  -99.156662
+ ],
  "teatro nuevo alcalá|madrid": [
   40.423397,
   -3.678246
@@ -1751,6 +1875,18 @@
  "teatro telcel|mexico city": [
   19.440968,
   -99.203876
+ ],
+ "teatro telcel|méxico": [
+  19.440968,
+  -99.203876
+ ],
+ "teatro tepeyac|méxico": [
+  19.473365,
+  -99.121365
+ ],
+ "teatro xola julio prieto|méxico": [
+  19.396024,
+  -99.161299
  ],
  "teatros del canal|madrid": [
   40.438279,
@@ -1776,6 +1912,10 @@
   52.47616,
   -1.901186
  ],
+ "the apollo's jonelle procope theater|new york": [
+  40.809927,
+  -73.950135
+ ],
  "the arena at pickering casino resort|pickering": [
   43.84309,
   -79.05397
@@ -1784,9 +1924,17 @@
   51.51322,
   -0.159169
  ],
+ "the auditorium|chicago": [
+  41.87585,
+  -87.625241
+ ],
  "the brighton centre|brighton": [
   50.821232,
   -0.146474
+ ],
+ "the castro theatre|san francisco": [
+  37.762033,
+  -122.434759
  ],
  "the civic, auckland|auckland": [
   -36.850979,
@@ -1964,6 +2112,10 @@
   43.654825,
   -79.388447
  ],
+ "town hall|new york": [
+  40.756053,
+  -73.98453
+ ],
  "trixxo theater hasselt|hasselt": [
   50.933674,
   5.365292
@@ -1987,6 +2139,10 @@
  "unitedhealth group stage-the childrens theatre|minneapolis": [
   44.958138,
   -93.273352
+ ],
+ "utilita arena cardiff|cardiff": [
+  51.478942,
+  -3.172433
  ],
  "utilita arena|birmingham": [
   52.479699,
@@ -2019,6 +2175,10 @@
  "wales millennium centre|cardiff": [
   51.464842,
   -3.163183
+ ],
+ "walnut street theatre|philadelphia": [
+  39.948384,
+  -75.155359
  ],
  "walter kerr theatre|new york": [
   40.760724,
@@ -2071,6 +2231,10 @@
  "wilmington, nc|wilmington": [
   34.210389,
   -77.886812
+ ],
+ "wilshire ebell theatre|los angeles": [
+  34.060702,
+  -118.325149
  ],
  "winsupply theatre|dayton": [
   39.761183,

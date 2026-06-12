@@ -35,6 +35,12 @@ jobs:
       # Scrape only on schedule / manual run. On push the committed data is
       # already fresh (built locally), so we skip scraping and just deploy —
       # this avoids a push-vs-CI race on the data commit.
+      # gen_catalog.py uses OpenCC to fold Traditional/Simplified Chinese into the
+      # venue/title search blobs; without it those venues lose cross-script search.
+      - name: Install Python deps
+        if: github.event_name != 'push'
+        run: pip install opencc-python-reimplemented
+
       - name: Scrape sources & rebuild shows.json
         if: github.event_name != 'push'
         run: |

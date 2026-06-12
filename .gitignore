@@ -8,5 +8,7 @@ preview_*.png
 .gmaps_key
 *.gmaps_key
 scrapers/.gmaps_key
-# geo-audit debug artifacts
-data/_geo_*
+.tm_key
+scrapers/.tm_key
+# debug artifacts (logs, audit reports) — anything data/_*
+data/_*

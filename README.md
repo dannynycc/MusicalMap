@@ -43,8 +43,11 @@ scrapers/  ──產出──>  data/*.json  ──merge──>  data/shows.json
 | `data/overrides.json` | 人工座標/欄位修正（依 show id；修來源錯誤，build 時套用） |
 | `data/venue_coords.json` | **場館級權威座標**（`venue\|city`→[lat,lng]，建築級 ≤~30m，由 Google 產生；build 時套用到該場館所有場次） |
 | `data/venues.json` | venue→座標 geocode 快取（手動可編） |
-| `scrapers/geocode_google.py` | **Google Places (New) 權威 geocode**（建築級 ≤30m，回填 venue_coords.json；金鑰走 .gitignore 不入庫） |
+| `scrapers/geocode_google.py` | **Google Places (New) 權威 geocode**（建築級 ≤30m，增量回填 venue_coords.json；金鑰走 .gitignore 不入庫） |
 | `scrapers/audit_geo.py` | 離線國家邊界框健全檢查（抓標到別國/null-island） |
+| `scrapers/{tw,jp,kr,cn}_venues.py` → `data/*_venues.json` | 台/日/韓/中**完整在地音樂劇場館清單**（雙語名+Google 座標；供 My Musicals autocomplete，無當前檔期不上世界地圖） |
+| `scrapers/venue_names.py` → `data/venue_names.json` | 亞洲場館英文+原文雙名（Google `languageCode`） |
+| `data/venues_catalog.json` 的 `search` 欄位 | 英文+原文+簡體+繁體+臺/台 折疊（OpenCC），中英任一寫法皆可搜 |
 | `scrapers/geocode.py` | Nominatim geocoding + 永久快取 |
 | `scrapers/broadway.py` | Broadway scraper（解析 `__NEXT_DATA__`，含 NYC 座標檢查） |
 | `scrapers/westend.py` | West End scraper（解析 `__NEXT_DATA__` + geocode） |
