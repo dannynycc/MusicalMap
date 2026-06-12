@@ -10,9 +10,44 @@ Out: data/cn_venues.json  [{native, en, city, country, lat, lng}]
 """
 
 import json
+import math
 import sys
 import time
 from pathlib import Path
+
+# Google returns China-mainland coords in GCJ-02 (the encrypted offset system).
+# Our basemap (CARTO/OSM) is WGS-84, so we must convert or every venue lands ~hundreds
+# of metres off. (Outside mainland — HK/Macau/Taiwan/overseas — Google is already WGS-84.)
+_A, _EE = 6378245.0, 0.00669342162296594323
+
+
+def _tf_lat(x, y):
+    r = -100 + 2*x + 3*y + 0.2*y*y + 0.1*x*y + 0.2*math.sqrt(abs(x))
+    r += (20*math.sin(6*x*math.pi) + 20*math.sin(2*x*math.pi)) * 2/3
+    r += (20*math.sin(y*math.pi) + 40*math.sin(y/3*math.pi)) * 2/3
+    r += (160*math.sin(y/12*math.pi) + 320*math.sin(y*math.pi/30)) * 2/3
+    return r
+
+
+def _tf_lng(x, y):
+    r = 300 + x + 2*y + 0.1*x*x + 0.1*x*y + 0.1*math.sqrt(abs(x))
+    r += (20*math.sin(6*x*math.pi) + 20*math.sin(2*x*math.pi)) * 2/3
+    r += (20*math.sin(x*math.pi) + 40*math.sin(x/3*math.pi)) * 2/3
+    r += (150*math.sin(x/12*math.pi) + 300*math.sin(x/30*math.pi)) * 2/3
+    return r
+
+
+def gcj02_to_wgs84(lat, lng):
+    if not (73.66 < lng < 135.05 and 3.86 < lat < 53.55):   # outside mainland → unchanged
+        return lat, lng
+    dlat = _tf_lat(lng - 105.0, lat - 35.0)
+    dlng = _tf_lng(lng - 105.0, lat - 35.0)
+    rad = lat / 180.0 * math.pi
+    magic = 1 - _EE * math.sin(rad) ** 2
+    sq = math.sqrt(magic)
+    dlat = (dlat * 180.0) / ((_A * (1 - _EE)) / (magic * sq) * math.pi)
+    dlng = (dlng * 180.0) / (_A / sq * math.cos(rad) * math.pi)
+    return lat - dlat, lng - dlng
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
@@ -145,7 +180,8 @@ def main():
         r = gg.places_new(query, key)
         time.sleep(0.08)
         if isinstance(r, tuple) and r and r[0] != "DENIED" and len(r) >= 5:
-            lat, lng = round(r[0], 6), round(r[1], 6)
+            wlat, wlng = gcj02_to_wgs84(r[0], r[1])     # GCJ-02 (Google CN) → WGS-84
+            lat, lng = round(wlat, 6), round(wlng, 6)
             rec = {"native": native, "en": en, "city": city, "country": "China", "lat": lat, "lng": lng}
             print(f"  [{i}/{len(VENUES)}] {native} / {en} @ {lat},{lng}", flush=True)
         else:
