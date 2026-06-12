@@ -27,7 +27,7 @@ gg = importlib.util.module_from_spec(_spec); _spec.loader.exec_module(gg)
 # parent building so halls in the same complex resolve to the right coordinate.
 VENUES = [
     # 臺北市 Taipei
-    ("國家戲劇院（國家兩廳院）", "Taipei", "國家戲劇院 National Theater, Taipei"),
+    ("國家戲劇院", "Taipei", "國家戲劇院 National Theater, Taipei"),
     ("國家兩廳院 實驗劇場", "Taipei", "國家戲劇院 National Theater, Taipei"),
     ("台北小巨蛋", "Taipei", "台北小巨蛋 Taipei Arena"),
     ("台北流行音樂中心 表演廳", "Taipei", "臺北流行音樂中心 Taipei Music Center"),
@@ -107,7 +107,7 @@ VENUES = [
 
 # Hardcoded English names where Google's is wrong/ambiguous (overrides geocode).
 EN_OVERRIDE = {
-    "國家戲劇院（國家兩廳院）": "National Theater and Concert Hall",
+    "國家戲劇院": "National Theater and Concert Hall",
     "國家兩廳院 實驗劇場": "National Theater and Concert Hall (Experimental Theater)",
 }
 

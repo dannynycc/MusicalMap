@@ -11,6 +11,10 @@
 
 ---
 
+## [v0.22.3] - 2026-06-12 23:57
+### 變更
+- 國家兩廳院場館中文名簡化:「國家戲劇院（國家兩廳院）」→「國家戲劇院」(顯示為 National Theater and Concert Hall 國家戲劇院)。
+
 ## [v0.22.2] - 2026-06-12 23:54
 ### 修正
 - **OPENTIX 台灣場館改用 Google 建築級座標**:原本用 OPENTIX 自帶 location,實測 16 個偏 >30m。改為 build 後跑 geocode_google 取精準座標寫入 venue_coords.json(至德堂/恆春文化中心等已校正;CI 沿用)。
