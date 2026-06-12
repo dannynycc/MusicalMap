@@ -117,11 +117,20 @@ function posterMarkerIcon(show) {
   });
 }
 
+const YEAR_MS = 31557600000;
 function fmtDates(show) {
+  const s = show.start_date, e = show.end_date;
   // Ticketmaster gives availability dates, not a confirmed run — label honestly.
-  if (show.onsale_only) return show.end_date ? `售票中 · 約演至 ${esc(show.end_date)}` : "售票中";
-  if (show.type === "resident") return show.end_date ? `售票至 ${esc(show.end_date)}` : "常駐演出中";
-  return `${esc(show.start_date || "?")} – ${esc(show.end_date || "?")}`;  // tour stop: real run
+  if (show.onsale_only) return e ? `售票中 · 約演至 ${esc(e)}` : "售票中";
+  if (s && e) {
+    // long-runners' end_date is just the rolling booking horizon, not a closing
+    // date — showing it as a range would read like a closing announcement.
+    if (new Date(e) - new Date(s) > 2.5 * YEAR_MS) return `自 ${esc(s)} 上演`;
+    return `${esc(s)} – ${esc(e)}`;
+  }
+  if (s) return `自 ${esc(s)} 上演`;
+  if (e) return `演至 ${esc(e)}`;
+  return "";
 }
 
 function tooltipHtml(show) {
@@ -144,11 +153,17 @@ function popupHtml(show) {
   const links = Array.isArray(show.ticket_links) ? show.ticket_links.filter((l) => safeUrl(l.url)) : [];
   let ticket;
   if (links.length > 1) {
-    ticket = `<div class="pop-links">購票來源：${links.map((l) =>
-      `<a class="pop-cta sm" href="${esc(safeUrl(l.url))}" target="_blank" rel="noopener">${esc(l.label || l.country)} →</a>`).join("")}</div>`;
+    // 官網(製作方/劇院自營)與第三方售票平台分開呈現
+    const row = (label, arr) => arr.length
+      ? `<div class="pop-links">${label}：${arr.map((l) =>
+          `<a class="pop-cta sm" href="${esc(safeUrl(l.url))}" target="_blank" rel="noopener">${esc(l.label || l.country)} →</a>`).join("")}</div>`
+      : "";
+    ticket = row("官網", links.filter((l) => l.kind === "official"))
+           + row("售票平台", links.filter((l) => l.kind !== "official"));
   } else {
     const url = safeUrl(show.ticket_url) || (links[0] && safeUrl(links[0].url));
-    ticket = url ? `<a class="pop-cta" href="${esc(url)}" target="_blank" rel="noopener">前往官方售票頁 →</a>` : "";
+    const label = show.link_kind === "official" ? "前往官網購票 →" : "前往售票頁 →";
+    ticket = url ? `<a class="pop-cta" href="${esc(url)}" target="_blank" rel="noopener">${label}</a>` : "";
   }
   const tname = show.tour_name ? show.tour_name.replace(show.title, canonTitle(show)) : "";
   const tourLine = show.type === "tour" && tname ? `<div class="p-row"><b>${esc(tname)}</b></div>` : "";

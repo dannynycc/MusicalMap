@@ -100,6 +100,10 @@ def normalize(p):
         img = "https:" + img  # Contentful URLs are protocol-relative
 
     end = clean_date(p.get("bookingTo")) or clean_date(p.get("closingDate"))  # null = open-ended
+    # canonical detail URL needs the numeric product id: /show/{id}-{slug}
+    # (slug alone 404s for many shows, e.g. /show/pride)
+    pid = p.get("id")
+    url = f"https://www.londontheatre.co.uk/show/{pid}-{slug}" if pid else SHOW_URL.format(slug=slug)
     return {
         "id": f"westend-{slug}",
         "title": title,
@@ -111,7 +115,7 @@ def normalize(p):
         "lng": lng,
         "start_date": clean_date(p.get("startingDate")),
         "end_date": end,
-        "ticket_url": SHOW_URL.format(slug=slug),
+        "ticket_url": url,
         "image": img,
         "tour_name": None,
         "verified": True,

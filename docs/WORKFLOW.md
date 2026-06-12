@@ -14,6 +14,10 @@
 6. **打 tag**：`git tag vX.Y.Z`，版號與 CHANGELOG 一致。
 7. **push**：`git push origin main --tags`。
 
+## 稽核(每次加來源/大改後必跑)
+- `python scrapers/audit_images.py` — 海報實測像素,模糊/失效=0 才過
+- `python scrapers/audit_links.py` — 購票連結全量實測,DEAD=0 才過(TM 401=bot block 非死連)
+
 ## 資料更新
 - 改 scraper 或想刷新資料：`python scrapers/westend.py && python scrapers/broadway.py && python scrapers/build_shows.py`。
 - GitHub Actions 也會每天自動跑上面這串並提交 `data/*.json`（commit 訊息帶 `[skip ci]`）。

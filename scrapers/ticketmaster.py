@@ -37,8 +37,10 @@ KEY = os.environ.get("TICKETMASTER_API_KEY")
 # GB included: London is curated (londontheatre.co.uk) but the UK REGIONAL
 # touring circuit (Manchester/Glasgow/…) isn't — build keeps TM GB records for
 # non-London cities only. (Lesson from missing the Miss Saigon UK tour.)
+# US included not for new markers (Broadway/tours are curated) but so build can
+# ATTACH Ticketmaster purchase links to existing records (link enrichment).
 COUNTRIES = ["AU", "NZ", "GB", "IE", "CA", "BE", "DK", "SE", "NO", "FI",
-             "AT", "CH", "PL", "IT", "PT", "CZ", "SG"]
+             "AT", "CH", "PL", "IT", "PT", "CZ", "SG", "US"]
 
 
 def clean_title(t):
@@ -123,6 +125,7 @@ def main():
                 key = (title.lower(), venue.lower())
                 rec = runs.get(key)
                 if not rec:
+                    att = (ev.get("_embedded", {}).get("attractions") or [{}])[0]
                     imgs = sorted(ev.get("images", []), key=lambda i: -(i.get("width") or 0))
                     runs[key] = {
                         "id": "tm-" + re.sub(r"[^a-z0-9]+", "-", f"{title}-{venue}".lower()).strip("-"),
@@ -134,6 +137,9 @@ def main():
                         "lng": round(float(loc["longitude"]), 6),
                         "start_date": date, "end_date": date,
                         "ticket_url": ev.get("url"),
+                        # stable show-level page (e.g. /ragtime-ny-tickets/artist/123) —
+                        # used when attaching TM as an extra purchase link
+                        "attraction_url": att.get("url"),
                         # one ticket link per region/country, shown in the card
                         "ticket_links": ([{"country": cc, "url": ev["url"]}] if ev.get("url") else []),
                         "image": imgs[0]["url"] if imgs else None,

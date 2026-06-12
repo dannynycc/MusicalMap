@@ -63,12 +63,18 @@ SOURCE_PRIORITY = ["shiki.jp", "kageki", "broadway-show-tickets", "londontheatre
                    "interpark", "stage-entertainment", "manual", "broadway.org",
                    "atgtickets", "ticketmaster"]
 SOURCE_LABEL = {
-    "broadway-show-tickets": "Broadway官方票", "londontheatre": "LondonTheatre",
+    "broadway-show-tickets": "Broadway票務", "londontheatre": "LondonTheatre",
     "broadway.org": "Broadway.org", "shiki.jp": "四季官網", "kageki": "宝塚官網",
-    "interpark": "Interpark", "atgtickets": "ATG", "stage-entertainment": "Stage",
-    "ticketmaster": "Ticketmaster", "manual": "官方售票", "shgtheatre": "上海大剧院",
-    "livenation": "Live Nation", "ndm.cz": "NDM",
+    "interpark": "Interpark", "atgtickets": "ATG", "stage-entertainment": "Stage官網",
+    "ticketmaster": "Ticketmaster", "manual": "官方售票", "shgtheatre": "上海大劇院",
+    "livenation": "Live Nation", "ndm.cz": "NDM官網",
 }
+# 官網(製作方/劇團/劇院自營) vs 售票平台(第三方票務)。
+OFFICIAL_SOURCES = ("shiki.jp", "kageki", "stage-entertainment", "shgtheatre", "ndm.cz")
+
+
+def src_kind(src):
+    return "official" if any(k in (src or "") for k in OFFICIAL_SOURCES) else "ticketing"
 
 
 def src_prio(src):
@@ -127,19 +133,28 @@ def main():
                           for s in by_id.values()}
         tm = json.loads(tm_path.read_text(encoding="utf-8")).get("shows", [])
         kept = 0
+        tm_enrich = {}  # (group, city) -> TM show-page url, attached after merge
         for s in tm:
             cn = country_norm(s.get("country"))
             city = (s.get("city") or "").lower()
+            gk = group_key(s["title"])
+            covered = False
             if cn in curated_countries:
                 only = CITY_ONLY_COVERED.get(cn)
-                if only is None or city in only:
-                    continue  # fully covered country, or covered city
-            if (group_key(s["title"]), city) in seen_show_city:
-                continue  # same show+city already present from a curated source
+                covered = (only is None) or (city in only)
+            if covered or (gk, city) in seen_show_city:
+                # don't add a duplicate marker — but keep TM as an extra
+                # purchase-link for the existing record (大型售票平台並列)
+                u = s.get("attraction_url") or s.get("ticket_url")
+                if u:
+                    tm_enrich.setdefault((gk, city), u)
+                continue
             by_id[s["id"]] = s
             kept += 1
-        print(f"  {TM_FILE}: +{kept} gap-fill ({len(tm)} total, {len(tm) - kept} skipped)")
+        print(f"  {TM_FILE}: +{kept} gap-fill, {len(tm_enrich)} link-enrichments queued")
         sources.append({"file": TM_FILE, "count": kept})
+    else:
+        tm_enrich = {}
 
     # shiki.jp is authoritative for Japan — drop other sources' Japan records of
     # shows shiki also lists (broadway.org's Japan venues proved stale, e.g.
@@ -184,15 +199,17 @@ def main():
         primary, rest = recs[0], recs[1:]
         links = primary.get("ticket_links") or []
         if primary.get("ticket_url") and not links:
-            links = [{"label": src_label(primary.get("source")), "url": primary["ticket_url"]}]
+            links = [{"label": src_label(primary.get("source")), "url": primary["ticket_url"],
+                      "kind": src_kind(primary.get("source"))}]
         for r in rest:
             u = r.get("ticket_url")
             if u and all(l.get("url") != u for l in links):
-                links.append({"label": src_label(r.get("source")), "url": u})
+                links.append({"label": src_label(r.get("source")), "url": u,
+                              "kind": src_kind(r.get("source"))})
             for l in (r.get("ticket_links") or []):
                 if all(x.get("url") != l.get("url") for x in links):
                     links.append({"label": l.get("label") or l.get("country") or src_label(r.get("source")),
-                                  "url": l.get("url")})
+                                  "url": l.get("url"), "kind": l.get("kind") or src_kind(r.get("source"))})
             del by_id[r["id"]]
             merged += 1
         if len(links) > 1:
@@ -200,11 +217,28 @@ def main():
     if merged:
         print(f"  merged {merged} duplicate show+city record(s); extra ticket links attached")
 
+    # attach Ticketmaster show-page links to covered records (大型售票平台並列)
+    enriched = 0
+    for s in by_id.values():
+        u = tm_enrich.get((group_key(s["title"]), (s.get("city") or "").lower()))
+        if not u or "ticketmaster" in (s.get("source") or ""):
+            continue
+        links = s.get("ticket_links") or (
+            [{"label": src_label(s.get("source")), "url": s["ticket_url"],
+              "kind": src_kind(s.get("source"))}] if s.get("ticket_url") else [])
+        if all(l.get("url") != u for l in links):
+            links.append({"label": "Ticketmaster", "url": u, "kind": "ticketing"})
+            s["ticket_links"] = links
+            enriched += 1
+    if enriched:
+        print(f"  attached Ticketmaster links to {enriched} existing record(s)")
+
     shows = list(by_id.values())
 
-    # assign grouping key (same show across sources / locations)
+    # assign grouping key (same show across sources / locations) + link kind
     for s in shows:
         s["group"] = group_key(s["title"])
+        s["link_kind"] = src_kind(s.get("source"))
 
     # image inheritance: a record with no poster (e.g. a tour stop) borrows the
     # artwork from another record of the same show that has one.
