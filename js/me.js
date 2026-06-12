@@ -6,9 +6,20 @@ const $ = (s) => document.querySelector(s);
 const esc = (v) => String(v ?? "").replace(/[&<>"']/g, (c) =>
   ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 // search normalization — must match scrapers/gen_catalog.py _clean(): lowercase,
-// fold 臺→台, strip every bracket/quote/separator (half/full-width, CJK, curly).
+// fold 臺→台, strip Latin diacritics (madach→Madách) WITHOUT touching CJK/kana/
+// Cyrillic, then strip every bracket/quote/separator (half/full-width, CJK, curly).
 const SEARCH_PUNCT = /[()\[\]{}（）［］｛｝「」『』【】〔〕《》〈〉<>＜＞"'`＂＇“”‘’｀、・·,，:：/／|｜~～\-－—–]+/g;
-const norm = (s) => (s || "").toLowerCase().replace(/臺/g, "台").replace(SEARCH_PUNCT, " ").replace(/\s+/g, " ").trim();
+const FOLD_EXTRA = { "ł": "l", "ø": "o", "ß": "ss", "đ": "d", "æ": "ae", "œ": "oe", "ı": "i", "ð": "d", "þ": "th" };
+function foldLatin(s) {
+  let out = "";
+  for (const ch of s) {
+    if (FOLD_EXTRA[ch]) { out += FOLD_EXTRA[ch]; continue; }
+    const d = ch.normalize("NFKD");
+    out += (d.charCodeAt(0) < 128 && /[a-z]/.test(d[0])) ? d.replace(/[̀-ͯ]/g, "") : ch;
+  }
+  return out;
+}
+const norm = (s) => foldLatin((s || "").toLowerCase().replace(/臺/g, "台")).replace(SEARCH_PUNCT, " ").replace(/\s+/g, " ").trim();
 
 let sb = null;
 let CATALOG = { venues: [], cities: [], titles: [], currencies: [], posters: {} };

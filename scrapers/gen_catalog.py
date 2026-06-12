@@ -6,9 +6,11 @@ Run: python scrapers/gen_catalog.py
 
 import html as htmllib
 import json
+import math
 import re
 import sys
 import io
+import unicodedata
 from pathlib import Path
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
@@ -51,8 +53,34 @@ _VARIANT = str.maketrans({"臺": "台"})
 _PUNCT = re.compile(r"""[()\[\]{}（）［］｛｝「」『』【】〔〕《》〈〉<>＜＞"'`＂＇“”‘’｀、・·,，:：/／|｜~～\-－—–]+""")
 
 
+# strip Latin diacritics so "madach" finds "Madách", "munchen"→"München", "lodz"→"Łódź".
+# Only Latin letters are folded — CJK/kana/Hangul/Cyrillic/Greek are left intact
+# (folding kana would wrongly merge ガ→カ).
+_FOLD_EXTRA = {"ł": "l", "Ł": "l", "ø": "o", "Ø": "o", "ß": "ss", "đ": "d", "Đ": "d",
+               "æ": "ae", "Æ": "ae", "œ": "oe", "Œ": "oe", "ı": "i", "ð": "d", "þ": "th"}
+
+
+def _fold(s):
+    out = []
+    for ch in (s or ""):
+        if ch in _FOLD_EXTRA:
+            out.append(_FOLD_EXTRA[ch]); continue
+        d = unicodedata.normalize("NFKD", ch)
+        if d and ord(d[0]) < 128 and d[0].isalpha():        # Latin base → drop accents
+            out.append("".join(x for x in d if not unicodedata.combining(x)))
+        else:
+            out.append(ch)                                   # keep non-Latin scripts
+    return "".join(out)
+
+
 def _clean(s):
-    return re.sub(r"\s+", " ", _PUNCT.sub(" ", s or "")).strip()
+    return re.sub(r"\s+", " ", _PUNCT.sub(" ", _fold(s or ""))).strip()
+
+
+def _distm(a, b, c, d):
+    R = 6371008.8; p = math.pi / 180
+    h = 0.5 - math.cos((c-a)*p)/2 + math.cos(a*p)*math.cos(c*p)*(1-math.cos((d-b)*p))/2
+    return 2 * R * math.asin(math.sqrt(h))
 
 
 _CJK = re.compile("[぀-ヿ㐀-鿿가-힯＀-￯]")
@@ -252,7 +280,8 @@ def main():
             if any(p in v["search"] for p in probes):
                 return v
         return None
-    for fname in ("tw_venues.json", "jp_venues.json", "kr_venues.json", "cn_venues.json"):
+    for fname in ("tw_venues.json", "jp_venues.json", "kr_venues.json", "cn_venues.json",
+                  "eu_venues.json"):
         fp = DATA / fname
         if not fp.exists():
             continue
@@ -280,6 +309,33 @@ def main():
             idx.setdefault(ckey(city), []).append(rec)
             added += 1
         print(f"  + {added} new, {merged} merged from {fname}")
+
+    # deep-discovered EU venues (Google Places crawl) — single-point POIs with no
+    # sub-hall semantics, so here we MAY dedup by coordinate proximity (<=55 m) as
+    # well as by name, to drop ones already present from shows/curated.
+    disc = DATA / "eu_discovered.json"
+    if disc.exists():
+        dn = 0
+        for v in json.loads(disc.read_text(encoding="utf-8")):
+            if not v.get("lat"):
+                continue
+            en, native = v.get("en", ""), v.get("native", "")
+            city, country = v.get("city", ""), v.get("country", "")
+            nm = _clean(en or native).lower()
+            dup = None
+            for u in idx.get(ckey(city), []):
+                if (len(nm) > 3 and nm in u["search"]) or \
+                   (isinstance(u.get("lat"), (int, float)) and _distm(v["lat"], v["lng"], u["lat"], u["lng"]) <= 55):
+                    dup = u; break
+            blob = search_blob(en, native)
+            if dup:
+                dup["search"] = (dup["search"] + " " + blob).strip()
+                continue
+            display = f"{en} {native}".strip() if (en and native) else (en or native)
+            rec = {"name": re.sub(r"\s{2,}", " ", display).strip(), "city": city,
+                   "country": country, "lat": v["lat"], "lng": v["lng"], "search": blob}
+            venues.append(rec); idx.setdefault(ckey(city), []).append(rec); dn += 1
+        print(f"  + {dn} discovered EU venues (deduped)")
 
     # explicit alias merges — the SAME venue listed under name variants (user-confirmed).
     # Distinct halls in one building (Tokyo Forum Hall A/C, 大/中/小劇場…) are NOT here.
