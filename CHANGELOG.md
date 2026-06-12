@@ -11,6 +11,12 @@
 
 ---
 
+## [v0.25.1] - 2026-06-13 02:11
+### 修正
+- **Ticketmaster 來源「約演至」日期錯誤(太早)**:CATS: The Jellicle Ball 顯示「約演至 2026-07-02」實際售票到 2027-01-17。根因是我寫的 ticketmaster.py 用 `sort=date,asc` 掃城市、撞到 1000 筆深分頁上限,熱門城市(紐約)把劇目後段場次截掉。改由 booking_horizon.py 用 TM 正確的 `sort=date,desc` 取每齣劇**真正最後一場**,並擴及所有 onsale_only 的劇(本次修正 32 筆 end)。
+- **同劇重複(去重漏掉)**:Ticketmaster 的「Wicked (NY)」因「(NY)」後綴 group_key 不同,沒跟百老匯駐演 Wicked(同場館)合併而重複出現。`clean_title` 改為剝除結尾的地點/巡演限定詞(NY/Broadway/UK Tour…),正當括號(如 Two Strangers (Carry a Cake…))保留。
+- **側欄展開場館清單排版參差**:長場館名換行時城市被擠成兩行(Milwaukee,/WI)。`.sub-item` 改為場館名 `flex:1` 自然換行、城市 `nowrap` 靠右、整列頂端對齊。
+
 ## [v0.25.0] - 2026-06-13 01:46
 ### 修正
 - **開放式長壽劇拖到數年後仍顯示**(Buena Vista Social Club 售票只到 2027/1,時間軸拖到 2029/6 還在地圖上)。根因:`overlapsMonth` 把「無 end_date」當成「永遠在演」。

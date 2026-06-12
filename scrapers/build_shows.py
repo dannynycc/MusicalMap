@@ -131,6 +131,16 @@ NOTICE_RE = re.compile(
     r"audio[- ]?desc|matinee|preview)[^)]*\)\s*", re.I)
 
 
+# Trailing location/tour qualifier some sources append to disambiguate, e.g.
+# Ticketmaster "Wicked (NY)" — it breaks grouping (→ a duplicate marker next to the
+# already-listed New York run). Strip ONLY short location/tour qualifiers, never a
+# real parenthetical like "Two Strangers (Carry a Cake Across New York)".
+LOC_QUALIFIER_RE = re.compile(
+    r"\s*\(\s*(?:[A-Za-z]{2}|N\.?Y\.?C?|NYC|U\.?K\.?|U\.?S\.?A?|"
+    r"broadway|west\s*end|national(?:\s*tour)?|north\s*american(?:\s*tour)?|"
+    r"u\.?s\.?\s*tour|uk\s*tour|on\s*tour|touring)\s*\)\s*$", re.I)
+
+
 def clean_title(t):
     t = (t or "").strip()
     t = re.sub(r"\s*\|.*$", "", t)          # drop promoter pipe-tails (… | Official … Packages)
@@ -138,6 +148,7 @@ def clean_title(t):
     while prev != t:
         prev = t
         t = NOTICE_RE.sub(" ", t).strip()
+        t = LOC_QUALIFIER_RE.sub("", t).strip()
     return re.sub(r"\s{2,}", " ", t).strip()
 
 
@@ -255,11 +266,20 @@ def main():
               if not k.startswith("_")}
         n_bh = 0
         for s in by_id.values():
-            if not s.get("end_date") and s["id"] in bh:
-                s["end_date"] = bh[s["id"]]
+            d = bh.get(s["id"])
+            if not d:
+                continue
+            if not s.get("end_date"):
+                s["end_date"] = d
                 s["end_rolling"] = True   # this end is the booking horizon, not a closing
                 n_bh += 1
-        print(f"  set {n_bh} end_date(s) from booking_horizon.json (last on-sale date)")
+            elif s.get("onsale_only"):
+                # TM city sweep truncates a busy city's later dates — replace with
+                # the real last on-sale performance (sort=date,desc).
+                if d != s["end_date"]:
+                    s["end_date"] = d
+                    n_bh += 1
+        print(f"  set {n_bh} end_date(s) from booking_horizon.json (real last on-sale date)")
 
     # Apply manual coordinate/field corrections (source data errors).
     overrides_path = DATA / "overrides.json"

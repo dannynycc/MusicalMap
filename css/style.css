@@ -101,14 +101,19 @@ body { display: flex; flex-direction: column; height: 100vh; }
 }
 .show-group.open .sublist { max-height: 320px; }
 .sub-item {
-  display: flex; align-items: center; gap: 8px; cursor: pointer;
-  font-size: 13px; color: var(--text); padding: 7px 10px 7px 22px;
+  display: flex; align-items: flex-start; gap: 12px; cursor: pointer;
+  font-size: 13px; color: var(--text); padding: 8px 12px 8px 22px;
   border-radius: 9px; margin: 2px 6px;
 }
 .sub-item:hover { background: var(--panel-2); }
 .sub-item.active { background: #ecfdf9; }
-.sub-venue { font-weight: 600; }
-.sub-city { color: var(--muted); margin-left: auto; font-size: 12px; }
+/* venue takes the available width and wraps; city stays on one line, right-aligned
+   at the top — so long names don't drag the city into a ragged second line. */
+.sub-venue { font-weight: 600; flex: 1; min-width: 0; line-height: 1.35; }
+.sub-city {
+  flex: none; color: var(--muted); font-size: 12px;
+  text-align: right; white-space: nowrap; line-height: 1.35; padding-top: 1px;
+}
 
 .show-item {
   display: flex; gap: 11px; align-items: center;

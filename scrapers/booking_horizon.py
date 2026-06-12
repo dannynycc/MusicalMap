@@ -90,11 +90,17 @@ def main():
     if not KEY:
         sys.exit("No Ticketmaster key: set TICKETMASTER_API_KEY or write scrapers/.tm_key")
     shows = json.loads((DATA / "shows.json").read_text(encoding="utf-8"))["shows"]
-    open_runs = [s for s in shows if not s.get("end_date") and s.get("start_date")]
-    print(f"Resolving booking horizon for {len(open_runs)} open-ended show(s) via Ticketmaster", flush=True)
+    # Two cases need the real last performance from Ticketmaster:
+    #  (a) open-ended runs with no end_date at all;
+    #  (b) onsale_only (TM) runs whose end_date is TRUNCATED — the city sweep is
+    #      capped at 1000 ascending events, so a busy city drops a show's later
+    #      dates (CATS: The Jellicle Ball showed "演至 2026-07-02", really 2027-01-17).
+    targets = [s for s in shows if s.get("start_date")
+               and (not s.get("end_date") or s.get("onsale_only"))]
+    print(f"Resolving booking horizon for {len(targets)} show(s) via Ticketmaster", flush=True)
     today = datetime.now().strftime("%Y-%m-%d")
     out, found = {}, 0
-    for s in open_runs:
+    for s in targets:
         d = last_date(s)
         if d and d > today and d < "2032-01-01":      # sane future window
             out[s["id"]] = d
@@ -105,7 +111,7 @@ def main():
     (DATA / "booking_horizon.json").write_text(
         json.dumps({"_comment": "open-ended shows' last on-sale date (Ticketmaster); applied as end_date by build_shows",
                     **out}, ensure_ascii=False, indent=1), encoding="utf-8")
-    print(f"\nWrote {found}/{len(open_runs)} booking horizons -> data/booking_horizon.json", flush=True)
+    print(f"\nWrote {found}/{len(targets)} booking horizons -> data/booking_horizon.json", flush=True)
 
 
 if __name__ == "__main__":
