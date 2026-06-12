@@ -21,9 +21,14 @@ function foldLatin(s) {
 const norm = (s) => foldLatin((s || "").toLowerCase().replace(/臺/g, "台")).replace(PUNCT, " ").replace(/\s+/g, " ").trim();
 
 const map = L.map("map", { zoomControl: true, worldCopyJump: true }).setView([30, 10], 2);
-L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png", {
+const streets = L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png", {
   attribution: "&copy; OpenStreetMap &copy; CARTO", subdomains: "abcd", maxZoom: 19,
 }).addTo(map);
+const satellite = L.tileLayer(
+  "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}", {
+    attribution: "Tiles &copy; Esri, Maxar, Earthstar Geographics", maxZoom: 19,
+  });
+L.control.layers({ "地圖": streets, "衛星": satellite }, null, { position: "topright" }).addTo(map);
 
 const cluster = L.markerClusterGroup({
   maxClusterRadius: 50, showCoverageOnHover: false, chunkedLoading: true,
