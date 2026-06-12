@@ -1,0 +1,55 @@
+{
+  "_note": "Official production websites by show group + region. Region keys: us (USA), uk (UK+Ireland), au, de, jp …, global = fallback. The card shows ONLY the region-appropriate official site, placed ABOVE ticketing links. Add entries only after verifying the URL (200, or 403-bot-block on a known-real site).",
+  "beetlejuice": {
+    "us": "https://beetlejuicebroadway.com/",
+    "uk": "https://beetlejuicemusical.co.uk/",
+    "au": "https://beetlejuicethemusical.com.au/"
+  },
+  "wicked": {
+    "us": "https://wickedthemusical.com/",
+    "uk": "https://www.wickedthemusical.co.uk/"
+  },
+  "hamilton": {
+    "global": "https://hamiltonmusical.com/"
+  },
+  "phantom of the opera": {
+    "global": "https://www.thephantomoftheopera.com/"
+  },
+  "les miserables": {
+    "global": "https://www.lesmis.com/"
+  },
+  "lion king": {
+    "uk": "https://thelionking.co.uk/"
+  },
+  "mamma mia": {
+    "global": "https://mamma-mia.com/"
+  },
+  "six": {
+    "global": "https://www.sixthemusical.com/"
+  },
+  "mj": {
+    "us": "https://mjthemusical.com/",
+    "au": "https://mjthemusical.com.au/"
+  },
+  "moulin rouge": {
+    "global": "https://moulinrougemusical.com/"
+  },
+  "book of mormon": {
+    "global": "https://thebookofmormonmusical.com/"
+  },
+  "hadestown": {
+    "global": "https://hadestown.com/"
+  },
+  "back to the future": {
+    "global": "https://www.backtothefuturemusical.com/"
+  },
+  "miss saigon": {
+    "uk": "https://miss-saigon.com/"
+  },
+  "chicago": {
+    "global": "https://chicagothemusical.com/"
+  },
+  "high school musical": {
+    "uk": "https://www.disneytickets.co.uk/high-school-musical-tickets"
+  }
+}

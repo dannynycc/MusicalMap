@@ -8,7 +8,7 @@ from concurrent.futures import ThreadPoolExecutor
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
 # Hosts returning error statuses to bots but rendering fine in real browsers
 # (verified via playwright: Ticketmaster serves the full page with HTTP 401).
-SOFT404_HOSTS = ("world.nol.com", "ticketmaster.", "ticketweb.")
+SOFT404_HOSTS = ("world.nol.com", "ticketmaster.", "ticketweb.", "coca-cola-arena")
 UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36",
       "Accept-Language": "en"}
 d = json.load(open("data/shows.json", encoding="utf-8"))["shows"]

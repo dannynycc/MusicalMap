@@ -153,13 +153,13 @@ function popupHtml(show) {
   const links = Array.isArray(show.ticket_links) ? show.ticket_links.filter((l) => safeUrl(l.url)) : [];
   let ticket;
   if (links.length > 1) {
-    // 官網(製作方/劇院自營)與第三方售票平台分開呈現
+    // 官網永遠在售票連結上方；按鈕等寬堆疊對齊
     const row = (label, arr) => arr.length
-      ? `<div class="pop-links">${label}：${arr.map((l) =>
+      ? `<div class="pop-link-group"><span class="pl-label">${label}</span>${arr.map((l) =>
           `<a class="pop-cta sm" href="${esc(safeUrl(l.url))}" target="_blank" rel="noopener">${esc(l.label || l.country)} →</a>`).join("")}</div>`
       : "";
     ticket = row("官網", links.filter((l) => l.kind === "official"))
-           + row("售票平台", links.filter((l) => l.kind !== "official"));
+           + row("售票", links.filter((l) => l.kind !== "official"));
   } else {
     const url = safeUrl(show.ticket_url) || (links[0] && safeUrl(links[0].url));
     const label = show.link_kind === "official" ? "前往官網購票 →" : "前往售票頁 →";

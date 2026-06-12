@@ -184,8 +184,16 @@ html, body {
   border-radius: 9px; text-decoration: none;
 }
 .mm-popup .pop-cta:hover { filter: brightness(1.08); text-decoration: none; }
-.pop-cta.sm { padding: 4px 9px; font-size: 12px; margin: 4px 6px 0 0; }
-.pop-links { margin-top: 8px; font-size: 12px; color: var(--muted); }
+/* stacked, equal-width, aligned link buttons grouped under a small label */
+.pop-link-group { margin-top: 9px; }
+.pop-link-group .pl-label {
+  display: block; font-size: 11px; font-weight: 700; color: var(--muted);
+  letter-spacing: .5px; margin-bottom: 4px;
+}
+.mm-popup .pop-cta.sm {
+  display: block; width: 100%; box-sizing: border-box; text-align: center;
+  padding: 6px 10px; font-size: 12px; margin: 0 0 5px 0;
+}
 
 /* marker cluster — size scales with count via iconCreateFunction */
 .mm-cluster-wrap { background: none; border: none; }

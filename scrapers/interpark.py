@@ -63,6 +63,11 @@ VENUES = {
 KOREAN_CITIES = ["Seoul", "Busan", "Daegu", "Daejeon", "Incheon", "Gwangju", "Ulsan", "Suwon", "Goyang"]
 
 
+# Service/merch products that NOL lists under MUSICAL but are not shows
+JUNK = re.compile(r"caption\s*glasses|rental|자막|렌탈|주차|parking|package|패키지|"
+                  r"goods|md\b|gift\s*card", re.I)
+
+
 def clean_title(name):
     t = (name or "").strip()
     t = re.sub(r"^\s*(show\s+musical|musical\s*pub|musical|뮤지컬)\s*", "", t, flags=re.I)
@@ -109,6 +114,8 @@ def main():
     shows, missing = [], []
     for it in items:
         raw_title = it.get("goodsName") or ""
+        if JUNK.search(raw_title):
+            continue  # caption-glasses rental / parking / merch — not a show
         title = clean_title(raw_title)
         place = (it.get("placeName") or "").strip()
         if not title or not place:

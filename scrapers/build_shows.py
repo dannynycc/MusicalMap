@@ -43,8 +43,10 @@ def group_key(title):
     # ("– Das Hit-Musical auf Schweizerdeutsch", ": The Broadway Musical", …)
     t = re.sub(r"\s*[:\-–—]\s*[^:]*musical.*$", "", t)
     t = re.sub(r"\s*[:\-–—]\s*(a\s+new\s+musical|the\s+musical|reimagined).*$", "", t)
-    # trailing "…(the) Xxx Yyy Musical" brand tails without a dash
-    t = re.sub(r"\s+(?:the\s+)?(?:[\w'!\-]+\s+){0,4}musical$", "", t)
+    # trailing "the Xxx Yyy Musical" brand tails without a dash. The "the" is
+    # REQUIRED — otherwise titles like "High School Musical" get over-stripped
+    # to "high" (real bug: its group missed the official-site table entirely).
+    t = re.sub(r"\s+the\s+(?:[\w'!\-]+\s+){0,4}musical$", "", t)
     t = re.sub(r"[^a-z0-9]+", " ", t).strip()
     if not t:  # over-stripped (e.g. a title that IS just "…Musical") — fall back
         t = re.sub(r"[^a-z0-9]+", " ",
@@ -54,19 +56,20 @@ def group_key(title):
 # Curated sources (precise data). Order matters for de-dup: later files win.
 SOURCE_FILES = ["broadway.json", "westend.json", "tours.json", "intl.json",
                 "shiki.json", "takarazuka.json", "interpark.json",
-                "atg.json", "stage_de.json", "manual.json"]
+                "atg.json", "stage_de.json", "madrid.json", "manual.json"]
 
 # When several ticket sources list the SAME show in the SAME city, we keep one
 # record (highest priority = most authoritative venue data) and attach every
 # source's purchase link to the card. Lower index = higher priority.
 SOURCE_PRIORITY = ["shiki.jp", "kageki", "broadway-show-tickets", "londontheatre",
-                   "interpark", "stage-entertainment", "manual", "broadway.org",
-                   "atgtickets", "ticketmaster"]
+                   "interpark", "stage-entertainment", "teatromadrid", "manual",
+                   "broadway.org", "atgtickets", "ticketmaster"]
 SOURCE_LABEL = {
     "broadway-show-tickets": "Broadway票務", "londontheatre": "LondonTheatre",
     "broadway.org": "Broadway.org", "shiki.jp": "四季官網", "kageki": "宝塚官網",
     "interpark": "Interpark", "atgtickets": "ATG", "stage-entertainment": "Stage官網",
     "ticketmaster": "Ticketmaster", "manual": "官方售票", "shgtheatre": "上海大劇院",
+    "teatromadrid": "TeatroMadrid",
     "livenation": "Live Nation", "ndm.cz": "NDM官網",
 }
 # 官網(製作方/劇團/劇院自營) vs 售票平台(第三方票務)。
@@ -93,6 +96,11 @@ def src_label(src):
 # so it fills global gaps (Australia, NZ, Ireland, Nordics, Canada…) without
 # duplicating the well-curated US/UK/etc. productions.
 TM_FILE = "ticketmaster.json"
+
+
+def city_key(c):
+    """'Boston, MA' == 'Boston' — state/region suffixes break dedup keys."""
+    return (c or "").lower().split(",")[0].strip()
 
 
 def country_norm(c):
@@ -125,18 +133,24 @@ def main():
     # - GB: curated covers ONLY London (londontheatre.co.uk) — keep TM records
     #   for other UK cities (regional touring circuit, e.g. Miss Saigon UK tour);
     # - plus a (show, city) check so TM never duplicates an existing record.
-    CITY_ONLY_COVERED = {"gb": {"london"}}
-    tm_path = DATA / TM_FILE
-    if tm_path.exists():
-        curated_countries = {country_norm(s.get("country")) for s in by_id.values()}
-        seen_show_city = {(group_key(s["title"]), (s.get("city") or "").lower())
+    # Cities (not whole countries) that curated sources own. US tours via
+    # broadway.org proved INCOMPLETE (no Beetlejuice NA tour) → only NYC is
+    # considered curated for the US; TM may add tour stops elsewhere.
+    CITY_ONLY_COVERED = {"gb": {"london"}, "us": {"new york"}}
+    tm_enrich = {}
+    for tm_file in (TM_FILE, "tm_tours.json"):
+        tm_path = DATA / tm_file
+        if not tm_path.exists():
+            continue
+        curated_countries = {country_norm(s.get("country")) for s in by_id.values()
+                             if "ticketmaster" not in (s.get("source") or "")}
+        seen_show_city = {(group_key(s["title"]), city_key(s.get("city")))
                           for s in by_id.values()}
         tm = json.loads(tm_path.read_text(encoding="utf-8")).get("shows", [])
         kept = 0
-        tm_enrich = {}  # (group, city) -> TM show-page url, attached after merge
         for s in tm:
             cn = country_norm(s.get("country"))
-            city = (s.get("city") or "").lower()
+            city = city_key(s.get("city"))
             gk = group_key(s["title"])
             covered = False
             if cn in curated_countries:
@@ -151,10 +165,8 @@ def main():
                 continue
             by_id[s["id"]] = s
             kept += 1
-        print(f"  {TM_FILE}: +{kept} gap-fill, {len(tm_enrich)} link-enrichments queued")
-        sources.append({"file": TM_FILE, "count": kept})
-    else:
-        tm_enrich = {}
+        print(f"  {tm_file}: +{kept} gap-fill")
+        sources.append({"file": tm_file, "count": kept})
 
     # shiki.jp is authoritative for Japan — drop other sources' Japan records of
     # shows shiki also lists (broadway.org's Japan venues proved stale, e.g.
@@ -189,7 +201,7 @@ def main():
     from collections import defaultdict
     dup = defaultdict(list)
     for s in by_id.values():
-        dup[(group_key(s["title"]), (s.get("city") or "").lower())].append(s)
+        dup[(group_key(s["title"]), city_key(s.get("city")))].append(s)
     merged = 0
     for recs in dup.values():
         if len(recs) < 2:
@@ -220,7 +232,7 @@ def main():
     # attach Ticketmaster show-page links to covered records (大型售票平台並列)
     enriched = 0
     for s in by_id.values():
-        u = tm_enrich.get((group_key(s["title"]), (s.get("city") or "").lower()))
+        u = tm_enrich.get((group_key(s["title"]), city_key(s.get("city"))))
         if not u or "ticketmaster" in (s.get("source") or ""):
             continue
         links = s.get("ticket_links") or (
@@ -232,6 +244,44 @@ def main():
             enriched += 1
     if enriched:
         print(f"  attached Ticketmaster links to {enriched} existing record(s)")
+
+    # Official production websites — region-appropriate (a UK card gets ONLY the
+    # UK official site), inserted ABOVE ticketing links.
+    off_path = DATA / "official_sites.json"
+    if off_path.exists():
+        OFF = {k: v for k, v in json.loads(off_path.read_text(encoding="utf-8")).items()
+               if not k.startswith("_")}
+
+        def region(country):
+            c = country_norm(country)
+            if c == "us" or c == "canada":
+                return "us"
+            if c in ("gb", "ireland"):
+                return "uk"
+            return {"australia": "au", "germany": "de", "japan": "jp", "france": "fr",
+                    "spain": "es", "netherlands": "nl", "mexico": "mx", "austria": "at",
+                    "switzerland": "ch", "china": "cn", "south korea": "kr"}.get(c, c)
+
+        n_off = 0
+        for s in by_id.values():
+            sites = OFF.get(group_key(s["title"]))
+            if not sites:
+                continue
+            url = sites.get(region(s.get("country"))) or sites.get("global")
+            if not url:
+                continue
+            links = s.get("ticket_links") or (
+                [{"label": src_label(s.get("source")), "url": s["ticket_url"],
+                  "kind": src_kind(s.get("source"))}] if s.get("ticket_url") else [])
+            if s.get("ticket_url") == url:
+                s["link_kind"] = "official"  # its only link IS the official site
+                continue
+            if all(l.get("url") != url for l in links):
+                links.insert(0, {"label": "官方網站", "url": url, "kind": "official"})
+                s["ticket_links"] = links
+                n_off += 1
+        if n_off:
+            print(f"  attached region-appropriate official sites to {n_off} record(s)")
 
     shows = list(by_id.values())
 

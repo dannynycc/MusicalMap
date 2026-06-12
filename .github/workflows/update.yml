@@ -49,6 +49,8 @@ jobs:
           python scrapers/interpark.py   || echo "::warning::interpark scrape failed"
           python scrapers/atg.py         || echo "::warning::atg scrape failed"
           python scrapers/stage_de.py    || echo "::warning::stage scrape failed"
+          python scrapers/madrid.py      || echo "::warning::madrid scrape failed"
+          python scrapers/tm_tours.py    || echo "::warning::tm_tours sweep failed"
           python scrapers/ticketmaster.py || echo "::warning::ticketmaster scrape failed"
           python scrapers/build_shows.py
         env:
