@@ -281,7 +281,7 @@ def main():
                 return v
         return None
     for fname in ("tw_venues.json", "jp_venues.json", "kr_venues.json", "cn_venues.json",
-                  "eu_venues.json"):
+                  "eu_venues.json", "row_venues.json"):
         fp = DATA / fname
         if not fp.exists():
             continue
@@ -313,7 +313,7 @@ def main():
     # deep-discovered EU venues (Google Places crawl) — single-point POIs with no
     # sub-hall semantics, so here we MAY dedup by coordinate proximity (<=55 m) as
     # well as by name, to drop ones already present from shows/curated.
-    for disc_name in ("eu_discovered.json", "na_discovered.json"):
+    for disc_name in ("eu_discovered.json", "na_discovered.json", "gb_discovered.json"):
       disc = DATA / disc_name
       if disc.exists():
         dn = 0
