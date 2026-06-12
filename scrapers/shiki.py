@@ -80,7 +80,10 @@ def main():
             start, end = iso(st.get("from")), iso(st.get("to"))
             if not start:
                 continue
-            img = st.get("img_l") or st.get("img")
+            # img_l is a 200×132 thumbnail — too small for the popup. The site
+            # serves 1200×630 key art at /shared/images/ogp/{enmoku_id}.jpg.
+            eid = st.get("enmoku_id")
+            img = f"/shared/images/ogp/{eid}.jpg" if eid else (st.get("img_l") or st.get("img"))
             sid = "shiki-" + re.sub(r"[^a-z0-9]+", "-",
                                     f"{title}-{city}-{start}".lower()).strip("-")
             shows[sid] = {

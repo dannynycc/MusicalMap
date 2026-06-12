@@ -31,26 +31,13 @@ function safeUrl(u) {
 
 // CDN-side thumbnailing: request a small CROPPED square-ish poster for markers
 // and list thumbnails. Contentful / imgix / craft.cloud take different params.
-const addQs = (u, qs) => u + (u.includes("?") ? "&" : "?") + qs;
-function thumb(url, w, h) {
-  const u = safeUrl(url);
-  if (!u) return null;
-  if (u.includes("ctfassets.net")) return addQs(u, `w=${w}&h=${h}&fit=fill&fm=webp&q=70`);
-  if (u.includes("imgix") || u.includes("headout")) return addQs(u, `w=${w}&h=${h}&fit=crop&auto=format&q=70`);
-  if (u.includes("craft.cloud")) return addQs(u, `width=${w}&height=${h}&fit=crop`);
-  if (u.includes("livenationinternational.com")) return addQs(u, `format=webp&width=${w}&quality=75`);
-  return u;
+// Original full-size images everywhere — no CDN downscaling/compression.
+// (User preference: image quality over load speed.)
+function thumb(url) {
+  return safeUrl(url);
 }
-
-// Full uncropped poster (preserve aspect ratio) for the popup showcase.
-function posterFull(url, w) {
-  const u = safeUrl(url);
-  if (!u) return null;
-  if (u.includes("ctfassets.net")) return addQs(u, `w=${w}&fm=webp&q=80`);
-  if (u.includes("imgix") || u.includes("headout")) return addQs(u, `w=${w}&auto=format&q=80`);
-  if (u.includes("craft.cloud")) return addQs(u, `width=${w}`);
-  if (u.includes("livenationinternational.com")) return addQs(u, `format=webp&width=${w}&quality=80`);
-  return u;
+function posterFull(url) {
+  return safeUrl(url);
 }
 
 // ---------- "is this show playing right now?" ----------

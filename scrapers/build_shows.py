@@ -53,7 +53,7 @@ def group_key(title):
 
 # Curated sources (precise data). Order matters for de-dup: later files win.
 SOURCE_FILES = ["broadway.json", "westend.json", "tours.json", "intl.json",
-                "shiki.json", "takarazuka.json", "manual.json"]
+                "shiki.json", "takarazuka.json", "interpark.json", "manual.json"]
 # Ticketmaster is added only for countries the curated sources DON'T cover,
 # so it fills global gaps (Australia, NZ, Ireland, Nordics, Canada…) without
 # duplicating the well-curated US/UK/etc. productions.

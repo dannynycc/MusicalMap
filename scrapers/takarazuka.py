@@ -82,10 +82,25 @@ def parse_runs(html):
         yield m.group(0), f"{y1}-{int(mo1):02d}-{int(d1):02d}", f"{y2}-{int(mo2):02d}-{int(d2):02d}"
 
 
+def index_art(idx):
+    """slug -> production key-art URL from the revue index thumbnails
+    (skip 'comingsoon' placeholders; og troupe logo is the last resort)."""
+    art = {}
+    for m in re.finditer(r'/revue/(20\d{2}/[a-z0-9_]+)/index\.html', idx):
+        slug = m.group(1)
+        seg = idx[max(0, m.start() - 600):m.start()]
+        imgs = [i for i in re.findall(r'(?:src|data-src)="([^"]+\.(?:jpg|jpeg|png|webp)[^"]*)"', seg)
+                if not re.search(r"favicon|logo|icon|label_|comingsoon", i)]
+        if imgs and slug not in art:
+            art[slug] = imgs[-1] if imgs[-1].startswith("http") else BASE + imgs[-1]
+    return art
+
+
 def main():
     idx = fetch(BASE + "/revue/index.html")
     pages = sorted(set(re.findall(r'href="(/revue/20\d{2}/[a-z0-9_]+/index\.html)"', idx)))
-    print(f"{len(pages)} production pages")
+    art = index_art(idx)
+    print(f"{len(pages)} production pages ({len(art)} with key art)")
 
     shows = {}
     for path in pages:
@@ -99,6 +114,8 @@ def main():
             continue
         title = canon(title_jp)
         og = re.search(r'property="og:image" content="([^"]+)"', html)
+        slug2 = "/".join(path.split("/")[2:4])           # e.g. 2026/elisabeth
+        image = art.get(slug2) or (og.group(1) if og else None)
         runs = list(parse_runs(html))
         for th_key, start, end in runs:
             venue, city, lat, lng = THEATRES[th_key]
@@ -115,7 +132,7 @@ def main():
                 "start_date": start,
                 "end_date": end,
                 "ticket_url": BASE + path,
-                "image": og.group(1) if og else None,
+                "image": image,
                 "tour_name": f"宝塚歌劇『{title_jp}』" if title != title_jp else "宝塚歌劇",
                 "verified": True,
                 "source": "kageki.hankyu.co.jp",

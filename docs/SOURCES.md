@@ -13,6 +13,7 @@
 | Ticketmaster | developer.ticketmaster.com(Discovery API);入口例 ticketmaster.com.au/browse/musicals… | `ticketmaster.py` | 16 國 gap 補洞(澳/紐/愛/加/北歐/義/星…);**日期=可購票窗非開演日** | 2026-06-11 |
 | 劇団四季 | shiki.jp(中文版 shiki.jp/zh-tw/) | `shiki.py`(JSON API `api_stage_list`) | 日本 9 劇場 10 製作,精確檔期;全国ツアー無固定城市未收 | 2026-06-12 |
 | 宝塚歌劇団 | kageki.hankyu.co.jp(中文版 /tc/revue/) | `takarazuka.py`(解析各製作頁公演期間) | 6 製作 12 檔(宝塚大劇場→東京宝塚劇場接力),含寶塚版 Elisabeth | 2026-06-12 |
+| 韓國 Interpark | world.nol.com/zh-CN/ticket/genre/MUSICAL/products(開放 API `/api/ent-channel-out/v1/goods/list`) | `interpark.py` | 59 部、39 含座標(首爾 32/大邱 6/大田 1);**真實開演日**;海報用 `posterImageUrl`(large 路徑會 404);API size 參數被偷偷 cap 在 ~15、totalPages 不可信 | 2026-06-12 |
 
 ## 人工策展(manual.json)
 

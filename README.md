@@ -34,6 +34,7 @@ scrapers/  ──產出──>  data/*.json  ──merge──>  data/shows.json
 | `data/ticketmaster.json` | Ticketmaster Discovery API 輸出（全球補洞，需 API key） |
 | `data/shiki.json` | 劇団四季輸出（shiki.jp JSON API，日本 9 劇場，精確檔期） |
 | `data/takarazuka.json` | 宝塚歌劇団輸出（kageki.hankyu.co.jp，宝塚/東京兩館接力檔期） |
+| `data/interpark.json` | 韓國 Interpark 輸出（world.nol.com 開放 API，真實開演日） |
 | `data/manual.json` | **人工策展**：自有售票系統的劇（上海大劇院、Live Nation FR、捷克 NDM…），隨發現隨補 |
 | `data/overrides.json` | 人工座標/欄位修正（依 show id；修來源錯誤，build 時套用） |
 | `data/venues.json` | venue→座標 geocode 快取（手動可編） |
@@ -44,6 +45,8 @@ scrapers/  ──產出──>  data/*.json  ──merge──>  data/shows.json
 | `scrapers/intl.py` | **國際製作** scraper（broadway.org/international，含著名劇院手動座標表） |
 | `scrapers/shiki.py` | **劇団四季** scraper（api_stage_list；日文劇名→英文正名以便全球合併） |
 | `scrapers/takarazuka.py` | **宝塚歌劇団** scraper（各製作頁公演期間，按位置切段解析） |
+| `scrapers/interpark.py` | **韓國 Interpark** scraper（NOL 開放 API；韓國場館座標表） |
+| `scrapers/audit_images.py` | 海報畫質稽核（實測像素，小於顯示尺寸即報告） |
 | `scrapers/ticketmaster.py` | **Ticketmaster** Discovery API（18 國掃描，需 `TICKETMASTER_API_KEY`） |
 | `scrapers/build_shows.py` | 合併所有 source、TM 補洞去重、套 overrides、同劇合併、海報繼承 → `shows.json` |
 
@@ -90,6 +93,7 @@ python scrapers/broadway_tours.py     # 全美巡演（broadway.org，28 劇 297
 python scrapers/intl.py               # 國際製作（broadway.org/international）
 python scrapers/shiki.py              # 劇団四季（日本）
 python scrapers/takarazuka.py         # 宝塚歌劇団（日本）
+python scrapers/interpark.py          # 韓國 Interpark（world.nol.com API）
 TICKETMASTER_API_KEY=xxx python scrapers/ticketmaster.py  # 全球補洞（需免費 key）
 python scrapers/build_shows.py        # 合併成 data/shows.json
 ```
@@ -100,7 +104,7 @@ python scrapers/build_shows.py        # 合併成 data/shows.json
 
 ## 現況 / 待辦
 
-- ✅ Broadway（28）、West End（52）、北美巡演（broadway.org，297 站）、國際製作、劇団四季（10）、宝塚歌劇団（12）、Ticketmaster 全球補洞（126）、人工策展（上海/法國/捷克）：共 545 筆，約 20+ 國，含座標與海報。
+- ✅ Broadway（28）、West End（52）、北美巡演（broadway.org，297 站）、國際製作、劇団四季（10）、宝塚歌劇団（12）、韓國 Interpark（39）、Ticketmaster 全球補洞（126）、人工策展（上海/法國/捷克）：共 584 筆，約 25 國，含座標與海報。
 - 📒 **來源登記表：`docs/SOURCES.md`**（用戶提供的網址一律登記在此，含狀態）。
 - ✅ 座標修正機制：NYC 範圍檢查、lat/lng 對調偵測、城市中心點 fallback、著名劇院手動座標表、`overrides.json`、geocode 快取。
 - ✅ 同劇合併（標題正規化）、正式劇名覆蓋、巡演各自海報、cluster 線性縮放、地圖／衛星切換、多地點 overview、popup 完整海報、多地區售票連結。
