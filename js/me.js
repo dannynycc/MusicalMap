@@ -300,8 +300,13 @@ async function onSave(e) {
   const v = CATALOG.venues.find((x) => x.name === rec.venue);
   if (v) { rec.lat = v.lat; rec.lng = v.lng; if (!rec.city) rec.city = v.city; if (!rec.country) rec.country = v.country; }
   const id = f.id.value;
-  const res = id ? await sb.from("sightings").update(rec).eq("id", id)
-                 : await sb.from("sightings").insert(rec);
+  const save = (r) => id ? sb.from("sightings").update(r).eq("id", id) : sb.from("sightings").insert(r);
+  let res = await save(rec);
+  // if the optional `url` column hasn't been added in Supabase yet, save without it
+  if (res.error && /url/i.test(res.error.message) && rec.url != null) {
+    const { url, ...rest } = rec;
+    res = await save(rest);
+  }
   if (res.error) { alert("Save failed: " + res.error.message); return; }
   $("#add-dialog").close();
   loadSightings();
