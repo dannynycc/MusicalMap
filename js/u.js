@@ -98,44 +98,54 @@ function renderMap() {
     // No number-clustering on a personal map: show every sighting from the start.
     // They may overlap when zoomed out — that's fine — and pull apart as you zoom.
     layer = L.layerGroup().addTo(map);
+    map.on("zoomend", relayoutStacks);   // re-fan same-venue stacks at each zoom
     window.addEventListener("resize", clampWorld);
   }
-  layer.clearLayers(); MK = [];
-  spreadSame(SIGHTINGS);   // fan out same-venue stacks into a tiny ring
+  layer.clearLayers();
+  buildStacks(SIGHTINGS);
   const pts = [];
   SIGHTINGS.forEach((s) => {
     if (typeof s.lat !== "number") return;
     const p = posterFor(s.title);
-    const m = L.marker([s.dlat, s.dlng], { icon: posterIcon(s.title), riseOnHover: true }).bindPopup(
+    const m = L.marker([s.lat, s.lng], { icon: posterIcon(s.title), riseOnHover: true }).bindPopup(
       `<div style="display:flex;gap:10px">${p ? `<img src="${esc(p)}" style="width:70px;border-radius:6px">` : ""}
        <div><b>${esc(s.title)}</b><br><span style="color:#666">${esc(s.venue || "")}<br>${esc(s.city || "")}, ${esc(s.country || "")}${s.seen_date ? "<br>" + esc(s.seen_date) : ""}</span></div></div>`,
       { maxWidth: 300 });
-    layer.addLayer(m); MK.push(m); pts.push([s.dlat, s.dlng]);
+    s._m = m; layer.addLayer(m); pts.push([s.lat, s.lng]);
   });
   map.invalidateSize();
   if (pts.length && map.getSize().x) map.fitBounds(pts, { padding: [50, 50], maxZoom: 9 });
+  relayoutStacks();
 }
 
 // Several shows can share one venue's exact coordinate (e.g. three productions at
-// 臺中國家歌劇院). Spread each such group around a small ring (~38 m) so they overlap
-// only when zoomed far out and separate completely as you zoom in — never a
-// permanent stack. The real lat/lng stay on the record; we draw at dlat/dlng.
-let MK = [];
-function spreadSame(list) {
+// 臺中國家歌劇院). We fan each such group around a ring whose radius is
+// max(18 px, 38 m): at low zoom the 18 px floor keeps them visibly offset (never a
+// 100 % stack) yet starts splitting immediately; as you zoom the 38 m real-world
+// size takes over so they end up at their true, fully-separated positions.
+// Recomputed on every zoom. The real lat/lng stay on the record (popups, fitBounds).
+let STACKS = [];
+function buildStacks(list) {
   const g = {};
   list.forEach((s) => {
-    s.dlat = s.lat; s.dlng = s.lng;
     if (typeof s.lat !== "number" || typeof s.lng !== "number") return;
     const k = s.lat.toFixed(5) + "," + s.lng.toFixed(5);
     (g[k] = g[k] || []).push(s);
   });
-  Object.values(g).forEach((grp) => {
-    if (grp.length < 2) return;
-    const R = 0.00034, latr = grp[0].lat * Math.PI / 180;  // ~38 m ring
+  STACKS = Object.values(g).filter((grp) => grp.length > 1);
+}
+function relayoutStacks() {
+  if (!map) return;
+  const z = map.getZoom();
+  STACKS.forEach((grp) => {
+    const lat = grp[0].lat, lng = grp[0].lng, latr = lat * Math.PI / 180;
+    const mpp = 156543.03392 * Math.cos(latr) / Math.pow(2, z);   // metres per pixel
+    const rM = Math.max(18 * mpp, 38);                            // ≥18 px, else true 38 m
+    const dLat = rM / 111320, dLng = rM / (111320 * Math.cos(latr));
     grp.forEach((s, i) => {
+      if (!s._m) return;
       const a = 2 * Math.PI * i / grp.length - Math.PI / 2;
-      s.dlat = s.lat + R * Math.sin(a);
-      s.dlng = s.lng + R * Math.cos(a) / Math.cos(latr);
+      s._m.setLatLng([lat + dLat * Math.sin(a), lng + dLng * Math.cos(a)]);
     });
   });
 }

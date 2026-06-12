@@ -141,6 +141,36 @@ def clean_title(t):
     return re.sub(r"\s{2,}", " ", t).strip()
 
 
+# Big international musical IPs that tour Asia under a translated Chinese name.
+# The user wants these shown bilingually ("Jesus Christ Superstar 萬世巨星"), while
+# local original works stay Chinese-only — and a clean English string alone can't
+# tell the two apart ("The Most Beautiful 5 Minutes in My Life" is a LOCAL work),
+# so recognition is by this curated map (keyed on the parsed Chinese show name).
+# Extend as new IPs tour. Keyed exact-match on the already-parsed core title.
+INTL_IP = {
+    "萬世巨星": "Jesus Christ Superstar", "史瑞克": "Shrek",
+    "歌劇魅影": "The Phantom of the Opera", "劇院魅影": "The Phantom of the Opera",
+    "悲慘世界": "Les Misérables", "貓": "Cats", "媽媽咪呀": "Mamma Mia!",
+    "媽媽咪呀！": "Mamma Mia!", "芝加哥": "Chicago", "獅子王": "The Lion King",
+    "西貢小姐": "Miss Saigon", "漢密爾頓": "Hamilton", "真善美": "The Sound of Music",
+    "音樂之聲": "The Sound of Music", "屋頂上的提琴手": "Fiddler on the Roof",
+    "吉屋出租": "Rent", "巧克力冒險工廠": "Charlie and the Chocolate Factory",
+    "羅密歐與茱麗葉": "Roméo et Juliette", "死亡筆記本": "Death Note",
+    "伊莉莎白": "Elisabeth", "鐘樓怪人": "Notre-Dame de Paris",
+    "近乎正常": "Next to Normal", "理髮師陶德": "Sweeney Todd",
+    "搖滾莫札特": "Mozart l'Opéra Rock", "羅密歐與茱麗葉": "Roméo et Juliette",
+    "阿達一族": "The Addams Family", "金牌特務": "Kinky Boots", "長靴妖姬": "Kinky Boots",
+}
+
+
+def bilingual(title):
+    """Prepend the original English for known international IPs → 'English 中文'."""
+    en = INTL_IP.get(title)
+    if en and en.lower() not in title.lower():
+        return f"{en} {title}"
+    return title
+
+
 def main():
     by_id = {}
     sources = []
@@ -152,7 +182,7 @@ def main():
         blob = json.loads(path.read_text(encoding="utf-8"))
         rows = blob.get("shows", [])
         for s in rows:
-            s["title"] = clean_title(s.get("title"))
+            s["title"] = bilingual(clean_title(s.get("title")))
         for s in rows:
             by_id[s["id"]] = s
         sources.append({"file": name, "count": len(rows), "meta": blob.get("meta", {})})

@@ -13,6 +13,7 @@ Output: data/opentix.json   Run: python scrapers/opentix.py
 """
 
 import json
+import re
 import sys
 import io
 import urllib.request
@@ -55,6 +56,14 @@ def ymd(ms):
     return datetime.fromtimestamp(ms / 1000, TW_TZ).strftime("%Y-%m-%d")
 
 
+def core_title(t):
+    """Organisers wrap the real show name in 《》 with festival/company/marketing
+    text around it — '《幸福三姐妹》音樂劇' / '果陀劇場《生命中最美好的5分鐘》2026音樂奇蹟重現'.
+    Pull out the bracketed name; fall back to the raw title if there's no 《》."""
+    m = re.search(r"[《＜](.+?)[》＞]", t or "")
+    return m.group(1).strip() if m else (t or "").strip()
+
+
 def main():
     data = fetch()
     found = (data.get("result") or {}).get("found", [])
@@ -86,7 +95,7 @@ def main():
         pid = s.get("id")
         shows.append({
             "id": "opentix-" + str(pid),
-            "title": zh_title or en_title,        # Taiwanese productions are known by their 中文 title
+            "title": core_title(zh_title) or en_title,   # real show name, festival/company wrapper stripped
             "title_en": en_title,
             "venue": v.get("name", ""), "city": CITY_MAP.get(v.get("city", ""), v.get("city", "")), "country": "Taiwan",
             "lat": lat, "lng": lng, "start_date": start, "end_date": end,
