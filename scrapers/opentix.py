@@ -24,7 +24,7 @@ DATA = Path(__file__).resolve().parent.parent / "data"
 API = "https://search.opentix.life/search"
 
 # non-musicals that nonetheless carry the 戲劇-音樂劇 tag (user-flagged); substring match
-EXCLUDE = ["老闆", "陽春麵", "演唱會"]   # plays / concerts mis-tagged as 音樂劇 (user-flagged)
+EXCLUDE = ["老闆", "陽春麵", "演唱會", "工作坊"]   # plays / concerts / workshops mis-tagged as 音樂劇
 TW_TZ = timezone(timedelta(hours=8))
 
 

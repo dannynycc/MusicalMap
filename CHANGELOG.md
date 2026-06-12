@@ -11,6 +11,11 @@
 
 ---
 
+## [v0.22.2] - 2026-06-12 23:54
+### 修正
+- **OPENTIX 台灣場館改用 Google 建築級座標**:原本用 OPENTIX 自帶 location,實測 16 個偏 >30m。改為 build 後跑 geocode_google 取精準座標寫入 venue_coords.json(至德堂/恆春文化中心等已校正;CI 沿用)。
+- **排除「服裝造型工作坊」**:工作坊非音樂劇,opentix.py EXCLUDE 加「工作坊」。
+
 ## [v0.22.1] - 2026-06-12 23:46
 ### 新增
 - **一筆紀錄可加多個連結**:新增表單把單一 Link 改成可動態增減的多連結(「＋ add link」/「×」);log 與公開表格顯示全部 🔗。(後端 `supabase/add_url.sql` 同時加 `links jsonb`;缺欄時自動略過不報錯)
