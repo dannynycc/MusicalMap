@@ -188,44 +188,47 @@ function renderMap() {
     map = L.map("me-map", { worldCopyJump: true, minZoom: 2 }).setView([20, 0], 2);
     L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png",
       { attribution: "&copy; OpenStreetMap &copy; CARTO", subdomains: "abcd", maxZoom: 19, noWrap: false }).addTo(map);
-    layer = L.markerClusterGroup({ showCoverageOnHover: false, maxClusterRadius: 45, spiderfyOnMaxZoom: true });
-    map.addLayer(layer);
-    map.on("moveend", scheduleSpiderfy);   // auto fan-out same-venue stacks once zoomed in
-    layer.on("animationend", scheduleSpiderfy);  // after cluster re-forms post-zoom
+    // No number-clustering on a personal map: show every sighting from the start.
+    // They may overlap when zoomed out — fine — and pull apart as you zoom in.
+    layer = L.layerGroup().addTo(map);
     window.addEventListener("resize", clampWorld);
   }
-  layer.clearLayers(); MK = [];
+  layer.clearLayers();
+  spreadSame(SIGHTINGS);   // fan out same-venue stacks into a tiny ring
   const pts = [];
   SIGHTINGS.forEach((s) => {
     if (typeof s.lat !== "number") return;
     const p = posterFor(s.title);
-    const m = L.marker([s.lat, s.lng], { icon: posterIcon(s.title), riseOnHover: true }).bindPopup(
+    const m = L.marker([s.dlat, s.dlng], { icon: posterIcon(s.title), riseOnHover: true }).bindPopup(
       `<div style="display:flex;gap:10px">${p ? `<img src="${esc(p)}" style="width:70px;border-radius:6px">` : ""}
        <div><b>${esc(s.title)}</b><br><span style="color:#666">${esc(s.venue || "")}<br>${esc(s.city || "")}, ${esc(s.country || "")}${s.seen_date ? "<br>" + esc(s.seen_date) : ""}</span></div></div>`,
       { maxWidth: 300 });
-    layer.addLayer(m); MK.push(m); pts.push([s.lat, s.lng]);
+    layer.addLayer(m); pts.push([s.dlat, s.dlng]);
   });
   map.invalidateSize();
   if (pts.length && map.getSize().x) map.fitBounds(pts, { padding: [50, 50], maxZoom: 9 });
-  scheduleSpiderfy();
 }
 
-// Several shows at one venue share an exact coordinate; once zoomed in so a cluster
-// holds ONLY those identical-coord markers, fan them out automatically (no click).
-let MK = [], spiderfyTimer = null;
-function scheduleSpiderfy() { clearTimeout(spiderfyTimer); spiderfyTimer = setTimeout(autoSpiderfy, 220); }
-function autoSpiderfy() {
-  if (!layer || map._animatingZoom) return;
-  const groups = {};
-  MK.forEach((m) => { const ll = m.getLatLng(); const k = ll.lat + "," + ll.lng; (groups[k] = groups[k] || []).push(m); });
-  Object.values(groups).forEach((ms) => {
-    if (ms.length < 2) return;
-    let par;
-    try { par = layer.getVisibleParent(ms[0]); } catch (e) { return; }
-    if (par && par !== ms[0] && typeof par.spiderfy === "function"
-        && typeof par.getChildCount === "function" && par.getChildCount() === ms.length && !par._spiderfied) {
-      try { par.spiderfy(); } catch (e) { /* ignore */ }
-    }
+// Several shows can share one venue's exact coordinate (e.g. three productions at
+// 臺中國家歌劇院). Spread each such group around a small ring (~38 m) so they overlap
+// only when zoomed far out and separate completely as you zoom in — never a
+// permanent stack. The real lat/lng stay on the record; we draw at dlat/dlng.
+function spreadSame(list) {
+  const g = {};
+  list.forEach((s) => {
+    s.dlat = s.lat; s.dlng = s.lng;
+    if (typeof s.lat !== "number" || typeof s.lng !== "number") return;
+    const k = s.lat.toFixed(5) + "," + s.lng.toFixed(5);
+    (g[k] = g[k] || []).push(s);
+  });
+  Object.values(g).forEach((grp) => {
+    if (grp.length < 2) return;
+    const R = 0.00034, latr = grp[0].lat * Math.PI / 180;  // ~38 m ring
+    grp.forEach((s, i) => {
+      const a = 2 * Math.PI * i / grp.length - Math.PI / 2;
+      s.dlat = s.lat + R * Math.sin(a);
+      s.dlng = s.lng + R * Math.cos(a) / Math.cos(latr);
+    });
   });
 }
 

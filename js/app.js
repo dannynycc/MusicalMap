@@ -87,6 +87,30 @@ const cluster = L.markerClusterGroup({
 });
 map.addLayer(cluster);
 
+// Several productions can share one venue's exact coordinate (e.g. three shows at
+// 臺中國家歌劇院). Spread each such group around a tiny ring (~38 m) so they cluster
+// when zoomed out (the world map still wants counts) but break apart by pixel
+// distance as you zoom in — and end up clearly separated rather than permanently
+// stacked behind one another. Real lat/lng stay on the show; we draw at dlat/dlng.
+function spreadSame(list) {
+  const g = {};
+  list.forEach((s) => {
+    s.dlat = s.lat; s.dlng = s.lng;
+    if (typeof s.lat !== "number" || typeof s.lng !== "number") return;
+    const k = s.lat.toFixed(5) + "," + s.lng.toFixed(5);
+    (g[k] = g[k] || []).push(s);
+  });
+  Object.values(g).forEach((grp) => {
+    if (grp.length < 2) return;
+    const R = 0.00034, latr = grp[0].lat * Math.PI / 180;  // ~38 m ring
+    grp.forEach((s, i) => {
+      const a = 2 * Math.PI * i / grp.length - Math.PI / 2;
+      s.dlat = s.lat + R * Math.sin(a);
+      s.dlng = s.lng + R * Math.cos(a) / Math.cos(latr);
+    });
+  });
+}
+
 // ---------- State ----------
 let ALL = [];
 let markerById = {};
@@ -212,9 +236,10 @@ function render() {
   cluster.clearLayers();
   markerById = {};
   const latlngs = [];
+  spreadSame(shows);   // fan same-venue shows into a tiny ring so they don't stack
   shows.forEach((s) => {
     if (typeof s.lat !== "number" || typeof s.lng !== "number") return;
-    const m = L.marker([s.lat, s.lng], { icon: posterMarkerIcon(s), riseOnHover: true })
+    const m = L.marker([s.dlat, s.dlng], { icon: posterMarkerIcon(s), riseOnHover: true })
       .bindPopup(popupHtml(s), {
         maxWidth: Math.min(620, window.innerWidth - 60),  // never wider than the screen
         className: "mm-popup",
@@ -238,7 +263,7 @@ function render() {
     });
     cluster.addLayer(m);
     markerById[s.id] = m;
-    latlngs.push([s.lat, s.lng]);
+    latlngs.push([s.dlat, s.dlng]);
   });
 
   // sidebar — one row per show; a show playing in multiple cities (e.g. Wicked
