@@ -246,6 +246,21 @@ def main():
                 fixed += 1
         print(f"  fixed {fixed} show coord(s) from venue_coords.json ({len(vcoords)} venue fixes)")
 
+    # Booking horizon: open-ended long-runners have end_date = null; fill it with
+    # their last on-sale performance from Ticketmaster (scrapers/booking_horizon.py)
+    # so the timeline stops showing them indefinitely into the future.
+    bh_path = DATA / "booking_horizon.json"
+    if bh_path.exists():
+        bh = {k: v for k, v in json.loads(bh_path.read_text(encoding="utf-8")).items()
+              if not k.startswith("_")}
+        n_bh = 0
+        for s in by_id.values():
+            if not s.get("end_date") and s["id"] in bh:
+                s["end_date"] = bh[s["id"]]
+                s["end_rolling"] = True   # this end is the booking horizon, not a closing
+                n_bh += 1
+        print(f"  set {n_bh} end_date(s) from booking_horizon.json (last on-sale date)")
+
     # Apply manual coordinate/field corrections (source data errors).
     overrides_path = DATA / "overrides.json"
     applied = 0

@@ -9,7 +9,7 @@
 const TODAY = new Date();
 const TODAY0 = (() => { const d = new Date(); d.setHours(0, 0, 0, 0); return d; })();
 const CUR_Y = TODAY0.getFullYear(), CUR_M = TODAY0.getMonth();
-const MAX_MONTHS = 36;                       // slider range: this month → +3 years (data reaches 2028 tours)
+let MAX_MONTHS = 36;                          // slider range; trimmed to the data's latest start (recomputeRange)
 let monthOffset = 0;                          // 0 = current month; the map shows this whole month
 // new Date(y, m, 1) auto-normalizes overflowing months, so offset arithmetic is safe.
 const monthStart = () => new Date(CUR_Y, CUR_M + monthOffset, 1);
@@ -46,13 +46,24 @@ function posterFull(url) {
 // A show counts if its run [start, end] overlaps the month at all — i.e. the run
 // crosses into the month even by a single day (user's rule). Missing start/end
 // is treated as open-ended (long-runners with no announced close stay visible).
+// Open-ended long-runners (Broadway/West End residents) carry no end_date — their
+// closing isn't announced, only a rolling booking window. Treating "no end" as
+// "runs forever" wrongly kept them on the map years out (e.g. Buena Vista Social
+// Club, booked through Jan 2027, still showing at 2029). Cap them at a ~1yr booking
+// horizon from today; shows WITH a real end_date (tours) are unaffected.
+const OPEN_RUN_HORIZON = 12;  // months ahead an open-ended run is assumed to still play
 function overlapsMonth(show) {
   const ms = monthStart(), me = monthEnd();
   const start = show.start_date ? new Date(show.start_date) : null;
   const end = show.end_date ? new Date(show.end_date) : null;
   if (start && start > me) return false;   // run begins after this month
-  if (end && end < ms) return false;       // run ended before this month
-  return true;                              // any overlap → show on the map
+  if (end) {
+    if (end < ms) return false;            // run ended before this month
+  } else {
+    const horizon = new Date(CUR_Y, CUR_M + OPEN_RUN_HORIZON + 1, 0, 23, 59, 59, 999);
+    if (ms > horizon) return false;        // open-ended: don't claim a run past the booking horizon
+  }
+  return true;                             // any overlap → show on the map
 }
 
 // ---------- Map ----------
@@ -162,6 +173,8 @@ function fmtDates(show) {
   const s = show.start_date, e = show.end_date;
   // Ticketmaster gives availability dates, not a confirmed run — label honestly.
   if (show.onsale_only) return e ? `售票中 · 約演至 ${esc(e)}` : "售票中";
+  // open-ended long-runner: end is the rolling booking horizon, not a closing date
+  if (show.end_rolling) return s ? `自 ${esc(s)} 上演 · 售票至 ${esc(e)}` : `售票至 ${esc(e)}`;
   if (s && e) {
     // long-runners' end_date is just the rolling booking horizon, not a closing
     // date — showing it as a range would read like a closing announcement.
@@ -409,7 +422,24 @@ async function boot() {
     els.note.textContent = "⚠ 無法載入 data/shows.json（需用本機 server 開啟，見 README）";
     console.error(e);
   }
+  recomputeRange();
   render();
+}
+
+// Trim the slider to where the data actually goes — the latest show start month
+// (+1 month buffer). No point dragging to 2029 when nothing plays past 2028.
+function recomputeRange() {
+  let maxOff = 1;
+  for (const s of ALL) {
+    if (!s.start_date) continue;
+    const d = new Date(s.start_date);
+    const off = (d.getFullYear() - CUR_Y) * 12 + (d.getMonth() - CUR_M);
+    if (off > maxOff) maxOff = off;
+  }
+  MAX_MONTHS = Math.min(Math.max(maxOff + 1, 3), 48);
+  els.tRange.max = MAX_MONTHS;
+  const d = new Date(CUR_Y, CUR_M + MAX_MONTHS, 1);
+  els.tMonth.max = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}`;
 }
 
 els.search.addEventListener("input", render);

@@ -11,6 +11,15 @@
 
 ---
 
+## [v0.25.0] - 2026-06-13 01:46
+### 修正
+- **開放式長壽劇拖到數年後仍顯示**(Buena Vista Social Club 售票只到 2027/1,時間軸拖到 2029/6 還在地圖上)。根因:`overlapsMonth` 把「無 end_date」當成「永遠在演」。
+  - 新 `scrapers/booking_horizon.py`:對所有無 end_date 的劇用 **Ticketmaster `sort=date,desc`** 抓「最後一場售票日」當 end(TM 就是售票系統,最準)。實測 22/27 取到真實日期(Buena Vista→2027-01-17、Phantom→2027-03-13、Wicked→2027-01-03…);TM 無資料的(ABBA Voyage、馬德里西語劇)退回啟發式。
+  - `overlapsMonth` 對仍無 end 的劇加「售票視野上限」(今天 +12 個月)fallback,不再無限延伸。
+  - 這類 end 標記 `end_rolling`,顯示「自 X 上演 · 售票至 Y」而非像閉幕公告的日期區間。
+  - 接入 build_shows 與每日 CI(build → booking_horizon → build)。
+- **時間軸滑桿範圍改為依資料動態**:原固定 3 年(拖到 2029 全空),改成只到「最晚一檔開演月份 +1」(目前 2028-04),不再有一堆空白月份。
+
 ## [v0.24.0] - 2026-06-13 01:19
 ### 新增 / 變更
 - **OPENTIX 劇名自動 parse**:主辦把真名包在《》裡加一堆前後綴(果陀劇場《生命中最美好的5分鐘》2026音樂奇蹟重現),改成取《》內真名 →「生命中最美好的5分鐘」。

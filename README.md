@@ -45,6 +45,7 @@ scrapers/  ──產出──>  data/*.json  ──merge──>  data/shows.json
 | `data/utiki.json` | 台灣 utiki 售票引擎輸出（寬宏 KHAM 分類 80 + udn售票 搜尋音樂劇；座標交 Google geocode） |
 | `data/manual.json` | **人工策展**：自有售票系統的劇（上海大劇院、Live Nation FR、捷克 NDM…），隨發現隨補 |
 | `data/overrides.json` | 人工座標/欄位修正（依 show id；修來源錯誤，build 時套用） |
+| `data/booking_horizon.json` | 開放式長壽劇的**最後售票日**（依 show id；`booking_horizon.py` 用 Ticketmaster `sort=date,desc` 抓，build 時填入無 end_date 的劇，避免時間軸把它們一路顯示到數年後） |
 | `data/venue_coords.json` | **場館級權威座標**（`venue\|city`→[lat,lng]，建築級 ≤~30m，由 Google 產生；build 時套用到該場館所有場次） |
 | `data/venues.json` | venue→座標 geocode 快取（手動可編） |
 | `scrapers/geocode_google.py` | **Google Places (New) 權威 geocode**（建築級 ≤30m，增量回填 venue_coords.json；金鑰走 .gitignore 不入庫） |
