@@ -112,6 +112,26 @@ def country_norm(c):
     return c.strip()
 
 
+# Some sources append admission notices to the show name, e.g.
+# "Phantom Of The Opera (Entry requires a valid photo ID. Guests 13+ …)".
+# Strip such notice-parentheticals (but keep real ones like
+# "Two Strangers (Carry a Cake Across New York)").
+NOTICE_RE = re.compile(
+    r"\s*\([^)]*(require|must\b|guests?\b|valid|photo id|accompani|aged?\b|"
+    r"recommended|running time|interval|approx|under \d|relaxed|auslan|captioned|"
+    r"audio[- ]?desc|matinee|preview)[^)]*\)\s*", re.I)
+
+
+def clean_title(t):
+    t = (t or "").strip()
+    t = re.sub(r"\s*\|.*$", "", t)          # drop promoter pipe-tails (… | Official … Packages)
+    prev = None
+    while prev != t:
+        prev = t
+        t = NOTICE_RE.sub(" ", t).strip()
+    return re.sub(r"\s{2,}", " ", t).strip()
+
+
 def main():
     by_id = {}
     sources = []
@@ -122,6 +142,8 @@ def main():
             continue
         blob = json.loads(path.read_text(encoding="utf-8"))
         rows = blob.get("shows", [])
+        for s in rows:
+            s["title"] = clean_title(s.get("title"))
         for s in rows:
             by_id[s["id"]] = s
         sources.append({"file": name, "count": len(rows), "meta": blob.get("meta", {})})
@@ -142,6 +164,7 @@ def main():
         tm = json.loads(tm_path.read_text(encoding="utf-8")).get("shows", [])
         kept = 0
         for s in tm:
+            s["title"] = clean_title(s.get("title"))
             city = city_key(s.get("city"))
             gk = group_key(s["title"])
             if (gk, city) in seen_show_city:
@@ -290,6 +313,15 @@ def main():
             filled += 1
     if filled:
         print(f"  inherited {filled} poster(s) for tour/empty records")
+
+    # tidy country names for display (USA / UK instead of the long source forms)
+    COUNTRY_DISPLAY = {
+        "united states of america": "USA", "united states": "USA", "usa": "USA",
+        "great britain": "UK", "united kingdom": "UK", "uk": "UK",
+    }
+    for s in shows:
+        c = (s.get("country") or "").strip()
+        s["country"] = COUNTRY_DISPLAY.get(c.lower(), c)
 
     verified = sum(1 for s in shows if s.get("verified"))
     out = {

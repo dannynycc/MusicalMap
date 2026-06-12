@@ -19,7 +19,27 @@ html, body {
   font-family: "Segoe UI", system-ui, "Microsoft JhengHei", sans-serif;
   background: var(--bg); color: var(--text);
 }
-#app { display: flex; height: 100vh; width: 100vw; }
+body { display: flex; flex-direction: column; height: 100vh; }
+#app { display: flex; flex: 1; min-height: 0; width: 100%; }
+
+/* ---------- Top header bar (stayplot-style: brand left, nav right) ---------- */
+#topbar {
+  flex: none; height: 58px; display: flex; align-items: center; justify-content: space-between;
+  padding: 0 24px; background: var(--panel); border-bottom: 1px solid var(--border);
+  box-shadow: 0 1px 3px rgba(15, 23, 42, .06); z-index: 1200;
+}
+#brand { display: flex; align-items: baseline; gap: 12px; text-decoration: none; }
+#brand .logo { font-size: 22px; font-weight: 800; letter-spacing: .3px; color: var(--text); }
+#brand .logo-em { color: var(--accent); }
+#brand .tagline { font-size: 13px; color: var(--muted); }
+#topnav { display: flex; align-items: center; gap: 14px; }
+.nav-cta {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--accent); color: var(--accent-ink); text-decoration: none;
+  font-size: 15px; font-weight: 700; padding: 10px 18px; border-radius: 999px;
+  transition: filter .12s, transform .12s; box-shadow: 0 2px 8px rgba(15,118,110,.3);
+}
+.nav-cta:hover { filter: brightness(1.06); transform: translateY(-1px); }
 
 /* ---------- Sidebar ---------- */
 #sidebar {
@@ -27,11 +47,7 @@ html, body {
   background: var(--panel); border-right: 1px solid var(--border);
   display: flex; flex-direction: column; overflow: hidden;
 }
-#brand { padding: 18px 20px 14px; border-bottom: 1px solid var(--border); }
-#brand h1 { margin: 0; font-size: 22px; letter-spacing: .3px; color: var(--accent); font-weight: 800; }
 .tagline { margin: 4px 0 0; font-size: 13px; color: var(--muted); }
-#mine-link { display: inline-block; margin-top: 8px; font-size: 13px; font-weight: 600; color: var(--accent); text-decoration: none; }
-#mine-link:hover { text-decoration: underline; }
 
 #controls { padding: 14px 20px; border-bottom: 1px solid var(--border); }
 #search {
@@ -211,4 +227,7 @@ html, body {
   #app { flex-direction: column; }
   #sidebar { width: 100%; min-width: 0; height: 42%; }
   #map { height: 58%; }
+  #topbar { padding: 0 14px; height: 52px; }
+  #brand .tagline { display: none; }
+  .nav-cta { font-size: 14px; padding: 8px 14px; }
 }

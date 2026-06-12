@@ -2,13 +2,13 @@
 
 一張地圖，呈現**此刻全球正在上演的音樂劇** —— 常駐型（Broadway / West End）與巡演型（tour，顯示目前在哪座城市）。
 
-淺色地圖鋪滿畫面、海報縮圖當 marker + cluster、hover 預覽卡、點擊跳 popup、側欄一劇一列（同劇自動合併、可展開看各地點）+ 搜尋 + **時間軸**（日期滑桿＋日曆同步，拖到哪天看那天上演什麼；▶ 播放可看巡演在城市間移動）。
+頂部 header bar（品牌 + 醒目「⭐ 我的音樂劇足跡」入口）、淺色地圖鋪滿畫面、海報縮圖當 marker + cluster、hover 預覽卡、點擊跳 popup、側欄一劇一列（同劇自動合併、可展開看各地點）+ 搜尋 + **時間軸**（**月份**滑桿＋月份選擇器同步，選哪個月就顯示「演出期間跨過該月」的劇；▶ 播放每月推進可看巡演在城市間移動）。
 
 > **日期語意**：完整檔期顯示「start – end」；長壽劇顯示「自 X 上演」（end 只是滾動售票線非閉幕日）；Ticketmaster 來源（`onsale_only`）為可購票窗，顯示「售票中 · 約演至 X」。連結分「官網」與「售票平台」（多平台並列）。
 
 線上版：https://dannynycc.github.io/MusicalMap/
 
-**My Musicals（個人觀劇足跡）**：登入(Google)後記錄看過的音樂劇,自動生成 Top 劇目/城市/劇院、年度/每月/每週統計與個人地圖(FlightRadar「My Flights」風格)。後端 Supabase(Postgres+Auth,RLS),前端仍純靜態。設定見 `docs/SETUP_ACCOUNTS.md`。
+**My Musicals（個人音樂劇足跡）**：登入(Google)後記錄看過的音樂劇(可編輯/刪除),自動生成 Top 劇目/國家/城市/劇院、年度/每月/每週**折線圖**與**海報圖卡個人地圖**(FlightRadar「My Flights」風格、全英文 UI)。新增表單自動帶入劇院/城市/幣別、**劇名中英雙搜**(輸入「西貢」或「Miss」皆命中 Miss Saigon · 西貢小姐)。後端 Supabase(Postgres+Auth,RLS),前端仍純靜態。設定見 `docs/SETUP_ACCOUNTS.md`。
 
 ---
 
@@ -26,7 +26,9 @@ scrapers/  ──產出──>  data/*.json  ──merge──>  data/shows.json
 | 路徑 | 作用 |
 |---|---|
 | `index.html` | 頁面骨架，CDN 載入 Leaflet + MarkerCluster |
-| `js/app.js` | 地圖、海報 marker、側欄、搜尋/篩選、popup、同劇合併與多地點 overview；含「此刻是否上演」判斷與 XSS 跳脫 |
+| `js/app.js` | 地圖、海報 marker、側欄、搜尋/篩選、popup、同劇合併與多地點 overview；含「演出是否跨過所選月份」判斷(`overlapsMonth`)與 XSS 跳脫 |
+| `me.html` / `css/me.css` / `js/me.js` | My Musicals 個人頁(FlightRadar 風)、表單/自動帶入/折線圖/海報地圖/編輯刪除 |
+| `scrapers/gen_catalog.py` → `data/venues_catalog.json` | 自動帶入字典(場館去重 / 中英劇名 / 幣別 / 海報) |
 | `css/style.css` | 淺色 UI（白底＋teal 主色） |
 | `data/shows.json` | **前端唯一讀的檔**，由 build 產生 |
 | `data/broadway.json` | Broadway scraper 輸出（broadway-show-tickets.com） |

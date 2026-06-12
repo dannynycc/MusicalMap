@@ -7,13 +7,15 @@
  */
 
 const TODAY = new Date();
-const DAY_MS = 86400000;
 const TODAY0 = (() => { const d = new Date(); d.setHours(0, 0, 0, 0); return d; })();
-const MAX_DAYS = 730;                       // slider range: today → +2 years (data reaches 2028 tours)
-let selectedDate = new Date(TODAY0);        // the date the map is showing
-const isoDate = (d) =>
-  `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
-const isToday = () => isoDate(selectedDate) === isoDate(TODAY0);
+const CUR_Y = TODAY0.getFullYear(), CUR_M = TODAY0.getMonth();
+const MAX_MONTHS = 36;                       // slider range: this month → +3 years (data reaches 2028 tours)
+let monthOffset = 0;                          // 0 = current month; the map shows this whole month
+// new Date(y, m, 1) auto-normalizes overflowing months, so offset arithmetic is safe.
+const monthStart = () => new Date(CUR_Y, CUR_M + monthOffset, 1);
+const monthEnd = () => new Date(CUR_Y, CUR_M + monthOffset + 1, 0, 23, 59, 59, 999);
+const selYM = () => { const d = monthStart(); return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}`; };
+const isThisMonth = () => monthOffset === 0;
 
 // ---------- safety helpers (untrusted scraped data) ----------
 function esc(v) {
@@ -40,13 +42,17 @@ function posterFull(url) {
   return safeUrl(url);
 }
 
-// ---------- "is this show playing right now?" ----------
-function isPlayingNow(show, today = TODAY) {
+// ---------- "is this show playing during the selected month?" ----------
+// A show counts if its run [start, end] overlaps the month at all — i.e. the run
+// crosses into the month even by a single day (user's rule). Missing start/end
+// is treated as open-ended (long-runners with no announced close stay visible).
+function overlapsMonth(show) {
+  const ms = monthStart(), me = monthEnd();
   const start = show.start_date ? new Date(show.start_date) : null;
   const end = show.end_date ? new Date(show.end_date) : null;
-  if (start && today < start) return false;
-  if (end && today > end) return false;
-  return true;
+  if (start && start > me) return false;   // run begins after this month
+  if (end && end < ms) return false;       // run ended before this month
+  return true;                              // any overlap → show on the map
 }
 
 // ---------- Map ----------
@@ -92,7 +98,7 @@ const els = {
   search: document.getElementById("search"),
   note: document.getElementById("data-note"),
   tRange: document.getElementById("time-range"),
-  tDate: document.getElementById("time-date"),
+  tMonth: document.getElementById("time-month"),
   tPlay: document.getElementById("time-play"),
   tToday: document.getElementById("time-today"),
 };
@@ -182,7 +188,7 @@ function popupHtml(show) {
 function visibleShows() {
   const q = els.search.value.trim().toLowerCase();
   return ALL.filter((s) => {
-    if (!isPlayingNow(s, selectedDate)) return false;
+    if (!overlapsMonth(s)) return false;
     if (!q) return true;
     return [s.title, s.city, s.venue, s.tour_name].some((f) => (f || "").toLowerCase().includes(q));
   });
@@ -251,7 +257,7 @@ function render() {
   }
 
   const groups = new Set(shows.map((s) => s.group || s.title)).size;
-  const label = isToday() ? "目前上演中" : `${isoDate(selectedDate)} 上演`;
+  const label = isThisMonth() ? "本月上演" : `${selYM()} 上演`;
   els.count.textContent = `${label}：${groups} 部音樂劇 · ${shows.length} 個地點`;
 
   // fit to all markers once, on first load
@@ -374,38 +380,36 @@ async function boot() {
 els.search.addEventListener("input", render);
 els.search.addEventListener("keydown", (e) => { if (e.key === "Escape") { els.search.value = ""; render(); } });
 
-// ---------- Time bar (slider + calendar, kept in sync) ----------
-function setDate(d, { fromSlider = false, fromPicker = false } = {}) {
-  // clamp to [today, today + MAX_DAYS]
-  const t = Math.min(Math.max(d.getTime(), TODAY0.getTime()), TODAY0.getTime() + MAX_DAYS * DAY_MS);
-  selectedDate = new Date(t);
-  const offset = Math.round((selectedDate - TODAY0) / DAY_MS);
-  if (!fromSlider) els.tRange.value = offset;
-  if (!fromPicker) els.tDate.value = isoDate(selectedDate);
-  els.tToday.classList.toggle("tb-now", true);
-  els.tToday.style.visibility = offset === 0 ? "hidden" : "visible";
+// ---------- Time bar (month slider + month picker, kept in sync) ----------
+// Granularity is one MONTH: dragging selects a month, and any show whose run
+// crosses that month appears (see overlapsMonth). No day-level precision.
+function setMonth(offset, { fromSlider = false, fromPicker = false } = {}) {
+  monthOffset = Math.min(Math.max(offset, 0), MAX_MONTHS);   // clamp [this month, +MAX_MONTHS]
+  if (!fromSlider) els.tRange.value = monthOffset;
+  if (!fromPicker) els.tMonth.value = selYM();
+  els.tToday.style.visibility = monthOffset === 0 ? "hidden" : "visible";
   render();
 }
 
-els.tRange.max = MAX_DAYS;
-els.tDate.min = isoDate(TODAY0);
-els.tDate.max = isoDate(new Date(TODAY0.getTime() + MAX_DAYS * DAY_MS));
+els.tRange.max = MAX_MONTHS;
+els.tMonth.min = selYM();                                    // this month
+els.tMonth.max = `${new Date(CUR_Y, CUR_M + MAX_MONTHS, 1).getFullYear()}-${String(new Date(CUR_Y, CUR_M + MAX_MONTHS, 1).getMonth() + 1).padStart(2, "0")}`;
 // rAF-throttled: dragging fires dozens of input events; rebuild at most once a frame
 let sliderRaf = null;
 els.tRange.addEventListener("input", () => {
   if (sliderRaf) return;
   sliderRaf = requestAnimationFrame(() => {
     sliderRaf = null;
-    setDate(new Date(TODAY0.getTime() + Number(els.tRange.value) * DAY_MS), { fromSlider: true });
+    setMonth(Number(els.tRange.value), { fromSlider: true });
   });
 });
-els.tDate.addEventListener("change", () => {
-  const d = new Date(els.tDate.value + "T00:00:00");
-  if (!isNaN(d)) setDate(d, { fromPicker: true });
+els.tMonth.addEventListener("change", () => {
+  const [y, m] = els.tMonth.value.split("-").map(Number);
+  if (y && m) setMonth((y - CUR_Y) * 12 + (m - 1 - CUR_M), { fromPicker: true });
 });
-els.tToday.addEventListener("click", () => { stopPlay(); setDate(new Date(TODAY0)); });
+els.tToday.addEventListener("click", () => { stopPlay(); setMonth(0); });
 
-// play: step one week per tick to watch tours travel
+// play: step one month per tick to watch tours travel across the calendar
 let playTimer = null;
 function stopPlay() {
   if (playTimer) { clearInterval(playTimer); playTimer = null; els.tPlay.textContent = "▶"; els.tPlay.classList.remove("playing"); }
@@ -414,11 +418,10 @@ els.tPlay.addEventListener("click", () => {
   if (playTimer) { stopPlay(); return; }
   els.tPlay.textContent = "⏸"; els.tPlay.classList.add("playing");
   playTimer = setInterval(() => {
-    const next = selectedDate.getTime() + 7 * DAY_MS;
-    if (next > TODAY0.getTime() + MAX_DAYS * DAY_MS) { stopPlay(); return; }
-    setDate(new Date(next));
+    if (monthOffset >= MAX_MONTHS) { stopPlay(); return; }
+    setMonth(monthOffset + 1);
   }, 900);
 });
 
-setDate(new Date(TODAY0));
+setMonth(0);
 boot();
