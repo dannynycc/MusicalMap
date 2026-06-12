@@ -11,6 +11,17 @@
 
 ---
 
+## [v0.23.0] - 2026-06-13 00:51
+### 新增
+- **台灣 utiki 售票來源(寬宏 KHAM + udn售票)**:新 scraper `scrapers/utiki.py`,兩家共用同一套 UTK 引擎。
+  - KHAM:分類 80(音樂劇)listing → 場次頁 eventTABLE 逐場取日期/場館(`PLACE_NAME`)/地址。
+  - UDN:搜尋「音樂劇」listing 卡片直接帶日期範圍+場館(可多場館巡演)+銷售狀態,免打場次頁。
+  - 排除合唱/演唱會/工作坊/交響音樂會;已結束(end < today 或標「結束銷售」)自動濾掉;座標交 `geocode_google.py` 取建築級。
+  - 目前帶入:萬世巨星 @ 國家戲劇院(6/18–21)、史瑞克 @ 臺北表演藝術中心 大劇院(11/20–29)。
+- 接入 `build_shows.py` SOURCE_FILES 與每日 CI。
+### 修正
+- **`group_key` 純中文標題全 collide 成空字串**:ASCII-strip 後中文劇名變 `""`,導致同城市所有中文劇被 merge 成一筆(萬世巨星/史瑞克皆 `""`)。fallback 改用保留 CJK 的 Unicode word 字元 → 各劇有穩定且不同的 key。順帶救回 6 筆先前被錯誤合併的中文劇(1284→1290)。
+
 ## [v0.22.5] - 2026-06-13 00:31
 ### 修正
 - **地圖同場館多筆永遠疊在一起 / 要 zoom 到很深才展開且每 zoom 重收合**(臺中國家歌劇院同座標 3 筆 = Phantom/Miss Saigon/Roméo)。

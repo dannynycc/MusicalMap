@@ -57,6 +57,7 @@ jobs:
           python scrapers/stage_de.py    || echo "::warning::stage scrape failed"
           python scrapers/madrid.py      || echo "::warning::madrid scrape failed"
           python scrapers/opentix.py     || echo "::warning::opentix scrape failed"
+          python scrapers/utiki.py       || echo "::warning::utiki (kham+udn) scrape failed"
           python scrapers/tm_tours.py    || echo "::warning::tm_tours sweep failed"
           python scrapers/ticketmaster.py || echo "::warning::ticketmaster scrape failed"
           python scrapers/build_shows.py

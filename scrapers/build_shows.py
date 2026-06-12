@@ -48,15 +48,18 @@ def group_key(title):
     # to "high" (real bug: its group missed the official-site table entirely).
     t = re.sub(r"\s+the\s+(?:[\w'!\-]+\s+){0,4}musical$", "", t)
     t = re.sub(r"[^a-z0-9]+", " ", t).strip()
-    if not t:  # over-stripped (e.g. a title that IS just "…Musical") — fall back
-        t = re.sub(r"[^a-z0-9]+", " ",
-                   unicodedata.normalize("NFKD", title or "").encode("ascii", "ignore").decode().lower()).strip()
+    if not t:  # ASCII-strip emptied it (CJK-only title, or a title that IS just
+        # "…Musical"). Fall back to Unicode word chars so CJK titles keep a stable,
+        # DISTINCT key — otherwise every Chinese-only show in a city collapses to ""
+        # and gets merged into one (e.g. 萬世巨星 vs 史瑞克 both -> "").
+        t = re.sub(r"[^\w]+", " ", title or "", flags=re.UNICODE).lower().strip()
     return GROUP_ALIASES.get(t, t)
 
 # Curated sources (precise data). Order matters for de-dup: later files win.
 SOURCE_FILES = ["broadway.json", "westend.json", "tours.json", "intl.json",
                 "shiki.json", "takarazuka.json", "interpark.json",
-                "atg.json", "stage_de.json", "madrid.json", "opentix.json", "manual.json"]
+                "atg.json", "stage_de.json", "madrid.json", "opentix.json",
+                "utiki.json", "manual.json"]
 
 # When several ticket sources list the SAME show in the SAME city, we keep one
 # record (highest priority = most authoritative venue data) and attach every
