@@ -172,7 +172,7 @@ const YEAR_MS = 31557600000;
 function fmtDates(show) {
   const s = show.start_date, e = show.end_date;
   // Ticketmaster gives availability dates, not a confirmed run — label honestly.
-  if (show.onsale_only) return e ? `售票中 · 約演至 ${esc(e)}` : "售票中";
+  if (show.onsale_only) return e ? `售票中至 ${esc(e)}` : "售票中";
   // open-ended long-runner: end is the rolling booking horizon, not a closing date
   if (show.end_rolling) return s ? `自 ${esc(s)} 上演 · 售票至 ${esc(e)}` : `售票至 ${esc(e)}`;
   if (s && e) {
