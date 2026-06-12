@@ -281,6 +281,34 @@ def main():
             added += 1
         print(f"  + {added} new, {merged} merged from {fname}")
 
+    # explicit alias merges — the SAME venue listed under name variants (user-confirmed).
+    # Distinct halls in one building (Tokyo Forum Hall A/C, 大/中/小劇場…) are NOT here.
+    # (city substring, canonical display name, [name substrings that collapse into it])
+    ALIAS_MERGES = [
+        ("appleton", "Fox Cities Performing Arts Center", ["fox cities"]),
+        ("cleveland", "KeyBank State Theatre", ["keybank state"]),
+        ("little rock", "Robinson Center", ["robinson cent", "robinson perf"]),
+        ("los angeles", "Hollywood Pantages Theatre", ["pantages"]),
+        ("new york", "Hard Rock Cafe - NYC", ["hard rock cafe"]),
+        ("orlando", "Dr. Phillips Center for the Performing Arts", ["dr. phillips", "dr phillips"]),
+        ("philadelphia", "Academy of Music", ["academy of music"]),
+        ("tampa", "Straz Center for the Performing Arts", ["straz cent", "carol morsani"]),
+        ("worcester", "The Hanover Theatre", ["hanover theatre"]),
+    ]
+    alias_merged = 0
+    for city_sub, canonical, subs in ALIAS_MERGES:
+        hits = [v for v in venues if city_sub in ckey(v["city"])
+                and any(s in v["name"].lower() for s in subs)]
+        if len(hits) < 2:
+            continue
+        keep = hits[0]
+        keep["name"] = canonical
+        for v in hits[1:]:
+            keep["search"] = (keep["search"] + " " + v["search"]).strip()
+            venues.remove(v)
+            alias_merged += 1
+    print(f"  alias-merged {alias_merged} duplicate venue(s)")
+
     cities = sorted({(s.get("city"), s.get("country") or "") for s in shows if s.get("city")})
 
     # bilingual titles + poster per show-group
