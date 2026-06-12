@@ -11,6 +11,10 @@
 
 ---
 
+## [v0.17.3] - 2026-06-12 20:14
+### 修正
+- **拖時間軸 slider 會連底圖一起拖動**:timebar 浮在地圖上,Leaflet 攔截了其上的拖曳事件。加 `L.DomEvent.disableClickPropagation/disableScrollPropagation` + 阻擋 pointer/touch move 傳播,拖 slider 不再平移地圖(實測地圖中心不動、月份正常變)。
+
 ## [v0.17.2] - 2026-06-12 20:01
 ### 變更
 - **時間軸拉寬**:原本置中只用約 1/3 寬;改為左右各留 10%(寬度 ~80%,手機 ~92%),月份 slider 隨之變長好拖曳。

@@ -103,6 +103,16 @@ const els = {
   tToday: document.getElementById("time-today"),
 };
 
+// The timebar floats over the map; without this, dragging the slider also pans
+// the Leaflet map underneath. Stop pointer/scroll events from reaching the map.
+const timebarEl = document.getElementById("timebar");
+if (timebarEl) {
+  L.DomEvent.disableClickPropagation(timebarEl);  // mousedown/touchstart/dblclick/click
+  L.DomEvent.disableScrollPropagation(timebarEl); // wheel-zoom over the bar
+  ["pointerdown", "pointermove", "touchmove"].forEach((ev) =>
+    L.DomEvent.on(timebarEl, ev, L.DomEvent.stopPropagation));
+}
+
 // ---------- Rendering helpers ----------
 function posterStyle(show, w, h) {
   const t = thumb(show.image, w, h);
