@@ -44,6 +44,8 @@ jobs:
           python scrapers/broadway.py    || echo "::warning::Broadway scrape failed"
           python scrapers/broadway_tours.py || echo "::warning::tours scrape failed"
           python scrapers/intl.py        || echo "::warning::international scrape failed"
+          python scrapers/shiki.py       || echo "::warning::shiki scrape failed"
+          python scrapers/takarazuka.py  || echo "::warning::takarazuka scrape failed"
           python scrapers/ticketmaster.py || echo "::warning::ticketmaster scrape failed"
           python scrapers/build_shows.py
         env:

@@ -52,7 +52,8 @@ def group_key(title):
     return GROUP_ALIASES.get(t, t)
 
 # Curated sources (precise data). Order matters for de-dup: later files win.
-SOURCE_FILES = ["broadway.json", "westend.json", "tours.json", "intl.json", "manual.json"]
+SOURCE_FILES = ["broadway.json", "westend.json", "tours.json", "intl.json",
+                "shiki.json", "takarazuka.json", "manual.json"]
 # Ticketmaster is added only for countries the curated sources DON'T cover,
 # so it fills global gaps (Australia, NZ, Ireland, Nordics, Canada…) without
 # duplicating the well-curated US/UK/etc. productions.
@@ -97,6 +98,19 @@ def main():
         print(f"  {TM_FILE}: +{kept} gap-fill ({len(tm)} total, "
               f"{len(tm) - kept} skipped as already-covered countries)")
         sources.append({"file": TM_FILE, "count": kept})
+
+    # shiki.jp is authoritative for Japan — drop other sources' Japan records of
+    # shows shiki also lists (broadway.org's Japan venues proved stale, e.g.
+    # Lion King listed at HARU instead of 有明四季劇場).
+    shiki_groups = {group_key(s["title"]) for s in by_id.values() if s.get("source") == "shiki.jp"}
+    if shiki_groups:
+        drop = [i for i, s in by_id.items()
+                if s.get("country") == "Japan" and s.get("source") != "shiki.jp"
+                and group_key(s["title"]) in shiki_groups]
+        for i in drop:
+            del by_id[i]
+        if drop:
+            print(f"  dropped {len(drop)} stale Japan record(s) superseded by shiki.jp")
 
     # Apply manual coordinate/field corrections (source data errors).
     overrides_path = DATA / "overrides.json"
