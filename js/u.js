@@ -24,14 +24,13 @@ function distM(a, b, c, d) {
 }
 function upgradeVenueNames() {
   const cv = (CATALOG.venues || []).filter((v) => typeof v.lat === "number");
+  const current = new Set(cv.map((v) => v.name));
   SIGHTINGS.forEach((s) => {
-    if (typeof s.lat !== "number") return;
-    let best = null, bd = 80;
-    for (const v of cv) {
-      const d = distM(s.lat, s.lng, v.lat, v.lng);
-      if (d < bd) { bd = d; best = v; }
-    }
-    if (best) s.venue = best.name;
+    if (!s.venue || typeof s.lat !== "number") return;
+    if (current.has(s.venue)) return;                 // current catalog name → keep
+    const near = cv.filter((v) => distM(s.lat, s.lng, v.lat, v.lng) <= 40);
+    if (near.length === 1) s.venue = near[0].name;    // legacy name + only one venue here → upgrade
+    // several venues at this coord (sub-halls) → ambiguous, leave as saved
   });
 }
 const uniq = (a) => [...new Set(a.filter(Boolean))];
@@ -156,7 +155,7 @@ function renderTable() {
   const head = "<thead><tr>" + COLS.map((c) =>
     `<th data-k="${c.k}" class="${sortKey === c.k ? "sorted " + (sortDir > 0 ? "asc" : "desc") : ""}">${c.label}</th>`).join("") + "</tr></thead>";
   const body = "<tbody>" + (rows.length ? rows.map((s) => "<tr>" + COLS.map((c) => {
-    if (c.k === "url") return `<td>${safeUrl(s.url) ? `<a href="${esc(safeUrl(s.url))}" target="_blank" rel="noopener">🔗</a>` : ""}</td>`;
+    if (c.k === "url") return `<td>${linksOf(s).map((u) => `<a href="${esc(u)}" target="_blank" rel="noopener">🔗</a>`).join(" ")}</td>`;
     if (c.k === "price") return `<td>${s.price != null && s.price !== "" ? esc(s.price) + (s.currency ? " " + esc(s.currency) : "") : ""}</td>`;
     return `<td>${esc(s[c.k] ?? "")}</td>`;
   }).join("") + "</tr>").join("") : `<tr><td colspan="${COLS.length}" class="muted">No entries.</td></tr>`) + "</tbody>";
@@ -172,6 +171,10 @@ function safeUrl(u) {
   if (!u) return null;
   try { const p = new URL(u, location.href); return ["http:", "https:"].includes(p.protocol) ? p.href : null; }
   catch { return null; }
+}
+function linksOf(s) {
+  const arr = Array.isArray(s.links) ? s.links : (s.url ? [s.url] : []);
+  return arr.map((u) => safeUrl(u)).filter(Boolean);
 }
 function wireTabs() {
   document.querySelectorAll(".pub-tab").forEach((b) => b.onclick = () => {

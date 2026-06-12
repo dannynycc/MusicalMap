@@ -238,11 +238,13 @@ function distM(a, b, c, d) {
 }
 function upgradeVenueNames() {
   const cv = (CATALOG.venues || []).filter((v) => typeof v.lat === "number");
+  const current = new Set(cv.map((v) => v.name));
   SIGHTINGS.forEach((s) => {
-    if (typeof s.lat !== "number") return;
-    let best = null, bd = 80;
-    for (const v of cv) { const d = distM(s.lat, s.lng, v.lat, v.lng); if (d < bd) { bd = d; best = v; } }
-    if (best) s.venue = best.name;
+    if (!s.venue || typeof s.lat !== "number") return;
+    if (current.has(s.venue)) return;                 // already a current catalog name → keep the user's pick
+    const near = cv.filter((v) => distM(s.lat, s.lng, v.lat, v.lng) <= 40);
+    if (near.length === 1) s.venue = near[0].name;    // legacy name, ONE venue here → upgrade
+    // if several venues share this coord (大/中/小劇場 …) it's ambiguous → leave as saved
   });
 }
 
@@ -259,7 +261,7 @@ function renderList() {
         <div class="muted">${esc(s.seen_date || "")}</div>
         <div class="muted">${esc(sub)}</div>
         ${extra ? `<div class="muted">${esc(extra)}</div>` : ""}
-        ${safeUrl(s.url) ? `<a class="li-link" href="${esc(safeUrl(s.url))}" target="_blank" rel="noopener">🔗 link</a>` : ""}
+        ${linksOf(s).map((u, i) => `<a class="li-link" href="${esc(u)}" target="_blank" rel="noopener">🔗 link${linksOf(s).length > 1 ? " " + (i + 1) : ""}</a>`).join(" ")}
       </div>
       <div class="li-acts"><button class="edit" data-id="${s.id}">Edit</button><button class="del" data-id="${s.id}">Delete</button></div>
     </li>`;
@@ -277,6 +279,7 @@ async function delSighting(id) {
 // ---------- add / edit ----------
 function openAdd() {
   const f = $("#add-form"); f.reset(); f.id.value = "";
+  $("#links-list").innerHTML = ""; addLinkRow("");
   $("#form-title").textContent = "Add a musical";
   $("#add-dialog").showModal();
 }
@@ -284,28 +287,58 @@ function openEdit(id) {
   const s = SIGHTINGS.find((x) => String(x.id) === String(id));
   if (!s) return;
   const f = $("#add-form"); f.reset();
-  ["id", "title", "venue", "city", "country", "seen_date", "seen_time", "seat", "price", "currency", "url", "note"]
+  ["id", "title", "venue", "city", "country", "seen_date", "seen_time", "seat", "price", "currency", "note", "lat", "lng"]
     .forEach((k) => { if (f[k]) f[k].value = s[k] ?? ""; });
+  $("#links-list").innerHTML = "";
+  const ls = linksOf(s);
+  (ls.length ? ls : [""]).forEach(addLinkRow);
   $("#form-title").textContent = "Edit musical";
   $("#add-dialog").showModal();
 }
+
+// ---------- links (a sighting can carry several official/ticket links) ----------
+function linksOf(s) {
+  const arr = Array.isArray(s.links) ? s.links : (s.url ? [s.url] : []);
+  return arr.map((u) => safeUrl(u)).filter(Boolean);
+}
+function addLinkRow(value = "") {
+  const row = document.createElement("div");
+  row.className = "link-row";
+  const inp = document.createElement("input");
+  inp.type = "url"; inp.className = "link-input"; inp.placeholder = "https://… official site / ticket page";
+  inp.value = value;
+  const del = document.createElement("button");
+  del.type = "button"; del.className = "link-del"; del.title = "remove"; del.textContent = "×";
+  del.onclick = () => row.remove();
+  row.append(inp, del);
+  $("#links-list").appendChild(row);
+}
+const formLinks = () => [...document.querySelectorAll("#links-list .link-input")].map((i) => i.value.trim()).filter(Boolean);
 
 async function onSave(e) {
   const f = e.target, g = (n) => (f[n].value.trim() || null);
   const rec = {
     title: g("title"), venue: g("venue"), city: g("city"), country: g("country"),
     seen_date: g("seen_date"), seen_time: g("seen_time"), seat: g("seat"),
-    price: g("price"), currency: g("currency"), url: g("url"), note: g("note"),
+    price: g("price"), currency: g("currency"), note: g("note"),
   };
-  const v = CATALOG.venues.find((x) => x.name === rec.venue);
-  if (v) { rec.lat = v.lat; rec.lng = v.lng; if (!rec.city) rec.city = v.city; if (!rec.country) rec.country = v.country; }
+  const links = formLinks();
+  if (links.length) { rec.links = links; rec.url = links[0]; }   // url kept for back-compat
+  const ck = (c) => (c || "").toLowerCase().split(",")[0].trim();
+  if (f.lat.value && f.lng.value) {                 // coords captured when the venue was picked
+    rec.lat = +f.lat.value; rec.lng = +f.lng.value;
+  } else if (rec.venue) {                            // typed by hand → match name + city (avoids same-name elsewhere)
+    const v = CATALOG.venues.find((x) => x.name === rec.venue && ck(x.city) === ck(rec.city))
+           || CATALOG.venues.find((x) => x.name === rec.venue);
+    if (v) { rec.lat = v.lat; rec.lng = v.lng; if (!rec.city) rec.city = v.city; if (!rec.country) rec.country = v.country; }
+  }
   const id = f.id.value;
   const save = (r) => id ? sb.from("sightings").update(r).eq("id", id) : sb.from("sightings").insert(r);
   let res = await save(rec);
-  // if the optional `url` column hasn't been added in Supabase yet, save without it
-  if (res.error && /url/i.test(res.error.message) && rec.url != null) {
-    const { url, ...rest } = rec;
-    res = await save(rest);
+  // drop optional columns the Supabase schema may not have yet, then retry
+  while (res.error && /'(links|url)' column/i.test(res.error.message)) {
+    delete rec[res.error.message.match(/'(links|url)'/)[1]];
+    res = await save(rec);
   }
   if (res.error) { alert("Save failed: " + res.error.message); return; }
   $("#add-dialog").close();
@@ -320,6 +353,7 @@ function wireUi() {
   $("#btn-add").onclick = openAdd;
   $("#btn-cancel").onclick = () => $("#add-dialog").close();
   $("#add-form").addEventListener("submit", onSave);
+  $("#add-link").onclick = () => addLinkRow("");
   $("#pub-save").onclick = saveShare;
   $("#share-copy").onclick = () => {
     navigator.clipboard?.writeText($("#share-url").textContent);
@@ -360,13 +394,19 @@ function setupAutocomplete() {
       pop.querySelectorAll(".ac-item").forEach((el) => el.onclick = () => {
         const it = items[+el.dataset.i];
         inp.value = it.pick;
+        const f = $("#add-form");
         if (kind === "venues" && it.v) {
-          if (it.v.city) $("#add-form").city.value = it.v.city;
-          if (it.v.country) $("#add-form").country.value = it.v.country;
-        } else if (kind === "cities" && it.country) $("#add-form").country.value = it.country;
+          if (it.v.city) f.city.value = it.v.city;
+          if (it.v.country) f.country.value = it.v.country;
+          // remember the EXACT venue's coordinate so same-named venues in other
+          // cities (e.g. Orpheum Theatre SF vs Minneapolis) don't get the wrong one
+          f.lat.value = it.v.lat ?? ""; f.lng.value = it.v.lng ?? "";
+        } else if (kind === "cities" && it.country) f.country.value = it.country;
         pop.hidden = true;
       });
     });
+    // typing a venue by hand invalidates a previously-picked coordinate
+    if (inp.dataset.ac === "venues") inp.addEventListener("input", () => { $("#add-form").lat.value = ""; $("#add-form").lng.value = ""; });
     inp.addEventListener("blur", () => setTimeout(() => { pop.hidden = true; }, 150));
   });
 }

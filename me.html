@@ -76,6 +76,7 @@
     <form id="add-form" method="dialog">
       <h3 id="form-title">Add a musical</h3>
       <input type="hidden" name="id" />
+      <input type="hidden" name="lat" /><input type="hidden" name="lng" />
       <label>Musical<input name="title" autocomplete="off" required data-ac="titles" placeholder="輸入中文或英文 type EN or 中文" /></label>
       <div class="row2">
         <label>Date<input name="seen_date" type="date" /></label>
@@ -91,7 +92,9 @@
         <label>Price<input name="price" type="number" step="0.01" /></label>
       </div>
       <label>Currency<input name="currency" autocomplete="off" data-ac="currencies" placeholder="TWD / USD / GBP…" /></label>
-      <label>Link (optional)<input name="url" type="url" placeholder="https://… official site / ticket page" /></label>
+      <label>Links (optional)</label>
+      <div id="links-list"></div>
+      <button type="button" id="add-link" class="btn-ghost link-add">＋ add link</button>
       <label>Note<textarea name="note" rows="2"></textarea></label>
       <div id="ac-pop" class="ac-pop" hidden></div>
       <div class="form-actions">

@@ -134,6 +134,16 @@ body { font-family: Roboto, Arial, "Microsoft JhengHei", sans-serif; background:
 .ac-item:hover { background: var(--fr-bg); }
 .ac-item .zh { color: var(--fr-muted); }
 
+/* multiple link inputs */
+#links-list { display: flex; flex-direction: column; gap: 6px; }
+.link-row { display: flex; gap: 6px; }
+.link-row .link-input { flex: 1; border: 1px solid var(--fr-line); border-radius: 7px; padding: 9px 11px; font-size: 14px; font-family: inherit; }
+.link-row .link-input:focus { outline: none; border-color: var(--fr-orange); }
+.link-row .link-del { border: 1px solid var(--fr-line); background: #fff; border-radius: 7px; width: 36px; cursor: pointer; color: var(--fr-muted); font-size: 18px; line-height: 1; }
+.link-row .link-del:hover { color: #b91c1c; border-color: #b91c1c; }
+.link-add { align-self: flex-start; font-size: 13px; padding: 6px 12px; }
+.li-link { font-size: 12px; color: var(--fr-orange); text-decoration: none; margin-right: 8px; }
+
 @media (max-width: 820px) {
   #tiles { grid-template-columns: repeat(2, 1fr); }
   #charts, #log-list { grid-template-columns: 1fr; }
