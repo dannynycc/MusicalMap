@@ -33,6 +33,19 @@
     </section>
 
     <section id="signed-in" hidden>
+      <div id="share-bar">
+        <div class="share-row">
+          <label class="share-toggle"><input type="checkbox" id="pub-toggle" /> Make my profile public</label>
+          <span class="share-handle">musicalmap.../u.html?u=
+            <input id="pub-handle" placeholder="your-name" autocomplete="off" /></span>
+          <button id="pub-save" class="btn-ghost">Save</button>
+        </div>
+        <div class="share-link" id="share-link" hidden>
+          🔗 <a id="share-url" href="#" target="_blank"></a>
+          <button id="share-copy" class="btn-ghost">Copy</button>
+        </div>
+      </div>
+
       <div id="map-wrap">
         <div id="me-map"></div>
       </div>

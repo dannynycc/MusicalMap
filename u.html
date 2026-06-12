@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Musicals — MusicalMap</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/me.css" />
+</head>
+<body>
+  <header id="me-top">
+    <a id="me-brand" href="index.html">Musical<span>Map</span></a>
+    <nav>
+      <a href="index.html">🗺 Global map</a>
+      <a href="me.html" class="btn-primary">＋ Create your own</a>
+    </nav>
+  </header>
+
+  <main id="me-main">
+    <section id="pub-hero" class="hero" hidden>
+      <h1 id="pub-name">My Musicals</h1>
+      <p id="pub-sub" class="muted"></p>
+    </section>
+
+    <section id="pub-body" hidden>
+      <div id="map-wrap"><div id="me-map"></div></div>
+      <div id="tiles"></div>
+      <div id="charts">
+        <div class="chart-card c-green"><h4>Top Musicals</h4><div class="cc-body" id="c-shows"></div></div>
+        <div class="chart-card c-amber"><h4>Top Countries</h4><div class="cc-body" id="c-countries"></div></div>
+        <div class="chart-card c-red"><h4>Top Cities</h4><div class="cc-body" id="c-cities"></div></div>
+        <div class="chart-card c-purple"><h4>Top Theatres</h4><div class="cc-body" id="c-venues"></div></div>
+        <div class="chart-card c-teal"><h4>Per Year</h4><div class="cc-body"><canvas id="c-year"></canvas></div></div>
+        <div class="chart-card c-blue"><h4>Per Month</h4><div class="cc-body"><canvas id="c-month"></canvas></div></div>
+        <div class="chart-card c-indigo"><h4>Per Weekday</h4><div class="cc-body"><canvas id="c-weekday"></canvas></div></div>
+      </div>
+      <section id="log-section">
+        <div class="log-head"><h3>Log <span id="log-count" class="muted"></span></h3></div>
+        <ul id="log-list"></ul>
+      </section>
+    </section>
+
+    <section id="pub-empty" class="hero" hidden>
+      <h1>Profile not found</h1>
+      <p class="muted">This profile doesn’t exist or isn’t public.</p>
+      <a href="me.html" class="btn-primary big">Create your own My Musicals</a>
+    </section>
+  </main>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+  <script src="js/config.js"></script>
+  <script src="js/u.js"></script>
+</body>
+</html>

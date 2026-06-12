@@ -52,7 +52,36 @@ function renderAuth(session) {
   $("#btn-login").hidden = !!user;
   $("#btn-logout").hidden = !user;
   $("#me-user").textContent = user ? (user.user_metadata?.full_name || user.email) : "";
-  if (user) loadSightings();
+  if (user) { CURRENT_USER = user; loadSightings(); loadShare(); }
+}
+
+// ---------- public share profile ----------
+let CURRENT_USER = null;
+function shareUrl(handle) { return location.origin + location.pathname.replace(/me\.html$/, "u.html") + "?u=" + encodeURIComponent(handle); }
+
+async function loadShare() {
+  const { data } = await sb.from("profiles").select("handle, is_public").eq("id", CURRENT_USER.id).maybeSingle();
+  $("#pub-handle").value = data?.handle || "";
+  $("#pub-toggle").checked = !!data?.is_public;
+  renderShareLink(data?.handle, data?.is_public);
+}
+function renderShareLink(handle, isPublic) {
+  const ok = isPublic && handle;
+  $("#share-link").hidden = !ok;
+  if (ok) { $("#share-url").textContent = shareUrl(handle); $("#share-url").href = shareUrl(handle); }
+}
+async function saveShare() {
+  const handle = $("#pub-handle").value.trim().toLowerCase().replace(/[^a-z0-9_-]/g, "");
+  const isPublic = $("#pub-toggle").checked;
+  $("#pub-handle").value = handle;
+  if (isPublic && !handle) { alert("Pick a username for your public link first."); return; }
+  const res = await sb.from("profiles").upsert({ id: CURRENT_USER.id, handle: handle || null, is_public: isPublic });
+  if (res.error) {
+    alert(res.error.message.includes("duplicate") ? "That username is taken — try another." : "Save failed: " + res.error.message);
+    return;
+  }
+  renderShareLink(handle, isPublic);
+  if (isPublic && handle) alert("Public! Share: " + shareUrl(handle));
 }
 
 async function login() {
@@ -247,6 +276,12 @@ function wireUi() {
   $("#btn-add").onclick = openAdd;
   $("#btn-cancel").onclick = () => $("#add-dialog").close();
   $("#add-form").addEventListener("submit", onSave);
+  $("#pub-save").onclick = saveShare;
+  $("#share-copy").onclick = () => {
+    navigator.clipboard?.writeText($("#share-url").textContent);
+    $("#share-copy").textContent = "Copied!";
+    setTimeout(() => { $("#share-copy").textContent = "Copy"; }, 1500);
+  };
   setupAutocomplete();
 }
 

@@ -29,6 +29,7 @@ scrapers/  ──產出──>  data/*.json  ──merge──>  data/shows.json
 | `js/app.js` | 地圖、海報 marker、側欄、搜尋/篩選、popup、同劇合併與多地點 overview；含「演出是否跨過所選月份」判斷(`overlapsMonth`)與 XSS 跳脫 |
 | `me.html` / `css/me.css` / `js/me.js` | My Musicals 個人頁(FlightRadar 風)、表單/自動帶入/折線圖/海報地圖/編輯刪除 |
 | `theatres.html` / `js/theatres.js` | 所有劇院地圖(全 catalog ~4,900 場館,綠色群聚圈 + 多語搜尋) |
+| `u.html` / `js/u.js` | 公開唯讀 profile 分享頁(`?u=<handle>`,免登入,推廣用) |
 | `scrapers/gen_catalog.py` → `data/venues_catalog.json` | 自動帶入字典(場館去重 / 中英劇名 / 幣別 / 海報) |
 | `css/style.css` | 淺色 UI（白底＋teal 主色） |
 | `data/shows.json` | **前端唯一讀的檔**，由 build 產生 |
