@@ -22,6 +22,7 @@ import re
 import sys
 import io
 import html
+import hashlib
 import urllib.request
 import urllib.parse
 from datetime import datetime, timezone, timedelta
@@ -201,7 +202,7 @@ def main():
                 if end < today or p.get("ended"):
                     dropped.append(zh + f" @ {v['venue']} (已結束)"); continue
                 shows.append({
-                    "id": f"{site['name']}-{p['pid']}-{abs(hash(v['venue'])) % 10000:04d}",
+                    "id": f"{site['name']}-{p['pid']}-{hashlib.md5(v['venue'].encode()).hexdigest()[:4]}",
                     "title": zh, "title_en": en,
                     "venue": v["venue"], "city": v["city"], "country": "Taiwan",
                     "lat": None, "lng": None,        # filled by geocode_google.py

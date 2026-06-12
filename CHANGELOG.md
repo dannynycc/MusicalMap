@@ -11,6 +11,10 @@
 
 ---
 
+## [v0.23.1] - 2026-06-13 00:54
+### 修正
+- **utiki show id 不穩定**:原用 Python 內建 `hash()`(每 process 隨機化),本地/CI/每日之間 id 都不同會造成資料無謂 churn。改用 `hashlib.md5` 取穩定 id。
+
 ## [v0.23.0] - 2026-06-13 00:51
 ### 新增
 - **台灣 utiki 售票來源(寬宏 KHAM + udn售票)**:新 scraper `scrapers/utiki.py`,兩家共用同一套 UTK 引擎。
