@@ -1,9 +1,8 @@
-// Supabase config. The anon key is a PUBLIC key (safe in client code) — data is
-// protected by Row Level Security, not by hiding this. Paste your two values:
-//   Project Settings → API → Project URL  and  anon public key.
+// Supabase config. The publishable key is a PUBLIC key (safe in client code) —
+// data is protected by Row Level Security, not by hiding this.
 window.MM_CONFIG = {
-  SUPABASE_URL: "PASTE_YOUR_PROJECT_URL",     // e.g. https://abcd.supabase.co
-  SUPABASE_ANON_KEY: "PASTE_YOUR_ANON_KEY",
+  SUPABASE_URL: "https://gtuvrhdvwjlvneispcuq.supabase.co",
+  SUPABASE_ANON_KEY: "sb_publishable_liJcmr-g9eU9xLLkKixJaA_9s8YjCni",
 };
 window.MM_CONFIG.READY =
   !window.MM_CONFIG.SUPABASE_URL.startsWith("PASTE") &&

@@ -4,7 +4,7 @@
 > anon key 是公開金鑰(放前端用),真正的保護靠資料庫的 Row Level Security,外洩無妨。
 
 ## A. 建 Supabase 專案
-1. 到 https://supabase.com → 用 GitHub/Google 登入 → **New project**。
+1. 到 https://supabase.com → **用 GitHub 登入**(後台註冊只有 GitHub / Email,沒有 Google;用 GitHub 與你的 repo 同身分最一致）→ **New project**。
 2. 填 Name(例 `musicalmap`)、設一組 DB 密碼(自己留存)、Region 選 `Northeast Asia (Tokyo)` 或 `Singapore`。
 3. 等專案 build 好(~2 分鐘)。
 4. 左下 **Project Settings → API**:

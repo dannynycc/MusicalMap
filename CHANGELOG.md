@@ -11,6 +11,10 @@
 
 ---
 
+## [v0.14.1] - 2026-06-12 15:06
+### 變更
+- 接上 Supabase 專案(`js/config.js`:Project URL + publishable key,皆公開值、RLS 保護)。資料庫 schema 已套用、三表(profiles/sightings/venues)經 REST 驗證就緒。剩使用者端 Google OAuth 啟用即全線上。
+
 ## [v0.14.0] - 2026-06-12 14:44
 ### 新增(進階功能:My Musicals 個人觀劇足跡 — 第一階段)
 - **帳號系統(Google 登入)**:架構選 **Supabase(Postgres + Auth)**,理由是面向未來上萬用戶——分析(Top/per-year-month-weekday)是 SQL 聚合、可擴跨用戶/公開 profile、劇院字典可群眾外包成長;仍部署在 GitHub Pages 純靜態(supabase-js client SDK 直連)。
