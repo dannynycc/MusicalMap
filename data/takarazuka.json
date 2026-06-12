@@ -1,7 +1,7 @@
 {
   "meta": {
     "source": "kageki.hankyu.co.jp",
-    "count": 12
+    "count": 14
   },
   "shows": [
     {
@@ -204,6 +204,40 @@
       "end_date": "2027-03-28",
       "ticket_url": "https://kageki.hankyu.co.jp/revue/2026/tenkyuunoartemis/index.html",
       "image": "https://kageki.hankyu.co.jp/star/so7q6r00000002mu-img/og_moon.png",
+      "tour_name": "宝塚歌劇",
+      "verified": true,
+      "source": "kageki.hankyu.co.jp"
+    },
+    {
+      "id": "tkz-thelondonway-takarazuka-2027-01-30",
+      "title": "The London Way",
+      "type": "tour",
+      "venue": "宝塚大劇場",
+      "city": "Takarazuka (兵庫)",
+      "country": "Japan",
+      "lat": 34.8093,
+      "lng": 135.347,
+      "start_date": "2027-01-30",
+      "end_date": "2027-03-14",
+      "ticket_url": "https://kageki.hankyu.co.jp/revue/2027/thelondonway/index.html",
+      "image": "https://kageki.hankyu.co.jp/star/so7q6r00000002p2-img/og_cosmos.png",
+      "tour_name": "宝塚歌劇",
+      "verified": true,
+      "source": "kageki.hankyu.co.jp"
+    },
+    {
+      "id": "tkz-thelondonway-tokyo-2027-04-03",
+      "title": "The London Way",
+      "type": "tour",
+      "venue": "東京宝塚劇場",
+      "city": "Tokyo (日比谷)",
+      "country": "Japan",
+      "lat": 35.6735,
+      "lng": 139.7593,
+      "start_date": "2027-04-03",
+      "end_date": "2027-05-16",
+      "ticket_url": "https://kageki.hankyu.co.jp/revue/2027/thelondonway/index.html",
+      "image": "https://kageki.hankyu.co.jp/star/so7q6r00000002p2-img/og_cosmos.png",
       "tour_name": "宝塚歌劇",
       "verified": true,
       "source": "kageki.hankyu.co.jp"
