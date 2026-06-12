@@ -11,6 +11,16 @@
 
 ---
 
+## [v0.21.0] - 2026-06-12 23:12
+### 新增
+- **新增表單加「Link」欄位**:可選填官網/售票連結;log 卡與公開表格顯示 🔗。(後端需跑 `supabase/add_url.sql` 加 `url` 欄)
+- **公開頁 Overview / Log 分頁**:`u.html` 上方分頁切換;**Log 改成大表格、依日期排序、每欄可點擊排序**(日期/劇目/劇院/城市/國家/座位/票價/連結)。
+- **同場館多場自動展開**:縮放到位時自動 spiderfy 散開(臺中歌劇院 3 場不需點擊自動分開);改用 markercluster `animationend` 觸發。
+- **舊場館名自動升級**:顯示時依座標對照 catalog 用最新名稱(National Theater→National Theater and Concert Hall),不必手改舊紀錄。
+### 修正
+- **Per Year 折線連續**:從最早年到最新年每年都顯示(沒資料補 0),不再跳年。
+- **移除自製 clampWorld/maxBounds**:那套造成個人/公開地圖縮放時 `_zoom` 崩錯、marker 渲染失敗;改回與 index.html 相同的乾淨地圖設定。
+
 ## [v0.20.1] - 2026-06-12 22:31
 ### 修正
 - **同場館多場無法展開**:個人/公開地圖上,同一劇院的多場紀錄座標完全重疊(如臺中國家歌劇院 3 場),MarkerCluster 縮放無法分開。改為點擊 cluster 時若子點座標相同就直接 spiderfy 展開(me.js / u.js,實測點一下展開成 3 個海報)。

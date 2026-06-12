@@ -28,21 +28,28 @@
     </section>
 
     <section id="pub-body" hidden>
-      <div id="map-wrap"><div id="me-map"></div></div>
-      <div id="tiles"></div>
-      <div id="charts">
-        <div class="chart-card c-green"><h4>Top Musicals</h4><div class="cc-body" id="c-shows"></div></div>
-        <div class="chart-card c-amber"><h4>Top Countries</h4><div class="cc-body" id="c-countries"></div></div>
-        <div class="chart-card c-red"><h4>Top Cities</h4><div class="cc-body" id="c-cities"></div></div>
-        <div class="chart-card c-purple"><h4>Top Theatres</h4><div class="cc-body" id="c-venues"></div></div>
-        <div class="chart-card c-teal"><h4>Per Year</h4><div class="cc-body"><canvas id="c-year"></canvas></div></div>
-        <div class="chart-card c-blue"><h4>Per Month</h4><div class="cc-body"><canvas id="c-month"></canvas></div></div>
-        <div class="chart-card c-indigo"><h4>Per Weekday</h4><div class="cc-body"><canvas id="c-weekday"></canvas></div></div>
+      <div class="pub-tabs">
+        <button class="pub-tab active" data-tab="overview">📊 Overview</button>
+        <button class="pub-tab" data-tab="log">📋 Log</button>
       </div>
-      <section id="log-section">
-        <div class="log-head"><h3>Log <span id="log-count" class="muted"></span></h3></div>
-        <ul id="log-list"></ul>
-      </section>
+
+      <div id="tab-overview">
+        <div id="map-wrap"><div id="me-map"></div></div>
+        <div id="tiles"></div>
+        <div id="charts">
+          <div class="chart-card c-green"><h4>Top Musicals</h4><div class="cc-body" id="c-shows"></div></div>
+          <div class="chart-card c-amber"><h4>Top Countries</h4><div class="cc-body" id="c-countries"></div></div>
+          <div class="chart-card c-red"><h4>Top Cities</h4><div class="cc-body" id="c-cities"></div></div>
+          <div class="chart-card c-purple"><h4>Top Theatres</h4><div class="cc-body" id="c-venues"></div></div>
+          <div class="chart-card c-teal"><h4>Per Year</h4><div class="cc-body"><canvas id="c-year"></canvas></div></div>
+          <div class="chart-card c-blue"><h4>Per Month</h4><div class="cc-body"><canvas id="c-month"></canvas></div></div>
+          <div class="chart-card c-indigo"><h4>Per Weekday</h4><div class="cc-body"><canvas id="c-weekday"></canvas></div></div>
+        </div>
+      </div>
+
+      <div id="tab-log" hidden>
+        <div class="table-wrap"><table id="log-table"></table></div>
+      </div>
     </section>
 
     <section id="pub-empty" class="hero" hidden>

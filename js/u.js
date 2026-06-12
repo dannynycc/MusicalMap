@@ -13,6 +13,27 @@ let SIGHTINGS = [];
 let map, layer, charts = {};
 
 function posterFor(t) { return POSTER_BY_TITLE[(t || "").toLowerCase()] || null; }
+
+// upgrade a stored sighting's venue name to the catalog's current name (matched by
+// coordinate), so old records show the latest name (e.g. National Theater →
+// National Theater and Concert Hall) everywhere — list, map, Top Theatres.
+function distM(a, b, c, d) {
+  const R = 6371008.8, p = Math.PI / 180;
+  const h = 0.5 - Math.cos((c - a) * p) / 2 + Math.cos(a * p) * Math.cos(c * p) * (1 - Math.cos((d - b) * p)) / 2;
+  return 2 * R * Math.asin(Math.sqrt(h));
+}
+function upgradeVenueNames() {
+  const cv = (CATALOG.venues || []).filter((v) => typeof v.lat === "number");
+  SIGHTINGS.forEach((s) => {
+    if (typeof s.lat !== "number") return;
+    let best = null, bd = 80;
+    for (const v of cv) {
+      const d = distM(s.lat, s.lng, v.lat, v.lng);
+      if (d < bd) { bd = d; best = v; }
+    }
+    if (best) s.venue = best.name;
+  });
+}
 const uniq = (a) => [...new Set(a.filter(Boolean))];
 const tile = (n, l) => `<div class="tile"><div class="tn">${n}</div><div class="tl">${l}</div></div>`;
 
@@ -56,8 +77,10 @@ function renderCharts() {
     if (isNaN(d)) return;
     years[d.getFullYear()] = (years[d.getFullYear()] || 0) + 1; months[d.getMonth()]++; wd[d.getDay()]++;
   });
-  const yk = Object.keys(years).sort();
-  lineChart("#c-year", yk, yk.map((y) => years[y]));
+  const ys = Object.keys(years).map(Number);
+  let yk = [];
+  if (ys.length) { const lo = Math.min(...ys), hi = Math.max(...ys); for (let y = lo; y <= hi; y++) yk.push(y); }
+  lineChart("#c-year", yk, yk.map((y) => years[y] || 0));   // every year in range, gaps = 0
   lineChart("#c-month", ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"], months);
   lineChart("#c-weekday", ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"], wd);
 }
@@ -67,52 +90,96 @@ function posterIcon(title) {
     html: `<div class="poster-pin ${p ? "" : "noimg"}" style="${p ? `background-image:url('${esc(p)}')` : ""}">${p ? "" : "<span class='glyph'>♪</span>"}</div>`,
     iconSize: [44, 60], iconAnchor: [22, 60], popupAnchor: [0, -58] });
 }
-function clampWorld() {
-  map.invalidateSize();
-  const z = Math.ceil(Math.log2(Math.max(1, map.getSize().x) / 256));
-  map.setMinZoom(z);
-  if (map.getZoom() < z) map.setView([20, 0], z);
-}
+function clampWorld() { if (map) map.invalidateSize(); }
 function renderMap() {
   if (!map) {
-    map = L.map("me-map", { worldCopyJump: true, minZoom: 1, maxBoundsViscosity: 1.0 }).setView([20, 0], 2);
+    map = L.map("me-map", { worldCopyJump: true, minZoom: 2 }).setView([20, 0], 2);
     L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png",
-      { attribution: "&copy; OpenStreetMap &copy; CARTO", subdomains: "abcd", maxZoom: 19 }).addTo(map);
+      { attribution: "&copy; OpenStreetMap &copy; CARTO", subdomains: "abcd", maxZoom: 19, noWrap: false }).addTo(map);
     layer = L.markerClusterGroup({ showCoverageOnHover: false, maxClusterRadius: 45, spiderfyOnMaxZoom: true });
-    // markers stacked at one venue (e.g. 3 shows at 臺中國家歌劇院) share exact coords,
-    // so zoom-to-bounds can't separate them — spiderfy (fan out) on click instead.
-    layer.on("clusterclick", (a) => {
-      const ll = a.layer.getAllChildMarkers().map((m) => m.getLatLng());
-      if (ll.every((p) => p.equals(ll[0]))) { a.layer.spiderfy(); a.originalEvent?.preventDefault?.(); }
-    });
     map.addLayer(layer);
-    map.setMaxBounds([[-85, -180], [85, 180]]);
-    clampWorld(); window.addEventListener("resize", clampWorld);
+    map.on("moveend", scheduleSpiderfy);   // auto fan-out same-venue stacks once zoomed in
+    layer.on("animationend", scheduleSpiderfy);  // after cluster re-forms post-zoom
+    window.addEventListener("resize", clampWorld);
   }
-  layer.clearLayers();
+  layer.clearLayers(); MK = [];
   const pts = [];
   SIGHTINGS.forEach((s) => {
     if (typeof s.lat !== "number") return;
     const p = posterFor(s.title);
-    layer.addLayer(L.marker([s.lat, s.lng], { icon: posterIcon(s.title), riseOnHover: true }).bindPopup(
+    const m = L.marker([s.lat, s.lng], { icon: posterIcon(s.title), riseOnHover: true }).bindPopup(
       `<div style="display:flex;gap:10px">${p ? `<img src="${esc(p)}" style="width:70px;border-radius:6px">` : ""}
        <div><b>${esc(s.title)}</b><br><span style="color:#666">${esc(s.venue || "")}<br>${esc(s.city || "")}, ${esc(s.country || "")}${s.seen_date ? "<br>" + esc(s.seen_date) : ""}</span></div></div>`,
-      { maxWidth: 300 }));
-    pts.push([s.lat, s.lng]);
+      { maxWidth: 300 });
+    layer.addLayer(m); MK.push(m); pts.push([s.lat, s.lng]);
   });
-  if (pts.length) map.fitBounds(pts, { padding: [50, 50], maxZoom: 9 });
+  map.invalidateSize();
+  if (pts.length && map.getSize().x) map.fitBounds(pts, { padding: [50, 50], maxZoom: 9 });
+  scheduleSpiderfy();
 }
-function renderList() {
-  $("#log-count").textContent = SIGHTINGS.length ? `(${SIGHTINGS.length})` : "";
-  $("#log-list").innerHTML = SIGHTINGS.map((s) => {
-    const p = posterFor(s.title);
-    const sub = [s.venue, s.city, s.country].filter(Boolean).join(" · ");
-    return `<li class="log-item">
-      <div class="lthumb ${p ? "" : "noimg"}" style="${p ? `background-image:url('${esc(p)}')` : ""}">${p ? "" : "♪"}</div>
-      <div class="li-main"><div class="li-title">${esc(s.title)}</div>
-        <div class="muted">${esc(s.seen_date || "")}</div><div class="muted">${esc(sub)}</div></div>
-    </li>`;
-  }).join("") || `<li class="muted">No entries.</li>`;
+
+// Several shows at one venue share an exact coordinate; once the map is zoomed in
+// enough that a cluster contains ONLY those identical-coord markers, fan them out
+// automatically (no click). Runs after movement settles to avoid mid-animation errors.
+let MK = [], spiderfyTimer = null;
+function scheduleSpiderfy() { clearTimeout(spiderfyTimer); spiderfyTimer = setTimeout(autoSpiderfy, 220); }
+function autoSpiderfy() {
+  if (!layer || map._animatingZoom) return;
+  const groups = {};
+  MK.forEach((m) => { const ll = m.getLatLng(); const k = ll.lat + "," + ll.lng; (groups[k] = groups[k] || []).push(m); });
+  Object.values(groups).forEach((ms) => {
+    if (ms.length < 2) return;
+    let par;
+    try { par = layer.getVisibleParent(ms[0]); } catch (e) { return; }
+    if (par && par !== ms[0] && typeof par.spiderfy === "function"
+        && typeof par.getChildCount === "function" && par.getChildCount() === ms.length && !par._spiderfied) {
+      try { par.spiderfy(); } catch (e) { /* ignore */ }
+    }
+  });
+}
+// ---------- sortable log table ----------
+const COLS = [
+  { k: "seen_date", label: "Date" }, { k: "title", label: "Musical" },
+  { k: "venue", label: "Theatre" }, { k: "city", label: "City" },
+  { k: "country", label: "Country" }, { k: "seat", label: "Seat" },
+  { k: "price", label: "Price" }, { k: "url", label: "Link" },
+];
+let sortKey = "seen_date", sortDir = -1;   // default: newest first
+
+function renderTable() {
+  const rows = [...SIGHTINGS].sort((a, b) => {
+    let x = a[sortKey], y = b[sortKey];
+    if (sortKey === "price") { x = +x || 0; y = +y || 0; }
+    else { x = (x ?? "").toString().toLowerCase(); y = (y ?? "").toString().toLowerCase(); }
+    return x < y ? -sortDir : x > y ? sortDir : 0;
+  });
+  const head = "<thead><tr>" + COLS.map((c) =>
+    `<th data-k="${c.k}" class="${sortKey === c.k ? "sorted " + (sortDir > 0 ? "asc" : "desc") : ""}">${c.label}</th>`).join("") + "</tr></thead>";
+  const body = "<tbody>" + (rows.length ? rows.map((s) => "<tr>" + COLS.map((c) => {
+    if (c.k === "url") return `<td>${safeUrl(s.url) ? `<a href="${esc(safeUrl(s.url))}" target="_blank" rel="noopener">🔗</a>` : ""}</td>`;
+    if (c.k === "price") return `<td>${s.price != null && s.price !== "" ? esc(s.price) + (s.currency ? " " + esc(s.currency) : "") : ""}</td>`;
+    return `<td>${esc(s[c.k] ?? "")}</td>`;
+  }).join("") + "</tr>").join("") : `<tr><td colspan="${COLS.length}" class="muted">No entries.</td></tr>`) + "</tbody>";
+  const t = $("#log-table");
+  t.innerHTML = head + body;
+  t.querySelectorAll("th").forEach((th) => th.onclick = () => {
+    const k = th.dataset.k;
+    if (k === sortKey) sortDir = -sortDir; else { sortKey = k; sortDir = k === "seen_date" ? -1 : 1; }
+    renderTable();
+  });
+}
+function safeUrl(u) {
+  if (!u) return null;
+  try { const p = new URL(u, location.href); return ["http:", "https:"].includes(p.protocol) ? p.href : null; }
+  catch { return null; }
+}
+function wireTabs() {
+  document.querySelectorAll(".pub-tab").forEach((b) => b.onclick = () => {
+    document.querySelectorAll(".pub-tab").forEach((x) => x.classList.toggle("active", x === b));
+    const log = b.dataset.tab === "log";
+    $("#tab-log").hidden = !log; $("#tab-overview").hidden = log;
+    if (!log && map) setTimeout(() => { map.invalidateSize(); clampWorld(); }, 50);
+  });
 }
 
 async function boot() {
@@ -134,12 +201,17 @@ async function boot() {
   const { data: rows } = await sb.from("sightings")
     .select("*").eq("user_id", prof.id).order("seen_date", { ascending: false });
   SIGHTINGS = rows || [];
+  upgradeVenueNames();
 
   document.title = `${prof.display_name || handle} — My Musicals`;
   $("#pub-name").textContent = `${prof.display_name || handle} · My Musicals`;
   $("#pub-sub").textContent = `${SIGHTINGS.length} shows seen worldwide`;
   $("#pub-hero").hidden = false; $("#pub-body").hidden = false;
-  renderTiles(); renderCharts(); renderMap(); renderList();
+  wireTabs();
+  renderTiles(); renderCharts(); renderTable();
+  // defer the map until the just-revealed container has a real size, else fitBounds
+  // computes a bad zoom and Leaflet throws (_zoom).
+  requestAnimationFrame(() => requestAnimationFrame(renderMap));
 }
 
 boot();

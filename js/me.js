@@ -5,6 +5,11 @@ const cfg = window.MM_CONFIG || {};
 const $ = (s) => document.querySelector(s);
 const esc = (v) => String(v ?? "").replace(/[&<>"']/g, (c) =>
   ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+function safeUrl(u) {
+  if (!u) return null;
+  try { const p = new URL(u, location.href); return ["http:", "https:"].includes(p.protocol) ? p.href : null; }
+  catch { return null; }
+}
 // search normalization — must match scrapers/gen_catalog.py _clean(): lowercase,
 // fold 臺→台, strip Latin diacritics (madach→Madách) WITHOUT touching CJK/kana/
 // Cyrillic, then strip every bracket/quote/separator (half/full-width, CJK, curly).
@@ -93,6 +98,7 @@ async function loadSightings() {
   const { data, error } = await sb.from("sightings").select("*").order("seen_date", { ascending: false });
   if (error) { console.error(error); return; }
   SIGHTINGS = data || [];
+  upgradeVenueNames();
   renderAll();
 }
 
@@ -155,8 +161,10 @@ function renderCharts() {
     years[d.getFullYear()] = (years[d.getFullYear()] || 0) + 1;
     months[d.getMonth()]++; wd[d.getDay()]++;
   });
-  const yk = Object.keys(years).sort();
-  lineChart("#c-year", yk, yk.map((y) => years[y]));
+  const ys = Object.keys(years).map(Number);
+  let yk = [];
+  if (ys.length) { const lo = Math.min(...ys), hi = Math.max(...ys); for (let y = lo; y <= hi; y++) yk.push(y); }
+  lineChart("#c-year", yk, yk.map((y) => years[y] || 0));   // every year in range, gaps = 0
   lineChart("#c-month", ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"], months);
   lineChart("#c-weekday", ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"], wd);
 }
@@ -173,33 +181,20 @@ function posterIcon(title, img) {
 
 // minimum zoom at which one world is at least as wide as the container, so there's
 // no empty grey gap beside the map (Leaflet shows void when world < container).
-function worldFillZoom() {
-  return Math.ceil(Math.log2(Math.max(1, map.getSize().x) / 256));
-}
-function clampWorld() {
-  map.invalidateSize();
-  const z = worldFillZoom();
-  map.setMinZoom(z);
-  if (map.getZoom() < z) map.setView([20, 0], z);
-}
+function clampWorld() { if (map) map.invalidateSize(); }
 
 function renderMap() {
   if (!map) {
-    map = L.map("me-map", { worldCopyJump: true, minZoom: 1, maxBoundsViscosity: 1.0 }).setView([20, 0], 2);
+    map = L.map("me-map", { worldCopyJump: true, minZoom: 2 }).setView([20, 0], 2);
     L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png",
-      { attribution: "&copy; OpenStreetMap &copy; CARTO", subdomains: "abcd", maxZoom: 19 }).addTo(map);
+      { attribution: "&copy; OpenStreetMap &copy; CARTO", subdomains: "abcd", maxZoom: 19, noWrap: false }).addTo(map);
     layer = L.markerClusterGroup({ showCoverageOnHover: false, maxClusterRadius: 45, spiderfyOnMaxZoom: true });
-    // markers stacked at one venue share exact coords → spiderfy (fan out) on click.
-    layer.on("clusterclick", (a) => {
-      const ll = a.layer.getAllChildMarkers().map((m) => m.getLatLng());
-      if (ll.every((p) => p.equals(ll[0]))) { a.layer.spiderfy(); a.originalEvent?.preventDefault?.(); }
-    });
     map.addLayer(layer);
-    map.setMaxBounds([[-85, -180], [85, 180]]);  // keep within one world (no void panning)
-    clampWorld();
+    map.on("moveend", scheduleSpiderfy);   // auto fan-out same-venue stacks once zoomed in
+    layer.on("animationend", scheduleSpiderfy);  // after cluster re-forms post-zoom
     window.addEventListener("resize", clampWorld);
   }
-  layer.clearLayers();
+  layer.clearLayers(); MK = [];
   const pts = [];
   SIGHTINGS.forEach((s) => {
     if (typeof s.lat !== "number") return;
@@ -208,9 +203,47 @@ function renderMap() {
       `<div style="display:flex;gap:10px">${p ? `<img src="${esc(p)}" style="width:70px;border-radius:6px">` : ""}
        <div><b>${esc(s.title)}</b><br><span style="color:#666">${esc(s.venue || "")}<br>${esc(s.city || "")}, ${esc(s.country || "")}${s.seen_date ? "<br>" + esc(s.seen_date) : ""}</span></div></div>`,
       { maxWidth: 300 });
-    layer.addLayer(m); pts.push([s.lat, s.lng]);
+    layer.addLayer(m); MK.push(m); pts.push([s.lat, s.lng]);
   });
-  if (pts.length) map.fitBounds(pts, { padding: [50, 50], maxZoom: 9 });
+  map.invalidateSize();
+  if (pts.length && map.getSize().x) map.fitBounds(pts, { padding: [50, 50], maxZoom: 9 });
+  scheduleSpiderfy();
+}
+
+// Several shows at one venue share an exact coordinate; once zoomed in so a cluster
+// holds ONLY those identical-coord markers, fan them out automatically (no click).
+let MK = [], spiderfyTimer = null;
+function scheduleSpiderfy() { clearTimeout(spiderfyTimer); spiderfyTimer = setTimeout(autoSpiderfy, 220); }
+function autoSpiderfy() {
+  if (!layer || map._animatingZoom) return;
+  const groups = {};
+  MK.forEach((m) => { const ll = m.getLatLng(); const k = ll.lat + "," + ll.lng; (groups[k] = groups[k] || []).push(m); });
+  Object.values(groups).forEach((ms) => {
+    if (ms.length < 2) return;
+    let par;
+    try { par = layer.getVisibleParent(ms[0]); } catch (e) { return; }
+    if (par && par !== ms[0] && typeof par.spiderfy === "function"
+        && typeof par.getChildCount === "function" && par.getChildCount() === ms.length && !par._spiderfied) {
+      try { par.spiderfy(); } catch (e) { /* ignore */ }
+    }
+  });
+}
+
+// upgrade stored sighting venue names to the catalog's current name (matched by
+// coordinate ≤80m), so old records show the latest name everywhere (list/map/Top).
+function distM(a, b, c, d) {
+  const R = 6371008.8, p = Math.PI / 180;
+  const h = 0.5 - Math.cos((c - a) * p) / 2 + Math.cos(a * p) * Math.cos(c * p) * (1 - Math.cos((d - b) * p)) / 2;
+  return 2 * R * Math.asin(Math.sqrt(h));
+}
+function upgradeVenueNames() {
+  const cv = (CATALOG.venues || []).filter((v) => typeof v.lat === "number");
+  SIGHTINGS.forEach((s) => {
+    if (typeof s.lat !== "number") return;
+    let best = null, bd = 80;
+    for (const v of cv) { const d = distM(s.lat, s.lng, v.lat, v.lng); if (d < bd) { bd = d; best = v; } }
+    if (best) s.venue = best.name;
+  });
 }
 
 function renderList() {
@@ -226,6 +259,7 @@ function renderList() {
         <div class="muted">${esc(s.seen_date || "")}</div>
         <div class="muted">${esc(sub)}</div>
         ${extra ? `<div class="muted">${esc(extra)}</div>` : ""}
+        ${safeUrl(s.url) ? `<a class="li-link" href="${esc(safeUrl(s.url))}" target="_blank" rel="noopener">🔗 link</a>` : ""}
       </div>
       <div class="li-acts"><button class="edit" data-id="${s.id}">Edit</button><button class="del" data-id="${s.id}">Delete</button></div>
     </li>`;
@@ -250,7 +284,7 @@ function openEdit(id) {
   const s = SIGHTINGS.find((x) => String(x.id) === String(id));
   if (!s) return;
   const f = $("#add-form"); f.reset();
-  ["id", "title", "venue", "city", "country", "seen_date", "seen_time", "seat", "price", "currency", "note"]
+  ["id", "title", "venue", "city", "country", "seen_date", "seen_time", "seat", "price", "currency", "url", "note"]
     .forEach((k) => { if (f[k]) f[k].value = s[k] ?? ""; });
   $("#form-title").textContent = "Edit musical";
   $("#add-dialog").showModal();
@@ -261,7 +295,7 @@ async function onSave(e) {
   const rec = {
     title: g("title"), venue: g("venue"), city: g("city"), country: g("country"),
     seen_date: g("seen_date"), seen_time: g("seen_time"), seat: g("seat"),
-    price: g("price"), currency: g("currency"), note: g("note"),
+    price: g("price"), currency: g("currency"), url: g("url"), note: g("note"),
   };
   const v = CATALOG.venues.find((x) => x.name === rec.venue);
   if (v) { rec.lat = v.lat; rec.lng = v.lng; if (!rec.city) rec.city = v.city; if (!rec.country) rec.country = v.country; }
