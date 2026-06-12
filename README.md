@@ -104,7 +104,7 @@ python scrapers/build_shows.py        # 合併成 data/shows.json
 
 ## 現況 / 待辦
 
-- ✅ Broadway（28）、West End（52）、北美巡演（broadway.org，297 站）、國際製作、劇団四季（10）、宝塚歌劇団（12）、韓國 Interpark（39）、Ticketmaster 全球補洞（126）、人工策展（上海/法國/捷克）：共 584 筆，約 25 國，含座標與海報。
+- ✅ Broadway（28）、West End（52）、北美巡演（broadway.org，297 站）、國際製作、劇団四季（10）、宝塚歌劇団（12）、韓國 Interpark（39）、Ticketmaster 全球補洞（126）、人工策展（上海/法國/捷克）：共 595 筆，約 25 國(含英國地方巡演圈部分覆蓋)，含座標與海報。
 - 📒 **來源登記表：`docs/SOURCES.md`**（用戶提供的網址一律登記在此，含狀態）。
 - ✅ 座標修正機制：NYC 範圍檢查、lat/lng 對調偵測、城市中心點 fallback、著名劇院手動座標表、`overrides.json`、geocode 快取。
 - ✅ 同劇合併（標題正規化）、正式劇名覆蓋、巡演各自海報、cluster 線性縮放、地圖／衛星切換、多地點 overview、popup 完整海報、多地區售票連結。

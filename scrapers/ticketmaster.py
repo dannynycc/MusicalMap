@@ -34,7 +34,10 @@ KEY = os.environ.get("TICKETMASTER_API_KEY")
 # Only sweep countries the curated sources DON'T cover (US/UK/JP/DE/ES/FR/MX/NL
 # are already covered and dropped at build anyway). Smaller volumes here let us
 # fetch ALL pages, so end_date = the real last scheduled performance.
-COUNTRIES = ["AU", "NZ", "IE", "CA", "BE", "DK", "SE", "NO", "FI",
+# GB included: London is curated (londontheatre.co.uk) but the UK REGIONAL
+# touring circuit (Manchester/Glasgow/…) isn't — build keeps TM GB records for
+# non-London cities only. (Lesson from missing the Miss Saigon UK tour.)
+COUNTRIES = ["AU", "NZ", "GB", "IE", "CA", "BE", "DK", "SE", "NO", "FI",
              "AT", "CH", "PL", "IT", "PT", "CZ", "SG"]
 
 

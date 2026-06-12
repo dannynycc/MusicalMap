@@ -30,6 +30,14 @@
 | Wicked 官方巡演 | tour.wickedthemusical.com | 曾接 scraper,後被 broadway.org 彙總取代(資料一致且更全) |
 | Les Misérables 官方 | lesmis.com | 倫敦(westend)、US tour(tours)已涵蓋;Japan/Spain 站見 intl/手動;World Tour 待來源 |
 
+## 已知盲區(誠實列出)
+
+| 盲區 | 現況 |
+|---|---|
+| 英國地方巡演圈(ATG 系場館自有售票) | TM GB 只覆蓋部分;Miss Saigon 4 站已手動入庫;**候選:接 atgtickets.com 為來源** |
+| 四季全国ツアー | API 無固定城市 |
+| 德語區 Stage Entertainment、韓國以外亞洲(港/星/台巡演)、南美 | 未有來源 |
+
 ## 待辦 / 候選
 
 - 全国ツアー(四季):API 無固定城市,需逐區排程頁才有場館 → 待評估

@@ -84,19 +84,32 @@ def main():
         sources.append({"file": name, "count": len(rows), "meta": blob.get("meta", {})})
         print(f"  {name}: {len(rows)} shows")
 
-    # Ticketmaster gap-fill: keep only countries curated sources don't cover.
+    # Ticketmaster gap-fill. Coverage is judged at the right granularity:
+    # - countries fully covered by curated sources (US tours via broadway.org,
+    #   Japan via shiki…) → skip whole country;
+    # - GB: curated covers ONLY London (londontheatre.co.uk) — keep TM records
+    #   for other UK cities (regional touring circuit, e.g. Miss Saigon UK tour);
+    # - plus a (show, city) check so TM never duplicates an existing record.
+    CITY_ONLY_COVERED = {"gb": {"london"}}
     tm_path = DATA / TM_FILE
     if tm_path.exists():
         curated_countries = {country_norm(s.get("country")) for s in by_id.values()}
+        seen_show_city = {(group_key(s["title"]), (s.get("city") or "").lower())
+                          for s in by_id.values()}
         tm = json.loads(tm_path.read_text(encoding="utf-8")).get("shows", [])
         kept = 0
         for s in tm:
-            if country_norm(s.get("country")) in curated_countries:
-                continue  # already covered by a curated source
+            cn = country_norm(s.get("country"))
+            city = (s.get("city") or "").lower()
+            if cn in curated_countries:
+                only = CITY_ONLY_COVERED.get(cn)
+                if only is None or city in only:
+                    continue  # fully covered country, or covered city
+            if (group_key(s["title"]), city) in seen_show_city:
+                continue  # same show+city already present from a curated source
             by_id[s["id"]] = s
             kept += 1
-        print(f"  {TM_FILE}: +{kept} gap-fill ({len(tm)} total, "
-              f"{len(tm) - kept} skipped as already-covered countries)")
+        print(f"  {TM_FILE}: +{kept} gap-fill ({len(tm)} total, {len(tm) - kept} skipped)")
         sources.append({"file": TM_FILE, "count": kept})
 
     # shiki.jp is authoritative for Japan — drop other sources' Japan records of
