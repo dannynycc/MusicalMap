@@ -176,6 +176,11 @@ INTL_IP = {
     "近乎正常": "Next to Normal", "理髮師陶德": "Sweeney Todd",
     "搖滾莫札特": "Mozart l'Opéra Rock", "阿達一族": "The Addams Family",
     "長靴妖姬": "Kinky Boots",
+    # Japanese names of international IPs (dedup the JP staging with the global one)
+    "シカゴ": "Chicago", "ミス・サイゴン": "Miss Saigon", "サンセット大通り": "Sunset Boulevard",
+    "レベッカ": "Rebecca", "ゴースト": "Ghost", "ファニー・ガール": "Funny Girl",
+    "ラ・カージュ・オ・フォール": "La Cage aux Folles", "ミー＆マイガール": "Me and My Girl",
+    "レ・ミゼラブル": "Les Misérables", "メリー・ポピンズ": "Mary Poppins",
 }
 
 

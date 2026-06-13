@@ -181,10 +181,58 @@ def scrape_j25():
     return out, dropped
 
 
+# ---------- 東急シアターオーブ (musical-dedicated venue, Shibuya) ----------
+def slash_dates(text):
+    """'2026/5/27(水)～6/21(日)' -> ['2026-05-27','2026-06-21'] (carry year/month)."""
+    out, y, mo = [], None, None
+    for t in re.finditer(r"(\d{4})/(\d{1,2})/(\d{1,2})|(\d{1,2})/(\d{1,2})", text):
+        if t.group(1):
+            y, mo = int(t.group(1)), int(t.group(2))
+            out.append(f"{y:04d}-{mo:02d}-{int(t.group(3)):02d}")
+        elif t.group(4) and y:
+            mo = int(t.group(4))
+            out.append(f"{y:04d}-{mo:02d}-{int(t.group(5)):02d}")
+    return out
+
+
+def orb_title(t):
+    t = html.unescape(t or "").split("｜")[0].split("|")[0].strip()
+    m = re.search(r"[「『](.+?)[」』]", t)
+    if m:
+        return m.group(1).strip()
+    t = re.sub(r"^(?:ミュージカル|宝塚歌劇.*?公演|.*?presents)\s*", "", t, flags=re.I).strip()
+    m2 = re.match(r"([A-Za-z0-9][A-Za-z0-9 '!:&.\-]+)", t)   # ASCII title, drop trailing JP reading
+    return (m2.group(1).strip() if m2 else t)
+
+
+def scrape_orb():
+    home = get("https://theatre-orb.com/")
+    slugs = list(dict.fromkeys(re.findall(r"/lineup/(26_[\w]+)/", home)))
+    out, dropped = [], []
+    for slug in slugs:
+        try:
+            h = get(f"https://theatre-orb.com/lineup/{slug}/")
+        except Exception:
+            continue
+        og = re.search(r'og:title["\' ]+content=["\']([^"\']+)', h)
+        title = orb_title(og.group(1) if og else "")
+        txt = re.sub(r"<[^>]+>", " ", h)
+        m = re.search(r"公演日程[\s\S]{0,15}?(\d{4}/\d{1,2}/\d{1,2})\([^)]*\)\s*[～~]\s*((?:\d{4}/)?\d{1,2}/\d{1,2})", txt)
+        if not title or not m:
+            dropped.append(f"orb {slug} (無題名/日程)"); continue
+        ds = slash_dates(m.group(1) + " " + m.group(2))
+        if not ds:
+            dropped.append(f"{title} (orb 無日期)"); continue
+        out.append({"title": title, "venue": "東急シアターオーブ", "city": "Tokyo",
+                    "start": ds[0], "end": ds[-1], "image": None,
+                    "url": f"https://theatre-orb.com/lineup/{slug}/", "source": "theatre-orb.com"})
+    return out, dropped
+
+
 def main():
     today = datetime.now(JST).strftime("%Y-%m-%d")
     rows, dropped = [], []
-    for fn in (scrape_toho, scrape_j25):
+    for fn in (scrape_toho, scrape_j25, scrape_orb):
         try:
             r, d = fn()
             rows += r; dropped += d

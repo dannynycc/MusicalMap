@@ -19,7 +19,7 @@
 | OPENTIX 兩廳院售票(台灣) | search.opentix.life/search(JSON API) | `opentix.py` | 台灣當期音樂劇(category 戲劇-音樂劇);自帶 WGS-84 座標+海報+檔期;排除合唱/演唱會/工作坊 | 2026-06-12 |
 | utiki 售票引擎(台灣:寬宏 KHAM + udn售票 + MNA) | kham.com.tw(分類 80) / tickets.udnfunlife.com(搜尋 音樂劇) / ticket.mna.com.tw(分類 77 音樂,需 cookie);同一套 UTK ASP.NET 引擎 | `utiki.py` | KHAM 走 listing→場次頁 eventTABLE(`PLACE_NAME`+地址);UDN listing 卡片帶日期+場館(多場館巡演)+銷售狀態;MNA 卡片帶日期、場館取自詳情頁場次表(分類混雜故只留標題含「音樂劇」)。排除合唱/演唱會/工作坊/交響音樂會、已結束;座標交 Google geocode。萬世巨星/史瑞克/魔女宅急便 | 2026-06-13 |
 
-| 東宝(日本) | toho.co.jp/stage/lineup | `japan.py`(scrape_toho) | 日本最大商業音樂劇製作;card-lineup 區塊取『』劇名+日期+場館,只留「ミュージカル」前綴(剔除舞台/演唱會);帝劇休館中分散在シアタークリエ/日生劇場/東急シアターオーブ等。日期模糊(2027秋/全国ツアー)或多場館(その他/北海道、大阪)暫跳過。座標交 Google geocode。**WIP:梅田芸術劇場/2.5次元(j25musical) 待加** | 2026-06-14 |
+| 日本(東宝+2.5次元+東急シアターオーブ) | toho.co.jp/stage/lineup / j25musical.jp(日本2.5次元ミュージカル協会) / theatre-orb.com | `japan.py`(scrape_toho/scrape_j25/scrape_orb;與 shiki/takarazuka 並存) | **東宝**:card-lineup 取『』劇名+日期+場館,只留ミュージカル前綴。**2.5次元**:逐檔解析「【城市公演】日期 場館」多城巡演。**東急シアターオーブ**(音樂劇專用館):lineup 各檔 detail 取 og:title+「公演日程」。日文大 IP 中英並列+去重(シカゴ→Chicago…);TM 誤分類非音樂劇全域過濾(movie tour 等);Google 建築級座標。北海道下半年稀少=結構性(四季撤札幌/hitaru 非音樂劇)。**WIP:梅田芸術劇場(類型混雜待解)** | 2026-06-14 |
 
 ## 人工策展(manual.json)
 

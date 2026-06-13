@@ -1,9 +1,9 @@
 {
   "meta": {
     "source": "merged",
-    "generated_at": "2026-06-13 17:50 UTC",
-    "total": 1356,
-    "verified": 1356,
+    "generated_at": "2026-06-13 18:05 UTC",
+    "total": 1360,
+    "verified": 1360,
     "unverified": 0,
     "sources": [
       {
@@ -134,10 +134,10 @@
       },
       {
         "file": "japan.json",
-        "count": 78,
+        "count": 84,
         "meta": {
           "source": "japan (toho+)",
-          "count": 78
+          "count": 84
         }
       },
       {
@@ -17608,7 +17608,7 @@
     },
     {
       "id": "jp-4c703bfd",
-      "title": "レベッカ",
+      "title": "Rebecca レベッカ",
       "title_en": "",
       "venue": "シアタークリエ",
       "city": "Tokyo",
@@ -17622,7 +17622,7 @@
       "type": "resident",
       "verified": true,
       "source": "toho.co.jp",
-      "group": "レベッカ",
+      "group": "rebecca",
       "link_kind": "ticketing"
     },
     {
@@ -17658,7 +17658,7 @@
     },
     {
       "id": "jp-d0820dcc",
-      "title": "ゴースト",
+      "title": "Ghost ゴースト",
       "title_en": "",
       "venue": "シアタークリエ",
       "city": "Tokyo",
@@ -17672,7 +17672,7 @@
       "type": "resident",
       "verified": true,
       "source": "toho.co.jp",
-      "group": "ゴースト",
+      "group": "ghost",
       "link_kind": "ticketing"
     },
     {
@@ -17696,7 +17696,7 @@
     },
     {
       "id": "jp-342cfb4a",
-      "title": "ファニー・ガール",
+      "title": "Funny Girl ファニー・ガール",
       "title_en": "",
       "venue": "日生劇場",
       "city": "Tokyo",
@@ -17710,7 +17710,7 @@
       "type": "resident",
       "verified": true,
       "source": "toho.co.jp",
-      "group": "ファニー ガール",
+      "group": "funny girl",
       "link_kind": "ticketing"
     },
     {
@@ -17734,7 +17734,7 @@
     },
     {
       "id": "jp-a515db07",
-      "title": "ミス・サイゴン",
+      "title": "Miss Saigon ミス・サイゴン",
       "title_en": "",
       "venue": "東急シアターオーブ",
       "city": "Tokyo",
@@ -17748,12 +17748,24 @@
       "type": "resident",
       "verified": true,
       "source": "toho.co.jp",
-      "group": "ミス サイゴン",
+      "ticket_links": [
+        {
+          "label": "售票連結",
+          "url": "https://www.toho.co.jp/stage/lineup",
+          "kind": "ticketing"
+        },
+        {
+          "label": "售票連結",
+          "url": "https://theatre-orb.com/lineup/26_miss_saigon/",
+          "kind": "ticketing"
+        }
+      ],
+      "group": "miss saigon",
       "link_kind": "ticketing"
     },
     {
       "id": "jp-f8a40056",
-      "title": "ラ・カージュ・オ・フォール",
+      "title": "La Cage aux Folles ラ・カージュ・オ・フォール",
       "title_en": "",
       "venue": "日生劇場",
       "city": "Tokyo",
@@ -17767,7 +17779,7 @@
       "type": "resident",
       "verified": true,
       "source": "toho.co.jp",
-      "group": "ラ カージュ オ フォール",
+      "group": "la cage aux folles",
       "link_kind": "ticketing"
     },
     {
@@ -18959,6 +18971,82 @@
       "link_kind": "ticketing"
     },
     {
+      "id": "jp-869f42ea",
+      "title": "Sunset Boulevard サンセット大通り",
+      "title_en": "",
+      "venue": "東急シアターオーブ",
+      "city": "Tokyo",
+      "country": "Japan",
+      "lat": 35.659076,
+      "lng": 139.703047,
+      "start_date": "2026-07-10",
+      "end_date": "2026-08-01",
+      "image": "https://s1.ticketm.net/dam/a/59c/b21a54e8-ff64-44a3-9645-d6aec4e9459c_SOURCE",
+      "ticket_url": "https://theatre-orb.com/lineup/26_sunsetblvd/",
+      "type": "resident",
+      "verified": true,
+      "source": "theatre-orb.com",
+      "group": "sunset boulevard",
+      "link_kind": "ticketing"
+    },
+    {
+      "id": "jp-627ffeda",
+      "title": "BOOP! The Musical",
+      "title_en": "",
+      "venue": "東急シアターオーブ",
+      "city": "Tokyo",
+      "country": "Japan",
+      "lat": 35.659076,
+      "lng": 139.703047,
+      "start_date": "2026-05-27",
+      "end_date": "2026-06-21",
+      "image": null,
+      "ticket_url": "https://theatre-orb.com/lineup/26_boop/",
+      "type": "resident",
+      "verified": true,
+      "source": "theatre-orb.com",
+      "group": "boop",
+      "link_kind": "ticketing"
+    },
+    {
+      "id": "jp-ab803221",
+      "title": "blast",
+      "title_en": "",
+      "venue": "東急シアターオーブ",
+      "city": "Tokyo",
+      "country": "Japan",
+      "lat": 35.659076,
+      "lng": 139.703047,
+      "start_date": "2026-08-04",
+      "end_date": "2026-08-16",
+      "image": null,
+      "ticket_url": "https://theatre-orb.com/lineup/26_blast/",
+      "type": "resident",
+      "verified": true,
+      "source": "theatre-orb.com",
+      "group": "blast",
+      "link_kind": "ticketing"
+    },
+    {
+      "id": "jp-a99c26b8",
+      "title": "NINE",
+      "title_en": "",
+      "venue": "東急シアターオーブ",
+      "city": "Tokyo",
+      "country": "Japan",
+      "lat": 35.659076,
+      "lng": 139.703047,
+      "start_date": "2026-09-10",
+      "end_date": "2026-09-27",
+      "image": null,
+      "ticket_url": "https://theatre-orb.com/lineup/26_NINE/",
+      "type": "resident",
+      "verified": true,
+      "source": "theatre-orb.com",
+      "group": "nine",
+      "link_kind": "ticketing"
+    },
+    {
       "id": "manual-phantom-shanghai-2026",
       "title": "The Phantom of the Opera",
       "type": "tour",
@@ -19428,6 +19516,11 @@
         {
           "label": "官方售票",
           "url": "https://www.kyodotokyo.com/chicago-en/",
+          "kind": "ticketing"
+        },
+        {
+          "label": "售票連結",
+          "url": "https://theatre-orb.com/lineup/26_chicago/",
           "kind": "ticketing"
         }
       ],

@@ -11,6 +11,12 @@
 
 ---
 
+## [v0.29.2] - 2026-06-14 02:06
+### 新增 / 修正
+- **東急シアターオーブ(音樂劇專用劇場)接入**(japan.py scrape_orb):補上非東宝製作的大型音樂劇 **BOOP! / Sunset Boulevard / Chicago / NINE / BLAST**(Miss Saigon 與東宝去重)。lineup 各檔 detail 取 og:title +「公演日程」。
+- **日文大 IP 中英並列+去重**:INTL_IP 加 シカゴ→Chicago、ミス・サイゴン→Miss Saigon、サンセット大通り→Sunset Boulevard、レベッカ→Rebecca 等 → orb「シカゴ」併入既有 Chicago、避免同劇重複。
+- 日本總數→99 檔、0 無座標。全部掛在每日 CI(toho/j25/orb 都在 japan.py)自動更新。
+
 ## [v0.29.1] - 2026-06-14 01:50
 ### 修正
 - **剔除 Ticketmaster 誤分類為音樂劇的非音樂劇活動**:全域標題過濾(movie tour / screening / film concert / comedy tour / documentary / book tour / stand-up / in conversation)。例:「John Cameron Mitchell: Hedwig 25th Anniversary Movie Tour」(電影巡迴放映,9 站)剔除,真音樂劇「Hedwig and the Angry Inch」保留。
