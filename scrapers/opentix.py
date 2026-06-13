@@ -25,7 +25,11 @@ DATA = Path(__file__).resolve().parent.parent / "data"
 API = "https://search.opentix.life/search"
 
 # non-musicals that nonetheless carry the 戲劇-音樂劇 tag (user-flagged); substring match
-EXCLUDE = ["老闆", "陽春麵", "演唱會", "工作坊"]   # plays / concerts / workshops mis-tagged as 音樂劇
+# Organisers mis-tag plays / concerts / shows under 戲劇-音樂劇. Drop by title:
+# explicit non-musical type words (舞台劇 play, 擊樂秀 percussion show, 演唱會/音樂會
+# concert, 工作坊 workshop) + specific user-flagged non-musicals.
+EXCLUDE = ["老闆", "陽春麵", "演唱會", "音樂會", "工作坊", "舞台劇", "擊樂秀",
+           "一粒萬倍", "H&G2"]
 TW_TZ = timezone(timedelta(hours=8))
 
 # OPENTIX returns Chinese city names; map to English so they align with the curated
@@ -41,13 +45,26 @@ CITY_MAP = {
 
 
 def fetch():
-    body = json.dumps({"language": "zh-CHT", "categoryFilter": ["戲劇-音樂劇"],
-                       "sortBy": "ABOUT_TO_BEGIN"}).encode("utf-8")
-    req = urllib.request.Request(API, data=body, method="POST", headers={
-        "Content-Type": "application/json", "Origin": "https://www.opentix.life",
-        "Referer": "https://www.opentix.life/", "User-Agent": "MusicalMap/0.1"})
-    with urllib.request.urlopen(req, timeout=30) as r:
-        return json.loads(r.read().decode("utf-8"))
+    """All 戲劇-音樂劇 programs. The API returns only 15 per page (hitsCount is the
+    real total) + a nextOffset cursor — page through it or far-future shows like
+    囍宴 (Sept) get dropped."""
+    items, offset, hits = [], 0, None
+    while True:
+        body = json.dumps({"language": "zh-CHT", "categoryFilter": ["戲劇-音樂劇"],
+                           "sortBy": "ABOUT_TO_BEGIN", "offset": offset}).encode("utf-8")
+        req = urllib.request.Request(API, data=body, method="POST", headers={
+            "Content-Type": "application/json", "Origin": "https://www.opentix.life",
+            "Referer": "https://www.opentix.life/", "User-Agent": "MusicalMap/0.1"})
+        with urllib.request.urlopen(req, timeout=30) as r:
+            res = (json.loads(r.read().decode("utf-8")).get("result") or {})
+        page = res.get("found", [])
+        items.extend(page)
+        hits = res.get("hitsCount", hits)
+        nxt = res.get("nextOffset")
+        if not page or nxt is None or nxt <= offset or (hits and len(items) >= hits):
+            break
+        offset = nxt
+    return items
 
 
 def ymd(ms):
@@ -59,14 +76,20 @@ def ymd(ms):
 def core_title(t):
     """Organisers wrap the real show name in 《》 with festival/company/marketing
     text around it — '《幸福三姐妹》音樂劇' / '果陀劇場《生命中最美好的5分鐘》2026音樂奇蹟重現'.
-    Pull out the bracketed name; fall back to the raw title if there's no 《》."""
-    m = re.search(r"[《＜](.+?)[》＞]", t or "")
-    return m.group(1).strip() if m else (t or "").strip()
+    Pull out the bracketed name; if there's no 《》 but a type word ('…音樂劇 囍宴'),
+    take the part after it; otherwise return the raw title."""
+    t = (t or "").strip()
+    m = re.search(r"[《＜](.+?)[》＞]", t)
+    if m:
+        return m.group(1).strip()
+    m = re.search(r"(?:音樂劇|歌舞劇|舞台劇)[\s:：]+(.+)$", t)
+    if m:
+        return m.group(1).strip()
+    return t
 
 
 def main():
-    data = fetch()
-    found = (data.get("result") or {}).get("found", [])
+    found = fetch()
     print(f"  OPENTIX returned {len(found)} 戲劇-音樂劇 programs", flush=True)
     today = datetime.now(TW_TZ).strftime("%Y-%m-%d")
     shows, dropped = [], []
