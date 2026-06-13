@@ -59,7 +59,7 @@ def group_key(title):
 SOURCE_FILES = ["broadway.json", "westend.json", "tours.json", "intl.json",
                 "shiki.json", "takarazuka.json", "interpark.json",
                 "atg.json", "stage_de.json", "madrid.json", "opentix.json",
-                "utiki.json", "japan.json", "manual.json"]
+                "utiki.json", "japan.json", "easteurope.json", "manual.json"]
 
 # When several ticket sources list the SAME show in the SAME city, we keep one
 # record (highest priority = most authoritative venue data) and attach every

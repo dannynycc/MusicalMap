@@ -11,6 +11,11 @@
 
 ---
 
+## [v0.32.0] - 2026-06-14 03:09
+### 新增(東歐 — 第一階段:匈牙利)
+- **匈牙利音樂劇接入**(新 `scrapers/easteurope.py`,jegy.hu musical 分類;結構可加捷克/波蘭)。平台已做類型過濾,全為音樂劇;category 取劇名+海報+場館(schema.org Place)+地址城市,detail 取所有場次日期(首末=檔期)。帶入 36 檔:Az Operaház Fantomja(魅影)/WICKED/Macskák(貓)/REBECCA/ELISABETH/Jekyll és Hyde/VÁMPÍROK BÁLJA(吸血鬼之舞)/Mamma Mia/Evita/Jégvarázs(冰雪奇緣)等,涵蓋 Budapest(21)+Szeged/Győr/Debrecen/Veszprém 等,Google 建築級座標、0 無座標、地理檢查皆在匈牙利境內。掛每日 CI。
+- 東歐先前僅 1 檔(Ostrava Elisabeth 手動)→ 大幅補強。**WIP:捷克(colosseumticket.cz)/波蘭(Teatr Roma)下次續做。**
+
 ## [v0.31.1] - 2026-06-14 02:52
 ### 修正
 - **坎培拉漏抓**:坎培拉劇院中心音樂劇賣在 Canberra Ticketing(自家系統)不在 TM。補上 Heathers The Musical 坎培拉站(8/14–23,與雪梨站同巡演),Google 建築級座標。揭露通則:澳洲二線城市(坎培拉/Newcastle 等)音樂劇多在地方售票系統(無 API),目前靠發現/手動補。
