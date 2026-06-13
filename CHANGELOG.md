@@ -11,6 +11,11 @@
 
 ---
 
+## [v0.29.5] - 2026-06-14 02:19
+### 修正
+- **Harry Potter and the Cursed Child 是話劇非音樂劇**(broadway.org 誤分類),全域 NOT_MUSICAL_RE 加「cursed child」剔除(全球各地共 7 站,含東京 TBS赤坂ACT)。
+- 系統性查證:99 檔日本 show 座標與城市地理一致性 0 異常(每筆都在其都府縣範圍);城市讀自網頁「【XX公演】」語義非 Tokyo fallback;シアター1010=Tokyo(足立区)、京都劇場=Kyoto 等建築級準確。
+
 ## [v0.29.4] - 2026-06-14 02:15
 ### 修正
 - **東急シアターオーブ海報抓到通用卡圖**(og:image=cardimage.png)。改抓頁面內 `/data/files/.../mainvisual.jpg` 真海報。BOOP!/Sunset Boulevard/Chicago/Miss Saigon/NINE/BLAST 6 檔全到(實測 200)。
