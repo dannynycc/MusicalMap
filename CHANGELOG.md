@@ -11,6 +11,10 @@
 
 ---
 
+## [v0.30.0] - 2026-06-14 02:28
+### 修正
+- **韓國剔除非音樂劇**(world.nol.com/Interpark 把觀光向無歌曲表演標成 MUSICAL):NANTA(난타 打擊喜劇)、PAINTERS(繪畫秀)、JUMP/Comic Martial Arts(武術喜劇)、Sleep No More(沉浸式劇場,無歌曲)全域過濾。韓國 36→31 真音樂劇。Beethoven/PAGANINI/Diaghilev(韓國原創音樂劇)保留。
+
 ## [v0.29.5] - 2026-06-14 02:19
 ### 修正
 - **Harry Potter and the Cursed Child 是話劇非音樂劇**(broadway.org 誤分類),全域 NOT_MUSICAL_RE 加「cursed child」剔除(全球各地共 7 站,含東京 TBS赤坂ACT)。

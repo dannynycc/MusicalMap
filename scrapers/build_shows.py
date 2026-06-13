@@ -200,7 +200,9 @@ NOT_MUSICAL_RE = re.compile(
     r"\bmovie tour\b|\bfilm (?:tour|screening|concert)\b|\bscreening\b|"
     r"\bdocumentary\b|\bbook tour\b|\bcomedy (?:tour|special)\b|\bstand[- ]?up\b|"
     r"\bin conversation\b|\bspeaking tour\b|"
-    r"\bcursed child\b", re.I)   # Harry Potter and the Cursed Child is a PLAY, not a musical
+    r"\bcursed child\b|"                       # Harry Potter and the Cursed Child is a PLAY
+    r"\bnanta\b|\bpainters\b|\bsleep no more\b|"   # KR non-verbal / immersive (no songs)
+    r"martial arts performance|comic martial arts", re.I)
 
 
 def main():
