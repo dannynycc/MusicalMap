@@ -115,13 +115,13 @@ def main():
         title = canon(title_jp)
         og = re.search(r'property="og:image" content="([^"]+)"', html)
         slug2 = "/".join(path.split("/")[2:4])           # e.g. 2026/elisabeth
-        # the production's own key-art lives in the page body at
-        # /revue/<year>/<slug>/<hash>-img/<hash>.(jpg|png) — prefer it over og:image
-        # (which is just the TROUPE's generic logo) and over the revuetop_comingsoon
-        # placeholder (real art is often a .png, the placeholder a .jpg).
-        body_arts = re.findall(r"/revue/" + re.escape(slug2) + r"/[\w-]+-img/[\w-]+\.(?:jpg|png)", html)
-        body_art = next((a for a in body_arts if "comingsoon" not in a), None)
-        image = ((BASE + body_art) if body_art else None) \
+        # the production's key visual is the first image in the main article block
+        # (<section class="article01">…<div class="img" style="width:500px"><img>),
+        # whatever it is: the real poster, or the official revuetop_comingsoon
+        # placeholder before art is published. NOT the header logo / og:image
+        # (which is just the troupe's generic graphic).
+        kv = re.search(r'class="article01".*?<img src="(/revue/[^"]+\.(?:jpg|png))"', html, re.S)
+        image = ((BASE + kv.group(1)) if kv else None) \
             or art.get(slug2) or (og.group(1) if og else None)
         runs = list(parse_runs(html))
         for th_key, start, end in runs:

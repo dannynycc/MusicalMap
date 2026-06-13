@@ -11,6 +11,10 @@
 
 ---
 
+## [v0.28.4] - 2026-06-14 01:34
+### 修正
+- 宝塚海報抓取改鎖定「主視覺欄位」(`article01`/`div.img` 500px 那格)的圖,不再看副檔名:黒蜥蜴=xyd93.jpg(真海報)、尚未出圖的(Elisabeth/天穹/London Way)=官方 revuetop_comingsoon.jpg。修正 v0.28.3 誤抓到頁首 logo(.png)的問題。
+
 ## [v0.28.3] - 2026-06-14 01:28
 ### 修正
 - 宝塚海報再修:真海報常是 `.png`(comingsoon 才是 .jpg),原 regex 只抓 .jpg 導致 Elisabeth/天穹/London Way 誤用 coming-soon 圖。改抓 jpg+png 且排除 comingsoon → 7 檔全部真海報(實測 200)。

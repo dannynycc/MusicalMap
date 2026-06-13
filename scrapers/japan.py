@@ -49,6 +49,16 @@ VENUES = {
 # venue strings that aren't a single concrete place -> skip
 VAGUE_VENUE = re.compile(r"その他|全国|ツアー|、|，|/|・大阪|北海道")
 
+# Japanese performance city -> English (for 2.5D tour blocks 【横浜公演】…)
+JP_CITY = {
+    "東京": "Tokyo", "横浜": "Yokohama", "大阪": "Osaka", "名古屋": "Nagoya",
+    "札幌": "Sapporo", "福岡": "Fukuoka", "仙台": "Sendai", "京都": "Kyoto",
+    "神戸": "Kobe", "広島": "Hiroshima", "埼玉": "Saitama", "千葉": "Chiba",
+    "兵庫": "Hyogo", "愛知": "Aichi", "宮城": "Miyagi", "静岡": "Shizuoka",
+    "新潟": "Niigata", "金沢": "Kanazawa", "高松": "Takamatsu", "岡山": "Okayama",
+    "熊本": "Kumamoto", "沖縄": "Okinawa", "長野": "Nagano", "群馬": "Gunma",
+}
+
 
 def get(url):
     req = urllib.request.Request(url, headers=UA)
