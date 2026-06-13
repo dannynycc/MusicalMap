@@ -81,7 +81,10 @@ def core_title(t):
     Pull out the bracketed name; if there's no 《》 but a type word ('…音樂劇 囍宴'),
     take the part after it; otherwise return the raw title."""
     t = (t or "").strip()
-    m = re.search(r"[《＜](.+?)[》＞]", t)
+    m = re.search(r"[《＜](.+?)[》＞]", t)              # 《》 is the canonical title bracket
+    if m:
+        return m.group(1).strip()
+    m = re.search(r"[「『](.+?)[」』]", t)              # else the name may sit in 「」/『』
     if m:
         return m.group(1).strip()
     m = re.search(r"(?:音樂劇|歌舞劇|舞台劇)[\s:：]+(.+)$", t)
