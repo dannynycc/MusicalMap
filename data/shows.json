@@ -1,9 +1,9 @@
 {
   "meta": {
     "source": "merged",
-    "generated_at": "2026-06-13 18:44 UTC",
-    "total": 1349,
-    "verified": 1349,
+    "generated_at": "2026-06-13 18:52 UTC",
+    "total": 1350,
+    "verified": 1350,
     "unverified": 0,
     "sources": [
       {
@@ -142,7 +142,7 @@
       },
       {
         "file": "manual.json",
-        "count": 25,
+        "count": 26,
         "meta": {
           "source": "manual-curated",
           "note": "Hand-curated shows from regional venues/promoters no scraper covers yet (China venues, Live Nation FR, …). Each entry verified against the official ticketing page on the date in _checked. Add here whenever a gap is found; build merges automatically. Images: ALWAYS the original full-size official URL — no compression, no self-hosting (user preference: quality over speed)."
@@ -19457,6 +19457,26 @@
         }
       ],
       "group": "six",
+      "link_kind": "ticketing"
+    },
+    {
+      "id": "manual-heathers-canberra",
+      "title": "Heathers",
+      "type": "tour",
+      "venue": "Canberra Theatre Centre",
+      "city": "Canberra",
+      "country": "Australia",
+      "lat": -35.2817024,
+      "lng": 149.1305067,
+      "start_date": "2026-08-14",
+      "end_date": "2026-08-23",
+      "ticket_url": "https://canberratheatrecentre.com.au/show/heathers-the-musical-2026/",
+      "image": "https://cdn-imgix.headout.com/media/images/50c70643-24e9-48f4-9127-aa760fa99749-1752582584182-292457.png",
+      "tour_name": "Heathers The Musical — Australia",
+      "verified": true,
+      "source": "canberra ticketing (manual)",
+      "_checked": "2026-06-14",
+      "group": "heathers",
       "link_kind": "ticketing"
     },
     {

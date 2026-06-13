@@ -11,6 +11,10 @@
 
 ---
 
+## [v0.31.1] - 2026-06-14 02:52
+### 修正
+- **坎培拉漏抓**:坎培拉劇院中心音樂劇賣在 Canberra Ticketing(自家系統)不在 TM。補上 Heathers The Musical 坎培拉站(8/14–23,與雪梨站同巡演),Google 建築級座標。揭露通則:澳洲二線城市(坎培拉/Newcastle 等)音樂劇多在地方售票系統(無 API),目前靠發現/手動補。
+
 ## [v0.31.0] - 2026-06-14 02:45
 ### 新增 / 修正(澳洲嚴格驗證)
 - **補上漏掉的大型音樂劇 SIX**(在 **Ticketek** 不在 Ticketmaster,故 TM scrape 漏):手動加 Melbourne Comedy Theatre(7/24)、Theatre Royal Sydney(10/9)、QPAC Playhouse Brisbane(2027/1/2)三站,Google 建築級座標。
