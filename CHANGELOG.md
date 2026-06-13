@@ -11,6 +11,10 @@
 
 ---
 
+## [v0.28.3] - 2026-06-14 01:28
+### 修正
+- 宝塚海報再修:真海報常是 `.png`(comingsoon 才是 .jpg),原 regex 只抓 .jpg 導致 Elisabeth/天穹/London Way 誤用 coming-soon 圖。改抓 jpg+png 且排除 comingsoon → 7 檔全部真海報(實測 200)。
+
 ## [v0.28.2] - 2026-06-14 01:25
 ### 修正
 - 東宝(japan.py)補上海報:從 card-lineup__image 依 alt(=劇名)對應抓圖,8 檔皆有官方主視覺(實測 200)。日本三來源(四季/宝塚/東宝)海報齊全。

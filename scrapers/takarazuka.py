@@ -116,10 +116,12 @@ def main():
         og = re.search(r'property="og:image" content="([^"]+)"', html)
         slug2 = "/".join(path.split("/")[2:4])           # e.g. 2026/elisabeth
         # the production's own key-art lives in the page body at
-        # /revue/<year>/<slug>/<hash>-img/<hash>.jpg — prefer it over og:image,
-        # which is just the TROUPE's generic logo (og_cosmos.png etc.).
-        body_art = re.search(r"/revue/" + re.escape(slug2) + r"/[\w-]+-img/[\w-]+\.jpg", html)
-        image = ((BASE + body_art.group(0)) if body_art else None) \
+        # /revue/<year>/<slug>/<hash>-img/<hash>.(jpg|png) — prefer it over og:image
+        # (which is just the TROUPE's generic logo) and over the revuetop_comingsoon
+        # placeholder (real art is often a .png, the placeholder a .jpg).
+        body_arts = re.findall(r"/revue/" + re.escape(slug2) + r"/[\w-]+-img/[\w-]+\.(?:jpg|png)", html)
+        body_art = next((a for a in body_arts if "comingsoon" not in a), None)
+        image = ((BASE + body_art) if body_art else None) \
             or art.get(slug2) or (og.group(1) if og else None)
         runs = list(parse_runs(html))
         for th_key, start, end in runs:
