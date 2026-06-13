@@ -186,19 +186,36 @@ def list_mna_cards(h):
 
 def mna_venue(detail_html):
     """MNA detail page lists each session as 'date (day) HH:MM 場館'; take the venue
-    that appears most across the schedule (ignores any stray cross-sell mention)."""
+    that appears most across the schedule. The schedule rows give the base venue
+    (臺中國家歌劇院); the description names the specific hall (…大劇院) — append it so
+    we don't lose which of the 大/中/小 halls it is."""
     txt = re.sub(r"<[^>]+>", " ", detail_html)
     vens = [re.sub(r"\s", "", v) for v in re.findall(
         r"\d{1,2}:\d{2}\s*([一-鿿].{1,20}?(?:戲劇院|音樂廳|演藝廳|文化中心|歌劇院|巨蛋|表演廳|劇場|大會堂|中心))", txt)]
     if not vens:
         return ""
     from collections import Counter
-    return Counter(vens).most_common(1)[0][0]
+    base = Counter(vens).most_common(1)[0][0]
+    hall = re.search(re.escape(base) + r"(大劇院|中劇院|小劇場|實驗劇場|演奏廳|演藝廳|音樂廳|表演廳)",
+                     re.sub(r"\s", "", txt))
+    return base + hall.group(1) if hall else base
 
 
 def ymd(s):
     """'2026/7/9' -> '2026-07-09'."""
     return "{:04d}-{:02d}-{:02d}".format(*[int(x) for x in s.split("/")])
+
+
+def find_image(listing_html, pid):
+    """Poster URL for a product — all three skins serve it from imgs2.utiki.com.tw
+    with the PRODUCT_ID in the filename (…/{PID}.JPG, …_RWD.JPG, …_Product.JPG).
+    Prefer the product-image folder (UTK2401) over og/thumbnail fallbacks that 404."""
+    cands = re.findall(r"https://imgs2\.utiki\.com\.tw/Data/[^\"'() ]*" + re.escape(pid)
+                       + r"[^\"'() ]*\.(?:JPG|jpg|png|PNG)", listing_html)
+    if not cands:
+        return None
+    best = next((c for c in cands if "UTK2401" in c), cands[0])
+    return best.split("?")[0]
 
 
 PARSERS_LIST = {"span_title": list_span_title, "udn_cards": list_udn_cards, "mna_cards": list_mna_cards}
@@ -256,6 +273,7 @@ def main():
             if any(x in raw_title for x in EXCLUDE):
                 dropped.append(raw_title + " (排除)"); continue
             zh, en = split_title(raw_title)
+            img = find_image(listing, p["pid"])
             for v in resolve_venues(site, p):
                 dates = v.get("dates") or []
                 if not dates:
@@ -269,7 +287,7 @@ def main():
                     "venue": v["venue"], "city": v["city"], "country": "Taiwan",
                     "lat": None, "lng": None,        # filled by geocode_google.py
                     "start_date": start, "end_date": end,
-                    "image": None,
+                    "image": img,
                     "ticket_url": site["detail"].format(pid=p["pid"]),
                     "type": "tour", "verified": True, "source": site["source"],
                 })
