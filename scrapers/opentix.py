@@ -31,7 +31,7 @@ API = "https://search.opentix.life/search"
 #  (b) specific user-flagged mis-tagged shows (plays / talks / fringe pieces).
 EXCLUDE = ["演唱會", "音樂會", "工作坊", "舞台劇", "擊樂秀", "漫才",
            "老闆", "陽春麵", "一粒萬倍", "H&G2",
-           "大家都怎麼做音樂劇", "怪美妖仙傳", "一個彥達", "最後五秒", "築夢之橋"]
+           "怪美妖仙傳", "一個彥達", "最後五秒", "築夢之橋", "天堂客棧"]
 TW_TZ = timezone(timedelta(hours=8))
 
 # OPENTIX returns Chinese city names; map to English so they align with the curated
