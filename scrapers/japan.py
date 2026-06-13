@@ -84,6 +84,9 @@ def clean_title(raw):
 # ---------- 東宝 ----------
 def scrape_toho():
     h = get("https://www.toho.co.jp/stage/lineup")
+    # poster keyed by the card's alt text (which equals the full title)
+    art = {html.unescape(a).strip(): s for s, a in
+           re.findall(r'card-lineup__image"\s+src="([^"]+)"[^>]*alt="([^"]+)"', h)}
     cards = re.findall(
         r'card-lineup__title">\s*(.*?)</p>.*?card-lineup__text">\s*(.*?)</p>.*?card-lineup__at">\s*(.*?)</p>',
         h, re.S)
@@ -101,7 +104,7 @@ def scrape_toho():
             dropped.append(f"{title_raw} (場館不明: {venue_raw[:16]})"); continue
         name, city = VENUES[venue_raw]
         out.append({"title": clean_title(title_raw), "venue": name, "city": city,
-                    "start": ds[0], "end": ds[-1], "image": None,
+                    "start": ds[0], "end": ds[-1], "image": art.get(title_raw),
                     "url": "https://www.toho.co.jp/stage/lineup", "source": "toho.co.jp"})
     return out, dropped
 
