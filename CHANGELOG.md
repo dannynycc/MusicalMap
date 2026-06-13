@@ -11,6 +11,15 @@
 
 ---
 
+## [v0.31.0] - 2026-06-14 02:45
+### 新增 / 修正(澳洲嚴格驗證)
+- **補上漏掉的大型音樂劇 SIX**(在 **Ticketek** 不在 Ticketmaster,故 TM scrape 漏):手動加 Melbourne Comedy Theatre(7/24)、Theatre Royal Sydney(10/9)、QPAC Playhouse Brisbane(2027/1/2)三站,Google 建築級座標。
+- **城市正規化**:TM 用郊區名(Pyrmont/Haymarket→Sydney、Burswood/Northbridge→Perth、Torrensville→Adelaide),改顯示都市。
+- **剔除非音樂劇/非職業**:Scotch College-Hadestown(學校製作)、A Very Musical Theatre Christmas(聖誕 revue)加入全域過濾。
+- **修 Beetlejuice Brisbane 無開演日**(manual 補 2026-06-07,官方 QPAC 季);verify 後 Hamilton/Phantom(Handa)非缺漏(已結束/未巡演),& Juliet Queanbeyan/Newcastle 疑社區製作未加。
+### 誠實限制
+- 澳洲 TM 部分每日 CI 自動更新;SIX/Beetlejuice 為手動(Ticketek/QPAC 無公開 API)。Ticketek 是澳洲另一大票務盲區。
+
 ## [v0.30.0] - 2026-06-14 02:28
 ### 修正
 - **韓國剔除非音樂劇**(world.nol.com/Interpark 把觀光向無歌曲表演標成 MUSICAL):NANTA(난타 打擊喜劇)、PAINTERS(繪畫秀)、JUMP/Comic Martial Arts(武術喜劇)、Sleep No More(沉浸式劇場,無歌曲)全域過濾。韓國 36→31 真音樂劇。Beethoven/PAGANINI/Diaghilev(韓國原創音樂劇)保留。

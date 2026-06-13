@@ -202,7 +202,19 @@ NOT_MUSICAL_RE = re.compile(
     r"\bin conversation\b|\bspeaking tour\b|"
     r"\bcursed child\b|"                       # Harry Potter and the Cursed Child is a PLAY
     r"\bnanta\b|\bpainters\b|\bsleep no more\b|"   # KR non-verbal / immersive (no songs)
-    r"martial arts performance|comic martial arts", re.I)
+    r"martial arts performance|comic martial arts|"
+    r"scotch college|"                            # school/amateur staging, not a public run
+    r"a very musical theatre christmas", re.I)    # Christmas cabaret revue, not a book musical
+
+# Ticketmaster files AU venues by suburb — normalise to the metro people know.
+AU_METRO = {
+    "pyrmont": "Sydney", "haymarket": "Sydney", "leichhardt": "Sydney",
+    "millers point": "Sydney", "moore park": "Sydney", "walsh bay": "Sydney",
+    "burswood": "Perth", "northbridge": "Perth", "crawley": "Perth",
+    "torrensville": "Adelaide", "thebarton": "Adelaide", "adelaide": "Adelaide",
+    "south brisbane": "Brisbane", "brisbane": "Brisbane", "sydney": "Sydney",
+    "melbourne": "Melbourne", "southbank": "Melbourne", "east perth": "Perth",
+}
 
 
 def main():
@@ -259,6 +271,15 @@ def main():
         del by_id[i]
     if nm:
         print(f"  dropped {len(nm)} non-musical event(s) (movie tour / screening / concert / comedy)")
+
+    # Ticketmaster files Australian venues under the SUBURB, not the metro
+    # ("Pyrmont"/"Haymarket" → Sydney, "Burswood" → Perth) — normalise so the card
+    # shows the city people know and same-city dedup works.
+    for s in by_id.values():
+        if s.get("country") in ("Australia", "AU"):
+            metro = AU_METRO.get(city_key(s.get("city")))
+            if metro:
+                s["city"] = metro
 
     # shiki.jp is authoritative for Japan — drop other sources' Japan records of
     # shows shiki also lists (broadway.org's Japan venues proved stale, e.g.
