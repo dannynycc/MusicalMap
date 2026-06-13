@@ -11,6 +11,10 @@
 
 ---
 
+## [v0.29.1] - 2026-06-14 01:50
+### 修正
+- **剔除 Ticketmaster 誤分類為音樂劇的非音樂劇活動**:全域標題過濾(movie tour / screening / film concert / comedy tour / documentary / book tour / stand-up / in conversation)。例:「John Cameron Mitchell: Hedwig 25th Anniversary Movie Tour」(電影巡迴放映,9 站)剔除,真音樂劇「Hedwig and the Angry Inch」保留。
+
 ## [v0.29.0] - 2026-06-14 01:46
 ### 新增 / 修正
 - **日本擴充(二):2.5次元ミュージカル**(japan.py scrape_j25,來源 日本2.5次元ミュージカル協会 j25musical.jp)。逐檔解析「【城市公演】日期 場館」多城巡演區塊,過濾未來場、抓官方海報。帶入テニスの王子様/ヒプノシスマイク/ブルーロック/あんさんぶるスターズ/忍たま乱太郎等;城市正規化(東京凱旋→Tokyo 等),海外/未對應城市略過。日本場館 geocode 補齊(含 name_ok 擋下的 4 個手動補)。日本總數→95 檔、0 無座標。

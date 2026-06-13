@@ -187,6 +187,16 @@ def bilingual(title):
     return title
 
 
+# Events that ticketmaster files under "Musical" but aren't staged musicals —
+# film-screening tours, concert/tribute nights, comedy/book tours. Title-matched so
+# it never touches a real show (e.g. "Hedwig and the Angry Inch" stays; only
+# "...Hedwig 25th Anniversary Movie Tour" is dropped).
+NOT_MUSICAL_RE = re.compile(
+    r"\bmovie tour\b|\bfilm (?:tour|screening|concert)\b|\bscreening\b|"
+    r"\bdocumentary\b|\bbook tour\b|\bcomedy (?:tour|special)\b|\bstand[- ]?up\b|"
+    r"\bin conversation\b|\bspeaking tour\b", re.I)
+
+
 def main():
     by_id = {}
     sources = []
@@ -232,6 +242,15 @@ def main():
             kept += 1
         print(f"  {tm_file}: +{kept}")
         sources.append({"file": tm_file, "count": kept})
+
+    # Drop non-musical events that slip in (mostly Ticketmaster filing film/concert/
+    # comedy tours under "Musical"), e.g. "Hedwig 25th Anniversary Movie Tour" —
+    # title-matched so the real "Hedwig and the Angry Inch" stays.
+    nm = [i for i, s in by_id.items() if NOT_MUSICAL_RE.search(s.get("title", ""))]
+    for i in nm:
+        del by_id[i]
+    if nm:
+        print(f"  dropped {len(nm)} non-musical event(s) (movie tour / screening / concert / comedy)")
 
     # shiki.jp is authoritative for Japan — drop other sources' Japan records of
     # shows shiki also lists (broadway.org's Japan venues proved stale, e.g.
