@@ -104,30 +104,37 @@ def main():
             dropped.append(zh_title + " (合唱)"); continue
         if any(x in zh_title for x in EXCLUDE):
             dropped.append(zh_title + " (排除)"); continue
-        v = (s.get("eventVenues") or [{}])[0]
-        loc = v.get("location") or {}
-        try:
-            lat, lng = round(float(loc["lat"]), 6), round(float(loc["lon"]), 6)
-        except (KeyError, TypeError, ValueError):
-            dropped.append(zh_title + " (無座標)"); continue
-        times = v.get("times") or []
-        starts = [t.get("start") for t in times if t.get("start")]
-        ends = [t.get("end") for t in times if t.get("end")]
-        start = ymd(min(starts)) if starts else ymd(s.get("startDateTime"))
-        end = ymd(max(ends)) if ends else ymd(s.get("endDateTime"))
-        if end and end < today:                      # already finished
-            dropped.append(zh_title + " (已結束)"); continue
         pid = s.get("id")
-        shows.append({
-            "id": "opentix-" + str(pid),
-            "title": core_title(zh_title) or en_title,   # real show name, festival/company wrapper stripped
-            "title_en": en_title,
-            "venue": v.get("name", ""), "city": CITY_MAP.get(v.get("city", ""), v.get("city", "")), "country": "Taiwan",
-            "lat": lat, "lng": lng, "start_date": start, "end_date": end,
-            "image": s.get("imageUrl"),
-            "ticket_url": f"https://www.opentix.life/program/{pid}" if pid else None,
-            "type": "tour", "verified": True, "source": "opentix.life",
-        })
+        # A program can tour several venues (e.g. 勸世三姊妹: 國家戲劇院/臺中/衛武營) —
+        # each eventVenue carries its OWN coords + session times, so emit one per venue.
+        venues = s.get("eventVenues") or []
+        kept_any = False
+        for vi, v in enumerate(venues):
+            loc = v.get("location") or {}
+            try:
+                lat, lng = round(float(loc["lat"]), 6), round(float(loc["lon"]), 6)
+            except (KeyError, TypeError, ValueError):
+                continue
+            times = v.get("times") or []
+            starts = [t.get("start") for t in times if t.get("start")]
+            ends = [t.get("end") for t in times if t.get("end")]
+            start = ymd(min(starts)) if starts else ymd(s.get("startDateTime"))
+            end = ymd(max(ends)) if ends else ymd(s.get("endDateTime"))
+            if end and end < today:                  # this stop already finished
+                continue
+            kept_any = True
+            shows.append({
+                "id": f"opentix-{pid}-{vi}",
+                "title": core_title(zh_title) or en_title,   # real show name, festival/company wrapper stripped
+                "title_en": en_title,
+                "venue": v.get("name", ""), "city": CITY_MAP.get(v.get("city", ""), v.get("city", "")), "country": "Taiwan",
+                "lat": lat, "lng": lng, "start_date": start, "end_date": end,
+                "image": s.get("imageUrl"),
+                "ticket_url": f"https://www.opentix.life/program/{pid}" if pid else None,
+                "type": "tour", "verified": True, "source": "opentix.life",
+            })
+        if not kept_any:
+            dropped.append(zh_title + " (無未來場次/座標)")
     out = {"meta": {"source": "opentix.life", "count": len(shows)}, "shows": shows}
     (DATA / "opentix.json").write_text(json.dumps(out, ensure_ascii=False, indent=2), encoding="utf-8")
     print(f"  kept {len(shows)}, dropped {len(dropped)}", flush=True)
