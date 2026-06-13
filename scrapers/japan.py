@@ -225,8 +225,11 @@ def scrape_orb():
         ds = slash_dates(m.group(1) + " " + m.group(2))
         if not ds:
             dropped.append(f"{title} (orb 無日期)"); continue
+        im = re.search(r"/data/files/[^\"'\) ]*mainvisual[^\"'\) ]*\.(?:jpg|png)", h) \
+            or re.search(r"/data/files/20\d\d/[^\"'\) ]+\.(?:jpg|png)", h)
+        img = ("https://theatre-orb.com" + im.group(0)) if im else None
         out.append({"title": title, "venue": "東急シアターオーブ", "city": "Tokyo",
-                    "start": ds[0], "end": ds[-1], "image": None,
+                    "start": ds[0], "end": ds[-1], "image": img,
                     "url": f"https://theatre-orb.com/lineup/{slug}/", "source": "theatre-orb.com"})
     return out, dropped
 

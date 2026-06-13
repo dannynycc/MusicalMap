@@ -11,6 +11,10 @@
 
 ---
 
+## [v0.29.4] - 2026-06-14 02:15
+### 修正
+- **東急シアターオーブ海報抓到通用卡圖**(og:image=cardimage.png)。改抓頁面內 `/data/files/.../mainvisual.jpg` 真海報。BOOP!/Sunset Boulevard/Chicago/Miss Saigon/NINE/BLAST 6 檔全到(實測 200)。
+
 ## [v0.29.3] - 2026-06-14 02:12
 ### 修正
 - **2.5次元海報抓到協會 logo 而非劇目海報**(og:image 是 j25musical 通用 logo)。改抓頁面內 `showCtsImage.php?cid=…&no=1` 真海報。70 檔全部取到(忍たま乱太郎/ヒプノシスマイク… 實測 200)。
