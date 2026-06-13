@@ -11,6 +11,12 @@
 
 ---
 
+## [v0.29.0] - 2026-06-14 01:46
+### 新增 / 修正
+- **日本擴充(二):2.5次元ミュージカル**(japan.py scrape_j25,來源 日本2.5次元ミュージカル協会 j25musical.jp)。逐檔解析「【城市公演】日期 場館」多城巡演區塊,過濾未來場、抓官方海報。帶入テニスの王子様/ヒプノシスマイク/ブルーロック/あんさんぶるスターズ/忍たま乱太郎等;城市正規化(東京凱旋→Tokyo 等),海外/未對應城市略過。日本場館 geocode 補齊(含 name_ok 擋下的 4 個手動補)。日本總數→95 檔、0 無座標。
+- **宝塚雙部劇名**:抓題名全部『』(前半芝居+後半ショー)→ 黒蜥蜴／Diamond IMPULSE、RYOFU／水晶宮殿、天穹のアルテミス／Belle Époque、London Way／Ivresse Vague;HTML entity 解碼(É)。
+- **再修同劇重複**:`clean_title` 也剝「(New York, NY)」「(Cleveland, OH)」城市州別後綴(The Lion King 不再重複);`group_key` 先剝 Disney's 再剝 the(「Disney's The Lion King」併入「The Lion King」)。
+
 ## [v0.28.4] - 2026-06-14 01:34
 ### 修正
 - 宝塚海報抓取改鎖定「主視覺欄位」(`article01`/`div.img` 500px 那格)的圖,不再看副檔名:黒蜥蜴=xyd93.jpg(真海報)、尚未出圖的(Elisabeth/天穹/London Way)=官方 revuetop_comingsoon.jpg。修正 v0.28.3 誤抓到頁首 logo(.png)的問題。

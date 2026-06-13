@@ -14,6 +14,7 @@ import re
 import sys
 import io
 import time
+import html
 import urllib.request
 from pathlib import Path
 
@@ -44,9 +45,15 @@ def fetch(url):
     return urllib.request.urlopen(req, timeout=30).read().decode("utf-8", "ignore")
 
 
-def jp_title(html):
-    m = re.search(r"<title>[^『]*『([^』]+)』", html)
-    return m.group(1).strip() if m else None
+def jp_title(html_text):
+    # a Takarazuka bill is usually two works: 前半 (芝居) + 後半 (ショー/レビュー),
+    # e.g. 『黒蜥蜴』『Diamond IMPULSE』 — keep BOTH (strip the kana reading).
+    m = re.search(r"<title>(.*?)</title>", html_text, re.S)
+    if not m:
+        return None
+    title = html.unescape(m.group(1))               # &Eacute; -> É, etc.
+    parts = [re.sub(r"（[^）]*）|\([^)]*\)", "", p).strip() for p in re.findall(r"『([^』]+)』", title)]
+    return "／".join(p for p in parts if p) or None
 
 
 def canon(title):

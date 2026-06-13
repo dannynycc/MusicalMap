@@ -37,8 +37,8 @@ def group_key(title):
     t = re.sub(r"[–—]", "-", title or "")  # en/em-dash → '-' BEFORE ascii-strip drops them
     t = unicodedata.normalize("NFKD", t).encode("ascii", "ignore").decode()
     t = t.lower().strip()
-    t = re.sub(r"^the\s+", "", t)
-    t = re.sub(r"^disney(?:'s| presents)\s+", "", t)
+    t = re.sub(r"^disney(?:'s| presents)\s+", "", t)   # strip BEFORE 'the' so
+    t = re.sub(r"^the\s+", "", t)                       # "Disney's The Lion King" == "The Lion King"
     # any dash/colon marketing subtitle that mentions "musical", in any language
     # ("– Das Hit-Musical auf Schweizerdeutsch", ": The Broadway Musical", …)
     t = re.sub(r"\s*[:\-–—]\s*[^:]*musical.*$", "", t)
@@ -138,7 +138,8 @@ NOTICE_RE = re.compile(
 LOC_QUALIFIER_RE = re.compile(
     r"\s*\(\s*(?:[A-Za-z]{2}|N\.?Y\.?C?|NYC|U\.?K\.?|U\.?S\.?A?|"
     r"broadway|west\s*end|national(?:\s*tour)?|north\s*american(?:\s*tour)?|"
-    r"u\.?s\.?\s*tour|uk\s*tour|on\s*tour|touring)\s*\)\s*$", re.I)
+    r"u\.?s\.?\s*tour|uk\s*tour|on\s*tour|touring|"
+    r"[A-Za-z][\w .'’&-]*,\s*[A-Za-z]{2})\s*\)\s*$", re.I)  # "(New York, NY)" / "(Cleveland, OH)"
 
 
 def clean_title(t):

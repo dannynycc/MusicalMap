@@ -57,7 +57,19 @@ JP_CITY = {
     "兵庫": "Hyogo", "愛知": "Aichi", "宮城": "Miyagi", "静岡": "Shizuoka",
     "新潟": "Niigata", "金沢": "Kanazawa", "高松": "Takamatsu", "岡山": "Okayama",
     "熊本": "Kumamoto", "沖縄": "Okinawa", "長野": "Nagano", "群馬": "Gunma",
+    "神奈川": "Kanagawa", "福島": "Fukushima", "栃木": "Tochigi", "茨城": "Ibaraki",
+    "岐阜": "Gifu", "三重": "Mie", "滋賀": "Shiga", "山形": "Yamagata",
+    "北海道": "Sapporo", "宮崎": "Miyazaki", "鹿児島": "Kagoshima", "富山": "Toyama",
 }
+
+
+def jp_city(s):
+    """'東京凱旋', '大阪追加公演' … -> the leading prefecture/city, English."""
+    s = re.sub(r"（.*|\(.*", "", s or "").strip()
+    for jp in sorted(JP_CITY, key=len, reverse=True):
+        if s.startswith(jp):
+            return JP_CITY[jp]
+    return s
 
 
 def get(url):
@@ -119,10 +131,60 @@ def scrape_toho():
     return out, dropped
 
 
+# ---------- 2.5次元 (日本2.5次元ミュージカル協会) ----------
+def clean_25_title(raw):
+    raw = html.unescape(raw or "")
+    m = re.search(r"[『「](.+?)[』」]", raw)
+    return (m.group(1) if m else re.split(r"[|｜]", raw)[0]).strip()
+
+
+def scrape_j25():
+    idx = get("https://www.j25musical.jp/stage/")
+    ids = list(dict.fromkeys(re.findall(r"/stage/(\d+)", idx)))
+    out, dropped = [], []
+    for sid in ids:
+        try:
+            h = get(f"https://www.j25musical.jp/stage/{sid}")
+        except Exception:
+            continue
+        og = re.search(r'property=["\']og:title["\'] content=["\']([^"\']+)', h)
+        title = clean_25_title(og.group(1) if og else "")
+        if not title or title in ("2.5", "SHOW SCHEDULE"):
+            continue
+        ogi = re.search(r'property=["\']og:image["\'] content=["\']([^"\']+)', h)
+        img = ogi.group(1) if ogi and "comingsoon" not in ogi.group(1) else None
+        sec = html.unescape(re.sub(r"<[^>]+>", " ", h))
+        m = re.search(r"公演期間", sec)
+        if not m:
+            dropped.append(f"{title} (無公演期間)"); continue
+        end_kw = re.search(r"チケット料金|チケット一般|主催|お問い合わせ", sec[m.start():])
+        section = sec[m.start(): m.start() + (end_kw.start() if end_kw else 2500)]
+        n = 0
+        for mm in re.finditer(r"【([^】]*?)公演】(.*?)(?=【[^】]*公演】|＜[^＞]*＞|※|$)", section, re.S):
+            city_jp, body = mm.group(1).strip(), mm.group(2)
+            ds = jp_dates(body)
+            if not ds:
+                continue
+            venue = re.sub(r"\d{4}年\d{1,2}月\d{1,2}日(?:\([^)]*\)|（[^）]*）)?|\d{1,2}月\d{1,2}日(?:\([^)]*\)|（[^）]*）)?|[～~・]", "", body)
+            venue = re.sub(r"\s+", " ", venue).strip(" 　・")
+            if not venue or len(venue) > 40:
+                continue
+            city = jp_city(city_jp)
+            if not city.isascii():            # unmapped JP prefecture or overseas (ロンドン) — skip
+                dropped.append(f"{title} (城市未對應: {city_jp})"); continue
+            out.append({"title": title, "venue": venue, "city": city,
+                        "start": ds[0], "end": ds[-1], "image": img,
+                        "url": f"https://www.j25musical.jp/stage/{sid}", "source": "j25musical.jp"})
+            n += 1
+        if not n:
+            dropped.append(f"{title} (無可解析場次)")
+    return out, dropped
+
+
 def main():
     today = datetime.now(JST).strftime("%Y-%m-%d")
     rows, dropped = [], []
-    for fn in (scrape_toho,):
+    for fn in (scrape_toho, scrape_j25):
         try:
             r, d = fn()
             rows += r; dropped += d
