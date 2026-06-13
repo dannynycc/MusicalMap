@@ -25,11 +25,13 @@ DATA = Path(__file__).resolve().parent.parent / "data"
 API = "https://search.opentix.life/search"
 
 # non-musicals that nonetheless carry the 戲劇-音樂劇 tag (user-flagged); substring match
-# Organisers mis-tag plays / concerts / shows under 戲劇-音樂劇. Drop by title:
-# explicit non-musical type words (舞台劇 play, 擊樂秀 percussion show, 演唱會/音樂會
-# concert, 工作坊 workshop) + specific user-flagged non-musicals.
-EXCLUDE = ["老闆", "陽春麵", "演唱會", "音樂會", "工作坊", "舞台劇", "擊樂秀",
-           "一粒萬倍", "H&G2"]
+# OPENTIX 戲劇-音樂劇 is organiser-tagged and noisy. Drop by title:
+#  (a) non-musical type words (舞台劇 play, 擊樂秀 percussion show, 漫才 manzai comedy,
+#      演唱會/音樂會 concert, 工作坊 workshop), and
+#  (b) specific user-flagged mis-tagged shows (plays / talks / fringe pieces).
+EXCLUDE = ["演唱會", "音樂會", "工作坊", "舞台劇", "擊樂秀", "漫才",
+           "老闆", "陽春麵", "一粒萬倍", "H&G2",
+           "大家都怎麼做音樂劇", "怪美妖仙傳", "一個彥達", "最後五秒", "築夢之橋"]
 TW_TZ = timezone(timedelta(hours=8))
 
 # OPENTIX returns Chinese city names; map to English so they align with the curated
