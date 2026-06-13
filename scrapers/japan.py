@@ -151,8 +151,10 @@ def scrape_j25():
         title = clean_25_title(og.group(1) if og else "")
         if not title or title in ("2.5", "SHOW SCHEDULE"):
             continue
-        ogi = re.search(r'property=["\']og:image["\'] content=["\']([^"\']+)', h)
-        img = ogi.group(1) if ogi and "comingsoon" not in ogi.group(1) else None
+        # the real key visual is showCtsImage.php?cid=…&no=1 in the page; og:image is
+        # just the association's generic logo (img/ogimage.png) — don't use that.
+        im = re.search(r"showCtsImage\.php\?cid=\d+&no=1[^\"'\) ]*", h)
+        img = ("https://www.j25musical.jp/" + im.group(0)) if im else None
         sec = html.unescape(re.sub(r"<[^>]+>", " ", h))
         m = re.search(r"公演期間", sec)
         if not m:
