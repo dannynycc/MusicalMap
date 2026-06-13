@@ -25,6 +25,7 @@ import html
 import hashlib
 import urllib.request
 import urllib.parse
+import http.cookiejar
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
 
@@ -47,24 +48,38 @@ CITY_MAP = {
     "澎湖": "Penghu", "金門": "Kinmen", "連江": "Lienchiang", "馬祖": "Lienchiang",
 }
 
+# All three are the same utiki "UTK" ASP.NET engine on different skins. They differ
+# in: where dates+venue live (card / a per-product session table / the detail page's
+# performance schedule), and whether the listing is already musical-only.
 SITES = [
     {
         "name": "kham", "source": "kham.com.tw",
-        "base": "https://kham.com.tw/application",
-        "listing": "/UTK01/UTK0101_06.aspx?TYPE=1&CATEGORY=80",
+        "base": "https://kham.com.tw/application", "seed": None, "keep_musical": False,
+        "listing": "/UTK01/UTK0101_06.aspx?TYPE=1&CATEGORY=80",        # category 80 = 音樂劇
         "detail": "https://kham.com.tw/application/UTK02/UTK0201_.aspx?PRODUCT_ID={pid}",
         "session": "/UTK02/UTK0201_00.aspx?PRODUCT_ID={pid}",
-        "parse_list": "span_title", "parse_session": "kham_table",
+        "parse_list": "span_title", "venue_from": "session",
     },
     {
         "name": "udn", "source": "tickets.udnfunlife.com",
-        "base": "https://tickets.udnfunlife.com/application",
+        "base": "https://tickets.udnfunlife.com/application", "seed": None, "keep_musical": False,
         "listing": "/UTK01/UTK0101_06.aspx?searchProductName=%E9%9F%B3%E6%A8%82%E5%8A%87",
         "detail": "https://tickets.udnfunlife.com/application/UTK02/UTK0201_.aspx?PRODUCT_ID={pid}",
-        "session": None,                              # UDN cards already carry dates+venues
-        "parse_list": "udn_cards", "parse_session": None,
+        "session": None, "parse_list": "udn_cards", "venue_from": "card",  # card has dates+venues
+    },
+    {
+        "name": "mna", "source": "ticket.mna.com.tw",
+        "base": "https://ticket.mna.com.tw", "seed": "https://ticket.mna.com.tw/",
+        "keep_musical": True,                                          # category 77 mixes concerts in
+        "listing": "/UTK0102_?TYPE=1&CATEGORY=77",                    # 77 = 音樂 (musicals live here)
+        "detail": "https://ticket.mna.com.tw/UTK0201_?PRODUCT_ID={pid}",
+        "session": None, "parse_list": "mna_cards", "venue_from": "detail",  # venue from schedule
     },
 ]
+
+
+OPENER = urllib.request.build_opener(
+    urllib.request.HTTPCookieProcessor(http.cookiejar.CookieJar()))
 
 
 def get(url, referer=None):
@@ -72,7 +87,7 @@ def get(url, referer=None):
     if referer:
         h["Referer"] = referer
     req = urllib.request.Request(url, headers=h)
-    with urllib.request.urlopen(req, timeout=30) as r:
+    with OPENER.open(req, timeout=30) as r:   # shared cookie jar (MNA needs a session cookie)
         return r.read().decode("utf-8", "ignore")
 
 
@@ -157,24 +172,66 @@ def sess_kham_table(h):
     return res
 
 
-PARSERS_LIST = {"span_title": list_span_title, "udn_cards": list_udn_cards}
+def list_mna_cards(h):
+    """MNA: category cards carry title + date range; venue is on the detail page.
+    The category mixes concerts in, so callers keep only 音樂劇 titles."""
+    out = []
+    for m in re.finditer(r'PRODUCT_ID=([A-Za-z0-9]+)".*?<h2>(.*?)</h2>.*?<h1[^>]*>(.*?)</h1>', h, re.S):
+        title = html.unescape(re.sub(r"<[^>]+>", "", m.group(3))).strip()
+        out.append({"pid": m.group(1), "title": title,
+                    "dates": re.findall(r"\d{4}/\d{1,2}/\d{1,2}", m.group(2)),
+                    "venues": [], "ended": False})
+    return out
+
+
+def mna_venue(detail_html):
+    """MNA detail page lists each session as 'date (day) HH:MM 場館'; take the venue
+    that appears most across the schedule (ignores any stray cross-sell mention)."""
+    txt = re.sub(r"<[^>]+>", " ", detail_html)
+    vens = [re.sub(r"\s", "", v) for v in re.findall(
+        r"\d{1,2}:\d{2}\s*([一-鿿].{1,20}?(?:戲劇院|音樂廳|演藝廳|文化中心|歌劇院|巨蛋|表演廳|劇場|大會堂|中心))", txt)]
+    if not vens:
+        return ""
+    from collections import Counter
+    return Counter(vens).most_common(1)[0][0]
+
+
+def ymd(s):
+    """'2026/7/9' -> '2026-07-09'."""
+    return "{:04d}-{:02d}-{:02d}".format(*[int(x) for x in s.split("/")])
+
+
+PARSERS_LIST = {"span_title": list_span_title, "udn_cards": list_udn_cards, "mna_cards": list_mna_cards}
 PARSERS_SESS = {"kham_table": sess_kham_table}
 
 
 def resolve_venues(site, p):
-    """Return [{venue, city, dates:[YYYY-MM-DD]}] for a product, fetching the
-    session page only when the listing card didn't already carry venues (KHAM)."""
-    if p["venues"]:                                  # UDN: listing card had it all
-        rng = sorted({"{:04d}-{:02d}-{:02d}".format(*[int(x) for x in d.split("/")])
-                      for d in p["dates"]})
+    """Return [{venue, city, dates:[YYYY-MM-DD]}] for a product, using whichever
+    source carries the venue for this site (listing card / session table / detail)."""
+    vf = site["venue_from"]
+    if vf == "card":                                 # UDN: card already had venues
+        rng = sorted({ymd(d) for d in p["dates"]})
         return [{"venue": v, "city": city_of(v), "dates": rng} for v in p["venues"]]
-    if site["session"]:                              # KHAM: per-venue rows on session page
+    if vf == "session":                              # KHAM: per-venue rows on session page
         try:
             sess = get(site["base"] + site["session"].format(pid=p["pid"]),
                        referer=site["detail"].format(pid=p["pid"]))
         except Exception:
             return []
-        return PARSERS_SESS[site["parse_session"]](sess)
+        return PARSERS_SESS["kham_table"](sess)
+    if vf == "detail":                               # MNA: dates on card, venue on detail page
+        if not p["dates"]:
+            return []
+        try:
+            detail = get(site["detail"].format(pid=p["pid"]),
+                         referer=site["base"] + site["listing"])
+        except Exception:
+            return []
+        venue = mna_venue(detail)
+        if not venue:
+            return []
+        rng = sorted({ymd(d) for d in p["dates"]})
+        return [{"venue": venue, "city": city_of(venue), "dates": rng}]
     return []
 
 
@@ -183,11 +240,16 @@ def main():
     shows, dropped = [], []
     for site in SITES:
         try:
+            if site.get("seed"):
+                get(site["seed"])                    # seed the session cookie (MNA)
             listing = get(site["base"] + site["listing"])
         except Exception as e:
             print(f"  {site['name']}: listing failed ({e})", flush=True)
             continue
         products = PARSERS_LIST[site["parse_list"]](listing)
+        # some listings (MNA category 77) mix concerts in — keep only 音樂劇 titles
+        if site.get("keep_musical"):
+            products = [p for p in products if "音樂劇" in p["title"]]
         print(f"  {site['name']}: {len(products)} 音樂劇 product(s)", flush=True)
         for p in products:
             raw_title = p["title"]

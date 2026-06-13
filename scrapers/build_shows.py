@@ -171,6 +171,7 @@ INTL_IP = {
     "近乎正常": "Next to Normal", "理髮師陶德": "Sweeney Todd",
     "搖滾莫札特": "Mozart l'Opéra Rock", "羅密歐與茱麗葉": "Roméo et Juliette",
     "阿達一族": "The Addams Family", "金牌特務": "Kinky Boots", "長靴妖姬": "Kinky Boots",
+    "魔女宅急便": "Kiki's Delivery Service", "獅子王王國": "The Lion King",
 }
 
 

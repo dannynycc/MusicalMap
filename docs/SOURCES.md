@@ -17,7 +17,7 @@
 | ATG Tickets(英國地方圈) | atgtickets.com/whats-on/uk/musicals/ | `atg.py` | **無公開 API**;SSR 卡片+分頁。單場館含日期收錄;**tour hub 已爬(phase 2 完成):33 條 UK 巡演 205 站**(站點 JSON 嵌在 hub RSC);無日期單館卡仍剔除 | 2026-06-12 |
 | Stage Entertainment(德國) | stage-entertainment.de | `stage_de.py` | **無公開 API**;SSR,slug 自帶城市;劇場用「頁面提及次數 ≥2」判定(nav 會提到所有劇場);自有劇場座標表;漢堡/柏林/斯圖加特 13 部駐演(TINA、Tanz der Vampire、Frozen、獅子王、MJ…) | 2026-06-12 |
 | OPENTIX 兩廳院售票(台灣) | search.opentix.life/search(JSON API) | `opentix.py` | 台灣當期音樂劇(category 戲劇-音樂劇);自帶 WGS-84 座標+海報+檔期;排除合唱/演唱會/工作坊 | 2026-06-12 |
-| utiki 售票引擎(台灣:寬宏 KHAM + udn售票) | kham.com.tw(分類 80) / tickets.udnfunlife.com(搜尋 音樂劇);同一套 UTK ASP.NET 引擎 | `utiki.py` | KHAM 走 listing→場次頁 eventTABLE(`PLACE_NAME`+地址);UDN listing 卡片直接帶日期+場館(多場館巡演)+銷售狀態。排除合唱/演唱會/工作坊/交響音樂會、已結束;座標交 Google geocode。萬世巨星/史瑞克 | 2026-06-13 |
+| utiki 售票引擎(台灣:寬宏 KHAM + udn售票 + MNA) | kham.com.tw(分類 80) / tickets.udnfunlife.com(搜尋 音樂劇) / ticket.mna.com.tw(分類 77 音樂,需 cookie);同一套 UTK ASP.NET 引擎 | `utiki.py` | KHAM 走 listing→場次頁 eventTABLE(`PLACE_NAME`+地址);UDN listing 卡片帶日期+場館(多場館巡演)+銷售狀態;MNA 卡片帶日期、場館取自詳情頁場次表(分類混雜故只留標題含「音樂劇」)。排除合唱/演唱會/工作坊/交響音樂會、已結束;座標交 Google geocode。萬世巨星/史瑞克/魔女宅急便 | 2026-06-13 |
 
 ## 人工策展(manual.json)
 
