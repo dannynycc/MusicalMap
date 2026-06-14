@@ -8,13 +8,27 @@ import html as htmllib
 import json
 import math
 import re
-import sys
-import io
 import unicodedata
 from pathlib import Path
 
-sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
+# group_key + utf-8 stdout come from build_shows (importing it sets stdout; don't
+# re-wrap here or the orphaned wrapper GC-closes the buffer).
+from build_shows import group_key
+
 DATA = Path(__file__).resolve().parent.parent / "data"
+
+# Registered works → canonical English title, so a group's catalog `en` is the clean
+# canonical (matching what users log) instead of an arbitrary first/bilingual title
+# (e.g. "Gutenberg! The Musical! Gutenberg, el mejor…" → "Gutenberg! The Musical!").
+def _load_canon():
+    p = DATA / "works.json"
+    if not p.exists():
+        return {}
+    return {group_key(w["canonical"]): w["canonical"]
+            for w in json.loads(p.read_text(encoding="utf-8")).get("works", [])}
+
+
+CANON = _load_canon()
 
 # Traditional/Simplified Chinese folding so a venue/title is found whichever script
 # the user types (上海大劇院 = 上海大剧院, 台北 = 臺北 …). OpenCC is build-only; if
@@ -382,9 +396,13 @@ def main():
         if s.get("image") and g not in posters:
             posters[g] = s["image"]
     titles = []
-    for g, en in sorted(groups.items(), key=lambda x: x[1].lower()):
+    for g, first_title in sorted(groups.items(), key=lambda x: x[1].lower()):
+        # registered work → clean canonical; else the (non-bilingual) scraped title
+        en = CANON.get(g, first_title)
         zh = ZH.get(re.sub(r"[^a-z0-9 ]", "", g).strip())
-        titles.append({"en": en, "zh": zh, "group": g, "search": search_blob(en, zh or "")})
+        # keep the bilingual/variant title searchable even when en is the canonical
+        titles.append({"en": en, "zh": zh, "group": g,
+                       "search": search_blob(en, first_title, zh or "")})
 
     out = {
         "venues": sorted(venues, key=lambda v: v["name"]),

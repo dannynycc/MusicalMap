@@ -11,6 +11,12 @@
 
 ---
 
+## [v0.37.5] - 2026-06-14 17:32
+### 修正(個人頁海報縮圖對不上)
+- **Roméo et Juliette(及一整類)在 u.html/me 個人頁看不到海報縮圖**。根因:catalog 的 `en` 取 group 第一個 show 的 title,而 bilingual 會把 canonical 串在原文前(「Roméo et Juliette Again, Romeo & Jeliet」「Gutenberg! The Musical! Gutenberg, el mejor…」),u.js 用 `en.toLowerCase()` 當海報 key,使用者記的標準劇名就對不上 → 無縮圖。
+- **修法**:gen_catalog 改為 **registered 作品的 `en` 直接用 works.json 的 canonical**(乾淨、可比中);原標題仍進 `search` 維持可搜。Roméo→livenation 海報、Jeliet→自己的 interpark 海報、title 也拆開。
+- (附帶)`Again, Romeo & Jeliet` 拆出後 catalog 一直沒重生,故此前殘留串接——本次一併修正並重生。
+
 ## [v0.37.4] - 2026-06-14 17:16
 ### 修正(大邱 DREAM HALL 城市/座標 + 根因)
 - `Again, Romeo & Jeliet` 場館修正:NOL/interpark 把**未知場館一律預設 Seoul**(interpark.py line ~130),導致大邱的 DREAM HALL 被擺到首爾。查證:DREAM HALL = 478 Apsansunhwan-ro, Nam-gu, Daegu(대덕문화전당)。
