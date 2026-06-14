@@ -162,7 +162,7 @@ def main():
         # ticketing platform and the search page works for real browsers (its bot
         # wall only blocks automation, not human clicks), so users land on a real
         # buy page. Search uses the Chinese title (before build canonicalises it).
-        ticket = "https://search.damai.cn/search?keyword=" + urllib.parse.quote(title)
+        ticket = "https://search.damai.cn/search.htm?keyword=" + urllib.parse.quote(title)
         shows[sid] = {
             "id": sid, "title": title, "type": "limited",
             "venue": venue, "city": CITY_EN.get(city_cn, city_cn), "country": "China",
