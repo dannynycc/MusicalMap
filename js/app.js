@@ -145,10 +145,11 @@ const TAG_DEFS = [
   ["Broadway/West End", "Broadway/West End", "#c79a3b"],
   ["德奧音樂劇", "德奧音樂劇", "#b4232a"],
   ["法式音樂劇", "法式音樂劇", "#1d4ed8"],
+  ["西語音樂劇", "西語音樂劇", "#ea580c"],
   ["台灣原創", "台灣原創", "#0f766e"],
   ["日本原創", "日本原創", "#db2777"],
   ["韓國原創", "韓國原創", "#7c3aed"],
-  ["歐陸原創", "歐陸原創", "#b45309"],
+  ["歐陸原創", "歐陸原創", "#0891b2"],
 ];
 const ACTIVE_TAGS = new Set();   // empty = show every tradition
 const TAG_COLOR = Object.fromEntries(TAG_DEFS.map(([t, , c]) => [t, c]));

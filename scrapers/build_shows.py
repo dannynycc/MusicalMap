@@ -27,9 +27,13 @@ def _norm(title):
     Diacritics are stripped BEFORE the ascii filter, otherwise 'é' becomes a word
     break and spellings diverge."""
     t = re.sub(r"[–—]", "-", title or "")  # en/em-dash → '-' BEFORE ascii-strip drops them
+    # Delete apostrophes BEFORE ascii-strip so the two forms agree: a straight '
+    # would later become a word-break space ("you're"→"you re") while a curly ’ is
+    # dropped by ascii-ignore ("you're"→"youre") — same word, divergent keys.
+    t = re.sub(r"['’‘ʼ´`]", "", t)
     t = unicodedata.normalize("NFKD", t).encode("ascii", "ignore").decode()
     t = t.lower().strip()
-    t = re.sub(r"^disney(?:'s| presents)\s+", "", t)   # strip BEFORE 'the' so
+    t = re.sub(r"^disneys?\s+(?:presents\s+)?", "", t)   # apostrophe already gone → "disneys"; strip BEFORE 'the' so
     t = re.sub(r"^the\s+", "", t)                       # "Disney's The Lion King" == "The Lion King"
     # any dash/colon marketing subtitle that mentions "musical", in any language
     # ("– Das Hit-Musical auf Schweizerdeutsch", ": The Broadway Musical", …)
@@ -200,14 +204,17 @@ NOT_MUSICAL_RE = re.compile(
     r"\bcursed child\b|"                       # Harry Potter and the Cursed Child is a PLAY
     r"\bnanta\b|\bpainters\b|\bsleep no more\b|"   # KR non-verbal / immersive (no songs)
     r"martial arts performance|comic martial arts|"
-    r"scotch college|"                            # school/amateur staging, not a public run
+    r"scotch college|\bjr\.?\b|\bjunior\b|"        # school/amateur: MTI Junior youth editions & college productions
     r"a very musical theatre christmas|"          # Christmas cabaret revue, not a book musical
     # TM files tribute/concert/songbook/drag acts under "Musical" — they're not
     # book musicals. Verified against the data: drops only these, no real shows.
     r"\btribute\b|\bconcert\b|\bsoundtrack\b|\bgala\b|\bcelebration\b|"
     r"\bsymphony\b|\borchestra\b|\bthe (?:songs|music|hits) of\b|\bsongs of\b|"
     r"\bdrag (?:show|along|race|brunch|queen)\b|"
-    r"\bnonstop\b|koncert", re.I)        # medley / gala-concert nights (EE 'koncert')
+    r"\bnonstop\b|koncert|\bbluey\b|"     # medley/gala-concert; Bluey's Big Play (kids puppet show)
+    # non-English concert/tribute words (ES/IT/TR…): 'tributo a ABBA', 'Callas en
+    # concierto', 'en Acústico', 'holograma', Turkish 'Gazinosu' (cabaret/concert).
+    r"\btributo\b|\bconcierto\b|ac[uú]stico|\bholograma\b|\bgazinosu\b", re.I)
 
 # ─── Tradition tags ──────────────────────────────────────────────────────────
 # A show's tag is the WORK's ORIGIN tradition, not where it plays (Wicked in Seoul
@@ -225,21 +232,46 @@ TAG_LOCAL_SRC = [
 ]
 
 
+# Country → home tradition for UNREGISTERED shows. A registered work always wins
+# (its tradition is correct anywhere); this only decides where an unmapped local
+# show lands, so it must NOT default everything to Broadway/West End (that put
+# Spanish originals like "Hola Raffaella" on Broadway). Broadway/West End is given
+# only to genuinely Anglo sources/markets + registered Anglo works.
+SPANISH_C = {"Spain", "Mexico", "Argentina", "Chile", "Colombia", "Peru"}
+GERMAN_C = {"Germany", "Austria", "Switzerland"}
+ANGLO_C = {"USA", "UK", "Canada", "Australia", "New Zealand", "Ireland",
+           "South Africa", "Singapore", "UAE"}
+CONTINENTAL_C = {"Belgium", "Netherlands", "Denmark", "Italy", "Norway", "Sweden",
+                 "Finland", "Portugal", "Poland", "Greece", "Croatia", "Slovenia",
+                 "Romania", "Estonia", "Latvia", "Lithuania", "Bulgaria",
+                 "Slovakia", "Hungary", "Czech Republic", "Turkey", "Israel"}
+ANGLO_SRC = ("broadway", "londontheatre", "atgtickets")  # English-language houses
+
+
 def classify_tag(group, source, country):
     """Origin-tradition tag. A registered work's tradition wins everywhere; an
-    unregistered show inherits its local source's home tradition, else the global
-    Anglo touring canon."""
+    unregistered show falls to its source/country's home tradition. Broadway/West
+    End is NOT the catch-all — only Anglo sources, Anglo markets, and registered
+    Anglo works get it."""
     trad = TRADITION_BY_CGROUP.get(group)
     if trad:
         return trad
     src = (source or "").lower()
-    for keys, tag in TAG_LOCAL_SRC:
+    c = country or ""
+    for keys, tag in TAG_LOCAL_SRC:          # TW/JP/KR + HU/CZ local scrapers
         if any(k in src for k in keys):
             return tag
-    # German/Austrian production house with an unregistered title → German-tradition.
-    if "stage-entertainment" in src or country in ("Germany", "Austria", "Switzerland"):
+    if "teatromadrid" in src or c in SPANISH_C:
+        return "西語音樂劇"
+    if "stage-entertainment" in src or c in GERMAN_C:
         return "德奧音樂劇"
-    return "Broadway/West End"   # the global touring canon (default for Anglo sources)
+    if c == "France":
+        return "法式音樂劇"
+    if any(k in src for k in ANGLO_SRC) or c in ANGLO_C:
+        return "Broadway/West End"
+    if c in CONTINENTAL_C:
+        return "歐陸原創"
+    return "Broadway/West End"   # last resort (unknown source + unknown country)
 
 
 def discover_unmapped(shows):
@@ -250,10 +282,11 @@ def discover_unmapped(shows):
     import difflib
     canon = [(w["cgroup"], w["canonical"], w["tradition"])
              for w in {id(v): v for v in WORK_IDX.values()}.values()]
+    REGIONAL = {"台灣原創", "日本原創", "韓國原創", "歐陸原創", "西語音樂劇"}
     flagged, by_tag = [], {}
     for s in shows:
         tag = s.get("tag", "")
-        if "原創" not in tag:
+        if tag not in REGIONAL:
             continue
         by_tag.setdefault(tag, []).append(s["title"])
         g = s["group"]
@@ -348,6 +381,18 @@ def main():
         del by_id[i]
     if nm:
         print(f"  dropped {len(nm)} non-musical event(s) (movie tour / screening / concert / comedy)")
+
+    # Explicit per-title exclusions (data/not_musical.json) — plays/concerts/variety
+    # shows that title patterns can't catch (verified by research). Match on _norm.
+    nmt_path = DATA / "not_musical.json"
+    if nmt_path.exists():
+        excl = {_norm(t) for t in json.loads(nmt_path.read_text(encoding="utf-8")).get("titles", [])}
+        drop = [i for i, s in by_id.items()
+                if _norm(s.get("title", "")) in excl or s.get("group") in excl]
+        for i in drop:
+            del by_id[i]
+        if drop:
+            print(f"  dropped {len(drop)} non-musical(s) from not_musical.json exclusion list")
 
     # Ticketmaster files Australian venues under the SUBURB, not the metro
     # ("Pyrmont"/"Haymarket" → Sydney, "Burswood" → Perth) — normalise so the card

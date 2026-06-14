@@ -1,9 +1,9 @@
 {
   "meta": {
     "source": "merged",
-    "generated_at": "2026-06-14 05:06 UTC",
-    "total": 1371,
-    "verified": 1371,
+    "generated_at": "2026-06-14 05:54 UTC",
+    "total": 1295,
+    "verified": 1295,
     "unverified": 0,
     "sources": [
       {
@@ -158,11 +158,11 @@
       },
       {
         "file": "ticketmaster.json",
-        "count": 283
+        "count": 280
       },
       {
         "file": "tm_tours.json",
-        "count": 244
+        "count": 240
       }
     ]
   },
@@ -2219,7 +2219,7 @@
       "tour_name": null,
       "verified": true,
       "source": "londontheatre.co.uk",
-      "group": "i m every woman",
+      "group": "im every woman",
       "ticket_links": [
         {
           "label": "LondonTheatre",
@@ -2552,46 +2552,6 @@
           "kind": "ticketing"
         }
       ],
-      "link_kind": "ticketing",
-      "tag": "Broadway/West End"
-    },
-    {
-      "id": "westend-blueys-big-play-brighton",
-      "title": "Bluey's Big Play - Brighton",
-      "type": "resident",
-      "venue": "Brighton Centre",
-      "city": "London",
-      "country": "UK",
-      "lat": 50.821232,
-      "lng": -0.146474,
-      "start_date": "2026-07-10",
-      "end_date": "2026-07-12",
-      "ticket_url": "https://www.londontheatre.co.uk/show/40721-blueys-big-play-brighton",
-      "image": "https://images.ctfassets.net/6pezt69ih962/3D8c8mm5dNqa4NX6G3ZnzM/2225b5113f3f0158c0a10c3864daee31/Bluey_480x720_Today_Tix.png",
-      "tour_name": null,
-      "verified": true,
-      "source": "londontheatre.co.uk",
-      "group": "bluey s big play brighton",
-      "link_kind": "ticketing",
-      "tag": "Broadway/West End"
-    },
-    {
-      "id": "westend-blueys-big-play-liverpool",
-      "title": "Bluey's Big Play - Liverpool",
-      "type": "resident",
-      "venue": "M&S Bank Arena Liverpool",
-      "city": "London",
-      "country": "UK",
-      "lat": 53.397479,
-      "lng": -2.991593,
-      "start_date": "2026-07-03",
-      "end_date": "2026-07-05",
-      "ticket_url": "https://www.londontheatre.co.uk/show/40720-blueys-big-play-liverpool",
-      "image": "https://images.ctfassets.net/6pezt69ih962/4BWKG87cbdAaBy1qZ4byz5/0de11cf32d181690b9db53442c1db7e2/Bluey_480x720_Today_Tix__1_.png",
-      "tour_name": null,
-      "verified": true,
-      "source": "londontheatre.co.uk",
-      "group": "bluey s big play liverpool",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -4579,7 +4539,7 @@
       "tour_name": "Hell's Kitchen — North American Tour",
       "verified": true,
       "source": "broadway.org",
-      "group": "hell s kitchen",
+      "group": "hells kitchen",
       "ticket_links": [
         {
           "label": "Broadway.org",
@@ -4611,7 +4571,7 @@
       "tour_name": "Hell's Kitchen — North American Tour",
       "verified": true,
       "source": "broadway.org",
-      "group": "hell s kitchen",
+      "group": "hells kitchen",
       "ticket_links": [
         {
           "label": "Broadway.org",
@@ -4643,7 +4603,7 @@
       "tour_name": "Hell's Kitchen — North American Tour",
       "verified": true,
       "source": "broadway.org",
-      "group": "hell s kitchen",
+      "group": "hells kitchen",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -4663,7 +4623,7 @@
       "tour_name": "Hell's Kitchen — North American Tour",
       "verified": true,
       "source": "broadway.org",
-      "group": "hell s kitchen",
+      "group": "hells kitchen",
       "ticket_links": [
         {
           "label": "Broadway.org",
@@ -4695,7 +4655,7 @@
       "tour_name": "Hell's Kitchen — North American Tour",
       "verified": true,
       "source": "broadway.org",
-      "group": "hell s kitchen",
+      "group": "hells kitchen",
       "ticket_links": [
         {
           "label": "Broadway.org",
@@ -4727,7 +4687,7 @@
       "tour_name": "Hell's Kitchen — North American Tour",
       "verified": true,
       "source": "broadway.org",
-      "group": "hell s kitchen",
+      "group": "hells kitchen",
       "ticket_links": [
         {
           "label": "Broadway.org",
@@ -4759,7 +4719,7 @@
       "tour_name": "Hell's Kitchen — North American Tour",
       "verified": true,
       "source": "broadway.org",
-      "group": "hell s kitchen",
+      "group": "hells kitchen",
       "ticket_links": [
         {
           "label": "Broadway.org",
@@ -4791,7 +4751,7 @@
       "tour_name": "Hell's Kitchen — North American Tour",
       "verified": true,
       "source": "broadway.org",
-      "group": "hell s kitchen",
+      "group": "hells kitchen",
       "ticket_links": [
         {
           "label": "Broadway.org",
@@ -4823,7 +4783,7 @@
       "tour_name": "Hell's Kitchen — North American Tour",
       "verified": true,
       "source": "broadway.org",
-      "group": "hell s kitchen",
+      "group": "hells kitchen",
       "ticket_links": [
         {
           "label": "Broadway.org",
@@ -4855,7 +4815,7 @@
       "tour_name": "Hell's Kitchen — North American Tour",
       "verified": true,
       "source": "broadway.org",
-      "group": "hell s kitchen",
+      "group": "hells kitchen",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -4875,7 +4835,7 @@
       "tour_name": "Hell's Kitchen — North American Tour",
       "verified": true,
       "source": "broadway.org",
-      "group": "hell s kitchen",
+      "group": "hells kitchen",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -4895,7 +4855,7 @@
       "tour_name": "Hell's Kitchen — North American Tour",
       "verified": true,
       "source": "broadway.org",
-      "group": "hell s kitchen",
+      "group": "hells kitchen",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -4915,7 +4875,7 @@
       "tour_name": "Hell's Kitchen — North American Tour",
       "verified": true,
       "source": "broadway.org",
-      "group": "hell s kitchen",
+      "group": "hells kitchen",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -4935,7 +4895,7 @@
       "tour_name": "Hell's Kitchen — North American Tour",
       "verified": true,
       "source": "broadway.org",
-      "group": "hell s kitchen",
+      "group": "hells kitchen",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -4955,7 +4915,7 @@
       "tour_name": "Hell's Kitchen — North American Tour",
       "verified": true,
       "source": "broadway.org",
-      "group": "hell s kitchen",
+      "group": "hells kitchen",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -4975,7 +4935,7 @@
       "tour_name": "Hell's Kitchen — North American Tour",
       "verified": true,
       "source": "broadway.org",
-      "group": "hell s kitchen",
+      "group": "hells kitchen",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -4995,7 +4955,7 @@
       "tour_name": "Hell's Kitchen — North American Tour",
       "verified": true,
       "source": "broadway.org",
-      "group": "hell s kitchen",
+      "group": "hells kitchen",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -5015,7 +4975,7 @@
       "tour_name": "Hell's Kitchen — North American Tour",
       "verified": true,
       "source": "broadway.org",
-      "group": "hell s kitchen",
+      "group": "hells kitchen",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -5035,7 +4995,7 @@
       "tour_name": "Hell's Kitchen — North American Tour",
       "verified": true,
       "source": "broadway.org",
-      "group": "hell s kitchen",
+      "group": "hells kitchen",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -5055,7 +5015,7 @@
       "tour_name": "Hell's Kitchen — North American Tour",
       "verified": true,
       "source": "broadway.org",
-      "group": "hell s kitchen",
+      "group": "hells kitchen",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -10460,7 +10420,7 @@
       "tour_name": null,
       "verified": true,
       "source": "shiki.jp",
-      "group": "the king s donkey ears",
+      "group": "the kings donkey ears",
       "link_kind": "official",
       "tag": "日本原創"
     },
@@ -10554,7 +10514,7 @@
       "source": "shiki.jp",
       "group": "little mermaid",
       "link_kind": "official",
-      "tag": "日本原創"
+      "tag": "Broadway/West End"
     },
     {
       "id": "shiki-the-phantom-of-the-opera-nagoya-2026-07-05",
@@ -10890,7 +10850,7 @@
     },
     {
       "id": "ip-26007357",
-      "title": "Again, Romeo & Jeliet",
+      "title": "Roméo et Juliette Again, Romeo & Jeliet",
       "type": "tour",
       "venue": "DREAM HALL",
       "city": "Seoul",
@@ -10904,53 +10864,13 @@
       "tour_name": null,
       "verified": true,
       "source": "world.nol.com (Interpark)",
-      "group": "again romeo jeliet",
+      "group": "romeo et juliette",
       "link_kind": "ticketing",
-      "tag": "韓國原創"
-    },
-    {
-      "id": "ip-26007228",
-      "title": "Les Virtuoses",
-      "type": "tour",
-      "venue": "Suseong Artpia",
-      "city": "Daegu",
-      "country": "South Korea",
-      "lat": 35.829543,
-      "lng": 128.628415,
-      "start_date": "2026-06-25",
-      "end_date": "2026-06-28",
-      "ticket_url": "https://world.nol.com/en/ticket/places/23000904/products/26007228",
-      "image": "https://ticketimage.interpark.com/Play/image/large/26/26007228_p.gif",
-      "tour_name": null,
-      "verified": true,
-      "source": "world.nol.com (Interpark)",
-      "group": "les virtuoses",
-      "link_kind": "ticketing",
-      "tag": "韓國原創"
-    },
-    {
-      "id": "ip-26007214",
-      "title": "Slapstick-Scherzo",
-      "type": "tour",
-      "venue": "Daegu Ayang Art Center",
-      "city": "Daegu",
-      "country": "South Korea",
-      "lat": 35.879784,
-      "lng": 128.65196,
-      "start_date": "2026-07-03",
-      "end_date": "2026-07-05",
-      "ticket_url": "https://world.nol.com/en/ticket/places/18000228/products/26007214",
-      "image": "https://ticketimage.interpark.com/Play/image/large/26/26007214_p.gif",
-      "tour_name": null,
-      "verified": true,
-      "source": "world.nol.com (Interpark)",
-      "group": "slapstick scherzo",
-      "link_kind": "ticketing",
-      "tag": "韓國原創"
+      "tag": "法式音樂劇"
     },
     {
       "id": "ip-26006771",
-      "title": "Ghost & Lady",
+      "title": "The Ghost & the Lady Ghost & Lady",
       "type": "tour",
       "venue": "CGV Daegu Hanil",
       "city": "Daegu",
@@ -10964,13 +10884,13 @@
       "tour_name": null,
       "verified": true,
       "source": "world.nol.com (Interpark)",
-      "group": "ghost lady",
+      "group": "ghost the lady",
       "link_kind": "ticketing",
-      "tag": "韓國原創"
+      "tag": "日本原創"
     },
     {
       "id": "ip-26006744",
-      "title": "Barber Shopera",
+      "title": "Barbershopera Barber Shopera",
       "type": "tour",
       "venue": "Daegu Bongsan Cultural Center",
       "city": "Daegu",
@@ -10984,9 +10904,9 @@
       "tour_name": null,
       "verified": true,
       "source": "world.nol.com (Interpark)",
-      "group": "barber shopera",
+      "group": "barbershopera",
       "link_kind": "ticketing",
-      "tag": "韓國原創"
+      "tag": "Broadway/West End"
     },
     {
       "id": "ip-26006743",
@@ -11156,7 +11076,7 @@
       "tour_name": null,
       "verified": true,
       "source": "world.nol.com (Interpark)",
-      "group": "yumi s cells",
+      "group": "yumis cells",
       "link_kind": "ticketing",
       "tag": "韓國原創"
     },
@@ -11196,9 +11116,9 @@
       "tour_name": null,
       "verified": true,
       "source": "world.nol.com (Interpark)",
-      "group": "musical death note daejeon",
+      "group": "death note",
       "link_kind": "ticketing",
-      "tag": "韓國原創"
+      "tag": "日本原創"
     },
     {
       "id": "ip-26004937",
@@ -11256,9 +11176,9 @@
       "tour_name": null,
       "verified": true,
       "source": "world.nol.com (Interpark)",
-      "group": "2026 musical midnight actor musician",
+      "group": "midnight",
       "link_kind": "ticketing",
-      "tag": "韓國原創"
+      "tag": "Broadway/West End"
     },
     {
       "id": "ip-26003126",
@@ -11398,7 +11318,7 @@
       "source": "world.nol.com (Interpark)",
       "group": "lempicka",
       "link_kind": "ticketing",
-      "tag": "韓國原創"
+      "tag": "Broadway/West End"
     },
     {
       "id": "ip-25016149",
@@ -12656,7 +12576,7 @@
       "tour_name": "Everybody's Talking About Jamie — UK Tour",
       "verified": true,
       "source": "atgtickets.com",
-      "group": "everybody s talking about jamie",
+      "group": "everybodys talking about jamie",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -12676,7 +12596,7 @@
       "tour_name": "Everybody's Talking About Jamie — UK Tour",
       "verified": true,
       "source": "atgtickets.com",
-      "group": "everybody s talking about jamie",
+      "group": "everybodys talking about jamie",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -12696,7 +12616,7 @@
       "tour_name": "Everybody's Talking About Jamie — UK Tour",
       "verified": true,
       "source": "atgtickets.com",
-      "group": "everybody s talking about jamie",
+      "group": "everybodys talking about jamie",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -12716,7 +12636,7 @@
       "tour_name": "Everybody's Talking About Jamie — UK Tour",
       "verified": true,
       "source": "atgtickets.com",
-      "group": "everybody s talking about jamie",
+      "group": "everybodys talking about jamie",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -12736,7 +12656,7 @@
       "tour_name": "Everybody's Talking About Jamie — UK Tour",
       "verified": true,
       "source": "atgtickets.com",
-      "group": "everybody s talking about jamie",
+      "group": "everybodys talking about jamie",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -12756,7 +12676,7 @@
       "tour_name": "Everybody's Talking About Jamie — UK Tour",
       "verified": true,
       "source": "atgtickets.com",
-      "group": "everybody s talking about jamie",
+      "group": "everybodys talking about jamie",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -12776,7 +12696,7 @@
       "tour_name": "Everybody's Talking About Jamie — UK Tour",
       "verified": true,
       "source": "atgtickets.com",
-      "group": "everybody s talking about jamie",
+      "group": "everybodys talking about jamie",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -12796,7 +12716,7 @@
       "tour_name": "Everybody's Talking About Jamie — UK Tour",
       "verified": true,
       "source": "atgtickets.com",
-      "group": "everybody s talking about jamie",
+      "group": "everybodys talking about jamie",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -12816,7 +12736,7 @@
       "tour_name": "Everybody's Talking About Jamie — UK Tour",
       "verified": true,
       "source": "atgtickets.com",
-      "group": "everybody s talking about jamie",
+      "group": "everybodys talking about jamie",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -15827,7 +15747,7 @@
       "source": "stage-entertainment.de",
       "group": "devil wears prada",
       "link_kind": "official",
-      "tag": "德奧音樂劇"
+      "tag": "Broadway/West End"
     },
     {
       "id": "stage-die-amme-berlin",
@@ -15919,7 +15839,7 @@
       "source": "stage-entertainment.de",
       "group": "tarzan",
       "link_kind": "official",
-      "tag": "德奧音樂劇"
+      "tag": "Broadway/West End"
     },
     {
       "id": "stage-mj-das-michael-jackson-musical-hamburg",
@@ -15999,7 +15919,7 @@
       "source": "stage-entertainment.de",
       "group": "juliet",
       "link_kind": "official",
-      "tag": "德奧音樂劇"
+      "tag": "Broadway/West End"
     },
     {
       "id": "stage-we-will-rock-you-stuttgart",
@@ -16195,31 +16115,11 @@
       "source": "teatromadrid.com",
       "group": "el nuevo musical de los 80 y los 90",
       "link_kind": "ticketing",
-      "tag": "Broadway/West End"
-    },
-    {
-      "id": "mad-yllana-maestrissimo",
-      "title": "Yllana: Maestrissimo",
-      "type": "tour",
-      "venue": "Gran Teatro CaixaBank Príncipe Pío",
-      "city": "Madrid",
-      "country": "Spain",
-      "lat": 40.420887,
-      "lng": -3.718805,
-      "start_date": "2026-02-07",
-      "end_date": "2026-06-20",
-      "ticket_url": "https://teatromadrid.com/espectaculo/yllana-maestrissimo",
-      "image": "https://teatromadrid.com/wp-content/uploads/2020/06/Teatro-Madrid_YLLANA_cartel-2.jpg",
-      "tour_name": null,
-      "verified": true,
-      "source": "teatromadrid.com",
-      "group": "yllana maestrissimo",
-      "link_kind": "ticketing",
-      "tag": "Broadway/West End"
+      "tag": "西語音樂劇"
     },
     {
       "id": "mad-asesinato-para-dos",
-      "title": "Asesinato para dos",
+      "title": "Murder for Two Asesinato para dos",
       "type": "tour",
       "venue": "Teatros Luchana",
       "city": "Madrid",
@@ -16233,13 +16133,13 @@
       "tour_name": null,
       "verified": true,
       "source": "teatromadrid.com",
-      "group": "asesinato para dos",
+      "group": "murder for two",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
     {
       "id": "mad-101-dalmatas",
-      "title": "101 Dálmatas: The Show",
+      "title": "101 Dalmatians 101 Dálmatas: The Show",
       "type": "tour",
       "venue": "Gran Teatro CaixaBank Príncipe Pío",
       "city": "Madrid",
@@ -16253,7 +16153,7 @@
       "tour_name": null,
       "verified": true,
       "source": "teatromadrid.com",
-      "group": "101 dalmatas the show",
+      "group": "101 dalmatians",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -16275,11 +16175,11 @@
       "source": "teatromadrid.com",
       "group": "alicia en el pais de las maravillas",
       "link_kind": "ticketing",
-      "tag": "Broadway/West End"
+      "tag": "西語音樂劇"
     },
     {
       "id": "mad-la-familia-addams",
-      "title": "La Familia Addams",
+      "title": "The Addams Family La Familia Addams",
       "type": "tour",
       "venue": "Teatro Calderón",
       "city": "Madrid",
@@ -16293,27 +16193,7 @@
       "tour_name": "La Familia Addams, el musical（西語版）",
       "verified": true,
       "source": "teatromadrid.com",
-      "group": "la familia addams",
-      "link_kind": "ticketing",
-      "tag": "Broadway/West End"
-    },
-    {
-      "id": "mad-pagagnini-yllana",
-      "title": "PaGAGnini",
-      "type": "tour",
-      "venue": "Gran Teatro CaixaBank Príncipe Pío",
-      "city": "Madrid",
-      "country": "Spain",
-      "lat": 40.420887,
-      "lng": -3.718805,
-      "start_date": "2025-09-06",
-      "end_date": "2026-09-06",
-      "ticket_url": "https://teatromadrid.com/espectaculo/pagagnini-yllana",
-      "image": "https://teatromadrid.com/wp-content/uploads/2022/07/TEATRO-MADRID-Pagagnini-GRAN-TEATRO-CAIXABANK-PRINCIPE-PIO-LA-ESTACION.jpg",
-      "tour_name": null,
-      "verified": true,
-      "source": "teatromadrid.com",
-      "group": "pagagnini",
+      "group": "addams family",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -16335,47 +16215,7 @@
       "source": "teatromadrid.com",
       "group": "yllana the opera locos",
       "link_kind": "ticketing",
-      "tag": "Broadway/West End"
-    },
-    {
-      "id": "mad-los-suenos-de-elsa-tributo-a-frozen",
-      "title": "Los sueños de Elsa. Tributo a Frozen",
-      "type": "tour",
-      "venue": "Teatro Arlequín Gran Vía",
-      "city": "Madrid",
-      "country": "Spain",
-      "lat": 40.421126,
-      "lng": -3.708278,
-      "start_date": "2025-09-13",
-      "end_date": "2026-06-21",
-      "ticket_url": "https://teatromadrid.com/espectaculo/los-suenos-de-elsa-tributo-a-frozen",
-      "image": "https://teatromadrid.com/wp-content/uploads/2020/12/TEATRO_MADRID-Los_suenos-de-elsa-CARTEL-400x575.jpg",
-      "tour_name": null,
-      "verified": true,
-      "source": "teatromadrid.com",
-      "group": "los suenos de elsa tributo a frozen",
-      "link_kind": "ticketing",
-      "tag": "Broadway/West End"
-    },
-    {
-      "id": "mad-dimension-vocal",
-      "title": "Dimensión vocal: Con la boca abierta",
-      "type": "tour",
-      "venue": "Teatro Lara",
-      "city": "Madrid",
-      "country": "Spain",
-      "lat": 40.422109,
-      "lng": -3.704467,
-      "start_date": "2025-09-21",
-      "end_date": "2027-01-02",
-      "ticket_url": "https://teatromadrid.com/espectaculo/dimension-vocal",
-      "image": "https://teatromadrid.com/wp-content/uploads/2025/06/TEATRO-MADRID-Con-la-boca-abierta-cartel.jpg",
-      "tour_name": null,
-      "verified": true,
-      "source": "teatromadrid.com",
-      "group": "dimension vocal con la boca abierta",
-      "link_kind": "ticketing",
-      "tag": "Broadway/West End"
+      "tag": "西語音樂劇"
     },
     {
       "id": "mad-el-hilo-invisible",
@@ -16395,7 +16235,7 @@
       "source": "teatromadrid.com",
       "group": "el hilo invisible",
       "link_kind": "ticketing",
-      "tag": "Broadway/West End"
+      "tag": "西語音樂劇"
     },
     {
       "id": "mad-el-tiempo-entre-costuras-el-musical",
@@ -16415,47 +16255,7 @@
       "source": "teatromadrid.com",
       "group": "el tiempo entre costuras",
       "link_kind": "ticketing",
-      "tag": "Broadway/West End"
-    },
-    {
-      "id": "mad-callas-en-concierto-en-holograma",
-      "title": "Callas en concierto - en holograma",
-      "type": "tour",
-      "venue": "Gran Teatro CaixaBank Príncipe Pío",
-      "city": "Madrid",
-      "country": "Spain",
-      "lat": 40.420887,
-      "lng": -3.718805,
-      "start_date": "2026-10-25",
-      "end_date": null,
-      "ticket_url": "https://teatromadrid.com/espectaculo/callas-en-concierto-en-holograma",
-      "image": "https://teatromadrid.com/wp-content/uploads/2020/10/TEATRO-MADRID-Callas_en_concierto_holograma-GRAN-TEATRO-CAIXABANK-PRINCIPE-PIO-LA-ESTACION.jpg",
-      "tour_name": null,
-      "verified": true,
-      "source": "teatromadrid.com",
-      "group": "callas en concierto en holograma",
-      "link_kind": "ticketing",
-      "tag": "Broadway/West End"
-    },
-    {
-      "id": "mad-nino-bravo-libre-el-musical",
-      "title": "Nino Bravo: Libre",
-      "type": "tour",
-      "venue": "Teatro Amaya",
-      "city": "Madrid",
-      "country": "Spain",
-      "lat": 40.435138,
-      "lng": -3.697141,
-      "start_date": "2026-07-24",
-      "end_date": "2026-08-16",
-      "ticket_url": "https://teatromadrid.com/espectaculo/nino-bravo-libre-el-musical",
-      "image": "https://teatromadrid.com/wp-content/uploads/2025/04/TEATRO_MADRID-Nino_Bravo-Libre-el-musical-CARTEL-400x575.jpg",
-      "tour_name": "Nino Bravo: Libre, el musical（西語版）",
-      "verified": true,
-      "source": "teatromadrid.com",
-      "group": "nino bravo libre",
-      "link_kind": "ticketing",
-      "tag": "Broadway/West End"
+      "tag": "西語音樂劇"
     },
     {
       "id": "mad-se-ha-escrito-un-crimen",
@@ -16475,7 +16275,7 @@
       "source": "teatromadrid.com",
       "group": "se ha escrito un crimen",
       "link_kind": "ticketing",
-      "tag": "Broadway/West End"
+      "tag": "西語音樂劇"
     },
     {
       "id": "mad-el-pequeno-rey",
@@ -16495,7 +16295,7 @@
       "source": "teatromadrid.com",
       "group": "el pequeno rey",
       "link_kind": "ticketing",
-      "tag": "Broadway/West End"
+      "tag": "西語音樂劇"
     },
     {
       "id": "mad-el-otro-lado-de-la-cama",
@@ -16515,7 +16315,7 @@
       "source": "teatromadrid.com",
       "group": "el otro lado de la cama",
       "link_kind": "ticketing",
-      "tag": "Broadway/West End"
+      "tag": "西語音樂劇"
     },
     {
       "id": "mad-villanas",
@@ -16535,7 +16335,7 @@
       "source": "teatromadrid.com",
       "group": "villanas",
       "link_kind": "ticketing",
-      "tag": "Broadway/West End"
+      "tag": "西語音樂劇"
     },
     {
       "id": "mad-sonrisas-y-lagrimas-el-musical",
@@ -16590,26 +16390,6 @@
       "tag": "Broadway/West End"
     },
     {
-      "id": "mad-los-suenos-de-elsa-tributo-a-frozen-2",
-      "title": "Los sueños de Elsa 2. Tributo a Frozen",
-      "type": "tour",
-      "venue": "Teatro Arlequín Gran Vía",
-      "city": "Madrid",
-      "country": "Spain",
-      "lat": 40.421126,
-      "lng": -3.708278,
-      "start_date": "2025-09-20",
-      "end_date": "2026-06-28",
-      "ticket_url": "https://teatromadrid.com/espectaculo/los-suenos-de-elsa-tributo-a-frozen-2",
-      "image": "https://teatromadrid.com/wp-content/uploads/2024/10/TEATRO_MADRID-tributo_a-frozen-CARTEL-400x575.jpg",
-      "tour_name": null,
-      "verified": true,
-      "source": "teatromadrid.com",
-      "group": "los suenos de elsa 2 tributo a frozen",
-      "link_kind": "ticketing",
-      "tag": "Broadway/West End"
-    },
-    {
       "id": "mad-los-2000-el-musical",
       "title": "Los 2000, el musical - OnBeat Producciones. ¡Yo quiero bailar!",
       "type": "tour",
@@ -16627,71 +16407,11 @@
       "source": "teatromadrid.com",
       "group": "los 2000 el musical onbeat producciones yo quiero bailar",
       "link_kind": "ticketing",
-      "tag": "Broadway/West End"
-    },
-    {
-      "id": "mad-hola-raffaella",
-      "title": "Hola Raffaella",
-      "type": "tour",
-      "venue": "Teatro Arlequín Gran Vía",
-      "city": "Madrid",
-      "country": "Spain",
-      "lat": 40.421126,
-      "lng": -3.708278,
-      "start_date": "2025-09-19",
-      "end_date": "2026-07-25",
-      "ticket_url": "https://teatromadrid.com/espectaculo/hola-raffaella",
-      "image": "https://teatromadrid.com/wp-content/uploads/2025/03/TEATRO_MADRID-Hola_Raffaella-CARTEL-400x575.jpg",
-      "tour_name": null,
-      "verified": true,
-      "source": "teatromadrid.com",
-      "group": "hola raffaella",
-      "link_kind": "ticketing",
-      "tag": "Broadway/West End"
-    },
-    {
-      "id": "mad-una-opera-de-pelicula",
-      "title": "Una Ópera de película. Antología lírica en el cine",
-      "type": "tour",
-      "venue": "Teatro Marquina",
-      "city": "Madrid",
-      "country": "Spain",
-      "lat": 40.421966,
-      "lng": -3.693728,
-      "start_date": "2026-06-19",
-      "end_date": "2026-07-10",
-      "ticket_url": "https://teatromadrid.com/espectaculo/una-opera-de-pelicula",
-      "image": "https://teatromadrid.com/wp-content/uploads/2025/06/TEATRO_MADRID-Una-opera-de-pelicula-CARTEL.jpg",
-      "tour_name": null,
-      "verified": true,
-      "source": "teatromadrid.com",
-      "group": "una opera de pelicula antologia lirica en el cine",
-      "link_kind": "ticketing",
-      "tag": "Broadway/West End"
-    },
-    {
-      "id": "mad-golpe-a-golpe-verso-a-verso",
-      "title": "Golpe a golpe, verso a verso",
-      "type": "tour",
-      "venue": "Teatro Infanta Isabel",
-      "city": "Madrid",
-      "country": "Spain",
-      "lat": 40.422245,
-      "lng": -3.69553,
-      "start_date": "2026-05-20",
-      "end_date": "2026-06-28",
-      "ticket_url": "https://teatromadrid.com/espectaculo/golpe-a-golpe-verso-a-verso",
-      "image": "https://teatromadrid.com/wp-content/uploads/2026/04/TEATRO-MADRID-golpe-a-golpe-verso-a-verso-cartel.jpg",
-      "tour_name": null,
-      "verified": true,
-      "source": "teatromadrid.com",
-      "group": "golpe a golpe verso a verso",
-      "link_kind": "ticketing",
-      "tag": "Broadway/West End"
+      "tag": "西語音樂劇"
     },
     {
       "id": "mad-querido-evan-hansen",
-      "title": "Querido Evan Hansen",
+      "title": "Dear Evan Hansen Querido Evan Hansen",
       "type": "tour",
       "venue": "Teatro Rialto",
       "city": "Madrid",
@@ -16705,7 +16425,7 @@
       "tour_name": null,
       "verified": true,
       "source": "teatromadrid.com",
-      "group": "querido evan hansen",
+      "group": "dear evan hansen",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -16727,11 +16447,11 @@
       "source": "teatromadrid.com",
       "group": "cleopatra enamorada",
       "link_kind": "ticketing",
-      "tag": "Broadway/West End"
+      "tag": "西語音樂劇"
     },
     {
       "id": "mad-gutenberg-el-mejor-musical-del-mundo",
-      "title": "Gutenberg, el mejor musical del mundo",
+      "title": "Gutenberg! The Musical! Gutenberg, el mejor musical del mundo",
       "type": "tour",
       "venue": "Teatros Luchana",
       "city": "Madrid",
@@ -16745,27 +16465,7 @@
       "tour_name": null,
       "verified": true,
       "source": "teatromadrid.com",
-      "group": "gutenberg el mejor musical del mundo",
-      "link_kind": "ticketing",
-      "tag": "Broadway/West End"
-    },
-    {
-      "id": "mad-los-diarios-de-manhattan",
-      "title": "Los diarios de Manhattan",
-      "type": "tour",
-      "venue": "Teatros del Canal",
-      "city": "Madrid",
-      "country": "Spain",
-      "lat": 40.438279,
-      "lng": -3.705184,
-      "start_date": "2026-06-23",
-      "end_date": "2026-06-25",
-      "ticket_url": "https://teatromadrid.com/espectaculo/los-diarios-de-manhattan",
-      "image": "https://teatromadrid.com/wp-content/uploads/2025/06/TEATRO_MADRID-Los-diarios-de-Manhattan-TEATROS-DEL-CANAL.png",
-      "tour_name": null,
-      "verified": true,
-      "source": "teatromadrid.com",
-      "group": "los diarios de manhattan",
+      "group": "gutenberg the musical",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -16787,7 +16487,7 @@
       "source": "teatromadrid.com",
       "group": "divorcio igualitario",
       "link_kind": "ticketing",
-      "tag": "Broadway/West End"
+      "tag": "西語音樂劇"
     },
     {
       "id": "mad-el-zorro-el-musical",
@@ -16805,7 +16505,7 @@
       "tour_name": "El Zorro, el musical（西語版）",
       "verified": true,
       "source": "teatromadrid.com",
-      "group": "el zorro",
+      "group": "zorro",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -16827,107 +16527,7 @@
       "source": "teatromadrid.com",
       "group": "la noche del gato negro",
       "link_kind": "ticketing",
-      "tag": "Broadway/West End"
-    },
-    {
-      "id": "mad-la-cena-de-los-idiotas-el-musical",
-      "title": "La cena de los idiotas",
-      "type": "tour",
-      "venue": "Teatro Marquina",
-      "city": "Madrid",
-      "country": "Spain",
-      "lat": 40.421966,
-      "lng": -3.693728,
-      "start_date": "2026-11-04",
-      "end_date": "2026-12-20",
-      "ticket_url": "https://teatromadrid.com/espectaculo/la-cena-de-los-idiotas-el-musical",
-      "image": "https://teatromadrid.com/wp-content/uploads/2026/01/TEATRO_MADRID-la-cena-de-los-idiotas-el-musical-CARTEL-1.jpg",
-      "tour_name": "La cena de los idiotas, el musical（西語版）",
-      "verified": true,
-      "source": "teatromadrid.com",
-      "group": "la cena de los idiotas",
-      "link_kind": "ticketing",
-      "tag": "Broadway/West End"
-    },
-    {
-      "id": "mad-simplemente-la-mejor-tributo-a-tina-turner",
-      "title": "Simplemente la mejor: tributo a Tina Turner",
-      "type": "tour",
-      "venue": "Teatro Marquina",
-      "city": "Madrid",
-      "country": "Spain",
-      "lat": 40.421966,
-      "lng": -3.693728,
-      "start_date": "2026-07-14",
-      "end_date": null,
-      "ticket_url": "https://teatromadrid.com/espectaculo/simplemente-la-mejor-tributo-a-tina-turner",
-      "image": "https://teatromadrid.com/wp-content/uploads/2025/06/TEATRO_MADRID-tributo-a-Tina-Turner-simplemente-la-mejor-CARTEL.jpg",
-      "tour_name": null,
-      "verified": true,
-      "source": "teatromadrid.com",
-      "group": "simplemente la mejor tributo a tina turner",
-      "link_kind": "ticketing",
-      "tag": "Broadway/West End"
-    },
-    {
-      "id": "mad-la-gallina-pipi",
-      "title": "La gallina Pipi",
-      "type": "tour",
-      "venue": "OFF Latina",
-      "city": "Madrid",
-      "country": "Spain",
-      "lat": 40.412046,
-      "lng": -3.711973,
-      "start_date": "2026-01-31",
-      "end_date": "2026-06-20",
-      "ticket_url": "https://teatromadrid.com/espectaculo/la-gallina-pipi",
-      "image": "https://teatromadrid.com/wp-content/uploads/2026/01/TEATRO_MADRID-la-gallina-pipi-off-latina.jpg",
-      "tour_name": null,
-      "verified": true,
-      "source": "teatromadrid.com",
-      "group": "la gallina pipi",
-      "link_kind": "ticketing",
-      "tag": "Broadway/West End"
-    },
-    {
-      "id": "mad-dracula-una-comedia-terrorifica",
-      "title": "Drácula, una comedia terrorífica",
-      "type": "tour",
-      "venue": "Teatro Calderón",
-      "city": "Madrid",
-      "country": "Spain",
-      "lat": 40.414043,
-      "lng": -3.703511,
-      "start_date": "2026-10-24",
-      "end_date": "2027-01-10",
-      "ticket_url": "https://teatromadrid.com/espectaculo/dracula-una-comedia-terrorifica",
-      "image": "https://teatromadrid.com/wp-content/uploads/2026/04/TEATRO-MADRID-me-voy-de-madrid-cartel-1.jpg",
-      "tour_name": null,
-      "verified": true,
-      "source": "teatromadrid.com",
-      "group": "dracula una comedia terrorifica",
-      "link_kind": "ticketing",
-      "tag": "Broadway/West End"
-    },
-    {
-      "id": "mad-las-coplas-con-pank-saben-mejor",
-      "title": "Las coplas con pan(k) saben mejor",
-      "type": "tour",
-      "venue": "Teatro Infanta Isabel",
-      "city": "Madrid",
-      "country": "Spain",
-      "lat": 40.422245,
-      "lng": -3.69553,
-      "start_date": "2026-07-01",
-      "end_date": "2026-07-04",
-      "ticket_url": "https://teatromadrid.com/espectaculo/las-coplas-con-pank-saben-mejor",
-      "image": "https://teatromadrid.com/wp-content/uploads/2022/01/TEATRO-MADRID-las-coplas-con-pank-saben-mejor-cartel.jpg",
-      "tour_name": null,
-      "verified": true,
-      "source": "teatromadrid.com",
-      "group": "las coplas con pan k saben mejor",
-      "link_kind": "ticketing",
-      "tag": "Broadway/West End"
+      "tag": "西語音樂劇"
     },
     {
       "id": "mad-perseidas-el-musical",
@@ -16947,47 +16547,7 @@
       "source": "teatromadrid.com",
       "group": "perseidas",
       "link_kind": "ticketing",
-      "tag": "Broadway/West End"
-    },
-    {
-      "id": "mad-voces-que-transforman",
-      "title": "Voces que transforman",
-      "type": "tour",
-      "venue": "OFF Latina",
-      "city": "Madrid",
-      "country": "Spain",
-      "lat": 40.412046,
-      "lng": -3.711973,
-      "start_date": "2026-04-11",
-      "end_date": "2026-06-20",
-      "ticket_url": "https://teatromadrid.com/espectaculo/voces-que-transforman",
-      "image": "https://teatromadrid.com/wp-content/uploads/2026/03/TEATRO-MADRID-VOCES-QUE-TRANSFORMAN-CARTEL.jpg",
-      "tour_name": null,
-      "verified": true,
-      "source": "teatromadrid.com",
-      "group": "voces que transforman",
-      "link_kind": "ticketing",
-      "tag": "Broadway/West End"
-    },
-    {
-      "id": "mad-mamma-mia-que-tributo-a-abba",
-      "title": "Mamma Mía! Qué tributo a ABBA",
-      "type": "tour",
-      "venue": "Teatro Marquina",
-      "city": "Madrid",
-      "country": "Spain",
-      "lat": 40.421966,
-      "lng": -3.693728,
-      "start_date": "2026-07-01",
-      "end_date": "2026-07-15",
-      "ticket_url": "https://teatromadrid.com/espectaculo/mamma-mia-que-tributo-a-abba",
-      "image": "https://teatromadrid.com/wp-content/uploads/2026/05/TEATRO-MADRID-mamma-mia-que-tributo-abba-CARTEL.jpg",
-      "tour_name": null,
-      "verified": true,
-      "source": "teatromadrid.com",
-      "group": "mamma mia que tributo a abba",
-      "link_kind": "ticketing",
-      "tag": "Broadway/West End"
+      "tag": "西語音樂劇"
     },
     {
       "id": "mad-salvando-a-mozart",
@@ -17007,7 +16567,7 @@
       "source": "teatromadrid.com",
       "group": "salvando a mozart",
       "link_kind": "ticketing",
-      "tag": "Broadway/West End"
+      "tag": "西語音樂劇"
     },
     {
       "id": "mad-sunday-in-the-park-with-george",
@@ -17047,47 +16607,7 @@
       "source": "teatromadrid.com",
       "group": "el misterioso verano de alba ryder",
       "link_kind": "ticketing",
-      "tag": "Broadway/West End"
-    },
-    {
-      "id": "mad-the-piano-shows",
-      "title": "The Piano Shows",
-      "type": "tour",
-      "venue": "Teatros Luchana",
-      "city": "Madrid",
-      "country": "Spain",
-      "lat": 40.431872,
-      "lng": -3.698259,
-      "start_date": "2026-07-08",
-      "end_date": "2026-08-26",
-      "ticket_url": "https://teatromadrid.com/espectaculo/the-piano-shows",
-      "image": "https://teatromadrid.com/wp-content/uploads/2026/05/TEATRO-MADRID-piano-shows-teatros-luchana.jpg",
-      "tour_name": null,
-      "verified": true,
-      "source": "teatromadrid.com",
-      "group": "piano shows",
-      "link_kind": "ticketing",
-      "tag": "Broadway/West End"
-    },
-    {
-      "id": "mad-limbo-2",
-      "title": "Limbo",
-      "type": "tour",
-      "venue": "Teatro Marquina",
-      "city": "Madrid",
-      "country": "Spain",
-      "lat": 40.421966,
-      "lng": -3.693728,
-      "start_date": "2026-07-17",
-      "end_date": "2026-08-22",
-      "ticket_url": "https://teatromadrid.com/espectaculo/limbo-2",
-      "image": "https://teatromadrid.com/wp-content/uploads/2026/05/TEATRO-MADRID-LIMBO-CARTEL.jpg",
-      "tour_name": null,
-      "verified": true,
-      "source": "teatromadrid.com",
-      "group": "limbo",
-      "link_kind": "ticketing",
-      "tag": "Broadway/West End"
+      "tag": "西語音樂劇"
     },
     {
       "id": "mad-quijote-kids",
@@ -17107,11 +16627,11 @@
       "source": "teatromadrid.com",
       "group": "quijote kids",
       "link_kind": "ticketing",
-      "tag": "Broadway/West End"
+      "tag": "西語音樂劇"
     },
     {
       "id": "mad-los-ultimos-5-anos",
-      "title": "Los últimos 5 años - Playsounds",
+      "title": "The Last Five Years Los últimos 5 años - Playsounds",
       "type": "tour",
       "venue": "Teatro Marquina",
       "city": "Madrid",
@@ -17125,7 +16645,7 @@
       "tour_name": null,
       "verified": true,
       "source": "teatromadrid.com",
-      "group": "los ultimos 5 anos playsounds",
+      "group": "last five years",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -17147,7 +16667,7 @@
       "source": "teatromadrid.com",
       "group": "lo tuyo y lo mio",
       "link_kind": "ticketing",
-      "tag": "Broadway/West End"
+      "tag": "西語音樂劇"
     },
     {
       "id": "mad-de-que-color-es-un-beso-espiral-magica",
@@ -17167,7 +16687,7 @@
       "source": "teatromadrid.com",
       "group": "de que color es un beso espiral magica",
       "link_kind": "ticketing",
-      "tag": "Broadway/West End"
+      "tag": "西語音樂劇"
     },
     {
       "id": "mad-pesame-mucho",
@@ -17187,7 +16707,7 @@
       "source": "teatromadrid.com",
       "group": "pesame mucho",
       "link_kind": "ticketing",
-      "tag": "Broadway/West End"
+      "tag": "西語音樂劇"
     },
     {
       "id": "mad-moulin-rouge-el-musical",
@@ -17223,7 +16743,7 @@
     },
     {
       "id": "opentix-1993959650157686785-0",
-      "title": "I Love You, You’re Perfect, Now Change",
+      "title": "I Love You, You're Perfect, Now Change I Love You, You’re Perfect, Now Change",
       "title_en": "I Love You, You’re Perfect, Now Change",
       "venue": "PLAYground 南村劇場．青鳥．有.設計",
       "city": "Taipei",
@@ -17239,7 +16759,7 @@
       "source": "opentix.life",
       "group": "i love you youre perfect now change",
       "link_kind": "ticketing",
-      "tag": "台灣原創"
+      "tag": "Broadway/West End"
     },
     {
       "id": "opentix-1963563229010575360-0",
@@ -18077,7 +17597,7 @@
       "type": "tour",
       "verified": true,
       "source": "ticket.mna.com.tw",
-      "group": "kiki s delivery service",
+      "group": "kikis delivery service",
       "link_kind": "ticketing",
       "tag": "日本原創"
     },
@@ -18097,7 +17617,7 @@
       "type": "tour",
       "verified": true,
       "source": "ticket.mna.com.tw",
-      "group": "kiki s delivery service",
+      "group": "kikis delivery service",
       "link_kind": "ticketing",
       "tag": "日本原創"
     },
@@ -18418,126 +17938,6 @@
       "tag": "日本原創"
     },
     {
-      "id": "jp-b7f7b7e9",
-      "title": "ブルーロック -Re EPISODE 凪-",
-      "title_en": "",
-      "venue": "シアター1010",
-      "city": "Tokyo",
-      "country": "Japan",
-      "lat": 35.750848,
-      "lng": 139.804595,
-      "start_date": "2026-06-11",
-      "end_date": "2026-06-21",
-      "image": "https://www.j25musical.jp/showCtsImage.php?cid=11000&no=1&w=&h=&t=max",
-      "ticket_url": "https://www.j25musical.jp/stage/1090",
-      "type": "resident",
-      "verified": true,
-      "source": "j25musical.jp",
-      "group": "re episode",
-      "link_kind": "ticketing",
-      "tag": "日本原創"
-    },
-    {
-      "id": "jp-aa24bce2",
-      "title": "ブルーロック -Re EPISODE 凪-",
-      "title_en": "",
-      "venue": "京都劇場",
-      "city": "Kyoto",
-      "country": "Japan",
-      "lat": 34.986028,
-      "lng": 135.760657,
-      "start_date": "2026-06-25",
-      "end_date": "2026-06-28",
-      "image": "https://www.j25musical.jp/showCtsImage.php?cid=11000&no=1&w=&h=&t=max",
-      "ticket_url": "https://www.j25musical.jp/stage/1090",
-      "type": "resident",
-      "verified": true,
-      "source": "j25musical.jp",
-      "group": "re episode",
-      "link_kind": "ticketing",
-      "tag": "日本原創"
-    },
-    {
-      "id": "jp-0c375b40",
-      "title": "結城友奈は勇者である -絆-",
-      "title_en": "",
-      "venue": "こくみん共済 coop ホール／スペースゼロ",
-      "city": "Tokyo",
-      "country": "Japan",
-      "lat": 35.686979,
-      "lng": 139.69728,
-      "start_date": "2026-06-11",
-      "end_date": "2026-06-14",
-      "image": "https://www.j25musical.jp/showCtsImage.php?cid=11179&no=1&w=&h=&t=max",
-      "ticket_url": "https://www.j25musical.jp/stage/1115",
-      "type": "resident",
-      "verified": true,
-      "source": "j25musical.jp",
-      "group": "結城友奈は勇者である 絆",
-      "link_kind": "ticketing",
-      "tag": "日本原創"
-    },
-    {
-      "id": "jp-9cfae613",
-      "title": "おそ松さん on STAGE～SIX MEN",
-      "title_en": "",
-      "venue": "品川プリンスホテル ステラボール",
-      "city": "Tokyo",
-      "country": "Japan",
-      "lat": 35.627614,
-      "lng": 139.735465,
-      "start_date": "2026-06-12",
-      "end_date": "2026-06-21",
-      "image": "https://www.j25musical.jp/showCtsImage.php?cid=11117&no=1&w=&h=&t=max",
-      "ticket_url": "https://www.j25musical.jp/stage/1108",
-      "type": "resident",
-      "verified": true,
-      "source": "j25musical.jp",
-      "group": "on stage six men",
-      "link_kind": "ticketing",
-      "tag": "日本原創"
-    },
-    {
-      "id": "jp-58cba707",
-      "title": "あんさんぶるスターズ！THE STAGE",
-      "title_en": "",
-      "venue": "品川プリンスホテル ステラボール",
-      "city": "Tokyo",
-      "country": "Japan",
-      "lat": 35.627614,
-      "lng": 139.735465,
-      "start_date": "2026-06-26",
-      "end_date": "2026-07-05",
-      "image": "https://www.j25musical.jp/showCtsImage.php?cid=11170&no=1&w=&h=&t=max",
-      "ticket_url": "https://www.j25musical.jp/stage/1113",
-      "type": "resident",
-      "verified": true,
-      "source": "j25musical.jp",
-      "group": "the stage",
-      "link_kind": "ticketing",
-      "tag": "日本原創"
-    },
-    {
-      "id": "jp-9ce29828",
-      "title": "あんさんぶるスターズ！THE STAGE",
-      "title_en": "",
-      "venue": "ＳｋｙシアターＭＢＳ",
-      "city": "Osaka",
-      "country": "Japan",
-      "lat": 34.700629,
-      "lng": 135.494151,
-      "start_date": "2026-07-10",
-      "end_date": "2026-07-12",
-      "image": "https://www.j25musical.jp/showCtsImage.php?cid=11170&no=1&w=&h=&t=max",
-      "ticket_url": "https://www.j25musical.jp/stage/1113",
-      "type": "resident",
-      "verified": true,
-      "source": "j25musical.jp",
-      "group": "the stage",
-      "link_kind": "ticketing",
-      "tag": "日本原創"
-    },
-    {
       "id": "jp-11aba76f",
       "title": "憂国のモリアーティ",
       "title_en": "",
@@ -18574,66 +17974,6 @@
       "verified": true,
       "source": "j25musical.jp",
       "group": "live etoile eternelle",
-      "link_kind": "ticketing",
-      "tag": "日本原創"
-    },
-    {
-      "id": "jp-5b2accc8",
-      "title": "F/ACE from the stage ＜Hands Up Session＞",
-      "title_en": "",
-      "venue": "harevutai",
-      "city": "Tokyo",
-      "country": "Japan",
-      "lat": 35.731953,
-      "lng": 139.715591,
-      "start_date": "2026-06-29",
-      "end_date": "2026-06-29",
-      "image": "https://www.j25musical.jp/showCtsImage.php?cid=11368&no=1&w=&h=&t=max",
-      "ticket_url": "https://www.j25musical.jp/stage/1142",
-      "type": "resident",
-      "verified": true,
-      "source": "j25musical.jp",
-      "group": "f ace from the stage hands up session",
-      "link_kind": "ticketing",
-      "tag": "日本原創"
-    },
-    {
-      "id": "jp-4dfbfb44",
-      "title": "エリオスライジングヒーローズ",
-      "title_en": "",
-      "venue": "東京ドームシティ シアターGロッソ",
-      "city": "Tokyo",
-      "country": "Japan",
-      "lat": 35.704536,
-      "lng": 139.754142,
-      "start_date": "2026-07-03",
-      "end_date": "2026-07-12",
-      "image": "https://www.j25musical.jp/showCtsImage.php?cid=11132&no=1&w=&h=&t=max",
-      "ticket_url": "https://www.j25musical.jp/stage/1110",
-      "type": "resident",
-      "verified": true,
-      "source": "j25musical.jp",
-      "group": "エリオスライジングヒーローズ",
-      "link_kind": "ticketing",
-      "tag": "日本原創"
-    },
-    {
-      "id": "jp-0807a738",
-      "title": "エリオスライジングヒーローズ",
-      "title_en": "",
-      "venue": "京都劇場",
-      "city": "Kyoto",
-      "country": "Japan",
-      "lat": 34.986028,
-      "lng": 135.760657,
-      "start_date": "2026-07-18",
-      "end_date": "2026-07-20",
-      "image": "https://www.j25musical.jp/showCtsImage.php?cid=11132&no=1&w=&h=&t=max",
-      "ticket_url": "https://www.j25musical.jp/stage/1110",
-      "type": "resident",
-      "verified": true,
-      "source": "j25musical.jp",
-      "group": "エリオスライジングヒーローズ",
       "link_kind": "ticketing",
       "tag": "日本原創"
     },
@@ -18738,26 +18078,6 @@
       "tag": "日本原創"
     },
     {
-      "id": "jp-bcff2f95",
-      "title": "体感型2.5次元舞台　うらみちお兄さん　〜集まれ！飛び出せ！よい子のみんなこんにちは！〜",
-      "title_en": "",
-      "venue": "シアターサンモール",
-      "city": "Tokyo",
-      "country": "Japan",
-      "lat": 35.689761,
-      "lng": 139.712893,
-      "start_date": "2026-07-08",
-      "end_date": "2026-07-12",
-      "image": "https://www.j25musical.jp/showCtsImage.php?cid=11195&no=1&w=&h=&t=max",
-      "ticket_url": "https://www.j25musical.jp/stage/1119",
-      "type": "resident",
-      "verified": true,
-      "source": "j25musical.jp",
-      "group": "2 5",
-      "link_kind": "ticketing",
-      "tag": "日本原創"
-    },
-    {
       "id": "jp-7d63549a",
       "title": "ラブ米",
       "title_en": "",
@@ -18826,286 +18146,6 @@
       "verified": true,
       "source": "j25musical.jp",
       "group": "忍たま乱太郎",
-      "link_kind": "ticketing",
-      "tag": "日本原創"
-    },
-    {
-      "id": "jp-6a65463f",
-      "title": "チェンソーマン",
-      "title_en": "",
-      "venue": "天王洲 銀河劇場",
-      "city": "Tokyo",
-      "country": "Japan",
-      "lat": 35.623442,
-      "lng": 139.751278,
-      "start_date": "2026-07-25",
-      "end_date": "2026-08-02",
-      "image": "https://www.j25musical.jp/showCtsImage.php?cid=11259&no=1&w=&h=&t=max",
-      "ticket_url": "https://www.j25musical.jp/stage/1126",
-      "type": "resident",
-      "verified": true,
-      "source": "j25musical.jp",
-      "group": "チェンソーマン",
-      "link_kind": "ticketing",
-      "tag": "日本原創"
-    },
-    {
-      "id": "jp-fdb8dd27",
-      "title": "チェンソーマン",
-      "title_en": "",
-      "venue": "京都劇場",
-      "city": "Kyoto",
-      "country": "Japan",
-      "lat": 34.986028,
-      "lng": 135.760657,
-      "start_date": "2026-08-07",
-      "end_date": "2026-08-12",
-      "image": "https://www.j25musical.jp/showCtsImage.php?cid=11259&no=1&w=&h=&t=max",
-      "ticket_url": "https://www.j25musical.jp/stage/1126",
-      "type": "resident",
-      "verified": true,
-      "source": "j25musical.jp",
-      "group": "チェンソーマン",
-      "link_kind": "ticketing",
-      "tag": "日本原創"
-    },
-    {
-      "id": "jp-49206169",
-      "title": "ペパロニ・ヴァンパイア",
-      "title_en": "",
-      "venue": "ABCホール",
-      "city": "Osaka",
-      "country": "Japan",
-      "lat": 34.693689,
-      "lng": 135.488298,
-      "start_date": "2026-07-31",
-      "end_date": "2026-08-09",
-      "image": "https://www.j25musical.jp/showCtsImage.php?cid=11355&no=1&w=&h=&t=max",
-      "ticket_url": "https://www.j25musical.jp/stage/1140",
-      "type": "resident",
-      "verified": true,
-      "source": "j25musical.jp",
-      "group": "ペパロニ ヴァンパイア",
-      "link_kind": "ticketing",
-      "tag": "日本原創"
-    },
-    {
-      "id": "jp-9d2435b0",
-      "title": "ペパロニ・ヴァンパイア",
-      "title_en": "",
-      "venue": "ＣＢＧＫシブゲキ!!",
-      "city": "Tokyo",
-      "country": "Japan",
-      "lat": 35.659527,
-      "lng": 139.698318,
-      "start_date": "2026-08-14",
-      "end_date": "2026-08-23",
-      "image": "https://www.j25musical.jp/showCtsImage.php?cid=11355&no=1&w=&h=&t=max",
-      "ticket_url": "https://www.j25musical.jp/stage/1140",
-      "type": "resident",
-      "verified": true,
-      "source": "j25musical.jp",
-      "group": "ペパロニ ヴァンパイア",
-      "link_kind": "ticketing",
-      "tag": "日本原創"
-    },
-    {
-      "id": "jp-7f37788a",
-      "title": "あんさんぶるスターズ！THE STAGE",
-      "title_en": "",
-      "venue": "北九州メッセ（旧西日本総合展示場新館）",
-      "city": "Fukuoka",
-      "country": "Japan",
-      "lat": 33.889573,
-      "lng": 130.885283,
-      "start_date": "2026-08-01",
-      "end_date": "2026-08-02",
-      "image": "https://www.j25musical.jp/showCtsImage.php?cid=11184&no=1&w=&h=&t=max",
-      "ticket_url": "https://www.j25musical.jp/stage/1116",
-      "type": "resident",
-      "verified": true,
-      "source": "j25musical.jp",
-      "group": "the stage",
-      "link_kind": "ticketing",
-      "tag": "日本原創"
-    },
-    {
-      "id": "jp-036c88de",
-      "title": "あんさんぶるスターズ！THE STAGE",
-      "title_en": "",
-      "venue": "ぴあアリーナMM",
-      "city": "Kanagawa",
-      "country": "Japan",
-      "lat": 35.455879,
-      "lng": 139.628718,
-      "start_date": "2026-08-07",
-      "end_date": "2026-08-09",
-      "image": "https://www.j25musical.jp/showCtsImage.php?cid=11184&no=1&w=&h=&t=max",
-      "ticket_url": "https://www.j25musical.jp/stage/1116",
-      "type": "resident",
-      "verified": true,
-      "source": "j25musical.jp",
-      "group": "the stage",
-      "link_kind": "ticketing",
-      "tag": "日本原創"
-    },
-    {
-      "id": "jp-f73aa780",
-      "title": "あんさんぶるスターズ！THE STAGE",
-      "title_en": "",
-      "venue": "神戸ワールド記念ホール",
-      "city": "Hyogo",
-      "country": "Japan",
-      "lat": 34.66386,
-      "lng": 135.210569,
-      "start_date": "2026-08-15",
-      "end_date": "2026-08-16",
-      "image": "https://www.j25musical.jp/showCtsImage.php?cid=11184&no=1&w=&h=&t=max",
-      "ticket_url": "https://www.j25musical.jp/stage/1116",
-      "type": "resident",
-      "verified": true,
-      "source": "j25musical.jp",
-      "group": "the stage",
-      "link_kind": "ticketing",
-      "tag": "日本原創"
-    },
-    {
-      "id": "jp-0b1c49e9",
-      "title": "HUNDRED LINE -最終防衛学園-",
-      "title_en": "",
-      "venue": "天王洲 銀河劇場",
-      "city": "Tokyo",
-      "country": "Japan",
-      "lat": 35.623442,
-      "lng": 139.751278,
-      "start_date": "2026-08-08",
-      "end_date": "2026-08-16",
-      "image": "https://www.j25musical.jp/showCtsImage.php?cid=11276&no=1&w=&h=&t=max",
-      "ticket_url": "https://www.j25musical.jp/stage/1129",
-      "type": "resident",
-      "verified": true,
-      "source": "j25musical.jp",
-      "group": "hundred line",
-      "link_kind": "ticketing",
-      "tag": "日本原創"
-    },
-    {
-      "id": "jp-855a41b5",
-      "title": "Dancing☆Starプリキュア",
-      "title_en": "",
-      "venue": "サンパール荒川（荒川区民会館）",
-      "city": "Tokyo",
-      "country": "Japan",
-      "lat": 35.735213,
-      "lng": 139.785108,
-      "start_date": "2026-08-21",
-      "end_date": "2026-08-23",
-      "image": "https://www.j25musical.jp/showCtsImage.php?cid=11240&no=1&w=&h=&t=max",
-      "ticket_url": "https://www.j25musical.jp/stage/1124",
-      "type": "resident",
-      "verified": true,
-      "source": "j25musical.jp",
-      "group": "dancingstar",
-      "link_kind": "ticketing",
-      "tag": "日本原創"
-    },
-    {
-      "id": "jp-adf42ff4",
-      "title": "龍が如く",
-      "title_en": "",
-      "venue": "シアターＨ",
-      "city": "Tokyo",
-      "country": "Japan",
-      "lat": 35.596284,
-      "lng": 139.744086,
-      "start_date": "2026-08-21",
-      "end_date": "2026-08-30",
-      "image": "https://www.j25musical.jp/showCtsImage.php?cid=11283&no=1&w=&h=&t=max",
-      "ticket_url": "https://www.j25musical.jp/stage/1131",
-      "type": "resident",
-      "verified": true,
-      "source": "j25musical.jp",
-      "group": "龍が如く",
-      "link_kind": "ticketing",
-      "tag": "日本原創"
-    },
-    {
-      "id": "jp-18f1f3e1",
-      "title": "18TRIP",
-      "title_en": "",
-      "venue": "KAAT 神奈川芸術劇場〈ホール〉",
-      "city": "Kanagawa",
-      "country": "Japan",
-      "lat": 35.445429,
-      "lng": 139.646049,
-      "start_date": "2026-08-25",
-      "end_date": "2026-08-30",
-      "image": "https://www.j25musical.jp/showCtsImage.php?cid=11316&no=1&w=&h=&t=max",
-      "ticket_url": "https://www.j25musical.jp/stage/1135",
-      "type": "resident",
-      "verified": true,
-      "source": "j25musical.jp",
-      "group": "18trip",
-      "link_kind": "ticketing",
-      "tag": "日本原創"
-    },
-    {
-      "id": "jp-42e2f0a8",
-      "title": "18TRIP",
-      "title_en": "",
-      "venue": "AiiA 2.5 Theater Kobe",
-      "city": "Hyogo",
-      "country": "Japan",
-      "lat": 34.704334,
-      "lng": 135.195164,
-      "start_date": "2026-09-04",
-      "end_date": "2026-09-13",
-      "image": "https://www.j25musical.jp/showCtsImage.php?cid=11316&no=1&w=&h=&t=max",
-      "ticket_url": "https://www.j25musical.jp/stage/1135",
-      "type": "resident",
-      "verified": true,
-      "source": "j25musical.jp",
-      "group": "18trip",
-      "link_kind": "ticketing",
-      "tag": "日本原創"
-    },
-    {
-      "id": "jp-196b0e26",
-      "title": "ダンダダン",
-      "title_en": "",
-      "venue": "日本青年館ホール",
-      "city": "Tokyo",
-      "country": "Japan",
-      "lat": 35.674275,
-      "lng": 139.715409,
-      "start_date": "2026-08-26",
-      "end_date": "2026-09-03",
-      "image": "https://www.j25musical.jp/showCtsImage.php?cid=11335&no=1&w=&h=&t=max",
-      "ticket_url": "https://www.j25musical.jp/stage/1138",
-      "type": "resident",
-      "verified": true,
-      "source": "j25musical.jp",
-      "group": "ダンダダン",
-      "link_kind": "ticketing",
-      "tag": "日本原創"
-    },
-    {
-      "id": "jp-ae411f90",
-      "title": "ダンダダン",
-      "title_en": "",
-      "venue": "ＳｋｙシアターＭＢＳ",
-      "city": "Osaka",
-      "country": "Japan",
-      "lat": 34.700629,
-      "lng": 135.494151,
-      "start_date": "2026-09-11",
-      "end_date": "2026-09-13",
-      "image": "https://www.j25musical.jp/showCtsImage.php?cid=11335&no=1&w=&h=&t=max",
-      "ticket_url": "https://www.j25musical.jp/stage/1138",
-      "type": "resident",
-      "verified": true,
-      "source": "j25musical.jp",
-      "group": "ダンダダン",
       "link_kind": "ticketing",
       "tag": "日本原創"
     },
@@ -19194,46 +18234,6 @@
       "tag": "日本原創"
     },
     {
-      "id": "jp-2cee6ac7",
-      "title": "多聞くん今どっち︕︖",
-      "title_en": "",
-      "venue": "天王洲 銀河劇場",
-      "city": "Tokyo",
-      "country": "Japan",
-      "lat": 35.623442,
-      "lng": 139.751278,
-      "start_date": "2026-09-23",
-      "end_date": "2026-09-23",
-      "image": "https://www.j25musical.jp/showCtsImage.php?cid=11378&no=1&w=&h=&t=max",
-      "ticket_url": "https://www.j25musical.jp/stage/1144",
-      "type": "resident",
-      "verified": true,
-      "source": "j25musical.jp",
-      "group": "多聞くん今どっち",
-      "link_kind": "ticketing",
-      "tag": "日本原創"
-    },
-    {
-      "id": "jp-db5c3080",
-      "title": "怪物事変",
-      "title_en": "",
-      "venue": "シアターH",
-      "city": "Tokyo",
-      "country": "Japan",
-      "lat": 35.596284,
-      "lng": 139.744086,
-      "start_date": "2026-09-17",
-      "end_date": "2026-09-27",
-      "image": "https://www.j25musical.jp/showCtsImage.php?cid=11391&no=1&w=&h=&t=max",
-      "ticket_url": "https://www.j25musical.jp/stage/1147",
-      "type": "resident",
-      "verified": true,
-      "source": "j25musical.jp",
-      "group": "怪物事変",
-      "link_kind": "ticketing",
-      "tag": "日本原創"
-    },
-    {
       "id": "jp-d313447b",
       "title": "ケロロ軍曹",
       "title_en": "",
@@ -19290,66 +18290,6 @@
       "verified": true,
       "source": "j25musical.jp",
       "group": "スクールアイドルミュージカル",
-      "link_kind": "ticketing",
-      "tag": "日本原創"
-    },
-    {
-      "id": "jp-a7fbc473",
-      "title": "ブルーロック",
-      "title_en": "",
-      "venue": "天王洲 銀河劇場",
-      "city": "Tokyo",
-      "country": "Japan",
-      "lat": 35.623442,
-      "lng": 139.751278,
-      "start_date": "2026-10-01",
-      "end_date": "2026-10-11",
-      "image": "https://www.j25musical.jp/showCtsImage.php?cid=11382&no=1&w=&h=&t=max",
-      "ticket_url": "https://www.j25musical.jp/stage/1145",
-      "type": "resident",
-      "verified": true,
-      "source": "j25musical.jp",
-      "group": "ブルーロック",
-      "link_kind": "ticketing",
-      "tag": "日本原創"
-    },
-    {
-      "id": "jp-81347707",
-      "title": "ブルーロック",
-      "title_en": "",
-      "venue": "東京建物 Brillia HALL 箕面 大ホール（箕面市立文化芸能劇場）",
-      "city": "Osaka",
-      "country": "Japan",
-      "lat": 34.82178,
-      "lng": 135.49146,
-      "start_date": "2026-10-16",
-      "end_date": "2026-10-18",
-      "image": "https://www.j25musical.jp/showCtsImage.php?cid=11382&no=1&w=&h=&t=max",
-      "ticket_url": "https://www.j25musical.jp/stage/1145",
-      "type": "resident",
-      "verified": true,
-      "source": "j25musical.jp",
-      "group": "ブルーロック",
-      "link_kind": "ticketing",
-      "tag": "日本原創"
-    },
-    {
-      "id": "jp-9845e9e0",
-      "title": "ブルーロック",
-      "title_en": "",
-      "venue": "アイプラザ豊橋",
-      "city": "Aichi",
-      "country": "Japan",
-      "lat": 34.732531,
-      "lng": 137.381366,
-      "start_date": "2026-10-23",
-      "end_date": "2026-10-24",
-      "image": "https://www.j25musical.jp/showCtsImage.php?cid=11382&no=1&w=&h=&t=max",
-      "ticket_url": "https://www.j25musical.jp/stage/1145",
-      "type": "resident",
-      "verified": true,
-      "source": "j25musical.jp",
-      "group": "ブルーロック",
       "link_kind": "ticketing",
       "tag": "日本原創"
     },
@@ -19454,26 +18394,6 @@
       "tag": "日本原創"
     },
     {
-      "id": "jp-77d3b480",
-      "title": "刀剣乱舞 - ICE BLADE -",
-      "title_en": "",
-      "venue": "国立代々木競技場 第一体育館",
-      "city": "Tokyo",
-      "country": "Japan",
-      "lat": 35.667647,
-      "lng": 139.700146,
-      "start_date": "2026-10-03",
-      "end_date": "2026-10-04",
-      "image": "https://www.j25musical.jp/showCtsImage.php?cid=11192&no=1&w=&h=&t=max",
-      "ticket_url": "https://www.j25musical.jp/stage/1118",
-      "type": "resident",
-      "verified": true,
-      "source": "j25musical.jp",
-      "group": "ice blade",
-      "link_kind": "ticketing",
-      "tag": "日本原創"
-    },
-    {
       "id": "jp-4e721f50",
       "title": "薄桜鬼 真改",
       "title_en": "",
@@ -19490,26 +18410,6 @@
       "verified": true,
       "source": "j25musical.jp",
       "group": "薄桜鬼 真改",
-      "link_kind": "ticketing",
-      "tag": "日本原創"
-    },
-    {
-      "id": "jp-752bd3ad",
-      "title": "永久少年 Eternal Boys",
-      "title_en": "",
-      "venue": "I'M A SHOW",
-      "city": "Tokyo",
-      "country": "Japan",
-      "lat": 35.673596,
-      "lng": 139.763452,
-      "start_date": "2026-12-03",
-      "end_date": "2026-12-13",
-      "image": "https://www.j25musical.jp/showCtsImage.php?cid=11385&no=1&w=&h=&t=max",
-      "ticket_url": "https://www.j25musical.jp/stage/1146",
-      "type": "resident",
-      "verified": true,
-      "source": "j25musical.jp",
-      "group": "eternal boys",
       "link_kind": "ticketing",
       "tag": "日本原創"
     },
@@ -19571,7 +18471,7 @@
       "source": "theatre-orb.com",
       "group": "boop",
       "link_kind": "ticketing",
-      "tag": "日本原創"
+      "tag": "Broadway/West End"
     },
     {
       "id": "jp-ab803221",
@@ -19611,7 +18511,7 @@
       "source": "theatre-orb.com",
       "group": "nine",
       "link_kind": "ticketing",
-      "tag": "日本原創"
+      "tag": "Broadway/West End"
     },
     {
       "id": "ee-d34fa721",
@@ -19747,7 +18647,7 @@
     },
     {
       "id": "ee-5ec2cbe6",
-      "title": "Oltári srácok - Az Aréna!",
+      "title": "Altar Boyz Oltári srácok - Az Aréna!",
       "title_en": "",
       "venue": "Papp László Budapest Sportaréna",
       "city": "Budapest",
@@ -19761,9 +18661,9 @@
       "type": "tour",
       "verified": true,
       "source": "jegy.hu",
-      "group": "oltari sracok az arena",
+      "group": "altar boyz",
       "link_kind": "ticketing",
-      "tag": "歐陸原創"
+      "tag": "Broadway/West End"
     },
     {
       "id": "ee-b28c8262",
@@ -20299,7 +19199,7 @@
     },
     {
       "id": "ee-6e6c703b",
-      "title": "Menopauza - Játékszín",
+      "title": "Menopause The Musical Menopauza - Játékszín",
       "title_en": "",
       "venue": "Kálmán Imre Szabadtéri Színpad",
       "city": "Siófok",
@@ -20313,9 +19213,9 @@
       "type": "tour",
       "verified": true,
       "source": "jegy.hu",
-      "group": "menopauza jatekszin",
+      "group": "menopause",
       "link_kind": "ticketing",
-      "tag": "歐陸原創"
+      "tag": "Broadway/West End"
     },
     {
       "id": "ee-50f8e84a",
@@ -20396,26 +19296,6 @@
       "group": "noc na karlstejne",
       "link_kind": "ticketing",
       "tag": "歐陸原創"
-    },
-    {
-      "id": "ee-2c9552e2",
-      "title": "Shrek Jr.",
-      "title_en": "",
-      "venue": "Divadlo Hybernia",
-      "city": "Prague",
-      "country": "Czech Republic",
-      "lat": 50.087403,
-      "lng": 14.428806,
-      "start_date": "2026-06-15",
-      "end_date": "2026-10-10",
-      "image": "https://www.datocms-assets.com/31357/1769598534-shrek-hybernia-colosseumticket-2.jpg",
-      "ticket_url": "https://www.prazskemuzikaly.cz/predstaveni/shrek-jr",
-      "type": "tour",
-      "verified": true,
-      "source": "prazskemuzikaly.cz",
-      "group": "shrek",
-      "link_kind": "ticketing",
-      "tag": "Broadway/West End"
     },
     {
       "id": "ee-3123e4dd",
@@ -20530,26 +19410,6 @@
       "tag": "歐陸原創"
     },
     {
-      "id": "ee-f32c1602",
-      "title": "Dorotka a klokan JR.",
-      "title_en": "",
-      "venue": "Divadlo Hybernia",
-      "city": "Prague",
-      "country": "Czech Republic",
-      "lat": 50.087403,
-      "lng": 14.428806,
-      "start_date": "2026-06-22",
-      "end_date": "2026-06-23",
-      "image": "https://www.datocms-assets.com/31357/1769598021-dorotka-a-klokan-hybernia-colosseumticket-2.jpg",
-      "ticket_url": "https://www.prazskemuzikaly.cz/predstaveni/dorotka-a-klokan-jr",
-      "type": "tour",
-      "verified": true,
-      "source": "prazskemuzikaly.cz",
-      "group": "dorotka a klokan jr",
-      "link_kind": "ticketing",
-      "tag": "歐陸原創"
-    },
-    {
       "id": "ee-c1759470",
       "title": "Mamma Mia!",
       "title_en": "",
@@ -20583,7 +19443,7 @@
     },
     {
       "id": "ee-5ae9410c",
-      "title": "DONAHA! (Hole dupy)",
+      "title": "The Full Monty DONAHA! (Hole dupy)",
       "title_en": "",
       "venue": "Divadlo Jiřího Myrona (NDM)",
       "city": "Ostrava",
@@ -20597,9 +19457,9 @@
       "type": "tour",
       "verified": true,
       "source": "prazskemuzikaly.cz",
-      "group": "donaha hole dupy",
+      "group": "full monty",
       "link_kind": "ticketing",
-      "tag": "歐陸原創"
+      "tag": "Broadway/West End"
     },
     {
       "id": "ee-4a9e4641",
@@ -20643,7 +19503,7 @@
     },
     {
       "id": "ee-8effe590",
-      "title": "Divotvorný hrnec",
+      "title": "Finian's Rainbow Divotvorný hrnec",
       "title_en": "",
       "venue": "Divadlo Hybernia",
       "city": "Prague",
@@ -20657,9 +19517,9 @@
       "type": "tour",
       "verified": true,
       "source": "prazskemuzikaly.cz",
-      "group": "divotvorny hrnec",
+      "group": "finians rainbow",
       "link_kind": "ticketing",
-      "tag": "歐陸原創"
+      "tag": "Broadway/West End"
     },
     {
       "id": "ee-8f69ba53",
@@ -20903,7 +19763,7 @@
     },
     {
       "id": "ee-7bb6cbf4",
-      "title": "Pět let zpět",
+      "title": "The Last Five Years Pět let zpět",
       "title_en": "",
       "venue": "Divadlo Hybernia",
       "city": "Prague",
@@ -20917,9 +19777,9 @@
       "type": "tour",
       "verified": true,
       "source": "prazskemuzikaly.cz",
-      "group": "pet let zpet",
+      "group": "last five years",
       "link_kind": "ticketing",
-      "tag": "歐陸原創"
+      "tag": "Broadway/West End"
     },
     {
       "id": "ee-e64c634f",
@@ -20943,7 +19803,7 @@
     },
     {
       "id": "ee-583033e6",
-      "title": "Sopranistky",
+      "title": "Our Ladies of Perpetual Succour Sopranistky",
       "title_en": "",
       "venue": "Hudební divadlo Karlín",
       "city": "Prague",
@@ -20957,9 +19817,9 @@
       "type": "tour",
       "verified": true,
       "source": "prazskemuzikaly.cz",
-      "group": "sopranistky",
+      "group": "our ladies of perpetual succour",
       "link_kind": "ticketing",
-      "tag": "歐陸原創"
+      "tag": "Broadway/West End"
     },
     {
       "id": "manual-phantom-shanghai-2026",
@@ -21851,7 +20711,7 @@
       "verified": true,
       "source": "ticketmaster",
       "onsale_only": true,
-      "group": "toby s dinner theatre presents mean girls",
+      "group": "tobys dinner theatre presents mean girls",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -23899,7 +22759,7 @@
       "verified": true,
       "source": "ticketmaster",
       "onsale_only": true,
-      "group": "ford s theatre presents come from away",
+      "group": "fords theatre presents come from away",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -24011,7 +22871,7 @@
       "verified": true,
       "source": "ticketmaster",
       "onsale_only": true,
-      "group": "walnut street theatre s the addams family",
+      "group": "walnut street theatres the addams family",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -24039,7 +22899,7 @@
       "verified": true,
       "source": "ticketmaster",
       "onsale_only": true,
-      "group": "walnut street theatre s disney s frozen",
+      "group": "walnut street theatres disneys frozen",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -24067,7 +22927,7 @@
       "verified": true,
       "source": "ticketmaster",
       "onsale_only": true,
-      "group": "walnut street theatre s come from away",
+      "group": "walnut street theatres come from away",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -24385,7 +23245,7 @@
       "verified": true,
       "source": "ticketmaster",
       "onsale_only": true,
-      "group": "evangeline la plus grande histoire d amour d amerique du nord",
+      "group": "evangeline la plus grande histoire damour damerique du nord",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -24474,7 +23334,7 @@
       "verified": true,
       "source": "ticketmaster",
       "onsale_only": true,
-      "group": "relive the music 50s 60s 70 s show",
+      "group": "relive the music 50s 60s 70s show",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -24614,7 +23474,7 @@
       "verified": true,
       "source": "ticketmaster",
       "onsale_only": true,
-      "group": "lama d aventures en aventures",
+      "group": "lama daventures en aventures",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -24754,7 +23614,7 @@
       "verified": true,
       "source": "ticketmaster",
       "onsale_only": true,
-      "group": "el rey leon",
+      "group": "lion king",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -24773,6 +23633,11 @@
       "attraction_url": "https://www.ticketmaster.com/el-fantasma-de-la-opera-mexico-tickets/artist/3900274",
       "ticket_links": [
         {
+          "label": "官方網站",
+          "url": "https://www.thephantomoftheopera.com/",
+          "kind": "official"
+        },
+        {
           "country": "MX",
           "url": "https://www.ticketmaster.com/el-fantasma-de-la-opera-mexico-tickets/artist/3900274"
         }
@@ -24782,7 +23647,7 @@
       "verified": true,
       "source": "ticketmaster",
       "onsale_only": true,
-      "group": "el fantasma de la opera mexico",
+      "group": "phantom of the opera",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -24812,7 +23677,7 @@
       "onsale_only": true,
       "group": "mentiras el musical",
       "link_kind": "ticketing",
-      "tag": "Broadway/West End"
+      "tag": "西語音樂劇"
     },
     {
       "id": "tm-mentidrags-teatro-aldama",
@@ -24840,7 +23705,7 @@
       "onsale_only": true,
       "group": "mentidrags",
       "link_kind": "ticketing",
-      "tag": "Broadway/West End"
+      "tag": "西語音樂劇"
     },
     {
       "id": "tm-matilda-el-musical-con-elena-centro-cultural-teatro-i",
@@ -24866,7 +23731,7 @@
       "verified": true,
       "source": "ticketmaster",
       "onsale_only": true,
-      "group": "matilda el musical con elena",
+      "group": "matilda",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -24896,7 +23761,7 @@
       "onsale_only": true,
       "group": "prendeme el musical",
       "link_kind": "ticketing",
-      "tag": "Broadway/West End"
+      "tag": "西語音樂劇"
     },
     {
       "id": "tm-ride-the-cyclone-el-musical-teatro-xola-julio-prieto",
@@ -24922,7 +23787,7 @@
       "verified": true,
       "source": "ticketmaster",
       "onsale_only": true,
-      "group": "ride",
+      "group": "ride the cyclone",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -24950,7 +23815,7 @@
       "verified": true,
       "source": "ticketmaster",
       "onsale_only": true,
-      "group": "asesinato para dos",
+      "group": "murder for two",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -24978,63 +23843,7 @@
       "verified": true,
       "source": "ticketmaster",
       "onsale_only": true,
-      "group": "treintonas cuarentonas y chingonas",
-      "link_kind": "ticketing",
-      "tag": "Broadway/West End"
-    },
-    {
-      "id": "tm-matilda-el-musical-con-emilia-centro-cultural-teatro-i",
-      "title": "Matilda el Musical con Emilia",
-      "type": "tour",
-      "venue": "Centro Cultural Teatro I",
-      "city": "México",
-      "country": "Mexico",
-      "lat": 19.424791,
-      "lng": -99.154315,
-      "start_date": "2026-06-20",
-      "end_date": "2026-06-21",
-      "ticket_url": "https://www.ticketmaster.com/matilda-the-musical-tickets/artist/1601714",
-      "attraction_url": "https://www.ticketmaster.com/matilda-the-musical-tickets/artist/1601714",
-      "ticket_links": [
-        {
-          "country": "MX",
-          "url": "https://www.ticketmaster.com/matilda-the-musical-tickets/artist/1601714"
-        }
-      ],
-      "image": "https://s1.ticketm.net/dam/a/3a7/1dd61e1a-f7d0-4109-8334-d4c1ffbd03a7_SOURCE",
-      "tour_name": null,
-      "verified": true,
-      "source": "ticketmaster",
-      "onsale_only": true,
-      "group": "matilda el musical con emilia",
-      "link_kind": "ticketing",
-      "tag": "Broadway/West End"
-    },
-    {
-      "id": "tm-kika-edgar-en-ac-stico-el-cantoral",
-      "title": "Kika Edgar en Acústico.",
-      "type": "tour",
-      "venue": "El Cantoral",
-      "city": "Mexico",
-      "country": "Mexico",
-      "lat": 19.361982,
-      "lng": -99.166296,
-      "start_date": "2026-06-20",
-      "end_date": "2026-06-20",
-      "ticket_url": "https://www.ticketmaster.com/kika-edgar-tickets/artist/2781769",
-      "attraction_url": "https://www.ticketmaster.com/kika-edgar-tickets/artist/2781769",
-      "ticket_links": [
-        {
-          "country": "MX",
-          "url": "https://www.ticketmaster.com/kika-edgar-tickets/artist/2781769"
-        }
-      ],
-      "image": "https://s1.ticketm.net/dam/a/ce1/a25189c2-6952-4894-b524-65e354502ce1_SOURCE",
-      "tour_name": null,
-      "verified": true,
-      "source": "ticketmaster",
-      "onsale_only": true,
-      "group": "kika edgar en acustico",
+      "group": "waistwatchers the musical",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -25064,63 +23873,7 @@
       "onsale_only": true,
       "group": "mentiverso",
       "link_kind": "ticketing",
-      "tag": "Broadway/West End"
-    },
-    {
-      "id": "tm-descubriendo-a-cri-cri-teatro-hidalgo",
-      "title": "Descubriendo a Cri Cri",
-      "type": "tour",
-      "venue": "Teatro Hidalgo",
-      "city": "México",
-      "country": "Mexico",
-      "lat": 19.436677,
-      "lng": -99.141874,
-      "start_date": "2026-06-28",
-      "end_date": "2026-06-28",
-      "ticket_url": "https://www.ticketmaster.com/descubriendo-a-cri-cri-tickets/artist/2910493",
-      "attraction_url": "https://www.ticketmaster.com/descubriendo-a-cri-cri-tickets/artist/2910493",
-      "ticket_links": [
-        {
-          "country": "MX",
-          "url": "https://www.ticketmaster.com/descubriendo-a-cri-cri-tickets/artist/2910493"
-        }
-      ],
-      "image": "https://s1.ticketm.net/dam/a/b35/ddd84410-aaf5-49e8-aa2a-688596876b35_TABLET_LANDSCAPE_LARGE_16_9.jpg",
-      "tour_name": null,
-      "verified": true,
-      "source": "ticketmaster",
-      "onsale_only": true,
-      "group": "descubriendo a cri cri",
-      "link_kind": "ticketing",
-      "tag": "Broadway/West End"
-    },
-    {
-      "id": "tm-treintonas-cuarentonas-y-muy-chingonas-teatro-tepeyac",
-      "title": "Treintonas, cuarentonas ¡Y muy chingonas!",
-      "type": "tour",
-      "venue": "Teatro Tepeyac",
-      "city": "México",
-      "country": "Mexico",
-      "lat": 19.473365,
-      "lng": -99.121365,
-      "start_date": "2026-07-03",
-      "end_date": "2026-07-26",
-      "ticket_url": "https://www.ticketmaster.com/treintonas-cuarentonas-y-muy-chingonas-tickets/artist/2252751",
-      "attraction_url": "https://www.ticketmaster.com/treintonas-cuarentonas-y-muy-chingonas-tickets/artist/2252751",
-      "ticket_links": [
-        {
-          "country": "MX",
-          "url": "https://www.ticketmaster.com/treintonas-cuarentonas-y-muy-chingonas-tickets/artist/2252751"
-        }
-      ],
-      "image": "https://s1.ticketm.net/dam/a/f35/359d411b-5568-4f04-a0c8-2b8671714f35_SOURCE",
-      "tour_name": null,
-      "verified": true,
-      "source": "ticketmaster",
-      "onsale_only": true,
-      "group": "treintonas cuarentonas y muy chingonas",
-      "link_kind": "ticketing",
-      "tag": "Broadway/West End"
+      "tag": "西語音樂劇"
     },
     {
       "id": "tm-matilda-el-musical-auditorio-banamex",
@@ -25146,7 +23899,7 @@
       "verified": true,
       "source": "ticketmaster",
       "onsale_only": true,
-      "group": "matilda el musical",
+      "group": "matilda",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -25179,34 +23932,6 @@
       "tag": "Broadway/West End"
     },
     {
-      "id": "tm-beatles-rolling-stones-con-los-grupos-morsa-y-kamelot-teatro-tepeyac",
-      "title": "Beatles & Rolling Stones, con los grupos Morsa y Kamelot",
-      "type": "tour",
-      "venue": "Teatro Tepeyac",
-      "city": "México",
-      "country": "Mexico",
-      "lat": 19.473365,
-      "lng": -99.121365,
-      "start_date": "2026-07-12",
-      "end_date": "2026-07-12",
-      "ticket_url": "https://www.ticketmaster.com/beatles-rolling-stones-con-los-grupos-tickets/artist/2551179",
-      "attraction_url": "https://www.ticketmaster.com/beatles-rolling-stones-con-los-grupos-tickets/artist/2551179",
-      "ticket_links": [
-        {
-          "country": "MX",
-          "url": "https://www.ticketmaster.com/beatles-rolling-stones-con-los-grupos-tickets/artist/2551179"
-        }
-      ],
-      "image": "https://s1.ticketm.net/dam/a/a4e/2477b337-d811-4976-87e1-606a7bfe8a4e_SOURCE",
-      "tour_name": null,
-      "verified": true,
-      "source": "ticketmaster",
-      "onsale_only": true,
-      "group": "beatles rolling stones con los grupos morsa y kamelot",
-      "link_kind": "ticketing",
-      "tag": "Broadway/West End"
-    },
-    {
       "id": "tm-hoy-no-me-puedo-levantar-20-a-os-despu-s-centro-cultural-teatro-i",
       "title": "Hoy No Me Puedo Levantar, 20 años después",
       "type": "tour",
@@ -25232,35 +23957,7 @@
       "onsale_only": true,
       "group": "hoy no me puedo levantar 20 anos despues",
       "link_kind": "ticketing",
-      "tag": "Broadway/West End"
-    },
-    {
-      "id": "tm-el-fantasma-de-la-pera-teatro-de-los-insurgentes",
-      "title": "El Fantasma de la Ópera",
-      "type": "tour",
-      "venue": "Teatro de los Insurgentes",
-      "city": "México",
-      "country": "Mexico",
-      "lat": 19.364163,
-      "lng": -99.18247,
-      "start_date": "2026-08-01",
-      "end_date": "2026-08-30",
-      "ticket_url": "https://www.ticketmaster.com/el-fantasma-de-la-opera-mexico-tickets/artist/3900274",
-      "attraction_url": "https://www.ticketmaster.com/el-fantasma-de-la-opera-mexico-tickets/artist/3900274",
-      "ticket_links": [
-        {
-          "country": "MX",
-          "url": "https://www.ticketmaster.com/el-fantasma-de-la-opera-mexico-tickets/artist/3900274"
-        }
-      ],
-      "image": "https://s1.ticketm.net/dam/a/070/c050c462-20a4-47f0-8a22-2943b7ff3070_SOURCE",
-      "tour_name": null,
-      "verified": true,
-      "source": "ticketmaster",
-      "onsale_only": true,
-      "group": "el fantasma de la opera",
-      "link_kind": "ticketing",
-      "tag": "Broadway/West End"
+      "tag": "西語音樂劇"
     },
     {
       "id": "tm-la-novicia-rebelde-centro-cultural-teatro-i",
@@ -25286,7 +23983,7 @@
       "verified": true,
       "source": "ticketmaster",
       "onsale_only": true,
-      "group": "la novicia rebelde",
+      "group": "sound of music",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -25314,7 +24011,7 @@
       "verified": true,
       "source": "ticketmaster",
       "onsale_only": true,
-      "group": "papa por siempre",
+      "group": "mrs doubtfire",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -25344,7 +24041,7 @@
       "onsale_only": true,
       "group": "mentiras el musical",
       "link_kind": "ticketing",
-      "tag": "Broadway/West End"
+      "tag": "西語音樂劇"
     },
     {
       "id": "tm-mentiras-el-musical-teatro-galer-as",
@@ -25372,7 +24069,7 @@
       "onsale_only": true,
       "group": "mentiras el musical",
       "link_kind": "ticketing",
-      "tag": "Broadway/West End"
+      "tag": "西語音樂劇"
     },
     {
       "id": "tm-anastasia-sydney-lyric",
@@ -25899,7 +24596,7 @@
       "verified": true,
       "source": "ticketmaster",
       "onsale_only": true,
-      "group": "nyt production of disney s the little mermaid",
+      "group": "nyt production of disneys the little mermaid",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -26152,34 +24849,6 @@
       "source": "ticketmaster",
       "onsale_only": true,
       "group": "jesus christ superstar",
-      "link_kind": "ticketing",
-      "tag": "Broadway/West End"
-    },
-    {
-      "id": "tm-mamma-mia-the-party-the-o2",
-      "title": "Mamma Mia! The Party",
-      "type": "tour",
-      "venue": "The O2",
-      "city": "London",
-      "country": "UK",
-      "lat": 51.503038,
-      "lng": 0.003154,
-      "start_date": "2026-06-14",
-      "end_date": "2027-04-04",
-      "ticket_url": "https://www.ticketmaster.com/mamma-mia-the-party-tickets/artist/2141740",
-      "attraction_url": "https://www.ticketmaster.com/mamma-mia-the-party-tickets/artist/2141740",
-      "ticket_links": [
-        {
-          "country": "GB",
-          "url": "https://www.ticketmaster.com/mamma-mia-the-party-tickets/artist/2141740"
-        }
-      ],
-      "image": "https://s1.ticketm.net/dam/a/dd1/8cfa7d0c-241e-41b8-a131-75f4813bfdd1_SOURCE",
-      "tour_name": null,
-      "verified": true,
-      "source": "ticketmaster",
-      "onsale_only": true,
-      "group": "mamma mia the party",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -26459,7 +25128,7 @@
       "verified": true,
       "source": "ticketmaster",
       "onsale_only": true,
-      "group": "jeff wayne s musical version of the war of the worlds",
+      "group": "jeff waynes musical version of the war of the worlds",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -26487,7 +25156,7 @@
       "verified": true,
       "source": "ticketmaster",
       "onsale_only": true,
-      "group": "jeff wayne s musical version of the war of the worlds",
+      "group": "jeff waynes musical version of the war of the worlds",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -26599,7 +25268,7 @@
       "verified": true,
       "source": "ticketmaster",
       "onsale_only": true,
-      "group": "jeff wayne s musical version of the war of the worlds",
+      "group": "jeff waynes musical version of the war of the worlds",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -26739,7 +25408,7 @@
       "verified": true,
       "source": "ticketmaster",
       "onsale_only": true,
-      "group": "jeff wayne s musical version of the war of the worlds",
+      "group": "jeff waynes musical version of the war of the worlds",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -26945,7 +25614,7 @@
       "verified": true,
       "source": "ticketmaster",
       "onsale_only": true,
-      "group": "jeff wayne s musical version of the war of the worlds",
+      "group": "jeff waynes musical version of the war of the worlds",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -27550,7 +26219,7 @@
       "onsale_only": true,
       "group": "oliver twist",
       "link_kind": "ticketing",
-      "tag": "Broadway/West End"
+      "tag": "歐陸原創"
     },
     {
       "id": "tm-evita-50-years-the-golden-jubilee-stadsschouwburg-antwerpen",
@@ -27576,7 +26245,7 @@
       "verified": true,
       "source": "ticketmaster",
       "onsale_only": true,
-      "group": "evita 50 years the golden jubilee",
+      "group": "evita",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -27604,7 +26273,7 @@
       "verified": true,
       "source": "ticketmaster",
       "onsale_only": true,
-      "group": "grease is the word",
+      "group": "grease",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -27634,35 +26303,7 @@
       "onsale_only": true,
       "group": "de spiekpietjes 2026",
       "link_kind": "ticketing",
-      "tag": "Broadway/West End"
-    },
-    {
-      "id": "tm-lion-le-roi-est-de-retour-th-tre-royal",
-      "title": "LION - Le Roi est de retour",
-      "type": "tour",
-      "venue": "Théâtre Royal",
-      "city": "Mons",
-      "country": "Belgium",
-      "lat": 50.455416,
-      "lng": 3.952304,
-      "start_date": "2026-12-05",
-      "end_date": "2026-12-05",
-      "ticket_url": "https://www.ticketmaster.com/lion-le-roi-est-de-retour-tickets/artist/4461674",
-      "attraction_url": "https://www.ticketmaster.com/lion-le-roi-est-de-retour-tickets/artist/4461674",
-      "ticket_links": [
-        {
-          "country": "BE",
-          "url": "https://www.ticketmaster.com/lion-le-roi-est-de-retour-tickets/artist/4461674"
-        }
-      ],
-      "image": "https://s1.ticketm.net/dam/a/86e/fdd4df2e-7d6f-42c8-92a3-ebfaafbb986e_SOURCE",
-      "tour_name": null,
-      "verified": true,
-      "source": "ticketmaster",
-      "onsale_only": true,
-      "group": "lion le roi est de retour",
-      "link_kind": "ticketing",
-      "tag": "Broadway/West End"
+      "tag": "歐陸原創"
     },
     {
       "id": "tm-oliver-twist-stadsschouwburg-antwerpen",
@@ -27690,7 +26331,7 @@
       "onsale_only": true,
       "group": "oliver twist",
       "link_kind": "ticketing",
-      "tag": "Broadway/West End"
+      "tag": "歐陸原創"
     },
     {
       "id": "tm-101-dalmati-rs-capitole-gent",
@@ -27716,7 +26357,7 @@
       "verified": true,
       "source": "ticketmaster",
       "onsale_only": true,
-      "group": "101 dalmatiers",
+      "group": "101 dalmatians",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -27746,7 +26387,7 @@
       "onsale_only": true,
       "group": "oliver twist",
       "link_kind": "ticketing",
-      "tag": "Broadway/West End"
+      "tag": "歐陸原創"
     },
     {
       "id": "tm-101-dalmati-rs-stadsschouwburg-antwerpen",
@@ -27772,7 +26413,7 @@
       "verified": true,
       "source": "ticketmaster",
       "onsale_only": true,
-      "group": "101 dalmatiers",
+      "group": "101 dalmatians",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -27800,7 +26441,7 @@
       "verified": true,
       "source": "ticketmaster",
       "onsale_only": true,
-      "group": "cinderella de musical",
+      "group": "cinderella",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -27828,7 +26469,7 @@
       "verified": true,
       "source": "ticketmaster",
       "onsale_only": true,
-      "group": "cinderella de musical",
+      "group": "cinderella",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -27856,7 +26497,7 @@
       "verified": true,
       "source": "ticketmaster",
       "onsale_only": true,
-      "group": "cinderella de musical",
+      "group": "cinderella",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -27884,7 +26525,7 @@
       "verified": true,
       "source": "ticketmaster",
       "onsale_only": true,
-      "group": "de kleine zeemeermin de musical",
+      "group": "little mermaid",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -27912,7 +26553,7 @@
       "verified": true,
       "source": "ticketmaster",
       "onsale_only": true,
-      "group": "la legende de monte",
+      "group": "count of monte cristo",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -27940,7 +26581,7 @@
       "verified": true,
       "source": "ticketmaster",
       "onsale_only": true,
-      "group": "de tovenaar van oz",
+      "group": "wizard of oz",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -28235,7 +26876,7 @@
       "verified": true,
       "source": "ticketmaster",
       "onsale_only": true,
-      "group": "askepot",
+      "group": "cinderella",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -28291,7 +26932,7 @@
       "verified": true,
       "source": "ticketmaster",
       "onsale_only": true,
-      "group": "askepot",
+      "group": "cinderella",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -28405,7 +27046,7 @@
       "onsale_only": true,
       "group": "et juleeventyr",
       "link_kind": "ticketing",
-      "tag": "Broadway/West End"
+      "tag": "歐陸原創"
     },
     {
       "id": "tm-the-julekalender-aalborghallen",
@@ -28433,7 +27074,7 @@
       "onsale_only": true,
       "group": "julekalender",
       "link_kind": "ticketing",
-      "tag": "Broadway/West End"
+      "tag": "歐陸原創"
     },
     {
       "id": "tm-sunset-boulevard-det-ny-teater",
@@ -28489,7 +27130,7 @@
       "onsale_only": true,
       "group": "ternet ninja",
       "link_kind": "ticketing",
-      "tag": "Broadway/West End"
+      "tag": "歐陸原創"
     },
     {
       "id": "tm-frost-aalborghallen",
@@ -28515,7 +27156,7 @@
       "verified": true,
       "source": "ticketmaster",
       "onsale_only": true,
-      "group": "frost",
+      "group": "frozen",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -28543,7 +27184,7 @@
       "verified": true,
       "source": "ticketmaster",
       "onsale_only": true,
-      "group": "a christmas carol il canto di natale",
+      "group": "a christmas carol",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -28571,7 +27212,7 @@
       "verified": true,
       "source": "ticketmaster",
       "onsale_only": true,
-      "group": "a christmas carol il canto di natale",
+      "group": "a christmas carol",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -28629,7 +27270,7 @@
       "onsale_only": true,
       "group": "forza venite gente",
       "link_kind": "ticketing",
-      "tag": "Broadway/West End"
+      "tag": "歐陸原創"
     },
     {
       "id": "tm-forza-venite-gente-il-musical-gran-teatro-geox",
@@ -28657,7 +27298,7 @@
       "onsale_only": true,
       "group": "forza venite gente",
       "link_kind": "ticketing",
-      "tag": "Broadway/West End"
+      "tag": "歐陸原創"
     },
     {
       "id": "tm-cenerentola-il-musical-gran-teatro-geox",
@@ -28683,7 +27324,7 @@
       "verified": true,
       "source": "ticketmaster",
       "onsale_only": true,
-      "group": "cenerentola il musical",
+      "group": "cinderella",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -28711,7 +27352,7 @@
       "verified": true,
       "source": "ticketmaster",
       "onsale_only": true,
-      "group": "cenerentola il musical",
+      "group": "cinderella",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -28741,7 +27382,7 @@
       "onsale_only": true,
       "group": "forza venite gente",
       "link_kind": "ticketing",
-      "tag": "Broadway/West End"
+      "tag": "歐陸原創"
     },
     {
       "id": "tm-oliver-twist-koffers-produksjoner-chateau-neuf-storsalen",
@@ -28767,175 +27408,7 @@
       "verified": true,
       "source": "ticketmaster",
       "onsale_only": true,
-      "group": "oliver twist koffers produksjoner",
-      "link_kind": "ticketing",
-      "tag": "Broadway/West End"
-    },
-    {
-      "id": "tm-mamma-mia-the-party-tyrol",
-      "title": "Mamma Mia! The Party",
-      "type": "tour",
-      "venue": "Tyrol",
-      "city": "Stockholm",
-      "country": "Sweden",
-      "lat": 59.324167,
-      "lng": 18.096365,
-      "start_date": "2026-08-20",
-      "end_date": "2026-11-28",
-      "ticket_url": "https://www.ticketmaster.com/mamma-mia-the-party-tickets/artist/2141740",
-      "attraction_url": "https://www.ticketmaster.com/mamma-mia-the-party-tickets/artist/2141740",
-      "ticket_links": [
-        {
-          "country": "SE",
-          "url": "https://www.ticketmaster.com/mamma-mia-the-party-tickets/artist/2141740"
-        }
-      ],
-      "image": "https://s1.ticketm.net/dam/a/08d/3e62af05-2974-4fea-836f-c0c75ed0008d_SOURCE",
-      "tour_name": null,
-      "verified": true,
-      "source": "ticketmaster",
-      "onsale_only": true,
-      "group": "mamma mia the party",
-      "link_kind": "ticketing",
-      "tag": "Broadway/West End"
-    },
-    {
-      "id": "tm-oh-what-a-night-sara-kulturhus-stage-1",
-      "title": "Oh What a Night",
-      "type": "tour",
-      "venue": "Sara kulturhus Stage 1",
-      "city": "Skellefteå",
-      "country": "Sweden",
-      "lat": 64.752049,
-      "lng": 20.953974,
-      "start_date": "2026-10-02",
-      "end_date": "2026-10-03",
-      "ticket_url": "https://www.ticketmaster.com/oh-what-a-night-tickets/artist/911127",
-      "attraction_url": "https://www.ticketmaster.com/oh-what-a-night-tickets/artist/911127",
-      "ticket_links": [
-        {
-          "country": "SE",
-          "url": "https://www.ticketmaster.com/oh-what-a-night-tickets/artist/911127"
-        }
-      ],
-      "image": "https://s1.ticketm.net/dam/a/b40/fc1a0079-7a88-478e-936c-58e59aeefb40_SOURCE",
-      "tour_name": null,
-      "verified": true,
-      "source": "ticketmaster",
-      "onsale_only": true,
-      "group": "oh what a night",
-      "link_kind": "ticketing",
-      "tag": "Broadway/West End"
-    },
-    {
-      "id": "tm-family-show-mamma-mia-the-party-tyrol",
-      "title": "Family Show - Mamma Mia! The Party",
-      "type": "tour",
-      "venue": "Tyrol",
-      "city": "Stockholm",
-      "country": "Sweden",
-      "lat": 59.324167,
-      "lng": 18.096365,
-      "start_date": "2026-10-25",
-      "end_date": "2026-10-25",
-      "ticket_url": "https://www.ticketmaster.com/mamma-mia-the-party-tickets/artist/2141740",
-      "attraction_url": "https://www.ticketmaster.com/mamma-mia-the-party-tickets/artist/2141740",
-      "ticket_links": [
-        {
-          "country": "SE",
-          "url": "https://www.ticketmaster.com/mamma-mia-the-party-tickets/artist/2141740"
-        }
-      ],
-      "image": "https://s1.ticketm.net/dam/a/08d/3e62af05-2974-4fea-836f-c0c75ed0008d_SOURCE",
-      "tour_name": null,
-      "verified": true,
-      "source": "ticketmaster",
-      "onsale_only": true,
-      "group": "family show mamma mia the party",
-      "link_kind": "ticketing",
-      "tag": "Broadway/West End"
-    },
-    {
-      "id": "tm-ata-demirer-gazinosu-alt-noluk-amphi-theater",
-      "title": "Ata Demirer Gazinosu",
-      "type": "tour",
-      "venue": "Altınoluk Amphi Theater",
-      "city": "Balıkesir",
-      "country": "Turkey",
-      "lat": 39.57724,
-      "lng": 26.740868,
-      "start_date": "2026-07-18",
-      "end_date": "2026-07-18",
-      "ticket_url": "https://www.biletix.com/performance/55AD4/001/TURKIYE/tr",
-      "attraction_url": null,
-      "ticket_links": [
-        {
-          "country": "TR",
-          "url": "https://www.biletix.com/performance/55AD4/001/TURKIYE/tr"
-        }
-      ],
-      "image": "https://s1.ticketm.net/dam/c/07d/fda8c807-42eb-4b81-9f16-f3a8367e107d_106371_TABLET_LANDSCAPE_LARGE_16_9.jpg",
-      "tour_name": null,
-      "verified": true,
-      "source": "ticketmaster",
-      "onsale_only": true,
-      "group": "ata demirer gazinosu",
-      "link_kind": "ticketing",
-      "tag": "Broadway/West End"
-    },
-    {
-      "id": "tm-ata-demirer-gazinosu-e-me-open-air-theatre",
-      "title": "Ata Demirer Gazinosu",
-      "type": "tour",
-      "venue": "Çeşme Open Air Theatre",
-      "city": "İzmir",
-      "country": "Turkey",
-      "lat": 38.322944,
-      "lng": 26.308631,
-      "start_date": "2026-07-22",
-      "end_date": "2026-07-22",
-      "ticket_url": "https://www.biletix.com/performance/55AD6/001/TURKIYE/tr",
-      "attraction_url": null,
-      "ticket_links": [
-        {
-          "country": "TR",
-          "url": "https://www.biletix.com/performance/55AD6/001/TURKIYE/tr"
-        }
-      ],
-      "image": "https://s1.ticketm.net/dam/c/07d/fda8c807-42eb-4b81-9f16-f3a8367e107d_106371_TABLET_LANDSCAPE_LARGE_16_9.jpg",
-      "tour_name": null,
-      "verified": true,
-      "source": "ticketmaster",
-      "onsale_only": true,
-      "group": "ata demirer gazinosu",
-      "link_kind": "ticketing",
-      "tag": "Broadway/West End"
-    },
-    {
-      "id": "tm-ata-demirer-gazinosu-harbiye-cemil-topuzlu-a-khava-tiyatrosu",
-      "title": "Ata Demirer Gazinosu",
-      "type": "tour",
-      "venue": "Harbiye Cemil Topuzlu Açıkhava Tiyatrosu",
-      "city": "İstanbul",
-      "country": "Turkey",
-      "lat": 41.046061,
-      "lng": 28.99003,
-      "start_date": "2026-08-04",
-      "end_date": "2026-08-04",
-      "ticket_url": "https://www.biletix.com/performance/55AD7/001/TURKIYE/tr",
-      "attraction_url": null,
-      "ticket_links": [
-        {
-          "country": "TR",
-          "url": "https://www.biletix.com/performance/55AD7/001/TURKIYE/tr"
-        }
-      ],
-      "image": "https://s1.ticketm.net/dam/c/07d/fda8c807-42eb-4b81-9f16-f3a8367e107d_106371_TABLET_LANDSCAPE_LARGE_16_9.jpg",
-      "tour_name": null,
-      "verified": true,
-      "source": "ticketmaster",
-      "onsale_only": true,
-      "group": "ata demirer gazinosu",
+      "group": "oliver",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -29036,7 +27509,7 @@
       "end_date": "2026-07-11",
       "ticket_url": "https://www.ticketmaster.com/the-addams-family-tickets/artist/1732718",
       "attraction_url": "https://www.ticketmaster.com/the-addams-family-tickets/artist/1732718",
-      "image": "https://s1.ticketm.net/dam/a/343/3faa932d-6a39-44df-97a9-ec4e7fb96343_SOURCE",
+      "image": "https://teatromadrid.com/wp-content/uploads/2017/05/TEATRO_MADRID-La_familia-addams-el-musical-CARTEL-400x575.jpg",
       "tour_name": null,
       "verified": true,
       "onsale_only": true,
@@ -29058,7 +27531,7 @@
       "end_date": "2026-10-31",
       "ticket_url": "https://www.ticketmaster.com/the-addams-family-tickets/artist/1732718",
       "attraction_url": "https://www.ticketmaster.com/the-addams-family-tickets/artist/1732718",
-      "image": "https://s1.ticketm.net/dam/a/343/3faa932d-6a39-44df-97a9-ec4e7fb96343_SOURCE",
+      "image": "https://teatromadrid.com/wp-content/uploads/2017/05/TEATRO_MADRID-La_familia-addams-el-musical-CARTEL-400x575.jpg",
       "tour_name": null,
       "verified": true,
       "onsale_only": true,
@@ -30098,7 +28571,7 @@
       "end_date": "2026-06-21",
       "ticket_url": "https://www.ticketmaster.com/dear-evan-hansen-touring-tickets/artist/2480264",
       "attraction_url": "https://www.ticketmaster.com/dear-evan-hansen-touring-tickets/artist/2480264",
-      "image": "https://s1.ticketm.net/dam/a/2c8/fcbeb34f-a604-4083-99ea-1f46ca1bd2c8_SOURCE",
+      "image": "https://teatromadrid.com/wp-content/uploads/2026/01/TEATRO-MADRID-querido-evan-hansen-CARTEL.jpg",
       "tour_name": null,
       "verified": true,
       "onsale_only": true,
@@ -30120,7 +28593,7 @@
       "end_date": "2026-10-15",
       "ticket_url": "https://www.ticketmaster.com/dear-evan-hansen-touring-tickets/artist/2480264",
       "attraction_url": "https://www.ticketmaster.com/dear-evan-hansen-touring-tickets/artist/2480264",
-      "image": "https://s1.ticketm.net/dam/a/2c8/fcbeb34f-a604-4083-99ea-1f46ca1bd2c8_SOURCE",
+      "image": "https://teatromadrid.com/wp-content/uploads/2026/01/TEATRO-MADRID-querido-evan-hansen-CARTEL.jpg",
       "tour_name": null,
       "verified": true,
       "onsale_only": true,
@@ -30142,7 +28615,7 @@
       "end_date": "2026-11-22",
       "ticket_url": "https://www.ticketmaster.com/dear-evan-hansen-touring-tickets/artist/2480264",
       "attraction_url": "https://www.ticketmaster.com/dear-evan-hansen-touring-tickets/artist/2480264",
-      "image": "https://s1.ticketm.net/dam/a/2c8/fcbeb34f-a604-4083-99ea-1f46ca1bd2c8_SOURCE",
+      "image": "https://teatromadrid.com/wp-content/uploads/2026/01/TEATRO-MADRID-querido-evan-hansen-CARTEL.jpg",
       "tour_name": null,
       "verified": true,
       "onsale_only": true,
@@ -30164,34 +28637,12 @@
       "end_date": "2027-02-14",
       "ticket_url": "https://www.ticketmaster.com/dear-evan-hansen-touring-tickets/artist/2480264",
       "attraction_url": "https://www.ticketmaster.com/dear-evan-hansen-touring-tickets/artist/2480264",
-      "image": "https://s1.ticketm.net/dam/a/2c8/fcbeb34f-a604-4083-99ea-1f46ca1bd2c8_SOURCE",
+      "image": "https://teatromadrid.com/wp-content/uploads/2026/01/TEATRO-MADRID-querido-evan-hansen-CARTEL.jpg",
       "tour_name": null,
       "verified": true,
       "onsale_only": true,
       "source": "ticketmaster",
       "group": "dear evan hansen",
-      "link_kind": "ticketing",
-      "tag": "Broadway/West End"
-    },
-    {
-      "id": "tmt-evita-stadsschouwburg-antwerpen",
-      "title": "Evita",
-      "type": "tour",
-      "venue": "Stadsschouwburg Antwerpen",
-      "city": "Antwerp",
-      "country": "Belgium",
-      "lat": 51.215499,
-      "lng": 4.409893,
-      "start_date": "2026-11-13",
-      "end_date": "2026-11-15",
-      "ticket_url": "https://www.ticketmaster.com/evita-tickets/artist/844915",
-      "attraction_url": "https://www.ticketmaster.com/evita-tickets/artist/844915",
-      "image": "https://pb2.jegy.hu/imgs/system-4/program/000/191/305/evita-222-131-286665.jpg",
-      "tour_name": null,
-      "verified": true,
-      "onsale_only": true,
-      "source": "ticketmaster",
-      "group": "evita",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -30252,12 +28703,12 @@
       "end_date": "2027-02-26",
       "ticket_url": "https://www.ticketmaster.com/frost-tickets/artist/3700388",
       "attraction_url": "https://www.ticketmaster.com/frost-tickets/artist/3700388",
-      "image": "https://s1.ticketm.net/dam/a/f69/023dc5d8-f778-4f1d-9242-8f1adf254f69_SOURCE",
+      "image": "https://www.shiki.jp/shared/images/ogp/0084.jpg",
       "tour_name": null,
       "verified": true,
       "onsale_only": true,
       "source": "ticketmaster",
-      "group": "frost",
+      "group": "frozen",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -30274,12 +28725,12 @@
       "end_date": "2027-02-22",
       "ticket_url": "https://www.ticketmaster.com/frost-the-musical-tickets/artist/3644034",
       "attraction_url": "https://www.ticketmaster.com/frost-the-musical-tickets/artist/3644034",
-      "image": "https://s1.ticketm.net/dam/a/f69/023dc5d8-f778-4f1d-9242-8f1adf254f69_SOURCE",
+      "image": "https://www.shiki.jp/shared/images/ogp/0084.jpg",
       "tour_name": null,
       "verified": true,
       "onsale_only": true,
       "source": "ticketmaster",
-      "group": "frost",
+      "group": "frozen",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -31303,7 +29754,7 @@
       "verified": true,
       "onsale_only": true,
       "source": "ticketmaster",
-      "group": "hell s kitchen",
+      "group": "hells kitchen",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -31325,7 +29776,7 @@
       "verified": true,
       "onsale_only": true,
       "source": "ticketmaster",
-      "group": "hell s kitchen",
+      "group": "hells kitchen",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -31347,7 +29798,7 @@
       "verified": true,
       "onsale_only": true,
       "source": "ticketmaster",
-      "group": "hell s kitchen",
+      "group": "hells kitchen",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -31369,7 +29820,7 @@
       "verified": true,
       "onsale_only": true,
       "source": "ticketmaster",
-      "group": "hell s kitchen",
+      "group": "hells kitchen",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -31391,7 +29842,7 @@
       "verified": true,
       "onsale_only": true,
       "source": "ticketmaster",
-      "group": "hell s kitchen",
+      "group": "hells kitchen",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -31413,7 +29864,7 @@
       "verified": true,
       "onsale_only": true,
       "source": "ticketmaster",
-      "group": "hell s kitchen",
+      "group": "hells kitchen",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -31457,7 +29908,7 @@
       "verified": true,
       "onsale_only": true,
       "source": "ticketmaster",
-      "group": "jeff wayne s the war of the worlds",
+      "group": "jeff waynes the war of the worlds",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -31479,7 +29930,7 @@
       "verified": true,
       "onsale_only": true,
       "source": "ticketmaster",
-      "group": "jeff wayne s the war of the worlds",
+      "group": "jeff waynes the war of the worlds",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -31501,7 +29952,7 @@
       "verified": true,
       "onsale_only": true,
       "source": "ticketmaster",
-      "group": "jeff wayne s the war of the worlds",
+      "group": "jeff waynes the war of the worlds",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -31523,7 +29974,7 @@
       "verified": true,
       "onsale_only": true,
       "source": "ticketmaster",
-      "group": "jeff wayne s the war of the worlds",
+      "group": "jeff waynes the war of the worlds",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -31545,7 +29996,7 @@
       "verified": true,
       "onsale_only": true,
       "source": "ticketmaster",
-      "group": "jeff wayne s the war of the worlds",
+      "group": "jeff waynes the war of the worlds",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -31567,7 +30018,7 @@
       "verified": true,
       "onsale_only": true,
       "source": "ticketmaster",
-      "group": "jeff wayne s the war of the worlds",
+      "group": "jeff waynes the war of the worlds",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -31589,7 +30040,7 @@
       "verified": true,
       "onsale_only": true,
       "source": "ticketmaster",
-      "group": "jeff wayne s the war of the worlds",
+      "group": "jeff waynes the war of the worlds",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -31611,7 +30062,7 @@
       "verified": true,
       "onsale_only": true,
       "source": "ticketmaster",
-      "group": "jeff wayne s the war of the worlds",
+      "group": "jeff waynes the war of the worlds",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -31633,7 +30084,7 @@
       "verified": true,
       "onsale_only": true,
       "source": "ticketmaster",
-      "group": "jeff wayne s the war of the worlds",
+      "group": "jeff waynes the war of the worlds",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -31655,7 +30106,7 @@
       "verified": true,
       "onsale_only": true,
       "source": "ticketmaster",
-      "group": "jeff wayne s the war of the worlds",
+      "group": "jeff waynes the war of the worlds",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -31677,7 +30128,7 @@
       "verified": true,
       "onsale_only": true,
       "source": "ticketmaster",
-      "group": "jeff wayne s the war of the worlds",
+      "group": "jeff waynes the war of the worlds",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -31699,7 +30150,7 @@
       "verified": true,
       "onsale_only": true,
       "source": "ticketmaster",
-      "group": "jeff wayne s the war of the worlds",
+      "group": "jeff waynes the war of the worlds",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -31721,7 +30172,7 @@
       "verified": true,
       "onsale_only": true,
       "source": "ticketmaster",
-      "group": "jeff wayne s the war of the worlds",
+      "group": "jeff waynes the war of the worlds",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -31743,7 +30194,7 @@
       "verified": true,
       "onsale_only": true,
       "source": "ticketmaster",
-      "group": "jeff wayne s the war of the worlds",
+      "group": "jeff waynes the war of the worlds",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -31765,7 +30216,7 @@
       "verified": true,
       "onsale_only": true,
       "source": "ticketmaster",
-      "group": "jeff wayne s the war of the worlds",
+      "group": "jeff waynes the war of the worlds",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -31787,7 +30238,7 @@
       "verified": true,
       "onsale_only": true,
       "source": "ticketmaster",
-      "group": "jeff wayne s the war of the worlds",
+      "group": "jeff waynes the war of the worlds",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -31809,7 +30260,7 @@
       "verified": true,
       "onsale_only": true,
       "source": "ticketmaster",
-      "group": "jeff wayne s the war of the worlds",
+      "group": "jeff waynes the war of the worlds",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -32294,50 +30745,6 @@
       "tag": "Broadway/West End"
     },
     {
-      "id": "tmt-matilda-centro-cultural-teatro-i",
-      "title": "Matilda The Musical",
-      "type": "tour",
-      "venue": "Centro Cultural Teatro I",
-      "city": "México",
-      "country": "Mexico",
-      "lat": 19.424791,
-      "lng": -99.154315,
-      "start_date": "2026-06-14",
-      "end_date": "2026-06-21",
-      "ticket_url": "https://www.ticketmaster.com/matilda-the-musical-tickets/artist/1601714",
-      "attraction_url": "https://www.ticketmaster.com/matilda-the-musical-tickets/artist/1601714",
-      "image": "https://images.ctfassets.net/6pezt69ih962/k6qL80R5pVTdHj3qkhSBm/0928ade5b3764759c54499a2f9ee7d11/480x720.jpg",
-      "tour_name": null,
-      "verified": true,
-      "onsale_only": true,
-      "source": "ticketmaster",
-      "group": "matilda",
-      "link_kind": "ticketing",
-      "tag": "Broadway/West End"
-    },
-    {
-      "id": "tmt-matilda-auditorio-banamex",
-      "title": "Matilda The Musical",
-      "type": "tour",
-      "venue": "Auditorio Banamex",
-      "city": "Monterrey",
-      "country": "Mexico",
-      "lat": 25.677595,
-      "lng": -100.280868,
-      "start_date": "2026-07-04",
-      "end_date": "2026-07-04",
-      "ticket_url": "https://www.ticketmaster.com/matilda-the-musical-tickets/artist/1601714",
-      "attraction_url": "https://www.ticketmaster.com/matilda-the-musical-tickets/artist/1601714",
-      "image": "https://images.ctfassets.net/6pezt69ih962/k6qL80R5pVTdHj3qkhSBm/0928ade5b3764759c54499a2f9ee7d11/480x720.jpg",
-      "tour_name": null,
-      "verified": true,
-      "onsale_only": true,
-      "source": "ticketmaster",
-      "group": "matilda",
-      "link_kind": "ticketing",
-      "tag": "Broadway/West End"
-    },
-    {
       "id": "tmt-matilda-lewis-family-playhouse",
       "title": "Matilda The Musical",
       "type": "tour",
@@ -32504,7 +30911,7 @@
       "end_date": "2026-09-30",
       "ticket_url": "https://www.ticketmaster.com/menopause-the-musical-tickets/artist/874566",
       "attraction_url": "https://www.ticketmaster.com/menopause-the-musical-tickets/artist/874566",
-      "image": "https://s1.ticketm.net/dam/a/c0a/17a4606e-3bcd-4871-8c31-655376467c0a_SOURCE",
+      "image": "https://pb2.jegy.hu/imgs/system-4/program/000/189/390/menopauza-jatekszin-222-131-281689.jpg",
       "tour_name": null,
       "verified": true,
       "onsale_only": true,
@@ -32526,7 +30933,7 @@
       "end_date": "2026-10-18",
       "ticket_url": "https://www.ticketmaster.com/menopause-the-musical-tickets/artist/874566",
       "attraction_url": "https://www.ticketmaster.com/menopause-the-musical-tickets/artist/874566",
-      "image": "https://s1.ticketm.net/dam/a/c0a/17a4606e-3bcd-4871-8c31-655376467c0a_SOURCE",
+      "image": "https://pb2.jegy.hu/imgs/system-4/program/000/189/390/menopauza-jatekszin-222-131-281689.jpg",
       "tour_name": null,
       "verified": true,
       "onsale_only": true,
@@ -32548,7 +30955,7 @@
       "end_date": "2026-10-29",
       "ticket_url": "https://www.ticketmaster.com/menopause-the-musical-tickets/artist/874566",
       "attraction_url": "https://www.ticketmaster.com/menopause-the-musical-tickets/artist/874566",
-      "image": "https://s1.ticketm.net/dam/a/c0a/17a4606e-3bcd-4871-8c31-655376467c0a_SOURCE",
+      "image": "https://pb2.jegy.hu/imgs/system-4/program/000/189/390/menopauza-jatekszin-222-131-281689.jpg",
       "tour_name": null,
       "verified": true,
       "onsale_only": true,
@@ -32570,7 +30977,7 @@
       "end_date": "2026-11-03",
       "ticket_url": "https://www.ticketmaster.com/menopause-the-musical-tickets/artist/874566",
       "attraction_url": "https://www.ticketmaster.com/menopause-the-musical-tickets/artist/874566",
-      "image": "https://s1.ticketm.net/dam/a/c0a/17a4606e-3bcd-4871-8c31-655376467c0a_SOURCE",
+      "image": "https://pb2.jegy.hu/imgs/system-4/program/000/189/390/menopauza-jatekszin-222-131-281689.jpg",
       "tour_name": null,
       "verified": true,
       "onsale_only": true,
@@ -32592,7 +30999,7 @@
       "end_date": "2026-11-19",
       "ticket_url": "https://www.ticketmaster.com/menopause-the-musical-tickets/artist/874566",
       "attraction_url": "https://www.ticketmaster.com/menopause-the-musical-tickets/artist/874566",
-      "image": "https://s1.ticketm.net/dam/a/c0a/17a4606e-3bcd-4871-8c31-655376467c0a_SOURCE",
+      "image": "https://pb2.jegy.hu/imgs/system-4/program/000/189/390/menopauza-jatekszin-222-131-281689.jpg",
       "tour_name": null,
       "verified": true,
       "onsale_only": true,
@@ -32614,7 +31021,7 @@
       "end_date": "2026-11-22",
       "ticket_url": "https://www.ticketmaster.com/menopause-the-musical-tickets/artist/874566",
       "attraction_url": "https://www.ticketmaster.com/menopause-the-musical-tickets/artist/874566",
-      "image": "https://s1.ticketm.net/dam/a/c0a/17a4606e-3bcd-4871-8c31-655376467c0a_SOURCE",
+      "image": "https://pb2.jegy.hu/imgs/system-4/program/000/189/390/menopauza-jatekszin-222-131-281689.jpg",
       "tour_name": null,
       "verified": true,
       "onsale_only": true,
@@ -32708,28 +31115,6 @@
       "onsale_only": true,
       "source": "ticketmaster",
       "group": "nunsense",
-      "link_kind": "ticketing",
-      "tag": "Broadway/West End"
-    },
-    {
-      "id": "tmt-oh-what-a-night-whitby-pavilion-theatre",
-      "title": "Oh What a Night",
-      "type": "tour",
-      "venue": "Whitby Pavilion Theatre",
-      "city": "Whitby",
-      "country": "UK",
-      "lat": 54.490911,
-      "lng": -0.620435,
-      "start_date": "2026-10-03",
-      "end_date": "2026-10-03",
-      "ticket_url": "https://www.ticketmaster.com/oh-what-a-night-tickets/artist/911127",
-      "attraction_url": "https://www.ticketmaster.com/oh-what-a-night-tickets/artist/911127",
-      "image": "https://s1.ticketm.net/dam/a/b40/fc1a0079-7a88-478e-936c-58e59aeefb40_SOURCE",
-      "tour_name": null,
-      "verified": true,
-      "onsale_only": true,
-      "source": "ticketmaster",
-      "group": "oh what a night",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -34150,28 +32535,6 @@
       "lng": 5.365292,
       "start_date": "2027-11-06",
       "end_date": "2027-11-07",
-      "ticket_url": "https://www.ticketmaster.com/wizard-of-oz-tickets/artist/804544",
-      "attraction_url": "https://www.ticketmaster.com/wizard-of-oz-tickets/artist/804544",
-      "image": "https://s1.ticketm.net/dam/a/a6d/289fb3df-34c3-4457-999b-175db59d1a6d_SOURCE",
-      "tour_name": null,
-      "verified": true,
-      "onsale_only": true,
-      "source": "ticketmaster",
-      "group": "wizard of oz",
-      "link_kind": "ticketing",
-      "tag": "Broadway/West End"
-    },
-    {
-      "id": "tmt-wizard-of-oz-stadsschouwburg-antwerpen",
-      "title": "Wizard Of Oz",
-      "type": "tour",
-      "venue": "Stadsschouwburg Antwerpen",
-      "city": "Antwerp",
-      "country": "Belgium",
-      "lat": 51.215499,
-      "lng": 4.409893,
-      "start_date": "2027-12-03",
-      "end_date": "2027-12-28",
       "ticket_url": "https://www.ticketmaster.com/wizard-of-oz-tickets/artist/804544",
       "attraction_url": "https://www.ticketmaster.com/wizard-of-oz-tickets/artist/804544",
       "image": "https://s1.ticketm.net/dam/a/a6d/289fb3df-34c3-4457-999b-175db59d1a6d_SOURCE",

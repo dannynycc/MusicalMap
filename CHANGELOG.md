@@ -11,6 +11,22 @@
 
 ---
 
+## [v0.35.0] - 2026-06-14 13:55
+### 新增(西語類別 + tag fallback 重設計)
+- **新增「西語音樂劇」類別**(西/墨/拉美),前端第 8 個 filter pill。
+- **重寫 `classify_tag` fallback**:Broadway/West End 不再是萬用預設(原本把 `Hola Raffaella` 等西語原創誤掃進百老匯),只給①已註冊英美作品②真正英美來源(broadway/atg/londontheatre)③英語市場(US/UK/CA/AU/NZ/IE…)。其餘按國家落地:西/墨→西語、德奧區→德奧、法→法式、其他歐陸(比/荷/丹/義/北歐…)→歐陸原創(語意擴為「全歐陸在地原創」)。
+
+### 修正(完整通盤查證 — 4 桶 web 稽核)
+- 派研究 agent **web 查證西語/韓國/歐陸/日本四桶共約 200 齣**,逐筆判定「是不是真音樂劇」+「血統/是否進口」。
+- **非音樂劇大清除(共剔 139 筆)**:新增 `data/not_musical.json` 排除清單 + 多語 pattern。揪出被當音樂劇的:話劇(La cena de los idiotas=Le Dîner de Cons、Drácula una comedia)、致敬演唱會(Hola Raffaella=Raffaella Carrà 致敬、tributo a ABBA/Tina、Oh What a Night、Nino Bravo)、a cappella/朗誦(Dimensión vocal、Los diarios de Manhattan)、魔術/默劇/喜劇變奏(PaGAGnini、Les Virtuoses、Slapstick、Limbo)、餐飲體驗(Mamma Mia! The Party)、**2.5次元舞台劇 19 齣**(ブルーロック/チェンソーマン/ダンダダン/龍が如く/あんステ/おそ松 on STAGE/刀剣乱舞 ICE SHOW…;2.5次元有「ミュージカル」也有「舞台」,只留前者)、兒童偶戲(Bluey's Big Play)、Jr./Junior 校園刪減版。
+- **翻譯/在地語標題的進口劇歸位**(模糊比對抓不到、靠查證):西語 `El Rey León`=Lion King、`El Fantasma de la Ópera`=Phantom、`La Familia Addams`、`Querido Evan Hansen`、`La Novicia Rebelde`=Sound of Music、`Matilda`、`Papá por siempre`=Mrs. Doubtfire、`Treintonas`=WaistWatchers、`Sunday in the park…`、`Los últimos 5 años`=Last Five Years、`Asesinato para dos`=Murder for Two、`Gutenberg`;歐陸 `DONAHA`=Full Monty、`Divotvorný hrnec`=Finian's Rainbow、`Menopauza`=Menopause、`Pět let zpět`=Last Five Years、`Sopranistky`=Our Ladies、`Oltári srácok`=Altar Boyz、`Monte-Cristo`、`Oliver!`;德奧誤判 `& Juliet`/`Tarzan`/`The Devil Wears Prada` → Broadway/West End;韓國 `Lempicka`/`Midnight`/`Barbershopera` → 英美、`Again Romeo & Jeliet` → 法式、`Ghost & Lady` → 日本(四季);日本 `BOOP!`/`NINE` → 英美。
+- **Death Note 韓國場(Daejeon)** → 日本原創。**I Love You, You're Perfect, Now Change** → Broadway/West End(1996 Off-Broadway 長壽劇)。
+- **根因修 `_norm` 撇號不一致**:直引號 `'` 被當詞界變空格("you're"→"you re")、彎引號 `'` 被 ascii-ignore 丟掉("youre"),同劇不同引號對不上、dedup 失效;改一開始統一刪所有撇號變體,連帶修 disney 前綴。
+- **過濾 Jr./Junior 校園版**;**discover 報告擴及西語/所有在地桶**。
+- 最終分布(1295 齣,8 類):Broadway/West End 1091 · 日本 50 · 歐陸 42 · 台灣 38 · 西語 27 · 韓國 21 · 德奧 17 · 法式 9。非音樂劇剔除累計 139。
+### 誠實限制
+- 四個高汙染桶(西/韓/歐陸/日)已 web 查證;Broadway/West End 桶(1091,多來自英美策展源)以 pattern 掃過,未逐筆 web 查證,殘留少量可能漏網。`build --discover` 每次列疑似未對照進口供持續修。
+
 ## [v0.34.0] - 2026-06-14 13:10
 ### 新增(類型/血統 tag 分類 + 篩選)
 - **每齣劇自動標血統 tag**(`build_shows.py` classify_tag):Broadway/West End、德奧音樂劇、法式音樂劇、台灣原創、日本原創、韓國原創、歐陸原創。判定看**作品血統不看演出地**——勾「Broadway/West End」連在澳洲/匈牙利巡演的 Wicked、布達佩斯的 `Macskák`(Cats)都一起出現;Les Misérables 歸 Broadway/West End。
