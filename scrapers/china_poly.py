@@ -153,6 +153,18 @@ def main():
             continue
         lat, lng = coord
         start, end = parse_dates(r.get("productShowTime"))
+        # Resident/immersive spaces (保利剧聚空间…) carry a year-long booking WINDOW as
+        # productShowTime, but tickets only go on sale in short batches — so a hard
+        # far-future end (e.g. 2027-06-27) overstates a confirmed run. Treat any run
+        # longer than ~4 months as open-ended (end=null): the frontend then applies
+        # its rolling ~12-month horizon, same as Broadway/West End resident long-runners.
+        if start and end:
+            try:
+                from datetime import date as _d
+                if (_d.fromisoformat(end) - _d.fromisoformat(start)).days > 120:
+                    end = None
+            except ValueError:
+                pass
         city_cn = r.get("cityName") or ""
         sid = f"poly-{pid}"
         title = clean_title(r["productNameShort"])
