@@ -10,6 +10,7 @@ const TODAY = new Date();
 const TODAY0 = (() => { const d = new Date(); d.setHours(0, 0, 0, 0); return d; })();
 const CUR_Y = TODAY0.getFullYear(), CUR_M = TODAY0.getMonth();
 let MAX_MONTHS = 36;                          // slider range; trimmed to the data's latest start (recomputeRange)
+let MIN_MONTHS = 0;                           // most-negative offset (into the PAST); set from archive index
 let monthOffset = 0;                          // 0 = current month; the map shows this whole month
 // new Date(y, m, 1) auto-normalizes overflowing months, so offset arithmetic is safe.
 const monthStart = () => new Date(CUR_Y, CUR_M + monthOffset, 1);
@@ -123,7 +124,10 @@ function spreadSame(list) {
 }
 
 // ---------- State ----------
-let ALL = [];
+let ALL = [];                                 // live snapshot (current + future) from shows.json
+let ARCH = {};                                // year -> historical runs (lazy-loaded from data/archive/<year>.json)
+let ARCH_INDEX = null;                        // data/archive/index.json (which years exist)
+const archLoading = {};                       // year -> in-flight fetch promise (dedup)
 let markerById = {};
 let didFitBounds = false;
 
@@ -276,9 +280,36 @@ function popupHtml(show) {
 }
 
 // ---------- Filtering ----------
+// Which records back the current view: the live snapshot for THIS month onward,
+// the immutable historical archive when the slider is dragged into the PAST. A run
+// can start in year Y-1 and cross into Y, so a past view pools both year files.
+function pool() {
+  if (monthOffset >= 0) return ALL;
+  const y = monthStart().getFullYear();
+  return [...(ARCH[y] || []), ...(ARCH[y - 1] || [])];
+}
+
+// Lazy-load a past year's archive file once (no-op for years that don't exist or
+// are already loaded). Returns a promise so the view can await it before render.
+function loadArchiveYear(y) {
+  if (ARCH[y]) return Promise.resolve();
+  if (!ARCH_INDEX || !ARCH_INDEX.years || !(y in ARCH_INDEX.years)) { ARCH[y] = []; return Promise.resolve(); }
+  if (archLoading[y]) return archLoading[y];
+  archLoading[y] = fetch(`data/archive/${y}.json`, { cache: "no-store" })
+    .then((r) => r.json()).then((d) => { ARCH[y] = d.runs || []; })
+    .catch(() => { ARCH[y] = []; });
+  return archLoading[y];
+}
+
+function ensureArchiveForView() {
+  if (monthOffset >= 0) return Promise.resolve();
+  const y = monthStart().getFullYear();
+  return Promise.all([loadArchiveYear(y), loadArchiveYear(y - 1)]);
+}
+
 function visibleShows() {
   const q = els.search.value.trim().toLowerCase();
-  return ALL.filter((s) => {
+  return pool().filter((s) => {
     if (!overlapsMonth(s)) return false;
     if (ACTIVE_TAGS.size && !ACTIVE_TAGS.has(s.tag)) return false;
     if (!q) return true;
@@ -467,6 +498,10 @@ async function boot() {
     els.note.textContent = "⚠ 無法載入 data/shows.json（需用本機 server 開啟，見 README）";
     console.error(e);
   }
+  // historical archive index (enables dragging the timeline into the past)
+  try {
+    ARCH_INDEX = await (await fetch("data/archive/index.json", { cache: "no-store" })).json();
+  } catch (e) { ARCH_INDEX = null; }   // archive optional — map still works without it
   buildTagFilters();
   recomputeRange();
   render();
@@ -486,6 +521,14 @@ function recomputeRange() {
   els.tRange.max = MAX_MONTHS;
   const d = new Date(CUR_Y, CUR_M + MAX_MONTHS, 1);
   els.tMonth.max = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}`;
+
+  // Extend the slider into the PAST as far as the archive goes (Jan of its earliest year).
+  if (ARCH_INDEX && ARCH_INDEX.years && Object.keys(ARCH_INDEX.years).length) {
+    const earliest = Math.min(...Object.keys(ARCH_INDEX.years).map(Number));
+    MIN_MONTHS = (earliest - CUR_Y) * 12 - CUR_M;   // offset to that year's January
+    els.tRange.min = MIN_MONTHS;
+    els.tMonth.min = `${earliest}-01`;
+  }
 }
 
 els.search.addEventListener("input", render);
@@ -495,11 +538,12 @@ els.search.addEventListener("keydown", (e) => { if (e.key === "Escape") { els.se
 // Granularity is one MONTH: dragging selects a month, and any show whose run
 // crosses that month appears (see overlapsMonth). No day-level precision.
 function setMonth(offset, { fromSlider = false, fromPicker = false } = {}) {
-  monthOffset = Math.min(Math.max(offset, 0), MAX_MONTHS);   // clamp [this month, +MAX_MONTHS]
+  monthOffset = Math.min(Math.max(offset, MIN_MONTHS), MAX_MONTHS);  // clamp [earliest archive, +MAX_MONTHS]
   if (!fromSlider) els.tRange.value = monthOffset;
   if (!fromPicker) els.tMonth.value = selYM();
   els.tToday.style.visibility = monthOffset === 0 ? "hidden" : "visible";
-  render();
+  // past months read the archive (lazy-loaded) — wait for it, then render
+  ensureArchiveForView().then(render);
 }
 
 els.tRange.max = MAX_MONTHS;

@@ -67,6 +67,10 @@ jobs:
           python scrapers/booking_horizon.py || echo "::warning::booking_horizon failed"
           python scrapers/build_shows.py
           python scrapers/gen_catalog.py
+          # Accumulate today's snapshot into the immutable historical archive
+          # (separate stateful layer; never deletes closed runs). Pure build above
+          # stays stateless. See scrapers/archive.py.
+          python scrapers/archive.py     || echo "::warning::archive accumulate failed"
         env:
           # set this repo secret to enable Ticketmaster refresh in CI; if unset
           # the scraper no-ops and the committed ticketmaster.json is kept.
@@ -77,7 +81,7 @@ jobs:
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/*.json
+          git add data/*.json data/archive/*.json
           if git diff --cached --quiet; then
             echo "No data changes."; exit 0
           fi

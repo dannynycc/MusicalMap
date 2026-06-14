@@ -11,6 +11,18 @@
 
 ---
 
+## [v0.36.0] - 2026-06-14 14:31
+### 新增(歷史檔案系統 — 時間軸可往回看過去)
+- **歷史累積層 `scrapers/archive.py`**(獨立於純函式 build):每天把當前快照**累積**進不可變歷史檔 `data/archive/<year>.json`(`archive = 舊 ∪ 今天`)。原本 build 每天**覆蓋**、閉幕劇永久消失;現在改成只增不刪。
+  - **架構原則**:事實(劇名/劇院/日期)閉幕後**凍結永不改**;tag/group **每次重算**(我改分類規則,歷史顯示自動更新,日期不動)。身分用穩定自然鍵(group|城市|劇院|起始年)。**刻意把有狀態的累積與「可重跑的純 build」隔開**,避免每次 build 回頭竄改歷史。
+- **git 歷史回溯 `scrapers/bootstrap_archive.py`**:CI 本來就每天 commit `shows.json`,git 即不可變每日快照;一次性挖出來灌入 archive → 免費拿到專案開始至今的回溯資料。已 bootstrap:1355 runs / 跨 1988–2028。
+- **人工策展深歷史 `data/curated_history.json`**:archive 開始前就閉幕的重要檔期(Hamilton 2015-、Phantom NY 1988–2023),售票 API 抓不到過去,改 Wikipedia/Wikidata 查證;只記事實,tag 自動套。與自動累積同 schema,用 `provenance` 區分,策展事實不被 scrape 覆蓋。
+- **前端時間軸往「過去」延伸**(app.js):滑桿 min 依 archive index 延到最早年份;拖到過去月份時 lazy-load 對應年檔(現在/未來仍讀 live `shows.json`);`overlapsMonth` 不變。
+- **CI**:build 後加跑 `archive.py`,commit `data/archive/`。
+### 誠實限制
+- 回溯只到「CI 開始 commit shows.json」那天(本專案約 4 天前);更早(含 2025/12 多數)挖不到,需靠 `curated_history.json` 人工補。**愈早開 archive 愈值錢**(每天不存就丟)。
+- 深歷史策展是持續工作(下一步:用 Wikidata/Wikipedia 拉主要劇歷年檔期填 curated)。
+
 ## [v0.35.0] - 2026-06-14 13:55
 ### 新增(西語類別 + tag fallback 重設計)
 - **新增「西語音樂劇」類別**(西/墨/拉美),前端第 8 個 filter pill。
