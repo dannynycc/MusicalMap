@@ -11,6 +11,10 @@
 
 ---
 
+## [v0.40.1] - 2026-06-14 20:19
+### 變更
+- 再補英美作品中文譯名(Funny Girl 妙女郎、Spamalot 火腿騎士、Gypsy 玫瑰舞后、Nine 華麗年代、Heathers 希德姊妹幫、La Cage 鳥籠、& Juliet 茱麗葉)。英美作品 94 部有中文名,剩 18 部為無通用中文名的冷門/新劇(Hair、Gutenberg、BOOP、Lempicka 等)。
+
 ## [v0.40.0] - 2026-06-14 19:44
 ### 新增(挪威 + 中東 + 中文搜尋強化)
 - **挪威**(`norway.py`):7 齣——Folketeateret(Les Misérables、Annie、Phantom 2027)、Det Norske Teatret(Europavisjonar、Pippi、Cabaret)、Trøndelag(Matilda)。建築級座標。修正:TM Discovery API 不含挪威常駐音樂劇(誤判),改專屬 scraper。
