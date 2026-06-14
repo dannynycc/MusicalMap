@@ -29,6 +29,7 @@ import io
 import gzip
 import time
 import urllib.request
+import urllib.parse
 from pathlib import Path
 
 try:
@@ -154,12 +155,19 @@ def main():
         start, end = parse_dates(r.get("productShowTime"))
         city_cn = r.get("cityName") or ""
         sid = f"poly-{pid}"
-        tour = r.get("tourId") or "0"
+        title = clean_title(r["productNameShort"])
+        # Poly's own weixin.polyt.cn detail page is a WeChat-only SPA — in a normal
+        # browser it just renders the blank shell, so it's useless as a web link.
+        # Point instead at a Damai search for the show title: Damai is China's main
+        # ticketing platform and the search page works for real browsers (its bot
+        # wall only blocks automation, not human clicks), so users land on a real
+        # buy page. Search uses the Chinese title (before build canonicalises it).
+        ticket = "https://search.damai.cn/search?keyword=" + urllib.parse.quote(title)
         shows[sid] = {
-            "id": sid, "title": clean_title(r["productNameShort"]), "type": "limited",
+            "id": sid, "title": title, "type": "limited",
             "venue": venue, "city": CITY_EN.get(city_cn, city_cn), "country": "China",
             "lat": lat, "lng": lng, "start_date": start, "end_date": end,
-            "ticket_url": f"https://weixin.polyt.cn/projectdetail/{pid}/{tour}",
+            "ticket_url": ticket,
             "image": r.get("verticalPictureUrl") or r.get("productImg") or None,
             "tour_name": None, "verified": True, "source": "polyt.cn",
         }

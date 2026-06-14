@@ -64,6 +64,7 @@ jobs:
           python scrapers/china.py       || echo "::warning::china (shcstheatre) scrape failed"
           python scrapers/china_poly.py  || echo "::warning::china_poly (polyt.cn) scrape failed"
           python scrapers/china_ypiao.py || echo "::warning::china_ypiao (ypiao) scrape failed"
+          python scrapers/china_chinaticket.py || echo "::warning::china_chinaticket (zhongyan) scrape failed"
           python scrapers/interpark.py   || echo "::warning::interpark scrape failed"
           python scrapers/atg.py         || echo "::warning::atg scrape failed"
           python scrapers/stage_de.py    || echo "::warning::stage scrape failed"
