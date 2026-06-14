@@ -1,5 +1,11 @@
 {
   "_note": "Manual corrections applied by build_shows.py AFTER merge, keyed by show id. Use when a source returns wrong or missing coordinates (e.g. it matched a same-named venue in another city). Any field here overrides the scraped value. Keys starting with _ are ignored.",
+  "ip-26007357": {
+    "city": "Daegu",
+    "lat": 35.8331,
+    "lng": 128.5835,
+    "_why": "Again, Romeo & Jeliet = 大邱本土原創小劇場;NOL/interpark 把未知場館預設 Seoul,實為 DREAM HALL @ 478 Apsansunhwan-ro, Nam-gu, Daegu (대덕문화전당), block-level geocode"
+  },
   "bway-39821": {
     "lat": 40.7589,
     "lng": -73.9846,

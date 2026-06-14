@@ -11,6 +11,13 @@
 
 ---
 
+## [v0.37.4] - 2026-06-14 17:16
+### 修正(大邱 DREAM HALL 城市/座標 + 根因)
+- `Again, Romeo & Jeliet` 場館修正:NOL/interpark 把**未知場館一律預設 Seoul**(interpark.py line ~130),導致大邱的 DREAM HALL 被擺到首爾。查證:DREAM HALL = 478 Apsansunhwan-ro, Nam-gu, Daegu(대덕문화전당)。
+  - **現有資料**:overrides.json 加 `ip-26007357` → city=Daegu、lat/lng=35.8331/128.5835。
+  - **根因**:interpark.py VENUES 表新增 `dream hall` → Daegu,未來自動掃也正確(非首爾場館需列入此表才不會被預設 Seoul)。
+- archive 重置(1296 runs)。
+
 ## [v0.37.3] - 2026-06-14 17:06
 ### 修正
 - **`Again, Romeo & Jeliet` 改回韓國原創**(原誤判為法式)。用戶查證:這是大邱本土原創中小型音樂劇(90 分、₩50,000、刻意拼「Jeliet」做區隔),非法語引進的大型《Roméo et Juliette》。移除 works.json 中的錯誤別名。

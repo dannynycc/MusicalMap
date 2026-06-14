@@ -53,6 +53,10 @@ VENUES = {
     "myeongdong art center": ("Myeongdong NANTA Theater", "Seoul", 37.5636, 126.9869),
     "hongdae nanta": ("Hongdae NANTA Theater", "Seoul", 37.5571, 126.9244),
     "kyounghyang art hill": ("Kyounghyang Art Hill (貞洞)", "Seoul", 37.5560, 126.9716),
+    # Non-Seoul venue: unknown venues default to Seoul (line ~130), so a Daegu hall
+    # like DREAM HALL gets mis-placed unless listed here. (478 Apsansunhwan-ro, Nam-gu,
+    # Daegu / 대덕문화전당, block-level geocode.)
+    "dream hall": ("DREAM HALL (大邱 대덕문화전당)", "Daegu", 35.8331, 128.5835),
     # Daegu (DIMF circuit)
     "suseong artpia": ("Suseong Artpia", "Daegu", 35.8419, 128.6190),
     "ayang art center": ("Daegu Ayang Art Center", "Daegu", 35.8854, 128.6357),
