@@ -166,11 +166,17 @@ body { font-family: Roboto, Arial, "Microsoft JhengHei", sans-serif; background:
 }
 body { -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; background: #f6f7f9; }
 
-/* sticky header: soft frosted bar */
+/* sticky header: soft frosted bar — inner content shares the page's 1200px
+   centred column + 18px padding so the brand/nav line up with the content below
+   (was full-bleed → looked wider than the centred body on large screens). */
 #me-top {
-  height: 60px; padding: 0 26px;
+  height: 60px; padding: 0; display: block;
   background: rgba(255,255,255,.82); backdrop-filter: saturate(1.4) blur(10px);
   border-bottom: 1px solid rgba(15,23,42,.07); box-shadow: 0 1px 0 rgba(15,23,42,.02);
+}
+#me-top .top-inner {
+  max-width: 1200px; height: 100%; margin: 0 auto; padding: 0 18px;
+  display: flex; align-items: center; justify-content: space-between;
 }
 #me-brand { font-size: 21px; letter-spacing: -.2px; }
 #me-top nav a { transition: color .15s var(--r-ease); }

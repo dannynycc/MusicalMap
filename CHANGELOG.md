@@ -11,6 +11,10 @@
 
 ---
 
+## [v0.38.1] - 2026-06-14 17:47
+### 修正(header 與內容寬度不一致)
+- u.html / me.html 的 header(#me-top)原本滿版(brand/nav 貼視窗邊),內容區(#me-main)卻是 1200px 置中 → 寬螢幕上 header 左右各比內容寬約 40px、對不齊。把 header 內容包進 `.top-inner`(max-width 1200 + 18px padding、置中),與下方內容同欄對齊。以 headless Chrome 本機 render 截圖驗證對齊無誤。
+
 ## [v0.38.0] - 2026-06-14 17:38
 ### 變更(個人頁 u.html UI 精緻化)
 - 公開個人頁「精緻淺色」polish(純 CSS,沿用既有 FlightRadar 橘色調性、不動 JS/結構):霜面 sticky header、左錨大標題 hero(漸層字 + 強調線)、pill 分頁、數據條/彩色圖卡圓角加深 + hover 上浮、地圖圓角 16px、log 卡片 hover 上浮 + 海報縮圖陰影、層次柔陰影與平滑過場、行動版置中。
