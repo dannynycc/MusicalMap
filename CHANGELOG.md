@@ -11,6 +11,19 @@
 
 ---
 
+## [v0.43.0] - 2026-06-14 23:17
+### 新增:中國其他城市(北京/武漢/杭州/南京)+ Fan Letter 台譯
+- **中國從「只有上海」擴到 5 城市**(`scrapers/china_ypiao.py`):大麥/貓眼/保利/天橋官網全是 SPA+反爬牆,改用有票网(ypiao.com)聚合站的伺服器渲染列表做多城市發掘。只當**發掘來源**:僅留 `音乐剧《…》`(濾掉演唱會/音樂會)、座標**只認** `cn_venues.json`(Google geocode+GCJ→WGS84)、**配不到已驗證座標的劇直接跳過**(蘇州《瑪蒂爾達》因狮山大剧院座標 Google 連兩次配錯——配到杭州大劇院/工業園區文化中心——寧缺勿放錯而略過)。新增 6 齣:
+  - 北京:道林格雷的画像(韓國原創)、人间失格(中國原創)
+  - 武漢:剧院魅影 → **The Phantom of the Opera / Broadway/West End**(繼承 Phantom 海報)
+  - 上海:危险游戏 → **Thrill Me / Broadway/West End**(外百老匯)
+  - 南京:她的海(中國原創)、杭州:蝶变(中國原創)
+- **座標補強**:`cn_venues.json` +上海共舞台、杭州东坡大剧院(Google geocode+GCJ→WGS84,均做城市範圍 sanity check)。
+- **血統登記**:works.json +The Picture of Dorian Gray(韓)、Thrill Me(Off-Broadway);Phantom 補簡體 alias「剧院魅影/歌剧魅影」(原本只認繁體導致武漢場誤判中國原創)。
+- **Fan Letter** 補台灣譯名《光的來信》alias(你提供:台譯光的來信、陸譯粉絲來信、韓原팬레터)。
+- 上海文化廣場座標對齊 cn_venues 的 Google 值(31.2127,121.4581)。
+- 全站 1332 → **1338 齣**,中國 1 → **14 齣 / 5 城市**,audit 0 misses。
+
 ## [v0.42.0] - 2026-06-14 22:48
 ### 新增:中國音樂劇(上海文化廣場)
 - **中國資料來源上線**(`scrapers/china.py`):大麥/貓眼有反爬牆(x5secdata 滑塊),改從**場館層級**抓——上海文化廣場(上汽·上海文化廣場)是大陸音樂劇旗艦館,且 ASP.NET 前端後面有乾淨 JSON API:

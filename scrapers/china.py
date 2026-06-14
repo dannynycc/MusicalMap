@@ -39,10 +39,11 @@ UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like 
 HDR = {"User-Agent": UA, "Referer": BASE + "/Program/programList.aspx",
        "X-Requested-With": "XMLHttpRequest", "Content-Type": "application/x-www-form-urlencoded"}
 
-# Shanghai Culture Square 上海文化广场 — 复兴中路597号, 黄浦区 (WGS84, matching the
-# convention of the existing manual Shanghai marker; Leaflet/OSM expect WGS84).
+# Shanghai Culture Square 上海文化广场 — 复兴中路597号, 黄浦区 (WGS84; same Google-
+# geocoded coord as data/cn_venues.json, which is GCJ-02→WGS-84 corrected for the
+# OSM/Leaflet basemap).
 VENUE = "上海文化广场 Shanghai Culture Square"
-LAT, LNG = 31.2103, 121.4628
+LAT, LNG = 31.212666, 121.458089
 MONTHS_AHEAD = 13
 
 
