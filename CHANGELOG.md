@@ -11,6 +11,21 @@
 
 ---
 
+## [v0.39.0] - 2026-06-14 19:13
+### 新增(歐洲擴張 — 平行 agent 建 4 國 scraper)
+- **義大利**(`italy.py`,teatro.it JSON-LD):22 齣(Notre Dame de Paris、Moulin Rouge、Il Principe d'Egitto、Forza Venite Gente、Frida、Lupin…);主流是 TicketOne/teatro.it 非 Ticketmaster,補上漏掉的 7 成。
+- **瑞典**(`sweden.py`,showtic.se JSON API):8 齣(Chicago、Grease、Emil i Lönneberga、Ronja…)。
+- **荷蘭**(`netherlands.py`,stage-entertainment.nl SSR):2 齣(& Juliet、Moulin Rouge;NL 目前僅這些常駐)。
+- **波蘭**(`poland.py`,eBilet.pl):scraper 已建,惟 eBilet 目前回 429 限流,待 CI/限流解除產出。
+- 四者皆過濾非音樂劇 + 大場館建築級座標;Google geocode 補新場館座標。掛每日 CI。
+
+### 變更 / 修正(標題與搜尋)
+- **拿掉中文譯名前綴**:`Jesus Christ Superstar 萬世巨星` → `Jesus Christ Superstar`、`Cats Macskák` → `Cats`(顯示 canonical;中文/外語別名移到 `alt` 欄位**仍可搜尋**)。
+- **搜尋去重音 + 去標點(全劇通用)**:`les mise`→Les Misérables、`notre dame`→Notre-Dame de Paris、`mamma mia`→Mamma Mia!、`悲慘世界`→Les Misérables 都命中(app.js `fold()`)。
+- **標題清理**:`{Company} presents X`→`X`(Lyric Theatre of Oklahoma presents Annie → Annie)、剝場館尾綴(`Jesus Christ Superstar - The Palladium`→…)、外語 `Il/De Musical` 尾綴正規化(`Moulin Rouge! Il Musical`→對到 Moulin Rouge)。
+- 修 `stage-entertainment` 字串誤把**荷蘭**站當德國(`& Juliet` 一度標德奧);改以國家判定。
+- works.json 補進口劇別名(Amélie、& Juliet NL、A Christmas Carol 等)。
+
 ## [v0.38.3] - 2026-06-14 18:31
 ### 修正(去重 — 系統性掃全庫)
 - loose-key 審計找出 **8 組「應合併卻分開」**,全是同類病根,根因一次修掉:

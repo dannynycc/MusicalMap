@@ -43,6 +43,11 @@ def _norm(title):
     # REQUIRED — otherwise titles like "High School Musical" get over-stripped
     # to "high" (real bug: its group missed the official-site table entirely).
     t = re.sub(r"\s+the\s+(?:[\w'!\-]+\s+){0,4}musical$", "", t)
+    # foreign "… Il/De/El/Le/Das Musical" suffix (no dash), e.g. Italian
+    # "Moulin Rouge! Il Musical", Dutch "… De Musical" → strip so it matches the
+    # canonical ("moulin rouge"). The article is REQUIRED (so "High School Musical"
+    # — no article before 'musical' — is left intact).
+    t = re.sub(r"\s+(?:il|el|le|la|las|los|das|der|die|de|het|den)\s+musical$", "", t)
     t = re.sub(r"[^a-z0-9]+", " ", t).strip()
     if not t:  # ASCII-strip emptied it (CJK-only title, or a title that IS just
         # "…Musical"). Fall back to Unicode word chars so CJK titles keep a stable,
@@ -58,19 +63,22 @@ def _norm(title):
 # resolves to the same group, tradition, and English prefix. See works.json header.
 def _load_works():
     path = DATA / "works.json"
-    idx, trad_by_cgroup = {}, {}
+    idx, trad_by_cgroup, aliases_by_cgroup = {}, {}, {}
     if not path.exists():
-        return idx, trad_by_cgroup
+        return idx, trad_by_cgroup, aliases_by_cgroup
     for w in json.loads(path.read_text(encoding="utf-8")).get("works", []):
         cgroup = _norm(w["canonical"])
         entry = {"canonical": w["canonical"], "tradition": w.get("tradition"), "cgroup": cgroup}
         trad_by_cgroup[cgroup] = w.get("tradition")
+        # every name a user might type for this work (canonical + 中文/日文/… aliases),
+        # so the map search can match them even though only the canonical is displayed.
+        aliases_by_cgroup[cgroup] = " ".join([w["canonical"], *w.get("aliases", [])])
         for name in [w["canonical"], *w.get("aliases", [])]:
             idx[_norm(name)] = entry           # alias/canonical → canonical work
-    return idx, trad_by_cgroup
+    return idx, trad_by_cgroup, aliases_by_cgroup
 
 
-WORK_IDX, TRADITION_BY_CGROUP = _load_works()
+WORK_IDX, TRADITION_BY_CGROUP, ALIASES_BY_CGROUP = _load_works()
 
 
 def group_key(title):
@@ -89,7 +97,9 @@ def resolve_work(title):
 SOURCE_FILES = ["broadway.json", "westend.json", "tours.json", "intl.json",
                 "shiki.json", "takarazuka.json", "interpark.json",
                 "atg.json", "stage_de.json", "madrid.json", "opentix.json",
-                "utiki.json", "japan.json", "easteurope.json", "manual.json"]
+                "utiki.json", "japan.json", "easteurope.json",
+                "italy.json", "sweden.json", "netherlands.json", "poland.json",
+                "manual.json"]
 
 # When several ticket sources list the SAME show in the SAME city, we keep one
 # record (highest priority = most authoritative venue data) and attach every
@@ -175,6 +185,9 @@ LOC_QUALIFIER_RE = re.compile(
 def clean_title(t):
     t = (t or "").strip()
     t = re.sub(r"\s*\|.*$", "", t)          # drop promoter pipe-tails (… | Official … Packages)
+    # promoter/venue prefix "{Company} presents {Show}" → "{Show}"
+    # ("Lyric Theatre of Oklahoma presents Annie" → "Annie")
+    t = re.sub(r"^.{0,70}?\bpresents\b\s+", "", t, flags=re.I)
     prev = None
     while prev != t:
         prev = t
@@ -196,14 +209,28 @@ def strip_city_qualifier(title, city):
     return title
 
 
-def bilingual(title):
-    """Prepend the canonical English/original for registered works whose title here
-    is in another language → 'Cats Macskák' / 'Jesus Christ Superstar 萬世巨星'.
-    Local original works are unregistered and stay as-is."""
-    w = resolve_work(title)
-    if w and w["canonical"].lower() not in (title or "").lower():
-        return f"{w['canonical']} {title}"
+def strip_venue_qualifier(title, venue):
+    """Strip a trailing ' - {The }X' that merely names the venue, e.g. 'Jesus Christ
+    Superstar - The Palladium' (venue 'London Palladium') → 'Jesus Christ Superstar'.
+    Only strips when the tail is a substring of this record's venue, so real
+    subtitles ('… - The Demon Barber') are left alone."""
+    v = (venue or "").lower().strip()
+    m = re.search(r"\s[-–—]\s*(?:the\s+)?([^-–—]+)$", title or "", flags=re.I)
+    if m and v:
+        tail = m.group(1).strip().lower()
+        if len(tail) >= 4 and tail in v:
+            return title[:m.start()].strip()
     return title
+
+
+def canonical_title(title):
+    """Display the work's CANONICAL name for registered works — NOT the appended
+    foreign/Chinese alias (user dropped the bilingual prepend; 'Jesus Christ
+    Superstar 萬世巨星' → 'Jesus Christ Superstar', 'Cats Macskák' → 'Cats').
+    Unregistered local-original shows keep their own title. Aliases stay in the
+    catalog search blob, so 萬世巨星 / Macskák are still searchable."""
+    w = resolve_work(title)
+    return w["canonical"] if w else title
 
 
 # Events that ticketmaster files under "Musical" but aren't staged musicals —
@@ -280,7 +307,9 @@ def classify_tag(group, source, country):
             return tag
     if "teatromadrid" in src or c in SPANISH_C:
         return "西語音樂劇"
-    if "stage-entertainment" in src or c in GERMAN_C:
+    # German-tradition by COUNTRY (not bare "stage-entertainment" — that also matches
+    # stage-entertainment.nl and wrongly tagged Dutch shows 德奧).
+    if c in GERMAN_C or "stage_de" in src or "stage-entertainment.de" in src:
         return "德奧音樂劇"
     if c == "France":
         return "法式音樂劇"
@@ -350,12 +379,11 @@ def main():
         blob = json.loads(path.read_text(encoding="utf-8"))
         rows = blob.get("shows", [])
         for s in rows:
-            orig = strip_city_qualifier(clean_title(s.get("title")), s.get("city"))
-            # group from the ORIGINAL title — bilingual() may prepend the English
-            # canonical ("Cats Macskák"), which group_key can no longer reduce, so
-            # we fix the canonical group here and read s["group"] downstream.
+            orig = strip_venue_qualifier(
+                strip_city_qualifier(clean_title(s.get("title")), s.get("city")),
+                s.get("venue"))
             s["group"] = group_key(orig)
-            s["title"] = bilingual(orig)
+            s["title"] = canonical_title(orig)   # registered → canonical; else as-is
         for s in rows:
             by_id[s["id"]] = s
         sources.append({"file": name, "count": len(rows), "meta": blob.get("meta", {})})
@@ -577,11 +605,14 @@ def main():
 
     shows = list(by_id.values())
 
-    # link kind + tradition tag. s["group"] is already set (from the ORIGINAL title,
-    # before bilingual() prepended an English canonical) — do NOT recompute it here.
+    # link kind + tradition tag + search aliases. s["group"] is already set (from the
+    # original title) — do NOT recompute it here.
     for s in shows:
         s["link_kind"] = src_kind(s.get("source"))
         s["tag"] = classify_tag(s["group"], s.get("source"), s.get("country"))
+        alt = ALIASES_BY_CGROUP.get(s["group"])   # 中文/日文… aliases, for map search
+        if alt and alt.lower() != (s.get("title") or "").lower():
+            s["alt"] = alt
 
     if "--discover" in sys.argv:
         discover_unmapped(shows)

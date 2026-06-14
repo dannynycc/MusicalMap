@@ -27,6 +27,16 @@ function esc(v) {
     .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
 }
+// Search normaliser: lowercase, strip accents (é→e), drop apostrophes, and turn
+// every other punctuation (hyphens, !, &, …) into spaces, so "notre dame",
+// "Notre-Dame", "les mise", "mamma mia!" all match regardless of accent/punctuation.
+// CJK/Hangul/Kana are preserved so 悲慘世界 still matches.
+const fold = (s) => (s || "").toLowerCase().normalize("NFKD")
+  .replace(/[̀-ͯ]/g, "")                 // strip combining accents
+  .replace(/['’ʼ]/g, "")                  // drop apostrophes (kiki's → kikis)
+  .replace(/[^a-z0-9　-鿿가-힯]+/g, " ")  // other punctuation → space
+  .replace(/\s+/g, " ").trim();
+
 function safeUrl(u) {
   if (!u) return null;
   try {
@@ -344,12 +354,12 @@ function ensureArchiveForView() {
 }
 
 function visibleShows() {
-  const q = els.search.value.trim().toLowerCase();
+  const q = fold(els.search.value.trim());
   return pool().filter((s) => {
     if (!overlapsMonth(s)) return false;
     if (ACTIVE_TAGS.size && !ACTIVE_TAGS.has(s.tag)) return false;
     if (!q) return true;
-    return [s.title, s.city, s.venue, s.tour_name].some((f) => (f || "").toLowerCase().includes(q));
+    return [s.title, s.city, s.venue, s.tour_name, s.alt].some((f) => fold(f).includes(q));
   });
 }
 
