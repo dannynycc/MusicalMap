@@ -1,154 +1,1094 @@
 {
   "_comment": "Canonical musical-works registry — the SINGLE source of truth for (1) tradition tag, (2) cross-language de-dup, (3) bilingual display. One entry per work: `canonical` (English/original display name), `tradition` (Broadway/West End | 德奧音樂劇 | 法式音樂劇 | 日本原創 | 台灣原創 | 韓國原創 | 歐陸原創), and `aliases` (every OTHER title the work appears under across sources/languages). build_shows.py normalises canonical+aliases with group_key and indexes them, so any alias resolves to the same group + tradition + bilingual prefix. Only works needing this are listed: those with a NON-default tradition (anything but Broadway/West End) OR a non-English alias. Plain English-titled Anglo shows are omitted — they default to Broadway/West End. To add coverage: append the work once with all its language variants. Discovery report (build_shows --discover) lists local-source titles that look like unmapped imports.",
   "works": [
-    {"canonical": "The Phantom of the Opera", "tradition": "Broadway/West End", "aliases": ["歌劇魅影", "Az Operaház Fantomja", "Das Phantom der Oper", "Das Phantom der Oper - Die Originalproduktion", "オペラ座の怪人", "El Fantasma de la Ópera", "El Fantasma De La Ópera México"]},
-    {"canonical": "Cats", "tradition": "Broadway/West End", "aliases": ["貓", "Macskák", "キャッツ"]},
-    {"canonical": "Les Misérables", "tradition": "Broadway/West End", "aliases": ["悲慘世界", "Les Mis", "レ・ミゼラブル", "A nyomorultak"]},
-    {"canonical": "Miss Saigon", "tradition": "Broadway/West End", "aliases": ["西貢小姐", "ミス・サイゴン"]},
-    {"canonical": "Mamma Mia!", "tradition": "Broadway/West End", "aliases": ["媽媽咪呀", "媽媽咪呀！", "マンマ・ミーア"]},
-    {"canonical": "Chicago", "tradition": "Broadway/West End", "aliases": ["芝加哥", "シカゴ"]},
-    {"canonical": "The Lion King", "tradition": "Broadway/West End", "aliases": ["獅子王", "ライオンキング", "Az oroszlánkirály", "El Rey León", "Le Roi Lion"]},
-    {"canonical": "Hamilton", "tradition": "Broadway/West End", "aliases": ["漢密爾頓", "漢彌爾頓"]},
-    {"canonical": "The Sound of Music", "tradition": "Broadway/West End", "aliases": ["真善美", "音樂之聲", "A muzsika hangja", "Richard Rodgers - Oscar Hammerstein: A muzsika hangja", "La Novicia Rebelde"]},
-    {"canonical": "Fiddler on the Roof", "tradition": "Broadway/West End", "aliases": ["屋頂上的提琴手", "Hegedűs a háztetőn"]},
-    {"canonical": "Rent", "tradition": "Broadway/West End", "aliases": ["吉屋出租"]},
-    {"canonical": "Next to Normal", "tradition": "Broadway/West End", "aliases": ["近乎正常"]},
-    {"canonical": "Sweeney Todd", "tradition": "Broadway/West End", "aliases": ["理髮師陶德"]},
-    {"canonical": "The Addams Family", "tradition": "Broadway/West End", "aliases": ["阿達一族", "La Familia Addams"]},
-    {"canonical": "Kinky Boots", "tradition": "Broadway/West End", "aliases": ["長靴妖姬"]},
-    {"canonical": "Jesus Christ Superstar", "tradition": "Broadway/West End", "aliases": ["萬世巨星"]},
-    {"canonical": "Shrek", "tradition": "Broadway/West End", "aliases": ["史瑞克", "Shrek Jr.", "シュレック"]},
-    {"canonical": "Charlie and the Chocolate Factory", "tradition": "Broadway/West End", "aliases": ["巧克力冒險工廠"]},
-    {"canonical": "Frozen", "tradition": "Broadway/West End", "aliases": ["冰雪奇緣", "Jégvarázs", "Ledové království", "アナと雪の女王", "Frost"]},
-    {"canonical": "Sister Act", "tradition": "Broadway/West End", "aliases": ["修女也瘋狂", "APÁCA SHOW"]},
-    {"canonical": "The Hunchback of Notre Dame", "tradition": "Broadway/West End", "aliases": ["A Notre Dame-i toronyőr"]},
-    {"canonical": "Madagascar", "tradition": "Broadway/West End", "aliases": ["Madagaszkár zenés kalandtúra"]},
-    {"canonical": "Pretty Woman", "tradition": "Broadway/West End", "aliases": ["麻雀變鳳凰", "Pretty Woman (Micsoda nő!)"]},
-    {"canonical": "Hair", "tradition": "Broadway/West End", "aliases": ["Ragni - Rado - MacDermot: HAIR musical"]},
-    {"canonical": "Wonderland", "tradition": "Broadway/West End", "aliases": ["Wildhorn – Murphy: WONDERLAND musical"]},
-    {"canonical": "Dracula", "tradition": "Broadway/West End", "aliases": ["德古拉"]},
-    {"canonical": "Fifty Shades! The Musical", "tradition": "Broadway/West End", "aliases": ["50 ODSTÍNŮ!"]},
-    {"canonical": "Ghost", "tradition": "Broadway/West End", "aliases": ["第六感生死戀", "ゴースト"]},
-    {"canonical": "Funny Girl", "tradition": "Broadway/West End", "aliases": ["ファニー・ガール"]},
-    {"canonical": "La Cage aux Folles", "tradition": "Broadway/West End", "aliases": ["ラ・カージュ・オ・フォール"]},
-    {"canonical": "Me and My Girl", "tradition": "Broadway/West End", "aliases": ["ミー＆マイガール"]},
-    {"canonical": "Mary Poppins", "tradition": "Broadway/West End", "aliases": ["歡樂滿人間", "メリー・ポピンズ"]},
-    {"canonical": "Sunset Boulevard", "tradition": "Broadway/West End", "aliases": ["日落大道", "サンセット大通り"]},
-    {"canonical": "MJ the Musical", "tradition": "Broadway/West End", "aliases": ["MJ The Michael Jackson Musical"]},
-    {"canonical": "Spamalot", "tradition": "Broadway/West End", "aliases": ["Monty Python's Spamalot"]},
-
-    {"canonical": "Wicked", "tradition": "Broadway/West End", "aliases": ["ウィキッド"]},
-    {"canonical": "SIX", "tradition": "Broadway/West End", "aliases": []},
-    {"canonical": "Aladdin", "tradition": "Broadway/West End", "aliases": ["阿拉丁", "アラジン"]},
-    {"canonical": "Beauty and the Beast", "tradition": "Broadway/West End", "aliases": ["美女與野獸", "美女と野獣"]},
-    {"canonical": "Matilda", "tradition": "Broadway/West End", "aliases": ["瑪蒂達", "マチルダ", "Matilda El Musical", "Matilda el Musical con Elena", "Matilda el Musical con Emilia"]},
-    {"canonical": "The Book of Mormon", "tradition": "Broadway/West End", "aliases": ["摩門經"]},
-    {"canonical": "Dear Evan Hansen", "tradition": "Broadway/West End", "aliases": ["親愛的艾文漢森", "Querido Evan Hansen"]},
-    {"canonical": "Hadestown", "tradition": "Broadway/West End", "aliases": []},
-    {"canonical": "Moulin Rouge!", "tradition": "Broadway/West End", "aliases": ["紅磨坊", "ムーラン・ルージュ"]},
-    {"canonical": "Beetlejuice", "tradition": "Broadway/West End", "aliases": ["陰間大法師", "ビートルジュース"]},
-    {"canonical": "Jersey Boys", "tradition": "Broadway/West End", "aliases": ["澤西男孩", "ジャージー・ボーイズ"]},
-    {"canonical": "School of Rock", "tradition": "Broadway/West End", "aliases": ["搖滾教室"]},
-    {"canonical": "Waitress", "tradition": "Broadway/West End", "aliases": ["女侍情緣", "ウェイトレス"]},
-    {"canonical": "Come from Away", "tradition": "Broadway/West End", "aliases": []},
-    {"canonical": "Annie", "tradition": "Broadway/West End", "aliases": ["安妮", "アニー"]},
-    {"canonical": "Newsies", "tradition": "Broadway/West End", "aliases": ["報童傳奇", "ニュージーズ"]},
-    {"canonical": "West Side Story", "tradition": "Broadway/West End", "aliases": ["西城故事", "ウエスト・サイド・ストーリー"]},
-    {"canonical": "A Chorus Line", "tradition": "Broadway/West End", "aliases": ["歌舞線上", "コーラスライン"]},
-    {"canonical": "Cabaret", "tradition": "Broadway/West End", "aliases": ["酒店", "キャバレー"]},
-    {"canonical": "Hairspray", "tradition": "Broadway/West End", "aliases": ["髮膠明星夢", "ヘアスプレー"]},
-    {"canonical": "Grease", "tradition": "Broadway/West End", "aliases": ["火爆浪子", "グリース", "Grease Is The Word"]},
-    {"canonical": "Evita", "tradition": "Broadway/West End", "aliases": ["艾薇塔", "エビータ", "Evita - 50 years, the golden jubilee"]},
-    {"canonical": "Cinderella", "tradition": "Broadway/West End", "aliases": ["仙履奇緣", "Cenerentola Il Musical", "CINDERELLA, de musical", "Askepot"]},
-    {"canonical": "The Little Mermaid", "tradition": "Broadway/West End", "aliases": ["小美人魚", "La Sirenita", "De Kleine Zeemeermin, de Musical"]},
-    {"canonical": "The Wizard of Oz", "tradition": "Broadway/West End", "aliases": ["綠野仙蹤", "Wizard Of Oz", "De Tovenaar van Oz"]},
-    {"canonical": "101 Dalmatians", "tradition": "Broadway/West End", "aliases": ["101 Dálmatas: The Show", "101 Dalmatiërs"]},
-    {"canonical": "Zorro", "tradition": "Broadway/West End", "aliases": ["El Zorro"]},
-    {"canonical": "A Christmas Carol", "tradition": "Broadway/West End", "aliases": ["小氣財神", "A Christmas Carol - Il Canto Di Natale"]},
-    {"canonical": "Murder for Two", "tradition": "Broadway/West End", "aliases": ["Asesinato para dos"]},
-    {"canonical": "Gutenberg! The Musical!", "tradition": "Broadway/West End", "aliases": ["Gutenberg, el mejor musical del mundo"]},
-
-    {"canonical": "& Juliet", "tradition": "Broadway/West End", "aliases": ["& Juliet de popmusical"]},
-    {"canonical": "Amélie", "tradition": "Broadway/West End", "aliases": ["Amélie - Il Musical", "Amélie Il Musical"]},
-    {"canonical": "Tarzan", "tradition": "Broadway/West End", "aliases": ["泰山"]},
-    {"canonical": "The Devil Wears Prada", "tradition": "Broadway/West End", "aliases": ["穿著Prada的惡魔"]},
-    {"canonical": "Sunday in the Park with George", "tradition": "Broadway/West End", "aliases": []},
-    {"canonical": "The Last Five Years", "tradition": "Broadway/West End", "aliases": ["Los últimos 5 años", "Los últimos 5 años - Playsounds", "Pět let zpět"]},
-    {"canonical": "Ride the Cyclone", "tradition": "Broadway/West End", "aliases": ["Ride The Cyclone el Musical"]},
-    {"canonical": "WaistWatchers The Musical!", "tradition": "Broadway/West End", "aliases": ["Treintonas, cuarentonas ¡Y chingonas!", "Treintonas, cuarentonas ¡Y muy chingonas!"]},
-    {"canonical": "The Full Monty", "tradition": "Broadway/West End", "aliases": ["DONAHA! (Hole dupy)"]},
-    {"canonical": "Finian's Rainbow", "tradition": "Broadway/West End", "aliases": ["Divotvorný hrnec"]},
-    {"canonical": "Menopause The Musical", "tradition": "Broadway/West End", "aliases": ["Menopauza - Játékszín", "Menopauza"]},
-    {"canonical": "Our Ladies of Perpetual Succour", "tradition": "Broadway/West End", "aliases": ["Sopranistky"]},
-    {"canonical": "Altar Boyz", "tradition": "Broadway/West End", "aliases": ["Oltári srácok - Az Aréna!"]},
-    {"canonical": "The Count of Monte Cristo", "tradition": "Broadway/West End", "aliases": ["LA LEGENDE DE MONTE-CRISTO, Le Musical"]},
-    {"canonical": "Oliver!", "tradition": "Broadway/West End", "aliases": ["OLIVER TWIST - Koffers produksjoner"]},
-    {"canonical": "Midnight", "tradition": "Broadway/West End", "aliases": ["2026 Musical Midnight : Actor Musician"]},
-    {"canonical": "Barbershopera", "tradition": "Broadway/West End", "aliases": ["Barber Shopera"]},
-    {"canonical": "Lempicka", "tradition": "Broadway/West End", "aliases": []},
-    {"canonical": "BOOP! The Musical", "tradition": "Broadway/West End", "aliases": []},
-    {"canonical": "Nine", "tradition": "Broadway/West End", "aliases": ["NINE"]},
-    {"canonical": "Dreamgirls", "tradition": "Broadway/West End", "aliases": ["夢幻女郎", "ドリームガールズ"]},
-    {"canonical": "The Color Purple", "tradition": "Broadway/West End", "aliases": ["紫色姐妹花"]},
-    {"canonical": "Tina", "tradition": "Broadway/West End", "aliases": ["Tina - The Tina Turner Musical"]},
-    {"canonical": "Anastasia", "tradition": "Broadway/West End", "aliases": ["真假公主", "アナスタシア"]},
-    {"canonical": "We Will Rock You", "tradition": "Broadway/West End", "aliases": []},
-    {"canonical": "Rock of Ages", "tradition": "Broadway/West End", "aliases": []},
-    {"canonical": "Priscilla, Queen of the Desert", "tradition": "Broadway/West End", "aliases": ["Priscilla"]},
-    {"canonical": "Heathers", "tradition": "Broadway/West End", "aliases": ["Heathers the Musical"]},
-    {"canonical": "Guys and Dolls", "tradition": "Broadway/West End", "aliases": ["紅男綠女", "ガイズ&ドールズ"]},
-    {"canonical": "My Fair Lady", "tradition": "Broadway/West End", "aliases": ["窈窕淑女", "マイ・フェア・レディ"]},
-    {"canonical": "The King and I", "tradition": "Broadway/West End", "aliases": ["國王與我", "王様と私"]},
-    {"canonical": "Into the Woods", "tradition": "Broadway/West End", "aliases": ["拜訪森林"]},
-    {"canonical": "Company", "tradition": "Broadway/West End", "aliases": []},
-    {"canonical": "Gypsy", "tradition": "Broadway/West End", "aliases": []},
-    {"canonical": "Legally Blonde", "tradition": "Broadway/West End", "aliases": ["金法尤物", "リーガリー・ブロンド"]},
-    {"canonical": "Mean Girls", "tradition": "Broadway/West End", "aliases": ["賤女孩"]},
-    {"canonical": "Tootsie", "tradition": "Broadway/West End", "aliases": []},
-    {"canonical": "Mrs. Doubtfire", "tradition": "Broadway/West End", "aliases": ["窈窕奶爸", "Papá por siempre"]},
-    {"canonical": "Some Like It Hot", "tradition": "Broadway/West End", "aliases": ["熱情如火"]},
-    {"canonical": "Back to the Future", "tradition": "Broadway/West End", "aliases": ["回到未來", "バック・トゥ・ザ・フューチャー"]},
-    {"canonical": "The Great Gatsby", "tradition": "Broadway/West End", "aliases": ["大亨小傳"]},
-    {"canonical": "The Outsiders", "tradition": "Broadway/West End", "aliases": []},
-    {"canonical": "Elf", "tradition": "Broadway/West End", "aliases": ["Elf the Musical"]},
-    {"canonical": "The Producers", "tradition": "Broadway/West End", "aliases": ["金牌製作人", "プロデューサーズ"]},
-    {"canonical": "Billy Elliot", "tradition": "Broadway/West End", "aliases": ["舞動人生", "ビリー・エリオット"]},
-    {"canonical": "The Bodyguard", "tradition": "Broadway/West End", "aliases": ["保鑣", "ボディガード"]},
-
-    {"canonical": "Elisabeth", "tradition": "德奧音樂劇", "aliases": ["伊莉莎白", "エリザベート"]},
-    {"canonical": "Rebecca", "tradition": "德奧音樂劇", "aliases": ["レベッカ"]},
-    {"canonical": "Mozart!", "tradition": "德奧音樂劇", "aliases": ["モーツァルト！"]},
-    {"canonical": "Tanz der Vampire", "tradition": "德奧音樂劇", "aliases": ["Dance of the Vampires", "Le Bal des Vampires", "VÁMPÍROK BÁLJA", "VÁMPÍROK BÁLJA musical", "ダンス・オブ・ヴァンパイア"]},
-    {"canonical": "Rudolf", "tradition": "德奧音樂劇", "aliases": ["ルドルフ"]},
-    {"canonical": "Ludwig II", "tradition": "德奧音樂劇", "aliases": []},
-    {"canonical": "Marie Antoinette", "tradition": "德奧音樂劇", "aliases": ["マリー・アントワネット"]},
-    {"canonical": "Lady Bess", "tradition": "德奧音樂劇", "aliases": ["レディ・ベス"]},
-    {"canonical": "Schikaneder", "tradition": "德奧音樂劇", "aliases": ["シカネーダー"]},
-    {"canonical": "Der Besuch der alten Dame", "tradition": "德奧音樂劇", "aliases": []},
-    {"canonical": "Die 3 Musketiere", "tradition": "德奧音樂劇", "aliases": ["3 Musketiere"]},
-    {"canonical": "Der Graf von Monte Christo", "tradition": "德奧音樂劇", "aliases": []},
-    {"canonical": "Don Camillo und Peppone", "tradition": "德奧音樂劇", "aliases": []},
-    {"canonical": "Romeo und Julia", "tradition": "德奧音樂劇", "aliases": ["Romeo Julia"]},
-    {"canonical": "Ich war noch niemals in New York", "tradition": "德奧音樂劇", "aliases": []},
-    {"canonical": "Hinterm Horizont", "tradition": "德奧音樂劇", "aliases": []},
-
-    {"canonical": "Roméo et Juliette", "tradition": "法式音樂劇", "aliases": ["羅密歐與茱麗葉", "ロミオとジュリエット"]},
-    {"canonical": "Notre-Dame de Paris", "tradition": "法式音樂劇", "aliases": ["鐘樓怪人", "ノートルダム・ド・パリ"]},
-    {"canonical": "Mozart l'Opéra Rock", "tradition": "法式音樂劇", "aliases": ["搖滾莫札特"]},
-    {"canonical": "1789 : Les Amants de la Bastille", "tradition": "法式音樂劇", "aliases": ["1789"]},
-    {"canonical": "Les Dix Commandements", "tradition": "法式音樂劇", "aliases": []},
-    {"canonical": "Le Roi Soleil", "tradition": "法式音樂劇", "aliases": []},
-    {"canonical": "Don Juan", "tradition": "法式音樂劇", "aliases": []},
-    {"canonical": "La Légende du Roi Arthur", "tradition": "法式音樂劇", "aliases": []},
-    {"canonical": "Robin des Bois", "tradition": "法式音樂劇", "aliases": []},
-    {"canonical": "Adam et Ève", "tradition": "法式音樂劇", "aliases": []},
-    {"canonical": "Les Trois Mousquetaires", "tradition": "法式音樂劇", "aliases": []},
-    {"canonical": "Starmania", "tradition": "法式音樂劇", "aliases": []},
-    {"canonical": "Cléopâtre", "tradition": "法式音樂劇", "aliases": []},
-
-    {"canonical": "Kiki's Delivery Service", "tradition": "日本原創", "aliases": ["魔女宅急便"]},
-    {"canonical": "The Ghost & the Lady", "tradition": "日本原創", "aliases": ["Ghost & Lady"]},
-    {"canonical": "Death Note", "tradition": "日本原創", "aliases": ["死亡筆記本", "デスノート", "Death Note: The Musical", "The Musical Death Note - Daejeon", "The Musical Death Note - Seoul", "The Musical Death Note - Busan"]},
-    {"canonical": "I Love You, You're Perfect, Now Change", "tradition": "Broadway/West End", "aliases": ["我愛你，你很完美，現在改變吧"]}
+    {
+      "canonical": "The Phantom of the Opera",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "歌劇魅影",
+        "Az Operaház Fantomja",
+        "Das Phantom der Oper",
+        "Das Phantom der Oper - Die Originalproduktion",
+        "オペラ座の怪人",
+        "El Fantasma de la Ópera",
+        "El Fantasma De La Ópera México",
+        "劇院魅影"
+      ]
+    },
+    {
+      "canonical": "Cats",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "貓",
+        "Macskák",
+        "キャッツ"
+      ]
+    },
+    {
+      "canonical": "Les Misérables",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "悲慘世界",
+        "Les Mis",
+        "レ・ミゼラブル",
+        "A nyomorultak"
+      ]
+    },
+    {
+      "canonical": "Miss Saigon",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "西貢小姐",
+        "ミス・サイゴン"
+      ]
+    },
+    {
+      "canonical": "Mamma Mia!",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "媽媽咪呀",
+        "媽媽咪呀！",
+        "マンマ・ミーア"
+      ]
+    },
+    {
+      "canonical": "Chicago",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "芝加哥",
+        "シカゴ"
+      ]
+    },
+    {
+      "canonical": "The Lion King",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "獅子王",
+        "ライオンキング",
+        "Az oroszlánkirály",
+        "El Rey León",
+        "Le Roi Lion"
+      ]
+    },
+    {
+      "canonical": "Hamilton",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "漢密爾頓",
+        "漢彌爾頓"
+      ]
+    },
+    {
+      "canonical": "The Sound of Music",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "真善美",
+        "音樂之聲",
+        "A muzsika hangja",
+        "Richard Rodgers - Oscar Hammerstein: A muzsika hangja",
+        "La Novicia Rebelde"
+      ]
+    },
+    {
+      "canonical": "Fiddler on the Roof",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "屋頂上的提琴手",
+        "Hegedűs a háztetőn"
+      ]
+    },
+    {
+      "canonical": "Rent",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "吉屋出租"
+      ]
+    },
+    {
+      "canonical": "Next to Normal",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "近乎正常"
+      ]
+    },
+    {
+      "canonical": "Sweeney Todd",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "理髮師陶德"
+      ]
+    },
+    {
+      "canonical": "The Addams Family",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "阿達一族",
+        "La Familia Addams"
+      ]
+    },
+    {
+      "canonical": "Kinky Boots",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "長靴妖姬"
+      ]
+    },
+    {
+      "canonical": "Jesus Christ Superstar",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "萬世巨星"
+      ]
+    },
+    {
+      "canonical": "Shrek",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "史瑞克",
+        "Shrek Jr.",
+        "シュレック"
+      ]
+    },
+    {
+      "canonical": "Charlie and the Chocolate Factory",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "巧克力冒險工廠"
+      ]
+    },
+    {
+      "canonical": "Frozen",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "冰雪奇緣",
+        "Jégvarázs",
+        "Ledové království",
+        "アナと雪の女王",
+        "Frost"
+      ]
+    },
+    {
+      "canonical": "Sister Act",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "修女也瘋狂",
+        "APÁCA SHOW"
+      ]
+    },
+    {
+      "canonical": "The Hunchback of Notre Dame",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "A Notre Dame-i toronyőr",
+        "鐘樓怪人(迪士尼)"
+      ]
+    },
+    {
+      "canonical": "Madagascar",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "Madagaszkár zenés kalandtúra",
+        "馬達加斯加"
+      ]
+    },
+    {
+      "canonical": "Pretty Woman",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "麻雀變鳳凰",
+        "Pretty Woman (Micsoda nő!)"
+      ]
+    },
+    {
+      "canonical": "Hair",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "Ragni - Rado - MacDermot: HAIR musical"
+      ]
+    },
+    {
+      "canonical": "Wonderland",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "Wildhorn – Murphy: WONDERLAND musical"
+      ]
+    },
+    {
+      "canonical": "Dracula",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "德古拉"
+      ]
+    },
+    {
+      "canonical": "Fifty Shades! The Musical",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "50 ODSTÍNŮ!"
+      ]
+    },
+    {
+      "canonical": "Ghost",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "第六感生死戀",
+        "ゴースト"
+      ]
+    },
+    {
+      "canonical": "Funny Girl",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "ファニー・ガール"
+      ]
+    },
+    {
+      "canonical": "La Cage aux Folles",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "ラ・カージュ・オ・フォール"
+      ]
+    },
+    {
+      "canonical": "Me and My Girl",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "ミー＆マイガール"
+      ]
+    },
+    {
+      "canonical": "Mary Poppins",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "歡樂滿人間",
+        "メリー・ポピンズ",
+        "魔法保姆瑪麗"
+      ]
+    },
+    {
+      "canonical": "Sunset Boulevard",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "日落大道",
+        "サンセット大通り"
+      ]
+    },
+    {
+      "canonical": "MJ the Musical",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "MJ The Michael Jackson Musical",
+        "麥可傑克森音樂劇",
+        "麥可·傑克森"
+      ]
+    },
+    {
+      "canonical": "Spamalot",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "Monty Python's Spamalot"
+      ]
+    },
+    {
+      "canonical": "Wicked",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "ウィキッド",
+        "女巫前傳",
+        "魔法壞女巫",
+        "罪惡壞女巫"
+      ]
+    },
+    {
+      "canonical": "SIX",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "六個皇后"
+      ]
+    },
+    {
+      "canonical": "Aladdin",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "阿拉丁",
+        "アラジン"
+      ]
+    },
+    {
+      "canonical": "Beauty and the Beast",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "美女與野獸",
+        "美女と野獣"
+      ]
+    },
+    {
+      "canonical": "Matilda",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "瑪蒂達",
+        "マチルダ",
+        "Matilda El Musical",
+        "Matilda el Musical con Elena",
+        "Matilda el Musical con Emilia"
+      ]
+    },
+    {
+      "canonical": "The Book of Mormon",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "摩門經"
+      ]
+    },
+    {
+      "canonical": "Dear Evan Hansen",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "親愛的艾文漢森",
+        "Querido Evan Hansen"
+      ]
+    },
+    {
+      "canonical": "Hadestown",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "哈帝斯城"
+      ]
+    },
+    {
+      "canonical": "Moulin Rouge!",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "紅磨坊",
+        "ムーラン・ルージュ"
+      ]
+    },
+    {
+      "canonical": "Beetlejuice",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "陰間大法師",
+        "ビートルジュース"
+      ]
+    },
+    {
+      "canonical": "Jersey Boys",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "澤西男孩",
+        "ジャージー・ボーイズ"
+      ]
+    },
+    {
+      "canonical": "School of Rock",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "搖滾教室"
+      ]
+    },
+    {
+      "canonical": "Waitress",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "女侍情緣",
+        "ウェイトレス"
+      ]
+    },
+    {
+      "canonical": "Come from Away",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "來自遠方"
+      ]
+    },
+    {
+      "canonical": "Annie",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "安妮",
+        "アニー"
+      ]
+    },
+    {
+      "canonical": "Newsies",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "報童傳奇",
+        "ニュージーズ"
+      ]
+    },
+    {
+      "canonical": "West Side Story",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "西城故事",
+        "ウエスト・サイド・ストーリー"
+      ]
+    },
+    {
+      "canonical": "A Chorus Line",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "歌舞線上",
+        "コーラスライン"
+      ]
+    },
+    {
+      "canonical": "Cabaret",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "酒店",
+        "キャバレー"
+      ]
+    },
+    {
+      "canonical": "Hairspray",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "髮膠明星夢",
+        "ヘアスプレー"
+      ]
+    },
+    {
+      "canonical": "Grease",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "火爆浪子",
+        "グリース",
+        "Grease Is The Word"
+      ]
+    },
+    {
+      "canonical": "Evita",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "艾薇塔",
+        "エビータ",
+        "Evita - 50 years, the golden jubilee"
+      ]
+    },
+    {
+      "canonical": "Cinderella",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "仙履奇緣",
+        "Cenerentola Il Musical",
+        "CINDERELLA, de musical",
+        "Askepot"
+      ]
+    },
+    {
+      "canonical": "The Little Mermaid",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "小美人魚",
+        "La Sirenita",
+        "De Kleine Zeemeermin, de Musical"
+      ]
+    },
+    {
+      "canonical": "The Wizard of Oz",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "綠野仙蹤",
+        "Wizard Of Oz",
+        "De Tovenaar van Oz"
+      ]
+    },
+    {
+      "canonical": "101 Dalmatians",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "101 Dálmatas: The Show",
+        "101 Dalmatiërs",
+        "101忠狗",
+        "101斑點狗"
+      ]
+    },
+    {
+      "canonical": "Zorro",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "El Zorro",
+        "蘇洛",
+        "佐羅"
+      ]
+    },
+    {
+      "canonical": "A Christmas Carol",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "小氣財神",
+        "A Christmas Carol - Il Canto Di Natale"
+      ]
+    },
+    {
+      "canonical": "Murder for Two",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "Asesinato para dos"
+      ]
+    },
+    {
+      "canonical": "Gutenberg! The Musical!",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "Gutenberg, el mejor musical del mundo"
+      ]
+    },
+    {
+      "canonical": "& Juliet",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "& Juliet de popmusical"
+      ]
+    },
+    {
+      "canonical": "Amélie",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "Amélie - Il Musical",
+        "Amélie Il Musical",
+        "艾蜜莉的異想世界",
+        "天使愛美麗"
+      ]
+    },
+    {
+      "canonical": "Tarzan",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "泰山"
+      ]
+    },
+    {
+      "canonical": "The Devil Wears Prada",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "穿著Prada的惡魔"
+      ]
+    },
+    {
+      "canonical": "Sunday in the Park with George",
+      "tradition": "Broadway/West End",
+      "aliases": []
+    },
+    {
+      "canonical": "The Last Five Years",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "Los últimos 5 años",
+        "Los últimos 5 años - Playsounds",
+        "Pět let zpět",
+        "最後五年"
+      ]
+    },
+    {
+      "canonical": "Ride the Cyclone",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "Ride The Cyclone el Musical"
+      ]
+    },
+    {
+      "canonical": "WaistWatchers The Musical!",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "Treintonas, cuarentonas ¡Y chingonas!",
+        "Treintonas, cuarentonas ¡Y muy chingonas!"
+      ]
+    },
+    {
+      "canonical": "The Full Monty",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "DONAHA! (Hole dupy)",
+        "一脫到底",
+        "光豬六壯士"
+      ]
+    },
+    {
+      "canonical": "Finian's Rainbow",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "Divotvorný hrnec"
+      ]
+    },
+    {
+      "canonical": "Menopause The Musical",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "Menopauza - Játékszín",
+        "Menopauza",
+        "更年期音樂劇"
+      ]
+    },
+    {
+      "canonical": "Our Ladies of Perpetual Succour",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "Sopranistky"
+      ]
+    },
+    {
+      "canonical": "Altar Boyz",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "Oltári srácok - Az Aréna!"
+      ]
+    },
+    {
+      "canonical": "The Count of Monte Cristo",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "LA LEGENDE DE MONTE-CRISTO, Le Musical",
+        "基督山伯爵"
+      ]
+    },
+    {
+      "canonical": "Oliver!",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "OLIVER TWIST - Koffers produksjoner",
+        "孤雛淚",
+        "奧利弗"
+      ]
+    },
+    {
+      "canonical": "Midnight",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "2026 Musical Midnight : Actor Musician"
+      ]
+    },
+    {
+      "canonical": "Barbershopera",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "Barber Shopera"
+      ]
+    },
+    {
+      "canonical": "Lempicka",
+      "tradition": "Broadway/West End",
+      "aliases": []
+    },
+    {
+      "canonical": "BOOP! The Musical",
+      "tradition": "Broadway/West End",
+      "aliases": []
+    },
+    {
+      "canonical": "Nine",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "NINE"
+      ]
+    },
+    {
+      "canonical": "Dreamgirls",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "夢幻女郎",
+        "ドリームガールズ"
+      ]
+    },
+    {
+      "canonical": "The Color Purple",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "紫色姐妹花"
+      ]
+    },
+    {
+      "canonical": "Tina",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "Tina - The Tina Turner Musical",
+        "蒂娜",
+        "蒂娜·透納"
+      ]
+    },
+    {
+      "canonical": "Anastasia",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "真假公主",
+        "アナスタシア"
+      ]
+    },
+    {
+      "canonical": "We Will Rock You",
+      "tradition": "Broadway/West End",
+      "aliases": []
+    },
+    {
+      "canonical": "Rock of Ages",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "搖滾年代"
+      ]
+    },
+    {
+      "canonical": "Priscilla, Queen of the Desert",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "Priscilla",
+        "沙漠妖姬"
+      ]
+    },
+    {
+      "canonical": "Heathers",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "Heathers the Musical"
+      ]
+    },
+    {
+      "canonical": "Guys and Dolls",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "紅男綠女",
+        "ガイズ&ドールズ"
+      ]
+    },
+    {
+      "canonical": "My Fair Lady",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "窈窕淑女",
+        "マイ・フェア・レディ"
+      ]
+    },
+    {
+      "canonical": "The King and I",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "國王與我",
+        "王様と私"
+      ]
+    },
+    {
+      "canonical": "Into the Woods",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "拜訪森林"
+      ]
+    },
+    {
+      "canonical": "Company",
+      "tradition": "Broadway/West End",
+      "aliases": []
+    },
+    {
+      "canonical": "Gypsy",
+      "tradition": "Broadway/West End",
+      "aliases": []
+    },
+    {
+      "canonical": "Legally Blonde",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "金法尤物",
+        "リーガリー・ブロンド"
+      ]
+    },
+    {
+      "canonical": "Mean Girls",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "賤女孩"
+      ]
+    },
+    {
+      "canonical": "Tootsie",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "杜絲先生",
+        "窈窕奶爸大電影"
+      ]
+    },
+    {
+      "canonical": "Mrs. Doubtfire",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "窈窕奶爸",
+        "Papá por siempre"
+      ]
+    },
+    {
+      "canonical": "Some Like It Hot",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "熱情如火"
+      ]
+    },
+    {
+      "canonical": "Back to the Future",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "回到未來",
+        "バック・トゥ・ザ・フューチャー"
+      ]
+    },
+    {
+      "canonical": "The Great Gatsby",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "大亨小傳"
+      ]
+    },
+    {
+      "canonical": "The Outsiders",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "小教父",
+        "局外人"
+      ]
+    },
+    {
+      "canonical": "Elf",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "Elf the Musical",
+        "精靈總動員"
+      ]
+    },
+    {
+      "canonical": "The Producers",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "金牌製作人",
+        "プロデューサーズ"
+      ]
+    },
+    {
+      "canonical": "Billy Elliot",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "舞動人生",
+        "ビリー・エリオット"
+      ]
+    },
+    {
+      "canonical": "The Bodyguard",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "保鑣",
+        "ボディガード"
+      ]
+    },
+    {
+      "canonical": "Elisabeth",
+      "tradition": "德奧音樂劇",
+      "aliases": [
+        "伊莉莎白",
+        "エリザベート"
+      ]
+    },
+    {
+      "canonical": "Rebecca",
+      "tradition": "德奧音樂劇",
+      "aliases": [
+        "レベッカ"
+      ]
+    },
+    {
+      "canonical": "Mozart!",
+      "tradition": "德奧音樂劇",
+      "aliases": [
+        "モーツァルト！"
+      ]
+    },
+    {
+      "canonical": "Tanz der Vampire",
+      "tradition": "德奧音樂劇",
+      "aliases": [
+        "Dance of the Vampires",
+        "Le Bal des Vampires",
+        "VÁMPÍROK BÁLJA",
+        "VÁMPÍROK BÁLJA musical",
+        "ダンス・オブ・ヴァンパイア"
+      ]
+    },
+    {
+      "canonical": "Rudolf",
+      "tradition": "德奧音樂劇",
+      "aliases": [
+        "ルドルフ"
+      ]
+    },
+    {
+      "canonical": "Ludwig II",
+      "tradition": "德奧音樂劇",
+      "aliases": []
+    },
+    {
+      "canonical": "Marie Antoinette",
+      "tradition": "德奧音樂劇",
+      "aliases": [
+        "マリー・アントワネット"
+      ]
+    },
+    {
+      "canonical": "Lady Bess",
+      "tradition": "德奧音樂劇",
+      "aliases": [
+        "レディ・ベス"
+      ]
+    },
+    {
+      "canonical": "Schikaneder",
+      "tradition": "德奧音樂劇",
+      "aliases": [
+        "シカネーダー"
+      ]
+    },
+    {
+      "canonical": "Der Besuch der alten Dame",
+      "tradition": "德奧音樂劇",
+      "aliases": []
+    },
+    {
+      "canonical": "Die 3 Musketiere",
+      "tradition": "德奧音樂劇",
+      "aliases": [
+        "3 Musketiere"
+      ]
+    },
+    {
+      "canonical": "Der Graf von Monte Christo",
+      "tradition": "德奧音樂劇",
+      "aliases": []
+    },
+    {
+      "canonical": "Don Camillo und Peppone",
+      "tradition": "德奧音樂劇",
+      "aliases": []
+    },
+    {
+      "canonical": "Romeo und Julia",
+      "tradition": "德奧音樂劇",
+      "aliases": [
+        "Romeo Julia"
+      ]
+    },
+    {
+      "canonical": "Ich war noch niemals in New York",
+      "tradition": "德奧音樂劇",
+      "aliases": []
+    },
+    {
+      "canonical": "Hinterm Horizont",
+      "tradition": "德奧音樂劇",
+      "aliases": []
+    },
+    {
+      "canonical": "Roméo et Juliette",
+      "tradition": "法式音樂劇",
+      "aliases": [
+        "羅密歐與茱麗葉",
+        "ロミオとジュリエット"
+      ]
+    },
+    {
+      "canonical": "Notre-Dame de Paris",
+      "tradition": "法式音樂劇",
+      "aliases": [
+        "鐘樓怪人",
+        "ノートルダム・ド・パリ"
+      ]
+    },
+    {
+      "canonical": "Mozart l'Opéra Rock",
+      "tradition": "法式音樂劇",
+      "aliases": [
+        "搖滾莫札特"
+      ]
+    },
+    {
+      "canonical": "1789 : Les Amants de la Bastille",
+      "tradition": "法式音樂劇",
+      "aliases": [
+        "1789"
+      ]
+    },
+    {
+      "canonical": "Les Dix Commandements",
+      "tradition": "法式音樂劇",
+      "aliases": []
+    },
+    {
+      "canonical": "Le Roi Soleil",
+      "tradition": "法式音樂劇",
+      "aliases": []
+    },
+    {
+      "canonical": "Don Juan",
+      "tradition": "法式音樂劇",
+      "aliases": []
+    },
+    {
+      "canonical": "La Légende du Roi Arthur",
+      "tradition": "法式音樂劇",
+      "aliases": []
+    },
+    {
+      "canonical": "Robin des Bois",
+      "tradition": "法式音樂劇",
+      "aliases": []
+    },
+    {
+      "canonical": "Adam et Ève",
+      "tradition": "法式音樂劇",
+      "aliases": []
+    },
+    {
+      "canonical": "Les Trois Mousquetaires",
+      "tradition": "法式音樂劇",
+      "aliases": []
+    },
+    {
+      "canonical": "Starmania",
+      "tradition": "法式音樂劇",
+      "aliases": []
+    },
+    {
+      "canonical": "Cléopâtre",
+      "tradition": "法式音樂劇",
+      "aliases": []
+    },
+    {
+      "canonical": "Kiki's Delivery Service",
+      "tradition": "日本原創",
+      "aliases": [
+        "魔女宅急便"
+      ]
+    },
+    {
+      "canonical": "The Ghost & the Lady",
+      "tradition": "日本原創",
+      "aliases": [
+        "Ghost & Lady"
+      ]
+    },
+    {
+      "canonical": "Death Note",
+      "tradition": "日本原創",
+      "aliases": [
+        "死亡筆記本",
+        "デスノート",
+        "Death Note: The Musical",
+        "The Musical Death Note - Daejeon",
+        "The Musical Death Note - Seoul",
+        "The Musical Death Note - Busan"
+      ]
+    },
+    {
+      "canonical": "I Love You, You're Perfect, Now Change",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "我愛你，你很完美，現在改變吧"
+      ]
+    }
   ]
 }

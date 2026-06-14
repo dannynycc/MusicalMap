@@ -58,6 +58,8 @@ jobs:
           python scrapers/sweden.py      || echo "::warning::sweden (showtic) scrape failed"
           python scrapers/netherlands.py || echo "::warning::netherlands (stage) scrape failed"
           python scrapers/poland.py      || echo "::warning::poland (ebilet) scrape failed"
+          python scrapers/norway.py      || echo "::warning::norway scrape failed"
+          python scrapers/middleeast.py  || echo "::warning::middleeast (platinumlist) scrape failed"
           python scrapers/interpark.py   || echo "::warning::interpark scrape failed"
           python scrapers/atg.py         || echo "::warning::atg scrape failed"
           python scrapers/stage_de.py    || echo "::warning::stage scrape failed"

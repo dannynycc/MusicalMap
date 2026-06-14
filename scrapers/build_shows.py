@@ -63,6 +63,26 @@ def _norm(title):
 # ONE source of truth for tradition tag + cross-language de-dup + bilingual display.
 # Every alias/canonical is indexed by _norm() so any title a work appears under
 # resolves to the same group, tradition, and English prefix. See works.json header.
+# Traditional/Simplified Chinese converters (OpenCC, optional) — so a search alias
+# stored in one script is matchable in the other ("劇院"=="剧院"). Build-only; if
+# OpenCC is missing we degrade to the original script.
+def _opencc(name):
+    try:
+        from opencc import OpenCC
+        c = OpenCC(name)
+        return lambda s: c.convert(s)
+    except Exception:  # noqa: BLE001
+        return lambda s: s
+
+
+_ZH_T2S, _ZH_S2T = _opencc("t2s"), _opencc("s2t")
+
+
+def _zh_both(text):
+    """All script variants of a string: original + Traditional + Simplified."""
+    return {text, _ZH_T2S(text), _ZH_S2T(text)}
+
+
 def _load_works():
     path = DATA / "works.json"
     idx, trad_by_cgroup, aliases_by_cgroup = {}, {}, {}
@@ -72,9 +92,13 @@ def _load_works():
         cgroup = _norm(w["canonical"])
         entry = {"canonical": w["canonical"], "tradition": w.get("tradition"), "cgroup": cgroup}
         trad_by_cgroup[cgroup] = w.get("tradition")
-        # every name a user might type for this work (canonical + 中文/日文/… aliases),
-        # so the map search can match them even though only the canonical is displayed.
-        aliases_by_cgroup[cgroup] = " ".join([w["canonical"], *w.get("aliases", [])])
+        # every name a user might type (canonical + 中文/日文/… aliases) — and for
+        # Chinese, BOTH Traditional & Simplified — so the map search matches whichever
+        # script/wording the user types, even though only the canonical is displayed.
+        variants = []
+        for name in [w["canonical"], *w.get("aliases", [])]:
+            variants.extend(_zh_both(name))
+        aliases_by_cgroup[cgroup] = " ".join(dict.fromkeys(variants))
         for name in [w["canonical"], *w.get("aliases", [])]:
             idx[_norm(name)] = entry           # alias/canonical → canonical work
     return idx, trad_by_cgroup, aliases_by_cgroup
@@ -101,7 +125,7 @@ SOURCE_FILES = ["broadway.json", "westend.json", "tours.json", "intl.json",
                 "atg.json", "stage_de.json", "madrid.json", "opentix.json",
                 "utiki.json", "japan.json", "easteurope.json",
                 "italy.json", "sweden.json", "netherlands.json", "poland.json",
-                "manual.json"]
+                "norway.json", "middleeast.json", "manual.json"]
 
 # When several ticket sources list the SAME show in the SAME city, we keep one
 # record (highest priority = most authoritative venue data) and attach every
@@ -197,6 +221,7 @@ def clean_title(t):
         t = NOTICE_RE.sub(" ", t).strip()
         t = LOC_QUALIFIER_RE.sub("", t).strip()
         t = re.sub(r"\s*\((?:19|20)\d{2}\)\s*$", "", t).strip()  # trailing year, e.g. "(1993)"
+        t = re.sub(r"\s+(?:19|20)\d{2}[\s!.]*$", "", t).strip()   # trailing bare year, e.g. "… 2027"
     return re.sub(r"\s{2,}", " ", t).strip()
 
 
@@ -254,7 +279,7 @@ NOT_MUSICAL_RE = re.compile(
     r"\btribute\b|\bconcert\b|\bsoundtrack\b|\bgala\b|\bcelebration\b|"
     r"\bsymphony\b|\borchestra\b|\bthe (?:songs|music|hits) of\b|\bsongs of\b|"
     r"\bdrag (?:show|along|race|brunch|queen)\b|"
-    r"\bnonstop\b|koncert|\bbluey\b|"     # medley/gala-concert; Bluey's Big Play (kids puppet show)
+    r"\bnonstop\b|koncert|\bbluey\b|night (?:at|of) the musicals?|"  # medley/gala nights; Bluey's Big Play
     # Ticketmaster upsell listings (not a show): "… Official BJCC Ticket+ Hotel Packages",
     # VIP/suite/parking packages, meet & greet.
     r"ticket\s*\+|\b(?:hotel|vip|suite|premium|parking)\s+packages?\b|"
@@ -276,6 +301,7 @@ TAG_LOCAL_SRC = [
     (("shiki", "kageki", "toho", "j25", "theatre-orb", "japan"), "日本原創"),
     (("interpark",), "韓國原創"),
     (("jegy", "prazske", "ndm"), "歐陸原創"),
+    (("damai", "maoyan", "shculturesquare", "shgtheatre", "polyt", "chinaticket"), "中國原創"),
 ]
 
 
@@ -316,6 +342,8 @@ def classify_tag(group, source, country):
         return "德奧音樂劇"
     if c == "France":
         return "法式音樂劇"
+    if c == "China":
+        return "中國原創"
     if any(k in src for k in ANGLO_SRC) or c in ANGLO_C:
         return "Broadway/West End"
     if c in CONTINENTAL_C:

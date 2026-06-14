@@ -11,6 +11,18 @@
 
 ---
 
+## [v0.40.0] - 2026-06-14 19:44
+### 新增(挪威 + 中東 + 中文搜尋強化)
+- **挪威**(`norway.py`):7 齣——Folketeateret(Les Misérables、Annie、Phantom 2027)、Det Norske Teatret(Europavisjonar、Pippi、Cabaret)、Trøndelag(Matilda)。建築級座標。修正:TM Discovery API 不含挪威常駐音樂劇(誤判),改專屬 scraper。
+- **中東**(`middleeast.py`,Platinumlist Gulf):4 齣——杜拜 Chicago、阿布達比 Charlie and the Chocolate Factory / Cats(波斯灣多為零星巡演,屬正常)。
+- **中文搜尋:台/中用詞 + 簡繁字形互通**。build_shows `alt` 欄位用 OpenCC 展開**簡繁雙形**,works.json 補台灣+中國雙版譯名(Phantom 加中國「劇院魅影」、Wicked 加「女巫前傳/魔法壞女巫」、Madagascar「馬達加斯加」… 共 34 個)。實測:搜「劇院」「剧院」都→Phantom,「女巫前傳」「魔法坏女巫」→Wicked,「馬達加斯加」「马达加斯加」→Madagascar。
+- **「中國原創」tag 基礎建好**(classify_tag + 前端 pill);全中國音樂劇 scraper agent 進行中(大麦/猫眼/上海文化广场 多源)。
+### 修正
+- 標題尾端**裸年份**剝除(「Phantom of the Opera 2027」→ 對到 Phantom、不再誤判歐陸)。
+- medley gala 過濾加 `night at/of the musicals`(剔「A Night at the Musicals」)。
+- middleeast.py `end` 為 None 時預設 start(避免比較崩潰)。
+- 最終 1326 劇,去重稽核 0 漏合併。
+
 ## [v0.39.2] - 2026-06-14 19:26
 ### 變更
 - **羅密歐與茱麗葉 2027-28 法國巡演**(8 站,manual.json)海報換成 jds.fr 指定圖(Cécilia Cara 版,已驗證 HTTP 200 webp)。
