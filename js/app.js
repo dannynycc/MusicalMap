@@ -46,16 +46,18 @@ function safeUrl(u) {
 // (2026 research). The map's outbound domains that HAVE a program:
 //   • ticketmaster.* ............ Impact (impact.com) — apply at app.impact.com
 //   • atgtickets.com ............ Partnerize
-//   • londontheatre.co.uk ....... Impact or Awin (~10%, best West End rate)
+//   • londontheatre.co.uk ....... TodayTix Group, via Impact (~1-2%; NOT ATG/Awin — verified)
 //   • stage-entertainment.de .... German networks (~4-7%)
 // (Korea/Hungary/Taiwan/Japan official sources have no public program → passthrough.)
 const AFFILIATE = {
   // Impact: tracking domain + account/ad/campaign IDs come from your Impact dashboard.
   // "ticketmaster.": (u) => `https://imp.pxf.io/c/ACCOUNTID/ADID/CAMPAIGNID?u=${encodeURIComponent(u)}`,
+  // londontheatre.co.uk = TodayTix Group → also Impact (same account as Ticketmaster):
+  // "londontheatre.co.uk": (u) => `https://imp.pxf.io/c/ACCOUNTID/ADID/CAMPAIGNID?u=${encodeURIComponent(u)}`,
   // Partnerize: camref from your ATG/Partnerize dashboard; destination is appended.
   // "atgtickets.com": (u) => `https://prf.hn/click/camref:CAMREF/destination:${encodeURIComponent(u)}`,
-  // Awin: mid = merchant id, affid = your publisher id.
-  // "londontheatre.co.uk": (u) => `https://www.awin1.com/cread.php?awinmid=MID&awinaffid=AFFID&ued=${encodeURIComponent(u)}`,
+  // Awin template (kept for if you later add London Theatre Direct / Broadway Direct):
+  // "<awin-merchant-domain>": (u) => `https://www.awin1.com/cread.php?awinmid=MID&awinaffid=AFFID&ued=${encodeURIComponent(u)}`,
 };
 function affiliateUrl(u) {
   if (!u) return u;

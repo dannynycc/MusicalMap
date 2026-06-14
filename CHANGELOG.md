@@ -11,6 +11,12 @@
 
 ---
 
+## [v0.37.3] - 2026-06-14 17:06
+### 修正
+- **`Again, Romeo & Jeliet` 改回韓國原創**(原誤判為法式)。用戶查證:這是大邱本土原創中小型音樂劇(90 分、₩50,000、刻意拼「Jeliet」做區隔),非法語引進的大型《Roméo et Juliette》。移除 works.json 中的錯誤別名。
+- **更正 `londontheatre.co.uk` 分潤歸屬**(查證後):它屬 **TodayTix Group**(非 ATG、非 London Theatre Direct),抽成要走 **TodayTix via Impact(~1-2%)**,不是 Awin。更新 `docs/AFFILIATE_SETUP.md` 第 3 節與 app.js `AFFILIATE` 註解;策略上西區高報酬仍是 ATG(已有 238 連結)。
+- archive 重置保持乾淨(1296 runs)。
+
 ## [v0.37.2] - 2026-06-14 16:58
 ### 文件
 - `docs/AFFILIATE_SETUP.md`:ATG(Partnerize)與 LondonTheatre(Awin)補上逐步申請步驟(註冊→填料→收款/稅表→驗證→申請計畫→核准後拿 camref / awinmid+awinaffid)。註明 Awin 需約 US$5 可退押金、以及先確認 londontheatre.co.uk 是否其實導到 ATG(避免重複申請)。

@@ -68,30 +68,25 @@ https://prf.hn/click/camref:{CAMREF}/destination:{目的網址}
 
 ---
 
-## 3. LondonTheatre → Awin（西區佣金最高 ~10%）
+## 3. londontheatre.co.uk → TodayTix Group(走 Impact,~1-2%)
 
 我們連出去 **82 條** `londontheatre.co.uk` 連結。
 
-⚠ **先釐清(重要,免得白做工)**:研究確認的是 **London Theatre Direct**(`londontheatredirect.com`)走 Impact/Awin ~10%。我們抓的是 `londontheatre.co.uk`(**不同網域**,購票可能導到 ATG 或他家)。
-- [ ] 申請前先到地圖點一個 londontheatre.co.uk 的售票連結,看**最後在哪個網站結帳**:
-      若導到 **ATG** → 第 2 項已涵蓋,**這項不用做**;若是 London Theatre Direct 或自家 → 才做下面。
+✅ **已查證(2026-06-14)**:`londontheatre.co.uk` **不是 ATG、也不是 London Theatre Direct**——它屬於 **TodayTix Group**(Encore 後台)。購票走 TodayTix 自家結帳。
+→ 要抽成必須加入 **TodayTix Group 聯盟,走 Impact(impact.com)**,跟 Ticketmaster **同一個帳號/網路**。ATG(Partnerize)、Awin、London Theatre Direct 都**不會**給這些連結佣金。
 
-**逐步申請(Awin)**
-1. 開 **https://www.awin.com** → **Sign up → Publisher/Influencer**。
-2. 填名字(英文本名)、國家(台灣)、網站 `dannynycc.github.io/MusicalMap`、推廣類型(content/editorial)、貼 profile。
-3. ⚠ **Awin 要付一筆約 US$5 / €1 的「驗證押金」**(會退回你的 Awin 帳戶餘額,不是手續費)。需一張信用卡。
-4. 通過 Awin 帳號審核後 → 在 **Advertisers** 搜 **「London Theatre Direct」**(或 LW Theatres / Broadway Direct)→ **Join programme** → 等該商家核准。
-5. 收款/稅表:Awin 後台填(USD/美國銀行 + W-8BEN)。
+**逐步**
+1. 用**現有的 Impact 帳號**,找 **TodayTix Group** 計畫(Marketplace 搜尋,或找其 direct sign-up 連結;若 Marketplace 仍被擋就走 direct link,同 Ticketmaster 的繞法)。
+2. 申請加入 → 等核准。
+3. 核准後產一條追蹤連結(Impact `/c/...?u=` 格式),整條貼給我 → 我取出 Account/Ad/Campaign ID 填進 `AFFILIATE` 的 `"londontheatre.co.uk"` 那行。
 
-**核准後要拿的東西**(Awin 後台 → Links / Link Builder)
-- [ ] 你的 **awinaffid**(publisher ID,登入後在帳號資訊看得到)
-- [ ] 該商家的 **awinmid**(merchant ID)— 用 Link Builder 產一條連結就看得到
-- [ ] 或直接產一條連結整條貼給我,我拆出 mid/affid。
-
-**連結格式**
+**連結格式**(Impact,同 Ticketmaster)
 ```
-https://www.awin1.com/cread.php?awinmid={MID}&awinaffid={AFFID}&ued={URL-encoded 目的網址}
+https://{追蹤網域}/c/{AccountID}/{AdID}/{CampaignID}?u={URL-encoded 目的網址}
 ```
+
+⚠ **策略提醒**:TodayTix 佣金低(~1-2%)。西區真正高報酬的是 **ATG(第 2 項,我們已有 238 連結)** 和 **London Theatre Direct(~5-10%,但那是另一個網站 `londontheatredirect.com`,我們目前沒連)**。
+→ 若想拉高西區收益,未來可考慮把地圖的西區購票連結**改導向 ATG 或 London Theatre Direct**(資料層 westend.py 要改);這是另案。**現階段 82 條 londontheatre.co.uk 優先度低,可放到 Ticketmaster/ATG 之後再說。**
 
 ---
 
