@@ -104,6 +104,25 @@ def parse_dates(s):
     return start, f"{ey}-{em:02d}-{ed:02d}"
 
 
+def real_run(pid):
+    """True run from a product's actual session list (GET /good/shows/{id}) — used
+    when productShowTime is an unreliable long booking window. Returns (min_iso,
+    max_iso) of the real performance dates, or (None, None)."""
+    try:
+        resp = urllib.request.urlopen(urllib.request.Request(BASE + "/good/shows/" + str(pid), headers=HDR), timeout=20)
+        raw = resp.read()
+        if resp.headers.get("Content-Encoding") == "gzip":
+            raw = gzip.decompress(raw)
+        blob = raw.decode("utf-8", "ignore")
+    except Exception:  # noqa: BLE001
+        return None, None
+    parts = re.findall(r"(20\d{2})[.\-/](\d{1,2})[.\-/](\d{1,2})", blob)
+    if not parts:
+        return None, None
+    iso = sorted(f"{int(y)}-{int(m):02d}-{int(d):02d}" for y, m, d in parts)
+    return iso[0], iso[-1]
+
+
 def _fold(s):
     s = re.sub(r"[\s\-－—·【】\[\]()（）]", "", _conv(s or ""))
     return re.sub(r"(大剧场|歌剧厅|音乐厅|中剧场|小剧场|歌剧院)$", "", s)
@@ -153,16 +172,18 @@ def main():
             continue
         lat, lng = coord
         start, end = parse_dates(r.get("productShowTime"))
-        # Resident/immersive spaces (保利剧聚空间…) carry a year-long booking WINDOW as
-        # productShowTime, but tickets only go on sale in short batches — so a hard
-        # far-future end (e.g. 2027-06-27) overstates a confirmed run. Treat any run
-        # longer than ~4 months as open-ended (end=null): the frontend then applies
-        # its rolling ~12-month horizon, same as Broadway/West End resident long-runners.
+        # productShowTime is unreliable for resident/immersive spaces (保利剧聚空间…):
+        # it returns a year-long booking WINDOW (e.g. Ash亚斯 "2026.06.05-2027.06.27")
+        # while the ACTUAL sessions are a short batch (verified: 2026-05-23…06-27, no
+        # 2027 date at all). When the window looks long (>120 days), fetch the real
+        # session dates from /good/shows/{id} and use their true min/max instead.
         if start and end:
             try:
                 from datetime import date as _d
                 if (_d.fromisoformat(end) - _d.fromisoformat(start)).days > 120:
-                    end = None
+                    rs, re_ = real_run(pid)
+                    if rs:
+                        start, end = rs, re_
             except ValueError:
                 pass
         city_cn = r.get("cityName") or ""
