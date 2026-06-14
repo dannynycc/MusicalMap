@@ -11,6 +11,14 @@
 
 ---
 
+## [v0.38.3] - 2026-06-14 18:31
+### 修正(去重 — 系統性掃全庫)
+- loose-key 審計找出 **8 組「應合併卻分開」**,全是同類病根,根因一次修掉:
+  - **TM 加自己城市的尾綴 `(Chicago)`**(Water for Elephants、Book of Mormon、& Juliet、Kinky Boots、Dirty Dancing、The Notebook、SUFFS)→ 新增 city-aware `strip_city_qualifier`,只在括號內容＝該筆城市時才剝(真標題如「(Carry a Cake Across New York)」不動)。
+  - **年份尾綴 `(1993)`**(Mrs Doubtfire)→ clean_title 剝除 `(19xx/20xx)`。
+  - **套票/訂房上賣垃圾**(「Official … Ticket+ Hotel Packages」「VIP/suite/parking packages」「meet & greet」)→ 全域剔除。
+- 修後 loose-key 審計 **0 漏合併**;difflib 模糊掃描僅 1 對(網球王子 vs 新網球王子,本就是不同作品)。Water for Elephants 併成 1 組 12 城、Mrs Doubtfire 併成 1 組。
+
 ## [v0.38.2] - 2026-06-14 17:52
 ### 變更
 - u.html / me.html 內容欄加寬 1200→**1600px**(header `.top-inner` 同步),寬螢幕左右空白大幅縮小、填滿更多;header 仍與內容對齊。1920px render 截圖驗證。

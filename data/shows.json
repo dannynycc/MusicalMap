@@ -1,9 +1,9 @@
 {
   "meta": {
     "source": "merged",
-    "generated_at": "2026-06-14 09:16 UTC",
-    "total": 1295,
-    "verified": 1295,
+    "generated_at": "2026-06-14 10:30 UTC",
+    "total": 1289,
+    "verified": 1289,
     "unverified": 0,
     "sources": [
       {
@@ -158,11 +158,11 @@
       },
       {
         "file": "ticketmaster.json",
-        "count": 280
+        "count": 276
       },
       {
         "file": "tm_tours.json",
-        "count": 240
+        "count": 239
       }
     ]
   },
@@ -3806,6 +3806,18 @@
       "verified": true,
       "source": "broadway.org",
       "group": "dirty dancing",
+      "ticket_links": [
+        {
+          "label": "Broadway.org",
+          "url": "https://www.broadway.org/tours/dirty-dancing-2026",
+          "kind": "ticketing"
+        },
+        {
+          "label": "Ticketmaster",
+          "url": "https://www.ticketmaster.com/dirty-dancing-chicago-tickets/artist/1196390",
+          "kind": "ticketing"
+        }
+      ],
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -5196,6 +5208,18 @@
       "verified": true,
       "source": "broadway.org",
       "group": "juliet",
+      "ticket_links": [
+        {
+          "label": "Broadway.org",
+          "url": "https://www.broadway.org/tours/juliet",
+          "kind": "ticketing"
+        },
+        {
+          "label": "Ticketmaster",
+          "url": "https://www.ticketmaster.com/juliet-chicago-tickets/artist/3161798",
+          "kind": "ticketing"
+        }
+      ],
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -7584,6 +7608,18 @@
       "verified": true,
       "source": "broadway.org",
       "group": "suffs",
+      "ticket_links": [
+        {
+          "label": "Broadway.org",
+          "url": "https://www.broadway.org/tours/suffs",
+          "kind": "ticketing"
+        },
+        {
+          "label": "Ticketmaster",
+          "url": "https://www.ticketmaster.com/suffs-chicago-tickets/artist/4186874",
+          "kind": "ticketing"
+        }
+      ],
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -8436,6 +8472,18 @@
       "verified": true,
       "source": "broadway.org",
       "group": "notebook",
+      "ticket_links": [
+        {
+          "label": "Broadway.org",
+          "url": "https://www.broadway.org/tours/the-notebook",
+          "kind": "ticketing"
+        },
+        {
+          "label": "Ticketmaster",
+          "url": "https://www.ticketmaster.com/the-notebook-chicago-tickets/artist/4186869",
+          "kind": "ticketing"
+        }
+      ],
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -20605,7 +20653,7 @@
     },
     {
       "id": "tm-kinky-boots-chicago-james-m-nederlander-theatre",
-      "title": "Kinky Boots (Chicago)",
+      "title": "Kinky Boots",
       "type": "tour",
       "venue": "James M. Nederlander Theatre",
       "city": "Chicago",
@@ -20627,7 +20675,7 @@
       "verified": true,
       "source": "ticketmaster",
       "onsale_only": true,
-      "group": "kinky boots chicago",
+      "group": "kinky boots",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -21101,7 +21149,7 @@
     },
     {
       "id": "tm-mrs-doubtfire-1993-temple-theatre",
-      "title": "Mrs Doubtfire (1993)",
+      "title": "Mrs Doubtfire",
       "type": "tour",
       "venue": "Temple Theatre",
       "city": "Saginaw",
@@ -21123,7 +21171,7 @@
       "verified": true,
       "source": "ticketmaster",
       "onsale_only": true,
-      "group": "mrs doubtfire 1993",
+      "group": "mrs doubtfire",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -21866,34 +21914,6 @@
       "tag": "Broadway/West End"
     },
     {
-      "id": "tm-mrs-doubtfire-official-bjcc-ticket-hotel-packages-bjcc-concert-hall",
-      "title": "Mrs. Doubtfire Official BJCC Ticket+ Hotel Packages",
-      "type": "tour",
-      "venue": "BJCC Concert Hall",
-      "city": "Birmingham",
-      "country": "USA",
-      "lat": 33.525636,
-      "lng": -86.812339,
-      "start_date": "2026-06-16",
-      "end_date": "2026-06-16",
-      "ticket_url": "https://www.ticketmaster.com/mrs-doubtfire-touring-tickets/artist/3007777",
-      "attraction_url": "https://www.ticketmaster.com/mrs-doubtfire-touring-tickets/artist/3007777",
-      "ticket_links": [
-        {
-          "country": "US",
-          "url": "https://www.ticketmaster.com/mrs-doubtfire-touring-tickets/artist/3007777"
-        }
-      ],
-      "image": "https://s1.ticketm.net/dam/a/d05/6e2c8f9c-2ec2-4fc2-a2b2-9ec8c2971d05_SOURCE",
-      "tour_name": null,
-      "verified": true,
-      "source": "ticketmaster",
-      "onsale_only": true,
-      "group": "mrs doubtfire official bjcc ticket hotel packages",
-      "link_kind": "ticketing",
-      "tag": "Broadway/West End"
-    },
-    {
       "id": "tm-west-side-story-fulton-opera-house",
       "title": "West Side Story",
       "type": "tour",
@@ -22190,7 +22210,7 @@
     },
     {
       "id": "tm-water-for-elephants-chicago-james-m-nederlander-theatre",
-      "title": "Water for Elephants (Chicago)",
+      "title": "Water for Elephants",
       "type": "tour",
       "venue": "James M. Nederlander Theatre",
       "city": "Chicago",
@@ -22212,7 +22232,7 @@
       "verified": true,
       "source": "ticketmaster",
       "onsale_only": true,
-      "group": "water for elephants chicago",
+      "group": "water for elephants",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -22329,34 +22349,6 @@
       "tag": "Broadway/West End"
     },
     {
-      "id": "tm-suffs-chicago-cibc-theatre",
-      "title": "SUFFS (Chicago)",
-      "type": "tour",
-      "venue": "CIBC Theatre",
-      "city": "Chicago",
-      "country": "USA",
-      "lat": 41.880805,
-      "lng": -87.62851,
-      "start_date": "2026-07-07",
-      "end_date": "2026-07-19",
-      "ticket_url": "https://www.ticketmaster.com/suffs-chicago-tickets/artist/4186874",
-      "attraction_url": "https://www.ticketmaster.com/suffs-chicago-tickets/artist/4186874",
-      "ticket_links": [
-        {
-          "country": "US",
-          "url": "https://www.ticketmaster.com/suffs-chicago-tickets/artist/4186874"
-        }
-      ],
-      "image": "https://s1.ticketm.net/dam/a/ff6/63fce44a-a604-4ef6-8d78-ee2db4bf8ff6_SOURCE",
-      "tour_name": null,
-      "verified": true,
-      "source": "ticketmaster",
-      "onsale_only": true,
-      "group": "suffs chicago",
-      "link_kind": "ticketing",
-      "tag": "Broadway/West End"
-    },
-    {
       "id": "tm-riley-with-kerosene-heights-bugsy-reggies-rock-club",
       "title": "Riley! with Kerosene Heights + Bugsy",
       "type": "tour",
@@ -22385,92 +22377,8 @@
       "tag": "Broadway/West End"
     },
     {
-      "id": "tm-juliet-chicago-the-auditorium",
-      "title": "& Juliet (Chicago)",
-      "type": "tour",
-      "venue": "The Auditorium",
-      "city": "Chicago",
-      "country": "USA",
-      "lat": 41.87585,
-      "lng": -87.625241,
-      "start_date": "2026-07-22",
-      "end_date": "2026-08-02",
-      "ticket_url": "https://www.ticketmaster.com/juliet-chicago-tickets/artist/3161798",
-      "attraction_url": "https://www.ticketmaster.com/juliet-chicago-tickets/artist/3161798",
-      "ticket_links": [
-        {
-          "country": "US",
-          "url": "https://www.ticketmaster.com/juliet-chicago-tickets/artist/3161798"
-        }
-      ],
-      "image": "https://s1.ticketm.net/dam/a/67f/a43bdd67-af5c-4146-b215-b664100c667f_SOURCE",
-      "tour_name": null,
-      "verified": true,
-      "source": "ticketmaster",
-      "onsale_only": true,
-      "group": "juliet chicago",
-      "link_kind": "ticketing",
-      "tag": "Broadway/West End"
-    },
-    {
-      "id": "tm-the-notebook-chicago-james-m-nederlander-theatre",
-      "title": "The Notebook (Chicago)",
-      "type": "tour",
-      "venue": "James M. Nederlander Theatre",
-      "city": "Chicago",
-      "country": "USA",
-      "lat": 41.884664,
-      "lng": -87.628712,
-      "start_date": "2026-08-04",
-      "end_date": "2026-08-16",
-      "ticket_url": "https://www.ticketmaster.com/the-notebook-chicago-tickets/artist/4186869",
-      "attraction_url": "https://www.ticketmaster.com/the-notebook-chicago-tickets/artist/4186869",
-      "ticket_links": [
-        {
-          "country": "US",
-          "url": "https://www.ticketmaster.com/the-notebook-chicago-tickets/artist/4186869"
-        }
-      ],
-      "image": "https://s1.ticketm.net/dam/a/42a/256e01ec-a931-4e64-839f-8989df83642a_SOURCE",
-      "tour_name": null,
-      "verified": true,
-      "source": "ticketmaster",
-      "onsale_only": true,
-      "group": "notebook chicago",
-      "link_kind": "ticketing",
-      "tag": "Broadway/West End"
-    },
-    {
-      "id": "tm-dirty-dancing-chicago-james-m-nederlander-theatre",
-      "title": "Dirty Dancing (Chicago)",
-      "type": "tour",
-      "venue": "James M. Nederlander Theatre",
-      "city": "Chicago",
-      "country": "USA",
-      "lat": 41.884664,
-      "lng": -87.628712,
-      "start_date": "2026-09-09",
-      "end_date": "2026-09-20",
-      "ticket_url": "https://www.ticketmaster.com/dirty-dancing-chicago-tickets/artist/1196390",
-      "attraction_url": "https://www.ticketmaster.com/dirty-dancing-chicago-tickets/artist/1196390",
-      "ticket_links": [
-        {
-          "country": "US",
-          "url": "https://www.ticketmaster.com/dirty-dancing-chicago-tickets/artist/1196390"
-        }
-      ],
-      "image": "https://s1.ticketm.net/dam/a/e2d/114f33bb-b99e-4c68-b848-99a36012ae2d_SOURCE",
-      "tour_name": null,
-      "verified": true,
-      "source": "ticketmaster",
-      "onsale_only": true,
-      "group": "dirty dancing chicago",
-      "link_kind": "ticketing",
-      "tag": "Broadway/West End"
-    },
-    {
       "id": "tm-the-book-of-mormon-chicago-cadillac-palace",
-      "title": "The Book of Mormon (Chicago)",
+      "title": "The Book of Mormon",
       "type": "tour",
       "venue": "Cadillac Palace",
       "city": "Chicago",
@@ -22483,6 +22391,11 @@
       "attraction_url": "https://www.ticketmaster.com/the-book-of-mormon-chicago-tickets/artist/1643084",
       "ticket_links": [
         {
+          "label": "官方網站",
+          "url": "https://thebookofmormonmusical.com/",
+          "kind": "official"
+        },
+        {
           "country": "US",
           "url": "https://www.ticketmaster.com/the-book-of-mormon-chicago-tickets/artist/1643084"
         }
@@ -22492,7 +22405,7 @@
       "verified": true,
       "source": "ticketmaster",
       "onsale_only": true,
-      "group": "book of mormon chicago",
+      "group": "book of mormon",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -31027,28 +30940,6 @@
       "onsale_only": true,
       "source": "ticketmaster",
       "group": "menopause",
-      "link_kind": "ticketing",
-      "tag": "Broadway/West End"
-    },
-    {
-      "id": "tmt-mrs-doubtfire-temple-theatre",
-      "title": "Mrs. Doubtfire The Musical",
-      "type": "tour",
-      "venue": "Temple Theatre",
-      "city": "Saginaw",
-      "country": "USA",
-      "lat": 43.434753,
-      "lng": -83.939028,
-      "start_date": "2026-06-14",
-      "end_date": "2026-06-14",
-      "ticket_url": "https://www.ticketmaster.com/mrs-doubtfire-the-musical-tickets/artist/2949093",
-      "attraction_url": "https://www.ticketmaster.com/mrs-doubtfire-the-musical-tickets/artist/2949093",
-      "image": "https://res.cloudinary.com/dwzhqvxaz/image/upload/w_1280,q_auto,f_auto/v1745928702/Titles/Mrs%20Doubtfire/MrsDoubtfire_Prod_1920x1080.jpg",
-      "tour_name": null,
-      "verified": true,
-      "onsale_only": true,
-      "source": "ticketmaster",
-      "group": "mrs doubtfire",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },

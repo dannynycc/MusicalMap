@@ -180,7 +180,20 @@ def clean_title(t):
         prev = t
         t = NOTICE_RE.sub(" ", t).strip()
         t = LOC_QUALIFIER_RE.sub("", t).strip()
+        t = re.sub(r"\s*\((?:19|20)\d{2}\)\s*$", "", t).strip()  # trailing year, e.g. "(1993)"
     return re.sub(r"\s{2,}", " ", t).strip()
+
+
+def strip_city_qualifier(title, city):
+    """Ticketmaster appends the production's OWN city as a bare parenthetical
+    ('Water for Elephants (Chicago)', 'SUFFS (Chicago)') — strip it so it groups
+    with the main show. (Marker stays distinct via (group, city) dedup.) Only
+    strips when the parenthetical equals this record's city, so real titles like
+    'Two Strangers (Carry a Cake Across New York)' are untouched."""
+    c = (city or "").split(",")[0].strip()
+    if c and title:
+        title = re.sub(rf"\s*\(\s*{re.escape(c)}\s*\)\s*$", "", title, flags=re.I).strip()
+    return title
 
 
 def bilingual(title):
@@ -212,6 +225,10 @@ NOT_MUSICAL_RE = re.compile(
     r"\bsymphony\b|\borchestra\b|\bthe (?:songs|music|hits) of\b|\bsongs of\b|"
     r"\bdrag (?:show|along|race|brunch|queen)\b|"
     r"\bnonstop\b|koncert|\bbluey\b|"     # medley/gala-concert; Bluey's Big Play (kids puppet show)
+    # Ticketmaster upsell listings (not a show): "… Official BJCC Ticket+ Hotel Packages",
+    # VIP/suite/parking packages, meet & greet.
+    r"ticket\s*\+|\b(?:hotel|vip|suite|premium|parking)\s+packages?\b|"
+    r"\bofficial\b[^|]*\bpackages?\b|meet (?:and|&) greet|"
     # non-English concert/tribute words (ES/IT/TR…): 'tributo a ABBA', 'Callas en
     # concierto', 'en Acústico', 'holograma', Turkish 'Gazinosu' (cabaret/concert).
     r"\btributo\b|\bconcierto\b|ac[uú]stico|\bholograma\b|\bgazinosu\b", re.I)
@@ -333,7 +350,7 @@ def main():
         blob = json.loads(path.read_text(encoding="utf-8"))
         rows = blob.get("shows", [])
         for s in rows:
-            orig = clean_title(s.get("title"))
+            orig = strip_city_qualifier(clean_title(s.get("title")), s.get("city"))
             # group from the ORIGINAL title — bilingual() may prepend the English
             # canonical ("Cats Macskák"), which group_key can no longer reduce, so
             # we fix the canonical group here and read s["group"] downstream.
@@ -359,7 +376,7 @@ def main():
         tm = json.loads(tm_path.read_text(encoding="utf-8")).get("shows", [])
         kept = 0
         for s in tm:
-            s["title"] = clean_title(s.get("title"))
+            s["title"] = strip_city_qualifier(clean_title(s.get("title")), s.get("city"))
             s["group"] = gk = group_key(s["title"])
             city = city_key(s.get("city"))
             if (gk, city) in seen_show_city:
