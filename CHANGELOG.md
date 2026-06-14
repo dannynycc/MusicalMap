@@ -11,6 +11,10 @@
 
 ---
 
+## [v0.39.2] - 2026-06-14 19:26
+### 變更
+- **羅密歐與茱麗葉 2027-28 法國巡演**(8 站,manual.json)海報換成 jds.fr 指定圖(Cécilia Cara 版,已驗證 HTTP 200 webp)。
+
 ## [v0.39.1] - 2026-06-14 19:17
 ### 修正(去重根因 + 自動稽核)
 - **`presents:` 冒號版 + `production of` 前綴**沒被 v0.39.0 蓋到(「Ford's Theatre presents: Come From Away」「NYT production of …Little Mermaid」「All-City Musical presents: Mean Girls」「Toby's…Presents: Mean Girls」)→ clean_title 前綴 regex 補上冒號與 production of。
