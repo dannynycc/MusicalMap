@@ -11,6 +11,11 @@
 
 ---
 
+## [v0.40.3] - 2026-06-14 20:59
+### 新增(陸/台/港中文譯名一次查齊)
+- agent web 查證 112 部英美作品的中文譯名,合併進 works.json(加 90 個,跳過 0 跨作品衝突):每部收齊**大陸/台灣/香港**多種譯名 + 音譯/意譯。例:Legally Blonde=律政俏佳人(陸)/金髮尤物(台)/律政可人兒(港);Oliver!=孤雛淚/霧都孤兒/苦海孤雛;Mean Girls=賤女孩/辣妹過招;Jersey Boys=澤西男孩/紐澤西男孩;Hadestown=冥界/黑帝斯城/哈迪斯城/冥府。搭配既有 OpenCC 簡繁互通,陸台港用詞 × 簡繁字形全可搜。
+- 13 部確認無通用中文名(Fifty Shades!/Murder for Two/Gutenberg/Ride the Cyclone/Finian's Rainbow/Menopause/Our Ladies/Altar Boyz/Midnight/Barbershopera/Lempicka/We Will Rock You/Me and My Girl)。
+
 ## [v0.40.2] - 2026-06-14 20:24
 ### 修正
 - 修中文譯名錯字 + 補各地變體:Legally Blonde→律政俏佳人(陸)/金髮尤物(台,原誤植「金法」)/律政可人兒(港);Hadestown→冥界/冥界：地下城/黑帝斯城/哈迪斯城(原誤植「哈帝」);Hamilton 加漢米爾頓。已派 agent 系統性查齊全部 112 部的陸/台/港譯名,回來統一合併。
