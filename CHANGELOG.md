@@ -11,6 +11,12 @@
 
 ---
 
+## [v0.44.1] - 2026-06-15 00:55
+### 修正:小城保利場館不該跳過 —— 用官方街道地址全部 geocode 對
+- 上一版把南昌/启东/张家港/衡阳/衢州 5 個保利大剧院「跳過」其實也是認輸。**保利 API 的劇院清單(`/good/shops/city`)本身有 `detailAddress` 精確街道地址**——用街道地址 geocode 比場館名可靠太多。全部 geocode 對:启东=江海南路钱塘江路口、张家港=杨舍镇人民东路605号、南昌=红谷滩南龙蟠街、衡阳=石鼓区文化中心、衢州=柯城区三江东路(衡阳/衢州地址另經 web 查證石鼓区/柯城区)。
+- **連帶修正**:苏州保利大剧院原 geocode 也錯(被配到 31.66),用官方地址「吴中区东苑路1号」修正到 31.269,120.627。
+- 7 個原本跳過的演出全部回歸:china_poly 84 → **91 齣**,中國 93 → **100 齣 / 42 城市**,99 有海報。全站 **1424 齣**,audit 0 misses。
+
 ## [v0.44.0] - 2026-06-15 00:48
 ### 新增:破解保利票务官方 API → 中國 93 齣 / 37 城市
 - 不該那麼快認輸。大麥/貓眼有反爬牆,但**保利院線(全國 ~80 家劇院)的微信 H5 票務後端是開放 JSON API**(讀取不擋驗證碼)。逆向 H5 bundle 得到:`https://weixin.polyt.cn/platform-backend`(header `Channel: theatre_wx`),`POST /good/search-products-data {keyword,page,size}` 分頁產品(MyBatis-Plus,真正分頁參數是 `page`),`/dictionary/product/categories` 給音乐剧 categoryId。
