@@ -28,6 +28,12 @@ _JUNK = re.compile(r"\bpackages?\b|ticket\s*\+|\bvip\b|meet (?:and|&) greet", re
 def loose_key(title):
     t = re.sub(r"^.{0,70}?\b(?:presents|production of)\b\s*:?\s+", "", title, flags=re.I)
     t = re.sub(r"\s*\([^)]*\)\s*$", "", t)          # trailing parenthetical
+    # performance-type / accessibility suffix after a dash (so an unhandled
+    # "… - Relaxed Performance" gets flagged as a de-dup miss next time)
+    t = re.sub(r"\s*[-–—:]\s*(?:relaxed|captioned|audio[- ]?describ\w*|signed|bsl|"
+               r"matinee|opening night|press night|gala night|previews?|sensory|"
+               r"autism[- ]?friendly|dementia[- ]?friendly|touch tour|sing[- ]?along|"
+               r"auslan)\b.*$", "", t, flags=re.I)
     return group_key(t)
 
 

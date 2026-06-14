@@ -6,6 +6,9 @@ const cfg = window.MM_CONFIG || {};
 const $ = (s) => document.querySelector(s);
 const esc = (v) => String(v ?? "").replace(/[&<>"']/g, (c) =>
   ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+// CSS-safe URL for background-image:url('…') — percent-encode apostrophe/space/parens.
+const cssUrl = (u) => (u || "").replace(/['"()\s\\]/g,
+  (c) => "%" + c.charCodeAt(0).toString(16).padStart(2, "0"));
 
 let CATALOG = { titles: [], posters: {} };
 let POSTER_BY_TITLE = {};
@@ -86,7 +89,7 @@ function renderCharts() {
 function posterIcon(title) {
   const p = posterFor(title);
   return L.divIcon({ className: "mm-icon",
-    html: `<div class="poster-pin ${p ? "" : "noimg"}" style="${p ? `background-image:url('${esc(p)}')` : ""}">${p ? "" : "<span class='glyph'>♪</span>"}</div>`,
+    html: `<div class="poster-pin ${p ? "" : "noimg"}" style="${p ? `background-image:url('${cssUrl(p)}')` : ""}">${p ? "" : "<span class='glyph'>♪</span>"}</div>`,
     iconSize: [44, 60], iconAnchor: [22, 60], popupAnchor: [0, -58] });
 }
 function clampWorld() { if (map) map.invalidateSize(); }

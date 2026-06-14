@@ -5,6 +5,10 @@ const cfg = window.MM_CONFIG || {};
 const $ = (s) => document.querySelector(s);
 const esc = (v) => String(v ?? "").replace(/[&<>"']/g, (c) =>
   ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+// CSS-safe URL for background-image:url('…') — percent-encode chars that break it
+// (apostrophe/space/parens). esc() HTML-encoding is wrong in CSS context.
+const cssUrl = (u) => (u || "").replace(/['"()\s\\]/g,
+  (c) => "%" + c.charCodeAt(0).toString(16).padStart(2, "0"));
 function safeUrl(u) {
   if (!u) return null;
   try { const p = new URL(u, location.href); return ["http:", "https:"].includes(p.protocol) ? p.href : null; }
@@ -171,7 +175,7 @@ function renderCharts() {
 
 function posterIcon(title, img) {
   const p = img || posterFor(title);
-  const style = p ? `background-image:url('${esc(p)}')` : "";
+  const style = p ? `background-image:url('${cssUrl(p)}')` : "";
   return L.divIcon({
     className: "mm-icon",
     html: `<div class="poster-pin ${p ? "" : "noimg"}" style="${style}">${p ? "" : "<span class='glyph'>♪</span>"}</div>`,
@@ -269,7 +273,7 @@ function renderList() {
     const sub = [s.venue, s.city, s.country].filter(Boolean).join(" · ");
     const extra = [s.seat, s.price ? `${s.price}${s.currency ? " " + s.currency : ""}` : ""].filter(Boolean).join(" · ");
     return `<li class="log-item">
-      <div class="lthumb ${p ? "" : "noimg"}" style="${p ? `background-image:url('${esc(p)}')` : ""}">${p ? "" : "♪"}</div>
+      <div class="lthumb ${p ? "" : "noimg"}" style="${p ? `background-image:url('${cssUrl(p)}')` : ""}">${p ? "" : "♪"}</div>
       <div class="li-main">
         <div class="li-title">${esc(s.title)}</div>
         <div class="muted">${esc(s.seen_date || "")}</div>

@@ -57,7 +57,7 @@ TITLES = {  # German marketing title -> canonical Western title
     "der teufel trägt prada": "The Devil Wears Prada",
     "tarzan": "Tarzan",
     "hercules": "Hercules",
-    "tina": "TINA - The Tina Turner Musical",
+    "tina turner": "TINA - The Tina Turner Musical",  # not bare "tina" — that wrongly caught "Bibi & Tina"
     "zurück in die zukunft": "Back to the Future: The Musical",
     "& julia": "& Juliet",
     "mj -": "MJ The Musical",
@@ -69,6 +69,23 @@ TITLES = {  # German marketing title -> canonical Western title
     "starlight express": "Starlight Express",
 }
 SKIP = re.compile(r"backstage|angebote|gutschein|casting|archiv|hotel|fuehrung|barrierefrei|faq|service|presse|jobs|agb|datenschutz", re.I)
+
+# ── Poster picking ──────────────────────────────────────────────────────────
+# Stage pages embed MANY shows' images (nav + "more shows" carousel) — so just
+# grabbing og:image or the first transform URL is wrong: og:image is often a .tif
+# the browser CAN'T render, and the first transform is usually another show's
+# keyvisual (every page led with Prada's, so 7 shows wrongly showed Prada's poster).
+# The reliable per-show signal is the portrait poster the page renders for ITSELF:
+#   …/transform/{uuid}/SEN-MS-…ShowOnly-{CODE}-900x1459px   (only the current show
+# carries a "ShowOnly" image; other shows on the page use Keyvisual/Header/LinkAd).
+TRANSFORM = re.compile(r"https://mediaportal\.stage-entertainment\.com/transform/[a-f0-9-]+/[^\"?\\\s]+")
+# Site-wide assets that are never a show's own poster.
+GENERIC = re.compile(r"startbanner|composingnavi|25jahre|wortmarke|[-_]icon|logo[-_]?quadrat|navi\d|kachel|"
+                     r"theatervermietung|backstage|foyer|theater_saal|archiv_logo|familie\d", re.I)
+WEBP = "?io=transform:fill,width:1200&format=webp"
+# Last-resort code for the few shows that ship neither a ShowOnly poster nor a
+# renderable og:image (their code can't be derived from a .tif filename).
+CODE_BY_SLUG = {"mj-": "MJ", "bibi-tina": "WBT"}
 
 
 def fetch(url):
@@ -82,6 +99,38 @@ def canon(title):
         if de in t:
             return en
     return title
+
+
+def pick_image(html, slug):
+    og_m = re.search(r'property="og:image" content="([^"]+)"', html)
+    og = htmllib.unescape(og_m.group(1)) if og_m else None
+    trs = list(dict.fromkeys(TRANSFORM.findall(html)))           # de-duped, in document order
+    cand = [u for u in trs if not GENERIC.search(u)]
+
+    # 1) the show's own portrait poster — unique to this page
+    showonly = [u for u in cand if "showonly" in u.lower()]
+    showonly.sort(key=lambda u: 0 if "900x1459" in u else 1)     # prefer the portrait crop
+    if showonly:
+        return showonly[0] + WEBP
+
+    # 2) a directly-renderable og:image (jpg/png/webp) — but a .tif can't be shown
+    if og and not og.lower().split("?")[0].endswith((".tif", ".tiff")):
+        return og
+
+    # 3) match this show's code (from the .tif og filename, else the slug map) against
+    #    the transform images, so we never fall through to another show's keyvisual.
+    code = None
+    if og:
+        m = re.search(r"([A-Za-z]{2,})", og.split("/")[-1].split("?")[0])
+        code = m.group(1).upper() if m else None
+    if not code:
+        code = next((c for k, c in CODE_BY_SLUG.items() if k in slug), None)
+    if code:
+        coded = [u for u in cand if code in u.split("/")[-1].upper()]
+        coded.sort(key=lambda u: 0 if re.search(r"header|theaterbild|keyvisual", u, re.I) else 1)
+        if coded:
+            return coded[0] + WEBP
+    return None
 
 
 def main():
@@ -117,7 +166,7 @@ def main():
             re.split(r"\s*[|–]\s*(?:Stage Entertainment|Musical|Tickets).*$", tm.group(1))[0].strip()) if tm else slug
         if re.match(r"^musicals\b", raw_title, re.I):
             continue  # city overview page, not a show
-        og = re.search(r'property="og:image" content="([^"]+)"', html)
+        image = pick_image(html, slug)
         text = html.lower()
         # the nav mentions EVERY theatre once — pick the most-mentioned one (>=2)
         counts = {k: text.count(k) for k in THEATRES}
@@ -135,7 +184,7 @@ def main():
             "lat": lat, "lng": lng,
             "start_date": None, "end_date": None,
             "ticket_url": BASE + path,
-            "image": og.group(1) if og else None,
+            "image": image,
             "tour_name": None, "verified": True,
             "source": "stage-entertainment.de",
         }

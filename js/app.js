@@ -82,6 +82,13 @@ function affiliateUrl(u) {
 // and list thumbnails. Contentful / imgix / craft.cloud take different params.
 // Original full-size images everywhere — no CDN downscaling/compression.
 // (User preference: image quality over load speed.)
+// CSS-safe URL for `background-image:url('…')`. esc() (HTML-encoding) is WRONG in
+// CSS context — an apostrophe becomes &#39; which CSS does NOT decode, breaking the
+// URL (e.g. "Everybody's Talking About Jamie" poster showed in the popup <img> but
+// not in the marker/sidebar background-image). Percent-encode the chars that would
+// break url('…') instead.
+const cssUrl = (u) => (u || "").replace(/['"()\s\\]/g,
+  (c) => "%" + c.charCodeAt(0).toString(16).padStart(2, "0"));
 function thumb(url) {
   return safeUrl(url);
 }
@@ -245,7 +252,7 @@ if (timebarEl) {
 // ---------- Rendering helpers ----------
 function posterStyle(show, w, h) {
   const t = thumb(show.image, w, h);
-  return t ? `background-image:url('${esc(t)}')` : "";
+  return t ? `background-image:url('${cssUrl(t)}')` : "";
 }
 function fallbackGlyph(show) {
   // shows with no poster (e.g. tour samples) get a music-note tile
@@ -284,7 +291,7 @@ function tooltipHtml(show) {
   // hover card: bigger poster + key info
   const poster = thumb(show.image, 140, 196);
   const img = poster
-    ? `<div class="tt-poster" style="background-image:url('${esc(poster)}')"></div>`
+    ? `<div class="tt-poster" style="background-image:url('${cssUrl(poster)}')"></div>`
     : `<div class="tt-poster noimg"><span class="glyph">♪</span></div>`;
   return `<div class="tt">${img}<div class="tt-meta">
       <div class="tt-title">${esc(canonTitle(show))}</div>

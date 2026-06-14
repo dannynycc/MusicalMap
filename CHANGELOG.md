@@ -11,6 +11,14 @@
 
 ---
 
+## [v0.41.1] - 2026-06-14 22:20
+### 修正(海報圖片 + Stage 德國海報全面修正 + Frost→Frozen + 去重)
+- **小圖空白 bug**(使用者抓到 Everybody's Talking About Jamie「有大圖卻沒有小圖」):圖片 URL 含撇號(`'`),原本 marker / 側欄 / 地圖 pin 的 `background-image:url()` 用 `esc()` 做 HTML 轉義(`'`→`&#39;`),但 CSS **不會** decode HTML entity → url 壞掉,只有彈窗 `<img>` 正常。新增 `cssUrl()`(`js/app.js`、`me.js`、`u.js`)對 `' " ( ) 空白 反斜線` 做 percent-encoding,所有 `background-image` 改用它。
+- **Stage 德國海報全面修正**(使用者抓到 Frozen 沒小圖):前一版號稱「13 檔 0 缺漏」其實是假完成 —— 7 檔抓到的是首頁通用 banner(`SEN-Web-Startbanner-ComposingNavi`,全部變成 Prada 的圖)、2 檔是 `.tif`(瀏覽器**根本不能顯示**)。改寫 `pick_image()`:優先抓該劇專屬的 `ShowOnly-{劇碼}-900x1459px` 直幅海報(每頁只有當齣劇有 ShowOnly,其他劇用 Keyvisual/Header),次選可顯示的 og:image(排除 .tif),再次用劇碼比對 → 13 檔**全部對應到各自正確海報**(WWRY/BTTF 還從 logo 升級為直幅海報),逐一 HTTP 200 + `image/webp` 驗證。
+- **Frost → Frozen**:Frozen 在挪威/丹麥叫「Frost」(works.json 已登記為 alias),但 `build_shows.py` 的 Ticketmaster 合併路徑漏套 `canonical_title()` → 群組標題顯示「Frost」。補上後 frozen 群組 14 筆標題全部統一為 **Frozen**(辨識度優先,有正式英文劇名就用)。
+- **Bibi & Tina 誤判**:Stage `canon()` 用裸字 `"tina"` 把兒童耶誕劇「Weihnachten mit Bibi und Tina」誤判成「TINA - The Tina Turner Musical」→ 改為 `"tina turner"` 精確比對。
+- **Paddington 去重**:行銷尾綴「- Relaxed Performance」等表演型態字串導致同劇分裂,`build_shows.py` 加 `PERF_TYPE_RE` 剝除,`audit_dups.py` 強化偵測。
+
 ## [v0.41.0] - 2026-06-14 21:54
 ### 新增 / 修正(奧地利 + 中東去重 + 波蘭)
 - **奧地利**(`austria.py`,維也納 VBW musicalvienna.at):補上 Das Phantom der Oper(Raimund Theater)——原本全奧地利只有 TM 的 Mamma Mia。

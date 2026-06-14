@@ -207,6 +207,13 @@ LOC_QUALIFIER_RE = re.compile(
     r"u\.?s\.?\s*tour|uk\s*tour|on\s*tour|touring|"
     r"[A-Za-z][\w .'’&-]*,\s*[A-Za-z]{2})\s*\)\s*$", re.I)  # "(New York, NY)" / "(Cleveland, OH)"
 
+# Performance-TYPE suffix after a dash (accessibility / special perfs) — not a
+# different show. "Paddington The Musical - Relaxed Performance" → "Paddington…".
+PERF_TYPE_RE = re.compile(
+    r"\s*[-–—:]\s*(?:relaxed|captioned|audio[- ]?describ\w*|signed|bsl|"
+    r"matinee|opening night|press night|gala night|previews?|sensory|autism[- ]?friendly|"
+    r"dementia[- ]?friendly|touch tour|sing[- ]?along|auslan)\b.*$", re.I)
+
 
 def clean_title(t):
     t = (t or "").strip()
@@ -220,6 +227,7 @@ def clean_title(t):
         prev = t
         t = NOTICE_RE.sub(" ", t).strip()
         t = LOC_QUALIFIER_RE.sub("", t).strip()
+        t = PERF_TYPE_RE.sub("", t).strip()                     # "- Relaxed Performance" etc.
         t = re.sub(r"\s*\((?:19|20)\d{2}\)\s*$", "", t).strip()  # trailing year, e.g. "(1993)"
         t = re.sub(r"\s+(?:19|20)\d{2}[\s!.]*$", "", t).strip()   # trailing bare year, e.g. "… 2027"
     return re.sub(r"\s{2,}", " ", t).strip()
@@ -437,8 +445,9 @@ def main():
         tm = json.loads(tm_path.read_text(encoding="utf-8")).get("shows", [])
         kept = 0
         for s in tm:
-            s["title"] = strip_city_qualifier(clean_title(s.get("title")), s.get("city"))
-            s["group"] = gk = group_key(s["title"])
+            orig = strip_city_qualifier(clean_title(s.get("title")), s.get("city"))
+            s["group"] = gk = group_key(orig)
+            s["title"] = canonical_title(orig)   # registered → canonical (Frost → Frozen)
             city = city_key(s.get("city"))
             if (gk, city) in seen_show_city:
                 u = s.get("attraction_url") or s.get("ticket_url")
