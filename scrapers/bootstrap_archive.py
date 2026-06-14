@@ -6,7 +6,14 @@ and folds each historical shows.json into the archive exactly as the daily archi
 would have — giving us retroactive history for free, back to the first commit.
 
 Run once (from repo root):  python scrapers/bootstrap_archive.py
-Idempotent: re-running rebuilds the same archive from git + current shows.json.
+
+CAVEAT: this backfills snapshots AS THEY WERE LISTED — including shows that a later
+clean-up has since removed (e.g. non-musicals that passed an older, weaker filter),
+and identities computed under whatever normalisation those commits used. So if the
+classifier/normalisation has changed materially, prefer the clean forward path:
+delete data/archive/ and run archive.py once against the CURRENT shows.json, then
+let the daily CI accumulate from there. Forward accumulation — not this backfill —
+is the source of truth.
 """
 
 import json

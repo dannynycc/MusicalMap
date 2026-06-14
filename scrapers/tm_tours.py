@@ -109,7 +109,9 @@ def main():
                             "lat": round(float(loc["latitude"]), 6),
                             "lng": round(float(loc["longitude"]), 6),
                             "start_date": date, "end_date": date,
-                            "ticket_url": a.get("url") or e.get("url"),   # stable attraction page, not expiring event URL
+                            # stable attraction page; search-page fallback, never expiring /event/
+                            "ticket_url": a.get("url") or (
+                                "https://www.ticketmaster.com/search?q=" + urllib.parse.quote(title)),
                             "attraction_url": a.get("url"),
                             "image": None,  # inherit the show's poster at build
                             "tour_name": None, "verified": True,

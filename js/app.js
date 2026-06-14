@@ -35,6 +35,27 @@ function safeUrl(u) {
   } catch { return null; }
 }
 
+// ── Affiliate / commission links ────────────────────────────────────────────
+// Data keeps CLEAN canonical URLs (e.g. Ticketmaster attraction pages); monetised
+// wrapping is applied HERE, in one place, at click/render time — so you can add or
+// change a commission program WITHOUT re-scraping, and the data stays portable.
+// To enable: fill in an entry keyed by a host substring. Each maps a clean URL to
+// your tracked URL. Examples (uncomment + insert YOUR program's IDs when you have
+// them — Ticketmaster runs via Impact/Partnerize; ATG/Broadway have their own):
+const AFFILIATE = {
+  // "ticketmaster.com": (u) => `https://<your-impact-domain>/c/AAAA/BBBB/CCCC?u=${encodeURIComponent(u)}`,
+  // "ticketmaster.":    (u) => u + (u.includes("?") ? "&" : "?") + "irgwc=1&clickid=YOURID",  // param-style
+  // "atgtickets.com":   (u) => u + (u.includes("?") ? "&" : "?") + "affiliate=YOURID",
+};
+function affiliateUrl(u) {
+  if (!u) return u;
+  try {
+    const host = new URL(u).hostname;
+    for (const key in AFFILIATE) if (host.includes(key)) return AFFILIATE[key](u);
+  } catch { /* leave as-is */ }
+  return u;   // default: passthrough (no commission program configured yet)
+}
+
 // CDN-side thumbnailing: request a small CROPPED square-ish poster for markers
 // and list thumbnails. Contentful / imgix / craft.cloud take different params.
 // Original full-size images everywhere — no CDN downscaling/compression.
@@ -259,14 +280,14 @@ function popupHtml(show) {
     // 官網永遠在售票連結上方；按鈕等寬堆疊對齊
     const row = (label, arr) => arr.length
       ? `<div class="pop-link-group"><span class="pl-label">${label}</span>${arr.map((l) =>
-          `<a class="pop-cta sm" href="${esc(safeUrl(l.url))}" target="_blank" rel="noopener">${esc(l.label || l.country)} →</a>`).join("")}</div>`
+          `<a class="pop-cta sm" href="${esc(affiliateUrl(safeUrl(l.url)))}" target="_blank" rel="noopener">${esc(l.label || l.country)} →</a>`).join("")}</div>`
       : "";
     ticket = row("官網", links.filter((l) => l.kind === "official"))
            + row("售票", links.filter((l) => l.kind !== "official"));
   } else {
     const url = safeUrl(show.ticket_url) || (links[0] && safeUrl(links[0].url));
     const label = show.link_kind === "official" ? "前往官網購票 →" : "前往售票頁 →";
-    ticket = url ? `<a class="pop-cta" href="${esc(url)}" target="_blank" rel="noopener">${label}</a>` : "";
+    ticket = url ? `<a class="pop-cta" href="${esc(affiliateUrl(url))}" target="_blank" rel="noopener">${label}</a>` : "";
   }
   const tname = show.tour_name ? show.tour_name.replace(show.title, canonTitle(show)) : "";
   const tourLine = show.type === "tour" && tname ? `<div class="p-row"><b>${esc(tname)}</b></div>` : "";

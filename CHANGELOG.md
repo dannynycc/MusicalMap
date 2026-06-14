@@ -11,6 +11,12 @@
 
 ---
 
+## [v0.36.2] - 2026-06-14 15:58
+### 修正 / 新增(售票連結 + 分潤掛勾)
+- **Ticketmaster 連結一律連到穩定主頁**:確認 915 條中 895 條已是 `/artist/` attraction 主頁(如 `funny-girl-touring-tickets/artist/3007772`);剩 25 條會過期的 `/event/` 單場連結改成同國域名的**搜尋頁** fallback(ticketmaster.py/tm_tours.py 改 code + 既有資料就地修),現存 `/event/` 連結歸零。
+- **分潤/commission 連結掛勾**(app.js `affiliateUrl()` + `AFFILIATE` 設定):資料維持乾淨主頁 URL,分潤包裝集中在前端 render 時套用——拿到 Impact/Partnerize 等分潤 ID 後填一行即生效,**不必重抓、不污染資料**;支援按網域分別設定(Ticketmaster/ATG…)。預設 passthrough(尚未啟用)。
+- **archive 身分穩定性修正**:run_key 依賴 group,session 中途改正規化會讓 git-backfill 的舊狀態與現狀對不上(且復活已移除的非音樂劇)。改以**乾淨當前狀態重置 archive**(1296 runs),`bootstrap_archive.py` 加註腳:正規化變動後應走「重置 + 前向累積」而非 backfill。
+
 ## [v0.36.1] - 2026-06-14 15:36
 ### 變更
 - **前端暫不顯示歷史資料**:時間軸往回瀏覽功能用 `SHOW_HISTORY=false` 旗標關閉(滑桿維持只到本月、不載入 archive)。歷史層 `archive.py` 仍每日 CI 累積,資料持續存著,日後一行翻 `true` 即開啟。

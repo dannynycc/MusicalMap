@@ -64,6 +64,17 @@ COUNTRIES = [
 ]
 
 
+def tm_search(title, ref_url):
+    """Stable fallback when an event has no attraction page: a Ticketmaster search
+    page for the title, on the same national domain as the event (so a UK event
+    keeps .co.uk). Never returns an expiring /event/ URL."""
+    host = "www.ticketmaster.com"
+    m = re.match(r"https?://([^/]+)", ref_url or "")
+    if m:
+        host = m.group(1)
+    return f"https://{host}/search?q=" + urllib.parse.quote(title)
+
+
 def clean_title(t):
     """Normalize the noisy event names Ticketmaster uses so the same production
     collapses to one record (accessibility/preview performances, region tags,
@@ -170,9 +181,10 @@ def main():
         if not title or not venue or not loc.get("latitude"):
             return
         att = (ev.get("_embedded", {}).get("attractions") or [{}])[0]
-        # link to the STABLE show (attraction) page, not the per-performance event URL
-        # which 404s once that date passes; fall back to the event URL only if absent.
-        link = att.get("url") or ev.get("url")
+        # Link to the STABLE attraction (show) page, e.g. .../funny-girl-tickets/artist/NNN
+        # — NOT the per-performance /event/ URL, which 404s once that date passes. When
+        # no attraction page exists, fall back to a (stable) search page, never /event/.
+        link = att.get("url") or tm_search(title, ev.get("url"))
         key = (title.lower(), venue.lower())
         rec = runs.get(key)
         if not rec:
