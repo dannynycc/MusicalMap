@@ -105,22 +105,29 @@ def parse_dates(s):
 
 
 def real_run(pid):
-    """True run from a product's actual session list (GET /good/shows/{id}) — used
-    when productShowTime is an unreliable long booking window. Returns (min_iso,
-    max_iso) of the real performance dates, or (None, None)."""
+    """The authoritative run = a product's actual performance sessions (GET
+    /good/shows/{id} → data.showInfoDetailList[].showTime). productShowTime is only a
+    marketing/booking window and can be flat-out wrong (Ash亚斯 claimed …-2027.06.27
+    while the real sessions are 06.19-06.27). We parse ONLY showTime — NOT every date
+    in the blob, since saleBeginTimeStr (the on-sale date) would pollute it. Returns
+    (min_iso, max_iso) of real performance dates, or (None, None)."""
     try:
         resp = urllib.request.urlopen(urllib.request.Request(BASE + "/good/shows/" + str(pid), headers=HDR), timeout=20)
         raw = resp.read()
         if resp.headers.get("Content-Encoding") == "gzip":
             raw = gzip.decompress(raw)
-        blob = raw.decode("utf-8", "ignore")
+        d = json.loads(raw.decode("utf-8", "ignore")).get("data") or {}
     except Exception:  # noqa: BLE001
         return None, None
-    parts = re.findall(r"(20\d{2})[.\-/](\d{1,2})[.\-/](\d{1,2})", blob)
-    if not parts:
+    iso = set()
+    for sess in d.get("showInfoDetailList") or []:
+        m = re.match(r"(\d{4})[.\-/](\d{1,2})[.\-/](\d{1,2})", sess.get("showTime") or "")
+        if m:
+            iso.add(f"{int(m.group(1))}-{int(m.group(2)):02d}-{int(m.group(3)):02d}")
+    if not iso:
         return None, None
-    iso = sorted(f"{int(y)}-{int(m):02d}-{int(d):02d}" for y, m, d in parts)
-    return iso[0], iso[-1]
+    s = sorted(iso)
+    return s[0], s[-1]
 
 
 def _fold(s):
@@ -171,21 +178,14 @@ def main():
             skipped.append((r.get("cityName"), venue, clean_title(r["productNameShort"])))
             continue
         lat, lng = coord
-        start, end = parse_dates(r.get("productShowTime"))
-        # productShowTime is unreliable for resident/immersive spaces (保利剧聚空间…):
-        # it returns a year-long booking WINDOW (e.g. Ash亚斯 "2026.06.05-2027.06.27")
-        # while the ACTUAL sessions are a short batch (verified: 2026-05-23…06-27, no
-        # 2027 date at all). When the window looks long (>120 days), fetch the real
-        # session dates from /good/shows/{id} and use their true min/max instead.
-        if start and end:
-            try:
-                from datetime import date as _d
-                if (_d.fromisoformat(end) - _d.fromisoformat(start)).days > 120:
-                    rs, re_ = real_run(pid)
-                    if rs:
-                        start, end = rs, re_
-            except ValueError:
-                pass
+        # Authoritative dates = the real performance sessions (showTime). productShowTime
+        # is only a booking window and is sometimes wrong (Ash亚斯 → bogus 2027), so we
+        # always prefer real_run and fall back to productShowTime only if the detail
+        # fetch yields no sessions.
+        start, end = real_run(pid)
+        if not start:
+            start, end = parse_dates(r.get("productShowTime"))
+        time.sleep(0.1)
         city_cn = r.get("cityName") or ""
         sid = f"poly-{pid}"
         title = clean_title(r["productNameShort"])
