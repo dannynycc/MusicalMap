@@ -39,13 +39,23 @@ function safeUrl(u) {
 // Data keeps CLEAN canonical URLs (e.g. Ticketmaster attraction pages); monetised
 // wrapping is applied HERE, in one place, at click/render time — so you can add or
 // change a commission program WITHOUT re-scraping, and the data stays portable.
-// To enable: fill in an entry keyed by a host substring. Each maps a clean URL to
-// your tracked URL. Examples (uncomment + insert YOUR program's IDs when you have
-// them — Ticketmaster runs via Impact/Partnerize; ATG/Broadway have their own):
+// To enable: sign up for each program, then uncomment its line and paste YOUR IDs.
+// Deep-linking is supported by all of these — wrapping a clean attraction/main page
+// URL is enough to earn commission (the click sets a cookie; the buyer is tracked
+// through to checkout). Formats below are the real ones for each affiliate network
+// (2026 research). The map's outbound domains that HAVE a program:
+//   • ticketmaster.* ............ Impact (impact.com) — apply at app.impact.com
+//   • atgtickets.com ............ Partnerize
+//   • londontheatre.co.uk ....... Impact or Awin (~10%, best West End rate)
+//   • stage-entertainment.de .... German networks (~4-7%)
+// (Korea/Hungary/Taiwan/Japan official sources have no public program → passthrough.)
 const AFFILIATE = {
-  // "ticketmaster.com": (u) => `https://<your-impact-domain>/c/AAAA/BBBB/CCCC?u=${encodeURIComponent(u)}`,
-  // "ticketmaster.":    (u) => u + (u.includes("?") ? "&" : "?") + "irgwc=1&clickid=YOURID",  // param-style
-  // "atgtickets.com":   (u) => u + (u.includes("?") ? "&" : "?") + "affiliate=YOURID",
+  // Impact: tracking domain + account/ad/campaign IDs come from your Impact dashboard.
+  // "ticketmaster.": (u) => `https://imp.pxf.io/c/ACCOUNTID/ADID/CAMPAIGNID?u=${encodeURIComponent(u)}`,
+  // Partnerize: camref from your ATG/Partnerize dashboard; destination is appended.
+  // "atgtickets.com": (u) => `https://prf.hn/click/camref:CAMREF/destination:${encodeURIComponent(u)}`,
+  // Awin: mid = merchant id, affid = your publisher id.
+  // "londontheatre.co.uk": (u) => `https://www.awin1.com/cread.php?awinmid=MID&awinaffid=AFFID&ued=${encodeURIComponent(u)}`,
 };
 function affiliateUrl(u) {
   if (!u) return u;

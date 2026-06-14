@@ -11,6 +11,15 @@
 
 ---
 
+## [v0.36.3] - 2026-06-14 16:13
+### 新增(分潤連結範本 — 研究各平台聯盟計畫)
+- 研究確認各售票平台 2026 聯盟方案,把**正確連結格式**寫成 `AFFILIATE` 範本(app.js),申請後填 ID 即生效:
+  - **Ticketmaster**(我們最大宗 ~915 連結)→ Impact(impact.com),redirect 包裝 `https://imp.pxf.io/c/{帳號}/{ad}/{campaign}?u={目的URL}`;30 天 last-click;**佣金低(約 $0.30/單),且開賣前/開賣首 24 小時不計佣**。
+  - **ATG Tickets**(238 連結)→ Partnerize `https://prf.hn/click/camref:{CAMREF}/destination:{URL}`,階梯佣金。
+  - **LondonTheatre.co.uk**(82 連結)→ Impact/Awin,**約 10%(西區最佳率)**。
+  - Stage Entertainment DE 有德國聯盟(~4-7%);Broadway.org/Interpark/jegy/OPENTIX/四季 等**無公開聯盟**→ 維持純連出。
+- 全平台皆支援 deep-link,**連主頁帶追蹤碼即可抽成**(印證既有設計:資料存乾淨主頁、前端 render 時包裝)。
+
 ## [v0.36.2] - 2026-06-14 15:58
 ### 修正 / 新增(售票連結 + 分潤掛勾)
 - **Ticketmaster 連結一律連到穩定主頁**:確認 915 條中 895 條已是 `/artist/` attraction 主頁(如 `funny-girl-touring-tickets/artist/3007772`);剩 25 條會過期的 `/event/` 單場連結改成同國域名的**搜尋頁** fallback(ticketmaster.py/tm_tours.py 改 code + 既有資料就地修),現存 `/event/` 連結歸零。
