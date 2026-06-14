@@ -11,6 +11,11 @@
 
 ---
 
+## [v0.37.0] - 2026-06-14 16:24
+### 新增(隱私權政策 + 使用條款頁)
+- `privacy.html` / `terms.html`:聯盟計畫(Impact 等)審核要求的公開頁面。內容據實:靜態地圖無廣告追蹤/無第三方分析;My Musicals 用 Google 登入、資料存 Supabase(RLS,僅本人可存取);售票外連可能含分潤(Impact/Partnerize/Awin,使用者不多付);準據法台灣;聯絡 dannynycc@gmail.com。
+- 首頁頁尾 + 兩頁導覽互連,公開可達(`.legal`/`.foot-links` 樣式)。
+
 ## [v0.36.4] - 2026-06-14 16:20
 ### 新增(文件)
 - `docs/AFFILIATE_SETUP.md`:分潤帳號申請逐步清單(Ticketmaster/Impact、ATG/Partnerize、LondonTheatre/Impact·Awin),含共用前提(隱私權/條款頁、W-8BEN 稅表、收款)、每家在哪拿哪些 ID、拿到後給我哪些欄位即可填入 `AFFILIATE` 上線。

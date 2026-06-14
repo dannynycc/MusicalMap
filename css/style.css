@@ -108,6 +108,18 @@ body { display: flex; flex-direction: column; height: 100vh; }
   font-size: 11px; font-weight: 700; color: #fff; background: var(--tag-color, #64748b);
 }
 
+/* Legal / content pages (privacy, terms) */
+.legal { max-width: 760px; margin: 0 auto; padding: 32px 24px 64px; line-height: 1.7; color: var(--text); }
+.legal h1 { font-size: 26px; margin: 0 0 4px; }
+.legal .updated { color: var(--muted); font-size: 13px; margin: 0 0 28px; }
+.legal h2 { font-size: 18px; margin: 28px 0 8px; }
+.legal p, .legal li { font-size: 15px; color: #334155; }
+.legal ul { padding-left: 22px; }
+.legal a { color: var(--accent); }
+.foot-links { margin-top: 8px; font-size: 12px; color: var(--muted); }
+.foot-links a { color: var(--muted); text-decoration: none; }
+.foot-links a:hover { color: var(--accent); }
+
 #count { padding: 11px 20px 4px; font-size: 12px; color: var(--muted); font-weight: 600; }
 
 #show-list { list-style: none; margin: 0; padding: 0 8px 10px; overflow-y: auto; flex: 1; }

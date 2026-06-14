@@ -10,8 +10,7 @@
 
 ## 0. 先備好(共用前提,沒這些會卡審核)
 
-- [ ] **隱私權政策頁**(privacy）+ **使用條款頁**(terms），公開可連。
-      → MusicalMap 目前**沒有**,Impact/多數聯盟審核會要。可請我加 `privacy.html` / `terms.html`。
+- [x] **隱私權政策頁**(`privacy.html`)+ **使用條款頁**(`terms.html`)— ✅ 已建立,首頁頁尾與各頁導覽皆可連達。
 - [ ] **收款資料**:PayPal 或銀行帳戶。
 - [ ] **稅表 W-8BEN**(你在台灣=非美國人,Impact/網路申請時會要你線上填,證明免美國預扣稅)。
 - [ ] 網站網址:`https://dannynycc.github.io/MusicalMap/`(申請時填這個)。
