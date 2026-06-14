@@ -75,9 +75,61 @@ def scrape_hungary():
     return out, dropped
 
 
+# ---------- Czech Republic (prazskemuzikaly.cz) ----------
+# Only the major PROFESSIONAL musical houses (the aggregator also lists small
+# regional/amateur productions). Slug -> (display venue, city). City must come from
+# the venue, not the page text (which always mentions "Praha" in nav/footer).
+CZ_VENUE = {
+    "hudebni-divadlo-karlin": ("Hudební divadlo Karlín", "Prague"),
+    "divadlo-hybernia": ("Divadlo Hybernia", "Prague"),
+    "goja-music-hall": ("GoJa Music Hall", "Prague"),
+    "divadlo-broadway": ("Divadlo Broadway", "Prague"),
+    "divadlo-kalich": ("Divadlo Kalich", "Prague"),
+    "divadlo-radka-brzobohateho": ("Divadlo Radka Brzobohatého", "Prague"),
+    "divadlo-na-fidlovacce": ("Divadlo Na Fidlovačce", "Prague"),
+    "divadlo-jiriho-myrona-ostrava": ("Divadlo Jiřího Myrona (NDM)", "Ostrava"),
+    "divadlo-antonina-dvoraka-ostrava": ("Divadlo Antonína Dvořáka (NDM)", "Ostrava"),
+    "mestske-divadlo-brno": ("Městské divadlo Brno", "Brno"),
+}
+
+
+def scrape_czech():
+    cat = get("https://www.prazskemuzikaly.cz/muzikaly-ceska-republika")
+    slugs = list(dict.fromkeys(re.findall(r"/predstaveni/([\w-]+)", cat)))
+    today = datetime.now(CET).strftime("%Y-%m-%d")
+    out, dropped = [], []
+    for slug in slugs:
+        if re.search(r"koncert|concert|gala|-show$|narozenin", slug):
+            continue                                    # concerts / galas, not musicals
+        try:
+            d = get(f"https://www.prazskemuzikaly.cz/predstaveni/{slug}")
+        except Exception:
+            continue
+        vslug = next((v for v in re.findall(r"/divadlo/([\w-]+)", d) if v in CZ_VENUE), None)
+        if not vslug:
+            continue                                    # not at a major professional house
+        venue, city = CZ_VENUE[vslug]
+        # JSON-LD "startDate" = real performance dates; a broad date regex also grabs
+        # the offer "validFrom" (= today) on every page, falsely making every run
+        # start today. Use startDate only.
+        perf = sorted(set(re.findall(r'"startDate":"(20\d{2}-\d{2}-\d{2})', d)))
+        future = [x for x in perf if x >= today]
+        if not future:
+            continue
+        t = re.search(r"<title>(.*?)</title>", d, re.S)
+        title = html.unescape(t.group(1)).split("–")[0].split("|")[0].strip() if t else slug
+        title = re.sub(r"^(?:Rockov[áý]\s+)?(?:Muzik[áa]l|Rockov[áý]\s+opera|Rockopera)\s+", "", title, flags=re.I)
+        title = re.sub(r"\s+v\s+(?:Divadle|Hudebním|HDK|NDM|GoJa|Městském|Národním).*$", "", title)
+        img = re.search(r'og:image["\' ]+content=["\']([^"\']+)', d)
+        out.append({"title": title.strip(), "venue": venue, "city": city, "country": "Czech Republic",
+                    "start": future[0], "end": future[-1], "image": img.group(1) if img else None,
+                    "url": f"https://www.prazskemuzikaly.cz/predstaveni/{slug}", "source": "prazskemuzikaly.cz"})
+    return out, dropped
+
+
 def main():
     rows, dropped = [], []
-    for fn in (scrape_hungary,):
+    for fn in (scrape_hungary, scrape_czech):
         try:
             r, d = fn()
             rows += r; dropped += d
