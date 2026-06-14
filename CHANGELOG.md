@@ -11,6 +11,10 @@
 
 ---
 
+## [v0.36.4] - 2026-06-14 16:20
+### 新增(文件)
+- `docs/AFFILIATE_SETUP.md`:分潤帳號申請逐步清單(Ticketmaster/Impact、ATG/Partnerize、LondonTheatre/Impact·Awin),含共用前提(隱私權/條款頁、W-8BEN 稅表、收款)、每家在哪拿哪些 ID、拿到後給我哪些欄位即可填入 `AFFILIATE` 上線。
+
 ## [v0.36.3] - 2026-06-14 16:13
 ### 新增(分潤連結範本 — 研究各平台聯盟計畫)
 - 研究確認各售票平台 2026 聯盟方案,把**正確連結格式**寫成 `AFFILIATE` 範本(app.js),申請後填 ID 即生效:
