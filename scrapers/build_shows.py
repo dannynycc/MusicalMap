@@ -125,7 +125,8 @@ SOURCE_FILES = ["broadway.json", "westend.json", "tours.json", "intl.json",
                 "atg.json", "stage_de.json", "madrid.json", "opentix.json",
                 "utiki.json", "japan.json", "easteurope.json",
                 "italy.json", "sweden.json", "netherlands.json", "poland.json",
-                "norway.json", "austria.json", "middleeast.json", "manual.json"]
+                "norway.json", "austria.json", "middleeast.json", "china.json",
+                "manual.json"]
 
 # When several ticket sources list the SAME show in the SAME city, we keep one
 # record (highest priority = most authoritative venue data) and attach every
@@ -311,7 +312,7 @@ TAG_LOCAL_SRC = [
     (("shiki", "kageki", "toho", "j25", "theatre-orb", "japan"), "日本原創"),
     (("interpark",), "韓國原創"),
     (("jegy", "prazske", "ndm"), "歐陸原創"),
-    (("damai", "maoyan", "shculturesquare", "shgtheatre", "polyt", "chinaticket"), "中國原創"),
+    (("damai", "maoyan", "shcstheatre", "shgtheatre", "polyt", "chinaticket"), "中國原創"),
 ]
 
 

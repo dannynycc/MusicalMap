@@ -11,6 +11,21 @@
 
 ---
 
+## [v0.42.0] - 2026-06-14 22:48
+### 新增:中國音樂劇(上海文化廣場)
+- **中國資料來源上線**(`scrapers/china.py`):大麥/貓眼有反爬牆(x5secdata 滑塊),改從**場館層級**抓——上海文化廣場(上汽·上海文化廣場)是大陸音樂劇旗艦館,且 ASP.NET 前端後面有乾淨 JSON API:
+  - `POST /webapi.ashx?op=GetTBLEVENTListForCalendar`(year/month)→ 當月所有檔期
+  - `POST /webapi.ashx?op=GettblprogramCache`(id)→ 權威 genre / 演期 / 海報 / 場地 / 語言
+  掃未來 13 個月,只留 genre = **音乐剧** 的節目,每齣輸出完整演期。共 **7 齣**(全有海報,逐一 HTTP 200 image/jpeg 驗證)。
+- **按血統正確分類**(非按演出地)——這正是你要的「上海的 Phantom 屬於百老匯」原則:
+  - 太阳王 → **法式音樂劇**(Le Roi Soleil,場館自標「法语原版」)
+  - 我的遗愿清单 / 粉丝来信 → **韓國原創**(My Bucket List / Fan Letter)
+  - 基督山伯爵 中文版 → **歐陸原創**(俄羅斯莫斯科輕歌劇院 2008 原版授權;**修正**舊 works.json 把它誤標 Broadway/West End)
+  - 快乐即逝 → **西語音樂劇**(場館自標「巴塞罗那当代音乐剧」)
+  - 大状王(粵語)/ 锦衣卫之刀与花(新國風)→ **中國原創**
+- works.json +6 entries、Le Roi Soleil 補中文 alias;`build_shows.py` SOURCE_FILES +china.json、tag 來源 `shculturesquare`(域名已失效被印尼站接管)→ `shcstheatre`;CI 加 china.py。
+- 全站 1325 → **1332 齣**,audit 0 misses。
+
 ## [v0.41.1] - 2026-06-14 22:20
 ### 修正(海報圖片 + Stage 德國海報全面修正 + Frost→Frozen + 去重)
 - **小圖空白 bug**(使用者抓到 Everybody's Talking About Jamie「有大圖卻沒有小圖」):圖片 URL 含撇號(`'`),原本 marker / 側欄 / 地圖 pin 的 `background-image:url()` 用 `esc()` 做 HTML 轉義(`'`→`&#39;`),但 CSS **不會** decode HTML entity → url 壞掉,只有彈窗 `<img>` 正常。新增 `cssUrl()`(`js/app.js`、`me.js`、`u.js`)對 `' " ( ) 空白 反斜線` 做 percent-encoding,所有 `background-image` 改用它。
