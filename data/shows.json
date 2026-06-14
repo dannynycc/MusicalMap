@@ -1,9 +1,9 @@
 {
   "meta": {
     "source": "merged",
-    "generated_at": "2026-06-14 11:08 UTC",
-    "total": 1317,
-    "verified": 1317,
+    "generated_at": "2026-06-14 11:16 UTC",
+    "total": 1316,
+    "verified": 1316,
     "unverified": 0,
     "sources": [
       {
@@ -186,7 +186,7 @@
       },
       {
         "file": "tm_tours.json",
-        "count": 238
+        "count": 237
       }
     ]
   },
@@ -16825,7 +16825,7 @@
       "tour_name": null,
       "verified": true,
       "source": "teatromadrid.com",
-      "group": "gutenberg the musical",
+      "group": "gutenberg",
       "link_kind": "ticketing",
       "tag": "Broadway/West End",
       "alt": "Gutenberg! The Musical! Gutenberg, el mejor musical del mundo"
@@ -21818,7 +21818,7 @@
     },
     {
       "id": "tm-toby-s-dinner-theatre-presents-mean-girls-toby-s-dinner-theatre-columbia",
-      "title": "Toby's Dinner Theatre Presents: Mean Girls",
+      "title": "Mean Girls",
       "type": "tour",
       "venue": "Toby's Dinner Theatre Columbia",
       "city": "Columbia",
@@ -21840,9 +21840,10 @@
       "verified": true,
       "source": "ticketmaster",
       "onsale_only": true,
-      "group": "tobys dinner theatre presents mean girls",
+      "group": "mean girls",
       "link_kind": "ticketing",
-      "tag": "Broadway/West End"
+      "tag": "Broadway/West End",
+      "alt": "Mean Girls 賤女孩"
     },
     {
       "id": "tm-wizard-of-oz-unitedhealth-group-stage-the-childrens-theatre",
@@ -22349,7 +22350,7 @@
     },
     {
       "id": "tm-all-city-musical-presents-mean-girls-akron-civic-theatre",
-      "title": "All-City Musical presents: Mean Girls",
+      "title": "Mean Girls",
       "type": "tour",
       "venue": "Akron Civic Theatre",
       "city": "Akron",
@@ -22371,9 +22372,10 @@
       "verified": true,
       "source": "ticketmaster",
       "onsale_only": true,
-      "group": "all",
+      "group": "mean girls",
       "link_kind": "ticketing",
-      "tag": "Broadway/West End"
+      "tag": "Broadway/West End",
+      "alt": "Mean Girls 賤女孩"
     },
     {
       "id": "tm-mexodus-daryl-roth-theatre",
@@ -23756,7 +23758,7 @@
     },
     {
       "id": "tm-ford-s-theatre-presents-come-from-away-ford-s-theatre",
-      "title": "Ford's Theatre presents: Come From Away",
+      "title": "Come From Away",
       "type": "tour",
       "venue": "Ford's Theatre",
       "city": "Washington",
@@ -23778,7 +23780,7 @@
       "verified": true,
       "source": "ticketmaster",
       "onsale_only": true,
-      "group": "fords theatre presents come from away",
+      "group": "come from away",
       "link_kind": "ticketing",
       "tag": "Broadway/West End"
     },
@@ -24881,7 +24883,7 @@
       "verified": true,
       "source": "ticketmaster",
       "onsale_only": true,
-      "group": "waistwatchers the musical",
+      "group": "waistwatchers",
       "link_kind": "ticketing",
       "tag": "Broadway/West End",
       "alt": "WaistWatchers The Musical! Treintonas, cuarentonas ¡Y chingonas! Treintonas, cuarentonas ¡Y muy chingonas!"
@@ -25630,7 +25632,7 @@
     },
     {
       "id": "tm-nyt-production-of-disney-s-the-little-mermaid-kiri-te-kanawa-theatre",
-      "title": "NYT production of Disney's The Little Mermaid",
+      "title": "Disney's The Little Mermaid",
       "type": "tour",
       "venue": "Kiri Te Kanawa Theatre",
       "city": "Auckland",
@@ -25652,9 +25654,10 @@
       "verified": true,
       "source": "ticketmaster",
       "onsale_only": true,
-      "group": "nyt production of disneys the little mermaid",
+      "group": "little mermaid",
       "link_kind": "ticketing",
-      "tag": "Broadway/West End"
+      "tag": "Broadway/West End",
+      "alt": "The Little Mermaid 小美人魚 La Sirenita De Kleine Zeemeermin, de Musical"
     },
     {
       "id": "tm-the-addams-family-musical-bruce-mason-centre",
@@ -28528,6 +28531,11 @@
       "attraction_url": "https://www.ticketmaster.com/mamma-mia-international-tickets/artist/804014",
       "ticket_links": [
         {
+          "label": "官方網站",
+          "url": "https://mamma-mia.com/",
+          "kind": "official"
+        },
+        {
           "country": "ZA",
           "url": "https://www.ticketmaster.com/mamma-mia-international-tickets/artist/804014"
         }
@@ -28537,9 +28545,10 @@
       "verified": true,
       "source": "ticketmaster",
       "onsale_only": true,
-      "group": "mamma mia the musical",
+      "group": "mamma mia",
       "link_kind": "ticketing",
-      "tag": "Broadway/West End"
+      "tag": "Broadway/West End",
+      "alt": "Mamma Mia! 媽媽咪呀 媽媽咪呀！ マンマ・ミーア"
     },
     {
       "id": "tm-mamma-mia-the-musical-teatro-at-montecasino",
@@ -28556,6 +28565,11 @@
       "attraction_url": "https://www.ticketmaster.com/mamma-mia-international-tickets/artist/804014",
       "ticket_links": [
         {
+          "label": "官方網站",
+          "url": "https://mamma-mia.com/",
+          "kind": "official"
+        },
+        {
           "country": "ZA",
           "url": "https://www.ticketmaster.com/mamma-mia-international-tickets/artist/804014"
         }
@@ -28565,9 +28579,10 @@
       "verified": true,
       "source": "ticketmaster",
       "onsale_only": true,
-      "group": "mamma mia the musical",
+      "group": "mamma mia",
       "link_kind": "ticketing",
-      "tag": "Broadway/West End"
+      "tag": "Broadway/West End",
+      "alt": "Mamma Mia! 媽媽咪呀 媽媽咪呀！ マンマ・ミーア"
     },
     {
       "id": "tmt-addams-family-bruce-mason-centre",
@@ -29608,28 +29623,6 @@
       "end_date": "2027-03-21",
       "ticket_url": "https://www.ticketmaster.com/come-from-away-touring-tickets/artist/2459898",
       "attraction_url": "https://www.ticketmaster.com/come-from-away-touring-tickets/artist/2459898",
-      "image": "https://s1.ticketm.net/dam/c/07d/fda8c807-42eb-4b81-9f16-f3a8367e107d_106371_TABLET_LANDSCAPE_LARGE_16_9.jpg",
-      "tour_name": null,
-      "verified": true,
-      "onsale_only": true,
-      "source": "ticketmaster",
-      "group": "come from away",
-      "link_kind": "ticketing",
-      "tag": "Broadway/West End"
-    },
-    {
-      "id": "tmt-come-from-away-ford-s-theatre",
-      "title": "Come from Away",
-      "type": "tour",
-      "venue": "Ford's Theatre",
-      "city": "Washington",
-      "country": "USA",
-      "lat": 38.896676,
-      "lng": -77.025591,
-      "start_date": "2026-09-10",
-      "end_date": "2026-10-18",
-      "ticket_url": "https://www.ticketmaster.com/come-from-away-australia-tickets/artist/2525997",
-      "attraction_url": "https://www.ticketmaster.com/come-from-away-australia-tickets/artist/2525997",
       "image": "https://s1.ticketm.net/dam/c/07d/fda8c807-42eb-4b81-9f16-f3a8367e107d_106371_TABLET_LANDSCAPE_LARGE_16_9.jpg",
       "tour_name": null,
       "verified": true,

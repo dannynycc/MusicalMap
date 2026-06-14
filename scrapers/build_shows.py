@@ -42,12 +42,14 @@ def _norm(title):
     # trailing "the Xxx Yyy Musical" brand tails without a dash. The "the" is
     # REQUIRED — otherwise titles like "High School Musical" get over-stripped
     # to "high" (real bug: its group missed the official-site table entirely).
-    t = re.sub(r"\s+the\s+(?:[\w'!\-]+\s+){0,4}musical$", "", t)
+    # \W*$ allows trailing punctuation: "MAMMA MIA! The Musical!" (trailing "!")
+    # must still strip to "mamma mia" (else it splits from "Mamma Mia!").
+    t = re.sub(r"\s+the\s+(?:[\w'!\-]+\s+){0,4}musical\W*$", "", t)
     # foreign "… Il/De/El/Le/Das Musical" suffix (no dash), e.g. Italian
     # "Moulin Rouge! Il Musical", Dutch "… De Musical" → strip so it matches the
     # canonical ("moulin rouge"). The article is REQUIRED (so "High School Musical"
     # — no article before 'musical' — is left intact).
-    t = re.sub(r"\s+(?:il|el|le|la|las|los|das|der|die|de|het|den)\s+musical$", "", t)
+    t = re.sub(r"\s+(?:il|el|le|la|las|los|das|der|die|de|het|den)\s+musical\W*$", "", t)
     t = re.sub(r"[^a-z0-9]+", " ", t).strip()
     if not t:  # ASCII-strip emptied it (CJK-only title, or a title that IS just
         # "…Musical"). Fall back to Unicode word chars so CJK titles keep a stable,
@@ -185,9 +187,10 @@ LOC_QUALIFIER_RE = re.compile(
 def clean_title(t):
     t = (t or "").strip()
     t = re.sub(r"\s*\|.*$", "", t)          # drop promoter pipe-tails (… | Official … Packages)
-    # promoter/venue prefix "{Company} presents {Show}" → "{Show}"
-    # ("Lyric Theatre of Oklahoma presents Annie" → "Annie")
-    t = re.sub(r"^.{0,70}?\bpresents\b\s+", "", t, flags=re.I)
+    # promoter/venue prefix → "{Show}". Handles "{Company} presents [: ] {Show}"
+    # ("Lyric Theatre of Oklahoma presents Annie", "Ford's Theatre presents: Come
+    # From Away") and "{Company} production of {Show}" ("NYT production of …").
+    t = re.sub(r"^.{0,70}?\b(?:presents|production of)\b\s*:?\s+", "", t, flags=re.I)
     prev = None
     while prev != t:
         prev = t

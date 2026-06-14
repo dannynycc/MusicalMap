@@ -11,6 +11,12 @@
 
 ---
 
+## [v0.39.1] - 2026-06-14 19:17
+### 修正(去重根因 + 自動稽核)
+- **`presents:` 冒號版 + `production of` 前綴**沒被 v0.39.0 蓋到(「Ford's Theatre presents: Come From Away」「NYT production of …Little Mermaid」「All-City Musical presents: Mean Girls」「Toby's…Presents: Mean Girls」)→ clean_title 前綴 regex 補上冒號與 production of。
+- **結尾標點**讓「MAMMA MIA! The Musical!」(尾端 `!`)沒被剝成 mamma mia → 和「Mamma Mia!」分兩組;_norm 的 musical 尾綴 regex 改 `musical\W*$` 容許結尾標點。Mamma Mia 現為單一組。
+- **新增 `scrapers/audit_dups.py`**:自動稽核去重漏合併 + promoter 前綴 + 套票垃圾殘留,接進每日 CI(build 後跑)。以後這類問題在 CI/我這邊先抓出,不再靠人工發現。修後稽核 0 問題(1316 劇 / 394 組)。
+
 ## [v0.39.0] - 2026-06-14 19:13
 ### 新增(歐洲擴張 — 平行 agent 建 4 國 scraper)
 - **義大利**(`italy.py`,teatro.it JSON-LD):22 齣(Notre Dame de Paris、Moulin Rouge、Il Principe d'Egitto、Forza Venite Gente、Frida、Lupin…);主流是 TicketOne/teatro.it 非 Ticketmaster,補上漏掉的 7 成。

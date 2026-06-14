@@ -70,6 +70,7 @@ jobs:
           # open-ended long-runners: fill end_date from TM's last on-sale date, then rebuild
           python scrapers/booking_horizon.py || echo "::warning::booking_horizon failed"
           python scrapers/build_shows.py
+          python scrapers/audit_dups.py  || echo "::warning::dedup/junk audit flagged issues"
           python scrapers/gen_catalog.py
           # Accumulate today's snapshot into the immutable historical archive
           # (separate stateful layer; never deletes closed runs). Pure build above
