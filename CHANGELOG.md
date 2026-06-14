@@ -11,6 +11,10 @@
 
 ---
 
+## [v0.38.0] - 2026-06-14 17:38
+### 變更(個人頁 u.html UI 精緻化)
+- 公開個人頁「精緻淺色」polish(純 CSS,沿用既有 FlightRadar 橘色調性、不動 JS/結構):霜面 sticky header、左錨大標題 hero(漸層字 + 強調線)、pill 分頁、數據條/彩色圖卡圓角加深 + hover 上浮、地圖圓角 16px、log 卡片 hover 上浮 + 海報縮圖陰影、層次柔陰影與平滑過場、行動版置中。
+
 ## [v0.37.5] - 2026-06-14 17:32
 ### 修正(個人頁海報縮圖對不上)
 - **Roméo et Juliette(及一整類)在 u.html/me 個人頁看不到海報縮圖**。根因:catalog 的 `en` 取 group 第一個 show 的 title,而 bilingual 會把 canonical 串在原文前(「Roméo et Juliette Again, Romeo & Jeliet」「Gutenberg! The Musical! Gutenberg, el mejor…」),u.js 用 `en.toLowerCase()` 當海報 key,使用者記的標準劇名就對不上 → 無縮圖。
