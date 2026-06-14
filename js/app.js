@@ -11,6 +11,9 @@ const TODAY0 = (() => { const d = new Date(); d.setHours(0, 0, 0, 0); return d; 
 const CUR_Y = TODAY0.getFullYear(), CUR_M = TODAY0.getMonth();
 let MAX_MONTHS = 36;                          // slider range; trimmed to the data's latest start (recomputeRange)
 let MIN_MONTHS = 0;                           // most-negative offset (into the PAST); set from archive index
+// Past browsing is built end-to-end (archive index + lazy year loads) but kept OFF
+// for now — the archive keeps accumulating server-side; flip to true to surface it.
+const SHOW_HISTORY = false;
 let monthOffset = 0;                          // 0 = current month; the map shows this whole month
 // new Date(y, m, 1) auto-normalizes overflowing months, so offset arithmetic is safe.
 const monthStart = () => new Date(CUR_Y, CUR_M + monthOffset, 1);
@@ -499,9 +502,11 @@ async function boot() {
     console.error(e);
   }
   // historical archive index (enables dragging the timeline into the past)
-  try {
-    ARCH_INDEX = await (await fetch("data/archive/index.json", { cache: "no-store" })).json();
-  } catch (e) { ARCH_INDEX = null; }   // archive optional — map still works without it
+  if (SHOW_HISTORY) {
+    try {
+      ARCH_INDEX = await (await fetch("data/archive/index.json", { cache: "no-store" })).json();
+    } catch (e) { ARCH_INDEX = null; }   // archive optional — map still works without it
+  }
   buildTagFilters();
   recomputeRange();
   render();
