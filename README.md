@@ -2,7 +2,7 @@
 
 一張地圖，呈現**此刻全球正在上演的音樂劇** —— 常駐型（Broadway / West End）與巡演型（tour，顯示目前在哪座城市）。
 
-頂部 header bar（品牌 + 醒目「⭐ 我的音樂劇足跡」入口）、淺色地圖鋪滿畫面、海報縮圖當 marker + cluster、hover 預覽卡、點擊跳 popup、側欄一劇一列（同劇自動合併、可展開看各地點）+ 搜尋 + **時間軸**（**月份**滑桿＋月份選擇器同步，選哪個月就顯示「演出期間跨過該月」的劇；▶ 播放每月推進可看巡演在城市間移動）。
+頂部 header bar（品牌 + 醒目「⭐ 我的音樂劇足跡」入口）、淺色地圖鋪滿畫面、海報縮圖當 marker + cluster、hover 預覽卡、點擊跳 popup、側欄一劇一列（同劇自動合併、可展開看各地點）+ 搜尋 + **類型篩選**（依血統 tag：Broadway/West End、德奧、法式、台／日／韓原創、歐陸原創；點 pill 多選，勾「Broadway/West End」連在澳洲巡演的 Wicked 也一起出現）+ **時間軸**（**月份**滑桿＋月份選擇器同步，選哪個月就顯示「演出期間跨過該月」的劇；▶ 播放每月推進可看巡演在城市間移動）。
 
 > **日期語意**：完整檔期顯示「start – end」；長壽劇顯示「自 X 上演」（end 只是滾動售票線非閉幕日）；Ticketmaster 來源（`onsale_only`）為可購票窗，顯示「售票中至 X」。連結分「官網」與「售票平台」（多平台並列）。
 
@@ -44,6 +44,7 @@ scrapers/  ──產出──>  data/*.json  ──merge──>  data/shows.json
 | `data/opentix.json` | 台灣 OPENTIX 兩廳院售票輸出（search.opentix.life JSON API，戲劇-音樂劇，自帶座標+海報） |
 | `data/utiki.json` | 台灣 utiki 售票引擎輸出（寬宏 KHAM 分類 80 + udn售票 搜尋音樂劇 + MNA 分類 77；同套 UTK 引擎，座標交 Google geocode） |
 | `data/manual.json` | **人工策展**：自有售票系統的劇（上海大劇院、Live Nation FR、捷克 NDM…），隨發現隨補 |
+| `data/works.json` | **正典作品註冊表**（單一真相來源）：每齣作品一筆，記 `tradition`（血統 tag）+ 跨語言 `aliases`。build 時供①血統分類②跨語言去重③雙語顯示三用——任何別名（`Macskák`/`キャッツ`/`Cats`）都收斂到同一作品。`build_shows.py --discover` 會把「疑似未對照的進口劇」寫到 `data/_works_discover.json` 供審核 |
 | `data/overrides.json` | 人工座標/欄位修正（依 show id；修來源錯誤，build 時套用） |
 | `data/booking_horizon.json` | 開放式長壽劇的**最後售票日**（依 show id；`booking_horizon.py` 用 Ticketmaster `sort=date,desc` 抓，build 時填入無 end_date 的劇，避免時間軸把它們一路顯示到數年後） |
 | `data/venue_coords.json` | **場館級權威座標**（`venue\|city`→[lat,lng]，建築級 ≤~30m，由 Google 產生；build 時套用到該場館所有場次） |
@@ -63,7 +64,7 @@ scrapers/  ──產出──>  data/*.json  ──merge──>  data/shows.json
 | `scrapers/interpark.py` | **韓國 Interpark** scraper（NOL 開放 API；韓國場館座標表） |
 | `scrapers/audit_images.py` | 海報畫質稽核（實測像素，小於顯示尺寸即報告） |
 | `scrapers/ticketmaster.py` | **Ticketmaster** Discovery API（18 國掃描，需 `TICKETMASTER_API_KEY`） |
-| `scrapers/build_shows.py` | 合併所有 source、TM 補洞去重、套 overrides、同劇合併、海報繼承 → `shows.json` |
+| `scrapers/build_shows.py` | 合併所有 source、TM 補洞去重、套 overrides、同劇合併、海報繼承、**血統 tag 分類**（依 `works.json`）→ `shows.json` |
 
 ---
 

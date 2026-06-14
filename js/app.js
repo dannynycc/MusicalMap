@@ -131,12 +131,54 @@ const els = {
   list: document.getElementById("show-list"),
   count: document.getElementById("count"),
   search: document.getElementById("search"),
+  tagFilters: document.getElementById("tag-filters"),
   note: document.getElementById("data-note"),
   tRange: document.getElementById("time-range"),
   tMonth: document.getElementById("time-month"),
   tPlay: document.getElementById("time-play"),
   tToday: document.getElementById("time-today"),
 };
+
+// Tradition/origin tags (must match build_shows.py classify_tag output). Order =
+// display order; colour = the pill accent. ACTIVE_TAGS empty == no filter (all).
+const TAG_DEFS = [
+  ["Broadway/West End", "Broadway/West End", "#c79a3b"],
+  ["德奧音樂劇", "德奧音樂劇", "#b4232a"],
+  ["法式音樂劇", "法式音樂劇", "#1d4ed8"],
+  ["台灣原創", "台灣原創", "#0f766e"],
+  ["日本原創", "日本原創", "#db2777"],
+  ["韓國原創", "韓國原創", "#7c3aed"],
+  ["歐陸原創", "歐陸原創", "#b45309"],
+];
+const ACTIVE_TAGS = new Set();   // empty = show every tradition
+const TAG_COLOR = Object.fromEntries(TAG_DEFS.map(([t, , c]) => [t, c]));
+const tagBadge = (tag) => tag
+  ? `<span class="tag-badge" style="--tag-color:${TAG_COLOR[tag] || "#64748b"}">${esc(tag)}</span>`
+  : "";
+
+function buildTagFilters() {
+  const counts = {};
+  for (const s of ALL) counts[s.tag] = (counts[s.tag] || 0) + 1;
+  els.tagFilters.innerHTML = "";
+  for (const [tag, label, color] of TAG_DEFS) {
+    if (!counts[tag]) continue;                 // hide traditions with no shows
+    const chip = document.createElement("button");
+    chip.type = "button";
+    chip.className = "tagchip";
+    chip.style.setProperty("--tag-color", color);
+    chip.dataset.tag = tag;
+    chip.setAttribute("aria-pressed", "false");
+    chip.innerHTML = `<span class="tdot"></span>${esc(label)}<span class="tcount">${counts[tag]}</span>`;
+    chip.addEventListener("click", () => {
+      if (ACTIVE_TAGS.has(tag)) ACTIVE_TAGS.delete(tag);
+      else ACTIVE_TAGS.add(tag);
+      chip.classList.toggle("on", ACTIVE_TAGS.has(tag));
+      chip.setAttribute("aria-pressed", ACTIVE_TAGS.has(tag) ? "true" : "false");
+      render();
+    });
+    els.tagFilters.appendChild(chip);
+  }
+}
 
 // The timebar floats over the map; without this, dragging the slider also pans
 // the Leaflet map underneath. Stop pointer/scroll events from reaching the map.
@@ -223,6 +265,7 @@ function popupHtml(show) {
   const unverified = show.verified ? "" : `<div class="p-row warn">⚠ 未驗證（示範資料）</div>`;
   return `<div class="popup">${img}<div class="pop-body">
       <p class="p-title">${esc(canonTitle(show))}</p>
+      ${tagBadge(show.tag)}
       ${tourLine}
       <div class="p-row"><b>${esc(show.venue)}</b></div>
       <div class="p-row">${esc(show.city)}, ${esc(show.country)}</div>
@@ -236,6 +279,7 @@ function visibleShows() {
   const q = els.search.value.trim().toLowerCase();
   return ALL.filter((s) => {
     if (!overlapsMonth(s)) return false;
+    if (ACTIVE_TAGS.size && !ACTIVE_TAGS.has(s.tag)) return false;
     if (!q) return true;
     return [s.title, s.city, s.venue, s.tour_name].some((f) => (f || "").toLowerCase().includes(q));
   });
@@ -422,6 +466,7 @@ async function boot() {
     els.note.textContent = "⚠ 無法載入 data/shows.json（需用本機 server 開啟，見 README）";
     console.error(e);
   }
+  buildTagFilters();
   recomputeRange();
   render();
 }

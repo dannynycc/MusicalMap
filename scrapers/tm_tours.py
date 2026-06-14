@@ -25,7 +25,9 @@ from pathlib import Path
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
 
 DATA = Path(__file__).resolve().parent.parent / "data"
-KEY = os.environ.get("TICKETMASTER_API_KEY")
+_KEYFILE = Path(__file__).resolve().parent / ".tm_key"   # gitignored local key
+KEY = os.environ.get("TICKETMASTER_API_KEY") or (
+    _KEYFILE.read_text(encoding="utf-8").strip() if _KEYFILE.exists() else "")
 ATTR_API = "https://app.ticketmaster.com/discovery/v2/attractions.json"
 EV_API = "https://app.ticketmaster.com/discovery/v2/events.json"
 
@@ -60,7 +62,7 @@ def main():
         groups.setdefault(g, s["title"])
     print(f"{len(groups)} distinct shows to sweep")
 
-    runs, matched = {}, 0
+    runs, matched, n_cancel = {}, 0, 0
     for g, title in sorted(groups.items()):
         try:
             data = get(ATTR_API, {"keyword": title, "classificationName": "Musical", "size": 5})
@@ -85,6 +87,10 @@ def main():
                 if not events:
                     break
                 for e in events:
+                    status = ((e.get("dates", {}).get("status") or {}).get("code") or "").lower()
+                    if status in ("cancelled", "canceled", "postponed"):
+                        n_cancel += 1
+                        continue                          # dead listings (404 / "event canceled")
                     v = (e.get("_embedded", {}).get("venues") or [{}])[0]
                     loc = v.get("location") or {}
                     venue = (v.get("name") or "").strip()
@@ -103,7 +109,7 @@ def main():
                             "lat": round(float(loc["latitude"]), 6),
                             "lng": round(float(loc["longitude"]), 6),
                             "start_date": date, "end_date": date,
-                            "ticket_url": e.get("url"),
+                            "ticket_url": a.get("url") or e.get("url"),   # stable attraction page, not expiring event URL
                             "attraction_url": a.get("url"),
                             "image": None,  # inherit the show's poster at build
                             "tour_name": None, "verified": True,
@@ -125,6 +131,7 @@ def main():
     (DATA / "tm_tours.json").write_text(json.dumps(out, ensure_ascii=False, indent=2),
                                         encoding="utf-8")
     print(f"matched {matched} shows on TM; wrote {len(runs)} venue-stops -> data/tm_tours.json")
+    print(f"  skipped {n_cancel} cancelled/postponed event(s) (zombie listings)")
 
 
 if __name__ == "__main__":

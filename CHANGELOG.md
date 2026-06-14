@@ -11,6 +11,18 @@
 
 ---
 
+## [v0.34.0] - 2026-06-14 13:10
+### 新增(類型/血統 tag 分類 + 篩選)
+- **每齣劇自動標血統 tag**(`build_shows.py` classify_tag):Broadway/West End、德奧音樂劇、法式音樂劇、台灣原創、日本原創、韓國原創、歐陸原創。判定看**作品血統不看演出地**——勾「Broadway/West End」連在澳洲/匈牙利巡演的 Wicked、布達佩斯的 `Macskák`(Cats)都一起出現;Les Misérables 歸 Broadway/West End。
+- **前端類型篩選 pill**(index.html / app.js / style.css):側欄搜尋下方一排可多選 pill(各帶血統色 + 數量),空選=全部;popup 卡加血統色 badge。
+- **正典作品註冊表 `data/works.json`(單一真相來源)**:把原本散落的 `INTL_IP`(雙語顯示)/`GROUP_ALIASES`(去重)/in-code tag 清單**三套併成一套**。一齣作品一筆記 `tradition` + 跨語言 `aliases`,任何別名(`Macskák`/`キャッツ`/`貓`/`Cats`)收斂到同一 group → 同時供分類、跨語言去重、雙語顯示三用,加新語言/來源只需補 alias。
+- **discovery 報告**(`build_shows.py --discover` → `data/_works_discover.json`):用模糊比對揪出「被標成在地原創、但高度近似某正典」的疑似未對照進口劇(已抓到韓國場的 Death Note 變體)。
+- 修正東歐授權劇誤判:`Az Operaház Fantomja`=Phantom、`Jégvarázs`/`Ledové království`=Frozen、`APÁCA SHOW`=Sister Act、`VÁMPÍROK BÁLJA`=Tanz der Vampire(德奧)等十餘齣,從「歐陸原創」歸位到正確血統;Kiki's/Death Note 從台灣原創修正回日本原創。歐陸原創淨剩 39 齣**真**匈牙利/捷克原創。
+
+### 修正(Ticketmaster 殭屍/非音樂劇)
+- **跳過 cancelled/postponed 場次**(ticketmaster.py + tm_tours.py 讀 `dates.status.code`),並改用穩定的 **attraction 頁** URL 當售票連結(原 per-performance event URL 過期即 404)。全球掃 405→398。
+- **強化非音樂劇全域過濾**:TM 把致敬樂團/演唱會/songbook/drag/medley 標成 Musical(如 Hotel California - Eagles Tribute、Bee Gees Celebration、Disney Princess - The Concert、Fuel Injected Magic Concert),新增 `tribute|concert|soundtrack|gala|celebration|symphony|orchestra|songs of|drag|nonstop|koncert` 等規則,實測剔除 70 筆假音樂劇、0 誤殺真劇。
+
 ## [v0.33.0] - 2026-06-14 12:05
 ### 新增(東歐 — 第二階段:捷克)
 - **捷克音樂劇接入**(easteurope.py scrape_czech,來源 prazskemuzikaly.cz)。只收**職業大劇院**(Karlín / Hybernia / Broadway / Kalich / Radka Brzobohatého / NDM Ostrava 等 allowlist,排除地方/業餘),城市由場館判定(非頁面文字,頁尾恆有 Praha)。日期取 JSON-LD `startDate`(避開 `validFrom`=今天的陷阱)→ 真實檔期。帶入 31 檔:Dracula / SIX / Mamma Mia / The Bodyguard / Ledové království(Frozen)/ ELISABETH / Beetlejuice / Jesus Christ Superstar / Anděl páně / Rebelové 等(Prague 27 + Ostrava 4),0 無座標、皆在捷克境內。掛每日 CI。

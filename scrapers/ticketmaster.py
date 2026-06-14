@@ -158,6 +158,10 @@ def main():
         seg = ((cl.get("segment") or {}).get("name") or "").lower()
         if seg != "arts & theatre" or "musical" not in (genre + " " + sub):
             return                                    # keep only genuine musicals
+        # skip events TM marks cancelled/postponed — their pages 404 / "event canceled"
+        status = ((ev.get("dates", {}).get("status") or {}).get("code") or "").lower()
+        if status in ("cancelled", "canceled", "postponed"):
+            return
         v = (ev.get("_embedded", {}).get("venues") or [{}])[0]
         loc = v.get("location") or {}
         title = clean_title(ev.get("name") or "")
@@ -165,10 +169,13 @@ def main():
         date = (ev.get("dates", {}).get("start", {}) or {}).get("localDate")
         if not title or not venue or not loc.get("latitude"):
             return
+        att = (ev.get("_embedded", {}).get("attractions") or [{}])[0]
+        # link to the STABLE show (attraction) page, not the per-performance event URL
+        # which 404s once that date passes; fall back to the event URL only if absent.
+        link = att.get("url") or ev.get("url")
         key = (title.lower(), venue.lower())
         rec = runs.get(key)
         if not rec:
-            att = (ev.get("_embedded", {}).get("attractions") or [{}])[0]
             imgs = sorted(ev.get("images", []), key=lambda i: -(i.get("width") or 0))
             runs[key] = {
                 "id": "tm-" + re.sub(r"[^a-z0-9]+", "-", f"{title}-{venue}".lower()).strip("-"),
@@ -179,9 +186,9 @@ def main():
                 "lat": round(float(loc["latitude"]), 6),
                 "lng": round(float(loc["longitude"]), 6),
                 "start_date": date, "end_date": date,
-                "ticket_url": ev.get("url"),
+                "ticket_url": link,
                 "attraction_url": att.get("url"),
-                "ticket_links": ([{"country": cc, "url": ev["url"]}] if ev.get("url") else []),
+                "ticket_links": ([{"country": cc, "url": link}] if link else []),
                 "image": imgs[0]["url"] if imgs else None,
                 "tour_name": None, "verified": True,
                 "source": "ticketmaster",
@@ -191,8 +198,8 @@ def main():
                 rec["start_date"] = date
             if date and (not rec["end_date"] or date > rec["end_date"]):
                 rec["end_date"] = date
-            if ev.get("url") and not any(l["country"] == cc for l in rec["ticket_links"]):
-                rec["ticket_links"].append({"country": cc, "url": ev["url"]})
+            if link and not any(l["country"] == cc for l in rec["ticket_links"]):
+                rec["ticket_links"].append({"country": cc, "url": link})
 
     for cc in COUNTRIES:
         try:

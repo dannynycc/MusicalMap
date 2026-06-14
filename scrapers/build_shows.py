@@ -20,20 +20,12 @@ sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
 DATA = Path(__file__).resolve().parent.parent / "data"
 
 
-# Same production, differently branded across sources/regions — map to one key.
-GROUP_ALIASES = {
-    "mj the michael jackson": "mj",                 # Perth/TM long brand vs "MJ The Musical"
-    "mj the michael jackson musical": "mj",
-    "monty python s spamalot": "spamalot",
-    "les mis": "les miserables",                    # broadway.org slug-style title
-}
-
-
-def group_key(title):
-    """Canonical key so the same show titled differently across sources groups
-    together (e.g. 'SIX' == 'SIX: The Musical', 'Mamma Mia!' == 'Mamma Mia',
-    'Les Misérables' == 'Les Miserables'). Diacritics are stripped BEFORE the
-    ascii filter, otherwise 'é' becomes a word break and spellings diverge."""
+def _norm(title):
+    """Pure title normalisation (no registry): the canonical key so the same show
+    titled differently across sources groups together (e.g. 'SIX' == 'SIX: The
+    Musical', 'Mamma Mia!' == 'Mamma Mia', 'Les Misérables' == 'Les Miserables').
+    Diacritics are stripped BEFORE the ascii filter, otherwise 'é' becomes a word
+    break and spellings diverge."""
     t = re.sub(r"[–—]", "-", title or "")  # en/em-dash → '-' BEFORE ascii-strip drops them
     t = unicodedata.normalize("NFKD", t).encode("ascii", "ignore").decode()
     t = t.lower().strip()
@@ -53,7 +45,41 @@ def group_key(title):
         # DISTINCT key — otherwise every Chinese-only show in a city collapses to ""
         # and gets merged into one (e.g. 萬世巨星 vs 史瑞克 both -> "").
         t = re.sub(r"[^\w]+", " ", title or "", flags=re.UNICODE).lower().strip()
-    return GROUP_ALIASES.get(t, t)
+    return t
+
+
+# ─── Canonical works registry (data/works.json) ────────────────────────────────
+# ONE source of truth for tradition tag + cross-language de-dup + bilingual display.
+# Every alias/canonical is indexed by _norm() so any title a work appears under
+# resolves to the same group, tradition, and English prefix. See works.json header.
+def _load_works():
+    path = DATA / "works.json"
+    idx, trad_by_cgroup = {}, {}
+    if not path.exists():
+        return idx, trad_by_cgroup
+    for w in json.loads(path.read_text(encoding="utf-8")).get("works", []):
+        cgroup = _norm(w["canonical"])
+        entry = {"canonical": w["canonical"], "tradition": w.get("tradition"), "cgroup": cgroup}
+        trad_by_cgroup[cgroup] = w.get("tradition")
+        for name in [w["canonical"], *w.get("aliases", [])]:
+            idx[_norm(name)] = entry           # alias/canonical → canonical work
+    return idx, trad_by_cgroup
+
+
+WORK_IDX, TRADITION_BY_CGROUP = _load_works()
+
+
+def group_key(title):
+    """Registry-aware canonical group: normalise, then collapse any known alias to
+    its canonical group (so 'Macskák' / 'キャッツ' / 'Cats' share one group)."""
+    t = _norm(title)
+    w = WORK_IDX.get(t)
+    return w["cgroup"] if w else t
+
+
+def resolve_work(title):
+    """The registry entry a title belongs to (or None)."""
+    return WORK_IDX.get(_norm(title))
 
 # Curated sources (precise data). Order matters for de-dup: later files win.
 SOURCE_FILES = ["broadway.json", "westend.json", "tours.json", "intl.json",
@@ -153,42 +179,13 @@ def clean_title(t):
     return re.sub(r"\s{2,}", " ", t).strip()
 
 
-# Big international musical IPs that tour Asia under a translated Chinese name.
-# The user wants these shown bilingually ("Jesus Christ Superstar 萬世巨星"), while
-# local original works stay Chinese-only — and a clean English string alone can't
-# tell the two apart ("The Most Beautiful 5 Minutes in My Life" is a LOCAL work),
-# so recognition is by this curated map (keyed on the parsed Chinese show name).
-# Extend as new IPs tour. Keyed exact-match on the already-parsed core title.
-INTL_IP = {
-    # source-confirmed (currently in the data)
-    "萬世巨星": "Jesus Christ Superstar", "史瑞克": "Shrek",
-    "魔女宅急便": "Kiki's Delivery Service",
-    "巧克力冒險工廠": "Charlie and the Chocolate Factory",
-    "羅密歐與茱麗葉": "Roméo et Juliette", "死亡筆記本": "Death Note",
-    # standard, well-established Chinese titles of real touring musicals
-    "歌劇魅影": "The Phantom of the Opera", "悲慘世界": "Les Misérables",
-    "貓": "Cats", "媽媽咪呀": "Mamma Mia!", "媽媽咪呀！": "Mamma Mia!",
-    "芝加哥": "Chicago", "獅子王": "The Lion King", "西貢小姐": "Miss Saigon",
-    "漢密爾頓": "Hamilton", "漢彌爾頓": "Hamilton",
-    "真善美": "The Sound of Music", "音樂之聲": "The Sound of Music",
-    "屋頂上的提琴手": "Fiddler on the Roof", "吉屋出租": "Rent",
-    "伊莉莎白": "Elisabeth", "鐘樓怪人": "Notre-Dame de Paris",
-    "近乎正常": "Next to Normal", "理髮師陶德": "Sweeney Todd",
-    "搖滾莫札特": "Mozart l'Opéra Rock", "阿達一族": "The Addams Family",
-    "長靴妖姬": "Kinky Boots",
-    # Japanese names of international IPs (dedup the JP staging with the global one)
-    "シカゴ": "Chicago", "ミス・サイゴン": "Miss Saigon", "サンセット大通り": "Sunset Boulevard",
-    "レベッカ": "Rebecca", "ゴースト": "Ghost", "ファニー・ガール": "Funny Girl",
-    "ラ・カージュ・オ・フォール": "La Cage aux Folles", "ミー＆マイガール": "Me and My Girl",
-    "レ・ミゼラブル": "Les Misérables", "メリー・ポピンズ": "Mary Poppins",
-}
-
-
 def bilingual(title):
-    """Prepend the original English for known international IPs → 'English 中文'."""
-    en = INTL_IP.get(title)
-    if en and en.lower() not in title.lower():
-        return f"{en} {title}"
+    """Prepend the canonical English/original for registered works whose title here
+    is in another language → 'Cats Macskák' / 'Jesus Christ Superstar 萬世巨星'.
+    Local original works are unregistered and stay as-is."""
+    w = resolve_work(title)
+    if w and w["canonical"].lower() not in (title or "").lower():
+        return f"{w['canonical']} {title}"
     return title
 
 
@@ -204,7 +201,82 @@ NOT_MUSICAL_RE = re.compile(
     r"\bnanta\b|\bpainters\b|\bsleep no more\b|"   # KR non-verbal / immersive (no songs)
     r"martial arts performance|comic martial arts|"
     r"scotch college|"                            # school/amateur staging, not a public run
-    r"a very musical theatre christmas", re.I)    # Christmas cabaret revue, not a book musical
+    r"a very musical theatre christmas|"          # Christmas cabaret revue, not a book musical
+    # TM files tribute/concert/songbook/drag acts under "Musical" — they're not
+    # book musicals. Verified against the data: drops only these, no real shows.
+    r"\btribute\b|\bconcert\b|\bsoundtrack\b|\bgala\b|\bcelebration\b|"
+    r"\bsymphony\b|\borchestra\b|\bthe (?:songs|music|hits) of\b|\bsongs of\b|"
+    r"\bdrag (?:show|along|race|brunch|queen)\b|"
+    r"\bnonstop\b|koncert", re.I)        # medley / gala-concert nights (EE 'koncert')
+
+# ─── Tradition tags ──────────────────────────────────────────────────────────
+# A show's tag is the WORK's ORIGIN tradition, not where it plays (Wicked in Seoul
+# is still Broadway/West End; Elisabeth in Tokyo is still 德奧). Registered works
+# (works.json → TRADITION_BY_CGROUP) carry an explicit tradition that wins anywhere;
+# anything unregistered falls back to its source's home tradition below.
+#
+# Local-origin scrapers → the show is a HOME-GROWN work (it wasn't a registered
+# import, or it'd have an explicit tradition). source substring → origin tag.
+TAG_LOCAL_SRC = [
+    (("opentix", "kham", "udn", "mna", "ntch"), "台灣原創"),
+    (("shiki", "kageki", "toho", "j25", "theatre-orb", "japan"), "日本原創"),
+    (("interpark",), "韓國原創"),
+    (("jegy", "prazske", "ndm"), "歐陸原創"),
+]
+
+
+def classify_tag(group, source, country):
+    """Origin-tradition tag. A registered work's tradition wins everywhere; an
+    unregistered show inherits its local source's home tradition, else the global
+    Anglo touring canon."""
+    trad = TRADITION_BY_CGROUP.get(group)
+    if trad:
+        return trad
+    src = (source or "").lower()
+    for keys, tag in TAG_LOCAL_SRC:
+        if any(k in src for k in keys):
+            return tag
+    # German/Austrian production house with an unregistered title → German-tradition.
+    if "stage-entertainment" in src or country in ("Germany", "Austria", "Switzerland"):
+        return "德奧音樂劇"
+    return "Broadway/West End"   # the global touring canon (default for Anglo sources)
+
+
+def discover_unmapped(shows):
+    """Flag shows tagged as a local ORIGINAL whose title closely matches a
+    REGISTERED canonical — i.e. a likely import we haven't mapped yet (we should
+    add it as an alias in works.json). Writes data/_works_discover.json for review.
+    Run: python scrapers/build_shows.py --discover"""
+    import difflib
+    canon = [(w["cgroup"], w["canonical"], w["tradition"])
+             for w in {id(v): v for v in WORK_IDX.values()}.values()]
+    flagged, by_tag = [], {}
+    for s in shows:
+        tag = s.get("tag", "")
+        if "原創" not in tag:
+            continue
+        by_tag.setdefault(tag, []).append(s["title"])
+        g = s["group"]
+        best = max(canon, key=lambda c: difflib.SequenceMatcher(None, g, c[0]).ratio(),
+                   default=None)
+        if best:
+            r = difflib.SequenceMatcher(None, g, best[0]).ratio()
+            if r >= 0.82 or best[0] in g or g in best[0]:
+                flagged.append({"title": s["title"], "group": g, "tagged": tag,
+                                "looks_like": best[1], "would_be": best[2],
+                                "ratio": round(r, 2), "city": s.get("city")})
+    flagged.sort(key=lambda f: -f["ratio"])
+    out = {"_comment": "Local-originals that resemble a registered work → likely "
+           "unmapped imports; add the local title as an alias in works.json if so.",
+           "flagged_suspected_imports": flagged,
+           "all_local_originals": {k: sorted(v) for k, v in sorted(by_tag.items())}}
+    (DATA / "_works_discover.json").write_text(
+        json.dumps(out, ensure_ascii=False, indent=2), encoding="utf-8")
+    print(f"\n  [discover] {len(flagged)} suspected unmapped import(s) "
+          f"-> data/_works_discover.json")
+    for f in flagged[:15]:
+        print(f"    {f['ratio']:.2f}  {f['title'][:34]:34} ~ {f['looks_like']} ({f['would_be']})")
+
 
 # Ticketmaster files AU venues by suburb — normalise to the metro people know.
 AU_METRO = {
@@ -228,7 +300,12 @@ def main():
         blob = json.loads(path.read_text(encoding="utf-8"))
         rows = blob.get("shows", [])
         for s in rows:
-            s["title"] = bilingual(clean_title(s.get("title")))
+            orig = clean_title(s.get("title"))
+            # group from the ORIGINAL title — bilingual() may prepend the English
+            # canonical ("Cats Macskák"), which group_key can no longer reduce, so
+            # we fix the canonical group here and read s["group"] downstream.
+            s["group"] = group_key(orig)
+            s["title"] = bilingual(orig)
         for s in rows:
             by_id[s["id"]] = s
         sources.append({"file": name, "count": len(rows), "meta": blob.get("meta", {})})
@@ -240,7 +317,7 @@ def main():
     # A TM stop whose (group, city) already exists → its link is attached to the
     # existing record; otherwise it's added as a new marker.
     tm_enrich = {}
-    seen_show_city = {(group_key(s["title"]), city_key(s.get("city")))
+    seen_show_city = {(s["group"], city_key(s.get("city")))
                       for s in by_id.values()}
     for tm_file in (TM_FILE, "tm_tours.json"):
         tm_path = DATA / tm_file
@@ -250,8 +327,8 @@ def main():
         kept = 0
         for s in tm:
             s["title"] = clean_title(s.get("title"))
+            s["group"] = gk = group_key(s["title"])
             city = city_key(s.get("city"))
-            gk = group_key(s["title"])
             if (gk, city) in seen_show_city:
                 u = s.get("attraction_url") or s.get("ticket_url")
                 if u:
@@ -284,11 +361,11 @@ def main():
     # shiki.jp is authoritative for Japan — drop other sources' Japan records of
     # shows shiki also lists (broadway.org's Japan venues proved stale, e.g.
     # Lion King listed at HARU instead of 有明四季劇場).
-    shiki_groups = {group_key(s["title"]) for s in by_id.values() if s.get("source") == "shiki.jp"}
+    shiki_groups = {s["group"] for s in by_id.values() if s.get("source") == "shiki.jp"}
     if shiki_groups:
         drop = [i for i, s in by_id.items()
                 if s.get("country") == "Japan" and s.get("source") != "shiki.jp"
-                and group_key(s["title"]) in shiki_groups]
+                and s["group"] in shiki_groups]
         for i in drop:
             del by_id[i]
         if drop:
@@ -354,7 +431,7 @@ def main():
     from collections import defaultdict
     dup = defaultdict(list)
     for s in by_id.values():
-        dup[(group_key(s["title"]), city_key(s.get("city")))].append(s)
+        dup[(s["group"], city_key(s.get("city")))].append(s)
     merged = 0
     for recs in dup.values():
         if len(recs) < 2:
@@ -385,7 +462,7 @@ def main():
     # attach Ticketmaster show-page links to covered records (大型售票平台並列)
     enriched = 0
     for s in by_id.values():
-        u = tm_enrich.get((group_key(s["title"]), city_key(s.get("city"))))
+        u = tm_enrich.get((s["group"], city_key(s.get("city"))))
         if not u or "ticketmaster" in (s.get("source") or ""):
             continue
         links = s.get("ticket_links") or (
@@ -417,7 +494,7 @@ def main():
 
         n_off = 0
         for s in by_id.values():
-            sites = OFF.get(group_key(s["title"]))
+            sites = OFF.get(s["group"])
             if not sites:
                 continue
             url = sites.get(region(s.get("country"))) or sites.get("global")
@@ -438,10 +515,14 @@ def main():
 
     shows = list(by_id.values())
 
-    # assign grouping key (same show across sources / locations) + link kind
+    # link kind + tradition tag. s["group"] is already set (from the ORIGINAL title,
+    # before bilingual() prepended an English canonical) — do NOT recompute it here.
     for s in shows:
-        s["group"] = group_key(s["title"])
         s["link_kind"] = src_kind(s.get("source"))
+        s["tag"] = classify_tag(s["group"], s.get("source"), s.get("country"))
+
+    if "--discover" in sys.argv:
+        discover_unmapped(shows)
 
     # image inheritance: a record with no poster (e.g. a tour stop) borrows the
     # artwork from another record of the same show that has one.
