@@ -126,7 +126,7 @@ SOURCE_FILES = ["broadway.json", "westend.json", "tours.json", "intl.json",
                 "utiki.json", "japan.json", "easteurope.json",
                 "italy.json", "sweden.json", "netherlands.json", "poland.json",
                 "norway.json", "austria.json", "middleeast.json", "china.json",
-                "china_ypiao.json", "manual.json"]
+                "china_poly.json", "china_ypiao.json", "manual.json"]
 
 # When several ticket sources list the SAME show in the SAME city, we keep one
 # record (highest priority = most authoritative venue data) and attach every
@@ -503,6 +503,31 @@ def main():
             del by_id[i]
         if drop:
             print(f"  dropped {len(drop)} stale Japan record(s) superseded by shiki.jp")
+
+    # Cross-source dedup: the same run can be listed by two sources (e.g. a Poly
+    # theatre show appears in both polyt.cn and the ypiao aggregator). Collapse
+    # records that share (group, city, venue), keeping the richest one — prefer a
+    # poster, then a real date range, then the earlier-loaded (more authoritative).
+    seen_gcv = {}
+    dup = []
+    for i, s in by_id.items():
+        k = (s.get("group"), city_key(s.get("city")), venue_key(s.get("venue"), s.get("city")))
+        if None in k or not k[0]:
+            continue
+        prev = seen_gcv.get(k)
+        if prev is None:
+            seen_gcv[k] = i
+            continue
+        # decide which to keep: more "complete" wins
+        score = lambda x: (bool(x.get("image")), bool(x.get("end_date")))  # noqa: E731
+        if score(s) > score(by_id[prev]):
+            dup.append(prev); seen_gcv[k] = i
+        else:
+            dup.append(i)
+    for i in dup:
+        del by_id[i]
+    if dup:
+        print(f"  dropped {len(dup)} cross-source duplicate(s) (same show+city+venue)")
 
     # Venue-level coordinate corrections (one fix → every show at that venue).
     # Sources (Ticketmaster, geocoders) sometimes pin a venue to a same-named

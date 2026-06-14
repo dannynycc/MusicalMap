@@ -11,6 +11,15 @@
 
 ---
 
+## [v0.44.0] - 2026-06-15 00:48
+### 新增:破解保利票务官方 API → 中國 93 齣 / 37 城市
+- 不該那麼快認輸。大麥/貓眼有反爬牆,但**保利院線(全國 ~80 家劇院)的微信 H5 票務後端是開放 JSON API**(讀取不擋驗證碼)。逆向 H5 bundle 得到:`https://weixin.polyt.cn/platform-backend`(header `Channel: theatre_wx`),`POST /good/search-products-data {keyword,page,size}` 分頁產品(MyBatis-Plus,真正分頁參數是 `page`),`/dictionary/product/categories` 給音乐剧 categoryId。
+- `scrapers/china_poly.py`:翻頁 keyword=音乐剧、留 categoryName=音乐剧、每齣一筆 → **84 齣官方資料(標題/演期/城市/場館/真海報)**,遠勝聚合站。座標**只認** cn_venues.json,配不到跳過(7 個小城保利館 Google 索引不到而略過)。
+- **座標補強**:批次 geocode 22 個保利場館寫進 cn_venues.json(Google Places + GCJ→WGS84 + 「距城市中心 <0.4°」sanity check,擋掉 Google 一直把各地保利大剧院誤配成上海/苏州那家的錯誤)。
+- **跨來源去重**(`build_shows.py`):同 group+城市+場館的記錄(如武漢 Phantom 同時出現在 polyt 與 ypiao)合併,留有海報那筆。
+- **血統修正**:works.json +Hedwig and the Angry Inch(搖滾芭比)、Lizzie、The Curious Case of Benjamin Button、Murder Ballad(謀殺歌謠)——皆英美原創,原本誤落 中國原創;排除致敬MJ秀、明星音樂會(非音樂劇)。
+- **結果:中國 15 → 93 齣 / 6 → 37 城市**(深圳/瀋陽/重慶/濟南/鄭州/東莞/煙台/太原/福州/海口…),92 齣有海報。全站 1339 → **1417 齣**,audit 0 misses。CI 加 china_poly.py。
+
 ## [v0.43.1] - 2026-06-15 00:16
 ### 修正:蘇州《瑪蒂爾達》補回(不該因 geocode 失敗就略過真實場館)
 - 上一版把蘇州《瑪蒂爾達》略過的處理很怪 —— 苏州狮山大剧院是**真實存在的場館**(2024-08-31 啟用,上海大劇院參與營運,位於高新区狮山文化广场、天狮湖与狮子山之间),不該因 Google 配錯就放棄整齣。
