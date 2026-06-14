@@ -11,6 +11,10 @@
 
 ---
 
+## [v0.37.1] - 2026-06-14 16:37
+### 新增
+- index.html `<head>` 加入 Impact(impact.com)網站擁有權驗證 meta 標籤(公開驗證碼,非密鑰),供 Ticketmaster 聯盟申請驗證 dannynycc.github.io/MusicalMap。
+
 ## [v0.37.0] - 2026-06-14 16:24
 ### 新增(隱私權政策 + 使用條款頁)
 - `privacy.html` / `terms.html`:聯盟計畫(Impact 等)審核要求的公開頁面。內容據實:靜態地圖無廣告追蹤/無第三方分析;My Musicals 用 Google 登入、資料存 Supabase(RLS,僅本人可存取);售票外連可能含分潤(Impact/Partnerize/Awin,使用者不多付);準據法台灣;聯絡 dannynycc@gmail.com。
