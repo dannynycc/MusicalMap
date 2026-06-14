@@ -11,6 +11,10 @@
 
 ---
 
+## [v0.38.2] - 2026-06-14 17:52
+### 變更
+- u.html / me.html 內容欄加寬 1200→**1600px**(header `.top-inner` 同步),寬螢幕左右空白大幅縮小、填滿更多;header 仍與內容對齊。1920px render 截圖驗證。
+
 ## [v0.38.1] - 2026-06-14 17:47
 ### 修正(header 與內容寬度不一致)
 - u.html / me.html 的 header(#me-top)原本滿版(brand/nav 貼視窗邊),內容區(#me-main)卻是 1200px 置中 → 寬螢幕上 header 左右各比內容寬約 40px、對不齊。把 header 內容包進 `.top-inner`(max-width 1200 + 18px padding、置中),與下方內容同欄對齊。以 headless Chrome 本機 render 截圖驗證對齊無誤。

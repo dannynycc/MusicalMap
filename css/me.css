@@ -175,7 +175,7 @@ body { -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; 
   border-bottom: 1px solid rgba(15,23,42,.07); box-shadow: 0 1px 0 rgba(15,23,42,.02);
 }
 #me-top .top-inner {
-  max-width: 1200px; height: 100%; margin: 0 auto; padding: 0 18px;
+  max-width: 1600px; height: 100%; margin: 0 auto; padding: 0 24px;
   display: flex; align-items: center; justify-content: space-between;
 }
 #me-brand { font-size: 21px; letter-spacing: -.2px; }
@@ -189,8 +189,10 @@ body { -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; 
 .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(248,152,0,.4); filter: none; }
 .btn-primary:active { transform: translateY(0); }
 
-/* hero with content (profile loaded): tighter, left-anchored, with a soft glow */
-#me-main { max-width: 1200px; }
+/* hero with content (profile loaded): tighter, left-anchored, with a soft glow.
+   Wider column (1600) so wide screens fill out instead of leaving big margins;
+   .top-inner above uses the same width+padding so the header stays aligned. */
+#me-main { max-width: 1600px; padding: 0 24px 48px; }
 #pub-hero {
   text-align: left; padding: 40px 4px 8px; position: relative;
 }
