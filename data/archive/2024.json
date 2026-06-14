@@ -1,6 +1,6 @@
 {
   "year": "2024",
-  "count": 11,
+  "count": 12,
   "runs": [
     {
       "run_key": "run-622df7ad2a78",
@@ -45,6 +45,29 @@
       "last_seen": "2026-06-14",
       "frozen": false,
       "group": "hadestown",
+      "tag": "Broadway/West End",
+      "status": "running"
+    },
+    {
+      "run_key": "run-f7db337881a6",
+      "title": "The Phantom of the Opera",
+      "venue": "Raimund Theater",
+      "city": "Vienna",
+      "country": "Austria",
+      "lat": 48.1969,
+      "lng": 16.3438,
+      "start_date": "2024-03-15",
+      "end_date": "2026-06-28",
+      "image": "https://www.musicalvienna.at/_media/image/100011_1080x1080px_DPDO_10_24.jpg",
+      "ticket_url": "https://www.musicalvienna.at/de/spielplan/100004/DAS-PHANTOM-DER-OPER",
+      "source": "musicalvienna.at",
+      "type": "resident",
+      "onsale_only": false,
+      "provenance": "auto",
+      "first_seen": "2026-06-14",
+      "last_seen": "2026-06-14",
+      "frozen": false,
+      "group": "phantom of the opera",
       "tag": "Broadway/West End",
       "status": "running"
     },

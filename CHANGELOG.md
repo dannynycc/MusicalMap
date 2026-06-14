@@ -11,6 +11,13 @@
 
 ---
 
+## [v0.41.0] - 2026-06-14 21:54
+### 新增 / 修正(奧地利 + 中東去重 + 波蘭)
+- **奧地利**(`austria.py`,維也納 VBW musicalvienna.at):補上 Das Phantom der Oper(Raimund Theater)——原本全奧地利只有 TM 的 Mamma Mia。
+- **中東標題清乾淨 + 去重**:Platinumlist 行銷標題(「Chicago Musical Event Live in Dubai」「… in Abu Dhabi」「… Musical Event Live」)改 `middleeast.py` 清理 + build 端 `strip_city_qualifier` 加剝「in 城市」尾綴 → 杜拜 Chicago 與既有 manual 那筆**合併成 1 筆**(含 Coca-Cola Arena 演出頁 + 官網 + Platinumlist 三連結);Charlie/Cats 標題乾淨歸位。
+- **杜拜 Chicago 官方售票連結**改指定演出頁 `coca-cola-arena.com/theater/1894/chicago-the-musical`(原為首頁)。
+- 波蘭:eBilet 限流解除可抓 listing,但逐場 detail 頁仍被限流(待改 listing-only)。
+
 ## [v0.40.3] - 2026-06-14 20:59
 ### 新增(陸/台/港中文譯名一次查齊)
 - agent web 查證 112 部英美作品的中文譯名,合併進 works.json(加 90 個,跳過 0 跨作品衝突):每部收齊**大陸/台灣/香港**多種譯名 + 音譯/意譯。例:Legally Blonde=律政俏佳人(陸)/金髮尤物(台)/律政可人兒(港);Oliver!=孤雛淚/霧都孤兒/苦海孤雛;Mean Girls=賤女孩/辣妹過招;Jersey Boys=澤西男孩/紐澤西男孩;Hadestown=冥界/黑帝斯城/哈迪斯城/冥府。搭配既有 OpenCC 簡繁互通,陸台港用詞 × 簡繁字形全可搜。

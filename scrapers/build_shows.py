@@ -125,7 +125,7 @@ SOURCE_FILES = ["broadway.json", "westend.json", "tours.json", "intl.json",
                 "atg.json", "stage_de.json", "madrid.json", "opentix.json",
                 "utiki.json", "japan.json", "easteurope.json",
                 "italy.json", "sweden.json", "netherlands.json", "poland.json",
-                "norway.json", "middleeast.json", "manual.json"]
+                "norway.json", "austria.json", "middleeast.json", "manual.json"]
 
 # When several ticket sources list the SAME show in the SAME city, we keep one
 # record (highest priority = most authoritative venue data) and attach every
@@ -234,6 +234,8 @@ def strip_city_qualifier(title, city):
     c = (city or "").split(",")[0].strip()
     if c and title:
         title = re.sub(rf"\s*\(\s*{re.escape(c)}\s*\)\s*$", "", title, flags=re.I).strip()
+        # also "… in Dubai" / "… in Abu Dhabi" trailing (Platinumlist Gulf titles)
+        title = re.sub(rf"\s+in\s+{re.escape(c)}\s*$", "", title, flags=re.I).strip()
     return title
 
 

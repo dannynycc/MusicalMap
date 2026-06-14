@@ -112,6 +112,19 @@ def og(d, key):
     return html.unescape(m.group(1)).strip() if m else None
 
 
+def clean_show_title(t):
+    """Strip Platinumlist marketing cruft so the title de-dups with the canonical
+    work: '{Promoter} Presents …', '… Musical Event Live', '- The Musical',
+    trailing 'in Dubai/Abu Dhabi/…', trailing year."""
+    t = (t or "").strip()
+    t = re.sub(r"^.{0,40}?\bpresents\b\s*:?\s+", "", t, flags=re.I)
+    t = re.sub(r"\s*[-–]\s*(?:the\s+)?musical\b.*$", "", t, flags=re.I)
+    t = re.sub(r"\s+musical event live\b.*$", "", t, flags=re.I)
+    t = re.sub(r"\s+in\s+(?:dubai|abu\s*dhabi|doha|riyadh|sharjah|qatar)\b.*$", "", t, flags=re.I)
+    t = re.sub(r"\s+20\d{2}\s*$", "", t)
+    return t.strip(" ,-–")
+
+
 def is_musical(title):
     """Hard filter: keep only genuine staged musicals; return (keep, reason)."""
     t = title.lower()
@@ -212,8 +225,11 @@ def scrape_city(sub, default_city, country, dropped):
             continue
         vm = re.search(r'event-item__venue-name-text">([^<]+)<', d)
         venue = html.unescape(vm.group(1)).strip() if vm else None
-        # Title: prefer the clean GA4 listing title; fall back to og:title.
-        clean = title or (og(d, "og:title") or "").strip()
+        # Title: prefer the GA4 listing title; fall back to og:title; then strip the
+        # Platinumlist marketing cruft ("X Presents …", "… Musical Event Live",
+        # "- The Musical", trailing "in Dubai/Abu Dhabi", year) so it de-dups with
+        # the canonical work ("Chicago Musical Event Live in Dubai" → "Chicago").
+        clean = clean_show_title(title or (og(d, "og:title") or "").strip())
         url = og(d, "og:url") or f"{base}/event/item/{eid}"
         img = og(d, "og:image")
         out.append({
