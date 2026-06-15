@@ -11,6 +11,14 @@
 
 ---
 
+## [v0.54.3] - 2026-06-15 15:34
+### 修正 Diana 分類錯誤 + 手動劇目海報大批回填
+- **Diana 分類修正(使用者抓到)**:原誤標「葡語音樂劇」。海報上明寫「**um musical da Broadway**」、創作者 Joe DiPietro(劇本/詞)+ David Bryan(曲)正是百老匯 *Diana: The Musical* 原班,Tadeu Aguiar 巴西版。已加入 works.json registry → **Broadway/West End**(依原作出身,與 Wicked/TINA 同規則)。
+- **Diana 海報(使用者指出有圖卻沒顯示)**:Sympla CDN 有 WAF/防盜連 —— 實測 headless 瀏覽器渲染失敗、HTTP 200/403 不穩定(URL 拿得到≠顯示得出)。故**下載一次後 rehost 到 `posters/diana-saopaulo-2026.jpg`(同源)**,並以 `<img>` + CSS background 兩種(與 app.js 一致)實際截圖驗證可顯示。
+- **批次回填 20 齣手動劇目缺圖**:用資料庫中**同劇其他製作的現有海報**(ctfassets / headout / ticketm / cloudinary / utiki 等已在站上正常顯示的 host)回填——含 Wicked、Annie、Anastasia、TINA、Shrek、Oliver!、Chicago、SIX、Les Misérables、Beetlejuice、Heathers、Phantom(上海)。手動劇目海報覆蓋 14/36 → **34/36**。
+- 加 `<meta name="referrer" content="no-referrer">`(隱私/相容預設;不影響既有 CDN)。
+- **仍缺(誠實標註)**:Rita Lee、Minha Estrela Dalva 兩齣巴西**原創**,無同名可借,海報鎖在反爬 SPA;唯一抓得到的 og:image 是劇院全站通用 banner(非本劇)→ 拒用錯圖,維持 ♪ 佔位。若提供海報 URL(如 Diana 那樣)即可比照 rehost 補上。
+
 ## [v0.54.2] - 2026-06-15 15:20
 ### 南非加碼 — Oliver!(Joburg Theatre / Pieter Toerien / Artscape 全年掃描)
 - 掃描南非各大場館 2026 下半年檔期,加 **Oliver!**(Cameron Mackintosh / Pieter Toerien & Cape Town Opera 製作):
