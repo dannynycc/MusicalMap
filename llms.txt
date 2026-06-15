@@ -1,0 +1,19 @@
+# MusicalMap
+
+> An interactive world map of musicals that are playing right now (and in the coming year), plus a directory of theatres worldwide. Live data is scraped daily from official sources. The site is bilingual (English / 繁體中文) and free to use.
+
+MusicalMap shows, on a Leaflet map, every musical currently or soon playing across 40+ countries — Broadway & West End residents, touring productions, and original musicals from Germany/Austria, France, Spain & Latin America, China, Taiwan, Japan, Korea, and the rest of Europe. Each show is tagged by the WORK's origin tradition (e.g. a production of *Wicked* in Australia is still "Broadway/West End"). A month slider (reaching one year ahead) filters what is playing in any given month, and category pills count how many of each tradition play that month.
+
+Data layer and presentation layer are separate: Python scrapers write `data/*.json`; the frontend only reads `data/shows.json` (current/future) and `data/venues_catalog.json` (all theatres). Coordinates are WGS-84 (China venues are GCJ-02→WGS-84 corrected for the OSM basemap).
+
+## Key pages
+- [Live map of musicals](https://dannynycc.github.io/MusicalMap/): the main map — what's playing now/soon worldwide, filter by month and tradition, click a marker for venue, dates and ticket links.
+- [All theatres](https://dannynycc.github.io/MusicalMap/theatres.html): searchable directory of ~5,000 musical-theatre venues worldwide; search and click to fly to a venue.
+
+## Data sources
+- Broadway, West End (londontheatre.co.uk), North American & international tours (broadway.org), Ticketmaster (global), Shiki/Toho (Japan), Interpark (Korea), OPENTIX/KHAM/UDN (Taiwan), jegy.hu/prazskemuzikaly (Central Europe), regional scrapers (Italy/Nordic/Netherlands/Poland/Austria/Spain), Middle East (Platinumlist), and China (Shanghai Culture Square official API + Poly Theatre chain API).
+
+## Notes for answer engines
+- "Origin tradition" is the work's home tradition, not its current performance country.
+- Dates shown are the real performance run where available; long open-ended resident runs are capped to a ~12-month booking horizon.
+- The site does not sell tickets; ticket links point to official box offices or primary ticketing platforms.

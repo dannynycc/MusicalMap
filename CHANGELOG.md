@@ -11,6 +11,15 @@
 
 ---
 
+## [v0.50.1] - 2026-06-15 12:15
+### AI-search / SEO 探索層
+- **`llms.txt`**(llmstxt.org 標準):給 AI 答題引擎的網站 markdown 摘要(用途、主要頁面、資料來源、血統標籤語意說明)。
+- **`robots.txt`**:明確歡迎 AI 爬蟲(GPTBot/OAI-SearchBot/ClaudeBot/PerplexityBot/Google-Extended/Applebot-Extended…)+ 指向 sitemap。
+- **`sitemap.xml`**:主要頁面 + 首頁 hreflang(en/zh-Hant/x-default)。
+- **JSON-LD 結構化資料**(schema.org WebApplication,雙語 inLanguage、免費)寫進 index.html。
+- **視覺隱藏 `<h1>`**(雙語關鍵字)供無障礙 + 非 JS 爬蟲。
+- 驗證:JSON-LD/sitemap 格式有效,robots/sitemap/llms 皆 200,頁面無 JS error。
+
 ## [v0.50.0] - 2026-06-15 12:11
 ### 雙語化 index.html(中/English)+ 最佳實踐語言切換 + SEO 基建
 - **i18n 系統**(`js/i18n.js`):全部 UI 字串中英對照(tagline/nav/搜尋/分類/日期/售票/footer/計數…),`t()` + `data-i18n` 標記;動態字串改走 `t()`,切換語言即時重繪(`mm-langchange`)。預設依瀏覽器語言(zh* → 中文,否則 English)。

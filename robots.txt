@@ -1,0 +1,25 @@
+# MusicalMap — open to all crawlers, including AI/answer engines.
+User-agent: *
+Allow: /
+
+# Explicitly welcome AI search crawlers (answer-engine optimisation).
+User-agent: GPTBot
+Allow: /
+User-agent: OAI-SearchBot
+Allow: /
+User-agent: ChatGPT-User
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+User-agent: Claude-Web
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+User-agent: Google-Extended
+Allow: /
+User-agent: Applebot-Extended
+Allow: /
+User-agent: Bingbot
+Allow: /
+
+Sitemap: https://dannynycc.github.io/MusicalMap/sitemap.xml
