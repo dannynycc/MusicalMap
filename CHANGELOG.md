@@ -11,6 +11,12 @@
 
 ---
 
+## [v0.54.4] - 2026-06-15 15:44
+### 分類顯示改名 + 補齊最後兩張巴西原創海報(100%)
+- **分類顯示改名**(使用者要求,只改顯示 label,內部 tag 值與資料管線不動):法式音樂劇→**法語音樂劇**、中國原創→**中國音樂劇**、台灣原創→**台灣音樂劇**、日本原創→**日本音樂劇**、韓國原創→**韓國音樂劇**、歐陸原創→**歐陸音樂劇**。改 js/i18n.js 的 zh label 即生效(顯示全走 `tagLabel`,無他處顯示原始值);已截圖確認 filter chips 正確顯示。
+- **補齊 Rita Lee + Minha Estrela Dalva 海報**:使用者提供 URL → 下載 rehost 到 posters/(Rita Lee Sympla WAF 重試後取得 jpg;Estrela Dalva Azure blob 取得 png),Read 確認是本劇真圖。手動劇目海報 **36/36 = 100%**。
+- Rita Lee 海報上「TEMPORADA ESTENDIDA ATÉ AGOSTO」證實延檔至 8 月,先前 end_date 2026-08-30 正確。
+
 ## [v0.54.3] - 2026-06-15 15:34
 ### 修正 Diana 分類錯誤 + 手動劇目海報大批回填
 - **Diana 分類修正(使用者抓到)**:原誤標「葡語音樂劇」。海報上明寫「**um musical da Broadway**」、創作者 Joe DiPietro(劇本/詞)+ David Bryan(曲)正是百老匯 *Diana: The Musical* 原班,Tadeu Aguiar 巴西版。已加入 works.json registry → **Broadway/West End**(依原作出身,與 Wicked/TINA 同規則)。
