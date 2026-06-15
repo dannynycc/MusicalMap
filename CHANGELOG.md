@@ -11,6 +11,12 @@
 
 ---
 
+## [v0.53.1] - 2026-06-15 14:42
+### 巴西 +《Wicked》里約(百老匯官方授權複刻版)
+- 使用者指出巴西重點是國際 Broadway/西區大製作。查證後加 **Wicked(里約 Cidade das Artes,2026-07-15～08-09)**——百老匯官方授權葡語複刻版,已在 Sympla 開賣(24h 售出萬張)。Broadway/West End,附 Sympla 售票連結 + 場館座標(Nominatim)。
+- 巴西現有 5 齣:Broadway 巡演 TINA(聖保羅)、Wicked(里約)+ 葡語原創 3 齣。
+- 未加(查證後不符「有確切日期+售票連結」門檻):**Hadestown** @ Renault(僅「2026 下半年」、無確切日期/售票)、**Flashdance/Shrek**(可讀來源顯示 5/31、6/7 已結束,與「熱演中」說法衝突,待確認新檔期)。有確切資訊我再補。
+
 ## [v0.53.0] - 2026-06-15 14:36
 ### 巴西聖保羅(手動精選)+ 新增「葡語音樂劇」分類
 - 巴西主流票務全反爬牆(Sympla=Cloudflare、Ingresso=SPA、場館站 Santander=Akamai「Access Denied」),無法自動抓。改從可讀的編輯型清單(WebFetch)取**真實現演資料**,手動加進 `manual.json`(逐齣查證日期+售票連結+Nominatim geocode 場館,不亂填):
