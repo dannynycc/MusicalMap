@@ -11,6 +11,16 @@
 
 ---
 
+## [v0.54.1] - 2026-06-15 15:14
+### 非洲 — 南非確認有(資料清理,非新增)
+- 查證:非洲音樂劇主場是南非。Ticketmaster.co.za scraper **早就抓到** Mamma Mia! 兩場,本版只做清理與驗證:
+  - **Mamma Mia!** @ Artscape Opera House(開普敦),2026-09-03～10-10
+  - **Mamma Mia!** @ Teatro at Montecasino(約翰尼斯堡),2026-10-16～11-22
+  - 兩場日期一律以 TM(實際售票來源)為準,座標經 reverse/forward 驗證正確(Artscape、Montecasino 複合體內),registry → Broadway/West End。
+- 我一度手動加了 Mamma Mia,但 TM 版日期更準(我猜的 10/11、11/30 < TM 的 10/10、11/22)→ **撤掉手動筆,避免用較差日期蓋掉 TM**。
+- 過濾掉誤入的 **Ndlovu Youth Choir**(南非青年合唱團演唱會,非音樂劇,卻被 TM 歸在 musicals 分類 + 誤標 Broadway/West End)→ 加進 not_musical.json。
+- 已過檔不收:Pretty Woman(~4/19、5/24)、CATS(Montecasino 2/22 結束)、Rocky Horror(5/31)。
+
 ## [v0.54.0] - 2026-06-15 15:02
 ### 阿根廷上線 — 布宜諾斯艾利斯(Corrientes 大道劇場區)
 - 之前阿根廷卡在 PlateaNet 403 + 清單無連結。改從可讀新聞稿查到兩齣**現演**百老匯原作的西語製作,逐齣查證日期+售票連結+Nominatim geocode:
