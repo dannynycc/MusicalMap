@@ -131,7 +131,7 @@ const satellite = L.tileLayer(
   "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}", {
     attribution: "Tiles &copy; Esri, Maxar, Earthstar Geographics", maxZoom: 19,
   });
-L.control.layers({ "地圖": streets, "衛星": satellite }, null, { position: "topright" }).addTo(map);
+L.control.layers({ [t("map")]: streets, [t("satellite")]: satellite }, null, { position: "topright" }).addTo(map);
 const cluster = L.markerClusterGroup({
   maxClusterRadius: 45,
   spiderfyOnMaxZoom: true,
@@ -183,6 +183,19 @@ let ARCH_INDEX = null;                        // data/archive/index.json (which 
 const archLoading = {};                       // year -> in-flight fetch promise (dedup)
 let markerById = {};
 let didFitBounds = false;
+let DATA_UPDATED = "";   // shows.json meta.generated_at, for the footer note (re-rendered on lang change)
+
+function renderDataNote() {
+  const u = DATA_UPDATED ? t("updated", { d: DATA_UPDATED }) : "";
+  els.note.textContent = t("sources", { u });
+}
+
+// Re-render everything when the language toggle fires (i18n.js dispatches this).
+window.addEventListener("mm-langchange", () => {
+  buildTagFilters();   // relabel tradition pills (state in ACTIVE_TAGS persists)
+  render();            // markers / list / count all read t()
+  renderDataNote();
+});
 
 const els = {
   list: document.getElementById("show-list"),
@@ -211,8 +224,9 @@ const TAG_DEFS = [
 ];
 const ACTIVE_TAGS = new Set();   // empty = show every tradition
 const TAG_COLOR = Object.fromEntries(TAG_DEFS.map(([t, , c]) => [t, c]));
+const tagLabel = (tag) => t("tag_" + tag);
 const tagBadge = (tag) => tag
-  ? `<span class="tag-badge" style="--tag-color:${TAG_COLOR[tag] || "#64748b"}">${esc(tag)}</span>`
+  ? `<span class="tag-badge" style="--tag-color:${TAG_COLOR[tag] || "#64748b"}">${esc(tagLabel(tag))}</span>`
   : "";
 
 const tagCountSpans = {};   // tag -> the chip's count <span>, updated per month
@@ -230,8 +244,10 @@ function buildTagFilters() {
     chip.className = "tagchip";
     chip.style.setProperty("--tag-color", color);
     chip.dataset.tag = tag;
-    chip.setAttribute("aria-pressed", "false");
-    chip.innerHTML = `<span class="tdot"></span>${esc(label)}<span class="tcount">${ever[tag]}</span>`;
+    const on = ACTIVE_TAGS.has(tag);
+    chip.classList.toggle("on", on);
+    chip.setAttribute("aria-pressed", on ? "true" : "false");
+    chip.innerHTML = `<span class="tdot"></span>${esc(tagLabel(tag))}<span class="tcount">${ever[tag]}</span>`;
     chip.addEventListener("click", () => {
       if (ACTIVE_TAGS.has(tag)) ACTIVE_TAGS.delete(tag);
       else ACTIVE_TAGS.add(tag);
@@ -295,17 +311,17 @@ const YEAR_MS = 31557600000;
 function fmtDates(show) {
   const s = show.start_date, e = show.end_date;
   // Ticketmaster gives availability dates, not a confirmed run — label honestly.
-  if (show.onsale_only) return e ? `售票中至 ${esc(e)}` : "售票中";
+  if (show.onsale_only) return e ? t("onsale_until", { d: esc(e) }) : t("onsale");
   // open-ended long-runner: end is the rolling booking horizon, not a closing date
-  if (show.end_rolling) return s ? `自 ${esc(s)} 上演 · 售票至 ${esc(e)}` : `售票至 ${esc(e)}`;
+  if (show.end_rolling) return s ? t("runs_from_sale", { s: esc(s), e: esc(e) }) : t("sale_until", { e: esc(e) });
   if (s && e) {
     // long-runners' end_date is just the rolling booking horizon, not a closing
     // date — showing it as a range would read like a closing announcement.
-    if (new Date(e) - new Date(s) > 2.5 * YEAR_MS) return `自 ${esc(s)} 上演`;
-    return `${esc(s)} – ${esc(e)}`;
+    if (new Date(e) - new Date(s) > 2.5 * YEAR_MS) return t("runs_from", { s: esc(s) });
+    return t("run_range", { s: esc(s), e: esc(e) });
   }
-  if (s) return `自 ${esc(s)} 上演`;
-  if (e) return `演至 ${esc(e)}`;
+  if (s) return t("runs_from", { s: esc(s) });
+  if (e) return t("runs_until", { e: esc(e) });
   return "";
 }
 
@@ -334,16 +350,16 @@ function popupHtml(show) {
       ? `<div class="pop-link-group"><span class="pl-label">${label}</span>${arr.map((l) =>
           `<a class="pop-cta sm" href="${esc(affiliateUrl(safeUrl(l.url)))}" target="_blank" rel="noopener">${esc(l.label || l.country)} →</a>`).join("")}</div>`
       : "";
-    ticket = row("官網", links.filter((l) => l.kind === "official"))
-           + row("售票", links.filter((l) => l.kind !== "official"));
+    ticket = row(t("official"), links.filter((l) => l.kind === "official"))
+           + row(t("tickets"), links.filter((l) => l.kind !== "official"));
   } else {
     const url = safeUrl(show.ticket_url) || (links[0] && safeUrl(links[0].url));
-    const label = show.link_kind === "official" ? "前往官網購票 →" : "前往售票頁 →";
-    ticket = url ? `<a class="pop-cta" href="${esc(affiliateUrl(url))}" target="_blank" rel="noopener">${label}</a>` : "";
+    const label = show.link_kind === "official" ? t("buy_official") : t("buy_tickets");
+    ticket = url ? `<a class="pop-cta" href="${esc(affiliateUrl(url))}" target="_blank" rel="noopener">${esc(label)}</a>` : "";
   }
   const tname = show.tour_name ? show.tour_name.replace(show.title, canonTitle(show)) : "";
   const tourLine = show.type === "tour" && tname ? `<div class="p-row"><b>${esc(tname)}</b></div>` : "";
-  const unverified = show.verified ? "" : `<div class="p-row warn">⚠ 未驗證（示範資料）</div>`;
+  const unverified = show.verified ? "" : `<div class="p-row warn">${esc(t("unverified_demo"))}</div>`;
   return `<div class="popup">${img}<div class="pop-body">
       <p class="p-title">${esc(canonTitle(show))}</p>
       ${tagBadge(show.tag)}
@@ -439,7 +455,7 @@ function render() {
     [...els.list.querySelectorAll(".show-group.open")].map((el) => el.dataset.gkey));
   els.list.innerHTML = "";
   if (!shows.length) {
-    els.list.innerHTML = `<li class="empty">沒有符合的音樂劇<br><span>試試清除搜尋或開啟其他篩選</span></li>`;
+    els.list.innerHTML = `<li class="empty">${esc(t("empty_title"))}<br><span>${esc(t("empty_sub"))}</span></li>`;
   } else {
     const byGroup = new Map();
     shows.forEach((s) => {
@@ -458,8 +474,8 @@ function render() {
   }
 
   const groups = new Set(shows.map((s) => s.group || s.title)).size;
-  const label = isThisMonth() ? "本月上演" : `${selYM()} 上演`;
-  els.count.textContent = `${label}：${groups} 部音樂劇 · ${shows.length} 個地點`;
+  const label = isThisMonth() ? t("playing_this_month") : t("playing_in", { ym: I18N.fmtYM(monthStart()) });
+  els.count.textContent = t("count", { label, groups, n: shows.length });
 
   // fit to all markers once, on first load
   if (!didFitBounds && latlngs.length) {
@@ -495,10 +511,11 @@ function showGroupItem(items) {
   li.className = "show-group";
   const first = items[0];
   const multi = items.length > 1;
-  const badge = first.verified ? "" : `<span class="badge-unverified">未驗證</span>`;
+  const badge = first.verified ? "" : `<span class="badge-unverified">${esc(t("unverified"))}</span>`;
   const cities = [...new Set(items.map((s) => s.city))];
+  const citySep = I18N.lang === "zh" ? "、" : ", ";
   const sub = multi
-    ? `${cities.map(esc).join("、")}　·　${items.length} 個地點`
+    ? `${cities.map(esc).join(citySep)}　·　${esc(t("loc_count", { n: items.length }))}`
     : first.type === "tour" ? `${esc(first.city)} · ${fmtDates(first)}` : esc(first.venue);
   const imgShow = items.find((s) => s.image) || first;
 
@@ -506,7 +523,7 @@ function showGroupItem(items) {
     <div class="show-item${multi ? " has-children" : ""}"${multi ? "" : ` data-id="${esc(first.id)}"`}>
       <div class="thumb ${imgShow.image ? "" : "noimg"}" style="${posterStyle(imgShow, 60, 84)}">${fallbackGlyph(imgShow)}</div>
       <div class="info">
-        <div class="title">${esc(title)}${badge}${multi ? `<span class="loc-count">${items.length} 地</span>` : ""}</div>
+        <div class="title">${esc(title)}${badge}${multi ? `<span class="loc-count">${esc(t("loc_short", { n: items.length }))}</span>` : ""}</div>
         <div class="meta">${sub}</div>
       </div>
       ${multi ? `<span class="chev">▾</span>` : ""}
@@ -569,10 +586,10 @@ async function boot() {
     const res = await fetch("data/shows.json", { cache: "no-store" });
     const data = await res.json();
     ALL = data.shows || [];
-    const updated = data.meta?.generated_at ? `更新於 ${esc(data.meta.generated_at)}` : "";
-    els.note.textContent = `${updated} · 來源：Broadway · West End · 巡演 · 國際 · Ticketmaster`;
+    DATA_UPDATED = data.meta?.generated_at || "";
+    renderDataNote();
   } catch (e) {
-    els.note.textContent = "⚠ 無法載入 data/shows.json（需用本機 server 開啟，見 README）";
+    els.note.textContent = t("load_error");
     console.error(e);
   }
   // historical archive index (enables dragging the timeline into the past)

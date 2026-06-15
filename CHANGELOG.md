@@ -11,6 +11,14 @@
 
 ---
 
+## [v0.50.0] - 2026-06-15 12:11
+### 雙語化 index.html(中/English)+ 最佳實踐語言切換 + SEO 基建
+- **i18n 系統**(`js/i18n.js`):全部 UI 字串中英對照(tagline/nav/搜尋/分類/日期/售票/footer/計數…),`t()` + `data-i18n` 標記;動態字串改走 `t()`,切換語言即時重繪(`mm-langchange`)。預設依瀏覽器語言(zh* → 中文,否則 English)。
+- **語言切換器(查 i18n UX 最佳實踐後做)**:右上 **🌐 地球 + 「中文 | English」分段**,當前高亮、母語名稱、**不用國旗**(國家≠語言)、圖示+文字。選擇存 localStorage。
+- **SEO**:雙語 `<title>`+`<meta description>`;`?lang=en|zh` 可索引 URL + `hreflang`(en/zh-Hant/x-default)+ canonical + Open Graph;切換語言會更新網址與 canonical(可分享、語言一致)。
+- Playwright 驗證:EN/ZH 全字串切換、URL 更新、切換器高亮皆正確。
+- (待續:theatres/me/u 其他頁雙語化 + AI-search 檔案 JSON-LD/llms.txt/robots/sitemap。)
+
 ## [v0.49.0] - 2026-06-15 11:57
 ### 分類數字改為「當月」+ 時間 bar 縮短
 - **分類 pill 數字現在對應選取月份**(`app.js`):原本永遠顯示總數,改成隨月份滑桿+搜尋即時更新該分類當月上演數(`updateTagCounts()` 每次 render 算)。pill 集合維持穩定(不會跳出跳進),當月為 0 的淡化顯示(`.tag-zero`)。驗證:本月 Broadway 258/韓國 25 → +6 月 Broadway 160/韓國 1/中國 0。

@@ -35,6 +35,15 @@ body { display: flex; flex-direction: column; height: 100vh; }
 #topnav { display: flex; align-items: center; gap: 14px; }
 .nav-link { color: var(--text); text-decoration: none; font-size: 14px; font-weight: 600; }
 .nav-link:hover { color: var(--accent); }
+/* Language switch: globe + segmented autonyms (中文 | English), active highlighted.
+   No flags (country ≠ language); native names per i18n UX best practice. */
+#lang-switch { display: inline-flex; align-items: center; gap: 2px;
+  border: 1px solid var(--border); border-radius: 999px; padding: 2px 4px 2px 8px; background: var(--panel-2); }
+#lang-switch .globe { font-size: 13px; margin-right: 2px; opacity: .8; }
+#lang-switch .lang-opt { border: none; background: none; cursor: pointer; color: var(--muted);
+  font-size: 13px; font-weight: 600; padding: 4px 9px; border-radius: 999px; line-height: 1; font-family: inherit; }
+#lang-switch .lang-opt:hover { color: var(--text); }
+#lang-switch .lang-opt.active { background: var(--accent); color: var(--accent-ink, #fff); }
 
 /* all-theatres page: floating search panel + small venue dots */
 #venue-panel {
