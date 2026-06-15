@@ -11,6 +11,15 @@
 
 ---
 
+## [v0.47.0] - 2026-06-15 11:11
+### 全球場館國家標籤總驗證(reverse-geocode)→ 修 43 筆貼錯,theatres.html 同步
+- 用 `verify_geo.py` 對全球(扣中國)**4843 個場館**逐一 reverse-geocode(新帳號 Google 額度,約 $24),反查每個座標的真實國家。
+- 抓出 **43 筆國家標籤貼錯**(座標對、標籤錯),全部修正:
+  - discover 把鄰國/同名城市場館抓錯國(雪梨歌劇院→標 Reading/UK、Lviv 國家歌劇院→標 Poland 實烏克蘭、維也納國家歌劇院→標捷克、紐卡索 UK 多館→標 Australia、Lancaster PA→標 UK…)→ 改 `*_discovered.json` 真實國家+城市(49 筆)。
+  - broadway.org 巡演把加拿大/墨西哥巡演站標 USA(National Arts Centre/Place Des Arts/Queen Elizabeth Theatre/Showcenter Monterrey…)→ 新增 `data/venue_country.json` 國家覆蓋,`build_shows.py` 套用(18 筆 show)。
+- 重生 venues_catalog.json:**重新驗證後 0 筆國家不符**;13 個重複場館自動合併(5017→5004)→ push 後 **theatres.html 同步**。
+- Türkiye=Turkey 同國別名加進 verify_geo,不再假警報。
+
 ## [v0.46.0] - 2026-06-15 10:06
 ### 時間滑桿固定 1 年範圍(自動滾動)+ 場館座標總檢 + 全球驗證工具
 - **時間滑桿改成「最遠 +12 個月」硬上限,自動滾動**(`app.js`):現在 2026-06 → 拉到 2027-06;到 2026-07-01 → 自動變 2027-07。原本是拉到資料最遠那筆(上限 48 個月)。與開放式駐演的 12 個月顯示上限一致。

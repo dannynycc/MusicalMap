@@ -1,0 +1,12 @@
+{
+  "_comment": "Country-label fixes keyed by venue_key (venue|city). Some sources (esp. broadway.org tours) file Canadian/Mexican tour stops under USA; reverse-geocoding the coord (scrapers/verify_geo.py) gives the true country. Applied to shows in build_shows.py so both the map and theatres.html group the venue correctly.",
+  "lincoln center for the performing arts|new york": "USA",
+  "southern alberta jubilee auditorium|calgary": "Canada",
+  "northern alberta jubilee auditorium|edmonton": "Canada",
+  "queen elizabeth theatre|vancouver": "Canada",
+  "toronto, on|toronto": "Canada",
+  "national arts centre: southam hall|ottawa": "Canada",
+  "place des arts|montreal": "Canada",
+  "victoria, bc|victoria": "Canada",
+  "showcenter complex|monterrey": "Mexico"
+}

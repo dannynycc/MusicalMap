@@ -37,7 +37,7 @@ def load_key():
 # Google country names → our catalog's country labels (only where they differ)
 COUNTRY_ALIAS = {
     "United States": "USA", "United Kingdom": "UK", "Czechia": "Czech Republic",
-    "South Korea": "South Korea", "Hong Kong": "Hong Kong",
+    "Türkiye": "Turkey",   # Google's spelling == our "Turkey"; not a mismatch
 }
 
 

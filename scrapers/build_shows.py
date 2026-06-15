@@ -530,6 +530,22 @@ def main():
     if dup:
         print(f"  dropped {len(dup)} cross-source duplicate(s) (same show+city+venue)")
 
+    # Venue-level COUNTRY corrections. Some sources (esp. broadway.org tours) file
+    # Canadian/Mexican tour stops under "USA"; data/venue_country.json holds the true
+    # country per "venue|city" (found by reverse-geocoding coords in verify_geo.py).
+    # One fix → every show at that venue, so the map + theatres.html group it right.
+    vco_path = DATA / "venue_country.json"
+    if vco_path.exists():
+        vcountry = {k: v for k, v in json.loads(vco_path.read_text(encoding="utf-8")).items()
+                    if not k.startswith("_")}
+        nfix = 0
+        for s in by_id.values():
+            fix = vcountry.get(venue_key(s.get("venue"), s.get("city")))
+            if fix and s.get("country") != fix:
+                s["country"] = fix
+                nfix += 1
+        print(f"  fixed {nfix} show country label(s) from venue_country.json")
+
     # Venue-level coordinate corrections (one fix → every show at that venue).
     # Sources (Ticketmaster, geocoders) sometimes pin a venue to a same-named
     # landmark or null-island (0,0); data/venue_coords.json holds verified coords
