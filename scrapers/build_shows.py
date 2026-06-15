@@ -127,7 +127,7 @@ SOURCE_FILES = ["broadway.json", "westend.json", "tours.json", "intl.json",
                 "italy.json", "sweden.json", "netherlands.json", "poland.json",
                 "norway.json", "austria.json", "middleeast.json", "china.json",
                 "china_poly.json", "china_ypiao.json", "china_chinaticket.json",
-                "manual.json"]
+                "portugal.json", "manual.json"]
 
 # When several ticket sources list the SAME show in the SAME city, we keep one
 # record (highest priority = most authoritative venue data) and attach every

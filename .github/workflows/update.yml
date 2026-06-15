@@ -61,6 +61,7 @@ jobs:
           python scrapers/norway.py      || echo "::warning::norway scrape failed"
           python scrapers/austria.py     || echo "::warning::austria (VBW) scrape failed"
           python scrapers/middleeast.py  || echo "::warning::middleeast (platinumlist) scrape failed"
+          python scrapers/portugal.py    || echo "::warning::portugal (bol.pt) scrape failed"
           python scrapers/china.py       || echo "::warning::china (shcstheatre) scrape failed"
           python scrapers/china_poly.py  || echo "::warning::china_poly (polyt.cn) scrape failed"
           python scrapers/china_ypiao.py || echo "::warning::china_ypiao (ypiao) scrape failed"

@@ -11,6 +11,12 @@
 
 ---
 
+## [v0.52.0] - 2026-06-15 13:07
+### 新增葡萄牙(BOL)—— 南美/葡萄牙缺口第一步
+- 查證:Ticketmaster 在南美/葡萄牙這區**只有墨西哥有音樂劇**(274 筆已收),巴西/阿根廷/智利/哥倫比亞/秘魯/葡萄牙 TM 全 0,得做本土平台 scraper。
+- **`portugal.py`**(BOL / bol.pt):每個事件頁有乾淨 JSON-LD Event(名稱/演期/海報/場館 + **內建 geo 座標 WGS84 + 城市**,免 geocode)。抓首頁事件、篩 `catTeatro` + 音樂劇(標題含 musical 或對上 works.json 註冊劇)→ **Evita @ 里斯本 Capitólio** 上線(Broadway/West End)。
+- 註:BOL 類別枚舉(全列)頁面是 JS 載入,目前用首頁精選,葡萄牙當前音樂劇本就少。巴西(Ingresso 混淆 SPA)、阿根廷(PlateaNet SSL)較難,待續。
+
 ## [v0.51.0] - 2026-06-15 12:49
 ### me.html / u.html 雙語化 → 全站中英一致
 - me.html(個人足跡)+ u.html(公開分享頁)套用共用 i18n:nav、hero、分享列、儀表板卡片標題、紀錄表、新增/編輯表單、按鈕、提示、alert、空狀態全部中英對照;同款 🌐 中文|English 切換器 + 每頁標題;切語言即時重繪(`mm-langchange`)。
