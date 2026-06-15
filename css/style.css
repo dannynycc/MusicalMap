@@ -48,6 +48,13 @@ body { display: flex; flex-direction: column; height: 100vh; }
 }
 #vsearch:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(15,118,110,.15); }
 #vcount { margin-top: 8px; font-size: 13px; color: var(--muted); font-weight: 600; }
+#vresults { list-style: none; margin: 8px 0 0; padding: 0; max-height: 46vh; overflow-y: auto; }
+#vresults li { padding: 8px 10px; border-radius: 8px; cursor: pointer; line-height: 1.35; }
+#vresults li:hover { background: var(--panel-2); }
+#vresults li.more { cursor: default; color: var(--muted); font-size: 12px; }
+#vresults li.more:hover { background: none; }
+#vresults .vn { color: var(--text); font-weight: 600; font-size: 13px; }
+#vresults .vc { color: var(--muted); font-size: 12px; }
 .venue-dot-wrap { background: none; border: none; }
 .venue-dot {
   width: 12px; height: 12px; border-radius: 50%;

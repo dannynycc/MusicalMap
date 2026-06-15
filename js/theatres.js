@@ -45,17 +45,58 @@ const cluster = L.markerClusterGroup({
 map.addLayer(cluster);
 
 let ALL = [];
-const els = { search: document.getElementById("vsearch"), count: document.getElementById("vcount") };
+const els = {
+  search: document.getElementById("vsearch"),
+  count: document.getElementById("vcount"),
+  results: document.getElementById("vresults"),
+};
+
+const popupHtml = (v) =>
+  `<b>${esc(v.name)}</b><br><span style="color:#64748b">${esc(v.city || "")}${v.country ? ", " + esc(v.country) : ""}</span>`;
 
 function render() {
   const q = norm(els.search.value);
   const shown = q ? ALL.filter((v) => norm(v.search || v.name).includes(q)) : ALL;
   cluster.clearLayers();
   const markers = shown.map((v) =>
-    L.marker([v.lat, v.lng], { icon: dot, riseOnHover: true })
-      .bindPopup(`<b>${esc(v.name)}</b><br><span style="color:#64748b">${esc(v.city || "")}${v.country ? ", " + esc(v.country) : ""}</span>`, { maxWidth: 280 }));
+    L.marker([v.lat, v.lng], { icon: dot, riseOnHover: true }).bindPopup(popupHtml(v), { maxWidth: 280 }));
   cluster.addLayers(markers);
   els.count.textContent = `${shown.length.toLocaleString()} 個劇院` + (q ? `（共 ${ALL.length.toLocaleString()}）` : "");
+  renderResults(q, shown);
+}
+
+// Clickable result list: searching shows the matches so you can pick one and fly to
+// it (the markers are clustered, so a count alone gives you nothing to click). Built
+// with DOM nodes + textContent — no innerHTML — so scraped names can't inject markup.
+const RESULT_CAP = 60;
+function renderResults(q, shown) {
+  const ul = els.results;
+  ul.textContent = "";
+  if (!q) { ul.hidden = true; ul._items = []; return; }
+  const top = shown.slice(0, RESULT_CAP);
+  ul._items = top;
+  top.forEach((v, i) => {
+    const li = document.createElement("li");
+    li.dataset.i = i;
+    const nm = document.createElement("span"); nm.className = "vn"; nm.textContent = v.name || "";
+    const loc = document.createElement("span"); loc.className = "vc";
+    loc.textContent = (v.city || "") + (v.country ? ", " + v.country : "");
+    li.append(nm, document.createElement("br"), loc);
+    ul.appendChild(li);
+  });
+  if (shown.length > RESULT_CAP) {
+    const more = document.createElement("li");
+    more.className = "more";
+    more.textContent = `…還有 ${shown.length - RESULT_CAP} 個,請再縮小搜尋`;
+    ul.appendChild(more);
+  }
+  ul.hidden = false;
+}
+
+function flyToVenue(v) {
+  const pop = L.popup({ maxWidth: 280 }).setLatLng([v.lat, v.lng]).setContent(popupHtml(v));
+  map.flyTo([v.lat, v.lng], 16, { duration: 0.8 });
+  map.once("moveend", () => pop.openOn(map));   // open after the flight settles
 }
 
 const dot = L.divIcon({ className: "venue-dot-wrap", html: '<div class="venue-dot"></div>', iconSize: [12, 12] });
@@ -77,5 +118,13 @@ els.search.addEventListener("input", () => {
   raf = requestAnimationFrame(render);
 });
 els.search.addEventListener("keydown", (e) => { if (e.key === "Escape") { els.search.value = ""; render(); } });
+
+// click a result → fly to that venue and open its popup
+els.results.addEventListener("click", (e) => {
+  const li = e.target.closest("li[data-i]");
+  if (!li) return;
+  const v = els.results._items[+li.dataset.i];
+  if (v) flyToVenue(v);
+});
 
 boot();
