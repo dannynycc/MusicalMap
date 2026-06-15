@@ -2,7 +2,7 @@
   "meta": {
     "source": "manual-curated",
     "note": "Hand-curated shows from regional venues/promoters no scraper covers yet (China venues, Live Nation FR, …). Each entry verified against the official ticketing page on the date in _checked. Add here whenever a gap is found; build merges automatically. Images: ALWAYS the original full-size official URL — no compression, no self-hosting (user preference: quality over speed).",
-    "count": 34
+    "count": 36
   },
   "shows": [
     {
@@ -617,6 +617,42 @@
       "tour_name": "Anastasia, el musical — producción argentina (versión en español)",
       "verified": true,
       "source": "cadena3 / atrapalo (manual)",
+      "_checked": "2026-06-15"
+    },
+    {
+      "id": "manual-oliver-capetown-2026",
+      "title": "Oliver!",
+      "type": "tour",
+      "venue": "Artscape Opera House",
+      "city": "Cape Town",
+      "country": "South Africa",
+      "lat": -33.919686,
+      "lng": 18.43045,
+      "start_date": "2026-12-11",
+      "end_date": "2027-01-17",
+      "ticket_url": "https://www.webtickets.co.za/v2/client.aspx?clientcode=artscape",
+      "image": null,
+      "tour_name": "Oliver! — Cameron Mackintosh / Pieter Toerien & Cape Town Opera",
+      "verified": true,
+      "source": "broadwayworld / timeout / webtickets (manual)",
+      "_checked": "2026-06-15"
+    },
+    {
+      "id": "manual-oliver-joburg-2027",
+      "title": "Oliver!",
+      "type": "tour",
+      "venue": "Teatro at Montecasino",
+      "city": "Johannesburg",
+      "country": "South Africa",
+      "lat": -26.024336,
+      "lng": 28.013336,
+      "start_date": "2027-01-29",
+      "end_date": "2027-03-07",
+      "ticket_url": "https://www.webtickets.co.za/v2/event.aspx?itemid=1591066786",
+      "image": null,
+      "tour_name": "Oliver! — Cameron Mackintosh / Pieter Toerien (約堡站)",
+      "verified": true,
+      "source": "broadwayworld / webtickets (manual)",
       "_checked": "2026-06-15"
     }
   ]

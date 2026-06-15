@@ -11,6 +11,16 @@
 
 ---
 
+## [v0.54.2] - 2026-06-15 15:20
+### 南非加碼 — Oliver!(Joburg Theatre / Pieter Toerien / Artscape 全年掃描)
+- 掃描南非各大場館 2026 下半年檔期,加 **Oliver!**(Cameron Mackintosh / Pieter Toerien & Cape Town Opera 製作):
+  - **Oliver!** @ Artscape Opera House(開普敦),2026-12-11～2027-01-17,Webtickets。
+  - **Oliver!** @ Teatro at Montecasino(約堡),2027-01-29～03-07,Webtickets。
+  - registry → Broadway/West End。Webtickets 已開賣。
+- 在 venue_coords.json **pin** 了 Artscape Opera House + Teatro at Montecasino 的權威座標,讓同場館的 Mamma Mia 與 Oliver! 共用同一點(marker 正確聚合)。
+- 南非現有 4 齣:Mamma Mia!(開普敦/約堡)+ Oliver!(開普敦/約堡)。
+- 掃描到但**未收**(附原因):**Taxi Wars: Umzila the Musical**(南非原創,registry 無對應,目前分類體系沒有「非洲原創」類,會誤標 → 待決定是否新增分類)、**Pretty Woman**(主檔期 4–5 月已過;另有來源稱 9 月 Market Theatre 場,來源可疑未證實)、**Peter Pan Jr / Alice in Wonderland**(Peoples Theatre 兒童 Jr 簡化版,非完整職業製作)。
+
 ## [v0.54.1] - 2026-06-15 15:14
 ### 非洲 — 南非確認有(資料清理,非新增)
 - 查證:非洲音樂劇主場是南非。Ticketmaster.co.za scraper **早就抓到** Mamma Mia! 兩場,本版只做清理與驗證:
