@@ -1,26 +1,9 @@
 {
   "meta": {
     "source": "teatro.it",
-    "count": 22
+    "count": 23
   },
   "shows": [
-    {
-      "id": "it-ccce8bcb",
-      "title": "Notre Dame de Paris",
-      "title_en": "",
-      "venue": "Parco Ducale di Parma",
-      "city": "Parma",
-      "country": "Italy",
-      "lat": null,
-      "lng": null,
-      "start_date": "2026-06-14",
-      "end_date": "2026-12-26",
-      "image": "https://www.teatro.it/images/spettacoli/34998/main-image/teatro.it-notre-dame-de-paris-2026-date-biglietti.jpg",
-      "ticket_url": "https://www.teatro.it/spettacoli/notre-dame-de-paris-riccardo-cocciante",
-      "type": "tour",
-      "verified": true,
-      "source": "teatro.it"
-    },
     {
       "id": "it-a5dab43b",
       "title": "Maradona El Diego - Opera Musical",
@@ -90,6 +73,23 @@
       "source": "teatro.it"
     },
     {
+      "id": "it-dc5ff90b",
+      "title": "Notre Dame de Paris",
+      "title_en": "",
+      "venue": "Arcimboldi",
+      "city": "Milano",
+      "country": "Italy",
+      "lat": 45.51446,
+      "lng": 9.21366,
+      "start_date": "2026-06-18",
+      "end_date": "2026-12-26",
+      "image": "https://www.teatro.it/images/spettacoli/34998/main-image/teatro.it-notre-dame-de-paris-2026-date-biglietti.jpg",
+      "ticket_url": "https://www.teatro.it/spettacoli/notre-dame-de-paris-riccardo-cocciante",
+      "type": "tour",
+      "verified": true,
+      "source": "teatro.it"
+    },
+    {
       "id": "it-9606939c",
       "title": "C'era una volta... Scugnizzi",
       "title_en": "",
@@ -119,6 +119,23 @@
       "end_date": "2026-12-23",
       "image": "https://www.teatro.it/images/2026/02/spettacoli/3813/main-image/teatroit-peter-pan-il-musical-20-anniversario-date-biglietti.jpg",
       "ticket_url": "https://www.teatro.it/spettacoli/peter-pan-il-musical-edoardo-bennato",
+      "type": "tour",
+      "verified": true,
+      "source": "teatro.it"
+    },
+    {
+      "id": "it-0fb1317c",
+      "title": "Mamma Mia!",
+      "title_en": "",
+      "venue": "Il Sistina",
+      "city": "Roma",
+      "country": "Italy",
+      "lat": 41.904281,
+      "lng": 12.486961,
+      "start_date": "2026-12-17",
+      "end_date": "2026-12-17",
+      "image": "https://www.teatro.it/images/2026/06/spettacoli/35942/main-image/teatro.it-mamma-mia-piparo-date.jpg",
+      "ticket_url": "https://www.teatro.it/spettacoli/mamma-mia-massimo-romeo-piparo",
       "type": "tour",
       "verified": true,
       "source": "teatro.it"
@@ -277,17 +294,17 @@
       "source": "teatro.it"
     },
     {
-      "id": "it-0ed55084",
+      "id": "it-1da32190",
       "title": "Il ragazzo dai pantaloni rosa",
       "title_en": "",
-      "venue": "Teatro Team",
-      "city": "Bari",
+      "venue": "Il Sistina",
+      "city": "Roma",
       "country": "Italy",
-      "lat": null,
-      "lng": null,
-      "start_date": "2027-01-23",
+      "lat": 41.904281,
+      "lng": 12.486961,
+      "start_date": "2026-10-29",
       "end_date": "2027-05-18",
-      "image": "https://www.teatro.it/images/spettacoli//main-image/teatro.it-il-ragazzo-dai-pantaloni-rosa-date-biglietti.jpg",
+      "image": "https://www.teatro.it/images/2026/06/spettacoli/43533/main-image/teatro.it-il-ragazzo-dai-pantaloni-rosa-date.jpg",
       "ticket_url": "https://www.teatro.it/spettacoli/il-ragazzo-dai-pantaloni-rosa",
       "type": "tour",
       "verified": true,
