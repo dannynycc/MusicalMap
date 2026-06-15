@@ -11,6 +11,15 @@
 
 ---
 
+## [v0.56.0] - 2026-06-15 16:25
+### 新加坡擴充至 2027 + 分類 label 微調 + 手動劇目新鮮度守門
+- **新加坡完整檔期**(使用者指出 MBS 還有更多場次到明年):
+  - 修正 **Cats** 日期 → **2026-10-29～11-15**(先前誤植 8/19–9/6,那其實是 JCS 的檔期 —— 被搜尋引擎混淆,使用者協助發現)。
+  - 加 **Jesus Christ Superstar**(Sands Theatre,8/19–9/6,SISTIC)、**Legally Blonde**(Esplanade Theatre,7/29–8/9,SRT)、**Moulin Rouge! The Musical**(Sands Theatre,2027-02-16～04-04,SISTIC,東南亞首站世界巡演)。
+  - JCS / Moulin Rouge 售票連結改用使用者提供的 SISTIC 直連。新加坡現 5 齣(到 2027/4)。
+- **分類 label 微調**:英文 Spanish-language→**Spanish**、Portuguese-language→**Portuguese**;中文 Broadway/West End→**百老匯/西區**(僅顯示,內部值不動)。
+- **新增 `scrapers/audit_manual.py`**(回應「都在 hardcode」疑慮):掃 manual.json 抓「已落幕(end_date 過期)」與「逾期未查證(_checked>120 天)」。已掛進 CI(non-blocking)。首跑即抓到並移除過期的 **Les Misérables 阿瑞納 Birmingham 站**(6/14 結束;RAH 6/18、Radio City 7/23 保留)。
+
 ## [v0.55.0] - 2026-06-15 16:05
 ### 東南亞 — 新加坡上線(Cats @ Marina Bay Sands)
 - 查證泰國/新加坡/菲律賓國際巡演。確認多為已落幕,唯一未來且有確切日期的:

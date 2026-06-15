@@ -79,6 +79,7 @@ jobs:
           python scrapers/booking_horizon.py || echo "::warning::booking_horizon failed"
           python scrapers/build_shows.py
           python scrapers/audit_dups.py  || echo "::warning::dedup/junk audit flagged issues"
+          python scrapers/audit_manual.py || echo "::warning::manual.json has stale/ended shows — review data/manual.json"
           python scrapers/gen_catalog.py
           # Accumulate today's snapshot into the immutable historical archive
           # (separate stateful layer; never deletes closed runs). Pure build above

@@ -2,7 +2,7 @@
   "meta": {
     "source": "manual-curated",
     "note": "Hand-curated shows from regional venues/promoters no scraper covers yet (China venues, Live Nation FR, …). Each entry verified against the official ticketing page on the date in _checked. Add here whenever a gap is found; build merges automatically. Images: ALWAYS the original full-size official URL — no compression, no self-hosting (user preference: quality over speed).",
-    "count": 37
+    "count": 39
   },
   "shows": [
     {
@@ -293,24 +293,6 @@
       "tour_name": "Beetlejuice — Australia Tour",
       "verified": true,
       "source": "官方巡演公告 (manual)",
-      "_checked": "2026-06-12"
-    },
-    {
-      "id": "manual-lesmis-arena-birmingham",
-      "title": "Les Misérables",
-      "type": "tour",
-      "venue": "Utilita Arena",
-      "city": "Birmingham",
-      "country": "UK",
-      "lat": 52.479087,
-      "lng": -1.914853,
-      "start_date": "2026-06-11",
-      "end_date": "2026-06-14",
-      "ticket_url": "https://www.lesmis.com/",
-      "image": "https://images.ctfassets.net/6pezt69ih962/47DmmERqPjWVTLnJFvHdU8/2a237f6cef4165a6c73c35d7ae5d68ab/MIS_Updated-Ticket-Agent_480x720_AW.jpg",
-      "tour_name": "Les Misérables — The Arena Spectacular",
-      "verified": true,
-      "source": "官方/媒體公告 (manual)",
       "_checked": "2026-06-12"
     },
     {
@@ -664,13 +646,67 @@
       "country": "Singapore",
       "lat": 1.284922,
       "lng": 103.860628,
-      "start_date": "2026-08-19",
-      "end_date": "2026-09-06",
+      "start_date": "2026-10-29",
+      "end_date": "2026-11-15",
       "ticket_url": "https://www.marinabaysands.com/entertainment/shows/cats-the-musical.html",
       "image": "https://res.cloudinary.com/dwzhqvxaz/image/upload/w_1280,q_auto,f_auto/v1761656789/Titles/Cats/2026%20Tour/8500_02_Cats_Glasgow_1920x1080_v1.jpg",
       "tour_name": "CATS — Asia tour 2026 (Sands Theatre, SISTIC)",
       "verified": true,
       "source": "marinabaysands / sassymama / smartlocal (manual)",
+      "_checked": "2026-06-15"
+    },
+    {
+      "id": "manual-jcs-singapore-2026",
+      "title": "Jesus Christ Superstar",
+      "type": "tour",
+      "venue": "Sands Theatre",
+      "city": "Singapore",
+      "country": "Singapore",
+      "lat": 1.284922,
+      "lng": 103.860628,
+      "start_date": "2026-08-19",
+      "end_date": "2026-09-06",
+      "ticket_url": "https://www.sistic.com.sg/events/jesus0926",
+      "image": "https://images.ctfassets.net/6pezt69ih962/Rmz8c9aKFB8db9d5TxVAv/4bf7064c147116a92703489363c1aec0/8490_56_JCS_TTG_480x720_TLP.jpg",
+      "tour_name": "Jesus Christ Superstar — UK/London production tour (Sands Theatre, SISTIC)",
+      "verified": true,
+      "source": "broadwayworld / sassymama (manual)",
+      "_checked": "2026-06-15"
+    },
+    {
+      "id": "manual-legallyblonde-singapore-2026",
+      "title": "Legally Blonde",
+      "type": "sit-down",
+      "venue": "Esplanade Theatre",
+      "city": "Singapore",
+      "country": "Singapore",
+      "lat": 1.29009,
+      "lng": 103.855579,
+      "start_date": "2026-07-29",
+      "end_date": "2026-08-09",
+      "ticket_url": "https://www.srt.com.sg/show/legally-blonde/",
+      "image": "https://res.cloudinary.com/dwzhqvxaz/image/upload/w_1280,q_auto,f_auto/v1746701080/Titles/Legally%20Blonde/LegallyBlonde_1920x1080_Title-Shot.jpg",
+      "tour_name": "Legally Blonde — Singapore Repertory Theatre (Esplanade)",
+      "verified": true,
+      "source": "srt.com.sg / esplanade / sassymama (manual)",
+      "_checked": "2026-06-15"
+    },
+    {
+      "id": "manual-moulinrouge-singapore-2027",
+      "title": "Moulin Rouge! The Musical",
+      "type": "tour",
+      "venue": "Sands Theatre",
+      "city": "Singapore",
+      "country": "Singapore",
+      "lat": 1.284922,
+      "lng": 103.860628,
+      "start_date": "2027-02-16",
+      "end_date": "2027-04-04",
+      "ticket_url": "https://www.sistic.com.sg/events/moulin0427",
+      "image": "https://cdn-imgix.headout.com/media/images/2a538059-1d74-4a3f-b05f-510603e2e0d1-1775027874101-large-MR_065_Banner_Resizing_2022_heart-portal_v01_480x720.jpg",
+      "tour_name": "Moulin Rouge! — first world tour, SEA debut (Sands Theatre, SISTIC)",
+      "verified": true,
+      "source": "timeout / sistic (manual)",
       "_checked": "2026-06-15"
     }
   ]
