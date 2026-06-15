@@ -11,6 +11,14 @@
 
 ---
 
+## [v0.51.0] - 2026-06-15 12:49
+### me.html / u.html 雙語化 → 全站中英一致
+- me.html(個人足跡)+ u.html(公開分享頁)套用共用 i18n:nav、hero、分享列、儀表板卡片標題、紀錄表、新增/編輯表單、按鈕、提示、alert、空狀態全部中英對照;同款 🌐 中文|English 切換器 + 每頁標題;切語言即時重繪(`mm-langchange`)。
+- u.html 表格欄位(Date/Musical/Theatre…)、分頁(總覽/紀錄)、「找不到此檔案」、profile 標題與「看過 N 場(全球)」皆雙語。
+- 處理 `t` 區域變數遮蔽(u.js 用 `TL()` 模組別名避開 renderTable 內的 `t`),結果清單用 DOM/esc 不注入。
+- Playwright 驗證:me/u 的 EN↔ZH 切換、title、空狀態皆正確,無 JS error。
+- **至此 index / theatres / me / u 四頁全部雙語**,切換器一致,預設依瀏覽器語言。
+
 ## [v0.50.2] - 2026-06-15 12:33
 ### theatres.html 雙語化
 - theatres.html 套用共用 i18n:tagline、nav、搜尋 placeholder、結果計數(「5,003 theatres」/「1 theatres (of 5,003)」↔「個劇院（共）」)全部隨語言切換;同款 🌐 中文|English 切換器 + 每頁標題;加 description/canonical/hreflang。`theatres.js` 動態字串走 `t()` 並於 `mm-langchange` 重繪。Playwright 驗證通過。

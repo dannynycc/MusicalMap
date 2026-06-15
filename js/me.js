@@ -83,18 +83,18 @@ async function saveShare() {
   const handle = $("#pub-handle").value.trim().toLowerCase().replace(/[^a-z0-9_-]/g, "");
   const isPublic = $("#pub-toggle").checked;
   $("#pub-handle").value = handle;
-  if (isPublic && !handle) { alert("Pick a username for your public link first."); return; }
+  if (isPublic && !handle) { alert(t("me_pick_name")); return; }
   const res = await sb.from("profiles").upsert({ id: CURRENT_USER.id, handle: handle || null, is_public: isPublic });
   if (res.error) {
-    alert(res.error.message.includes("duplicate") ? "That username is taken — try another." : "Save failed: " + res.error.message);
+    alert(res.error.message.includes("duplicate") ? t("me_name_taken") : t("me_save_fail") + res.error.message);
     return;
   }
   renderShareLink(handle, isPublic);
-  if (isPublic && handle) alert("Public! Share: " + shareUrl(handle));
+  if (isPublic && handle) alert(t("me_public_share") + shareUrl(handle));
 }
 
 async function login() {
-  if (!sb) { alert("Backend not configured yet — see docs/SETUP_ACCOUNTS.md"); return; }
+  if (!sb) { alert(t("me_backend_warn")); return; }
   await sb.auth.signInWithOAuth({ provider: "google", options: { redirectTo: location.origin + location.pathname } });
 }
 
@@ -118,11 +118,11 @@ const tile = (n, l) => `<div class="tile"><div class="tn">${n}</div><div class="
 function renderTiles() {
   const s = SIGHTINGS;
   $("#tiles").innerHTML = [
-    tile(s.length, "Shows seen"),
-    tile(uniq(s.map((x) => x.title)).length, "Musicals"),
-    tile(uniq(s.map((x) => x.country)).length, "Countries"),
-    tile(uniq(s.map((x) => x.city)).length, "Cities"),
-    tile(uniq(s.map((x) => x.venue)).length, "Theatres"),
+    tile(s.length, t("me_t_shows")),
+    tile(uniq(s.map((x) => x.title)).length, t("me_t_musicals")),
+    tile(uniq(s.map((x) => x.country)).length, t("me_t_countries")),
+    tile(uniq(s.map((x) => x.city)).length, t("me_t_cities")),
+    tile(uniq(s.map((x) => x.venue)).length, t("me_t_theatres")),
   ].join("");
 }
 
@@ -134,7 +134,7 @@ function topList(el, field) {
   $(el).innerHTML = rows.length ? rows.map(([k, v]) =>
     `<div class="bar-row"><span class="bk">${esc(k)}</span>
        <span class="bt"><span class="bf" style="width:${(v / max * 100).toFixed(0)}%"></span></span>
-       <span class="bv">${v}</span></div>`).join("") : `<p class="muted">No data yet</p>`;
+       <span class="bv">${v}</span></div>`).join("") : `<p class="muted">${esc(t("me_no_data"))}</p>`;
 }
 
 function lineChart(id, labels, values) {
@@ -281,15 +281,15 @@ function renderList() {
         ${extra ? `<div class="muted">${esc(extra)}</div>` : ""}
         ${linksOf(s).map((u, i) => `<a class="li-link" href="${esc(u)}" target="_blank" rel="noopener">🔗 link${linksOf(s).length > 1 ? " " + (i + 1) : ""}</a>`).join(" ")}
       </div>
-      <div class="li-acts"><button class="edit" data-id="${s.id}">Edit</button><button class="del" data-id="${s.id}">Delete</button></div>
+      <div class="li-acts"><button class="edit" data-id="${s.id}">${esc(t("me_edit"))}</button><button class="del" data-id="${s.id}">${esc(t("me_delete"))}</button></div>
     </li>`;
-  }).join("") || `<li class="muted">No entries yet — click “＋ Add a musical”.</li>`;
+  }).join("") || `<li class="muted">${esc(t("me_no_entries"))}</li>`;
   $("#log-list").querySelectorAll(".del").forEach((b) => b.onclick = () => delSighting(b.dataset.id));
   $("#log-list").querySelectorAll(".edit").forEach((b) => b.onclick = () => openEdit(b.dataset.id));
 }
 
 async function delSighting(id) {
-  if (!confirm("Delete this entry?")) return;
+  if (!confirm(t("me_confirm_del"))) return;
   await sb.from("sightings").delete().eq("id", id);
   loadSightings();
 }
@@ -298,7 +298,7 @@ async function delSighting(id) {
 function openAdd() {
   const f = $("#add-form"); f.reset(); f.id.value = "";
   $("#links-list").innerHTML = ""; addLinkRow("");
-  $("#form-title").textContent = "Add a musical";
+  $("#form-title").textContent = t("me_form_add");
   $("#add-dialog").showModal();
 }
 function openEdit(id) {
@@ -310,7 +310,7 @@ function openEdit(id) {
   $("#links-list").innerHTML = "";
   const ls = linksOf(s);
   (ls.length ? ls : [""]).forEach(addLinkRow);
-  $("#form-title").textContent = "Edit musical";
+  $("#form-title").textContent = t("me_form_edit");
   $("#add-dialog").showModal();
 }
 
@@ -326,7 +326,7 @@ function addLinkRow(value = "") {
   const handle = document.createElement("span");
   handle.className = "link-drag"; handle.title = "drag to reorder"; handle.textContent = "⠿";
   const inp = document.createElement("input");
-  inp.type = "url"; inp.className = "link-input"; inp.placeholder = "https://… official site / ticket page";
+  inp.type = "url"; inp.className = "link-input"; inp.placeholder = t("me_link_ph");
   inp.value = value;
   const del = document.createElement("button");
   del.type = "button"; del.className = "link-del"; del.title = "remove"; del.textContent = "×";
@@ -363,7 +363,7 @@ async function onSave(e) {
     delete rec[res.error.message.match(/'(links|url)'/)[1]];
     res = await save(rec);
   }
-  if (res.error) { alert("Save failed: " + res.error.message); return; }
+  if (res.error) { alert(t("me_save_fail") + res.error.message); return; }
   $("#add-dialog").close();
   loadSightings();
 }
@@ -388,8 +388,8 @@ function wireUi() {
   $("#pub-save").onclick = saveShare;
   $("#share-copy").onclick = () => {
     navigator.clipboard?.writeText($("#share-url").textContent);
-    $("#share-copy").textContent = "Copied!";
-    setTimeout(() => { $("#share-copy").textContent = "Copy"; }, 1500);
+    $("#share-copy").textContent = t("me_copied");
+    setTimeout(() => { $("#share-copy").textContent = t("me_copy"); }, 1500);
   };
   setupAutocomplete();
 }
@@ -441,5 +441,8 @@ function setupAutocomplete() {
     inp.addEventListener("blur", () => setTimeout(() => { pop.hidden = true; }, 150));
   });
 }
+
+// re-render dynamic content (tiles/charts/list) when the language toggles
+window.addEventListener("mm-langchange", () => { if (CURRENT_USER) renderAll(); });
 
 boot();

@@ -9,11 +9,28 @@ const esc = (v) => String(v ?? "").replace(/[&<>"']/g, (c) =>
 // CSS-safe URL for background-image:url('…') — percent-encode apostrophe/space/parens.
 const cssUrl = (u) => (u || "").replace(/['"()\s\\]/g,
   (c) => "%" + c.charCodeAt(0).toString(16).padStart(2, "0"));
+// translate alias — some functions below use `t` as a local (title obj / DOM el),
+// which would shadow the global t(); TL() is safe to call anywhere.
+const TL = (k, v) => window.t(k, v);
 
 let CATALOG = { titles: [], posters: {} };
 let POSTER_BY_TITLE = {};
 let SIGHTINGS = [];
 let map, layer, charts = {};
+let PROFILE_NAME = "";
+
+function renderProfileHeader() {
+  if (!PROFILE_NAME) return;
+  $("#pub-name").textContent = TL("u_profile", { name: PROFILE_NAME });
+  $("#pub-sub").textContent = TL("u_worldwide", { n: SIGHTINGS.length });
+}
+
+// re-render on language toggle (data already loaded)
+window.addEventListener("mm-langchange", () => {
+  if (!SIGHTINGS.length && !PROFILE_NAME) return;
+  renderProfileHeader();
+  if (typeof renderTiles === "function") { renderTiles(); renderCharts(); renderTable(); }
+});
 
 function posterFor(t) { return POSTER_BY_TITLE[(t || "").toLowerCase()] || null; }
 
@@ -42,9 +59,9 @@ const tile = (n, l) => `<div class="tile"><div class="tn">${n}</div><div class="
 function renderTiles() {
   const s = SIGHTINGS;
   $("#tiles").innerHTML = [
-    tile(s.length, "Shows seen"), tile(uniq(s.map((x) => x.title)).length, "Musicals"),
-    tile(uniq(s.map((x) => x.country)).length, "Countries"), tile(uniq(s.map((x) => x.city)).length, "Cities"),
-    tile(uniq(s.map((x) => x.venue)).length, "Theatres"),
+    tile(s.length, t("me_t_shows")), tile(uniq(s.map((x) => x.title)).length, t("me_t_musicals")),
+    tile(uniq(s.map((x) => x.country)).length, t("me_t_countries")), tile(uniq(s.map((x) => x.city)).length, t("me_t_cities")),
+    tile(uniq(s.map((x) => x.venue)).length, t("me_t_theatres")),
   ].join("");
 }
 function topList(el, field) {
@@ -55,7 +72,7 @@ function topList(el, field) {
   $(el).innerHTML = rows.length ? rows.map(([k, v]) =>
     `<div class="bar-row"><span class="bk">${esc(k)}</span>
        <span class="bt"><span class="bf" style="width:${(v / max * 100).toFixed(0)}%"></span></span>
-       <span class="bv">${v}</span></div>`).join("") : `<p class="muted">No data</p>`;
+       <span class="bv">${v}</span></div>`).join("") : `<p class="muted">${esc(t("me_no_data"))}</p>`;
 }
 function lineChart(id, labels, values) {
   if (charts[id]) charts[id].destroy();
@@ -154,10 +171,10 @@ function relayoutStacks() {
 }
 // ---------- sortable log table ----------
 const COLS = [
-  { k: "seen_date", label: "Date" }, { k: "title", label: "Musical" },
-  { k: "venue", label: "Theatre" }, { k: "city", label: "City" },
-  { k: "country", label: "Country" }, { k: "seat", label: "Seat" },
-  { k: "price", label: "Price" }, { k: "url", label: "Link" },
+  { k: "seen_date", key: "me_f_date" }, { k: "title", key: "me_f_title" },
+  { k: "venue", key: "me_f_venue" }, { k: "city", key: "me_f_city" },
+  { k: "country", key: "me_f_country" }, { k: "seat", key: "me_f_seat" },
+  { k: "price", key: "me_col_price" }, { k: "url", key: "me_col_link" },
 ];
 let sortKey = "seen_date", sortDir = -1;   // default: newest first
 
@@ -169,12 +186,12 @@ function renderTable() {
     return x < y ? -sortDir : x > y ? sortDir : 0;
   });
   const head = "<thead><tr>" + COLS.map((c) =>
-    `<th data-k="${c.k}" class="${sortKey === c.k ? "sorted " + (sortDir > 0 ? "asc" : "desc") : ""}">${c.label}</th>`).join("") + "</tr></thead>";
+    `<th data-k="${c.k}" class="${sortKey === c.k ? "sorted " + (sortDir > 0 ? "asc" : "desc") : ""}">${esc(TL(c.key))}</th>`).join("") + "</tr></thead>";
   const body = "<tbody>" + (rows.length ? rows.map((s) => "<tr>" + COLS.map((c) => {
     if (c.k === "url") return `<td>${linksOf(s).map((u) => `<a href="${esc(u)}" target="_blank" rel="noopener">🔗</a>`).join(" ")}</td>`;
     if (c.k === "price") return `<td>${s.price != null && s.price !== "" ? esc(s.price) + (s.currency ? " " + esc(s.currency) : "") : ""}</td>`;
     return `<td>${esc(s[c.k] ?? "")}</td>`;
-  }).join("") + "</tr>").join("") : `<tr><td colspan="${COLS.length}" class="muted">No entries.</td></tr>`) + "</tbody>";
+  }).join("") + "</tr>").join("") : `<tr><td colspan="${COLS.length}" class="muted">${esc(TL("me_no_data"))}</td></tr>`) + "</tbody>";
   const t = $("#log-table");
   t.innerHTML = head + body;
   t.querySelectorAll("th").forEach((th) => th.onclick = () => {
@@ -222,9 +239,9 @@ async function boot() {
   SIGHTINGS = rows || [];
   upgradeVenueNames();
 
-  document.title = `${prof.display_name || handle} — My Musicals`;
-  $("#pub-name").textContent = `${prof.display_name || handle} · My Musicals`;
-  $("#pub-sub").textContent = `${SIGHTINGS.length} shows seen worldwide`;
+  PROFILE_NAME = prof.display_name || handle;
+  document.title = `${PROFILE_NAME} — My Musicals`;
+  renderProfileHeader();
   $("#pub-hero").hidden = false; $("#pub-body").hidden = false;
   wireTabs();
   renderTiles(); renderCharts(); renderTable();

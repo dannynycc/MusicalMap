@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-title-key="doc_title_me">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -15,8 +15,13 @@
     <div class="top-inner">
       <a id="me-brand" href="index.html">Musical<span>Map</span></a>
       <nav>
-        <a href="index.html">🗺 Global map</a>
-        <a href="me.html" class="btn-primary">＋ Create your own</a>
+        <div id="lang-switch" role="group" aria-label="Language / 語言">
+          <span class="globe" aria-hidden="true">🌐</span>
+          <button type="button" class="lang-opt" data-lang="zh" lang="zh-Hant">中文</button>
+          <button type="button" class="lang-opt" data-lang="en" lang="en">English</button>
+        </div>
+        <a href="index.html" data-i18n="nav_global_map">🗺 Global map</a>
+        <a href="me.html" class="btn-primary" data-i18n="u_create">＋ Create your own</a>
       </nav>
     </div>
   </header>
@@ -29,21 +34,21 @@
 
     <section id="pub-body" hidden>
       <div class="pub-tabs">
-        <button class="pub-tab active" data-tab="overview">📊 Overview</button>
-        <button class="pub-tab" data-tab="log">📋 Log</button>
+        <button class="pub-tab active" data-tab="overview" data-i18n="u_tab_overview">📊 Overview</button>
+        <button class="pub-tab" data-tab="log" data-i18n="u_tab_log">📋 Log</button>
       </div>
 
       <div id="tab-overview">
         <div id="map-wrap"><div id="me-map"></div></div>
         <div id="tiles"></div>
         <div id="charts">
-          <div class="chart-card c-green"><h4>Top Musicals</h4><div class="cc-body" id="c-shows"></div></div>
-          <div class="chart-card c-amber"><h4>Top Countries</h4><div class="cc-body" id="c-countries"></div></div>
-          <div class="chart-card c-red"><h4>Top Cities</h4><div class="cc-body" id="c-cities"></div></div>
-          <div class="chart-card c-purple"><h4>Top Theatres</h4><div class="cc-body" id="c-venues"></div></div>
-          <div class="chart-card c-teal"><h4>Per Year</h4><div class="cc-body"><canvas id="c-year"></canvas></div></div>
-          <div class="chart-card c-blue"><h4>Per Month</h4><div class="cc-body"><canvas id="c-month"></canvas></div></div>
-          <div class="chart-card c-indigo"><h4>Per Weekday</h4><div class="cc-body"><canvas id="c-weekday"></canvas></div></div>
+          <div class="chart-card c-green"><h4 data-i18n="me_top_shows">Top Musicals</h4><div class="cc-body" id="c-shows"></div></div>
+          <div class="chart-card c-amber"><h4 data-i18n="me_top_countries">Top Countries</h4><div class="cc-body" id="c-countries"></div></div>
+          <div class="chart-card c-red"><h4 data-i18n="me_top_cities">Top Cities</h4><div class="cc-body" id="c-cities"></div></div>
+          <div class="chart-card c-purple"><h4 data-i18n="me_top_theatres">Top Theatres</h4><div class="cc-body" id="c-venues"></div></div>
+          <div class="chart-card c-teal"><h4 data-i18n="me_per_year">Per Year</h4><div class="cc-body"><canvas id="c-year"></canvas></div></div>
+          <div class="chart-card c-blue"><h4 data-i18n="me_per_month">Per Month</h4><div class="cc-body"><canvas id="c-month"></canvas></div></div>
+          <div class="chart-card c-indigo"><h4 data-i18n="me_per_weekday">Per Weekday</h4><div class="cc-body"><canvas id="c-weekday"></canvas></div></div>
         </div>
       </div>
 
@@ -53,9 +58,9 @@
     </section>
 
     <section id="pub-empty" class="hero" hidden>
-      <h1>Profile not found</h1>
-      <p class="muted">This profile doesn’t exist or isn’t public.</p>
-      <a href="me.html" class="btn-primary big">Create your own My Musicals</a>
+      <h1 data-i18n="u_not_found">Profile not found</h1>
+      <p class="muted" data-i18n="u_not_found_sub">This profile doesn’t exist or isn’t public.</p>
+      <a href="me.html" class="btn-primary big" data-i18n="u_create_big">Create your own My Musicals</a>
     </section>
   </main>
 
@@ -63,6 +68,7 @@
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
   <script src="js/config.js"></script>
+  <script src="js/i18n.js"></script>
   <script src="js/u.js"></script>
 </body>
 </html>
