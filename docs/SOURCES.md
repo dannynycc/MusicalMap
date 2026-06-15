@@ -20,6 +20,12 @@
 | utiki 售票引擎(台灣:寬宏 KHAM + udn售票 + MNA) | kham.com.tw(分類 80) / tickets.udnfunlife.com(搜尋 音樂劇) / ticket.mna.com.tw(分類 77 音樂,需 cookie);同一套 UTK ASP.NET 引擎 | `utiki.py` | KHAM 走 listing→場次頁 eventTABLE(`PLACE_NAME`+地址);UDN listing 卡片帶日期+場館(多場館巡演)+銷售狀態;MNA 卡片帶日期、場館取自詳情頁場次表(分類混雜故只留標題含「音樂劇」)。排除合唱/演唱會/工作坊/交響音樂會、已結束;座標交 Google geocode。萬世巨星/史瑞克/魔女宅急便 | 2026-06-13 |
 
 | 日本(東宝+2.5次元+東急シアターオーブ) | toho.co.jp/stage/lineup / j25musical.jp(日本2.5次元ミュージカル協会) / theatre-orb.com | `japan.py`(scrape_toho/scrape_j25/scrape_orb;與 shiki/takarazuka 並存) | **東宝**:card-lineup 取『』劇名+日期+場館,只留ミュージカル前綴。**2.5次元**:逐檔解析「【城市公演】日期 場館」多城巡演。**東急シアターオーブ**(音樂劇專用館):lineup 各檔 detail 取 og:title+「公演日程」。日文大 IP 中英並列+去重(シカゴ→Chicago…);TM 誤分類非音樂劇全域過濾(movie tour 等);Google 建築級座標。北海道下半年稀少=結構性(四季撤札幌/hitaru 非音樂劇)。**WIP:梅田芸術劇場(類型混雜待解)** | 2026-06-14 |
+| 西班牙(馬德里) | teatromadrid.com | `madrid.py` | 馬德里音樂劇(西語 tag) | 2026-06-13 |
+| 東歐(匈牙利等) | jegy.hu 等 | `easteurope.py` | 匈牙利/捷克等地方場館,EE 區 | 2026-06-13 |
+| 義/瑞/荷/波/挪/奧/中東 | teatro.it / showtic(瑞典) / stage(荷蘭) / ebilet(波蘭) / 挪威 / VBW(奧地利) / platinumlist(中東) | `italy.py` `sweden.py` `netherlands.py` `poland.py` `norway.py` `austria.py` `middleeast.py` | 各國原創/巡演;德奧(VBW)→德奧 tag,其餘多→歐陸其他 | 2026-06-13 |
+| **中國**(逆向官方 API) | 上海文廣 shcstheatre.com(`/webapi.ashx`) / 保利 weixin.polyt.cn(`/platform-backend`,header `Channel: theatre_wx`) / ypiao / 中演院線 zhongyan | `china.py` `china_poly.py` `china_ypiao.py` `china_chinaticket.py` | 全國 ~100 齣/40+ 城;GCJ-02→WGS-84 座標轉換;保利真實日期取自 `/good/shows/{id}` showInfoDetailList[].showTime;售票連結→大麥搜尋 | 2026-06-14 |
+| 葡萄牙 | bol.pt(JSON-LD Event) | `portugal.py` | Evita @ Lisboa;JSON-LD 自帶座標+城市 | 2026-06-15 |
+| 全劇巡演自動掃 | Ticketmaster attraction 比對 | `tm_tours.py` | 對**全部** group 做 attraction 比對,新巡演站點自動入圖(每日 CI) | 2026-06-12 |
 
 ## 人工策展(manual.json)
 
@@ -28,6 +34,14 @@
 | 上海大劇院 | shgtheatre.com(內部 API `thvendor/ticket/program/getProgramById.xhtml`) | 魅影 40 週年上海告別季 9/29–11/29 | 2026-06-12 |
 | Live Nation FR | livenation.fr/rom%C3%A9o-and-juliette-tickets-adp1652218 | Roméo et Juliette 2027-28 巴黎+7 站 | 2026-06-12 |
 | NDM 捷克 | ndm.cz/en/operetta-musical/inscenation/6392-elisabeth/ | Elisabeth(Ostrava,repertory) | 2026-06-12 |
+| **巴西**(Sympla/T4F/SESI) | sympla.com.br、ticketsforfun、sesisp.org.br(主流票務 Sympla=Cloudflare、Ingresso=SPA、場館站=Akamai 全反爬) | 6 齣:TINA、Wicked(里約)、Shrek、Diana(以上 Broadway/West End)+ Rita Lee、Minha Estrela Dalva(葡語原創)。逐齣 web 查證日期+售票+Nominatim geocode | 2026-06-15 |
+| **阿根廷**(布宜諾斯艾利斯) | plateanet.com(403)、atrapalo.com.ar | 2 齣:Annie(Teatro Broadway)、Anastasia(Teatro Astral),Corrientes 大道劇場區,百老匯原作西語製作→Broadway/West End | 2026-06-15 |
+| **南非**(Oliver!) | webtickets.co.za(Mamma Mia 由 Ticketmaster.co.za 自動抓,非 manual) | Oliver!(開普敦 Artscape + 約堡 Teatro Montecasino,2026-12→2027-03) | 2026-06-15 |
+| **新加坡**(SISTIC/SRT/MBS) | sistic.com.sg、srt.com.sg、marinabaysands.com(MBS=Akamai HTTP2 擋;SISTIC 有官方 API「STIX」但 production 需 Bearer 授權,用戶無法取得→維持手填) | 4 齣到 2027:Legally Blonde(Esplanade)、Jesus Christ Superstar、Cats、Moulin Rouge!(以上 Sands Theatre) | 2026-06-15 |
+| **葡萄牙** | bol.pt(JSON-LD,已有 `portugal.py` 自動抓) | Evita @ Capitólio Lisboa | 2026-06-15 |
+| 各劇巡演段(雜) | 官網/票務 | Les Mis Arena(RAH/Radio City)、Miss Saigon(UK 巡演)、Beetlejuice(澳)、Chicago(東京/大阪/杜拜)、SIX(澳)、Heathers(坎培拉)、Les Mis Arena 等 | 2026-06-15 |
+
+> **海報**:反爬 CDN(Sympla 等)的海報 hotlink 會 403/破圖 → 下載 rehost 到 `posters/`(同源)。國際知名劇缺圖則借資料庫同劇現有海報。手填劇新鮮度由 `scrapers/audit_manual.py`(CI)守門。
 
 ## 已評估/部分涵蓋
 
@@ -46,7 +60,9 @@
 | ATG 無日期單館卡(約 10 筆,細節頁日期 JS-only) | 已剔除不誤顯;待接其 availability 端點 |
 | 四季全国ツアー | API 無固定城市 |
 | 台灣 | 已由 OPENTIX(兩廳院)+ utiki(寬宏/udn)覆蓋當期音樂劇;其他在地售票(年代 ticket.com.tw 等)待評估 |
-| 韓國以外亞洲(港/星巡演)、南美、Stage NL/ES | 未有來源 |
+| 南美 / 新加坡 | ✅ 已涵蓋(manual):巴西/阿根廷/新加坡。SISTIC 有官方 API 但需授權(用戶無法取得)→ 維持手填 |
+| 曼谷(泰) | 多為泰國本土製作(Scenario 歷年引進國際巡演但 2026 無確認檔期);Solaire(馬尼拉)座標已備,待未來檔期 |
+| 港 / 馬來 / 印尼 / 越南 | 未有來源(港/星巡演多走 SISTIC/Base Entertainment) |
 
 ## 巡演查證
 逐劇查證進度與方法見 **`docs/TOUR_SWEEP.md`**(tm_tours.py 全劇自動掃 + 逐劇 web 查證總表)。

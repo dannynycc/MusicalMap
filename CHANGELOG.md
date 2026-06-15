@@ -11,6 +11,13 @@
 
 ---
 
+## [v0.56.2] - 2026-06-15 17:13
+### 文件 freshness 全面更新(換 session 前)
+- **README.md**:現況從「604 筆/約 25 國」更新為 **~1,437 筆/約 30 國**;補列全部自動 scraper(中國×4、Portugal、義/瑞/荷/波/挪/奧/中東、Madrid、東歐、japan、tm_tours…)與人工策展市場(巴西/阿根廷/南非/新加坡);tag 清單改新顯示名(百老匯/西區、法語、葡語、歐陸其他…);works.json 143→**157**;場館 ~4,900→**~5,000**;CI 改「一日兩次」;新增 audit_manual.py 與 posters/ rehost 說明。
+- **docs/SOURCES.md**:自動 scraper 表補齊中國/葡萄牙/各歐洲國/tm_tours;人工策展表補巴西/阿根廷/南非/新加坡/葡萄牙/巡演段;盲區更新(南美/新加坡已涵蓋、SISTIC API 需授權、曼谷/港/馬來待查)。
+- **docs/TOUR_SWEEP.md**:Les Mis 各站狀態(Birmingham 已落幕移除、新加坡/馬尼拉已落幕)、Cats/Moulin Rouge 補新加坡站;城市表新加坡/南非/南美由「待查」改「✅ 已涵蓋」。
+- CHANGELOG 歷史條目保留原樣(不竄改既往紀錄)。
+
 ## [v0.56.1] - 2026-06-15 16:41
 ### CI 自動更新改為一日兩次
 - `.github/workflows/update.yml` 排程從每日一次(09:00 UTC)改為**一日兩次**:

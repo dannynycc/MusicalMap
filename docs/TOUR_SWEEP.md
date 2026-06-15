@@ -11,7 +11,7 @@
 | 劇目 | 巡演查證狀態 | 官網(分區) | 最後查證 |
 |---|---|---|---|
 | The Phantom of the Opera | ✅ NA tour(broadway.org 11 站)+ 上海告別季(manual)+ 名古屋(四季)。World tour 其他站:**待查** | global ✓ | 2026-06-12 |
-| Les Misérables | ✅ London + Madrid + NA tour + **Arena Spectacular**(Birmingham 現在/RAH/Radio City,manual)。世界巡演 Manila/Singapore 段:**待查** | global ✓ | 2026-06-12 |
+| Les Misérables | ✅ London + Madrid + NA tour + **Arena Spectacular**(RAH 6/18、Radio City NY 7/23,manual;Birmingham 6/14 已落幕由 audit_manual 抓出移除→歷史檔保留)。World Tour:**新加坡 3/24–5/10、馬尼拉 1/20–2/15 均已落幕**(已查證) | global ✓ | 2026-06-15 |
 | Miss Saigon | ✅ UK & Ireland tour 4 站(manual)+ ATG hub 自動 | uk ✓ | 2026-06-12 |
 | Beetlejuice | ✅ London(westend)+ NA tour(TM)+ **澳洲巡演**(Brisbane/Adelaide manual;Perth/Sydney TM) | us/uk/au ✓ | 2026-06-12 |
 | Wicked | ✅ NYC/London/NA tour。UK tour **2023-25 已結束(查證無進行中)** | us/uk ✓ | 2026-06-12 |
@@ -21,8 +21,8 @@
 | Hamilton | ✅ NYC/London/NA tour。雪梨 2025/1 結束;**墨爾本 Her Majesty's 檔期未獲官方日期確認→不入庫,待查**(AU 售票在 Ticketek=新盲區) | global ✓ | 2026-06-12 |
 | MJ | ✅ NYC/漢堡(Stage)/伯斯(TM+查證)。NA tour:tm_tours 待確認 | us/au ✓ | 2026-06-12 |
 | SIX | ✅ NYC/London/NA tour/AU?。**待查 AU/NZ 分團** | global ✓ | 2026-06-12 |
-| Moulin Rouge! | ✅ NYC/London/科隆/NA tour/烏特勒支。**待查 AU** | global ✓ | 2026-06-12 |
-| CATS | ✅ UK tour(ATG hub 7 站自動)。**待查 國際分團** | — | 2026-06-12 |
+| Moulin Rouge! | ✅ NYC/London/科隆/NA tour/烏特勒支/**新加坡 Sands 2027-02-16~04-04(manual,SISTIC)**。**待查 AU** | global ✓ | 2026-06-15 |
+| CATS | ✅ UK tour(ATG hub 自動)+ **新加坡 Sands 2026-10-29~11-15(manual)** + 南非開普敦/約堡(Ticketmaster.co.za)。 | — | 2026-06-15 |
 | Chicago | ✅ NYC + **東京 8/19-30 + 大阪 9/3-6 + 杜拜 12/16-20**(官網 /international,manual)| global ✓ | 2026-06-12 |
 | Starlight Express | 波鴻(Stage)✓ + UK tour(ATG)。 | — | 2026-06-12 |
 | Frozen | 東京(四季)/斯圖加特(Stage)✓。**待查 UK tour** | — | 待查 |
@@ -47,8 +47,11 @@
 | 上海/北京 | 上海大劇院 manual(API 已知可接) | 🟡 待 SHG 全列表接入;北京待查 |
 | 多倫多 | TM CA | ✅ 結構化 |
 | 墨西哥城 | intl + TM MX(舊掃描) | 🟡 待查 OCESA |
-| 新加坡/香港/台北 | 無 | ❌ 待查 |
-| 聖保羅/布宜諾斯艾利斯 | 無 | ❌ 待查 |
+| 新加坡 | SISTIC/SRT/MBS + manual | ✅ 4 齣到 2027(Legally Blonde/JCS/Cats/Moulin Rouge);SISTIC「STIX」API 需授權,用戶無法取得→手填 |
+| 開普敦/約堡(南非) | Ticketmaster.co.za + manual | ✅ Mamma Mia!(自動)+ Oliver!(manual) |
+| 聖保羅/里約/布宜諾斯艾利斯 | manual(反爬) | ✅ 巴西 6 / 阿根廷 2 |
+| 香港/台北 | 台北已由 OPENTIX/utiki 覆蓋;香港無來源 | 🟡 香港待查 |
+| 曼谷/馬尼拉 | 無 | ❌ 多為本土製作;國際巡演 2026 已落幕(待未來檔期) |
 
 ## Tier 2 — 區域劇目
 由結構來源自動覆蓋(broadway.org 297 站、ATG hub UK tours、TM 16+2 國、四季、宝塚、Interpark、Stage)。`tm_tours.py` 每日對**全部** group 做 attraction 比對,新增站點自動入圖。
