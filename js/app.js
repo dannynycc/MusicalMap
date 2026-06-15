@@ -9,7 +9,7 @@
 const TODAY = new Date();
 const TODAY0 = (() => { const d = new Date(); d.setHours(0, 0, 0, 0); return d; })();
 const CUR_Y = TODAY0.getFullYear(), CUR_M = TODAY0.getMonth();
-let MAX_MONTHS = 36;                          // slider range; trimmed to the data's latest start (recomputeRange)
+let MAX_MONTHS = 12;                          // slider range = 1 year ahead, auto-rolling (recomputeRange pins it to 12)
 let MIN_MONTHS = 0;                           // most-negative offset (into the PAST); set from archive index
 // Past browsing is built end-to-end (archive index + lazy year loads) but kept OFF
 // for now — the archive keeps accumulating server-side; flip to true to surface it.
@@ -573,7 +573,12 @@ function recomputeRange() {
     const off = (d.getFullYear() - CUR_Y) * 12 + (d.getMonth() - CUR_M);
     if (off > maxOff) maxOff = off;
   }
-  MAX_MONTHS = Math.min(Math.max(maxOff + 1, 3), 48);
+  // Slider reaches exactly 1 year ahead, always — auto-rolling because CUR_Y/CUR_M are
+  // taken from today at load (2026-06 → 2027-06; on 2026-07-01 → 2027-07). We keep the
+  // full year reachable even if the data doesn't extend that far (maxOff unused for the
+  // cap), matching the open-run display horizon (OPEN_RUN_HORIZON).
+  void maxOff;
+  MAX_MONTHS = 12;
   els.tRange.max = MAX_MONTHS;
   const d = new Date(CUR_Y, CUR_M + MAX_MONTHS, 1);
   els.tMonth.max = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}`;
