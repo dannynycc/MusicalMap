@@ -11,6 +11,17 @@
 
 ---
 
+## [v0.53.0] - 2026-06-15 14:36
+### 巴西聖保羅(手動精選)+ 新增「葡語音樂劇」分類
+- 巴西主流票務全反爬牆(Sympla=Cloudflare、Ingresso=SPA、場館站 Santander=Akamai「Access Denied」),無法自動抓。改從可讀的編輯型清單(WebFetch)取**真實現演資料**,手動加進 `manual.json`(逐齣查證日期+售票連結+Nominatim geocode 場館,不亂填):
+  - **TINA - The Tina Turner Musical** @ Teatro Santander(→Broadway/West End)
+  - **Rita Lee, uma autobiografia musical** @ Teatro Porto Seguro
+  - **Minha Estrela Dalva** @ Teatro do SESI(FIESP)
+  - **Diana, a Princesa do Povo** @ Teatro Liberdade
+  四齣**都附 Sympla/SESI 售票連結**。
+- **新增分類「葡語音樂劇」**(Portuguese-language):`build_shows.py` country Brazil/Portugal + bol.pt 來源 → 葡語(註冊表仍優先,故巴西的 TINA 仍歸 Broadway/West End);加進 TAG_DEFS(色 #65a30d)+ i18n 中英;Portugal 從 CONTINENTAL_C 移到葡語。
+- 阿根廷:PlateaNet 硬 403,可讀清單只有過期(Jan–Mar)且無售票連結,**暫不加**(不上沒驗證的資料)。
+
 ## [v0.52.0] - 2026-06-15 13:07
 ### 新增葡萄牙(BOL)—— 南美/葡萄牙缺口第一步
 - 查證:Ticketmaster 在南美/葡萄牙這區**只有墨西哥有音樂劇**(274 筆已收),巴西/阿根廷/智利/哥倫比亞/秘魯/葡萄牙 TM 全 0,得做本土平台 scraper。

@@ -323,11 +323,12 @@ TAG_LOCAL_SRC = [
 # Spanish originals like "Hola Raffaella" on Broadway). Broadway/West End is given
 # only to genuinely Anglo sources/markets + registered Anglo works.
 SPANISH_C = {"Spain", "Mexico", "Argentina", "Chile", "Colombia", "Peru"}
+PORTUGUESE_C = {"Brazil", "Portugal"}   # Portuguese-language originals (São Paulo, Lisbon)
 GERMAN_C = {"Germany", "Austria", "Switzerland"}
 ANGLO_C = {"USA", "UK", "Canada", "Australia", "New Zealand", "Ireland",
            "South Africa", "Singapore", "UAE"}
 CONTINENTAL_C = {"Belgium", "Netherlands", "Denmark", "Italy", "Norway", "Sweden",
-                 "Finland", "Portugal", "Poland", "Greece", "Croatia", "Slovenia",
+                 "Finland", "Poland", "Greece", "Croatia", "Slovenia",
                  "Romania", "Estonia", "Latvia", "Lithuania", "Bulgaria",
                  "Slovakia", "Hungary", "Czech Republic", "Turkey", "Israel"}
 ANGLO_SRC = ("broadway", "londontheatre", "atgtickets")  # English-language houses
@@ -348,6 +349,8 @@ def classify_tag(group, source, country):
             return tag
     if "teatromadrid" in src or c in SPANISH_C:
         return "西語音樂劇"
+    if c in PORTUGUESE_C or "bol.pt" in src:
+        return "葡語音樂劇"
     # German-tradition by COUNTRY (not bare "stage-entertainment" — that also matches
     # stage-entertainment.nl and wrongly tagged Dutch shows 德奧).
     if c in GERMAN_C or "stage_de" in src or "stage-entertainment.de" in src:

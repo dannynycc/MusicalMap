@@ -1,7 +1,8 @@
 {
   "meta": {
     "source": "manual-curated",
-    "note": "Hand-curated shows from regional venues/promoters no scraper covers yet (China venues, Live Nation FR, …). Each entry verified against the official ticketing page on the date in _checked. Add here whenever a gap is found; build merges automatically. Images: ALWAYS the original full-size official URL — no compression, no self-hosting (user preference: quality over speed)."
+    "note": "Hand-curated shows from regional venues/promoters no scraper covers yet (China venues, Live Nation FR, …). Each entry verified against the official ticketing page on the date in _checked. Add here whenever a gap is found; build merges automatically. Images: ALWAYS the original full-size official URL — no compression, no self-hosting (user preference: quality over speed).",
+    "count": 30
   },
   "shows": [
     {
@@ -473,6 +474,78 @@
       "verified": true,
       "source": "canberra ticketing (manual)",
       "_checked": "2026-06-14"
+    },
+    {
+      "id": "manual-tina-saopaulo-2026",
+      "title": "TINA - The Tina Turner Musical",
+      "type": "tour",
+      "venue": "Teatro Santander",
+      "city": "São Paulo",
+      "country": "Brazil",
+      "lat": -23.592634,
+      "lng": -46.691638,
+      "start_date": null,
+      "end_date": "2026-07-12",
+      "ticket_url": "https://bileto.sympla.com.br/event/113220",
+      "image": null,
+      "tour_name": "Tina Turner – o musical (produção brasileira)",
+      "verified": true,
+      "source": "teatrosantander.com.br (manual)",
+      "_checked": "2026-06-15"
+    },
+    {
+      "id": "manual-ritalee-saopaulo-2026",
+      "title": "Rita Lee, uma autobiografia musical",
+      "type": "resident",
+      "venue": "Teatro Porto Seguro",
+      "city": "São Paulo",
+      "country": "Brazil",
+      "lat": -23.530198,
+      "lng": -46.645411,
+      "start_date": null,
+      "end_date": "2026-08-30",
+      "ticket_url": "https://bileto.sympla.com.br/event/116591",
+      "image": null,
+      "tour_name": null,
+      "verified": true,
+      "source": "sympla.com.br (manual)",
+      "_checked": "2026-06-15"
+    },
+    {
+      "id": "manual-estreladalva-saopaulo-2026",
+      "title": "Minha Estrela Dalva",
+      "type": "resident",
+      "venue": "Teatro do SESI (Centro Cultural FIESP)",
+      "city": "São Paulo",
+      "country": "Brazil",
+      "lat": -23.563487,
+      "lng": -46.654394,
+      "start_date": null,
+      "end_date": "2026-07-12",
+      "ticket_url": "https://www.sesisp.org.br/evento/40559cd6-767d-44b3-9cb7-43fcf4b6f4eb/minha-estrela-dalva",
+      "image": null,
+      "tour_name": null,
+      "verified": true,
+      "source": "sesisp.org.br (manual)",
+      "_checked": "2026-06-15"
+    },
+    {
+      "id": "manual-diana-saopaulo-2026",
+      "title": "Diana, a Princesa do Povo",
+      "type": "resident",
+      "venue": "Teatro Liberdade",
+      "city": "São Paulo",
+      "country": "Brazil",
+      "lat": -23.561677,
+      "lng": -46.637407,
+      "start_date": "2026-05-15",
+      "end_date": "2026-07-05",
+      "ticket_url": "https://bileto.sympla.com.br/event/114505",
+      "image": null,
+      "tour_name": null,
+      "verified": true,
+      "source": "sympla.com.br (manual)",
+      "_checked": "2026-06-15"
     }
   ]
 }
