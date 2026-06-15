@@ -11,6 +11,14 @@
 
 ---
 
+## [v0.55.0] - 2026-06-15 16:05
+### 東南亞 — 新加坡上線(Cats @ Marina Bay Sands)
+- 查證泰國/新加坡/菲律賓國際巡演。確認多為已落幕,唯一未來且有確切日期的:
+  - **Cats** @ Sands Theatre, Marina Bay Sands(新加坡),2026-08-19～09-06,SISTIC 售票,Broadway/West End,海報借資料庫現有 Cats。場館 geocode 驗證(Marina Bay Sands Theatre POI)。
+- 已落幕不收:新加坡 Les Misérables Arena Spectacular(3/24–5/10)、馬尼拉 Les Misérables World Tour @ The Theatre at Solaire(1/20–2/15)。
+- 待補(查到但無確切日期/售票):新加坡 **Jesus Christ Superstar**(8 月)、**Charlie and the Chocolate Factory**(東南亞首站,日期未定)。
+- 曼谷目前查到多為泰國本土製作(Scenario 歷年引進國際巡演,但 2026 無確認國際 Broadway/West End 檔期)→ 暫不收。Solaire(馬尼拉)座標已備,有未來檔期即可加。
+
 ## [v0.54.5] - 2026-06-15 15:58
 ### 歐陸分類改名為「歐陸其他 / Other European」
 - 將「歐陸音樂劇」改為 **「歐陸其他」**(en: **Other European**)。此類本質是兜底桶(德奧/法語/西語/葡語等具名強流派之外的歐陸原創),用「其他」更誠實,避免讓人誤以為存在一個統一的「歐陸」風格流派。

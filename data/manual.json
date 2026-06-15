@@ -2,7 +2,7 @@
   "meta": {
     "source": "manual-curated",
     "note": "Hand-curated shows from regional venues/promoters no scraper covers yet (China venues, Live Nation FR, …). Each entry verified against the official ticketing page on the date in _checked. Add here whenever a gap is found; build merges automatically. Images: ALWAYS the original full-size official URL — no compression, no self-hosting (user preference: quality over speed).",
-    "count": 36
+    "count": 37
   },
   "shows": [
     {
@@ -653,6 +653,24 @@
       "tour_name": "Oliver! — Cameron Mackintosh / Pieter Toerien (約堡站)",
       "verified": true,
       "source": "broadwayworld / webtickets (manual)",
+      "_checked": "2026-06-15"
+    },
+    {
+      "id": "manual-cats-singapore-2026",
+      "title": "Cats",
+      "type": "tour",
+      "venue": "Sands Theatre",
+      "city": "Singapore",
+      "country": "Singapore",
+      "lat": 1.284922,
+      "lng": 103.860628,
+      "start_date": "2026-08-19",
+      "end_date": "2026-09-06",
+      "ticket_url": "https://www.marinabaysands.com/entertainment/shows/cats-the-musical.html",
+      "image": "https://res.cloudinary.com/dwzhqvxaz/image/upload/w_1280,q_auto,f_auto/v1761656789/Titles/Cats/2026%20Tour/8500_02_Cats_Glasgow_1920x1080_v1.jpg",
+      "tour_name": "CATS — Asia tour 2026 (Sands Theatre, SISTIC)",
+      "verified": true,
+      "source": "marinabaysands / sassymama / smartlocal (manual)",
       "_checked": "2026-06-15"
     }
   ]
