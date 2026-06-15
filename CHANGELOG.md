@@ -11,6 +11,13 @@
 
 ---
 
+## [v0.53.2] - 2026-06-15 14:56
+### 修正:Shrek 沒結束(我判斷錯誤)+ 加入
+- 上一版我說 Shrek「6/7 已結束」是**錯的** —— 我只引用編輯文章的原定檔期,沒查官方頁。官方站 shrekomusicalbrasil.com 寫「EM CARTAZ ATÉ 05 DE JULHO」,**已延檔到 2026-07-05**。
+- 加 **Shrek the Musical(聖保羅 Teatro Renault,2026-04-15～07-05)**,Broadway/West End,附 Tickets for Fun 售票連結。
+- 連帶複查 **Flashdance**:官方原定 4/9～5/31,售票頁最後場次 5/30,無延檔,多來源一致 → 確實已結束,維持不收。
+- 巴西現有 6 齣:Broadway 巡演 TINA、Wicked、Shrek + 葡語原創 3 齣。
+
 ## [v0.53.1] - 2026-06-15 14:42
 ### 巴西 +《Wicked》里約(百老匯官方授權複刻版)
 - 使用者指出巴西重點是國際 Broadway/西區大製作。查證後加 **Wicked(里約 Cidade das Artes,2026-07-15～08-09)**——百老匯官方授權葡語複刻版,已在 Sympla 開賣(24h 售出萬張)。Broadway/West End,附 Sympla 售票連結 + 場館座標(Nominatim)。
