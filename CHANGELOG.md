@@ -11,6 +11,14 @@
 
 ---
 
+## [v0.54.0] - 2026-06-15 15:02
+### 阿根廷上線 — 布宜諾斯艾利斯(Corrientes 大道劇場區)
+- 之前阿根廷卡在 PlateaNet 403 + 清單無連結。改從可讀新聞稿查到兩齣**現演**百老匯原作的西語製作,逐齣查證日期+售票連結+Nominatim geocode:
+  - **Annie** @ Teatro Broadway(Corrientes 1155),2026-03-19 起演(open run),Plateanet obra 33501。
+  - **Anastasia** @ Teatro Astral(Corrientes 1639),2026-05-05 起演(open run),Atrápalo 售票。
+- 兩齣 registry 均為 Broadway/West End → 依「原作出身」歸類(與巴西 Wicked/TINA 同規則,不因西語製作改判)。結束日未公布 → end_date=null,前端以 12 個月票期視窗自動封頂。
+- 待補(尚未查到確切場館/檔期/售票):**Company**(Fer Dente)、**Chicago**(Flor Peña/Laurita Fernández)。
+
 ## [v0.53.2] - 2026-06-15 14:56
 ### 修正:Shrek 沒結束(我判斷錯誤)+ 加入
 - 上一版我說 Shrek「6/7 已結束」是**錯的** —— 我只引用編輯文章的原定檔期,沒查官方頁。官方站 shrekomusicalbrasil.com 寫「EM CARTAZ ATÉ 05 DE JULHO」,**已延檔到 2026-07-05**。
