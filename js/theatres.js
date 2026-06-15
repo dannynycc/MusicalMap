@@ -28,7 +28,7 @@ const satellite = L.tileLayer(
   "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}", {
     attribution: "Tiles &copy; Esri, Maxar, Earthstar Geographics", maxZoom: 19,
   });
-L.control.layers({ "地圖": streets, "衛星": satellite }, null, { position: "topright" }).addTo(map);
+L.control.layers({ [t("map")]: streets, [t("satellite")]: satellite }, null, { position: "topright" }).addTo(map);
 
 const cluster = L.markerClusterGroup({
   maxClusterRadius: 50, showCoverageOnHover: false, chunkedLoading: true,
@@ -61,7 +61,9 @@ function render() {
   const markers = shown.map((v) =>
     L.marker([v.lat, v.lng], { icon: dot, riseOnHover: true }).bindPopup(popupHtml(v), { maxWidth: 280 }));
   cluster.addLayers(markers);
-  els.count.textContent = `${shown.length.toLocaleString()} 個劇院` + (q ? `（共 ${ALL.length.toLocaleString()}）` : "");
+  els.count.textContent = q
+    ? t("v_count_filtered", { n: shown.length.toLocaleString(), total: ALL.length.toLocaleString() })
+    : t("v_count", { n: shown.length.toLocaleString() });
   renderResults(q, shown);
 }
 
@@ -87,7 +89,7 @@ function renderResults(q, shown) {
   if (shown.length > RESULT_CAP) {
     const more = document.createElement("li");
     more.className = "more";
-    more.textContent = `…還有 ${shown.length - RESULT_CAP} 個,請再縮小搜尋`;
+    more.textContent = t("v_more", { n: shown.length - RESULT_CAP });
     ul.appendChild(more);
   }
   ul.hidden = false;
@@ -106,7 +108,7 @@ async function boot() {
     const data = await fetch("data/venues_catalog.json", { cache: "no-store" }).then((r) => r.json());
     ALL = (data.venues || []).filter((v) => typeof v.lat === "number" && typeof v.lng === "number");
   } catch (e) {
-    els.count.textContent = "⚠ 無法載入場館資料（需用本機 server 開啟）";
+    els.count.textContent = t("load_error_venues");
     console.error(e); return;
   }
   render();
@@ -126,5 +128,7 @@ els.results.addEventListener("click", (e) => {
   const v = els.results._items[+li.dataset.i];
   if (v) flyToVenue(v);
 });
+
+window.addEventListener("mm-langchange", render);   // re-render count/results in the new language
 
 boot();

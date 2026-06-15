@@ -51,6 +51,15 @@
       updated: "更新於 {d}",
       sources: "{u} · 來源：Broadway · West End · 巡演 · 國際 · Ticketmaster",
       load_error: "⚠ 無法載入 data/shows.json（需用本機 server 開啟，見 README）",
+      // theatres.html
+      tagline_theatres: "全球音樂劇場館地圖",
+      nav_map: "🗺 演出地圖",
+      search_ph_theatres: "搜尋劇院、城市…（中／英／原文皆可）",
+      v_count: "{n} 個劇院",
+      v_count_filtered: "{n} 個劇院（共 {total}）",
+      v_more: "…還有 {n} 個，請再縮小搜尋",
+      load_error_venues: "⚠ 無法載入場館資料（需用本機 server 開啟）",
+      doc_title_theatres: "所有劇院 — MusicalMap",
     },
     en: {
       doc_title: "MusicalMap — live world map of musicals",
@@ -98,6 +107,15 @@
       updated: "Updated {d}",
       sources: "{u} · Sources: Broadway · West End · Tours · International · Ticketmaster",
       load_error: "⚠ Couldn't load data/shows.json (serve over a local server — see README)",
+      // theatres.html
+      tagline_theatres: "World map of musical theatres",
+      nav_map: "🗺 Show map",
+      search_ph_theatres: "Search theatres, cities… (EN / 中文 / native)",
+      v_count: "{n} theatres",
+      v_count_filtered: "{n} theatres (of {total})",
+      v_more: "…and {n} more — narrow your search",
+      load_error_venues: "⚠ Couldn't load venue data (serve over a local server)",
+      doc_title_theatres: "All Theatres — MusicalMap",
     },
   };
 
@@ -134,7 +152,8 @@
       b.classList.toggle("active", on);
       b.setAttribute("aria-pressed", on ? "true" : "false");
     });
-    if (DICT[LANG].doc_title) document.title = t("doc_title");
+    const titleKey = document.documentElement.dataset.titleKey || "doc_title";
+    document.title = t(titleKey);
   }
 
   function setLang(l) {

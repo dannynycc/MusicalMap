@@ -11,6 +11,11 @@
 
 ---
 
+## [v0.50.2] - 2026-06-15 12:33
+### theatres.html 雙語化
+- theatres.html 套用共用 i18n:tagline、nav、搜尋 placeholder、結果計數(「5,003 theatres」/「1 theatres (of 5,003)」↔「個劇院（共）」)全部隨語言切換;同款 🌐 中文|English 切換器 + 每頁標題;加 description/canonical/hreflang。`theatres.js` 動態字串走 `t()` 並於 `mm-langchange` 重繪。Playwright 驗證通過。
+- 註:me.html / u.html 本就以英文為主(nav/按鈕/標籤皆英),美國訪客已可讀;後續再補其切換器與中文化。
+
 ## [v0.50.1] - 2026-06-15 12:15
 ### AI-search / SEO 探索層
 - **`llms.txt`**(llmstxt.org 標準):給 AI 答題引擎的網站 markdown 摘要(用途、主要頁面、資料來源、血統標籤語意說明)。

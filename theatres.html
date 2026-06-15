@@ -1,9 +1,14 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="zh-Hant" data-title-key="doc_title_theatres">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>所有劇院 — MusicalMap</title>
+  <title>所有劇院 — MusicalMap · All Theatres</title>
+  <meta name="description" content="Searchable directory of ~5,000 musical-theatre venues worldwide, on an interactive map. 全球約 5,000 個音樂劇場館的可搜尋地圖。" />
+  <link rel="canonical" href="https://dannynycc.github.io/MusicalMap/theatres.html" />
+  <link rel="alternate" hreflang="en" href="https://dannynycc.github.io/MusicalMap/theatres.html?lang=en" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://dannynycc.github.io/MusicalMap/theatres.html?lang=zh" />
+  <link rel="alternate" hreflang="x-default" href="https://dannynycc.github.io/MusicalMap/theatres.html" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
@@ -13,17 +18,22 @@
   <header id="topbar">
     <a id="brand" href="index.html">
       <span class="logo">Musical<span class="logo-em">Map</span></span>
-      <span class="tagline">全球音樂劇場館地圖</span>
+      <span class="tagline" data-i18n="tagline_theatres">全球音樂劇場館地圖</span>
     </a>
     <nav id="topnav">
-      <a class="nav-link" href="index.html">🗺 演出地圖</a>
-      <a id="mine-link" class="nav-cta" href="me.html">⭐ 我的音樂劇足跡</a>
+      <div id="lang-switch" role="group" aria-label="Language / 語言">
+        <span class="globe" aria-hidden="true">🌐</span>
+        <button type="button" class="lang-opt" data-lang="zh" lang="zh-Hant">中文</button>
+        <button type="button" class="lang-opt" data-lang="en" lang="en">English</button>
+      </div>
+      <a class="nav-link" href="index.html" data-i18n="nav_map">🗺 演出地圖</a>
+      <a id="mine-link" class="nav-cta" href="me.html" data-i18n="nav_mine">⭐ 我的音樂劇足跡</a>
     </nav>
   </header>
 
   <main id="map">
     <div id="venue-panel">
-      <input id="vsearch" type="search" placeholder="搜尋劇院、城市…(中/英/原文皆可)" autocomplete="off" />
+      <input id="vsearch" type="search" placeholder="搜尋劇院、城市…(中/英/原文皆可)" data-i18n-ph="search_ph_theatres" autocomplete="off" />
       <div id="vcount"></div>
       <ul id="vresults" hidden></ul>
     </div>
@@ -31,6 +41,7 @@
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+  <script src="js/i18n.js"></script>
   <script src="js/theatres.js"></script>
 </body>
 </html>
