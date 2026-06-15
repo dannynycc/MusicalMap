@@ -215,19 +215,23 @@ const tagBadge = (tag) => tag
   ? `<span class="tag-badge" style="--tag-color:${TAG_COLOR[tag] || "#64748b"}">${esc(tag)}</span>`
   : "";
 
+const tagCountSpans = {};   // tag -> the chip's count <span>, updated per month
+
 function buildTagFilters() {
-  const counts = {};
-  for (const s of ALL) counts[s.tag] = (counts[s.tag] || 0) + 1;
+  // The PILL SET is stable (built from every tradition that ever appears), so pills
+  // don't pop in/out as you scrub months; only the numbers change (updateTagCounts).
+  const ever = {};
+  for (const s of ALL) ever[s.tag] = (ever[s.tag] || 0) + 1;
   els.tagFilters.innerHTML = "";
   for (const [tag, label, color] of TAG_DEFS) {
-    if (!counts[tag]) continue;                 // hide traditions with no shows
+    if (!ever[tag]) continue;                   // tradition with no shows at all → no pill
     const chip = document.createElement("button");
     chip.type = "button";
     chip.className = "tagchip";
     chip.style.setProperty("--tag-color", color);
     chip.dataset.tag = tag;
     chip.setAttribute("aria-pressed", "false");
-    chip.innerHTML = `<span class="tdot"></span>${esc(label)}<span class="tcount">${counts[tag]}</span>`;
+    chip.innerHTML = `<span class="tdot"></span>${esc(label)}<span class="tcount">${ever[tag]}</span>`;
     chip.addEventListener("click", () => {
       if (ACTIVE_TAGS.has(tag)) ACTIVE_TAGS.delete(tag);
       else ACTIVE_TAGS.add(tag);
@@ -235,7 +239,25 @@ function buildTagFilters() {
       chip.setAttribute("aria-pressed", ACTIVE_TAGS.has(tag) ? "true" : "false");
       render();
     });
+    tagCountSpans[tag] = chip.querySelector(".tcount");
     els.tagFilters.appendChild(chip);
+  }
+}
+
+// Per-tradition count for the SELECTED month (and current search), ignoring the tag
+// filter itself so each pill shows how many of its tradition are playing this month.
+function updateTagCounts() {
+  const q = fold(els.search.value.trim());
+  const counts = {};
+  for (const s of pool()) {
+    if (!overlapsMonth(s)) continue;
+    if (q && ![s.title, s.city, s.venue, s.tour_name, s.alt].some((f) => fold(f).includes(q))) continue;
+    counts[s.tag] = (counts[s.tag] || 0) + 1;
+  }
+  for (const tag in tagCountSpans) {
+    const n = counts[tag] || 0;
+    tagCountSpans[tag].textContent = n;
+    tagCountSpans[tag].closest(".tagchip").classList.toggle("tag-zero", n === 0);
   }
 }
 
@@ -374,6 +396,7 @@ function visibleShows() {
 // ---------- Render ----------
 function render() {
   const shows = visibleShows();
+  updateTagCounts();   // pill numbers reflect the selected month + search
 
   // markers
   cluster.clearLayers();
