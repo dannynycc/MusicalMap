@@ -1,7 +1,7 @@
 {
   "meta": {
     "source": "world.nol.com (Interpark)",
-    "count": 35,
+    "count": 36,
     "dropped_no_coords": [
       "Ballad of Six Strings @ Biseul Hall, Daegu Culture and Arts Center",
       "［Hell’s Kitchen］ @ GS Arts Center",
@@ -26,6 +26,23 @@
     ]
   },
   "shows": [
+    {
+      "id": "ip-26007505",
+      "title": "WESTERN STORY",
+      "type": "tour",
+      "venue": "NOL Uniplex (大學路)",
+      "city": "Seoul",
+      "country": "South Korea",
+      "lat": 37.5821,
+      "lng": 127.0019,
+      "start_date": "2026-07-01",
+      "end_date": "2026-09-27",
+      "ticket_url": "https://world.nol.com/en/ticket/places/25001547/products/26007505",
+      "image": "https://ticketimage.interpark.com/Play/image/large/26/26007505_p.gif",
+      "tour_name": null,
+      "verified": true,
+      "source": "world.nol.com (Interpark)"
+    },
     {
       "id": "ip-26007357",
       "title": "Again, Romeo & Jeliet",
