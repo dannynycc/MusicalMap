@@ -1,8 +1,9 @@
 {
   "meta": {
     "source": "world.nol.com (Interpark)",
-    "count": 36,
+    "count": 37,
     "dropped_no_coords": [
+      "CREATing Musical  Dawn Touch @ National Jeongdong Theater of Korea, Cecil",
       "Ballad of Six Strings @ Biseul Hall, Daegu Culture and Arts Center",
       "［Hell’s Kitchen］ @ GS Arts Center",
       "A Perfect Day @ Culture & Art Theater CT (Daegu)",
@@ -26,6 +27,23 @@
     ]
   },
   "shows": [
+    {
+      "id": "ip-26007442",
+      "title": "Dear Evan Hansen",
+      "type": "tour",
+      "venue": "Chungmu Arts Center",
+      "city": "Seoul",
+      "country": "South Korea",
+      "lat": 37.5663,
+      "lng": 127.0181,
+      "start_date": "2026-08-01",
+      "end_date": "2026-11-01",
+      "ticket_url": "https://world.nol.com/en/ticket/places/25000361/products/26007442",
+      "image": "https://ticketimage.interpark.com/Play/image/large/26/26007442_p.gif",
+      "tour_name": null,
+      "verified": true,
+      "source": "world.nol.com (Interpark)"
+    },
     {
       "id": "ip-26007505",
       "title": "WESTERN STORY",
@@ -563,7 +581,7 @@
       "lat": 37.5811,
       "lng": 127.0049,
       "start_date": "2024-01-01",
-      "end_date": "2026-06-28",
+      "end_date": "2026-07-31",
       "ticket_url": "https://world.nol.com/en/ticket/places/17000617/products/23018498",
       "image": "https://ticketimage.interpark.com/Play/image/large/23/23018498_p.gif",
       "tour_name": null,

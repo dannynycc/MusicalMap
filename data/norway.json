@@ -1,7 +1,7 @@
 {
   "meta": {
     "source": "norway",
-    "count": 7
+    "count": 9
   },
   "shows": [
     {
@@ -102,6 +102,40 @@
       "end_date": "2026-11-29",
       "image": "https://detnorsketeatret.imgix.net/16_9-Cabaret.png?auto=format&",
       "ticket_url": "https://www.detnorsketeatret.no/framsyningar/cabaret",
+      "type": "resident",
+      "verified": true,
+      "source": "detnorsketeatret.no"
+    },
+    {
+      "id": "no-9a5cb9c4",
+      "title": "Prosjekt Prøysen",
+      "title_en": "",
+      "venue": "Det Norske Teatret",
+      "city": "Oslo",
+      "country": "Norway",
+      "lat": 59.9114,
+      "lng": 10.737,
+      "start_date": "2026-08-28",
+      "end_date": "2026-09-27",
+      "image": "https://detnorsketeatret.imgix.net/Foto-Tale-Hendnes-Dansens-Hus-2025-29-scaled.jpg?auto=format&",
+      "ticket_url": "https://www.detnorsketeatret.no/framsyningar/prosjekt-proysen",
+      "type": "resident",
+      "verified": true,
+      "source": "detnorsketeatret.no"
+    },
+    {
+      "id": "no-88e7a2f1",
+      "title": "Änglagård",
+      "title_en": "",
+      "venue": "Det Norske Teatret",
+      "city": "Oslo",
+      "country": "Norway",
+      "lat": 59.9114,
+      "lng": 10.737,
+      "start_date": "2027-03-06",
+      "end_date": "2027-03-19",
+      "image": "https://detnorsketeatret.imgix.net/EirikMalmo_DNT_%C3%84nglag%C3%A5rd_EIMA0446_01-1.jpg?auto=format&",
+      "ticket_url": "https://www.detnorsketeatret.no/framsyningar/anglagard",
       "type": "resident",
       "verified": true,
       "source": "detnorsketeatret.no"
