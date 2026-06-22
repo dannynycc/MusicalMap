@@ -133,6 +133,7 @@ python scrapers/build_shows.py        # 合併成 data/shows.json
 - 🆕 **反爬 CDN 海報** rehost 到 `posters/`（同源，避開防盜連 403；如 Diana 的 Sympla 圖）。
 - 🔄 自動更新：**一日兩次**（台北 06:00 & 18:00），見 `.github/workflows/update.yml`。
 - 📒 **來源登記表：`docs/SOURCES.md`**（用戶提供的網址一律登記在此，含狀態）。
+- 🆕 **設計定案：`docs/DESIGN_productions.md`**（Production／版本三層資料模型 —— 解決「沒在演的劇查不到」與「同劇各版本共用一張海報」；實作進行中）。
 - ✅ 座標修正機制：NYC 範圍檢查、lat/lng 對調偵測、城市中心點 fallback、著名劇院手動座標表、`overrides.json`、geocode 快取。
 - ✅ 同劇合併（標題正規化）、正式劇名覆蓋、巡演各自海報、cluster 線性縮放、地圖／衛星切換、多地點 overview、popup 完整海報、多地區售票連結。
 - 🟡 Ticketmaster 分潤需另加入 affiliate 聯盟（需審核），通過後可把追蹤碼包進售票連結。

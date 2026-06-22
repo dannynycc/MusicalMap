@@ -11,6 +11,13 @@
 
 ---
 
+## [v0.56.3] - 2026-06-22 22:53
+### 新增 — Production(製作/版本)三層資料模型「設計定案」
+- 新增 **`docs/DESIGN_productions.md`**:把資料模型從現行兩層(作品 work / 場次 run)補上中間的 **製作/版本 production** 層。解決使用者回報的兩個現象 —— (1) 沒在演的劇(如 Love Never Dies)查不到、無縮圖;(2) 同一齣劇所有版本共用同一張海報(歌劇魅影 27 場原始資料其實有 8 種海報卻被收斂成一張)。
+- 定案要點:production 分 `live`(有現役場次,規則自動配對,live 地圖也跟著拆海報)與 `archival`(已落幕/歷史錄影,只供足跡手動選版本);海報解析順序 `poster_override → production → work → ♪`(存 key 不存死圖,修圖自動傳播、使用者覆蓋優先);Supabase 加 `production_key`/`poster_override`;新增稽核 `audit_productions.py`。
+- 本次僅落定文件;功能實作分階段進行(資料模型 → 後端配對 → 前端足跡 → live 地圖/公開頁 → migration),功能性改動屆時以 MINOR 進版。
+- **README.md**:docs 區塊補列 `DESIGN_productions.md` 指標。
+
 ## [v0.56.2] - 2026-06-15 17:13
 ### 文件 freshness 全面更新(換 session 前)
 - **README.md**:現況從「604 筆/約 25 國」更新為 **~1,437 筆/約 30 國**;補列全部自動 scraper(中國×4、Portugal、義/瑞/荷/波/挪/奧/中東、Madrid、東歐、japan、tm_tours…)與人工策展市場(巴西/阿根廷/南非/新加坡);tag 清單改新顯示名(百老匯/西區、法語、葡語、歐陸其他…);works.json 143→**157**;場館 ~4,900→**~5,000**;CI 改「一日兩次」;新增 audit_manual.py 與 posters/ rehost 說明。
