@@ -197,3 +197,23 @@ poster_override  →  productions[production_key].poster  →  work.poster  → 
 ## 10. 海報查證紀律(已落實)
 
 每張收錄海報:`curl -sIL` 驗 `content-type: image/*` → 下載 rehost 進 `posters/` → **用 Read 工具親眼看過確認是「這齣這版」** → `scrapers/audit_productions.py` 檢查檔案存在且為圖檔(掛 CI)。前端改動用 headless Chrome 截圖驗 render(本次已截 Phantom 版本下拉 + LND 縮圖)。
+
+---
+
+## 11. 「系統性抓過去版本」的決策紀錄(2026-06-23,明天接這裡)
+
+**問題**:archival(沒在演的)版本海報,怎麼系統性涵蓋到全球用戶?
+
+**已評估並否決的來源:**
+- **Wikidata**:對音樂劇的「各製作」太弱,連 musical 本體都不好搜到 → ✗。
+- **Theatricalia**(實測製作數:Les Mis 14、Phantom 10、Miss Saigon 3、Lion King 3、**Wicked 0**、**Roméo et Juliette 0**):嚴重偏 UK 業餘劇場、**整個資料庫沒有 Wicked**、非英語音樂劇全掛零、**沒有海報**、且資料授權是 **ODbL(share-alike + 需標註)** → 撐不起全球覆蓋,**否決匯入器**。
+
+**目前已能 scale 的部分:**
+- 正在演的版本 = `gen_catalog.py` 自動依國家分群(海報取現役場次圖)。✅ 全球自動。
+- 任何冷門版本的「**個人**足跡」= 每個用戶可自填 `poster_override`。✅ 不經人工,已 scale。
+
+**未解 / 明天要繼續研究的:**
+- 「**共享**層」的 scale:用戶 B 不必重貼用戶 A 已貼過的海報。
+- 唯一能 scale 的方向 = **自助 UGC 貢獻迴路**:用戶貢獻版本+海報 → Supabase 待審表 → 核准後 me.js runtime 載入併進版本下拉(靜態 catalog 不重建)。卡點是**審核**(公開產品讓用戶貼任意圖 URL 有 spam/版權風險,需要「核准才公開」這一關)。
+- **狀態:已暫緩(parked)**。使用者覺得卡住,決定先休息。現階段「使用者給海報→我驗證收錄」對單一主用戶已足夠;等真有用戶量再建 UGC 迴路。
+- 明天從這節繼續討論 UGC 迴路要不要做、怎麼做審核。

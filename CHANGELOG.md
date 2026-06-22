@@ -11,6 +11,11 @@
 
 ---
 
+## [v0.57.2] - 2026-06-23 01:22
+### 文件 — 記錄「系統性抓過去版本」的決策(換 session 前)
+- `docs/DESIGN_productions.md` 加 §11 決策紀錄:評估後**否決 Wikidata / Theatricalia** 作為 archival 版本來源(實測 Theatricalia 嚴重偏 UK、整庫無 Wicked、非英語劇歸零、無海報、ODbL share-alike);記錄目前已 scale 的部分(live 自動分群、個人 `poster_override`)與未解的「共享層 scale」=自助 UGC 貢獻迴路(已暫緩,明天續)。
+- 純文件;明天從 §11 接續研究 UGC 迴路。
+
 ## [v0.57.1] - 2026-06-23 01:08
 ### 新增 — Roméo et Juliette 台灣巡演 2023 版本(使用者提供海報)
 - 使用者回報其 2023 在臺中國家歌劇院看的 **Roméo et Juliette**(羅密歐與茱麗葉,Gérard Presgurvic 法文音樂劇 20 週年紀念巡演)應有專屬海報 → 新增 archival 版本 **`rj-taiwan-2023`**(海報 `posters/romeo_juliette_tw2023.jpg`,使用者提供 + 親眼驗證:臺中/台北流行音樂中心/高雄衛武營,2/11–2/28)。
