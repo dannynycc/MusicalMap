@@ -11,6 +11,19 @@
 
 ---
 
+## [v0.57.0] - 2026-06-22 23:25
+### 新增 — Production(製作/版本)層上線:足跡可選版本 + 沒在演的劇也查得到
+- **足跡表單(me.js / me.html)新增「版本／製作」下拉 + 「海報網址(選填)」**:選了劇名若該作品有多版本(如歌劇魅影),會跳出版本下拉(附即時海報預覽),選哪版就帶哪版的海報;未收錄的版本可貼自訂海報網址。海報解析序 **自訂 → 版本 → 作品 → ♪**(存版本 key 不存死圖 → 日後修圖自動傳播;使用者自訂覆蓋永遠優先)。
+- **沒在演的劇現在也進自動完成且有縮圖**(解決 Love Never Dies 查不到):`gen_catalog.py` 的 titles 改為「現役場次 ∪ 已登錄作品」聯集,works.json 升級為作品主檔(加 `poster` / `productions`)。
+  - 新增 **Love Never Dies**(中文「愛無止盡」,別名「真愛不死」),海報用使用者提供的 San Jose 巡演版主視覺。
+  - **歌劇魅影 10 個版本**:8 個 live(英/美/日四季/匈/奧/中/墨/挪,海報自動取各國現役場次圖)+ 2 個 archival(**台灣巡演 2026**、**25 週年 RAH 演唱會**,海報皆使用者提供 + 親眼驗證 rehost)。
+- **live 版本自動產生**:`gen_catalog.py` 依國家把每作品的現役場次分群成版本(海報取代表圖),不必手寫規則;**app.js(live 地圖)無需改動**——它本來就用每場自己的海報。
+- **公開分享頁(u.js)** 套用同一套版本海報解析,別人看你的足跡也是正確版本。
+- **新增 `scrapers/audit_productions.py`**(掛 CI):檢查作品/版本海報「檔案存在且為圖檔」、列出缺海報的版本與無縮圖的劇。
+- **Supabase**:新增 `supabase/add_production.sql`(`production_key` / `poster_override`,`add column if not exists`);App 在欄位未建時優雅降級不報錯。
+- 文件:`docs/DESIGN_productions.md` 加實作後修訂(app.js 不用動、live 自動分群)、`docs/SETUP_ACCOUNTS.md` 補 migration 說明、README 改「版本層已上線」。
+- 驗證:headless Chrome 截圖確認版本下拉 + 海報預覽(Phantom)與 LND 縮圖正常;修掉一個 CSS specificity bug(`#add-form label{display:flex}` 蓋過 `[hidden]` 導致空版本下拉沒被隱藏)。
+
 ## [v0.56.3] - 2026-06-22 22:53
 ### 新增 — Production(製作/版本)三層資料模型「設計定案」
 - 新增 **`docs/DESIGN_productions.md`**:把資料模型從現行兩層(作品 work / 場次 run)補上中間的 **製作/版本 production** 層。解決使用者回報的兩個現象 —— (1) 沒在演的劇(如 Love Never Dies)查不到、無縮圖;(2) 同一齣劇所有版本共用同一張海報(歌劇魅影 27 場原始資料其實有 8 種海報卻被收斂成一張)。

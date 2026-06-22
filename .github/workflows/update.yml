@@ -83,6 +83,7 @@ jobs:
           python scrapers/audit_dups.py  || echo "::warning::dedup/junk audit flagged issues"
           python scrapers/audit_manual.py || echo "::warning::manual.json has stale/ended shows — review data/manual.json"
           python scrapers/gen_catalog.py
+          python scrapers/audit_productions.py || echo "::warning::production audit flagged broken posters — review works.json"
           # Accumulate today's snapshot into the immutable historical archive
           # (separate stateful layer; never deletes closed runs). Pure build above
           # stays stateless. See scrapers/archive.py.

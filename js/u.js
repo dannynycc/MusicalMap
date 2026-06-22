@@ -13,8 +13,9 @@ const cssUrl = (u) => (u || "").replace(/['"()\s\\]/g,
 // which would shadow the global t(); TL() is safe to call anywhere.
 const TL = (k, v) => window.t(k, v);
 
-let CATALOG = { titles: [], posters: {} };
+let CATALOG = { titles: [], posters: {}, productions: {} };
 let POSTER_BY_TITLE = {};
+let PRODUCTION_BY_KEY = {};   // production_key -> {poster,…}, for version-aware posters
 let SIGHTINGS = [];
 let map, layer, charts = {};
 let PROFILE_NAME = "";
@@ -33,6 +34,15 @@ window.addEventListener("mm-langchange", () => {
 });
 
 function posterFor(t) { return POSTER_BY_TITLE[(t || "").toLowerCase()] || null; }
+
+// same resolution order as the owner's view: override → production → work → ♪,
+// so a shared profile shows the exact version each sighting was logged against.
+function resolvePoster(s) {
+  if (s.poster_override && safeUrl(s.poster_override)) return s.poster_override;
+  const p = s.production_key && PRODUCTION_BY_KEY[s.production_key];
+  if (p && p.poster) return p.poster;
+  return posterFor(s.title);
+}
 
 // upgrade a stored sighting's venue name to the catalog's current name (matched by
 // coordinate), so old records show the latest name (e.g. National Theater →
@@ -103,8 +113,7 @@ function renderCharts() {
   lineChart("#c-month", ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"], months);
   lineChart("#c-weekday", ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"], wd);
 }
-function posterIcon(title) {
-  const p = posterFor(title);
+function posterIcon(p) {
   return L.divIcon({ className: "mm-icon",
     html: `<div class="poster-pin ${p ? "" : "noimg"}" style="${p ? `background-image:url('${cssUrl(p)}')` : ""}">${p ? "" : "<span class='glyph'>♪</span>"}</div>`,
     iconSize: [44, 60], iconAnchor: [22, 60], popupAnchor: [0, -58] });
@@ -126,8 +135,8 @@ function renderMap() {
   const pts = [];
   SIGHTINGS.forEach((s) => {
     if (typeof s.lat !== "number") return;
-    const p = posterFor(s.title);
-    const m = L.marker([s.lat, s.lng], { icon: posterIcon(s.title), riseOnHover: true }).bindPopup(
+    const p = resolvePoster(s);
+    const m = L.marker([s.lat, s.lng], { icon: posterIcon(p), riseOnHover: true }).bindPopup(
       `<div style="display:flex;gap:10px">${p ? `<img src="${esc(p)}" style="width:70px;border-radius:6px">` : ""}
        <div><b>${esc(s.title)}</b><br><span style="color:#666">${esc(s.venue || "")}<br>${esc(s.city || "")}, ${esc(s.country || "")}${s.seen_date ? "<br>" + esc(s.seen_date) : ""}</span></div></div>`,
       { maxWidth: 300 });
@@ -220,6 +229,8 @@ function wireTabs() {
 
 async function boot() {
   CATALOG = await fetch("data/venues_catalog.json").then((r) => r.json()).catch(() => CATALOG);
+  Object.values(CATALOG.productions || {}).forEach((arr) =>
+    arr.forEach((p) => { PRODUCTION_BY_KEY[p.key] = p; }));
   (CATALOG.titles || []).forEach((t) => {
     const p = CATALOG.posters[t.group]; if (!p) return;
     if (t.en) POSTER_BY_TITLE[t.en.toLowerCase()] = p;

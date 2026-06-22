@@ -15,6 +15,9 @@
 ## B. 建資料表(套用 schema)
 1. 左側 **SQL Editor → New query**。
 2. 把 `supabase/schema.sql` 全部貼上 → **Run**。一次建好所有表 + 權限規則 + 種子。
+3. 後續加欄位的 migration(既有資料庫補跑即可,皆 `add column if not exists`,可重複執行):
+   - `supabase/add_url.sql` —— 每筆紀錄的連結(`url` / `links`)。
+   - `supabase/add_production.sql` —— **版本層**(`production_key` / `poster_override`);沒跑的話版本/自訂海報選了不會被存下來(App 本身會優雅降級不報錯)。
 
 ## C. 開 Google 登入
 1. **Authentication → Sign In / Providers → Google → Enable**。

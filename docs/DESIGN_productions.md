@@ -1,6 +1,11 @@
 # 設計定案:Production(製作/版本)三層資料模型
 
-> 狀態:**已定案**(2026-06-22)。本檔是這個功能的單一事實來源,實作前後都以此為準。
+> 狀態:**已定案 + 第一版已實作上線(v0.57.0, 2026-06-22)**。本檔是這個功能的單一事實來源。
+>
+> **實作後的重要修訂(比原設計更省工):**
+> - **`app.js`(live 地圖)完全不用動** —— 它本來就用每場自己的 `show.image`,北美巡演 13 城共用一張是「因為同屬北美巡演版」,倫敦/日本四季/各國各顯各的。所以「按版本拆海報」在 live 地圖早已成立,問題 2 其實**只發生在足跡頁(me.js)**。
+> - **live 版本由 `gen_catalog.py` 自動依國家分群產生**(海報取該群現役場次的圖),不必在 works.json 手寫 `match` 規則。works.json 只需登記 **archival 版本**(沒在演的)+ 作品層 `poster`。全部作品自動受惠,不只旗艦劇。
+> - 已上線:Phantom 10 版本(2 archival 含台灣巡演/25 週年 + 8 國 live)、Love Never Dies(archival-only,愛無止盡)。
 > 動機:使用者回報兩個現象 —— (1) Love Never Dies 等「現在沒在演」的劇查不到、沒縮圖;
 > (2) 同一齣劇(歌劇魅影)所有版本共用同一張海報。兩者其實是**同一個架構限制**的兩種表現。
 
@@ -182,8 +187,13 @@ poster_override  →  productions[production_key].poster  →  work.poster  → 
 
 ---
 
-## 9. 待補輸入(來自使用者)
+## 9. 輸入進度
 
-- **archival 版本的官方主視覺來源**:25 週年、台灣巡演等不好找;使用者手上若有圖 / 偏好來源優先採用。
-- **第一批做滿 production 的旗艦劇**:以使用者「看過最多不同版本」的劇為主,優先做滿。
-- **Love Never Dies 官方中文名**:需查證(候選 真愛不死 / 愛無止盡,未定,**待驗證**)。
+- ✅ **Love Never Dies 中文名**:確認 **愛無止盡**(中文維基條目名),別名另收「真愛不死」。
+- ✅ **LND 海報**:使用者提供 San Jose 巡演版官方主視覺 → `posters/love_never_dies.jpg`(已親眼驗證)。
+- ✅ **Phantom archival 海報**:台灣巡演 `posters/phantom_tw2026.jpg`、25 週年 RAH `posters/phantom_25th.jpg`(皆使用者提供 + 親眼驗證)。
+- 🔜 **旗艦劇 archival 版本**:Wicked / Miss Saigon / Les Mis / Lion King 的「已落幕特定版本」海報待陸續補(live 版本已自動帶)。
+
+## 10. 海報查證紀律(已落實)
+
+每張收錄海報:`curl -sIL` 驗 `content-type: image/*` → 下載 rehost 進 `posters/` → **用 Read 工具親眼看過確認是「這齣這版」** → `scrapers/audit_productions.py` 檢查檔案存在且為圖檔(掛 CI)。前端改動用 headless Chrome 截圖驗 render(本次已截 Phantom 版本下拉 + LND 縮圖)。

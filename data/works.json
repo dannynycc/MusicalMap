@@ -16,6 +16,22 @@
         "歌聲魅影",
         "剧院魅影",
         "歌剧魅影"
+      ],
+      "productions": [
+        {
+          "key": "ph-25th-rah",
+          "label": "25th Anniversary (Royal Albert Hall)",
+          "label_zh": "25 週年演唱會",
+          "poster": "posters/phantom_25th.jpg",
+          "origin": "archival"
+        },
+        {
+          "key": "ph-taiwan-2026",
+          "label": "Taiwan Tour 2026",
+          "label_zh": "台灣巡演 2026",
+          "poster": "posters/phantom_tw2026.jpg",
+          "origin": "archival"
+        }
       ]
     },
     {
@@ -1323,6 +1339,16 @@
         "Diana, the Musical",
         "Diana - The Musical"
       ]
+    },
+    {
+      "canonical": "Love Never Dies",
+      "tradition": "Broadway/West End",
+      "aliases": [
+        "愛無止盡",
+        "真愛不死"
+      ],
+      "poster": "posters/love_never_dies.jpg",
+      "productions": []
     }
   ]
 }

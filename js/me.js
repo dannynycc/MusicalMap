@@ -31,19 +31,24 @@ function foldLatin(s) {
 const norm = (s) => foldLatin((s || "").toLowerCase().replace(/臺/g, "台")).replace(SEARCH_PUNCT, " ").replace(/\s+/g, " ").trim();
 
 let sb = null;
-let CATALOG = { venues: [], cities: [], titles: [], currencies: [], posters: {} };
-let POSTER_BY_TITLE = {};   // lowercased en/zh -> poster url
+let CATALOG = { venues: [], cities: [], titles: [], currencies: [], posters: {}, productions: {} };
+let POSTER_BY_TITLE = {};   // lowercased en/zh -> work-level poster url
+let PRODUCTIONS = {};       // group -> [{key,label,label_zh,poster,origin}]
+let PRODUCTION_BY_KEY = {}; // production_key -> {label,poster,group,…}
+let TITLE_GROUP = {};       // norm(title) -> group, to find a title's productions
 let SIGHTINGS = [];
 let map, layer, charts = {};
 
 // ---------- boot ----------
 async function boot() {
   CATALOG = await fetch("data/venues_catalog.json").then((r) => r.json()).catch(() => CATALOG);
+  PRODUCTIONS = CATALOG.productions || {};
+  Object.entries(PRODUCTIONS).forEach(([g, arr]) =>
+    arr.forEach((p) => { PRODUCTION_BY_KEY[p.key] = Object.assign({ group: g }, p); }));
   (CATALOG.titles || []).forEach((t) => {
     const p = CATALOG.posters[t.group];
-    if (!p) return;
-    if (t.en) POSTER_BY_TITLE[t.en.toLowerCase()] = p;
-    if (t.zh) POSTER_BY_TITLE[t.zh.toLowerCase()] = p;
+    if (t.en) { if (p) POSTER_BY_TITLE[t.en.toLowerCase()] = p; TITLE_GROUP[norm(t.en)] = t.group; }
+    if (t.zh) { if (p) POSTER_BY_TITLE[t.zh.toLowerCase()] = p; TITLE_GROUP[norm(t.zh)] = t.group; }
   });
   if (!cfg.READY) { $("#cfg-warn").hidden = false; }
   else {
@@ -108,6 +113,44 @@ async function loadSightings() {
 
 function posterFor(title) {
   return POSTER_BY_TITLE[(title || "").toLowerCase()] || null;
+}
+
+// Poster resolution order (shared by list/map/popup): a user's own override wins,
+// then the chosen production's poster, then the work-level fallback, then ♪.
+// We store the production_key (not the image) on the sighting, so curated poster
+// fixes propagate automatically — but an explicit override always sticks.
+function resolvePoster(s) {
+  if (s.poster_override && safeUrl(s.poster_override)) return s.poster_override;
+  const p = s.production_key && PRODUCTION_BY_KEY[s.production_key];
+  if (p && p.poster) return p.poster;
+  return posterFor(s.title);
+}
+
+function groupForTitle(title) { return TITLE_GROUP[norm(title)] || null; }
+
+// (re)build the "which version?" dropdown for the current title; hidden unless the
+// work has >=2 productions. Keeps `selectedKey` if still valid.
+function fillProductions(title, selectedKey) {
+  const sel = document.querySelector("#prod-select"), wrap = document.querySelector("#prod-wrap");
+  const prods = PRODUCTIONS[groupForTitle(title)] || [];
+  if (prods.length < 2) { wrap.hidden = true; sel.innerHTML = ""; updatePosterPreview(); return; }
+  sel.innerHTML = `<option value="">${esc(t("me_version_any"))}</option>` +
+    prods.map((p) => {
+      const label = p.label_zh ? `${p.label} · ${p.label_zh}` : p.label;
+      const tag = p.origin === "archival" ? " ✦" : "";   // ✦ = curated archival version
+      return `<option value="${esc(p.key)}">${esc(label)}${tag}</option>`;
+    }).join("");
+  sel.value = prods.some((p) => p.key === selectedKey) ? selectedKey : "";
+  wrap.hidden = false;
+  updatePosterPreview();
+}
+
+function updatePosterPreview() {
+  const f = document.querySelector("#add-form");
+  const p = resolvePoster({ title: f.title.value, production_key: f.production_key.value, poster_override: f.poster_override.value });
+  const el = document.querySelector("#poster-preview");
+  if (p) { el.style.backgroundImage = `url('${cssUrl(p)}')`; el.classList.remove("noimg"); el.textContent = ""; }
+  else { el.style.backgroundImage = ""; el.classList.add("noimg"); el.textContent = "♪"; }
 }
 
 // ---------- rendering ----------
@@ -203,8 +246,8 @@ function renderMap() {
   const pts = [];
   SIGHTINGS.forEach((s) => {
     if (typeof s.lat !== "number") return;
-    const p = posterFor(s.title);
-    const m = L.marker([s.lat, s.lng], { icon: posterIcon(s.title), riseOnHover: true }).bindPopup(
+    const p = resolvePoster(s);
+    const m = L.marker([s.lat, s.lng], { icon: posterIcon(null, p), riseOnHover: true }).bindPopup(
       `<div style="display:flex;gap:10px">${p ? `<img src="${esc(p)}" style="width:70px;border-radius:6px">` : ""}
        <div><b>${esc(s.title)}</b><br><span style="color:#666">${esc(s.venue || "")}<br>${esc(s.city || "")}, ${esc(s.country || "")}${s.seen_date ? "<br>" + esc(s.seen_date) : ""}</span></div></div>`,
       { maxWidth: 300 });
@@ -269,7 +312,7 @@ function upgradeVenueNames() {
 function renderList() {
   $("#log-count").textContent = SIGHTINGS.length ? `(${SIGHTINGS.length})` : "";
   $("#log-list").innerHTML = SIGHTINGS.map((s) => {
-    const p = posterFor(s.title);
+    const p = resolvePoster(s);
     const sub = [s.venue, s.city, s.country].filter(Boolean).join(" · ");
     const extra = [s.seat, s.price ? `${s.price}${s.currency ? " " + s.currency : ""}` : ""].filter(Boolean).join(" · ");
     return `<li class="log-item">
@@ -298,6 +341,7 @@ async function delSighting(id) {
 function openAdd() {
   const f = $("#add-form"); f.reset(); f.id.value = "";
   $("#links-list").innerHTML = ""; addLinkRow("");
+  fillProductions("", "");                 // hide version picker, reset poster preview
   $("#form-title").textContent = t("me_form_add");
   $("#add-dialog").showModal();
 }
@@ -305,8 +349,9 @@ function openEdit(id) {
   const s = SIGHTINGS.find((x) => String(x.id) === String(id));
   if (!s) return;
   const f = $("#add-form"); f.reset();
-  ["id", "title", "venue", "city", "country", "seen_date", "seen_time", "seat", "price", "currency", "note", "lat", "lng"]
+  ["id", "title", "venue", "city", "country", "seen_date", "seen_time", "seat", "price", "currency", "note", "lat", "lng", "poster_override"]
     .forEach((k) => { if (f[k]) f[k].value = s[k] ?? ""; });
+  fillProductions(s.title, s.production_key);   // build version options + keep saved pick
   $("#links-list").innerHTML = "";
   const ls = linksOf(s);
   (ls.length ? ls : [""]).forEach(addLinkRow);
@@ -347,6 +392,10 @@ async function onSave(e) {
   };
   const links = formLinks();
   if (links.length) { rec.links = links; rec.url = links[0]; }   // url kept for back-compat
+  const pk = f.production_key.value;
+  if (pk) rec.production_key = pk;                                // which version the user saw
+  const po = f.poster_override.value.trim();
+  if (po) rec.poster_override = po;                              // user-supplied poster for unlisted versions
   const ck = (c) => (c || "").toLowerCase().split(",")[0].trim();
   if (f.lat.value && f.lng.value) {                 // coords captured when the venue was picked
     rec.lat = +f.lat.value; rec.lng = +f.lng.value;
@@ -359,8 +408,8 @@ async function onSave(e) {
   const save = (r) => id ? sb.from("sightings").update(r).eq("id", id) : sb.from("sightings").insert(r);
   let res = await save(rec);
   // drop optional columns the Supabase schema may not have yet, then retry
-  while (res.error && /'(links|url)' column/i.test(res.error.message)) {
-    delete rec[res.error.message.match(/'(links|url)'/)[1]];
+  while (res.error && /'(links|url|production_key|poster_override)' column/i.test(res.error.message)) {
+    delete rec[res.error.message.match(/'(links|url|production_key|poster_override)'/)[1]];
     res = await save(rec);
   }
   if (res.error) { alert(t("me_save_fail") + res.error.message); return; }
@@ -392,6 +441,10 @@ function wireUi() {
     setTimeout(() => { $("#share-copy").textContent = t("me_copy"); }, 1500);
   };
   setupAutocomplete();
+  // version picker + poster preview wiring
+  $("#prod-select").addEventListener("change", updatePosterPreview);
+  $("#poster-override").addEventListener("input", updatePosterPreview);
+  $("#add-form").title.addEventListener("input", () => fillProductions($("#add-form").title.value, $("#prod-select").value));
 }
 
 function setupAutocomplete() {
@@ -433,6 +486,7 @@ function setupAutocomplete() {
           // cities (e.g. Orpheum Theatre SF vs Minneapolis) don't get the wrong one
           f.lat.value = it.v.lat ?? ""; f.lng.value = it.v.lng ?? "";
         } else if (kind === "cities" && it.country) f.country.value = it.country;
+        else if (kind === "titles") fillProductions(it.pick, "");   // refresh version picker for the chosen work
         pop.hidden = true;
       });
     });

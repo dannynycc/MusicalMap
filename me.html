@@ -84,6 +84,13 @@
       <input type="hidden" name="id" />
       <input type="hidden" name="lat" /><input type="hidden" name="lng" />
       <label><span data-i18n="me_f_title">Musical</span><input name="title" autocomplete="off" required data-ac="titles" placeholder="輸入中文或英文 type EN or 中文" data-i18n-ph="me_title_ph" /></label>
+      <label id="prod-wrap" hidden><span data-i18n="me_f_version">Version / Production</span>
+        <select name="production_key" id="prod-select"></select></label>
+      <label><span data-i18n="me_f_poster">Poster URL (optional)</span>
+        <div class="poster-row">
+          <input name="poster_override" id="poster-override" type="url" autocomplete="off" placeholder="自訂海報網址 custom poster URL" data-i18n-ph="me_poster_ph" />
+          <span id="poster-preview" class="poster-preview noimg">♪</span>
+        </div></label>
       <div class="row2">
         <label><span data-i18n="me_f_date">Date</span><input name="seen_date" type="date" /></label>
         <label><span data-i18n="me_f_time">Time</span><input name="seen_time" type="time" /></label>

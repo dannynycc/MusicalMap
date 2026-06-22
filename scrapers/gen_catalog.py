@@ -20,15 +20,24 @@ DATA = Path(__file__).resolve().parent.parent / "data"
 # Registered works → canonical English title, so a group's catalog `en` is the clean
 # canonical (matching what users log) instead of an arbitrary first/bilingual title
 # (e.g. "Gutenberg! The Musical! Gutenberg, el mejor…" → "Gutenberg! The Musical!").
-def _load_canon():
+def _load_works():
+    """Return (canon, by_group): canon = group_key -> canonical English title;
+    by_group = group_key -> full work dict (poster, productions, aliases…).
+    works.json is now the作品主檔 — it also carries non-playing works (e.g. Love
+    Never Dies) and per-work production posters, all keyed by the canonical's group."""
     p = DATA / "works.json"
     if not p.exists():
-        return {}
-    return {group_key(w["canonical"]): w["canonical"]
-            for w in json.loads(p.read_text(encoding="utf-8")).get("works", [])}
+        return {}, {}
+    ws = json.loads(p.read_text(encoding="utf-8")).get("works", [])
+    canon, by_group = {}, {}
+    for w in ws:
+        g = group_key(w["canonical"])
+        canon[g] = w["canonical"]
+        by_group[g] = w
+    return canon, by_group
 
 
-CANON = _load_canon()
+CANON, WORKS = _load_works()
 
 # Traditional/Simplified Chinese folding so a venue/title is found whichever script
 # the user types (上海大劇院 = 上海大剧院, 台北 = 臺北 …). OpenCC is build-only; if
@@ -388,34 +397,80 @@ def main():
 
     cities = sorted({(s.get("city"), s.get("country") or "") for s in shows if s.get("city")})
 
-    # bilingual titles + poster per show-group
-    groups, posters = {}, {}
+    # bilingual titles + poster per show-group. group_shows keeps every show of a
+    # group so we can cluster them into per-country "productions" below.
+    groups, posters, group_shows = {}, {}, {}
     for s in shows:
         g = s.get("group") or s["title"].lower()
         groups.setdefault(g, s["title"])
+        group_shows.setdefault(g, []).append(s)
         if s.get("image") and g not in posters:
             posters[g] = s["image"]
+
+    # work-level poster override: a registered work may pin its own canonical poster
+    # (works.json `poster`), winning over an arbitrary first-scraped image. "auto"/
+    # absent keeps the scraped one. Non-playing works (no show) get their pinned one.
+    for g, w in WORKS.items():
+        pv = w.get("poster")
+        if pv and pv != "auto":
+            posters[g] = pv
+
+    # ----- productions per work-group: live auto-clusters + archival from works.json
+    # live: a work playing in >=2 countries (or that ALSO has archival entries) is
+    # split per country, each with a representative scraped poster. Single-country
+    # works need no split — the work-level poster already represents them.
+    def _city_label(grp):
+        cs = sorted({(s.get("city") or "").strip() for s in grp if s.get("city")})
+        return cs[0] if len(cs) == 1 else ""
+
+    productions = {}
+    for g, first_title in groups.items():
+        archival = list((WORKS.get(g) or {}).get("productions") or [])
+        by_country = {}
+        for s in group_shows.get(g, []):
+            by_country.setdefault(s.get("country") or "—", []).append(s)
+        live = []
+        if len(by_country) >= 2 or archival:
+            for ctry, grp in sorted(by_country.items()):
+                city = _city_label(grp)
+                img = next((s["image"] for s in grp if s.get("image")), None)
+                live.append({
+                    "key": f"{g}::{ctry}",
+                    "label": f"{city}, {ctry}" if city else ctry,
+                    "label_zh": "", "poster": img, "origin": "live",
+                })
+        prods = archival + live          # archival (curated) listed first
+        if len(prods) >= 2:
+            productions[g] = prods
+
+    # titles: every show-group UNION every registered work (so works that are not
+    # currently playing — e.g. Love Never Dies — still appear in autocomplete).
+    title_groups = dict(groups)
+    for g, w in WORKS.items():
+        title_groups.setdefault(g, w["canonical"])
     titles = []
-    for g, first_title in sorted(groups.items(), key=lambda x: x[1].lower()):
+    for g, first_title in sorted(title_groups.items(), key=lambda x: x[1].lower()):
         # registered work → clean canonical; else the (non-bilingual) scraped title
         en = CANON.get(g, first_title)
         zh = ZH.get(re.sub(r"[^a-z0-9 ]", "", g).strip())
-        # keep the bilingual/variant title searchable even when en is the canonical
+        w = WORKS.get(g) or {}
+        # keep the bilingual/variant title + every works.json alias searchable
         titles.append({"en": en, "zh": zh, "group": g,
-                       "search": search_blob(en, first_title, zh or "")})
+                       "search": search_blob(en, first_title, zh or "", *w.get("aliases", []))})
 
     out = {
         "venues": sorted(venues, key=lambda v: v["name"]),
         "cities": [{"city": c, "country": k} for c, k in cities],
         "titles": titles,
         "currencies": CURRENCIES,
-        "posters": posters,   # group_key -> poster url, for map cards
+        "posters": posters,         # group_key -> work-level poster (map cards / fallback)
+        "productions": productions,  # group_key -> [{key,label,poster,origin}] for the footprint version picker
     }
     (DATA / "venues_catalog.json").write_text(
         json.dumps(out, ensure_ascii=False, indent=1), encoding="utf-8")
     print(f"venues {len(out['venues'])} (deduped), cities {len(cities)}, "
           f"titles {len(titles)} ({sum(1 for t in titles if t['zh'])} with 中文), "
-          f"posters {len(posters)} -> data/venues_catalog.json")
+          f"posters {len(posters)}, productions {len(productions)} works -> data/venues_catalog.json")
 
 
 if __name__ == "__main__":
