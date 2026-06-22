@@ -1,7 +1,7 @@
 {
   "meta": {
     "source": "world.nol.com (Interpark)",
-    "count": 32,
+    "count": 33,
     "dropped_no_coords": [
       "CREATing Musical  Dawn Touch @ National Jeongdong Theater of Korea, Cecil",
       "［Hell’s Kitchen］ @ GS Arts Center",
@@ -27,6 +27,23 @@
     ]
   },
   "shows": [
+    {
+      "id": "ip-26007549",
+      "title": "You＆It",
+      "type": "tour",
+      "venue": "CKL Stage",
+      "city": "Seoul",
+      "country": "South Korea",
+      "lat": 37.568596,
+      "lng": 126.981316,
+      "start_date": "2026-06-28",
+      "end_date": "2026-06-28",
+      "ticket_url": "https://world.nol.com/en/ticket/places/25001606/products/26007549",
+      "image": "https://ticketimage.interpark.com/Play/image/large/26/26007549_p.gif",
+      "tour_name": null,
+      "verified": true,
+      "source": "world.nol.com (Interpark)"
+    },
     {
       "id": "ip-26007442",
       "title": "Dear Evan Hansen",
