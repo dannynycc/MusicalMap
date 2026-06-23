@@ -11,6 +11,12 @@
 
 ---
 
+## [v0.64.2] - 2026-06-24 01:15
+### 修正 — js/css cache-busting(回訪者看到空地圖的 bug)
+- 症狀:回訪者進 `/zh-hant/` 等變體頁「所有 marker 消失」。原因:瀏覽器**快取了舊版 `js/app.js`**(抓相對 `data/shows.json`,在子目錄下變 404)→ 無資料。全新快取的 headless 載入線上頁則正常,確認是快取問題非線上 bug。
+- 修法:`build/gen_site.mjs` 為 `css/style.css` 與所有 `js/*.js` 加 `?v={token}`(token 取自 `shows.json` 的 `generated_at`,每次重建即更新)→ 回訪者自動載到新檔。
+- 使用者即時解:該頁 Ctrl+Shift+R 強制重新整理。
+
 ## [v0.64.1] - 2026-06-24 01:08
 ### 變更 — 合併「西語+葡語」為「西葡音樂劇」+ 百老匯標籤加「音樂劇」
 - **西語音樂劇 + 葡語音樂劇 → 西葡音樂劇**(單一分類):`build_shows.py` `classify_tag` 把 Spanish/Portuguese 國家都歸 `西葡音樂劇`;`works.json` 1 筆 tradition 改名;`app.js` `TAG_DEFS` 兩列併一;`build_shows.py` REGIONAL set 更新。三語標籤:繁「西葡音樂劇」/ 簡「西葡音乐剧」(OpenCC)/ 英「Spanish/Portuguese」。

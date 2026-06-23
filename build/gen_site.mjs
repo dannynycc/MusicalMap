@@ -19,6 +19,10 @@ const VARIANTS = {
 };
 const esc = (s) => String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 const JSONLD_CAP = 300; // cap Event ItemList; full text list is unbounded (cheap)
+// cache-bust token for js/css so returning visitors never run a stale app.js (the bug
+// where a cached old app.js fetched a relative data path and showed an empty map).
+const META = JSON.parse(fs.readFileSync("data/shows.json", "utf8")).meta || {};
+const VER = String(META.generated_at || "1").replace(/\D/g, "").slice(0, 12) || "1";
 
 function hreflangLinks() {
   return [
@@ -114,7 +118,7 @@ function page(variant, shows) {
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
-  <link rel="stylesheet" href="${BASE}css/style.css" />
+  <link rel="stylesheet" href="${BASE}css/style.css?v=${VER}" />
   <script>window.MM_VARIANT="${variant}";window.MM_BASE="${BASE}";</script>${openccTag}
 </head>
 <body>
@@ -162,9 +166,9 @@ function page(variant, shows) {
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
-  <script src="${BASE}js/config.js"></script>
-  <script src="${BASE}js/i18n.js"></script>
-  <script src="${BASE}js/app.js"></script>
+  <script src="${BASE}js/config.js?v=${VER}"></script>
+  <script src="${BASE}js/i18n.js?v=${VER}"></script>
+  <script src="${BASE}js/app.js?v=${VER}"></script>
 </body>
 </html>
 `;
