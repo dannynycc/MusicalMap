@@ -11,6 +11,13 @@
 
 ---
 
+## [v0.62.3] - 2026-06-23 22:01
+### UI/修正 — 售票區:修 get_tickets 漏譯、logo 放大、箭頭移到名稱下方、標頭去底線
+- **修 bug**:`get_tickets` 在英文 locale 漏加 → 直接顯示原始 key「get_tickets」。已補 en「Get Tickets」(標頭用 title case)。
+- **logo 放大、更大氣**:售票區方塊 58×66 → 76×92、logo 27→**40px**;`.pop-body` 232→**280px** 讓大方塊仍三排(3×76+2×6=240)。
+- **箭頭移到名稱下方**置中(原本右上角)。
+- **標頭去掉底線**(border-bottom),字級 12→13,乾淨。
+
 ## [v0.62.2] - 2026-06-23 21:27
 ### UI — 售票區改版:加「購票」標頭 + 名稱加粗 + 每塊右箭頭(參考 JustWatch/Songkick)
 - 回饋:logo 方塊的平台名稱**灰字太淡**、看不出「點進去是售票」。參考 JustWatch(where to watch)+ Songkick/Bandsintown(buy tickets)歸納:**需明確區塊標頭 + 名稱要清楚可讀**。

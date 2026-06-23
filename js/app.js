@@ -382,9 +382,9 @@ function popupHtml(show) {
     let host = ""; try { host = new URL(u).hostname; } catch { /* */ }
     const ico = host ? platformIcon(host) : "";
     return `<a class="pop-tile" href="${esc(affiliateUrl(u))}" target="_blank" rel="noopener" title="${lab}">
-      <span class="pop-tile-arr">→</span>
       <span class="pop-tile-ico">${ico ? `<img src="${esc(ico)}" alt="" loading="lazy" onerror="this.style.display='none'">` : ""}</span>
-      <span class="pop-tile-label">${lab}</span></a>`;
+      <span class="pop-tile-label">${lab}</span>
+      <span class="pop-tile-arr">→</span></a>`;
   }).join("")}</div></div>` : "";
   const tname = show.tour_name ? show.tour_name.replace(show.title, canonTitle(show)) : "";
   const tourLine = show.type === "tour" && tname ? `<div class="p-row"><b>${esc(tname)}</b></div>` : "";

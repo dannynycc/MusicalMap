@@ -167,6 +167,7 @@
       runs_until: "Until {e}",
       official: "Official",
       tickets: "Tickets",
+      get_tickets: "Get Tickets",
       buy_official: "Official tickets →",
       buy_tickets: "Get tickets →",
       unverified_demo: "⚠ Unverified (sample data)",
