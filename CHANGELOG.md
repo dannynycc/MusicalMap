@@ -11,6 +11,16 @@
 
 ---
 
+## [v0.63.0] - 2026-06-24 00:45
+### 新增(階段1/2)— 繁/簡/英三語「資料變體」地基(OpenCC build-time 轉換)
+- 目標:繁體中文 / 簡體中文 / English 三語,選了「全站文字」(含劇名、地名、平台名)跟著變;且要 **SEO + AI-search friendly**。研究結論(已查證):AI 爬蟲(GPTBot/ClaudeBot/Perplexity)**不跑 JS** → 內容須 build 時就寫進靜態 HTML;Google 要求**每語言不同網址**(`/zh-hant//zh-hans//en/`);轉換用 **OpenCC**(`opencc-js`)。
+- **本次(階段1,純新增、不動線上)**:
+  - `build/gen_variants.mjs`(Node + opencc-js):由 `data/shows.json` 產生 `data/variants/shows.{en,zh-hans,zh-hant}.json`。劇名/場館/巡演名用 OpenCC 雙向轉(cn⇄tw,處理一對多如 发→發/髮);平台名 en 用英文(聚橙→AC Orange、大麦→Damai),繁簡用 OpenCC。
+  - `data/i18n_maps.json`:CN/TW/JP/KR 共 65 城 + 4 國的地名對應(英→簡,繁體由 OpenCC 自動轉);西方地名(New York/London)維持英文。
+  - 驗證:怨种闺蜜→en/簡保留、繁體「怨種閨蜜」;Shenzhen→深圳/中国·中國;Lion King 三版不變。
+  - `package.json` 宣告 opencc-js 依賴;`.gitignore` 擋 node_modules。
+- **下一步(階段2)**:產 `/en//zh-hans//zh-hant/` 三套預渲染 HTML(內容入 HTML + JSON-LD)、hreflang/sitemap/robots、語言切換改成換網址、接進 CI。
+
 ## [v0.62.3] - 2026-06-23 22:01
 ### UI/修正 — 售票區:修 get_tickets 漏譯、logo 放大、箭頭移到名稱下方、標頭去底線
 - **修 bug**:`get_tickets` 在英文 locale 漏加 → 直接顯示原始 key「get_tickets」。已補 en「Get Tickets」(標頭用 title case)。

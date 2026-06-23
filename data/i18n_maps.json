@@ -1,0 +1,39 @@
+{
+  "_note": "Localization maps for CN/TW/JP/KR place names (English → Simplified Chinese) and platform names. The build (build/gen_variants.mjs) uses these: zh-hans takes the Simplified value, zh-hant runs it through OpenCC cn→tw, en keeps the English key. Western places are left in English for all variants (only CN/TW/JP/KR are localized, per spec).",
+  "countries": {
+    "China": "中国",
+    "Taiwan": "台湾",
+    "Japan": "日本",
+    "South Korea": "韩国"
+  },
+  "cities": {
+    "Beijing": "北京", "Changsha": "长沙", "Changzhou": "常州", "Chongqing": "重庆",
+    "Dongguan": "东莞", "Fuzhou": "福州", "Haikou": "海口", "Hangzhou": "杭州",
+    "Harbin": "哈尔滨", "Hefei": "合肥", "Hengyang": "衡阳", "Jinan": "济南",
+    "Kunshan": "昆山", "Langfang": "廊坊", "Nanchang": "南昌", "Nanjing": "南京",
+    "Nanning": "南宁", "Ningbo": "宁波", "Qidong": "启东", "Qingdao": "青岛",
+    "Quzhou": "衢州", "Shanghai": "上海", "Shenyang": "沈阳", "Shenzhen": "深圳",
+    "Suzhou": "苏州", "Taiyuan": "太原", "Taizhou": "台州", "Tianjin": "天津",
+    "Weifang": "潍坊", "Wuhan": "武汉", "Wuxi": "无锡", "Xi'an": "西安",
+    "Yantai": "烟台", "Yinchuan": "银川", "Zhengzhou": "郑州", "Zhuhai": "珠海",
+    "Zhuji": "诸暨", "Zibo": "淄博", "连云港": "连云港",
+    "Aichi": "爱知", "Fukuoka": "福冈", "Gifu": "岐阜", "Hiroshima": "广岛",
+    "Hyogo": "兵库", "Kanagawa": "神奈川", "Maihama": "舞滨", "Nagoya": "名古屋",
+    "Osaka": "大阪", "Sapporo": "札幌", "Takarazuka (兵庫)": "宝塚", "Tokyo": "东京",
+    "Tokyo (日比谷)": "东京", "Yokohama": "横滨",
+    "Daegu": "大邱", "Seoul": "首尔",
+    "Chiayi": "嘉义", "Hsinchu": "新竹", "Kaohsiung": "高雄", "New Taipei": "新北",
+    "Penghu": "澎湖", "Pingtung": "屏东", "Taichung": "台中", "Taipei": "台北",
+    "Taitung": "台东", "Yunlin": "云林"
+  },
+  "platforms_en": {
+    "聚橙": "AC Orange",
+    "大麦": "Damai",
+    "大麥": "Damai",
+    "官方网站": "Official site",
+    "官方網站": "Official site",
+    "官方售票": "Official",
+    "官网": "Official",
+    "官網": "Official"
+  }
+}

@@ -12,3 +12,6 @@ scrapers/.gmaps_key
 scrapers/.tm_key
 # debug artifacts (logs, audit reports) — anything data/_*
 data/_*
+# Node (opencc-js for the i18n build) — deps installed in CI, never committed
+node_modules/
+package-lock.json

@@ -1,0 +1,27 @@
+{
+  "name": "musicalmap",
+  "version": "1.0.0",
+  "description": "一張地圖，呈現**此刻全球正在上演的音樂劇** —— 常駐型（Broadway / West End）與巡演型（tour，顯示目前在哪座城市）。",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dannynycc/MusicalMap.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/dannynycc/MusicalMap/issues"
+  },
+  "homepage": "https://github.com/dannynycc/MusicalMap#readme",
+  "dependencies": {
+    "opencc-js": "^1.3.1"
+  }
+}
