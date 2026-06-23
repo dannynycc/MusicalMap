@@ -71,6 +71,7 @@ function affReady(c) {
   if (c.net === "impact") return !!(c.domain && c.ids);
   if (c.net === "partnerize") return !!c.camref;
   if (c.net === "awin") return !!(c.mid && c.affid);
+  if (c.net === "tmpl") return !!(c.tmpl && c.tmpl.includes("{url}"));
   return false;
 }
 function affWrap(c, u) {
@@ -78,6 +79,7 @@ function affWrap(c, u) {
   if (c.net === "impact") return `https://${c.domain}/c/${c.ids}?u=${e}` + (AFF_SUBID ? `&subId1=${encodeURIComponent(AFF_SUBID)}` : "");
   if (c.net === "partnerize") return `https://prf.hn/click/camref:${c.camref}/destination:${e}`;
   if (c.net === "awin") return `https://www.awin1.com/cread.php?awinmid=${c.mid}&awinaffid=${c.affid}&ued=${e}`;
+  if (c.net === "tmpl") return c.tmpl.replace("{url}", e);   // network's own deep-link template
   return u;
 }
 function affiliateUrl(u) {

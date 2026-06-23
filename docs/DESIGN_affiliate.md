@@ -54,17 +54,19 @@
 | 換 / 加 ID | 改 config 一行(半自動) |
 | **申請帳號拿 ID** | ❌ **唯一無法自動**(需真人帳號 + 平台審核) |
 
-## 5. 各平台狀態
+## 5. 各平台狀態(2026-06-23 逐一查證)
 
-| host | 網絡 | 佣金 | 現連數 | 狀態 |
-|---|---|---|---|---|
-| `ticketmaster.` | Impact | ~$0.30/張(固定) | 581 | ✅ live |
-| `atgtickets.` | Partnerize | — | 219 | 🔜 填 camref(Phase 1 已可包,等碼) |
-| `londontheatre.co.uk` | Impact(TodayTix Group) | ~1–2% | 45 | 🔜 填 domain+ids |
-| `todaytix.com` | Impact | ~1–2% | 0(待 matcher) | 🔜 Phase 2 + 填碼 |
-| `broadwaydirect.com` | Awin(mid 28987) | 議定 | 0(待改導) | 🔜 填 affid + 改導 |
+| host | 網絡 | 現連數 | 查證結果 / 狀態 |
+|---|---|---|---|
+| `ticketmaster.` | Impact | 581 | ✅ **live**(固定 ~$0.30/張) |
+| `atgtickets.` | **Partnerize** | 219 | ✅ **可申請(已驗證 active)**:`signup.partnerize.com/signup/en/ambassadortheatregroup`(5 天 cookie、"generous"%未明列)。填 camref 即生效 |
+| `broadwaydirect.com` | **Awin** merchant **28987** | 0(待改導) | ✅ **存在(已驗證)**:註冊 Awin → 申請 28987(Nederlander 9 院)。填 affid + 改導 |
+| `todaytix.com` | **Sovrn Commerce** | 101(matcher) | ⚠️ **直接計畫關閉**(FlexOffers 停收、hello.todaytix.com 已死);**Sovrn 可變現,Merchant Explorer 標「Open」**(merchant 122507)。Sovrn 抽一手、佣金登入後才知。加入 Sovrn → 貼樣本連結 → 填 `tmpl` |
+| `londontheatre.co.uk` | TodayTix Group | 45 | ❌ 無自有計畫;TodayTix 直接關 → 需經 Sovrn(或其自有網絡,待查) |
+| London Box Office | 自有(in-house) | 0(未連) | ✅ active:email 申請拿 Unique ID(48h);需改導才有流量 |
+| broadway-show-tickets.com | 無 | 27 | ❌ 無 affiliate 頁(404) |
 
-> 佣金算術:一張 $120 百老匯票,TodayTix 1–2% = $1.2–2.4,是 TM 固定 $0.30 的 **4–8 倍** → 故把 Broadway/West End 改導 TodayTix 是最大收入槓桿。
+> 收尾教訓(誠實):TodayTix 一開始被我當「最高槓桿/Impact 1-2%」,查證後 **Impact 是錯的、直接計畫已關**,只剩 Sovrn(抽成、率較低)。所以**近期確定能賺的是 ATG(Partnerize, 219)+ Broadway Direct(Awin)**;TodayTix 走 Sovrn 是「有總比沒有」。**驗證每一個、別憑搜尋/AI 背書**。
 
 ## 6. 動工順序(每步都不被後面推翻)
 
@@ -74,8 +76,9 @@
 
 ## 7. 申請須知(操作)
 
-- **一律從品牌自己的 affiliate 頁發起**,不要在 Impact/Partnerize/Awin 市集冷申請(TM 在 marketplace 被拒,從 TM 端發起才過)。
-  - TodayTix:`hello.todaytix.com/affiliates-faq`(接 Impact)
-  - ATG / LOVEtheatre:官網「Affiliate Programme」頁(接 Partnerize)
-  - Broadway Direct:官網 affiliate 頁(接 Awin,merchant 28987)
-- 拿到的「追蹤連結」整條貼回來,我從中取出 domain/ids(Impact)、camref(Partnerize)、affid(Awin)填進 config。
+- 直接計畫**一律從品牌自己的 affiliate 頁發起**,不要在市集冷申請(TM 在 marketplace 被拒,從 TM 端發起才過)。以下為 **2026-06-23 實測可開**的入口:
+  - **ATG / LOVEtheatre**(Partnerize):`https://signup.partnerize.com/signup/en/ambassadortheatregroup`(✅ 驗證可開)
+  - **Broadway Direct**(Awin):註冊 Awin → 申請 merchant **28987**(✅ Awin profile 驗證存在)
+  - **TodayTix**(Sovrn):直接計畫已關;改 **Join Sovrn Commerce**(`commerce.sovrn.com`,免費),TodayTix merchant 122507 標「Open」→ 登入後建連結
+  - ❌ `hello.todaytix.com`(舊官方 affiliate 頁)**已死(NXDOMAIN)**;FlexOffers 的 TodayTix 頁標「not currently offering」——皆勿用
+- 拿到的「追蹤連結/樣本連結」整條貼回來,我取出 camref(Partnerize)、affid(Awin)、或 Sovrn 連結模板(`tmpl`)填進 `js/config.js`。

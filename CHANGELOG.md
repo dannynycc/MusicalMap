@@ -11,6 +11,16 @@
 
 ---
 
+## [v0.61.1] - 2026-06-23 17:26
+### 變更 — 分潤平台逐一查證 + 框架加 `tmpl` 型(支援 Sovrn)
+- **逐一實測每個分潤平台**(回應「每樣都要驗」),結果寫進 `docs/DESIGN_affiliate.md` §5/§7:
+  - **ATG / LOVEtheatre = Partnerize**,✅ 驗證可申請(`signup.partnerize.com/signup/en/ambassadortheatregroup`,5 天 cookie)。
+  - **Broadway Direct = Awin** merchant **28987**(✅ 驗證存在,Nederlander 9 院)。
+  - **London Box Office = 自有**(email 申請,48h 回 Unique ID)。
+  - **TodayTix 直接計畫已關**(FlexOffers 標 "not currently offering";`hello.todaytix.com` 已死 NXDOMAIN)——更正先前「Impact 1-2%」的錯誤。**唯一變現路 = Sovrn Commerce**(Merchant Explorer merchant 122507 標「Open」)。
+- **`js/config.js` + `js/app.js`**:`affiliateUrl` 新增 **`tmpl` 網絡型**(設定放含 `{url}` 佔位的連結模板)—— 給「過審後才知格式」的網絡(如 Sovrn)用。TodayTix/londontheatre 改成 `tmpl`(Sovrn,dormant);ATG=partnerize、Broadway Direct=awin 註解標為已驗證。node + 既有測試:TM 照常、dormant passthrough、填模板即生效。
+- 教訓記入文件:別憑搜尋/AI 背書,affiliate 狀態要逐一實測(DNS+內容+網絡)。README 對應更新。
+
 ## [v0.61.0] - 2026-06-23 15:39
 ### 新增 — TodayTix 改導 matcher(分潤 Phase 2,自動化)
 - 新增 **`scrapers/todaytix.py`**:逆向 TodayTix 開放 API(`api.todaytix.com/api/v2/shows`,無 auth、無反爬),掃**全 13 城**(NYC/London/Chicago/SF/LA/DC/Boston/雪梨…)的 **Musicals**,**保守對應**到我們的劇(正規化標題 group_key + **精確城市**比對,清掉「on Broadway/the musical」字尾;slug 缺用 id-only URL,會 301 轉)。輸出 `data/todaytix.json`(103 連結 / 76 作品)。

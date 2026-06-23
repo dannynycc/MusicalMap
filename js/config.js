@@ -20,15 +20,22 @@ window.MM_CONFIG.READY =
 //   impact     : https://{domain}/c/{ids}?u={dest}&subId1={SUBID}   (domain+ids from Impact "Create a link")
 //   partnerize : https://prf.hn/click/camref:{camref}/destination:{dest}
 //   awin       : https://www.awin1.com/cread.php?awinmid={mid}&awinaffid={affid}&ued={dest}
+//   tmpl       : paste the network's own deep-link template with a {url} placeholder
+//                (for networks whose exact format we only learn after approval, e.g.
+//                 FlexOffers). e.g. "https://track.flexlinkspro.com/a.ashx?foid=…&url={url}"
 window.MM_CONFIG.AFFILIATE_SUBID = "musicalmap";   // tags our traffic in dashboards
 window.MM_CONFIG.AFFILIATE = {
   // ✅ live
   "ticketmaster.":       { net: "impact", domain: "ticketmaster.evyy.net", ids: "7408739/264167/4272" },
-  // 🔜 dormant — fill after approval (apply from the brand's own affiliate page)
-  "londontheatre.co.uk": { net: "impact", domain: "", ids: "" },   // TodayTix Group (Impact, ~1-2%)
-  "todaytix.com":        { net: "impact", domain: "", ids: "" },   // TodayTix (Impact, ~1-2%)
-  "atgtickets.":         { net: "partnerize", camref: "" },        // ATG / LOVEtheatre (Partnerize)
-  "broadwaydirect.com":  { net: "awin", mid: "28987", affid: "" }, // Broadway Direct (Awin, Nederlander)
+  // 🔜 dormant — fill after approval (apply from the brand's own affiliate page;
+  //    cold marketplace requests get rejected — Ticketmaster only approved brand-initiated)
+  // TodayTix DIRECT program is closed (FlexOffers "not offering"; hello.todaytix.com dead).
+  // LIVE path = Sovrn Commerce: Merchant Explorer (commerce.sovrn.com) lists TodayTix as
+  // "Open" (auto-approve). Join Sovrn → paste its link template (a {url} deep link) here.
+  "todaytix.com":        { net: "tmpl", tmpl: "" },                // TodayTix via Sovrn Commerce (Open)
+  "londontheatre.co.uk": { net: "tmpl", tmpl: "" },               // TodayTix Group — check Sovrn / its own network when applying
+  "atgtickets.":         { net: "partnerize", camref: "" },        // ATG / LOVEtheatre — Partnerize (VERIFIED active): signup.partnerize.com/signup/en/ambassadortheatregroup
+  "broadwaydirect.com":  { net: "awin", mid: "28987", affid: "" }, // Broadway Direct — Awin merchant 28987 (VERIFIED exists; Nederlander)
 };
 // Primary-link preference when a show has several ticket links (higher commission
 // first). Used by the link-priority layer (Phase 2). Host-substring order.
