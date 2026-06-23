@@ -356,6 +356,15 @@ function tooltipHtml(show) {
     </div></div>`;
 }
 
+// Platform icon for a ticket host. Google's favicon service returns a generic globe
+// for Chinese sites (damai/juooo…), so curated brand logos override it; everything
+// else falls back to the live favicon (works for todaytix/ticketmaster/atg/…).
+const LOGO_MAP = { "damai": "logos/damai.png" };   // host-substring → rehosted logo
+function platformIcon(host) {
+  for (const k in LOGO_MAP) if (host.includes(k)) return LOGO_MAP[k];
+  return `https://www.google.com/s2/favicons?domain=${host}&sz=64`;
+}
+
 function popupHtml(show) {
   const poster = posterFull(show.image, 400);
   const img = poster ? `<img class="pop-poster" src="${esc(poster)}" alt="">` : "";
@@ -371,7 +380,7 @@ function popupHtml(show) {
     const u = safeUrl(l.url); if (!u) return "";
     const lab = esc(l.label || l.country || "");
     let host = ""; try { host = new URL(u).hostname; } catch { /* */ }
-    const ico = host ? `https://www.google.com/s2/favicons?domain=${host}&sz=64` : "";
+    const ico = host ? platformIcon(host) : "";
     return `<a class="pop-tile" href="${esc(affiliateUrl(u))}" target="_blank" rel="noopener" title="${lab}">
       <span class="pop-tile-ico">${ico ? `<img src="${esc(ico)}" alt="" loading="lazy" onerror="this.style.display='none'">` : ""}</span>
       <span class="pop-tile-label">${lab}</span></a>`;

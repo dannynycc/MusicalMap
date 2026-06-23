@@ -11,6 +11,13 @@
 
 ---
 
+## [v0.62.1] - 2026-06-23 21:04
+### 新增 — 大麥彩虹 logo + 聚橙的劇加上大麥購票連結
+- **指定 logo 覆蓋**(`js/app.js` `LOGO_MAP` + `platformIcon()`):Google favicon 服務對中國站只回通用地球圖,故為大麥放上**官方彩虹 logo**(`logos/damai.png`,取自 App Store 官方 App icon、親眼驗證)。所有大麥連結(保利巡演 + 聚橙)都顯示彩虹,辨識度高;其餘平台仍用 favicon。
+- **`scrapers/china_juooo.py`**:聚橙的劇除了 `m.juooo.com/ticket/{schedular_id}`,**另加一條大麥搜尋連結**(`聚橙` + `大麥` 兩個 tile),中國買家多用大麥。
+- **修 bug**:china_juooo 的 showSearch 對「無音樂劇的城市」會回 `result:[]`(list 非 dict),導致 `res.get(...)` 崩潰(掃到該城市才觸發)。加 `isinstance` 守衛。
+- headless Chrome 截圖驗證:怨种闺蜜 popup 顯示 聚橙 + 大麥(彩虹)兩 tile 正常。
+
 ## [v0.62.0] - 2026-06-23 20:02
 ### UI — 售票連結改成「各平台 logo 方形 tile 並排」
 - popup 的售票連結從「全寬綠色文字按鈕」改為**方形 logo tile 一排**(`js/app.js` popupHtml + `css/style.css` `.pop-tiles`/`.pop-tile`):每個售票站顯示**自己的 favicon + 名稱**,比一排同色按鈕清楚。官網優先、其餘票務接續,affiliate 包裝不變。

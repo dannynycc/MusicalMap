@@ -159,6 +159,8 @@ def main():
                              "page": page, "pageSize": 50}).get("data", {}).get("result", {})
             except Exception:  # noqa: BLE001
                 break
+            if not isinstance(res, dict):   # some cities return result:[] (no musicals) → skip
+                break
             lst = res.get("list") or []
             for s in lst:
                 found.setdefault(s["show_id"], s)
@@ -183,12 +185,19 @@ def main():
         # project route by show_id if a session id wasn't found.
         ticket = (f"https://m.juooo.com/ticket/{sched}" if sched
                   else f"https://m.juooo.com/next/project/detail/{sid}")
+        # Offer BOTH the Juooo page (works in browser) and a Damai search (China's main
+        # ticketing site — many buyers prefer it). 大麥 by title, same as the Poly source.
+        damai = "https://search.damai.cn/search.htm?keyword=" + urllib.parse.quote(title)
         shows[f"juooo-{sid}"] = {
             "id": f"juooo-{sid}", "title": title, "type": "limited",
             "venue": vname or s.get("venue_name") or "", "city": CITY_EN.get(city_cn, city_cn),
             "country": "China", "lat": lat, "lng": lng,
             "start_date": iso(s.get("show_start_time")), "end_date": iso(s.get("show_end_time")),
             "ticket_url": ticket,
+            "ticket_links": [
+                {"label": "聚橙", "url": ticket, "kind": "ticketing"},
+                {"label": "大麥", "url": damai, "kind": "ticketing"},
+            ],
             "image": s.get("pic") or None,
             "tour_name": None, "verified": True, "source": "juooo.com",
         }
