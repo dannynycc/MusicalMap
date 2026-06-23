@@ -11,31 +11,28 @@
 ## 0. 先備好(共用前提,沒這些會卡審核)
 
 - [x] **隱私權政策頁**(`privacy.html`)+ **使用條款頁**(`terms.html`)— ✅ 已建立,首頁頁尾與各頁導覽皆可連達。
-- [ ] **收款資料**:PayPal 或銀行帳戶。
-- [ ] **稅表 W-8BEN**(你在台灣=非美國人,Impact/網路申請時會要你線上填,證明免美國預扣稅)。
+- [x] **收款資料**:美國銀行帳戶 EFT(免手續費,直收 USD)— ✅ 已設定(Impact)。
+- [x] **稅表 W-8BEN**(台灣=非美國人,0% 預扣、無 treaty、電子收件同意)— ✅ 已於 2026-06-23 線上送出。
 - [ ] 網站網址:`https://dannynycc.github.io/MusicalMap/`(申請時填這個)。
 - [ ] 簡述受眾:「全球音樂劇即時地圖,導流到各售票平台」。
 
 ---
 
-## 1. Ticketmaster → Impact(量最大,先做)
+## 1. Ticketmaster → Impact ✅ 已上線(2026-06-23)
 
-我們連出去 **~915 條** TM 連結。
+地圖連出去的 TM 連結:**612 齣劇有 TM 連結**(美 385 / 英 86 / 加 21 / 墨 18…)。
 
-**申請**
-1. 到 **https://app.impact.com**(或 https://impact.com)註冊 **Partner / Publisher** 帳號(免費)。
-2. 填網站、受眾、收款、W-8BEN。
-3. 進 Impact Marketplace 搜尋 **「Ticketmaster」**(Ticketmaster Global Affiliate Program)→ 申請加入。約幾天審核。
+**狀態:核准 + 帳務 + 程式全部完成。**
+- ✅ Impact Partner 帳號核准。
+- ✅ 間接稅(not registered)、收款(美國銀行 EFT)、地址(台灣)、**W-8BEN**(非美國人、0% 預扣、無 treaty、電子收件同意)全部送出。
+- ✅ 追蹤連結 ID 已填進 **`js/config.js` 的 `MM_CONFIG.IMPACT`**(不寫死在邏輯):
+  `domain=ticketmaster.evyy.net, account=7408739, campaign=264167, ad=4272, subId1=musicalmap`。
+- ✅ `js/app.js` 的 `affiliateUrl()` 會把任何 `ticketmaster.*` 售票連結包成 deep-link
+  `https://ticketmaster.evyy.net/c/7408739/264167/4272?u={URL-encoded 該劇TM頁}&subId1=musicalmap`
+  —— 使用者仍導向**該劇頁面**,只是帶上分潤追蹤;非 TM 連結原樣不動;已是追蹤網域的不重複包。
+- ✅ `index.html` 補載 `config.js`(原本只有 me/u 頁載)。
 
-**核准後要拿的 ID**(Impact 後台 → Links / Track a Link 或 Account Settings)
-- [ ] 你的 **Impact 追蹤網域**(像 `imp.pxf.io`,或你的 vanity 網域)
-- [ ] **Account ID**(數字)
-- [ ] **Ad ID** 與 **Campaign ID**(從 Ticketmaster 那個 program 的 link 產生器看到)
-
-**對應連結格式**(已寫在 app.js 範本)
-```
-https://{追蹤網域}/c/{AccountID}/{AdID}/{CampaignID}?u={URL-encoded 目的網址}
-```
+**待後台驗證(誠實標注)**:美站 ticketmaster.com 有把握歸佣;英/加/澳等**各國 TM 網域是否同計畫歸佣**,要等有點擊後在 Impact dashboard 看 `subId1=musicalmap` 的數據確認。
 
 **注意**:佣金低(約 $0.30/單,實際看後台合約);**開賣前 + 開賣首 24 小時的首賣不計佣**;30 天最後點擊歸因。
 

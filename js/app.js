@@ -59,23 +59,34 @@ function safeUrl(u) {
 //   • londontheatre.co.uk ....... TodayTix Group, via Impact (~1-2%; NOT ATG/Awin — verified)
 //   • stage-entertainment.de .... German networks (~4-7%)
 // (Korea/Hungary/Taiwan/Japan official sources have no public program → passthrough.)
-const AFFILIATE = {
-  // Impact: tracking domain + account/ad/campaign IDs come from your Impact dashboard.
-  // "ticketmaster.": (u) => `https://imp.pxf.io/c/ACCOUNTID/ADID/CAMPAIGNID?u=${encodeURIComponent(u)}`,
-  // londontheatre.co.uk = TodayTix Group → also Impact (same account as Ticketmaster):
-  // "londontheatre.co.uk": (u) => `https://imp.pxf.io/c/ACCOUNTID/ADID/CAMPAIGNID?u=${encodeURIComponent(u)}`,
-  // Partnerize: camref from your ATG/Partnerize dashboard; destination is appended.
-  // "atgtickets.com": (u) => `https://prf.hn/click/camref:CAMREF/destination:${encodeURIComponent(u)}`,
-  // Awin template (kept for if you later add London Theatre Direct / Broadway Direct):
-  // "<awin-merchant-domain>": (u) => `https://www.awin1.com/cread.php?awinmid=MID&awinaffid=AFFID&ued=${encodeURIComponent(u)}`,
-};
+// host-substring → wrapper(originalUrl). Built from MM_CONFIG.IMPACT (js/config.js)
+// so the live account IDs live in config, not hard-coded in logic.
+const AFFILIATE = {};
+(() => {
+  const IMP = (window.MM_CONFIG || {}).IMPACT || {};
+  const tm = IMP.TICKETMASTER;
+  if (tm && tm.domain && tm.account) {
+    // Impact deep-link: lands the buyer on the SAME page (the `u=` destination),
+    // now cookied to our account so the sale is attributed to us.
+    AFFILIATE["ticketmaster."] = (u) => {
+      let link = `https://${tm.domain}/c/${tm.account}/${tm.campaign}/${tm.ad}?u=${encodeURIComponent(u)}`;
+      if (IMP.SUBID) link += `&subId1=${encodeURIComponent(IMP.SUBID)}`;
+      return link;
+    };
+  }
+  // Other networks to wire when their links/programs are confirmed (templates):
+  //   londontheatre.co.uk → TodayTix via Impact (same account):  imp.pxf.io/c/ACCT/AD/CAMP?u=…
+  //   atgtickets.com      → Partnerize:  prf.hn/click/camref:CAMREF/destination:…
+  //   <awin merchant>     → Awin:  awin1.com/cread.php?awinmid=MID&awinaffid=AFFID&ued=…
+})();
 function affiliateUrl(u) {
   if (!u) return u;
   try {
     const host = new URL(u).hostname;
+    if (host.endsWith("evyy.net") || host.endsWith("pxf.io") || host.endsWith("prf.hn")) return u;  // already a tracking link — don't double-wrap
     for (const key in AFFILIATE) if (host.includes(key)) return AFFILIATE[key](u);
   } catch { /* leave as-is */ }
-  return u;   // default: passthrough (no commission program configured yet)
+  return u;   // default: passthrough (no commission program configured for this domain)
 }
 
 // CDN-side thumbnailing: request a small CROPPED square-ish poster for markers
