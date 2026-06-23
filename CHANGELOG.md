@@ -11,6 +11,17 @@
 
 ---
 
+## [v0.58.0] - 2026-06-23 11:51
+### 新增 — Ticketmaster 分潤(Impact)上線
+- Impact 分潤計畫核准 + 帳務(美國銀行 EFT)+ 稅表(W-8BEN,非美國人 0% 預扣)全部完成 → **把追蹤碼接進地圖售票連結**。
+- **`js/config.js`**:新增 `MM_CONFIG.IMPACT`(Ticketmaster 追蹤 ID:`ticketmaster.evyy.net` / account 7408739 / campaign 264167 / ad 4272 / subId1 `musicalmap`)。ID 放 config**不寫死**在邏輯;這些是公開值(出現在每條外連)。
+- **`js/app.js`**:`affiliateUrl()` 改由 config 建表。任何 `ticketmaster.*` 售票連結自動包成 deep-link `…/c/7408739/264167/4272?u={URL-encoded 該劇TM頁}&subId1=musicalmap` —— 使用者**仍導向該劇頁面**,只是帶上分潤追蹤;非 TM 連結原樣;已是追蹤網域(evyy.net/pxf.io/prf.hn)的不重複包。
+- **`index.html`**:補載 `js/config.js`(原本只有 me/u 頁載,主地圖沒載 → 否則讀不到 IMPACT 設定)。
+- 覆蓋:612 齣有 TM 連結的劇(美 385 / 英 86 / 加 21 / 墨 18…),其餘 ~830 齣售票為別家(passthrough 不變)。
+- 驗證:node 邏輯測試 + headless Chrome 在 index.html 實測(config 載入順序、deep-link 目的地保留、subId 標籤、非 TM passthrough、不重複包)全綠。
+- 待後台驗證:美站 ticketmaster.com 有把握歸佣;各國 TM 網域是否同計畫,待有點擊後看 dashboard 的 `subId1=musicalmap` 數據確認。
+- 文件:`docs/AFFILIATE_SETUP.md` §1 標為已上線、§0 勾掉收款/W-8BEN;README 對應條目改 ✅。
+
 ## [v0.57.2] - 2026-06-23 01:22
 ### 文件 — 記錄「系統性抓過去版本」的決策(換 session 前)
 - `docs/DESIGN_productions.md` 加 §11 決策紀錄:評估後**否決 Wikidata / Theatricalia** 作為 archival 版本來源(實測 Theatricalia 嚴重偏 UK、整庫無 Wicked、非英語劇歸零、無海報、ODbL share-alike);記錄目前已 scale 的部分(live 自動分群、個人 `poster_override`)與未解的「共享層 scale」=自助 UGC 貢獻迴路(已暫緩,明天續)。
