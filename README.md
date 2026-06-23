@@ -136,5 +136,5 @@ python scrapers/build_shows.py        # 合併成 data/shows.json
 - ✅ **Production／版本層（v0.57.0，見 `docs/DESIGN_productions.md`）**：足跡記錄可選「版本／製作」（如歌劇魅影：倫敦/北美/日本四季…各國 live 版本 + 台灣巡演/25 週年 RAH 等 archival 版本），各帶正確海報；未收錄的版本可貼「自訂海報網址」。沒在演的劇（如 Love Never Dies／愛無止盡）也進自動完成並有縮圖。海報解析序 `自訂→版本→作品→♪`。`gen_catalog.py` 自動依國家分群產生 live 版本；`scrapers/audit_productions.py`（CI）守海報。
 - ✅ 座標修正機制：NYC 範圍檢查、lat/lng 對調偵測、城市中心點 fallback、著名劇院手動座標表、`overrides.json`、geocode 快取。
 - ✅ 同劇合併（標題正規化）、正式劇名覆蓋、巡演各自海報、cluster 線性縮放、地圖／衛星切換、多地點 overview、popup 完整海報、多地區售票連結。
-- ✅ **Ticketmaster 分潤已上線（Impact，2026-06-23）**：約 600 齣有 TM 連結的劇（隨每日資料變動），售票按鈕自動包成 deep-link（導向**該劇** TM 頁 + `subId1=musicalmap` 追蹤），非 TM 連結原樣。追蹤 ID 放 `js/config.js` 的 `MM_CONFIG.IMPACT`，邏輯在 `js/app.js` 的 `affiliateUrl()`。詳見 `docs/AFFILIATE_SETUP.md`。
+- ✅ **多平台分潤框架（`MM_CONFIG.AFFILIATE` + `affiliateUrl()`，見 `docs/DESIGN_affiliate.md`）**：render 時把外連售票 URL 依 host 包成分潤連結（資料層只存乾淨 URL，換 ID = 改 config 一行）。支援 Impact／Partnerize／Awin 三網絡;每個程式 dormant，填碼即生效。**Ticketmaster（Impact，~600 齣）已 live**；ATG（Partnerize，219）／londontheatre·TodayTix（Impact，45）／Broadway Direct（Awin）待填碼;TodayTix 改導(matcher)為 Phase 2。
 - 🟡 West End 少數冷門場館 geocode 為近似位置（可編 `data/venues.json` 校正）。

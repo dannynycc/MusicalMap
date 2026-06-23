@@ -25,8 +25,8 @@
 **狀態:核准 + 帳務 + 程式全部完成。**
 - ✅ Impact Partner 帳號核准。
 - ✅ 間接稅(not registered)、收款(美國銀行 EFT)、地址(台灣)、**W-8BEN**(非美國人、0% 預扣、無 treaty、電子收件同意)全部送出。
-- ✅ 追蹤連結 ID 已填進 **`js/config.js` 的 `MM_CONFIG.IMPACT`**(不寫死在邏輯):
-  `domain=ticketmaster.evyy.net, account=7408739, campaign=264167, ad=4272, subId1=musicalmap`。
+- ✅ 追蹤連結 ID 已填進 **`js/config.js` 的 `MM_CONFIG.AFFILIATE["ticketmaster."]`**(多平台框架,見 `docs/DESIGN_affiliate.md`;不寫死在邏輯):
+  `{net:"impact", domain:"ticketmaster.evyy.net", ids:"7408739/264167/4272"}` + `AFFILIATE_SUBID:"musicalmap"`。
 - ✅ `js/app.js` 的 `affiliateUrl()` 會把任何 `ticketmaster.*` 售票連結包成 deep-link
   `https://ticketmaster.evyy.net/c/7408739/264167/4272?u={URL-encoded 該劇TM頁}&subId1=musicalmap`
   —— 使用者仍導向**該劇頁面**,只是帶上分潤追蹤;非 TM 連結原樣不動;已是追蹤網域的不重複包。

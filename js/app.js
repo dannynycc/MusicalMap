@@ -59,34 +59,37 @@ function safeUrl(u) {
 //   • londontheatre.co.uk ....... TodayTix Group, via Impact (~1-2%; NOT ATG/Awin — verified)
 //   • stage-entertainment.de .... German networks (~4-7%)
 // (Korea/Hungary/Taiwan/Japan official sources have no public program → passthrough.)
-// host-substring → wrapper(originalUrl). Built from MM_CONFIG.IMPACT (js/config.js)
-// so the live account IDs live in config, not hard-coded in logic.
-const AFFILIATE = {};
-(() => {
-  const IMP = (window.MM_CONFIG || {}).IMPACT || {};
-  const tm = IMP.TICKETMASTER;
-  if (tm && tm.domain && tm.account) {
-    // Impact deep-link: lands the buyer on the SAME page (the `u=` destination),
-    // now cookied to our account so the sale is attributed to us.
-    AFFILIATE["ticketmaster."] = (u) => {
-      let link = `https://${tm.domain}/c/${tm.account}/${tm.campaign}/${tm.ad}?u=${encodeURIComponent(u)}`;
-      if (IMP.SUBID) link += `&subId1=${encodeURIComponent(IMP.SUBID)}`;
-      return link;
-    };
-  }
-  // Other networks to wire when their links/programs are confirmed (templates):
-  //   londontheatre.co.uk → TodayTix via Impact (same account):  imp.pxf.io/c/ACCT/AD/CAMP?u=…
-  //   atgtickets.com      → Partnerize:  prf.hn/click/camref:CAMREF/destination:…
-  //   <awin merchant>     → Awin:  awin1.com/cread.php?awinmid=MID&awinaffid=AFFID&ued=…
-})();
+// Multi-network affiliate wrapping — config in MM_CONFIG.AFFILIATE (js/config.js).
+// One place, at render time: data stays raw, changing an ID is a config edit, never a
+// re-scrape. Each program is independent and DORMANT until its creds are filled.
+const AFF = (window.MM_CONFIG || {}).AFFILIATE || {};
+const AFF_SUBID = (window.MM_CONFIG || {}).AFFILIATE_SUBID || "";
+// already-a-tracking-link hosts (never double-wrap)
+const AFF_TRACKING = /(?:\.evyy\.net|\.pxf\.io|\.sjv\.io|prf\.hn|\.awin1\.com)$/i;
+function affReady(c) {
+  if (!c) return false;
+  if (c.net === "impact") return !!(c.domain && c.ids);
+  if (c.net === "partnerize") return !!c.camref;
+  if (c.net === "awin") return !!(c.mid && c.affid);
+  return false;
+}
+function affWrap(c, u) {
+  const e = encodeURIComponent(u);
+  if (c.net === "impact") return `https://${c.domain}/c/${c.ids}?u=${e}` + (AFF_SUBID ? `&subId1=${encodeURIComponent(AFF_SUBID)}` : "");
+  if (c.net === "partnerize") return `https://prf.hn/click/camref:${c.camref}/destination:${e}`;
+  if (c.net === "awin") return `https://www.awin1.com/cread.php?awinmid=${c.mid}&awinaffid=${c.affid}&ued=${e}`;
+  return u;
+}
 function affiliateUrl(u) {
   if (!u) return u;
   try {
     const host = new URL(u).hostname;
-    if (host.endsWith("evyy.net") || host.endsWith("pxf.io") || host.endsWith("prf.hn")) return u;  // already a tracking link — don't double-wrap
-    for (const key in AFFILIATE) if (host.includes(key)) return AFFILIATE[key](u);
+    if (AFF_TRACKING.test(host)) return u;                 // already a tracking link
+    for (const key in AFF) {
+      if (host.includes(key) && affReady(AFF[key])) return affWrap(AFF[key], u);
+    }
   } catch { /* leave as-is */ }
-  return u;   // default: passthrough (no commission program configured for this domain)
+  return u;   // passthrough — no (ready) program for this domain
 }
 
 // CDN-side thumbnailing: request a small CROPPED square-ish poster for markers

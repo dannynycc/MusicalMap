@@ -11,6 +11,15 @@
 
 ---
 
+## [v0.60.0] - 2026-06-23 15:13
+### 新增 — 多平台分潤框架(Phase 1)+ 架構定案
+- `affiliateUrl()` 從「只 Ticketmaster」重構為**多網絡、config 化**:`MM_CONFIG.AFFILIATE`(key=外連 host,value=`{net,…creds}`)支援 **Impact / Partnerize / Awin** 三種網絡;每個程式 **dormant**(creds 沒填齊→passthrough,連結照常不抽成),**填碼即生效**。
+  - 已登記:`ticketmaster.`(Impact,live)、`atgtickets.`(Partnerize,219 齣待 camref)、`londontheatre.co.uk`(Impact/TodayTix,45 齣待 domain+ids)、`todaytix.com`(Impact,Phase 2)、`broadwaydirect.com`(Awin mid 28987,待 affid)。
+  - 防呆:已是追蹤網域(evyy.net/pxf.io/sjv.io/prf.hn/awin1.com)不重複包;`AFFILIATE_PRIORITY` 預留優先序(Phase 2 用)。
+- **鐵則**:資料層只存乾淨原始 URL,分潤碼一律 render 時才包 → 換/加 ID = 改 config 一行,**永不重建資料**。node + headless Chrome 實測:TM 照常包、dormant 平台 passthrough、填碼後 Partnerize/Awin 格式正確、不重複包、index.html 無 JS error。
+- 新增 **`docs/DESIGN_affiliate.md`**:兩種接法(wrap 現有 / re-point 新平台)、三層架構、**自動化程度表**(唯一無法自動=申請帳號)、各平台狀態、Phase 2(TodayTix matcher 走 CI + 信心門檻自動取捨)計畫、品牌端申請須知。
+- 文件:README 分潤條目改多平台框架;AFFILIATE_SETUP 更新 `MM_CONFIG.IMPACT`→`MM_CONFIG.AFFILIATE`。
+
 ## [v0.59.0] - 2026-06-23 14:38
 ### 新增資料來源 — 聚橙 juooo(中國第 5 個官方 API)
 - 新增 **`scrapers/china_juooo.py`**:逆向聚橙官方 H5 API(**不需簽章、無 BaXia 牆**)。
