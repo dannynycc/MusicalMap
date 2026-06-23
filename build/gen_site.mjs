@@ -6,6 +6,7 @@
 // for humans, reading the matching data variant. Shared js/css/data load via absolute
 // /MusicalMap/ paths so the page works from a subdirectory.
 import fs from "fs";
+import crypto from "crypto";
 
 const BASE = "/MusicalMap/";
 const SITE = "https://dannynycc.github.io/MusicalMap";
@@ -20,9 +21,14 @@ const VARIANTS = {
 const esc = (s) => String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 const JSONLD_CAP = 300; // cap Event ItemList; full text list is unbounded (cheap)
 // cache-bust token for js/css so returning visitors never run a stale app.js (the bug
-// where a cached old app.js fetched a relative data path and showed an empty map).
-const META = JSON.parse(fs.readFileSync("data/shows.json", "utf8")).meta || {};
-const VER = String(META.generated_at || "1").replace(/\D/g, "").slice(0, 12) || "1";
+// where a cached old app.js fetched a relative data path and showed an empty map). Token
+// is a content hash of the actual assets → it changes IFF the js/css change.
+const ASSETS = ["js/app.js", "js/i18n.js", "js/config.js", "css/style.css"];
+const VER = (() => {
+  const h = crypto.createHash("md5");
+  for (const p of ASSETS) h.update(fs.readFileSync(p));
+  return h.digest("hex").slice(0, 10);
+})();
 
 function hreflangLinks() {
   return [

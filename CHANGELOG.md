@@ -11,6 +11,11 @@
 
 ---
 
+## [v0.64.3] - 2026-06-24 01:23
+### 修正 — 地圖填滿視窗高度(消除上下灰底)+ cache-bust 改用內容雜湊
+- **地圖上下灰底**:Leaflet 在低 zoom 時世界高度 < 容器高度會露出灰色背景。`js/app.js`:(1) 動態 `minZoom = ceil(log2(視窗高/256))` → 世界永遠蓋滿高度、zoom out 不會露灰;(2) `maxBounds` 緯度夾在 ±85、經度留 ±Infinity → 拖曳也不露灰,但**水平無限捲動保留**;(3) `maxBoundsViscosity:1`。headless 驗證 zoom 到底無灰底、marker 正常、水平仍 wrap。
+- **cache-bust token 改用 js/css 內容 MD5 雜湊**(取代資料時間戳):只改 app.js 時時間戳不變會讓回訪者吃舊檔;改雜湊後**任何 js/css 變動都換新 token**,回訪者必拿到新版。
+
 ## [v0.64.2] - 2026-06-24 01:15
 ### 修正 — js/css cache-busting(回訪者看到空地圖的 bug)
 - 症狀:回訪者進 `/zh-hant/` 等變體頁「所有 marker 消失」。原因:瀏覽器**快取了舊版 `js/app.js`**(抓相對 `data/shows.json`,在子目錄下變 404)→ 無資料。全新快取的 headless 載入線上頁則正常,確認是快取問題非線上 bug。

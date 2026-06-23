@@ -137,7 +137,24 @@ function overlapsMonth(show) {
 }
 
 // ---------- Map ----------
-const map = L.map("map", { zoomControl: true, worldCopyJump: true }).setView([42, -40], 3);
+const map = L.map("map", {
+  zoomControl: true,
+  worldCopyJump: true,
+  maxBoundsViscosity: 1.0,            // hard stop at the vertical edges (no grey strips)
+}).setView([42, -40], 3);
+// Never show the grey backdrop above/below the world: the world must always cover the
+// full viewport height. (1) minZoom is raised so 256·2^z ≥ box height — you can't zoom
+// out into grey; (2) maxBounds clamps latitude to the world while leaving longitude
+// effectively unbounded (Infinity) so horizontal wrap/scroll still works.
+function fillViewportHeight() {
+  const h = map.getSize().y;
+  const minZ = Math.ceil(Math.log2(Math.max(1, h) / 256));
+  if (map.getMinZoom() !== minZ) map.setMinZoom(minZ);
+  if (map.getZoom() < minZ) map.setZoom(minZ);
+}
+map.setMaxBounds([[-85, -Infinity], [85, Infinity]]);
+fillViewportHeight();
+map.on("resize", fillViewportHeight);
 // Base layers: light street map (default) + satellite imagery, toggle top-right.
 const streets = L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png", {
   attribution: "&copy; OpenStreetMap &copy; CARTO",
