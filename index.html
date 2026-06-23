@@ -1,104 +1,33 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- 部分票務 CDN(如 Sympla)對外站 referer 做防盜連會回 403 → 海報破圖。
-       送 no-referrer 後這些 CDN 回 200,其餘 CDN 不受影響。 -->
-  <meta name="referrer" content="no-referrer" />
-  <!-- Impact (impact.com) affiliate site-ownership verification -->
-  <meta name='impact-site-verification' value='5862030b-2ad5-46e3-ba52-429cfcca041d'>
-
-  <!-- SEO: bilingual title + description so crawlers index meaningful text in both
-       languages even though the UI is toggled client-side. ?lang=en|zh are the
-       per-language indexable URLs that hreflang points at; JS reads ?lang on load. -->
   <title>MusicalMap — live world map of musicals 全球音樂劇即時地圖</title>
-  <meta name="description" content="An interactive map of musicals playing around the world right now — Broadway, West End, tours and original productions across 40+ countries. 全球正在上演的音樂劇即時地圖：百老匯、西區、巡演與各國原創音樂劇。" />
+  <meta name="description" content="An interactive map of musicals playing around the world right now — Broadway, West End, tours and original productions. 全球正在上演的音樂劇即時地圖。" />
   <link rel="canonical" href="https://dannynycc.github.io/MusicalMap/" />
-  <link rel="alternate" hreflang="en" href="https://dannynycc.github.io/MusicalMap/?lang=en" />
-  <link rel="alternate" hreflang="zh-Hant" href="https://dannynycc.github.io/MusicalMap/?lang=zh" />
+  <link rel="alternate" hreflang="en" href="https://dannynycc.github.io/MusicalMap/en/" />
+  <link rel="alternate" hreflang="zh-Hans" href="https://dannynycc.github.io/MusicalMap/zh-hans/" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://dannynycc.github.io/MusicalMap/zh-hant/" />
   <link rel="alternate" hreflang="x-default" href="https://dannynycc.github.io/MusicalMap/" />
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="MusicalMap — live world map of musicals" />
-  <meta property="og:description" content="Musicals playing around the world right now — Broadway, West End, tours & original productions." />
-  <meta property="og:url" content="https://dannynycc.github.io/MusicalMap/" />
-  <meta name="twitter:card" content="summary" />
-
-  <!-- Structured data for search + AI answer engines. -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "MusicalMap",
-    "alternateName": "全球音樂劇即時地圖",
-    "url": "https://dannynycc.github.io/MusicalMap/",
-    "description": "An interactive world map of musicals playing right now — Broadway, West End, tours and original productions across 40+ countries. Updated daily.",
-    "applicationCategory": "EntertainmentApplication",
-    "operatingSystem": "Web",
-    "browserRequirements": "Requires JavaScript",
-    "inLanguage": ["en", "zh-Hant"],
-    "isAccessibleForFree": true,
-    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
-  }
+  <script>
+    (function () {
+      var v = localStorage.getItem("mm_variant");
+      if (v !== "en" && v !== "zh-hans" && v !== "zh-hant") {
+        var l = (navigator.language || "en").toLowerCase();
+        v = l.indexOf("zh") === 0
+          ? (l.indexOf("cn") > -1 || l.indexOf("hans") > -1 || l.indexOf("sg") > -1 ? "zh-hans" : "zh-hant")
+          : "en";
+      }
+      location.replace("/MusicalMap/" + v + "/");
+    })();
   </script>
-
-  <!-- Leaflet -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
-  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
-
-  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-  <header id="topbar">
-    <a id="brand" href="index.html">
-      <span class="logo">Musical<span class="logo-em">Map</span></span>
-      <span class="tagline" data-i18n="tagline">此刻全球正在上演的音樂劇</span>
-    </a>
-    <nav id="topnav">
-      <div id="lang-switch" role="group" aria-label="Language / 語言">
-        <span class="globe" aria-hidden="true">🌐</span>
-        <button type="button" class="lang-opt" data-lang="zh" lang="zh-Hant">中文</button>
-        <button type="button" class="lang-opt" data-lang="en" lang="en">English</button>
-      </div>
-      <a class="nav-link" href="theatres.html" data-i18n="nav_theatres">🎭 所有劇院</a>
-      <a id="mine-link" class="nav-cta" href="me.html" data-i18n="nav_mine">⭐ 我的音樂劇足跡</a>
-    </nav>
-  </header>
-
-  <h1 class="sr-only">MusicalMap — live world map of musicals playing now · 全球此刻正在上演的音樂劇即時地圖</h1>
-
-  <div id="app">
-    <aside id="sidebar">
-      <div id="controls">
-        <input id="search" type="search" placeholder="搜尋劇名、城市、劇院…" data-i18n-ph="search_ph" autocomplete="off" />
-        <div id="tag-filters" role="group" aria-label="依類型篩選"></div>
-      </div>
-
-      <div id="count"></div>
-      <ul id="show-list"></ul>
-
-      <footer id="foot">
-        <span id="data-note"></span>
-        <div class="foot-links"><a href="privacy.html" data-i18n="privacy">隱私權政策</a> · <a href="terms.html" data-i18n="terms">使用條款</a></div>
-      </footer>
-    </aside>
-
-    <main id="map">
-      <div id="timebar">
-        <button id="time-play" class="tb-btn" title="自動播放時間軸（每月）" data-i18n-title="play_title">▶</button>
-        <button id="time-today" class="tb-btn tb-now" title="回到本月" data-i18n="today" data-i18n-title="today_title">本月</button>
-        <input id="time-range" type="range" min="0" max="36" value="0" step="1" />
-        <input id="time-month" class="tb-date" type="month" />
-      </div>
-    </main>
-  </div>
-
-  <!-- Leaflet JS -->
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
-  <script src="js/config.js"></script>
-  <script src="js/i18n.js"></script>
-  <script src="js/app.js"></script>
+  <p>MusicalMap — choose your language / 選擇語言:
+    <a href="/MusicalMap/zh-hant/">繁體中文</a> ·
+    <a href="/MusicalMap/zh-hans/">简体中文</a> ·
+    <a href="/MusicalMap/en/">English</a>
+  </p>
 </body>
 </html>

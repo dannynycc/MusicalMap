@@ -11,6 +11,16 @@
 
 ---
 
+## [v0.64.0] - 2026-06-24 01:01
+### 新增(階段2/2)— 繁/簡/英「三語獨立網址」+ 預渲染 + SEO/AI-search
+- **三套網址**:`/zh-hant/`、`/zh-hans/`、`/en/`,各為 **build 時預渲染的靜態 HTML**(劇目清單 + JSON-LD Event 寫進原始 HTML)→ Google **與不跑 JS 的 AI 爬蟲(GPTBot/ClaudeBot/Perplexity)都讀得到內容**。
+- `build/gen_site.mjs`:產三套 `index.html`(正確 `<html lang>`、title/description、canonical、**hreflang(zh-Hant/zh-Hans/en/x-default)**、JSON-LD WebApplication+ItemList、預渲染 `#show-list`、絕對 `/MusicalMap/` 資源路徑、語言切換 `<a>` 導向對應網址)+ **根目錄語言路由**(依 localStorage/瀏覽器轉址,附 x-default 連結)+ `sitemap.xml`(7 URL,xhtml:link hreflang)+ `robots.txt`(放行 12 個搜尋/AI bot)。
+- `js/i18n.js`:支援三語(en / zh=繁 / zh-hans=簡)。變體頁由 `window.MM_VARIANT` 固定語言;**簡體 UI 由 OpenCC(t2cn ~65KB)即時轉**(劇→剧、樂→乐…);舊頁(theatres/me)維持 `?lang` 相容。
+- `js/app.js`:變體頁載入 `data/variants/shows.{variant}.json`,資源走 `MM_BASE` 絕對路徑;中文判斷改 `isZh()`(繁簡皆是)。
+- `.github/workflows/update.yml`:加 Node + `npm install` + 跑 `gen_variants.mjs`/`gen_site.mjs`,把變體與預渲染頁納入每日提交;node_modules 不進 Pages artifact。
+- 本地 headless 三變體全驗證:繁(全繁)、簡(OpenCC 轉簡)、英(全英)UI + 地圖 + 側欄正常;原始 HTML 含預渲染劇目+JSON-LD。
+- 根 `index.html` 由「應用頁」改為「語言路由頁」(舊 `/MusicalMap/` 訪客轉址到對應語言)。
+
 ## [v0.63.0] - 2026-06-24 00:45
 ### 新增(階段1/2)— 繁/簡/英三語「資料變體」地基(OpenCC build-time 轉換)
 - 目標:繁體中文 / 簡體中文 / English 三語,選了「全站文字」(含劇名、地名、平台名)跟著變;且要 **SEO + AI-search friendly**。研究結論(已查證):AI 爬蟲(GPTBot/ClaudeBot/Perplexity)**不跑 JS** → 內容須 build 時就寫進靜態 HTML;Google 要求**每語言不同網址**(`/zh-hant//zh-hans//en/`);轉換用 **OpenCC**(`opencc-js`)。

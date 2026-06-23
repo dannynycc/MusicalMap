@@ -268,9 +268,36 @@
   // Priority: ?lang= URL param (the SEO-indexable per-language URL) > saved choice >
   // browser language. The URL param wins so hreflang links resolve to a stable language
   // and shared links keep their language.
-  const urlLang = new URLSearchParams(location.search).get("lang");
-  let LANG = (urlLang === "zh" || urlLang === "en") ? urlLang : localStorage.getItem("mm_lang");
-  if (LANG !== "zh" && LANG !== "en") LANG = (navigator.language || "en").toLowerCase().startsWith("zh") ? "zh" : "en";
+  // Variant pages (/en//zh-hans//zh-hant/) set window.MM_VARIANT — language is fixed by
+  // the URL and the switch navigates between trees. Legacy pages (theatres/me/…) fall back
+  // to the older ?lang= behaviour. DICT keys: en, zh (=Traditional), zh-hans (=Simplified).
+  const MV = window.MM_VARIANT;
+  let LANG, VARIANT;
+  if (MV === "en" || MV === "zh-hans" || MV === "zh-hant") {
+    VARIANT = MV;
+    LANG = MV === "en" ? "en" : MV === "zh-hans" ? "zh-hans" : "zh";
+    // Build the Simplified UI dict from the Traditional one. OpenCC (t2cn, ~65KB) is loaded
+    // only on zh-hans pages; if absent, degrade to Traditional strings rather than break.
+    if (LANG === "zh-hans" && !DICT["zh-hans"]) {
+      try {
+        const conv = window.OpenCC && OpenCC.Converter({ from: "tw", to: "cn" });
+        const out = {};
+        for (const k in DICT.zh) out[k] = conv ? conv(DICT.zh[k]) : DICT.zh[k];
+        DICT["zh-hans"] = out;
+      } catch (e) { DICT["zh-hans"] = DICT.zh; }
+    }
+    // remember choice for the root router + keep legacy pages (theatres/me) in step
+    try {
+      localStorage.setItem("mm_variant", VARIANT);
+      localStorage.setItem("mm_lang", LANG === "en" ? "en" : "zh");
+    } catch (e) { /* */ }
+  } else {
+    const urlLang = new URLSearchParams(location.search).get("lang");
+    LANG = urlLang ? (urlLang.indexOf("zh") === 0 ? "zh" : "en") : localStorage.getItem("mm_lang");
+    if (LANG !== "zh" && LANG !== "en") LANG = (navigator.language || "en").toLowerCase().startsWith("zh") ? "zh" : "en";
+    VARIANT = null;
+  }
+  const isZh = () => LANG === "zh" || LANG === "zh-hans";
 
   function t(key, vars) {
     let s = (DICT[LANG] && DICT[LANG][key]) ?? (DICT.en[key]) ?? key;
@@ -280,7 +307,7 @@
 
   // Localised "month year" for a Date — "2026年06月" vs "Jun 2026".
   function fmtYM(d) {
-    return LANG === "zh"
+    return isZh()
       ? `${d.getFullYear()}年${String(d.getMonth() + 1).padStart(2, "0")}月`
       : d.toLocaleDateString("en-US", { month: "short", year: "numeric" });
   }
@@ -291,13 +318,18 @@
     (root || document).querySelectorAll("[data-i18n]").forEach((el) => { el.textContent = t(el.dataset.i18n); });
     (root || document).querySelectorAll("[data-i18n-ph]").forEach((el) => { el.placeholder = t(el.dataset.i18nPh); });
     (root || document).querySelectorAll("[data-i18n-title]").forEach((el) => { el.title = t(el.dataset.i18nTitle); });
-    document.documentElement.lang = LANG === "zh" ? "zh-Hant" : "en";
-    // segmented switch: highlight the active language (autonyms stay as authored)
-    document.querySelectorAll("#lang-switch .lang-opt").forEach((b) => {
-      const on = b.dataset.lang === LANG;
-      b.classList.toggle("active", on);
-      b.setAttribute("aria-pressed", on ? "true" : "false");
-    });
+    document.documentElement.lang = VARIANT
+      ? (VARIANT === "en" ? "en" : VARIANT === "zh-hans" ? "zh-Hans" : "zh-Hant")
+      : (LANG === "zh" ? "zh-Hant" : "en");
+    // legacy segmented switch (buttons with data-lang); on variant pages the switch is
+    // <a> links whose .active is baked at build time, so skip the JS highlight there.
+    if (!VARIANT) {
+      document.querySelectorAll("#lang-switch .lang-opt").forEach((b) => {
+        const on = b.dataset.lang === LANG;
+        b.classList.toggle("active", on);
+        b.setAttribute("aria-pressed", on ? "true" : "false");
+      });
+    }
     const titleKey = document.documentElement.dataset.titleKey || "doc_title";
     document.title = t(titleKey);
   }
@@ -319,12 +351,16 @@
   }
 
   // expose
-  window.I18N = { t, fmtYM, applyStatic, setLang, get lang() { return LANG; } };
+  window.I18N = { t, fmtYM, applyStatic, setLang, get lang() { return LANG; }, get isZh() { return isZh(); }, get variant() { return VARIANT; } };
   window.t = t;
 
   document.addEventListener("DOMContentLoaded", () => {
     applyStatic();
-    document.querySelectorAll("#lang-switch .lang-opt").forEach((b) =>
-      b.addEventListener("click", () => { if (b.dataset.lang !== LANG) setLang(b.dataset.lang); }));
+    // legacy pages only: buttons toggle in place. On variant pages the switch is <a>
+    // links that navigate between /en//zh-hans//zh-hant/ (no JS needed).
+    if (!VARIANT) {
+      document.querySelectorAll("#lang-switch .lang-opt").forEach((b) =>
+        b.addEventListener("click", () => { if (b.dataset.lang !== LANG) setLang(b.dataset.lang); }));
+    }
   });
 })();

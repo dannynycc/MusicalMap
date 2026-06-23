@@ -34,6 +34,12 @@ jobs:
         with:
           python-version: "3.12"
 
+      # Node is used by the i18n build (opencc-js) to generate the per-language
+      # data variants and the prerendered /en //zh-hans //zh-hant/ pages.
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
       # Scrape only on schedule / manual run. On push the committed data is
       # already fresh (built locally), so we skip scraping and just deploy —
       # this avoids a push-vs-CI race on the data commit.
@@ -97,12 +103,24 @@ jobs:
           # the scraper no-ops and the committed ticketmaster.json is kept.
           TICKETMASTER_API_KEY: ${{ secrets.TICKETMASTER_API_KEY }}
 
+      # Regenerate the language variants + prerendered tri-URL site from the freshly
+      # built shows.json (OpenCC 簡⇄繁 + place/platform localization, prerendered HTML
+      # with JSON-LD so Google + JS-blind AI crawlers see content). See build/*.mjs.
+      - name: Build language variants & prerendered site
+        if: github.event_name != 'push'
+        run: |
+          npm install --no-audit --no-fund
+          node build/gen_variants.mjs
+          node build/gen_site.mjs
+          rm -rf node_modules    # keep it out of the Pages artifact (path: .)
+
       - name: Commit refreshed data (if changed)
         if: github.event_name != 'push'
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/*.json data/archive/*.json
+          git add data/*.json data/archive/*.json data/variants/*.json \
+                  index.html sitemap.xml robots.txt en zh-hans zh-hant
           if git diff --cached --quiet; then
             echo "No data changes."; exit 0
           fi

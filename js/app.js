@@ -416,7 +416,7 @@ function loadArchiveYear(y) {
   if (ARCH[y]) return Promise.resolve();
   if (!ARCH_INDEX || !ARCH_INDEX.years || !(y in ARCH_INDEX.years)) { ARCH[y] = []; return Promise.resolve(); }
   if (archLoading[y]) return archLoading[y];
-  archLoading[y] = fetch(`data/archive/${y}.json`, { cache: "no-store" })
+  archLoading[y] = fetch(`${window.MM_BASE || ""}data/archive/${y}.json`, { cache: "no-store" })
     .then((r) => r.json()).then((d) => { ARCH[y] = d.runs || []; })
     .catch(() => { ARCH[y] = []; });
   return archLoading[y];
@@ -542,7 +542,7 @@ function showGroupItem(items) {
   const multi = items.length > 1;
   const badge = first.verified ? "" : `<span class="badge-unverified">${esc(t("unverified"))}</span>`;
   const cities = [...new Set(items.map((s) => s.city))];
-  const citySep = I18N.lang === "zh" ? "、" : ", ";
+  const citySep = I18N.isZh ? "、" : ", ";
   const sub = multi
     ? `${cities.map(esc).join(citySep)}　·　${esc(t("loc_count", { n: items.length }))}`
     : first.type === "tour" ? `${esc(first.city)} · ${fmtDates(first)}` : esc(first.venue);
@@ -610,9 +610,15 @@ function focusShow(show) {
 }
 
 // ---------- Boot ----------
+// Variant pages (/en//zh-hans//zh-hant/) load their prebuilt, language-converted data file
+// from an absolute base; legacy/dev context falls back to the canonical data/shows.json.
+const MM_BASE = window.MM_BASE || "";
+const SHOWS_URL = window.MM_VARIANT
+  ? `${MM_BASE}data/variants/shows.${window.MM_VARIANT}.json`
+  : "data/shows.json";
 async function boot() {
   try {
-    const res = await fetch("data/shows.json", { cache: "no-store" });
+    const res = await fetch(SHOWS_URL, { cache: "no-store" });
     const data = await res.json();
     ALL = data.shows || [];
     DATA_UPDATED = data.meta?.generated_at || "";
@@ -624,7 +630,7 @@ async function boot() {
   // historical archive index (enables dragging the timeline into the past)
   if (SHOW_HISTORY) {
     try {
-      ARCH_INDEX = await (await fetch("data/archive/index.json", { cache: "no-store" })).json();
+      ARCH_INDEX = await (await fetch(`${MM_BASE}data/archive/index.json`, { cache: "no-store" })).json();
     } catch (e) { ARCH_INDEX = null; }   // archive optional — map still works without it
   }
   buildTagFilters();
