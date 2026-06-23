@@ -11,6 +11,13 @@
 
 ---
 
+## [v0.62.0] - 2026-06-23 20:02
+### UI — 售票連結改成「各平台 logo 方形 tile 並排」
+- popup 的售票連結從「全寬綠色文字按鈕」改為**方形 logo tile 一排**(`js/app.js` popupHtml + `css/style.css` `.pop-tiles`/`.pop-tile`):每個售票站顯示**自己的 favicon + 名稱**,比一排同色按鈕清楚。官網優先、其餘票務接續,affiliate 包裝不變。
+- icon 用 **Google favicon 服務即時取得**(`s2/favicons?domain={host}`)—— 任何售票站(含各劇官網、任何網域)自動有 icon,零維護、零 rehost;載入失敗則只留名稱(onerror 隱藏圖)。
+- tile 尺寸 58×66 調校成在 232px 寬的 `.pop-body` 內**剛好 3 個一排**(3×58+2×7=188)。headless Chrome 截圖驗證:Lion King 的 TodayTix／Broadway.org／Ticketmaster 三個 logo 並排正常。
+- 只影響主地圖(app.js);me/u 個人足跡頁不受影響(它們無售票按鈕)。
+
 ## [v0.61.3] - 2026-06-23 18:04
 ### 變更 — Sovrn 一把 key 擴成「售票站 catch-all」(深入查文件後)
 - 研究 agent 讀透 Sovrn KB + Developer Center,確認:**Redirect API 是自建連結網站的正解**(JS 版是給部落格自動改連結用,我們不需要那段 `vglnk.js`);**一把 site key 可變現任何 in-network merchant**(out-of-network 原樣通過,無害);CPA+CPC 都計;`sovrn.co` 是 `redirect.viglink.com` 的新等價網域。

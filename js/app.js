@@ -359,21 +359,23 @@ function tooltipHtml(show) {
 function popupHtml(show) {
   const poster = posterFull(show.image, 400);
   const img = poster ? `<img class="pop-poster" src="${esc(poster)}" alt="">` : "";
-  const links = Array.isArray(show.ticket_links) ? show.ticket_links.filter((l) => safeUrl(l.url)) : [];
-  let ticket;
-  if (links.length > 1) {
-    // 官網永遠在售票連結上方；按鈕等寬堆疊對齊
-    const row = (label, arr) => arr.length
-      ? `<div class="pop-link-group"><span class="pl-label">${label}</span>${arr.map((l) =>
-          `<a class="pop-cta sm" href="${esc(affiliateUrl(safeUrl(l.url)))}" target="_blank" rel="noopener">${esc(l.label || l.country)} →</a>`).join("")}</div>`
-      : "";
-    ticket = row(t("official"), links.filter((l) => l.kind === "official"))
-           + row(t("tickets"), links.filter((l) => l.kind !== "official"));
-  } else {
-    const url = safeUrl(show.ticket_url) || (links[0] && safeUrl(links[0].url));
-    const label = show.link_kind === "official" ? t("buy_official") : t("buy_tickets");
-    ticket = url ? `<a class="pop-cta" href="${esc(affiliateUrl(url))}" target="_blank" rel="noopener">${esc(label)}</a>` : "";
+  let links = Array.isArray(show.ticket_links) ? show.ticket_links.filter((l) => safeUrl(l.url)) : [];
+  if (!links.length && safeUrl(show.ticket_url)) {
+    links = [{ url: show.ticket_url, label: show.link_kind === "official" ? t("buy_official") : t("buy_tickets"), kind: show.link_kind }];
   }
+  // square logo tiles in a row — each platform shown by its own favicon (clearer than
+  // identical buttons). Official site(s) first, then ticketing. Href is affiliate-wrapped;
+  // the icon is the DESTINATION host's favicon (Google's service — works for any host).
+  const ordered = [...links.filter((l) => l.kind === "official"), ...links.filter((l) => l.kind !== "official")];
+  const ticket = ordered.length ? `<div class="pop-tiles">${ordered.map((l) => {
+    const u = safeUrl(l.url); if (!u) return "";
+    const lab = esc(l.label || l.country || "");
+    let host = ""; try { host = new URL(u).hostname; } catch { /* */ }
+    const ico = host ? `https://www.google.com/s2/favicons?domain=${host}&sz=64` : "";
+    return `<a class="pop-tile" href="${esc(affiliateUrl(u))}" target="_blank" rel="noopener" title="${lab}">
+      <span class="pop-tile-ico">${ico ? `<img src="${esc(ico)}" alt="" loading="lazy" onerror="this.style.display='none'">` : ""}</span>
+      <span class="pop-tile-label">${lab}</span></a>`;
+  }).join("")}</div>` : "";
   const tname = show.tour_name ? show.tour_name.replace(show.title, canonTitle(show)) : "";
   const tourLine = show.type === "tour" && tname ? `<div class="p-row"><b>${esc(tname)}</b></div>` : "";
   const unverified = show.verified ? "" : `<div class="p-row warn">${esc(t("unverified_demo"))}</div>`;
