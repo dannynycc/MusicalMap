@@ -32,7 +32,7 @@ window.MM_CONFIG.AFFILIATE = {
   // TodayTix DIRECT program is closed (FlexOffers "not offering"; hello.todaytix.com dead).
   // LIVE path = Sovrn Commerce: Merchant Explorer (commerce.sovrn.com) lists TodayTix as
   // "Open" (auto-approve). Join Sovrn → paste its link template (a {url} deep link) here.
-  "todaytix.com":        { net: "tmpl", tmpl: "" },                // TodayTix via Sovrn Commerce (Open)
+  "todaytix.com":        { net: "tmpl", tmpl: "https://redirect.viglink.com?key=292f569ccdbe689fdda4735e1b0db677&u={url}" }, // ✅ TodayTix via Sovrn Commerce (VigLink Redirect API; key is public, appears in every link)
   "londontheatre.co.uk": { net: "tmpl", tmpl: "" },               // TodayTix Group — check Sovrn / its own network when applying
   "atgtickets.":         { net: "partnerize", camref: "" },        // ATG / LOVEtheatre — Partnerize (VERIFIED active): signup.partnerize.com/signup/en/ambassadortheatregroup
   "broadwaydirect.com":  { net: "awin", mid: "28987", affid: "" }, // Broadway Direct — Awin merchant 28987 (VERIFIED exists; Nederlander)

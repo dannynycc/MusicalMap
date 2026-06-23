@@ -65,7 +65,7 @@ function safeUrl(u) {
 const AFF = (window.MM_CONFIG || {}).AFFILIATE || {};
 const AFF_SUBID = (window.MM_CONFIG || {}).AFFILIATE_SUBID || "";
 // already-a-tracking-link hosts (never double-wrap)
-const AFF_TRACKING = /(?:\.evyy\.net|\.pxf\.io|\.sjv\.io|prf\.hn|\.awin1\.com)$/i;
+const AFF_TRACKING = /(?:\.evyy\.net|\.pxf\.io|\.sjv\.io|prf\.hn|\.awin1\.com|viglink\.com|sovrn\.co)$/i;
 function affReady(c) {
   if (!c) return false;
   if (c.net === "impact") return !!(c.domain && c.ids);

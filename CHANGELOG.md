@@ -11,6 +11,14 @@
 
 ---
 
+## [v0.61.2] - 2026-06-23 17:48
+### 上線 — TodayTix 分潤實際生效(經 Sovrn Commerce / VigLink)
+- 使用者完成 Sovrn Commerce(Publisher → Commerce)申請,TodayTix merchant 122507「Open」。取得 VigLink **API key**(Site Settings 🔑,公開值)。
+- 填入 `js/config.js`:`todaytix.com` 的 `tmpl` = `https://redirect.viglink.com?key=…&u={url}`。**實測驗證**:`redirect.viglink.com?key=…&u=<TodayTix劇目>` → 302 正確導到該劇頁(網域活、key 有效)。
+- 效果:`scrapers/todaytix.py` 對到的 **101 條 TodayTix 連結現在 render 時自動包成 Sovrn 分潤連結**(排票務最前)。**TodayTix 成為繼 Ticketmaster 後第 2 個實際變現的來源**。
+- `js/app.js`:`AFF_TRACKING` 防呆加入 `viglink.com`/`sovrn.co`(不重複包)。
+- node 實測:TodayTix→viglink、TM 仍 Impact 無回歸、非聯盟 passthrough。README / DESIGN_affiliate 對應更新為「LIVE」。
+
 ## [v0.61.1] - 2026-06-23 17:26
 ### 變更 — 分潤平台逐一查證 + 框架加 `tmpl` 型(支援 Sovrn)
 - **逐一實測每個分潤平台**(回應「每樣都要驗」),結果寫進 `docs/DESIGN_affiliate.md` §5/§7:

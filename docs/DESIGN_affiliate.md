@@ -61,7 +61,7 @@
 | `ticketmaster.` | Impact | 581 | ✅ **live**(固定 ~$0.30/張) |
 | `atgtickets.` | **Partnerize** | 219 | ✅ **可申請(已驗證 active)**:`signup.partnerize.com/signup/en/ambassadortheatregroup`(5 天 cookie、"generous"%未明列)。填 camref 即生效 |
 | `broadwaydirect.com` | **Awin** merchant **28987** | 0(待改導) | ✅ **存在(已驗證)**:註冊 Awin → 申請 28987(Nederlander 9 院)。填 affid + 改導 |
-| `todaytix.com` | **Sovrn Commerce** | 101(matcher) | ⚠️ **直接計畫關閉**(FlexOffers 停收、hello.todaytix.com 已死);**Sovrn 可變現,Merchant Explorer 標「Open」**(merchant 122507)。Sovrn 抽一手、佣金登入後才知。加入 Sovrn → 貼樣本連結 → 填 `tmpl` |
+| `todaytix.com` | **Sovrn Commerce / VigLink** | 101(matcher) | ✅ **LIVE 變現(2026-06-23)**:Sovrn Commerce 已接(merchant 122507「Open」)。直接計畫關閉(FlexOffers 停收、hello.todaytix.com 死),改走 VigLink Redirect API:`redirect.viglink.com?key={key}&u={url}`(key 在 Site Settings 🔑,公開值)。已實測 302 導正確劇目頁 + 填入 config。Sovrn 抽一手、~1-2% |
 | `londontheatre.co.uk` | TodayTix Group | 45 | ❌ 無自有計畫;TodayTix 直接關 → 需經 Sovrn(或其自有網絡,待查) |
 | London Box Office | 自有(in-house) | 0(未連) | ✅ active:email 申請拿 Unique ID(48h);需改導才有流量 |
 | broadway-show-tickets.com | 無 | 27 | ❌ 無 affiliate 頁(404) |
