@@ -11,6 +11,16 @@
 
 ---
 
+## [v0.58.1] - 2026-06-23 11:59
+### 文件 — 全 md freshness 全面對照(使用者要求逐份掃)
+- 逐一掃過全部 9 份文件對照真實資料,修正過時數字(改用「約/隨 CI 變動」避免每日刷新又過時):
+  - **README**:作品主檔 157→**158 筆**(並補 `poster`/`productions` 說明);資料「~1,437/30 國」→**~1,430/31 國**;TM 分潤「612 齣」→**約 600 齣**。
+  - **docs/AFFILIATE_SETUP**:TM 連結數 612→**約 600**(隨每日 CI 變動)。
+  - **docs/DESIGN_productions §3**:標明「157 筆/無 poster」是**改版前**狀態,現為 158 筆帶版本層。
+  - **docs/WORKFLOW**:稽核清單補 `audit_productions.py`。
+  - **llms.txt**:playing across「40+ countries」→**30+**(與實際 31 國、README 一致)。
+- 其餘(SOURCES/TOUR_SWEEP/SETUP_ACCOUNTS)本 session 無波及,確認無過時。
+
 ## [v0.58.0] - 2026-06-23 11:51
 ### 新增 — Ticketmaster 分潤(Impact)上線
 - Impact 分潤計畫核准 + 帳務(美國銀行 EFT)+ 稅表(W-8BEN,非美國人 0% 預扣)全部完成 → **把追蹤碼接進地圖售票連結**。

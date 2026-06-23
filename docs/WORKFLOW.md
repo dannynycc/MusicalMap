@@ -17,6 +17,7 @@
 ## 稽核(每次加來源/大改後必跑)
 - `python scrapers/audit_images.py` — 海報實測像素,模糊/失效=0 才過
 - `python scrapers/audit_links.py` — 購票連結全量實測,DEAD=0 才過(TM 401=bot block 非死連)
+- `python scrapers/audit_productions.py` — 版本層海報檢查,BROKEN=0 才過(列缺海報的版本/無縮圖的劇)
 
 ## 資料更新
 - 改 scraper 或想刷新資料：`python scrapers/westend.py && python scrapers/broadway.py && python scrapers/build_shows.py`。

@@ -45,7 +45,7 @@ scrapers/  ──產出──>  data/*.json  ──merge──>  data/shows.json
 | `data/opentix.json` | 台灣 OPENTIX 兩廳院售票輸出（search.opentix.life JSON API，戲劇-音樂劇，自帶座標+海報） |
 | `data/utiki.json` | 台灣 utiki 售票引擎輸出（寬宏 KHAM 分類 80 + udn售票 搜尋音樂劇 + MNA 分類 77；同套 UTK 引擎，座標交 Google geocode） |
 | `data/manual.json` | **人工策展**：自有售票系統的劇（上海大劇院、Live Nation FR、捷克 NDM…），隨發現隨補 |
-| `data/works.json` | **正典作品註冊表**（單一真相來源，157 筆）：每齣作品一筆，記 `tradition`（血統 tag）+ 跨語言 `aliases`。build 時供①血統分類②跨語言去重③雙語顯示三用——任何別名（`Macskák`/`キャッツ`/`Cats`）都收斂到同一作品。`build_shows.py --discover` 會把「疑似未對照的進口劇」寫到 `data/_works_discover.json` 供審核 |
+| `data/works.json` | **正典作品主檔**（單一真相來源，158 筆）：每齣作品一筆，記 `tradition`（血統 tag）+ 跨語言 `aliases` + 選填 `poster`／`productions`（版本層，見 `docs/DESIGN_productions.md`）。build 時供①血統分類②跨語言去重③雙語顯示三用——任何別名（`Macskák`/`キャッツ`/`Cats`）都收斂到同一作品。`build_shows.py --discover` 會把「疑似未對照的進口劇」寫到 `data/_works_discover.json` 供審核 |
 | `data/not_musical.json` | **非音樂劇排除清單**：來源平台把話劇/演唱會/致敬樂團/魔術秀/2.5次元舞台劇/餐飲體驗等標成 musical，title pattern（`NOT_MUSICAL_RE`）抓不到的逐筆列此（web 查證）。build 時依正規化標題剔除 |
 | `data/overrides.json` | 人工座標/欄位修正（依 show id；修來源錯誤，build 時套用） |
 | `data/booking_horizon.json` | 開放式長壽劇的**最後售票日**（依 show id；`booking_horizon.py` 用 Ticketmaster `sort=date,desc` 抓，build 時填入無 end_date 的劇，避免時間軸把它們一路顯示到數年後） |
@@ -127,7 +127,7 @@ python scrapers/build_shows.py        # 合併成 data/shows.json
 
 ## 現況 / 待辦
 
-- ✅ **共 ~1,437 筆、約 30 國**，含座標與海報。自動 scraper：Broadway、West End、北美巡演（broadway.org 297 站）、國際製作、劇団四季、宝塚、東宝/2.5次元/東急（`japan.py`）、韓國 Interpark、ATG 英國巡演、Stage DE、Madrid、台灣 OPENTIX/utiki、東歐（jegy.hu）、義/瑞/荷/波/挪/奧/中東、**中國**（Poly/上海文廣/ypiao/中演，逆向官方 API）、Portugal（BOL）、Ticketmaster 全球補洞。
+- ✅ **共 ~1,430 筆、約 31 國**（隨每日 CI 變動），含座標與海報。自動 scraper：Broadway、West End、北美巡演（broadway.org 297 站）、國際製作、劇団四季、宝塚、東宝/2.5次元/東急（`japan.py`）、韓國 Interpark、ATG 英國巡演、Stage DE、Madrid、台灣 OPENTIX/utiki、東歐（jegy.hu）、義/瑞/荷/波/挪/奧/中東、**中國**（Poly/上海文廣/ypiao/中演，逆向官方 API）、Portugal（BOL）、Ticketmaster 全球補洞。
 - ✅ **人工策展（`manual.json`，反爬市場）**：巴西（6）、阿根廷（2）、南非（4）、新加坡（4，到 2027）、葡萄牙、上海、各劇巡演段（Les Mis Arena/Miss Saigon/Beetlejuice/Chicago/SIX/Heathers/Roméo et Juliette…）。反爬來源（Sympla/Plateanet/MBS Akamai/SISTIC 需授權）無法自動抓，逐齣查證後手填。
 - 🆕 **`scrapers/audit_manual.py`**（CI 每次跑）：抓 manual.json 中已落幕（end_date 過期）或逾期未查證（_checked >120 天）的手填劇，避免硬填資料默默過期。
 - 🆕 **反爬 CDN 海報** rehost 到 `posters/`（同源，避開防盜連 403；如 Diana 的 Sympla 圖）。
@@ -136,5 +136,5 @@ python scrapers/build_shows.py        # 合併成 data/shows.json
 - ✅ **Production／版本層（v0.57.0，見 `docs/DESIGN_productions.md`）**：足跡記錄可選「版本／製作」（如歌劇魅影：倫敦/北美/日本四季…各國 live 版本 + 台灣巡演/25 週年 RAH 等 archival 版本），各帶正確海報；未收錄的版本可貼「自訂海報網址」。沒在演的劇（如 Love Never Dies／愛無止盡）也進自動完成並有縮圖。海報解析序 `自訂→版本→作品→♪`。`gen_catalog.py` 自動依國家分群產生 live 版本；`scrapers/audit_productions.py`（CI）守海報。
 - ✅ 座標修正機制：NYC 範圍檢查、lat/lng 對調偵測、城市中心點 fallback、著名劇院手動座標表、`overrides.json`、geocode 快取。
 - ✅ 同劇合併（標題正規化）、正式劇名覆蓋、巡演各自海報、cluster 線性縮放、地圖／衛星切換、多地點 overview、popup 完整海報、多地區售票連結。
-- ✅ **Ticketmaster 分潤已上線（Impact，2026-06-23）**：612 齣有 TM 連結的劇，售票按鈕自動包成 deep-link（導向**該劇** TM 頁 + `subId1=musicalmap` 追蹤），非 TM 連結原樣。追蹤 ID 放 `js/config.js` 的 `MM_CONFIG.IMPACT`，邏輯在 `js/app.js` 的 `affiliateUrl()`。詳見 `docs/AFFILIATE_SETUP.md`。
+- ✅ **Ticketmaster 分潤已上線（Impact，2026-06-23）**：約 600 齣有 TM 連結的劇（隨每日資料變動），售票按鈕自動包成 deep-link（導向**該劇** TM 頁 + `subId1=musicalmap` 追蹤），非 TM 連結原樣。追蹤 ID 放 `js/config.js` 的 `MM_CONFIG.IMPACT`，邏輯在 `js/app.js` 的 `affiliateUrl()`。詳見 `docs/AFFILIATE_SETUP.md`。
 - 🟡 West End 少數冷門場館 geocode 為近似位置（可編 `data/venues.json` 校正）。

@@ -2,7 +2,7 @@
 
 > An interactive world map of musicals that are playing right now (and in the coming year), plus a directory of theatres worldwide. Live data is scraped daily from official sources. The site is bilingual (English / 繁體中文) and free to use.
 
-MusicalMap shows, on a Leaflet map, every musical currently or soon playing across 40+ countries — Broadway & West End residents, touring productions, and original musicals from Germany/Austria, France, Spain & Latin America, China, Taiwan, Japan, Korea, and the rest of Europe. Each show is tagged by the WORK's origin tradition (e.g. a production of *Wicked* in Australia is still "Broadway/West End"). A month slider (reaching one year ahead) filters what is playing in any given month, and category pills count how many of each tradition play that month.
+MusicalMap shows, on a Leaflet map, every musical currently or soon playing across 30+ countries — Broadway & West End residents, touring productions, and original musicals from Germany/Austria, France, Spain & Latin America, China, Taiwan, Japan, Korea, and the rest of Europe. Each show is tagged by the WORK's origin tradition (e.g. a production of *Wicked* in Australia is still "Broadway/West End"). A month slider (reaching one year ahead) filters what is playing in any given month, and category pills count how many of each tradition play that month.
 
 Data layer and presentation layer are separate: Python scrapers write `data/*.json`; the frontend only reads `data/shows.json` (current/future) and `data/venues_catalog.json` (all theatres). Coordinates are WGS-84 (China venues are GCJ-02→WGS-84 corrected for the OSM basemap).
 
