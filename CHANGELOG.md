@@ -11,6 +11,14 @@
 
 ---
 
+## [v0.61.3] - 2026-06-23 18:04
+### 變更 — Sovrn 一把 key 擴成「售票站 catch-all」(深入查文件後)
+- 研究 agent 讀透 Sovrn KB + Developer Center,確認:**Redirect API 是自建連結網站的正解**(JS 版是給部落格自動改連結用,我們不需要那段 `vglnk.js`);**一把 site key 可變現任何 in-network merchant**(out-of-network 原樣通過,無害);CPA+CPC 都計;`sovrn.co` 是 `redirect.viglink.com` 的新等價網域。
+- `js/config.js`:用同一把 Sovrn key 把 **todaytix.com / londontheatre.co.uk / broadway-show-tickets.com / atgtickets.** 全部包成 Sovrn 分潤連結(≈ 390 條外連)。`SOVRN` 模板抽成常數。Ticketmaster 仍走較高的直接 Impact(不進 Sovrn)。
+- ATG/Broadway Direct 之後拿到直接計畫(Partnerize camref / Awin affid)可升級取代 Sovrn 條目(註解已標)。
+- ⚠️ 文件記明:Sovrn 端**網站需人工審 ~3-5 天(Settings→Pending,首次點擊後)才開始計佣** —— 目前 Pending 屬正常。
+- node 實測:TM→Impact、四個售票站→Sovrn、非聯盟 passthrough。README / config 註解更新。
+
 ## [v0.61.2] - 2026-06-23 17:48
 ### 上線 — TodayTix 分潤實際生效(經 Sovrn Commerce / VigLink)
 - 使用者完成 Sovrn Commerce(Publisher → Commerce)申請,TodayTix merchant 122507「Open」。取得 VigLink **API key**(Site Settings 🔑,公開值)。

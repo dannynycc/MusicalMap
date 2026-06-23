@@ -24,18 +24,24 @@ window.MM_CONFIG.READY =
 //                (for networks whose exact format we only learn after approval, e.g.
 //                 FlexOffers). e.g. "https://track.flexlinkspro.com/a.ashx?foid=…&url={url}"
 window.MM_CONFIG.AFFILIATE_SUBID = "musicalmap";   // tags our traffic in dashboards
+// Sovrn Commerce / VigLink Redirect API — ONE site key monetizes ANY merchant Sovrn
+// is in-network for (out-of-network just passes through, no harm). key is PUBLIC (it
+// appears in every outbound link). Verified: redirect.viglink.com?key=…&u=<dest> 302s
+// to the destination. NOTE: earnings only start after Sovrn approves the site (Settings
+// → Pending, ~3-5 business days after first clicks). `sovrn.co` is the newer equivalent
+// domain (same params); redirect.viglink.com still works, so we keep it (verified).
+const SOVRN = "https://redirect.viglink.com?key=292f569ccdbe689fdda4735e1b0db677&u={url}";
 window.MM_CONFIG.AFFILIATE = {
-  // ✅ live
+  // ✅ DIRECT programs (higher commission, full control) — keep these out of Sovrn:
   "ticketmaster.":       { net: "impact", domain: "ticketmaster.evyy.net", ids: "7408739/264167/4272" },
-  // 🔜 dormant — fill after approval (apply from the brand's own affiliate page;
-  //    cold marketplace requests get rejected — Ticketmaster only approved brand-initiated)
-  // TodayTix DIRECT program is closed (FlexOffers "not offering"; hello.todaytix.com dead).
-  // LIVE path = Sovrn Commerce: Merchant Explorer (commerce.sovrn.com) lists TodayTix as
-  // "Open" (auto-approve). Join Sovrn → paste its link template (a {url} deep link) here.
-  "todaytix.com":        { net: "tmpl", tmpl: "https://redirect.viglink.com?key=292f569ccdbe689fdda4735e1b0db677&u={url}" }, // ✅ TodayTix via Sovrn Commerce (VigLink Redirect API; key is public, appears in every link)
-  "londontheatre.co.uk": { net: "tmpl", tmpl: "" },               // TodayTix Group — check Sovrn / its own network when applying
-  "atgtickets.":         { net: "partnerize", camref: "" },        // ATG / LOVEtheatre — Partnerize (VERIFIED active): signup.partnerize.com/signup/en/ambassadortheatregroup
-  "broadwaydirect.com":  { net: "awin", mid: "28987", affid: "" }, // Broadway Direct — Awin merchant 28987 (VERIFIED exists; Nederlander)
+  // ✅ Sovrn catch-all (live once site approved) — every commercial ticketer we link to:
+  "todaytix.com":            { net: "tmpl", tmpl: SOVRN },   // TodayTix (direct program closed → Sovrn; merchant 122507 Open, 1-2% CPA+CPC)
+  "londontheatre.co.uk":     { net: "tmpl", tmpl: SOVRN },   // TodayTix Group
+  "broadway-show-tickets.com":{ net: "tmpl", tmpl: SOVRN },  // Broadway show tickets reseller
+  "atgtickets.":             { net: "tmpl", tmpl: SOVRN },   // ATG — interim Sovrn; UPGRADE to Partnerize (higher) when camref arrives: signup.partnerize.com/signup/en/ambassadortheatregroup
+  // 🔜 direct upgrade when approved (replace the Sovrn entry above with these):
+  //   atgtickets.  → { net:"partnerize", camref:"<camref>" }
+  //   broadwaydirect.com → { net:"awin", mid:"28987", affid:"<affid>" }  (no current outbound links yet)
 };
 // Primary-link preference when a show has several ticket links (higher commission
 // first). Used by the link-priority layer (Phase 2). Host-substring order.
