@@ -127,6 +127,7 @@ SOURCE_FILES = ["broadway.json", "westend.json", "tours.json", "intl.json",
                 "italy.json", "sweden.json", "netherlands.json", "poland.json",
                 "norway.json", "austria.json", "middleeast.json", "china.json",
                 "china_poly.json", "china_ypiao.json", "china_chinaticket.json",
+                "china_juooo.json",
                 "portugal.json", "manual.json"]
 
 # When several ticket sources list the SAME show in the SAME city, we keep one
@@ -313,7 +314,7 @@ TAG_LOCAL_SRC = [
     (("shiki", "kageki", "toho", "j25", "theatre-orb", "japan"), "日本原創"),
     (("interpark",), "韓國原創"),
     (("jegy", "prazske", "ndm"), "歐陸原創"),
-    (("damai", "maoyan", "shcstheatre", "shgtheatre", "polyt", "chinaticket"), "中國原創"),
+    (("damai", "maoyan", "shcstheatre", "shgtheatre", "polyt", "chinaticket", "juooo"), "中國原創"),
 ]
 
 

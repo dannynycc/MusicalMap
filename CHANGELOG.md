@@ -11,6 +11,15 @@
 
 ---
 
+## [v0.59.0] - 2026-06-23 14:38
+### 新增資料來源 — 聚橙 juooo(中國第 5 個官方 API)
+- 新增 **`scrapers/china_juooo.py`**:逆向聚橙官方 H5 API(**不需簽章、無 BaXia 牆**)。
+  - 城市清單 `api.juooo.com/city/city/getCityList`;節目 `gw.juooo.com/gw/show/showSearch`(POST form,`cate_parent_id=79`=音樂劇 `+city_id+page`);座標 `gw/show/showDetail` → `venue.coordinate`(GCJ-02 **自轉 WGS-84**,不依賴 cn_venues.json);售票連結 `m.juooo.com/ticket/{schedular_id}`。
+  - **遍歷全 253 城**(showSearch 分城市),任何城市日後有音樂劇都抓得到。目前 3 齣(全深圳安托山公共文化中心 —— 聚橙自營庫存集中深圳,北京/上海在 juooo 上 0 場)。
+- 接入 `build_shows.py`(合併清單 + `juooo`→中國原創 tag)與 `.github/workflows/update.yml`(每日兩次自動跑)。地圖總數 1432→**1435**。
+- **`docs/SOURCES.md`**:juooo 上線詳述 + 誠實記錄「**大麥/猫眼評估後不採用**」(BaXia x-sign/x-mini-wua 為 server/SDK 端簽章,對無人值守 CI 太重+脆弱+中國零分潤;維持售票連結導大麥搜尋頁)。
+- 過程修正:一度誤判 juooo「geo 鎖深圳」—— 實為打錯端點(showSearch 分城市 vs getShowList 需 server 端 sign);切城市用 city_id 遍歷即可,從任何 IP 都能全國抓。
+
 ## [v0.58.1] - 2026-06-23 11:59
 ### 文件 — 全 md freshness 全面對照(使用者要求逐份掃)
 - 逐一掃過全部 9 份文件對照真實資料,修正過時數字(改用「約/隨 CI 變動」避免每日刷新又過時):

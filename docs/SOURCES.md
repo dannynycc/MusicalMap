@@ -23,7 +23,8 @@
 | 西班牙(馬德里) | teatromadrid.com | `madrid.py` | 馬德里音樂劇(西語 tag) | 2026-06-13 |
 | 東歐(匈牙利等) | jegy.hu 等 | `easteurope.py` | 匈牙利/捷克等地方場館,EE 區 | 2026-06-13 |
 | 義/瑞/荷/波/挪/奧/中東 | teatro.it / showtic(瑞典) / stage(荷蘭) / ebilet(波蘭) / 挪威 / VBW(奧地利) / platinumlist(中東) | `italy.py` `sweden.py` `netherlands.py` `poland.py` `norway.py` `austria.py` `middleeast.py` | 各國原創/巡演;德奧(VBW)→德奧 tag,其餘多→歐陸其他 | 2026-06-13 |
-| **中國**(逆向官方 API) | 上海文廣 shcstheatre.com(`/webapi.ashx`) / 保利 weixin.polyt.cn(`/platform-backend`,header `Channel: theatre_wx`) / ypiao / 中演院線 zhongyan | `china.py` `china_poly.py` `china_ypiao.py` `china_chinaticket.py` | 全國 ~100 齣/40+ 城;GCJ-02→WGS-84 座標轉換;保利真實日期取自 `/good/shows/{id}` showInfoDetailList[].showTime;售票連結→大麥搜尋 | 2026-06-14 |
+| **中國**(逆向官方 API) | 上海文廣 shcstheatre.com(`/webapi.ashx`) / 保利 weixin.polyt.cn(`/platform-backend`,header `Channel: theatre_wx`) / ypiao / 中演院線 zhongyan / **聚橙 juooo** | `china.py` `china_poly.py` `china_ypiao.py` `china_chinaticket.py` `china_juooo.py` | 全國 ~100 齣/40+ 城;GCJ-02→WGS-84 座標轉換;保利真實日期取自 `/good/shows/{id}` showInfoDetailList[].showTime;售票連結→大麥搜尋 | 2026-06-23 |
+| **聚橙 juooo**(逆向官方 API,2026-06-23) | 城市清單 `api.juooo.com/city/city/getCityList`;節目 `gw.juooo.com/gw/show/showSearch`(POST form,body `cate_parent_id=79`(音樂劇)`+city_id+page`,**不需簽章**);座標 `gw/show/showDetail` → `result.show.venue.coordinate`(GCJ-02→WGS-84,自給自足不靠 cn_venues);售票 `m.juooo.com/ticket/{schedular_id}` | `china_juooo.py` | **逐城市遍歷全 253 城**(showSearch 分城市,故全掃任何城市有音樂劇都抓得到);目前僅 3 齣(全深圳安托山公共文化中心,聚橙自營庫存集中深圳,北京/上海在 juooo 上 0 場)。即便量少仍自動更新,庫存一變多即涵蓋 | 2026-06-23 |
 | 葡萄牙 | bol.pt(JSON-LD Event) | `portugal.py` | Evita @ Lisboa;JSON-LD 自帶座標+城市 | 2026-06-15 |
 | 全劇巡演自動掃 | Ticketmaster attraction 比對 | `tm_tours.py` | 對**全部** group 做 attraction 比對,新巡演站點自動入圖(每日 CI) | 2026-06-12 |
 
@@ -49,6 +50,9 @@
 |---|---|---|
 | Wicked 官方巡演 | tour.wickedthemusical.com | 曾接 scraper,後被 broadway.org 彙總取代(資料一致且更全) |
 | Les Misérables 官方 | lesmis.com | 倫敦(westend)、US tour(tours)已涵蓋;Japan/Spain 站見 intl/手動;World Tour 待來源 |
+| **大麥 Damai**(評估後不採用,2026-06-23) | damai.cn | 阿里系,**BaXia 風控**:web `search.htm`→x5sec 滑塊;mtop API 要 `x-sign`+`x-mini-wua`+`x-sgext`(安全 SDK 簽章,**server/SDK 端**),社群做法是 Frida-RPC/unidbg 從真 App 取簽章或付費 API(萬邦 onebound ~0.09 RMB/次)。對無人值守 CI 太重+脆弱+中國零分潤 → 維持「售票連結導大麥搜尋頁」不抓資料 |
+| **猫眼 Maoyan** | show.maoyan.com | 同大麥那套反爬(x5sec),不採用 |
+| **聚橙 juooo**(✅ 已接,見上表) | juooo.com | 一度誤判「geo 鎖深圳」,實為打錯端點;showSearch 不需簽章、city_id 可遍歷全國,已接 `china_juooo.py` |
 
 ## 已知盲區(誠實列出)
 

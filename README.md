@@ -127,7 +127,7 @@ python scrapers/build_shows.py        # 合併成 data/shows.json
 
 ## 現況 / 待辦
 
-- ✅ **共 ~1,430 筆、約 31 國**（隨每日 CI 變動），含座標與海報。自動 scraper：Broadway、West End、北美巡演（broadway.org 297 站）、國際製作、劇団四季、宝塚、東宝/2.5次元/東急（`japan.py`）、韓國 Interpark、ATG 英國巡演、Stage DE、Madrid、台灣 OPENTIX/utiki、東歐（jegy.hu）、義/瑞/荷/波/挪/奧/中東、**中國**（Poly/上海文廣/ypiao/中演，逆向官方 API）、Portugal（BOL）、Ticketmaster 全球補洞。
+- ✅ **共 ~1,430 筆、約 31 國**（隨每日 CI 變動），含座標與海報。自動 scraper：Broadway、West End、北美巡演（broadway.org 297 站）、國際製作、劇団四季、宝塚、東宝/2.5次元/東急（`japan.py`）、韓國 Interpark、ATG 英國巡演、Stage DE、Madrid、台灣 OPENTIX/utiki、東歐（jegy.hu）、義/瑞/荷/波/挪/奧/中東、**中國**（Poly/上海文廣/ypiao/中演/聚橙 juooo，逆向官方 API）、Portugal（BOL）、Ticketmaster 全球補洞。
 - ✅ **人工策展（`manual.json`，反爬市場）**：巴西（6）、阿根廷（2）、南非（4）、新加坡（4，到 2027）、葡萄牙、上海、各劇巡演段（Les Mis Arena/Miss Saigon/Beetlejuice/Chicago/SIX/Heathers/Roméo et Juliette…）。反爬來源（Sympla/Plateanet/MBS Akamai/SISTIC 需授權）無法自動抓，逐齣查證後手填。
 - 🆕 **`scrapers/audit_manual.py`**（CI 每次跑）：抓 manual.json 中已落幕（end_date 過期）或逾期未查證（_checked >120 天）的手填劇，避免硬填資料默默過期。
 - 🆕 **反爬 CDN 海報** rehost 到 `posters/`（同源，避開防盜連 403；如 Diana 的 Sympla 圖）。
