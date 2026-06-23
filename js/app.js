@@ -359,7 +359,7 @@ function tooltipHtml(show) {
 // Platform icon for a ticket host. Google's favicon service returns a generic globe
 // for Chinese sites (damai/juooo…), so curated brand logos override it; everything
 // else falls back to the live favicon (works for todaytix/ticketmaster/atg/…).
-const LOGO_MAP = { "damai": "logos/damai.png" };   // host-substring → rehosted logo
+const LOGO_MAP = { "damai": "logos/damai.png", "juooo": "logos/juooo.png" };   // host-substring → rehosted logo (favicon fails for Chinese sites)
 function platformIcon(host) {
   for (const k in LOGO_MAP) if (host.includes(k)) return LOGO_MAP[k];
   return `https://www.google.com/s2/favicons?domain=${host}&sz=64`;
@@ -376,15 +376,16 @@ function popupHtml(show) {
   // identical buttons). Official site(s) first, then ticketing. Href is affiliate-wrapped;
   // the icon is the DESTINATION host's favicon (Google's service — works for any host).
   const ordered = [...links.filter((l) => l.kind === "official"), ...links.filter((l) => l.kind !== "official")];
-  const ticket = ordered.length ? `<div class="pop-tiles">${ordered.map((l) => {
+  const ticket = ordered.length ? `<div class="pop-tix"><div class="pop-tix-h">${esc(t("get_tickets"))}</div><div class="pop-tiles">${ordered.map((l) => {
     const u = safeUrl(l.url); if (!u) return "";
     const lab = esc(l.label || l.country || "");
     let host = ""; try { host = new URL(u).hostname; } catch { /* */ }
     const ico = host ? platformIcon(host) : "";
     return `<a class="pop-tile" href="${esc(affiliateUrl(u))}" target="_blank" rel="noopener" title="${lab}">
+      <span class="pop-tile-arr">→</span>
       <span class="pop-tile-ico">${ico ? `<img src="${esc(ico)}" alt="" loading="lazy" onerror="this.style.display='none'">` : ""}</span>
       <span class="pop-tile-label">${lab}</span></a>`;
-  }).join("")}</div>` : "";
+  }).join("")}</div></div>` : "";
   const tname = show.tour_name ? show.tour_name.replace(show.title, canonTitle(show)) : "";
   const tourLine = show.type === "tour" && tname ? `<div class="p-row"><b>${esc(tname)}</b></div>` : "";
   const unverified = show.verified ? "" : `<div class="p-row warn">${esc(t("unverified_demo"))}</div>`;

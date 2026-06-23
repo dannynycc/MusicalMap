@@ -135,6 +135,6 @@ python scrapers/build_shows.py        # 合併成 data/shows.json
 - 📒 **來源登記表：`docs/SOURCES.md`**（用戶提供的網址一律登記在此，含狀態）。
 - ✅ **Production／版本層（v0.57.0，見 `docs/DESIGN_productions.md`）**：足跡記錄可選「版本／製作」（如歌劇魅影：倫敦/北美/日本四季…各國 live 版本 + 台灣巡演/25 週年 RAH 等 archival 版本），各帶正確海報；未收錄的版本可貼「自訂海報網址」。沒在演的劇（如 Love Never Dies／愛無止盡）也進自動完成並有縮圖。海報解析序 `自訂→版本→作品→♪`。`gen_catalog.py` 自動依國家分群產生 live 版本；`scrapers/audit_productions.py`（CI）守海報。
 - ✅ 座標修正機制：NYC 範圍檢查、lat/lng 對調偵測、城市中心點 fallback、著名劇院手動座標表、`overrides.json`、geocode 快取。
-- ✅ 同劇合併（標題正規化）、正式劇名覆蓋、巡演各自海報、cluster 線性縮放、地圖／衛星切換、多地點 overview、popup 完整海報、多地區售票連結(各售票平台以**方形 logo tile**並排顯示,favicon 自動取得)。
+- ✅ 同劇合併（標題正規化）、正式劇名覆蓋、巡演各自海報、cluster 線性縮放、地圖／衛星切換、多地點 overview、popup 完整海報、多地區售票連結(「**購票**」標頭下各平台以**方形 logo tile**並排、含右箭頭;logo 用 favicon 自動取得,中國站如大麥/聚橙放官方 logo)。
 - ✅ **多平台分潤框架（`MM_CONFIG.AFFILIATE` + `affiliateUrl()`，見 `docs/DESIGN_affiliate.md`）**：render 時把外連售票 URL 依 host 包成分潤連結（資料層只存乾淨 URL，換 ID = 改 config 一行）。支援 Impact／Partnerize／Awin／tmpl(Sovrn 等)多網絡;每個程式 dormant，填碼即生效。**直接計畫**:**Ticketmaster**（Impact,~600 齣,較高佣金,獨立於 Sovrn)。**Sovrn Commerce / VigLink catch-all**(一把 key 變現所有 in-network 售票站):涵蓋 **TodayTix(101)+ londontheatre(45)+ broadway-show-tickets(27)+ ATG(219)** ≈ 390 條外連,1-2% CPA+CPC。⚠️ **Sovrn 端需人工審網站(~3-5 天,Settings→Pending)後才開始計佣**。ATG/Broadway Direct 之後可升級為**直接計畫**(Partnerize/Awin,較高)取代 Sovrn。各平台 2026-06-23 逐一查證,詳見 `docs/DESIGN_affiliate.md`;TodayTix 改導用 `scrapers/todaytix.py`。
 - 🟡 West End 少數冷門場館 geocode 為近似位置（可編 `data/venues.json` 校正）。

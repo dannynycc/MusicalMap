@@ -11,6 +11,13 @@
 
 ---
 
+## [v0.62.2] - 2026-06-23 21:27
+### UI — 售票區改版:加「購票」標頭 + 名稱加粗 + 每塊右箭頭(參考 JustWatch/Songkick)
+- 回饋:logo 方塊的平台名稱**灰字太淡**、看不出「點進去是售票」。參考 JustWatch(where to watch)+ Songkick/Bandsintown(buy tickets)歸納:**需明確區塊標頭 + 名稱要清楚可讀**。
+- `js/app.js` + `css/style.css`:售票方塊上方加 **「購票」標頭**(粗體 + 底線,**不用 emoji**——使用者明示 emoji 難看);平台名稱從淡灰 `--muted` 改 **深色 `--text` + 700 粗體**、字級 9→10;方塊改成**按鈕感**(淡底 `#f8fafc`、hover 轉白+浮起);**每塊右上角加 `→` 箭頭**(文字符號非 emoji,hover 變強調色並右移)。
+- `js/i18n.js`:新增 `get_tickets`(購票 / Get tickets)。
+- 仍維持使用者要的「方形 logo、三個一排」(58×66 在 232px body 內剛好 3 排)。headless Chrome 截圖驗證:Lion King 的 TodayTix/Broadway.org/Ticketmaster 三塊含標頭、粗名稱、箭頭正常。
+
 ## [v0.62.1] - 2026-06-23 21:04
 ### 新增 — 大麥彩虹 logo + 聚橙的劇加上大麥購票連結
 - **指定 logo 覆蓋**(`js/app.js` `LOGO_MAP` + `platformIcon()`):Google favicon 服務對中國站只回通用地球圖,故為大麥放上**官方彩虹 logo**(`logos/damai.png`,取自 App Store 官方 App icon、親眼驗證)。所有大麥連結(保利巡演 + 聚橙)都顯示彩虹,辨識度高;其餘平台仍用 favicon。

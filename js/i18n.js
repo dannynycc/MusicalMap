@@ -38,6 +38,7 @@
       runs_until: "演至 {e}",
       official: "官網",
       tickets: "售票",
+      get_tickets: "購票",
       buy_official: "前往官網購票 →",
       buy_tickets: "前往售票頁 →",
       unverified_demo: "⚠ 未驗證（示範資料）",
