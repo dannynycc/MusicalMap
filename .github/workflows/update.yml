@@ -78,6 +78,9 @@ jobs:
           python scrapers/tm_tours.py    || echo "::warning::tm_tours sweep failed"
           python scrapers/ticketmaster.py || echo "::warning::ticketmaster scrape failed"
           python scrapers/build_shows.py
+          # TodayTix deep-link matcher (needs shows.json from the build above; the next
+          # build_shows attaches its links). Affiliate re-point — see docs/DESIGN_affiliate.md.
+          python scrapers/todaytix.py    || echo "::warning::todaytix matcher failed"
           # open-ended long-runners: fill end_date from TM's last on-sale date, then rebuild
           python scrapers/booking_horizon.py || echo "::warning::booking_horizon failed"
           python scrapers/build_shows.py

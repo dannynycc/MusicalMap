@@ -11,6 +11,14 @@
 
 ---
 
+## [v0.61.0] - 2026-06-23 15:39
+### 新增 — TodayTix 改導 matcher(分潤 Phase 2,自動化)
+- 新增 **`scrapers/todaytix.py`**:逆向 TodayTix 開放 API(`api.todaytix.com/api/v2/shows`,無 auth、無反爬),掃**全 13 城**(NYC/London/Chicago/SF/LA/DC/Boston/雪梨…)的 **Musicals**,**保守對應**到我們的劇(正規化標題 group_key + **精確城市**比對,清掉「on Broadway/the musical」字尾;slug 缺用 id-only URL,會 301 轉)。輸出 `data/todaytix.json`(103 連結 / 76 作品)。
+- **`build_shows.py`**:讀 todaytix.json,給對到的劇(group+city 相符)掛 TodayTix `ticket_link`,**插在票務連結最前**(官方網站 → TodayTix → 其他)——因 TodayTix 抽 ~1-2% 遠高於 TM 固定 $0.30。實測掛上 **101 筆**(Wicked/Hamilton/SIX… 紐約/倫敦/DC 各對到正確城市 URL)。
+- **CI**:`todaytix.py` 排在第一次 build_shows 之後、第二次之前(自動每日跑;matcher 需 shows.json,build_shows 需 todaytix.json)。
+- 連結仍是**乾淨 URL**,分潤碼 render 時才包(TodayTix Impact 過審填碼即自動抽成,零後續開發)。
+- 文件:`docs/DESIGN_affiliate.md` Layer B/C 標為已實作;README 對應更新。
+
 ## [v0.60.0] - 2026-06-23 15:13
 ### 新增 — 多平台分潤框架(Phase 1)+ 架構定案
 - `affiliateUrl()` 從「只 Ticketmaster」重構為**多網絡、config 化**:`MM_CONFIG.AFFILIATE`(key=外連 host,value=`{net,…creds}`)支援 **Impact / Partnerize / Awin** 三種網絡;每個程式 **dormant**(creds 沒填齊→passthrough,連結照常不抽成),**填碼即生效**。

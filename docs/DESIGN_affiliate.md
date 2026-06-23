@@ -1,6 +1,7 @@
 # 設計定案:多平台分潤(affiliate)架構
 
-> 狀態:**Phase 1 已實作(v0.59.x)**;Phase 2(TodayTix matcher)設計定案、待動工。
+> 狀態:**Phase 1 + Phase 2 已實作(v0.60–0.61)**。TodayTix matcher 上線:103 條連結 / 76 作品,
+> build_shows 掛到 101 筆紀錄(官方→TodayTix→其他票務排序)。等 TodayTix Impact 過審填碼即抽成。
 > 目標:把地圖連出去的售票連結變成可抽成,跨多個劇場分潤網絡;並把 Broadway/West End
 > 這個核心市場導向**抽成較高**的劇場專營平台。**儘可能自動化**(唯一無法自動的只有「申請帳號拿 ID」那一次)。
 
@@ -31,13 +32,13 @@
 - 每個程式**獨立 + dormant**:creds 沒填齊 → `affReady()` false → **passthrough**(連結照常,只是不抽成)。
 - 防呆:已是追蹤網域(evyy.net/pxf.io/sjv.io/prf.hn/awin1.com)→ 不重複包。
 
-### Layer B — 改導 matcher(`scrapers/todaytix.py`)🔜 Phase 2
+### Layer B — 改導 matcher(`scrapers/todaytix.py`)✅ 已實作
 - 抓 TodayTix 各城劇目清單(SSR,無反爬;URL `/{city}/shows/{id}-{slug}`)→ `{id, slug, title, url, city}`。
 - 用**正規化標題 + 城市/地區**對應到我們的劇(複用 `build_shows.group_key` + `works.json` 別名)。
 - 輸出 `data/todaytix.json` → `build_shows.py` 合併時給對到的劇**加一個 ticket_link**(乾淨 URL)。
 - **自動化 + 安全**:用**信心門檻自動取捨**(精確正規化標題相符 + 城市相符 + 必為音樂劇),高信心自動收、低信心自動略過並 `log`(non-blocking),**不靠人工逐筆審**。掛 CI 每日跑。
 
-### Layer C — 連結優先序(`build_shows.py` 或 `app.js`)🔜 Phase 2
+### Layer C — 連結優先序(`build_shows.py`)✅ 已實作(TodayTix 插在 ticketing 最前)
 - 一齣可能同時有 TM + TodayTix(+ATG)。依**佣金高低**排主連結:
   `MM_CONFIG.AFFILIATE_PRIORITY = [todaytix, londontheatre, atg, broadwaydirect, ticketmaster]`。
 - 用 **URL 的 host** 判定(跟 Layer A 同一套比對)—— **不新增任何資料欄位**,不會返工。

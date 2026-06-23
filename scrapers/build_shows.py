@@ -654,6 +654,32 @@ def main():
     if enriched:
         print(f"  attached Ticketmaster links to {enriched} existing record(s)")
 
+    # TodayTix deep links (data/todaytix.json, from scrapers/todaytix.py) — higher
+    # commission than TM (~1-2% vs flat ~$0.30), so inserted as the PREFERRED ticketing
+    # link (front of the list). Matched by work-group + exact city. URL is clean; the
+    # affiliate wrap happens at render in js/app.js (dormant until TodayTix is approved).
+    tt_path = DATA / "todaytix.json"
+    if tt_path.exists():
+        TT = (json.loads(tt_path.read_text(encoding="utf-8")) or {}).get("map", {})
+        tt_n = 0
+        for s in by_id.values():
+            entries = TT.get(s["group"])
+            if not entries:
+                continue
+            sc = (s.get("city") or "").split(",")[0].strip().lower()
+            url = next((e["url"] for e in entries if e["city"].lower() == sc), None)
+            if not url:
+                continue
+            links = s.get("ticket_links") or (
+                [{"label": src_label(s.get("source")), "url": s["ticket_url"],
+                  "kind": src_kind(s.get("source"))}] if s.get("ticket_url") else [])
+            if all(l.get("url") != url for l in links):
+                links.insert(0, {"label": "TodayTix", "url": url, "kind": "ticketing"})
+                s["ticket_links"] = links
+                tt_n += 1
+        if tt_n:
+            print(f"  attached TodayTix links to {tt_n} record(s)")
+
     # Official production websites — region-appropriate (a UK card gets ONLY the
     # UK official site), inserted ABOVE ticketing links.
     off_path = DATA / "official_sites.json"
