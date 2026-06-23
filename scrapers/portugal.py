@@ -8,7 +8,7 @@ We collect event links from the homepage, keep the ones whose page is in the the
 category (body class `catTeatro`) AND look like a musical — either the title contains
 "musical", or it matches a work registered in data/works.json (so Broadway/West End
 tours like Evita / The Phantom of the Opera are caught even without "musical" in the
-title). build_shows.py then tags by work origin (registry → else Portugal = 葡語音樂劇).
+title). build_shows.py then tags by work origin (registry → else Portugal = 西葡音樂劇).
 
 Output: data/portugal.json   Run: python scrapers/portugal.py
 """

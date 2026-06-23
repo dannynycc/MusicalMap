@@ -348,10 +348,9 @@ def classify_tag(group, source, country):
     for keys, tag in TAG_LOCAL_SRC:          # TW/JP/KR + HU/CZ local scrapers
         if any(k in src for k in keys):
             return tag
-    if "teatromadrid" in src or c in SPANISH_C:
-        return "西語音樂劇"
-    if c in PORTUGUESE_C or "bol.pt" in src:
-        return "葡語音樂劇"
+    # Spanish + Portuguese (Iberian/Latin) folded into one tradition tag 西葡音樂劇.
+    if "teatromadrid" in src or c in SPANISH_C or c in PORTUGUESE_C or "bol.pt" in src:
+        return "西葡音樂劇"
     # German-tradition by COUNTRY (not bare "stage-entertainment" — that also matches
     # stage-entertainment.nl and wrongly tagged Dutch shows 德奧).
     if c in GERMAN_C or "stage_de" in src or "stage-entertainment.de" in src:
@@ -375,7 +374,7 @@ def discover_unmapped(shows):
     import difflib
     canon = [(w["cgroup"], w["canonical"], w["tradition"])
              for w in {id(v): v for v in WORK_IDX.values()}.values()]
-    REGIONAL = {"台灣原創", "日本原創", "韓國原創", "歐陸原創", "西語音樂劇"}
+    REGIONAL = {"台灣原創", "日本原創", "韓國原創", "歐陸原創", "西葡音樂劇"}
     flagged, by_tag = [], {}
     for s in shows:
         tag = s.get("tag", "")

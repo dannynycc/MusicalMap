@@ -11,6 +11,12 @@
 
 ---
 
+## [v0.64.1] - 2026-06-24 01:08
+### 變更 — 合併「西語+葡語」為「西葡音樂劇」+ 百老匯標籤加「音樂劇」
+- **西語音樂劇 + 葡語音樂劇 → 西葡音樂劇**(單一分類):`build_shows.py` `classify_tag` 把 Spanish/Portuguese 國家都歸 `西葡音樂劇`;`works.json` 1 筆 tradition 改名;`app.js` `TAG_DEFS` 兩列併一;`build_shows.py` REGIONAL set 更新。三語標籤:繁「西葡音樂劇」/ 簡「西葡音乐剧」(OpenCC)/ 英「Spanish/Portuguese」。
+- **百老匯/西區 → 百老匯/西區音樂劇**(中文補後綴,與其他分類一致):繁「百老匯/西區音樂劇」/ 簡「百老汇/西区音乐剧」;英維持「Broadway/West End」(英文標籤本就無 musicals 後綴)。
+- 重建 shows.json/變體/三語頁;headless 驗證:繁體「百老匯/西區音樂劇 196・西葡音樂劇 18」、英文「Broadway/West End・Spanish/Portuguese 18」正常,無殘留舊分類。
+
 ## [v0.64.0] - 2026-06-24 01:01
 ### 新增(階段2/2)— 繁/簡/英「三語獨立網址」+ 預渲染 + SEO/AI-search
 - **三套網址**:`/zh-hant/`、`/zh-hans/`、`/en/`,各為 **build 時預渲染的靜態 HTML**(劇目清單 + JSON-LD Event 寫進原始 HTML)→ Google **與不跑 JS 的 AI 爬蟲(GPTBot/ClaudeBot/Perplexity)都讀得到內容**。
