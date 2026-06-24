@@ -11,6 +11,12 @@
 
 ---
 
+## [v0.65.9] - 2026-06-24 17:01
+### 改善 — 售票平台圖示畫質（favicon sz 64→128）
+- `platformIcon` 取 favicon 由 `sz=64` 改 `sz=128`：高 DPI 螢幕放到 52px 不再顆粒（todaytix/LondonTheatre/ATG 等大多數明顯變清晰，實測對照確認）。
+- 例外：**Ticketmaster 官方只發布 32px favicon**（Google/DuckDuckGo/apple-touch/favicon.ico 全卡 32px），畫質受限；要清晰需另 rehost 重繪 logo（待議）。
+- 重建三語頁刷 cache-bust。
+
 ## [v0.65.8] - 2026-06-24 16:48
 ### 改善 — popup 售票 tile 放大、標籤一行、版面加寬
 - 標籤不再換行：`.pop-tile-label` 改**單行**（`white-space: nowrap` + ellipsis），消除「London Thea／tre」「Ticketmaste／r」這種醜換行。

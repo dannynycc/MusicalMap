@@ -400,7 +400,7 @@ function tooltipHtml(show) {
 const LOGO_MAP = { "damai": "logos/damai.png", "juooo": "logos/juooo.png" };   // host-substring → rehosted logo (favicon fails for Chinese sites)
 function platformIcon(host) {
   for (const k in LOGO_MAP) if (host.includes(k)) return LOGO_MAP[k];
-  return `https://www.google.com/s2/favicons?domain=${host}&sz=64`;
+  return `https://www.google.com/s2/favicons?domain=${host}&sz=128`;
 }
 
 function popupHtml(show) {
