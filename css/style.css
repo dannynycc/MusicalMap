@@ -3,6 +3,7 @@
   --bg: #f8fafc;
   --panel: #ffffff;
   --panel-2: #f1f5f9;
+  --cream: #fefefc;         /* logo's off-white background — header + sidebar match it */
   --text: #0f172a;
   --muted: #64748b;
   --accent: #0f766e;        /* teal */
@@ -25,10 +26,11 @@ body { display: flex; flex-direction: column; height: 100vh; }
 /* ---------- Top header bar (stayplot-style: brand left, nav right) ---------- */
 #topbar {
   flex: none; height: 58px; display: flex; align-items: center; justify-content: space-between;
-  padding: 0 24px; background: var(--panel); border-bottom: 1px solid var(--border);
+  padding: 0 24px; background: var(--cream); border-bottom: 1px solid var(--border);
   box-shadow: 0 1px 3px rgba(15, 23, 42, .06); z-index: 1200;
 }
-#brand { display: flex; align-items: baseline; gap: 12px; text-decoration: none; }
+#brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+#brand .brand-logo { height: 40px; width: auto; display: block; flex: none; }
 #brand .logo { font-size: 22px; font-weight: 800; letter-spacing: .3px; color: var(--text); }
 #brand .logo-em { color: var(--accent); }
 #brand .tagline { font-size: 13px; color: var(--muted); }
@@ -81,7 +83,7 @@ body { display: flex; flex-direction: column; height: 100vh; }
 /* ---------- Sidebar ---------- */
 #sidebar {
   width: 360px; min-width: 360px;
-  background: var(--panel); border-right: 1px solid var(--border);
+  background: var(--cream); border-right: 1px solid var(--border);
   display: flex; flex-direction: column; overflow: hidden;
 }
 .tagline { margin: 4px 0 0; font-size: 13px; color: var(--muted); }

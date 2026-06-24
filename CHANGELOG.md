@@ -11,6 +11,14 @@
 
 ---
 
+## [v0.65.6] - 2026-06-24 14:11
+### 新增 — 品牌 logo + header/sidebar 改用 logo 米白底色
+- 加入品牌 logo（金色高音譜號徽章）到 header 品牌區（`logo.png`，原圖縮放至 122×200）。
+- 取樣原 logo 背景真實色 = **`#fefefc`**（米白，極淡暖白），新增 CSS 變數 `--cream`；`#topbar`（上方 banner）與 `#sidebar`（左側欄）背景由純白 `var(--panel)` 改為 `var(--cream)` → logo 米白底融進去、無白框感。
+- `#brand` 改 `align-items: center` ＋ `.brand-logo`（高 40px）。
+- 手寫頁 `theatres`/`privacy`/`terms` 的 header 同步加 logo；地圖頁由 `gen_site.mjs` 產生。
+- 重建三語頁刷 cache-bust；MD freshness 掃過、無因此過時項。
+
 ## [v0.65.5] - 2026-06-24 14:01
 ### 新增 — 地圖即時 zoom level 顯示
 - `js/app.js`：在 +/- 按鈕下方加一個 Leaflet 控制項（`.mm-zoom-level`），即時顯示目前縮放級別（`z N`），隨縮放更新（`zoom`/`zoomend` 事件）→ 一眼看到現在第幾級（判斷叢集在哪級散開等很方便）。

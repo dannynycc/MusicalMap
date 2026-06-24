@@ -130,6 +130,7 @@ function page(variant, shows) {
 <body>
   <header id="topbar">
     <a id="brand" href="${BASE}${variant}/">
+      <img class="brand-logo" src="${BASE}logo.png" alt="" />
       <span class="logo">Musical<span class="logo-em">Map</span></span>
       <span class="tagline">${esc(t.tagline)}</span>
     </a>
