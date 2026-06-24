@@ -11,6 +11,11 @@
 
 ---
 
+## [v0.68.13] - 2026-06-25 00:35
+### 改進 — OPENTIX 售票圖示換成官方高清 logo
+- OPENTIX 的 favicon 太糊，改 rehost 使用者提供的 **512×512 官方 logo** 到 `logos/opentix.png`，加進 `js/app.js` LOGO_MAP（host `opentix.life` 匹配）。
+- 重建 HTML 刷 cache-bust；README 的 LOGO_MAP 說明同步。
+
 ## [v0.68.12] - 2026-06-24 23:26
 ### 修正 — 東歐/南歐當地語言「進口劇」誤標歐陸、沒併入正典（& Juliet 同病根的系統性盤點）
 - 延續 & Juliet：當地語言標題的**進口劇**（同曲同本的授權版）沒被登記為別名 → 自成一群＋誤標當地 tradition。
