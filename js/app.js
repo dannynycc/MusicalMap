@@ -106,10 +106,17 @@ function affiliateUrl(u) {
 const cssUrl = (u) => (u || "").replace(/['"()\s\\]/g,
   (c) => "%" + c.charCodeAt(0).toString(16).padStart(2, "0"));
 function thumb(url) {
-  return safeUrl(url);
+  return safeUrl(url);   // markers stay small — the source thumbnail is fine at 140px
 }
 function posterFull(url) {
-  return safeUrl(url);
+  const u = safeUrl(url);
+  if (!u) return u;
+  // jegy.hu stores a tiny "{slug}-{W}-{H}-{id}.jpg" thumbnail (e.g. 222×131); the big popup
+  // poster upscales it into a blur. Swap to the full-res "-original-" variant for the popup.
+  if (u.includes("jegy.hu/")) {
+    return u.replace(/-\d+-\d+-(\d+\.(?:jpe?g|png|webp))$/i, "-original-$1");
+  }
+  return u;
 }
 
 // ---------- "is this show playing during the selected month?" ----------
