@@ -126,12 +126,19 @@ jobs:
             echo "No data changes."; exit 0
           fi
           git commit -m "chore(data): auto-refresh listings [skip ci]"
-          # Rebase onto any concurrent change, retry to survive races.
+          # Rebase onto any concurrent change, retry to survive races. CRITICAL: on a
+          # rebase conflict (two runs regenerating the same shows.json/variants), abort
+          # so the working tree is NEVER left holding `<<<<<<<` conflict markers — those
+          # would ship in the Pages artifact below (path: .) and corrupt the live JSON.
+          # Aborting restores this run's own freshly-built data, which deploys cleanly.
           for i in 1 2 3; do
-            git pull --rebase --autostash origin "${GITHUB_REF_NAME}" \
-              && git push && exit 0 || sleep 5
+            if git pull --rebase --autostash origin "${GITHUB_REF_NAME}" && git push; then
+              exit 0
+            fi
+            git rebase --abort 2>/dev/null || true
+            sleep 5
           done
-          echo "::warning::could not push refreshed data after retries"
+          echo "::warning::could not push refreshed data after retries (deploying this run's data)"
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3

@@ -11,6 +11,14 @@
 
 ---
 
+## [v0.68.8] - 2026-06-24 21:43
+### 修正 — CI race 把帶 git 衝突標記的壞變體部署上線（官網沒顯示的真因）
+- 症狀：手動觸發 CI 後 Avenue Q 等官網標題連結**還是沒出現**。根因有二：
+  1. **CI race**：一個較早的 run 用**舊的 16 部** `official_sites.json` 建出 270 筆官網，其資料 commit 經 `git pull --rebase` 乾淨疊到 v0.68.7 之上（`943f7be`）；我的手動 run 建出**正確的 1022 筆**，但 commit step 的 rebase 撞上它 → `shows.json` 衝突 → working tree 留下 `<<<<<<<` 標記 → 被「Upload Pages artifact」**原樣部署** → 線上變體 JSON 損毀。
+  2. 結果：git HEAD 乾淨但資料舊（270 筆），**線上實際是帶衝突標記的壞檔**。
+- **修法**：本機完整重建（`build_shows` + `gen_variants` + `gen_site`）→ `shows.json`／三語變體 **1022 筆官網、0 衝突標記、Avenue Q→`avenueqmusical.co.uk`**，直接 commit；由 **push 觸發**的 deploy 跳過 scrape／data-commit、直接服務 committed 檔（無 race）。
+- **硬化 workflow**：commit step 的 rebase 衝突時 `git rebase --abort`，**絕不讓衝突標記進到 Pages artifact**，防止再次部署壞檔。
+
 ## [v0.68.7] - 2026-06-24 20:40
 ### 新增 — 補齊百老匯/西區缺漏官網（official_sites.json 108→184）
 - 使用者抓到 Avenue Q 等純英文百老匯/西區劇**沒有官網標題連結**。根因：`works.json` 註冊表只收非英語劇種／有外語別名的劇，純英文 Anglo 劇被省略 → **從沒被研究到**。
