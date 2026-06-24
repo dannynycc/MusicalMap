@@ -397,9 +397,11 @@ function tooltipHtml(show) {
 // Platform icon for a ticket host. Google's favicon service returns a generic globe
 // for Chinese sites (damai/juooo…), so curated brand logos override it; everything
 // else falls back to the live favicon (works for todaytix/ticketmaster/atg/…).
-const LOGO_MAP = { "damai": "logos/damai.png", "juooo": "logos/juooo.png" };   // host-substring → rehosted logo (favicon fails for Chinese sites)
+const LOGO_MAP = { "damai": "logos/damai.png", "juooo": "logos/juooo.png", "ticketmaster": "logos/ticketmaster.png" };   // host-substring → rehosted logo (favicon too low-res / wrong for these)
 function platformIcon(host) {
-  for (const k in LOGO_MAP) if (host.includes(k)) return LOGO_MAP[k];
+  // LOGO_MAP paths are repo-root-relative; prefix MM_BASE so they resolve from the
+  // variant pages (/MusicalMap/zh-hant/…) instead of 404-ing. Favicon URLs are absolute.
+  for (const k in LOGO_MAP) if (host.includes(k)) return (window.MM_BASE || "") + LOGO_MAP[k];
   return `https://www.google.com/s2/favicons?domain=${host}&sz=128`;
 }
 

@@ -11,6 +11,13 @@
 
 ---
 
+## [v0.66.0] - 2026-06-24 17:14
+### 新增 — 作品官網資料(works.json) + Ticketmaster 高清 logo + 修 logo 路徑
+- **官網研究**：10 個 agent 並行逐部搜尋+驗證 166 部作品官網，**107 部找到**（89 high + 18 medium；59 部確認無官網標 null），寫進 `data/works.json` 的 `official` 欄位。**僅資料準備、尚未接 `build_shows`**（避開進行中的 Damai 改動衝突），故暫不顯示於地圖；接線後一次補上一大片缺官網的劇（每部作品官網會繼承到其所有場次）。
+- **Ticketmaster logo**：官方只發 32px favicon，改 rehost **426px 高清** `logos/ticketmaster.png`（LOGO_MAP）。
+- **修既有 bug**：`platformIcon` 的 LOGO_MAP 相對路徑在變體頁 `/MusicalMap/zh-hant/` 會 404（damai/juooo logo 一直壞、被 `onerror` 藏掉）；補 `MM_BASE` 前綴後正確解析。
+- 重建三語頁刷 cache-bust。
+
 ## [v0.65.9] - 2026-06-24 17:01
 ### 改善 — 售票平台圖示畫質（favicon sz 64→128）
 - `platformIcon` 取 favicon 由 `sz=64` 改 `sz=128`：高 DPI 螢幕放到 52px 不再顆粒（todaytix/LondonTheatre/ATG 等大多數明顯變清晰，實測對照確認）。
