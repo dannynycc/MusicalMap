@@ -11,6 +11,12 @@
 
 ---
 
+## [v0.65.7] - 2026-06-24 16:34
+### 修正 — popup 售票平台 tile 名稱被裁切
+- 症狀：popup「購票」區每個平台 tile 的名稱（官方網站／TodayTix／Ticketmaster 等）**底部被切掉**。
+- 根因：`.pop-tile` 固定 `height: 92px`，容不下「圖示 40px + 標籤(最多 2 行) + 箭頭」，標籤被擠到溢出裁切。
+- 修法：`css/style.css` 改 `min-height: 104px`（容得下 2 行標籤、會換行的 Ticketmaster 也不再切），微調 gap/padding。重建三語頁刷 cache-bust。
+
 ## [v0.65.6] - 2026-06-24 14:11
 ### 新增 — 品牌 logo + header/sidebar 改用 logo 米白底色
 - 加入品牌 logo（金色高音譜號徽章）到 header 品牌區（`logo.png`，原圖縮放至 122×200）。
