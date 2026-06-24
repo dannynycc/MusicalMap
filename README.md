@@ -47,7 +47,8 @@ scrapers/  ──產出──>  data/*.json  ──merge──>  data/shows.json
 | `data/opentix.json` | 台灣 OPENTIX 兩廳院售票輸出（search.opentix.life JSON API，戲劇-音樂劇，自帶座標+海報） |
 | `data/utiki.json` | 台灣 utiki 售票引擎輸出（寬宏 KHAM 分類 80 + udn售票 搜尋音樂劇 + MNA 分類 77；同套 UTK 引擎，座標交 Google geocode） |
 | `data/manual.json` | **人工策展**：自有售票系統的劇（上海大劇院、Live Nation FR、捷克 NDM…），隨發現隨補 |
-| `data/works.json` | **正典作品主檔**（單一真相來源，158 筆）：每齣作品一筆，記 `tradition`（血統 tag）+ 跨語言 `aliases` + 選填 `poster`／`productions`（版本層，見 `docs/DESIGN_productions.md`）。build 時供①血統分類②跨語言去重③雙語顯示三用——任何別名（`Macskák`/`キャッツ`/`Cats`）都收斂到同一作品。`build_shows.py --discover` 會把「疑似未對照的進口劇」寫到 `data/_works_discover.json` 供審核 |
+| `data/works.json` | **正典作品主檔**（單一真相來源，166 筆）：每齣作品一筆，記 `tradition`（血統 tag）+ 跨語言 `aliases` + 選填 `poster`／`productions`（版本層，見 `docs/DESIGN_productions.md`）。build 時供①血統分類②跨語言去重③雙語顯示三用——任何別名（`Macskák`/`キャッツ`/`Cats`）都收斂到同一作品。`build_shows.py --discover` 會把「疑似未對照的進口劇」寫到 `data/_works_discover.json` 供審核 |
+| `data/official_sites.json` | **作品官網主檔**（184 筆，key = `build_shows.group_key`，如 `wicked`/`avenue q`）：每作品的官方製作網站，value 為分區 map（`global` fallback ＋ `us`/`uk`/`au`/`de`/`jp`… 對應場次 `country`）。`build_shows` 依每場次國家挑對應官網，掛成 `kind:"official"` 連結；`app.js` 把它做成**劇名標題的超連結**（不單獨給圖卡，官網不分潤、不搶售票平台點擊）。多 agent 研究，~1,000 場次有官網 |
 | `data/not_musical.json` | **非音樂劇排除清單**：來源平台把話劇/演唱會/致敬樂團/魔術秀/2.5次元舞台劇/餐飲體驗等標成 musical，title pattern（`NOT_MUSICAL_RE`）抓不到的逐筆列此（web 查證）。build 時依正規化標題剔除 |
 | `data/overrides.json` | 人工座標/欄位修正（依 show id；修來源錯誤，build 時套用） |
 | `data/booking_horizon.json` | 開放式長壽劇的**最後售票日**（依 show id；`booking_horizon.py` 用 Ticketmaster `sort=date,desc` 抓，build 時填入無 end_date 的劇，避免時間軸把它們一路顯示到數年後） |
@@ -137,6 +138,6 @@ python scrapers/build_shows.py        # 合併成 data/shows.json
 - 📒 **來源登記表：`docs/SOURCES.md`**（用戶提供的網址一律登記在此，含狀態）。
 - ✅ **Production／版本層（v0.57.0，見 `docs/DESIGN_productions.md`）**：足跡記錄可選「版本／製作」（如歌劇魅影：倫敦/北美/日本四季…各國 live 版本 + 台灣巡演/25 週年 RAH 等 archival 版本），各帶正確海報；未收錄的版本可貼「自訂海報網址」。沒在演的劇（如 Love Never Dies／愛無止盡）也進自動完成並有縮圖。海報解析序 `自訂→版本→作品→♪`。`gen_catalog.py` 自動依國家分群產生 live 版本；`scrapers/audit_productions.py`（CI）守海報。
 - ✅ 座標修正機制：NYC 範圍檢查、lat/lng 對調偵測、城市中心點 fallback、著名劇院手動座標表、`overrides.json`、geocode 快取。
-- ✅ 同劇合併（標題正規化）、正式劇名覆蓋、巡演各自海報、cluster 依數量 √n 縮放、地圖／衛星切換、多地點 overview、popup 完整海報、多地區售票連結(「**購票**」標頭下各平台以**方形 logo tile**並排、含右箭頭;logo 用 favicon 自動取得,中國站如大麥/聚橙放官方 logo)。
+- ✅ 同劇合併（標題正規化）＋**同座標去重**（一場館被兩來源標不同 city／拼法也合併成一個點，售票連結合併）、正式劇名覆蓋、巡演各自海報、cluster 依數量 √n 縮放、地圖／衛星切換、多地點 overview、popup 完整海報、多地區售票連結(「**購票**」標頭下各平台以**方形 logo tile**並排、含右箭頭;logo 用 favicon 自動取得,中國站如大麥/聚橙放官方 logo)。
 - ✅ **多平台分潤框架（`MM_CONFIG.AFFILIATE` + `affiliateUrl()`，見 `docs/DESIGN_affiliate.md`）**：render 時把外連售票 URL 依 host 包成分潤連結（資料層只存乾淨 URL，換 ID = 改 config 一行）。支援 Impact／Partnerize／Awin／tmpl(Sovrn 等)多網絡;每個程式 dormant，填碼即生效。**直接計畫**:**Ticketmaster**（Impact,~600 齣,較高佣金,獨立於 Sovrn)。**Sovrn Commerce / VigLink catch-all**(一把 key 變現所有 in-network 售票站):涵蓋 **TodayTix(101)+ londontheatre(45)+ broadway-show-tickets(27)+ ATG(219)** ≈ 390 條外連,1-2% CPA+CPC。⚠️ **Sovrn 端需人工審網站(~3-5 天,Settings→Pending)後才開始計佣**。ATG/Broadway Direct 之後可升級為**直接計畫**(Partnerize/Awin,較高)取代 Sovrn。各平台 2026-06-23 逐一查證,詳見 `docs/DESIGN_affiliate.md`;TodayTix 改導用 `scrapers/todaytix.py`。
 - 🟡 West End 少數冷門場館 geocode 為近似位置（可編 `data/venues.json` 校正）。

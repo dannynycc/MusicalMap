@@ -11,6 +11,11 @@
 
 ---
 
+## [v0.68.10] - 2026-06-24 22:14
+### 文件 — MD freshness（補 v0.68.6–v0.68.9 漏掉的文件同步）
+- `README.md`：`works.json` 158→**166 筆**；檔案表**新增 `data/official_sites.json`**（184 筆、作品官網主檔、分區 map ＋「掛 `kind:official`→劇名標題超連結」機制）；現況「同劇合併」補上**同座標去重**。
+- `docs/DESIGN_productions.md`：works.json 158→166。
+
 ## [v0.68.9] - 2026-06-24 22:03
 ### 修正 — 同一場館被兩來源標不同 city → 地圖上兩個重複的點（座標去重）
 - 使用者抓到 Jersey Boys 在 New Wimbledon Theatre 出現**兩個點**：同座標，但一來源（londontheatre）標 city「London」、另一來源（ATG）標「Wimbledon」（Wimbledon 是倫敦一區）。既有的 `(group, city, venue)` 去重因 city 不同而抓不到。
