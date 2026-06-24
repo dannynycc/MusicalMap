@@ -754,23 +754,47 @@ def main():
         c = (s.get("country") or "").strip()
         s["country"] = COUNTRY_DISPLAY.get(c.lower(), c)
 
-    # 大麥連結升級:同一場若已有精準 detail 連結,移除舊的「硬導向搜尋頁」連結
-    # (search.damai.cn 一點進去是一堆場次;detail.damai.cn 直達該場)。沒對應到
-    # 精準連結的舊搜尋連結保留不動。
+    # 大麥精準連結升級:中國各來源(保利/聚橙/ypiao/上海文廣…)的售票連結常是大麥「搜尋頁」
+    # (search.damai.cn,點進去一堆場次)。大麥手動批次(china_damai.json)已抓到精準 detail 連結
+    # (直達該場)→ 用 (group, 城市) 查找表,把任何來源的搜尋頁連結換成精準連結。
+    # 此步每次 CI build 都跑,故隔天新抓的保利/聚橙資料也會自動升級(大麥本身手動更新)。
+    damai_idx = {}
+    dd_path = DATA / "china_damai.json"
+    if dd_path.exists():
+        try:
+            for ds in json.loads(dd_path.read_text(encoding="utf-8")).get("shows", []):
+                u = ds.get("ticket_url") or ""
+                if "detail.damai.cn" not in u:
+                    continue
+                g = group_key(ds.get("title", ""))
+                for c in (ds.get("city"), ds.get("city_cn")):   # 英/中城市名都建 key
+                    if c:
+                        damai_idx[(g, c.strip().lower())] = u
+        except Exception as e:  # noqa: BLE001
+            print(f"  [damai-idx] skipped: {e}")
+
     upgraded = 0
     for s in shows:
         links = s.get("ticket_links") or []
-        has_detail = any("detail.damai.cn" in (l.get("url") or "") for l in links)
-        if has_detail:
+        precise = damai_idx.get((s.get("group"), (s.get("city") or "").strip().lower()))
+        # 1) 把該場任何 search.damai.cn 連結換成精準 detail(查找表命中時)
+        if precise:
+            for l in links:
+                if "search.damai.cn" in (l.get("url") or ""):
+                    l["url"] = precise
+                    upgraded += 1
+            if "search.damai.cn" in (s.get("ticket_url") or ""):
+                s["ticket_url"] = precise
+        # 2) 同場若有 detail 連結,移除殘留的搜尋頁連結(避免並列重複)
+        if any("detail.damai.cn" in (l.get("url") or "") for l in links):
             kept = [l for l in links if "search.damai.cn" not in (l.get("url") or "")]
             if len(kept) != len(links):
                 s["ticket_links"] = kept
-                upgraded += 1
-        # 主連結 ticket_url 若還是大麥搜尋頁,且有精準連結,一併升級
-        if has_detail and "search.damai.cn" in (s.get("ticket_url") or ""):
-            s["ticket_url"] = next(l["url"] for l in links if "detail.damai.cn" in (l.get("url") or ""))
+            if "search.damai.cn" in (s.get("ticket_url") or ""):
+                s["ticket_url"] = next(l["url"] for l in (s.get("ticket_links") or [])
+                                       if "detail.damai.cn" in (l.get("url") or ""))
     if upgraded:
-        print(f"  upgraded {upgraded} damai search-link(s) → precise detail link")
+        print(f"  upgraded {upgraded} damai search-link(s) → precise detail link (via china_damai lookup)")
 
     # 中國售票連結 label 按目的地 host 統一(不同來源各自命名,如保利把大麥連結標「售票連結」、
     # 大麥 scraper 標「大麥」→ 同一齣劇不同城市標籤不一致)。依 host 正規化成品牌名,讓使用者一眼
