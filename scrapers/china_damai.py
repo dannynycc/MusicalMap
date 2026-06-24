@@ -283,6 +283,7 @@ def build():
             "ticket_links": [{"label": "大麥", "url": ticket, "kind": "ticketing"}],
             "image": r.get("verticalPic") or None,
             "tour_name": None,
+            "verified": True,            # 真實官方 API 抓取(真場館/檔期/連結),同 juooo 標 verified
             "source": "damai",
         })
     shows.sort(key=lambda s: (s["city"], s["title"]))

@@ -11,6 +11,10 @@
 
 ---
 
+## [v0.67.1] - 2026-06-24 17:49
+### 修正 — 大麥場次誤掛「未驗證（示範資料）」badge
+- `china_damai.py build()` 漏設 `verified` 欄位 → 162 個大麥場次全被當未驗證，圖卡/popup 掛「⚠ 未驗證（示範資料）」。但大麥是真實官方 API 抓取（真場館/檔期/連結），同 juooo 應標 `verified: True`。補上後重建：`shows.json` **1607 verified / 0 unverified**，badge 消失（headless 截圖驗證）。
+
 ## [v0.67.0] - 2026-06-24 17:42
 ### 新增 — 大麥 Damai 中國音樂劇來源（人工協助批次、247 場次/52 城、精準售票連結）
 - **新 scraper `scrapers/china_damai.py`**：大麥有阿里 BaXia x5sec 滑塊風控，無人值守 CI 繞不過 → 走「人過驗證、機器接手 session」路線。`launch`(真 Chrome 開遠端除錯埠導到搜尋頁) → 人解滑塊 → `probe`(確認 session 乾淨) → `harvest`(CDP 連同一 session,在頁面 context 內 fetch `searchajax`,pageSize 鎖 30、每頁 15~25s 隨機抖動+1/4 機率讀內容停頓、每頁即時寫檔、`--start-page` 可續抓、撞 x5sec 即停)。**誠實記錄：慢速仍會頻繁 re-challenge,需真人全程顧著解(~15 次/全量)**。
