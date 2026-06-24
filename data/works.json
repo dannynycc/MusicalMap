@@ -95,7 +95,10 @@
     "El Rey León",
     "Le Roi Lion"
    ],
-   "official": "https://lionking.com/"
+   "official": {
+    "default": "https://lionking.com/",
+    "Australia": "https://thelionkingmusical.com.au/"
+   }
   },
   {
    "canonical": "Hamilton",
@@ -171,7 +174,10 @@
     "長靴妖姬",
     "長靴皇后"
    ],
-   "official": "https://www.kinkybootsmusical.com/"
+   "official": {
+    "default": "https://www.kinkybootsmusical.com/",
+    "UK": "https://kinkybootslondon.com/"
+   }
   },
   {
    "canonical": "Jesus Christ Superstar",
@@ -375,7 +381,11 @@
     "魔法壞女巫",
     "罪惡壞女巫"
    ],
-   "official": "https://wickedthemusical.com/"
+   "official": {
+    "default": "https://wickedthemusical.com/",
+    "USA": "https://wickedthemusical.com/",
+    "UK": "https://www.wickedthemusical.co.uk/"
+   }
   },
   {
    "canonical": "SIX",
@@ -384,7 +394,11 @@
     "六個皇后",
     "六位皇后"
    ],
-   "official": "https://sixthemusical.com/"
+   "official": {
+    "default": "https://sixthemusical.com/",
+    "USA": "https://sixonbroadway.com/",
+    "Australia": "https://sixthemusical.com.au/"
+   }
   },
   {
    "canonical": "Aladdin",
@@ -427,7 +441,12 @@
     "摩門之書",
     "摩爾門經"
    ],
-   "official": "https://bookofmormonbroadway.com/"
+   "official": {
+    "default": "https://bookofmormonbroadway.com/",
+    "USA": "https://bookofmormonbroadway.com/",
+    "UK": "https://thebookofmormonmusical.com/",
+    "Australia": "https://thebookofmormonmusical.com.au/"
+   }
   },
   {
    "canonical": "Dear Evan Hansen",
@@ -450,7 +469,11 @@
     "哈迪斯城",
     "冥府"
    ],
-   "official": "https://hadestown.com/"
+   "official": {
+    "default": "https://hadestown.com/",
+    "USA": "https://hadestown.com/",
+    "UK": "https://uk.hadestown.com/"
+   }
   },
   {
    "canonical": "Moulin Rouge!",
@@ -470,7 +493,11 @@
     "ビートルジュース",
     "嘩鬼家族"
    ],
-   "official": "https://beetlejuicebroadway.com/"
+   "official": {
+    "default": "https://beetlejuicebroadway.com/",
+    "USA": "https://beetlejuicebroadway.com/",
+    "Australia": "https://beetlejuicethemusical.com.au/"
+   }
   },
   {
    "canonical": "Jersey Boys",
@@ -499,7 +526,10 @@
     "ウェイトレス",
     "女招待"
    ],
-   "official": "https://waitressthemusical.com/"
+   "official": {
+    "default": "https://waitressthemusical.com/",
+    "Australia": "https://waitressthemusical.com.au/"
+   }
   },
   {
    "canonical": "Come from Away",
@@ -920,7 +950,12 @@
     "希德姊妹幫",
     "希德姐妹幫"
    ],
-   "official": "https://heathersthemusical.com"
+   "official": {
+    "default": "https://heathersthemusical.com",
+    "USA": "https://heathersthemusical.com/new-york/",
+    "UK": "https://heathersthemusical.com/london/",
+    "Australia": "https://heathersthemusical.com/australia/"
+   }
   },
   {
    "canonical": "Guys and Dolls",
@@ -1011,7 +1046,11 @@
     "Papá por siempre",
     "肥媽先生"
    ],
-   "official": "https://doubtfirethemusical.com/"
+   "official": {
+    "default": "https://doubtfirethemusical.com/",
+    "USA": "https://doubtfirethemusical.com/",
+    "UK": "https://www.mrsdoubtfiremusical.co.uk/"
+   }
   },
   {
    "canonical": "Some Like It Hot",

@@ -11,6 +11,12 @@
 
 ---
 
+## [v0.66.1] - 2026-06-24 17:31
+### 新增 — 分區官網（works.json `official` 升級為可分區物件）
+- 從 `shows.json` 篩出 **26 部「同時在美(百老匯)+英(西區)上演」**的作品，3 個 agent 定向查各自 US/UK/AU 官網。
+- 其中 **10 部有真正不同的分區官網**，`official` 由字串升級成物件 `{default, USA?, UK?, Australia?}`：Wicked、The Book of Mormon、Hadestown、SIX、Beetlejuice、Heathers、Mrs. Doubtfire、The Lion King、Kinky Boots、Waitress。其餘 16 部是「單一全球站＋subpath 分區」，維持字串。
+- **schema 向後相容**：`build_shows` 接線時，字串→全場次共用；物件→依**該場次的 `country`** 挑（fallback `default`）→ 每張圖卡顯示**該地區的官網**（含巡演：tour 在哪國就挑哪國）。仍未接 `build_shows`（等 Damai）。
+
 ## [v0.66.0] - 2026-06-24 17:14
 ### 新增 — 作品官網資料(works.json) + Ticketmaster 高清 logo + 修 logo 路徑
 - **官網研究**：10 個 agent 並行逐部搜尋+驗證 166 部作品官網，**107 部找到**（89 high + 18 medium；59 部確認無官網標 null），寫進 `data/works.json` 的 `official` 欄位。**僅資料準備、尚未接 `build_shows`**（避開進行中的 Damai 改動衝突），故暫不顯示於地圖；接線後一次補上一大片缺官網的劇（每部作品官網會繼承到其所有場次）。
