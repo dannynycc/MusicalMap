@@ -54,50 +54,50 @@ jobs:
         run: |
           # Don't fail the whole run if one source is temporarily down;
           # build_shows.py still merges whatever source files exist.
-          python scrapers/westend.py     || echo "::warning::West End scrape failed"
-          python scrapers/broadway.py    || echo "::warning::Broadway scrape failed"
-          python scrapers/broadway_tours.py || echo "::warning::tours scrape failed"
-          python scrapers/intl.py        || echo "::warning::international scrape failed"
-          python scrapers/shiki.py       || echo "::warning::shiki scrape failed"
-          python scrapers/takarazuka.py  || echo "::warning::takarazuka scrape failed"
-          python scrapers/japan.py       || echo "::warning::japan (toho+) scrape failed"
-          python scrapers/easteurope.py  || echo "::warning::easteurope (jegy.hu+) scrape failed"
-          python scrapers/italy.py       || echo "::warning::italy (teatro.it) scrape failed"
-          python scrapers/sweden.py      || echo "::warning::sweden (showtic) scrape failed"
-          python scrapers/netherlands.py || echo "::warning::netherlands (stage) scrape failed"
-          python scrapers/poland.py      || echo "::warning::poland (ebilet) scrape failed"
-          python scrapers/norway.py      || echo "::warning::norway scrape failed"
-          python scrapers/austria.py     || echo "::warning::austria (VBW) scrape failed"
-          python scrapers/middleeast.py  || echo "::warning::middleeast (platinumlist) scrape failed"
-          python scrapers/portugal.py    || echo "::warning::portugal (bol.pt) scrape failed"
-          python scrapers/china.py       || echo "::warning::china (shcstheatre) scrape failed"
-          python scrapers/china_poly.py  || echo "::warning::china_poly (polyt.cn) scrape failed"
-          python scrapers/china_ypiao.py || echo "::warning::china_ypiao (ypiao) scrape failed"
-          python scrapers/china_chinaticket.py || echo "::warning::china_chinaticket (zhongyan) scrape failed"
-          python scrapers/china_juooo.py || echo "::warning::china_juooo (juooo.com) scrape failed"
-          python scrapers/interpark.py   || echo "::warning::interpark scrape failed"
-          python scrapers/atg.py         || echo "::warning::atg scrape failed"
-          python scrapers/stage_de.py    || echo "::warning::stage scrape failed"
-          python scrapers/madrid.py      || echo "::warning::madrid scrape failed"
-          python scrapers/opentix.py     || echo "::warning::opentix scrape failed"
-          python scrapers/utiki.py       || echo "::warning::utiki (kham+udn) scrape failed"
-          python scrapers/tm_tours.py    || echo "::warning::tm_tours sweep failed"
-          python scrapers/ticketmaster.py || echo "::warning::ticketmaster scrape failed"
-          python scrapers/build_shows.py
+          python scrapers/_run.py scrapers/westend.py     || echo "::warning::West End scrape failed"
+          python scrapers/_run.py scrapers/broadway.py    || echo "::warning::Broadway scrape failed"
+          python scrapers/_run.py scrapers/broadway_tours.py || echo "::warning::tours scrape failed"
+          python scrapers/_run.py scrapers/intl.py        || echo "::warning::international scrape failed"
+          python scrapers/_run.py scrapers/shiki.py       || echo "::warning::shiki scrape failed"
+          python scrapers/_run.py scrapers/takarazuka.py  || echo "::warning::takarazuka scrape failed"
+          python scrapers/_run.py scrapers/japan.py       || echo "::warning::japan (toho+) scrape failed"
+          python scrapers/_run.py scrapers/easteurope.py  || echo "::warning::easteurope (jegy.hu+) scrape failed"
+          python scrapers/_run.py scrapers/italy.py       || echo "::warning::italy (teatro.it) scrape failed"
+          python scrapers/_run.py scrapers/sweden.py      || echo "::warning::sweden (showtic) scrape failed"
+          python scrapers/_run.py scrapers/netherlands.py || echo "::warning::netherlands (stage) scrape failed"
+          python scrapers/_run.py scrapers/poland.py      || echo "::warning::poland (ebilet) scrape failed"
+          python scrapers/_run.py scrapers/norway.py      || echo "::warning::norway scrape failed"
+          python scrapers/_run.py scrapers/austria.py     || echo "::warning::austria (VBW) scrape failed"
+          python scrapers/_run.py scrapers/middleeast.py  || echo "::warning::middleeast (platinumlist) scrape failed"
+          python scrapers/_run.py scrapers/portugal.py    || echo "::warning::portugal (bol.pt) scrape failed"
+          python scrapers/_run.py scrapers/china.py       || echo "::warning::china (shcstheatre) scrape failed"
+          python scrapers/_run.py scrapers/china_poly.py  || echo "::warning::china_poly (polyt.cn) scrape failed"
+          python scrapers/_run.py scrapers/china_ypiao.py || echo "::warning::china_ypiao (ypiao) scrape failed"
+          python scrapers/_run.py scrapers/china_chinaticket.py || echo "::warning::china_chinaticket (zhongyan) scrape failed"
+          python scrapers/_run.py scrapers/china_juooo.py || echo "::warning::china_juooo (juooo.com) scrape failed"
+          python scrapers/_run.py scrapers/interpark.py   || echo "::warning::interpark scrape failed"
+          python scrapers/_run.py scrapers/atg.py         || echo "::warning::atg scrape failed"
+          python scrapers/_run.py scrapers/stage_de.py    || echo "::warning::stage scrape failed"
+          python scrapers/_run.py scrapers/madrid.py      || echo "::warning::madrid scrape failed"
+          python scrapers/_run.py scrapers/opentix.py     || echo "::warning::opentix scrape failed"
+          python scrapers/_run.py scrapers/utiki.py       || echo "::warning::utiki (kham+udn) scrape failed"
+          python scrapers/_run.py scrapers/tm_tours.py    || echo "::warning::tm_tours sweep failed"
+          python scrapers/_run.py scrapers/ticketmaster.py || echo "::warning::ticketmaster scrape failed"
+          python scrapers/_run.py scrapers/build_shows.py
           # TodayTix deep-link matcher (needs shows.json from the build above; the next
           # build_shows attaches its links). Affiliate re-point — see docs/DESIGN_affiliate.md.
-          python scrapers/todaytix.py    || echo "::warning::todaytix matcher failed"
+          python scrapers/_run.py scrapers/todaytix.py    || echo "::warning::todaytix matcher failed"
           # open-ended long-runners: fill end_date from TM's last on-sale date, then rebuild
-          python scrapers/booking_horizon.py || echo "::warning::booking_horizon failed"
-          python scrapers/build_shows.py
-          python scrapers/audit_dups.py  || echo "::warning::dedup/junk audit flagged issues"
-          python scrapers/audit_manual.py || echo "::warning::manual.json has stale/ended shows — review data/manual.json"
-          python scrapers/gen_catalog.py
-          python scrapers/audit_productions.py || echo "::warning::production audit flagged broken posters — review works.json"
+          python scrapers/_run.py scrapers/booking_horizon.py || echo "::warning::booking_horizon failed"
+          python scrapers/_run.py scrapers/build_shows.py
+          python scrapers/_run.py scrapers/audit_dups.py  || echo "::warning::dedup/junk audit flagged issues"
+          python scrapers/_run.py scrapers/audit_manual.py || echo "::warning::manual.json has stale/ended shows — review data/manual.json"
+          python scrapers/_run.py scrapers/gen_catalog.py
+          python scrapers/_run.py scrapers/audit_productions.py || echo "::warning::production audit flagged broken posters — review works.json"
           # Accumulate today's snapshot into the immutable historical archive
           # (separate stateful layer; never deletes closed runs). Pure build above
           # stays stateless. See scrapers/archive.py.
-          python scrapers/archive.py     || echo "::warning::archive accumulate failed"
+          python scrapers/_run.py scrapers/archive.py     || echo "::warning::archive accumulate failed"
         env:
           # set this repo secret to enable Ticketmaster refresh in CI; if unset
           # the scraper no-ops and the committed ticketmaster.json is kept.
@@ -120,6 +120,7 @@ jobs:
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add data/*.json data/archive/*.json data/variants/*.json \
+                  logs/api_usage.json \
                   index.html sitemap.xml robots.txt en zh-hans zh-hant
           if git diff --cached --quiet; then
             echo "No data changes."; exit 0

@@ -11,6 +11,14 @@
 
 ---
 
+## [v0.65.3] - 2026-06-24 13:28
+### 新增 — 所有外部 API 呼叫的用量記錄（評估能否提高掃描頻率）
+- 新增 `scrapers/usage.py`：import 時 monkey-patch `urllib.request.urlopen`（**所有 scraper 都用這個呼叫形式**），自動**按 host 計數 API 呼叫** ＋ 擷取 `Rate-Limit*` header（如 Ticketmaster 每日 5,000 額度/剩餘）。process 結束時 merge 進 `logs/api_usage.json`（按 CI run 分組，bounded ring buffer）。
+- 新增 `scrapers/_run.py` 包裝器：CI 改用 `python scrapers/_run.py scrapers/X.py` 跑每支 scraper（先 import usage 再 runpy 執行目標、保留 `__main__`/`__file__`/argv）→ **28 支 scraper 一行都不用改**就全涵蓋。
+- `update.yml`：所有 scraper 改走 `_run.py`；`logs/api_usage.json` 納入每日 commit。
+- 用途：跑幾天後看 `logs/api_usage.json` 各 host 的 `total_calls` 與 TM 的 `available`，判斷加頻率撐不撐得住（現況 TM 單班約用 ~1,400/5,000、有餘裕）。**純 ops，無網站變更、不需重建。**
+- 實測：探針 + 真實 scraper（shiki）驗證 host 計數與 TM 額度擷取正確。
+
 ## [v0.65.2] - 2026-06-24 12:46
 ### 新增 — 叢集圓圈 hover 時浮起 + 放大（解決重疊被擋）
 - 重疊的叢集泡泡（66/25/10 那種圓圈）互相遮住時，hover 看不清被擋的那顆。Leaflet 的 `riseOnHover` 只作用於單一 marker，**不含 markercluster 的叢集泡泡**。
