@@ -169,6 +169,18 @@ const satellite = L.tileLayer(
     attribution: "Tiles &copy; Esri, Maxar, Earthstar Geographics", maxZoom: 19,
   });
 L.control.layers({ [t("map")]: streets, [t("satellite")]: satellite }, null, { position: "topright" }).addTo(map);
+
+// Visible zoom-level readout (live), under the +/- buttons — handy for judging at which
+// zoom clusters break apart, etc.
+const zoomReadout = L.control({ position: "topleft" });
+zoomReadout.onAdd = () => {
+  const el = L.DomUtil.create("div", "mm-zoom-level");
+  const sync = () => { el.textContent = "z " + Math.round(map.getZoom()); };
+  sync();
+  map.on("zoom zoomend", sync);
+  return el;
+};
+zoomReadout.addTo(map);
 const cluster = L.markerClusterGroup({
   maxClusterRadius: 70,
   spiderfyOnMaxZoom: true,
