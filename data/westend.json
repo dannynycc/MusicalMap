@@ -1,7 +1,7 @@
 {
   "meta": {
     "source": "londontheatre.co.uk",
-    "count": 52,
+    "count": 53,
     "missing_coords": []
   },
   "shows": [
@@ -533,6 +533,23 @@
       "source": "londontheatre.co.uk"
     },
     {
+      "id": "westend-wild-about-you",
+      "title": "Wild About You",
+      "type": "resident",
+      "venue": "Charing Cross Theatre",
+      "city": "London",
+      "country": "UK",
+      "lat": 51.507663,
+      "lng": -0.124366,
+      "start_date": "2027-01-18",
+      "end_date": "2027-04-10",
+      "ticket_url": "https://www.londontheatre.co.uk/show/47269-wild-about-you",
+      "image": "https://images.ctfassets.net/6pezt69ih962/1WuBEB1UM5YkxwiM8BwInP/6a97d02d91e23e6e5e1d9ed4ec6171b7/WAY2026-Agents_TTix7_480_x_720px.jpg",
+      "tour_name": null,
+      "verified": true,
+      "source": "londontheatre.co.uk"
+    },
+    {
       "id": "westend-theare-royalty-drury-lane",
       "title": "Theatre Royalty Drury Lane",
       "type": "resident",
@@ -805,23 +822,6 @@
       "source": "londontheatre.co.uk"
     },
     {
-      "id": "westend-pride",
-      "title": "Pride",
-      "type": "resident",
-      "venue": "Dorfman Theatre",
-      "city": "London",
-      "country": "UK",
-      "lat": 51.507077,
-      "lng": -0.113298,
-      "start_date": "2026-06-11",
-      "end_date": "2026-09-12",
-      "ticket_url": "https://www.londontheatre.co.uk/show/45755-pride",
-      "image": "https://images.ctfassets.net/6pezt69ih962/01v85akZEByD4kcnPF6U0k/7fe6d8ff7c725225afeabdbb62608548/NTGDS_NC_Pride_TodayTix_OnSale_Rollout_600x900.jpg",
-      "tour_name": null,
-      "verified": true,
-      "source": "londontheatre.co.uk"
-    },
-    {
       "id": "westend-kimberly-akimbo",
       "title": "Kimberly Akimbo",
       "type": "resident",
@@ -834,6 +834,23 @@
       "end_date": "2026-11-07",
       "ticket_url": "https://www.londontheatre.co.uk/show/45917-kimberly-akimbo",
       "image": "https://images.ctfassets.net/6pezt69ih962/1zLiGgHuUIOmReasEl5XyX/3b6ef573030583ce528420644379bb6b/Kimberly_Akimbo_TodayTix_480x720px__New_Artwork_.jpg",
+      "tour_name": null,
+      "verified": true,
+      "source": "londontheatre.co.uk"
+    },
+    {
+      "id": "westend-pride",
+      "title": "Pride",
+      "type": "resident",
+      "venue": "Dorfman Theatre",
+      "city": "London",
+      "country": "UK",
+      "lat": 51.507077,
+      "lng": -0.113298,
+      "start_date": "2026-06-11",
+      "end_date": "2026-09-12",
+      "ticket_url": "https://www.londontheatre.co.uk/show/45755-pride",
+      "image": "https://images.ctfassets.net/6pezt69ih962/01v85akZEByD4kcnPF6U0k/7fe6d8ff7c725225afeabdbb62608548/NTGDS_NC_Pride_TodayTix_OnSale_Rollout_600x900.jpg",
       "tour_name": null,
       "verified": true,
       "source": "londontheatre.co.uk"
