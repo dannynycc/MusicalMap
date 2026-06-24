@@ -419,7 +419,7 @@ function popupHtml(show) {
   // square logo tiles — ticketing platforms only; tiles grow to fill the row (`n{count}`
   // lets CSS lay a lone source out wide instead of leaving the row blank).
   const ordered = links.filter((l) => l.kind !== "official");
-  const ticket = ordered.length ? `<div class="pop-tix"><div class="pop-tix-h">${esc(t("get_tickets"))}</div><div class="pop-tiles n${ordered.length}">${ordered.map((l) => {
+  const ticket = ordered.length ? `<div class="pop-tix"><div class="pop-tix-h">${esc(t("get_tickets"))}</div><div class="pop-tiles">${ordered.map((l) => {
     const u = safeUrl(l.url); if (!u) return "";
     const lab = esc(l.label || l.country || "");
     let host = ""; try { host = new URL(u).hostname; } catch { /* */ }
@@ -433,8 +433,11 @@ function popupHtml(show) {
   const tourLine = show.type === "tour" && tname ? `<div class="p-row"><b>${esc(tname)}</b></div>` : "";
   const unverified = show.verified ? "" : `<div class="p-row warn">${esc(t("unverified_demo"))}</div>`;
   const titleTxt = esc(canonTitle(show));
+  // Official site is reachable by clicking the title, but we DON'T advertise it (no arrow,
+  // no hover styling): a visible link cue would funnel clicks to the non-paying official
+  // site and away from the affiliate ticketing tiles. Looks like plain text; still a link.
   const title = official
-    ? `<p class="p-title"><a class="p-title-link" href="${esc(affiliateUrl(official.url))}" target="_blank" rel="noopener" title="${esc(t("official"))}">${titleTxt}<span class="p-title-ext" aria-hidden="true">↗</span></a></p>`
+    ? `<p class="p-title"><a class="p-title-link" href="${esc(affiliateUrl(official.url))}" target="_blank" rel="noopener">${titleTxt}</a></p>`
     : `<p class="p-title">${titleTxt}</p>`;
   return `<div class="popup">${img}<div class="pop-body">
       ${title}
