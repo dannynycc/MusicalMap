@@ -11,6 +11,12 @@
 
 ---
 
+## [v0.68.5] - 2026-06-24 19:00
+### 修正 — popup 文字＋圖卡溢出白框（我 v0.68.2 用 fit-content 引入的 regression）
+- 根因(實測):`.pop-body { width: fit-content }` 讓 **Leaflet 量錯** popup 寬度——量成 574px 設定白框,實際 render 718px → 整個右半塊(**標題/場館/日期文字 + 售票圖卡**)超出白框右緣約 127px。
+- 修法:(1) `.pop-body` 改**確定寬度**(由 `popupHtml` 依圖卡數 inline:3+ 卡 380px、否則 280px) + `box-sizing: border-box`,Leaflet 才量得準;(2) `.pop-poster` 加 `max-width:340px; object-fit:cover` 防超寬海報把 poster+body 推爆 maxWidth。poster(≤340)+body(≤380)=720 剛好在 maxWidth 內。
+- 驗證:headless 真 Leaflet popup 量 4 種(Mamma Mia 3卡/OPENTIX 1卡/SIX 4卡/Paddington)文字與圖卡右緣**全 ≤ 白框右緣**,並截圖目視確認在框內。單一來源面板較窄(280)、圖卡維持 110px。
+
 ## [v0.68.4] - 2026-06-24 18:37
 ### 修正 — 售票圖卡標籤空白(OPENTIX 等沒帶 label 的來源)
 - 部分 scraper(如 opentix)的 `ticket_links` 不帶 `label` 欄位 → 圖卡只有 icon+箭頭、**標籤一片空白**。原本 `l.label || l.country` 兩者皆無就空。

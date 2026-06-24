@@ -460,7 +460,10 @@ function popupHtml(show) {
   const title = official
     ? `<p class="p-title"><a class="p-title-link" href="${esc(affiliateUrl(official.url))}" target="_blank" rel="noopener">${titleTxt}</a></p>`
     : `<p class="p-title">${titleTxt}</p>`;
-  return `<div class="popup">${img}<div class="pop-body">
+  // body width by tile count (DEFINITE px so Leaflet sizes the wrapper right — no overflow):
+  // 3-tile row needs ~344px content; a lone source uses a narrower panel (less blank).
+  const bodyW = ordered.length >= 3 ? 380 : 280;
+  return `<div class="popup">${img}<div class="pop-body" style="width:${bodyW}px">
       ${title}
       ${tagBadge(show.tag)}
       ${tourLine}

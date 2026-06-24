@@ -268,11 +268,11 @@ body { display: flex; flex-direction: column; height: 100vh; }
 /* poster fills the full card height; its width follows aspect ratio (no crop,
    no blank space). The card widens to fit. */
 .popup { display: flex; gap: 0; align-items: stretch; }
-.pop-poster { height: 340px; width: auto; display: block; border-radius: 14px 0 0 14px; }
-/* body shrinks to its content (text + however many ticket tiles) instead of a fixed 380px,
-   so a lone source doesn't leave a big blank panel to the right. Caps at 380px (3-tile row +
-   long titles wrap); floors so short Chinese cards still read comfortably. */
-.pop-body { width: fit-content; min-width: 232px; max-width: 380px; flex: none; padding: 16px 18px; align-self: center; }
+.pop-poster { height: 340px; width: auto; max-width: 340px; object-fit: cover; display: block; border-radius: 14px 0 0 14px; }
+/* DEFINITE width (set inline by tile count in popupHtml) — never fit-content: Leaflet
+   measures the popup to size the white wrapper, and fit-content made it under-measure →
+   text+tiles overflowed the box. border-box keeps poster(≤340)+body(≤380) within maxWidth. */
+.pop-body { box-sizing: border-box; flex: none; padding: 16px 18px; align-self: center; }
 .p-tag { display: inline-block; font-size: 12px; padding: 2px 10px; border-radius: 6px; color: var(--accent-ink); font-weight: 700; }
 .p-tag.resident { background: var(--resident); }
 .p-tag.tour { background: var(--tour); }
