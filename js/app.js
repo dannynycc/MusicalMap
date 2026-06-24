@@ -490,7 +490,7 @@ function render() {
     if (typeof s.lat !== "number" || typeof s.lng !== "number") return;
     const m = L.marker([s.dlat, s.dlng], { icon: posterMarkerIcon(s), riseOnHover: true })
       .bindPopup(popupHtml(s), {
-        maxWidth: Math.min(620, window.innerWidth - 60),  // never wider than the screen
+        maxWidth: Math.min(720, window.innerWidth - 40),  // never wider than the screen
         className: "mm-popup",
       })
       .bindTooltip(tooltipHtml(s), { direction: "top", offset: [0, -68], className: "mm-tip", opacity: 1 });

@@ -11,6 +11,12 @@
 
 ---
 
+## [v0.65.8] - 2026-06-24 16:48
+### 改善 — popup 售票 tile 放大、標籤一行、版面加寬
+- 標籤不再換行：`.pop-tile-label` 改**單行**（`white-space: nowrap` + ellipsis），消除「London Thea／tre」「Ticketmaste／r」這種醜換行。
+- tile 加寬 76→110px、圖示放大 40→52px、圓角 14px；`.pop-body` 280→380px、popup `maxWidth` 620→720 容下更大、更好看的版面。
+- 重建三語頁刷 cache-bust。
+
 ## [v0.65.7] - 2026-06-24 16:34
 ### 修正 — popup 售票平台 tile 名稱被裁切
 - 症狀：popup「購票」區每個平台 tile 的名稱（官方網站／TodayTix／Ticketmaster 等）**底部被切掉**。
