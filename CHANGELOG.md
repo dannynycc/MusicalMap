@@ -11,6 +11,14 @@
 
 ---
 
+## [v0.68.7] - 2026-06-24 20:40
+### 新增 — 補齊百老匯/西區缺漏官網（official_sites.json 108→184）
+- 使用者抓到 Avenue Q 等純英文百老匯/西區劇**沒有官網標題連結**。根因：`works.json` 註冊表只收非英語劇種／有外語別名的劇，純英文 Anglo 劇被省略 → **從沒被研究到**。
+- 對地圖上 **549 個作品**做覆蓋盤點（之前只有 84 個有官網）。抓出 **157 部缺官網的百老匯/西區**，10 個 agent 並行研究（過濾無障礙場次／地方劇團／演唱會／翻譯版／junk）。
+- 新增 **76 部**官網（81 部確認無單一官網→null：Cinderella／Guys and Dolls／Into the Woods 等授權經典＋雜訊條目）。`official_sites.json` **108→184**。
+- 實測 `build_shows`：官網掛載 678→**1006 筆**（**1026/1607 shows** 有官網連結，43%→64%）；**Avenue Q→`avenueqmusical.co.uk` 已修**；分區續用（Titanique／Operation Mincemeat 等 US/UK 分流）。
+- 下次 CI scrape 重建 `shows.json` 後上線。
+
 ## [v0.68.6] - 2026-06-24 20:15
 ### 整併 — 官網資料合併進 `official_sites.json`（單一來源、全面 wire）
 - 背景：兩個 session 平行做官網——`official_sites.json`（16 部、已 wire 進 build_shows）與 `works.json` 的 `official`（107 部研究、未 wire）分歧，只有 16 部生效。
