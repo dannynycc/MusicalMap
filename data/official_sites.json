@@ -1,55 +1,351 @@
 {
-  "_note": "Official production websites by show group + region. Region keys: us (USA), uk (UK+Ireland), au, de, jp …, global = fallback. The card shows ONLY the region-appropriate official site, placed ABOVE ticketing links. Add entries only after verifying the URL (200, or 403-bot-block on a known-real site).",
-  "beetlejuice": {
-    "us": "https://beetlejuicebroadway.com/",
-    "uk": "https://beetlejuicemusical.co.uk/",
-    "au": "https://beetlejuicethemusical.com.au/"
-  },
-  "wicked": {
-    "us": "https://wickedthemusical.com/",
-    "uk": "https://www.wickedthemusical.co.uk/"
-  },
-  "hamilton": {
-    "global": "https://hamiltonmusical.com/"
-  },
-  "phantom of the opera": {
-    "global": "https://www.thephantomoftheopera.com/"
-  },
-  "les miserables": {
-    "global": "https://www.lesmis.com/"
-  },
-  "lion king": {
-    "uk": "https://thelionking.co.uk/"
-  },
-  "mamma mia": {
-    "global": "https://mamma-mia.com/"
-  },
-  "six": {
-    "global": "https://www.sixthemusical.com/"
-  },
-  "mj": {
-    "us": "https://mjthemusical.com/",
-    "au": "https://mjthemusical.com.au/"
-  },
-  "moulin rouge": {
-    "global": "https://moulinrougemusical.com/"
-  },
-  "book of mormon": {
-    "global": "https://thebookofmormonmusical.com/"
-  },
-  "hadestown": {
-    "global": "https://hadestown.com/"
-  },
-  "back to the future": {
-    "global": "https://www.backtothefuturemusical.com/"
-  },
-  "miss saigon": {
-    "uk": "https://miss-saigon.com/"
-  },
-  "chicago": {
-    "global": "https://chicagothemusical.com/"
-  },
-  "high school musical": {
-    "uk": "https://www.disneytickets.co.uk/high-school-musical-tickets"
-  }
+ "_note": "Official production websites by show group + region. Region keys: us (USA), uk (UK+Ireland), au, de, jp …, global = fallback. The card shows ONLY the region-appropriate official site, placed ABOVE ticketing links. Add entries only after verifying the URL (200, or 403-bot-block on a known-real site).",
+ "101 dalmatians": {
+  "global": "https://101dalmatians.co.uk/"
+ },
+ "aladdin": {
+  "global": "https://www.aladdinthemusical.com/"
+ },
+ "anastasia": {
+  "global": "https://anastasiathemusical.com"
+ },
+ "annie": {
+  "global": "https://anniethemusical.com/"
+ },
+ "back to the future": {
+  "global": "https://www.backtothefuturemusical.com/"
+ },
+ "beauty and the beast": {
+  "global": "https://beautyandthebeastthemusical.com/"
+ },
+ "beetlejuice": {
+  "us": "https://beetlejuicebroadway.com/",
+  "uk": "https://beetlejuicemusical.co.uk/",
+  "au": "https://beetlejuicethemusical.com.au/",
+  "global": "https://beetlejuicebroadway.com/"
+ },
+ "billy elliot": {
+  "global": "https://billyelliotthemusical.com/"
+ },
+ "bodyguard": {
+  "global": "https://www.thebodyguardmusical.com/"
+ },
+ "book of mormon": {
+  "global": "https://thebookofmormonmusical.com/",
+  "us": "https://bookofmormonbroadway.com/",
+  "uk": "https://thebookofmormonmusical.com/",
+  "au": "https://thebookofmormonmusical.com.au/"
+ },
+ "boop": {
+  "global": "https://boopthemusical.com"
+ },
+ "cabaret": {
+  "global": "https://kitkat.club/"
+ },
+ "cats": {
+  "global": "https://www.catsthemusical.com/"
+ },
+ "charlie and the chocolate factory": {
+  "global": "https://charlieandthechocolatefactory.co.uk/"
+ },
+ "chicago": {
+  "global": "https://chicagothemusical.com/"
+ },
+ "come from away": {
+  "global": "https://comefromaway.com/"
+ },
+ "count of monte cristo": {
+  "global": "https://www.frankwildhorn.com/musicaltheatreworksoffrankwildhorn/the-count-of-monte-cristo"
+ },
+ "curious case of benjamin button": {
+  "global": "https://benjaminbuttonmusical.com"
+ },
+ "dear evan hansen": {
+  "global": "https://dearevanhansen.com/"
+ },
+ "death note": {
+  "global": "https://horipro-stage.jp/stage/deathnote2025/"
+ },
+ "devil wears prada": {
+  "global": "https://devilwearspradamusical.com"
+ },
+ "don camillo und peppone": {
+  "global": "https://www.vbw-international.at/home/don-camillo-peppone"
+ },
+ "don juan": {
+  "global": "https://donjuan2024.ca"
+ },
+ "dreamgirls": {
+  "global": "https://dreamgirlsbway.com"
+ },
+ "elf": {
+  "global": "https://elfonbroadway.com/"
+ },
+ "elisabeth": {
+  "global": "https://www.vbw-international.at/home/elisabeth"
+ },
+ "evita": {
+  "global": "https://evitathemusical.com/"
+ },
+ "fiddler on the roof": {
+  "global": "https://fiddlermusical.com/"
+ },
+ "fifty shades": {
+  "global": "https://50shadesthemusical.com/"
+ },
+ "frozen": {
+  "global": "https://frozenthemusical.com/"
+ },
+ "funny girl": {
+  "global": "https://funnygirlonbroadway.com/"
+ },
+ "ghost": {
+  "global": "https://www.ghostthemusical.com/"
+ },
+ "ghost the lady": {
+  "global": "https://www.shiki.jp/applause/ghostandlady/"
+ },
+ "grease": {
+  "global": "https://www.greasemusical.co.uk/"
+ },
+ "great gatsby": {
+  "global": "https://broadwaygatsby.com/"
+ },
+ "gutenberg": {
+  "global": "https://gutenbergbway.com/"
+ },
+ "gypsy": {
+  "global": "https://gypsybway.com"
+ },
+ "hadestown": {
+  "global": "https://hadestown.com/",
+  "us": "https://hadestown.com/",
+  "uk": "https://uk.hadestown.com/"
+ },
+ "hair": {
+  "global": "https://hairthemusical.com/"
+ },
+ "hairspray": {
+  "global": "https://www.hairspraythemusical.co.uk/"
+ },
+ "hamilton": {
+  "global": "https://hamiltonmusical.com/"
+ },
+ "heathers": {
+  "global": "https://heathersthemusical.com",
+  "us": "https://heathersthemusical.com/new-york/",
+  "uk": "https://heathersthemusical.com/london/",
+  "au": "https://heathersthemusical.com/australia/"
+ },
+ "high school musical": {
+  "uk": "https://www.disneytickets.co.uk/high-school-musical-tickets"
+ },
+ "hinterm horizont": {
+  "global": "https://www.udo-lindenberg.de/hinterm-horizont-das-musical.4621.htm"
+ },
+ "hunchback of notre dame": {
+  "global": "https://hunchbackofnotredamethemusical.com/"
+ },
+ "ich war noch niemals in new york": {
+  "global": "https://www.stage-entertainment.de"
+ },
+ "jersey boys": {
+  "global": "https://jerseyboysinfo.com/"
+ },
+ "jesus christ superstar": {
+  "global": "https://www.jesuschristsuperstar.com/"
+ },
+ "juliet": {
+  "global": "https://andjulietthemusical.com/"
+ },
+ "kikis delivery service": {
+  "global": "https://www.musical-majotaku.jp"
+ },
+ "kinky boots": {
+  "global": "https://www.kinkybootsmusical.com/",
+  "uk": "https://kinkybootslondon.com/"
+ },
+ "le roi soleil": {
+  "global": "https://leroisoleil-lespectacle.fr"
+ },
+ "legally blonde": {
+  "global": "https://www.legallyblondethemusical.com"
+ },
+ "lempicka": {
+  "global": "https://lempickamusical.com"
+ },
+ "les miserables": {
+  "global": "https://www.lesmis.com/"
+ },
+ "lion king": {
+  "uk": "https://thelionking.co.uk/",
+  "global": "https://lionking.com/",
+  "au": "https://thelionkingmusical.com.au/"
+ },
+ "lizzie": {
+  "global": "https://www.lizziethemusical.com"
+ },
+ "love never dies": {
+  "global": "https://www.loveneverdies.com"
+ },
+ "ludwig ii": {
+  "global": "https://www.ludwigland.de/"
+ },
+ "mamma mia": {
+  "global": "https://mamma-mia.com/"
+ },
+ "mary poppins": {
+  "global": "https://www.cameronmackintosh.com/productions/view/mary-poppins"
+ },
+ "matilda": {
+  "global": "https://uk.matildathemusical.com/"
+ },
+ "mean girls": {
+  "global": "https://meangirlsmusical.com"
+ },
+ "menopause": {
+  "global": "https://menopausethemusical.com"
+ },
+ "midnight": {
+  "global": "https://www.todrickhall.com/midnight"
+ },
+ "miss saigon": {
+  "uk": "https://miss-saigon.com/",
+  "global": "https://miss-saigon.com/"
+ },
+ "mj": {
+  "us": "https://mjthemusical.com/",
+  "au": "https://mjthemusical.com.au/",
+  "global": "https://mjthemusical.com/"
+ },
+ "moulin rouge": {
+  "global": "https://moulinrougemusical.com/"
+ },
+ "mozart": {
+  "global": "https://www.vbw-international.at/home/mozart"
+ },
+ "mrs doubtfire": {
+  "global": "https://doubtfirethemusical.com/",
+  "us": "https://doubtfirethemusical.com/",
+  "uk": "https://www.mrsdoubtfiremusical.co.uk/"
+ },
+ "murder for two": {
+  "global": "https://murderfortwomusical.com/"
+ },
+ "newsies": {
+  "global": "https://www.newsiesthemusical.com/"
+ },
+ "next to normal": {
+  "global": "https://www.nexttonormal.com/"
+ },
+ "notre dame de paris": {
+  "global": "https://notredamedeparislespectacle.com"
+ },
+ "oliver": {
+  "global": "https://oliverthemusical.com"
+ },
+ "outsiders": {
+  "global": "https://outsidersmusical.com/"
+ },
+ "phantom of the opera": {
+  "global": "https://www.thephantomoftheopera.com/"
+ },
+ "pretty woman": {
+  "global": "https://prettywomanthemusical.com/"
+ },
+ "priscilla queen of the desert": {
+  "global": "https://www.priscillathemusical.com"
+ },
+ "producers": {
+  "global": "https://theproducersmusical.com/"
+ },
+ "rebecca": {
+  "global": "https://www.vbw-international.at/home/rebecca"
+ },
+ "rent": {
+  "global": "https://rentthemusical.com/"
+ },
+ "ride the cyclone": {
+  "global": "https://www.ridethecyclonemusical.com"
+ },
+ "robin des bois": {
+  "global": "http://robindesbois-lespectacle.fr"
+ },
+ "rock of ages": {
+  "global": "https://www.rockofagesmusical.co.uk"
+ },
+ "romeo et juliette": {
+  "global": "https://romeoetjulietteofficiel.com"
+ },
+ "rudolf": {
+  "global": "https://www.vbw-international.at/home/rudolf"
+ },
+ "schikaneder": {
+  "global": "https://www.vbw-international.at/home/schikaneder"
+ },
+ "school of rock": {
+  "global": "https://schoolofrockthemusical.com/"
+ },
+ "sister act": {
+  "global": "https://www.sisteractthemusical.co.uk/"
+ },
+ "six": {
+  "global": "https://www.sixthemusical.com/",
+  "us": "https://sixonbroadway.com/",
+  "au": "https://sixthemusical.com.au/"
+ },
+ "some like it hot": {
+  "global": "https://somelikeithotmusical.com/"
+ },
+ "spamalot": {
+  "global": "https://spamalotthemusical.com/"
+ },
+ "starmania": {
+  "global": "https://www.starmania-officiel.com"
+ },
+ "sunday in the park with george": {
+  "global": "https://sundayintheparkmusical.com"
+ },
+ "sunset boulevard": {
+  "global": "https://www.andrewlloydwebber.com/show/sunset-boulevard"
+ },
+ "sweeney todd": {
+  "global": "https://sweeneytoddbroadway.com/"
+ },
+ "tanz der vampire": {
+  "global": "https://www.vbw-international.at/home/dance-of-the-vampires"
+ },
+ "tarzan": {
+  "global": "https://tarzanthemusical.com/"
+ },
+ "tina": {
+  "global": "https://tinathemusical.com"
+ },
+ "tootsie": {
+  "global": "https://tootsiemusical.com"
+ },
+ "waistwatchers": {
+  "global": "https://www.waistwatchersthemusical.com"
+ },
+ "waitress": {
+  "global": "https://waitressthemusical.com/",
+  "au": "https://waitressthemusical.com.au/"
+ },
+ "west side story": {
+  "global": "https://www.westsidestory.com/"
+ },
+ "wicked": {
+  "us": "https://wickedthemusical.com/",
+  "uk": "https://www.wickedthemusical.co.uk/",
+  "global": "https://wickedthemusical.com/"
+ },
+ "wizard of oz": {
+  "global": "https://www.wizardofozthemusical.com/"
+ },
+ "zorro": {
+  "global": "https://www.zorrothemusical.com/"
+ },
+ "大状王": {
+  "global": "https://www.hkrep.com/tc/Season-Programme/Main-Stage-Productions/The-Impossible-Trial-2025.html"
+ }
 }

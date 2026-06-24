@@ -11,6 +11,13 @@
 
 ---
 
+## [v0.68.6] - 2026-06-24 20:15
+### 整併 — 官網資料合併進 `official_sites.json`（單一來源、全面 wire）
+- 背景：兩個 session 平行做官網——`official_sites.json`（16 部、已 wire 進 build_shows）與 `works.json` 的 `official`（107 部研究、未 wire）分歧，只有 16 部生效。
+- 把 works.json 的 **107 部研究合併進 `official_sites.json`**：`canonical`→`group_key`、`default/USA/UK/Australia`→`global/us/uk/au`；既有資料優先、僅補缺（保留對方更準的 UK 變體如 Beetlejuice `beetlejuicemusical.co.uk`）。現 **108 部**。移除 `works.json` 重複的 `official` → 單一來源、避免分歧。
+- 實測 `build_shows`：掛上 **678 筆** region-appropriate 官網（**699 shows** 有官網連結）；Wicked 美版→`.com`、英版(倫敦)→`.co.uk` 正確分流。
+- 顯示沿用既有新 rule（官網＝**標題**超連結、非售票圖卡，不搶 affiliate 點擊）。`shows.json` 由下次 CI scrape 重建後上線。
+
 ## [v0.68.5] - 2026-06-24 19:00
 ### 修正 — popup 文字＋圖卡溢出白框（我 v0.68.2 用 fit-content 引入的 regression）
 - 根因(實測):`.pop-body { width: fit-content }` 讓 **Leaflet 量錯** popup 寬度——量成 574px 設定白框,實際 render 718px → 整個右半塊(**標題/場館/日期文字 + 售票圖卡**)超出白框右緣約 127px。
