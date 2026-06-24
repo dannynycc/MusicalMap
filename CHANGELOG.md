@@ -11,6 +11,13 @@
 
 ---
 
+## [v0.68.9] - 2026-06-24 22:03
+### 修正 — 同一場館被兩來源標不同 city → 地圖上兩個重複的點（座標去重）
+- 使用者抓到 Jersey Boys 在 New Wimbledon Theatre 出現**兩個點**：同座標，但一來源（londontheatre）標 city「London」、另一來源（ATG）標「Wimbledon」（Wimbledon 是倫敦一區）。既有的 `(group, city, venue)` 去重因 city 不同而抓不到。
+- `build_shows` 新增「**同 group + 同座標**」去重（在座標校正之後）：同座標＝同一個實體場館，合併雙方售票連結（含尚未陣列化的 `ticket_url`）＋取最寬日期範圍，最完整者存活。
+- 全站合併 5 組（Jersey Boys／SIX／Lion King／Les Misérables／Trainspotting）。嚴格驗證：1608→**1603 ＝ 不重複的 (group,座標) 數**，**0 場次誤刪**。Jersey Boys 現 1 點、5 個連結全保留（官網＋TodayTix＋LondonTheatre＋ATG＋Ticketmaster）。
+- 本機完整重建直接 commit（push deploy，無 CI race）。
+
 ## [v0.68.8] - 2026-06-24 21:43
 ### 修正 — CI race 把帶 git 衝突標記的壞變體部署上線（官網沒顯示的真因）
 - 症狀：手動觸發 CI 後 Avenue Q 等官網標題連結**還是沒出現**。根因有二：

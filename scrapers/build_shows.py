@@ -565,6 +565,58 @@ def main():
                 fixed += 1
         print(f"  fixed {fixed} show coord(s) from venue_coords.json ({len(vcoords)} venue fixes)")
 
+    # Same-place dedup. The (group, city, venue) pass above misses the same engagement
+    # listed by two sources under DIFFERENT city labels for one venue — e.g. New Wimbledon
+    # Theatre as "London" (londontheatre) vs "Wimbledon" (ATG) → two pins on one point.
+    # Now that coords are finalised, collapse records sharing (group, rounded coords):
+    # identical coords == the same physical venue, regardless of the city/venue text.
+    # The richest record survives; the other's ticket links merge in and the date range
+    # widens, so no booking source is lost.
+    # a record's links may still live in ticket_url (single) — ticket_links is only
+    # materialised later (in the official-site step), so read both when merging.
+    def _rec_links(x):
+        if x.get("ticket_links"):
+            return list(x["ticket_links"])
+        if x.get("ticket_url"):
+            return [{"label": src_label(x.get("source")), "url": x["ticket_url"],
+                     "kind": src_kind(x.get("source"))}]
+        return []
+
+    seen_gc, dropc = {}, []
+    for i, s in by_id.items():
+        if s.get("lat") is None or s.get("lng") is None or not s.get("group"):
+            continue
+        k = (s["group"], round(s["lat"], 4), round(s["lng"], 4))
+        prev = seen_gc.get(k)
+        if prev is None:
+            seen_gc[k] = i
+            continue
+        score = lambda x: (bool(x.get("image")), bool(x.get("start_date")),
+                           len(_rec_links(x)))  # noqa: E731
+        keep, drop = (i, prev) if score(s) > score(by_id[prev]) else (prev, i)
+        if keep == i:
+            seen_gc[k] = i
+        kp, dp = by_id[keep], by_id[drop]
+        merged = _rec_links(kp)
+        urls = {l.get("url") for l in merged}
+        for l in _rec_links(dp):
+            if l.get("url") not in urls:
+                merged.append(l)
+                urls.add(l.get("url"))
+        if merged:
+            kp["ticket_links"] = merged
+        starts = [d for d in (kp.get("start_date"), dp.get("start_date")) if d]
+        ends = [d for d in (kp.get("end_date"), dp.get("end_date")) if d]
+        if starts:
+            kp["start_date"] = min(starts)
+        if ends:
+            kp["end_date"] = max(ends)
+        dropc.append(drop)
+    for i in dropc:
+        del by_id[i]
+    if dropc:
+        print(f"  dropped {len(dropc)} same-coord duplicate(s) (one venue listed under two city labels)")
+
     # Booking horizon: open-ended long-runners have end_date = null; fill it with
     # their last on-sale performance from Ticketmaster (scrapers/booking_horizon.py)
     # so the timeline stops showing them indefinitely into the future.
