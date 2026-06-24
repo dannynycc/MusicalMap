@@ -189,6 +189,12 @@ const cluster = L.markerClusterGroup({
 });
 map.addLayer(cluster);
 
+// Cluster bubbles don't support riseOnHover (that's marker-only); on hover, raise the
+// bubble above its neighbours so an obscured circle pops fully into view (CSS then grows
+// it slightly, like the poster cards). Reset on mouse-out.
+cluster.on("clustermouseover", (e) => (e.propagatedFrom || e.layer).setZIndexOffset(10000));
+cluster.on("clustermouseout",  (e) => (e.propagatedFrom || e.layer).setZIndexOffset(0));
+
 // Several productions can share one venue's exact coordinate (e.g. three shows at
 // 臺中國家歌劇院). Spread each such group around a tiny ring (~38 m) so they cluster
 // when zoomed out (the world map still wants counts) but break apart by pixel

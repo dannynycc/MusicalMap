@@ -11,6 +11,12 @@
 
 ---
 
+## [v0.65.2] - 2026-06-24 12:46
+### 新增 — 叢集圓圈 hover 時浮起 + 放大（解決重疊被擋）
+- 重疊的叢集泡泡（66/25/10 那種圓圈）互相遮住時，hover 看不清被擋的那顆。Leaflet 的 `riseOnHover` 只作用於單一 marker，**不含 markercluster 的叢集泡泡**。
+- `js/app.js`：掛 `clustermouseover`/`clustermouseout`，hover 時 `setZIndexOffset(10000)` 把該圓圈拉到最上層、移開還原。
+- `css/style.css`：`.mm-cluster` 加 `transition`＋`.leaflet-marker-icon:hover .mm-cluster { transform: scale(1.25) }`，hover 時略放大（呼應海報圖卡的放大手感）。海報 marker 本就有 `riseOnHover`，維持不變。
+
 ## [v0.65.1] - 2026-06-24 12:27
 ### 修正 — Mapbox 受限 token + `no-referrer` 不相容導致地圖空白
 - 症狀：v0.65.0 上線後三語頁地圖**整片空白**。根因：受限 Mapbox token 靠 HTTP `Referer` 判斷來源網域，但頁面 `<meta name="referrer" content="no-referrer">` 讓瀏覽器**完全不送 Referer** → Mapbox 回 `403` 擋掉所有圖磚。curl 實測：無 Referer=403、帶 origin Referer=200、錯誤網域 Referer=403。
