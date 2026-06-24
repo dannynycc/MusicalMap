@@ -11,6 +11,13 @@
 
 ---
 
+## [v0.68.11] - 2026-06-24 22:33
+### 修正 — & Juliet 荷蘭製作沒併入（別名拼錯，被當成另一齣＋誤標歐陸原創）
+- 使用者抓到搜「& Juliet」出現兩筆：主 & Juliet（百老匯＋北美巡演＋斯圖加特）和「**& Juliet de powerpopmusical**」（Beatrix Theater Utrecht，荷蘭 Stage Entertainment 製作）。後者其實是**同一齣的荷蘭製作**，卻自成一群、誤標「歐陸原創」。
+- 根因：`works.json` 的 & Juliet 別名寫成「& Juliet de **pop**musical」（少了 power），與實際標題「de **powerpop**musical」對不上 → 沒收斂。
+- 修法：別名補上「& Juliet de powerpopmusical」。重建後 Utrecht 併入 & Juliet（group `juliet`、tag Broadway/West End），側欄合為一齣 19 個地點。
+- 本機完整重建直接 commit（push deploy，無 CI race）。
+
 ## [v0.68.10] - 2026-06-24 22:14
 ### 文件 — MD freshness（補 v0.68.6–v0.68.9 漏掉的文件同步）
 - `README.md`：`works.json` 158→**166 筆**；檔案表**新增 `data/official_sites.json`**（184 筆、作品官網主檔、分區 map ＋「掛 `kind:official`→劇名標題超連結」機制）；現況「同劇合併」補上**同座標去重**。
