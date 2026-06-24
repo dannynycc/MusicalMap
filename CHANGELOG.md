@@ -11,6 +11,12 @@
 
 ---
 
+## [v0.68.4] - 2026-06-24 18:37
+### 修正 — 售票圖卡標籤空白(OPENTIX 等沒帶 label 的來源)
+- 部分 scraper(如 opentix)的 `ticket_links` 不帶 `label` 欄位 → 圖卡只有 icon+箭頭、**標籤一片空白**。原本 `l.label || l.country` 兩者皆無就空。
+- 新增 `PLATFORM_NAME` host→平台名對照表(opentix→OPENTIX、todaytix→TodayTix、ticketmaster、atg、londontheatre、大麥、聚橙、寬宏、interpark、sistic、jegy…),`lab = l.label || platformName(host, …)`。**任何來源的圖卡都有正確平台名**;查無對照時退回裸網域而非空白。
+- 自我校稿:headless render 4 種情況(長標題單卡/短標題單卡/3卡/官網標題連結)逐一檢查標籤與版面。
+
 ## [v0.68.3] - 2026-06-24 18:29
 ### 修正 — jegy.hu(東歐)海報模糊:popup 改用高清 -original- 版
 - jegy.hu 來源存的是 `{slug}-{W}-{H}-{id}.jpg` **小縮圖**(如 222×131,9KB),放到 340px 大 popup 被放大成糊。`posterFull` 偵測 jegy.hu URL → 改寫成 `-original-` 高清版(實測 1080×636,131KB);marker 小縮圖維持小圖不變(140px 夠用、省頻寬)。布達佩斯 Mamma Mia 等東歐場次海報轉清晰(headless 驗證 naturalWidth 222→1080)。

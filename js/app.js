@@ -411,6 +411,20 @@ function platformIcon(host) {
   for (const k in LOGO_MAP) if (host.includes(k)) return (window.MM_BASE || "") + LOGO_MAP[k];
   return `https://www.google.com/s2/favicons?domain=${host}&sz=128`;
 }
+// host-substring → display name. Many scrapers omit a per-link label (e.g. opentix),
+// which left tiles blank; this guarantees every ticket tile shows its platform name.
+const PLATFORM_NAME = [
+  ["damai", "大麥"], ["juooo", "聚橙"], ["maoyan", "貓眼"], ["opentix", "OPENTIX"],
+  ["todaytix", "TodayTix"], ["ticketmaster", "Ticketmaster"], ["atgtickets", "ATG"],
+  ["londontheatre", "London Theatre"], ["kham", "寬宏"], ["udnfunlife", "udn 售票"],
+  ["interpark", "Interpark"], ["sistic", "SISTIC"], ["jegy", "jegy.hu"], ["polyt", "保利票務"],
+  ["theatreinparis", "Theatre in Paris"], ["bol.pt", "BOL"], ["showtic", "Showtic"],
+];
+function platformName(host, fallback) {
+  for (const [k, name] of PLATFORM_NAME) if (host.includes(k)) return name;
+  // last resort: the bare domain (e.g. "example.com") rather than a blank label
+  return fallback || (host.replace(/^www\./, "") || "");
+}
 
 function popupHtml(show) {
   const poster = posterFull(show.image, 400);
@@ -428,8 +442,8 @@ function popupHtml(show) {
   const ordered = links.filter((l) => l.kind !== "official");
   const ticket = ordered.length ? `<div class="pop-tix"><div class="pop-tix-h">${esc(t("get_tickets"))}</div><div class="pop-tiles">${ordered.map((l) => {
     const u = safeUrl(l.url); if (!u) return "";
-    const lab = esc(l.label || l.country || "");
     let host = ""; try { host = new URL(u).hostname; } catch { /* */ }
+    const lab = esc(l.label || platformName(host, l.country));
     const ico = host ? platformIcon(host) : "";
     return `<a class="pop-tile" href="${esc(affiliateUrl(u))}" target="_blank" rel="noopener" title="${lab}">
       <span class="pop-tile-ico">${ico ? `<img src="${esc(ico)}" alt="" loading="lazy" onerror="this.style.display='none'">` : ""}</span>
