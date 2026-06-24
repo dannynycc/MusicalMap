@@ -8,6 +8,14 @@ window.MM_CONFIG.READY =
   !window.MM_CONFIG.SUPABASE_URL.startsWith("PASTE") &&
   !window.MM_CONFIG.SUPABASE_ANON_KEY.startsWith("PASTE");
 
+// Mapbox public token for the street basemap (Mapbox Streets — green land / blue water).
+// This is a PUBLIC token: it appears in tile URLs in client code, exactly like the
+// Supabase anon key above — safe here. Free tier ~50k map loads/month. This is the
+// URL-restricted `musicalmap-web` token (allowed referers: dannynycc.github.io, localhost,
+// themusicalmap.com — a bare domain also covers its subdomains like my./www.), so others
+// can't use it to burn our quota. Mapbox does NOT support wildcards in URL restrictions.
+window.MM_CONFIG.MAPBOX_TOKEN = "pk.eyJ1IjoiZGFubnlueWNjIiwiYSI6ImNtcXJrODh2dTB1Nnkyc3NsZHQyc3RvY3MifQ.6-6Nhbt_6bA1U1vD0_VVcA";
+
 // Affiliate programs. IDs are PUBLIC (they appear in every outbound ticket link —
 // there is no secret here). Each entry is keyed by an outbound-host substring and is
 // DORMANT until its credentials are filled in — missing creds → plain passthrough

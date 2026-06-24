@@ -156,9 +156,13 @@ map.setMaxBounds([[-85, -Infinity], [85, Infinity]]);
 fillViewportHeight();
 map.on("resize", fillViewportHeight);
 // Base layers: light street map (default) + satellite imagery, toggle top-right.
-const streets = L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png", {
-  attribution: "&copy; OpenStreetMap &copy; CARTO",
-  subdomains: "abcd", maxZoom: 19,
+// Mapbox Streets basemap (green land / blue water — the clean look). Token is public
+// (see js/config.js). @2x/512 tiles with zoomOffset -1 give crisp retina rendering.
+const MAPBOX_TOKEN = (window.MM_CONFIG && window.MM_CONFIG.MAPBOX_TOKEN) || "";
+const streets = L.tileLayer(
+  `https://api.mapbox.com/styles/v1/mapbox/streets-v12/tiles/512/{z}/{x}/{y}@2x?access_token=${MAPBOX_TOKEN}`, {
+  attribution: '&copy; <a href="https://www.mapbox.com/about/maps/">Mapbox</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+  tileSize: 512, zoomOffset: -1, maxZoom: 19,
 }).addTo(map);
 const satellite = L.tileLayer(
   "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}", {

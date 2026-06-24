@@ -11,6 +11,13 @@
 
 ---
 
+## [v0.65.0] - 2026-06-24 11:46
+### 變更 — 地圖底圖改用 Mapbox Streets（綠地藍海，取代 CARTO Voyager）
+- **底圖供應商換成 Mapbox**：`js/app.js` 街道底圖由 CARTO Voyager（米黃陸地、偏濁）改為 **Mapbox Streets v12**（清新綠地＋明亮藍海），海報 marker / 叢集圈在乾淨背景上更跳出；版權標示同步改為 Mapbox + OpenStreetMap。@2x/512 tiles + `zoomOffset:-1` 高清渲染。衛星圖切換鈕不變。
+- **Mapbox public token 放 `js/config.js`**（`MM_CONFIG.MAPBOX_TOKEN`，公開金鑰，性質同 Supabase anon key；免費額度每月 5 萬次載入）。用**受限 token `musicalmap-web`**，URL 白名單：`dannynycc.github.io`、`localhost`、`themusicalmap.com`（Mapbox 不支援 `*`，但裸網域自動涵蓋 `my.`/`www.` 等子網域＋ http/https＋子路徑），故搬網域時 Mapbox 端不需再改。
+- 重建三語預渲染頁刷新 cache-bust 雜湊至 `abd4398d3a`，回訪者自動載到新 `app.js`/`config.js`（避免 v0.64.2 那種舊快取空地圖）。
+- headless 截圖驗證真實 zh-hant 地圖底圖已是 Mapbox 綠藍。
+
 ## [v0.64.3] - 2026-06-24 01:23
 ### 修正 — 地圖填滿視窗高度(消除上下灰底)+ cache-bust 改用內容雜湊
 - **地圖上下灰底**:Leaflet 在低 zoom 時世界高度 < 容器高度會露出灰色背景。`js/app.js`:(1) 動態 `minZoom = ceil(log2(視窗高/256))` → 世界永遠蓋滿高度、zoom out 不會露灰;(2) `maxBounds` 緯度夾在 ±85、經度留 ±Infinity → 拖曳也不露灰,但**水平無限捲動保留**;(3) `maxBoundsViscosity:1`。headless 驗證 zoom 到底無灰底、marker 正常、水平仍 wrap。
