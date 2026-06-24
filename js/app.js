@@ -170,7 +170,7 @@ const satellite = L.tileLayer(
   });
 L.control.layers({ [t("map")]: streets, [t("satellite")]: satellite }, null, { position: "topright" }).addTo(map);
 const cluster = L.markerClusterGroup({
-  maxClusterRadius: 45,
+  maxClusterRadius: 70,
   spiderfyOnMaxZoom: true,
   showCoverageOnHover: false,
   // size the bubble by how many shows it holds. Radius ∝ √n so the *area* tracks

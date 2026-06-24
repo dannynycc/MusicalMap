@@ -11,6 +11,13 @@
 
 ---
 
+## [v0.65.4] - 2026-06-24 13:40
+### 調整 — 叢集合併距離 45→70（減少海報蓋住圓圈的醜重疊）
+- `js/app.js` `maxClusterRadius` 45→70（≈ 一張海報高度 72px）：地理上相鄰到「海報會嚴重蓋住圓圈」的點，會合併成一顆圓圈，避免「海報板子幾乎蓋滿圓圈」的醜畫面；放大即散開、露出個別海報。
+- 重建三語預渲染頁刷新 cache-bust 雜湊。
+### 文件 freshness
+- `README.md`：修正過時敘述「cluster 線性縮放」→「cluster 依數量 √n 縮放」（程式 `iconCreateFunction` 早已改為 `Math.sqrt(n)`）。
+
 ## [v0.65.3] - 2026-06-24 13:28
 ### 新增 — 所有外部 API 呼叫的用量記錄（評估能否提高掃描頻率）
 - 新增 `scrapers/usage.py`：import 時 monkey-patch `urllib.request.urlopen`（**所有 scraper 都用這個呼叫形式**），自動**按 host 計數 API 呼叫** ＋ 擷取 `Rate-Limit*` header（如 Ticketmaster 每日 5,000 額度/剩餘）。process 結束時 merge 進 `logs/api_usage.json`（按 CI run 分組，bounded ring buffer）。
