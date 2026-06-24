@@ -109,7 +109,7 @@ function page(variant, shows) {
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="referrer" content="no-referrer" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
   <meta name='impact-site-verification' value='5862030b-2ad5-46e3-ba52-429cfcca041d'>
   <title>${esc(v.label)}</title>
   <meta name="description" content="${esc(v.desc)}" />

@@ -11,6 +11,12 @@
 
 ---
 
+## [v0.65.1] - 2026-06-24 12:27
+### 修正 — Mapbox 受限 token + `no-referrer` 不相容導致地圖空白
+- 症狀：v0.65.0 上線後三語頁地圖**整片空白**。根因：受限 Mapbox token 靠 HTTP `Referer` 判斷來源網域，但頁面 `<meta name="referrer" content="no-referrer">` 讓瀏覽器**完全不送 Referer** → Mapbox 回 `403` 擋掉所有圖磚。curl 實測：無 Referer=403、帶 origin Referer=200、錯誤網域 Referer=403。
+- 修法：`build/gen_site.mjs` 把 referrer policy 由 `no-referrer` 改為 `strict-origin-when-cross-origin`（瀏覽器預設值）→ 跨來源只送 origin（如 `https://dannynycc.github.io/`，不洩漏完整路徑/query），Mapbox 即可比對白名單放行。重建三語頁。
+- 影響：外連售票連結現在會帶 origin-only referer（sovrn/Impact 等聯盟靠 URL 參數歸因、不受影響）。
+
 ## [v0.65.0] - 2026-06-24 11:46
 ### 變更 — 地圖底圖改用 Mapbox Streets（綠地藍海，取代 CARTO Voyager）
 - **底圖供應商換成 Mapbox**：`js/app.js` 街道底圖由 CARTO Voyager（米黃陸地、偏濁）改為 **Mapbox Streets v12**（清新綠地＋明亮藍海），海報 marker / 叢集圈在乾淨背景上更跳出；版權標示同步改為 Mapbox + OpenStreetMap。@2x/512 tiles + `zoomOffset:-1` 高清渲染。衛星圖切換鈕不變。
