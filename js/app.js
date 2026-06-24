@@ -182,7 +182,7 @@ zoomReadout.onAdd = () => {
 };
 zoomReadout.addTo(map);
 const cluster = L.markerClusterGroup({
-  maxClusterRadius: 70,
+  maxClusterRadius: 90,
   spiderfyOnMaxZoom: true,
   showCoverageOnHover: false,
   // size the bubble by how many shows it holds. Radius ∝ √n so the *area* tracks
@@ -412,11 +412,14 @@ function popupHtml(show) {
   if (!links.length && safeUrl(show.ticket_url)) {
     links = [{ url: show.ticket_url, label: show.link_kind === "official" ? t("buy_official") : t("buy_tickets"), kind: show.link_kind }];
   }
-  // square logo tiles in a row — each platform shown by its own favicon (clearer than
-  // identical buttons). Official site(s) first, then ticketing. Href is affiliate-wrapped;
-  // the icon is the DESTINATION host's favicon (Google's service — works for any host).
-  const ordered = [...links.filter((l) => l.kind === "official"), ...links.filter((l) => l.kind !== "official")];
-  const ticket = ordered.length ? `<div class="pop-tix"><div class="pop-tix-h">${esc(t("get_tickets"))}</div><div class="pop-tiles">${ordered.map((l) => {
+  // Official site → hyperlink on the TITLE, NOT a ticket tile: the official site pays
+  // no affiliate commission, so a prominent tile siphons clicks from the revenue-earning
+  // ticketing platforms. Title-link keeps it one click away but secondary.
+  const official = links.find((l) => l.kind === "official" && safeUrl(l.url));
+  // square logo tiles — ticketing platforms only; tiles grow to fill the row (`n{count}`
+  // lets CSS lay a lone source out wide instead of leaving the row blank).
+  const ordered = links.filter((l) => l.kind !== "official");
+  const ticket = ordered.length ? `<div class="pop-tix"><div class="pop-tix-h">${esc(t("get_tickets"))}</div><div class="pop-tiles n${ordered.length}">${ordered.map((l) => {
     const u = safeUrl(l.url); if (!u) return "";
     const lab = esc(l.label || l.country || "");
     let host = ""; try { host = new URL(u).hostname; } catch { /* */ }
@@ -429,8 +432,12 @@ function popupHtml(show) {
   const tname = show.tour_name ? show.tour_name.replace(show.title, canonTitle(show)) : "";
   const tourLine = show.type === "tour" && tname ? `<div class="p-row"><b>${esc(tname)}</b></div>` : "";
   const unverified = show.verified ? "" : `<div class="p-row warn">${esc(t("unverified_demo"))}</div>`;
+  const titleTxt = esc(canonTitle(show));
+  const title = official
+    ? `<p class="p-title"><a class="p-title-link" href="${esc(affiliateUrl(official.url))}" target="_blank" rel="noopener" title="${esc(t("official"))}">${titleTxt}<span class="p-title-ext" aria-hidden="true">↗</span></a></p>`
+    : `<p class="p-title">${titleTxt}</p>`;
   return `<div class="popup">${img}<div class="pop-body">
-      <p class="p-title">${esc(canonTitle(show))}</p>
+      ${title}
       ${tagBadge(show.tag)}
       ${tourLine}
       <div class="p-row"><b>${esc(show.venue)}</b></div>

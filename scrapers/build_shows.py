@@ -772,6 +772,29 @@ def main():
     if upgraded:
         print(f"  upgraded {upgraded} damai search-link(s) → precise detail link")
 
+    # 中國售票連結 label 按目的地 host 統一(不同來源各自命名,如保利把大麥連結標「售票連結」、
+    # 大麥 scraper 標「大麥」→ 同一齣劇不同城市標籤不一致)。依 host 正規化成品牌名,讓使用者一眼
+    # 認得去哪買;ticket_url-only 的也補成 ticket_links 免得 fallback 顯示泛用字。
+    CN_HOST_LABEL = [("damai.cn", "大麥"), ("juooo.com", "聚橙"), ("maoyan.com", "貓眼"),
+                     ("polyt.cn", "保利票務"), ("ypiao", "票務")]
+    relabeled = 0
+    for s in shows:
+        links = s.get("ticket_links")
+        if not links and s.get("ticket_url"):      # 只有 ticket_url → 補 ticket_links
+            links = [{"url": s["ticket_url"], "kind": s.get("link_kind") or "ticketing"}]
+            s["ticket_links"] = links
+        for l in (links or []):
+            if l.get("kind") == "official":
+                continue
+            host = (l.get("url") or "").lower()
+            for key, name in CN_HOST_LABEL:
+                if key in host and l.get("label") != name:
+                    l["label"] = name
+                    relabeled += 1
+                    break
+    if relabeled:
+        print(f"  relabeled {relabeled} China ticket link(s) by destination host")
+
     verified = sum(1 for s in shows if s.get("verified"))
     out = {
         "meta": {
