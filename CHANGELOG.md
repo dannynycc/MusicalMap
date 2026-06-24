@@ -11,6 +11,15 @@
 
 ---
 
+## [v0.67.0] - 2026-06-24 17:42
+### 新增 — 大麥 Damai 中國音樂劇來源（人工協助批次、247 場次/52 城、精準售票連結）
+- **新 scraper `scrapers/china_damai.py`**：大麥有阿里 BaXia x5sec 滑塊風控，無人值守 CI 繞不過 → 走「人過驗證、機器接手 session」路線。`launch`(真 Chrome 開遠端除錯埠導到搜尋頁) → 人解滑塊 → `probe`(確認 session 乾淨) → `harvest`(CDP 連同一 session,在頁面 context 內 fetch `searchajax`,pageSize 鎖 30、每頁 15~25s 隨機抖動+1/4 機率讀內容停頓、每頁即時寫檔、`--start-page` 可續抓、撞 x5sec 即停)。**誠實記錄：慢速仍會頻繁 re-challenge,需真人全程顧著解(~15 次/全量)**。
+- **`build` 清洗**：raw 711 筆「音乐剧」分類其實 64% 是雜質 → 剔除舞劇 222/芭蕾 68/歌劇 22/文旅秀/券包共 464 → 劇名+城市去重 → **`china_damai.json` 247 場次/52 城**,含真實檔期、海報、**精準 `detail.damai.cn/item.htm?id={projectid}` 連結**。
+- **`build_shows.py` 接線**：(1) 加 `china_damai.json` 來源;(2) **線 B 連結升級**——同一場若有大麥精準 detail 連結,移除舊「硬導向搜尋頁」連結(`search.damai.cn`),47 個升級、對不到的 4 個保留舊搜尋。
+- **分類 tag 正確化**：大麥那批混了非中國原創的進口劇。靠 `works.json` 登錄機制 + 血統前綴證據 + web 查證,重標 9 齣——Moulin Rouge(梦断花都)/Daddy Long Legs/NYMT 青少年劇/MJ 致敬秀→Broadway/West End、紅舞鞋→法式、**Brothers Karamazov→韓國原創**(web 查證糾正我誤判的「俄」)。
+- **座標**：大麥只給場館名,走 Google 國際 API geocode(實測對中國回 **WGS-84** 非 GCJ-02);3 個 agent 並行查上海星空间/十二楼等微劇場地址。**154/162 場次上圖**,8 個微劇場未定位 → `docs/DAMAI_未定位場館待查.md` 待補。
+- ⚠️ **此來源非 CI 自動**(需真人解 x5sec),手動跑;`china_damai_raw.json` 保留 raw 以便重 `build` 不必重抓。
+
 ## [v0.66.1] - 2026-06-24 17:31
 ### 新增 — 分區官網（works.json `official` 升級為可分區物件）
 - 從 `shows.json` 篩出 **26 部「同時在美(百老匯)+英(西區)上演」**的作品，3 個 agent 定向查各自 US/UK/AU 官網。

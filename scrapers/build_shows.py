@@ -127,7 +127,7 @@ SOURCE_FILES = ["broadway.json", "westend.json", "tours.json", "intl.json",
                 "italy.json", "sweden.json", "netherlands.json", "poland.json",
                 "norway.json", "austria.json", "middleeast.json", "china.json",
                 "china_poly.json", "china_ypiao.json", "china_chinaticket.json",
-                "china_juooo.json",
+                "china_juooo.json", "china_damai.json",
                 "portugal.json", "manual.json"]
 
 # When several ticket sources list the SAME show in the SAME city, we keep one
@@ -753,6 +753,24 @@ def main():
     for s in shows:
         c = (s.get("country") or "").strip()
         s["country"] = COUNTRY_DISPLAY.get(c.lower(), c)
+
+    # 大麥連結升級:同一場若已有精準 detail 連結,移除舊的「硬導向搜尋頁」連結
+    # (search.damai.cn 一點進去是一堆場次;detail.damai.cn 直達該場)。沒對應到
+    # 精準連結的舊搜尋連結保留不動。
+    upgraded = 0
+    for s in shows:
+        links = s.get("ticket_links") or []
+        has_detail = any("detail.damai.cn" in (l.get("url") or "") for l in links)
+        if has_detail:
+            kept = [l for l in links if "search.damai.cn" not in (l.get("url") or "")]
+            if len(kept) != len(links):
+                s["ticket_links"] = kept
+                upgraded += 1
+        # 主連結 ticket_url 若還是大麥搜尋頁,且有精準連結,一併升級
+        if has_detail and "search.damai.cn" in (s.get("ticket_url") or ""):
+            s["ticket_url"] = next(l["url"] for l in links if "detail.damai.cn" in (l.get("url") or ""))
+    if upgraded:
+        print(f"  upgraded {upgraded} damai search-link(s) → precise detail link")
 
     verified = sum(1 for s in shows if s.get("verified"))
     out = {

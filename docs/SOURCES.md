@@ -50,8 +50,8 @@
 |---|---|---|
 | Wicked 官方巡演 | tour.wickedthemusical.com | 曾接 scraper,後被 broadway.org 彙總取代(資料一致且更全) |
 | Les Misérables 官方 | lesmis.com | 倫敦(westend)、US tour(tours)已涵蓋;Japan/Spain 站見 intl/手動;World Tour 待來源 |
-| **大麥 Damai**(評估後不採用,2026-06-23) | damai.cn | 阿里系,**BaXia 風控**:web `search.htm`→x5sec 滑塊;mtop API 要 `x-sign`+`x-mini-wua`+`x-sgext`(安全 SDK 簽章,**server/SDK 端**),社群做法是 Frida-RPC/unidbg 從真 App 取簽章或付費 API(萬邦 onebound ~0.09 RMB/次)。對無人值守 CI 太重+脆弱+中國零分潤 → 維持「售票連結導大麥搜尋頁」不抓資料 |
-| **猫眼 Maoyan** | show.maoyan.com | 同大麥那套反爬(x5sec),不採用 |
+| **大麥 Damai**(✅ 已接,人工協助批次,2026-06-24) | damai.cn | 阿里系,**BaXia 風控**:web `search.htm`→x5sec 滑塊;mtop API 要 `x-sign`+`x-mini-wua`+`x-sgext`(安全 SDK 簽章,server/SDK 端),無人值守 CI 繞不過。**改走人工協助**:`china_damai.py launch`(真 Chrome 開遠端除錯埠)→人解滑塊→`probe`/`harvest`(用同 session 控速翻頁,pageSize 鎖 30、每頁 15~25s 隨機抖動、撞 x5sec 即停)。實測**慢速仍會頻繁 re-challenge,需真人全程顧著解(~15 次/全量)**。`harvest`→`china_damai_raw.json`(711 筆);`build`→濾真音樂劇(剔舞劇/芭蕾/歌劇/文旅秀/券包共 464)→劇名+城市去重→`china_damai.json`(**247 場次/52 城**,含**精準 `detail.damai.cn/item.htm?id={projectid}` 連結**,取代舊搜尋頁)。座標走 Google 國際 API(WGS-84,非 GCJ-02);上海星空间/十二楼等微劇場 geocode 困難,8 個未定位見 `docs/DAMAI_未定位場館待查.md`。**非 CI 自動,需手動跑** |
+| **猫眼 Maoyan** | show.maoyan.com | 同大麥那套反爬(x5sec);大麥已用人工協助批次解,猫眼暫不另接(劇目高度重疊) |
 | **聚橙 juooo**(✅ 已接,見上表) | juooo.com | 一度誤判「geo 鎖深圳」,實為打錯端點;showSearch 不需簽章、city_id 可遍歷全國,已接 `china_juooo.py` |
 
 ## 已知盲區(誠實列出)
