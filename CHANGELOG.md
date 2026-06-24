@@ -11,6 +11,13 @@
 
 ---
 
+## [v0.68.12] - 2026-06-24 23:26
+### 修正 — 東歐/南歐當地語言「進口劇」誤標歐陸、沒併入正典（& Juliet 同病根的系統性盤點）
+- 延續 & Juliet：當地語言標題的**進口劇**（同曲同本的授權版）沒被登記為別名 → 自成一群＋誤標當地 tradition。
+- 9 個 agent 並行分類 **103 個歐陸候選**，嚴格區分「進口授權版」vs「當地原創」——**同源故事各自獨立創作的算原創、不亂併**（如匈牙利《叢林奇譚》是 Dés László 原創、非迪士尼；義大利《小飛俠》是 Bennato 原創）。**94 個確認當地原創，維持不動。**
+- 揪出 **9 個進口劇**補進 `works.json`（166→170 筆），全部歸位英文 group ＋統一 Broadway/West End：Muzikál CHICAGO→Chicago、Producenti→The Producers、A muzsika hangja→The Sound of Music、GREASE O MUSICAL→Grease、Annie julen→Annie、Anyatigrisek→Motherhood the Musical、Rocky Il Musical→Rocky、Il Principe d’Egitto→The Prince of Egypt、Brokeback Mountain（瑞典）。
+- `README`／`DESIGN_productions` works 數 166→170。本機完整重建直接 commit（push deploy，無 CI race）。
+
 ## [v0.68.11] - 2026-06-24 22:33
 ### 修正 — & Juliet 荷蘭製作沒併入（別名拼錯，被當成另一齣＋誤標歐陸原創）
 - 使用者抓到搜「& Juliet」出現兩筆：主 & Juliet（百老匯＋北美巡演＋斯圖加特）和「**& Juliet de powerpopmusical**」（Beatrix Theater Utrecht，荷蘭 Stage Entertainment 製作）。後者其實是**同一齣的荷蘭製作**，卻自成一群、誤標「歐陸原創」。

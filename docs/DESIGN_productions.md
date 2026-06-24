@@ -55,7 +55,7 @@ shows.json (只有現役/即將演的場次)
 
 ## 3. 資料格式:`works.json` 升級為作品主檔
 
-改版前 works.json 只收「非預設 tradition 或 有非英文別名」的作品(當時 157 筆),且**無 poster 欄**。(現已升級為作品主檔,166 筆,帶 `poster`/`productions`。)
+改版前 works.json 只收「非預設 tradition 或 有非英文別名」的作品(當時 157 筆),且**無 poster 欄**。(現已升級為作品主檔,170 筆,帶 `poster`/`productions`。)
 升級後每個作品可帶 `poster` 與 `productions[]`:
 
 ```jsonc
