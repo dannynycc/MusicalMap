@@ -122,7 +122,7 @@ def resolve_work(title):
 # Curated sources (precise data). Order matters for de-dup: later files win.
 SOURCE_FILES = ["broadway.json", "westend.json", "tours.json", "intl.json",
                 "shiki.json", "takarazuka.json", "interpark.json",
-                "atg.json", "stage_de.json", "madrid.json", "opentix.json",
+                "atg.json", "stage_de.json", "madrid.json", "barcelona.json", "opentix.json",
                 "utiki.json", "japan.json", "easteurope.json",
                 "italy.json", "sweden.json", "netherlands.json", "poland.json",
                 "norway.json", "austria.json", "middleeast.json", "china.json",

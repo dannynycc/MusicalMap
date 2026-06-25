@@ -11,6 +11,10 @@
 
 ---
 
+## [v0.76.0] - 2026-06-25 22:53
+### 新增 — Barcelona 音樂劇來源（teatrebarcelona.com）
+- 新 scraper `scrapers/barcelona.py`（與 teatromadrid 同 WordPress 平台），抓巴塞隆納音樂劇 **27 齣**。canonical 西方劇自動 merge（La sireneta→The Little Mermaid、Sonrisas y lágrimas→The Sound of Music、Mamma Mia!…），本地加泰隆尼亞製作保留原名為 tour_name。已加入 `build_shows` SOURCE_FILES。
+
 ## [v0.75.0] - 2026-06-25 22:41
 ### 系統性修復 — 在地製作的名稱與官網（127 個組合，5 路 agent 查證）
 - popup 標題現在顯示**在地製作真名**：墨西哥 El Rey León／El Fantasma de la Ópera、日本 ライオンキング／オペラ座の怪人、德國 Der König der Löwen／Die Eiskönigin、法國 Le Roi Lion、中國 剧院魅影／玛蒂尔达、匈牙利／捷克在地名…（`data/local_titles.json`，60 個在地名，build_shows 套用）。
