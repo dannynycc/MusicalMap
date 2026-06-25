@@ -157,6 +157,9 @@ body { display: flex; flex-direction: column; height: 100vh; }
   max-height: 0; overflow: hidden; transition: max-height .2s ease;
 }
 .show-group.open .sublist { max-height: 2000px; }
+/* when expanded, the per-city sublist replaces the "cities · N locations" summary —
+   hide the summary so the same cities aren't listed twice. */
+.show-group.open .show-item .meta { display: none; }
 .sub-item {
   display: block; cursor: pointer; color: var(--text);
   padding: 7px 12px 7px 22px; border-radius: 9px; margin: 2px 6px;
