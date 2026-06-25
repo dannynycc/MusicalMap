@@ -11,6 +11,14 @@
 
 ---
 
+## [v0.77.5] - 2026-06-26 01:48
+### 補完 — 23 部登錄正典劇的官網（agent 查證 + HTTP 200）
+- 為先前「無官網條目」的正典劇補上官方網站（多為 multi-country 劇、無單一品牌站，採版權方官方頁，與專案既有 frankwildhorn/VBW 同做法）：Cinderella(R&H)、Shrek／Guys and Dolls／Into the Woods／Company／Dracula／The Full Monty／Rocky／Murder Ballad／A Christmas Carol(MTI)、The Addams Family(TRW)、A Chorus Line／Nine／La Cage aux Folles／Thrill Me／Altar Boyz／Finian's Rainbow／I Love You You're Perfect Now Change(Concord)、The Last Five Years(JRB)、Brokeback Mountain(@sohoplace)、Daddy Long Legs、We Will Rock You、Our Ladies of Perpetual Succour(NT Scotland)。
+- **誠實標示**：Hedwig and the Angry Inch、The Prince of Egypt 雖有真官網但 TLS/連線失敗（curl 回 000）→ **不寫入**，不加死連結；Amélie／Romeo und Julia(德文版) 查無可驗證專屬官網 → 維持無連結。
+### 修正 — Frozen 德國官網改用品牌站
+- agent 二度查證「官網指向製作商頁」的 52 個條目：絕大多數（Shiki/VBW/HDK/Stage Entertainment）確為合法官方製作方、無獨立品牌站，維持現狀。**唯一真漏：Frozen 德國** 有獨立品牌微站 `eiskoenigin.com`（與 Moulin Rouge /netherlands/ 同型）→ stage-entertainment.de 改為 `https://eiskoenigin.com/`（HTTP 200 驗活）。
+- MJ the Musical 德國候選品牌站 `mj-dasmusical.de` 本機與 agent 端皆連不上（curl 000，疑地理封鎖）→ 暫不寫入，待手動覆核。
+
 ## [v0.77.4] - 2026-06-26 01:41
 ### 修正 — 官網分區漏洞（AU/NZ 在地官網）＋ Beetlejuice 官網沒掛 bug ＋ TM 忠實製作名
 - **AU/NZ 在地官網補齊**（原本 fallback 到美國/全球站或錯站）：Anastasia→anastasiathemusical.com.au、Hair→hairthemusical.com.au、Moulin Rouge!→moulinrougemusical.com.au、Menopause→menopausethemusical.com.au、Spamalot→drewanthonycreative.com.au、A Beautiful Noise→theneildiamondmusical.com.au；NZ：Matilda→capitaltheatretrust.co.nz、The Little Mermaid→aucklandlive.co.nz（原本竟連到日本四季 shiki.jp）。皆 agent 查證 + HTTP 200 驗活。
