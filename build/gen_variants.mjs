@@ -12,6 +12,7 @@ import * as OpenCC from "opencc-js";
 const cn2tw = OpenCC.Converter({ from: "cn", to: "tw" }); // Simplified → Traditional
 const tw2cn = OpenCC.Converter({ from: "tw", to: "cn" }); // Traditional → Simplified
 const maps = JSON.parse(fs.readFileSync("data/i18n_maps.json", "utf8"));
+const venuesEn = JSON.parse(fs.readFileSync("data/venues_en.json", "utf8")); // official English names for CN/JP/KR/TW theatres
 const VARIANTS = ["en", "zh-hans", "zh-hant"];
 
 // City/country localization, language-specific (per user spec):
@@ -70,7 +71,7 @@ for (const variant of VARIANTS) {
     s.city = place("cities", s.city, variant);
     s.country = place("countries", s.country, variant);
     s.title = cjk(s.title, variant);
-    if (s.venue) s.venue = cjk(s.venue, variant);
+    if (s.venue) s.venue = (variant === "en" && venuesEn[s.venue]) ? venuesEn[s.venue] : cjk(s.venue, variant);
     if (s.tour_name) s.tour_name = cjk(s.tour_name, variant);
     if (Array.isArray(s.ticket_links)) {
       for (const l of s.ticket_links) if (l.label) l.label = label(l.label, variant);

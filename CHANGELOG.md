@@ -11,6 +11,11 @@
 
 ---
 
+## [v0.71.0] - 2026-06-25 17:11
+### 新增 — 英文版場館官方英文名（`venues_en`）
+- 中／日／韓／台 共 252 個非英文場館，agent 查證官方英文名 **200 個**，英文版顯示英文（臺中國家歌劇院→National Taichung Theater、電通四季劇場→Dentsu Shiki Theatre [UMI]、北京保利劇院→Beijing Poly Theatre、衛武營→National Kaohsiung Center for the Arts、寶塚大劇場→Takarazuka Grand Theatre、上劇場→Theatre Above…）；**無官方英文名的**（小劇場／星空間等）保留原文。受惠 **315 場**。中文版不受影響。
+- 機制：`data/venues_en.json` ＋ `build/gen_variants.mjs`（英文版查表、否則 OpenCC）。
+
 ## [v0.70.2] - 2026-06-25 17:02
 ### 精簡 — 篩選標籤縮短 ＋ footer 移到視窗底部（釋出 sidebar 空間）
 - 篩選標籤拿掉「音樂劇」字尾（百老匯/西區、德奧、法語、西葡、中國、台灣、日本、韓國），chip 變短、擠的行數變少（英文版本來就短，简中由 OpenCC 自動跟進）。
