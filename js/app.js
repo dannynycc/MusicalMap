@@ -369,21 +369,29 @@ function posterMarkerIcon(show) {
   });
 }
 
-const YEAR_MS = 31557600000;
+// Compact date: "7/31" within the current year, "2027/1/5" across years.
+function fmtD(iso) {
+  if (!iso) return "";
+  const [y, m, d] = iso.split("-").map(Number);
+  return y === CUR_Y ? `${m}/${d}` : `${y}/${m}/${d}`;
+}
+// ONE consistent date line, classified by what the viewer needs to know — NOT by
+// which date fields happen to be present (the old logic had 8 phrasings):
+//   • 長期上演   open-ended resident / rolling booking horizon (no real closing)
+//   • 至 {end}   has a real last/closing date (tours, limited runs, on-sale-through)
+//   • {start} 起 hasn't opened yet (future start, no end)
+//   • (blank)    tour/limited missing dates = data gap, don't fake a status
 function fmtDates(show) {
   const s = show.start_date, e = show.end_date;
-  // Ticketmaster gives availability dates, not a confirmed run — label honestly.
-  if (show.onsale_only) return e ? t("onsale_until", { d: esc(e) }) : t("onsale");
-  // open-ended long-runner: end is the rolling booking horizon, not a closing date
-  if (show.end_rolling) return s ? t("runs_from_sale", { s: esc(s), e: esc(e) }) : t("sale_until", { e: esc(e) });
-  if (s && e) {
-    // long-runners' end_date is just the rolling booking horizon, not a closing
-    // date — showing it as a range would read like a closing announcement.
-    if (new Date(e) - new Date(s) > 2.5 * YEAR_MS) return t("runs_from", { s: esc(s) });
-    return t("run_range", { s: esc(s), e: esc(e) });
-  }
-  if (s) return t("runs_from", { s: esc(s) });
-  if (e) return t("runs_until", { e: esc(e) });
+  // Long-runner (open-ended) iff build_shows flagged it: end_rolling is set only for the
+  // open-ended sit-down houses (Broadway / West End / Stage Entertainment), where the end
+  // is a rolling booking horizon, not a closing. Everything else — tours, limited runs,
+  // regional "resident"-mislabels (j25musical's 2.5D shows), and repertory titles with a
+  // long but scattered date span — keeps its real "至 {end}".
+  const longRun = show.end_rolling;
+  if (longRun) return t("long_run");
+  if (e) return t("date_until", { e: fmtD(e) });
+  if (s && new Date(s) > TODAY0) return t("date_from", { s: fmtD(s) });
   return "";
 }
 
@@ -617,9 +625,13 @@ function showGroupItem(items) {
   const badge = first.verified ? "" : `<span class="badge-unverified">${esc(t("unverified"))}</span>`;
   const cities = [...new Set(items.map((s) => s.city))];
   const citySep = I18N.isZh ? "、" : ", ";
+  // Single location: always "City · date" (same show, different city/date per stop —
+  // that combo is what tells them apart; venue is detail, lives in the popup). Falls
+  // back to just the city when there's no usable date.
+  const dsub = fmtDates(first);
   const sub = multi
     ? `${cities.map(esc).join(citySep)}　·　${esc(t("loc_count", { n: items.length }))}`
-    : first.type === "tour" ? `${esc(first.city)} · ${fmtDates(first)}` : esc(first.venue);
+    : dsub ? `${esc(first.city)} · ${dsub}` : esc(first.city);
   const imgShow = items.find((s) => s.image) || first;
 
   li.innerHTML = `

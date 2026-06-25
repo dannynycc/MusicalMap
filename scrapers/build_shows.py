@@ -510,10 +510,16 @@ def main():
 
     # Cross-source dedup: the same run can be listed by two sources (e.g. a Poly
     # theatre show appears in both polyt.cn and the ypiao aggregator). Collapse
-    # records that share (group, city, venue), keeping the richest one — prefer a
-    # poster, then a real date range, then the earlier-loaded (more authoritative).
+    # records that share (group, city, venue).
+    # WHO WINS: the higher-priority (more authoritative) source first. This matters
+    # for West End long-runners: londontheatre marks Wicked/Lion King correctly
+    # (type=resident, end=None → open-ended) while ATG mislabels them (type=tour with
+    # a rolling booking horizon as a fake closing date). The old "richest data wins"
+    # rule let ATG win *because* it carried an end_date — so a long-runner read like a
+    # show about to close. Source priority fixes it; image/end_date are tiebreakers.
     seen_gcv = {}
     dup = []
+    score = lambda x: (-src_prio(x.get("source")), bool(x.get("image")), bool(x.get("end_date")))  # noqa: E731
     for i, s in by_id.items():
         k = (s.get("group"), city_key(s.get("city")), venue_key(s.get("venue"), s.get("city")))
         if None in k or not k[0]:
@@ -522,8 +528,6 @@ def main():
         if prev is None:
             seen_gcv[k] = i
             continue
-        # decide which to keep: more "complete" wins
-        score = lambda x: (bool(x.get("image")), bool(x.get("end_date")))  # noqa: E731
         if score(s) > score(by_id[prev]):
             dup.append(prev); seen_gcv[k] = i
         else:
@@ -655,6 +659,38 @@ def main():
             by_id[sid]["source"] += "+override"
             applied += 1
         print(f"  applied {applied} override(s)")
+
+    # Open-ended sit-down houses → flag end_rolling so the map shows "長期上演" not a fake
+    # closing. Runs AFTER overrides so corrected dates are in play. Source-specific because
+    # the sources behave differently:
+    #   • broadway-show-tickets (Broadway): end_date is always the rolling booking horizon
+    #     → open-ended.
+    #   • londontheatre / stage-entertainment (West End / German sit-downs): open-ended ONLY
+    #     when there's NO announced closing AND it has already opened. A real closing date
+    #     (German limited runs, a 5-day West End show) → keep it → "至 {end}". A no-end FUTURE
+    #     premiere is "upcoming" (→ "{start} 起"), not a long run — daily CI re-flags it once
+    #     it opens. We deliberately DON'T trust type=resident from other sources (j25musical's
+    #     1–8-day 2.5D shows are mislabeled resident).
+    today = datetime.now().date()
+    n_open = 0
+    for s in by_id.values():
+        if s.get("type") not in ("resident", "sit-down"):
+            continue
+        src = s.get("source") or ""
+        open_run = False
+        if "broadway-show-tickets" in src:
+            open_run = True
+        elif ("londontheatre" in src or "stage-entertainment" in src) and not s.get("end_date"):
+            st = s.get("start_date")
+            try:
+                open_run = datetime.fromisoformat(st).date() <= today if st else True
+            except ValueError:
+                open_run = True
+        if open_run and not s.get("end_rolling"):
+            s["end_rolling"] = True
+            n_open += 1
+    if n_open:
+        print(f"  flagged {n_open} open-ended sit-down run(s) as long-runners (NY/West End/Stage)")
 
     # Merge duplicates: same show + same city listed by multiple ticket sources
     # → keep the most authoritative record, attach ALL purchase links to it.

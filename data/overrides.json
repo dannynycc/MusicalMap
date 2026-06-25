@@ -75,5 +75,20 @@
     "venue": "MAAG Halle",
     "onsale_only": false,
     "_why": "mamma-mia-musical.ch official: MAAG Halle Zürich 06.05.–14.06.2026 (Swiss German production)"
-  }
+  },
+  "_stage_note": "Stage Entertainment DE/NL source returns NO run dates → every show read as 'no end' = wrongly long-running. True dates researched 2026-06-25 (per-venue; a theatre runs ONE open-ended show at a time). Open runs keep end_date absent (→ 長期上演); limited runs get end_date (→ 至 X); not-yet-premiered get a future start (→ X 起, hidden until their month).",
+  "stage-disneys-der-koenig-der-loewen-hamburg": { "start_date": "2001-12-02", "_why": "Theater im Hafen since Dec 2001, open-ended (25th-anniv 2026, no end planned)" },
+  "stage-mj-das-michael-jackson-musical-hamburg": { "start_date": "2024-12-01", "_why": "Theater an der Elbe since Dec 2024, open-ended" },
+  "stage-wir-sind-am-leben-berlin": { "start_date": "2026-03-21", "_why": "Theater des Westens main open run from 21 Mar 2026, no announced end" },
+  "stage-die-eiskoenigin-stuttgart": { "start_date": "2021-11-01", "end_date": "2027-01-31", "_why": "Apollo Theater since Nov 2021; press (Stuttgarter Ztg): runs until Jan 2027, successor Tanz der Vampire premieres ~20 Mar 2027 at same theatre → effective end ~Jan 2027 (exact final day not yet published, using end of Jan)" },
+  "stage-die-amme-berlin": { "start_date": "2026-05-22", "end_date": "2026-07-31", "_why": "Theater des Westens Friday-slot limited run, 22 May–31 Jul 2026" },
+  "stage-zurueck-in-die-zukunft-hamburg": { "start_date": "2026-03-22", "end_date": "2026-12-20", "_why": "Operettenhaus German premiere, defined run 22 Mar–20 Dec 2026" },
+  "stage-disneys-tarzan-hamburg": { "start_date": "2025-11-20", "end_date": "2026-10-25", "_why": "Neue Flora, closes 25 Oct 2026 (replaced by Devil Wears Prada)" },
+  "stage-we-will-rock-you-stuttgart": { "start_date": "2025-10-17", "end_date": "2026-09-30", "_why": "Palladium one-season run until ~30 Sep 2026 (replaced by & Juliet)" },
+  "stage-bibi-tina-weihnachten-berlin": { "start_date": "2026-11-22", "end_date": "2026-12-30", "_why": "Theater des Westens seasonal Christmas show, Nov–Dec 2026 only" },
+  "stage-salon-rosie-berlin": { "start_date": "2026-10-30", "_why": "Theater des Westens world premiere 30 Oct 2026 (upcoming as of Jun 2026)" },
+  "stage-der-teufel-traegt-prada-hamburg": { "start_date": "2026-12-01", "_why": "Neue Flora German premiere Dec 2026, replacing Tarzan (upcoming)" },
+  "stage-und-julia-stuttgart": { "start_date": "2026-10-08", "_why": "Palladium premiere 8 Oct 2026, replacing We Will Rock You (upcoming)" },
+  "stage-tanz-der-vampire-stuttgart": { "start_date": "2027-03-20", "_why": "Apollo new production premiere 20 Mar 2027, succeeding Frozen (upcoming)" },
+  "nl-801cc2fc": { "start_date": "2026-09-01", "_why": "Beatrix Theater Utrecht Dutch production from autumn 2026, after Moulin Rouge (upcoming; exact date TBA)" }
 }

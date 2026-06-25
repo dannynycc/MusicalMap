@@ -11,6 +11,14 @@
 
 ---
 
+## [v0.69.0] - 2026-06-25 10:13
+### 改進 — 列表日期顯示大改 ＋「長期上演」精準判定 ＋ West End 去重修正
+- **列表副標題統一「城市 · 日期」**：原本巡演／駐演／限定三種格式混用、日期更有 8 種講法（很亂）。改為 3 態：有結束日→「**至 M/D**」、開放式長演→「**長期上演**」、本月才首演→「**M/D 起**」、缺日期留白；緊湊格式（跨年才補年份）。
+- **「長期上演」改成精準判定**：原本盲信 `type=resident`，把 `j25musical` 的日本 2.5 次元（《網球王子》等 1–8 天短檔）也標長期。改為**只認開放式 sit-down 劇院**（百老匯／西區／Stage Entertainment），且 Broadway 的 end＝滾動售票期、West End／德國認「**無閉幕日且已開演**」。最終 **48 齣**（Broadway 27＋West End 18＋德國 3），逐一查證；West End 有閉幕日的限定檔（Sinatra／The Producers／Kinky Boots 等）正確改顯示「至 X」。
+- **修 West End 去重**：Wicked／Lion King 西區原本被 **ATG 爛資料**（`type=tour`＋滾動售票期當閉幕日）蓋過 londontheatre 的正確 `resident` 版。`build_shows` 跨來源去重改成「**來源優先序優先**」（londontheatre＞ATG），不再「有 end 就贏」。
+- **Stage Entertainment 德/荷 14 齣補真實日期到 `overrides.json`**（該來源完全不給日期 → 全被誤判長期）：3 開放式（漢堡獅子王 2001-／MJ 2024-／柏林 WIR SIND AM LEBEN 2026-）、6 限定（**Frozen 至 2027/1**＋Back to the Future／Tarzan／We Will Rock You／DIE AMME／Bibi und Tina）、5 未上演（Salon Rosie／Devil Wears Prada／& Juliet ×2／Tanz der Vampire）。**每齣經兩輪獨立 web 查證**：漢堡獅子王自 2001（逾 9,400 場、無接班）；Frozen 雖無確切閉幕日,但接班 Tanz der Vampire 2027/3 進同劇院 → 實質演到 2027/1,故列「至 X」非長期。
+- i18n 三語（`至`／`長期上演`／`起`）；`README` 日期語意同步。
+
 ## [v0.68.13] - 2026-06-25 00:35
 ### 改進 — OPENTIX 售票圖示換成官方高清 logo
 - OPENTIX 的 favicon 太糊，改 rehost 使用者提供的 **512×512 官方 logo** 到 `logos/opentix.png`，加進 `js/app.js` LOGO_MAP（host `opentix.life` 匹配）。
