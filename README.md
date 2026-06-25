@@ -27,7 +27,7 @@ scrapers/  ──產出──>  data/*.json  ──merge──>  data/shows.json
 | 路徑 | 作用 |
 |---|---|
 | `index.html` | **根目錄語言路由頁**(依 localStorage/瀏覽器轉址到 `/zh-hant//zh-hans//en/`,附 x-default 連結;由 `build/gen_site.mjs` 產生) |
-| `build/gen_variants.mjs` → `data/variants/shows.{en,zh-hans,zh-hant}.json` | **三語資料變體**(OpenCC 簡⇄繁 + `data/i18n_maps.json` 的 CN/TW/JP/KR 地名 + 平台英文名)。需 Node + `opencc-js` |
+| `build/gen_variants.mjs` → `data/variants/shows.{en,zh-hans,zh-hant}.json` | **三語資料變體**(OpenCC 簡⇄繁 + `data/i18n_maps.json` 地名／平台名）。**城市分語言**：中文版只顯示市名、主要世界城市翻中文（倫敦／紐約／波士頓…）、小鎮留英文；英文版顯示「City, ST」（美/加州碼，缺的從資料回填）。需 Node + `opencc-js` |
 | `build/gen_site.mjs` → `/en//zh-hans//zh-hant/index.html` + `sitemap.xml` + `robots.txt` | **三語獨立網址 + 預渲染**(劇目清單 + JSON-LD 寫進靜態 HTML → Google 與不跑 JS 的 AI 爬蟲都讀得到)+ hreflang。每日 CI 重生成 |
 | `js/app.js` | 地圖、海報 marker、側欄、搜尋/篩選、popup、同劇合併與多地點 overview;變體頁載 `data/variants/`,中文判斷用 `isZh()`(繁簡皆是);含 `overlapsMonth` 與 XSS 跳脫 |
 | `me.html` / `css/me.css` / `js/me.js` | My Musicals 個人頁(FlightRadar 風)、表單/自動帶入/折線圖/海報地圖/編輯刪除 |

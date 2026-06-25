@@ -14,12 +14,28 @@ const tw2cn = OpenCC.Converter({ from: "tw", to: "cn" }); // Traditional → Sim
 const maps = JSON.parse(fs.readFileSync("data/i18n_maps.json", "utf8"));
 const VARIANTS = ["en", "zh-hans", "zh-hant"];
 
-// City/country: English in data → localized only for CN/TW/JP/KR (others stay English).
+// City/country localization, language-specific (per user spec):
+//   • English: city + US-state / CA-province code. Sources are inconsistent — some give
+//     "Boston, MA", some bare "Boston" — so we NORMALISE by back-filling the missing code
+//     from CITY_STATE (learned from the records that DO carry one); English is uniformly
+//     "City, ST" where a code is known.
+//   • Chinese (zh-hant/zh-hans): NO state — just the city, translated for major world cities
+//     (data/i18n_maps.json); unmapped places (East Lansing…) stay in their Latin name.
 function place(kind, val, variant) {
-  if (variant === "en") return val;
-  const hans = maps[kind][val];
-  if (!hans) return val; // New York, London… not localized
-  return variant === "zh-hant" ? cn2tw(hans) : hans;
+  if (kind !== "cities" || !val) {
+    if (variant === "en") return val;
+    const h = maps[kind][val];
+    return h ? (variant === "zh-hant" ? cn2tw(h) : h) : val;
+  }
+  const m = val.match(/^(.*?),\s*([A-Z]{2})$/);
+  const bare = m ? m[1].trim() : val;
+  if (variant === "en") {
+    const st = m ? m[2] : (CITY_STATE[bare] || maps.us_ca_state[bare]);
+    return st ? `${bare}, ${st}` : bare;
+  }
+  if (variant === "zh-hant" && maps.cities_tw[bare]) return maps.cities_tw[bare];
+  const hans = maps.cities[bare];
+  return hans ? (variant === "zh-hant" ? cn2tw(hans) : hans) : bare;
 }
 // Free Chinese text (titles, venues, tour names): convert in both directions so a
 // mixed source (Simplified from CN sources, Traditional from TW) lands consistently.
@@ -37,6 +53,14 @@ function label(val, variant) {
 
 const src = JSON.parse(fs.readFileSync("data/shows.json", "utf8"));
 fs.mkdirSync("data/variants", { recursive: true });
+
+// Learn each US/CA city's state/province code from the records that carry one, so English
+// can back-fill it onto bare-named duplicates ("Boston" → "Boston, MA").
+const CITY_STATE = {};
+for (const s of src.shows) {
+  const m = (s.city || "").match(/^(.*?),\s*([A-Z]{2})$/);
+  if (m) CITY_STATE[m[1].trim()] = m[2];
+}
 
 for (const variant of VARIANTS) {
   const out = JSON.parse(JSON.stringify(src));
