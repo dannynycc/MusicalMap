@@ -159,13 +159,13 @@ body { display: flex; flex-direction: column; height: 100vh; }
 .thumb.noimg, .poster-pin.noimg, .tt-poster.noimg { background: linear-gradient(135deg, #e2e8f0, #cbd5e1); }
 .glyph { color: var(--accent); font-size: 18px; opacity: .85; }
 .show-item .info { min-width: 0; flex: 1; }
-.show-item .title { font-size: 15.5px; font-weight: 700; line-height: 1.25; color: var(--text); display: flex; align-items: center; gap: 7px; flex-wrap: wrap; }
-.city-count { font-size: 12px; color: #93a0ae; margin-top: 4px; }
+.show-item .title { font-size: 17px; font-weight: 700; line-height: 1.25; color: var(--text); display: flex; align-items: center; gap: 7px; flex-wrap: wrap; }
+.city-count { font-size: 13px; color: #93a0ae; margin-top: 4px; }
 
 /* venue / city / date trio — shared by single card and each multi-city stop */
-.ven { font-size: 13.5px; font-weight: 600; color: var(--text); line-height: 1.32; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.city { font-size: 13px; color: #33445c; line-height: 1.3; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.vdate { font-size: 12.5px; color: var(--muted); line-height: 1.3; margin-top: 5px; display: flex; align-items: center; gap: 5px; }
+.ven { font-size: 14.5px; font-weight: 600; color: var(--text); line-height: 1.32; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.city { font-size: 14px; color: #33445c; line-height: 1.3; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.vdate { font-size: 13.5px; color: var(--muted); line-height: 1.3; margin-top: 5px; display: flex; align-items: center; gap: 5px; }
 .vdate.now { color: var(--acc); font-weight: 600; }
 .vdot { width: 8px; height: 8px; border-radius: 50%; background: var(--acc); flex: none; }
 
