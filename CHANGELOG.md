@@ -11,6 +11,13 @@
 
 ---
 
+## [v0.74.0] - 2026-06-25 19:02
+### 修復 — Madrid 漏抓近一半 ＋ 製作層級資料補完
+- **Madrid parse 不完整修復**：teatromadrid 列表 85 齣，原本因 11 個劇院 geocode 失敗被跳過、只抓 47。補上 11 個劇院精確座標（Teatro Sanpol／Capitol Gran Vía／OCASO Coliseum／Gran Teatro Pavón／IFEMA／Movistar Arena…），madrid.json 47→**70**，Cenicienta 等救回。（13 齣「場館＋日期未定」維持暫不上圖，待 teatromadrid 公布。）
+- **去除「（西語版）」**：這是 `madrid.py` 自己加的中文註記，改成乾淨西文製作名（Los miserables, el musical…）。
+- **tour_name 自動補完**：54 個美國巡演分站（Gatsby／Hamilton／Wicked…）從同團複製巡演名，popup 標題一致（修掉 country 正規化順序的 backfill bug）。
+- **官網精準命中（全面）**：17 個美國巡演 tour 站 ＋ 10 個在地版官網（agent 查證並驗活），`build_shows` 以「`{區域}_tour`」選址。
+
 ## [v0.73.1] - 2026-06-25 18:38
 ### 補完 — 其他劇的巡演／在地版官網「依此類推」＋「N Cities」字色加深
 - **官網精準命中擴及全部**：agent 查證後補進 `official_sites.json` —— 17 個美國巡演的 tour 站（Hamilton→/us-tour、Lion King→/tour、Les Mis→us-tour.lesmis.com…）＋ 10 個在地版（馬德里 El Rey León→elreyleon.es、Chicago 東京→chicagothemusical.jp、Wicked 巴西→wickedbrasil.com…）。

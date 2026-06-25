@@ -106,7 +106,7 @@ def main():
                 "start_date": start, "end_date": end,
                 "ticket_url": href.group(1),
                 "image": img.group(1) if img else None,
-                "tour_name": (f"{title_es}（西語版）" if title != title_es else None),
+                "tour_name": (title_es if title != title_es else None),  # local Spanish production name
                 "verified": True, "source": "teatromadrid.com",
             }
             print(f"  {title_es[:30]:32s} -> {title[:26]:28s} @ {venue[:26]:28s} {start}~{end}")

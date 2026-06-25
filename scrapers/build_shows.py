@@ -818,6 +818,24 @@ def main():
         if n_off:
             print(f"  attached region-appropriate official sites to {n_off} record(s)")
 
+    # Backfill missing tour_name on US/Canada tour legs from a sibling stop of the same
+    # group (same national tour, scraped from a source that didn't carry the name), so
+    # every leg shows the production's real name instead of the bare show title.
+    from collections import Counter
+    grp_tn = {}
+    for s in by_id.values():
+        if s.get("type") == "tour" and country_norm(s.get("country")) in ("us", "canada") and s.get("tour_name"):
+            grp_tn.setdefault(s["group"], Counter())[s["tour_name"]] += 1
+    n_bf = 0
+    for s in by_id.values():
+        if s.get("type") == "tour" and country_norm(s.get("country")) in ("us", "canada") and not s.get("tour_name"):
+            names = grp_tn.get(s["group"])
+            if names:
+                s["tour_name"] = names.most_common(1)[0][0]
+                n_bf += 1
+    if n_bf:
+        print(f"  backfilled tour_name on {n_bf} record(s) from sibling tour stops")
+
     shows = list(by_id.values())
 
     # link kind + tradition tag + search aliases. s["group"] is already set (from the
