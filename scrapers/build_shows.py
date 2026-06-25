@@ -834,7 +834,10 @@ def main():
                 [{"label": src_label(s.get("source")), "url": s["ticket_url"],
                   "kind": src_kind(s.get("source"))}] if s.get("ticket_url") else [])
             if s.get("ticket_url") == url:
-                s["link_kind"] = "official"  # its only link IS the official site
+                # its only link IS the official site → expose it AS the official link
+                # (so the popup title hyperlinks it), not a generic ticketing tile.
+                s["ticket_links"] = [{"label": "官方網站", "url": url, "kind": "official"}]
+                s["link_kind"] = "official"
                 continue
             existing = next((l for l in links if l.get("url") == url), None)
             if existing:

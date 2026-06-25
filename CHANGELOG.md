@@ -11,6 +11,14 @@
 
 ---
 
+## [v0.77.4] - 2026-06-26 01:41
+### 修正 — 官網分區漏洞（AU/NZ 在地官網）＋ Beetlejuice 官網沒掛 bug ＋ TM 忠實製作名
+- **AU/NZ 在地官網補齊**（原本 fallback 到美國/全球站或錯站）：Anastasia→anastasiathemusical.com.au、Hair→hairthemusical.com.au、Moulin Rouge!→moulinrougemusical.com.au、Menopause→menopausethemusical.com.au、Spamalot→drewanthonycreative.com.au、A Beautiful Noise→theneildiamondmusical.com.au；NZ：Matilda→capitaltheatretrust.co.nz、The Little Mermaid→aucklandlive.co.nz（原本竟連到日本四季 shiki.jp）。皆 agent 查證 + HTTP 200 驗活。
+- **Beetlejuice 官網沒掛 bug 修復**：`build_shows` 在「唯一連結就是官網」（manual 劇 ticket_url == 官網）時，原本只設 `link_kind` 卻沒把連結標成 `official` → 前端標題不掛官網。改為直接 materialize 成 official 連結。影響所有此型手動劇。
+- **Moulin Rouge nl 官網**：stage-entertainment.nl（推廣頁）→ moulinrougemusical.com/netherlands/（自家品牌站）。
+- **TM 忠實製作名**：`ticketmaster.py` 新增 `display_name()`（保留「(Australia)」「The Broadway Musical」等製作描述、砍每場次無障礙/ALL-CAPS/Tickets 雜訊），存為 `tour_name` → 卡片顯示如「Anastasia - The Broadway Musical (Australia)」。**下次 TM scrape 生效**。
+- **全面稽核**：官網「無條目」501 部作品（多為中/日/台/西在地原創，無全球官網屬正常）、其中**登錄正典卻缺官網 41 部**；官網指向第三方域名 52 個（多數為 Shiki/VBW/HDK/Stage 等合法製作方）。缺官網與品牌站取代兩批已派 agent 查證中。
+
 ## [v0.77.3] - 2026-06-26 01:16
 ### 新增 — 補抓 atrapalo「非 musicales 分類」的劇（La Sireneta、Asesinato para dos）
 - 有些 teatromadrid/barcelona 獨家劇其實 atrapalo 也賣，只是歸在 `/entradas/musicales/` 分類**外**（兒童劇/話劇），列表爬不到。`scrapers/atrapalo.py` 新增 `EXTRA_PRODUCTS` 商品 URL 清單 + `fetch_detail_event`：直接抓詳情頁，從 `og:title`＋venue blob（座標）＋JSON-LD 日期/價格組成記錄，過期的自動略過。

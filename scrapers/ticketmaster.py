@@ -101,6 +101,25 @@ def clean_title(t):
     return t
 
 
+def display_name(t):
+    """Lighter clean than clean_title: keep the production's distinguishing
+    descriptors — "(Australia)", "The Broadway Musical" — so the card can show the
+    faithful production name, but drop per-performance noise (accessibility/preview
+    tags, ALL-CAPS shouting, trailing "Tickets"). Returns "" for junk."""
+    t = (t or "").strip()
+    if re.search(r"do not purchase|test event", t, re.I):
+        return ""
+    t = re.sub(r"^(disney\s+presents\s+|disney'?s\s+|cameron\s+mackintosh'?s\s+)", "", t, flags=re.I)
+    t = re.sub(r"\s*[-–]\s*(auslan|audio[- ]?desc\w*|relaxed|opening night|night with|"
+               r"previews?|captioned|matinee|sensory|signed)\b.*$", "", t, flags=re.I)
+    t = re.sub(r"\s+(relaxed performance|captioned.*|audio desc.*)$", "", t, flags=re.I)
+    t = re.sub(r"\s*[-–:]?\s*tickets?$", "", t, flags=re.I)        # trailing "Tickets"
+    t = t.strip(" -–:")
+    if len(t) > 4 and t.isupper():
+        t = t.title()
+    return t
+
+
 def fetch(params):
     url = API + "?" + urllib.parse.urlencode(params)
     for attempt in range(4):
@@ -185,6 +204,11 @@ def main():
         # — NOT the per-performance /event/ URL, which 404s once that date passes. When
         # no attraction page exists, fall back to a (stable) search page, never /event/.
         link = att.get("url") or tm_search(title, ev.get("url"))
+        # Faithful production name for the card: prefer the attraction (show) name,
+        # keep its distinguishing descriptors; only set when it adds info beyond the
+        # canonical title (e.g. "Anastasia - The Broadway Musical (Australia)").
+        disp = display_name(att.get("name") or ev.get("name") or "")
+        tour = disp if disp and disp.lower() != title.lower() else None
         key = (title.lower(), venue.lower())
         rec = runs.get(key)
         if not rec:
@@ -202,7 +226,7 @@ def main():
                 "attraction_url": att.get("url"),
                 "ticket_links": ([{"country": cc, "url": link}] if link else []),
                 "image": imgs[0]["url"] if imgs else None,
-                "tour_name": None, "verified": True,
+                "tour_name": tour, "verified": True,
                 "source": "ticketmaster",
             }
         else:  # widen the run's date range + collect this region's link
