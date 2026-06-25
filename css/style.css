@@ -169,9 +169,10 @@ body { display: flex; flex-direction: column; height: 100vh; }
 .vdate.now { color: var(--acc); font-weight: 600; }
 .vdot { width: 8px; height: 8px; border-radius: 50%; background: var(--acc); flex: none; }
 
-/* single: one ring beside the venue line, indents the trio (no spine) */
+/* single: a short vertical bar down the left of the trio (cleaner than a floating ring;
+   echoes the multi-city spine). */
 .single .loc { position: relative; padding-left: 21px; margin-top: 7px; }
-.single .loc::before { content: ""; position: absolute; left: 3px; top: 4px; width: 11px; height: 11px; border-radius: 50%; background: #fff; border: 2.5px solid var(--acc); box-sizing: border-box; }
+.single .loc::before { content: ""; position: absolute; left: 4px; top: 4px; bottom: 5px; width: 2.5px; border-radius: 2px; background: var(--acc); }
 
 /* multi: expand chevron + gradient stops block with rings joined by a spine */
 .chev { color: var(--muted); font-size: 14px; margin-left: 6px; align-self: center; flex: none; transition: transform .15s; }
