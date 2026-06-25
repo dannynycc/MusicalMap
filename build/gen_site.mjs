@@ -168,10 +168,6 @@ function page(variant, shows) {
       <ul id="show-list">
       ${prerenderList(variant, shows)}
       </ul>
-      <footer id="foot">
-        <span id="data-note"></span>
-        <div class="foot-links"><a href="${BASE}privacy.html?lang=${variant}">${esc(t.privacy)}</a> · <a href="${BASE}terms.html?lang=${variant}">${esc(t.terms)}</a></div>
-      </footer>
     </aside>
     <main id="map">
       <div id="timebar">
@@ -182,6 +178,10 @@ function page(variant, shows) {
       </div>
     </main>
   </div>
+  <footer id="foot">
+    <span id="data-note"></span>
+    <div class="foot-links"><a href="${BASE}privacy.html?lang=${variant}">${esc(t.privacy)}</a> · <a href="${BASE}terms.html?lang=${variant}">${esc(t.terms)}</a></div>
+  </footer>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
