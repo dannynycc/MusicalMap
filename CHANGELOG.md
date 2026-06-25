@@ -11,6 +11,12 @@
 
 ---
 
+## [v0.69.5] - 2026-06-25 11:38
+### 修正 — 城市譯名人工校對(使用者回饋）
+- 新增：Wimbledon（溫布頓／温布尔登）、Grand Rapids（大急流城）。
+- 台灣譯名修正：Fort Lauderdale 羅德岱堡、Louisville 路易斯維爾、Memphis 曼菲斯。
+- 改回英文（台灣不慣用）：Durham、Aalborg、Hartford。
+
 ## [v0.69.4] - 2026-06-25 11:16
 ### 修正 — 低信心台灣城市譯名改回英文（招供 #3）
 - agent 標「台灣媒體少見／無標準」的 8 城（Des Moines／Ostrava／Brescia／Hasselt／Trier／Brno／Knoxville／Greensboro）從 `cities`／`cities_tw` 移除 → 中文版顯示英文（不硬塞不確定的譯名）。其餘高信心台灣譯名（雪梨／杜拜／休士頓／聖荷西…）保留。
