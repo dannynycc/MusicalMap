@@ -574,14 +574,16 @@ function render() {
       if (!byGroup.has(k)) byGroup.set(k, []);
       byGroup.get(k).push(s);
     });
+    let parity = 0;
     [...byGroup.entries()]
       .sort((a, b) => displayTitle(a[1]).localeCompare(displayTitle(b[1])))
       .forEach(([k, items]) => {
-        const li = showGroupItem(items);
+        // alternate each show's tint (teal / amber) so its extent reads at a glance
+        const li = showGroupItem(items, parity++ % 2 ? "B" : "A");
         li.dataset.gkey = k;
-        // auto-expand small multi-location groups (≤3 stops) so their per-city dates
-        // show without a click; bigger tours stay collapsed (would flood the list).
-        if (openKeys.has(k) || (items.length > 1 && items.length <= 3)) li.classList.add("open");
+        // auto-expand small multi-city groups (≤6 stops) so their per-city dates show
+        // without a click; bigger tours stay collapsed (would flood the list).
+        if (openKeys.has(k) || (items.length > 1 && items.length <= 6)) li.classList.add("open");
         els.list.appendChild(li);
       });
   }
@@ -618,61 +620,67 @@ function fitShowBounds(items) {
   else if (pts.length > 1) map.fitBounds(pts, { padding: [70, 70], maxZoom: 6, animate: true });
 }
 
-function showGroupItem(items) {
+// venue / city / date trio — the same little block for a single card and for each
+// multi-city stop, so single and multi read as the same component. The status dot
+// (with a gentle pulse) appears only on open-ended "long-running" runs.
+function locTrio(s) {
+  const dt = fmtDates(s);
+  const ven = s.venue ? `<div class="ven">${esc(s.venue)}</div>` : "";
+  const date = s.end_rolling
+    ? `<div class="vdate now"><span class="vdot pulse"></span>${esc(dt)}</div>`
+    : (dt ? `<div class="vdate">${esc(dt)}</div>` : "");
+  return `${ven}<div class="city">${esc(s.city)}</div>${date}`;
+}
+
+function showGroupItem(items, parity) {
   const title = displayTitle(items);
   const li = document.createElement("li");
-  li.className = "show-group";
-  const first = items[0];
   const multi = items.length > 1;
+  li.className = `show-group t${parity}${multi ? " multi" : ""}`;
+  const first = items[0];
   const badge = first.verified ? "" : `<span class="badge-unverified">${esc(t("unverified"))}</span>`;
-  const cities = [...new Set(items.map((s) => s.city))];
-  const citySep = I18N.isZh ? "、" : ", ";
-  // Single location: always "City · date" (same show, different city/date per stop —
-  // that combo is what tells them apart; venue is detail, lives in the popup). Falls
-  // back to just the city when there's no usable date.
-  const dsub = fmtDates(first);
-  const sub = multi
-    ? `${cities.map(esc).join(citySep)}　·　${esc(t("loc_count", { n: items.length }))}`
-    : dsub ? `${esc(first.city)} · ${dsub}` : esc(first.city);
   const imgShow = items.find((s) => s.image) || first;
+  const thumb = `<div class="thumb ${imgShow.image ? "" : "noimg"}" style="${posterStyle(imgShow, 124, 186)}">${fallbackGlyph(imgShow)}</div>`;
 
-  li.innerHTML = `
-    <div class="show-item${multi ? " has-children" : ""}"${multi ? "" : ` data-id="${esc(first.id)}"`}>
-      <div class="thumb ${imgShow.image ? "" : "noimg"}" style="${posterStyle(imgShow, 60, 84)}">${fallbackGlyph(imgShow)}</div>
-      <div class="info">
-        <div class="title">${esc(title)}${badge}${multi ? `<span class="loc-count">${esc(t("loc_short", { n: items.length }))}</span>` : ""}</div>
-        ${!multi && first.venue ? `<div class="item-venue">${esc(first.venue)}</div>` : ""}
-        <div class="meta">${sub}</div>
-      </div>
-      ${multi ? `<span class="chev">▾</span>` : ""}
-    </div>
-    ${multi ? `<ul class="sublist">${items.map((s) => {
-      const dt = fmtDates(s);
-      return `<li class="sub-item" data-id="${esc(s.id)}">
-        <span class="sub-venue">${esc(s.venue)}</span>
-        <span class="sub-city">${esc(s.city)}${dt ? ` · ${dt}` : ""}</span>
-      </li>`;
-    }).join("")}</ul>` : ""}`;
-
-  const head = li.querySelector(".show-item");
-  if (multi) {
-    head.addEventListener("click", () => {
-      const opening = !li.classList.contains("open");
-      document.querySelectorAll(".show-group.open").forEach((el) => el !== li && el.classList.remove("open"));
-      li.classList.toggle("open", opening);
-      if (opening) fitShowBounds(items);  // worldwide overview of this show
-    });
-    li.querySelectorAll(".sub-item").forEach((el) => {
-      const s = items.find((x) => x.id === el.dataset.id);
-      el.addEventListener("click", (e) => { e.stopPropagation(); focusShow(s); });
-      el.addEventListener("mouseenter", () => hoverShow(s, true));
-      el.addEventListener("mouseleave", () => hoverShow(s, false));
-    });
-  } else {
+  if (!multi) {
+    li.innerHTML = `
+      <div class="show-item single" data-id="${esc(first.id)}">
+        ${thumb}
+        <div class="info">
+          <div class="title">${esc(title)}${badge}</div>
+          <div class="loc">${locTrio(first)}</div>
+        </div>
+      </div>`;
+    const head = li.querySelector(".show-item");
     head.addEventListener("click", () => focusShow(first));
     head.addEventListener("mouseenter", () => hoverShow(first, true));
     head.addEventListener("mouseleave", () => hoverShow(first, false));
+    return li;
   }
+
+  li.innerHTML = `
+    <div class="show-item header has-children">
+      ${thumb}
+      <div class="info">
+        <div class="title">${esc(title)}${badge}</div>
+        <div class="city-count">${esc(t("city_count", { n: items.length }))}</div>
+      </div>
+      <span class="chev">▾</span>
+    </div>
+    <div class="stops"><div class="stops-inner">${items.map((s) =>
+      `<div class="stop" data-id="${esc(s.id)}"><div class="si">${locTrio(s)}</div><span class="chev-r">›</span></div>`).join("")}</div></div>`;
+
+  li.querySelector(".show-item").addEventListener("click", () => {
+    const opening = !li.classList.contains("open");
+    li.classList.toggle("open", opening);
+    if (opening) fitShowBounds(items);  // worldwide overview of this show
+  });
+  li.querySelectorAll(".stop").forEach((el) => {
+    const s = items.find((x) => x.id === el.dataset.id);
+    el.addEventListener("click", (e) => { e.stopPropagation(); focusShow(s); });
+    el.addEventListener("mouseenter", () => hoverShow(s, true));
+    el.addEventListener("mouseleave", () => hoverShow(s, false));
+  });
   return li;
 }
 

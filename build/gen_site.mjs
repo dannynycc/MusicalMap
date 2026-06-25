@@ -71,7 +71,7 @@ function runLabel(s, variant) {
   const t = new Date(); t.setHours(0, 0, 0, 0);
   const f = (iso) => { const [y, m, d] = iso.split("-").map(Number); return y === t.getFullYear() ? `${m}/${d}` : `${y}/${m}/${d}`; };
   const en = variant === "en";
-  if (s.end_rolling) return en ? "Now playing" : (variant === "zh-hans" ? "长期上演" : "長期上演");
+  if (s.end_rolling) return en ? "Long-running" : (variant === "zh-hans" ? "长期上演" : "長期上演");
   if (s.end_date) return (en ? "Until " : "至 ") + f(s.end_date);
   if (s.start_date && new Date(s.start_date) > t) return en ? "From " + f(s.start_date) : f(s.start_date) + " 起";
   return "";

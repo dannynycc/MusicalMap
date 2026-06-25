@@ -144,58 +144,53 @@ body { display: flex; flex-direction: column; height: 100vh; }
 
 #show-list { list-style: none; margin: 0; padding: 0 8px 10px; overflow-y: auto; flex: 1; }
 
-.show-group { list-style: none; }
-.loc-count {
-  font-size: 10px; font-weight: 700; color: var(--accent);
-  background: #ecfdf9; border: 1px solid #bfeae3; border-radius: 5px; padding: 1px 6px; margin-left: auto;
-}
-.chev { color: var(--muted); font-size: 12px; margin-left: 6px; transition: transform .15s; }
-.show-group.open .chev { transform: rotate(180deg); }
+/* ===== show list — per-show tinted cards, alternating teal / amber theme ===== */
+.show-group { list-style: none; border-radius: 12px; margin: 5px 3px; overflow: hidden; }
+.show-group.tA { --acc:#0d9488; --acc2:#5cc3b7; --tint:#eef6f4; --hov:#e3f0ed; --grad:rgba(13,148,136,.16); background: var(--tint); }
+.show-group.tB { --acc:#b07d1e; --acc2:#e3c47f; --tint:#faf3e2; --hov:#f3ead2; --grad:rgba(196,142,40,.22); background: var(--tint); }
 
-.sublist {
-  list-style: none; margin: 0 0 4px; padding: 0;
-  max-height: 0; overflow: hidden; transition: max-height .2s ease;
-}
-.show-group.open .sublist { max-height: 2000px; }
-/* when expanded, the per-city sublist replaces the "cities · N locations" summary —
-   hide the summary so the same cities aren't listed twice. */
-.show-group.open .show-item .meta { display: none; }
-.sub-item {
-  display: block; cursor: pointer; color: var(--text);
-  padding: 7px 12px 7px 22px; border-radius: 9px; margin: 2px 6px;
-}
-.sub-item:hover { background: var(--panel-2); }
-.sub-item.active { background: #ecfdf9; }
-/* stacked: venue on its own line, "city · date" muted below — each truncates cleanly. */
-.sub-venue { display: block; font-weight: 600; font-size: 13px; line-height: 1.35;
-  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.sub-city { display: block; color: var(--muted); font-size: 12px; line-height: 1.35;
-  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-
-.show-item {
-  display: flex; gap: 11px; align-items: center;
-  padding: 8px 10px; border-radius: 12px; cursor: pointer;
-  border: 1px solid transparent; transition: background .12s, border-color .12s;
-}
-.show-item:hover { background: var(--panel-2); }
-.show-item.active { background: #ecfdf9; border-color: var(--accent); }
+.show-item { display: flex; gap: 13px; padding: 12px 13px; cursor: pointer; }
+.show-item.header { padding-bottom: 4px; align-items: center; }
+.show-item.single:hover, .show-item.header:hover, .show-item.active { background: var(--hov); }
 .show-item .thumb {
-  width: 56px; height: 80px; flex: none; border-radius: 9px;
-  background: #e2e8f0 center/cover no-repeat; border: 1px solid var(--border);
-  display: grid; place-items: center;
+  width: 62px; height: 93px; flex: none; border-radius: 7px;
+  background: #e2e8f0 center/cover no-repeat; display: grid; place-items: center;
 }
 .thumb.noimg, .poster-pin.noimg, .tt-poster.noimg { background: linear-gradient(135deg, #e2e8f0, #cbd5e1); }
 .glyph { color: var(--accent); font-size: 18px; opacity: .85; }
-.show-item .info { min-width: 0; }
-.show-item .title { font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 7px; color: var(--text); }
-.show-item .item-venue {
-  font-size: 12.5px; color: var(--text); margin-top: 2px; line-height: 1.35;
-  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 250px;
-}
-.show-item .meta {
-  font-size: 12px; color: var(--muted); margin-top: 3px;
-  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 250px;
-}
+.show-item .info { min-width: 0; flex: 1; }
+.show-item .title { font-size: 15.5px; font-weight: 700; line-height: 1.25; color: var(--text); display: flex; align-items: center; gap: 7px; flex-wrap: wrap; }
+.city-count { font-size: 12px; color: #93a0ae; margin-top: 4px; }
+
+/* venue / city / date trio — shared by single card and each multi-city stop */
+.ven { font-size: 13.5px; font-weight: 600; color: var(--text); line-height: 1.32; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.city { font-size: 13px; color: #33445c; line-height: 1.3; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.vdate { font-size: 12.5px; color: var(--muted); line-height: 1.3; margin-top: 5px; display: flex; align-items: center; gap: 5px; }
+.vdate.now { color: var(--acc); font-weight: 600; }
+.vdot { width: 8px; height: 8px; border-radius: 50%; background: var(--acc); flex: none; }
+
+/* single: one ring beside the venue line, indents the trio (no spine) */
+.single .loc { position: relative; padding-left: 21px; margin-top: 7px; }
+.single .loc::before { content: ""; position: absolute; left: 3px; top: 4px; width: 11px; height: 11px; border-radius: 50%; background: #fff; border: 2.5px solid var(--acc); box-sizing: border-box; }
+
+/* multi: expand chevron + gradient stops block with rings joined by a spine */
+.chev { color: var(--muted); font-size: 14px; margin-left: 6px; align-self: center; flex: none; transition: transform .15s; }
+.show-group.open .chev { transform: rotate(180deg); }
+.stops { max-height: 0; overflow: hidden; transition: max-height .22s ease; }
+.show-group.open .stops { max-height: 3000px; }
+.stops-inner { margin: 5px 12px 9px; padding: 9px 8px 11px 28px; border-radius: 10px; background: linear-gradient(100deg, var(--grad), transparent 62%); }
+.stop { position: relative; display: flex; align-items: flex-start; gap: 8px; padding: 8px 8px 9px 4px; border-radius: 9px; cursor: pointer; }
+.stop:hover, .stop.active { background: var(--hov); }
+.stop::before { content: ""; position: absolute; left: -17px; top: 12px; width: 11px; height: 11px; border-radius: 50%; background: #fff; border: 2.5px solid var(--acc); box-sizing: border-box; z-index: 1; }
+.stop::after { content: ""; position: absolute; left: -12.5px; top: 24px; bottom: -13px; width: 2px; background: var(--acc2); border-radius: 2px; }
+.stop:last-child::after { display: none; }
+.stop .si { flex: 1; min-width: 0; }
+.chev-r { color: #b6c1cb; font-size: 17px; align-self: center; flex: none; }
+
+/* gentle breathing on the long-running status dot (disabled if user reduces motion) */
+@keyframes mm-breathe { 0%, 100% { opacity: 1; } 50% { opacity: .35; } }
+.vdot.pulse { animation: mm-breathe 1.8s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) { .vdot.pulse { animation: none; } }
 .type-dot { width: 8px; height: 8px; border-radius: 50%; flex: none; }
 .type-dot.resident { background: var(--resident); }
 .type-dot.tour { background: var(--tour); }
