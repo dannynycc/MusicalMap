@@ -122,7 +122,8 @@ def resolve_work(title):
 # Curated sources (precise data). Order matters for de-dup: later files win.
 SOURCE_FILES = ["broadway.json", "westend.json", "tours.json", "intl.json",
                 "shiki.json", "takarazuka.json", "interpark.json",
-                "atg.json", "stage_de.json", "madrid.json", "barcelona.json", "opentix.json",
+                "atg.json", "stage_de.json", "madrid.json", "barcelona.json",
+                "atrapalo.json", "opentix.json",
                 "utiki.json", "japan.json", "easteurope.json",
                 "italy.json", "sweden.json", "netherlands.json", "poland.json",
                 "norway.json", "austria.json", "middleeast.json", "china.json",
@@ -135,13 +136,13 @@ SOURCE_FILES = ["broadway.json", "westend.json", "tours.json", "intl.json",
 # source's purchase link to the card. Lower index = higher priority.
 SOURCE_PRIORITY = ["shiki.jp", "kageki", "broadway-show-tickets", "londontheatre",
                    "interpark", "stage-entertainment", "teatromadrid", "manual",
-                   "broadway.org", "atgtickets", "ticketmaster"]
+                   "broadway.org", "atgtickets", "atrapalo", "ticketmaster"]
 SOURCE_LABEL = {
     "broadway-show-tickets": "Broadway票務", "londontheatre": "LondonTheatre",
     "broadway.org": "Broadway.org", "shiki.jp": "四季官網", "kageki": "宝塚官網",
     "interpark": "Interpark", "atgtickets": "ATG", "stage-entertainment": "Stage官網",
     "ticketmaster": "Ticketmaster", "manual": "官方售票", "shgtheatre": "上海大劇院",
-    "teatromadrid": "TeatroMadrid",
+    "teatromadrid": "TeatroMadrid", "atrapalo": "Atrápalo",
     "livenation": "Live Nation", "ndm.cz": "NDM官網",
 }
 # 官網(製作方/劇團/劇院自營) vs 售票平台(第三方票務)。

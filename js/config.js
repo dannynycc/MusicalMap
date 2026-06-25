@@ -47,6 +47,7 @@ window.MM_CONFIG.AFFILIATE = {
   "londontheatre.co.uk":     { net: "tmpl", tmpl: SOVRN },   // TodayTix Group
   "broadway-show-tickets.com":{ net: "tmpl", tmpl: SOVRN },  // Broadway show tickets reseller
   "atgtickets.":             { net: "tmpl", tmpl: SOVRN },   // ATG — interim Sovrn; UPGRADE to Partnerize (higher) when camref arrives: signup.partnerize.com/signup/en/ambassadortheatregroup
+  "atrapalo.com":            { net: "tmpl", tmpl: SOVRN },   // Atrápalo (España) — Sovrn merchant 53900 Open, deep-link via u=; covers all-Spain musicals
   // 🔜 direct upgrade when approved (replace the Sovrn entry above with these):
   //   atgtickets.  → { net:"partnerize", camref:"<camref>" }
   //   broadwaydirect.com → { net:"awin", mid:"28987", affid:"<affid>" }  (no current outbound links yet)
@@ -54,5 +55,5 @@ window.MM_CONFIG.AFFILIATE = {
 // Primary-link preference when a show has several ticket links (higher commission
 // first). Used by the link-priority layer (Phase 2). Host-substring order.
 window.MM_CONFIG.AFFILIATE_PRIORITY = [
-  "todaytix.com", "londontheatre.co.uk", "atgtickets.", "broadwaydirect.com", "ticketmaster.",
+  "todaytix.com", "londontheatre.co.uk", "atgtickets.", "atrapalo.com", "broadwaydirect.com", "ticketmaster.",
 ];

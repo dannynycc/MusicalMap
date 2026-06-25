@@ -11,6 +11,15 @@
 
 ---
 
+## [v0.77.0] - 2026-06-26 00:06
+### 新增 — atrapalo.com 全西班牙音樂劇來源（打通 Fastly bot 牆 + Sovrn 分潤）
+- 新 scraper `scrapers/atrapalo.py`，抓 atrapalo.com `/entradas/musicales/`（西班牙最大票務站），**單一來源涵蓋全西班牙 39 城（馬德里/巴塞隆納/瓦倫西亞/塞維亞/畢爾包…）共 127 齣**，資料直接取自頁面內嵌的 **JSON-LD `ItemList`（TheaterEvent）**：劇名、場館、**經緯度（免 geocode）**、檔期、海報、價格全結構化。
+- **打通 Fastly NextGen WAF「Client Challenge」**：純 GET 會被丟 JS 挑戰頁（clearance cookie `_fs_ch_cp_*`，TTL 1h）。採 **hybrid**：Playwright（真 Chromium）載入第 1 頁過挑戰、取 cookie，再交給 **curl_cffi（Chrome TLS 指紋）帶 cookie 純 GET 後續分頁**（p-2…p-4）——瀏覽器只當一次性開鎖，99% 抓取走輕量 GET。
+- **接入每日 build**：`build_shows` SOURCE_FILES 加 `atrapalo.json`；與既有 teatromadrid／barcelona 來源依（劇目, 城市）自動去重、合併購票連結；西語劇名沿用 `madrid.py` 對照表 canonical 化（Sonrisas y lágrimas→The Sound of Music、Los Miserables→Les Misérables、Dear Evan Hansen…），本地製作保留原名。
+- **分潤**：`js/config.js` 把 `atrapalo.com` 掛上現有 **Sovrn/VigLink** key（merchant 53900「Open」，零申請、同一把 key、`u=` deep-link 保留「點到該劇頁」）。實測 build 後 106 個場次帶 atrapalo 連結。
+- **CI 實測**：新增一次性 probe workflow `atrapalo_probe.yml`（`workflow_dispatch`），測 GitHub Actions 資料中心 IP 能否過 Fastly 挑戰（研究警告資料中心 IP 易被重罰）；過了再接進每日主 pipeline。
+- 移除上個 session 半成品 `scrapers/entradas.py`（Eventim，被 atrapalo 取代）。
+
 ## [v0.76.0] - 2026-06-25 22:53
 ### 新增 — Barcelona 音樂劇來源（teatrebarcelona.com）
 - 新 scraper `scrapers/barcelona.py`（與 teatromadrid 同 WordPress 平台），抓巴塞隆納音樂劇 **27 齣**。canonical 西方劇自動 merge（La sireneta→The Little Mermaid、Sonrisas y lágrimas→The Sound of Music、Mamma Mia!…），本地加泰隆尼亞製作保留原名為 tour_name。已加入 `build_shows` SOURCE_FILES。
