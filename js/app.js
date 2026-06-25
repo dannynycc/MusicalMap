@@ -462,9 +462,9 @@ function popupHtml(show) {
       <span class="pop-tile-arr">→</span></a>`;
   }).join("")}</div></div>` : "";
   const tname = show.tour_name ? show.tour_name.replace(show.title, canonTitle(show)) : "";
-  const tourLine = show.type === "tour" && tname ? `<div class="p-row"><b>${esc(tname)}</b></div>` : "";
+  const tourLine = "";  // production name (tour / localized version) now lives in the title itself
   const unverified = show.verified ? "" : `<div class="p-row warn">${esc(t("unverified_demo"))}</div>`;
-  const titleTxt = esc(canonTitle(show));
+  const titleTxt = esc(tname || canonTitle(show));  // the specific production's real name
   // Official site is reachable by clicking the title, but we DON'T advertise it (no arrow,
   // no hover styling): a visible link cue would funnel clicks to the non-paying official
   // site and away from the affiliate ticketing tiles. Looks like plain text; still a link.

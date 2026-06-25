@@ -797,7 +797,12 @@ def main():
             sites = OFF.get(s["group"])
             if not sites:
                 continue
-            url = sites.get(region(s.get("country"))) or sites.get("global")
+            reg = region(s.get("country"))
+            # tours get a region-specific tour site when one exists ("us_tour" →
+            # tour.wickedthemusical.com); localised sit-down productions (es/de/jp…)
+            # fall through to their region site even though they're typed "tour".
+            url = (sites.get(reg + "_tour") if s.get("type") == "tour" else None) \
+                or sites.get(reg) or sites.get("global")
             if not url:
                 continue
             links = s.get("ticket_links") or (
