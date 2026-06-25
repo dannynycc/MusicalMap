@@ -1,7 +1,7 @@
 {
   "meta": {
     "source": "polyt.cn",
-    "count": 90
+    "count": 92
   },
   "shows": [
     {
@@ -47,7 +47,7 @@
       "country": "China",
       "lat": 31.22096,
       "lng": 121.445189,
-      "start_date": "2026-06-25",
+      "start_date": "2026-06-26",
       "end_date": "2026-06-28",
       "ticket_url": "https://search.damai.cn/search.htm?keyword=%E8%B2%82%E8%9D%89%EF%BC%8C%E4%BD%A0%E5%9C%A8%E6%83%B3%E4%BB%80%E4%B9%88%EF%BC%9F",
       "image": "https://cdn.ticketmars.com/prod/external/img/20260602/6a1ea5d7ef9ea70001538c8f.jpg",
@@ -64,7 +64,7 @@
       "country": "China",
       "lat": 39.93301,
       "lng": 116.429202,
-      "start_date": "2026-06-25",
+      "start_date": "2026-06-26",
       "end_date": "2026-06-28",
       "ticket_url": "https://search.damai.cn/search.htm?keyword=%E9%95%BF%E5%AE%89%E5%A4%A7%E5%9B%BD%E5%8C%BB",
       "image": "https://cdn.polyt.cn/jpg/2026-05-31/2d25f97a7a7c02f522da8afcc378f2f5.jpg",
@@ -498,23 +498,6 @@
       "source": "polyt.cn"
     },
     {
-      "id": "poly-9486700",
-      "title": "她的海",
-      "type": "limited",
-      "venue": "南京保利大剧院",
-      "city": "Nanjing",
-      "country": "China",
-      "lat": 31.993692,
-      "lng": 118.702871,
-      "start_date": "2026-07-17",
-      "end_date": "2026-07-18",
-      "ticket_url": "https://search.damai.cn/search.htm?keyword=%E5%A5%B9%E7%9A%84%E6%B5%B7",
-      "image": "https://cdn.polyt.cn/png/2026-05-15/75fb5bed72cdf5d11cc1d2ea8e7e79ed.png",
-      "tour_name": null,
-      "verified": true,
-      "source": "polyt.cn"
-    },
-    {
       "id": "poly-9382700",
       "title": "红莲",
       "type": "limited",
@@ -527,6 +510,23 @@
       "end_date": "2026-07-18",
       "ticket_url": "https://search.damai.cn/search.htm?keyword=%E7%BA%A2%E8%8E%B2",
       "image": "https://cdn.polyt.cn/jpg/2026-05-13/24f2f6945c3d2ff98e2f884c9b3affcc.jpg",
+      "tour_name": null,
+      "verified": true,
+      "source": "polyt.cn"
+    },
+    {
+      "id": "poly-9486700",
+      "title": "她的海",
+      "type": "limited",
+      "venue": "南京保利大剧院",
+      "city": "Nanjing",
+      "country": "China",
+      "lat": 31.993692,
+      "lng": 118.702871,
+      "start_date": "2026-07-17",
+      "end_date": "2026-07-18",
+      "ticket_url": "https://search.damai.cn/search.htm?keyword=%E5%A5%B9%E7%9A%84%E6%B5%B7",
+      "image": "https://cdn.polyt.cn/png/2026-05-15/75fb5bed72cdf5d11cc1d2ea8e7e79ed.png",
       "tour_name": null,
       "verified": true,
       "source": "polyt.cn"
@@ -1348,6 +1348,23 @@
       "source": "polyt.cn"
     },
     {
+      "id": "poly-9364700",
+      "title": "红莲",
+      "type": "limited",
+      "venue": "山西大剧院",
+      "city": "Taiyuan",
+      "country": "China",
+      "lat": 37.807087,
+      "lng": 112.526896,
+      "start_date": "2026-09-05",
+      "end_date": "2026-09-06",
+      "ticket_url": "https://search.damai.cn/search.htm?keyword=%E7%BA%A2%E8%8E%B2",
+      "image": "https://cdn.polyt.cn/png/2026-06-25/449e607336f176c3855e3fb7067c9cbe.png",
+      "tour_name": null,
+      "verified": true,
+      "source": "polyt.cn"
+    },
+    {
       "id": "poly-9514800",
       "title": "她对此感到厌烦",
       "type": "limited",
@@ -1382,23 +1399,6 @@
       "source": "polyt.cn"
     },
     {
-      "id": "poly-9371400",
-      "title": "她对此感到厌烦",
-      "type": "limited",
-      "venue": "【哈尔滨大剧院】",
-      "city": "Harbin",
-      "country": "China",
-      "lat": 45.80459,
-      "lng": 126.571738,
-      "start_date": "2026-09-19",
-      "end_date": "2026-09-19",
-      "ticket_url": "https://search.damai.cn/search.htm?keyword=%E5%A5%B9%E5%AF%B9%E6%AD%A4%E6%84%9F%E5%88%B0%E5%8E%8C%E7%83%A6",
-      "image": "https://cdn.polyt.cn/jpg/2026-05-11/0c6aedcb2d6148daa1767623ba1c2987.jpg",
-      "tour_name": null,
-      "verified": true,
-      "source": "polyt.cn"
-    },
-    {
       "id": "poly-9401900",
       "title": "六个说谎的大学生",
       "type": "limited",
@@ -1411,6 +1411,23 @@
       "end_date": "2026-09-20",
       "ticket_url": "https://search.damai.cn/search.htm?keyword=%E5%85%AD%E4%B8%AA%E8%AF%B4%E8%B0%8E%E7%9A%84%E5%A4%A7%E5%AD%A6%E7%94%9F",
       "image": "https://cdn.polyt.cn/jpg/2026-04-28/84dbde8720778c5065eef201aa22bce5.jpg",
+      "tour_name": null,
+      "verified": true,
+      "source": "polyt.cn"
+    },
+    {
+      "id": "poly-9371400",
+      "title": "她对此感到厌烦",
+      "type": "limited",
+      "venue": "【哈尔滨大剧院】",
+      "city": "Harbin",
+      "country": "China",
+      "lat": 45.80459,
+      "lng": 126.571738,
+      "start_date": "2026-09-19",
+      "end_date": "2026-09-19",
+      "ticket_url": "https://search.damai.cn/search.htm?keyword=%E5%A5%B9%E5%AF%B9%E6%AD%A4%E6%84%9F%E5%88%B0%E5%8E%8C%E7%83%A6",
+      "image": "https://cdn.polyt.cn/jpg/2026-05-11/0c6aedcb2d6148daa1767623ba1c2987.jpg",
       "tour_name": null,
       "verified": true,
       "source": "polyt.cn"
@@ -1496,6 +1513,23 @@
       "end_date": "2026-10-02",
       "ticket_url": "https://search.damai.cn/search.htm?keyword=%E7%B2%89%E4%B8%9D%E6%9D%A5%E4%BF%A1",
       "image": "https://cdn.polyt.cn/png/2026-05-20/69ceebd46fed42215e8414df4cec9ad7.png",
+      "tour_name": null,
+      "verified": true,
+      "source": "polyt.cn"
+    },
+    {
+      "id": "poly-9497100",
+      "title": "HEDWIG",
+      "type": "limited",
+      "venue": "武汉琴台大剧院",
+      "city": "Wuhan",
+      "country": "China",
+      "lat": 30.563505,
+      "lng": 114.25407,
+      "start_date": "2026-10-30",
+      "end_date": "2026-10-31",
+      "ticket_url": "https://search.damai.cn/search.htm?keyword=HEDWIG",
+      "image": "https://cdn.polyt.cn/jpg/2026-06-24/1173eb7ba71785407841186b39bdf7a8.jpg",
       "tour_name": null,
       "verified": true,
       "source": "polyt.cn"

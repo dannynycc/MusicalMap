@@ -1,8 +1,9 @@
 {
   "meta": {
     "source": "world.nol.com (Interpark)",
-    "count": 33,
+    "count": 34,
     "dropped_no_coords": [
+      "［Subtitle］ Musical  The Brothers Karamazov @ NOL THEATER DAEHAKRO WOORI INVESTMENT SECURITIES HALL",
       "CREATing Musical  Dawn Touch @ National Jeongdong Theater of Korea, Cecil",
       "［Hell’s Kitchen］ @ GS Arts Center",
       "A Perfect Day @ Culture & Art Theater CT (Daegu)",
@@ -23,11 +24,27 @@
       "SpotLight @ MusicalPub SpotLight",
       "Sunny Ten  - Daejeon @ London Stage",
       "TOUCH FIVE @ TOUCH FIVE",
-      "Someday @ MOOHA Art Center",
       "Someday @ MOOHA Art Center"
     ]
   },
   "shows": [
+    {
+      "id": "ip-26007674",
+      "title": "［SUGAR DAY#4］Musical  OZ",
+      "type": "tour",
+      "venue": "大學路",
+      "city": "Seoul",
+      "country": "South Korea",
+      "lat": 37.5817,
+      "lng": 127.0027,
+      "start_date": "2026-06-24",
+      "end_date": "2026-06-26",
+      "ticket_url": "https://world.nol.com/en/ticket/places/20000138/products/26007674",
+      "image": "https://ticketimage.interpark.com/Play/image/large/26/26007674_p.gif",
+      "tour_name": null,
+      "verified": true,
+      "source": "world.nol.com (Interpark)"
+    },
     {
       "id": "ip-26007549",
       "title": "You＆It",
