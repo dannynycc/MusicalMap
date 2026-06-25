@@ -1,6 +1,6 @@
 {
   "year": "2023",
-  "count": 3,
+  "count": 4,
   "runs": [
     {
       "run_key": "run-1e77c69a7da4",
@@ -23,6 +23,29 @@
       "frozen": false,
       "group": "chicago",
       "tag": "Broadway/West End",
+      "status": "running"
+    },
+    {
+      "run_key": "run-efa94eab730c",
+      "title": "La Mofeta Presumida: una aventura musical per a tota la família",
+      "venue": "Sala Pangolí",
+      "city": "Barcelona",
+      "country": "Spain",
+      "lat": 41.401589,
+      "lng": 2.164673,
+      "start_date": "2023-04-30",
+      "end_date": null,
+      "image": "https://www.teatrebarcelona.com/wp-content/uploads/2023/02/2022-CARTELLTEATRE-BARCELONA-MOFETA-PRESUMIDA-1-400x575.jpg",
+      "ticket_url": "https://www.teatrebarcelona.com/espectacle/la-mofeta-presumida-una-aventura-musical-per-a-tota-la-familia",
+      "source": "teatrebarcelona.com",
+      "type": "tour",
+      "onsale_only": false,
+      "provenance": "auto",
+      "first_seen": "2026-06-25",
+      "last_seen": "2026-06-25",
+      "frozen": false,
+      "group": "la mofeta presumida",
+      "tag": "西葡音樂劇",
       "status": "running"
     },
     {
