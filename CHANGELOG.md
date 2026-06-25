@@ -11,6 +11,10 @@
 
 ---
 
+## [v0.69.3] - 2026-06-25 11:01
+### 修正 — 預渲染 SEO 頁日期格式跟 app 一致（招供 #4）
+- `build/gen_site.mjs` 給爬蟲/AI 看的預渲染清單,日期原本是舊的 `start – end` ISO 全格式,現改成跟互動版一致的 `至 M/D`／`長期上演`／`M/D 起`（城市/國家在地化早已因 gen_site 讀變體檔而自動套用）。
+
 ## [v0.69.2] - 2026-06-25 10:57
 ### 修正 — 補完城市州 ＋ 清城市錯字 ＋ 國家在地化（主動 audit 自己漏掉的）
 - **英文版補完所有美/加城市的州**：上版只補主要城市，自我 audit 發現還有 **67 個缺州**（Honolulu／Atlantic City／Winnipeg／Lexington…）。用**座標精準定州**（Aurora→IL 非 CO、Columbia→MD、Concord→NH）全部補進 `us_ca_state` → EN 缺州城市歸零。

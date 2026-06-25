@@ -64,13 +64,25 @@ function jsonLd(variant, shows) {
          `<script type="application/ld+json">${JSON.stringify(list)}</script>`;
 }
 
+// Run-date label, matching the interactive app's fmtDates (js/app.js): open-ended →
+// 長期上演 / Now playing; has a closing → 至 {end} / Until; future premiere → {start} 起 /
+// From; else blank. Keeps the prerendered SEO list consistent with what humans see.
+function runLabel(s, variant) {
+  const t = new Date(); t.setHours(0, 0, 0, 0);
+  const f = (iso) => { const [y, m, d] = iso.split("-").map(Number); return y === t.getFullYear() ? `${m}/${d}` : `${y}/${m}/${d}`; };
+  const en = variant === "en";
+  if (s.end_rolling) return en ? "Now playing" : (variant === "zh-hans" ? "长期上演" : "長期上演");
+  if (s.end_date) return (en ? "Until " : "至 ") + f(s.end_date);
+  if (s.start_date && new Date(s.start_date) > t) return en ? "From " + f(s.start_date) : f(s.start_date) + " 起";
+  return "";
+}
 // Prerendered, crawler-readable show list (the app re-renders #show-list for humans).
 function prerenderList(variant, shows) {
   const sep = variant === "en" ? ", " : "、";
   const li = shows.map((s) => {
     const where = [s.venue, s.city, s.country].filter(Boolean).join(sep);
     const url = (s.ticket_links && s.ticket_links[0] && s.ticket_links[0].url) || s.ticket_url || "";
-    const dates = [s.start_date, s.end_date].filter(Boolean).join(" – ");
+    const dates = runLabel(s, variant);
     const name = url ? `<a href="${esc(url)}" rel="nofollow">${esc(s.title)}</a>` : esc(s.title);
     return `<li>${name} — ${esc(where)}${dates ? ` (${esc(dates)})` : ""}</li>`;
   }).join("\n      ");
