@@ -11,6 +11,13 @@
 
 ---
 
+## [v0.75.0] - 2026-06-25 22:41
+### 系統性修復 — 在地製作的名稱與官網（127 個組合，5 路 agent 查證）
+- popup 標題現在顯示**在地製作真名**：墨西哥 El Rey León／El Fantasma de la Ópera、日本 ライオンキング／オペラ座の怪人、德國 Der König der Löwen／Die Eiskönigin、法國 Le Roi Lion、中國 剧院魅影／玛蒂尔达、匈牙利／捷克在地名…（`data/local_titles.json`，60 個在地名，build_shows 套用）。
+- **官網精準命中在地版**：＋63 個在地官網（elreyleonelmusical.mx、shiki.jp、stage-entertainment.de／fr／nl、tohostage.com、teatromadrid 在地站…）。
+- 修「官網 URL 已存在卻被標成 ticketing 票券」（如墨西哥 Lion King 的 elreyleonelmusical.mx 被誤標 Broadway.org）→ 提升為 official 並移到最前。
+- 馬德里：`madrid.py` 的 tour_name 一律存西語製作名（Asesinato para dos、Gutenberg, el mejor musical del mundo…），不再被英文 canonical 覆蓋。
+
 ## [v0.74.0] - 2026-06-25 19:02
 ### 修復 — Madrid 漏抓近一半 ＋ 製作層級資料補完
 - **Madrid parse 不完整修復**：teatromadrid 列表 85 齣，原本因 11 個劇院 geocode 失敗被跳過、只抓 47。補上 11 個劇院精確座標（Teatro Sanpol／Capitol Gran Vía／OCASO Coliseum／Gran Teatro Pavón／IFEMA／Movistar Arena…），madrid.json 47→**70**，Cenicienta 等救回。（13 齣「場館＋日期未定」維持暫不上圖，待 teatromadrid 公布。）

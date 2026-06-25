@@ -811,12 +811,48 @@ def main():
             if s.get("ticket_url") == url:
                 s["link_kind"] = "official"  # its only link IS the official site
                 continue
-            if all(l.get("url") != url for l in links):
+            existing = next((l for l in links if l.get("url") == url), None)
+            if existing:
+                # already present but maybe mislabeled (e.g. came in as a "Broadway.org"
+                # ticketing tile) — promote it to the official site and move it to front.
+                existing["label"] = "官方網站"
+                existing["kind"] = "official"
+                links.remove(existing)
+                links.insert(0, existing)
+                s["ticket_links"] = links
+                n_off += 1
+            else:
                 links.insert(0, {"label": "官方網站", "url": url, "kind": "official"})
                 s["ticket_links"] = links
                 n_off += 1
         if n_off:
             print(f"  attached region-appropriate official sites to {n_off} record(s)")
+
+    # Localized production names: many sources (Ticketmaster MX, Interpark KR, Shiki JP…)
+    # only give the canonical English title. data/local_titles.json maps group+region to
+    # the real local production name (El Rey León, ライオンキング…) so the popup shows it.
+    lt_path = DATA / "local_titles.json"
+    if lt_path.exists():
+        LT = {k: v for k, v in json.loads(lt_path.read_text(encoding="utf-8")).items() if not k.startswith("_")}
+        def _lt_region(country):
+            c = country_norm(country)
+            if c in ("us", "canada"):
+                return "us"
+            if c in ("gb", "ireland"):
+                return "uk"
+            return {"australia": "au", "germany": "de", "japan": "jp", "france": "fr",
+                    "spain": "es", "netherlands": "nl", "mexico": "mx", "austria": "at",
+                    "switzerland": "ch", "china": "cn", "south korea": "kr"}.get(c, c)
+        n_lt = 0
+        for s in by_id.values():
+            if s.get("tour_name"):
+                continue
+            name = (LT.get(s["group"]) or {}).get(_lt_region(s.get("country")))
+            if name:
+                s["tour_name"] = name
+                n_lt += 1
+        if n_lt:
+            print(f"  set local production names on {n_lt} record(s)")
 
     # Backfill missing tour_name on US/Canada tour legs from a sibling stop of the same
     # group (same national tour, scraped from a source that didn't carry the name), so
