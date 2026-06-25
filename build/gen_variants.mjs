@@ -24,6 +24,8 @@ const VARIANTS = ["en", "zh-hans", "zh-hant"];
 function place(kind, val, variant) {
   if (kind !== "cities" || !val) {
     if (variant === "en") return val;
+    const tw = maps[kind + "_tw"];               // Taiwan override (countries_tw) where it differs
+    if (variant === "zh-hant" && tw && tw[val]) return tw[val];
     const h = maps[kind][val];
     return h ? (variant === "zh-hant" ? cn2tw(h) : h) : val;
   }

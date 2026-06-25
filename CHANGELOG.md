@@ -11,6 +11,12 @@
 
 ---
 
+## [v0.69.2] - 2026-06-25 10:57
+### 修正 — 補完城市州 ＋ 清城市錯字 ＋ 國家在地化（主動 audit 自己漏掉的）
+- **英文版補完所有美/加城市的州**：上版只補主要城市，自我 audit 發現還有 **67 個缺州**（Honolulu／Atlantic City／Winnipeg／Lexington…）。用**座標精準定州**（Aurora→IL 非 CO、Columbia→MD、Concord→NH）全部補進 `us_ca_state` → EN 缺州城市歸零。
+- **清城市錯字**：`San Deigo`→San Diego、`Ft Lauderdale`→Fort Lauderdale、`GATINEAU`→Gatineau（`build_shows` 正規化，連帶修掉地圖重複 marker）。
+- **國家在地化**（原本只翻 CN/TW/JP/KR，西方國家在中文版顯示英文如「倫敦, UK」）：補全部國家中文 ＋ **兩岸差異** `countries_tw`（義大利／意大利、澳洲／澳大利亚、紐西蘭／新西兰）。
+
 ## [v0.69.1] - 2026-06-25 10:44
 ### 新增 — 城市名稱在地化（分語言 ＋ 兩岸譯名 ＋ 英文補州）
 - 原本西方城市一律英文（London／New York…）。現在分語言處理：

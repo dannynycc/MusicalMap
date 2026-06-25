@@ -1,10 +1,18 @@
 {
   "_note": "Place-name + platform localization maps (English → Simplified Chinese). build/gen_variants.mjs uses these. CITIES are language-specific: the Chinese variants show CITY ONLY (no US/CA state) — major world cities translated from this map, unmapped towns kept in Latin (zh-hant via OpenCC cn→tw); the English variant shows 'City, ST', back-filling the state/province code learned from records that carry one. Values are Simplified (zh-hant gets Traditional via OpenCC).",
   "countries": {
-    "China": "中国",
-    "Taiwan": "台湾",
-    "Japan": "日本",
-    "South Korea": "韩国"
+    "China": "中国", "Taiwan": "台湾", "Japan": "日本", "South Korea": "韩国",
+    "USA": "美国", "UK": "英国", "Canada": "加拿大", "Germany": "德国", "France": "法国",
+    "Italy": "意大利", "Spain": "西班牙", "Portugal": "葡萄牙", "Netherlands": "荷兰",
+    "Belgium": "比利时", "Austria": "奥地利", "Switzerland": "瑞士", "Ireland": "爱尔兰",
+    "Czech Republic": "捷克", "Hungary": "匈牙利", "Poland": "波兰", "Denmark": "丹麦",
+    "Norway": "挪威", "Sweden": "瑞典", "Finland": "芬兰", "Turkey": "土耳其",
+    "Australia": "澳大利亚", "New Zealand": "新西兰", "Singapore": "新加坡",
+    "United Arab Emirates": "阿联酋", "UAE": "阿联酋", "South Africa": "南非",
+    "Mexico": "墨西哥", "Brazil": "巴西", "Argentina": "阿根廷"
+  },
+  "countries_tw": {
+    "Italy": "義大利", "Australia": "澳洲", "New Zealand": "紐西蘭"
   },
   "cities": {
     "Beijing": "北京", "Changsha": "长沙", "Changzhou": "常州", "Chongqing": "重庆",
@@ -93,7 +101,21 @@
     "Greensboro": "NC", "Durham": "NC", "Knoxville": "TN", "Madison": "WI", "Boise": "ID",
     "Akron": "OH",
     "Toronto": "ON", "Montreal": "QC", "Ottawa": "ON", "Vancouver": "BC", "Calgary": "AB",
-    "Edmonton": "AB"
+    "Edmonton": "AB",
+    "Adrian": "MI", "Arlington": "VA", "Ashland": "OR", "Atlantic City": "NJ", "Aurora": "IL",
+    "Babylon": "NY", "Bay City": "MI", "Beaumont": "TX", "Biloxi": "MS", "Binghamton": "NY",
+    "Brossard": "QC", "Burnsville": "MN", "Centerville": "UT", "Chandler": "AZ", "Columbia": "MD",
+    "Concord": "NH", "Conroe": "TX", "Coquitlam": "BC", "Daytona Beach": "FL", "Dennis": "MA",
+    "Duluth": "MN", "Effingham": "IL", "Englewood": "NJ", "Evans": "GA", "Flat Rock": "NC",
+    "Gatineau": "QC", "Gilbert": "AZ", "Grand Forks": "ND", "Hamilton": "ON", "Hattiesburg": "MS",
+    "Honolulu": "HI", "Ivins": "UT", "Kenner": "LA", "La Mirada": "CA", "Lancaster": "PA",
+    "Lexington": "KY", "Lincolnshire": "IL", "Lubbock": "TX", "Manasquan": "NJ", "Mansfield": "OH",
+    "Metairie": "LA", "Millburn": "NJ", "Milton": "DE", "Moncton": "NB", "Montgomery": "AL",
+    "Nepean": "ON", "Northport": "NY", "Parker": "CO", "Pickering": "ON", "Pleasant Grove": "UT",
+    "Port Jefferson": "NY", "Rancho Cucamonga": "CA", "Reading": "PA", "Red Bank": "NJ",
+    "Roanoke": "VA", "San Bernardino": "CA", "Sandy": "UT", "Scranton": "PA", "Selbyville": "DE",
+    "Thousand Oaks": "CA", "Thunder Bay": "ON", "Utica": "NY", "Villa Park": "IL", "Winnipeg": "MB",
+    "Yucaipa": "CA"
   },
   "_cities_tw_note": "Taiwan (繁體) overrides for cities where Taiwan uses a DIFFERENT translation than Mainland — not just different characters (OpenCC handles those). zh-hant looks here first, else falls back to OpenCC(cities[Simplified]). Verified against Taiwanese media usage 2026-06-25.",
   "cities_tw": {

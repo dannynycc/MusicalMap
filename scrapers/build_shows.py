@@ -495,6 +495,14 @@ def main():
             if metro:
                 s["city"] = metro
 
+    # Source-data city typos / inconsistent forms → canonical (so they merge & display
+    # right, and pick up the right state/translation downstream).
+    CITY_FIX = {"San Deigo": "San Diego", "Ft Lauderdale": "Fort Lauderdale", "GATINEAU": "Gatineau"}
+    for s in by_id.values():
+        fix = CITY_FIX.get((s.get("city") or "").strip())
+        if fix:
+            s["city"] = fix
+
     # shiki.jp is authoritative for Japan — drop other sources' Japan records of
     # shows shiki also lists (broadway.org's Japan venues proved stale, e.g.
     # Lion King listed at HARU instead of 有明四季劇場).
