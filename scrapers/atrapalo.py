@@ -31,6 +31,7 @@ import json
 import re
 import sys
 import time
+from datetime import date
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -42,6 +43,15 @@ BASE = "https://www.atrapalo.com/entradas/musicales/"
 UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
       "(KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36")
 MAX_PAGES = 12  # safety bound; we stop as soon as a page yields nothing new
+
+# Shows that atrapalo SELLS but files OUTSIDE the /entradas/musicales/ category
+# (so the listing crawl misses them) — yet teatromadrid/teatrebarcelona list them,
+# i.e. recognised musicals we want monetised. We pull their detail page directly.
+# Add a product URL here when a teatromadrid-only title turns out to be on atrapalo.
+EXTRA_PRODUCTS = [
+    "https://www.atrapalo.com/entradas/la-sireneta_e4843032/",            # The Little Mermaid (BCN)
+    "https://www.atrapalo.com/entradas/asesinato-para-dos-en-madrid_e4923489/",  # Murder for Two (MAD)
+]
 
 
 def _page_url(n):
@@ -120,6 +130,16 @@ def fetch_pages():
             break
         time.sleep(1.0)  # be gentle
 
+    # supplemental shows that live outside the /musicales/ category (detail page)
+    for url in EXTRA_PRODUCTS:
+        if url in by_url:
+            continue
+        ev = fetch_detail_event(url, sess, headers)
+        if ev:
+            by_url[url] = ev
+            print(f"[atrapalo]   + extra: {ev['name']}")
+        time.sleep(0.8)
+
     backfill_coords(list(by_url.values()), sess, headers)
     return list(by_url.values())
 
@@ -184,6 +204,60 @@ def backfill_coords(events, sess, headers):
                         "addressCountry": "España"},
         }
         print(f"[atrapalo]   ✓ {e.get('name')} → {venue}, {city} ({lat:.5f},{lng:.5f})")
+
+
+def _date_span(html, keys):
+    """Min/max ISO date across every match of the given JSON-LD keys — a detail
+    page sprinkles per-performance dates, so we take the whole run's extent."""
+    found = []
+    for k in keys:
+        for m in re.findall(rf'"{k}"\s*:\s*"(\d{{4}}-\d{{2}}-\d{{2}})', html):
+            found.append(m)
+    return (min(found), max(found)) if found else (None, None)
+
+
+def fetch_detail_event(url, sess, headers):
+    """Build a TheaterEvent-shaped dict from a product *detail* page, for shows
+    atrapalo sells outside the /musicales/ listing (see EXTRA_PRODUCTS). Returns
+    None if unparseable, challenged, or the run has already ended."""
+    try:
+        html = sess.get(url, headers=headers, timeout=30).text
+    except Exception as exc:
+        print(f"[atrapalo]   extra fetch failed {url}: {exc}")
+        return None
+    if "Client Challenge" in html:
+        print(f"[atrapalo]   extra challenged (cookie expired?) {url}")
+        return None
+    venue, city, lat, lng = _parse_venue_blob(html)
+    nm = re.search(r'<meta property="og:title" content="([^"]+)"', html)
+    name = nm.group(1) if nm else None
+    if name:
+        name = re.sub(r'\s*-\s*Atr[aá]palo\.com\s*$', '', name)
+        name = re.sub(r'\s*\([^)]*\)\s*$', '', name)                 # trailing "(Madrid)"
+        name = re.sub(r',?\s+en\s+[A-ZÁ-Úa-zá-ú][\w\sÁ-úá-ú]+$', '', name).strip()  # ", en Madrid"
+    if not name or lat is None:
+        print(f"[atrapalo]   extra unparseable {url} (name={name!r} coords={lat})")
+        return None
+    start, _ = _date_span(html, ("startDate",))   # only true run starts (validFrom can be years stale)
+    _, end = _date_span(html, ("endDate", "priceValidUntil", "availabilityEnds"))
+    if end and end < date.today().isoformat():
+        print(f"[atrapalo]   extra skipped (ended {end}): {name}")
+        return None
+    img = re.search(r'<meta property="og:image" content="([^"]+)"', html)
+    price = re.search(r'"price"\s*:\s*"?([\d.]+)', html)
+    ev = {
+        "name": name, "url": url,
+        "image": img.group(1) if img else None,
+        "startDate": start,
+        "endDate": end,
+        "location": {"@type": "Place", "name": venue,
+                     "geo": {"@type": "GeoCoordinates", "latitude": lat, "longitude": lng},
+                     "address": {"@type": "PostalAddress", "addressLocality": city,
+                                 "addressCountry": "España"}},
+    }
+    if price:
+        ev["offers"] = [{"price": price.group(1), "priceCurrency": "EUR"}]
+    return ev
 
 
 def clean_title(name_es):

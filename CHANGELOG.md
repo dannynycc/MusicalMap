@@ -11,6 +11,14 @@
 
 ---
 
+## [v0.77.3] - 2026-06-26 01:16
+### 新增 — 補抓 atrapalo「非 musicales 分類」的劇（La Sireneta、Asesinato para dos）
+- 有些 teatromadrid/barcelona 獨家劇其實 atrapalo 也賣，只是歸在 `/entradas/musicales/` 分類**外**（兒童劇/話劇），列表爬不到。`scrapers/atrapalo.py` 新增 `EXTRA_PRODUCTS` 商品 URL 清單 + `fetch_detail_event`：直接抓詳情頁，從 `og:title`＋venue blob（座標）＋JSON-LD 日期/價格組成記錄，過期的自動略過。
+- 補進 **The Little Mermaid（La Sireneta, BCN）** 與 **Murder for Two（Asesinato para dos, MAD）** → 兩者現由 atrapalo 主源、帶分潤、與 teatromadrid/barcelona 正確合併成單一釘點。atrapalo 136→**138**。
+- `data/works.json`：The Little Mermaid 加加泰隆尼亞語別名 **「La Sireneta」**（中央登錄，`canonical_title` 全專案受惠）。
+- **查證（4tickets/oneboxtds 無法分潤）**：teatromadrid 結帳走的 `4tickets.es`／`oneboxtds.com` 都是純 B2B 白標票務、無 publisher 聯盟、不在任何聯盟網路（諷刺的是 atrapalo 正是 OneBox 的下游零售通路）→ 確認「用 atrapalo 變現、teatromadrid 留作免費資訊」的路線正確。
+- 結果：仍真正 teatromadrid 獨家的全球正典僅剩 **Moulin Rouge!**（atrapalo 上是巴黎歌舞秀非音樂劇）與 **Sunday in the Park with George**（atrapalo 無）。
+
 ## [v0.77.2] - 2026-06-26 00:59
 ### 修正 — atrapalo 漏抓大劇（無座標/撞號）＋ 分潤反客為主
 - **救回被漏抓的大劇**：El Rey León（→The Lion King）、Cenicienta（→Cinderella）、El Alma al aire 列表 JSON-LD 的 `location/geo` 是 null 被跳過。新增 `backfill_coords`：抓詳情頁的 `"venue":{…,"latitude","longitude","city"}` blob **直接取建築級座標**（免 geocode；Nominatim 僅後援）。atrapalo 127→**136 齣**（全數上圖）。
