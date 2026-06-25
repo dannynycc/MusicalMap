@@ -11,6 +11,10 @@
 
 ---
 
+## [v0.69.4] - 2026-06-25 11:16
+### 修正 — 低信心台灣城市譯名改回英文（招供 #3）
+- agent 標「台灣媒體少見／無標準」的 8 城（Des Moines／Ostrava／Brescia／Hasselt／Trier／Brno／Knoxville／Greensboro）從 `cities`／`cities_tw` 移除 → 中文版顯示英文（不硬塞不確定的譯名）。其餘高信心台灣譯名（雪梨／杜拜／休士頓／聖荷西…）保留。
+
 ## [v0.69.3] - 2026-06-25 11:01
 ### 修正 — 預渲染 SEO 頁日期格式跟 app 一致（招供 #4）
 - `build/gen_site.mjs` 給爬蟲/AI 看的預渲染清單,日期原本是舊的 `start – end` ISO 全格式,現改成跟互動版一致的 `至 M/D`／`長期上演`／`M/D 起`（城市/國家在地化早已因 gen_site 讀變體檔而自動套用）。
