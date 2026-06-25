@@ -35,6 +35,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from madrid import canon  # noqa: E402  (also sets UTF-8 stdout; shared ES→canonical table)
+from geocode import geocode  # noqa: E402  (Nominatim + persistent cache, shared)
 
 DATA = Path(__file__).resolve().parent.parent / "data"
 BASE = "https://www.atrapalo.com/entradas/musicales/"
@@ -118,7 +119,71 @@ def fetch_pages():
         if new == 0:
             break
         time.sleep(1.0)  # be gentle
+
+    backfill_coords(list(by_url.values()), sess, headers)
     return list(by_url.values())
+
+
+# Some listing events ship with location/geo = null (a few big Stage-style runs:
+# El Rey León, Cenicienta…). Their detail page carries a rich
+# "venue":{"label":…,"city":…,"latitude":…,"longitude":…} blob, so we fetch the
+# page and read the coords straight from it (building-level, no geocoding). Only
+# if that blob lacks coords do we fall back to Nominatim — otherwise to_show()
+# would silently drop these shows off the map.
+def _parse_venue_blob(html):
+    """Extract (venue, city, lat, lng) from a detail page's venue:{…} object."""
+    vm = re.search(r'"venue"\s*:\s*\{(.{0,1000}?)"images"', html, re.S) \
+        or re.search(r'"venue"\s*:\s*\{(.{0,1000})', html, re.S)
+    if not vm:
+        return None, None, None, None
+    blob = vm.group(1)
+
+    def field(name, pat):
+        m = re.search(rf'"{name}"\s*:\s*{pat}', blob)
+        return m.group(1) if m else None
+
+    venue = field("label", r'"([^"]+)"')
+    city = field("city", r'"([^"]*)"')
+    lat = field("latitude", r'(-?\d+\.?\d*)')
+    lng = field("longitude", r'(-?\d+\.?\d*)')
+    return (venue.strip() if venue else None,
+            city.strip() if city else None,
+            float(lat) if lat else None,
+            float(lng) if lng else None)
+
+
+def backfill_coords(events, sess, headers):
+    missing = [e for e in events
+               if not ((e.get("location") or {}).get("geo") or {}).get("latitude")]
+    if not missing:
+        return
+    print(f"[atrapalo] {len(missing)} event(s) without coords — backfilling from detail pages")
+    for e in missing:
+        url = e.get("url") or ""
+        eid_m = re.search(r'_e(\d+)', url)
+        eid = eid_m.group(1) if eid_m else url
+        try:
+            html = sess.get(url, headers=headers, timeout=30).text
+        except Exception as exc:
+            print(f"[atrapalo]   detail fetch failed for {e.get('name')}: {exc}")
+            continue
+        venue, city, lat, lng = _parse_venue_blob(html)
+        if not venue:
+            print(f"[atrapalo]   no venue on detail page for {e.get('name')} — skip")
+            continue
+        if lat is None or lng is None:                 # blob lacked coords → geocode
+            query = ", ".join(x for x in (venue, city, "Spain") if x)
+            lat, lng = geocode(f"atrapalo-{eid}", query)
+        if lat is None or lng is None:
+            print(f"[atrapalo]   no coords for '{venue}, {city}' ({e.get('name')}) — skip")
+            continue
+        e["location"] = {
+            "@type": "Place", "name": venue,
+            "geo": {"@type": "GeoCoordinates", "latitude": lat, "longitude": lng},
+            "address": {"@type": "PostalAddress", "addressLocality": city,
+                        "addressCountry": "España"},
+        }
+        print(f"[atrapalo]   ✓ {e.get('name')} → {venue}, {city} ({lat:.5f},{lng:.5f})")
 
 
 def clean_title(name_es):
@@ -148,8 +213,8 @@ def clean_title(name_es):
 def to_show(ev):
     """Map one JSON-LD TheaterEvent to the MusicalMap show schema."""
     url = ev.get("url", "")
-    m = re.search(r'/entradas/([a-z0-9-]+)_e\d+/?', url)
-    slug = m.group(1) if m else None
+    m = re.search(r'/entradas/([a-z0-9-]+)_e(\d+)/?', url)
+    slug, eid = (m.group(1), m.group(2)) if m else (None, None)
     if not slug:
         return None
     loc = ev.get("location") or {}
@@ -167,7 +232,7 @@ def to_show(ev):
     country = "Spain" if country.strip().lower() in ("españa", "espana", "spain") else country
 
     show = {
-        "id": f"atr-{slug}",
+        "id": f"atr-{slug}-{eid}",               # _e id keeps same-slug tour stops distinct
         "title": clean_title(name_es),           # registry canonical or cleaned original
         "type": "tour",                          # match madrid.py convention
         "venue": loc.get("name"),

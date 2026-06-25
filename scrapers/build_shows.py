@@ -134,9 +134,13 @@ SOURCE_FILES = ["broadway.json", "westend.json", "tours.json", "intl.json",
 # When several ticket sources list the SAME show in the SAME city, we keep one
 # record (highest priority = most authoritative venue data) and attach every
 # source's purchase link to the card. Lower index = higher priority.
+# NB: atrapalo ranks ABOVE teatromadrid/teatrebarcelona — for a show both list, we
+# want atrapalo to win the primary record (it's the channel we monetise via Sovrn;
+# teatromadrid sells through its own 4tickets/OneBox, which earns us nothing). The
+# non-monetised source's buy link still rides along (merged), so coverage is kept.
 SOURCE_PRIORITY = ["shiki.jp", "kageki", "broadway-show-tickets", "londontheatre",
-                   "interpark", "stage-entertainment", "teatromadrid", "manual",
-                   "broadway.org", "atgtickets", "atrapalo", "ticketmaster"]
+                   "interpark", "stage-entertainment", "atrapalo", "teatromadrid", "manual",
+                   "broadway.org", "atgtickets", "ticketmaster"]
 SOURCE_LABEL = {
     "broadway-show-tickets": "Broadway票務", "londontheatre": "LondonTheatre",
     "broadway.org": "Broadway.org", "shiki.jp": "四季官網", "kageki": "宝塚官網",
@@ -526,6 +530,34 @@ def main():
     # a rolling booking horizon as a fake closing date). The old "richest data wins"
     # rule let ATG win *because* it carried an end_date — so a long-runner read like a
     # show about to close. Source priority fixes it; image/end_date are tiebreakers.
+    # A record's links may live in ticket_links (list) or ticket_url (single);
+    # ticket_links is only materialised later (official-site step), so read both.
+    def _rec_links(x):
+        if x.get("ticket_links"):
+            return list(x["ticket_links"])
+        if x.get("ticket_url"):
+            return [{"label": src_label(x.get("source")), "url": x["ticket_url"],
+                     "kind": src_kind(x.get("source"))}]
+        return []
+
+    def _merge_into(keep, drop):
+        """Fold drop's ticket links + date range into keep — no booking source lost
+        (so e.g. atrapalo's monetised link survives on a teatromadrid-won pin)."""
+        kp, dp = by_id[keep], by_id[drop]
+        merged = _rec_links(kp)
+        urls = {l.get("url") for l in merged}
+        for l in _rec_links(dp):
+            if l.get("url") not in urls:
+                merged.append(l); urls.add(l.get("url"))
+        if merged:
+            kp["ticket_links"] = merged
+        starts = [d for d in (kp.get("start_date"), dp.get("start_date")) if d]
+        ends = [d for d in (kp.get("end_date"), dp.get("end_date")) if d]
+        if starts:
+            kp["start_date"] = min(starts)
+        if ends:
+            kp["end_date"] = max(ends)
+
     seen_gcv = {}
     dup = []
     score = lambda x: (-src_prio(x.get("source")), bool(x.get("image")), bool(x.get("end_date")))  # noqa: E731
@@ -537,14 +569,14 @@ def main():
         if prev is None:
             seen_gcv[k] = i
             continue
-        if score(s) > score(by_id[prev]):
-            dup.append(prev); seen_gcv[k] = i
-        else:
-            dup.append(i)
+        keep, drop = (i, prev) if score(s) > score(by_id[prev]) else (prev, i)
+        seen_gcv[k] = keep
+        _merge_into(keep, drop)   # keep the dropped source's buy link on the surviving pin
+        dup.append(drop)
     for i in dup:
         del by_id[i]
     if dup:
-        print(f"  dropped {len(dup)} cross-source duplicate(s) (same show+city+venue)")
+        print(f"  dropped {len(dup)} cross-source duplicate(s) (same show+city+venue; links merged)")
 
     # Venue-level COUNTRY corrections. Some sources (esp. broadway.org tours) file
     # Canadian/Mexican tour stops under "USA"; data/venue_country.json holds the true
@@ -584,17 +616,7 @@ def main():
     # Now that coords are finalised, collapse records sharing (group, rounded coords):
     # identical coords == the same physical venue, regardless of the city/venue text.
     # The richest record survives; the other's ticket links merge in and the date range
-    # widens, so no booking source is lost.
-    # a record's links may still live in ticket_url (single) — ticket_links is only
-    # materialised later (in the official-site step), so read both when merging.
-    def _rec_links(x):
-        if x.get("ticket_links"):
-            return list(x["ticket_links"])
-        if x.get("ticket_url"):
-            return [{"label": src_label(x.get("source")), "url": x["ticket_url"],
-                     "kind": src_kind(x.get("source"))}]
-        return []
-
+    # widens, so no booking source is lost. (_rec_links defined above.)
     seen_gc, dropc = {}, []
     for i, s in by_id.items():
         if s.get("lat") is None or s.get("lng") is None or not s.get("group"):
@@ -604,8 +626,10 @@ def main():
         if prev is None:
             seen_gc[k] = i
             continue
-        score = lambda x: (bool(x.get("image")), bool(x.get("start_date")),
-                           len(_rec_links(x)))  # noqa: E731
+        # Source priority first (so the monetised channel — e.g. atrapalo over
+        # teatromadrid — wins the primary record), then richest data as tiebreak.
+        score = lambda x: (-src_prio(x.get("source")), bool(x.get("image")),
+                           bool(x.get("start_date")), len(_rec_links(x)))  # noqa: E731
         keep, drop = (i, prev) if score(s) > score(by_id[prev]) else (prev, i)
         if keep == i:
             seen_gc[k] = i

@@ -11,6 +11,14 @@
 
 ---
 
+## [v0.77.2] - 2026-06-26 00:59
+### 修正 — atrapalo 漏抓大劇（無座標/撞號）＋ 分潤反客為主
+- **救回被漏抓的大劇**：El Rey León（→The Lion King）、Cenicienta（→Cinderella）、El Alma al aire 列表 JSON-LD 的 `location/geo` 是 null 被跳過。新增 `backfill_coords`：抓詳情頁的 `"venue":{…,"latitude","longitude","city"}` blob **直接取建築級座標**（免 geocode；Nominatim 僅後援）。atrapalo 127→**136 齣**（全數上圖）。
+- **修 id 撞號**：同 slug 不同城市的巡演（Princess Story…）被當重複收掉，id 改含 `_e` 編號。
+- **分潤反客為主修正**：① `build_shows` Pass 1（同 group+city+venue 去重）原本直接丟掉次源、連結不留 → 改為**合併被丟源的購票連結**（對齊 Pass 2「no booking source lost」），atrapalo 分潤連結得以掛上 teatromadrid 釘點。② **SOURCE_PRIORITY 把 atrapalo 提到 teatromadrid 之前**＋Pass 2 去重 score 改「source 優先」→ 重疊劇（Lion King/Wicked/Cinderella/Sound of Music…9/9）主源變 **atrapalo（可分潤）**，teatromadrid 只保它的獨家。
+- **查證**：teatromadrid 購票走自家 `4tickets.es`／`oneboxtds.com`，**與 atrapalo 無關**（「teatromadrid 走 atrapalo 分潤」傳聞不成立）。
+- Google Maps API 已獲授權當 geocode 後援（venue blob 已直供座標，目前用不到、CI 也免 key）。
+
 ## [v0.77.1] - 2026-06-26 00:32
 ### 修正 — atrapalo 重複釘點 ＋ 接進每日 CI（資料中心 IP 實測通過）
 - **去重複釘點**：atrapalo 標題帶「, el musical en Madrid」城市後綴，原本沒跟 teatromadrid 的「Wicked」合併→雙釘點。`clean_title` 改為「strip『el musical』及其後全部（含 en〈城市〉）＋ `&`→`y`」，Wicked／Sound of Music 等正確 canonical 合併（shows 1753→1750）。
