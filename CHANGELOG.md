@@ -11,6 +11,12 @@
 
 ---
 
+## [v0.77.1] - 2026-06-26 00:32
+### 修正 — atrapalo 重複釘點 ＋ 接進每日 CI（資料中心 IP 實測通過）
+- **去重複釘點**：atrapalo 標題帶「, el musical en Madrid」城市後綴，原本沒跟 teatromadrid 的「Wicked」合併→雙釘點。`clean_title` 改為「strip『el musical』及其後全部（含 en〈城市〉）＋ `&`→`y`」，Wicked／Sound of Music 等正確 canonical 合併（shows 1753→1750）。
+- **接進每日主 pipeline**：`.github/workflows/update.yml` 加 `curl_cffi`＋`playwright`＋`playwright install chromium`，madrid 之後跑 `atrapalo.py`。**probe 實測**：GitHub Actions ubuntu runner（Azure 資料中心 IP）**成功過 Fastly 挑戰**（136 events / 127 shows，47 秒），推翻「資料中心 IP 必被擋」的預期 → 每日 CI 可行。移除一次性 `atrapalo_probe.yml`。
+- **策略決定（保留涵蓋＋分潤優先）**：teatromadrid/barcelona **不撤**（用別名庫 works.json 驗證:其有 6 部 atrapalo 沒有的 Broadway/West End 正典獨家——The Lion King／The Little Mermaid／Cinderella／Moulin Rouge!／Sunday in the Park with George／Murder for Two）；重疊劇靠 `AFFILIATE_PRIORITY` 讓購票主連結走 atrapalo 分潤。
+
 ## [v0.77.0] - 2026-06-26 00:06
 ### 新增 — atrapalo.com 全西班牙音樂劇來源（打通 Fastly bot 牆 + Sovrn 分潤）
 - 新 scraper `scrapers/atrapalo.py`，抓 atrapalo.com `/entradas/musicales/`（西班牙最大票務站），**單一來源涵蓋全西班牙 39 城（馬德里/巴塞隆納/瓦倫西亞/塞維亞/畢爾包…）共 127 齣**，資料直接取自頁面內嵌的 **JSON-LD `ItemList`（TheaterEvent）**：劇名、場館、**經緯度（免 geocode）**、檔期、海報、價格全結構化。

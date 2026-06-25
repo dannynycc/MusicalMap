@@ -124,13 +124,23 @@ def fetch_pages():
 def clean_title(name_es):
     """Spanish marketing name → canonical title for cross-source merging.
 
-    canon() (shared with madrid.py) only strips a *comma/period*-led
-    ", el musical" suffix; atrapalo also uses a *dash* form ("Grease - El
-    Musical") and trailing city tags. Strip the dash-suffix first so registry
-    lookups hit (e.g. "Sonrisas y lágrimas - El musical" → The Sound of Music),
-    then drop any dangling separator left behind."""
-    base = re.sub(r'\s*[-–]\s*el\s+musical\s*$', '', name_es, flags=re.I).strip()
-    title = canon(base)
+    atrapalo decorates names with a generic musical suffix AND a city tag, in
+    several forms: "Wicked, el musical en Madrid", "Grease - El Musical",
+    "Tarzán - El Musical", "La Bella y la Bestia, el musical". canon() (shared
+    with madrid.py) only strips a trailing comma-led ", el musical", so on its
+    own it leaves "Wicked, el musical en Madrid" un-canonicalised → a duplicate
+    pin next to teatromadrid's "Wicked". So here we strip "el musical" *and
+    everything after it* (the trailing "en <city>"), normalise "&"→"y" for the
+    registry lookup, then drop any dangling separator.
+
+    Titles that *begin* with "El musical…" (a local show whose name really is
+    that) collapse to empty — we keep the original name in that case."""
+    base = re.sub(r'\s*[-–,]?\s*el\s+musical\b.*$', '', name_es.strip(), flags=re.I).strip()
+    if not base:
+        base = name_es.strip()
+    lookup = re.sub(r'\s*&\s*', ' y ', base)          # "Sonrisas & Lágrimas" → registry key
+    hit = canon(lookup)
+    title = hit if hit != lookup else base            # registry canonical, else cleaned name
     title = re.sub(r'\s*[-–,]\s*$', '', title).strip()
     return title or name_es
 

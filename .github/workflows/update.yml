@@ -47,7 +47,14 @@ jobs:
       # venue/title search blobs; without it those venues lose cross-script search.
       - name: Install Python deps
         if: github.event_name != 'push'
-        run: pip install opencc-python-reimplemented
+        run: pip install opencc-python-reimplemented curl_cffi playwright
+
+      # atrapalo.com sits behind Fastly's JS bot challenge; the scraper drives a
+      # real Chromium (Playwright) to pass it once, then GETs the rest. Verified
+      # 2026-06-26 that the Actions datacenter IP DOES get through (probe run).
+      - name: Install Chromium for atrapalo (Playwright)
+        if: github.event_name != 'push'
+        run: python -m playwright install --with-deps chromium
 
       - name: Scrape sources & rebuild shows.json
         if: github.event_name != 'push'
@@ -79,6 +86,7 @@ jobs:
           python scrapers/_run.py scrapers/atg.py         || echo "::warning::atg scrape failed"
           python scrapers/_run.py scrapers/stage_de.py    || echo "::warning::stage scrape failed"
           python scrapers/_run.py scrapers/madrid.py      || echo "::warning::madrid scrape failed"
+          python scrapers/_run.py scrapers/atrapalo.py    || echo "::warning::atrapalo (Fastly challenge) scrape failed"
           python scrapers/_run.py scrapers/opentix.py     || echo "::warning::opentix scrape failed"
           python scrapers/_run.py scrapers/utiki.py       || echo "::warning::utiki (kham+udn) scrape failed"
           python scrapers/_run.py scrapers/tm_tours.py    || echo "::warning::tm_tours sweep failed"
