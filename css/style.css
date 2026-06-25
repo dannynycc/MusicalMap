@@ -179,13 +179,12 @@ body { display: flex; flex-direction: column; height: 100vh; }
 .show-group.open .chev { transform: rotate(180deg); }
 .stops { max-height: 0; overflow: hidden; transition: max-height .22s ease; }
 .show-group.open .stops { max-height: 3000px; }
-.stops-inner { margin: 5px 12px 9px; padding: 9px 8px 11px 28px; border-radius: 10px; background: linear-gradient(100deg, var(--grad), transparent 62%); }
-.stop { position: relative; display: flex; align-items: flex-start; gap: 8px; padding: 8px 8px 9px 4px; border-radius: 9px; cursor: pointer; }
+.stops-inner { margin: 5px 12px 9px; padding: 8px; border-radius: 10px; background: linear-gradient(100deg, var(--grad), transparent 62%); }
+.stop { display: flex; align-items: flex-start; gap: 10px; padding: 6px; border-radius: 9px; cursor: pointer; }
 .stop:hover, .stop.active { background: var(--hov); }
-.stop::before { content: ""; position: absolute; left: -17px; top: 12px; width: 11px; height: 11px; border-radius: 50%; background: #fff; border: 2.5px solid var(--acc); box-sizing: border-box; z-index: 1; }
-.stop::after { content: ""; position: absolute; left: -12.5px; top: 24px; bottom: -13px; width: 2px; background: var(--acc2); border-radius: 2px; }
-.stop:last-child::after { display: none; }
-.stop .si { flex: 1; min-width: 0; }
+.stop .stop-thumb { width: 40px; height: 60px; flex: none; border-radius: 5px; background: #e2e8f0 center/cover no-repeat; display: grid; place-items: center; }
+.stop .stop-thumb .glyph { font-size: 14px; }
+.stop .si { flex: 1; min-width: 0; padding-top: 1px; }
 .chev-r { color: #b6c1cb; font-size: 17px; align-self: center; flex: none; }
 
 /* gentle breathing on the long-running status dot (disabled if user reduces motion) */
