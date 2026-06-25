@@ -11,6 +11,10 @@
 
 ---
 
+## [v0.71.1] - 2026-06-25 17:21
+### 修正 — 購票連結 hover 不再露出醜的聯盟轉址網址
+- 購票圖示 ＋ 標題官網連結:hover 時 status bar 改顯示**乾淨的目的地網址**（如 www.todaytix.com），聯盟轉址（redirect.viglink.com…）改在 `onmousedown` 才換上 → 點擊與中鍵開新分頁仍走分潤、但不再外露難看的轉址字串。
+
 ## [v0.71.0] - 2026-06-25 17:11
 ### 新增 — 英文版場館官方英文名（`venues_en`）
 - 中／日／韓／台 共 252 個非英文場館，agent 查證官方英文名 **200 個**，英文版顯示英文（臺中國家歌劇院→National Taichung Theater、電通四季劇場→Dentsu Shiki Theatre [UMI]、北京保利劇院→Beijing Poly Theatre、衛武營→National Kaohsiung Center for the Arts、寶塚大劇場→Takarazuka Grand Theatre、上劇場→Theatre Above…）；**無官方英文名的**（小劇場／星空間等）保留原文。受惠 **315 場**。中文版不受影響。

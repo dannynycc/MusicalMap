@@ -453,7 +453,10 @@ function popupHtml(show) {
     let host = ""; try { host = new URL(u).hostname; } catch { /* */ }
     const lab = esc(l.label || platformName(host, l.country));
     const ico = host ? platformIcon(host) : "";
-    return `<a class="pop-tile" href="${esc(affiliateUrl(u))}" target="_blank" rel="noopener" title="${lab}">
+    // Hover shows the CLEAN destination (href); the affiliate redirect is swapped in on
+    // mousedown so the ugly viglink URL never appears in the status bar, yet click and
+    // middle-click both still earn commission.
+    return `<a class="pop-tile" href="${esc(u)}" data-aff="${esc(affiliateUrl(u))}" onmousedown="this.href=this.dataset.aff" target="_blank" rel="noopener" title="${lab}">
       <span class="pop-tile-ico">${ico ? `<img src="${esc(ico)}" alt="" loading="lazy" onerror="this.style.display='none'">` : ""}</span>
       <span class="pop-tile-label">${lab}</span>
       <span class="pop-tile-arr">→</span></a>`;
@@ -466,7 +469,7 @@ function popupHtml(show) {
   // no hover styling): a visible link cue would funnel clicks to the non-paying official
   // site and away from the affiliate ticketing tiles. Looks like plain text; still a link.
   const title = official
-    ? `<p class="p-title"><a class="p-title-link" href="${esc(affiliateUrl(official.url))}" target="_blank" rel="noopener">${titleTxt}</a></p>`
+    ? `<p class="p-title"><a class="p-title-link" href="${esc(official.url)}" data-aff="${esc(affiliateUrl(official.url))}" onmousedown="this.href=this.dataset.aff" target="_blank" rel="noopener">${titleTxt}</a></p>`
     : `<p class="p-title">${titleTxt}</p>`;
   // body width by tile count (DEFINITE px so Leaflet sizes the wrapper right — no overflow):
   // 3-tile row needs ~344px content; a lone source uses a narrower panel (less blank).
