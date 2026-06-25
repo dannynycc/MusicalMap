@@ -156,21 +156,18 @@ body { display: flex; flex-direction: column; height: 100vh; }
   list-style: none; margin: 0 0 4px; padding: 0;
   max-height: 0; overflow: hidden; transition: max-height .2s ease;
 }
-.show-group.open .sublist { max-height: 320px; }
+.show-group.open .sublist { max-height: 2000px; }
 .sub-item {
-  display: flex; align-items: flex-start; gap: 12px; cursor: pointer;
-  font-size: 13px; color: var(--text); padding: 8px 12px 8px 22px;
-  border-radius: 9px; margin: 2px 6px;
+  display: block; cursor: pointer; color: var(--text);
+  padding: 7px 12px 7px 22px; border-radius: 9px; margin: 2px 6px;
 }
 .sub-item:hover { background: var(--panel-2); }
 .sub-item.active { background: #ecfdf9; }
-/* venue takes the available width and wraps; city stays on one line, right-aligned
-   at the top — so long names don't drag the city into a ragged second line. */
-.sub-venue { font-weight: 600; flex: 1; min-width: 0; line-height: 1.35; }
-.sub-city {
-  flex: none; color: var(--muted); font-size: 12px;
-  text-align: right; white-space: nowrap; line-height: 1.35; padding-top: 1px;
-}
+/* stacked: venue on its own line, "city · date" muted below — each truncates cleanly. */
+.sub-venue { display: block; font-weight: 600; font-size: 13px; line-height: 1.35;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sub-city { display: block; color: var(--muted); font-size: 12px; line-height: 1.35;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
 .show-item {
   display: flex; gap: 11px; align-items: center;
@@ -188,6 +185,10 @@ body { display: flex; flex-direction: column; height: 100vh; }
 .glyph { color: var(--accent); font-size: 18px; opacity: .85; }
 .show-item .info { min-width: 0; }
 .show-item .title { font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 7px; color: var(--text); }
+.show-item .item-venue {
+  font-size: 12.5px; color: var(--text); margin-top: 2px; line-height: 1.35;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 250px;
+}
 .show-item .meta {
   font-size: 12px; color: var(--muted); margin-top: 3px;
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 250px;

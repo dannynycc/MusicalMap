@@ -579,7 +579,9 @@ function render() {
       .forEach(([k, items]) => {
         const li = showGroupItem(items);
         li.dataset.gkey = k;
-        if (openKeys.has(k)) li.classList.add("open");
+        // auto-expand small multi-location groups (≤3 stops) so their per-city dates
+        // show without a click; bigger tours stay collapsed (would flood the list).
+        if (openKeys.has(k) || (items.length > 1 && items.length <= 3)) li.classList.add("open");
         els.list.appendChild(li);
       });
   }
@@ -639,15 +641,18 @@ function showGroupItem(items) {
       <div class="thumb ${imgShow.image ? "" : "noimg"}" style="${posterStyle(imgShow, 60, 84)}">${fallbackGlyph(imgShow)}</div>
       <div class="info">
         <div class="title">${esc(title)}${badge}${multi ? `<span class="loc-count">${esc(t("loc_short", { n: items.length }))}</span>` : ""}</div>
+        ${!multi && first.venue ? `<div class="item-venue">${esc(first.venue)}</div>` : ""}
         <div class="meta">${sub}</div>
       </div>
       ${multi ? `<span class="chev">▾</span>` : ""}
     </div>
-    ${multi ? `<ul class="sublist">${items.map((s) => `
-      <li class="sub-item" data-id="${esc(s.id)}">
+    ${multi ? `<ul class="sublist">${items.map((s) => {
+      const dt = fmtDates(s);
+      return `<li class="sub-item" data-id="${esc(s.id)}">
         <span class="sub-venue">${esc(s.venue)}</span>
-        <span class="sub-city">${esc(s.city)}</span>
-      </li>`).join("")}</ul>` : ""}`;
+        <span class="sub-city">${esc(s.city)}${dt ? ` · ${dt}` : ""}</span>
+      </li>`;
+    }).join("")}</ul>` : ""}`;
 
   const head = li.querySelector(".show-item");
   if (multi) {
