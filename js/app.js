@@ -34,6 +34,7 @@ function esc(v) {
 const fold = (s) => (s || "").toLowerCase().normalize("NFKD")
   .replace(/[̀-ͯ]/g, "")                 // strip combining accents
   .replace(/['’ʼ]/g, "")                  // drop apostrophes (kiki's → kikis)
+  .replace(/臺/g, "台")                    // 異體字: 臺北/臺灣 ⇄ 台北/台灣 (search both forms)
   .replace(/[^a-z0-9　-鿿가-힯]+/g, " ")  // other punctuation → space
   .replace(/\s+/g, " ").trim();
 
@@ -519,7 +520,7 @@ function visibleShows() {
     if (!overlapsMonth(s)) return false;
     if (ACTIVE_TAGS.size && !ACTIVE_TAGS.has(s.tag)) return false;
     if (!q) return true;
-    return [s.title, s.city, s.venue, s.tour_name, s.alt].some((f) => fold(f).includes(q));
+    return [s.title, s.city, s.venue, s.tour_name, s.alt, s.search].some((f) => fold(f).includes(q));
   });
 }
 

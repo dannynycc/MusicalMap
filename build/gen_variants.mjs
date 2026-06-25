@@ -65,9 +65,27 @@ for (const s of src.shows) {
   if (m) CITY_STATE[m[1].trim()] = m[2];
 }
 
+// Search is LANGUAGE-AGNOSTIC (display variant is only for presentation): the blob
+// holds every field rendered in ALL THREE forms — English + Traditional + Simplified —
+// so e.g. in 繁中 mode "taipei" / "台北" / "臺北" all find 臺北 shows. Same blob across
+// every variant file. Built from the original source values (before per-variant mutation).
+function buildSearch(s) {
+  const parts = new Set();
+  for (const v of VARIANTS) {
+    parts.add(place("cities", s.city, v));
+    parts.add(place("countries", s.country, v));
+    parts.add(cjk(s.title, v));
+    if (s.venue) parts.add(v === "en" && venuesEn[s.venue] ? venuesEn[s.venue] : cjk(s.venue, v));
+    if (s.tour_name) parts.add(cjk(s.tour_name, v));
+  }
+  if (s.alt) parts.add(s.alt);
+  return [...parts].filter(Boolean).join(" ");
+}
+const searchBlobs = src.shows.map(buildSearch);
+
 for (const variant of VARIANTS) {
   const out = JSON.parse(JSON.stringify(src));
-  for (const s of out.shows) {
+  out.shows.forEach((s, i) => {
     s.city = place("cities", s.city, variant);
     s.country = place("countries", s.country, variant);
     s.title = cjk(s.title, variant);
@@ -76,7 +94,8 @@ for (const variant of VARIANTS) {
     if (Array.isArray(s.ticket_links)) {
       for (const l of s.ticket_links) if (l.label) l.label = label(l.label, variant);
     }
-  }
+    s.search = searchBlobs[i];
+  });
   out.meta = { ...(out.meta || {}), variant };
   fs.writeFileSync(`data/variants/shows.${variant}.json`, JSON.stringify(out));
   console.log(`${variant.padEnd(8)} → ${out.shows.length} shows`);

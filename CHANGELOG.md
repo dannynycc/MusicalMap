@@ -11,6 +11,13 @@
 
 ---
 
+## [v0.77.6] - 2026-06-26 02:08
+### 修正 — 搜尋語言無關（簡繁 + 異體字 + 英文通吃）
+- 問題：繁中模式搜「台北」找不到顯示為「臺北」的劇（潘朵拉的音樂盒）；搜「taipei」也找不到。**顯示語言只管呈現，搜尋卻被綁死在當前變體的字形**。
+- **前端 `fold()`** 加異體字正規化 `臺→台`：搜「台北」「台灣」「台中」皆對到「臺北/臺灣/臺中」。
+- **build 層 `gen_variants` 新增語言無關 `search` 欄位**：每筆含該欄位在 **英文＋繁體＋簡體三種形式的聯集**（用 OpenCC 雙向 + place/venuesEn），三個變體檔共用同一 blob。前端 `visibleShows` 納入 `s.search` 比對。
+- 效果（實測，繁中模式下）：搜 `taipei`／`Taipei`／`台北`／`臺北`／`taiwan`／`戏曲中心`(簡)／`戲曲中心`(繁)／`潘朵拉` **全部命中同一齣** —— 符合「任意語言/字形皆可搜」。
+
 ## [v0.77.5] - 2026-06-26 01:48
 ### 補完 — 23 部登錄正典劇的官網（agent 查證 + HTTP 200）
 - 為先前「無官網條目」的正典劇補上官方網站（多為 multi-country 劇、無單一品牌站，採版權方官方頁，與專案既有 frankwildhorn/VBW 同做法）：Cinderella(R&H)、Shrek／Guys and Dolls／Into the Woods／Company／Dracula／The Full Monty／Rocky／Murder Ballad／A Christmas Carol(MTI)、The Addams Family(TRW)、A Chorus Line／Nine／La Cage aux Folles／Thrill Me／Altar Boyz／Finian's Rainbow／I Love You You're Perfect Now Change(Concord)、The Last Five Years(JRB)、Brokeback Mountain(@sohoplace)、Daddy Long Legs、We Will Rock You、Our Ladies of Perpetual Succour(NT Scotland)。
