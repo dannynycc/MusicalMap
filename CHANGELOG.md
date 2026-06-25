@@ -11,6 +11,11 @@
 
 ---
 
+## [v0.73.1] - 2026-06-25 18:38
+### 補完 — 其他劇的巡演／在地版官網「依此類推」＋「N Cities」字色加深
+- **官網精準命中擴及全部**：agent 查證後補進 `official_sites.json` —— 17 個美國巡演的 tour 站（Hamilton→/us-tour、Lion King→/tour、Les Mis→us-tour.lesmis.com…）＋ 10 個在地版（馬德里 El Rey León→elreyleon.es、Chicago 東京→chicagothemusical.jp、Wicked 巴西→wickedbrasil.com…）。
+- **「N Cities」字色／字級**：多城市卡的「4 Cities」原本太淺，改成跟下方城市（New York, NY）同樣 14px／#33445c。
+
 ## [v0.73.0] - 2026-06-25 18:30
 ### 修正 — 每個製作用自己的名字 ＋ 精準官網（資料模型）
 - **popup 標題用製作真名**：有 `tour_name` 的（巡演／在地版）顯示自己的名字（Wicked — North American Tour、Wicked, el musical），不再統一「Wicked」；原本重複的副標行移除。

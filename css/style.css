@@ -160,7 +160,7 @@ body { display: flex; flex-direction: column; height: 100vh; }
 .glyph { color: var(--accent); font-size: 18px; opacity: .85; }
 .show-item .info { min-width: 0; flex: 1; }
 .show-item .title { font-size: 17px; font-weight: 700; line-height: 1.25; color: var(--text); display: flex; align-items: center; gap: 7px; flex-wrap: wrap; }
-.city-count { font-size: 13px; color: #93a0ae; margin-top: 4px; }
+.city-count { font-size: 14px; color: #33445c; margin-top: 4px; }
 
 /* venue / city / date trio — shared by single card and each multi-city stop */
 .ven { font-size: 14.5px; font-weight: 600; color: var(--text); line-height: 1.32; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
