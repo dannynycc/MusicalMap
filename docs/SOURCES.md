@@ -20,7 +20,9 @@
 | utiki 售票引擎(台灣:寬宏 KHAM + udn售票 + MNA) | kham.com.tw(分類 80) / tickets.udnfunlife.com(搜尋 音樂劇) / ticket.mna.com.tw(分類 77 音樂,需 cookie);同一套 UTK ASP.NET 引擎 | `utiki.py` | KHAM 走 listing→場次頁 eventTABLE(`PLACE_NAME`+地址);UDN listing 卡片帶日期+場館(多場館巡演)+銷售狀態;MNA 卡片帶日期、場館取自詳情頁場次表(分類混雜故只留標題含「音樂劇」)。排除合唱/演唱會/工作坊/交響音樂會、已結束;座標交 Google geocode。萬世巨星/史瑞克/魔女宅急便 | 2026-06-13 |
 
 | 日本(東宝+2.5次元+東急シアターオーブ) | toho.co.jp/stage/lineup / j25musical.jp(日本2.5次元ミュージカル協会) / theatre-orb.com | `japan.py`(scrape_toho/scrape_j25/scrape_orb;與 shiki/takarazuka 並存) | **東宝**:card-lineup 取『』劇名+日期+場館,只留ミュージカル前綴。**2.5次元**:逐檔解析「【城市公演】日期 場館」多城巡演。**東急シアターオーブ**(音樂劇專用館):lineup 各檔 detail 取 og:title+「公演日程」。日文大 IP 中英並列+去重(シカゴ→Chicago…);TM 誤分類非音樂劇全域過濾(movie tour 等);Google 建築級座標。北海道下半年稀少=結構性(四季撤札幌/hitaru 非音樂劇)。**WIP:梅田芸術劇場(類型混雜待解)** | 2026-06-14 |
-| 西班牙(馬德里) | teatromadrid.com | `madrid.py` | 馬德里音樂劇(西語 tag) | 2026-06-13 |
+| 西班牙(馬德里) | teatromadrid.com | `madrid.py` | 馬德里音樂劇(西語 tag);**無分潤**,保留作涵蓋 | 2026-06-13 |
+| 西班牙(巴塞隆納) | teatrebarcelona.com | `barcelona.py` | 巴塞隆納音樂劇(WordPress,同 madrid 平台) | 2026-06-25 |
+| **西班牙全境(主力)** | atrapalo.com/entradas/musicales | `atrapalo.py` | 全西班牙 39 城~138 齣;Playwright 過 Fastly 挑戰→curl_cffi 抓頁面 JSON-LD(劇名/場館/**經緯度**/檔期/價/海報);**Sovrn 分潤**(merchant 53900);重疊劇主源,EXTRA_PRODUCTS 補非-musicales 分類 | 2026-06-26 |
 | 東歐(匈牙利等) | jegy.hu 等 | `easteurope.py` | 匈牙利/捷克等地方場館,EE 區 | 2026-06-13 |
 | 義/瑞/荷/波/挪/奧/中東 | teatro.it / showtic(瑞典) / stage(荷蘭) / ebilet(波蘭) / 挪威 / VBW(奧地利) / platinumlist(中東) | `italy.py` `sweden.py` `netherlands.py` `poland.py` `norway.py` `austria.py` `middleeast.py` | 各國原創/巡演;德奧(VBW)→德奧 tag,其餘多→歐陸其他 | 2026-06-13 |
 | **中國**(逆向官方 API) | 上海文廣 shcstheatre.com(`/webapi.ashx`) / 保利 weixin.polyt.cn(`/platform-backend`,header `Channel: theatre_wx`) / ypiao / 中演院線 zhongyan / **聚橙 juooo** | `china.py` `china_poly.py` `china_ypiao.py` `china_chinaticket.py` `china_juooo.py` | 全國 ~100 齣/40+ 城;GCJ-02→WGS-84 座標轉換;保利真實日期取自 `/good/shows/{id}` showInfoDetailList[].showTime;售票連結→大麥搜尋 | 2026-06-23 |

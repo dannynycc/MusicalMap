@@ -755,6 +755,9 @@ async function boot() {
   buildTagFilters();
   recomputeRange();
   render();
+  // Reveal the interactive UI now that the real sidebar/map are rendered, so the
+  // crawler-only prerendered list never flashes during load / language switch.
+  document.body.classList.add("ready");
 }
 
 // Trim the slider to where the data actually goes — the latest show start month

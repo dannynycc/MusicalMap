@@ -11,6 +11,11 @@
 
 ---
 
+## [v0.77.15] - 2026-06-26 10:55
+### 修正 — 切換語言時閃過 prerendered SEO 清單（FOUC）＋ MD freshness
+- 切語言會跳轉到另一個變體頁（`/en//zh-hans//zh-hant/`），JS 接手前那份「給爬蟲的 prerendered 純文字劇目清單」(`<ul id="show-list">`)先閃出來，體驗差。改：CSS 預設 `body:not(.ready) #show-list { visibility:hidden }`，`app.js` 首次 render 後加 `body.ready` 才顯示 → 不再閃（爬蟲仍從原始 HTML 取得清單、Googlebot 跑 JS 拿到真內容，SEO 不受影響）。實測 ready 切換 visibility 正確。
+- **MD freshness（補做漏掉的 sweep）**：`docs/SOURCES.md` 補上本 session 與 v0.76 漏記的西班牙來源 —— `atrapalo.py`（全西班牙主力、Sovrn 分潤）、`barcelona.py`（teatrebarcelona）。
+
 ## [v0.77.14] - 2026-06-26 10:47
 ### 補完 — 最後 11 個 Google 查無的場館座標（agent 用 saoju.net + OSM 查證）
 - 上海/深圳/杭州的「星空间」黑盒小劇場（藏在亚洲大厦/第一百货/世茂广场/大世界等大樓內）＋ 西班牙 La Puebla de Montalbán 文化中心，Google Places 查無。agent 用 saoju.net + OpenStreetMap 交叉驗證（確認皆 WGS84、免 GCJ-02 轉換）補上座標。深圳安托山（2024 新建、OSM 未收）為估算、信心低，其餘中高。
