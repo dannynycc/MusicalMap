@@ -646,7 +646,8 @@ function locTrio(s) {
   const date = s.end_rolling
     ? `<div class="vdate now"><span class="vdot pulse"></span>${esc(dt)}</div>`
     : (dt ? `<div class="vdate">${esc(dt)}</div>` : "");
-  return `${ven}<div class="city">${esc(s.city)}</div>${date}`;
+  const loc = s.country ? `${s.city}, ${s.country}` : s.city;
+  return `${ven}<div class="city">${esc(loc)}</div>${date}`;
 }
 
 function showGroupItem(items, parity) {

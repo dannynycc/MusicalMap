@@ -11,6 +11,11 @@
 
 ---
 
+## [v0.77.13] - 2026-06-26 10:43
+### 調整 — 側欄列表卡片城市後面加上國家（與 popup 一致）
+- 側欄 `locTrio` 原本只顯示城市（馬德里），改為「城市, 國家」（馬德里, 西班牙），跟 popup 同格式；國家隨介面語言翻譯（上海,中國／首爾,韓國／紐約,美國），缺國家則只顯示城市。
+- 實測（真頁面）：側欄顯示「馬德里, 西班牙」「上海, 中國」「首爾, 韓國」。
+
 ## [v0.77.12] - 2026-06-26 10:36
 ### 修正 — 場館座標精度（Google 建築級）＋ 再剔除非音樂劇（冰上/馬戲/佛朗明哥）
 - **場館座標**：使用者發現 All Shook Up @ Parker Arts Culture and Events Center 釘點偏約 2km（TM 來源座標粗略）。跑 `geocode_google.py`（金鑰在 `scrapers/.gmaps_key`）對 113 個未驗證場館做 Google 建築級 geocode：87 個自動寫入 + 15 個「同場館譯名/簡稱不同」手動確認寫入（Parker→PACE Center 39.516892,-104.757619「20000 Pikes Peak Ave」、Oscarsteatern→Oscar Theater、Hala Stulecia→Centennial Hall、Eccles/Alliance/Det Norske…）。**venue_coords.json 979→1081**，其中 34 個與來源差 >30m 被修正。11 個中國黑盒小劇場 Google 查無 → 另派 agent 查。
