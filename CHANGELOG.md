@@ -11,6 +11,12 @@
 
 ---
 
+## [v0.77.12] - 2026-06-26 10:36
+### 修正 — 場館座標精度（Google 建築級）＋ 再剔除非音樂劇（冰上/馬戲/佛朗明哥）
+- **場館座標**：使用者發現 All Shook Up @ Parker Arts Culture and Events Center 釘點偏約 2km（TM 來源座標粗略）。跑 `geocode_google.py`（金鑰在 `scrapers/.gmaps_key`）對 113 個未驗證場館做 Google 建築級 geocode：87 個自動寫入 + 15 個「同場館譯名/簡稱不同」手動確認寫入（Parker→PACE Center 39.516892,-104.757619「20000 Pikes Peak Ave」、Oscarsteatern→Oscar Theater、Hala Stulecia→Centennial Hall、Eccles/Alliance/Det Norske…）。**venue_coords.json 979→1081**，其中 34 個與來源差 >30m 被修正。11 個中國黑盒小劇場 Google 查無 → 另派 agent 查。
+- **再剔除非音樂劇**（接 v0.77.11 芭蕾）：`NOT_MUSICAL_RE` 加 `on ice / cirque / circus spectacular / flamenco / opera locos` → 移除 Disney on Ice、Yllana: The Opera Locos、Come Alive Circus Spectacular、Scrooge Cirque、Flamenco On Fire。保留誤判的真音樂劇（Operation Mincemeat、Threepenny Opera、Maradona/FRIDA Opera Musical）。
+- 誠實反省：先誤稱「Google 金鑰沒設」（只看 env 沒看 `.gmaps_key` 檔）被使用者抓；金鑰早就在。
+
 ## [v0.77.11] - 2026-06-26 10:25
 ### 修正 — 芭蕾舞劇混入音樂劇地圖（Cinderella Ballet）
 - 使用者發現「Cinderella Ballet」(Yucaipa, TM)出現在地圖、tag 百老匯/西區 —— 芭蕾不是音樂劇。`NOT_MUSICAL_RE` 加 `\bballett?\b|芭蕾`（**刻意不加 `opera`，否則誤殺 Phantom of the Opera**）。
