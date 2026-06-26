@@ -295,7 +295,8 @@ NOT_MUSICAL_RE = re.compile(
     # TM files tribute/concert/songbook/drag acts under "Musical" — they're not
     # book musicals. Verified against the data: drops only these, no real shows.
     r"\btribute\b|\bconcert\b|\bsoundtrack\b|\bgala\b|\bcelebration\b|"
-    r"\bsymphony\b|\borchestra\b|\bthe (?:songs|music|hits) of\b|\bsongs of\b|"
+    r"\bsymphony\b|\borchestra\b|\bballett?\b|芭蕾|"   # ballet/dance — not a book musical (NOT \bopera\b: Phantom of the Opera!)
+    r"\bthe (?:songs|music|hits) of\b|\bsongs of\b|"
     r"\bdrag (?:show|along|race|brunch|queen)\b|"
     r"\bnonstop\b|koncert|\bbluey\b|night (?:at|of) the musicals?|"  # medley/gala nights; Bluey's Big Play
     # Ticketmaster upsell listings (not a show): "… Official BJCC Ticket+ Hotel Packages",

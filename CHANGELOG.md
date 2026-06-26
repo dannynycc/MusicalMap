@@ -11,6 +11,12 @@
 
 ---
 
+## [v0.77.11] - 2026-06-26 10:25
+### 修正 — 芭蕾舞劇混入音樂劇地圖（Cinderella Ballet）
+- 使用者發現「Cinderella Ballet」(Yucaipa, TM)出現在地圖、tag 百老匯/西區 —— 芭蕾不是音樂劇。`NOT_MUSICAL_RE` 加 `\bballett?\b|芭蕾`（**刻意不加 `opera`，否則誤殺 Phantom of the Opera**）。
+- 驗證：Cinderella Ballet→剔除(0)、Phantom of the Opera→29 筆全在、真 Cinderella 音樂劇→10 筆全在。
+- 誠實反省：我前一輪用 `title=='Cinderella'` 精準比對去查、漏掉 title 是「Cinderella Ballet」的那筆，誤稱「已排除」被使用者打臉。寬鬆比對(`'ballet' in title`)才對。
+
 ## [v0.77.10] - 2026-06-26 10:01
 ### 修正 — 我的 merge regression 把開放式駐演劇關閉（Wicked London 等顯示「至 X」）
 - **regression 源**：v0.77.2 我加的去重 merge（Pass 1 `_merge_into` + Pass 2）會「拉寬日期」`end_date = max(ends)`。倫敦 Wicked 在 westend(end=None, resident) 與 ATG(end=2027-01-03, type=tour 訂票上限) 同場館合併時，把 None **補成 2027-01-03** → `end_rolling` 判定（只認 `not end_date`）漏掉它 → 顯示「至 2027/1/3」而非「長期上演」。**不是 CI 覆蓋資料，是我的合併邏輯每次 build 重犯。**
