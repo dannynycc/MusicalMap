@@ -22,7 +22,7 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
-  <link rel="stylesheet" href="/MusicalMap/css/style.css?v=96d8968c70" />
+  <link rel="stylesheet" href="/MusicalMap/css/style.css?v=a6baefa5c7" />
   <script>window.MM_VARIANT="en";window.MM_BASE="/MusicalMap/";</script>
 </head>
 <body>
@@ -32,6 +32,7 @@
       <span class="logo">Musical<span class="logo-em">Map</span></span>
       <span class="tagline">Musicals playing around the world right now</span>
     </a>
+    <span id="count"></span>
     <nav id="topnav">
       <div id="lang-switch" role="group" aria-label="Language / 語言">
         <span class="globe" aria-hidden="true">🌐</span>
@@ -39,6 +40,8 @@
         <a class="lang-opt" href="/MusicalMap/zh-hans/" lang="zh-Hans">简体中文</a>
         <a class="lang-opt active" href="/MusicalMap/en/" lang="en" aria-current="true">English</a>
       </div>
+      <a class="foot-link" href="/MusicalMap/privacy.html?lang=en">Privacy</a>
+      <a class="foot-link" href="/MusicalMap/terms.html?lang=en">Terms</a>
       <a class="nav-link" href="/MusicalMap/theatres.html?lang=en">🎭 All theatres</a>
       <a id="mine-link" class="nav-cta" href="/MusicalMap/me.html?lang=en">⭐ My Musicals</a>
     </nav>
@@ -50,9 +53,7 @@
     <aside id="sidebar">
       <div id="controls">
         <input id="search" type="search" placeholder="Search shows, cities, theatres…" autocomplete="off" />
-        <div id="tag-filters" role="group" aria-label="filter"></div>
       </div>
-      <div id="count"></div>
       <!-- prerendered for crawlers (Google + AI bots that don't run JS); the app
            replaces this list on load for interactive users. -->
       <h2 class="sr-only">Musicals playing now</h2>
@@ -1814,24 +1815,26 @@
       <li><a href="https://www.ticketmaster.com/young-frankenstein-tickets/artist/1124762" rel="nofollow">Young Frankenstein</a> — Lewis Family Playhouse, Rancho Cucamonga, CA, USA (Until 10/25)</li>
       </ul>
     </aside>
-    <main id="map">
-      <div id="timebar">
-        <button id="time-play" class="tb-btn" title="play">▶</button>
-        <button id="time-today" class="tb-btn tb-now" title="today">This month</button>
-        <input id="time-range" type="range" min="0" max="36" value="0" step="1" />
-        <input id="time-month" class="tb-date" type="month" />
+    <div id="mapcol">
+      <div id="filterbar">
+        <span class="fb-lbl">Category</span>
+        <div id="tag-filters" role="group" aria-label="filter"></div>
       </div>
-    </main>
+      <main id="map">
+        <div id="timebar">
+          <button id="time-play" class="tb-btn" title="play">▶</button>
+          <button id="time-today" class="tb-btn tb-now" title="today">This month</button>
+          <input id="time-range" type="range" min="0" max="36" value="0" step="1" />
+          <input id="time-month" class="tb-date" type="month" />
+        </div>
+      </main>
+    </div>
   </div>
-  <footer id="foot">
-    <span id="data-note"></span>
-    <div class="foot-links"><a href="/MusicalMap/privacy.html?lang=en">Privacy</a> · <a href="/MusicalMap/terms.html?lang=en">Terms</a></div>
-  </footer>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
-  <script src="/MusicalMap/js/config.js?v=96d8968c70"></script>
-  <script src="/MusicalMap/js/i18n.js?v=96d8968c70"></script>
-  <script src="/MusicalMap/js/app.js?v=96d8968c70"></script>
+  <script src="/MusicalMap/js/config.js?v=a6baefa5c7"></script>
+  <script src="/MusicalMap/js/i18n.js?v=a6baefa5c7"></script>
+  <script src="/MusicalMap/js/app.js?v=a6baefa5c7"></script>
 </body>
 </html>

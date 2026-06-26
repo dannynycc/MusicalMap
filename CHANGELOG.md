@@ -11,6 +11,15 @@
 
 ---
 
+## [v0.78.0] - 2026-06-26 14:55
+### UI 大改 — 分類過濾移到地圖上方橫條、計數移 header、側欄全給列表、footer 移除
+- **分類過濾 pills 從窄側欄搬到「地圖區上方的 filter bar」**：9 個傳統分類**全名**一行排開（label 走 i18n：分類／分类／Category），塞不下時出現**細淡色橫向捲軸**（非換行、非切字、非縮放，純 CSS 原生捲軸）。側欄因此全留給劇目列表，一次可見劇目從 ~2-3 張增為 ~8-9 張。
+- **側欄列表改「依分類分組排序」**（`render()`：同類劇目排一起、最大類在前），**無分類標題行**（純排序，使用者反映點開式 UX 差故不做收合）；卡片緊湊化（海報 62×93→44×63、字級下調）。
+- **本月計數移到 header**（tagline 旁，`Playing this month: N musicals · M locations`），不再佔側欄一行；過長以 ellipsis 收。
+- **footer 整條移除**：Privacy/Terms 移到頂端 nav（桌面顯示）；「Updated/Sources」資料註記移除（`app.js` 加 `if (els.note)` 守衛，避免缺元素時 crash）。
+- **RWD**：桌面 filter bar 在地圖上方；手機（<680px）側欄上、地圖下，filter bar 可橫滑；手機 nav 隱藏 All theatres／Privacy／Terms 並縮 padding/gap，避免 header 溢出（實測 `documentElement` pageOverflow 0）。
+- 改動檔：`build/gen_site.mjs`（body 結構 + i18n `filterLabel` 三語）、`css/style.css`（filter bar／原生捲軸／緊湊卡／RWD；順手中性化既有 "stayplot" 註解）、`js/app.js`（列表依分類排序 + data-note 守衛）。**實測桌面 1600/1250 + 手機 430 真實產生頁**（含多城市「N Cities」合併、捲軸出現/隱藏、無水平溢出）。
+
 ## [v0.77.16] - 2026-06-26 11:04
 ### 修正 — 切語言再閃「0 部音樂劇」（接 v0.77.15）
 - v0.77.15 藏了 prerendered 清單,但漏藏計數 `#count`:資料 fetch 完成前 render() 先用空資料跑一次→閃「本月上演:0 部音樂劇·0 個地點」。改 CSS 把 `#count` 也隱藏到 `body.ready` 為止。實測 ready 後顯示真數字(274 部·343 地點),非 0。

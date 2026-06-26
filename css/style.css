@@ -23,7 +23,7 @@ html, body {
 body { display: flex; flex-direction: column; height: 100vh; }
 #app { display: flex; flex: 1; min-height: 0; width: 100%; }
 
-/* ---------- Top header bar (stayplot-style: brand left, nav right) ---------- */
+/* ---------- Top header bar (brand left, live count middle, nav right) ---------- */
 #topbar {
   flex: none; height: 58px; display: flex; align-items: center; justify-content: space-between;
   padding: 0 24px; background: var(--cream); border-bottom: 1px solid var(--border);
@@ -369,11 +369,49 @@ body:not(.ready) #count { visibility: hidden; }
   text-align: center; pointer-events: none; user-select: none;
 }
 
+/* ============ Top filter bar layout (filters live over the map; count in header) ============
+   The tradition pills moved out of the narrow sidebar into a bar over the map, so the
+   sidebar is all list. The live count lives in the header (a live version of the tagline). */
+#topbar #count { flex: 1; min-width: 0; margin: 0; padding: 0; font-size: 12px; font-weight: 600;
+  color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-align: right; }
+#topnav .foot-link { color: var(--muted); text-decoration: none; font-size: 13px; }
+#topnav .foot-link:hover { color: var(--accent); }
+
+#mapcol { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+#mapcol #map { flex: 1; height: auto; min-height: 0; }
+
+#filterbar { flex: none; min-width: 0; display: flex; align-items: flex-start; gap: 8px;
+  padding: 7px 16px 4px; background: var(--panel); border-bottom: 1px solid var(--border); }
+#filterbar .fb-lbl { flex: none; font-size: 11px; font-weight: 600; color: var(--muted); padding-top: 7px; }
+/* full tradition names on one row; if they don't fit, a thin light scrollbar appears */
+#filterbar #tag-filters { flex: 1; min-width: 0; margin: 0; display: flex; flex-wrap: nowrap; gap: 6px;
+  overflow-x: auto; overflow-y: hidden; padding-bottom: 6px;
+  scrollbar-width: thin; scrollbar-color: #c2d2cc #f0f4f2; }
+#filterbar #tag-filters::-webkit-scrollbar { height: 7px; }
+#filterbar #tag-filters::-webkit-scrollbar-thumb { background: #c2d2cc; border-radius: 4px; }
+#filterbar #tag-filters::-webkit-scrollbar-thumb:hover { background: #a8bdb5; }
+#filterbar #tag-filters::-webkit-scrollbar-track { background: #f0f4f2; border-radius: 4px; }
+#filterbar .tagchip { flex: none; white-space: nowrap; color: #2f3e4d; }
+#filterbar .tagchip .tcount { font-size: 1em; color: #5b6b7c; }
+
+/* denser sidebar cards — more shows visible now the filters left the sidebar */
+#show-list .show-item { padding: 7px 11px; gap: 10px; }
+#show-list .show-item .thumb { width: 44px; height: 63px; }
+#show-list .show-item .title { font-size: 14.5px; }
+#show-list .ven, #show-list .city, #show-list .vdate, #show-list .city-count { font-size: 12.5px; }
+#show-list .show-group { margin: 3px 3px; }
+#show-list .stop .stop-thumb { width: 32px; height: 46px; }
+
 @media (max-width: 680px) {
   #app { flex-direction: column; }
   #sidebar { width: 100%; min-width: 0; height: 42%; }
-  #map { height: 58%; }
-  #topbar { padding: 0 14px; height: 52px; }
+  #mapcol { height: 58%; }
+  #topbar { padding: 0 8px; height: 52px; }
+  #topnav { gap: 8px; }
   #brand .tagline { display: none; }
+  #topbar #count { display: none; }            /* header too tight on phones */
+  #topnav .foot-link { display: none; }        /* Privacy/Terms drop off the phone nav (kept on desktop) */
+  #topnav .nav-link { display: none; }         /* "All theatres" drops off the phone nav (My Musicals + lang stay) */
+  #filterbar { padding: 6px 12px 3px; }
   .nav-cta { font-size: 14px; padding: 8px 14px; }
 }

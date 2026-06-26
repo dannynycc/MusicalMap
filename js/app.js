@@ -249,6 +249,7 @@ let didFitBounds = false;
 let DATA_UPDATED = "";   // shows.json meta.generated_at, for the footer note (re-rendered on lang change)
 
 function renderDataNote() {
+  if (!els.note) return;   // #data-note removed from layout (sources shown elsewhere)
   const u = DATA_UPDATED ? t("updated", { d: DATA_UPDATED }) : "";
   els.note.textContent = t("sources", { u });
 }
@@ -592,8 +593,16 @@ function render() {
       byGroup.get(k).push(s);
     });
     let parity = 0;
+    // group the list by tradition (same category together), biggest category first,
+    // then alphabetical within — no section headers, just a grouped order.
+    const tagCount = {};
+    shows.forEach((s) => { const tg = s.tag || "~"; tagCount[tg] = (tagCount[tg] || 0) + 1; });
     [...byGroup.entries()]
-      .sort((a, b) => displayTitle(a[1]).localeCompare(displayTitle(b[1])))
+      .sort((a, b) => {
+        const ta = a[1][0].tag || "~", tb = b[1][0].tag || "~";
+        if (ta !== tb) return (tagCount[tb] - tagCount[ta]) || ta.localeCompare(tb);
+        return displayTitle(a[1]).localeCompare(displayTitle(b[1]));
+      })
       .forEach(([k, items]) => {
         // alternate each show's tint (teal / amber) so its extent reads at a glance
         const li = showGroupItem(items, parity++ % 2 ? "B" : "A");
@@ -743,7 +752,7 @@ async function boot() {
     DATA_UPDATED = data.meta?.generated_at || "";
     renderDataNote();
   } catch (e) {
-    els.note.textContent = t("load_error");
+    if (els.note) els.note.textContent = t("load_error");
     console.error(e);
   }
   // historical archive index (enables dragging the timeline into the past)

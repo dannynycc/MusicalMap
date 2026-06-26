@@ -105,14 +105,14 @@ function page(variant, shows) {
   const t = variant === "en"
     ? { tagline: "Musicals playing around the world right now", theatres: "🎭 All theatres", mine: "⭐ My Musicals",
         search: "Search shows, cities, theatres…", privacy: "Privacy", terms: "Terms",
-        h1: "MusicalMap — live world map of musicals playing now", listhdr: "Musicals playing now" }
+        h1: "MusicalMap — live world map of musicals playing now", listhdr: "Musicals playing now", filterLabel: "Category" }
     : variant === "zh-hans"
     ? { tagline: "此刻全球正在上演的音乐剧", theatres: "🎭 所有剧院", mine: "⭐ 我的音乐剧足迹",
         search: "搜寻剧名、城市、剧院…", privacy: "隐私权政策", terms: "使用条款",
-        h1: "MusicalMap — 全球此刻正在上演的音乐剧即时地图", listhdr: "正在上演的音乐剧" }
+        h1: "MusicalMap — 全球此刻正在上演的音乐剧即时地图", listhdr: "正在上演的音乐剧", filterLabel: "分类" }
     : { tagline: "此刻全球正在上演的音樂劇", theatres: "🎭 所有劇院", mine: "⭐ 我的音樂劇足跡",
         search: "搜尋劇名、城市、劇院…", privacy: "隱私權政策", terms: "使用條款",
-        h1: "MusicalMap — 全球此刻正在上演的音樂劇即時地圖", listhdr: "正在上演的音樂劇" };
+        h1: "MusicalMap — 全球此刻正在上演的音樂劇即時地圖", listhdr: "正在上演的音樂劇", filterLabel: "分類" };
   // zh-hans pages load OpenCC (small t2cn dict) so i18n can simplify the UI chrome strings.
   const openccTag = variant === "zh-hans"
     ? `\n  <script src="https://cdn.jsdelivr.net/npm/opencc-js@1.3.1/dist/umd/t2cn.js"></script>` : "";
@@ -146,8 +146,11 @@ function page(variant, shows) {
       <span class="logo">Musical<span class="logo-em">Map</span></span>
       <span class="tagline">${esc(t.tagline)}</span>
     </a>
+    <span id="count"></span>
     <nav id="topnav">
       ${langSwitch(variant)}
+      <a class="foot-link" href="${BASE}privacy.html?lang=${variant}">${esc(t.privacy)}</a>
+      <a class="foot-link" href="${BASE}terms.html?lang=${variant}">${esc(t.terms)}</a>
       <a class="nav-link" href="${BASE}theatres.html?lang=${variant}">${esc(t.theatres)}</a>
       <a id="mine-link" class="nav-cta" href="${BASE}me.html?lang=${variant}">${esc(t.mine)}</a>
     </nav>
@@ -159,9 +162,7 @@ function page(variant, shows) {
     <aside id="sidebar">
       <div id="controls">
         <input id="search" type="search" placeholder="${esc(t.search)}" autocomplete="off" />
-        <div id="tag-filters" role="group" aria-label="filter"></div>
       </div>
-      <div id="count"></div>
       <!-- prerendered for crawlers (Google + AI bots that don't run JS); the app
            replaces this list on load for interactive users. -->
       <h2 class="sr-only">${esc(t.listhdr)}</h2>
@@ -169,19 +170,21 @@ function page(variant, shows) {
       ${prerenderList(variant, shows)}
       </ul>
     </aside>
-    <main id="map">
-      <div id="timebar">
-        <button id="time-play" class="tb-btn" title="play">▶</button>
-        <button id="time-today" class="tb-btn tb-now" title="today">${variant === "en" ? "This month" : variant === "zh-hans" ? "本月" : "本月"}</button>
-        <input id="time-range" type="range" min="0" max="36" value="0" step="1" />
-        <input id="time-month" class="tb-date" type="month" />
+    <div id="mapcol">
+      <div id="filterbar">
+        <span class="fb-lbl">${esc(t.filterLabel)}</span>
+        <div id="tag-filters" role="group" aria-label="filter"></div>
       </div>
-    </main>
+      <main id="map">
+        <div id="timebar">
+          <button id="time-play" class="tb-btn" title="play">▶</button>
+          <button id="time-today" class="tb-btn tb-now" title="today">${variant === "en" ? "This month" : variant === "zh-hans" ? "本月" : "本月"}</button>
+          <input id="time-range" type="range" min="0" max="36" value="0" step="1" />
+          <input id="time-month" class="tb-date" type="month" />
+        </div>
+      </main>
+    </div>
   </div>
-  <footer id="foot">
-    <span id="data-note"></span>
-    <div class="foot-links"><a href="${BASE}privacy.html?lang=${variant}">${esc(t.privacy)}</a> · <a href="${BASE}terms.html?lang=${variant}">${esc(t.terms)}</a></div>
-  </footer>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
