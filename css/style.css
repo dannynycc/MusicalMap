@@ -143,10 +143,12 @@ body { display: flex; flex-direction: column; height: 100vh; }
 #count { padding: 11px 20px 4px; font-size: 12px; color: var(--muted); font-weight: 600; }
 
 #show-list { list-style: none; margin: 0; padding: 0 8px 10px; overflow-y: auto; flex: 1; }
-/* The prerendered <ul id="show-list"> is a crawler-only / no-JS fallback. Hide it until
-   app.js finishes its first render (adds body.ready) so it never flashes during page load
-   or a language switch (which navigates between the /en//zh-hans//zh-hant/ trees). */
-body:not(.ready) #show-list { visibility: hidden; }
+/* Until app.js finishes its first render with real data (adds body.ready), hide the
+   crawler-only prerendered list AND the count line — otherwise a language switch (which
+   navigates between the /en//zh-hans//zh-hant/ trees) flashes the SEO list, then a
+   misleading "0 musicals · 0 locations" while data is still loading. */
+body:not(.ready) #show-list,
+body:not(.ready) #count { visibility: hidden; }
 
 /* ===== show list — per-show tinted cards, alternating teal / amber theme ===== */
 .show-group { list-style: none; border-radius: 12px; margin: 5px 3px; overflow: hidden; }

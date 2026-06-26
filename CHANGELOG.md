@@ -11,6 +11,10 @@
 
 ---
 
+## [v0.77.16] - 2026-06-26 11:04
+### 修正 — 切語言再閃「0 部音樂劇」（接 v0.77.15）
+- v0.77.15 藏了 prerendered 清單,但漏藏計數 `#count`:資料 fetch 完成前 render() 先用空資料跑一次→閃「本月上演:0 部音樂劇·0 個地點」。改 CSS 把 `#count` 也隱藏到 `body.ready` 為止。實測 ready 後顯示真數字(274 部·343 地點),非 0。
+
 ## [v0.77.15] - 2026-06-26 10:55
 ### 修正 — 切換語言時閃過 prerendered SEO 清單（FOUC）＋ MD freshness
 - 切語言會跳轉到另一個變體頁（`/en//zh-hans//zh-hant/`），JS 接手前那份「給爬蟲的 prerendered 純文字劇目清單」(`<ul id="show-list">`)先閃出來，體驗差。改：CSS 預設 `body:not(.ready) #show-list { visibility:hidden }`，`app.js` 首次 render 後加 `body.ready` 才顯示 → 不再閃（爬蟲仍從原始 HTML 取得清單、Googlebot 跑 JS 拿到真內容，SEO 不受影響）。實測 ready 切換 visibility 正確。
