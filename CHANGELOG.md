@@ -11,6 +11,11 @@
 
 ---
 
+## [v0.77.8] - 2026-06-26 08:52
+### 調整 — 無分潤購票鈕改「CSS 隱藏」而非移除（可隨時開回）
+- 接續 v0.77.7：原本把非分潤鈕（teatromadrid…）從 DOM 過濾掉；改為**保留在 DOM、用 `.pop-tile-hidden { display:none }` 隱藏**。未來要開回，刪掉 `css/style.css` 那一條 CSS 規則即可，不必動邏輯。
+- `app.js` 改為對非分潤鈕加 `pop-tile-hidden` class（當有分潤鈕時）。實測 Wicked Madrid：atrapalo 鈕 `pop-tile`（顯示）、teatromadrid 鈕 `pop-tile pop-tile-hidden`（computed `display:none`）。
+
 ## [v0.77.7] - 2026-06-26 08:41
 ### 修正 — 重疊劇隱藏無分潤購票鈕（分潤優先）
 - 問題：Wicked Madrid 等「atrapalo + teatromadrid 都有」的劇，購票區同時擺 Atrápalo（可分潤）與 TeatroMadrid（不可分潤）兩鈕 → 無分潤鈕稀釋點擊。

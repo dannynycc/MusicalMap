@@ -449,17 +449,18 @@ function popupHtml(show) {
   // square logo tiles — ticketing platforms only; tiles grow to fill the row (`n{count}`
   // lets CSS lay a lone source out wide instead of leaving the row blank).
   // Revenue-first: if a show has a commission-earning tile (a domain in AFFILIATE),
-  // hide the non-earning tiles (teatromadrid/teatrebarcelona etc.) — they only dilute
-  // clicks away from the monetised link. Non-earning tiles survive ONLY when they're the
-  // sole way to buy (an exclusive with no affiliate alternative). Official site stays on
-  // the title regardless.
+  // the non-earning tiles (teatromadrid/teatrebarcelona etc.) only dilute clicks away
+  // from the monetised link. We RENDER them but HIDE them via CSS (.pop-tile-hidden)
+  // rather than dropping them — so they can be switched back on any time by removing
+  // that one CSS rule. Non-earning tiles stay visible when they're the SOLE way to buy
+  // (an exclusive with no affiliate alternative). Official site stays on the title.
   const isRevenue = (u) => {
     try { const h = new URL(u).hostname;
       return AFF_TRACKING.test(h) || Object.keys(AFF).some((k) => h.includes(k)); }
     catch { return false; }
   };
-  let ordered = links.filter((l) => l.kind !== "official");
-  if (ordered.some((l) => isRevenue(l.url))) ordered = ordered.filter((l) => isRevenue(l.url));
+  const ordered = links.filter((l) => l.kind !== "official");
+  const hasRevenue = ordered.some((l) => isRevenue(l.url));
   const ticket = ordered.length ? `<div class="pop-tix"><div class="pop-tix-h">${esc(t("get_tickets"))}</div><div class="pop-tiles">${ordered.map((l) => {
     const u = safeUrl(l.url); if (!u) return "";
     let host = ""; try { host = new URL(u).hostname; } catch { /* */ }
@@ -468,7 +469,8 @@ function popupHtml(show) {
     // Hover shows the CLEAN destination (href); the affiliate redirect is swapped in on
     // mousedown so the ugly viglink URL never appears in the status bar, yet click and
     // middle-click both still earn commission.
-    return `<a class="pop-tile" href="${esc(u)}" data-aff="${esc(affiliateUrl(u))}" onmousedown="this.href=this.dataset.aff" target="_blank" rel="noopener" title="${lab}">
+    const hidden = hasRevenue && !isRevenue(l.url) ? " pop-tile-hidden" : "";
+    return `<a class="pop-tile${hidden}" href="${esc(u)}" data-aff="${esc(affiliateUrl(u))}" onmousedown="this.href=this.dataset.aff" target="_blank" rel="noopener" title="${lab}">
       <span class="pop-tile-ico">${ico ? `<img src="${esc(ico)}" alt="" loading="lazy" onerror="this.style.display='none'">` : ""}</span>
       <span class="pop-tile-label">${lab}</span>
       <span class="pop-tile-arr">→</span></a>`;
