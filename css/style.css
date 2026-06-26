@@ -314,8 +314,9 @@ body { display: flex; flex-direction: column; height: 100vh; }
    space — the panel narrows rather than the tile stretching. */
 .pop-tiles { display: flex; flex-wrap: wrap; gap: 6px; }
 /* Non-commission buy tiles (teatromadrid…) when a monetised tile exists: hidden,
-   not removed — delete this one rule to switch them back on. */
-.pop-tile-hidden { display: none; }
+   not removed — delete this one rule to switch them back on. Selector must outrank
+   `.mm-popup .pop-tile` (0,2,0), hence the 3-class specificity. */
+.mm-popup .pop-tile.pop-tile-hidden { display: none; }
 .mm-popup .pop-tile {
   display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
   gap: 8px; width: 110px; min-height: 120px; box-sizing: border-box; padding: 13px 6px 10px;

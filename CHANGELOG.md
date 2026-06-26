@@ -11,6 +11,12 @@
 
 ---
 
+## [v0.77.9] - 2026-06-26 09:50
+### 修正 — v0.77.8 的隱藏 CSS 優先級不足（teatromadrid 仍顯示）
+- v0.77.8 的 `.pop-tile-hidden { display:none }` 優先級 (0,1,0) **低於** `.mm-popup .pop-tile` (0,2,0) → 在實際 popup 內被蓋過、根本沒隱藏（使用者實測仍看到 TeatroMadrid，加 `?x=1` 也在 → 證實非快取、是真 bug）。
+- 改為 `.mm-popup .pop-tile.pop-tile-hidden { display:none }`（0,3,0）確實勝出。**驗證瑕疵反省**：前次把測試元素放在 `.mm-popup` 外面量 computed style 才誤判 none；本次在真 `.mm-popup` 容器內量 → atrapalo `flex`、teatromadrid `none`。
+- 重產 prerendered HTML bump cache-bust 版本號使更新即時生效。
+
 ## [v0.77.8] - 2026-06-26 08:52
 ### 調整 — 無分潤購票鈕改「CSS 隱藏」而非移除（可隨時開回）
 - 接續 v0.77.7：原本把非分潤鈕（teatromadrid…）從 DOM 過濾掉；改為**保留在 DOM、用 `.pop-tile-hidden { display:none }` 隱藏**。未來要開回，刪掉 `css/style.css` 那一條 CSS 規則即可，不必動邏輯。
