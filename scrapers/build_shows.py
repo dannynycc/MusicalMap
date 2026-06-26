@@ -555,7 +555,11 @@ def main():
         ends = [d for d in (kp.get("end_date"), dp.get("end_date")) if d]
         if starts:
             kp["start_date"] = min(starts)
-        if ends:
+        # An open-ended resident/sit-down run carries end_date=None ON PURPOSE ("長期上演").
+        # Don't let a merge inherit another source's booking-horizon end (e.g. ATG's
+        # type=tour Wicked) — that would slap a fake closing date on a long-runner.
+        open_resident = kp.get("end_date") is None and kp.get("type") in ("resident", "sit-down")
+        if ends and not open_resident:
             kp["end_date"] = max(ends)
 
     seen_gcv = {}
@@ -646,7 +650,11 @@ def main():
         ends = [d for d in (kp.get("end_date"), dp.get("end_date")) if d]
         if starts:
             kp["start_date"] = min(starts)
-        if ends:
+        # An open-ended resident/sit-down run carries end_date=None ON PURPOSE ("長期上演").
+        # Don't let a merge inherit another source's booking-horizon end (e.g. ATG's
+        # type=tour Wicked) — that would slap a fake closing date on a long-runner.
+        open_resident = kp.get("end_date") is None and kp.get("type") in ("resident", "sit-down")
+        if ends and not open_resident:
             kp["end_date"] = max(ends)
         dropc.append(drop)
     for i in dropc:

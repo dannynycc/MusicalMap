@@ -11,6 +11,12 @@
 
 ---
 
+## [v0.77.10] - 2026-06-26 10:01
+### 修正 — 我的 merge regression 把開放式駐演劇關閉（Wicked London 等顯示「至 X」）
+- **regression 源**：v0.77.2 我加的去重 merge（Pass 1 `_merge_into` + Pass 2）會「拉寬日期」`end_date = max(ends)`。倫敦 Wicked 在 westend(end=None, resident) 與 ATG(end=2027-01-03, type=tour 訂票上限) 同場館合併時，把 None **補成 2027-01-03** → `end_rolling` 判定（只認 `not end_date`）漏掉它 → 顯示「至 2027/1/3」而非「長期上演」。**不是 CI 覆蓋資料，是我的合併邏輯每次 build 重犯。**
+- **修**：merge 時若 keeper 是「開放式駐演」（`end_date is None` 且 `type in (resident, sit-down)`），**不繼承另一來源的訂票上限 end**（那個 None 是「長期上演」的刻意值）。Pass 1/2 兩處都修。
+- 實測恢復：Wicked／Lion King／Phantom／Les Misérables／Mamma Mia!／Hamilton／Book of Mormon（倫敦）全部 `end_rolling=True`「長期上演」。
+
 ## [v0.77.9] - 2026-06-26 09:50
 ### 修正 — v0.77.8 的隱藏 CSS 優先級不足（teatromadrid 仍顯示）
 - v0.77.8 的 `.pop-tile-hidden { display:none }` 優先級 (0,1,0) **低於** `.mm-popup .pop-tile` (0,2,0) → 在實際 popup 內被蓋過、根本沒隱藏（使用者實測仍看到 TeatroMadrid，加 `?x=1` 也在 → 證實非快取、是真 bug）。
