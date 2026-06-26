@@ -11,6 +11,12 @@
 
 ---
 
+## [v0.77.7] - 2026-06-26 08:41
+### 修正 — 重疊劇隱藏無分潤購票鈕（分潤優先）
+- 問題：Wicked Madrid 等「atrapalo + teatromadrid 都有」的劇，購票區同時擺 Atrápalo（可分潤）與 TeatroMadrid（不可分潤）兩鈕 → 無分潤鈕稀釋點擊。
+- `app.js` popupHtml：購票鈕若**存在可分潤來源**（domain 在 `MM_CONFIG.AFFILIATE`：atrapalo/ticketmaster/todaytix/atg…），就**濾掉非分潤鈕**（teatromadrid/teatrebarcelona 等）。非分潤鈕**僅在它是唯一購票途徑時保留**（teatromadrid 獨家劇不受影響）。官網仍掛在標題。
+- 實測 Wicked Madrid：過濾前 `[atrapalo, teatromadrid]` → 後 `[atrapalo]`。
+
 ## [v0.77.6] - 2026-06-26 02:08
 ### 修正 — 搜尋語言無關（簡繁 + 異體字 + 英文通吃）
 - 問題：繁中模式搜「台北」找不到顯示為「臺北」的劇（潘朵拉的音樂盒）；搜「taipei」也找不到。**顯示語言只管呈現，搜尋卻被綁死在當前變體的字形**。

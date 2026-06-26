@@ -448,7 +448,18 @@ function popupHtml(show) {
   const official = links.find((l) => l.kind === "official" && safeUrl(l.url));
   // square logo tiles — ticketing platforms only; tiles grow to fill the row (`n{count}`
   // lets CSS lay a lone source out wide instead of leaving the row blank).
-  const ordered = links.filter((l) => l.kind !== "official");
+  // Revenue-first: if a show has a commission-earning tile (a domain in AFFILIATE),
+  // hide the non-earning tiles (teatromadrid/teatrebarcelona etc.) — they only dilute
+  // clicks away from the monetised link. Non-earning tiles survive ONLY when they're the
+  // sole way to buy (an exclusive with no affiliate alternative). Official site stays on
+  // the title regardless.
+  const isRevenue = (u) => {
+    try { const h = new URL(u).hostname;
+      return AFF_TRACKING.test(h) || Object.keys(AFF).some((k) => h.includes(k)); }
+    catch { return false; }
+  };
+  let ordered = links.filter((l) => l.kind !== "official");
+  if (ordered.some((l) => isRevenue(l.url))) ordered = ordered.filter((l) => isRevenue(l.url));
   const ticket = ordered.length ? `<div class="pop-tix"><div class="pop-tix-h">${esc(t("get_tickets"))}</div><div class="pop-tiles">${ordered.map((l) => {
     const u = safeUrl(l.url); if (!u) return "";
     let host = ""; try { host = new URL(u).hostname; } catch { /* */ }
