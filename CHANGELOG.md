@@ -15,6 +15,7 @@
 ### 調整 — 無分潤購票鈕改「CSS 隱藏」而非移除（可隨時開回）
 - 接續 v0.77.7：原本把非分潤鈕（teatromadrid…）從 DOM 過濾掉；改為**保留在 DOM、用 `.pop-tile-hidden { display:none }` 隱藏**。未來要開回，刪掉 `css/style.css` 那一條 CSS 規則即可，不必動邏輯。
 - `app.js` 改為對非分潤鈕加 `pop-tile-hidden` class（當有分潤鈕時）。實測 Wicked Madrid：atrapalo 鈕 `pop-tile`（顯示）、teatromadrid 鈕 `pop-tile pop-tile-hidden`（computed `display:none`）。
+- **修部署 cache-bust**：push 部署不重建 prerendered HTML（workflow build 步驟 `if != push`），導致 app.js/css 改了但頁面仍引用舊 `?v=` hash、瀏覽器吃舊快取。本機跑 `gen_variants`+`gen_site` 重產 HTML（新內容 hash `854d9c843f`）並提交，使更新立即生效。
 
 ## [v0.77.7] - 2026-06-26 08:41
 ### 修正 — 重疊劇隱藏無分潤購票鈕（分潤優先）
