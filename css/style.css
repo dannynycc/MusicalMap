@@ -185,9 +185,16 @@ body:not(.ready) #count { visibility: hidden; }
 .show-group.open .chev { transform: rotate(180deg); }
 .stops { max-height: 0; overflow: hidden; transition: max-height .22s ease; }
 .show-group.open .stops { max-height: 3000px; }
-.stops-inner { margin: 5px 12px 9px; padding: 8px; border-radius: 10px; background: linear-gradient(100deg, var(--grad), transparent 62%); }
-.stop { display: flex; align-items: flex-start; gap: 10px; padding: 6px; border-radius: 9px; cursor: pointer; }
+.stops-inner { position: relative; margin: 5px 12px 9px; padding: 8px 8px 8px 26px; border-radius: 10px; background: linear-gradient(100deg, var(--grad), transparent 62%); }
+.stop { position: relative; display: flex; align-items: flex-start; gap: 10px; padding: 6px; border-radius: 9px; cursor: pointer; }
 .stop:hover, .stop.active { background: var(--hov); }
+/* multi-city "spine": a route timeline (dot + connecting line) down the left of the
+   stops, while each stop keeps its own production poster (they differ per city). */
+.stop::before { content: ""; position: absolute; left: -16px; top: 13px; width: 11px; height: 11px;
+  border-radius: 50%; background: var(--panel); border: 2.5px solid var(--acc); box-sizing: border-box; z-index: 1; }
+.stop::after { content: ""; position: absolute; left: -11.5px; top: 25px; bottom: -9px; width: 2px;
+  background: var(--acc2); border-radius: 2px; }
+.stop:last-child::after { display: none; }
 .stop .stop-thumb { width: 40px; height: 60px; flex: none; border-radius: 5px; background: #e2e8f0 center/cover no-repeat; display: grid; place-items: center; }
 .stop .stop-thumb .glyph { font-size: 14px; }
 .stop .si { flex: 1; min-width: 0; padding-top: 1px; }
