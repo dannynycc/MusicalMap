@@ -10,7 +10,7 @@
 
 ## 0. 先備好(共用前提,沒這些會卡審核)
 
-- [x] **隱私權政策頁**(`privacy.html`)+ **使用條款頁**(`terms.html`)— ✅ 已建立,首頁頁尾與各頁導覽皆可連達。
+- [x] **隱私權政策頁**(`privacy.html`)+ **使用條款頁**(`terms.html`)— ✅ 已建立,首頁**頂部 nav**（v0.78.0 起 footer 移除、Privacy/Terms 改置頂部）與各頁導覽皆可連達。
 - [x] **收款資料**:美國銀行帳戶 EFT(免手續費,直收 USD)— ✅ 已設定(Impact)。
 - [x] **稅表 W-8BEN**(台灣=非美國人,0% 預扣、無 treaty、電子收件同意)— ✅ 已於 2026-06-23 線上送出。
 - [ ] 網站網址:`https://dannynycc.github.io/MusicalMap/`(申請時填這個)。

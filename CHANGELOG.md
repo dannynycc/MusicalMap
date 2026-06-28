@@ -11,6 +11,13 @@
 
 ---
 
+## [v0.78.3] - 2026-06-28 15:33
+### 文件 — 補做 v0.78.0~0.78.2 漏掉的 MD freshness sweep
+- 老實說：v0.78.1/0.78.2 當下只更新 CHANGELOG、沒真的逐一掃所有 .md，違反 WORKFLOW 第 4 步。本次補做完整 sweep。
+- `README.md`：版面段落把「類型篩選」從「側欄內」更正為「**移到地圖上方的 filter bar**」；補上 header 即時計數、側欄只剩搜尋＋列表、多城市「圓點+豎線脊柱＋各站不同海報」、footer 已移除（Privacy/Terms 改置頂部 nav）。（v0.78.0 sweep 只 grep 英文 filter/sidebar、漏了中文「側欄/類型篩選」。）
+- `docs/AFFILIATE_SETUP.md`：Privacy/Terms 連達位置由「首頁頁尾」更正為「首頁頂部 nav」（footer 已移除）。
+- 其餘 .md 逐一確認非過時（SOURCES/SETUP_ACCOUNTS/DESIGN_*/TOUR_SWEEP/WORKFLOW/DAMAI）。
+
 ## [v0.78.2] - 2026-06-27 21:11
 ### 修正 — 多城市脊柱：圓點與豎線沒接好（有縫）
 - v0.78.1 的脊柱豎線 `top:25 bottom:-9`，3x 放大像素檢查發現**底端差幾 px 接不到下一個圓點、有縫**。改 `top:18 bottom:-16`：豎線從圓點中心穿出、底端延伸進下一個圓點（圓點不透明 + z-index 高、會蓋住多出段）→ 圓點與豎線無縫相連。已 3x 放大截圖逐段確認。
