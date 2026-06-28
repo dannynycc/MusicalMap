@@ -48,7 +48,7 @@ scrapers/  ──產出──>  data/*.json  ──merge──>  data/shows.json
 | `data/utiki.json` | 台灣 utiki 售票引擎輸出（寬宏 KHAM 分類 80 + udn售票 搜尋音樂劇 + MNA 分類 77；同套 UTK 引擎，座標交 Google geocode） |
 | `data/manual.json` | **人工策展**：自有售票系統的劇（上海大劇院、Live Nation FR、捷克 NDM…），隨發現隨補 |
 | `data/works.json` | **正典作品主檔**（單一真相來源，170 筆）：每齣作品一筆，記 `tradition`（血統 tag）+ 跨語言 `aliases` + 選填 `poster`／`productions`（版本層，見 `docs/DESIGN_productions.md`）。build 時供①血統分類②跨語言去重③雙語顯示三用——任何別名（`Macskák`/`キャッツ`/`Cats`）都收斂到同一作品。`build_shows.py --discover` 會把「疑似未對照的進口劇」寫到 `data/_works_discover.json` 供審核 |
-| `data/official_sites.json` | **作品官網主檔**（184 筆，key = `build_shows.group_key`，如 `wicked`/`avenue q`）：每作品的官方製作網站，value 為分區 map（`global` fallback ＋ `us`/`uk`/`au`/`de`/`jp`… 對應場次 `country`）。`build_shows` 依每場次國家挑對應官網，掛成 `kind:"official"` 連結；`app.js` 把它做成**劇名標題的超連結**（不單獨給圖卡，官網不分潤、不搶售票平台點擊）。多 agent 研究，~1,000 場次有官網 |
+| `data/official_sites.json` | **作品官網主檔**（208 筆，key = `build_shows.group_key`，如 `wicked`/`avenue q`）：每作品的官方製作網站，value 為分區 map（`global` fallback ＋ `us`/`uk`/`au`/`de`/`jp`… 對應場次 `country`）。`build_shows` 依每場次國家挑對應官網，掛成 `kind:"official"` 連結；`app.js` 把它做成**劇名標題的超連結**（不單獨給圖卡，官網不分潤、不搶售票平台點擊）。多 agent 研究，~1,000 場次有官網 |
 | `data/not_musical.json` | **非音樂劇排除清單**：來源平台把話劇/演唱會/致敬樂團/魔術秀/2.5次元舞台劇/餐飲體驗等標成 musical，title pattern（`NOT_MUSICAL_RE`）抓不到的逐筆列此（web 查證）。build 時依正規化標題剔除 |
 | `data/overrides.json` | 人工座標/欄位修正（依 show id；修來源錯誤，build 時套用） |
 | `data/booking_horizon.json` | 開放式長壽劇的**最後售票日**（依 show id；`booking_horizon.py` 用 Ticketmaster `sort=date,desc` 抓，build 時填入無 end_date 的劇，避免時間軸把它們一路顯示到數年後） |

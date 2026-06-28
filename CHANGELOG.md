@@ -11,6 +11,12 @@
 
 ---
 
+## [v0.78.4] - 2026-06-28 15:45
+### 文件 — README 數字審計，修 official_sites 過時筆數
+- 被追問「100% 確定嗎」後做數字審計：`README.md` 的 `official_sites.json` 寫 **184 筆、實際 208 筆**（別的 session 長上去、我先前沒驗就引用）→ 改為 208。
+- 同時核對：works.json 170 ✓、shows ~1,600（實 1642、近似值含「隨 CI 變動」）✓、31 國 ✓、venue_coords 1093（README 未引用、無誤）。
+- **誠實標註**：docs/*.md 內各 scraper 來源的精確筆數（如 SOURCES「大麥 711 筆/138 齣」、DESIGN_affiliate「101 筆」）多為**特定日期的 harvest 記錄**，需跑各 scraper 才能逐一核實，本次**未全部驗證**；非本次 UI 改動造成。
+
 ## [v0.78.3] - 2026-06-28 15:33
 ### 文件 — 補做 v0.78.0~0.78.2 漏掉的 MD freshness sweep
 - 老實說：v0.78.1/0.78.2 當下只更新 CHANGELOG、沒真的逐一掃所有 .md，違反 WORKFLOW 第 4 步。本次補做完整 sweep。
