@@ -1,7 +1,7 @@
 {
   "meta": {
     "source": "teatro.it",
-    "count": 25
+    "count": 26
   },
   "shows": [
     {
@@ -34,6 +34,23 @@
       "end_date": "2026-11-25",
       "image": "https://www.teatro.it/images/spettacoli//main-image/teatro.it-principe-d-egitto-musical-date-biglietti.jpg",
       "ticket_url": "https://www.teatro.it/spettacoli/il-principe-degitto-il-musical",
+      "type": "tour",
+      "verified": true,
+      "source": "teatro.it"
+    },
+    {
+      "id": "it-0aafaa92",
+      "title": "Tootsie",
+      "title_en": "",
+      "venue": "Golden",
+      "city": "Palermo",
+      "country": "Italy",
+      "lat": null,
+      "lng": null,
+      "start_date": "2027-02-23",
+      "end_date": "2027-02-23",
+      "image": "https://www.teatro.it/images/spettacoli/42197/main-image/teatro.it-tootsie-paolo-conticini-date-biglietti.jpg",
+      "ticket_url": "https://www.teatro.it/spettacoli/enzo-iacchetti-paolo-conticini-tootsie",
       "type": "tour",
       "verified": true,
       "source": "teatro.it"
