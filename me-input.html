@@ -226,6 +226,9 @@ dialog::backdrop{background:rgba(0,0,0,.66);backdrop-filter:blur(6px)}
 .disclose{background:none;border:1px dashed var(--hair2);color:var(--ink2);border-radius:10px;padding:11px;width:100%;font-weight:700;cursor:pointer;font-size:14px}
 .disclose:hover{border-color:var(--gold);color:var(--ink1)}
 .l2{margin-top:14px;display:grid;gap:14px}
+.poster-prev{margin-top:8px;display:flex;align-items:center;gap:9px}
+.poster-prev img{width:46px;height:66px;object-fit:cover;border-radius:6px;background:rgba(127,127,127,.18);box-shadow:0 1px 4px rgba(0,0,0,.3)}
+.poster-prev .pp-tag{font-size:11px;color:var(--ink3);font-weight:600}
 .l2[hidden]{display:none}
 .fld .fl{font-size:12px;color:var(--ink3);font-weight:600;margin-bottom:6px;display:block}
 .fld input,.fld textarea,.fld select,.datesel input,.datesel select{width:100%;font-size:16px;background:var(--s2);border:1px solid var(--hair2);border-radius:10px;padding:11px 12px;color:var(--ink1);font-family:inherit;height:46px;box-sizing:border-box}
@@ -335,7 +338,27 @@ function curOf(c){return CUR[c]||'';}
 /* ===== P3c：Supabase 雲端寫入（與父頁 me.html 同 session，共用 localStorage 的登入態）===== */
 let MMSB=null;(function(){const cfg=window.MM_CONFIG;if(cfg&&cfg.READY&&typeof supabase!=='undefined'){try{MMSB=supabase.createClient(cfg.SUPABASE_URL,cfg.SUPABASE_ANON_KEY);}catch(e){}}})();
 function _fullDate(date,prec){if(!date)return null;const d=String(date);if(prec==='year'||d.length===4)return d.slice(0,4)+'-01-01';if(prec==='month'||d.length===7)return d.slice(0,7)+'-01';return d;}
-function entryToRec(e){const p=e.p||{};const rec={title:(e.w&&e.w.en)||'',venue:p.venue||null,city:p.city||null,country:p.country||null,seen_date:_fullDate(e.date,e.precision),precision:e.precision||'none',rating:e.rating||0,seat:e.seat||null,price:(e.price!==''&&e.price!=null?+e.price:null),currency:e.cur||null,note:e.note||null,seen_time:e.time||null};if(p.lat!=null&&p.lng!=null){rec.lat=p.lat;rec.lng=p.lng;}return rec;}
+function entryToRec(e){const p=e.p||{};const rec={title:(e.w&&e.w.en)||'',venue:p.venue||null,city:p.city||null,country:p.country||null,seen_date:_fullDate(e.date,e.precision),precision:e.precision||'none',rating:e.rating||0,seat:e.seat||null,price:(e.price!==''&&e.price!=null?+e.price:null),currency:e.cur||null,note:e.note||null,seen_time:e.time||null,poster_override:e.posterOverride||null};if(p.lat!=null&&p.lng!=null){rec.lat=p.lat;rec.lng=p.lng;}return rec;}
+// method 2：算某劇的「系統 catalog 海報」（清空自訂時還原用）
+function systemPosterFor(en){const vc=window.MM_VC;if(!vc||!en)return '';const t=(vc.titles||[]).find(x=>x.en&&x.en.toLowerCase()===String(en).toLowerCase());return (t&&vc.posters&&vc.posters[t.group])||'';}
+// 自訂海報欄位的 HTML（兩個表單共用）
+function posterFieldHTML(){return `<div class="fld"><span class="fl">自訂海報網址 Poster URL（選填）</span>
+  <input id="posterOverride" inputmode="url" autocapitalize="off" placeholder="貼上圖片網址，覆蓋系統海報；清空即還原"/>
+  <div class="poster-prev" id="posterPrevWrap" hidden><img id="posterPrev" alt=""/><span class="pp-tag">預覽</span></div></div>`;}
+// 接線（兩個表單呼叫）：oninput→draft.posterOverride + 即時換圖 + 預覽
+function wirePosterField(){const pu=document.getElementById('posterOverride');if(!pu)return;
+  if(draft._baseImg==null)draft._baseImg=systemPosterFor(draft.w&&draft.w.en)||(draft.p&&draft.p.img)||'';
+  const pv=document.getElementById('posterPrev'),wrap=document.getElementById('posterPrevWrap');
+  function upd(){const u=(pu.value||'').trim();draft.posterOverride=u;
+    const shown=u||draft._baseImg;if(draft.p)draft.p.img=shown;
+    if(pv&&wrap){if(shown){pv.src=shown;wrap.hidden=false;pv.onerror=()=>{wrap.hidden=true;};}else wrap.hidden=true;}}
+  pu.oninput=upd;pu.value=draft.posterOverride||'';upd();}
+// 寫雲端（insert/update），poster_override 欄位若還沒 migrate 就去掉重試（不擋存檔）
+async function cloudUpsert(rec,sid){
+  const run=r=> sid!=null ? MMSB.from('sightings').update(r).eq('id',sid) : MMSB.from('sightings').insert(r).select();
+  let res=await run(rec);
+  if(res.error&&/poster_override/.test(res.error.message||'')){const c={...rec};delete c.poster_override;res=await run(c);}
+  return res;}
 function norm(s){return (s||'').toLowerCase().normalize('NFKD').replace(/[̀-ͯ]/g,'').replace(/[^\p{L}\p{N}]/gu,'');}
 function yearOf(d){return d?parseInt(d.slice(0,4),10):null;}
 function esc(s){return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');}
@@ -504,6 +527,7 @@ function manualAdd(title,seed,onBack){
           <div class="price-in"><span class="cursym" id="curSym"></span><input id="price" inputmode="decimal" placeholder="0"/></div></div></div>
       </div>
       <div class="fld"><span class="fl">心得 Note</span><textarea id="note" rows="2" placeholder="那一夜的記憶…"></textarea></div>
+      ${posterFieldHTML()}
     </div></div>`;
   const t=document.getElementById('mTitle');t.focus();
   t.oninput=e=>{draft.w.en=e.target.value;saveBtn.disabled=!e.target.value.trim();};
@@ -541,6 +565,7 @@ function manualAdd(title,seed,onBack){
     {showAllOnFocus:true, fmt:c=>`${curSym(c)}　${c}　${CUR_INFO[c].name}`, toInput:c=>c,
      onBlur:()=>{const ci=document.getElementById('curInput');if(ci)ci.value=draft.cur||'';}});
   ['seat','price','note'].forEach(id=>{const el=document.getElementById(id);if(el)el.oninput=()=>{draft[id]=el.value;};});
+  wirePosterField();   // method 2：自訂海報網址
   const bk=document.getElementById('backToSearch2');if(bk)bk.onclick=onBack||(()=>startLog());
 }
 // 把相同 label 的巡演停靠摺成一組（補登舊劇的人不在乎也分不清停靠城市）
@@ -650,6 +675,7 @@ function renderDetail(){
           <div class="price-in"><span class="cursym" id="curSym"></span><input id="price" inputmode="decimal" placeholder="0"/></div></div></div>
       </div>
       <div class="fld"><span class="fl">心得 Note</span><textarea id="note" rows="2" placeholder="那一夜的記憶…"></textarea></div>
+      ${posterFieldHTML()}
     </div>`;
   // date area — 乾淨三欄（年/月/日，全非必填，一次顯示）
   draft.mode='backfill';
@@ -673,6 +699,7 @@ function renderDetail(){
   // details
   document.getElementById('more').onclick=function(){const l2=document.getElementById('l2');const opening=l2.hidden;l2.hidden=!opening;this.textContent=opening?'－ 收起細節':'＋ 加入細節（評分・座位・票價・心得）';if(opening)buildRating();};
   ['seat','price','note'].forEach(id=>{const el=document.getElementById(id);if(el)el.oninput=()=>{draft[id]=el.value;};});
+  wirePosterField();   // method 2：自訂海報網址
   const bk=document.getElementById('backToSearch');if(bk)bk.onclick=()=>{
     if(draft.editIndex==null&&w.prods&&w.prods.length>1)pickWork(w);   // 多製作→回版本清單（上一頁）
     else startLog();};
@@ -698,14 +725,14 @@ saveBtn.onclick=async()=>{
   if(draft.precision==='year'&&draft.date)stickyYear=parseInt(draft.date);
   saveBtn.disabled=true;   // 防雲端寫入中重複按
   if(draft.editIndex!=null){const idx=draft.editIndex;const old=LOG[idx];const e={...draft};delete e.editIndex;
-    if(MMSB&&e.sid!=null){try{await MMSB.from('sightings').update(entryToRec(e)).eq('id',e.sid);}catch(err){console.error('cloud update',err);}}  // 雲端更新
+    if(MMSB&&e.sid!=null){try{await cloudUpsert(entryToRec(e),e.sid);}catch(err){console.error('cloud update',err);}}  // 雲端更新
     LOG[idx]=e;persist();renderWall(false);
     const si=sessionAdded.indexOf(old);if(si>=0)sessionAdded[si]=e;
     const embed=new URLSearchParams(location.search).get('embed')==='1';
     if(embed&&sessionAdded.length){addedScreen();return;}
     logDlg.close();if(!embed)setTimeout(()=>toast('✓ 已更新這筆紀錄'),120);return;}
   const entry={...draft};
-  if(MMSB){try{const {data,error}=await MMSB.from('sightings').insert(entryToRec(entry)).select();if(error)throw error;if(data&&data[0])entry.sid=data[0].id;}catch(err){console.error('cloud insert',err);}}  // 雲端新增→拿 sid
+  if(MMSB){try{const {data,error}=await cloudUpsert(entryToRec(entry),null);if(error)throw error;if(data&&data[0])entry.sid=data[0].id;}catch(err){console.error('cloud insert',err);}}  // 雲端新增→拿 sid
   LOG.unshift(entry);sessionAdded.unshift(entry);persist();renderWall(true);
   if(new URLSearchParams(location.search).get('embed')==='1'){addedScreen();return;}
   logDlg.close();

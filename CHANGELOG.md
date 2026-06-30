@@ -11,6 +11,16 @@
 
 ---
 
+## [v1.1.0] - 2026-06-30 13:26
+### 新功能 — 每筆紀錄可自訂海報網址（per-sighting poster URL override，方法 2）
+使用者可在某齣紀錄填一個圖片 URL，覆蓋系統 catalog 帶出來的海報；清空即還原系統圖。各筆獨立互不影響。
+- **DB**：`sightings` 加 `poster_override text`（`supabase/add_poster_override.sql`，已套用）。
+- **me.html**：`sightingToEntry` 渲染順序 `poster_override → catalog 海報 → 首字母色塊`；`entryToRec` 寫入 `poster_override`。
+- **me-input.html**：新增/編輯表單「細節」區加「自訂海報網址（選填）」欄 + **即時預覽**；編輯時回填現有值；清空自動還原系統海報（`systemPosterFor` 計算 base）。
+- **容錯**：`cloudUpsert` 寫雲端時若欄位未 migrate 自動去掉 `poster_override` 重試（樂觀寫入+降級），程式與 migration 解耦、存檔永不壞。
+- **全自動實測（test 帳號）**：加 Wicked+自訂URL→雲端存住→重整圖卡換圖；加 Phantom 無自訂→用系統圖且 Wicked 仍保有自訂（獨立性）；編輯 Wicked 回填URL→清空→還原系統圖。全程 **0 錯誤**。
+- 註：自訂的是 URL（仍熱連結到使用者貼的外站圖），非上傳檔案；方法 1（上傳到 Storage）為後續選項。
+
 ## [v1.0.0] - 2026-06-30 12:36 🎉 里程碑
 ### MAJOR — 「我的音樂劇」帳號版上線，專案從 0.x 畢業
 這是一個**里程碑標記**，不是新的程式變更：今天的 v0.79.0–v0.79.3 把「我的音樂劇」從桌面 demo 完整 migrate 成正式版帳號制頁面（`me.html` + `me-input.html`，Supabase Google 登入 + 雲端收藏，舊版備份 `me_ori.html`），加上即時同步修正、移除國旗、補齊文件。使用者決定以此宣告 **v1.0.0**：作為願意當成穩定基準的版本。

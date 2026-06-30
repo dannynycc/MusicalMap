@@ -886,14 +886,17 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
     (cat.titles||[]).forEach(t=>{if(!t.en)return;const k=t.en.toLowerCase(),g=t.group;
       if(t.zh)ZH[k]=t.zh;if(cat.posters&&cat.posters[g])POS[k]=cat.posters[g];});}catch(e){console.warn('catalog maps',e);}}  // 逾時/失敗就略過 zh/poster，不擋同步
   function sightingToEntry(s){const k=(s.title||'').toLowerCase();const prec=s.precision||(s.seen_date?'day':'none');
+    const ov=s.poster_override||'';
     return {sid:s.id, w:{en:s.title||'',zh:ZH[k]||''},
-      p:{label:null,venue:s.venue||'',city:s.city||'',country:s.country||'',lat:s.lat,lng:s.lng,img:POS[k]||'',cur:s.currency||''},
+      p:{label:null,venue:s.venue||'',city:s.city||'',country:s.country||'',lat:s.lat,lng:s.lng,img:(ov||POS[k]||''),cur:s.currency||''},
+      posterOverride:ov,   // 自訂海報網址（method 2）：有就優先當圖
       date:partialDate(s.seen_date,prec),precision:prec,
       rating:s.rating||0,seat:s.seat||'',price:(s.price!=null?String(s.price):''),note:s.note||'',time:s.seen_time||''};}
   function entryToRec(e){const p=e.p||{};
     const rec={title:(e.w&&e.w.en)||'',venue:p.venue||null,city:p.city||null,country:p.country||null,
       seen_date:fullDate(e.date,e.precision),precision:e.precision||'none',
-      rating:e.rating||0,seat:e.seat||null,price:(e.price!==''&&e.price!=null?+e.price:null),currency:e.cur||null,note:e.note||null,seen_time:e.time||null};
+      rating:e.rating||0,seat:e.seat||null,price:(e.price!==''&&e.price!=null?+e.price:null),currency:e.cur||null,note:e.note||null,seen_time:e.time||null,
+      poster_override:e.posterOverride||null};
     if(p.lat!=null&&p.lng!=null){rec.lat=p.lat;rec.lng=p.lng;}return rec;}
   window.mmEntryToRec=entryToRec;   // 給刪除復原用
   if(!cfg.READY||typeof supabase==='undefined'){showGate('⚠ 後端尚未設定',false);return;}
@@ -963,7 +966,10 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
     const tm=setTimeout(hide,6000);
     t.querySelector('button').onclick=async()=>{clearTimeout(tm);
       try{const it=o.item;
-        if(window.mmSb&&it&&window.mmEntryToRec){const {data}=await window.mmSb.from('sightings').insert(window.mmEntryToRec(it)).select();if(data&&data[0])it.sid=data[0].id;}  // 雲端復原(新 id)
+        if(window.mmSb&&it&&window.mmEntryToRec){const rec=window.mmEntryToRec(it);
+          let r=await window.mmSb.from('sightings').insert(rec).select();
+          if(r.error&&/poster_override/.test(r.error.message||'')){delete rec.poster_override;r=await window.mmSb.from('sightings').insert(rec).select();}  // 欄位未 migrate→去掉重試
+          if(r.data&&r.data[0])it.sid=r.data[0].id;}  // 雲端復原(新 id)
         const log=JSON.parse(localStorage.getItem('mm-log')||'[]');log.splice(o.idx,0,it);localStorage.setItem('mm-log',JSON.stringify(log));}catch(e){}
       location.reload();};
   }}catch(e){}
