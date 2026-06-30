@@ -597,7 +597,7 @@ function renderLog(){
     list.map(s=>`<button class="lt-row" data-id="${s.id}" role="row">
       <span class="lt-show"><span class="lt-thumb">${s.poster?`<img src="${s.poster}" referrerpolicy="no-referrer" alt=""/>`:`<i>${(s.title||'?').trim()[0]||'?'}</i>`}</span>
         <span class="lt-t"><b>${s.title}</b>${s.zh?`<i>${s.zh}</i>`:''}</span></span>
-      <span class="lt-city">${s.city?(CITYZH[s.city]||s.city):'<span class="muted">—</span>'} ${s.country?(FLAG[s.country]||''):''}</span>
+      <span class="lt-city">${s.city?cityName(s.city):'<span class="muted">—</span>'} ${s.country?(FLAG[s.country]||''):''}</span>
       <span class="lt-date">${fshort(s.date)||'<span class="muted">未定</span>'}</span>
       <span class="lt-rate">${s.rating?'★'.repeat(s.rating):'<span class="muted">—</span>'}</span>
     </button>`).join('')+`</div>`;
@@ -684,7 +684,9 @@ const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.tar
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
 /* ---------- MAP : dotted world (two-tone, no lines) + always-on labels + ranked list ---------- */
-const CITYZH={'London':'倫敦','New York':'紐約','Tokyo':'東京','Seoul':'首爾','Taipei':'台北','Hamburg':'漢堡','Vienna':'維也納','Paris':'巴黎','Sydney':'雪梨','Chicago':'芝加哥','Los Angeles':'洛杉磯','Toronto':'多倫多','Berlin':'柏林','Madrid':'馬德里','Shanghai':'上海','Beijing':'北京','Melbourne':'墨爾本','Singapore':'新加坡','Osaka':'大阪','Seattle':'西雅圖','Boston':'波士頓'};
+const CITYZH={"Aarhus": "奧胡斯", "Adelaide": "阿得雷德", "Aichi": "愛知", "Albuquerque": "阿布奎基", "Amsterdam": "阿姆斯特丹", "Antwerp": "安特衛普", "Atlanta": "亞特蘭大", "Auckland": "奧克蘭", "Austin": "奧斯汀", "Baltimore": "巴爾的摩", "Barcelona": "巴塞隆納", "Beijing": "北京", "Belfast": "貝爾法斯特", "Berlin": "柏林", "Birmingham": "伯明罕", "Boston": "波士頓", "Brighton": "布萊頓", "Brisbane": "布里斯本", "Bristol": "布里斯托", "Brussels": "布魯塞爾", "Budapest": "布達佩斯", "Buenos Aires": "布宜諾斯艾利斯", "Buffalo": "水牛城", "Calgary": "卡加利", "Cambridge": "劍橋", "Cardiff": "卡地夫", "Changsha": "長沙", "Changzhou": "常州", "Charlotte": "夏洛特", "Chengdu": "成都", "Chiayi": "嘉義", "Chicago": "芝加哥", "Chongqing": "重慶", "Cincinnati": "辛辛那提", "Cleveland": "克里夫蘭", "Cologne": "科隆", "Columbus": "哥倫布", "Copenhagen": "哥本哈根", "Daegu": "大邱", "Dallas": "達拉斯", "Denver": "丹佛", "Detroit": "底特律", "Dongguan": "東莞", "Dubai": "杜拜", "Dublin": "都柏林", "Edinburgh": "愛丁堡", "Edmonton": "愛德蒙頓", "Firenze": "佛羅倫斯", "Fort Lauderdale": "羅德岱堡", "Fort Worth": "沃斯堡", "Frankfurt": "法蘭克福", "Fukuoka": "福岡", "Fuzhou": "福州", "Ghent": "根特", "Gifu": "岐阜", "Glasgow": "格拉斯哥", "Gothenburg": "哥德堡", "Grand Rapids": "大急流城", "Guangzhou": "廣州", "Göteborg": "哥德堡", "Haikou": "海口", "Hamburg": "漢堡", "Hangzhou": "杭州", "Harbin": "哈爾濱", "Hefei": "合肥", "Helsinki": "赫爾辛基", "Hengyang": "衡陽", "Hiroshima": "廣島", "Houston": "休士頓", "Hsinchu": "新竹", "Hyogo": "兵庫", "Jiaxing": "嘉興", "Jinan": "濟南", "Kanagawa": "神奈川", "Kansas City": "堪薩斯城", "Kaohsiung": "高雄", "Kunshan": "崑山", "Köln": "科隆", "København": "哥本哈根", "København V": "哥本哈根", "Langfang": "廊坊", "Las Vegas": "拉斯維加斯", "Leeds": "里茲", "Liverpool": "利物浦", "London": "倫敦", "Los Angeles": "洛杉磯", "Louisville": "路易斯維爾", "Lyon": "里昂", "Madison": "麥迪遜", "Madrid": "馬德里", "Maihama": "舞濱", "Manchester": "曼徹斯特", "Melbourne": "墨爾本", "Memphis": "曼菲斯", "Mexico City": "墨西哥市", "Miami": "邁阿密", "Milano": "米蘭", "Milwaukee": "密爾瓦基", "Minneapolis": "明尼阿波利斯", "Monterrey": "蒙特雷", "Montreal": "蒙特婁", "Munich": "慕尼黑", "México": "墨西哥市", "München": "慕尼黑", "Nagoya": "名古屋", "Nanchang": "南昌", "Nanjing": "南京", "Nanning": "南寧", "Nantong": "南通", "Napoli": "拿坡里", "Nashville": "納許維爾", "New Orleans": "紐奧良", "New Taipei": "新北", "New York": "紐約", "Newcastle": "紐卡索", "Ningbo": "寧波", "Nottingham": "諾丁罕", "Oklahoma City": "奧克拉荷馬市", "Omaha": "奧馬哈", "Orlando": "奧蘭多", "Osaka": "大阪", "Oslo": "奧斯陸", "Ottawa": "渥太華", "Oxford": "牛津", "Padova": "帕多瓦", "Paris": "巴黎", "Penghu": "澎湖", "Perth": "伯斯", "Philadelphia": "費城", "Phoenix": "鳳凰城", "Pingtung": "屏東", "Pittsburgh": "匹茲堡", "Portland": "波特蘭", "Prague": "布拉格", "Praha": "布拉格", "Providence": "普羅維登斯", "Qidong": "啓東", "Qingdao": "青島", "Quzhou": "衢州", "Richmond": "里奇蒙", "Rio de Janeiro": "里約熱內盧", "Roma": "羅馬", "Rotterdam": "鹿特丹", "Salt Lake City": "鹽湖城", "San Antonio": "聖安東尼奧", "San Diego": "聖地牙哥", "San Francisco": "舊金山", "San Jose": "聖荷西", "Sapporo": "札幌", "Seattle": "西雅圖", "Seoul": "首爾", "Shanghai": "上海", "Sheffield": "雪菲爾", "Shenyang": "瀋陽", "Shenzhen": "深圳", "Singapore": "新加坡", "St. Louis": "聖路易", "Stockholm": "斯德哥爾摩", "Stuttgart": "斯圖加特", "Suzhou": "蘇州", "Swansea": "斯旺西", "Sydney": "雪梨", "São Paulo": "聖保羅", "Taichung": "台中", "Taipei": "台北", "Taitung": "台東", "Taiyuan": "太原", "Taizhou": "台州", "Takarazuka (兵庫)": "寶塚", "Tampa": "坦帕", "Tianjin": "天津", "Tokyo": "東京", "Tokyo (日比谷)": "東京", "Torino": "杜林", "Toronto": "多倫多", "Utrecht": "烏特勒支", "Vancouver": "溫哥華", "Vienna": "維也納", "Warsaw": "華沙", "Warszawa": "華沙", "Washington": "華盛頓", "Weifang": "濰坊", "Wellington": "威靈頓", "Wien": "維也納", "Wimbledon": "溫布頓", "Wuhan": "武漢", "Wuxi": "無錫", "Xi'an": "西安", "Yantai": "煙台", "Yinchuan": "銀川", "Yokohama": "橫濱", "York": "約克", "Yunlin": "雲林", "Zhengzhou": "鄭州", "Zhuhai": "珠海", "Zhuji": "諸暨", "Zibo": "淄博", "Zurich": "蘇黎世", "Zürich": "蘇黎世", "连云港": "連雲港"};   // 英文→繁中城市對照(opencc s2t + cities_tw 覆蓋，源自 data/i18n_maps.json)
+function cityName(c){if(!c)return c;const base=String(c).replace(/,\s*[A-Za-z.]{2,}$/,'').trim();return CITYZH[c]||CITYZH[base]||c;}   // 找不到中文就回原文；剝除「, CA」州別後綴再查
+function cityHasZh(c){return cityName(c)!==c;}
 function project(lat,lng){return[(lng+180)/360,(90-lat)/180];}
 // ===== 地圖縮放/平移：view = 可視窗左上角(x,y, base 0-1) + 縮放 z =====
 let mapV={z:1,x:0,y:0};
@@ -727,7 +729,7 @@ function placePins(){
     el.innerHTML=`<span class="glow" style="width:${sz*2.4}px;height:${sz*2.4}px"></span>
       <span class="ring"></span>
       <span class="core" style="width:${sz}px;height:${sz}px">${c.n}</span>
-      <span class="lbl">${CITYZH[c.city]||c.city}</span>`;
+      <span class="lbl">${cityName(c.city)}</span>`;
     el.onclick=()=>filterToCity(c.city);
     pins.appendChild(el);PINS.push({el,px,py});
   });
@@ -743,7 +745,7 @@ function buildCityList(){
   el.innerHTML=`<h4>造訪城市 Cities</h4><div class="sh">${arr.length} 座城市 · ${st.countries} 國 · 共 ${st.total} 場</div>`+
     arr.map(c=>{const d=9+Math.sqrt(c.n)*4.2;return `<button class="cl-row" data-city="${c.city}">
       <span class="d" style="width:${d}px;height:${d}px"></span>
-      <span class="nm"><b>${CITYZH[c.city]||c.city}</b><span>${CITYZH[c.city]?c.city+' · ':''}${c.country||''}</span></span>
+      <span class="nm"><b>${cityName(c.city)}</b><span>${cityHasZh(c.city)?c.city+' · ':''}${c.country||''}</span></span>
       <span class="ct">${c.n}</span></button>`;}).join('');
   el.querySelectorAll('.cl-row').forEach(r=>r.onclick=()=>filterToCity(r.dataset.city));
 }
@@ -784,7 +786,7 @@ let mt;addEventListener('resize',()=>{clearTimeout(mt);mt=setTimeout(()=>{render
     el.innerHTML=items.slice(0,6).map(([k,v])=>`<div class="sl-row"><span class="sl-k" title="${(''+k).replace(/"/g,'&quot;')}">${fmt?fmt(k):k}</span><span class="sl-bar"><i style="width:${Math.max(6,v/mx*100)}%"></i></span><span class="sl-v">${v}</span></div>`).join('');}
   barList('sc-shows',st.topShows);
   barList('sc-countries',st.topCountries,k=>`${k}`);
-  barList('sc-cities',st.topCities,k=>`${CITYZH[k]||k}`);
+  barList('sc-cities',st.topCities,k=>`${cityName(k)}`);
   barList('sc-theatres',st.topVenues);
   const yc=document.getElementById('sc-years');
   const validYears=(st.years||[]).filter(y=>y&&!isNaN(+y)).map(Number);
