@@ -21,6 +21,8 @@
 - **🐛 修 RLS 過濾 bug**：`sightings_read` 政策含「公開帳號可讀」，故 `select('*')` 會撈到別人公開收藏→個人頁加 `.eq('user_id')` 只撈自己（正式版 me.js 也有此潛在 bug，目前只一個公開帳號才沒爆）。
 - **全自動測（用 dashboard 建的 mev2-test 帳號 + signInWithPassword 繞過 Google UI）**：登入→空狀態→新增 Wicked(雲端存★3)→牆顯示真海報+中文名+地圖→編輯改★5(同筆 update 非新增)→刪除(雲端歸0)，**全程 0 錯誤**，測試資料已清。**僅剩 Google 按鈕本身的點擊需使用者真瀏覽器確認**（signInWithOAuth 一行，已 code review）。
 - 已知小事：登入後 0 筆收藏時牆顯示 22 張 demo 範例（demo 既有空狀態預覽，之後可換成更乾淨的空狀態 CTA）。
+- **P4/P6 收尾（✅ 實測 0 錯）**：新 me.html header 加正式版導覽「所有劇院」(→theatres.html，劇院清單頁已存在)、「演出地圖」(→index.html)，加**登出**鈕(→signOut→回登入閘)。實測登入後 nav 齊全、登出回未登入閘。sitemap(gen_site:244 仍含 me.html，不用改)、me-input/me_ori 不需索引。城市/國家清單已靠輸入端正式版資料(台中歌劇院等)+個人頁統計運作。
+- **狀態：功能完整、全自動實測通過(登入/載入/新增/編輯/刪除/導覽/登出)。待使用者用自己 Google 帳號在瀏覽器點一次登入驗收(唯一無法 headless 自動的一步；redirectTo=.../me.html 與舊頁同路徑、應已在 Supabase 白名單)，確認後即可 merge feat/me-v2→main。** i18n(英文)依決定延後。
 - 目前 log 仍存 localStorage。後續 P3b：me.html 接 Supabase 載入 + Google 登入閘（未登入落地頁/已登入收藏）；P3c：me-input save/delete 改打 sightings（localStorage 當快取雙寫）。**注意：Google OAuth 無法 headless 自動驗，登入→雲端讀寫來回需使用者真瀏覽器確認。**
 - 後續 P4 三清單；P5 i18n(先繁中)；P6 收尾。
 - **本分支不 push main，直到使用者驗收。**

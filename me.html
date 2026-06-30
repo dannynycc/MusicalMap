@@ -379,6 +379,8 @@ dialog#detail::backdrop{background:rgba(0,0,0,.72);backdrop-filter:blur(8px)}
 <header><div class="wrap bar">
   <a class="brand" href="index.html"><img src="logo.png" alt="" class="brand-logo" />Musical<b>Map</b></a>
   <nav class="nav">
+    <a href="theatres.html">所有劇院</a>
+    <a href="index.html">演出地圖</a>
     <div class="theme-pick" id="themePick" role="group" aria-label="主題底色">
       <button data-th="midnight" title="午夜（暗）" style="--sw:#13182f"></button>
       <button data-th="gallery" title="畫廊白（亮）" style="--sw:#f4f2ec"></button>
@@ -386,7 +388,7 @@ dialog#detail::backdrop{background:rgba(0,0,0,.72);backdrop-filter:blur(8px)}
       <button data-th="neon" title="霓虹（暗）" style="--sw:#ff2d7e"></button>
       <button data-th="deco" title="裝飾金（暗）" style="--sw:#e3b23c"></button>
     </div>
-    <a href="index.html">← 所有方向</a></nav>
+    <button type="button" id="btnLogout" style="background:none;border:1px solid var(--hair2);color:var(--ink2);border-radius:999px;padding:6px 14px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit">登出</button></nav>
 </div></header>
 
 <div class="wrap">
@@ -908,6 +910,7 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
     await syncFromCloud(user.id);}
   glogin.onclick=()=>sb.auth.signInWithOAuth({provider:'google',options:{redirectTo:location.origin+location.pathname}});
   window.mmLogout=()=>sb.auth.signOut().then(()=>{try{localStorage.removeItem('mm-log');}catch(e){}sessionStorage.removeItem('mev2_synced');location.reload();});
+  {const bl=document.getElementById('btnLogout');if(bl)bl.onclick=window.mmLogout;}
   sb.auth.onAuthStateChange((_e,session)=>onAuth(session));
   sb.auth.getSession().then(({data})=>onAuth(data.session));
 })();
