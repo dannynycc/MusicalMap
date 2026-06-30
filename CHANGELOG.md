@@ -16,7 +16,11 @@
 - **P1 換頁骨架**：桌面 demo4（demo4.html + demo4-input.html）移植進正式版 → `me.html`→`me_ori.html`(舊頁備份保留)；新 `me.html`(呈現端) + `me-input.html`(輸入 iframe)。本機實測渲染/輸入 modal/搜尋皆正常、0 錯誤。
 - **P2 劇庫接正式版資料（已實測 0 錯）**：新增 `me-catalog.js` 非同步 fetch `data/venues_catalog.json`+`data/shows.json`；me-input 的 `CATALOG`/`INDEX` 改延後組裝（titles+當期 shows 組出含座標的 prods）、`buildManualDB` 改吃正式版 **5117 劇院**(含中文名/台↔臺變體/座標)+440 城市；輸入端啟動前等資料就緒(載入中狀態)。**作品 130→568、劇院 363→5117**；實測劇院打「台中歌劇院」→ 正確跳出 3 個臺中國家歌劇院。**移除已不再使用的 catalog.js**。
 - **P3a Supabase migration SQL（✅ 已套用＋驗證）**：`supabase/add_rating_precision.sql` 在 sightings 加 `rating smallint` + `precision text`。使用者已於 dashboard 執行；用測試帳號(mev2-test，dashboard 建+auto-confirm)實測 insert 含 rating/precision→讀回→delete 全通、RLS 正常。**取得可用 test session→登入後雲端來回可全自動 Playwright 測**。
-- **P3b 起頭**：me.html 加 supabase-js CDN + js/config.js 引用（尚未接 auth/load，無行為改變）。下一輪完成 P3b(登入閘+sightings 載入+delete)、P3c(me-input save/delete 接 sightings)。對映已定：poster 不存(render 時由 catalog 解析)、date 存完整+precision 欄、entry 帶 sighting id(sid) 供雲端 update/delete。
+- **P3b me.html 接 Supabase（✅ 完成＋全自動實測）**：登入閘 overlay（未登入→Google 落地頁／已登入→抓 sightings→寫 mm-log 快取→渲染）；`syncFromCloud` 用 `.eq('user_id',uid)` 只撈自己的；sightingToEntry 對映（zh/海報 render 時由 venues_catalog 解析、date 由 precision 還原部分日期、帶 sid）；mmDeleteShow/復原 改打雲端。
+- **P3c me-input 接 Supabase（✅ 完成＋實測）**：save 雙寫（雲端 insert/update by sid + localStorage 快取）；entryToRec 對映；防重複按。
+- **🐛 修 RLS 過濾 bug**：`sightings_read` 政策含「公開帳號可讀」，故 `select('*')` 會撈到別人公開收藏→個人頁加 `.eq('user_id')` 只撈自己（正式版 me.js 也有此潛在 bug，目前只一個公開帳號才沒爆）。
+- **全自動測（用 dashboard 建的 mev2-test 帳號 + signInWithPassword 繞過 Google UI）**：登入→空狀態→新增 Wicked(雲端存★3)→牆顯示真海報+中文名+地圖→編輯改★5(同筆 update 非新增)→刪除(雲端歸0)，**全程 0 錯誤**，測試資料已清。**僅剩 Google 按鈕本身的點擊需使用者真瀏覽器確認**（signInWithOAuth 一行，已 code review）。
+- 已知小事：登入後 0 筆收藏時牆顯示 22 張 demo 範例（demo 既有空狀態預覽，之後可換成更乾淨的空狀態 CTA）。
 - 目前 log 仍存 localStorage。後續 P3b：me.html 接 Supabase 載入 + Google 登入閘（未登入落地頁/已登入收藏）；P3c：me-input save/delete 改打 sightings（localStorage 當快取雙寫）。**注意：Google OAuth 無法 headless 自動驗，登入→雲端讀寫來回需使用者真瀏覽器確認。**
 - 後續 P4 三清單；P5 i18n(先繁中)；P6 收尾。
 - **本分支不 push main，直到使用者驗收。**

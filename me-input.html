@@ -314,6 +314,8 @@ footer{margin:48px 0 40px;color:var(--ink3);font-size:13px;text-align:center;lin
 
 <div class="toast" id="toast"></div>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/config.js"></script>
 <script src="me-catalog.js"></script>
 <script>
 /* ---------- helpers ---------- */
@@ -328,6 +330,10 @@ const NOW_ISO=`${NOW_Y}-${String(NOW_M+1).padStart(2,'0')}-${String(_TODAY.getDa
 const yearOptions=(sel)=>`<option value="">年</option>`+Array.from({length:NOW_Y-1980+1},(_,i)=>NOW_Y-i).map(y=>`<option value="${y}"${String(sel)===String(y)?' selected':''}>${y}</option>`).join('');
 function flag(c){return FLAG[c]||'🌐';}
 function curOf(c){return CUR[c]||'';}
+/* ===== P3c：Supabase 雲端寫入（與父頁 me.html 同 session，共用 localStorage 的登入態）===== */
+let MMSB=null;(function(){const cfg=window.MM_CONFIG;if(cfg&&cfg.READY&&typeof supabase!=='undefined'){try{MMSB=supabase.createClient(cfg.SUPABASE_URL,cfg.SUPABASE_ANON_KEY);}catch(e){}}})();
+function _fullDate(date,prec){if(!date)return null;const d=String(date);if(prec==='year'||d.length===4)return d.slice(0,4)+'-01-01';if(prec==='month'||d.length===7)return d.slice(0,7)+'-01';return d;}
+function entryToRec(e){const p=e.p||{};const rec={title:(e.w&&e.w.en)||'',venue:p.venue||null,city:p.city||null,country:p.country||null,seen_date:_fullDate(e.date,e.precision),precision:e.precision||'none',rating:e.rating||0,seat:e.seat||null,price:(e.price!==''&&e.price!=null?+e.price:null),currency:e.cur||null,note:e.note||null,seen_time:e.time||null};if(p.lat!=null&&p.lng!=null){rec.lat=p.lat;rec.lng=p.lng;}return rec;}
 function norm(s){return (s||'').toLowerCase().normalize('NFKD').replace(/[̀-ͯ]/g,'').replace(/[^\p{L}\p{N}]/gu,'');}
 function yearOf(d){return d?parseInt(d.slice(0,4),10):null;}
 function esc(s){return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');}
@@ -685,17 +691,21 @@ function updateSave(){saveBtn.disabled=!(draft&&draft.w&&draft.p&&(draft.precisi
   if(draft&&draft.w&&draft.p)saveBtn.disabled=false;}
 
 let sessionAdded=[];   // 這次開窗累積加入的劇（給確認畫面顯示，按「再加入一齣」會疊上去）
-saveBtn.onclick=()=>{
+saveBtn.onclick=async()=>{
   if(!draft)return;
   if(draft.precision==='year'&&draft.date)stickyYear=parseInt(draft.date);
-  if(draft.editIndex!=null){const idx=draft.editIndex;const old=LOG[idx];const e={...draft};delete e.editIndex;LOG[idx]=e;
-    persist();renderWall(false);
-    const si=sessionAdded.indexOf(old);if(si>=0)sessionAdded[si]=e;   // 同步累積清單裡的參照
+  saveBtn.disabled=true;   // 防雲端寫入中重複按
+  if(draft.editIndex!=null){const idx=draft.editIndex;const old=LOG[idx];const e={...draft};delete e.editIndex;
+    if(MMSB&&e.sid!=null){try{await MMSB.from('sightings').update(entryToRec(e)).eq('id',e.sid);}catch(err){console.error('cloud update',err);}}  // 雲端更新
+    LOG[idx]=e;persist();renderWall(false);
+    const si=sessionAdded.indexOf(old);if(si>=0)sessionAdded[si]=e;
     const embed=new URLSearchParams(location.search).get('embed')==='1';
-    if(embed&&sessionAdded.length){addedScreen();return;}            // 從確認畫面編輯→改完回確認畫面（顯示新日期）
+    if(embed&&sessionAdded.length){addedScreen();return;}
     logDlg.close();if(!embed)setTimeout(()=>toast('✓ 已更新這筆紀錄'),120);return;}
-  const entry={...draft};LOG.unshift(entry);sessionAdded.unshift(entry);persist();renderWall(true);
-  if(new URLSearchParams(location.search).get('embed')==='1'){addedScreen();return;}  // 加完給確認畫面，可再加一齣或完成
+  const entry={...draft};
+  if(MMSB){try{const {data,error}=await MMSB.from('sightings').insert(entryToRec(entry)).select();if(error)throw error;if(data&&data[0])entry.sid=data[0].id;}catch(err){console.error('cloud insert',err);}}  // 雲端新增→拿 sid
+  LOG.unshift(entry);sessionAdded.unshift(entry);persist();renderWall(true);
+  if(new URLSearchParams(location.search).get('embed')==='1'){addedScreen();return;}
   logDlg.close();
   setTimeout(()=>{toast(`🎭 已蓋章！這是你的第 <b>${LOG.length}</b> 齣音樂劇`,()=>{LOG.shift();renderWall(false);});},180);
 };

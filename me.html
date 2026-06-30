@@ -371,6 +371,11 @@ dialog#detail::backdrop{background:rgba(0,0,0,.72);backdrop-filter:blur(8px)}
 </style>
 </head>
 <body>
+<!-- 登入閘：預設蓋住，等 Supabase 驗證後 JS 決定顯示登入/同步中/隱藏 -->
+<div id="mev2gate" style="position:fixed;inset:0;z-index:5000;background:var(--bg,#0c0d10);color:var(--ink1,#fff);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:20px;text-align:center;padding:24px;font-family:var(--ui,system-ui,sans-serif)">
+  <div id="gate-msg" style="font-size:21px;font-weight:800;line-height:1.55;max-width:420px">載入中…</div>
+  <button id="gate-login" hidden style="padding:13px 24px;border-radius:999px;border:1.5px solid var(--gold,#c9a85c);background:var(--gold,#c9a85c);color:#1a1407;font-weight:800;font-size:15px;cursor:pointer">使用 Google 登入</button>
+</div>
 <header><div class="wrap bar">
   <a class="brand" href="index.html"><img src="logo.png" alt="" class="brand-logo" />Musical<b>Map</b></a>
   <nav class="nav">
@@ -856,6 +861,58 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
   </div>
 </div>
 <script>
+/* ===== P3b：Supabase 登入閘 + 雲端載入（sightings ↔ 海報牆 entry）=====
+   登入閘預設蓋住；未登入→Google 落地頁；已登入→抓 sightings→寫 localStorage mm-log(快取)→重渲染。
+   localStorage 當「本 session 快取」，Supabase 當真實來源；新增/刪除雙寫，下次 session 再從雲端重抓。*/
+(function(){
+  const cfg=window.MM_CONFIG||{};
+  const gate=document.getElementById('mev2gate'), gmsg=document.getElementById('gate-msg'), glogin=document.getElementById('gate-login');
+  const showGate=(msg,login)=>{gate.style.display='flex';gmsg.innerHTML=msg;glogin.hidden=!login;};
+  const hideGate=()=>{gate.style.display='none';};
+  // 日期：demo 部分日期(date+precision) ↔ sightings 完整 seen_date
+  function fullDate(date,prec){if(!date)return null;const d=String(date);
+    if(prec==='year'||d.length===4)return d.slice(0,4)+'-01-01';
+    if(prec==='month'||d.length===7)return d.slice(0,7)+'-01';return d;}
+  function partialDate(seen,prec){if(!seen)return null;
+    if(prec==='year')return seen.slice(0,4);if(prec==='month')return seen.slice(0,7);return seen;}
+  // 劇名→中文名/海報（render 時用，不存進雲端）
+  let ZH={},POS={};
+  async function loadCatalogMaps(){try{const cat=await fetch('data/venues_catalog.json').then(r=>r.json());
+    (cat.titles||[]).forEach(t=>{if(!t.en)return;const k=t.en.toLowerCase(),g=t.group;
+      if(t.zh)ZH[k]=t.zh;if(cat.posters&&cat.posters[g])POS[k]=cat.posters[g];});}catch(e){}}
+  function sightingToEntry(s){const k=(s.title||'').toLowerCase();const prec=s.precision||(s.seen_date?'day':'none');
+    return {sid:s.id, w:{en:s.title||'',zh:ZH[k]||''},
+      p:{label:null,venue:s.venue||'',city:s.city||'',country:s.country||'',lat:s.lat,lng:s.lng,img:POS[k]||'',cur:s.currency||''},
+      date:partialDate(s.seen_date,prec),precision:prec,
+      rating:s.rating||0,seat:s.seat||'',price:(s.price!=null?String(s.price):''),note:s.note||'',time:s.seen_time||''};}
+  function entryToRec(e){const p=e.p||{};
+    const rec={title:(e.w&&e.w.en)||'',venue:p.venue||null,city:p.city||null,country:p.country||null,
+      seen_date:fullDate(e.date,e.precision),precision:e.precision||'none',
+      rating:e.rating||0,seat:e.seat||null,price:(e.price!==''&&e.price!=null?+e.price:null),currency:e.cur||null,note:e.note||null,seen_time:e.time||null};
+    if(p.lat!=null&&p.lng!=null){rec.lat=p.lat;rec.lng=p.lng;}return rec;}
+  window.mmEntryToRec=entryToRec;   // 給刪除復原用
+  if(!cfg.READY||typeof supabase==='undefined'){showGate('⚠ 後端尚未設定',false);return;}
+  const sb=supabase.createClient(cfg.SUPABASE_URL,cfg.SUPABASE_ANON_KEY);
+  window.mmSb=sb;
+  async function syncFromCloud(uid){showGate('同步你的收藏中…',false);await loadCatalogMaps();
+    const {data,error}=await sb.from('sightings').select('*').eq('user_id',uid).order('seen_date',{ascending:false});  // 只撈自己的（RLS select 允許讀公開帳號，故必須過濾）
+    if(error){showGate('讀取收藏失敗：'+error.message,false);return;}
+    const json=JSON.stringify((data||[]).map(sightingToEntry));
+    sessionStorage.setItem('mev2_synced',uid);
+    const prev=localStorage.getItem('mm-log')||'';localStorage.setItem('mm-log',json);
+    if(prev!==json)location.reload();else hideGate();}
+  async function onAuth(session){const user=session&&session.user;
+    if(!user){try{localStorage.removeItem('mm-log');}catch(e){}sessionStorage.removeItem('mev2_synced');
+      showGate('<b style="font-size:26px">我的音樂劇足跡</b><br><span style="opacity:.72;font-size:14.5px;font-weight:500">登入後，你看過的每一齣音樂劇都會存進你的帳號、跨裝置同步。</span>',true);return;}
+    if(sessionStorage.getItem('mev2_synced')===user.id){hideGate();return;}
+    await syncFromCloud(user.id);}
+  glogin.onclick=()=>sb.auth.signInWithOAuth({provider:'google',options:{redirectTo:location.origin+location.pathname}});
+  window.mmLogout=()=>sb.auth.signOut().then(()=>{try{localStorage.removeItem('mm-log');}catch(e){}sessionStorage.removeItem('mev2_synced');location.reload();});
+  sb.auth.onAuthStateChange((_e,session)=>onAuth(session));
+  sb.auth.getSession().then(({data})=>onAuth(data.session));
+})();
+</script>
+<script>
 (function(){
   const m=document.getElementById('logModal'),fr=document.getElementById('logFrame');
   let before='';
@@ -866,8 +923,9 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
     if(snap()!==before)location.reload();}   // 有新登錄→即時長到牆/地圖/統計
   function openEdit(i){before=snap();fr.src='me-input.html?embed=1&edit='+i+cb();m.hidden=false;document.body.style.overflow='hidden';}
   window.mmEditShow=openEdit;
-  window.mmDeleteShow=function(i,title,zh){
+  window.mmDeleteShow=async function(i,title,zh){
     try{const log=JSON.parse(localStorage.getItem('mm-log')||'[]');const removed=log.splice(i,1)[0];
+      if(window.mmSb&&removed&&removed.sid!=null){await window.mmSb.from('sightings').delete().eq('id',removed.sid);}  // 雲端刪
       localStorage.setItem('mm-log',JSON.stringify(log));
       sessionStorage.setItem('mm-undo',JSON.stringify({item:removed,idx:i,name:(zh||title||'這齣')}));
     }catch(e){}
@@ -886,8 +944,10 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
     document.body.appendChild(t);requestAnimationFrame(()=>t.classList.add('show'));
     const hide=()=>{t.classList.remove('show');setTimeout(()=>t.remove(),300);};
     const tm=setTimeout(hide,6000);
-    t.querySelector('button').onclick=()=>{clearTimeout(tm);
-      try{const log=JSON.parse(localStorage.getItem('mm-log')||'[]');log.splice(o.idx,0,o.item);localStorage.setItem('mm-log',JSON.stringify(log));}catch(e){}
+    t.querySelector('button').onclick=async()=>{clearTimeout(tm);
+      try{const it=o.item;
+        if(window.mmSb&&it&&window.mmEntryToRec){const {data}=await window.mmSb.from('sightings').insert(window.mmEntryToRec(it)).select();if(data&&data[0])it.sid=data[0].id;}  // 雲端復原(新 id)
+        const log=JSON.parse(localStorage.getItem('mm-log')||'[]');log.splice(o.idx,0,it);localStorage.setItem('mm-log',JSON.stringify(log));}catch(e){}
       location.reload();};
   }}catch(e){}
 })();
