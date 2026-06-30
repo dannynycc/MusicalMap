@@ -11,6 +11,12 @@
 
 ---
 
+## [v0.79.1] - 2026-06-30 12:05
+### 修正 — My Musicals Google 登入後卡在「同步你的收藏中…」
+- 真因：Google OAuth 是「轉址回來＋網址帶 `#access_token`」，與密碼登入(無轉址,先前自動測沒涵蓋)不同。轉址後 reload 帶著 hash 重載→Supabase 重新處理→期間 `getSession` 短暫回 null→舊 onAuth 把「已同步」旗標清掉→再同步→**無限迴圈卡在同步中**。
+- 修(多重保護)：(1) 只在 `SIGNED_OUT` 事件清旗標,忽略暫態 null session；(2) reload 前 `history.replaceState` 去掉 `#token`；(3) 每 user 每 session 最多重載一次(防迴圈)；(4) `syncFromCloud` 加並發鎖+try/catch(失敗顯示錯誤非靜默卡死)+`loadCatalogMaps` 9s 逾時。
+- 回歸：mev2-test 密碼登入完整來回(登入→新增→刪除)仍 0 錯誤。**OAuth 轉址本身仍無法 headless 驗,請重新整理 me.html 再登入確認。**
+
 ## [v0.79.0] - 2026-06-30 11:49
 ### 新功能 — 「我的音樂劇」(My Musicals) 帳號版改版上線（demo4 → 正式版 me.html）
 舊 FlightRadar 風 me 頁改名備份為 `me_ori.html`；新版為桌面 demo4 移植，繁中、海報牆/護照/清單三檢視 + 統計儀表板 + 點陣地圖，登入後雲端同步。各階段本機 Playwright 實測（含用 dashboard 測試帳號 + signInWithPassword 跑完整登入後雲端來回），全程 0 錯誤。
