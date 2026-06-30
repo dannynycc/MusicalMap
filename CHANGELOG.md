@@ -11,6 +11,12 @@
 
 ---
 
+## [Unreleased · feat/me-v2 分支] - 2026-06-30 10:15
+### 新功能 (WIP — 僅在 feat/me-v2 分支，未上 main) — 「我的音樂劇」改版移植
+- **P1 換頁骨架**：桌面 demo4（demo4.html + demo4-input.html）移植進正式版 → `me.html`→`me_ori.html`(舊頁備份保留)；新 `me.html`(呈現端) + `me-input.html`(輸入 iframe)；暫帶 catalog.js/data.js/data2.js/worldmap.js。本機實測渲染/輸入 modal/搜尋皆正常、0 錯誤。
+- 目前仍用 localStorage + catalog.js。後續：P2 改吃正式版 `venues_catalog.json` + `shows.json`；P3 接 Supabase `sightings` + Google 登入（sightings 將加 rating + precision 欄位）；P4 三清單；P5 i18n(先繁中)；P6 收尾。
+- **本分支不 push main，直到使用者驗收。**
+
 ## [v0.78.4] - 2026-06-28 15:45
 ### 文件 — README 數字審計，修 official_sites 過時筆數
 - 被追問「100% 確定嗎」後做數字審計：`README.md` 的 `official_sites.json` 寫 **184 筆、實際 208 筆**（別的 session 長上去、我先前沒驗就引用）→ 改為 208。

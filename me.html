@@ -1,127 +1,894 @@
 <!DOCTYPE html>
-<html lang="en" data-title-key="doc_title_me">
+<html lang="zh-Hant">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="referrer" content="no-referrer" />
-  <title>My Musicals — MusicalMap</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-  <link rel="stylesheet" href="css/style.css" />
-  <link rel="stylesheet" href="css/me.css" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="referrer" content="no-referrer" />
+<title>My Musicals · Danny 的音樂劇收藏</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,900;1,9..144,500&family=Inter:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;700;900&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet" />
+<script>/* no-flash: apply saved theme before CSS paints */(function(){try{var t=localStorage.getItem('mm-theme');if(t&&t!=='midnight')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<style>
+:root{
+  /* motion */
+  --dur-1:120ms; --dur-2:200ms; --dur-3:320ms; --dur-4:520ms;
+  --ease-out:cubic-bezier(.22,1,.36,1); --ease-spring:cubic-bezier(.34,1.56,.64,1);
+  /* dark gallery surfaces */
+  --bg:#0c0c11; --s1:#15151d; --s2:#1c1c27; --s3:#24242f;
+  --ink1:#f3f1ec; --ink2:#c6c2bb; --ink3:#857f74;
+  --hair:rgba(255,255,255,.08); --hair2:rgba(255,255,255,.14);
+  --gold:#c9a85c; --gold-soft:rgba(201,168,92,.16); --on-accent:#1a1407;
+  --mapdot:rgba(155,175,215,.36); --mapdotR:1.45; --maplbl:rgba(16,16,22,.86);
+  /* passport paper */
+  --paper:#f3ecdd; --paper2:#e7dcc4; --paperink:#2a2620; --papermut:#6c6253;
+  --navy:#16264a; --navy2:#22376a;
+  /* type */
+  --fr:'Fraunces',serif; --ui:'Inter','Noto Sans TC',sans-serif; --mono:'IBM Plex Mono',monospace;
+  --fs-hero:clamp(2.4rem,1.4rem+3.6vw,4.4rem);
+  --fs-h2:clamp(1.3rem,1rem+1vw,1.9rem);
+  --shadow-1:0 1px 0 rgba(255,255,255,.04) inset,0 2px 4px rgba(0,0,0,.4),0 10px 28px rgba(0,0,0,.45);
+  /* themeable extras (default = Midnight dark) */
+  --bg-mesh:radial-gradient(800px 500px at 12% -5%,rgba(201,168,92,.06),transparent 60%),radial-gradient(900px 600px at 100% 0,rgba(90,120,255,.05),transparent 55%);
+  --noise-op:.03; --poster-edge:rgba(255,255,255,.10); --glow:0 0 24px rgba(201,168,92,.35);
+  --ocean:#0e1526; --land-fill:#1b2747; --land-dot:rgba(132,151,184,.85); --pin:#f4c04a;
+}
+/* ========== THEMES (swap one block, nothing else moves) ========== */
+[data-theme="gallery"]{
+  --bg:#f7f6f3; --s1:#ffffff; --s2:#fcfbf9; --s3:#f1efe9;
+  --ink1:#1a1917; --ink2:#5d5a53; --ink3:#6b665c;
+  --hair:rgba(20,18,16,.10); --hair2:rgba(20,18,16,.17);
+  --gold:#b11226; --gold-soft:rgba(177,18,38,.10); --on-accent:#ffffff;
+  --shadow-1:0 1px 2px rgba(20,18,16,.06),0 8px 24px rgba(20,18,16,.08);
+  --bg-mesh:none; --noise-op:0; --poster-edge:rgba(0,0,0,.12); --glow:none;
+  --maplbl:rgba(255,255,255,.9); --ocean:#eaf0f7; --land-fill:#d5e0ec; --land-dot:rgba(94,118,155,.95); --pin:#c8881f;
+}
+[data-theme="cream"]{
+  --bg:#f4ebd9; --s1:#fbf5e8; --s2:#fffdf6; --s3:#f0e6d2;
+  --ink1:#221b10; --ink2:#6e6044; --ink3:#6d6044;
+  --hair:rgba(60,46,28,.16); --hair2:rgba(60,46,28,.26);
+  --gold:#a23b2e; --gold-soft:rgba(162,59,46,.12); --on-accent:#ffffff;
+  --shadow-1:0 1px 0 #dac9a6,0 10px 26px rgba(60,48,24,.12);
+  --bg-mesh:none; --noise-op:0; --poster-edge:rgba(60,46,28,.18); --glow:none;
+  --maplbl:rgba(255,253,246,.92); --ocean:#f4ebd9; --land-fill:#e3d5b6; --land-dot:rgba(120,98,60,.8); --pin:#a23b2e;
+}
+[data-theme="neon"]{
+  --bg:#0a0612; --s1:#160c28; --s2:#1f1138; --s3:#2a1850;
+  --ink1:#ffffff; --ink2:#bcacd9; --ink3:#8b7da9;
+  --hair:rgba(255,255,255,.10); --hair2:rgba(255,255,255,.18);
+  --gold:#ff2d7e; --gold-soft:rgba(255,45,126,.16); --on-accent:#1a1407;
+  --shadow-1:0 0 0 1px rgba(255,45,126,.22),0 14px 40px rgba(0,0,0,.6);
+  --bg-mesh:radial-gradient(90% 70% at 15% 0%,rgba(42,10,74,.85),transparent 55%),radial-gradient(80% 70% at 92% 18%,rgba(10,46,102,.7),transparent 50%);
+  --noise-op:.03; --poster-edge:rgba(255,255,255,.12); --glow:0 0 18px rgba(255,45,126,.5);
+  --maplbl:rgba(15,8,24,.85); --ocean:#0a0612; --land-fill:#251245; --land-dot:rgba(140,104,196,.8); --pin:#10e0c8;
+}
+[data-theme="deco"]{
+  --bg:#0f0d0a; --s1:#17130c; --s2:#1f1a10; --s3:#2a2316;
+  --ink1:#f3ecda; --ink2:#b49a66; --ink3:#8d7a4e;
+  --hair:rgba(110,90,46,.40); --hair2:rgba(110,90,46,.6);
+  --gold:#e3b23c; --gold-soft:rgba(227,178,60,.16); --on-accent:#1a1407;
+  --shadow-1:0 12px 34px rgba(0,0,0,.55);
+  --bg-mesh:radial-gradient(100% 70% at 50% 0%,rgba(40,32,20,.9),transparent 60%);
+  --noise-op:.04; --poster-edge:rgba(227,178,60,.35); --glow:0 0 16px rgba(227,178,60,.4);
+  --maplbl:rgba(15,13,10,.85); --ocean:#0f0d0a; --land-fill:#2a2114; --land-dot:rgba(180,154,102,.6); --pin:#e3b23c;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:var(--ui);color:var(--ink1);background:var(--bg);background-image:var(--bg-mesh);-webkit-font-smoothing:antialiased;
+  transition:background-color .3s ease,color .3s ease}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;opacity:var(--noise-op);z-index:0;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+a{color:inherit} ::selection{background:rgba(201,168,92,.32);color:#fff}
+*{scrollbar-width:thin;scrollbar-color:#2a2a34 transparent}
+::-webkit-scrollbar{width:10px;height:10px}::-webkit-scrollbar-thumb{background:#2a2a34;border-radius:8px;border:2px solid var(--bg)}
+:where(a,button,[tabindex]):focus-visible{outline:2px solid var(--gold,#c9a85c);outline-offset:2px;box-shadow:0 0 0 4px color-mix(in srgb,var(--gold,#c9a85c) 35%,transparent);border-radius:4px}
+.wrap{max-width:1320px;margin:0 auto;padding:0 24px;position:relative;z-index:1}
+.tnum{font-variant-numeric:tabular-nums}
+
+/* header */
+header{position:sticky;top:0;z-index:1100;background:color-mix(in srgb,var(--bg) 80%,transparent);backdrop-filter:saturate(1.4) blur(12px);border-bottom:1px solid var(--hair)}
+.theme-pick{display:flex;gap:6px;align-items:center;margin-right:4px}
+.theme-pick button{width:19px;height:19px;border-radius:50%;border:1px solid var(--hair2);background:var(--sw);cursor:pointer;padding:0;transition:transform .15s var(--ease-out)}
+.theme-pick button:hover{transform:scale(1.18)}
+.theme-pick button[aria-pressed=true]{box-shadow:0 0 0 2px var(--bg),0 0 0 3.5px var(--gold)}
+.bar{height:60px;display:flex;align-items:center;justify-content:space-between}
+.brand{font-family:var(--fr);font-weight:900;font-size:22px;letter-spacing:-.5px;text-decoration:none;display:inline-flex;align-items:center;gap:9px}
+.brand-logo{width:27px;height:27px;object-fit:contain}
+.brand b{color:var(--gold)}
+.nav{display:flex;gap:14px;align-items:center;font-size:14px}
+.nav a{opacity:.8;text-decoration:none}.nav a:hover{opacity:1;color:var(--gold)}
+.demo-tag{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--ink3);border:1px solid var(--hair);border-radius:999px;padding:3px 10px}
+
+/* ===== HERO : passport-cover banner ===== */
+/* hero = a passport cover that ADAPTS to the theme (light on light themes, rich on dark) */
+.hero{margin:22px 0 0;border-radius:22px;overflow:hidden;position:relative;border:1px solid var(--hair);box-shadow:var(--shadow-1);
+  background:radial-gradient(130% 130% at 88% 0,var(--gold-soft),transparent 52%),radial-gradient(120% 130% at 10% 0,var(--s2),var(--s1) 55%,var(--bg) 100%)}
+.hero .spines{position:absolute;inset:0;display:flex;opacity:.14;filter:saturate(.9)}
+.hero .spines i{flex:1;display:block}
+.hero .veil{position:absolute;inset:0;background:linear-gradient(90deg,var(--s1) 44%,transparent 92%)}
+.hero .guil{position:absolute;inset:0;opacity:.10;pointer-events:none;
+  background:repeating-radial-gradient(circle at 82% 30%,#cdb789 0 1px,transparent 1px 9px)}
+.hero-in{position:relative;display:grid;grid-template-columns:auto 1fr;gap:26px;padding:clamp(26px,4vw,46px)}
+.crest{width:104px;height:104px;border-radius:16px;display:grid;place-items:center;
+  background:radial-gradient(120% 120% at 30% 20%,#3a4f80,#15244a);border:1px solid rgba(201,168,92,.4);
+  box-shadow:0 10px 30px rgba(0,0,0,.5),0 0 0 1px rgba(0,0,0,.3) inset;position:relative}
+.crest .crest-logo{width:66px;height:66px;object-fit:contain;filter:drop-shadow(0 2px 8px rgba(0,0,0,.45))}
+.hero h1{font-family:var(--fr);font-weight:900;font-size:var(--fs-hero);line-height:1.06;letter-spacing:-1.2px;margin:5px 0 6px;color:var(--ink1)}
+.hero h1 .zh{font-size:.5em;font-weight:600;color:var(--gold);letter-spacing:2px;font-style:italic}
+.hero .sub{color:var(--ink2);font-size:14px;font-weight:600;letter-spacing:.3px;margin-bottom:3px}
+.hero .bignums{display:flex;gap:30px;margin:20px 0 4px;flex-wrap:wrap}
+.bignums .bn .n{font-family:var(--fr);font-weight:900;font-size:clamp(28px,3vw,40px);line-height:1;letter-spacing:-1px;color:var(--ink1)}
+.bignums .bn .n b{color:var(--gold)}
+.bignums .bn .l{font-size:11px;letter-spacing:1.4px;text-transform:uppercase;color:var(--ink3);margin-top:6px;font-weight:700}
+.hero .newest{margin-top:16px;display:inline-flex;align-items:center;flex-wrap:wrap;gap:4px 10px;font-size:13px;color:var(--ink2);
+  background:var(--s2);border:1px solid var(--hair);border-radius:16px;padding:7px 14px}
+.hero .newest .nw{white-space:nowrap}
+.hero .newest b{color:var(--ink1)} .hero .newest .dot{width:7px;height:7px;border-radius:50%;background:var(--gold);box-shadow:var(--glow)}
+
+/* ===== control bar ===== */
+.controls{position:sticky;top:60px;z-index:1000;margin:20px 0 0;padding:12px 0;
+  background:linear-gradient(180deg,var(--bg) 60%,transparent);backdrop-filter:blur(6px)}
+.ctl-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.seg{display:inline-flex;background:var(--s1);border:1px solid var(--hair);border-radius:999px;padding:4px;position:relative}
+.seg button{position:relative;z-index:2;border:none;background:none;color:var(--ink2);font-family:inherit;font-weight:700;font-size:14px;
+  padding:8px 18px;border-radius:999px;cursor:pointer;display:flex;align-items:center;gap:7px;transition:color var(--dur-2)}
+.seg button[aria-pressed=true]{color:var(--on-accent)}
+.seg .thumb{position:absolute;z-index:1;top:4px;bottom:4px;border-radius:999px;background:var(--gold);
+  box-shadow:0 2px 8px rgba(201,168,92,.4);transition:transform var(--dur-3) var(--ease-out),width var(--dur-3) var(--ease-out)}
+.spacer{flex:1}
+.sortsel{background:var(--s1);border:1px solid var(--hair);color:var(--ink2);font-family:inherit;font-size:13px;font-weight:600;
+  border-radius:10px;padding:9px 12px;cursor:pointer}
+.chips{display:flex;gap:8px;overflow-x:auto;padding:2px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:none;background:transparent;border:1px solid var(--hair2);color:var(--ink2);border-radius:999px;
+  padding:7px 14px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;transition:all var(--dur-2)}
+.chip:hover{color:var(--ink1)} .chip[aria-pressed=true]{background:var(--gold);border-color:var(--gold);color:var(--on-accent)}
+.count{font-size:13px;color:var(--ink3);font-weight:600;white-space:nowrap}
+
+/* ===== section heads ===== */
+.sec{margin:48px 0 18px;display:flex;align-items:baseline;justify-content:space-between;gap:16px}
+.sec h2{font-family:var(--fr);font-weight:700;font-size:var(--fs-h2);margin:0;letter-spacing:-.4px}
+.sec h2 .zh{color:var(--ink3);font-weight:400;font-size:.62em;margin-left:8px;font-style:italic}
+.sec .hint{color:var(--ink3);font-size:13px}
+
+/* ===== reveal ===== */
+.reveal{opacity:0;transform:translateY(16px)}
+.reveal.in{opacity:1;transform:none;transition:opacity var(--dur-3) var(--ease-out),transform var(--dur-3) var(--ease-out);transition-delay:calc(var(--i,0)*40ms)}
+
+/* ===== POSTER WALL ===== */
+#wall-poster{display:grid;gap:18px;grid-template-columns:repeat(auto-fill,minmax(158px,1fr))}
+.card{position:relative;display:flex;flex-direction:column;cursor:pointer;border:none;background:none;padding:0;text-align:left;font-family:inherit}
+.poster{position:relative;aspect-ratio:2/3;border-radius:8px;overflow:hidden;background:var(--s3);
+  box-shadow:inset 0 0 0 1px var(--poster-edge),0 1px 2px rgba(0,0,0,.3);
+  transition:transform var(--dur-3) var(--ease-out)}
+.poster::after{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:0 16px 36px rgba(0,0,0,.55);opacity:0;transition:opacity var(--dur-3) var(--ease-out);pointer-events:none}
+.poster img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block;opacity:0;transition:opacity var(--dur-3) var(--ease-out)}
+.poster img.ready{opacity:1}
+.poster .skel{position:absolute;inset:0;background:#15151c;overflow:hidden}
+.poster .skel::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,transparent 20%,rgba(255,255,255,.06) 50%,transparent 80%);transform:translateX(-100%);animation:shimmer 1.4s ease-in-out infinite}
+@keyframes shimmer{to{transform:translateX(100%)}}
+/* fallback poster */
+.poster.is-fallback img,.poster.is-fallback .skel{display:none}
+.poster .fallback{display:none}
+.poster.is-fallback .fallback{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5em;position:absolute;inset:0;padding:12% 10%;text-align:center;
+  background:radial-gradient(120% 90% at 50% 18%,color-mix(in srgb,var(--accent,#c9a85c) 40%,#0c0d10),#0c0d10 72%)}
+.fallback .kick{font:700 .6rem/1 var(--ui);letter-spacing:.26em;text-transform:uppercase;color:color-mix(in srgb,var(--accent,#c9a85c) 75%,#fff);opacity:.9}
+.fallback .ft{font-family:var(--fr);font-weight:900;font-size:clamp(1.1rem,3.2vw,1.7rem);line-height:1.04;text-wrap:balance;text-shadow:0 1px 0 rgba(0,0,0,.5)}
+.fallback .fzh{font-size:.78rem;color:var(--ink2);opacity:.85}
+.fallback .rule{width:36%;height:2px;background:color-mix(in srgb,var(--accent,#c9a85c) 80%,#fff);opacity:.8}
+/* overlays */
+.poster .topfx{position:absolute;inset:0 0 auto 0;height:40%;background:linear-gradient(180deg,rgba(255,255,255,.12),transparent);pointer-events:none}
+.poster .meta{position:absolute;inset:auto 0 0 0;padding:42px 11px 12px;background:linear-gradient(transparent,rgba(5,5,9,.62) 28%,rgba(5,5,9,.96));
+  opacity:0;transform:translateY(8px);transition:opacity var(--dur-2),transform var(--dur-2);pointer-events:none}
+.poster .meta .en{font:700 13px/1.25 var(--ui);color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.95);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.poster .meta .where{font-size:10.5px;color:#e3ddd2;text-shadow:0 1px 3px rgba(0,0,0,.95);margin-top:5px;display:flex;justify-content:space-between;gap:6px}
+.fav{position:absolute;top:9px;right:10px;font-size:14px;filter:drop-shadow(0 1px 3px rgba(0,0,0,.7));z-index:3}
+.flag{position:absolute;top:9px;left:10px;font-size:14px;z-index:3;filter:drop-shadow(0 1px 2px rgba(0,0,0,.6))}
+.cardacts{position:absolute;top:7px;right:7px;display:flex;gap:5px;z-index:5;opacity:0;transform:translateY(-3px);transition:opacity .15s,transform .15s}
+.card:hover .cardacts,.cardacts:focus-within{opacity:1;transform:none}
+.ca-btn{width:27px;height:27px;border-radius:7px;background:rgba(18,16,26,.74);backdrop-filter:blur(4px);color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;line-height:1;cursor:pointer;border:1px solid rgba(255,255,255,.2)}
+.ca-btn:hover{background:rgba(18,16,26,.95);border-color:var(--gold)}
+@media(hover:none){.cardacts{opacity:1;transform:none}}
+.card:hover{z-index:1050}   /* 上浮時蓋在 sticky 工具列之上，頂端不被其暗色/模糊遮住 */
+.card:hover .poster{transform:translateY(-5px) scale(1.025)}
+.card:hover .poster::after{opacity:1}
+.card:hover .poster .meta{opacity:1;transform:none}
+/* spotlight-dim removed per feedback — posters stay full colour at rest */
+.card .cap{margin-top:9px;display:flex;flex-direction:column;gap:1px}
+.card .cap .cap-t{min-width:0}
+.card .cap .en{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;font-size:13px;font-weight:700;color:var(--ink1);line-height:1.25}
+.card .cap .zh{display:block;font-size:12.5px;color:var(--ink2);margin-top:1px;line-height:1.3;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.card .stars{color:var(--gold);font-size:11px;letter-spacing:.5px;margin-top:4px}
+.card .stars:empty{display:none}
+@media(hover:none){.card:hover .poster{transform:none}#wall-poster:hover .card{opacity:1}.poster .meta{opacity:1;transform:none}}
+
+/* ===== PASSPORT (stamp face) ===== */
+#wall-passport{display:none}
+#wall-passport.on{display:block}
+#wall-poster.off{display:none}
+#wall-log{display:none}#wall-log.on{display:block}
+.logtable{border:1px solid var(--hair);border-radius:14px;overflow:hidden;background:var(--s1)}
+.lt-head,.lt-row{display:grid;grid-template-columns:1fr 160px 90px 90px;align-items:center;gap:12px;padding:11px 16px;text-align:left;width:100%}
+.lt-head{font-size:11px;letter-spacing:.5px;text-transform:uppercase;color:var(--ink2);font-weight:700;background:var(--s2);border-bottom:1px solid var(--hair)}
+.lt-row{background:none;border:none;border-bottom:1px solid var(--hair);cursor:pointer;font-family:inherit;color:var(--ink1)}
+.lt-row:last-child{border-bottom:none}
+.lt-row:hover{background:var(--gold-soft,rgba(201,168,92,.1))}
+.lt-show{display:flex;align-items:center;gap:11px;min-width:0}
+.lt-thumb{width:34px;height:48px;border-radius:5px;flex:none;overflow:hidden;background:var(--s3);display:flex;align-items:center;justify-content:center;box-shadow:inset 0 0 0 1px var(--hair)}
+.lt-thumb img{width:100%;height:100%;object-fit:cover}.lt-thumb i{font-weight:800;color:var(--ink2);font-style:normal}
+.lt-t{min-width:0}.lt-t b{display:block;font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lt-t i{display:block;font-size:12px;color:var(--ink2);font-style:normal;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lt-city{font-size:13px;color:var(--ink1);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lt-date{font-size:13px;color:var(--ink2);font-variant-numeric:tabular-nums}
+.lt-rate{font-size:13px;color:var(--gold)}
+.logtable .muted{color:var(--ink3)}
+@media(max-width:680px){.lt-head{display:none}.lt-row{grid-template-columns:1fr auto;gap:6px 12px}.lt-city,.lt-date,.lt-rate{font-size:12px}}
+.visa{background:repeating-linear-gradient(125deg,transparent 0 13px,rgba(47,110,94,.045) 13px 14px),radial-gradient(120% 120% at 0 0,#fbf6ea,var(--paper));
+  border-radius:16px;padding:22px 22px 28px;margin:0 0 20px;position:relative;border:1px solid rgba(60,45,15,.14);box-shadow:0 16px 44px rgba(0,0,0,.4);color:var(--paperink)}
+.visa::before{content:"";position:absolute;inset:11px;border:1.4px solid rgba(185,149,46,.35);border-radius:9px;pointer-events:none}
+.visa .crow{display:flex;align-items:center;gap:11px;margin:0 0 6px}
+.visa .crow .fl{font-size:26px} .visa .crow .cn{font-weight:900;font-size:19px}
+.visa .crow .ct{font-family:var(--mono);font-size:12px;color:var(--papermut)}
+.visa .prog{flex:none;margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--papermut)}
+.stamps{display:grid;grid-template-columns:repeat(auto-fill,minmax(112px,1fr));gap:32px 16px;margin-top:20px;justify-items:center}
+.stamp{width:108px;height:108px;position:relative;color:var(--ink);mix-blend-mode:multiply;
+  transform:rotate(var(--rot));opacity:.92;cursor:pointer}
+.stamp:hover{opacity:1}.stamp:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:8px}
+.stamp.in{animation:thunk .42s var(--ease-spring) backwards;animation-delay:var(--dly)}
+@keyframes thunk{0%{transform:translateY(-8px) rotate(0) scale(1.5);opacity:0}55%{transform:rotate(var(--rot)) scale(.95);opacity:1}100%{transform:rotate(var(--rot)) scale(1);opacity:.92}}
+.stamp svg{width:100%;height:100%;overflow:visible}
+.stamp .mile{position:absolute;top:-15px;left:50%;transform:translateX(-50%) rotate(-4deg);font-family:var(--ui);font-weight:800;
+  font-size:7.5px;letter-spacing:.5px;color:#9b1c2e;border:1.5px solid #9b1c2e;border-radius:3px;padding:1px 4px;background:#fff;z-index:3;white-space:nowrap}
+@media(prefers-reduced-motion:reduce){.stamp.in{animation:none}.reveal{opacity:1;transform:none}}
+
+/* ===== MAP ===== */
+.maprow{display:grid;grid-template-columns:minmax(0,1fr) 264px;gap:18px;align-items:start}
+.mapwrap{position:relative;min-width:0;border-radius:18px;overflow:hidden;border:1px solid var(--hair);box-shadow:var(--shadow-1);background:var(--ocean);aspect-ratio:16/10}
+#mapcv{position:absolute;inset:0;width:100%;height:100%}
+.mapwrap{cursor:grab}.mapwrap.grabbing{cursor:grabbing}
+.mapzoom{position:absolute;top:12px;right:12px;z-index:6;display:flex;flex-direction:column;gap:6px}
+.mapzoom button{width:34px;height:34px;border-radius:9px;border:1px solid var(--hair2);background:rgba(20,18,28,.78);backdrop-filter:blur(6px);color:#fff;font-size:17px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1}
+.mapzoom button:hover{background:rgba(20,18,28,.95);border-color:var(--gold)}
+.maphint{position:absolute;right:12px;bottom:12px;z-index:6;font-size:11px;color:#fff;opacity:.72;background:rgba(20,18,28,.55);backdrop-filter:blur(4px);padding:4px 9px;border-radius:8px;pointer-events:none}
+.pin{position:absolute;transform:translate(-50%,-50%);cursor:pointer;z-index:3;background:none;border:none;padding:0;font-family:inherit}
+.pin .glow{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);border-radius:50%;
+  background:radial-gradient(circle,color-mix(in srgb,var(--pin) 55%,transparent),transparent 70%)}
+.pin .core{position:relative;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff3cf,var(--pin));
+  box-shadow:0 0 0 1.5px rgba(0,0,0,.35),var(--glow);display:grid;place-items:center;color:#241a05;font-weight:800;font-size:10px}
+.pin .ring{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);border:1px solid var(--pin);border-radius:50%;opacity:.6;animation:ping 2.6s var(--ease-out) infinite}
+@keyframes ping{0%{width:10px;height:10px;opacity:.7}80%,100%{width:46px;height:46px;opacity:0}}
+.pin .lbl{position:absolute;left:50%;top:calc(100% + 5px);transform:translateX(-50%);white-space:nowrap;font-size:11px;font-weight:600;
+  color:var(--ink1);background:var(--maplbl);border:1px solid var(--hair);border-radius:999px;padding:2px 4px 2px 9px;opacity:1;pointer-events:none;
+  box-shadow:0 2px 6px rgba(0,0,0,.3);display:inline-flex;align-items:center;gap:6px;backdrop-filter:blur(3px)}
+.pin .lbl .lc{background:var(--pin);color:#241a05;font-weight:800;border-radius:999px;padding:0 6px;font-size:10px}
+.legend{position:absolute;left:12px;bottom:12px;z-index:4;background:var(--maplbl);border:1px solid var(--hair);border-radius:10px;
+  padding:9px 12px;font-size:11px;color:var(--ink2);display:flex;flex-direction:column;gap:6px;backdrop-filter:blur(3px)}
+.legend .row{display:flex;align-items:center;gap:8px}
+.legend .d{border-radius:50%;background:var(--pin);box-shadow:var(--glow);flex:none}
+.citylist{background:var(--s1);border:1px solid var(--hair);border-radius:18px;box-shadow:var(--shadow-1);padding:16px 18px;overflow:auto}
+.citylist h4{margin:0 0 6px;font-family:var(--fr);font-weight:700;font-size:15px}
+.citylist .sh{font-size:11px;color:var(--ink2);margin-bottom:8px}
+.cl-row{display:flex;align-items:center;gap:11px;padding:9px 0;border-bottom:1px solid var(--hair);cursor:pointer;width:100%;background:none;border-left:none;border-right:none;border-top:none;font-family:inherit;text-align:left}
+.cl-row:last-child{border-bottom:none}
+.cl-row .d{border-radius:50%;background:var(--pin);flex:none;box-shadow:var(--glow)}
+.cl-row .nm{flex:1;min-width:0}.cl-row .nm b{display:block;font-size:13.5px;font-weight:700;color:var(--ink1)}
+.cl-row .nm span{font-size:11px;color:var(--ink2)}
+.cl-row .ct{font-weight:800;font-size:15px;color:var(--gold);flex:none}
+.cl-row:hover .nm b{color:var(--gold)}
+@media(prefers-reduced-motion:reduce){.pin .ring{animation:none;display:none}}
+@media(max-width:820px){.maprow{grid-template-columns:1fr}}
+
+/* ===== stats & milestones ===== */
+/* demo / empty-state banner */
+.demobanner{display:flex;align-items:center;gap:16px;flex-wrap:wrap;justify-content:space-between;background:color-mix(in srgb,var(--gold) 20%,var(--s1));border:1px solid color-mix(in srgb,var(--gold) 60%,var(--hair));border-radius:14px;padding:14px 18px;margin-bottom:18px}
+html[data-live] .demobanner{display:none}
+.demobanner .db-txt{font-size:13.5px;color:var(--ink1);line-height:1.55;flex:1;min-width:240px}
+.demobanner .db-txt b{color:var(--gold)}
+.demobanner .db-cta{flex:none;background:var(--gold);color:var(--on-accent);border:none;border-radius:10px;padding:11px 18px;font-weight:800;font-size:14px;cursor:pointer;font-family:inherit}
+.demobanner .db-cta:hover{filter:brightness(1.05)}
+/* stats dashboard (bento) */
+.statgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:42px}
+.statcard{border-radius:16px;padding:18px 18px 16px;color:#fff;box-shadow:var(--shadow-1)}
+.statcard h3{font-size:14px;font-weight:800;margin:0 0 13px;letter-spacing:.02em}
+.statcard.wide{grid-column:1/-1}
+.sc-a{background:linear-gradient(150deg,#327a44,#245733)}
+.sc-b{background:linear-gradient(150deg,#9a5e12,#7a4a0e)}
+.sc-c{background:linear-gradient(150deg,#a83328,#83271e)}
+.sc-d{background:linear-gradient(150deg,#674391,#4d316c)}
+.sc-e{background:linear-gradient(150deg,#177a70,#115852)}
+.slist{display:flex;flex-direction:column;gap:3px}
+.sl-row{display:grid;grid-template-columns:1fr 96px 22px;align-items:center;gap:10px;padding:4px 0;font-size:13px}
+.sl-k{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:600}
+.sl-bar{height:7px;background:rgba(255,255,255,.24);border-radius:4px;overflow:hidden}
+.sl-bar i{display:block;height:100%;background:rgba(255,255,255,.95);border-radius:4px}
+.sl-v{font-weight:800;font-variant-numeric:tabular-nums;text-align:right}
+.sl-empty{opacity:.7;font-size:13px}
+.yearchart{display:flex;align-items:flex-end;gap:5px;height:130px;padding-top:6px}
+.yc-col{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:5px;min-width:0;height:100%}
+.yc-bar{width:74%;max-width:34px;background:rgba(255,255,255,.92);border-radius:3px 3px 0 0;min-height:3px}
+.yc-lbl{font-size:10px;opacity:.85;white-space:nowrap}
+.yc-n{font-size:10.5px;font-weight:800;min-height:1em}
+@media(max-width:680px){.statgrid{grid-template-columns:1fr}}
+.grid2{display:grid;grid-template-columns:1.1fr .9fr;gap:18px}
+.panel{background:var(--s1);border:1px solid var(--hair);border-radius:18px;padding:22px;box-shadow:var(--shadow-1)}
+.panel h3{margin:0 0 16px;font-family:var(--fr);font-weight:700;font-size:18px}
+.badges{display:flex;flex-wrap:wrap;gap:10px}
+.badge{display:flex;align-items:center;gap:8px;background:var(--s2);border:1px solid var(--hair);border-radius:12px;padding:9px 13px;font-size:13px;font-weight:600}
+.badge .ic{width:26px;height:26px;border-radius:8px;display:grid;place-items:center;background:var(--gold-soft);font-size:14px}
+.badge.gold{border-color:rgba(201,168,92,.5);box-shadow:0 0 18px -6px rgba(201,168,92,.4)}
+.persona .code{font-family:var(--fr);font-weight:900;font-size:46px;letter-spacing:5px;background:linear-gradient(120deg,#fff,var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+.persona .pn{font-size:26px;font-weight:900;margin:6px 0 12px;font-family:var(--fr,inherit)}
+.persona .pb{color:var(--ink2);font-size:13.5px;line-height:1.6}
+.axes{margin-top:16px;display:flex;flex-direction:column;gap:12px}
+.axis .r{display:flex;justify-content:space-between;font-size:12px;color:var(--ink3);margin-bottom:5px}
+.axis .r .on{color:var(--ink1);font-weight:700}
+.axis .track{height:6px;border-radius:3px;background:rgba(255,255,255,.1);position:relative}
+.axis .track i{position:absolute;top:-3px;width:12px;height:12px;border-radius:50%;background:var(--gold);box-shadow:0 0 10px var(--gold)}
+.toplist{display:flex;flex-direction:column;gap:10px}
+.tl{display:flex;align-items:center;gap:10px;font-size:13px}
+.tl .k{width:44%;color:var(--ink2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tl .t{flex:1;height:8px;background:rgba(255,255,255,.08);border-radius:4px;overflow:hidden}
+.tl .f{display:block;height:100%;border-radius:4px;background:linear-gradient(90deg,var(--gold),#ffe08a)}
+.tl .v{width:20px;text-align:right;font-weight:700}
+
+footer{margin:60px 0 96px;color:var(--ink3);font-size:13px;text-align:center;line-height:1.8}
+footer b{color:var(--ink2)}
+
+/* ===== detail modal ===== */
+dialog#detail{border:none;padding:0;border-radius:20px;width:min(720px,94vw);background:var(--s2);color:var(--ink1);
+  box-shadow:0 40px 100px rgba(0,0,0,.6);overflow:hidden}
+dialog#detail::backdrop{background:rgba(0,0,0,.72);backdrop-filter:blur(8px)}
+.dt-grid{display:grid;grid-template-columns:260px 1fr}
+.dt-poster{position:relative;background:#101015}
+.dt-poster img{width:100%;height:100%;object-fit:cover;display:block;min-height:360px}
+.dt-fallback{position:absolute;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;gap:.5em;padding:14% 10%;text-align:center;background:linear-gradient(160deg,var(--dt-accent,#7c5cff),#1a1622)}
+.dt-poster.is-fallback img{display:none}
+.dt-poster.is-fallback .dt-fallback{display:flex}
+.dt-fallback .kick{font:700 .62rem/1 var(--ui);letter-spacing:.26em;text-transform:uppercase;color:rgba(255,255,255,.82)}
+.dt-fallback .ft{font-family:var(--fr);font-weight:900;font-size:1.7rem;line-height:1.06;color:#fff}
+.dt-fallback .fzh{font-size:1rem;color:rgba(255,255,255,.9)}
+.dt-body{padding:26px 28px}
+.dt-body .en{font-family:var(--fr);font-weight:900;font-size:26px;line-height:1.05;letter-spacing:-.4px}
+.dt-body .zh{color:var(--gold);font-size:15px;margin:2px 0 4px;font-weight:600}
+.dt-body .rate{color:var(--gold);font-size:16px;letter-spacing:1px;margin:8px 0 16px}
+.dl{display:grid;grid-template-columns:auto 1fr;gap:9px 16px;font-size:14px}
+.dl dt{color:var(--ink3);font-size:11px;letter-spacing:1px;text-transform:uppercase;font-weight:700;align-self:center}
+.dl dd{margin:0;color:var(--ink1)}
+.dt-note{margin-top:16px;padding:12px 14px;background:var(--s3);border-radius:12px;font-style:italic;color:var(--ink2);font-size:13.5px;line-height:1.6}
+.dt-close{position:absolute;top:12px;right:12px;z-index:5;width:34px;height:34px;border-radius:50%;border:1px solid var(--hair);
+  background:rgba(0,0,0,.4);color:#fff;font-size:18px;cursor:pointer;backdrop-filter:blur(6px)}
+@media(max-width:680px){.dt-grid{grid-template-columns:1fr}.dt-poster img{min-height:240px}.grid2{grid-template-columns:1fr}}
+@media(max-width:560px){
+  .bar{height:auto;min-height:56px;flex-wrap:wrap;gap:4px 10px;padding:8px 0}
+  .brand{font-size:19px}
+  .nav{gap:10px;font-size:13px}.nav a{white-space:nowrap}
+  .hero-in{grid-template-columns:1fr;gap:14px;padding:22px 18px}
+  .crest{width:60px;height:60px;border-radius:13px}.crest .crest-logo{width:38px;height:38px}
+  .hero h1{font-size:25px}
+  .hero .bignums{gap:16px;margin:14px 0 2px}
+  .bignums .bn{flex:0 0 calc(50% - 10px)}
+  .bignums .bn .n{font-size:28px}
+}
+</style>
 </head>
 <body>
-  <header id="me-top">
-    <div class="top-inner">
-      <a id="me-brand" href="index.html">Musical<span>Map</span></a>
-      <nav>
-        <div id="lang-switch" role="group" aria-label="Language / 語言">
-          <span class="globe" aria-hidden="true">🌐</span>
-          <button type="button" class="lang-opt" data-lang="zh" lang="zh-Hant">中文</button>
-          <button type="button" class="lang-opt" data-lang="en" lang="en">English</button>
-        </div>
-        <a href="index.html" data-i18n="nav_global_map">🗺 Global map</a>
-        <span id="me-user"></span>
-        <button id="btn-login" class="btn-primary" data-i18n="me_signin">Sign in with Google</button>
-        <button id="btn-logout" class="btn-ghost" hidden data-i18n="me_signout">Sign out</button>
-      </nav>
+<header><div class="wrap bar">
+  <a class="brand" href="index.html"><img src="logo.png" alt="" class="brand-logo" />Musical<b>Map</b></a>
+  <nav class="nav">
+    <div class="theme-pick" id="themePick" role="group" aria-label="主題底色">
+      <button data-th="midnight" title="午夜（暗）" style="--sw:#13182f"></button>
+      <button data-th="gallery" title="畫廊白（亮）" style="--sw:#f4f2ec"></button>
+      <button data-th="cream" title="節目單奶油（亮）" style="--sw:#efe1c4"></button>
+      <button data-th="neon" title="霓虹（暗）" style="--sw:#ff2d7e"></button>
+      <button data-th="deco" title="裝飾金（暗）" style="--sw:#e3b23c"></button>
     </div>
-  </header>
+    <a href="index.html">← 所有方向</a></nav>
+</div></header>
 
-  <main id="me-main">
-    <section id="signed-out" class="hero">
-      <h1 data-i18n="me_hero_title">My Musicals</h1>
-      <p data-i18n="me_hero_p">Log every musical you've seen — and get your own Top shows, cities & theatres,
-         year / month / weekday trends, and a personal map of where you've been.</p>
-      <button id="btn-login2" class="btn-primary big" data-i18n="me_signin_start">Sign in with Google to start</button>
-      <p id="cfg-warn" class="warn" hidden data-i18n="me_cfg_warn">⚠ Backend not configured yet (see docs/SETUP_ACCOUNTS.md).</p>
-    </section>
-
-    <section id="signed-in" hidden>
-      <div id="share-bar">
-        <div class="share-row">
-          <label class="share-toggle"><input type="checkbox" id="pub-toggle" /> <span data-i18n="me_make_public">Make my profile public</span></label>
-          <span class="share-handle">musicalmap.../u.html?u=
-            <input id="pub-handle" placeholder="your-name" data-i18n-ph="me_handle_ph" autocomplete="off" /></span>
-          <button id="pub-save" class="btn-ghost" data-i18n="me_save">Save</button>
-        </div>
-        <div class="share-link" id="share-link" hidden>
-          🔗 <a id="share-url" href="#" target="_blank"></a>
-          <button id="share-copy" class="btn-ghost" data-i18n="me_copy">Copy</button>
-        </div>
+<div class="wrap">
+  <!-- DEMO/EMPTY-STATE BANNER (只在沒有真實登錄時出現) -->
+  <div class="demobanner" id="demoBanner">
+    <span class="db-txt"><b>👋 這是範例收藏</b> —— 先讓你看看蓋滿章後的樣子。按右邊加入你第一齣看過的劇，整頁就換成你自己的。</span>
+    <button type="button" class="db-cta" id="demoBannerCta">＋ 加入第一齣音樂劇</button>
+  </div>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="spines" id="spines"></div>
+    <div class="veil"></div><div class="guil"></div>
+    <div class="hero-in">
+      <div class="crest"><img src="logo.png" alt="MusicalMap" class="crest-logo" /></div>
+      <div>
+        <div class="sub">每看一場，蓋一個章</div>
+        <h1>Danny 的音樂劇收藏</h1>
+        <div class="bignums" id="bignums"></div>
+        <div class="newest" id="newest"></div>
       </div>
+    </div>
+  </section>
 
-      <div id="map-wrap">
-        <div id="me-map"></div>
-      </div>
+  <!-- CONTROLS -->
+  <div class="controls"><div class="ctl-row">
+    <div class="seg" id="seg" role="group" aria-label="檢視模式">
+      <span class="thumb" id="segthumb"></span>
+      <button data-mode="poster" aria-pressed="true">🖼 <span>海報牆</span></button>
+      <button data-mode="passport" aria-pressed="false">🛂 <span>護照</span></button>
+      <button data-mode="log" aria-pressed="false">📋 <span>清單</span></button>
+    </div>
+    <div class="chips" id="chips"></div>
+    <span class="spacer"></span>
+    <span class="count" id="count"></span>
+    <select class="sortsel" id="sort" aria-label="排序">
+      <option value="date">最近觀看</option>
+      <option value="rating">評分</option>
+      <option value="count">次數</option>
+      <option value="title">劇名</option>
+    </select>
+  </div></div>
 
-      <div id="tiles"></div>
+  <!-- WALL (three views, same data) -->
+  <div id="wall-poster"></div>
+  <div id="wall-passport"></div>
+  <div id="wall-log"></div>
 
-      <div id="charts">
-        <div class="chart-card c-green"><h4 data-i18n="me_top_shows">Top Musicals</h4><div class="cc-body" id="c-shows"></div></div>
-        <div class="chart-card c-amber"><h4 data-i18n="me_top_countries">Top Countries</h4><div class="cc-body" id="c-countries"></div></div>
-        <div class="chart-card c-red"><h4 data-i18n="me_top_cities">Top Cities</h4><div class="cc-body" id="c-cities"></div></div>
-        <div class="chart-card c-purple"><h4 data-i18n="me_top_theatres">Top Theatres</h4><div class="cc-body" id="c-venues"></div></div>
-        <div class="chart-card c-teal"><h4 data-i18n="me_per_year">Per Year</h4><div class="cc-body"><canvas id="c-year"></canvas></div></div>
-        <div class="chart-card c-blue"><h4 data-i18n="me_per_month">Per Month</h4><div class="cc-body"><canvas id="c-month"></canvas></div></div>
-        <div class="chart-card c-indigo"><h4 data-i18n="me_per_weekday">Per Weekday</h4><div class="cc-body"><canvas id="c-weekday"></canvas></div></div>
-      </div>
+  <!-- MAP -->
+  <div class="sec"><h2>我的觀劇足跡<span class="zh">Cities</span></h2><span class="hint">點一座城市，只看那裡的收藏</span></div>
+  <div class="maprow">
+    <div class="mapwrap reveal"><canvas id="mapcv"></canvas><div id="pins"></div>
+      <div class="mapzoom"><button id="mapZin" aria-label="放大">＋</button><button id="mapZout" aria-label="縮小">－</button><button id="mapZreset" aria-label="重置" title="重置">⟲</button></div>
+      <div class="maphint">滾輪縮放 · 拖曳平移</div>
+      <div class="legend"><div class="row"><span class="d" style="width:8px;height:8px"></span> 圓點 = 看過音樂劇的城市</div>
+        <div class="row"><span class="d" style="width:7px;height:7px"></span><span class="d" style="width:11px;height:11px"></span><span class="d" style="width:15px;height:15px"></span> 圓大小 = 看的場數</div></div>
+    </div>
+    <div class="citylist reveal" id="citylist"></div>
+  </div>
 
-      <section id="log-section">
-        <div class="log-head">
-          <h3><span data-i18n="me_log">My Log</span> <span id="log-count" class="muted"></span></h3>
-          <button id="btn-add" class="btn-primary" data-i18n="me_add">＋ Add a musical</button>
-        </div>
-        <ul id="log-list"></ul>
-      </section>
-    </section>
-  </main>
+  <!-- STATS DASHBOARD -->
+  <div class="sec"><h2>觀劇統計<span class="zh">Stats</span></h2></div>
+  <div class="statgrid">
+    <div class="statcard sc-a reveal"><h3>🎭 最常看的劇</h3><div class="slist" id="sc-shows"></div></div>
+    <div class="statcard sc-b reveal"><h3>🌏 最常去的國家</h3><div class="slist" id="sc-countries"></div></div>
+    <div class="statcard sc-c reveal"><h3>🏙 最常去的城市</h3><div class="slist" id="sc-cities"></div></div>
+    <div class="statcard sc-d reveal"><h3>🏛 最常去的劇院</h3><div class="slist" id="sc-theatres"></div></div>
+    <div class="statcard sc-e wide reveal"><h3>📅 各年看了幾場</h3><div class="yearchart" id="sc-years"></div></div>
+  </div>
 
-  <dialog id="add-dialog">
-    <form id="add-form" method="dialog">
-      <h3 id="form-title" data-i18n="me_form_add">Add a musical</h3>
-      <input type="hidden" name="id" />
-      <input type="hidden" name="lat" /><input type="hidden" name="lng" />
-      <label><span data-i18n="me_f_title">Musical</span><input name="title" autocomplete="off" required data-ac="titles" placeholder="輸入中文或英文 type EN or 中文" data-i18n-ph="me_title_ph" /></label>
-      <label id="prod-wrap" hidden><span data-i18n="me_f_version">Version / Production</span>
-        <select name="production_key" id="prod-select"></select></label>
-      <label><span data-i18n="me_f_poster">Poster URL (optional)</span>
-        <div class="poster-row">
-          <input name="poster_override" id="poster-override" type="url" autocomplete="off" placeholder="自訂海報網址 custom poster URL" data-i18n-ph="me_poster_ph" />
-          <span id="poster-preview" class="poster-preview noimg">♪</span>
-        </div></label>
-      <div class="row2">
-        <label><span data-i18n="me_f_date">Date</span><input name="seen_date" type="date" /></label>
-        <label><span data-i18n="me_f_time">Time</span><input name="seen_time" type="time" /></label>
-      </div>
-      <label><span data-i18n="me_f_venue">Theatre</span><input name="venue" autocomplete="off" data-ac="venues" /></label>
-      <div class="row2">
-        <label><span data-i18n="me_f_city">City</span><input name="city" autocomplete="off" data-ac="cities" /></label>
-        <label><span data-i18n="me_f_country">Country</span><input name="country" autocomplete="off" /></label>
-      </div>
-      <div class="row2">
-        <label><span data-i18n="me_f_seat">Seat</span><input name="seat" placeholder="e.g. Stalls A12" data-i18n-ph="me_seat_ph" /></label>
-        <label><span data-i18n="me_f_price">Price</span><input name="price" type="number" step="0.01" /></label>
-      </div>
-      <label><span data-i18n="me_f_currency">Currency</span><input name="currency" autocomplete="off" data-ac="currencies" placeholder="TWD / USD / GBP…" /></label>
-      <label data-i18n="me_f_links">Links (optional)</label>
-      <div id="links-list"></div>
-      <button type="button" id="add-link" class="btn-ghost link-add" data-i18n="me_add_link">＋ add link</button>
-      <label><span data-i18n="me_f_note">Note</span><textarea name="note" rows="2"></textarea></label>
-      <div id="ac-pop" class="ac-pop" hidden></div>
-      <div class="form-actions">
-        <button type="button" id="btn-cancel" class="btn-ghost" data-i18n="me_cancel">Cancel</button>
-        <button type="submit" class="btn-primary" data-i18n="me_save">Save</button>
-      </div>
-    </form>
-  </dialog>
+  <!-- PERSONA -->
+  <div class="sec"><h2>關於這位劇迷<span class="zh">You</span></h2></div>
+  <div class="grid2">
+    <div class="panel reveal">
+      <h3>🏅 成就徽章</h3>
+      <div class="badges" id="badges"></div>
+    </div>
+    <div class="panel persona reveal" id="persona"></div>
+  </div>
 
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
-  <script src="js/config.js"></script>
-  <script src="js/i18n.js"></script>
-  <script src="js/me.js"></script>
+  <footer>
+    海報牆與護照，是同一批收藏的兩種看法。<br>
+    封面取自各劇官方與公開資料；目前顯示的是範例紀錄，登入後就換成你自己的。
+  </footer>
+</div>
+
+<!-- DETAIL MODAL -->
+<dialog id="detail">
+  <button class="dt-close" id="dtclose" aria-label="關閉">✕</button>
+  <div class="dt-grid">
+    <div class="dt-poster" id="dt-poster"><img id="dt-img" alt="" /><div class="dt-fallback"><span class="kick">A Musical</span><span class="ft" id="dt-fb-en"></span><span class="fzh" id="dt-fb-zh"></span></div></div>
+    <div class="dt-body">
+      <div class="en" id="dt-en"></div>
+      <div class="zh" id="dt-zh"></div>
+      <div class="rate" id="dt-rate"></div>
+      <dl class="dl" id="dt-dl"></dl>
+      <div class="dt-note" id="dt-note"></div>
+    </div>
+  </div>
+</dialog>
+
+<script src="data.js"></script>
+<script src="data2.js"></script>
+<script src="worldmap.js"></script>
+<script>
+/* ===== 整合：讀使用者在輸入端登錄的 mm-log，讓海報牆/地圖/統計都長出真實紀錄 =====
+   有登錄資料就用它（取代範例）；沒有就保留範例當「空狀態預覽」。 */
+const CCNORM={'UK':'United Kingdom','USA':'United States','US':'United States','Korea':'South Korea','U.S.':'United States','U.K.':'United Kingdom'};
+function normCountry(c){return CCNORM[c]||c||'';}   // 別名正規化：UK→United Kingdom，避免 topCountries 拆兩桶
+(function(){try{
+  const log=JSON.parse(localStorage.getItem('mm-log')||'[]');
+  if(!Array.isArray(log)||!log.length)return;
+  const mapped=log.map((e,i)=>({
+    id:9000+i, title:(e.w&&e.w.en)||'?', zh:(e.w&&e.w.zh)||'', prod:(e.p&&e.p.label)||'', color:'#7c5cff',
+    poster:(e.p&&e.p.img)||null, posterFit:'cover', posterBg:null,
+    date:e.date||'', precision:e.precision||'none', time:'',
+    venue:(e.p&&e.p.venue)||'', city:(e.p&&e.p.city)||'', country:normCountry(e.p&&e.p.country), cc:'',
+    lat:e.p&&e.p.lat, lng:e.p&&e.p.lng, seat:e.seat||'', price:e.price||'', cur:e.cur||'',
+    rating:e.rating||0, fav:false, note:e.note||'', era:null, scale:null, logged:true
+  }));
+  // 所有登錄的劇都進牆與統計；地圖之後只對「有座標」的放 pin（無座標≠丟掉、絕不退回範例冒充）
+  if(mapped.length){MM.shows.length=0;MM.shows.push(...mapped);document.documentElement.dataset.live='1';}
+}catch(err){console.warn('mm-log integrate failed',err);}})();
+const S=MM.shows, st=MM.stats();
+const FLAG={'United Kingdom':'🇬🇧','UK':'🇬🇧','United States':'🇺🇸','USA':'🇺🇸','US':'🇺🇸','Japan':'🇯🇵','South Korea':'🇰🇷','Korea':'🇰🇷','Taiwan':'🇹🇼','Germany':'🇩🇪','France':'🇫🇷','Spain':'🇪🇸','Austria':'🇦🇹','Australia':'🇦🇺','China':'🇨🇳','Canada':'🇨🇦','Netherlands':'🇳🇱','Italy':'🇮🇹','Sweden':'🇸🇪','Norway':'🇳🇴','Singapore':'🇸🇬','Ireland':'🇮🇪'};
+const MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const fdt=d=>{if(!d)return'日期未定';const[y,m,dd]=d.split('-');
+  if(dd)return`${MON[+m-1]} ${+dd}, ${y}`;        // 日精度
+  if(m)return`${MON[+m-1]} ${y}`;                 // 月精度
+  return`${y}`;};                                  // 年精度（不再 NaN/undefined）
+const fshort=d=>{if(!d)return'';const[y,m]=d.split('-');return m?`${y}.${m}`:`${y}`};
+const stars=r=>'★'.repeat(Math.floor(r))+(r%1>=.5?'½':'');
+function shade(hex,a){let c=hex.replace('#','');let r=parseInt(c.slice(0,2),16)+a,g=parseInt(c.slice(2,4),16)+a,b=parseInt(c.slice(4,6),16)+a;const cl=x=>Math.max(0,Math.min(255,x));return`rgb(${cl(r)},${cl(g)},${cl(b)})`;}
+const venueCode=v=>v.replace(/Theatre|Theater|劇場|劇院|\(.*\)/g,'').trim().slice(0,9).toUpperCase();
+
+/* hero spines + nums + newest */
+(function(){
+  const sp=document.getElementById('spines');
+  [...S,...S].slice(0,16).forEach(s=>{const i=document.createElement('i');i.style.background=`linear-gradient(160deg,${shade(s.color,28)},${shade(s.color,-50)})`;sp.appendChild(i);});
+  const bn=document.getElementById('bignums');
+  [['<b>'+st.total+'</b>','音樂劇 Musicals'],[st.unique,'不同作品 Unique'],[st.cities,'城市 Cities'],[st.countries,'國家 Countries']]
+    .forEach(([n,l])=>{const d=document.createElement('div');d.className='bn';d.innerHTML=`<div class="n tnum">${n}</div><div class="l">${l}</div>`;bn.appendChild(d);});
+  const newest=MM.recent()[0];
+  document.getElementById('newest').innerHTML=`<span class="dot"></span><span class="nw">最新一場 <b>${newest.title}</b></span> <span class="nw">${newest.city}${newest.date?' · '+fshort(newest.date):''}</span>`;
+})();
+
+/* ---------- POSTER WALL ---------- */
+let activeYear='全部', activeCity=null, sortBy='date';
+function filtered(){
+  let a=S.filter(s=>(activeYear==='全部'||s.date.startsWith(activeYear))&&(!activeCity||s.city===activeCity));
+  if(sortBy==='date')a.sort((x,y)=>y.date.localeCompare(x.date));
+  if(sortBy==='rating')a.sort((x,y)=>y.rating-x.rating||y.date.localeCompare(x.date));
+  if(sortBy==='count'){const cnt={};a.forEach(s=>{cnt[s.title]=(cnt[s.title]||0)+1;});  // 次數多的排前；同次數先依劇名分組(同一齣聚一起)，再依最近
+    a.sort((x,y)=>(cnt[y.title]-cnt[x.title])||x.title.localeCompare(y.title)||(y.date||'').localeCompare(x.date||''));}
+  if(sortBy==='title')a.sort((x,y)=>x.title.localeCompare(y.title));
+  return a;
+}
+function posterEl(s){
+  const c=document.createElement('button');c.className='card';c.style.setProperty('--accent',s.color);
+  c.innerHTML=`<figure class="poster" style="margin:0${s.posterBg?';background:'+s.posterBg:''}">
+      <div class="skel"></div>
+      <img alt="${s.title} poster" loading="lazy" decoding="async" ${s.posterFit==='contain'?'style="object-fit:contain;object-position:center"':''}/>
+      <figcaption class="fallback"><span class="kick">A Musical</span><span class="ft">${s.title}</span><span class="fzh">${s.zh}</span><span class="rule"></span></figcaption>
+      <div class="topfx"></div>
+      <span class="flag">${FLAG[s.country]||''}</span>${s.fav?'<span class="fav">❤️</span>':''}
+      <div class="meta"><div class="en">${s.venue}</div>
+        <div class="where"><span>${s.city} · ${s.country}</span><span>${fshort(s.date)}</span></div></div>
+    </figure>
+    <div class="cap"><span class="cap-t"><span class="en">${s.title}</span><span class="zh">${s.zh}</span></span><span class="stars">${stars(s.rating)}</span></div>`;
+  const img=c.querySelector('img'),fig=c.querySelector('.poster'),skel=c.querySelector('.skel');
+  img.onload=()=>{img.classList.add('ready');skel.style.display='none'};
+  img.onerror=()=>{fig.classList.add('is-fallback')};
+  img.src=s.poster||'';
+  if(!s.poster)fig.classList.add('is-fallback');
+  c.onclick=()=>openDetail(s);
+  // 卡片右上角 編輯/刪除（只在真實登錄資料上；logged 卡無 ❤️，右上角空著）
+  if(document.documentElement.dataset.live==='1' && s.logged){
+    const li=s.id-9000;
+    const acts=document.createElement('div');acts.className='cardacts';
+    acts.innerHTML=`<span class="ca-btn" role="button" tabindex="0" aria-label="編輯這齣" title="編輯">✎</span><span class="ca-btn" role="button" tabindex="0" aria-label="刪除這齣" title="刪除">🗑</span>`;
+    const eb=acts.children[0], db=acts.children[1];
+    eb.onclick=e=>{e.stopPropagation();window.mmEditShow&&window.mmEditShow(li);};
+    db.onclick=e=>{e.stopPropagation();window.mmDeleteShow&&window.mmDeleteShow(li,s.title,s.zh);};
+    [eb,db].forEach(x=>x.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();e.stopPropagation();x.click();}});  // span role=button 需手動接 Enter/Space
+    c.querySelector('.poster').appendChild(acts);
+  }
+  return c;
+}
+function renderPoster(){
+  const w=document.getElementById('wall-poster');w.innerHTML='';
+  const list=filtered();
+  list.forEach((s,i)=>{const el=posterEl(s);el.classList.add('reveal');el.style.setProperty('--i',i%12);w.appendChild(el);io.observe(el);});
+  document.getElementById('count').textContent=`${list.length} 部音樂劇`;
+}
+/* ---------- LOG LIST VIEW（對標正式版 Log 分頁） ---------- */
+function renderLog(){
+  const el=document.getElementById('wall-log');const list=filtered();
+  document.getElementById('count').textContent=`${list.length} 部音樂劇`;
+  el.innerHTML=`<div class="logtable" role="table">
+    <div class="lt-head" role="row"><span>劇目</span><span>城市</span><span>日期</span><span>評分</span></div>`+
+    list.map(s=>`<button class="lt-row" data-id="${s.id}" role="row">
+      <span class="lt-show"><span class="lt-thumb">${s.poster?`<img src="${s.poster}" referrerpolicy="no-referrer" alt=""/>`:`<i>${(s.title||'?').trim()[0]||'?'}</i>`}</span>
+        <span class="lt-t"><b>${s.title}</b>${s.zh?`<i>${s.zh}</i>`:''}</span></span>
+      <span class="lt-city">${s.city?(CITYZH[s.city]||s.city):'<span class="muted">—</span>'} ${s.country?(FLAG[s.country]||''):''}</span>
+      <span class="lt-date">${fshort(s.date)||'<span class="muted">未定</span>'}</span>
+      <span class="lt-rate">${s.rating?'★'.repeat(s.rating):'<span class="muted">—</span>'}</span>
+    </button>`).join('')+`</div>`;
+  el.querySelectorAll('.lt-row').forEach(r=>r.onclick=()=>{const sh=S.find(x=>String(x.id)===r.dataset.id);if(sh)openDetail(sh);});
+}
+
+/* ---------- PASSPORT FACE ---------- */
+function stampSvg(s){
+  const id='p'+s.id, rot=((s.id*37)%9)-4;
+  const top=`M 16 64 A 48 48 0 0 1 112 64`, bot=`M 18 64 A 46 46 0 0 0 110 64`;
+  const _y=s.date?s.date.slice(0,4):'',_m=(s.date&&s.date.length>=7)?+s.date.slice(5,7):0,_d=(s.date&&s.date.length>=10)?s.date.slice(8,10):'';
+  const dd=_d?`${_d}·${MON[_m-1].toUpperCase()}·${_y}`:(_m?`${MON[_m-1].toUpperCase()}·${_y}`:(_y||'—'));
+  const enTitle=(s.title.length>15?venueShort(s.title):s.title).toUpperCase();
+  return `<svg viewBox="0 0 128 128" style="--rot:${rot}deg">
+    <defs><path id="${id}t" d="${top}"/><path id="${id}b" d="${bot}"/></defs>
+    <circle cx="64" cy="64" r="56" fill="none" stroke="currentColor" stroke-width="2.4"/>
+    <circle cx="64" cy="64" r="48" fill="none" stroke="currentColor" stroke-width="1"/>
+    <text font-size="10.5" letter-spacing="1.2" fill="currentColor" font-family="Inter,sans-serif" font-weight="700">
+      <textPath href="#${id}t" startOffset="50%" text-anchor="middle">${enTitle}</textPath></text>
+    <text font-size="8" letter-spacing="1" fill="currentColor" font-family="Inter,sans-serif">
+      <textPath href="#${id}b" startOffset="50%" text-anchor="middle">${s.city.toUpperCase()} · ${venueCode(s.venue)}</textPath></text>
+    <g transform="rotate(1.5 64 64)"><text x="64" y="68" font-size="12" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-weight="600" fill="currentColor">${dd}</text></g>
+  </svg>`;
+}
+function venueShort(t){const m={'The Phantom of the Opera':'PHANTOM','Les Misérables':'LES MIS',"Standing at the Sky's Edge":"SKY'S EDGE",'The Book of Mormon':'BOOK OF MORMON','König der Löwen':'LÖWEN'};return m[t]||t.slice(0,14);}
+function milestoneFor(s,idxInCountry,firstOfCountry){
+  if(firstOfCountry)return s.country==='United Kingdom'?'FIRST WEST END':s.country==='United States'?'FIRST BROADWAY':'FIRST';  // 非英美不再接空 cc
+  return null;
+}
+function renderPassport(){
+  const w=document.getElementById('wall-passport');w.innerHTML='';
+  const list=filtered();
+  document.getElementById('count').textContent=`${list.length} 部音樂劇`;   // 護照面也同步 count（篩選時不再 stale）
+  const byC={};list.forEach(s=>{(byC[s.country]=byC[s.country]||[]).push(s);});
+  const order=Object.keys(byC).sort((a,b)=>byC[b].length-byC[a].length);
+  let gi=0;
+  order.forEach(co=>{
+    const arr=byC[co].sort((a,b)=>a.date.localeCompare(b.date));
+    const cities=[...new Set(arr.map(s=>s.city))].join(' · ');
+    const v=document.createElement('div');v.className='visa reveal';
+    v.innerHTML=`<div class="crow"><span class="fl">${FLAG[co]||'🌐'}</span><span class="cn">${co}</span>
+      <span class="ct">${cities}</span><span class="prog">${arr.length} STAMP${arr.length>1?'S':''}</span></div>
+      <div class="stamps">${arr.map((s,j)=>{
+        const dly=Math.min(j*0.05,0.5).toFixed(2);const mile=milestoneFor(s,j,j===0);
+        return `<div class="stamp" data-sid="${s.id}" role="button" tabindex="0" aria-label="${(s.title||'').replace(/"/g,'&quot;')} 詳情" style="--ink:${s.color};--rot:${(((s.id*37)%9)-4)}deg;--dly:${dly}s">
+          ${mile?`<span class="mile">${mile}</span>`:''}${stampSvg(s)}</div>`;}).join('')}</div>`;
+    w.appendChild(v);io.observe(v);
+  });
+  // 戳章可點/可鍵盤開詳情（與海報牆/清單一致）
+  w.querySelectorAll('.stamp[data-sid]').forEach(el=>{const open=()=>{const sh=S.find(x=>String(x.id)===el.dataset.sid);if(sh)openDetail(sh);};
+    el.onclick=open;el.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();open();}};});
+  // trigger stamp thunk when each visa scrolls in
+  stampIo.disconnect();
+  w.querySelectorAll('.visa').forEach(vp=>stampIo.observe(vp));
+}
+const stampIo=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.querySelectorAll('.stamp').forEach(s=>s.classList.add('in'));stampIo.unobserve(e.target);}});},{threshold:.12});
+
+/* ---------- mode toggle (View Transitions) ---------- */
+let mode='poster';
+function setMode(m){
+  if(m===mode)return; mode=m;
+  const doSwap=()=>{
+    const pw=document.getElementById('wall-poster'),pp=document.getElementById('wall-passport'),pl=document.getElementById('wall-log');
+    document.querySelectorAll('#seg button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.mode===m));
+    moveThumb();
+    pw.classList.toggle('off',m!=='poster');pp.classList.toggle('on',m==='passport');pl.classList.toggle('on',m==='log');
+    if(m==='poster')renderPoster();else if(m==='passport')renderPassport();else renderLog();
+  };
+  if(document.startViewTransition)document.startViewTransition(doSwap);else doSwap();
+}
+function moveThumb(){const seg=document.getElementById('seg'),thumb=document.getElementById('segthumb');
+  const btn=seg.querySelector(`[data-mode="${mode}"]`);thumb.style.width=btn.offsetWidth+'px';thumb.style.transform=`translateX(${btn.offsetLeft-4}px)`;}
+document.getElementById('seg').addEventListener('click',e=>{const b=e.target.closest('button');if(b)setMode(b.dataset.mode);});
+
+/* chips */
+(function(){const c=document.getElementById('chips');
+  ['全部',...st.years].forEach((y,i)=>{const b=document.createElement('button');b.className='chip';b.textContent=y;b.setAttribute('aria-pressed',i===0);
+    b.onclick=()=>{activeYear=y;activeCity=null;[...c.children].forEach(x=>x.setAttribute('aria-pressed','false'));b.setAttribute('aria-pressed','true');rerender();};c.appendChild(b);});})();
+document.getElementById('sort').onchange=e=>{sortBy=e.target.value;rerender();};
+function rerender(){mode==='poster'?renderPoster():mode==='passport'?renderPassport():renderLog();}  // log 檢視也要重繪（排序/篩選才會生效）
+
+/* scroll reveal */
+const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{rootMargin:'0px 0px -8% 0px',threshold:.08});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+/* ---------- MAP : dotted world (two-tone, no lines) + always-on labels + ranked list ---------- */
+const CITYZH={'London':'倫敦','New York':'紐約','Tokyo':'東京','Seoul':'首爾','Taipei':'台北','Hamburg':'漢堡','Vienna':'維也納','Paris':'巴黎','Sydney':'雪梨','Chicago':'芝加哥','Los Angeles':'洛杉磯','Toronto':'多倫多','Berlin':'柏林','Madrid':'馬德里','Shanghai':'上海','Beijing':'北京','Melbourne':'墨爾本','Singapore':'新加坡','Osaka':'大阪','Seattle':'西雅圖','Boston':'波士頓'};
+function project(lat,lng){return[(lng+180)/360,(90-lat)/180];}
+// ===== 地圖縮放/平移：view = 可視窗左上角(x,y, base 0-1) + 縮放 z =====
+let mapV={z:1,x:0,y:0};
+function clampV(){if(mapV.z<1)mapV.z=1;const m=1-1/mapV.z;mapV.x=Math.max(0,Math.min(m,mapV.x));mapV.y=Math.max(0,Math.min(m,mapV.y));if(mapV.z<=1){mapV.x=0;mapV.y=0;}}
+function tf(fx,fy){return[(fx-mapV.x)*mapV.z,(fy-mapV.y)*mapV.z];}   // base fraction → 螢幕 fraction
+function renderMap(){drawMap();positionPins();}
+function filterToCity(city){activeCity=activeCity===city?null:city;activeYear='全部';
+  document.querySelectorAll('#chips .chip').forEach((x,i)=>x.setAttribute('aria-pressed',i===0&&!activeCity));
+  if(mode!=='poster')setMode('poster');else renderPoster();
+  document.getElementById('wall-poster').scrollIntoView({behavior:'smooth',block:'start'});}
+function drawMap(){
+  const cv=document.getElementById('mapcv');const wrap=cv.parentElement;
+  const w=wrap.clientWidth,h=wrap.clientHeight,dpr=Math.min(2,window.devicePixelRatio||1);
+  if(!w||!h)return;
+  cv.width=w*dpr;cv.height=h*dpr;const ctx=cv.getContext('2d');ctx.scale(dpr,dpr);ctx.clearRect(0,0,w,h);
+  const cs=getComputedStyle(document.documentElement);
+  const fill=cs.getPropertyValue('--land-fill').trim()||'#1b2747';
+  const dot=cs.getPropertyValue('--land-dot').trim()||'rgba(132,151,184,.85)';
+  const pts=WORLD_DOTS.split(' ');
+  const k=Math.min(2.4,0.72+mapV.z*0.16);   // 縮放時點略放大，維持陸地可讀
+  // pass 1 — solid land silhouette (big, semi-transparent) so continents read as shapes
+  ctx.globalAlpha=.6;ctx.fillStyle=fill;
+  for(const p of pts){const i=p.indexOf(',');const[sx,sy]=tf(+p.slice(0,i)/1000,+p.slice(i+1)/500);
+    if(sx<-.03||sx>1.03||sy<-.03||sy>1.03)continue;ctx.beginPath();ctx.arc(sx*w,sy*h,3.1*k,0,7);ctx.fill();}
+  // pass 2 — crisp high-contrast dots on top (the halftone)
+  ctx.globalAlpha=1;ctx.fillStyle=dot;
+  for(const p of pts){const i=p.indexOf(',');const[sx,sy]=tf(+p.slice(0,i)/1000,+p.slice(i+1)/500);
+    if(sx<-.03||sx>1.03||sy<-.03||sy>1.03)continue;ctx.beginPath();ctx.arc(sx*w,sy*h,1.5*k,0,7);ctx.fill();}
+}
+let PINS=[];
+function placePins(){
+  const pins=document.getElementById('pins');pins.innerHTML='';PINS=[];
+  const byCity={};S.forEach(s=>{if(!s.city)return;(byCity[s.city]=byCity[s.city]||{...s,n:0}).n++;});
+  Object.values(byCity).forEach(c=>{
+    if(c.lat==null||c.lng==null)return;            // 無座標城市不放 pin（仍在城市清單/統計，絕不消失）
+    const[px,py]=project(c.lat,c.lng);if(!isFinite(px)||!isFinite(py))return;
+    const sz=15+Math.sqrt(c.n)*6.5;
+    const el=document.createElement('button');el.className='pin';
+    el.setAttribute('aria-label',`${c.city} · ${c.n} 部音樂劇`);
+    el.innerHTML=`<span class="glow" style="width:${sz*2.4}px;height:${sz*2.4}px"></span>
+      <span class="ring"></span>
+      <span class="core" style="width:${sz}px;height:${sz}px">${c.n}</span>
+      <span class="lbl">${CITYZH[c.city]||c.city}</span>`;
+    el.onclick=()=>filterToCity(c.city);
+    pins.appendChild(el);PINS.push({el,px,py});
+  });
+  positionPins();
+}
+function positionPins(){PINS.forEach(p=>{const[sx,sy]=tf(p.px,p.py);
+  if(sx<-0.01||sx>1.01||sy<-0.01||sy>1.01){p.el.style.display='none';}
+  else{p.el.style.display='';p.el.style.left=sx*100+'%';p.el.style.top=sy*100+'%';}});}
+function buildCityList(){
+  const el=document.getElementById('citylist');
+  const byCity={};S.forEach(s=>{if(!s.city)return;(byCity[s.city]=byCity[s.city]||{...s,n:0}).n++;});
+  const arr=Object.values(byCity).sort((a,b)=>b.n-a.n);
+  el.innerHTML=`<h4>造訪城市 Cities</h4><div class="sh">${arr.length} 座城市 · ${st.countries} 國 · 共 ${st.total} 場</div>`+
+    arr.map(c=>{const d=9+Math.sqrt(c.n)*4.2;return `<button class="cl-row" data-city="${c.city}">
+      <span class="d" style="width:${d}px;height:${d}px"></span>
+      <span class="nm"><b>${CITYZH[c.city]||c.city}</b><span>${CITYZH[c.city]?c.city+' · ':''}${c.country||''}</span></span>
+      <span class="ct">${c.n}</span></button>`;}).join('');
+  el.querySelectorAll('.cl-row').forEach(r=>r.onclick=()=>filterToCity(r.dataset.city));
+}
+let mt;addEventListener('resize',()=>{clearTimeout(mt);mt=setTimeout(()=>{renderMap();},150);});
+// ===== 地圖縮放/平移互動 =====
+(function(){
+  const wrap=document.querySelector('.mapwrap');if(!wrap)return;
+  function zoomAt(cx,cy,factor){const bx=mapV.x+cx/mapV.z,by=mapV.y+cy/mapV.z;
+    mapV.z=Math.max(1,Math.min(12,mapV.z*factor));mapV.x=bx-cx/mapV.z;mapV.y=by-cy/mapV.z;clampV();renderMap();}
+  wrap.addEventListener('wheel',e=>{e.preventDefault();const r=wrap.getBoundingClientRect();
+    zoomAt((e.clientX-r.left)/r.width,(e.clientY-r.top)/r.height,e.deltaY<0?1.2:1/1.2);},{passive:false});
+  let drag=null;
+  wrap.addEventListener('pointerdown',e=>{if(e.target.closest('.pin')||e.target.closest('.mapzoom'))return;
+    drag={x:e.clientX,y:e.clientY};try{wrap.setPointerCapture(e.pointerId);}catch(_){}wrap.classList.add('grabbing');});
+  wrap.addEventListener('pointermove',e=>{if(!drag)return;const r=wrap.getBoundingClientRect();
+    mapV.x-=(e.clientX-drag.x)/(r.width*mapV.z);mapV.y-=(e.clientY-drag.y)/(r.height*mapV.z);drag={x:e.clientX,y:e.clientY};clampV();renderMap();});
+  const end=()=>{drag=null;wrap.classList.remove('grabbing');};
+  wrap.addEventListener('pointerup',end);wrap.addEventListener('pointercancel',end);wrap.addEventListener('pointerleave',end);
+  const zin=document.getElementById('mapZin'),zout=document.getElementById('mapZout'),zr=document.getElementById('mapZreset');
+  if(zin)zin.onclick=()=>zoomAt(.5,.5,1.6);
+  if(zout)zout.onclick=()=>zoomAt(.5,.5,1/1.6);
+  if(zr)zr.onclick=()=>{mapV={z:1,x:0,y:0};renderMap();};
+})();
+
+/* ---------- badges + toplist + persona ---------- */
+(function(){
+  const b=document.getElementById('badges');
+  const tops=st.topShows[0];
+  // 劇院改由下方「最常去的劇院」榜呈現，徽章不再放被砍字的劇院名
+  const badges=[['🎭',`${st.total} 場演出`,true],['🌏',`${st.countries} 國蓋章`,st.countries>=3],['🏙',`${st.cities} 座城市`,false],['🎬',`${st.unique} 部不同作品`,false]];
+  if(tops&&tops[1]>1)badges.push(['🔁',`${tops[0]} ×${tops[1]}`,false]);
+  if(st.favCount>0)badges.push(['❤️',`${st.favCount} 部最愛`,false]);
+  b.innerHTML=badges.map(([ic,t,g])=>`<div class="badge ${g?'gold':''}"><span class="ic">${ic}</span>${t}</div>`).join('');
+  // ===== 統計儀表板：把已算好的 MM.stats() 畫出來 =====
+  function barList(id,items,fmt){const el=document.getElementById(id);if(!el)return;
+    if(!items||!items.length){el.innerHTML='<div class="sl-empty">—</div>';return;}
+    const mx=items[0][1]||1;
+    el.innerHTML=items.slice(0,6).map(([k,v])=>`<div class="sl-row"><span class="sl-k" title="${(''+k).replace(/"/g,'&quot;')}">${fmt?fmt(k):k}</span><span class="sl-bar"><i style="width:${Math.max(6,v/mx*100)}%"></i></span><span class="sl-v">${v}</span></div>`).join('');}
+  barList('sc-shows',st.topShows);
+  barList('sc-countries',st.topCountries,k=>`${FLAG[k]||'🌐'} ${k}`);
+  barList('sc-cities',st.topCities,k=>`${CITYZH[k]||k}`);
+  barList('sc-theatres',st.topVenues);
+  const yc=document.getElementById('sc-years');
+  const validYears=(st.years||[]).filter(y=>y&&!isNaN(+y)).map(Number);
+  if(yc&&validYears.length){
+    const y0=Math.min(...validYears),y1=Math.max(...validYears);const cnt={};(st.perYear||[]).forEach(([y,n])=>{if(y&&!isNaN(+y))cnt[+y]=n;});
+    const cols=[];for(let y=y0;y<=y1;y++)cols.push([y,cnt[y]||0]);
+    const mx=Math.max(1,...cols.map(c=>c[1]));
+    yc.innerHTML=cols.map(([y,n])=>`<div class="yc-col"><span class="yc-n">${n||''}</span><span class="yc-bar" style="height:${Math.round(n/mx*100)}%"></span><span class="yc-lbl">'${(''+y).slice(2)}</span></div>`).join('');
+  } else if(yc){yc.innerHTML='<div class="sl-empty">尚無日期資料</div>';}
+  const p=MM.personality();
+  document.getElementById('persona').innerHTML=`<h3>你是什麼樣的劇迷？</h3>
+    <div class="pn">${p.nickname}</div><div class="pb">${p.blurb}</div>
+    <div class="axes">${p.axes.map(a=>{const left=a[2];const pos=left?14:86;
+      return `<div class="axis"><div class="r"><span class="${left?'on':''}">${a[0]}</span><span>${a[3]}</span><span class="${!left?'on':''}">${a[1]}</span></div><div class="track"><i style="left:calc(${pos}% - 6px)"></i></div></div>`;}).join('')}</div>`;
+})();
+
+/* ---------- detail modal ---------- */
+const dlg=document.getElementById('detail');
+function openDetail(s){
+  const dp=document.getElementById('dt-poster'),img=document.getElementById('dt-img');
+  if(s.poster){dp.classList.remove('is-fallback');img.src=s.poster;img.style.objectFit=s.posterFit==='contain'?'contain':'cover';}
+  else{dp.classList.add('is-fallback');img.removeAttribute('src');dp.style.setProperty('--dt-accent',s.color||'#7c5cff');  // 無海報→文字 fallback，不破圖
+    document.getElementById('dt-fb-en').textContent=s.title;document.getElementById('dt-fb-zh').textContent=s.zh||'';}
+  document.getElementById('dt-en').textContent=s.title;
+  document.getElementById('dt-zh').textContent=s.zh;
+  const rt=document.getElementById('dt-rate');
+  if(s.rating>0){rt.textContent=stars(s.rating)+`  ${s.rating}/5`;rt.style.display='';}
+  else{rt.textContent='';rt.style.display='none';}   // 未評分→隱藏，不再顯示 0/5
+  document.getElementById('dt-dl').innerHTML=`
+    <dt>劇院</dt><dd>${s.venue||'—'}</dd>
+    <dt>城市</dt><dd>${s.city?s.city+(s.country?', '+s.country:''):(s.country||'—')} ${FLAG[s.country]||''}</dd>
+    <dt>日期</dt><dd>${fdt(s.date)}${s.time?' · '+s.time:''}</dd>
+    <dt>座位</dt><dd>${s.seat||'—'}</dd>
+    <dt>票價</dt><dd>${s.price?`${s.price} ${s.cur||''}`:'—'}</dd>
+    <dt>製作</dt><dd>${s.prod||'—'}</dd>`;
+  document.getElementById('dt-note').textContent=s.note?('「'+s.note+'」'):'';
+  document.getElementById('dt-note').style.display=s.note?'block':'none';
+  if(dlg.showModal)dlg.showModal();
+}
+document.getElementById('dtclose').onclick=()=>dlg.close();
+dlg.addEventListener('click',e=>{if(e.target===dlg)dlg.close();});
+
+/* init */
+/* theme picker */
+function applyTheme(t){
+  if(t==='midnight')document.documentElement.removeAttribute('data-theme');
+  else document.documentElement.setAttribute('data-theme',t);
+  try{localStorage.setItem('mm-theme',t);}catch(e){}
+  document.querySelectorAll('#themePick button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.th===t));
+  drawMap();
+}
+document.getElementById('themePick').addEventListener('click',e=>{const b=e.target.closest('button');if(b)applyTheme(b.dataset.th);});
+
+renderPoster();buildCityList();drawMap();placePins();moveThumb();
+// 空狀態：banner CTA 開登錄；非 live 時 hero 副標改成「範例預覽」
+(function(){
+  const cta=document.getElementById('demoBannerCta');
+  if(cta)cta.onclick=()=>{const f=document.getElementById('fabLog');if(f)f.click();};
+  if(document.documentElement.dataset.live!=='1'){const sub=document.querySelector('.hero .sub');if(sub)sub.textContent='範例預覽 · 加入後就換成你的';}
+})();
+applyTheme((function(){try{return localStorage.getItem('mm-theme')||'midnight';}catch(e){return 'midnight';}})());
+window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
+</script>
+<button type="button" id="fabLog" aria-label="加入一齣音樂劇" style="position:fixed;right:22px;bottom:22px;z-index:1200;background:var(--s1);color:var(--gold);border:1.5px solid var(--gold);font-weight:800;padding:13px 20px;border-radius:999px;cursor:pointer;box-shadow:0 8px 24px rgba(0,0,0,.45);display:inline-flex;align-items:center;gap:8px;font-size:15px">＋ 加入音樂劇</button>
+<style>
+.logmodal[hidden]{display:none}
+.logmodal{position:fixed;inset:0;z-index:2000;display:flex;align-items:center;justify-content:center}
+.logmodal-bd{position:absolute;inset:0;background:rgba(8,8,12,.72)}  /* 實心遮罩，不用 backdrop-filter blur（避免每幀模糊整頁主畫面造成打字卡頓） */
+.logmodal-card{position:relative;width:min(700px,95vw);height:min(90vh,880px);background:var(--s1,#fff);border:1px solid var(--hair2,rgba(0,0,0,.15));border-radius:16px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.55)}
+.logmodal-card iframe{width:100%;height:100%;border:0;background:var(--bg,#fff)}
+.logmodal-x{position:absolute;top:10px;right:12px;z-index:3;width:34px;height:34px;border-radius:50%;border:none;background:rgba(0,0,0,.5);color:#fff;font-size:15px;cursor:pointer}
+.mm-toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(12px);z-index:3000;background:#1b1726;color:#fff;border:1px solid rgba(255,255,255,.16);border-radius:12px;padding:11px 16px;font-size:14px;box-shadow:0 12px 36px rgba(0,0,0,.5);display:flex;align-items:center;gap:14px;opacity:0;transition:opacity .25s,transform .25s}
+.mm-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.mm-toast button{background:none;border:none;color:var(--gold,#c9a85c);font-weight:800;cursor:pointer;font-size:14px}
+</style>
+<div class="logmodal" id="logModal" hidden>
+  <div class="logmodal-bd" id="logModalBd"></div>
+  <div class="logmodal-card">
+    <iframe id="logFrame" title="加入音樂劇" src="about:blank"></iframe>
+  </div>
+</div>
+<script>
+(function(){
+  const m=document.getElementById('logModal'),fr=document.getElementById('logFrame');
+  let before='';
+  const snap=()=>{try{return localStorage.getItem('mm-log')||'';}catch(e){return '';}};
+  const cb=()=>'&_='+Date.now();   // cache-bust：每次都載最新輸入頁（避免瀏覽器快取舊版）
+  function openLog(){before=snap();fr.src='me-input.html?embed=1'+cb();m.hidden=false;document.body.style.overflow='hidden';}
+  function closeLog(){m.hidden=true;fr.src='about:blank';document.body.style.overflow='';
+    if(snap()!==before)location.reload();}   // 有新登錄→即時長到牆/地圖/統計
+  function openEdit(i){before=snap();fr.src='me-input.html?embed=1&edit='+i+cb();m.hidden=false;document.body.style.overflow='hidden';}
+  window.mmEditShow=openEdit;
+  window.mmDeleteShow=function(i,title,zh){
+    try{const log=JSON.parse(localStorage.getItem('mm-log')||'[]');const removed=log.splice(i,1)[0];
+      localStorage.setItem('mm-log',JSON.stringify(log));
+      sessionStorage.setItem('mm-undo',JSON.stringify({item:removed,idx:i,name:(zh||title||'這齣')}));
+    }catch(e){}
+    location.reload();
+  };
+  const nl=document.getElementById('navLog');if(nl)nl.addEventListener('click',openLog);
+  document.getElementById('fabLog').addEventListener('click',openLog);
+  document.getElementById('logModalBd').addEventListener('click',closeLog);
+  window.addEventListener('keydown',e=>{if(e.key==='Escape'&&!m.hidden)closeLog();});
+  // iframe 登錄端按 ✕／Esc 想離開 → 關掉整個 modal
+  window.addEventListener('message',e=>{if(e.data==='mm-log-exit'&&!m.hidden)closeLog();});
+  // 卡片刪除後 reload → 顯示可復原 toast（top-level，不被任何 modal 蓋住）
+  try{const u=sessionStorage.getItem('mm-undo');if(u){sessionStorage.removeItem('mm-undo');const o=JSON.parse(u);
+    const t=document.createElement('div');t.className='mm-toast';
+    t.innerHTML=`已刪除《${o.name}》<button type="button">復原</button>`;
+    document.body.appendChild(t);requestAnimationFrame(()=>t.classList.add('show'));
+    const hide=()=>{t.classList.remove('show');setTimeout(()=>t.remove(),300);};
+    const tm=setTimeout(hide,6000);
+    t.querySelector('button').onclick=()=>{clearTimeout(tm);
+      try{const log=JSON.parse(localStorage.getItem('mm-log')||'[]');log.splice(o.idx,0,o.item);localStorage.setItem('mm-log',JSON.stringify(log));}catch(e){}
+      location.reload();};
+  }}catch(e){}
+})();
+</script>
 </body>
 </html>

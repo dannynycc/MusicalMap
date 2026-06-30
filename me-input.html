@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="referrer" content="no-referrer" />
+<link rel="icon" href="logo.png" />
+<title>My Musicals — 記錄一齣音樂劇（輸入端）· DEMO v3</title>
+<script>/* no-flash theme */(function(){try{var t=localStorage.getItem('mm-theme');if(t&&t!=='midnight')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,900&family=Inter:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --bg:#0c0c11;--s1:#15151d;--s2:#1c1c27;--s3:#24242f;
+  --ink1:#f3f1ec;--ink2:#c6c2bb;--ink3:#857f74;
+  --hair:rgba(255,255,255,.08);--hair2:rgba(255,255,255,.14);
+  --gold:#c9a85c;--gold-soft:rgba(201,168,92,.16);--glow:0 0 22px rgba(201,168,92,.35);
+  --green:#5cb85c;--ease:cubic-bezier(.22,1,.36,1);--spring:cubic-bezier(.34,1.56,.64,1);
+  --fr:'Fraunces',serif;--ui:'Inter','Noto Sans TC',sans-serif;
+  --shadow:0 1px 0 rgba(255,255,255,.04) inset,0 2px 4px rgba(0,0,0,.4),0 12px 30px rgba(0,0,0,.5);
+  --bg-mesh:radial-gradient(800px 500px at 12% -5%,rgba(201,168,92,.06),transparent 60%);
+  --on-accent:#1a1407; --star-empty:#6f6f7a;
+}
+[data-theme="gallery"]{--bg:#f7f6f3;--s1:#ffffff;--s2:#fcfbf9;--s3:#f1efe9;--ink1:#1a1917;--ink2:#5d5a53;--ink3:#8a857c;
+  --hair:rgba(20,18,16,.10);--hair2:rgba(20,18,16,.17);--gold:#b11226;--gold-soft:rgba(177,18,38,.10);--glow:none;
+  --bg-mesh:none;--on-accent:#fff;--star-empty:#cfcdc7;--shadow:0 1px 2px rgba(20,18,16,.06),0 8px 24px rgba(20,18,16,.08)}
+[data-theme="cream"]{--bg:#f4ebd9;--s1:#fbf5e8;--s2:#fffdf6;--s3:#f0e6d2;--ink1:#221b10;--ink2:#6e6044;--ink3:#8c7c5c;
+  --hair:rgba(60,46,28,.16);--hair2:rgba(60,46,28,.26);--gold:#a23b2e;--gold-soft:rgba(162,59,46,.12);--glow:none;
+  --bg-mesh:none;--on-accent:#fff;--star-empty:#d8ccb2;--shadow:0 1px 0 #dac9a6,0 10px 26px rgba(60,48,24,.12)}
+[data-theme="neon"]{--bg:#0a0612;--s1:#160c28;--s2:#1f1138;--s3:#2a1850;--ink1:#fff;--ink2:#bcacd9;--ink3:#8b7da9;
+  --hair:rgba(255,255,255,.10);--hair2:rgba(255,255,255,.18);--gold:#ff2d7e;--gold-soft:rgba(255,45,126,.16);--glow:0 0 18px rgba(255,45,126,.5);
+  --bg-mesh:radial-gradient(90% 70% at 15% 0%,rgba(42,10,74,.85),transparent 55%);--on-accent:#fff;--star-empty:#7565a0}
+[data-theme="deco"]{--bg:#0f0d0a;--s1:#17130c;--s2:#1f1a10;--s3:#2a2316;--ink1:#f3ecda;--ink2:#b49a66;--ink3:#8d7a4e;
+  --hair:rgba(110,90,46,.40);--hair2:rgba(110,90,46,.6);--gold:#e3b23c;--gold-soft:rgba(227,178,60,.16);--glow:0 0 16px rgba(227,178,60,.4);
+  --bg-mesh:radial-gradient(100% 70% at 50% 0%,rgba(40,32,20,.9),transparent 60%);--on-accent:#1a1407;--star-empty:#857848}
+*{box-sizing:border-box}
+body{margin:0;font-family:var(--ui);color:var(--ink1);background:var(--bg);-webkit-font-smoothing:antialiased;
+  background-image:var(--bg-mesh);transition:background-color .3s ease,color .3s ease}
+.theme-pick{display:flex;gap:6px;align-items:center;margin-right:2px}
+.theme-pick button{width:18px;height:18px;border-radius:50%;border:1px solid var(--hair2);background:var(--sw);cursor:pointer;padding:0;transition:transform .15s var(--ease)}
+.theme-pick button:hover{transform:scale(1.18)}
+.theme-pick button[aria-pressed=true]{box-shadow:0 0 0 2px var(--bg),0 0 0 3.5px var(--gold)}
+a{color:inherit}::selection{background:rgba(201,168,92,.32)}
+input,button,textarea,select{font-family:inherit}
+:where(button,[tabindex],input,a):focus-visible{outline:2px solid var(--gold);outline-offset:2px;border-radius:6px}
+.yeargrid{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin-top:8px;max-height:200px;overflow:auto;padding:2px}
+.ygbtn{border:1px solid var(--hair2);background:var(--s2);color:var(--ink1);border-radius:8px;padding:9px 0;font-size:13px;cursor:pointer}
+.ygbtn:hover{border-color:var(--gold);background:var(--gold-soft)}
+.wrap{max-width:1100px;margin:0 auto;padding:0 22px}
+header{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--hair)}
+.bar{height:60px;display:flex;align-items:center;justify-content:space-between}
+.brand{display:inline-flex;align-items:center;gap:9px;font-family:var(--fr);font-weight:900;font-size:21px;text-decoration:none}
+.brand img{width:26px;height:26px;object-fit:contain}.brand b{color:var(--gold)}
+.nav{display:flex;gap:14px;align-items:center;font-size:14px}.nav a{opacity:.8;text-decoration:none}.nav a:hover{opacity:1;color:var(--gold)}
+.demo-tag{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--ink2);border:1px solid var(--hair2);border-radius:999px;padding:3px 10px}
+
+.intro{margin:26px 0 8px}
+.intro h1{font-family:var(--fr);font-weight:900;font-size:clamp(26px,4vw,38px);margin:0 0 8px;letter-spacing:-1px}
+.intro p{color:var(--ink2);max-width:680px;line-height:1.7;margin:0;font-size:15px}
+.intro .hint{margin-top:8px;color:var(--ink3);font-size:13px}
+
+.cta{display:flex;gap:12px;flex-wrap:wrap;margin:22px 0 6px}
+.btn{border:none;border-radius:12px;padding:14px 22px;font-weight:800;font-size:15px;cursor:pointer;display:inline-flex;align-items:center;gap:9px}
+.btn-primary{background:var(--gold);color:var(--on-accent);box-shadow:0 4px 14px rgba(201,168,92,.3)}
+.btn-primary:hover{transform:translateY(-1px)}
+.btn-ghost{background:var(--s1);color:var(--ink1);border:1px solid var(--hair2)}
+.btn-ghost:hover{border-color:var(--gold)}
+
+/* logged wall + empty state */
+.sec{margin:34px 0 14px;display:flex;align-items:baseline;justify-content:space-between}
+.sec h2{font-family:var(--fr);font-weight:700;font-size:20px;margin:0}
+.sec .ct{color:var(--ink3);font-size:13px}
+#empty{border:1.5px dashed var(--hair2);border-radius:18px;padding:40px 20px;text-align:center;color:var(--ink3)}
+#empty .ghosts{display:flex;gap:12px;justify-content:center;margin-bottom:18px}
+#empty .ghosts span{width:54px;height:54px;border-radius:50%;border:2px dashed var(--hair2);display:grid;place-items:center;color:var(--ink3);font-size:11px}
+#empty b{color:var(--ink2)}
+#wall{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:16px}
+.lcard{position:relative}
+.lcard .pos{aspect-ratio:2/3;border-radius:10px;overflow:hidden;background:var(--s3);box-shadow:inset 0 0 0 1px var(--hair),0 6px 18px rgba(0,0,0,.4);position:relative}
+.lcard .pos img{width:100%;height:100%;object-fit:cover;display:block}
+.lcard .pos .stamp-badge{position:absolute;top:8px;right:8px;width:30px;height:30px;border-radius:50%;background:rgba(0,0,0,.4);display:grid;place-items:center;font-size:14px;backdrop-filter:blur(3px)}
+.lcard .cap{margin-top:8px}
+.lcard .cap .en{font-weight:700;font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lcard .cap .zh{font-size:12px;color:var(--ink2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lcard .cap .dt{font-size:11.5px;color:var(--ink3);margin-top:3px;display:flex;justify-content:space-between;gap:6px}
+.lcard .cap .dt .pre{color:var(--gold)}
+.lcard .cap .stars{color:var(--gold);font-size:11px}
+.lcard .lacts{position:absolute;top:8px;left:8px;display:flex;gap:6px;opacity:0;transition:opacity .18s}
+.lcard:hover .lacts{opacity:1}
+.lcard .lacts button{width:30px;height:30px;border-radius:8px;border:none;background:rgba(0,0,0,.6);color:#fff;cursor:pointer;font-size:13px;backdrop-filter:blur(4px);display:grid;place-items:center}
+.lcard .lacts button:hover{background:var(--gold);color:var(--on-accent)}
+@media(hover:none){.lcard .lacts{opacity:1}}
+.lcard.justadded .pos{animation:thunk .5s var(--spring) both}
+@keyframes thunk{0%{transform:translateY(-12px) scale(1.4);opacity:0}55%{transform:scale(.96);opacity:1}100%{transform:scale(1)}}
+
+/* ===== modal / sheet ===== */
+dialog{border:none;padding:0;background:none;max-width:none;max-height:none}
+dialog::backdrop{background:rgba(0,0,0,.66);backdrop-filter:blur(6px)}
+.sheet{background:var(--s1);color:var(--ink1);width:min(560px,96vw);max-height:92vh;border-radius:20px;overflow:hidden;
+  display:flex;flex-direction:column;box-shadow:0 40px 100px rgba(0,0,0,.6);border:1px solid var(--hair)}
+@media(max-width:560px){.sheet{width:100vw;max-height:94vh;border-radius:20px 20px 0 0;position:fixed;bottom:0;left:0}}
+.sheet header{position:static;background:var(--s2);border-bottom:1px solid var(--hair);height:auto}
+.sheet .shead{display:flex;align-items:center;justify-content:space-between;padding:14px 18px}
+.sheet .shead .ttl{font-weight:800;font-size:15px}
+.sheet .shead .x{background:none;border:none;color:var(--ink2);font-size:20px;cursor:pointer;width:34px;height:34px;border-radius:50%}
+.sheet .shead .x:hover{background:var(--hair)}
+.sheet .save{background:var(--gold);color:var(--on-accent);border:none;border-radius:10px;padding:9px 18px;font-weight:800;cursor:pointer;font-size:14px}
+.sheet .save:disabled{opacity:.4;cursor:not-allowed}
+.sbody{padding:16px 18px 20px;overflow-y:auto}
+.step{margin-bottom:18px}
+.step>.lbl{font-size:12px;letter-spacing:1px;text-transform:uppercase;color:var(--ink3);font-weight:700;margin-bottom:9px;display:flex;justify-content:space-between}
+.step>.lbl .opt{text-transform:none;letter-spacing:0;color:var(--ink3);font-weight:500}
+
+/* search */
+.searchbox{position:relative}
+.searchbox input{width:100%;font-size:16px;background:var(--s2);border:1px solid var(--hair2);border-radius:12px;padding:14px 14px 14px 42px;color:var(--ink1)}
+.searchbox input:focus{outline:none;border-color:var(--gold)}
+.searchbox .mag{position:absolute;left:14px;top:50%;transform:translateY(-50%);opacity:.5}
+.results{margin-top:10px;display:flex;flex-direction:column;max-height:330px;overflow-y:auto;border-radius:12px}
+.rrow{display:flex;align-items:center;gap:12px;padding:9px 10px;border-radius:10px;cursor:pointer;text-align:left;background:none;border:none;width:100%;color:var(--ink1)}
+.rrow:hover,.rrow.active{background:var(--gold-soft)}
+.rrow.active{box-shadow:inset 3px 0 0 var(--gold)}
+.rrow .th{position:relative;width:40px;height:56px;border-radius:5px;flex:none;display:grid;place-items:center;overflow:hidden;background:linear-gradient(160deg,var(--s2),var(--s3));box-shadow:inset 0 0 0 1px var(--hair)}
+.rrow .th b{font-family:var(--fr);font-weight:900;font-size:20px;color:var(--ink2);line-height:1}
+.rrow .th img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.rrow .meta{min-width:0;flex:1}
+.rrow .meta .t{font-size:15px;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rrow .meta .t .zh{color:var(--ink2);font-weight:500;font-size:13px;margin-left:7px}
+.rrow .meta .t mark{background:none;color:var(--gold);font-weight:800}
+.rrow .meta .sub{font-size:12.5px;color:var(--ink3);margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rrow .chev{color:var(--ink3);flex:none}
+.nores{padding:16px;color:var(--ink2);font-size:14px;text-align:center}
+.mgeo{color:var(--ink3);font-size:12.5px;margin:6px 0 2px;min-height:1.2em}
+.mgeo b{color:var(--ink2)}
+.backbtn{background:none;border:none;color:var(--ink2);font-size:13px;font-weight:600;cursor:pointer;padding:2px 0;margin:0 0 12px;font-family:inherit}
+.backbtn:hover{color:var(--gold)}
+.searchhint{margin-top:20px;padding:22px 16px;color:var(--ink2);font-size:13.5px;line-height:1.7;text-align:center;border:1px dashed var(--hair2);border-radius:12px;background:var(--s2)}
+.searchhint .re-sub{color:var(--ink3);font-size:12px}
+.batchdone{padding:16px 16px 4px;text-align:center}
+.batchdone .bd-h{font-size:17px;font-weight:800;color:var(--ink1)}
+.batchdone .bd-p{font-size:13px;color:var(--ink2);line-height:1.6;margin-top:8px}
+.batchdone .bd-p b{color:var(--gold)}
+.recent-row .rb.wide{width:auto;padding:0 12px;height:32px;font-size:12.5px;font-weight:700;white-space:nowrap}
+.bd-done{display:block;width:100%;margin-top:14px;padding:13px;border:none;border-radius:12px;background:var(--gold);color:var(--on-accent);font-weight:800;font-size:14.5px;cursor:pointer;font-family:inherit}
+.bd-done:hover{filter:brightness(1.05)}
+.bd-more{display:block;width:100%;margin-top:14px;padding:12px;border:1px solid var(--hair2);border-radius:12px;background:var(--s2);color:var(--ink1);font-weight:700;font-size:14px;cursor:pointer;font-family:inherit}
+.bd-more:hover{border-color:var(--gold);color:var(--gold)}
+.bd-more + .bd-done{margin-top:8px}
+.recent{margin-top:16px}
+.recent-empty{padding:22px 16px;color:var(--ink2);font-size:13.5px;line-height:1.7;text-align:center;border:1px dashed var(--hair2);border-radius:12px;background:var(--s2)}
+.recent-empty .re-sub{color:var(--ink3);font-size:12px}
+.recent-h{display:flex;justify-content:space-between;align-items:baseline;font-size:12.5px;font-weight:800;color:var(--ink2);letter-spacing:.02em;margin:2px 2px 8px}
+.recent-h span{font-weight:500;color:var(--ink3);font-size:11.5px}
+.recent-row{display:flex;align-items:center;gap:11px;padding:7px 8px;border-radius:10px}
+.recent-row:hover{background:var(--gold-soft)}
+.recent-row .rth{width:34px;height:48px;border-radius:5px;flex:none;background:var(--s3);box-shadow:inset 0 0 0 1px var(--hair);overflow:hidden;display:flex;align-items:center;justify-content:center}
+.recent-row .rth img{width:100%;height:100%;object-fit:cover}
+.recent-row .rth span{font-weight:800;color:var(--ink2);font-size:15px}
+.recent-row .rmeta{min-width:0;flex:1}
+.recent-row .rt{font-size:14px;font-weight:700;color:var(--ink1);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.recent-row .rsub{font-size:12px;color:var(--ink2);margin-top:1px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.recent-row .rsub2{font-size:12px;color:var(--ink2);margin-top:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.recent-row .rsub2 b{color:var(--ink1);font-weight:600}
+.recent-row .rnote{font-size:11.5px;color:var(--ink3);font-style:italic;margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.recent-row .rb{flex:none;background:none;border:1px solid var(--hair2);color:var(--ink2);width:30px;height:30px;border-radius:8px;cursor:pointer;font-size:13px}
+.recent-row .rb:hover{border-color:var(--gold);color:var(--gold)}
+.manualbtn{margin-top:10px;background:var(--gold-soft);border:1px solid var(--gold);color:var(--gold);border-radius:10px;padding:9px 16px;font-weight:700;cursor:pointer;font-family:inherit}
+.manualbtn:hover{filter:brightness(1.1)}
+.lcard .pos .posfall{width:100%;height:100%;display:grid;place-items:center;font-family:var(--fr);font-weight:900;font-size:40px;color:var(--ink2);background:linear-gradient(160deg,var(--s2),var(--s3))}
+
+/* production cards */
+.prodcards{display:flex;flex-direction:column;gap:10px}
+.pcard{display:flex;align-items:center;gap:12px;padding:13px 14px;border-radius:12px;border:1px solid var(--hair2);background:var(--s2);cursor:pointer;text-align:left;width:100%;color:var(--ink1)}
+.pcard:hover{border-color:var(--gold)}
+.pcard.escape{border-style:dashed}.pcard.escape .pn{color:var(--gold)}
+.pcard.sel{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold),var(--glow)}
+.pcard .fl{font-size:24px;flex:none}
+.pcard .pm{flex:1;min-width:0}
+.pcard .pm>span{display:block}
+.pcard .pm .pn{font-weight:700;font-size:14.5px;color:var(--ink1)}
+.pcard .pm .pv{font-size:12.5px;color:var(--ink2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pcard .pm .pr{font-size:11.5px;color:#9c968b;margin-top:2px}
+.pcard .radio{width:20px;height:20px;border-radius:50%;border:2px solid var(--hair2);flex:none}
+.pcard .chev{font-size:20px;color:var(--ink3);flex:none;line-height:1}
+.pcard.sel .radio{border-color:var(--gold);background:radial-gradient(circle,var(--gold) 40%,transparent 46%)}
+
+/* confirm header */
+.confirm{display:flex;gap:14px;align-items:center;background:var(--s2);border:1px solid var(--hair);border-radius:14px;padding:12px;margin-bottom:16px}
+.confirm img{width:54px;height:76px;border-radius:7px;object-fit:cover;flex:none;background:var(--s3)}
+.confirm .ci{min-width:0}
+.confirm .ci .en{font-family:var(--fr);font-weight:900;font-size:18px;line-height:1.1}
+.confirm .ci .zh{color:var(--gold);font-size:13px;margin:1px 0 6px}
+.confirm .ci .chips{display:flex;gap:6px;flex-wrap:wrap}
+.confirm .ci .chip{font-size:11.5px;background:var(--s3);border:1px solid var(--hair);border-radius:999px;padding:3px 9px;color:var(--ink2)}
+.confirm .ci .chip b{color:var(--ink1);font-weight:600}
+.confirm .ci .chgprod{cursor:pointer;color:var(--gold);border-color:var(--gold);background:var(--gold-soft);font-family:inherit}
+.confirm .ci .chgprod:hover{filter:brightness(1.1)}
+
+/* mode toggle */
+.modetog{display:inline-flex;background:var(--s2);border:1px solid var(--hair);border-radius:999px;padding:3px;margin-bottom:10px}
+.modetog button{border:none;background:none;color:var(--ink2);font-weight:700;font-size:13px;padding:7px 14px;border-radius:999px;cursor:pointer}
+.modetog button[aria-pressed=true]{background:var(--gold);color:var(--on-accent)}
+
+/* date chips */
+.runhint{font-size:12px;color:var(--ink3);margin:9px 0 0;line-height:1.5}
+.runhint b{color:var(--ink2)}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.dchip{border:1px solid var(--hair2);background:var(--s2);color:var(--ink1);border-radius:999px;padding:9px 15px;font-size:14px;font-weight:600;cursor:pointer;min-height:42px}
+.dchip:hover{border-color:var(--gold)}
+.dchip.on{background:var(--gold);border-color:var(--gold);color:var(--on-accent)}
+.dchip.ghost{background:transparent;border-style:dashed;color:var(--ink2);font-weight:500;min-height:38px;padding:7px 13px;font-size:13px}
+.dchip.ghost:hover{border-color:var(--gold);color:var(--gold)}
+.dchip.unsure{border-style:dashed;color:var(--ink2)}
+.chosen-date{margin-top:11px;font-size:14px;color:var(--ink2)}
+.chosen-date b{color:var(--gold);font-weight:800;font-size:16px}
+.months{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin-top:10px}
+.mchip{border:1px solid var(--hair2);background:var(--s2);color:var(--ink2);border-radius:8px;padding:8px 0;font-size:13px;cursor:pointer;text-align:center}
+.mchip:hover{border-color:var(--gold)}.mchip.on{background:var(--gold);border-color:var(--gold);color:var(--on-accent);font-weight:700}
+.mchip.dark{opacity:.35;cursor:not-allowed}
+.monthnote{margin-top:10px;font-size:12.5px;line-height:1.5;color:var(--ink2);background:var(--s2);border:1px dashed var(--hair2);border-radius:8px;padding:9px 11px}
+.refine{margin-top:9px;font-size:12.5px;color:var(--gold);cursor:pointer;background:none;border:none;padding:0;text-decoration:underline}
+
+/* details disclosure */
+.disclose{background:none;border:1px dashed var(--hair2);color:var(--ink2);border-radius:10px;padding:11px;width:100%;font-weight:700;cursor:pointer;font-size:14px}
+.disclose:hover{border-color:var(--gold);color:var(--ink1)}
+.l2{margin-top:14px;display:grid;gap:14px}
+.l2[hidden]{display:none}
+.fld .fl{font-size:12px;color:var(--ink3);font-weight:600;margin-bottom:6px;display:block}
+.fld input,.fld textarea,.fld select,.datesel input,.datesel select{width:100%;font-size:16px;background:var(--s2);border:1px solid var(--hair2);border-radius:10px;padding:11px 12px;color:var(--ink1);font-family:inherit;height:46px;box-sizing:border-box}
+.fld textarea{height:auto}
+.fld input:focus,.fld textarea:focus,.fld select:focus,.datesel input:focus,.datesel select:focus{outline:none;border-color:var(--gold)}
+.fld select,.datesel select{appearance:none;-webkit-appearance:none;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23999' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 11px center;padding-right:28px}
+.combo{position:relative}
+.combo-panel{position:absolute;top:100%;left:0;right:0;z-index:60;margin-top:5px;min-width:172px;background:var(--s2);border:1px solid var(--hair2);border-radius:10px;max-height:230px;overflow-y:auto;box-shadow:0 14px 30px rgba(0,0,0,.45)}
+.combo-row{display:block;width:100%;text-align:left;padding:10px 12px;background:none;border:none;border-bottom:1px solid var(--hair);color:var(--ink1);cursor:pointer;font-size:14px;font-family:inherit;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.combo-row:last-child{border-bottom:none}
+.combo-row:hover,.combo-row.on{background:var(--gold-soft);color:var(--gold);font-weight:600}
+.datesel{display:grid;grid-template-columns:1.1fr 1fr 1fr;gap:8px}
+.ds-hint{font-size:11.5px;color:var(--ink3);margin-top:6px;line-height:1.5}
+.price-row{display:grid;grid-template-columns:118px 1fr;gap:8px;align-items:stretch}
+.price-in{display:flex;align-items:center;background:var(--s2);border:1px solid var(--hair2);border-radius:10px;padding-left:12px}
+.price-in:focus-within{border-color:var(--gold)}
+.price-in .cursym{color:var(--ink2);font-size:14px;white-space:nowrap;font-weight:600}
+.price-in input{border:none!important;background:none!important;padding-left:6px;flex:1;min-width:0}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.rate{display:inline-flex;gap:2px}
+.rate .st{font-size:30px;color:var(--star-empty);cursor:pointer;position:relative;width:34px;height:40px;line-height:40px;text-align:center}
+.rate .st .half{position:absolute;left:0;top:0;width:50%;height:100%;overflow:hidden;color:var(--gold)}
+.rate .st.full{color:var(--gold)}
+.rateval{margin-left:10px;color:var(--gold);font-weight:700;font-size:15px}
+.price{display:flex;gap:0;align-items:stretch}
+.price .cur{background:var(--s3);border:1px solid var(--hair2);border-right:none;border-radius:10px 0 0 10px;padding:0 12px;display:flex;align-items:center;font-weight:700;color:var(--ink2);cursor:pointer}
+.price input{border-radius:0 10px 10px 0}
+
+/* checklist grid */
+
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);background:var(--s3);border:1px solid var(--hair2);
+  border-radius:12px;padding:12px 18px;box-shadow:0 12px 30px rgba(0,0,0,.5);opacity:0;transition:.25s var(--ease);z-index:200;font-size:14px;display:flex;align-items:center;gap:12px}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.toast b{color:var(--gold)}
+.toast .undo{background:none;border:none;color:var(--gold);font-weight:700;cursor:pointer;text-decoration:underline}
+
+footer{margin:48px 0 40px;color:var(--ink3);font-size:13px;text-align:center;line-height:1.7}
+</style>
+</head>
+<body>
+<header><div class="wrap bar">
+  <a class="brand" href="index.html"><img src="logo.png" alt=""/>Musical<b>Map</b></a>
+  <nav class="nav">
+    <div class="theme-pick" id="themePick" role="group" aria-label="主題底色">
+      <button data-th="midnight" title="午夜（暗）" style="--sw:#13182f"></button>
+      <button data-th="gallery" title="畫廊白（亮）" style="--sw:#f4f2ec"></button>
+      <button data-th="cream" title="奶油（亮）" style="--sw:#efe1c4"></button>
+      <button data-th="neon" title="霓虹（暗）" style="--sw:#ff2d7e"></button>
+      <button data-th="deco" title="裝飾金（暗）" style="--sw:#e3b23c"></button>
+    </div>
+    <span class="demo-tag">Demo v3 · 輸入端</span><a href="demo3-merged.html">看呈現端 →</a><a href="index.html">所有方向</a></nav>
+</div></header>
+
+<div class="wrap">
+  <div class="intro">
+    <h1>記錄一齣音樂劇</h1>
+    <p>這是<strong>輸入端</strong>。重點：大多數人是在<strong>加入以前看過的劇</strong>（五年前那一齣），所以日期<strong>不預設今天</strong> —— 選了劇，系統用該製作的<strong>演出區間</strong>幫你回憶是哪一年；劇院／城市／海報全自動帶入，你幾乎不用打字。</p>
+    <p class="hint">試試：打「<b>歌劇魅影</b>」或「<b>phantom</b>」或「<b>les mis</b>」或「<b>六位</b>」。資料來自 MusicalMap 真實劇目庫（130 部作品示意）。</p>
+  </div>
+
+  <div class="cta">
+    <button class="btn btn-primary" id="openLog">＋ 記錄一齣音樂劇</button>
+  </div>
+
+  <div class="sec"><h2>我的觀劇紀錄</h2><span class="ct" id="logct">尚未記錄</span></div>
+  <div id="empty">
+    <div class="ghosts"><span>蓋章<br>處</span><span>蓋章<br>處</span><span>蓋章<br>處</span><span>蓋章<br>處</span><span>蓋章<br>處</span></div>
+    <div>你的觀劇護照還是空白的。<br><b>按上面「＋ 記錄一齣音樂劇」</b>蓋下第一個印章。</div>
+  </div>
+  <div id="wall" hidden></div>
+
+  <footer><b>My Musicals — 輸入端 demo</b>：搜尋→選製作→自動帶入→年份優先的日期→存檔蓋章。<br>
+    資料存在瀏覽器（localStorage）；海報為各劇真實封面。</footer>
+</div>
+
+<!-- LOG SHEET -->
+<dialog id="logDlg"><div class="sheet">
+  <header><div class="shead">
+    <span class="ttl" id="sheetTitle">記錄一齣音樂劇</span>
+    <div style="display:flex;gap:8px;align-items:center">
+      <button class="save" id="saveBtn" disabled>加入</button>
+      <button class="x" id="closeLog" aria-label="關閉">✕</button>
+    </div>
+  </div></header>
+  <div class="sbody" id="sbody"><!-- filled by JS --></div>
+</div></dialog>
+
+
+<div class="toast" id="toast"></div>
+
+<script src="catalog.js"></script>
+<script>
+/* ---------- helpers ---------- */
+const FLAG={'United Kingdom':'🇬🇧','UK':'🇬🇧','United States':'🇺🇸','USA':'🇺🇸','US':'🇺🇸','Japan':'🇯🇵','South Korea':'🇰🇷','Korea':'🇰🇷','Taiwan':'🇹🇼','Germany':'🇩🇪','France':'🇫🇷','Spain':'🇪🇸','Austria':'🇦🇹','Australia':'🇦🇺','China':'🇨🇳','Canada':'🇨🇦','Netherlands':'🇳🇱','Italy':'🇮🇹','Sweden':'🇸🇪','Norway':'🇳🇴','Singapore':'🇸🇬','Ireland':'🇮🇪'};
+const CUR={'United Kingdom':'GBP','UK':'GBP','United States':'USD','USA':'USD','US':'USD','Japan':'JPY','South Korea':'KRW','Korea':'KRW','Taiwan':'TWD','Germany':'EUR','France':'EUR','Spain':'EUR','Austria':'EUR','Australia':'AUD','China':'CNY','Canada':'CAD','Netherlands':'EUR'};
+const CURSYM={GBP:'£',USD:'$',JPY:'¥',KRW:'₩',TWD:'NT$',EUR:'€',AUD:'A$',CNY:'¥',CAD:'C$'};
+const MON_ZH=['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'];
+const _TODAY=new Date();                       // 瀏覽器端真實今天（不再寫死）
+const NOW_Y=_TODAY.getFullYear(), NOW_M=_TODAY.getMonth();   // 年、月(0-11)
+const NOW_ISO=`${NOW_Y}-${String(NOW_M+1).padStart(2,'0')}-${String(_TODAY.getDate()).padStart(2,'0')}`;
+// 年份下拉選項（今年→1980），sel=預選的年
+const yearOptions=(sel)=>`<option value="">年</option>`+Array.from({length:NOW_Y-1980+1},(_,i)=>NOW_Y-i).map(y=>`<option value="${y}"${String(sel)===String(y)?' selected':''}>${y}</option>`).join('');
+function flag(c){return FLAG[c]||'🌐';}
+function curOf(c){return CUR[c]||'';}
+function norm(s){return (s||'').toLowerCase().normalize('NFKD').replace(/[̀-ͯ]/g,'').replace(/[^\p{L}\p{N}]/gu,'');}
+function yearOf(d){return d?parseInt(d.slice(0,4),10):null;}
+function esc(s){return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');}
+function hesc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}  // HTML 轉義（座位/心得是使用者輸入）
+
+/* ---------- search index ---------- */
+const INDEX=CATALOG.map(w=>({w,hay:[norm(w.en),norm(w.zh),norm(w.g),norm(w.en.split(' ').map(x=>x[0]).join(''))].filter(Boolean)}));
+function scoreWork(q,e){const nq=norm(q);if(!nq)return 0;let best=0;
+  for(const h of e.hay){if(h===nq)best=Math.max(best,100);else if(h.startsWith(nq))best=Math.max(best,80);else if(h.includes(nq))best=Math.max(best,60);}
+  return best;}
+function search(q){return INDEX.map(e=>({w:e.w,s:scoreWork(q,e)})).filter(x=>x.s>0).sort((a,b)=>b.s-a.s).slice(0,8);}
+function prodSummary(w){const cities=[...new Set(w.prods.map(p=>p.city).filter(Boolean))];return cities.slice(0,3).join(' · ')+(cities.length>3?` +${cities.length-3}`:'');}
+
+/* ---------- state ---------- */
+let LOG=[];try{LOG=JSON.parse(localStorage.getItem('mm-log')||'[]')||[];}catch(e){LOG=[];}  // persisted
+function persist(){try{localStorage.setItem('mm-log',JSON.stringify(LOG));}catch(e){}}
+let draft=null;                // current entry being built
+let stickyYear=null;           // remember last-entered year for rapid backfill
+let lastMode='backfill';       // remember last mode
+let sessionActive=false, sessionBaseLen=0;  // 一次 modal 開啟期間：基準筆數，用來只顯示「這次加入的」
+
+/* ---------- log flow ---------- */
+const logDlg=document.getElementById('logDlg'), sbody=document.getElementById('sbody');
+const saveBtn=document.getElementById('saveBtn'), sheetTitle=document.getElementById('sheetTitle');
+document.getElementById('openLog').onclick=()=>{startLog();logDlg.showModal();};
+document.getElementById('closeLog').onclick=()=>logDlg.close();
+logDlg.addEventListener('click',e=>{if(e.target===logDlg)logDlg.close();});  // 點背景關閉
+
+function startLog(){
+  draft=null;saveBtn.disabled=true;sheetTitle.textContent='加入音樂劇';
+  sbody.innerHTML=`<div class="step">
+    <div class="searchbox"><span class="mag">🔍</span>
+      <input id="q" placeholder="打中文或英文劇名…例 歌劇魅影 / phantom" autocomplete="off" inputmode="search"/></div>
+    <div class="results" id="results"></div>
+    <div class="searchhint" id="searchHint">搜尋你看過的音樂劇 —— 中文、英文都行，搜不到也能手動新增。</div>
+  </div>`;
+  const q=document.getElementById('q'), res=document.getElementById('results');
+  q.focus();
+  let kbi=-1, searchTimer=null, lastHits=[];  // 高亮索引、搜尋 debounce
+  function highlight(){const rows=[...res.querySelectorAll('.rrow')];rows.forEach((r,i)=>r.classList.toggle('active',i===kbi));if(kbi>=0&&rows[kbi])rows[kbi].scrollIntoView({block:'nearest'});}
+  // 搜尋+渲染：首字色塊當底＋真海報蓋上（圖載好覆蓋，載失敗則留首字）；輕量 debounce
+  function doSearch(){const v=q.value.trim();if(!v){res.innerHTML='';kbi=-1;lastHits=[];return;}
+    const hits=search(v);lastHits=hits;
+    if(!hits.length){kbi=-1;res.innerHTML=`<div class="nores">目錄裡找不到「${v}」<br><button type="button" class="manualbtn" id="manualBtn">＋ 手動新增（自己打劇名／城市）</button></div>`;
+      document.getElementById('manualBtn').onclick=()=>manualAdd(v);return;}
+    res.innerHTML=hits.map((h,i)=>{
+      const w=h.w;const re=new RegExp('('+esc(v)+')','i');
+      const enH=w.en.replace(re,'<mark>$1</mark>');
+      const img=(w.prods[0]&&w.prods[0].img)||'';
+      return `<button class="rrow" data-i="${i}">
+        <span class="th"><b>${(w.zh||w.en||'?').trim()[0]||'?'}</b>${img?`<img src="${img.replace(/"/g,'&quot;')}" referrerpolicy="no-referrer" loading="lazy" decoding="async" alt=""/>`:''}</span>
+        <div class="meta"><div class="t">${enH}${w.zh?`<span class="zh">${w.zh}</span>`:''}</div>
+          <div class="sub">音樂劇 · ${prodSummary(w)}</div></div>
+        <span class="chev">›</span></button>`;}).join('');
+    [...res.children].forEach((b,i)=>b.onclick=()=>pickWork(hits[i].w));
+    kbi=0;highlight();}
+  q.oninput=()=>{const v=q.value.trim();const sh=document.getElementById('searchHint');
+    if(!v){clearTimeout(searchTimer);res.innerHTML='';kbi=-1;lastHits=[];if(sh)sh.hidden=false;return;}
+    if(sh)sh.hidden=true;
+    clearTimeout(searchTimer);searchTimer=setTimeout(doSearch,80);  // 輕量 debounce
+  };
+  // 鍵盤導航：↑↓ 移動、Enter 選取（debounce 期間按 Enter 先 flush 渲染）
+  q.onkeydown=(e)=>{
+    if(e.key==='Enter'){e.preventDefault();
+      if(searchTimer){clearTimeout(searchTimer);searchTimer=null;doSearch();}  // flush 待渲染
+      const rows=[...res.querySelectorAll('.rrow')];
+      if(rows.length){(kbi>=0?rows[kbi]:rows[0]).click();}
+      else{const mb=document.getElementById('manualBtn');if(mb)mb.click();else if(q.value.trim())manualAdd(q.value.trim());}
+      return;}
+    const rows=[...res.querySelectorAll('.rrow')];
+    if(e.key==='ArrowDown'&&rows.length){e.preventDefault();kbi=Math.min(rows.length-1,kbi+1);highlight();}
+    else if(e.key==='ArrowUp'&&rows.length){e.preventDefault();kbi=Math.max(0,kbi-1);highlight();}
+  };
+}
+
+// 從劇庫建城市/劇院資料庫，供手動新增自動補完＋帶出國家座標（手動劇也能上地圖）
+let MCITY=null, MVENUE=null;
+function buildManualDB(){
+  if(MCITY)return;MCITY={};MVENUE={};
+  (window.CATALOG||[]).forEach(w=>(w.prods||[]).forEach(p=>{
+    if(p.city&&!MCITY[p.city])MCITY[p.city]={country:p.country||'',lat:p.lat,lng:p.lng,cur:p.cur||''};
+    if(p.venue&&!MVENUE[p.venue])MVENUE[p.venue]={city:p.city||'',country:p.country||'',lat:p.lat,lng:p.lng,cur:p.cur||''};
+  }));
+}
+// 常見幣別：代碼→{符號,中文名}（票價用，選了自動帶符號；打城市/劇院也會自動帶）
+const CUR_INFO={TWD:{sym:'NT$',name:'新台幣'},USD:{sym:'$',name:'美元'},GBP:{sym:'£',name:'英鎊'},EUR:{sym:'€',name:'歐元'},JPY:{sym:'¥',name:'日圓'},KRW:{sym:'₩',name:'韓元'},CNY:{sym:'¥',name:'人民幣'},HKD:{sym:'HK$',name:'港幣'},AUD:{sym:'A$',name:'澳元'},CAD:{sym:'C$',name:'加元'},SGD:{sym:'S$',name:'星幣'},CHF:{sym:'CHF',name:'瑞士法郎'},SEK:{sym:'kr',name:'瑞典克朗'},NOK:{sym:'kr',name:'挪威克朗'},DKK:{sym:'kr',name:'丹麥克朗'},CZK:{sym:'Kč',name:'捷克克朗'},HUF:{sym:'Ft',name:'匈牙利福林'},PLN:{sym:'zł',name:'波蘭茲羅提'}};
+const CUR_LIST=Object.keys(CUR_INFO);
+const curSym=c=>(CUR_INFO[c]&&CUR_INFO[c].sym)||c||'';
+// 正規化：小寫、去重音、臺→台、只留字母數字與 CJK（讓「台中歌劇院」對得上「臺中國家歌劇院大劇院」）
+function cnorm(s){return (s||'').toLowerCase().normalize('NFKD').replace(/[̀-ͯ]/g,'').replace(/臺/g,'台').replace(/灣/g,'湾').replace(/[^\p{L}\p{N}]/gu,'');}
+// 比對分數：完全相同3、包含2、字元為子序列1、不中0（子序列讓少打中間字也找得到）
+function comboMatch(q,item){const nq=cnorm(q);if(!nq)return 1;const ni=cnorm(item);if(ni===nq)return 3;if(ni.includes(nq))return 2;
+  let i=0;for(const ch of nq){i=ni.indexOf(ch,i);if(i<0)return 0;i++;}return 1;}
+// 自製下拉：黏在輸入框正下方、邊打邊 filter、鍵盤可選（取代原生 datalist/select 的爛體驗）
+// opts.fmt 自訂每列顯示、opts.toInput 選後填回輸入框的值、opts.onType 每次打字回呼（城市/劇院即時對地理用）
+function setupCombo(input,panel,getItems,onpick,opts){
+  opts=opts||{};const fmt=opts.fmt||(x=>x), toInput=opts.toInput||(x=>x), onType=opts.onType;
+  let active=-1, shown=[];
+  function render(all){const q=all?'':input.value.trim();const items=getItems();
+    shown=items.map(it=>({it,s:comboMatch(q,fmt(it))})).filter(x=>x.s>0).sort((a,b)=>b.s-a.s||fmt(a.it).localeCompare(fmt(b.it))).slice(0,60).map(x=>x.it);
+    if(!shown.length){panel.hidden=true;return;}
+    active=-1;
+    panel.innerHTML=shown.map((it,i)=>`<button type="button" class="combo-row" data-i="${i}">${fmt(it).replace(/</g,'&lt;')}</button>`).join('');
+    [...panel.children].forEach((bb,i)=>bb.onmousedown=e=>{e.preventDefault();choose(i);});
+    panel.hidden=false;}
+  function choose(i){const it=shown[i];input.value=toInput(it);panel.hidden=true;onpick(it);}
+  function upd(){[...panel.children].forEach((bb,i)=>bb.classList.toggle('on',i===active));if(active>=0&&panel.children[active])panel.children[active].scrollIntoView({block:'nearest'});}
+  input.addEventListener('focus',()=>{if(opts.showAllOnFocus){try{input.select();}catch(e){}}render(opts.showAllOnFocus);});
+  input.addEventListener('input',()=>{render();if(onType)onType(input.value.trim());});
+  input.addEventListener('blur',()=>setTimeout(()=>{panel.hidden=true;if(opts.onBlur)opts.onBlur();},160));
+  input.addEventListener('keydown',e=>{
+    if(panel.hidden){if(e.key==='ArrowDown')render();return;}
+    if(e.key==='ArrowDown'){e.preventDefault();active=Math.min(shown.length-1,active+1);upd();}
+    else if(e.key==='ArrowUp'){e.preventDefault();active=Math.max(0,active-1);upd();}
+    else if(e.key==='Enter'&&active>=0){e.preventDefault();choose(active);}
+    else if(e.key==='Escape'){panel.hidden=true;}});
+}
+function manualAdd(title,seed,onBack){
+  buildManualDB();
+  const simg=(seed&&seed.prods&&seed.prods[0]&&seed.prods[0].img)||'';
+  draft={w:{en:title,zh:(seed&&seed.zh)||'',g:(seed&&seed.g)||'',prods:(seed&&seed.prods)||[]},p:{label:'手動輸入',venue:'',city:'',country:'',cur:'',img:simg},cur:'',date:null,precision:'none',rating:0,seat:'',price:'',note:'',mode:'backfill',editIndex:null,manual:true};
+  sheetTitle.textContent='手動新增';saveBtn.disabled=!title.trim();
+  sbody.innerHTML=`
+    <button type="button" class="backbtn" id="backToSearch2">${onBack?'← 返回':'← 返回搜尋'}</button>
+    <div class="step"><div class="lbl">手動輸入（目錄裡找不到的劇）</div>
+    <div class="fld"><span class="fl">劇名 *</span><input id="mTitle" value="${title.replace(/"/g,'&quot;')}" placeholder="劇名"/></div>
+    <div class="row2">
+      <div class="fld"><span class="fl">城市</span><div class="combo"><input id="mCity" autocomplete="off" placeholder="例 London / 台北"/><div class="combo-panel" id="mCityPanel" hidden></div></div></div>
+      <div class="fld"><span class="fl">劇院（選填）</span><div class="combo"><input id="mVenue" autocomplete="off" placeholder="例 臺中國家歌劇院"/><div class="combo-panel" id="mVenuePanel" hidden></div></div></div>
+    </div>
+    <div class="fld"><span class="fl">哪一年・月・日看的（選填）</span>
+      <div class="datesel">
+        <select id="mYear">${yearOptions()}</select>
+        <select id="mMonth"><option value="">月</option>${Array.from({length:12},(_,i)=>`<option value="${i+1}">${i+1} 月</option>`).join('')}</select>
+        <select id="mDay"><option value="">日</option>${Array.from({length:31},(_,i)=>`<option value="${i+1}">${i+1} 日</option>`).join('')}</select>
+      </div>
+      <p class="ds-hint">填到「日」才能算星期幾、各月統計；只記得年份也沒關係，之後可再填。</p>
+    </div>
+    <p class="mgeo" id="mGeo">打城市或劇院時會自動對上國家；對得上就能標在地圖。</p>
+    <button class="disclose" id="more">＋ 加入細節（評分・座位・票價・心得）</button>
+    <div class="l2" id="l2" hidden>
+      <div class="fld"><span class="fl">評分 Rating（選填）</span><span class="rate" id="rate"></span><span class="rateval" id="rateval"></span></div>
+      <div class="row2">
+        <div class="fld"><span class="fl">座位 Seat</span><input id="seat" placeholder="例 Stalls A12 / 一樓 H23"/></div>
+        <div class="fld"><span class="fl">票價 Price</span><div class="price-row">
+          <div class="combo"><input id="curInput" autocomplete="off" placeholder="幣別 ▾"/><div class="combo-panel" id="curPanel" hidden></div></div>
+          <div class="price-in"><span class="cursym" id="curSym"></span><input id="price" inputmode="decimal" placeholder="0"/></div></div></div>
+      </div>
+      <div class="fld"><span class="fl">心得 Note</span><textarea id="note" rows="2" placeholder="那一夜的記憶…"></textarea></div>
+    </div></div>`;
+  const t=document.getElementById('mTitle');t.focus();
+  t.oninput=e=>{draft.w.en=e.target.value;saveBtn.disabled=!e.target.value.trim();};
+  function applyGeo(){
+    const city=document.getElementById('mCity').value.trim(), venue=document.getElementById('mVenue').value.trim();
+    let hit = (venue&&MVENUE[venue]) || (city&&MCITY[city]) || null;
+    const g=document.getElementById('mGeo');
+    if(hit){draft.p.country=hit.country;draft.p.lat=hit.lat;draft.p.lng=hit.lng;
+      if(venue&&MVENUE[venue]&&MVENUE[venue].city&&!city){draft.p.city=MVENUE[venue].city;document.getElementById('mCity').value=MVENUE[venue].city;}
+      if(g)g.innerHTML=`對上 <b>${flag(hit.country)} ${hit.country}</b>${(hit.lat!=null)?' · 會標在地圖':''}`;
+      if(hit.cur)setCurrency(hit.cur,true);  // 自動帶幣別＋符號（使用者未手選時）
+    }else{draft.p.country='';draft.p.lat=undefined;draft.p.lng=undefined;
+      if(g)g.textContent='打城市或劇院時會自動對上國家；對得上就能標在地圖。';}
+  }
+  // 城市/劇院自製下拉（黏輸入框下、邊打邊 filter、台↔臺正規化）
+  setupCombo(document.getElementById('mCity'),document.getElementById('mCityPanel'),()=>Object.keys(MCITY),(v)=>{draft.p.city=v;applyGeo();});
+  setupCombo(document.getElementById('mVenue'),document.getElementById('mVenuePanel'),()=>Object.keys(MVENUE),(v)=>{draft.p.venue=v;applyGeo();});
+  // 日期：年（必）月日（選填）→ 精度 year/month/day，讓星期・月份統計能算
+  function applyDate(){const y=document.getElementById('mYear').value.trim(),mo=document.getElementById('mMonth').value,da=document.getElementById('mDay').value;
+    if(!/^\d{4}$/.test(y)){draft.date=null;draft.precision='none';return;}
+    if(mo&&da){draft.date=`${y}-${String(mo).padStart(2,'0')}-${String(da).padStart(2,'0')}`;draft.precision='day';}
+    else if(mo){draft.date=`${y}-${String(mo).padStart(2,'0')}`;draft.precision='month';}
+    else{draft.date=y;draft.precision='year';}}
+  document.getElementById('mYear').onchange=applyDate;
+  document.getElementById('mMonth').onchange=applyDate;
+  document.getElementById('mDay').onchange=applyDate;
+  document.getElementById('more').onclick=function(){const l2=document.getElementById('l2');const op=l2.hidden;l2.hidden=!op;this.textContent=op?'－ 收起細節':'＋ 加入細節（評分・座位・票價・心得）';if(op)buildRating();};
+  // 幣別自製下拉：左欄只顯示代碼，符號只帶到右邊票價前；城市偵測也自動帶（除非已手選）
+  let curManual=false;
+  function setCurrency(code,fromGeo){if(fromGeo&&curManual)return;if(!code)return;draft.cur=code;
+    const ci=document.getElementById('curInput'),sy=document.getElementById('curSym');
+    if(ci)ci.value=code;if(sy)sy.textContent=curSym(code);}
+  setupCombo(document.getElementById('curInput'),document.getElementById('curPanel'),()=>CUR_LIST,
+    (code)=>{curManual=true;setCurrency(code,false);},
+    {showAllOnFocus:true, fmt:c=>`${curSym(c)}　${c}　${CUR_INFO[c].name}`, toInput:c=>c,
+     onBlur:()=>{const ci=document.getElementById('curInput');if(ci)ci.value=draft.cur||'';}});
+  ['seat','price','note'].forEach(id=>{const el=document.getElementById(id);if(el)el.oninput=()=>{draft[id]=el.value;};});
+  const bk=document.getElementById('backToSearch2');if(bk)bk.onclick=onBack||(()=>startLog());
+}
+// 把相同 label 的巡演停靠摺成一組（補登舊劇的人不在乎也分不清停靠城市）
+function groupProds(prods){
+  const groups=[],byKey={};
+  prods.forEach((p,i)=>{
+    const key=p.label?('L:'+p.label):('U:'+i);   // 有 label→同名巡演合一組；無 label(駐演)→各自一組
+    if(byKey[key]==null){byKey[key]=groups.length;groups.push({label:p.label,country:p.country,items:[]});}
+    groups[byKey[key]].items.push(p);
+  });
+  return groups;
+}
+function pickWork(w){
+  if(w.prods.length===1){pickProd(w,w.prods[0]);return;}
+  const groups=groupProds(w.prods);
+  if(groups.length===1){ // 全是同一個巡演 → 直接進城市子選單（或單筆直接 detail）
+    if(groups[0].items.length===1)pickProd(w,groups[0].items[0]);else pickTourCity(w,groups[0]);return;}
+  sheetTitle.textContent=w.en;
+  sbody.innerHTML=`<div class="step"><button type="button" class="backbtn" id="backToSearch3">← 返回搜尋</button>
+    <div class="lbl">你看的是哪一個製作？<span class="opt">${groups.length} 個版本</span></div>
+    <div class="prodcards" id="pc"></div></div>`;
+  const pc=document.getElementById('pc');
+  pc.innerHTML=groups.map((g,gi)=>{
+    if(g.items.length===1){const p=g.items[0];const ys=yearOf(p.start),ye=yearOf(p.end);
+      const run=ys?(ye&&ye!==ys?`${ys}–${ye}`:(p.end?`${ys}`:`${ys}–now`)):'';
+      return `<button class="pcard" data-g="${gi}"><span class="fl">${flag(p.country)}</span>
+        <span class="pm"><span class="pn">${p.label||p.city||p.country}</span>
+          <span class="pv">${[p.venue,p.city].filter(Boolean).join(' · ')}</span><span class="pr">${run}</span></span>
+        <span class="chev">›</span></button>`;}
+    const cities=[...new Set(g.items.map(x=>x.city).filter(Boolean))];
+    const yrs=g.items.map(x=>yearOf(x.start)).filter(Boolean);
+    const yr=yrs.length?`${Math.min(...yrs)}–${Math.max(...yrs)}`:'巡演';
+    return `<button class="pcard" data-g="${gi}"><span class="fl">${flag(g.country)}</span>
+      <span class="pm"><span class="pn">${g.label}</span>
+        <span class="pv">${cities.length} 個城市 · ${cities.slice(0,3).join('／')}${cities.length>3?'…':''}</span><span class="pr">${yr}</span></span>
+      <span class="chev">›</span></button>`;}).join('');
+  pc.insertAdjacentHTML('beforeend',`<button class="pcard escape" id="otherProd"><span class="fl">✏️</span>
+    <span class="pm"><span class="pn">以上都不是 — 我看的是別的城市／年份</span><span class="pv">自己填，劇名和海報幫你留著</span></span></button>`);
+  [...pc.querySelectorAll('.pcard[data-g]')].forEach(b=>b.onclick=()=>{const g=groups[+b.dataset.g];
+    if(g.items.length===1)pickProd(w,g.items[0]);else pickTourCity(w,g);});
+  document.getElementById('otherProd').onclick=()=>manualAdd(w.en,w,()=>pickWork(w));
+  const bk=document.getElementById('backToSearch3');if(bk)bk.onclick=()=>startLog();
+}
+function pickTourCity(w,g){
+  sheetTitle.textContent=w.en;
+  sbody.innerHTML=`<div class="step"><button type="button" class="backbtn" id="backToProds">← 返回版本</button>
+    <div class="lbl">${g.label} — 哪一個城市？<span class="opt">${g.items.length} 站</span></div>
+    <div class="prodcards" id="pc2"></div></div>`;
+  const pc=document.getElementById('pc2');
+  pc.innerHTML=g.items.map((p,ci)=>{const ys=yearOf(p.start),ye=yearOf(p.end);const run=ys?(ye&&ye!==ys?`${ys}–${ye}`:`${ys}`):'';
+    return `<button class="pcard" data-c="${ci}"><span class="fl">${flag(p.country)}</span>
+      <span class="pm"><span class="pn">${p.city||p.venue}</span><span class="pv">${[p.venue,p.city].filter(Boolean).join(' · ')}</span><span class="pr">${run}</span></span>
+      <span class="chev">›</span></button>`;}).join('');
+  pc.insertAdjacentHTML('beforeend',`<button class="pcard escape" id="cityUnsure"><span class="fl">🤔</span>
+    <span class="pm"><span class="pn">不記得是哪個城市</span><span class="pv">先記下這個巡演，城市之後再填</span></span></button>`);
+  [...pc.querySelectorAll('.pcard[data-c]')].forEach(b=>b.onclick=()=>pickProd(w,g.items[+b.dataset.c]));
+  document.getElementById('cityUnsure').onclick=()=>{const p={...g.items[0],city:'',venue:'',lat:undefined,lng:undefined};pickProd(w,p);};
+  document.getElementById('backToProds').onclick=()=>pickWork(w);
+}
+
+function pickProd(w,p){
+  const cur=p.cur||curOf(p.country);
+  draft={w,p,cur,date:null,precision:null,rating:0,seat:'',price:'',note:'',mode:lastMode,editIndex:null};
+  sheetTitle.textContent='加入音樂劇';
+  renderDetail();
+}
+
+function renderDetail(){
+  const {w,p}=draft;
+  const ys=yearOf(p.start), ye=yearOf(p.end);
+  const runEnded = p.end && p.end < NOW_ISO;        // 比到「日」：同年但已過今天也算下檔（不再用年粒度）
+  const running = !runEnded;
+  // default mode: closed run forces backfill; running offers toggle (remember last)
+  if(runEnded) draft.mode='backfill';
+  const years=[];
+  if(ys){const top=Math.min(ye||NOW_Y,NOW_Y);for(let y=top;y>=ys;y--)years.push(y);}
+  const runTxt = ys ? (p.end ? `本劇在 ${p.city||''} 上演 <b>${ys}${ye&&ye!==ys?'–'+ye:''}</b>` : `近期在 <b>${p.city||''}</b> 上演`) : '';
+  sbody.innerHTML=`
+    <button type="button" class="backbtn" id="backToSearch">${(draft.editIndex==null&&w.prods&&w.prods.length>1)?'← 返回（選製作）':'← 返回搜尋'}</button>
+    <div class="confirm">
+      <img src="${p.img||''}" referrerpolicy="no-referrer" alt=""/>
+      <div class="ci"><div class="en">${w.en}</div>${w.zh?`<div class="zh">${w.zh}</div>`:''}
+        <div class="chips"><span class="chip">${flag(p.country)} <b>${p.label||p.city}</b></span>
+          ${p.venue?`<span class="chip">🎭 <b>${p.venue}</b></span>`:''}
+          <span class="chip">📍 <b>${p.city}</b></span></div></div>
+    </div>
+
+    <div class="step" id="dateStep">
+      <div class="lbl">什麼時候看的？<span class="opt">非必填</span></div>
+      <div class="datesel">
+        <select id="dYear">${yearOptions()}</select>
+        <select id="dMonth"><option value="">月</option>${Array.from({length:12},(_,i)=>`<option value="${i+1}">${i+1} 月</option>`).join('')}</select>
+        <select id="dDay"><option value="">日</option>${Array.from({length:31},(_,i)=>`<option value="${i+1}">${i+1} 日</option>`).join('')}</select>
+      </div>
+      <p class="ds-hint">${runTxt?runTxt+'　':''}填到「日」才能算星期幾、各月統計；只記得年份也行。</p>
+    </div>
+
+    <button class="disclose" id="more">＋ 加入細節（評分・座位・票價・心得）</button>
+    <div class="l2" id="l2" hidden>
+      <div class="fld"><span class="fl">評分 Rating（選填）</span>
+        <span class="rate" id="rate"></span><span class="rateval" id="rateval"></span></div>
+      <div class="row2">
+        <div class="fld"><span class="fl">座位 Seat</span>
+          <input id="seat" inputmode="text" autocapitalize="characters" placeholder="例 Stalls A12 / 一樓 H23"/></div>
+        <div class="fld"><span class="fl">票價 Price</span><div class="price-row">
+          <div class="combo"><input id="curInput" autocomplete="off" placeholder="幣別 ▾"/><div class="combo-panel" id="curPanel" hidden></div></div>
+          <div class="price-in"><span class="cursym" id="curSym"></span><input id="price" inputmode="decimal" placeholder="0"/></div></div></div>
+      </div>
+      <div class="fld"><span class="fl">心得 Note</span><textarea id="note" rows="2" placeholder="那一夜的記憶…"></textarea></div>
+    </div>`;
+  // date area — 乾淨三欄（年/月/日，全非必填，一次顯示）
+  draft.mode='backfill';
+  const dY=document.getElementById('dYear'),dM=document.getElementById('dMonth'),dD=document.getElementById('dDay');
+  (function(){const seed=draft.date || (years.length?String(years[0]):'');  // 編輯用既有日期；否則預填最近的上演年份（可改）
+    if(seed){const[sy,sm,sd]=String(seed).split('-');dY.value=sy||'';if(sm)dM.value=String(+sm);if(sd)dD.value=String(+sd);}})();
+  function applyDateD(){const y=dY.value.trim(),mo=dM.value,da=dD.value;
+    if(!/^\d{4}$/.test(y)){draft.date=null;draft.precision='none';}
+    else if(mo&&da){draft.date=`${y}-${String(mo).padStart(2,'0')}-${String(da).padStart(2,'0')}`;draft.precision='day';}
+    else if(mo){draft.date=`${y}-${String(mo).padStart(2,'0')}`;draft.precision='month';}
+    else{draft.date=y;draft.precision='year';}
+    updateSave();}
+  dY.onchange=applyDateD;dM.onchange=applyDateD;dD.onchange=applyDateD;applyDateD();
+  // 票價幣別下拉（同手動新增：顯示符號·代碼·名稱、選了把符號帶到票價前；預填本製作幣別、可改）
+  (function(){const ci=document.getElementById('curInput'),sy=document.getElementById('curSym');
+    const show=code=>{if(ci)ci.value=code||'';if(sy)sy.textContent=code?curSym(code):'';};
+    show(draft.cur);
+    if(ci)setupCombo(ci,document.getElementById('curPanel'),()=>CUR_LIST,
+      (code)=>{draft.cur=code;show(code);},
+      {showAllOnFocus:true,fmt:c=>`${curSym(c)}　${c}　${CUR_INFO[c].name}`,toInput:c=>c,onBlur:()=>show(draft.cur)});})();
+  // details
+  document.getElementById('more').onclick=function(){const l2=document.getElementById('l2');const opening=l2.hidden;l2.hidden=!opening;this.textContent=opening?'－ 收起細節':'＋ 加入細節（評分・座位・票價・心得）';if(opening)buildRating();};
+  ['seat','price','note'].forEach(id=>{const el=document.getElementById(id);if(el)el.oninput=()=>{draft[id]=el.value;};});
+  const bk=document.getElementById('backToSearch');if(bk)bk.onclick=()=>{
+    if(draft.editIndex==null&&w.prods&&w.prods.length>1)pickWork(w);   // 多製作→回版本清單（上一頁）
+    else startLog();};
+}
+
+function buildRating(){
+  const r=document.getElementById('rate'),rv=document.getElementById('rateval');if(!r||r.dataset.built)return;r.dataset.built=1;
+  for(let i=1;i<=5;i++){const st=document.createElement('span');st.className='st';st.textContent='★';
+    st.title=`${i} 顆星`;st.onclick=()=>{draft.rating=(draft.rating===i?0:i);paintRate();};   // 整數，再點同顆=清除
+    r.appendChild(st);}
+  function paintRate(){[...r.children].forEach((st,idx)=>st.classList.toggle('full',draft.rating>=idx+1));
+    rv.textContent=draft.rating?`${draft.rating} / 5`:'';}
+  r._paint=paintRate;
+}
+
+function updateSave(){saveBtn.disabled=!(draft&&draft.w&&draft.p&&(draft.precision&&draft.precision!=='none'?draft.date!==null:true));
+  // allow save even if date is "待補" (precision none) — title+production is enough
+  if(draft&&draft.w&&draft.p)saveBtn.disabled=false;}
+
+let sessionAdded=[];   // 這次開窗累積加入的劇（給確認畫面顯示，按「再加入一齣」會疊上去）
+saveBtn.onclick=()=>{
+  if(!draft)return;
+  if(draft.precision==='year'&&draft.date)stickyYear=parseInt(draft.date);
+  if(draft.editIndex!=null){const idx=draft.editIndex;const old=LOG[idx];const e={...draft};delete e.editIndex;LOG[idx]=e;
+    persist();renderWall(false);
+    const si=sessionAdded.indexOf(old);if(si>=0)sessionAdded[si]=e;   // 同步累積清單裡的參照
+    const embed=new URLSearchParams(location.search).get('embed')==='1';
+    if(embed&&sessionAdded.length){addedScreen();return;}            // 從確認畫面編輯→改完回確認畫面（顯示新日期）
+    logDlg.close();if(!embed)setTimeout(()=>toast('✓ 已更新這筆紀錄'),120);return;}
+  const entry={...draft};LOG.unshift(entry);sessionAdded.unshift(entry);persist();renderWall(true);
+  if(new URLSearchParams(location.search).get('embed')==='1'){addedScreen();return;}  // 加完給確認畫面，可再加一齣或完成
+  logDlg.close();
+  setTimeout(()=>{toast(`🎭 已蓋章！這是你的第 <b>${LOG.length}</b> 齣音樂劇`,()=>{LOG.shift();renderWall(false);});},180);
+};
+
+/* ---------- logged wall ---------- */
+function dateLabel(d){if(!d.date)return'日期未定';
+  if(d.precision==='year')return `${d.date}年`;
+  if(d.precision==='month'){const[y,m]=d.date.split('-');return `${y}年${+m}月`;}
+  const[y,m,dd]=d.date.split('-');return `${y}年${+m}月${+dd}日`;}
+function stars(r){return '★'.repeat(Math.round(r||0));}
+function renderWall(justAdded){
+  const wall=document.getElementById('wall'),empty=document.getElementById('empty');
+  document.getElementById('logct').textContent=LOG.length?`${LOG.length} 齣`:'尚未記錄';
+  if(!LOG.length){empty.hidden=false;wall.hidden=true;wall.innerHTML='';persist();return;}
+  empty.hidden=true;wall.hidden=false;
+  wall.innerHTML=LOG.map((d,i)=>`<div class="lcard ${justAdded&&i===0?'justadded':''}">
+    <div class="pos">${d.p.img?`<img src="${d.p.img}" referrerpolicy="no-referrer" alt=""/>`:`<div class="posfall">${(d.w.en||'?').trim()[0]||'?'}</div>`}
+      <div class="stamp-badge">${flag(d.p.country)}</div>
+      <div class="lacts"><button class="ledit" data-i="${i}" aria-label="編輯">✎</button><button class="ldel" data-i="${i}" aria-label="刪除">🗑</button></div></div>
+    <div class="cap"><div class="en">${d.w.en}</div>${d.w.zh?`<div class="zh">${d.w.zh}</div>`:''}
+      <div class="dt"><span class="pre">${dateLabel(d)}</span><span class="stars">${stars(d.rating||0)}</span></div></div>
+  </div>`).join('');
+  wall.querySelectorAll('.ledit').forEach(b=>b.onclick=()=>editEntry(+b.dataset.i));
+  wall.querySelectorAll('.ldel').forEach(b=>b.onclick=()=>delEntry(+b.dataset.i));
+  persist();
+}
+// modal 內只列「這次開著對話框剛加入的」幾齣，方便剛加錯馬上改/刪（不是列出整個收藏——那是海報牆的事）
+let lastDeleted=null;  // {item,idx} 供清單內 inline 復原（toast 在 top-layer dialog 底下會被蓋，故改 inline）
+function renderRecent(){
+  const el=document.getElementById('recentList');if(!el)return;el.hidden=false;
+  const k=sessionActive?Math.max(0,LOG.length-sessionBaseLen):LOG.length;  // 只取這次 session 新增的（在 LOG 最前面）
+  const items=LOG.slice(0,k);
+  const undoHtml=lastDeleted?`<div class="recent-undo">已刪除《${lastDeleted.item.w.zh||lastDeleted.item.w.en}》<button type="button" id="undoDel">復原</button></div>`:'';
+  const body=items.length
+    ? `<div class="recent-h">這次加入的 · ${items.length} 齣<span>加錯了？點 ✎ 改、🗑 刪</span></div>`+
+      items.map((d,i)=>`<div class="recent-row">
+        <div class="rth">${d.p.img?`<img src="${d.p.img}" referrerpolicy="no-referrer" alt=""/>`:`<span>${(d.w.en||'?').trim()[0]||'?'}</span>`}</div>
+        <div class="rmeta"><div class="rt">${d.w.zh||d.w.en}</div><div class="rsub">${dateLabel(d)}${d.p.city?' · '+d.p.city:''}</div></div>
+        <button class="rb" data-edit="${i}" aria-label="編輯">✎</button>
+        <button class="rb" data-del="${i}" aria-label="刪除">🗑</button>
+      </div>`).join('')
+    : (lastDeleted?'':`<div class="recent-empty">搜尋你看過的音樂劇 —— 中文、英文都行，搜不到也能手動新增。<br><span class="re-sub">加好的會即時長到海報牆與護照。</span></div>`);
+  el.innerHTML=undoHtml+body;
+  if(lastDeleted)document.getElementById('undoDel').onclick=()=>{LOG.splice(lastDeleted.idx,0,lastDeleted.item);lastDeleted=null;renderWall(false);renderRecent();};
+  el.querySelectorAll('[data-edit]').forEach(b=>b.onclick=()=>editEntry(+b.dataset.edit));
+  el.querySelectorAll('[data-del]').forEach(b=>b.onclick=()=>delEntry(+b.dataset.del));
+}
+function editEntry(i){
+  draft={...LOG[i],editIndex:i};
+  if(draft.rating==null)draft.rating=0;if(draft.seat==null)draft.seat='';if(draft.price==null)draft.price='';if(draft.note==null)draft.note='';
+  sheetTitle.textContent='編輯紀錄';saveBtn.disabled=false;
+  if(!logDlg.open)logDlg.showModal();           // 在 modal 內 dialog 已開，重複 showModal 會丟例外
+  renderDetail();prefillEdit();
+}
+function prefillEdit(){
+  // 日期三欄已由 renderDetail 依 draft.date 自動預填；這裡只補開「細節」並填回評分/座位/票價/心得
+  const more=document.getElementById('more');if(more&&document.getElementById('l2').hidden)more.click();
+  ['seat','price','note'].forEach(id=>{const el=document.getElementById(id);if(el&&draft[id]!=null)el.value=draft[id];});
+  const r=document.getElementById('rate');if(r&&r._paint)r._paint();
+  updateSave();
+}
+function delEntry(i){
+  const removed=LOG.splice(i,1)[0];renderWall(false);renderRecent();
+  toast(`已刪除《${removed.w.zh||removed.w.en}》`,()=>{LOG.splice(i,0,removed);renderWall(false);renderRecent();});
+}
+
+// 加入後的確認畫面：顯示「這次 session 加入的全部」、可現在編輯、再加一齣、或完成
+function addedScreen(){
+  sheetTitle.textContent='已加入';saveBtn.disabled=true;
+  const items=sessionAdded;const n=items.length;
+  const head=n===1?`🎭 已加入「${items[0].w.zh||items[0].w.en}」！`:`🎭 已加入 <b>${n}</b> 齣！`;
+  sbody.innerHTML=`<div class="step">
+    <div class="batchdone"><div class="bd-h">${head}</div>
+      <div class="bd-p">想記日期、評分嗎？點下面那齣就能填；不填也沒關係，回收藏後點海報卡右上角的 <b>✎</b> 隨時都能填。</div></div>
+    <div class="recent">${items.map(d=>`<div class="recent-row">
+      <div class="rth">${d.p.img?`<img src="${d.p.img}" referrerpolicy="no-referrer" alt=""/>`:`<span>${(d.w.en||'?').trim()[0]||'?'}</span>`}</div>
+      <div class="rmeta"><div class="rt">${d.w.zh||d.w.en}</div>
+        <div class="rsub">${d.date?dateLabel(d):'日期之後填'}${d.p.city?' · '+hesc(d.p.city):''}${d.rating?' · '+'★'.repeat(d.rating):''}</div>
+        ${(d.seat||d.price)?`<div class="rsub2">${[d.seat?`座位 <b>${hesc(d.seat)}</b>`:'',d.price?`票價 <b>${curSym(d.cur)}${hesc(d.price)}</b>`:''].filter(Boolean).join('　·　')}</div>`:''}
+        ${d.note?`<div class="rnote">「${hesc(d.note).slice(0,30)}${d.note.length>30?'…':''}」</div>`:''}</div>
+      <button class="rb wide" data-idx="${LOG.indexOf(d)}" aria-label="編輯">✎ 編輯</button></div>`).join('')}</div>
+    <button type="button" class="bd-more" id="addMore">＋ 再加入一齣</button>
+    <button type="button" class="bd-done" id="batchDone">完成，回我的收藏 →</button></div>`;
+  sbody.querySelectorAll('[data-idx]').forEach(b=>b.onclick=()=>editEntry(+b.dataset.idx));
+  document.getElementById('addMore').onclick=()=>startLog();
+  document.getElementById('batchDone').onclick=()=>logDlg.close();
+}
+
+/* ---------- toast ---------- */
+let toTimer;
+function toast(html,undo){const t=document.getElementById('toast');
+  t.innerHTML=`<span>${html}</span>`+(undo?`<button class="undo">復原</button>`:'');
+  t.classList.add('show');clearTimeout(toTimer);toTimer=setTimeout(()=>t.classList.remove('show'),undo?5000:2600);
+  if(undo)t.querySelector('.undo').onclick=()=>{undo();t.classList.remove('show');};}
+
+/* theme picker */
+function applyTheme(t){
+  if(t==='midnight')document.documentElement.removeAttribute('data-theme');
+  else document.documentElement.setAttribute('data-theme',t);
+  try{localStorage.setItem('mm-theme',t);}catch(e){}
+  document.querySelectorAll('#themePick button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.th===t));
+}
+document.getElementById('themePick').addEventListener('click',e=>{const b=e.target.closest('button');if(b)applyTheme(b.dataset.th);});
+applyTheme((function(){try{return localStorage.getItem('mm-theme')||'midnight';}catch(e){return 'midnight';}})());
+
+renderWall(false);
+
+/* ---------- embed 模式：demo4 modal 內嵌時，一開就進登錄、藏掉落地頁、連續補登、✕通知父層 ---------- */
+const EMBED = new URLSearchParams(location.search).get('embed')==='1';
+if(EMBED){
+  document.documentElement.classList.add('embed');
+  const es=document.createElement('style');
+  es.textContent='html.embed body{background:transparent}'
+    +'html.embed body>*:not(dialog):not(.toast){display:none!important}'
+    +'html.embed dialog#logDlg{position:fixed;inset:0;width:100%;height:100%;max-width:none;max-height:none;margin:0}'
+    +'html.embed dialog#logDlg::backdrop{background:transparent;backdrop-filter:none;-webkit-backdrop-filter:none}'  /* 關掉 embed 下無意義卻吃 GPU 的 backdrop blur（打字卡頓主因） */
+    +'html.embed dialog#logDlg .sheet{width:100%;height:100%;max-width:none;max-height:none;border-radius:0;display:flex;flex-direction:column}'
+    +'html.embed dialog#logDlg .sbody{flex:1 1 auto}';
+  document.head.appendChild(es);
+  const exitParent=()=>{try{parent.postMessage('mm-log-exit','*');}catch(e){}};
+  const openFresh=()=>{startLog();logDlg.showModal();};
+  // 任何關閉（存檔/✕/背景/Esc）都結束：通知父層關掉 modal；父層偵測 mm-log 有變更就 reload→主頁即時更新
+  logDlg.addEventListener('close',()=>exitParent());
+  // 初始：從海報卡 ✎ 進來(?edit=N)→直接編輯該筆；否則進搜尋
+  const _e=new URLSearchParams(location.search).get('edit');
+  const EDIT_IDX=(_e!=null&&_e!=='')?+_e:null;
+  if(EDIT_IDX!=null&&LOG[EDIT_IDX])editEntry(EDIT_IDX);
+  else openFresh();
+}
+</script>
+</body>
+</html>
