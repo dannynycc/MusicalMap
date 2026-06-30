@@ -2,6 +2,8 @@
 
 > 狀態:**已定案 + 第一版已實作上線(v0.57.0, 2026-06-22)**。本檔是這個功能的單一事實來源。
 >
+> **⚠ 2026-06-30 更新(v0.79.0 My Musicals v2 改版)**：足跡頁已從 `js/me.js`(FlightRadar 風)改版為**自含的 `me.html` + `me-input.html`**(舊版備份於 `me_ori.html`)。本檔以下「足跡表單(`js/me.js`)」段描述的是**舊版**;新版 me-input 的海報改由 catalog 解析(`venues_catalog.posters` by title group)、不寫 `production_key`/`poster_override`。「製作三層資料模型(works/productions/shows)」與 `gen_catalog.py` 仍有效(新 me-input 同樣吃 `venues_catalog` 的 productions/posters)。
+>
 > **實作後的重要修訂(比原設計更省工):**
 > - **`app.js`(live 地圖)完全不用動** —— 它本來就用每場自己的 `show.image`,北美巡演 13 城共用一張是「因為同屬北美巡演版」,倫敦/日本四季/各國各顯各的。所以「按版本拆海報」在 live 地圖早已成立,問題 2 其實**只發生在足跡頁(me.js)**。
 > - **live 版本由 `gen_catalog.py` 自動依國家分群產生**(海報取該群現役場次的圖),不必在 works.json 手寫 `match` 規則。works.json 只需登記 **archival 版本**(沒在演的)+ 作品層 `poster`。全部作品自動受惠,不只旗艦劇。

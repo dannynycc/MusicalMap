@@ -11,6 +11,13 @@
 
 ---
 
+## [v0.79.3] - 2026-06-30 12:32
+### 文件 — 補做完整 MD freshness（v0.79.0 改版漏掉的文件同步）
+- 自承：v0.79.0 發布時只更新 README + CHANGELOG，未逐檔審所有 .md。本次補齊：
+- `docs/SETUP_ACCOUNTS.md`：migration 清單加 `add_rating_precision.sql`（v2 必跑：rating + precision 欄位）。
+- `docs/DESIGN_productions.md`：頂部加註「足跡頁 v0.79.0 已從 js/me.js 改版為 me.html+me-input(海報改 catalog 解析、不寫 production_key)；本檔『足跡表單(me.js)』段描述舊版(現 me_ori.html)」。製作三層模型本身仍有效。
+- 其餘 docs(AFFILIATE/DAMAI/DESIGN_affiliate/SOURCES/TOUR_SWEEP/WORKFLOW) 與此次 me 改版無關、無過時。
+
 ## [v0.79.2] - 2026-06-30 12:25
 ### 調整 — 移除所有國旗 emoji（使用者要求）
 - `me.html` + `me-input.html`：`FLAG` 對照表清空為 `{}`、`flag()` 回傳空字串；移除海報卡角 `.flag` badge、護照 visa、清單/詳情城市列、Top Countries、選製作清單、geo「對上」訊息、stamp-badge 的國旗顯示。

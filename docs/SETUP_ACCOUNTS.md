@@ -18,6 +18,7 @@
 3. 後續加欄位的 migration(既有資料庫補跑即可,皆 `add column if not exists`,可重複執行):
    - `supabase/add_url.sql` —— 每筆紀錄的連結(`url` / `links`)。
    - `supabase/add_production.sql` —— **版本層**(`production_key` / `poster_override`);沒跑的話版本/自訂海報選了不會被存下來(App 本身會優雅降級不報錯)。
+   - `supabase/add_rating_precision.sql` —— **v0.79.0 (My Musicals v2 改版) 必跑**：`rating`(0–5 星)+ `precision`(日期精度 year/month/day)；新版 me.html 的星星評分與年/月/日統計需要。
 
 ## C. 開 Google 登入
 1. **Authentication → Sign In / Providers → Google → Enable**。
