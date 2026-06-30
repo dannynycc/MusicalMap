@@ -1,7 +1,7 @@
 {
   "meta": {
     "source": "teatro.it",
-    "count": 26
+    "count": 27
   },
   "shows": [
     {
@@ -209,15 +209,15 @@
       "source": "teatro.it"
     },
     {
-      "id": "it-690fda18",
+      "id": "it-f2210ca3",
       "title": "Aggiungi un posto a tavola",
       "title_en": "",
-      "venue": "Brancaccio",
-      "city": "Roma",
+      "venue": "Arena",
+      "city": "Verona",
       "country": "Italy",
-      "lat": 41.893555,
-      "lng": 12.500885,
-      "start_date": "2026-12-10",
+      "lat": null,
+      "lng": null,
+      "start_date": "2026-10-10",
       "end_date": "2026-12-10",
       "image": "https://www.teatro.it/images/spettacoli/40555/main-image/teatroit-aggiungi-un-posto-scifoni-cuccarini-date-24-25-biglietti.jpg",
       "ticket_url": "https://www.teatro.it/spettacoli/aggiungi-un-posto-a-tavola-garinei-giovannini",
@@ -374,6 +374,23 @@
       "end_date": "2027-05-16",
       "image": "https://www.teatro.it/images/2026/05/spettacoli//main-image/teatroit-alice-nel-paese-delle-meraviglie-musical-date-biglietti.jpg",
       "ticket_url": "https://www.teatro.it/spettacoli/alice-nel-paese-delle-meraviglie-3",
+      "type": "tour",
+      "verified": true,
+      "source": "teatro.it"
+    },
+    {
+      "id": "it-72294df8",
+      "title": "Ghost - Il Musical",
+      "title_en": "",
+      "venue": "Comunale Luigi Russolo",
+      "city": "Portogruaro",
+      "country": "Italy",
+      "lat": null,
+      "lng": null,
+      "start_date": "2026-10-17",
+      "end_date": "2027-05-14",
+      "image": "https://www.teatro.it/images/2026/06/spettacoli//main-image/teatroit-ghost-il-musical-tour-date-biglietti.jpg",
+      "ticket_url": "https://www.teatro.it/spettacoli/ghost-il-musical-1",
       "type": "tour",
       "verified": true,
       "source": "teatro.it"
