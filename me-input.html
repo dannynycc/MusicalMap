@@ -79,6 +79,7 @@ header{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 8
 .lcard .pos{aspect-ratio:2/3;border-radius:10px;overflow:hidden;background:var(--s3);box-shadow:inset 0 0 0 1px var(--hair),0 6px 18px rgba(0,0,0,.4);position:relative}
 .lcard .pos img{width:100%;height:100%;object-fit:cover;display:block}
 .lcard .pos .stamp-badge{position:absolute;top:8px;right:8px;width:30px;height:30px;border-radius:50%;background:rgba(0,0,0,.4);display:grid;place-items:center;font-size:14px;backdrop-filter:blur(3px)}
+.lcard .pos .stamp-badge:empty{display:none}
 .lcard .cap{margin-top:8px}
 .lcard .cap .en{font-weight:700;font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .lcard .cap .zh{font-size:12px;color:var(--ink2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
@@ -175,6 +176,7 @@ dialog::backdrop{background:rgba(0,0,0,.66);backdrop-filter:blur(6px)}
 .pcard.escape{border-style:dashed}.pcard.escape .pn{color:var(--gold)}
 .pcard.sel{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold),var(--glow)}
 .pcard .fl{font-size:24px;flex:none}
+.pcard .fl:empty{display:none}
 .pcard .pm{flex:1;min-width:0}
 .pcard .pm>span{display:block}
 .pcard .pm .pn{font-weight:700;font-size:14.5px;color:var(--ink1)}
@@ -319,7 +321,7 @@ footer{margin:48px 0 40px;color:var(--ink3);font-size:13px;text-align:center;lin
 <script src="me-catalog.js"></script>
 <script>
 /* ---------- helpers ---------- */
-const FLAG={'United Kingdom':'🇬🇧','UK':'🇬🇧','United States':'🇺🇸','USA':'🇺🇸','US':'🇺🇸','Japan':'🇯🇵','South Korea':'🇰🇷','Korea':'🇰🇷','Taiwan':'🇹🇼','Germany':'🇩🇪','France':'🇫🇷','Spain':'🇪🇸','Austria':'🇦🇹','Australia':'🇦🇺','China':'🇨🇳','Canada':'🇨🇦','Netherlands':'🇳🇱','Italy':'🇮🇹','Sweden':'🇸🇪','Norway':'🇳🇴','Singapore':'🇸🇬','Ireland':'🇮🇪'};
+const FLAG={};   // 不顯示國旗 emoji（使用者要求）
 const CUR={'United Kingdom':'GBP','UK':'GBP','United States':'USD','USA':'USD','US':'USD','Japan':'JPY','South Korea':'KRW','Korea':'KRW','Taiwan':'TWD','Germany':'EUR','France':'EUR','Spain':'EUR','Austria':'EUR','Australia':'AUD','China':'CNY','Canada':'CAD','Netherlands':'EUR'};
 const CURSYM={GBP:'£',USD:'$',JPY:'¥',KRW:'₩',TWD:'NT$',EUR:'€',AUD:'A$',CNY:'¥',CAD:'C$'};
 const MON_ZH=['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'];
@@ -328,7 +330,7 @@ const NOW_Y=_TODAY.getFullYear(), NOW_M=_TODAY.getMonth();   // 年、月(0-11)
 const NOW_ISO=`${NOW_Y}-${String(NOW_M+1).padStart(2,'0')}-${String(_TODAY.getDate()).padStart(2,'0')}`;
 // 年份下拉選項（今年→1980），sel=預選的年
 const yearOptions=(sel)=>`<option value="">年</option>`+Array.from({length:NOW_Y-1980+1},(_,i)=>NOW_Y-i).map(y=>`<option value="${y}"${String(sel)===String(y)?' selected':''}>${y}</option>`).join('');
-function flag(c){return FLAG[c]||'🌐';}
+function flag(c){return '';}   // 不顯示國旗 emoji（使用者要求）
 function curOf(c){return CUR[c]||'';}
 /* ===== P3c：Supabase 雲端寫入（與父頁 me.html 同 session，共用 localStorage 的登入態）===== */
 let MMSB=null;(function(){const cfg=window.MM_CONFIG;if(cfg&&cfg.READY&&typeof supabase!=='undefined'){try{MMSB=supabase.createClient(cfg.SUPABASE_URL,cfg.SUPABASE_ANON_KEY);}catch(e){}}})();
@@ -511,7 +513,7 @@ function manualAdd(title,seed,onBack){
     const g=document.getElementById('mGeo');
     if(hit){draft.p.country=hit.country;draft.p.lat=hit.lat;draft.p.lng=hit.lng;
       if(venue&&MVENUE[venue]&&MVENUE[venue].city&&!city){draft.p.city=MVENUE[venue].city;document.getElementById('mCity').value=MVENUE[venue].city;}
-      if(g)g.innerHTML=`對上 <b>${flag(hit.country)} ${hit.country}</b>${(hit.lat!=null)?' · 會標在地圖':''}`;
+      if(g)g.innerHTML=`對上 <b>${hit.country}</b>${(hit.lat!=null)?' · 會標在地圖':''}`;
       if(hit.cur)setCurrency(hit.cur,true);  // 自動帶幣別＋符號（使用者未手選時）
     }else{draft.p.country='';draft.p.lat=undefined;draft.p.lng=undefined;
       if(g)g.textContent='打城市或劇院時會自動對上國家；對得上就能標在地圖。';}
@@ -621,7 +623,7 @@ function renderDetail(){
     <div class="confirm">
       <img src="${p.img||''}" referrerpolicy="no-referrer" alt=""/>
       <div class="ci"><div class="en">${w.en}</div>${w.zh?`<div class="zh">${w.zh}</div>`:''}
-        <div class="chips"><span class="chip">${flag(p.country)} <b>${p.label||p.city}</b></span>
+        <div class="chips"><span class="chip"><b>${p.label||p.city}</b></span>
           ${p.venue?`<span class="chip">🎭 <b>${p.venue}</b></span>`:''}
           <span class="chip">📍 <b>${p.city}</b></span></div></div>
     </div>

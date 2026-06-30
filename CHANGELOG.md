@@ -11,6 +11,12 @@
 
 ---
 
+## [v0.79.2] - 2026-06-30 12:25
+### 調整 — 移除所有國旗 emoji（使用者要求）
+- `me.html` + `me-input.html`：`FLAG` 對照表清空為 `{}`、`flag()` 回傳空字串；移除海報卡角 `.flag` badge、護照 visa、清單/詳情城市列、Top Countries、選製作清單、geo「對上」訊息、stamp-badge 的國旗顯示。
+- 加 `.flag:empty/.pcard .fl:empty/.stamp-badge:empty{display:none}` 收掉空位、不留破版。
+- 實測(test 帳號登入+新增)：海報牆/英雄/城市/護照/清單/詳情/選製作/geo **全無國旗 emoji**、版面完好、0 錯誤。正式版其他頁(app.js/theatres/u)本就無國旗(只有 🌐 品牌地球,非國旗,保留)。
+
 ## [v0.79.1] - 2026-06-30 12:05
 ### 修正 — My Musicals Google 登入後卡在「同步你的收藏中…」
 - 真因：Google OAuth 是「轉址回來＋網址帶 `#access_token`」，與密碼登入(無轉址,先前自動測沒涵蓋)不同。轉址後 reload 帶著 hash 重載→Supabase 重新處理→期間 `getSession` 短暫回 null→舊 onAuth 把「已同步」旗標清掉→再同步→**無限迴圈卡在同步中**。

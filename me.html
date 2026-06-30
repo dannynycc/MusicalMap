@@ -183,6 +183,7 @@ header{position:sticky;top:0;z-index:1100;background:color-mix(in srgb,var(--bg)
 .poster .meta .where{font-size:10.5px;color:#e3ddd2;text-shadow:0 1px 3px rgba(0,0,0,.95);margin-top:5px;display:flex;justify-content:space-between;gap:6px}
 .fav{position:absolute;top:9px;right:10px;font-size:14px;filter:drop-shadow(0 1px 3px rgba(0,0,0,.7));z-index:3}
 .flag{position:absolute;top:9px;left:10px;font-size:14px;z-index:3;filter:drop-shadow(0 1px 2px rgba(0,0,0,.6))}
+.flag:empty{display:none}
 .cardacts{position:absolute;top:7px;right:7px;display:flex;gap:5px;z-index:5;opacity:0;transform:translateY(-3px);transition:opacity .15s,transform .15s}
 .card:hover .cardacts,.cardacts:focus-within{opacity:1;transform:none}
 .ca-btn{width:27px;height:27px;border-radius:7px;background:rgba(18,16,26,.74);backdrop-filter:blur(4px);color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;line-height:1;cursor:pointer;border:1px solid rgba(255,255,255,.2)}
@@ -514,7 +515,7 @@ function normCountry(c){return CCNORM[c]||c||'';}   // 別名正規化：UK→Un
   if(mapped.length){MM.shows.length=0;MM.shows.push(...mapped);document.documentElement.dataset.live='1';}
 }catch(err){console.warn('mm-log integrate failed',err);}})();
 const S=MM.shows, st=MM.stats();
-const FLAG={'United Kingdom':'🇬🇧','UK':'🇬🇧','United States':'🇺🇸','USA':'🇺🇸','US':'🇺🇸','Japan':'🇯🇵','South Korea':'🇰🇷','Korea':'🇰🇷','Taiwan':'🇹🇼','Germany':'🇩🇪','France':'🇫🇷','Spain':'🇪🇸','Austria':'🇦🇹','Australia':'🇦🇺','China':'🇨🇳','Canada':'🇨🇦','Netherlands':'🇳🇱','Italy':'🇮🇹','Sweden':'🇸🇪','Norway':'🇳🇴','Singapore':'🇸🇬','Ireland':'🇮🇪'};
+const FLAG={};   // 不顯示國旗 emoji（使用者要求）；所有 FLAG[x] 取用處皆有 ||'' fallback → 空字串
 const MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 const fdt=d=>{if(!d)return'日期未定';const[y,m,dd]=d.split('-');
   if(dd)return`${MON[+m-1]} ${+dd}, ${y}`;        // 日精度
@@ -634,7 +635,7 @@ function renderPassport(){
     const arr=byC[co].sort((a,b)=>a.date.localeCompare(b.date));
     const cities=[...new Set(arr.map(s=>s.city))].join(' · ');
     const v=document.createElement('div');v.className='visa reveal';
-    v.innerHTML=`<div class="crow"><span class="fl">${FLAG[co]||'🌐'}</span><span class="cn">${co}</span>
+    v.innerHTML=`<div class="crow"><span class="cn">${co}</span>
       <span class="ct">${cities}</span><span class="prog">${arr.length} STAMP${arr.length>1?'S':''}</span></div>
       <div class="stamps">${arr.map((s,j)=>{
         const dly=Math.min(j*0.05,0.5).toFixed(2);const mile=milestoneFor(s,j,j===0);
@@ -779,7 +780,7 @@ let mt;addEventListener('resize',()=>{clearTimeout(mt);mt=setTimeout(()=>{render
     const mx=items[0][1]||1;
     el.innerHTML=items.slice(0,6).map(([k,v])=>`<div class="sl-row"><span class="sl-k" title="${(''+k).replace(/"/g,'&quot;')}">${fmt?fmt(k):k}</span><span class="sl-bar"><i style="width:${Math.max(6,v/mx*100)}%"></i></span><span class="sl-v">${v}</span></div>`).join('');}
   barList('sc-shows',st.topShows);
-  barList('sc-countries',st.topCountries,k=>`${FLAG[k]||'🌐'} ${k}`);
+  barList('sc-countries',st.topCountries,k=>`${k}`);
   barList('sc-cities',st.topCities,k=>`${CITYZH[k]||k}`);
   barList('sc-theatres',st.topVenues);
   const yc=document.getElementById('sc-years');
