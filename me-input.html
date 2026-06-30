@@ -234,6 +234,7 @@ dialog::backdrop{background:rgba(0,0,0,.66);backdrop-filter:blur(6px)}
 .fld input,.fld textarea,.fld select,.datesel input,.datesel select{width:100%;font-size:16px;background:var(--s2);border:1px solid var(--hair2);border-radius:10px;padding:11px 12px;color:var(--ink1);font-family:inherit;height:46px;box-sizing:border-box}
 .fld textarea{height:auto}
 .fld input:focus,.fld textarea:focus,.fld select:focus,.datesel input:focus,.datesel select:focus{outline:none;border-color:var(--gold)}
+.timein{color-scheme:dark}
 .fld select,.datesel select{appearance:none;-webkit-appearance:none;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23999' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 11px center;padding-right:28px}
 .combo{position:relative}
 .combo-panel{position:absolute;top:100%;left:0;right:0;z-index:60;margin-top:5px;min-width:172px;background:var(--s2);border:1px solid var(--hair2);border-radius:10px;max-height:230px;overflow-y:auto;box-shadow:0 14px 30px rgba(0,0,0,.45)}
@@ -406,7 +407,7 @@ document.getElementById('closeLog').onclick=()=>logDlg.close();
 logDlg.addEventListener('click',e=>{if(e.target===logDlg)logDlg.close();});  // 點背景關閉
 
 function startLog(){
-  draft=null;saveBtn.disabled=true;sheetTitle.textContent='加入音樂劇';
+  draft=null;saveBtn.disabled=true;sheetTitle.textContent='加入音樂劇';saveBtn.textContent='加入';
   sbody.innerHTML=`<div class="step">
     <div class="searchbox"><span class="mag">🔍</span>
       <input id="q" placeholder="打中文或英文劇名…例 歌劇魅影 / phantom" autocomplete="off" inputmode="search"/></div>
@@ -516,6 +517,7 @@ function manualAdd(title,seed,onBack){
         <select id="mMonth"><option value="">月</option>${Array.from({length:12},(_,i)=>`<option value="${i+1}">${i+1} 月</option>`).join('')}</select>
         <select id="mDay"><option value="">日</option>${Array.from({length:31},(_,i)=>`<option value="${i+1}">${i+1} 日</option>`).join('')}</select>
       </div>
+      <div class="fld" style="margin-top:11px"><span class="fl">時間 Time（選填）</span><input type="time" id="seenTime" class="timein"/></div>
       <p class="ds-hint">填到「日」才能算星期幾、各月統計；只記得年份也沒關係，之後可再填。</p>
     </div>
     <p class="mgeo" id="mGeo">打城市或劇院時會自動對上國家；對得上就能標在地圖。</p>
@@ -556,6 +558,7 @@ function manualAdd(title,seed,onBack){
   document.getElementById('mYear').onchange=applyDate;
   document.getElementById('mMonth').onchange=applyDate;
   document.getElementById('mDay').onchange=applyDate;
+  {const tm=document.getElementById('seenTime');if(tm){tm.value=(draft.time||'').slice(0,5);tm.onchange=()=>{draft.time=tm.value||'';};}}  // 時間
   document.getElementById('more').onclick=function(){const l2=document.getElementById('l2');const op=l2.hidden;l2.hidden=!op;this.textContent=op?'－ 收起細節':'＋ 加入細節（評分・座位・票價・心得）';if(op)buildRating();};
   // 幣別自製下拉：左欄只顯示代碼，符號只帶到右邊票價前；城市偵測也自動帶（除非已手選）
   let curManual=false;
@@ -654,6 +657,14 @@ function renderDetail(){
           ${p.venue?`<span class="chip">🎭 <b>${p.venue}</b></span>`:''}
           <span class="chip">📍 <b>${p.city}</b></span></div></div>
     </div>
+    ${draft.editIndex!=null?`<div class="step" id="editLoc">
+      <div class="lbl">劇院・城市<span class="opt">編輯可改</span></div>
+      <div class="row2">
+        <div class="fld"><span class="fl">城市</span><div class="combo"><input id="mCity" autocomplete="off" value="${(p.city||'').replace(/"/g,'&quot;')}" placeholder="例 London / 台北"/><div class="combo-panel" id="mCityPanel" hidden></div></div></div>
+        <div class="fld"><span class="fl">劇院</span><div class="combo"><input id="mVenue" autocomplete="off" value="${(p.venue||'').replace(/"/g,'&quot;')}" placeholder="例 臺中國家歌劇院"/><div class="combo-panel" id="mVenuePanel" hidden></div></div></div>
+      </div>
+      <p class="mgeo" id="mGeo">改城市／劇院會重新對上國家座標；對不上仍會存文字。</p>
+    </div>`:''}
 
     <div class="step" id="dateStep">
       <div class="lbl">什麼時候看的？<span class="opt">非必填</span></div>
@@ -662,6 +673,7 @@ function renderDetail(){
         <select id="dMonth"><option value="">月</option>${Array.from({length:12},(_,i)=>`<option value="${i+1}">${i+1} 月</option>`).join('')}</select>
         <select id="dDay"><option value="">日</option>${Array.from({length:31},(_,i)=>`<option value="${i+1}">${i+1} 日</option>`).join('')}</select>
       </div>
+      <div class="fld" style="margin-top:11px"><span class="fl">時間 Time（選填）</span><input type="time" id="seenTime" class="timein"/></div>
       <p class="ds-hint">${runTxt?runTxt+'　':''}填到「日」才能算星期幾、各月統計；只記得年份也行。</p>
     </div>
 
@@ -702,6 +714,18 @@ function renderDetail(){
   document.getElementById('more').onclick=function(){const l2=document.getElementById('l2');const opening=l2.hidden;l2.hidden=!opening;this.textContent=opening?'－ 收起細節':'＋ 加入細節（評分・座位・票價・心得）';if(opening)buildRating();};
   ['seat','price','note','url'].forEach(id=>{const el=document.getElementById(id);if(el)el.oninput=()=>{draft[id]=el.value;};});
   wirePosterField();   // method 2：自訂海報網址
+  {const tm=document.getElementById('seenTime');if(tm){tm.value=(draft.time||'').slice(0,5);tm.onchange=()=>{draft.time=tm.value||'';};}}  // 時間
+  if(draft.editIndex!=null){buildManualDB();   // 編輯：城市/劇院可改（重用手動表單的地理對映）
+    const cityEl=document.getElementById('mCity'),venueEl=document.getElementById('mVenue'),g=document.getElementById('mGeo');
+    const okMsg=h=>{if(g)g.innerHTML=`對上 <b>${h.country}</b>${(h.lat!=null)?' · 會標在地圖':''}`;};
+    const noMsg=()=>{if(g)g.textContent='找不到座標時仍會存城市/劇院文字（地圖上可能不顯示）。';};
+    function geoByCity(){const city=(cityEl.value||'').trim();draft.p.city=city;const hit=city&&MCITY[city];  // 改城市→用城市定位（不被舊劇院蓋掉）
+      if(hit){draft.p.country=hit.country;draft.p.lat=hit.lat;draft.p.lng=hit.lng;okMsg(hit);}else noMsg();}
+    function geoByVenue(){const venue=(venueEl.value||'').trim();draft.p.venue=venue;const hit=venue&&MVENUE[venue];  // 改劇院→用劇院定位，並帶出該劇院的城市
+      if(hit){draft.p.country=hit.country;draft.p.lat=hit.lat;draft.p.lng=hit.lng;if(hit.city){draft.p.city=hit.city;cityEl.value=hit.city;}okMsg(hit);}else noMsg();}
+    if(cityEl){setupCombo(cityEl,document.getElementById('mCityPanel'),()=>Object.keys(MCITY),(v)=>{cityEl.value=v;geoByCity();});cityEl.addEventListener('input',geoByCity);}
+    if(venueEl){setupCombo(venueEl,document.getElementById('mVenuePanel'),()=>Object.keys(MVENUE),(v)=>{venueEl.value=v;geoByVenue();});venueEl.addEventListener('input',geoByVenue);}
+  }
   const bk=document.getElementById('backToSearch');if(bk)bk.onclick=()=>{
     if(draft.editIndex==null&&w.prods&&w.prods.length>1)pickWork(w);   // 多製作→回版本清單（上一頁）
     else startLog();};
@@ -787,7 +811,7 @@ function renderRecent(){
 function editEntry(i){
   draft={...LOG[i],editIndex:i};
   if(draft.rating==null)draft.rating=0;if(draft.seat==null)draft.seat='';if(draft.price==null)draft.price='';if(draft.note==null)draft.note='';
-  sheetTitle.textContent='編輯紀錄';saveBtn.disabled=false;
+  sheetTitle.textContent='編輯紀錄';saveBtn.disabled=false;saveBtn.textContent='更新';
   if(!logDlg.open)logDlg.showModal();           // 在 modal 內 dialog 已開，重複 showModal 會丟例外
   renderDetail();prefillEdit();
 }

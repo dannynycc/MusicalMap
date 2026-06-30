@@ -335,23 +335,25 @@ footer{margin:60px 0 96px;color:var(--ink3);font-size:13px;text-align:center;lin
 footer b{color:var(--ink2)}
 
 /* ===== detail modal ===== */
-dialog#detail{border:none;padding:0;border-radius:20px;width:min(720px,94vw);background:var(--s2);color:var(--ink1);
+dialog#detail{border:none;padding:0;border-radius:20px;width:min(1060px,96vw);background:var(--s2);color:var(--ink1);
   box-shadow:0 40px 100px rgba(0,0,0,.6);overflow:hidden}
 dialog#detail::backdrop{background:rgba(0,0,0,.72);backdrop-filter:blur(8px)}
-.dt-grid{display:grid;grid-template-columns:260px 1fr}
-.dt-poster{position:relative;background:#101015}
-.dt-poster img{width:100%;height:100%;object-fit:cover;display:block;min-height:360px}
+.dt-grid{display:grid;grid-template-columns:400px 1fr}
+.dt-poster{position:relative;background:#101015;cursor:zoom-in}
+.dt-poster img{width:100%;height:100%;object-fit:cover;display:block;min-height:540px}
+.dt-poster .dt-zoom{position:absolute;right:10px;bottom:10px;background:rgba(0,0,0,.55);color:#fff;font-size:11px;font-weight:600;padding:4px 9px;border-radius:999px;backdrop-filter:blur(3px);pointer-events:none;opacity:0;transition:opacity .2s}
+.dt-poster:not(.is-fallback):hover .dt-zoom{opacity:1}
 .dt-fallback{position:absolute;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;gap:.5em;padding:14% 10%;text-align:center;background:linear-gradient(160deg,var(--dt-accent,#7c5cff),#1a1622)}
 .dt-poster.is-fallback img{display:none}
 .dt-poster.is-fallback .dt-fallback{display:flex}
 .dt-fallback .kick{font:700 .62rem/1 var(--ui);letter-spacing:.26em;text-transform:uppercase;color:rgba(255,255,255,.82)}
 .dt-fallback .ft{font-family:var(--fr);font-weight:900;font-size:1.7rem;line-height:1.06;color:#fff}
 .dt-fallback .fzh{font-size:1rem;color:rgba(255,255,255,.9)}
-.dt-body{padding:26px 28px}
-.dt-body .en{font-family:var(--fr);font-weight:900;font-size:26px;line-height:1.05;letter-spacing:-.4px}
-.dt-body .zh{color:var(--gold);font-size:15px;margin:2px 0 4px;font-weight:600}
-.dt-body .rate{color:var(--gold);font-size:16px;letter-spacing:1px;margin:8px 0 16px}
-.dl{display:grid;grid-template-columns:auto 1fr;gap:9px 16px;font-size:14px}
+.dt-body{padding:34px 40px;align-self:center}
+.dt-body .en{font-family:var(--fr);font-weight:900;font-size:32px;line-height:1.05;letter-spacing:-.4px}
+.dt-body .zh{color:var(--gold);font-size:17px;margin:3px 0 6px;font-weight:600}
+.dt-body .rate{color:var(--gold);font-size:18px;letter-spacing:1px;margin:10px 0 20px}
+.dl{display:grid;grid-template-columns:auto 1fr;gap:13px 18px;font-size:15.5px}
 .dl dt{color:var(--ink3);font-size:11px;letter-spacing:1px;text-transform:uppercase;font-weight:700;align-self:center}
 .dl dd{margin:0;color:var(--ink1)}
 .dt-note{margin-top:16px;padding:12px 14px;background:var(--s3);border-radius:12px;font-style:italic;color:var(--ink2);font-size:13.5px;line-height:1.6}
@@ -479,7 +481,7 @@ dialog#detail::backdrop{background:rgba(0,0,0,.72);backdrop-filter:blur(8px)}
 <dialog id="detail">
   <button class="dt-close" id="dtclose" aria-label="關閉">✕</button>
   <div class="dt-grid">
-    <div class="dt-poster" id="dt-poster"><img id="dt-img" alt="" /><div class="dt-fallback"><span class="kick">A Musical</span><span class="ft" id="dt-fb-en"></span><span class="fzh" id="dt-fb-zh"></span></div></div>
+    <div class="dt-poster" id="dt-poster"><img id="dt-img" alt="" /><div class="dt-fallback"><span class="kick">A Musical</span><span class="ft" id="dt-fb-en"></span><span class="fzh" id="dt-fb-zh"></span></div><span class="dt-zoom">點圖看完整海報 ↗</span></div>
     <div class="dt-body">
       <div class="en" id="dt-en"></div>
       <div class="zh" id="dt-zh"></div>
@@ -506,7 +508,7 @@ function normCountry(c){return CCNORM[c]||c||'';}   // 別名正規化：UK→Un
   const mapped=log.map((e,i)=>({
     id:9000+i, title:(e.w&&e.w.en)||'?', zh:(e.w&&e.w.zh)||'', prod:(e.p&&e.p.label)||'', color:'#7c5cff',
     poster:(e.p&&e.p.img)||null, posterFit:'cover', posterBg:null,
-    date:e.date||'', precision:e.precision||'none', time:'',
+    date:e.date||'', precision:e.precision||'none', time:(e.time||'').slice(0,5),
     venue:(e.p&&e.p.venue)||'', city:(e.p&&e.p.city)||'', country:normCountry(e.p&&e.p.country), cc:'',
     lat:e.p&&e.p.lat, lng:e.p&&e.p.lng, seat:e.seat||'', price:e.price||'', cur:e.cur||'',
     rating:e.rating||0, fav:false, note:e.note||'', url:e.url||'', era:null, scale:null, logged:true
@@ -805,6 +807,8 @@ function openDetail(s){
   if(s.poster){dp.classList.remove('is-fallback');img.src=s.poster;img.style.objectFit=s.posterFit==='contain'?'contain':'cover';}
   else{dp.classList.add('is-fallback');img.removeAttribute('src');dp.style.setProperty('--dt-accent',s.color||'#7c5cff');  // 無海報→文字 fallback，不破圖
     document.getElementById('dt-fb-en').textContent=s.title;document.getElementById('dt-fb-zh').textContent=s.zh||'';}
+  dp.onclick=()=>{if(s.poster)window.open(s.poster,'_blank','noopener');};   // 點海報→新視窗看完整大圖
+  dp.style.cursor=s.poster?'zoom-in':'default';
   document.getElementById('dt-en').textContent=s.title;
   document.getElementById('dt-zh').textContent=s.zh;
   const rt=document.getElementById('dt-rate');
@@ -816,7 +820,6 @@ function openDetail(s){
     <dt>日期</dt><dd>${fdt(s.date)}${s.time?' · '+s.time:''}</dd>
     <dt>座位</dt><dd>${s.seat||'—'}</dd>
     <dt>票價</dt><dd>${s.price?`${s.price} ${s.cur||''}`:'—'}</dd>
-    <dt>製作</dt><dd>${s.prod||'—'}</dd>
     <dt>連結</dt><dd>${s.url?`<a href="${String(s.url).replace(/"/g,'%22')}" target="_blank" rel="noopener noreferrer" style="color:#e3b23c;text-decoration:none;border-bottom:1px solid currentColor">${((String(s.url).match(/^https?:\/\/([^\/]+)/)||[])[1]||'開啟連結')} ↗</a>`:'—'}</dd>`;
   document.getElementById('dt-note').textContent=s.note?('「'+s.note+'」'):'';
   document.getElementById('dt-note').style.display=s.note?'block':'none';
