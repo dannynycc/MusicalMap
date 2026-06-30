@@ -340,7 +340,8 @@ dialog#detail{border:none;padding:0;border-radius:20px;width:min(1060px,96vw);ba
 dialog#detail::backdrop{background:rgba(0,0,0,.72);backdrop-filter:blur(8px)}
 .dt-grid{display:grid;grid-template-columns:400px 1fr}
 .dt-poster{position:relative;background:#101015;cursor:zoom-in}
-.dt-poster img{width:100%;height:100%;object-fit:cover;display:block;min-height:540px}
+.dt-poster img{width:100%;height:100%;object-fit:cover;display:block;min-height:540px;opacity:0}
+.dt-poster img.ready{opacity:1;transition:opacity .3s ease}   /* 切換時先隱藏舊圖(移除 ready→瞬間透明)，新圖載入完才淡入，不閃前一張 */
 .dt-poster .dt-zoom{position:absolute;right:10px;bottom:10px;background:rgba(0,0,0,.55);color:#fff;font-size:11px;font-weight:600;padding:4px 9px;border-radius:999px;backdrop-filter:blur(3px);pointer-events:none;opacity:0;transition:opacity .2s}
 .dt-poster:not(.is-fallback):hover .dt-zoom{opacity:1}
 .dt-fallback{position:absolute;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;gap:.5em;padding:14% 10%;text-align:center;background:linear-gradient(160deg,var(--dt-accent,#7c5cff),#1a1622)}
@@ -804,7 +805,14 @@ let mt;addEventListener('resize',()=>{clearTimeout(mt);mt=setTimeout(()=>{render
 const dlg=document.getElementById('detail');
 function openDetail(s){
   const dp=document.getElementById('dt-poster'),img=document.getElementById('dt-img');
-  if(s.poster){dp.classList.remove('is-fallback');img.src=s.poster;img.style.objectFit=s.posterFit==='contain'?'contain':'cover';}
+  if(s.poster){dp.classList.remove('is-fallback');
+    img.style.objectFit=s.posterFit==='contain'?'contain':'cover';
+    if(img.getAttribute('src')!==s.poster){              // 換不同海報：先隱藏舊圖(opacity→0)，只靠 onload 才淡入新圖→不閃前一張
+      img.classList.remove('ready');
+      img.onload=()=>img.classList.add('ready');
+      img.onerror=()=>img.classList.add('ready');        // 載入失敗也別卡成永久空白
+      img.src=s.poster;
+    }else img.classList.add('ready');}                    // 同一張(重開)→直接顯示
   else{dp.classList.add('is-fallback');img.removeAttribute('src');dp.style.setProperty('--dt-accent',s.color||'#7c5cff');  // 無海報→文字 fallback，不破圖
     document.getElementById('dt-fb-en').textContent=s.title;document.getElementById('dt-fb-zh').textContent=s.zh||'';}
   dp.onclick=()=>{if(s.poster)window.open(s.poster,'_blank','noopener');};   // 點海報→新視窗看完整大圖
