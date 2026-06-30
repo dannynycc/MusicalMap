@@ -1,8 +1,8 @@
 {
   "meta": {
     "source": "shiki.jp",
-    "count": 10,
-    "skipped_national_tour_rows": 11
+    "count": 12,
+    "skipped_national_tour_rows": 16
   },
   "shows": [
     {
@@ -74,7 +74,24 @@
       "source": "shiki.jp"
     },
     {
-      "id": "shiki-aladdin-tokyo-2026-01-02",
+      "id": "shiki-tokyo-2026-11-07",
+      "title": "ロボット・イン・ザ・ガーデン　東京",
+      "type": "resident",
+      "venue": "自由劇場 (浜松町)",
+      "city": "Tokyo",
+      "country": "Japan",
+      "lat": 35.6556,
+      "lng": 139.7584,
+      "start_date": "2026-11-07",
+      "end_date": "2027-02-13",
+      "ticket_url": "https://www.shiki.jp/applause/robot/",
+      "image": "https://www.shiki.jp/shared/images/ogp/0085.jpg",
+      "tour_name": null,
+      "verified": true,
+      "source": "shiki.jp"
+    },
+    {
+      "id": "shiki-aladdin-tokyo-2026-07-01",
       "title": "Aladdin",
       "type": "resident",
       "venue": "電通四季劇場[海] (汐留)",
@@ -82,7 +99,7 @@
       "country": "Japan",
       "lat": 35.6647,
       "lng": 139.7611,
-      "start_date": "2026-01-02",
+      "start_date": "2026-07-01",
       "end_date": "2026-12-31",
       "ticket_url": "https://www.shiki.jp/applause/aladdin/",
       "image": "https://www.shiki.jp/shared/images/ogp/0077.jpg",
@@ -142,6 +159,23 @@
       "source": "shiki.jp"
     },
     {
+      "id": "shiki-tokyo-2026-09-16",
+      "title": "浅利演出事務所主催公演『夢から醒めた夢』　東京",
+      "type": "resident",
+      "venue": "自由劇場 (浜松町)",
+      "city": "Tokyo",
+      "country": "Japan",
+      "lat": 35.6556,
+      "lng": 139.7584,
+      "start_date": "2026-09-16",
+      "end_date": "2026-09-29",
+      "ticket_url": "https://www.shiki.jphttps://asarioffice.jp/yumesame2026/",
+      "image": "https://www.shiki.jp/shared/images/ogp/0055.jpg",
+      "tour_name": null,
+      "verified": true,
+      "source": "shiki.jp"
+    },
+    {
       "id": "shiki-the-phantom-of-the-opera-nagoya-2026-07-05",
       "title": "The Phantom of the Opera",
       "type": "resident",
@@ -168,7 +202,7 @@
       "lat": 34.7008,
       "lng": 135.4938,
       "start_date": "2026-07-22",
-      "end_date": "2026-11-29",
+      "end_date": "2027-02-07",
       "ticket_url": "https://www.shiki.jp/applause/notredame/",
       "image": "https://www.shiki.jp/shared/images/ogp/0079.jpg",
       "tour_name": null,
