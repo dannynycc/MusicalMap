@@ -509,7 +509,7 @@ function normCountry(c){return CCNORM[c]||c||'';}   // 別名正規化：UK→Un
     date:e.date||'', precision:e.precision||'none', time:'',
     venue:(e.p&&e.p.venue)||'', city:(e.p&&e.p.city)||'', country:normCountry(e.p&&e.p.country), cc:'',
     lat:e.p&&e.p.lat, lng:e.p&&e.p.lng, seat:e.seat||'', price:e.price||'', cur:e.cur||'',
-    rating:e.rating||0, fav:false, note:e.note||'', era:null, scale:null, logged:true
+    rating:e.rating||0, fav:false, note:e.note||'', url:e.url||'', era:null, scale:null, logged:true
   }));
   // 所有登錄的劇都進牆與統計；地圖之後只對「有座標」的放 pin（無座標≠丟掉、絕不退回範例冒充）
   if(mapped.length){MM.shows.length=0;MM.shows.push(...mapped);document.documentElement.dataset.live='1';}
@@ -816,7 +816,8 @@ function openDetail(s){
     <dt>日期</dt><dd>${fdt(s.date)}${s.time?' · '+s.time:''}</dd>
     <dt>座位</dt><dd>${s.seat||'—'}</dd>
     <dt>票價</dt><dd>${s.price?`${s.price} ${s.cur||''}`:'—'}</dd>
-    <dt>製作</dt><dd>${s.prod||'—'}</dd>`;
+    <dt>製作</dt><dd>${s.prod||'—'}</dd>
+    <dt>連結</dt><dd>${s.url?`<a href="${String(s.url).replace(/"/g,'%22')}" target="_blank" rel="noopener noreferrer" style="color:#e3b23c;text-decoration:none;border-bottom:1px solid currentColor">${((String(s.url).match(/^https?:\/\/([^\/]+)/)||[])[1]||'開啟連結')} ↗</a>`:'—'}</dd>`;
   document.getElementById('dt-note').textContent=s.note?('「'+s.note+'」'):'';
   document.getElementById('dt-note').style.display=s.note?'block':'none';
   if(dlg.showModal)dlg.showModal();
@@ -890,13 +891,14 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
     return {sid:s.id, w:{en:s.title||'',zh:ZH[k]||''},
       p:{label:null,venue:s.venue||'',city:s.city||'',country:s.country||'',lat:s.lat,lng:s.lng,img:(ov||POS[k]||''),cur:s.currency||''},
       posterOverride:ov,   // 自訂海報網址（method 2）：有就優先當圖
+      url:s.url||'',       // 連結/售票網址（沿用既有 url 欄；保住不洗掉）
       date:partialDate(s.seen_date,prec),precision:prec,
       rating:s.rating||0,seat:s.seat||'',price:(s.price!=null?String(s.price):''),note:s.note||'',time:s.seen_time||''};}
   function entryToRec(e){const p=e.p||{};
     const rec={title:(e.w&&e.w.en)||'',venue:p.venue||null,city:p.city||null,country:p.country||null,
       seen_date:fullDate(e.date,e.precision),precision:e.precision||'none',
       rating:e.rating||0,seat:e.seat||null,price:(e.price!==''&&e.price!=null?+e.price:null),currency:e.cur||null,note:e.note||null,seen_time:e.time||null,
-      poster_override:e.posterOverride||null};
+      poster_override:e.posterOverride||null,url:e.url||null};
     if(p.lat!=null&&p.lng!=null){rec.lat=p.lat;rec.lng=p.lng;}return rec;}
   window.mmEntryToRec=entryToRec;   // 給刪除復原用
   if(!cfg.READY||typeof supabase==='undefined'){showGate('⚠ 後端尚未設定',false);return;}

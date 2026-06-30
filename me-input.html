@@ -338,13 +338,15 @@ function curOf(c){return CUR[c]||'';}
 /* ===== P3c：Supabase 雲端寫入（與父頁 me.html 同 session，共用 localStorage 的登入態）===== */
 let MMSB=null;(function(){const cfg=window.MM_CONFIG;if(cfg&&cfg.READY&&typeof supabase!=='undefined'){try{MMSB=supabase.createClient(cfg.SUPABASE_URL,cfg.SUPABASE_ANON_KEY);}catch(e){}}})();
 function _fullDate(date,prec){if(!date)return null;const d=String(date);if(prec==='year'||d.length===4)return d.slice(0,4)+'-01-01';if(prec==='month'||d.length===7)return d.slice(0,7)+'-01';return d;}
-function entryToRec(e){const p=e.p||{};const rec={title:(e.w&&e.w.en)||'',venue:p.venue||null,city:p.city||null,country:p.country||null,seen_date:_fullDate(e.date,e.precision),precision:e.precision||'none',rating:e.rating||0,seat:e.seat||null,price:(e.price!==''&&e.price!=null?+e.price:null),currency:e.cur||null,note:e.note||null,seen_time:e.time||null,poster_override:e.posterOverride||null};if(p.lat!=null&&p.lng!=null){rec.lat=p.lat;rec.lng=p.lng;}return rec;}
+function entryToRec(e){const p=e.p||{};const rec={title:(e.w&&e.w.en)||'',venue:p.venue||null,city:p.city||null,country:p.country||null,seen_date:_fullDate(e.date,e.precision),precision:e.precision||'none',rating:e.rating||0,seat:e.seat||null,price:(e.price!==''&&e.price!=null?+e.price:null),currency:e.cur||null,note:e.note||null,seen_time:e.time||null,poster_override:e.posterOverride||null,url:e.url||null};if(p.lat!=null&&p.lng!=null){rec.lat=p.lat;rec.lng=p.lng;}return rec;}
 // method 2：算某劇的「系統 catalog 海報」（清空自訂時還原用）
 function systemPosterFor(en){const vc=window.MM_VC;if(!vc||!en)return '';const t=(vc.titles||[]).find(x=>x.en&&x.en.toLowerCase()===String(en).toLowerCase());return (t&&vc.posters&&vc.posters[t.group])||'';}
 // 自訂海報欄位的 HTML（兩個表單共用）
 function posterFieldHTML(){return `<div class="fld"><span class="fl">自訂海報網址 Poster URL（選填）</span>
   <input id="posterOverride" inputmode="url" autocapitalize="off" placeholder="貼上圖片網址，覆蓋系統海報；清空即還原"/>
-  <div class="poster-prev" id="posterPrevWrap" hidden><img id="posterPrev" alt=""/><span class="pp-tag">預覽</span></div></div>`;}
+  <div class="poster-prev" id="posterPrevWrap" hidden><img id="posterPrev" alt=""/><span class="pp-tag">預覽</span></div></div>
+  <div class="fld"><span class="fl">連結 / 售票網址 Link（選填）</span>
+  <input id="url" inputmode="url" autocapitalize="off" placeholder="貼上這場的售票或節目連結（選填）"/></div>`;}
 // 接線（兩個表單呼叫）：oninput→draft.posterOverride + 即時換圖 + 預覽
 function wirePosterField(){const pu=document.getElementById('posterOverride');if(!pu)return;
   if(draft._baseImg==null)draft._baseImg=systemPosterFor(draft.w&&draft.w.en)||(draft.p&&draft.p.img)||'';
@@ -564,7 +566,7 @@ function manualAdd(title,seed,onBack){
     (code)=>{curManual=true;setCurrency(code,false);},
     {showAllOnFocus:true, fmt:c=>`${curSym(c)}　${c}　${CUR_INFO[c].name}`, toInput:c=>c,
      onBlur:()=>{const ci=document.getElementById('curInput');if(ci)ci.value=draft.cur||'';}});
-  ['seat','price','note'].forEach(id=>{const el=document.getElementById(id);if(el)el.oninput=()=>{draft[id]=el.value;};});
+  ['seat','price','note','url'].forEach(id=>{const el=document.getElementById(id);if(el)el.oninput=()=>{draft[id]=el.value;};});
   wirePosterField();   // method 2：自訂海報網址
   const bk=document.getElementById('backToSearch2');if(bk)bk.onclick=onBack||(()=>startLog());
 }
@@ -698,7 +700,7 @@ function renderDetail(){
       {showAllOnFocus:true,fmt:c=>`${curSym(c)}　${c}　${CUR_INFO[c].name}`,toInput:c=>c,onBlur:()=>show(draft.cur)});})();
   // details
   document.getElementById('more').onclick=function(){const l2=document.getElementById('l2');const opening=l2.hidden;l2.hidden=!opening;this.textContent=opening?'－ 收起細節':'＋ 加入細節（評分・座位・票價・心得）';if(opening)buildRating();};
-  ['seat','price','note'].forEach(id=>{const el=document.getElementById(id);if(el)el.oninput=()=>{draft[id]=el.value;};});
+  ['seat','price','note','url'].forEach(id=>{const el=document.getElementById(id);if(el)el.oninput=()=>{draft[id]=el.value;};});
   wirePosterField();   // method 2：自訂海報網址
   const bk=document.getElementById('backToSearch');if(bk)bk.onclick=()=>{
     if(draft.editIndex==null&&w.prods&&w.prods.length>1)pickWork(w);   // 多製作→回版本清單（上一頁）
@@ -792,7 +794,7 @@ function editEntry(i){
 function prefillEdit(){
   // 日期三欄已由 renderDetail 依 draft.date 自動預填；這裡只補開「細節」並填回評分/座位/票價/心得
   const more=document.getElementById('more');if(more&&document.getElementById('l2').hidden)more.click();
-  ['seat','price','note'].forEach(id=>{const el=document.getElementById(id);if(el&&draft[id]!=null)el.value=draft[id];});
+  ['seat','price','note','url'].forEach(id=>{const el=document.getElementById(id);if(el&&draft[id]!=null)el.value=draft[id];});
   const r=document.getElementById('rate');if(r&&r._paint)r._paint();
   updateSave();
 }

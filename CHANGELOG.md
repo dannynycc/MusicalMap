@@ -11,6 +11,15 @@
 
 ---
 
+## [v1.2.0] - 2026-06-30 14:19
+### 修復＋新功能 — 把「連結／售票網址」(url) 重新顯示並可編輯
+v2 改版時新版 me.html 沒把既有的 `url` 欄位撈出來顯示（**資料一直都在、沒被刪**，只是 UI 沒surface）。本版補回：
+- **me.html**：`sightingToEntry` 讀 `url`、整合區 map `s.url`、詳情頁加「連結」列（可點、開新分頁、顯示網域）；`entryToRec` 寫 `url`（編輯/復原都保住）。
+- **me-input.html**：新增/編輯表單「細節」區加「連結 / 售票網址（選填）」欄（id=`url`，沿用現成 forEach 接線；編輯回填）。
+- **修掉資料邊角**：先前「刪除→復原」是重新 insert、未帶 `url` 會讓該筆 url 變空；現 `mmEntryToRec` 含 `url`，復原完整保住。
+- 不需 migration（`url` 欄早於 add_url.sql 就存在）。
+- **全自動實測（test 帳號）**：新增帶 url→雲端存+詳情顯示連結；**只改評分不碰 url→url 不被洗掉**（PostgREST 部分更新）；刪除→復原→url 仍在。0 錯誤。
+
 ## [v1.1.0] - 2026-06-30 13:26
 ### 新功能 — 每筆紀錄可自訂海報網址（per-sighting poster URL override，方法 2）
 使用者可在某齣紀錄填一個圖片 URL，覆蓋系統 catalog 帶出來的海報；清空即還原系統圖。各筆獨立互不影響。
