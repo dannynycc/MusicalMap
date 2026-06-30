@@ -904,6 +904,8 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
   if(!cfg.READY||typeof supabase==='undefined'){showGate('⚠ 後端尚未設定',false);return;}
   const sb=supabase.createClient(cfg.SUPABASE_URL,cfg.SUPABASE_ANON_KEY);
   window.mmSb=sb;
+  const SYNC_VER='2';   // sightingToEntry 對映改版就 +1 → 強制所有 session 重新同步（避免舊快取缺新欄位，如 url/poster）
+  const syncedKey=uid=>uid+'@'+SYNC_VER;
   let _syncing=false;
   async function syncFromCloud(uid){
     if(_syncing)return;_syncing=true;showGate('同步你的收藏中…',false);
@@ -913,9 +915,9 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
       if(error)throw error;
       const json=JSON.stringify((data||[]).map(sightingToEntry));
       const prev=localStorage.getItem('mm-log')||'';
-      localStorage.setItem('mm-log',json);sessionStorage.setItem('mev2_synced',uid);
+      localStorage.setItem('mm-log',json);sessionStorage.setItem('mev2_synced',syncedKey(uid));
       if(location.hash){try{history.replaceState(null,'',location.pathname+location.search);}catch(e){}}  // 去掉 OAuth 轉址的 #token，避免 reload 重新處理→迴圈
-      const rk='mev2_reloaded_'+uid;
+      const rk='mev2_reloaded_'+syncedKey(uid);
       if(prev!==json && !sessionStorage.getItem(rk)){sessionStorage.setItem(rk,'1');location.reload();return;}  // 最多重載一次→渲染雲端資料；防迴圈
       hideGate();
     }catch(e){console.error('sync',e);showGate('讀取收藏失敗，請重新整理。<br><span style="font-size:13px;opacity:.7">'+((e&&e.message)||e)+'</span>',false);}
@@ -923,7 +925,7 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
   }
   function showLogin(){showGate('<b style="font-size:26px">我的音樂劇足跡</b><br><span style="opacity:.72;font-size:14.5px;font-weight:500">登入後，你看過的每一齣音樂劇都會存進你的帳號、跨裝置同步。</span>',true);}
   function clearLocal(){try{localStorage.removeItem('mm-log');}catch(e){}sessionStorage.removeItem('mev2_synced');Object.keys(sessionStorage).filter(k=>k.indexOf('mev2_reloaded_')===0).forEach(k=>sessionStorage.removeItem(k));}
-  async function onSignedIn(user){if(sessionStorage.getItem('mev2_synced')===user.id){hideGate();return;}await syncFromCloud(user.id);}
+  async function onSignedIn(user){if(sessionStorage.getItem('mev2_synced')===syncedKey(user.id)){hideGate();return;}await syncFromCloud(user.id);}
   glogin.onclick=()=>sb.auth.signInWithOAuth({provider:'google',options:{redirectTo:location.origin+location.pathname}});
   window.mmLogout=()=>sb.auth.signOut().then(()=>{clearLocal();location.reload();});
   {const bl=document.getElementById('btnLogout');if(bl)bl.onclick=window.mmLogout;}
