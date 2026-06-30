@@ -11,10 +11,11 @@
 
 ---
 
-## [Unreleased · feat/me-v2 分支] - 2026-06-30 10:15
+## [Unreleased · feat/me-v2 分支] - 2026-06-30 10:33
 ### 新功能 (WIP — 僅在 feat/me-v2 分支，未上 main) — 「我的音樂劇」改版移植
-- **P1 換頁骨架**：桌面 demo4（demo4.html + demo4-input.html）移植進正式版 → `me.html`→`me_ori.html`(舊頁備份保留)；新 `me.html`(呈現端) + `me-input.html`(輸入 iframe)；暫帶 catalog.js/data.js/data2.js/worldmap.js。本機實測渲染/輸入 modal/搜尋皆正常、0 錯誤。
-- 目前仍用 localStorage + catalog.js。後續：P2 改吃正式版 `venues_catalog.json` + `shows.json`；P3 接 Supabase `sightings` + Google 登入（sightings 將加 rating + precision 欄位）；P4 三清單；P5 i18n(先繁中)；P6 收尾。
+- **P1 換頁骨架**：桌面 demo4（demo4.html + demo4-input.html）移植進正式版 → `me.html`→`me_ori.html`(舊頁備份保留)；新 `me.html`(呈現端) + `me-input.html`(輸入 iframe)。本機實測渲染/輸入 modal/搜尋皆正常、0 錯誤。
+- **P2 劇庫接正式版資料（已實測 0 錯）**：新增 `me-catalog.js` 非同步 fetch `data/venues_catalog.json`+`data/shows.json`；me-input 的 `CATALOG`/`INDEX` 改延後組裝（titles+當期 shows 組出含座標的 prods）、`buildManualDB` 改吃正式版 **5117 劇院**(含中文名/台↔臺變體/座標)+440 城市；輸入端啟動前等資料就緒(載入中狀態)。**作品 130→568、劇院 363→5117**；實測劇院打「台中歌劇院」→ 正確跳出 3 個臺中國家歌劇院。**移除已不再使用的 catalog.js**。
+- 目前 log 仍存 localStorage。後續：P3 接 Supabase `sightings` + Google 登入（sightings 將加 rating + precision 欄位）；P4 三清單；P5 i18n(先繁中)；P6 收尾。
 - **本分支不 push main，直到使用者驗收。**
 
 ## [v0.78.4] - 2026-06-28 15:45
