@@ -11,8 +11,9 @@
 
 ---
 
-## [Unreleased · feat/me-v2 分支] - 2026-06-30 10:33
-### 新功能 (WIP — 僅在 feat/me-v2 分支，未上 main) — 「我的音樂劇」改版移植
+## [v0.79.0] - 2026-06-30 11:49
+### 新功能 — 「我的音樂劇」(My Musicals) 帳號版改版上線（demo4 → 正式版 me.html）
+舊 FlightRadar 風 me 頁改名備份為 `me_ori.html`；新版為桌面 demo4 移植，繁中、海報牆/護照/清單三檢視 + 統計儀表板 + 點陣地圖，登入後雲端同步。各階段本機 Playwright 實測（含用 dashboard 測試帳號 + signInWithPassword 跑完整登入後雲端來回），全程 0 錯誤。
 - **P1 換頁骨架**：桌面 demo4（demo4.html + demo4-input.html）移植進正式版 → `me.html`→`me_ori.html`(舊頁備份保留)；新 `me.html`(呈現端) + `me-input.html`(輸入 iframe)。本機實測渲染/輸入 modal/搜尋皆正常、0 錯誤。
 - **P2 劇庫接正式版資料（已實測 0 錯）**：新增 `me-catalog.js` 非同步 fetch `data/venues_catalog.json`+`data/shows.json`；me-input 的 `CATALOG`/`INDEX` 改延後組裝（titles+當期 shows 組出含座標的 prods）、`buildManualDB` 改吃正式版 **5117 劇院**(含中文名/台↔臺變體/座標)+440 城市；輸入端啟動前等資料就緒(載入中狀態)。**作品 130→568、劇院 363→5117**；實測劇院打「台中歌劇院」→ 正確跳出 3 個臺中國家歌劇院。**移除已不再使用的 catalog.js**。
 - **P3a Supabase migration SQL（✅ 已套用＋驗證）**：`supabase/add_rating_precision.sql` 在 sightings 加 `rating smallint` + `precision text`。使用者已於 dashboard 執行；用測試帳號(mev2-test，dashboard 建+auto-confirm)實測 insert 含 rating/precision→讀回→delete 全通、RLS 正常。**取得可用 test session→登入後雲端來回可全自動 Playwright 測**。
@@ -23,9 +24,9 @@
 - 已知小事：登入後 0 筆收藏時牆顯示 22 張 demo 範例（demo 既有空狀態預覽，之後可換成更乾淨的空狀態 CTA）。
 - **P4/P6 收尾（✅ 實測 0 錯）**：新 me.html header 加正式版導覽「所有劇院」(→theatres.html，劇院清單頁已存在)、「演出地圖」(→index.html)，加**登出**鈕(→signOut→回登入閘)。實測登入後 nav 齊全、登出回未登入閘。sitemap(gen_site:244 仍含 me.html，不用改)、me-input/me_ori 不需索引。城市/國家清單已靠輸入端正式版資料(台中歌劇院等)+個人頁統計運作。
 - **狀態：功能完整、全自動實測通過(登入/載入/新增/編輯/刪除/導覽/登出)。待使用者用自己 Google 帳號在瀏覽器點一次登入驗收(唯一無法 headless 自動的一步；redirectTo=.../me.html 與舊頁同路徑、應已在 Supabase 白名單)，確認後即可 merge feat/me-v2→main。** i18n(英文)依決定延後。
-- 目前 log 仍存 localStorage。後續 P3b：me.html 接 Supabase 載入 + Google 登入閘（未登入落地頁/已登入收藏）；P3c：me-input save/delete 改打 sightings（localStorage 當快取雙寫）。**注意：Google OAuth 無法 headless 自動驗，登入→雲端讀寫來回需使用者真瀏覽器確認。**
-- 後續 P4 三清單；P5 i18n(先繁中)；P6 收尾。
-- **本分支不 push main，直到使用者驗收。**
+- P3b/c 接 Supabase 載入/save/delete（見下）。
+- i18n 英文版依決定延後（v2 先繁中）。
+- **僅 Google 登入按鈕本身的點擊無法 headless 自動驗（signInWithOAuth 已 code review、redirectTo 與舊頁同路徑 `/me.html` 已在白名單）；上線後請用 Google 帳號實際登入一次確認。舊版 `me_ori.html` 為即時回退備援。**
 
 ## [v0.78.4] - 2026-06-28 15:45
 ### 文件 — README 數字審計，修 official_sites 過時筆數

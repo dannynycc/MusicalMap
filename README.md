@@ -8,7 +8,7 @@
 
 線上版：https://dannynycc.github.io/MusicalMap/
 
-**My Musicals（個人音樂劇足跡）**：登入(Google)後記錄看過的音樂劇(可編輯/刪除),自動生成 Top 劇目/國家/城市/劇院、年度/每月/每週**折線圖**與**海報圖卡個人地圖**(FlightRadar「My Flights」風格、全英文 UI)。新增表單自動帶入劇院/城市/幣別、**劇名中英雙搜**(輸入「西貢」或「Miss」皆命中 Miss Saigon · 西貢小姐)。後端 Supabase(Postgres+Auth,RLS),前端仍純靜態。設定見 `docs/SETUP_ACCOUNTS.md`。
+**My Musicals（個人音樂劇足跡，v2 繁中改版）**：登入(Google)後記錄看過的音樂劇(可編輯/刪除),以**海報牆/護照/清單三檢視 + 統計儀表板(音樂劇/作品/城市/國家數、最新一場、城市榜) + 點陣世界地圖**呈現;排序可依最近/評分/次數/劇名。新增為彈出式輸入端,**搜尋/選製作/手動新增自動帶入劇院/城市/幣別**(劇庫吃正式版 `venues_catalog`5117 劇院含中文名 + `shows` 當期座標,打「台中歌劇院」「Miss」「西貢」皆命中)、年/月/日選填日期、評分/座位/票價/心得。後端 Supabase(Postgres+Auth,RLS;`sightings` 表存收藏,localStorage 當快取),前端仍純靜態。舊 FlightRadar 風版本備份於 `me_ori.html`。設定見 `docs/SETUP_ACCOUNTS.md`。
 
 ---
 
@@ -30,7 +30,8 @@ scrapers/  ──產出──>  data/*.json  ──merge──>  data/shows.json
 | `build/gen_variants.mjs` → `data/variants/shows.{en,zh-hans,zh-hant}.json` | **三語資料變體**（OpenCC 簡⇄繁 + `data/i18n_maps.json`）。**地名分語言**：中文版城市／國家翻中文（含**兩岸差異**——雪梨↔悉尼、義大利↔意大利…由 `cities_tw`／`countries_tw` 覆寫，OpenCC 只轉字不轉慣例）、小鎮留英文；英文版城市顯示「City, ST」（`us_ca_state` 權威表補州）。需 Node + `opencc-js` |
 | `build/gen_site.mjs` → `/en//zh-hans//zh-hant/index.html` + `sitemap.xml` + `robots.txt` | **三語獨立網址 + 預渲染**(劇目清單 + JSON-LD 寫進靜態 HTML → Google 與不跑 JS 的 AI 爬蟲都讀得到)+ hreflang。每日 CI 重生成 |
 | `js/app.js` | 地圖、海報 marker、側欄、搜尋/篩選、popup、同劇合併與多地點 overview;變體頁載 `data/variants/`,中文判斷用 `isZh()`(繁簡皆是);含 `overlapsMonth` 與 XSS 跳脫 |
-| `me.html` / `css/me.css` / `js/me.js` | My Musicals 個人頁(FlightRadar 風)、表單/自動帶入/折線圖/海報地圖/編輯刪除 |
+| `me.html`(+`me-input.html`/`me-catalog.js`) | **My Musicals v2**(自含繁中頁:海報牆/護照/清單三檢視 + 統計儀表板 + 點陣地圖;輸入端為 iframe,搜尋/選製作/手動新增自動帶入,劇庫吃 `venues_catalog`+`shows`;Supabase Google 登入 + 雲端 `sightings`,localStorage 當快取雙寫) |
+| `me_ori.html`(+`css/me.css`/`js/me.js`) | 舊版 My Musicals(FlightRadar 風/折線圖);v2 上線後改名備份保留 |
 | `theatres.html` / `js/theatres.js` | 所有劇院地圖(全 catalog ~5,000 場館,綠色群聚圈 + 多語搜尋) |
 | `u.html` / `js/u.js` | 公開唯讀 profile 分享頁(`?u=<handle>`,免登入,推廣用) |
 | `scrapers/gen_catalog.py` → `data/venues_catalog.json` | 自動帶入字典(場館去重 / 中英劇名 / 幣別 / 海報) |
