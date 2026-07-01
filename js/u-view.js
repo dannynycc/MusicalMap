@@ -135,7 +135,8 @@
         </figure>
         <div class="cap"><span class="cap-t"><span class="en">${esc(s.title)}</span><span class="zh">${esc(s.zh)}</span></span>
           <div class="cap-venue">${esc(venueZh(s.venue) || '')}</div>
-          <div class="cap-where">${esc([cityName(s.city), countryZh(s.country)].filter(Boolean).join(' · ') + (s.date ? ' · ' + s.date.replace(/-/g, '/') : ''))}</div>
+          <div class="cap-where">${esc([cityName(s.city), countryZh(s.country)].filter(Boolean).join(' · '))}</div>
+          <div class="cap-date">${esc(s.date ? s.date.replace(/-/g, '/') : '')}</div>
           <span class="stars">${stars(s.rating)}</span></div>`;
       const img = c.querySelector('img'), fig = c.querySelector('.poster'), skel = c.querySelector('.skel');
       img.onload = () => { img.classList.add('ready'); skel.style.display = 'none'; };

@@ -199,8 +199,10 @@ header{position:sticky;top:0;z-index:1100;background:color-mix(in srgb,var(--bg)
 /* 海報下方常駐資訊：劇院 / 城市·國家·日期（取代原本蓋在海報上的 hover 覆蓋層） */
 .card .cap .cap-venue{font-size:11.5px;color:var(--ink2);margin-top:4px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .card .cap .cap-venue:empty{display:none}
-.card .cap .cap-where{font-family:var(--mono);font-size:10.5px;color:var(--ink3);margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.card .cap .cap-where{font-size:11px;color:var(--ink3);margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .card .cap .cap-where:empty{display:none}
+.card .cap .cap-date{font-family:var(--mono);font-size:10.5px;color:var(--ink3);margin-top:2px;letter-spacing:.02em}
+.card .cap .cap-date:empty{display:none}
 @media(hover:none){.card:hover .poster{transform:none}#wall-poster:hover .card{opacity:1}.poster .meta{opacity:1;transform:none}}
 
 /* ===== 即將上演（未來場次，尚未發生）=====
