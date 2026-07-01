@@ -37,6 +37,7 @@
   function posterFor(t) { return POSTER_BY_TITLE[(t || '').toLowerCase()] || null; }
   // 自訂海報常是原始大圖 → 走免費即時縮圖代理 wsrv.nl(寬600+webp)加速；catalog 官方圖不動。
   function proxyImg(u) { if (!u || !/^https?:\/\//i.test(u) || /(wsrv\.nl|weserv\.nl)/i.test(u)) return u;
+    if (/[?&]w=\d/i.test(u) || /\bi\d?\.wp\.com\b/i.test(u)) return u;   // 已是縮圖 CDN/含寬度參數 → 不代理
     return 'https://wsrv.nl/?url=' + encodeURIComponent(u) + '&w=600&output=webp&q=82'; }
   function resolvePoster(s) {
     if (s.poster_override && safeUrl(s.poster_override)) return proxyImg(s.poster_override);
@@ -141,8 +142,9 @@
           <div class="cap-where">${esc([cityName(s.city), countryZh(s.country)].filter(Boolean).join(' · '))}</div>
           <div class="cap-date">${esc(s.date ? s.date.replace(/-/g, '/') : '')}</div></div>`;
       const img = c.querySelector('img'), fig = c.querySelector('.poster'), skel = c.querySelector('.skel');
+      let _retried = false;
       img.onload = () => { img.classList.add('ready'); skel.style.display = 'none'; };
-      img.onerror = () => { fig.classList.add('is-fallback'); };
+      img.onerror = () => { if (!_retried && s.posterFull && s.posterFull !== s.poster) { _retried = true; img.src = s.posterFull; return; } fig.classList.add('is-fallback'); };   // 代理失敗→退回原圖→都失敗才色塊
       img.src = s.poster || '';
       if (!s.poster) fig.classList.add('is-fallback');
       c.onclick = () => openDetail(s);
@@ -381,14 +383,14 @@
       if (s.poster) { dp.classList.remove('is-fallback');
         img.style.objectFit = s.posterFit === 'contain' ? 'contain' : 'cover';
         if (img.getAttribute('src') !== s.poster) {
-          img.classList.remove('ready');
+          img.classList.remove('ready'); let _dtr = false;
           img.onload = () => img.classList.add('ready');
-          img.onerror = () => img.classList.add('ready');
+          img.onerror = () => { if (!_dtr && s.posterFull && s.posterFull !== s.poster) { _dtr = true; img.src = s.posterFull; return; } img.classList.add('ready'); };  // 代理失敗→退回原圖
           img.src = s.poster;
         } else img.classList.add('ready'); }
       else { dp.classList.add('is-fallback'); img.removeAttribute('src'); dp.style.setProperty('--dt-accent', s.color || '#7c5cff');
         document.getElementById('dt-fb-en').textContent = s.title; document.getElementById('dt-fb-zh').textContent = s.zh || ''; }
-      dp.onclick = () => { if (s.poster) window.open(s.poster, '_blank', 'noopener'); };
+      dp.onclick = () => { const full = s.posterFull || s.poster; if (full) window.open(full, '_blank', 'noopener'); };
       dp.style.cursor = s.poster ? 'zoom-in' : 'default';
       document.getElementById('dt-en').textContent = s.title;
       document.getElementById('dt-zh').textContent = s.zh;
@@ -461,7 +463,7 @@
       const prec = row.precision || precisionOf(row.seen_date);
       return {
         id: row.id, title: row.title || '?', zh: ZH_BY_TITLE[k] || '', prod: '', color: '#7c5cff',
-        poster: resolvePoster(row), posterFit: 'cover', posterBg: null,
+        poster: resolvePoster(row), posterFull: (row.poster_override && safeUrl(row.poster_override)) || resolvePoster(row), posterFit: 'cover', posterBg: null,
         date: partialDate(row.seen_date, prec), precision: prec, time: '',
         venue: row.venue || '', city: row.city || '', country: normCountry(row.country),
         lat: row.lat, lng: row.lng, seat: row.seat || '',
