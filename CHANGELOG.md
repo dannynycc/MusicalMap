@@ -11,6 +11,13 @@
 
 ---
 
+## [v1.7.1] - 2026-07-01 11:41
+### 修正 — me.html 看不到新中文名（The Lion King 無「獅子王」）+ 海報貼齊金框
+- **root cause（已實測確認，非臆測）**：me.html 渲染純吃 localStorage 快取(`mm-log` 的 `e.w.zh`)，只有 `syncFromCloud` 時才從 catalog 重取 zh；且「本 session 已同步過」會**跳過 re-sync**。使用者的快取是在 v1.7.0(獅子王)之前同步的 → 愛無止盡有、獅子王沒有(u.html 無此問題因為它每次即時從 catalog 取)。實測：用 me.html 的 `loadCatalogMaps`+`sightingToEntry` 邏輯跑線上 catalog，`The Lion King → 獅子王` ✓，證明只差 re-sync。
+- **修**：`SYNC_VER` `'2'→'3'` 強制所有 session 重新同步(這正是 SYNC_VER 的用途) → re-sync 重跑 mapping 取得新中文名。**並更新註解**：往後改 catalog 顯示資料(zh/海報)也要 bump，避免同類復發。
+- **海報貼齊金框(使用者要求)**：卡片 `padding:0`、海報滿版貼到金框、放大、中間不留空隙；改「整卡上浮」取代原本 poster 位移(避免被金框 `overflow:hidden` 裁切)。兩頁共用 `css/me-v2.css`。
+- 誠實：mapping 產出獅子王 + SYNC_VER 強制 re-sync 皆已驗；me.html 登入實機無法自動化(Google OAuth 擋自動化)，使用者硬重載即會 re-sync 顯示。
+
 ## [v1.7.0] - 2026-07-01 11:28
 ### 新功能 — 區分「已看過 vs 即將上演」+ 卡片金框
 - **問題**：使用者會預先輸入還沒發生的未來場次，但全站(最新一場/大數字/統計/戳章)都當成「已看過」。

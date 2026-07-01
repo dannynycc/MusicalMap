@@ -146,10 +146,13 @@ header{position:sticky;top:0;z-index:1100;background:color-mix(in srgb,var(--bg)
 /* ===== POSTER WALL ===== */
 #wall-poster{display:grid;gap:18px;grid-template-columns:repeat(auto-fill,minmax(158px,1fr))}
 .card{position:relative;display:flex;flex-direction:column;cursor:pointer;text-align:left;font-family:inherit;
-  border:1px solid color-mix(in srgb,var(--gold,#c9a85c) 20%,transparent);border-radius:12px;
-  background:color-mix(in srgb,var(--gold,#c9a85c) 4%,var(--s1,#14110d));padding:8px 8px 11px;
-  transition:border-color var(--dur-2,.2s) var(--ease-out,ease)}
-.card:hover{border-color:color-mix(in srgb,var(--gold,#c9a85c) 45%,transparent)}
+  border:1px solid color-mix(in srgb,var(--gold,#c9a85c) 22%,transparent);border-radius:12px;overflow:hidden;
+  background:color-mix(in srgb,var(--gold,#c9a85c) 5%,var(--s1,#14110d));padding:0;
+  transition:border-color var(--dur-2,.2s) var(--ease-out,ease),transform var(--dur-2,.2s) var(--ease-out,ease)}
+.card:hover{border-color:color-mix(in srgb,var(--gold,#c9a85c) 50%,transparent);transform:translateY(-4px)}
+.card .poster{border-radius:11px 11px 0 0}   /* 海報滿版貼到金框、上緣跟著卡片圓角、無空隙 */
+.card:hover .poster{transform:none}          /* 取消原本 poster 位移，改整卡上浮，避免被金框 overflow 裁切 */
+.card .cap{margin-top:0;padding:9px 10px 11px}
 .poster{position:relative;aspect-ratio:2/3;border-radius:8px;overflow:hidden;background:var(--s3);
   box-shadow:inset 0 0 0 1px var(--poster-edge),0 1px 2px rgba(0,0,0,.3);
   transition:transform var(--dur-3) var(--ease-out)}
