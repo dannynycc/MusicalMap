@@ -186,9 +186,8 @@ header{position:sticky;top:0;z-index:1100;background:color-mix(in srgb,var(--bg)
 .ca-btn:hover{background:rgba(18,16,26,.95);border-color:var(--gold)}
 @media(hover:none){.cardacts{opacity:1;transform:none}}
 .card:hover{z-index:1050}   /* 上浮時蓋在 sticky 工具列之上，頂端不被其暗色/模糊遮住 */
-.card:hover .poster{transform:translateY(-5px) scale(1.025)}
+/* 海報不再自己位移(改整卡上浮)；原本的 poster 位移+另一條時長會造成兩段式抖動 */
 .card:hover .poster::after{opacity:1}
-.card:hover .poster .meta{opacity:1;transform:none}
 /* spotlight-dim removed per feedback — posters stay full colour at rest */
 .card .cap{margin-top:9px;display:flex;flex-direction:column;gap:1px}
 .card .cap .cap-t{min-width:0}
