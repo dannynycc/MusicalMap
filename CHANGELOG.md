@@ -11,6 +11,13 @@
 
 ---
 
+## [v1.9.6] - 2026-07-02 01:03
+### 文件 — 完整 MD freshness sweep(對齊 v1.6–v1.9.5 現況)
+- 逐個掃過所有 `.md`。修正過時處:
+  - `README.md`:劇院數 `5117 → 5,100+`(避免 CI 增長再過時);My Musicals 段補上近版現況——金框海報卡 + 下方常駐資訊、中文頁只顯示中文(國家繁中/劇院去廳別)、點詳情海報開新分頁看原圖、可預先輸入未來場次(標「即將上演」不計入已看統計)、自訂海報貼大圖自動經 wsrv.nl 縮圖加速(失敗退原圖)。
+  - `docs/SETUP_ACCOUNTS.md`:`public_sightings` 讀取端 `u.js → js/u-view.js`(v1.6.0 已改名)。
+- 確認**其餘 md 皆現行無過時**:`WORKFLOW.md`(提交流程)、`DESIGN_productions.md`(已 u-view)、`AFFILIATE_SETUP/DESIGN_affiliate/SOURCES/TOUR_SWEEP/DAMAI`(scraper/affiliate/資料領域,本輪前端改動未涉及);CHANGELOG 內舊版的 `u.js`/`me_ori` 為歷史紀錄、保留不改。works.json 170 筆與文件一致。
+
 ## [v1.9.5] - 2026-07-01 21:37
 ### 調整 — 海報放大改回「開新分頁看原圖」(依使用者需求)
 - 依使用者需求:詳情窗點海報 → **開新分頁直接顯示原始高解析大圖**(`window.open(posterFull)`),不再用頁內 lightbox。移除 lightbox(showLightbox 函式 + `#mm-lightbox` CSS)。提示改「↗ 點圖開新分頁看原圖」。

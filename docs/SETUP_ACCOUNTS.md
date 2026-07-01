@@ -20,7 +20,7 @@
    - `supabase/add_production.sql` —— **版本層**(`production_key` / `poster_override`);沒跑的話版本/自訂海報選了不會被存下來(App 本身會優雅降級不報錯)。
    - `supabase/add_rating_precision.sql` —— **v0.79.0 (My Musicals v2 改版) 必跑**：`rating`(0–5 星)+ `precision`(日期精度 year/month/day)；新版 me.html 的星星評分與年/月/日統計需要。
    - `supabase/add_poster_override.sql` —— **v1.1.0 自訂海報必跑**：`poster_override`(每筆紀錄可填圖片 URL 覆蓋系統海報；清空還原)；沒跑的話自訂海報存不下來(App 會優雅降級不報錯)。（與舊 `add_production.sql` 的同名欄等效；v2 用這支獨立的、不含已棄用的 `production_key`。）
-   - `supabase/add_share_privacy.sql` —— **v1.4.0 公開分享頁必跑**：profiles 加全域欄位隱私開關(`show_price` / `show_seat`，預設關)；**收緊 RLS**(sightings 公開讀取不再讓 anon 直接讀他人整列)；新增 `public_sightings(handle)` SECURITY DEFINER 遮罩函式(依開關決定 price/seat 是否回傳、note 一律不回)與 `handle_available(handle)` 查重函式。**沒跑的話公開頁 `u.html` 讀不到資料**(u.js 改讀此函式)。⚠️ 此 SQL 與新版前端必須**同時上線**(RLS 一收緊，舊版 u.js 的 `select("*")` 就會失效)。
+   - `supabase/add_share_privacy.sql` —— **v1.4.0 公開分享頁必跑**：profiles 加全域欄位隱私開關(`show_price` / `show_seat`，預設關)；**收緊 RLS**(sightings 公開讀取不再讓 anon 直接讀他人整列)；新增 `public_sightings(handle)` SECURITY DEFINER 遮罩函式(依開關決定 price/seat 是否回傳、note 一律不回)與 `handle_available(handle)` 查重函式。**沒跑的話公開頁 `u.html` 讀不到資料**(`js/u-view.js` 改讀此函式;v1.6.0 前為舊 `js/u.js`)。⚠️ 此 SQL 與新版前端必須**同時上線**(RLS 一收緊，舊版直接 `select("*")` 就會失效)。
    - `supabase/add_public_rating.sql` —— **v1.6.0 選跑**：`public_sightings` 多回傳 `rating`(星星)/`precision`(日期精度)，讓改版後的公開頁 `u.html` 顯示星星評分與正確日期粒度。皆非敏感;不跑也能運作(u-view.js 防禦式處理，只是星星不顯示、年精度日期顯示成完整日期)。
 
 ## C. 開 Google 登入
