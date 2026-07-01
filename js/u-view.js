@@ -388,10 +388,13 @@
         document.body.appendChild(lb);
       }
       const im = lb.querySelector('img'), sp = lb.querySelector('.lb-spin');
+      const reveal = () => { im.style.opacity = '1'; if (sp) sp.style.display = 'none'; };
       im.style.opacity = '0'; if (sp) { sp.style.display = 'block'; sp.textContent = '載入原圖中…'; }
-      im.onload = () => { im.style.opacity = '1'; if (sp) sp.style.display = 'none'; };
-      im.onerror = () => { if (sp) sp.textContent = '原圖載入失敗'; };
-      im.src = url; try { lb.showModal(); } catch (e) {}
+      im.onload = reveal; im.onerror = () => { if (sp) sp.textContent = '原圖載入失敗'; };
+      im.src = url;
+      if (im.decode) im.decode().then(reveal).catch(() => {});   // 保底：dialog showModal 時序有時讓 load 事件漏觸發→用 decode() 解碼完成再顯示
+      else if (im.complete && im.naturalWidth) reveal();
+      try { lb.showModal(); } catch (e) {}
     }
     function openDetail(s) {
       const dp = document.getElementById('dt-poster'), img = document.getElementById('dt-img');

@@ -11,6 +11,11 @@
 
 ---
 
+## [v1.9.4] - 2026-07-01 21:23
+### 修正 — 海報放大 lightbox 開了但圖是透明的(onload 沒觸發)
+- **真 e2e(playwright 真的點進去)抓到的 bug**：v1.9.3 lightbox `<dialog>` 有開,但圖**資料載入了(naturalWidth=1690)卻 opacity 卡在 0、spinner 不消失** → 圖透明看不到。原因:`img.onload` 在 dialog `showModal` 時序下有時**不觸發**,revealing 的 opacity/spinner 邏輯掛在 onload → 沒跑。修:加 **`img.decode()`**(解碼完成 Promise,比 load 事件可靠)+ `complete` 檢查當保底來 reveal。
+- **驗證方式升級**：改用 **playwright 真 e2e**(開 u.html?u=danny → 點卡片 → 點詳情窗海報 → 等 img `opacity===1 && naturalWidth>0`),本機驗 exit=0 + 截圖確認完整原圖顯示,再驗線上部署版。(先前只用隔離 harness 驗單元件,漏掉整頁互動時序 bug。)
+
 ## [v1.9.3] - 2026-07-01 21:12
 ### 修正 — 點海報放大沒反應 + 刪除加確認視窗
 - **lightbox 點了沒反應**：詳情窗是原生 `<dialog>`(showModal→瀏覽器 top layer)，v1.9.2 的 lightbox 只是普通 div + `z-index:9999`，**top layer 蓋不過** → lightbox 其實有開但被詳情窗擋在後面。修：lightbox 改成 `<dialog>` + `showModal()`(第二個 dialog 疊在第一個之上)，`::backdrop` 當暗底，點任意處/✕/ESC 關閉。harness 截圖驗證 lightbox 確實疊在詳情窗上、顯示原始高解析。
