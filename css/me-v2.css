@@ -192,7 +192,7 @@ header{position:sticky;top:0;z-index:1100;background:color-mix(in srgb,var(--bg)
 /* spotlight-dim removed per feedback — posters stay full colour at rest */
 .card .cap{margin-top:9px;display:flex;flex-direction:column;gap:1px}
 .card .cap .cap-t{min-width:0}
-.card .cap .en{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;font-size:13px;font-weight:700;color:var(--ink1);line-height:1.25}
+.card .cap .en{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;font-family:"Noto Serif TC","Songti TC",Georgia,serif;font-size:14px;font-weight:600;color:var(--ink1);line-height:1.28}   /* 英文標題跟隨方案 A 的襯線字體(Georgia serif) */
 .card .cap .zh{display:block;font-size:12.5px;color:var(--ink2);margin-top:1px;line-height:1.3;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .card .stars{color:var(--gold);font-size:11px;letter-spacing:.5px;margin-top:4px}
 .card .stars:empty{display:none}

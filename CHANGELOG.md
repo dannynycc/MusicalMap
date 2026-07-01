@@ -11,6 +11,10 @@
 
 ---
 
+## [v1.7.2] - 2026-07-01 11:48
+### 調整 — 海報牆英文標題改用襯線字體（跟隨方案 A）
+- 海報卡英文標題 `.card .cap .en` 從 sans-serif(Inter)改為方案 A 的設定 `"Noto Serif TC","Songti TC",Georgia,serif`(英文落在 Georgia 襯線體)，14px/600，更有節目單質感。中文副標維持原字體。兩頁共用 `css/me-v2.css`。
+
 ## [v1.7.1] - 2026-07-01 11:41
 ### 修正 — me.html 看不到新中文名（The Lion King 無「獅子王」）+ 海報貼齊金框
 - **root cause（已實測確認，非臆測）**：me.html 渲染純吃 localStorage 快取(`mm-log` 的 `e.w.zh`)，只有 `syncFromCloud` 時才從 catalog 重取 zh；且「本 session 已同步過」會**跳過 re-sync**。使用者的快取是在 v1.7.0(獅子王)之前同步的 → 愛無止盡有、獅子王沒有(u.html 無此問題因為它每次即時從 catalog 取)。實測：用 me.html 的 `loadCatalogMaps`+`sightingToEntry` 邏輯跑線上 catalog，`The Lion King → 獅子王` ✓，證明只差 re-sync。
