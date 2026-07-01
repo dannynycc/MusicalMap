@@ -392,6 +392,7 @@ dialog#detail::backdrop{background:rgba(0,0,0,.72);backdrop-filter:blur(8px)}
       <button data-th="neon" title="霓虹（暗）" style="--sw:#ff2d7e"></button>
       <button data-th="deco" title="裝飾金（暗）" style="--sw:#e3b23c"></button>
     </div>
+    <button type="button" id="btnShare" style="background:var(--gold,#c9a85c);border:1px solid var(--gold,#c9a85c);color:#1a1407;border-radius:999px;padding:6px 15px;font-size:13px;font-weight:800;cursor:pointer;font-family:inherit">分享</button>
     <button type="button" id="btnLogout" style="background:none;border:1px solid var(--hair2);color:var(--ink2);border-radius:999px;padding:6px 14px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit">登出</button></nav>
 </div></header>
 
@@ -877,6 +878,215 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
     <iframe id="logFrame" title="加入音樂劇" src="about:blank"></iframe>
   </div>
 </div>
+
+<!-- ===== 分享設定 modal（設 handle / 公開開關 / 欄位隱私 / 複製連結；亦作首次登入 onboarding）===== -->
+<style>
+.sharemodal[hidden]{display:none}
+.sharemodal{position:fixed;inset:0;z-index:2100;display:flex;align-items:center;justify-content:center;padding:20px}
+.sharemodal-bd{position:absolute;inset:0;background:rgba(8,8,12,.72)}  /* 實心遮罩，不用 blur（避免打字卡頓） */
+.sharemodal-card{position:relative;width:min(460px,96vw);max-height:92vh;overflow:auto;background:var(--s1,#fff);color:var(--ink1,#111);border:1px solid var(--hair2,rgba(0,0,0,.15));border-radius:18px;box-shadow:0 30px 80px rgba(0,0,0,.55);padding:26px 24px 22px}
+.sharemodal-x{position:absolute;top:12px;right:14px;width:32px;height:32px;border-radius:50%;border:none;background:rgba(128,128,128,.16);color:var(--ink2,#666);font-size:14px;cursor:pointer}
+.sharemodal h2{margin:0 0 4px;font-size:20px;font-weight:800}
+.share-lead{margin:0 0 18px;font-size:13.5px;color:var(--ink2,#666);line-height:1.5}
+.share-field{display:block;margin-bottom:14px}
+.share-field>span{display:block;font-size:12.5px;font-weight:700;color:var(--ink2,#666);margin-bottom:6px}
+.handle-row{display:flex;align-items:center;border:1.5px solid var(--hair2,rgba(0,0,0,.18));border-radius:10px;overflow:hidden;background:var(--bg,#fff)}
+.handle-row .handle-prefix{padding:0 2px 0 11px;font-size:13px;color:var(--ink3,#999);font-family:var(--mono,monospace);white-space:nowrap}
+.handle-row input{flex:1;border:none;background:none;padding:10px 11px 10px 2px;font-size:14px;color:var(--ink1,#111);font-family:var(--mono,monospace);outline:none;min-width:0}
+.handle-status{display:block;min-height:16px;margin-top:5px;font-size:12px;font-weight:600}
+.handle-status.ok{color:#1f9e63}.handle-status.bad{color:#d14343}.handle-status.muted{color:var(--ink3,#999)}
+.share-switch{display:flex;align-items:center;gap:9px;font-size:14px;font-weight:600;cursor:pointer;padding:7px 0}
+.share-switch input{width:17px;height:17px;accent-color:var(--gold,#c9a85c);cursor:pointer}
+.share-sub{font-size:12px;color:var(--ink3,#999);margin:0 0 4px 26px;line-height:1.45}
+.share-fields-group{margin:10px 0 6px;padding:12px 14px;border:1px solid var(--hair,rgba(0,0,0,.08));border-radius:12px;background:color-mix(in srgb,var(--gold,#c9a85c) 7%,transparent)}
+.share-fields-group[hidden]{display:none}
+.sfg-title{font-size:12.5px;font-weight:800;color:var(--ink2,#555);margin-bottom:4px}
+.share-link{display:flex;align-items:center;gap:10px;margin:14px 0 4px;padding:10px 12px;border-radius:10px;background:color-mix(in srgb,var(--gold,#c9a85c) 12%,transparent);font-size:13px}
+.share-link[hidden]{display:none}
+.share-link a{flex:1;color:var(--ink1,#111);text-decoration:none;word-break:break-all;font-family:var(--mono,monospace);font-size:12px}
+.share-link button,.share-actions .btn-gold,.share-actions .btn-ghost{border-radius:999px;font-weight:800;font-size:13px;cursor:pointer;font-family:inherit;padding:9px 18px;border:1px solid transparent}
+.share-link button{padding:6px 13px;background:var(--gold,#c9a85c);color:#1a1407;border:none}
+.share-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:18px}
+.share-actions .btn-ghost{background:none;border:1px solid var(--hair2,rgba(0,0,0,.2));color:var(--ink2,#666)}
+.share-actions .btn-gold{background:var(--gold,#c9a85c);color:#1a1407}
+.share-actions .btn-gold[disabled]{opacity:.5;cursor:not-allowed}
+</style>
+<div class="sharemodal" id="shareModal" hidden>
+  <div class="sharemodal-bd" id="shareModalBd"></div>
+  <div class="sharemodal-card">
+    <button type="button" class="sharemodal-x" id="shareX" aria-label="關閉">✕</button>
+    <h2 id="shareTitle">分享我的收藏</h2>
+    <p class="share-lead" id="shareLead">建立你的專屬公開頁，把看過的每一齣音樂劇分享給朋友。</p>
+
+    <label class="share-field">
+      <span>你的專屬網址</span>
+      <div class="handle-row">
+        <span class="handle-prefix">…/u.html?u=</span>
+        <input id="pubHandle" placeholder="your-name" autocomplete="off" spellcheck="false" maxlength="30" />
+      </div>
+      <span class="handle-status muted" id="handleStatus"></span>
+    </label>
+
+    <label class="share-switch"><input type="checkbox" id="pubPublic" /> <span>公開我的收藏頁</span></label>
+    <div class="share-sub">關閉時，就算有連結別人也看不到你的收藏。</div>
+
+    <div class="share-fields-group" id="shareFieldsGroup" hidden>
+      <div class="sfg-title">公開頁要顯示哪些敏感資訊？</div>
+      <label class="share-switch"><input type="checkbox" id="showPrice" /> <span>顯示票價</span></label>
+      <label class="share-switch"><input type="checkbox" id="showSeat" /> <span>顯示座位</span></label>
+      <div class="share-sub">筆記永遠不會出現在公開頁。</div>
+    </div>
+
+    <div class="share-link" id="shareLink" hidden>
+      <a id="shareUrl" href="#" target="_blank" rel="noopener"></a>
+      <button type="button" id="shareCopy">複製</button>
+    </div>
+
+    <div class="share-actions">
+      <button type="button" class="btn-ghost" id="shareSkip">之後再說</button>
+      <button type="button" class="btn-gold" id="shareSave">儲存</button>
+    </div>
+  </div>
+</div>
+<script>
+/* ===== 分享設定 + 首次登入 onboarding =====
+   資料：profiles(handle unique / is_public / show_price / show_seat)。
+   handle 查重走 SECURITY DEFINER RPC handle_available（繞過 RLS，普通 SELECT 會被 RLS 藏私密帳號而誤判可用）。
+   RPC 尚未部署時（本機測試）→ 即時查重靜默略過，改由 save 時 unique 約束當最後防線，不顯示假的「可用」。 */
+(function(){
+  const $=s=>document.getElementById(s);
+  const modal=$('shareModal');
+  let UID=null, CUR={handle:'',is_public:false,show_price:false,show_seat:false}, DISPLAY='';
+  let checkSeq=0, lastChecked=null, handleOK=false;
+
+  const norm=v=>String(v||'').trim().toLowerCase().replace(/[^a-z0-9_-]/g,'').slice(0,30);
+  const RESERVED=new Set(['u','me','index','admin','api','app','www','null','undefined','theatres','privacy','terms']);
+  function shareUrl(h){return location.origin+location.pathname.replace(/[^\/]*$/,'u.html')+'?u='+encodeURIComponent(h);}
+
+  function renderLink(){
+    const h=norm($('pubHandle').value), pub=$('pubPublic').checked;
+    const box=$('shareLink');
+    if(pub&&h){box.hidden=false;const a=$('shareUrl');a.textContent=shareUrl(h);a.href=shareUrl(h);}
+    else box.hidden=true;
+  }
+  function syncFieldsVisibility(){ $('shareFieldsGroup').hidden=!$('pubPublic').checked; }
+
+  const sb=()=>window.mmSb;
+  async function isAvailable(h){
+    // 回傳 true/false/null(無法判定)。與目前自己的 handle 相同→視為可用。
+    if(h===CUR.handle&&h)return true;
+    if(RESERVED.has(h))return false;
+    try{
+      const {data,error}=await sb().rpc('handle_available',{p_handle:h});
+      if(error)return null;            // RPC 未部署或出錯 → 無法判定（不騙使用者說可用）
+      return !!data;
+    }catch(e){return null;}
+  }
+  function setStatus(cls,msg){const el=$('handleStatus');el.className='handle-status '+cls;el.textContent=msg;}
+  async function checkHandle(){
+    const h=norm($('pubHandle').value);
+    handleOK=false;
+    if(!h){setStatus('muted','公開分享需要一個網址名稱。');return;}
+    if(RESERVED.has(h)){setStatus('bad','這個名稱是保留字，換一個。');return;}
+    if(h===CUR.handle){handleOK=true;setStatus('ok','這是你目前的網址。');return;}
+    setStatus('muted','檢查中…');
+    const seq=++checkSeq;
+    const ok=await isAvailable(h);
+    if(seq!==checkSeq)return;          // 有更新的輸入 → 丟棄舊結果
+    lastChecked=h;
+    if(ok===true){handleOK=true;setStatus('ok','✓ '+h+' 可以用！');}
+    else if(ok===false){handleOK=false;setStatus('bad','✗ '+h+' 已被使用，換一個。');}
+    else{handleOK=true;setStatus('muted','儲存時會確認是否重複。');}  // 無法即時判定 → 交給 save 的 unique 約束
+  }
+
+  let debTimer=null;
+  function onHandleInput(){
+    const el=$('pubHandle'),raw=el.value,n=norm(raw);
+    if(raw!==n){                       // 有非法字元被濾掉 → 回填並把游標往回退掉被刪的字數
+      const caret=Math.max(0,(el.selectionStart||raw.length)-(raw.length-n.length));
+      el.value=n;try{el.setSelectionRange(caret,caret);}catch(e){}
+    }
+    renderLink();
+    clearTimeout(debTimer);debTimer=setTimeout(checkHandle,320);
+  }
+
+  async function loadSettings(uid){
+    UID=uid;
+    try{
+      const {data}=await sb().from('profiles').select('handle,is_public,show_price,show_seat,display_name').eq('id',uid).maybeSingle();
+      CUR={handle:data?.handle||'',is_public:!!data?.is_public,show_price:!!data?.show_price,show_seat:!!data?.show_seat};
+      DISPLAY=data?.display_name||'';
+      $('pubHandle').value=CUR.handle;
+      $('pubPublic').checked=CUR.is_public;
+      $('showPrice').checked=CUR.show_price;
+      $('showSeat').checked=CUR.show_seat;
+      syncFieldsVisibility();renderLink();
+      if(CUR.handle)setStatus('ok','這是你目前的網址。');else setStatus('muted','');
+    }catch(e){console.warn('loadSettings',e);}
+  }
+
+  async function save(){
+    const h=norm($('pubHandle').value), pub=$('pubPublic').checked;
+    const btn=$('shareSave');
+    if(pub&&!h){setStatus('bad','公開前先取一個網址名稱。');$('pubHandle').focus();return;}
+    if(h&&RESERVED.has(h)){setStatus('bad','這個名稱是保留字，換一個。');return;}
+    if(pub&&!handleOK&&h!==CUR.handle){await checkHandle();if(!handleOK)return;}
+    btn.disabled=true;btn.textContent='儲存中…';
+    try{
+      const {error}=await sb().from('profiles').upsert({id:UID,handle:h||null,is_public:pub,show_price:$('showPrice').checked,show_seat:$('showSeat').checked});
+      if(error){
+        if(/duplicate|unique/i.test(error.message||'')){setStatus('bad','✗ '+h+' 已被使用，換一個。');handleOK=false;}
+        else setStatus('bad','儲存失敗：'+(error.message||error));
+        return;
+      }
+      CUR={handle:h,is_public:pub,show_price:$('showPrice').checked,show_seat:$('showSeat').checked};
+      localStorage.setItem('mm-onboard-skip','1');   // 已設定過 → 不再自動彈 onboarding
+      renderLink();
+      if(pub&&h)setStatus('ok','✓ 已儲存！你的公開頁已上線。');else setStatus('ok','✓ 已儲存。');
+    }catch(e){setStatus('bad','儲存失敗：'+((e&&e.message)||e));}
+    finally{btn.disabled=false;btn.textContent='儲存';}
+  }
+
+  // 首次登入：無 handle 且未略過過 → 用 Google 名字找一個可用建議、開 onboarding
+  async function maybeOnboard(){
+    if(CUR.handle||localStorage.getItem('mm-onboard-skip'))return;
+    let base=norm(DISPLAY)||'musicallover';
+    let sug=base, ok=await isAvailable(sug);
+    for(let i=2;ok===false&&i<=99;i++){sug=base+i;ok=await isAvailable(sug);}
+    $('pubHandle').value=(ok===false?base:sug);   // 全被佔的極端情況就給 base，讓使用者自己改
+    $('shareTitle').textContent='歡迎！為你的音樂劇護照取個名字';
+    $('shareLead').textContent='取一個專屬網址，之後就能一鍵把你的音樂劇收藏分享出去。也可以「之後再說」。';
+    open(true);
+    checkHandle();
+  }
+
+  function open(isOnboard){
+    if(!isOnboard){$('shareTitle').textContent='分享我的收藏';$('shareLead').textContent='建立你的專屬公開頁，把看過的每一齣音樂劇分享給朋友。';}
+    syncFieldsVisibility();renderLink();
+    modal.hidden=false;document.body.style.overflow='hidden';
+  }
+  function close(){modal.hidden=true;document.body.style.overflow='';}
+
+  // ---- wire ----
+  $('pubHandle').addEventListener('input',onHandleInput);
+  $('pubPublic').addEventListener('change',()=>{syncFieldsVisibility();renderLink();});
+  $('showPrice').addEventListener('change',()=>{});$('showSeat').addEventListener('change',()=>{});
+  $('shareSave').addEventListener('click',save);
+  $('shareSkip').addEventListener('click',()=>{localStorage.setItem('mm-onboard-skip','1');close();});
+  $('shareX').addEventListener('click',close);
+  $('shareModalBd').addEventListener('click',close);
+  $('shareCopy').addEventListener('click',async()=>{
+    const url=$('shareUrl').textContent;
+    try{await navigator.clipboard.writeText(url);$('shareCopy').textContent='已複製！';setTimeout(()=>$('shareCopy').textContent='複製',1600);}
+    catch(e){const r=document.createRange();r.selectNode($('shareUrl'));getSelection().removeAllRanges();getSelection().addRange(r);}
+  });
+  window.addEventListener('keydown',e=>{if(e.key==='Escape'&&!modal.hidden)close();});
+  {const bs=document.getElementById('btnShare');if(bs)bs.addEventListener('click',()=>open(false));}
+
+  // auth 就緒（登入且同步完）→ 載入設定，必要時彈 onboarding
+  window.mmAuthReady=async function(uid){await loadSettings(uid);await maybeOnboard();};
+})();
+</script>
 <script>
 /* ===== P3b：Supabase 登入閘 + 雲端載入（sightings ↔ 海報牆 entry）=====
    登入閘預設蓋住；未登入→Google 落地頁；已登入→抓 sightings→寫 localStorage mm-log(快取)→重渲染。
@@ -932,13 +1142,13 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
       if(location.hash){try{history.replaceState(null,'',location.pathname+location.search);}catch(e){}}  // 去掉 OAuth 轉址的 #token，避免 reload 重新處理→迴圈
       const rk='mev2_reloaded_'+syncedKey(uid);
       if(prev!==json && !sessionStorage.getItem(rk)){sessionStorage.setItem(rk,'1');location.reload();return;}  // 最多重載一次→渲染雲端資料；防迴圈
-      hideGate();
+      hideGate();window.mmAuthReady&&window.mmAuthReady(uid);
     }catch(e){console.error('sync',e);showGate('讀取收藏失敗，請重新整理。<br><span style="font-size:13px;opacity:.7">'+((e&&e.message)||e)+'</span>',false);}
     finally{_syncing=false;}
   }
   function showLogin(){showGate('<b style="font-size:26px">我的音樂劇足跡</b><br><span style="opacity:.72;font-size:14.5px;font-weight:500">登入後，你看過的每一齣音樂劇都會存進你的帳號、跨裝置同步。</span>',true);}
   function clearLocal(){try{localStorage.removeItem('mm-log');}catch(e){}sessionStorage.removeItem('mev2_synced');Object.keys(sessionStorage).filter(k=>k.indexOf('mev2_reloaded_')===0).forEach(k=>sessionStorage.removeItem(k));}
-  async function onSignedIn(user){if(sessionStorage.getItem('mev2_synced')===syncedKey(user.id)){hideGate();return;}await syncFromCloud(user.id);}
+  async function onSignedIn(user){if(sessionStorage.getItem('mev2_synced')===syncedKey(user.id)){hideGate();window.mmAuthReady&&window.mmAuthReady(user.id);return;}await syncFromCloud(user.id);}
   glogin.onclick=()=>sb.auth.signInWithOAuth({provider:'google',options:{redirectTo:location.origin+location.pathname}});
   window.mmLogout=()=>sb.auth.signOut().then(()=>{clearLocal();location.reload();});
   {const bl=document.getElementById('btnLogout');if(bl)bl.onclick=window.mmLogout;}

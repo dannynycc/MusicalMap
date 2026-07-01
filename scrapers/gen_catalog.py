@@ -196,6 +196,7 @@ ZH = {
     "tootsie": "窈窕淑男", "a chorus line": "歌舞線上", "the producers": "金牌製作人",
     "billy elliot": "舞動人生", "hercules": "大力士", "romeo et juliette": "羅密歐與茱麗葉",
     "the book of mormon": "摩門經", "sunset boulevard": "日落大道",
+    "love never dies": "愛無止盡",
 }
 
 # Currencies covering every country in the dataset + common ones, ISO 4217.

@@ -11,6 +11,19 @@
 
 ---
 
+## [v1.4.0] - 2026-07-01 09:50
+### 新功能 — 公開分享頁(FR24 式個人頁)＋ 全域欄位隱私開關
+- **推廣飛輪**:每個帳號可設唯一 `handle` → 公開頁 `u.html?u=<handle>`(像 `my.flightradar24.com/Chiang`),把看過的音樂劇分享出去。骨架(profiles.handle/is_public/u.html/RLS)先前已存在,本版補完三缺。
+- **首次登入 onboarding**:登入後若尚未取名 → 彈輕量 modal,用 Google 名字**預填**建議 handle、**即時查重**(✓可用/✗已被使用)、撞名自動補數字、可「之後再說」。me.html nav 新增「分享」入口(handle/公開開關/欄位開關/複製連結)。
+- **全域欄位隱私開關**:使用者自訂公開頁是否顯示**票價(`show_price`)/座位(`show_seat`)**(預設都關);**筆記永遠不進公開頁**。
+- **🔒 修一個真實資料外洩**:原本 anon key 對 `sightings` 做 `select("*")` 可讀到公開帳號的**整列**(price/seat/note 全外洩,已實測證實)。本版**收緊 RLS**(anon 不再能直接讀他人 sightings)+ 公開讀取改走 `public_sightings(handle)` **SECURITY DEFINER 遮罩函式**(依開關 null 掉 price/seat、note 不回)。前端藏=假隱私,改為**資料庫層**強制。另加 `handle_available(handle)` 繞 RLS 查重(普通 SELECT 會被 RLS 藏私密帳號而誤判可用)。
+- DB migration:`supabase/add_share_privacy.sql`(必跑,見 `docs/SETUP_ACCOUNTS.md`)。前端:`me.html`、`js/u.js`(改讀遮罩 RPC)、`u.html`(加 og/twitter 社群預覽 meta;每人專屬預覽圖待自訂網域一起做)。
+- **驗證**:onboarding modal headless 截圖(預填/即時查重/公開開關展欄位/實心遮罩 皆正確);raw REST API 實測:查重 RPC ✓、anon `select(*)` 對他人回 `[]`(漏洞封死)、`public_sightings` 回傳 price/seat=null。「開關開→顯示」的反向未驗(需帳號登入)。
+- 註:漂亮網址 `/u/<handle>` 與每人專屬 og 預覽圖,依決定留待 `themusicalmap.com` 上線一起做;現階段維持 `?u=<handle>`。
+
+### 修正 — Love Never Dies 補中文名《愛無止盡》
+- `scrapers/gen_catalog.py` 的 `ZH` 譯名字典漏收 → `venues_catalog.json` 該筆 `zh=null` → My Musicals 卡片無中文副標。補 `"love never dies": "愛無止盡"`(維基繁中正式條目名;中國多用《真愛不死》,已在 search 欄可搜)。
+
 ## [v1.3.2] - 2026-06-30 16:53
 ### 修正 — 城市清單中英混雜（改用完整繁中城市對照）
 - 真因：me.html 的 `CITYZH` 是**寫死的 21 個城市**，有倫敦/紐約/芝加哥/台北卻沒台中/聖荷西等 → 有的顯示中文有的英文。

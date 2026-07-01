@@ -245,8 +245,11 @@ async function boot() {
     .select("id, display_name, is_public").eq("handle", handle).maybeSingle();
   if (!prof || !prof.is_public) { $("#pub-empty").hidden = false; return; }
 
-  const { data: rows } = await sb.from("sightings")
-    .select("*").eq("user_id", prof.id).order("seen_date", { ascending: false });
+  // 讀資料只透過遮罩函式：SECURITY DEFINER RPC 依擁有者的 show_price/show_seat 開關
+  // 決定 price/seat 是否回傳（note 一律不回）。RLS 已不再讓 anon 直接讀他人 sightings，
+  // 所以敏感欄位就算開 DevTools / 直打 API 也拿不到——真正的隱私在資料庫層。
+  const { data: rows, error: rpcErr } = await sb.rpc("public_sightings", { p_handle: handle });
+  if (rpcErr) { console.error("public_sightings", rpcErr); $("#pub-empty").hidden = false; return; }
   SIGHTINGS = rows || [];
   upgradeVenueNames();
 
