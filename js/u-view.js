@@ -23,6 +23,13 @@
   const esc = (v) => String(v == null ? '' : v).replace(/[&<>"']/g,
     (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 
+  // 中文頁：國家名繁中；劇院名只取中文部分 + 去廳別後綴(大/中/小劇院…)、臺→台。
+  const COUNTRY_ZH = { 'United States': '美國', 'USA': '美國', 'United Kingdom': '英國', 'UK': '英國', 'Taiwan': '台灣', 'Japan': '日本', 'South Korea': '南韓', 'China': '中國', 'Hong Kong': '香港', 'Macau': '澳門', 'Singapore': '新加坡', 'Australia': '澳洲', 'New Zealand': '紐西蘭', 'Canada': '加拿大', 'Germany': '德國', 'France': '法國', 'Austria': '奧地利', 'Switzerland': '瑞士', 'Spain': '西班牙', 'Italy': '義大利', 'Netherlands': '荷蘭', 'Belgium': '比利時', 'Sweden': '瑞典', 'Norway': '挪威', 'Denmark': '丹麥', 'Finland': '芬蘭', 'Ireland': '愛爾蘭', 'Poland': '波蘭', 'Czech Republic': '捷克', 'Hungary': '匈牙利', 'Portugal': '葡萄牙', 'Mexico': '墨西哥', 'Brazil': '巴西', 'Argentina': '阿根廷', 'United Arab Emirates': '阿聯', 'UAE': '阿聯', 'Philippines': '菲律賓', 'Malaysia': '馬來西亞', 'Thailand': '泰國', 'Indonesia': '印尼', 'India': '印度', 'Israel': '以色列', 'Turkey': '土耳其', 'South Africa': '南非', 'Russia': '俄羅斯', 'Vietnam': '越南', 'Ukraine': '烏克蘭', 'Bulgaria': '保加利亞', 'Chile': '智利', 'Colombia': '哥倫比亞', 'Croatia': '克羅埃西亞', 'Egypt': '埃及', 'Estonia': '愛沙尼亞', 'Greece': '希臘', 'Jersey': '澤西島', 'Latvia': '拉脫維亞', 'Lithuania': '立陶宛', 'Peru': '秘魯', 'Romania': '羅馬尼亞', 'Serbia': '塞爾維亞', 'Slovakia': '斯洛伐克', 'Slovenia': '斯洛維尼亞' };
+  const countryZh = (c) => COUNTRY_ZH[c] || c || '';
+  const _cjk = /[぀-ヿ㐀-鿿가-힯豈-﫿]/;
+  const _HALL = new Set(['大劇院', '中劇院', '小劇院', '大劇場', '中劇場', '小劇場', '音樂廳', '演奏廳', '戲劇廳', '歌劇廳', '演藝廳', '表演廳', '實驗劇場', '排練場', '大廳', '小廳']);
+  const venueZh = (v) => { if (!v) return v || ''; const t = String(v).split(/\s+/).filter((x) => _cjk.test(x)); if (!t.length) return v; const core = t.filter((x) => !_HALL.has(x)); return (core.length ? core : t).join(' ').replace(/臺/g, '台'); };
+
   /* ---- catalog-driven poster + zh-name resolution (mirrors js/u.js) ---- */
   let POSTER_BY_TITLE = {};   // title(lower) -> poster url
   let PRODUCTION_BY_KEY = {}; // production_key -> {poster,…}
@@ -123,12 +130,13 @@
           <img alt="${esc(s.title)} poster" loading="lazy" decoding="async" ${s.posterFit === 'contain' ? 'style="object-fit:contain;object-position:center"' : ''}/>
           <figcaption class="fallback"><span class="kick">A Musical</span><span class="ft">${esc(s.title)}</span><span class="fzh">${esc(s.zh)}</span><span class="rule"></span></figcaption>
           <div class="topfx"></div>
-          ${fut ? `<div class="up-veil"></div><div class="up-ribbon">即將上演</div>${s.date ? `<div class="up-date">${esc(upd(s.date))}</div>` : ''}` : ''}
+          ${fut ? `<div class="up-veil"></div><div class="up-ribbon">即將上演</div>` : ''}
           <span class="flag">${FLAG[s.country] || ''}</span>${s.fav ? '<span class="fav">❤️</span>' : ''}
-          <div class="meta"><div class="en">${esc(s.venue)}</div>
-            <div class="where"><span>${esc(s.city)} · ${esc(s.country)}</span><span>${fshort(s.date)}</span></div></div>
         </figure>
-        <div class="cap"><span class="cap-t"><span class="en">${esc(s.title)}</span><span class="zh">${esc(s.zh)}</span></span><span class="stars">${stars(s.rating)}</span></div>`;
+        <div class="cap"><span class="cap-t"><span class="en">${esc(s.title)}</span><span class="zh">${esc(s.zh)}</span></span>
+          <div class="cap-venue">${esc(venueZh(s.venue) || '')}</div>
+          <div class="cap-where">${esc([cityName(s.city), countryZh(s.country)].filter(Boolean).join(' · ') + (s.date ? ' · ' + s.date.replace(/-/g, '/') : ''))}</div>
+          <span class="stars">${stars(s.rating)}</span></div>`;
       const img = c.querySelector('img'), fig = c.querySelector('.poster'), skel = c.querySelector('.skel');
       img.onload = () => { img.classList.add('ready'); skel.style.display = 'none'; };
       img.onerror = () => { fig.classList.add('is-fallback'); };
@@ -193,7 +201,7 @@
         const cities = [...new Set(arr.map(s => s.city))].join(' · ');
         const stamped = arr.filter(s => !isFut(s.date)).length;   // 只算已到場的戳章數
         const v = document.createElement('div'); v.className = 'visa reveal';
-        v.innerHTML = `<div class="crow"><span class="cn">${esc(co)}</span>
+        v.innerHTML = `<div class="crow"><span class="cn">${esc(countryZh(co))}</span>
           <span class="ct">${esc(cities)}</span><span class="prog">${stamped} STAMP${stamped !== 1 ? 'S' : ''}</span></div>
           <div class="stamps">${arr.map((s, j) => {
             const dly = Math.min(j * 0.05, 0.5).toFixed(2); const mile = milestoneFor(s, j, j === 0); const fut = isFut(s.date);
@@ -295,7 +303,7 @@
       el.innerHTML = `<h4>造訪城市 Cities</h4><div class="sh">${arr.length} 座城市 · ${st.countries} 國 · 共 ${st.total} 場</div>` +
         arr.map(c => { const d = 9 + Math.sqrt(c.n) * 4.2; return `<button class="cl-row" data-city="${esc(c.city)}">
           <span class="d" style="width:${d}px;height:${d}px"></span>
-          <span class="nm"><b>${esc(cityName(c.city))}</b><span>${cityHasZh(c.city) ? esc(c.city) + ' · ' : ''}${esc(c.country || '')}</span></span>
+          <span class="nm"><b>${esc(cityName(c.city))}</b><span>${esc(countryZh(c.country))}</span></span>
           <span class="ct">${c.n}</span></button>`; }).join('');
       el.querySelectorAll('.cl-row').forEach(r => r.onclick = () => filterToCity(r.dataset.city));
     }
@@ -332,9 +340,11 @@
         const mx = items[0][1] || 1;
         el.innerHTML = items.slice(0, 6).map(([k, v]) => `<div class="sl-row"><span class="sl-k" title="${esc(k)}">${esc(fmt ? fmt(k) : k)}</span><span class="sl-bar"><i style="width:${Math.max(6, v / mx * 100)}%"></i></span><span class="sl-v">${v}</span></div>`).join(''); }
       barList('sc-shows', st.topShows);
-      barList('sc-countries', st.topCountries, k => `${k}`);
+      barList('sc-countries', st.topCountries, countryZh);
       barList('sc-cities', st.topCities, k => `${cityName(k)}`);
-      barList('sc-theatres', st.topVenues);
+      // 劇院榜：以「去廳別的中文館名」重新合併計數（同一劇院不同廳算一間），只算已看過
+      { const vc = {}; S.forEach(s => { if (!s.venue || !MM.isPast(s.date)) return; const k = venueZh(s.venue); vc[k] = (vc[k] || 0) + 1; });
+        barList('sc-theatres', Object.entries(vc).sort((a, b) => b[1] - a[1])); }
       const _charts = {};
       function lineChart(id, labels, values) {
         const el = document.getElementById(id); if (!el || typeof Chart === 'undefined') return;
@@ -384,8 +394,8 @@
       else { rt.textContent = ''; rt.style.display = 'none'; }
       // 唯讀：座位/票價只在有值時顯示（公開頁隱私由 RPC 決定回不回傳）
       const rows = [
-        `<dt>劇院</dt><dd>${esc(s.venue || '—')}</dd>`,
-        `<dt>城市</dt><dd>${s.city ? esc(s.city + (s.country ? ', ' + s.country : '')) : esc(s.country || '—')} ${FLAG[s.country] || ''}</dd>`,
+        `<dt>劇院</dt><dd>${esc(venueZh(s.venue) || '—')}</dd>`,
+        `<dt>城市</dt><dd>${s.city ? esc(cityName(s.city) + (s.country ? ', ' + countryZh(s.country) : '')) : esc(countryZh(s.country) || '—')} ${FLAG[s.country] || ''}</dd>`,
         `<dt>日期</dt><dd>${esc(fdt(s.date))}${s.time ? ' · ' + esc(s.time) : ''}</dd>`,
       ];
       if (s.seat) rows.push(`<dt>座位</dt><dd>${esc(s.seat)}</dd>`);
