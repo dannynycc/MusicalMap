@@ -11,6 +11,15 @@
 
 ---
 
+## [v1.6.0] - 2026-07-01 10:49
+### 改版 — 公開分享頁 u.html 全面比照 me.html（護照/海報牆風）+ CSS 共用
+- 舊 u.html 還停在改版前設計(css/me.css + Roboto)，與 me.html 兩套系統、看起來落後。本版把 u.html **重建成唯讀版 me.html**：同一套護照風 hero、海報牆/護照/清單三檢視、點陣世界地圖 + 城市榜、統計儀表板(4 榜 + 各年/各月/各星期折線圖)、persona/徽章、詳情視窗。
+- **根治分岔**:把 me.html 內嵌 CSS 抽成共用 **`css/me-v2.css`**，me.html 與 u.html 都 link 它 → 以後改樣式一次兩頁同步(這是先前兩頁各改各的病根)。
+- 新 `js/u-view.js`:讀 `?u=<handle>` → profiles gate → RPC `public_sightings` → 把每筆映射成 me.html 的 show 物件(沿用 catalog 海報/中文名解析)→ 跑移植過來的 render(唯讀，無新增/編輯/刪除)。移除舊 `js/u.js`(已被取代)。
+- **🔒 修 stored XSS**:移植 me.html 的 render 時,`innerHTML` 未跳脫使用者欄位。me.html 只 render 自己資料(自我 XSS 無害)，但**公開頁 render 別人的資料給訪客** → 惡意 handle 在劇名/劇院/城市/座位塞 `<img onerror>` 會在訪客端執行。已對所有進 innerHTML/屬性/SVG 的使用者欄位加 `esc()` 跳脫。
+- DB:`supabase/add_public_rating.sql`(選跑)讓 `public_sightings` 多回 `rating`(星星)/`precision`(日期精度)；u-view.js 防禦式處理，沒跑也能運作(只是星星不顯示、年精度日期顯示完整)。
+- **驗證**:本機 headless 截圖 `?u=danny` — hero/大數字/海報牆/三檢視/地圖+城市榜/統計 全部如 me.html;XSS 跳脫後 render 正常;not-found 狀態正確。(海報圖 headless 抓外部 CDN 慢屬時序假象，非版面 bug。)
+
 ## [v1.5.0] - 2026-07-01 10:19
 ### 新功能 — 觀劇統計加「各月 / 各星期」分布，三張都改折線圖
 - me.html 統計儀表板原本只有一張「各年」且是 CSS 柱狀圖 → 改成**三張折線圖**：📅各年 / 📅各月 / 📅各星期(綠 teal / 藍 / 紫 indigo),白線+面積填色+圓點+格線,**與公開頁 `u.html` 同一套 `lineChart` 樣式**。

@@ -1,85 +1,148 @@
 <!DOCTYPE html>
-<html lang="en" data-title-key="doc_title_me">
+<html lang="zh-Hant">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="referrer" content="no-referrer" />
-  <title>My Musicals — MusicalMap</title>
-  <!-- 社群分享預覽（Open Graph / Twitter）。靜態基礎版：爬蟲不執行 JS，故顯示 MusicalMap 品牌卡。
-       每人專屬的預覽圖（含名字/看劇數）需要 serverless OG 渲染，留待自訂網域一起做。 -->
-  <meta property="og:type" content="profile" />
-  <meta property="og:site_name" content="MusicalMap" />
-  <meta property="og:title" content="My Musicals — 我的音樂劇足跡" />
-  <meta property="og:description" content="看看我在世界各地看過的音樂劇。用 MusicalMap 建立你自己的音樂劇護照。" />
-  <meta property="og:image" content="https://dannynycc.github.io/MusicalMap/logo.png" />
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="My Musicals — 我的音樂劇足跡" />
-  <meta name="twitter:description" content="看看我在世界各地看過的音樂劇。用 MusicalMap 建立你自己的音樂劇護照。" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-  <link rel="stylesheet" href="css/style.css" />
-  <link rel="stylesheet" href="css/me.css" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="referrer" content="no-referrer" />
+<title>My Musicals</title>
+<!-- 社群分享預覽（爬蟲不執行 JS → 顯示 MusicalMap 品牌卡） -->
+<meta property="og:type" content="profile" />
+<meta property="og:site_name" content="MusicalMap" />
+<meta property="og:title" content="My Musicals — 我的音樂劇足跡" />
+<meta property="og:description" content="看看我在世界各地看過的音樂劇。用 MusicalMap 建立你自己的音樂劇護照。" />
+<meta property="og:image" content="https://dannynycc.github.io/MusicalMap/logo.png" />
+<meta name="twitter:card" content="summary" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,900;1,9..144,500&family=Inter:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;700;900&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet" />
+<script>/* no-flash: apply saved theme before CSS paints */(function(){try{var t=localStorage.getItem('mm-theme');if(t&&t!=='midnight')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<link rel="stylesheet" href="css/me-v2.css" />
 </head>
 <body>
-  <header id="me-top">
-    <div class="top-inner">
-      <a id="me-brand" href="index.html">Musical<span>Map</span></a>
-      <nav>
-        <div id="lang-switch" role="group" aria-label="Language / 語言">
-          <span class="globe" aria-hidden="true">🌐</span>
-          <button type="button" class="lang-opt" data-lang="zh" lang="zh-Hant">中文</button>
-          <button type="button" class="lang-opt" data-lang="en" lang="en">English</button>
-        </div>
-        <a href="index.html" data-i18n="nav_global_map">🗺 Global map</a>
-        <a href="me.html" class="btn-primary" data-i18n="u_create">＋ Create your own</a>
-      </nav>
+<header><div class="wrap bar">
+  <a class="brand" href="index.html"><img src="logo.png" alt="" class="brand-logo" />Musical<b>Map</b></a>
+  <nav class="nav">
+    <a href="theatres.html">所有劇院</a>
+    <a href="index.html">演出地圖</a>
+    <div class="theme-pick" id="themePick" role="group" aria-label="主題底色">
+      <button data-th="midnight" title="午夜（暗）" style="--sw:#13182f"></button>
+      <button data-th="gallery" title="畫廊白（亮）" style="--sw:#f4f2ec"></button>
+      <button data-th="cream" title="節目單奶油（亮）" style="--sw:#efe1c4"></button>
+      <button data-th="neon" title="霓虹（暗）" style="--sw:#ff2d7e"></button>
+      <button data-th="deco" title="裝飾金（暗）" style="--sw:#e3b23c"></button>
     </div>
-  </header>
+    <a href="me.html" style="background:var(--gold,#c9a85c);border:1px solid var(--gold,#c9a85c);color:#1a1407;border-radius:999px;padding:6px 15px;font-size:13px;font-weight:800;text-decoration:none">＋ 建立你自己的</a>
+  </nav>
+</div></header>
 
-  <main id="me-main">
-    <section id="pub-hero" class="hero" hidden>
-      <h1 id="pub-name">My Musicals</h1>
-      <p id="pub-sub" class="muted"></p>
-    </section>
-
-    <section id="pub-body" hidden>
-      <div class="pub-tabs">
-        <button class="pub-tab active" data-tab="overview" data-i18n="u_tab_overview">📊 Overview</button>
-        <button class="pub-tab" data-tab="log" data-i18n="u_tab_log">📋 Log</button>
+<div class="wrap" id="pub-wrap">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="spines" id="spines"></div>
+    <div class="veil"></div><div class="guil"></div>
+    <div class="hero-in">
+      <div class="crest"><img src="logo.png" alt="MusicalMap" class="crest-logo" /></div>
+      <div>
+        <div class="sub">每看一場，蓋一個章</div>
+        <h1>My Musicals</h1>
+        <div class="bignums" id="bignums"></div>
+        <div class="newest" id="newest"></div>
       </div>
+    </div>
+  </section>
 
-      <div id="tab-overview">
-        <div id="map-wrap"><div id="me-map"></div></div>
-        <div id="tiles"></div>
-        <div id="charts">
-          <div class="chart-card c-green"><h4 data-i18n="me_top_shows">Top Musicals</h4><div class="cc-body" id="c-shows"></div></div>
-          <div class="chart-card c-amber"><h4 data-i18n="me_top_countries">Top Countries</h4><div class="cc-body" id="c-countries"></div></div>
-          <div class="chart-card c-red"><h4 data-i18n="me_top_cities">Top Cities</h4><div class="cc-body" id="c-cities"></div></div>
-          <div class="chart-card c-purple"><h4 data-i18n="me_top_theatres">Top Theatres</h4><div class="cc-body" id="c-venues"></div></div>
-          <div class="chart-card c-teal"><h4 data-i18n="me_per_year">Per Year</h4><div class="cc-body"><canvas id="c-year"></canvas></div></div>
-          <div class="chart-card c-blue"><h4 data-i18n="me_per_month">Per Month</h4><div class="cc-body"><canvas id="c-month"></canvas></div></div>
-          <div class="chart-card c-indigo"><h4 data-i18n="me_per_weekday">Per Weekday</h4><div class="cc-body"><canvas id="c-weekday"></canvas></div></div>
-        </div>
-      </div>
+  <!-- CONTROLS -->
+  <div class="controls"><div class="ctl-row">
+    <div class="seg" id="seg" role="group" aria-label="檢視模式">
+      <span class="thumb" id="segthumb"></span>
+      <button data-mode="poster" aria-pressed="true">🖼 <span>海報牆</span></button>
+      <button data-mode="passport" aria-pressed="false">🛂 <span>護照</span></button>
+      <button data-mode="log" aria-pressed="false">📋 <span>清單</span></button>
+    </div>
+    <div class="chips" id="chips"></div>
+    <span class="spacer"></span>
+    <span class="count" id="count"></span>
+    <select class="sortsel" id="sort" aria-label="排序">
+      <option value="date">最近觀看</option>
+      <option value="rating">評分</option>
+      <option value="count">次數</option>
+      <option value="title">劇名</option>
+    </select>
+  </div></div>
 
-      <div id="tab-log" hidden>
-        <div class="table-wrap"><table id="log-table"></table></div>
-      </div>
-    </section>
+  <!-- WALL (three views, same data) -->
+  <div id="wall-poster"></div>
+  <div id="wall-passport"></div>
+  <div id="wall-log"></div>
 
-    <section id="pub-empty" class="hero" hidden>
-      <h1 data-i18n="u_not_found">Profile not found</h1>
-      <p class="muted" data-i18n="u_not_found_sub">This profile doesn’t exist or isn’t public.</p>
-      <a href="me.html" class="btn-primary big" data-i18n="u_create_big">Create your own My Musicals</a>
-    </section>
-  </main>
+  <!-- MAP -->
+  <div class="sec"><h2>我的觀劇足跡<span class="zh">Cities</span></h2><span class="hint">點一座城市，只看那裡的收藏</span></div>
+  <div class="maprow">
+    <div class="mapwrap reveal"><canvas id="mapcv"></canvas><div id="pins"></div>
+      <div class="mapzoom"><button id="mapZin" aria-label="放大">＋</button><button id="mapZout" aria-label="縮小">－</button><button id="mapZreset" aria-label="重置" title="重置">⟲</button></div>
+      <div class="maphint">滾輪縮放 · 拖曳平移</div>
+      <div class="legend"><div class="row"><span class="d" style="width:8px;height:8px"></span> 圓點 = 看過音樂劇的城市</div>
+        <div class="row"><span class="d" style="width:7px;height:7px"></span><span class="d" style="width:11px;height:11px"></span><span class="d" style="width:15px;height:15px"></span> 圓大小 = 看的場數</div></div>
+    </div>
+    <div class="citylist reveal" id="citylist"></div>
+  </div>
 
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
-  <script src="js/config.js"></script>
-  <script src="js/i18n.js"></script>
-  <script src="js/u.js"></script>
+  <!-- STATS DASHBOARD -->
+  <div class="sec"><h2>觀劇統計<span class="zh">Stats</span></h2></div>
+  <div class="statgrid">
+    <div class="statcard sc-a reveal"><h3>🎭 最常看的劇</h3><div class="slist" id="sc-shows"></div></div>
+    <div class="statcard sc-b reveal"><h3>🌏 最常去的國家</h3><div class="slist" id="sc-countries"></div></div>
+    <div class="statcard sc-c reveal"><h3>🏙 最常去的城市</h3><div class="slist" id="sc-cities"></div></div>
+    <div class="statcard sc-d reveal"><h3>🏛 最常去的劇院</h3><div class="slist" id="sc-theatres"></div></div>
+    <div class="statcard sc-year reveal"><h3>📅 各年</h3><div class="linechart"><canvas id="ch-year"></canvas></div></div>
+    <div class="statcard sc-month reveal"><h3>📅 各月</h3><div class="linechart"><canvas id="ch-month"></canvas></div></div>
+    <div class="statcard sc-week reveal"><h3>📅 各星期</h3><div class="linechart"><canvas id="ch-week"></canvas></div></div>
+  </div>
+
+  <!-- PERSONA -->
+  <div class="sec"><h2>關於這位劇迷<span class="zh">You</span></h2></div>
+  <div class="grid2">
+    <div class="panel reveal">
+      <h3>🏅 成就徽章</h3>
+      <div class="badges" id="badges"></div>
+    </div>
+    <div class="panel persona reveal" id="persona"></div>
+  </div>
+
+  <footer>
+    海報牆與護照，是同一批收藏的兩種看法。<br>
+    封面取自各劇官方與公開資料。想擁有自己的音樂劇護照？<a href="me.html" style="color:var(--gold,#c9a85c)">建立你自己的 →</a>
+  </footer>
+</div>
+
+<!-- NOT-FOUND / EMPTY -->
+<section id="pub-empty" hidden style="min-height:70vh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;text-align:center;padding:40px 24px">
+  <div style="font-size:23px;font-weight:900;font-family:var(--ui,system-ui,sans-serif);color:var(--ink1)">找不到這個公開頁</div>
+  <div style="font-size:15px;color:var(--ink2);max-width:420px;line-height:1.6">這個收藏頁不存在，或擁有者尚未公開。</div>
+  <a href="me.html" style="background:var(--gold,#c9a85c);color:#1a1407;border-radius:999px;padding:12px 22px;font-size:15px;font-weight:800;text-decoration:none">＋ 建立你自己的 My Musicals</a>
+</section>
+
+<!-- DETAIL MODAL -->
+<dialog id="detail">
+  <button class="dt-close" id="dtclose" aria-label="關閉">✕</button>
+  <div class="dt-grid">
+    <div class="dt-poster" id="dt-poster"><img id="dt-img" alt="" /><div class="dt-fallback"><span class="kick">A Musical</span><span class="ft" id="dt-fb-en"></span><span class="fzh" id="dt-fb-zh"></span></div><span class="dt-zoom">點圖看完整海報 ↗</span></div>
+    <div class="dt-body">
+      <div class="en" id="dt-en"></div>
+      <div class="zh" id="dt-zh"></div>
+      <div class="rate" id="dt-rate"></div>
+      <dl class="dl" id="dt-dl"></dl>
+      <div class="dt-note" id="dt-note"></div>
+    </div>
+  </div>
+</dialog>
+
+<script src="data.js"></script>
+<script src="data2.js"></script>
+<script src="worldmap.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+<script src="js/config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/i18n.js"></script>
+<script src="js/u-view.js"></script>
 </body>
 </html>

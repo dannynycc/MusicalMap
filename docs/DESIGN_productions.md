@@ -161,7 +161,7 @@ poster_override  →  productions[production_key].poster  →  work.poster  → 
 | Supabase `sightings` | 加 `production_key text`、`poster_override text`(沿用既有「缺欄位自動降級重試」邏輯,無痛上線) |
 | `js/me.js` | 版本下拉 + 自訂海報欄 + 解析順序 |
 | `js/app.js`(live 地圖) | marker 海報改吃 `production_key`,同城多版本各顯各的 |
-| `js/u.js` / `u.html`(公開分享) | 同一套解析順序 |
+| `js/u-view.js` / `u.html`(公開分享) | 同一套解析順序 |
 | `posters/` | 收錄海報一律 rehost(見 §7) |
 | migration | 一支腳本回填舊 sighting 的 `production_key`(配對失敗留空 = 通用,不亂塞) |
 
@@ -182,7 +182,7 @@ poster_override  →  productions[production_key].poster  →  work.poster  → 
 1. **資料模型**:works.json schema + 補旗艦劇(魅影 / 悲慘世界 / 貓 + 使用者指定)的 productions,海報查證 rehost。
 2. **後端**:build_shows / gen_catalog 配對 + `audit_productions.py` + CI。
 3. **前端足跡**:me.js 版本下拉 + 自訂海報 + 解析順序;Supabase 加欄位。
-4. **live 地圖 + 公開頁**:app.js / u.js 套用。
+4. **live 地圖 + 公開頁**:app.js / u-view.js 套用。
 5. **migration + 收尾**:回填舊紀錄;archival-only 作品(LND 等)一次補齊。
 
 > 各階段獨立 commit,功能性改動以 MINOR 進版;最終整套上線。

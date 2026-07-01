@@ -10,7 +10,7 @@
 
 **My Musicals（個人音樂劇足跡，v2 繁中改版）**：登入(Google)後記錄看過的音樂劇(可編輯/刪除),以**海報牆/護照/清單三檢視 + 統計儀表板(音樂劇/作品/城市/國家數、最新一場、最常看的劇/國家/城市/劇院榜、各年/各月/各星期觀劇分布折線圖) + 點陣世界地圖**呈現;排序可依最近/評分/次數/劇名。新增為彈出式輸入端,**搜尋/選製作/手動新增自動帶入劇院/城市/幣別**(劇庫吃正式版 `venues_catalog`5117 劇院含中文名 + `shows` 當期座標,打「台中歌劇院」「Miss」「西貢」皆命中)、年/月/日選填日期＋時間、評分/座位/票價/心得、**每筆可自訂海報網址(填圖片 URL 覆蓋系統海報、即時預覽、清空還原、各筆獨立)、連結/售票網址(詳情頁可點開)**。後端 Supabase(Postgres+Auth,RLS;`sightings` 表存收藏,localStorage 當快取),前端仍純靜態。舊 FlightRadar 風版本備份於 `me_ori.html`。設定見 `docs/SETUP_ACCOUNTS.md`。
 
-**公開分享頁(v1.4.0)**：每個帳號可設一個唯一 `handle`,產生公開頁 `u.html?u=<handle>`(像 FlightRadar24 的個人頁),把看過的音樂劇分享出去(推廣飛輪)。**首次登入會引導取名**(用 Google 名字預填、即時查重、可略過)。分享採**全域欄位隱私開關**——使用者自己決定公開頁要不要顯示**票價 / 座位**(預設都關),**筆記永遠不出現在公開頁**。關鍵:敏感欄位在**資料庫層**遮罩(公開讀取只走 `public_sightings()` SECURITY DEFINER 函式,anon 已無法直接讀他人 `sightings`),不是前端隱藏。
+**公開分享頁(v1.4.0；v1.6.0 全面改版)**：每個帳號可設一個唯一 `handle`,產生公開頁 `u.html?u=<handle>`(像 FlightRadar24 的個人頁),把看過的音樂劇分享出去(推廣飛輪)。v1.6.0 起 **u.html 視覺與版面完全比照 me.html**(護照風 hero、海報牆/護照/清單三檢視、世界地圖+城市榜、統計折線圖、persona)——唯讀、資料吃 `public_sightings`;me.html 與 u.html **共用 `css/me-v2.css`** 避免再分岔;render 對使用者欄位做 XSS 跳脫(公開頁 render 別人資料)。**首次登入會引導取名**(用 Google 名字預填、即時查重、可略過)。分享採**全域欄位隱私開關**——使用者自己決定公開頁要不要顯示**票價 / 座位**(預設都關),**筆記永遠不出現在公開頁**。關鍵:敏感欄位在**資料庫層**遮罩(公開讀取只走 `public_sightings()` SECURITY DEFINER 函式,anon 已無法直接讀他人 `sightings`),不是前端隱藏。
 
 ---
 
@@ -35,7 +35,8 @@ scrapers/  ──產出──>  data/*.json  ──merge──>  data/shows.json
 | `me.html`(+`me-input.html`/`me-catalog.js`) | **My Musicals v2**(自含繁中頁:海報牆/護照/清單三檢視 + 統計儀表板 + 點陣地圖;輸入端為 iframe,搜尋/選製作/手動新增自動帶入,劇庫吃 `venues_catalog`+`shows`;Supabase Google 登入 + 雲端 `sightings`,localStorage 當快取雙寫) |
 | `me_ori.html`(+`css/me.css`/`js/me.js`) | 舊版 My Musicals(FlightRadar 風/折線圖);v2 上線後改名備份保留 |
 | `theatres.html` / `js/theatres.js` | 所有劇院地圖(全 catalog ~5,000 場館,綠色群聚圈 + 多語搜尋) |
-| `u.html` / `js/u.js` | 公開唯讀 profile 分享頁(`?u=<handle>`,免登入,推廣用) |
+| `u.html` / `js/u-view.js` | 公開唯讀 profile 分享頁(`?u=<handle>`,免登入,推廣用);視覺共用 `css/me-v2.css`、比照 me.html |
+| `css/me-v2.css` | me.html 與 u.html **共用**的 v2 護照風樣式(從 me.html 內嵌 CSS 抽出,避免兩頁分岔) |
 | `scrapers/gen_catalog.py` → `data/venues_catalog.json` | 自動帶入字典(場館去重 / 中英劇名 / 幣別 / 海報) |
 | `css/style.css` | 淺色 UI（白底＋teal 主色） |
 | `data/shows.json` | **前端唯一讀的檔**，由 build 產生 |
