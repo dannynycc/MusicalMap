@@ -11,6 +11,10 @@
 
 ---
 
+## [v1.7.3] - 2026-07-01 11:54
+### 修正 — 海報牆英文標題下伸字母(g/y/p)被裁
+- v1.7.2 改襯線體後，Georgia 下伸較深 + `-webkit-line-clamp` 的 `overflow:hidden` + line-height 1.28 太緊 → "Saigon"/"King" 的 g 底部被切。改 line-height 1.42 + `padding-bottom:2px` 給下伸空間。3x 放大截圖驗證 g/y/p/Q 皆完整不裁。
+
 ## [v1.7.2] - 2026-07-01 11:48
 ### 調整 — 海報牆英文標題改用襯線字體（跟隨方案 A）
 - 海報卡英文標題 `.card .cap .en` 從 sans-serif(Inter)改為方案 A 的設定 `"Noto Serif TC","Songti TC",Georgia,serif`(英文落在 Georgia 襯線體)，14px/600，更有節目單質感。中文副標維持原字體。兩頁共用 `css/me-v2.css`。
