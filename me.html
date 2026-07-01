@@ -303,11 +303,10 @@ html[data-live] .demobanner{display:none}
 .sl-bar i{display:block;height:100%;background:rgba(255,255,255,.95);border-radius:4px}
 .sl-v{font-weight:800;font-variant-numeric:tabular-nums;text-align:right}
 .sl-empty{opacity:.7;font-size:13px}
-.yearchart{display:flex;align-items:flex-end;gap:5px;height:130px;padding-top:6px}
-.yc-col{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:5px;min-width:0;height:100%}
-.yc-bar{width:74%;max-width:34px;background:rgba(255,255,255,.92);border-radius:3px 3px 0 0;min-height:3px}
-.yc-lbl{font-size:10px;opacity:.85;white-space:nowrap}
-.yc-n{font-size:10.5px;font-weight:800;min-height:1em}
+.linechart{position:relative;height:190px}
+.sc-year{background:linear-gradient(150deg,#1fb89c,#138a76)}
+.sc-month{background:linear-gradient(150deg,#4aa8ec,#2b86d4)}
+.sc-week{background:linear-gradient(150deg,#6e7ed6,#4f5fc0)}
 @media(max-width:680px){.statgrid{grid-template-columns:1fr}}
 .grid2{display:grid;grid-template-columns:1.1fr .9fr;gap:18px}
 .panel{background:var(--s1);border:1px solid var(--hair);border-radius:18px;padding:22px;box-shadow:var(--shadow-1)}
@@ -460,7 +459,9 @@ dialog#detail::backdrop{background:rgba(0,0,0,.72);backdrop-filter:blur(8px)}
     <div class="statcard sc-b reveal"><h3>🌏 最常去的國家</h3><div class="slist" id="sc-countries"></div></div>
     <div class="statcard sc-c reveal"><h3>🏙 最常去的城市</h3><div class="slist" id="sc-cities"></div></div>
     <div class="statcard sc-d reveal"><h3>🏛 最常去的劇院</h3><div class="slist" id="sc-theatres"></div></div>
-    <div class="statcard sc-e wide reveal"><h3>📅 各年看了幾場</h3><div class="yearchart" id="sc-years"></div></div>
+    <div class="statcard sc-year reveal"><h3>📅 各年</h3><div class="linechart"><canvas id="ch-year"></canvas></div></div>
+    <div class="statcard sc-month reveal"><h3>📅 各月</h3><div class="linechart"><canvas id="ch-month"></canvas></div></div>
+    <div class="statcard sc-week reveal"><h3>📅 各星期</h3><div class="linechart"><canvas id="ch-week"></canvas></div></div>
   </div>
 
   <!-- PERSONA -->
@@ -499,6 +500,7 @@ dialog#detail::backdrop{background:rgba(0,0,0,.72);backdrop-filter:blur(8px)}
 <script src="data.js"></script>
 <script src="data2.js"></script>
 <script src="worldmap.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
 <script>
 /* ===== 整合：讀使用者在輸入端登錄的 mm-log，讓海報牆/地圖/統計都長出真實紀錄 =====
    有登錄資料就用它（取代範例）；沒有就保留範例當「空狀態預覽」。 */
@@ -789,14 +791,27 @@ let mt;addEventListener('resize',()=>{clearTimeout(mt);mt=setTimeout(()=>{render
   barList('sc-countries',st.topCountries,k=>`${k}`);
   barList('sc-cities',st.topCities,k=>`${cityName(k)}`);
   barList('sc-theatres',st.topVenues);
-  const yc=document.getElementById('sc-years');
+  // ── 三張時間分布折線圖（各年/各月/各星期），樣式對齊公開頁 u.html ──
+  const _charts={};
+  function lineChart(id,labels,values){
+    const el=document.getElementById(id); if(!el||typeof Chart==='undefined')return;
+    if(_charts[id])_charts[id].destroy();
+    const w='#ffffff',g='rgba(255,255,255,.25)',tc='rgba(255,255,255,.9)';
+    _charts[id]=new Chart(el,{type:'line',
+      data:{labels,datasets:[{data:values,borderColor:w,backgroundColor:'rgba(255,255,255,.22)',fill:true,tension:.3,pointBackgroundColor:w,pointRadius:3,borderWidth:2.5}]},
+      options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+        scales:{y:{beginAtZero:true,ticks:{precision:0,color:tc},grid:{color:g},border:{color:g}},
+                x:{ticks:{color:tc},grid:{color:g},border:{color:g}}}}});
+  }
+  // 各年：填補中間沒看劇的年份為 0，讓折線連續（如 2016–2026）
   const validYears=(st.years||[]).filter(y=>y&&!isNaN(+y)).map(Number);
-  if(yc&&validYears.length){
-    const y0=Math.min(...validYears),y1=Math.max(...validYears);const cnt={};(st.perYear||[]).forEach(([y,n])=>{if(y&&!isNaN(+y))cnt[+y]=n;});
-    const cols=[];for(let y=y0;y<=y1;y++)cols.push([y,cnt[y]||0]);
-    const mx=Math.max(1,...cols.map(c=>c[1]));
-    yc.innerHTML=cols.map(([y,n])=>`<div class="yc-col"><span class="yc-n">${n||''}</span><span class="yc-bar" style="height:${Math.round(n/mx*100)}%"></span><span class="yc-lbl">'${(''+y).slice(2)}</span></div>`).join('');
-  } else if(yc){yc.innerHTML='<div class="sl-empty">尚無日期資料</div>';}
+  let yLabels=[],yVals=[];
+  if(validYears.length){const cnt={};(st.perYear||[]).forEach(([y,n])=>{if(y&&!isNaN(+y))cnt[+y]=n;});
+    const y0=Math.min(...validYears),y1=Math.max(...validYears);
+    for(let y=y0;y<=y1;y++){yLabels.push(''+y);yVals.push(cnt[y]||0);}}
+  lineChart('ch-year',yLabels,yVals);
+  lineChart('ch-month',(st.perMonth||[]).map(x=>x[0]),(st.perMonth||[]).map(x=>x[1]));
+  lineChart('ch-week',(st.perWeekday||[]).map(x=>x[0]),(st.perWeekday||[]).map(x=>x[1]));
   const p=MM.personality();
   document.getElementById('persona').innerHTML=`<h3>你是什麼樣的劇迷？</h3>
     <div class="pn">${p.nickname}</div><div class="pb">${p.blurb}</div>
