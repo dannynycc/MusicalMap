@@ -145,7 +145,11 @@ header{position:sticky;top:0;z-index:1100;background:color-mix(in srgb,var(--bg)
 
 /* ===== POSTER WALL ===== */
 #wall-poster{display:grid;gap:18px;grid-template-columns:repeat(auto-fill,minmax(158px,1fr))}
-.card{position:relative;display:flex;flex-direction:column;cursor:pointer;border:none;background:none;padding:0;text-align:left;font-family:inherit}
+.card{position:relative;display:flex;flex-direction:column;cursor:pointer;text-align:left;font-family:inherit;
+  border:1px solid color-mix(in srgb,var(--gold,#c9a85c) 20%,transparent);border-radius:12px;
+  background:color-mix(in srgb,var(--gold,#c9a85c) 4%,var(--s1,#14110d));padding:8px 8px 11px;
+  transition:border-color var(--dur-2,.2s) var(--ease-out,ease)}
+.card:hover{border-color:color-mix(in srgb,var(--gold,#c9a85c) 45%,transparent)}
 .poster{position:relative;aspect-ratio:2/3;border-radius:8px;overflow:hidden;background:var(--s3);
   box-shadow:inset 0 0 0 1px var(--poster-edge),0 1px 2px rgba(0,0,0,.3);
   transition:transform var(--dur-3) var(--ease-out)}
@@ -190,6 +194,30 @@ header{position:sticky;top:0;z-index:1100;background:color-mix(in srgb,var(--bg)
 .card .stars{color:var(--gold);font-size:11px;letter-spacing:.5px;margin-top:4px}
 .card .stars:empty{display:none}
 @media(hover:none){.card:hover .poster{transform:none}#wall-poster:hover .card{opacity:1}.poster .meta{opacity:1;transform:none}}
+
+/* ===== 即將上演（未來場次，尚未發生）=====
+   靜止態：海報去飽和+壓暗+一層面紗，左上「即將上演」金緞帶、底部日期。
+   hover：恢復原本色彩亮度（緞帶保留、面紗淡出），露出完整海報。 */
+.card.is-future .poster img{filter:grayscale(.5) brightness(.7) contrast(.96);transition:filter .35s var(--ease-out,ease)}
+.card.is-future .up-veil{position:absolute;inset:0;z-index:2;pointer-events:none;border-radius:inherit;
+  background:linear-gradient(180deg,rgba(12,13,16,.30),rgba(12,13,16,.72));transition:opacity .35s}
+.card.is-future:hover .poster img{filter:none}
+.card.is-future:hover .up-veil{opacity:0}
+.up-ribbon{position:absolute;top:12px;left:-33px;z-index:4;transform:rotate(-45deg);
+  background:linear-gradient(180deg,#e2c37a,#b8934a);color:#241c0d;font:800 10.5px/1 var(--ui);
+  letter-spacing:1px;padding:5px 38px;box-shadow:0 2px 6px rgba(0,0,0,.5);pointer-events:none}
+.up-date{position:absolute;left:9px;right:9px;bottom:9px;z-index:4;text-align:center;pointer-events:none;
+  font:600 12px/1 var(--mono);color:var(--gold,#c9a85c);background:rgba(12,13,16,.6);
+  border:1px solid color-mix(in srgb,var(--gold,#c9a85c) 40%,transparent);border-radius:6px;padding:5px 4px;
+  transition:opacity .3s}
+.card.is-future:hover .up-date{opacity:0}   /* hover 露出海報時，底部日期讓位給既有 meta 資訊 */
+/* 護照：未來場次不蓋章，改虛線淡框「即將」占位（戳章=到場證明，未到不蓋） */
+.stamp.is-future{opacity:.62}
+.stamp.is-future svg{opacity:.34}
+.stamp.is-future .up-mark{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  font:700 10px/1.25 var(--ui);letter-spacing:.12em;color:var(--papermut,#8a7f68);text-align:center;
+  border:1.6px dashed color-mix(in srgb,var(--gold,#c9a85c) 55%,transparent);border-radius:50%;
+  width:74%;height:74%;margin:auto}
 
 /* ===== PASSPORT (stamp face) ===== */
 #wall-passport{display:none}

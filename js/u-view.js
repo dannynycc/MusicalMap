@@ -75,7 +75,9 @@
      has been populated from the public profile. Read-only: no edit/delete/add.
      ========================================================================== */
   function render() {
-    const S = MM.shows, st = MM.stats();
+    const S = MM.shows, st = MM.stats('past'), stAll = MM.stats();   // st=只算已看過；stAll=含未來（年份 chips）
+    const isFut = d => MM.isFuture(d);
+    const upd = d => String(d || '').replace(/-/g, ' / ');   // 未來卡日期 "2026 / 11 / 09"
     const FLAG = {};   // 不顯示國旗 emoji
     const MON = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     const fdt = d => { if (!d) return '日期未定'; const [y, m, dd] = d.split('-');
@@ -94,8 +96,12 @@
       const bn = document.getElementById('bignums');
       [['<b>' + st.total + '</b>', '音樂劇 Musicals'], [st.unique, '不同作品 Unique'], [st.cities, '城市 Cities'], [st.countries, '國家 Countries']]
         .forEach(([n, l]) => { const d = document.createElement('div'); d.className = 'bn'; d.innerHTML = `<div class="n tnum">${n}</div><div class="l">${l}</div>`; bn.appendChild(d); });
-      const newest = MM.recent()[0];
-      document.getElementById('newest').innerHTML = `<span class="dot"></span><span class="nw">最新一場 <b>${esc(newest.title)}</b></span> <span class="nw">${esc(newest.city)}${newest.date ? ' · ' + fshort(newest.date) : ''}</span>`;
+      const newest = MM.recent(true)[0];   // 只取已發生的最近一場
+      const up = stAll.upcoming || 0;
+      const upTxt = up > 0 ? ` <span class="nw" style="color:var(--gold)">· 即將 ${up} 場</span>` : '';
+      document.getElementById('newest').innerHTML = newest
+        ? `<span class="dot"></span><span class="nw">最新一場 <b>${esc(newest.title)}</b></span> <span class="nw">${esc(newest.city)}${newest.date ? ' · ' + fshort(newest.date) : ''}</span>${upTxt}`
+        : (up > 0 ? `<span class="dot"></span><span class="nw">還沒看過任何一場</span><span class="nw" style="color:var(--gold)">即將 ${up} 場</span>` : '');
     })();
 
     /* ---------- POSTER WALL ---------- */
@@ -111,11 +117,13 @@
     }
     function posterEl(s) {
       const c = document.createElement('button'); c.className = 'card'; c.style.setProperty('--accent', s.color);
+      const fut = isFut(s.date); if (fut) c.classList.add('is-future');
       c.innerHTML = `<figure class="poster" style="margin:0${s.posterBg ? ';background:' + s.posterBg : ''}">
           <div class="skel"></div>
           <img alt="${esc(s.title)} poster" loading="lazy" decoding="async" ${s.posterFit === 'contain' ? 'style="object-fit:contain;object-position:center"' : ''}/>
           <figcaption class="fallback"><span class="kick">A Musical</span><span class="ft">${esc(s.title)}</span><span class="fzh">${esc(s.zh)}</span><span class="rule"></span></figcaption>
           <div class="topfx"></div>
+          ${fut ? `<div class="up-veil"></div><div class="up-ribbon">即將上演</div>${s.date ? `<div class="up-date">${esc(upd(s.date))}</div>` : ''}` : ''}
           <span class="flag">${FLAG[s.country] || ''}</span>${s.fav ? '<span class="fav">❤️</span>' : ''}
           <div class="meta"><div class="en">${esc(s.venue)}</div>
             <div class="where"><span>${esc(s.city)} · ${esc(s.country)}</span><span>${fshort(s.date)}</span></div></div>
@@ -183,13 +191,14 @@
       order.forEach(co => {
         const arr = byC[co].sort((a, b) => a.date.localeCompare(b.date));
         const cities = [...new Set(arr.map(s => s.city))].join(' · ');
+        const stamped = arr.filter(s => !isFut(s.date)).length;   // 只算已到場的戳章數
         const v = document.createElement('div'); v.className = 'visa reveal';
         v.innerHTML = `<div class="crow"><span class="cn">${esc(co)}</span>
-          <span class="ct">${esc(cities)}</span><span class="prog">${arr.length} STAMP${arr.length > 1 ? 'S' : ''}</span></div>
+          <span class="ct">${esc(cities)}</span><span class="prog">${stamped} STAMP${stamped !== 1 ? 'S' : ''}</span></div>
           <div class="stamps">${arr.map((s, j) => {
-            const dly = Math.min(j * 0.05, 0.5).toFixed(2); const mile = milestoneFor(s, j, j === 0);
-            return `<div class="stamp" data-sid="${s.id}" role="button" tabindex="0" aria-label="${esc((s.title || '') + ' 詳情')}" style="--ink:${esc(s.color)};--rot:${(((s.id * 37) % 9) - 4)}deg;--dly:${dly}s">
-              ${mile ? `<span class="mile">${mile}</span>` : ''}${stampSvg(s)}</div>`; }).join('')}</div>`;
+            const dly = Math.min(j * 0.05, 0.5).toFixed(2); const mile = milestoneFor(s, j, j === 0); const fut = isFut(s.date);
+            return `<div class="stamp${fut ? ' is-future' : ''}" data-sid="${s.id}" role="button" tabindex="0" aria-label="${esc((s.title || '') + (fut ? '（即將上演）' : '') + ' 詳情')}" style="--ink:${esc(s.color)};--rot:${(((s.id * 37) % 9) - 4)}deg;--dly:${dly}s">
+              ${mile && !fut ? `<span class="mile">${mile}</span>` : ''}${stampSvg(s)}${fut ? '<span class="up-mark">即將<br>上演</span>' : ''}</div>`; }).join('')}</div>`;
         w.appendChild(v); io.observe(v);
       });
       w.querySelectorAll('.stamp[data-sid]').forEach(el => { const open = () => { const sh = S.find(x => String(x.id) === el.dataset.sid); if (sh) openDetail(sh); };
@@ -218,7 +227,7 @@
 
     /* chips */
     (function () { const c = document.getElementById('chips');
-      ['全部', ...st.years].forEach((y, i) => { const b = document.createElement('button'); b.className = 'chip'; b.textContent = y; b.setAttribute('aria-pressed', i === 0);
+      ['全部', ...stAll.years].forEach((y, i) => { const b = document.createElement('button'); b.className = 'chip'; b.textContent = y; b.setAttribute('aria-pressed', i === 0);
         b.onclick = () => { activeYear = y; activeCity = null; [...c.children].forEach(x => x.setAttribute('aria-pressed', 'false')); b.setAttribute('aria-pressed', 'true'); rerender(); }; c.appendChild(b); }); })();
     document.getElementById('sort').onchange = e => { sortBy = e.target.value; rerender(); };
     function rerender() { mode === 'poster' ? renderPoster() : mode === 'passport' ? renderPassport() : renderLog(); }
@@ -260,7 +269,7 @@
     let PINS = [];
     function placePins() {
       const pins = document.getElementById('pins'); pins.innerHTML = ''; PINS = [];
-      const byCity = {}; S.forEach(s => { if (!s.city) return; (byCity[s.city] = byCity[s.city] || { ...s, n: 0 }).n++; });
+      const byCity = {}; S.forEach(s => { if (!s.city || isFut(s.date)) return; (byCity[s.city] = byCity[s.city] || { ...s, n: 0 }).n++; });   // 地圖/城市榜只算已到場
       Object.values(byCity).forEach(c => {
         if (c.lat == null || c.lng == null) return;
         const [px, py] = project(c.lat, c.lng); if (!isFinite(px) || !isFinite(py)) return;
@@ -281,7 +290,7 @@
       else { p.el.style.display = ''; p.el.style.left = sx * 100 + '%'; p.el.style.top = sy * 100 + '%'; } }); }
     function buildCityList() {
       const el = document.getElementById('citylist');
-      const byCity = {}; S.forEach(s => { if (!s.city) return; (byCity[s.city] = byCity[s.city] || { ...s, n: 0 }).n++; });
+      const byCity = {}; S.forEach(s => { if (!s.city || isFut(s.date)) return; (byCity[s.city] = byCity[s.city] || { ...s, n: 0 }).n++; });   // 地圖/城市榜只算已到場
       const arr = Object.values(byCity).sort((a, b) => b.n - a.n);
       el.innerHTML = `<h4>造訪城市 Cities</h4><div class="sh">${arr.length} 座城市 · ${st.countries} 國 · 共 ${st.total} 場</div>` +
         arr.map(c => { const d = 9 + Math.sqrt(c.n) * 4.2; return `<button class="cl-row" data-city="${esc(c.city)}">

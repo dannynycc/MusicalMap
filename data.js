@@ -107,50 +107,68 @@ window.MM = (function () {
   function yr(d){ return d.slice(0,4); }
   function mo(d){ return parseInt(d.slice(5,7),10)-1; }
 
-  function countBy(key){
+  // ── 已看(過去) vs 即將(未來)：用「場次日期 vs 今天」判定，不改 DB schema ──
+  // 部分日期採「該粒度最後一天」判定：年精度 YYYY→年底、月精度 YYYY-MM→月底、
+  // 日精度直接比。當天(=今天)算「已看」。
+  function todayStr(){ const d=new Date(); const p=n=>String(n).padStart(2,'0');
+    return d.getFullYear()+'-'+p(d.getMonth()+1)+'-'+p(d.getDate()); }
+  function normDate(d){ if(!d)return '';
+    if(d.length===4)return d+'-12-31';
+    if(d.length===7){const[y,m]=d.split('-');return y+'-'+m+'-'+String(new Date(+y,+m,0).getDate()).padStart(2,'0');}
+    return d; }
+  function isPast(d){ return !!d && normDate(d) <= todayStr(); }
+  function isFuture(d){ return !!d && normDate(d) > todayStr(); }
+  function pick(which){ return which==='past'?shows.filter(s=>isPast(s.date)) : which==='future'?shows.filter(s=>isFuture(s.date)) : shows; }
+
+  function countBy(key, list){
+    const src = list || shows;
     const m = new Map();
-    shows.forEach(s=>{ const k = (typeof key==='function')?key(s):s[key]; if(k===''||k==null)return; m.set(k,(m.get(k)||0)+1); });  // 空值不計（如「不記得城市」）
+    src.forEach(s=>{ const k = (typeof key==='function')?key(s):s[key]; if(k===''||k==null)return; m.set(k,(m.get(k)||0)+1); });  // 空值不計（如「不記得城市」）
     return [...m.entries()].sort((a,b)=>b[1]-a[1]);
   }
 
-  function stats(){
-    const years = [...new Set(shows.map(s=>yr(s.date)))].sort();
-    const perYear = years.map(y=>[y, shows.filter(s=>yr(s.date)===y).length]);
-    const perMonth = MONTHS.map((m,i)=>[m, shows.filter(s=>mo(s.date)===i).length]);
-    const perWeekday = WEEKDAYS.map((w,i)=>[w, shows.filter(s=>wd(s.date)===i).length]);
-    const uniqueTitles = new Set(shows.map(s=>s.title)).size;
+  // which: 'all'(預設) | 'past'(只算已看) | 'future'(只算即將)
+  function stats(which){
+    const src = pick(which);
+    const years = [...new Set(src.map(s=>yr(s.date)))].sort();
+    const perYear = years.map(y=>[y, src.filter(s=>yr(s.date)===y).length]);
+    const perMonth = MONTHS.map((m,i)=>[m, src.filter(s=>mo(s.date)===i).length]);
+    const perWeekday = WEEKDAYS.map((w,i)=>[w, src.filter(s=>wd(s.date)===i).length]);
+    const uniqueTitles = new Set(src.map(s=>s.title)).size;
     const spend = {};
-    shows.forEach(s=>{ spend[s.cur]=(spend[s.cur]||0)+s.price; });
+    src.forEach(s=>{ spend[s.cur]=(spend[s.cur]||0)+s.price; });
     return {
-      total: shows.length,
+      total: src.length,
       unique: uniqueTitles,
-      countries: new Set(shows.map(s=>s.country).filter(Boolean)).size,
-      cities: new Set(shows.map(s=>s.city).filter(Boolean)).size,
-      venues: new Set(shows.map(s=>s.venue).filter(Boolean)).size,
+      countries: new Set(src.map(s=>s.country).filter(Boolean)).size,
+      cities: new Set(src.map(s=>s.city).filter(Boolean)).size,
+      venues: new Set(src.map(s=>s.venue).filter(Boolean)).size,
       years, perYear, perMonth, perWeekday,
-      topShows: countBy('title'),
-      topCountries: countBy('country'),
-      topCities: countBy('city'),
-      topVenues: countBy('venue'),
-      favCount: shows.filter(s=>s.fav).length,
-      avgRating: (shows.reduce((a,s)=>a+s.rating,0)/shows.length),
+      topShows: countBy('title', src),
+      topCountries: countBy('country', src),
+      topCities: countBy('city', src),
+      topVenues: countBy('venue', src),
+      favCount: src.filter(s=>s.fav).length,
+      avgRating: src.length ? (src.reduce((a,s)=>a+s.rating,0)/src.length) : 0,
       spend,
-      firstDate: shows.map(s=>s.date).sort()[0],
-      lastDate: shows.map(s=>s.date).sort().slice(-1)[0],
+      firstDate: src.map(s=>s.date).sort()[0],
+      lastDate: src.map(s=>s.date).sort().slice(-1)[0],
+      upcoming: shows.filter(s=>isFuture(s.date)).length,   // 即將 N 場
     };
   }
 
-  // Spotify-Wrapped-style 4-letter "Theatregoer Personality"
+  // Spotify-Wrapped-style 4-letter "Theatregoer Personality"（只看已發生的場次）
   function personality(){
-    const st = stats();
-    const repeatRatio = st.unique/st.total;        // <0.85 → loyalist
+    const past = pick('past');
+    const st = stats('past');
+    const repeatRatio = st.total ? st.unique/st.total : 1;   // <0.85 → loyalist
     // era/scale 只有「劇庫範例」才有；使用者真實 mm-log 沒這欄 → 不假裝分析這兩軸
-    const hasEra = shows.some(s=>s.era==='modern'||s.era==='classic');
-    const hasScale = shows.some(s=>s.scale==='spectacle'||s.scale==='intimate');
-    const modern = shows.filter(s=>s.era==='modern').length;
-    const classic = shows.filter(s=>s.era==='classic').length;
-    const spectacle = shows.filter(s=>s.scale==='spectacle').length;
-    const intimate = shows.filter(s=>s.scale==='intimate').length;
+    const hasEra = past.some(s=>s.era==='modern'||s.era==='classic');
+    const hasScale = past.some(s=>s.scale==='spectacle'||s.scale==='intimate');
+    const modern = past.filter(s=>s.era==='modern').length;
+    const classic = past.filter(s=>s.era==='classic').length;
+    const spectacle = past.filter(s=>s.scale==='spectacle').length;
+    const intimate = past.filter(s=>s.scale==='intimate').length;
     const NAMES = {G:'環球旅人',L:'在地常客',Y:'念舊死忠',X:'嚐鮮探索',M:'當代派',C:'經典派',S:'大製作控',I:'小劇場魂'};
     const globe = st.countries>=4, loyal = repeatRatio<0.85;
     const axes = [
@@ -168,16 +186,16 @@ window.MM = (function () {
     const code = [globe?'G':'L', loyal?'Y':'X', hasEra?(modern>=classic?'M':'C'):'', hasScale?(spectacle>=intimate?'S':'I'):''].join('');
     return {
       code, nickname: nick.join('・'),
-      aura: shows[0].color, aura2: '#6A0DAD',
+      aura: (past[0]||shows[0]||{}).color||'#7c5cff', aura2: '#6A0DAD',
       axes,
       blurb: parts.join('，') + '。',
     };
   }
 
-  // recent feed (newest first)
-  function recent(){ return [...shows].sort((a,b)=>b.date.localeCompare(a.date)); }
+  // recent feed (newest first)；pastOnly=true 只取已發生的（餵「最新一場」）
+  function recent(pastOnly){ const src = pastOnly?shows.filter(s=>isPast(s.date)):shows; return [...src].sort((a,b)=>b.date.localeCompare(a.date)); }
   // chronological route for the map polyline
   function route(){ return [...shows].sort((a,b)=>a.date.localeCompare(b.date)); }
 
-  return { shows, stats, personality, recent, route, WEEKDAYS, WEEKDAYS_ZH, MONTHS, countBy };
+  return { shows, stats, personality, recent, route, isPast, isFuture, WEEKDAYS, WEEKDAYS_ZH, MONTHS, countBy };
 })();

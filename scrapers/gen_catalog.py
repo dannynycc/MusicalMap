@@ -199,6 +199,14 @@ ZH = {
     "love never dies": "愛無止盡",
 }
 
+# 分組常去掉開頭冠詞（"The Lion King" → group "lion king"），但 ZH 的 key 可能帶
+# "the"（如 "the lion king"）。查表時兩邊都剝掉開頭 the/a/an 再比，否則帶冠詞的
+# 譯名（Lion King / Little Mermaid / Book of Mormon…）會對不上 group 而漏掉中文名。
+def _zh_key(s):
+    s = re.sub(r"[^a-z0-9 ]", "", (s or "").lower()).strip()
+    return re.sub(r"^(the|a|an) ", "", s)
+_ZH_LOOKUP = {_zh_key(k): v for k, v in ZH.items()}
+
 # Currencies covering every country in the dataset + common ones, ISO 4217.
 CURRENCIES = [
     "TWD 新台幣", "USD 美元", "GBP 英鎊", "EUR 歐元", "JPY 日圓", "KRW 韓元",
@@ -453,7 +461,7 @@ def main():
     for g, first_title in sorted(title_groups.items(), key=lambda x: x[1].lower()):
         # registered work → clean canonical; else the (non-bilingual) scraped title
         en = CANON.get(g, first_title)
-        zh = ZH.get(re.sub(r"[^a-z0-9 ]", "", g).strip())
+        zh = _ZH_LOOKUP.get(_zh_key(g))
         w = WORKS.get(g) or {}
         # keep the bilingual/variant title + every works.json alias searchable
         titles.append({"en": en, "zh": zh, "group": g,
