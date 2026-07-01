@@ -382,18 +382,17 @@
       if (!url) return;
       let lb = document.getElementById('mm-lightbox');
       if (!lb) {
-        lb = document.createElement('div'); lb.id = 'mm-lightbox';
+        lb = document.createElement('dialog'); lb.id = 'mm-lightbox';   // dialog+showModal → 進 top layer，疊在詳情窗之上
         lb.innerHTML = '<span class="lb-spin">載入原圖中…</span><img alt="放大海報"/><span class="lb-close" aria-label="關閉">✕</span>';
-        lb.addEventListener('click', () => lb.classList.remove('show'));
+        lb.addEventListener('click', () => { try { lb.close(); } catch (e) {} });
         document.body.appendChild(lb);
       }
       const im = lb.querySelector('img'), sp = lb.querySelector('.lb-spin');
-      im.style.opacity = '0'; if (sp) sp.style.display = 'block';
+      im.style.opacity = '0'; if (sp) { sp.style.display = 'block'; sp.textContent = '載入原圖中…'; }
       im.onload = () => { im.style.opacity = '1'; if (sp) sp.style.display = 'none'; };
       im.onerror = () => { if (sp) sp.textContent = '原圖載入失敗'; };
-      im.src = url; lb.classList.add('show');
+      im.src = url; try { lb.showModal(); } catch (e) {}
     }
-    window.addEventListener('keydown', e => { if (e.key === 'Escape') { const lb = document.getElementById('mm-lightbox'); if (lb) lb.classList.remove('show'); } });
     function openDetail(s) {
       const dp = document.getElementById('dt-poster'), img = document.getElementById('dt-img');
       if (s.poster) { dp.classList.remove('is-fallback');

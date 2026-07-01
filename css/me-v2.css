@@ -185,12 +185,15 @@ header{position:sticky;top:0;z-index:1100;background:color-mix(in srgb,var(--bg)
 .ca-btn{width:27px;height:27px;border-radius:7px;background:rgba(18,16,26,.74);backdrop-filter:blur(4px);color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;line-height:1;cursor:pointer;border:1px solid rgba(255,255,255,.2)}
 .ca-btn:hover{background:rgba(18,16,26,.95);border-color:var(--gold)}
 @media(hover:none){.cardacts{opacity:1;transform:none}}
-/* 海報放大 lightbox：點詳情窗海報→當頁全螢幕看原始高解析大圖，點一下關閉 */
-#mm-lightbox{position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.93);display:none;align-items:center;justify-content:center;cursor:zoom-out;padding:20px}
-#mm-lightbox.show{display:flex}
-#mm-lightbox img{max-width:96vw;max-height:96vh;object-fit:contain;border-radius:6px;box-shadow:0 24px 70px rgba(0,0,0,.6)}
-#mm-lightbox .lb-close{position:fixed;top:14px;right:20px;color:#fff;font-size:30px;line-height:1;cursor:pointer;opacity:.85}
-#mm-lightbox .lb-spin{position:absolute;color:rgba(255,255,255,.6);font-size:13px}
+/* 海報放大 lightbox：用原生 <dialog>+showModal 進 top layer，才能疊在詳情窗 dialog 之上。
+   點任意處 / ✕ / ESC 關閉，顯示原始高解析大圖。 */
+dialog#mm-lightbox{border:0;padding:0;margin:0;width:100vw;height:100vh;max-width:100vw;max-height:100vh;background:transparent;overflow:hidden;cursor:zoom-out}
+dialog#mm-lightbox:not([open]){display:none}
+dialog#mm-lightbox[open]{display:flex;align-items:center;justify-content:center}
+dialog#mm-lightbox::backdrop{background:rgba(0,0,0,.93)}
+dialog#mm-lightbox img{max-width:96vw;max-height:96vh;object-fit:contain;border-radius:6px;box-shadow:0 24px 70px rgba(0,0,0,.6);opacity:0;transition:opacity .2s}
+dialog#mm-lightbox .lb-close{position:fixed;top:14px;right:20px;color:#fff;font-size:30px;line-height:1;cursor:pointer;opacity:.85}
+dialog#mm-lightbox .lb-spin{position:absolute;color:rgba(255,255,255,.6);font-size:13px}
 .card:hover{z-index:1050}   /* 上浮時蓋在 sticky 工具列之上，頂端不被其暗色/模糊遮住 */
 /* 海報不再自己位移(改整卡上浮)；原本的 poster 位移+另一條時長會造成兩段式抖動 */
 .card:hover .poster::after{opacity:1}

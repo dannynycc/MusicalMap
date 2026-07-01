@@ -490,17 +490,16 @@ let mt;addEventListener('resize',()=>{clearTimeout(mt);mt=setTimeout(()=>{render
 function showLightbox(url){
   if(!url)return;
   let lb=document.getElementById('mm-lightbox');
-  if(!lb){lb=document.createElement('div');lb.id='mm-lightbox';
+  if(!lb){lb=document.createElement('dialog');lb.id='mm-lightbox';   // dialog+showModal → 進 top layer，疊在詳情窗之上
     lb.innerHTML='<span class="lb-spin">載入原圖中…</span><img alt="放大海報"/><span class="lb-close" aria-label="關閉">✕</span>';
-    lb.addEventListener('click',()=>lb.classList.remove('show'));
+    lb.addEventListener('click',()=>{try{lb.close();}catch(e){}});   // 點任意處關閉(dialog 亦支援 ESC)
     document.body.appendChild(lb);}
   const im=lb.querySelector('img'),sp=lb.querySelector('.lb-spin');
-  im.style.opacity='0';if(sp)sp.style.display='block';
+  im.style.opacity='0';if(sp){sp.style.display='block';sp.textContent='載入原圖中…';}
   im.onload=()=>{im.style.opacity='1';if(sp)sp.style.display='none';};
   im.onerror=()=>{if(sp)sp.textContent='原圖載入失敗';};
-  im.src=url;lb.classList.add('show');
+  im.src=url;try{lb.showModal();}catch(e){}
 }
-window.addEventListener('keydown',e=>{if(e.key==='Escape'){const lb=document.getElementById('mm-lightbox');if(lb)lb.classList.remove('show');}});
 /* ---------- detail modal ---------- */
 const dlg=document.getElementById('detail');
 function openDetail(s){
@@ -869,6 +868,7 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
   function openEdit(i){before=snap();fr.src='me-input.html?embed=1&edit='+i+cb();m.hidden=false;document.body.style.overflow='hidden';}
   window.mmEditShow=openEdit;
   window.mmDeleteShow=async function(i,title,zh){
+    if(!confirm(`確定要刪除《${zh||title||'這齣'}》這筆紀錄嗎？\n(刪除後仍可從左下角「復原」救回)`))return;   // 防誤點垃圾桶
     try{const log=JSON.parse(localStorage.getItem('mm-log')||'[]');const removed=log.splice(i,1)[0];
       if(window.mmSb&&removed&&removed.sid!=null){await window.mmSb.from('sightings').delete().eq('id',removed.sid);}  // 雲端刪
       localStorage.setItem('mm-log',JSON.stringify(log));

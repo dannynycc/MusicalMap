@@ -11,6 +11,11 @@
 
 ---
 
+## [v1.9.3] - 2026-07-01 21:12
+### 修正 — 點海報放大沒反應 + 刪除加確認視窗
+- **lightbox 點了沒反應**：詳情窗是原生 `<dialog>`(showModal→瀏覽器 top layer)，v1.9.2 的 lightbox 只是普通 div + `z-index:9999`，**top layer 蓋不過** → lightbox 其實有開但被詳情窗擋在後面。修：lightbox 改成 `<dialog>` + `showModal()`(第二個 dialog 疊在第一個之上)，`::backdrop` 當暗底，點任意處/✕/ESC 關閉。harness 截圖驗證 lightbox 確實疊在詳情窗上、顯示原始高解析。
+- **刪除加確認**：海報卡右上垃圾桶原本**點了直接刪**(易誤觸)。加 `confirm` 確認視窗「確定要刪除《X》?(仍可從復原救回)」。
+
 ## [v1.9.2] - 2026-07-01 21:04
 ### 改善 — 海報放大改成頁內 lightbox（原本開新分頁看不到）
 - 詳情窗點海報「看原圖」原本是 `window.open` 開**新瀏覽器分頁** → 使用者常沒注意到、體驗不明顯。改成**頁內全螢幕 lightbox**：點海報 → 當頁暗背景放大**原始高解析大圖**(`posterFull`)，點任意處 / ✕ / ESC 關閉;載入中顯示「載入原圖中…」、失敗顯示提示。提示文字改「🔍 點圖放大看原圖」。兩頁共用 `css/me-v2.css` + 各自 showLightbox。harness 截圖驗證 lightbox 版面。
