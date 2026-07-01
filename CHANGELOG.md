@@ -11,6 +11,11 @@
 
 ---
 
+## [v1.9.5] - 2026-07-01 21:37
+### 調整 — 海報放大改回「開新分頁看原圖」(依使用者需求)
+- 依使用者需求:詳情窗點海報 → **開新分頁直接顯示原始高解析大圖**(`window.open(posterFull)`),不再用頁內 lightbox。移除 lightbox(showLightbox 函式 + `#mm-lightbox` CSS)。提示改「↗ 點圖開新分頁看原圖」。
+- **真 e2e 驗證**(playwright):點詳情窗海報 → 捕捉新分頁 → 確認 URL = 原始圖(`romeoetjulietteofficiel.com/...RJ_23.jpg`,非 wsrv 代理版)。
+
 ## [v1.9.4] - 2026-07-01 21:23
 ### 修正 — 海報放大 lightbox 開了但圖是透明的(onload 沒觸發)
 - **真 e2e(playwright 真的點進去)抓到的 bug**：v1.9.3 lightbox `<dialog>` 有開,但圖**資料載入了(naturalWidth=1690)卻 opacity 卡在 0、spinner 不消失** → 圖透明看不到。原因:`img.onload` 在 dialog `showModal` 時序下有時**不觸發**,revealing 的 opacity/spinner 邏輯掛在 onload → 沒跑。修:加 **`img.decode()`**(解碼完成 Promise,比 load 事件可靠)+ `complete` 檢查當保底來 reveal。
