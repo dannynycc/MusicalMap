@@ -378,6 +378,22 @@
 
     /* ---------- detail modal (read-only) ---------- */
     const dlg = document.getElementById('detail');
+    function showLightbox(url) {
+      if (!url) return;
+      let lb = document.getElementById('mm-lightbox');
+      if (!lb) {
+        lb = document.createElement('div'); lb.id = 'mm-lightbox';
+        lb.innerHTML = '<span class="lb-spin">載入原圖中…</span><img alt="放大海報"/><span class="lb-close" aria-label="關閉">✕</span>';
+        lb.addEventListener('click', () => lb.classList.remove('show'));
+        document.body.appendChild(lb);
+      }
+      const im = lb.querySelector('img'), sp = lb.querySelector('.lb-spin');
+      im.style.opacity = '0'; if (sp) sp.style.display = 'block';
+      im.onload = () => { im.style.opacity = '1'; if (sp) sp.style.display = 'none'; };
+      im.onerror = () => { if (sp) sp.textContent = '原圖載入失敗'; };
+      im.src = url; lb.classList.add('show');
+    }
+    window.addEventListener('keydown', e => { if (e.key === 'Escape') { const lb = document.getElementById('mm-lightbox'); if (lb) lb.classList.remove('show'); } });
     function openDetail(s) {
       const dp = document.getElementById('dt-poster'), img = document.getElementById('dt-img');
       if (s.poster) { dp.classList.remove('is-fallback');
@@ -390,7 +406,7 @@
         } else img.classList.add('ready'); }
       else { dp.classList.add('is-fallback'); img.removeAttribute('src'); dp.style.setProperty('--dt-accent', s.color || '#7c5cff');
         document.getElementById('dt-fb-en').textContent = s.title; document.getElementById('dt-fb-zh').textContent = s.zh || ''; }
-      dp.onclick = () => { const full = s.posterFull || s.poster; if (full) window.open(full, '_blank', 'noopener'); };
+      dp.onclick = () => showLightbox(s.posterFull || s.poster);   // 點海報→當頁 lightbox 看原始高解析大圖
       dp.style.cursor = s.poster ? 'zoom-in' : 'default';
       document.getElementById('dt-en').textContent = s.title;
       document.getElementById('dt-zh').textContent = s.zh;

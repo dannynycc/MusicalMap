@@ -121,7 +121,7 @@
 <dialog id="detail">
   <button class="dt-close" id="dtclose" aria-label="關閉">✕</button>
   <div class="dt-grid">
-    <div class="dt-poster" id="dt-poster"><img id="dt-img" alt="" /><div class="dt-fallback"><span class="kick">A Musical</span><span class="ft" id="dt-fb-en"></span><span class="fzh" id="dt-fb-zh"></span></div><span class="dt-zoom">點圖看完整海報 ↗</span></div>
+    <div class="dt-poster" id="dt-poster"><img id="dt-img" alt="" /><div class="dt-fallback"><span class="kick">A Musical</span><span class="ft" id="dt-fb-en"></span><span class="fzh" id="dt-fb-zh"></span></div><span class="dt-zoom">🔍 點圖放大看原圖</span></div>
     <div class="dt-body">
       <div class="en" id="dt-en"></div>
       <div class="zh" id="dt-zh"></div>
@@ -486,6 +486,21 @@ let mt;addEventListener('resize',()=>{clearTimeout(mt);mt=setTimeout(()=>{render
       return `<div class="axis"><div class="r"><span class="${left?'on':''}">${a[0]}</span><span>${a[3]}</span><span class="${!left?'on':''}">${a[1]}</span></div><div class="track"><i style="left:calc(${pos}% - 6px)"></i></div></div>`;}).join('')}</div>`;
 })();
 
+/* ---------- 海報放大 lightbox（點詳情窗海報→當頁看原始高解析大圖）---------- */
+function showLightbox(url){
+  if(!url)return;
+  let lb=document.getElementById('mm-lightbox');
+  if(!lb){lb=document.createElement('div');lb.id='mm-lightbox';
+    lb.innerHTML='<span class="lb-spin">載入原圖中…</span><img alt="放大海報"/><span class="lb-close" aria-label="關閉">✕</span>';
+    lb.addEventListener('click',()=>lb.classList.remove('show'));
+    document.body.appendChild(lb);}
+  const im=lb.querySelector('img'),sp=lb.querySelector('.lb-spin');
+  im.style.opacity='0';if(sp)sp.style.display='block';
+  im.onload=()=>{im.style.opacity='1';if(sp)sp.style.display='none';};
+  im.onerror=()=>{if(sp)sp.textContent='原圖載入失敗';};
+  im.src=url;lb.classList.add('show');
+}
+window.addEventListener('keydown',e=>{if(e.key==='Escape'){const lb=document.getElementById('mm-lightbox');if(lb)lb.classList.remove('show');}});
 /* ---------- detail modal ---------- */
 const dlg=document.getElementById('detail');
 function openDetail(s){
@@ -500,7 +515,7 @@ function openDetail(s){
     }else img.classList.add('ready');}                    // 同一張(重開)→直接顯示
   else{dp.classList.add('is-fallback');img.removeAttribute('src');dp.style.setProperty('--dt-accent',s.color||'#7c5cff');  // 無海報→文字 fallback，不破圖
     document.getElementById('dt-fb-en').textContent=s.title;document.getElementById('dt-fb-zh').textContent=s.zh||'';}
-  dp.onclick=()=>{const full=s.posterFull||s.poster;if(full)window.open(full,'_blank','noopener');};   // 點海報→新視窗看原始高解析大圖(非 600px 代理版)
+  dp.onclick=()=>showLightbox(s.posterFull||s.poster);   // 點海報→當頁 lightbox 看原始高解析大圖(非 600px 代理版)
   dp.style.cursor=s.poster?'zoom-in':'default';
   document.getElementById('dt-en').textContent=s.title;
   document.getElementById('dt-zh').textContent=s.zh;
