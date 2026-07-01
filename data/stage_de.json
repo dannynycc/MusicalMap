@@ -1,7 +1,7 @@
 {
   "meta": {
     "source": "stage-entertainment.de",
-    "count": 10
+    "count": 13
   },
   "shows": [
     {
@@ -170,6 +170,57 @@
       "end_date": null,
       "ticket_url": "https://www.stage-entertainment.de/musicals-shows/und-julia-stuttgart",
       "image": "https://mediaportal.stage-entertainment.com/transform/b6c072f9-aa8c-49bb-9c1d-68e8365b17ce/-_JULIA_HH_Blow_-C-JOHAN_PERSSON_STAGE_ENTERTAINMENT?io=transform:fill,width:1200&format=webp",
+      "tour_name": null,
+      "verified": true,
+      "source": "stage-entertainment.de"
+    },
+    {
+      "id": "stage-we-will-rock-you-stuttgart",
+      "title": "WE WILL ROCK YOU",
+      "type": "resident",
+      "venue": "Stage Palladium Theater",
+      "city": "Stuttgart",
+      "country": "Germany",
+      "lat": 48.7867,
+      "lng": 9.2295,
+      "start_date": null,
+      "end_date": null,
+      "ticket_url": "https://www.stage-entertainment.de/musicals-shows/we-will-rock-you-stuttgart",
+      "image": "https://mediaportal.stage-entertainment.com/transform/0a888c12-6964-457b-8314-cb82e6aad56d/SEN-MS-Web-ShowOnly-WWRY-900x1459px?io=transform:fill,width:1200&format=webp",
+      "tour_name": null,
+      "verified": true,
+      "source": "stage-entertainment.de"
+    },
+    {
+      "id": "stage-wir-sind-am-leben-berlin",
+      "title": "WIR SIND AM LEBEN",
+      "type": "resident",
+      "venue": "Stage Theater des Westens",
+      "city": "Berlin",
+      "country": "Germany",
+      "lat": 52.5054,
+      "lng": 13.3326,
+      "start_date": null,
+      "end_date": null,
+      "ticket_url": "https://www.stage-entertainment.de/musicals-shows/wir-sind-am-leben-berlin",
+      "image": null,
+      "tour_name": null,
+      "verified": true,
+      "source": "stage-entertainment.de"
+    },
+    {
+      "id": "stage-zurueck-in-die-zukunft-hamburg",
+      "title": "Back to the Future: The Musical",
+      "type": "resident",
+      "venue": "Stage Operettenhaus",
+      "city": "Hamburg",
+      "country": "Germany",
+      "lat": 53.5495,
+      "lng": 9.9671,
+      "start_date": null,
+      "end_date": null,
+      "ticket_url": "https://www.stage-entertainment.de/musicals-shows/zurueck-in-die-zukunft-hamburg",
+      "image": "https://mediaportal.stage-entertainment.com/transform/76950a6f-f620-4fef-9146-0febb50ad17c/SEN-MS-Web-ShowOnly-ZIZ-900x1459px?io=transform:fill,width:1200&format=webp",
       "tour_name": null,
       "verified": true,
       "source": "stage-entertainment.de"
