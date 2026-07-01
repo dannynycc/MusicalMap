@@ -35,8 +35,11 @@
   let PRODUCTION_BY_KEY = {}; // production_key -> {poster,…}
   let ZH_BY_TITLE = {};       // en title(lower) -> zh name
   function posterFor(t) { return POSTER_BY_TITLE[(t || '').toLowerCase()] || null; }
+  // 自訂海報常是原始大圖 → 走免費即時縮圖代理 wsrv.nl(寬600+webp)加速；catalog 官方圖不動。
+  function proxyImg(u) { if (!u || !/^https?:\/\//i.test(u) || /(wsrv\.nl|weserv\.nl)/i.test(u)) return u;
+    return 'https://wsrv.nl/?url=' + encodeURIComponent(u) + '&w=600&output=webp&q=82'; }
   function resolvePoster(s) {
-    if (s.poster_override && safeUrl(s.poster_override)) return s.poster_override;
+    if (s.poster_override && safeUrl(s.poster_override)) return proxyImg(s.poster_override);
     const p = s.production_key && PRODUCTION_BY_KEY[s.production_key];
     if (p && p.poster) return p.poster;
     return posterFor(s.title);
@@ -136,8 +139,7 @@
         <div class="cap"><span class="cap-t"><span class="en">${esc(s.title)}</span><span class="zh">${esc(s.zh)}</span></span>
           <div class="cap-venue">${esc(venueZh(s.venue) || '')}</div>
           <div class="cap-where">${esc([cityName(s.city), countryZh(s.country)].filter(Boolean).join(' · '))}</div>
-          <div class="cap-date">${esc(s.date ? s.date.replace(/-/g, '/') : '')}</div>
-          <span class="stars">${stars(s.rating)}</span></div>`;
+          <div class="cap-date">${esc(s.date ? s.date.replace(/-/g, '/') : '')}</div></div>`;
       const img = c.querySelector('img'), fig = c.querySelector('.poster'), skel = c.querySelector('.skel');
       img.onload = () => { img.classList.add('ready'); skel.style.display = 'none'; };
       img.onerror = () => { fig.classList.add('is-fallback'); };
@@ -397,8 +399,9 @@
       const rows = [
         `<dt>劇院</dt><dd>${esc(venueZh(s.venue) || '—')}</dd>`,
         `<dt>城市</dt><dd>${s.city ? esc(cityName(s.city) + (s.country ? ', ' + countryZh(s.country) : '')) : esc(countryZh(s.country) || '—')} ${FLAG[s.country] || ''}</dd>`,
-        `<dt>日期</dt><dd>${esc(fdt(s.date))}${s.time ? ' · ' + esc(s.time) : ''}</dd>`,
+        `<dt>日期</dt><dd>${esc(s.date ? s.date.replace(/-/g, '/') : '—')}</dd>`,
       ];
+      if (s.time) rows.push(`<dt>時間</dt><dd>${esc(s.time)}</dd>`);
       if (s.seat) rows.push(`<dt>座位</dt><dd>${esc(s.seat)}</dd>`);
       if (s.price) rows.push(`<dt>票價</dt><dd>${esc(s.price)} ${esc(s.cur || '')}</dd>`);
       const durl = s.url && safeUrl(s.url);

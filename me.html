@@ -143,12 +143,16 @@
    有登錄資料就用它（取代範例）；沒有就保留範例當「空狀態預覽」。 */
 const CCNORM={'UK':'United Kingdom','USA':'United States','US':'United States','Korea':'South Korea','U.S.':'United States','U.K.':'United Kingdom'};
 function normCountry(c){return CCNORM[c]||c||'';}   // 別名正規化：UK→United Kingdom，避免 topCountries 拆兩桶
+// 自訂海報常是原始大圖(數 MB)→ 走免費即時縮圖代理 wsrv.nl(縮到寬600+webp)大幅加速；
+// catalog 官方海報不動(已優化)。代理失敗有 img onerror→fallback 保底。
+function proxyImg(u){if(!u||!/^https?:\/\//i.test(u)||/(wsrv\.nl|weserv\.nl)/i.test(u))return u;
+  return 'https://wsrv.nl/?url='+encodeURIComponent(u)+'&w=600&output=webp&q=82';}
 (function(){try{
   const log=JSON.parse(localStorage.getItem('mm-log')||'[]');
   if(!Array.isArray(log)||!log.length)return;
   const mapped=log.map((e,i)=>({
     id:9000+i, title:(e.w&&e.w.en)||'?', zh:(e.w&&e.w.zh)||'', prod:(e.p&&e.p.label)||'', color:'#7c5cff',
-    poster:(e.p&&e.p.img)||null, posterFit:'cover', posterBg:null,
+    poster:(e.p&&e.p.img)?(e.posterOverride?proxyImg(e.p.img):e.p.img):null, posterFit:'cover', posterBg:null,
     date:e.date||'', precision:e.precision||'none', time:(e.time||'').slice(0,5),
     venue:(e.p&&e.p.venue)||'', city:(e.p&&e.p.city)||'', country:normCountry(e.p&&e.p.country), cc:'',
     lat:e.p&&e.p.lat, lng:e.p&&e.p.lng, seat:e.seat||'', price:e.price||'', cur:e.cur||'',
@@ -223,8 +227,7 @@ function posterEl(s){
     <div class="cap"><span class="cap-t"><span class="en">${s.title}</span><span class="zh">${s.zh}</span></span>
       <div class="cap-venue">${venueZh(s.venue)||''}</div>
       <div class="cap-where">${[cityName(s.city),countryZh(s.country)].filter(Boolean).join(' · ')}</div>
-      <div class="cap-date">${s.date?s.date.replace(/-/g,'/'):''}</div>
-      <span class="stars">${stars(s.rating)}</span></div>`;
+      <div class="cap-date">${s.date?s.date.replace(/-/g,'/'):''}</div></div>`;
   const img=c.querySelector('img'),fig=c.querySelector('.poster'),skel=c.querySelector('.skel');
   img.onload=()=>{img.classList.add('ready');skel.style.display='none'};
   img.onerror=()=>{fig.classList.add('is-fallback')};
@@ -505,7 +508,8 @@ function openDetail(s){
   document.getElementById('dt-dl').innerHTML=`
     <dt>劇院</dt><dd>${venueZh(s.venue)||'—'}</dd>
     <dt>城市</dt><dd>${s.city?cityName(s.city)+(s.country?', '+countryZh(s.country):''):(countryZh(s.country)||'—')} ${FLAG[s.country]||''}</dd>
-    <dt>日期</dt><dd>${fdt(s.date)}${s.time?' · '+s.time:''}</dd>
+    <dt>日期</dt><dd>${s.date?s.date.replace(/-/g,'/'):'—'}</dd>
+    ${s.time?`<dt>時間</dt><dd>${s.time}</dd>`:''}
     <dt>座位</dt><dd>${s.seat||'—'}</dd>
     <dt>票價</dt><dd>${s.price?`${s.price} ${s.cur||''}`:'—'}</dd>
     <dt>連結</dt><dd>${s.url?`<a href="${String(s.url).replace(/"/g,'%22')}" target="_blank" rel="noopener noreferrer" style="color:#e3b23c;text-decoration:none;border-bottom:1px solid currentColor">${((String(s.url).match(/^https?:\/\/([^\/]+)/)||[])[1]||'開啟連結')} ↗</a>`:'—'}</dd>`;
