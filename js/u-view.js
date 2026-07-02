@@ -23,12 +23,18 @@
   const esc = (v) => String(v == null ? '' : v).replace(/[&<>"']/g,
     (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 
+  /* i18n:UI 字串走 js/mm-strings.js 的 MM_T(?hl= 決定語言);en 模式下
+     國家/城市/劇院名直接用資料原文(英文),不做中文在地化。 */
+  const T = window.MM_T || ((k) => k);
+  const TN = (k, vars) => { let s = T(k); Object.entries(vars || {}).forEach(([n, v]) => { s = s.replace('{' + n + '}', v); }); return s; };
+  const EN_UI = (window.MM_HL || 'zh-hant') === 'en';
+
   // 中文頁：國家名繁中；劇院名只取中文部分 + 去廳別後綴(大/中/小劇院…)、臺→台。
   const COUNTRY_ZH = { 'United States': '美國', 'USA': '美國', 'United Kingdom': '英國', 'UK': '英國', 'Taiwan': '台灣', 'Japan': '日本', 'South Korea': '南韓', 'China': '中國', 'Hong Kong': '香港', 'Macau': '澳門', 'Singapore': '新加坡', 'Australia': '澳洲', 'New Zealand': '紐西蘭', 'Canada': '加拿大', 'Germany': '德國', 'France': '法國', 'Austria': '奧地利', 'Switzerland': '瑞士', 'Spain': '西班牙', 'Italy': '義大利', 'Netherlands': '荷蘭', 'Belgium': '比利時', 'Sweden': '瑞典', 'Norway': '挪威', 'Denmark': '丹麥', 'Finland': '芬蘭', 'Ireland': '愛爾蘭', 'Poland': '波蘭', 'Czech Republic': '捷克', 'Hungary': '匈牙利', 'Portugal': '葡萄牙', 'Mexico': '墨西哥', 'Brazil': '巴西', 'Argentina': '阿根廷', 'United Arab Emirates': '阿聯', 'UAE': '阿聯', 'Philippines': '菲律賓', 'Malaysia': '馬來西亞', 'Thailand': '泰國', 'Indonesia': '印尼', 'India': '印度', 'Israel': '以色列', 'Turkey': '土耳其', 'South Africa': '南非', 'Russia': '俄羅斯', 'Vietnam': '越南', 'Ukraine': '烏克蘭', 'Bulgaria': '保加利亞', 'Chile': '智利', 'Colombia': '哥倫比亞', 'Croatia': '克羅埃西亞', 'Egypt': '埃及', 'Estonia': '愛沙尼亞', 'Greece': '希臘', 'Jersey': '澤西島', 'Latvia': '拉脫維亞', 'Lithuania': '立陶宛', 'Peru': '秘魯', 'Romania': '羅馬尼亞', 'Serbia': '塞爾維亞', 'Slovakia': '斯洛伐克', 'Slovenia': '斯洛維尼亞' };
-  const countryZh = (c) => COUNTRY_ZH[c] || c || '';
+  const countryZh = (c) => EN_UI ? (c || '') : (COUNTRY_ZH[c] || c || '');
   const _cjk = /[぀-ヿ㐀-鿿가-힯豈-﫿]/;
   const _HALL = new Set(['大劇院', '中劇院', '小劇院', '大劇場', '中劇場', '小劇場', '音樂廳', '演奏廳', '戲劇廳', '歌劇廳', '演藝廳', '表演廳', '實驗劇場', '排練場', '大廳', '小廳']);
-  const venueZh = (v) => { if (!v) return v || ''; const t = String(v).split(/\s+/).filter((x) => _cjk.test(x)); if (!t.length) return v; const core = t.filter((x) => !_HALL.has(x)); return (core.length ? core : t).join(' ').replace(/臺/g, '台'); };
+  const venueZh = (v) => { if (EN_UI) return v || ''; if (!v) return v || ''; const t = String(v).split(/\s+/).filter((x) => _cjk.test(x)); if (!t.length) return v; const core = t.filter((x) => !_HALL.has(x)); return (core.length ? core : t).join(' ').replace(/臺/g, '台'); };
 
   /* ---- catalog-driven poster + zh-name resolution (mirrors js/u.js) ---- */
   let POSTER_BY_TITLE = {};   // title(lower) -> poster url
@@ -91,7 +97,7 @@
     const upd = d => String(d || '').replace(/-/g, ' / ');   // 未來卡日期 "2026 / 11 / 09"
     const FLAG = {};   // 不顯示國旗 emoji
     const MON = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-    const fdt = d => { if (!d) return '日期未定'; const [y, m, dd] = d.split('-');
+    const fdt = d => { if (!d) return T('date_tbd'); const [y, m, dd] = d.split('-');
       if (dd) return `${MON[+m - 1]} ${+dd}, ${y}`;
       if (m) return `${MON[+m - 1]} ${y}`;
       return `${y}`; };
@@ -105,14 +111,14 @@
       const sp = document.getElementById('spines');
       [...S, ...S].slice(0, 16).forEach(s => { const i = document.createElement('i'); i.style.background = `linear-gradient(160deg,${shade(s.color, 28)},${shade(s.color, -50)})`; sp.appendChild(i); });
       const bn = document.getElementById('bignums');
-      [['<b>' + st.total + '</b>', '音樂劇 Musicals'], [st.unique, '不同作品 Unique'], [st.cities, '城市 Cities'], [st.countries, '國家 Countries']]
+      [['<b>' + st.total + '</b>', T('bn_musicals')], [st.unique, T('bn_unique')], [st.cities, T('bn_cities')], [st.countries, T('bn_countries')]]
         .forEach(([n, l]) => { const d = document.createElement('div'); d.className = 'bn'; d.innerHTML = `<div class="n tnum">${n}</div><div class="l">${l}</div>`; bn.appendChild(d); });
       const newest = MM.recent(true)[0];   // 只取已發生的最近一場
       const up = stAll.upcoming || 0;
-      const upTxt = up > 0 ? ` <span class="nw" style="color:var(--gold)">· 即將 ${up} 場</span>` : '';
+      const upTxt = up > 0 ? ` <span class="nw" style="color:var(--gold)">${esc(TN('upcoming_dot_n', { n: up }))}</span>` : '';
       document.getElementById('newest').innerHTML = newest
-        ? `<span class="dot"></span><span class="nw">最新一場 <b>${esc(newest.title)}</b></span> <span class="nw">${esc(newest.city)}${newest.date ? ' · ' + fshort(newest.date) : ''}</span>${upTxt}`
-        : (up > 0 ? `<span class="dot"></span><span class="nw">還沒看過任何一場</span><span class="nw" style="color:var(--gold)">即將 ${up} 場</span>` : '');
+        ? `<span class="dot"></span><span class="nw">${esc(T('newest_label'))} <b>${esc(newest.title)}</b></span> <span class="nw">${esc(newest.city)}${newest.date ? ' · ' + fshort(newest.date) : ''}</span>${upTxt}`
+        : (up > 0 ? `<span class="dot"></span><span class="nw">${esc(T('none_yet'))}</span><span class="nw" style="color:var(--gold)">${esc(TN('upcoming_n', { n: up }))}</span>` : '');
     })();
 
     /* ---------- POSTER WALL ---------- */
@@ -134,7 +140,7 @@
           <img alt="${esc(s.title)} poster" loading="lazy" decoding="async" ${s.posterFit === 'contain' ? 'style="object-fit:contain;object-position:center"' : ''}/>
           <figcaption class="fallback"><span class="kick">A Musical</span><span class="ft">${esc(s.title)}</span><span class="fzh">${esc(s.zh)}</span><span class="rule"></span></figcaption>
           <div class="topfx"></div>
-          ${fut ? `<div class="up-veil"></div><div class="up-ribbon">即將上演</div>` : ''}
+          ${fut ? `<div class="up-veil"></div><div class="up-ribbon">${esc(T('ribbon_upcoming'))}</div>` : ''}
           <span class="flag">${FLAG[s.country] || ''}</span>${s.fav ? '<span class="fav">❤️</span>' : ''}
         </figure>
         <div class="cap"><span class="cap-t"><span class="en">${esc(s.title)}</span><span class="zh">${esc(s.zh)}</span></span>
@@ -154,19 +160,19 @@
       const w = document.getElementById('wall-poster'); w.innerHTML = '';
       const list = filtered();
       list.forEach((s, i) => { const el = posterEl(s); el.classList.add('reveal'); el.style.setProperty('--i', i % 12); w.appendChild(el); io.observe(el); });
-      document.getElementById('count').textContent = `${list.length} 部音樂劇`;
+      document.getElementById('count').textContent = TN('n_musicals', { n: list.length });
     }
     /* ---------- LOG LIST VIEW ---------- */
     function renderLog() {
       const el = document.getElementById('wall-log'); const list = filtered();
-      document.getElementById('count').textContent = `${list.length} 部音樂劇`;
+      document.getElementById('count').textContent = TN('n_musicals', { n: list.length });
       el.innerHTML = `<div class="logtable" role="table">
-        <div class="lt-head" role="row"><span>劇目</span><span>城市</span><span>日期</span><span>評分</span></div>` +
+        <div class="lt-head" role="row"><span>${esc(T('lt_show'))}</span><span>${esc(T('lt_city'))}</span><span>${esc(T('lt_date'))}</span><span>${esc(T('lt_rate'))}</span></div>` +
         list.map(s => `<button class="lt-row" data-id="${s.id}" role="row">
           <span class="lt-show"><span class="lt-thumb">${s.poster ? `<img src="${esc(s.poster)}" referrerpolicy="no-referrer" alt=""/>` : `<i>${esc((s.title || '?').trim()[0] || '?')}</i>`}</span>
             <span class="lt-t"><b>${esc(s.title)}</b>${s.zh ? `<i>${esc(s.zh)}</i>` : ''}</span></span>
           <span class="lt-city">${s.city ? esc(cityName(s.city)) : '<span class="muted">—</span>'} ${s.country ? (FLAG[s.country] || '') : ''}</span>
-          <span class="lt-date">${fshort(s.date) || '<span class="muted">未定</span>'}</span>
+          <span class="lt-date">${fshort(s.date) || `<span class="muted">${esc(T('lt_tbd'))}</span>`}</span>
           <span class="lt-rate">${s.rating ? '★'.repeat(s.rating) : '<span class="muted">—</span>'}</span>
         </button>`).join('') + `</div>`;
       el.querySelectorAll('.lt-row').forEach(r => r.onclick = () => { const sh = S.find(x => String(x.id) === r.dataset.id); if (sh) openDetail(sh); });
@@ -198,7 +204,7 @@
     function renderPassport() {
       const w = document.getElementById('wall-passport'); w.innerHTML = '';
       const list = filtered();
-      document.getElementById('count').textContent = `${list.length} 部音樂劇`;
+      document.getElementById('count').textContent = TN('n_musicals', { n: list.length });
       const byC = {}; list.forEach(s => { (byC[s.country] = byC[s.country] || []).push(s); });
       const order = Object.keys(byC).sort((a, b) => byC[b].length - byC[a].length);
       order.forEach(co => {
@@ -210,8 +216,8 @@
           <span class="ct">${esc(cities)}</span><span class="prog">${stamped} STAMP${stamped !== 1 ? 'S' : ''}</span></div>
           <div class="stamps">${arr.map((s, j) => {
             const dly = Math.min(j * 0.05, 0.5).toFixed(2); const mile = milestoneFor(s, j, j === 0); const fut = isFut(s.date);
-            return `<div class="stamp${fut ? ' is-future' : ''}" data-sid="${s.id}" role="button" tabindex="0" aria-label="${esc((s.title || '') + (fut ? '（即將上演）' : '') + ' 詳情')}" style="--ink:${esc(s.color)};--rot:${(((s.id * 37) % 9) - 4)}deg;--dly:${dly}s">
-              ${mile && !fut ? `<span class="mile">${mile}</span>` : ''}${stampSvg(s)}${fut ? '<span class="up-mark">即將<br>上演</span>' : ''}</div>`; }).join('')}</div>`;
+            return `<div class="stamp${fut ? ' is-future' : ''}" data-sid="${s.id}" role="button" tabindex="0" aria-label="${esc((s.title || '') + (fut ? T('up_suffix') : '') + T('detail_suffix'))}" style="--ink:${esc(s.color)};--rot:${(((s.id * 37) % 9) - 4)}deg;--dly:${dly}s">
+              ${mile && !fut ? `<span class="mile">${mile}</span>` : ''}${stampSvg(s)}${fut ? `<span class="up-mark">${T('up_mark')}</span>` : ''}</div>`; }).join('')}</div>`;
         w.appendChild(v); io.observe(v);
       });
       w.querySelectorAll('.stamp[data-sid]').forEach(el => { const open = () => { const sh = S.find(x => String(x.id) === el.dataset.sid); if (sh) openDetail(sh); };
@@ -240,7 +246,7 @@
 
     /* chips */
     (function () { const c = document.getElementById('chips');
-      ['全部', ...stAll.years].forEach((y, i) => { const b = document.createElement('button'); b.className = 'chip'; b.textContent = y; b.setAttribute('aria-pressed', i === 0);
+      ['全部', ...stAll.years].forEach((y, i) => { const b = document.createElement('button'); b.className = 'chip'; b.textContent = (y === '全部' ? T('chip_all') : y); b.setAttribute('aria-pressed', i === 0);
         b.onclick = () => { activeYear = y; activeCity = null; [...c.children].forEach(x => x.setAttribute('aria-pressed', 'false')); b.setAttribute('aria-pressed', 'true'); rerender(); }; c.appendChild(b); }); })();
     document.getElementById('sort').onchange = e => { sortBy = e.target.value; rerender(); };
     function rerender() { mode === 'poster' ? renderPoster() : mode === 'passport' ? renderPassport() : renderLog(); }
@@ -251,7 +257,7 @@
 
     /* ---------- MAP ---------- */
     const CITYZH = {"Aarhus": "奧胡斯", "Adelaide": "阿得雷德", "Aichi": "愛知", "Albuquerque": "阿布奎基", "Amsterdam": "阿姆斯特丹", "Antwerp": "安特衛普", "Atlanta": "亞特蘭大", "Auckland": "奧克蘭", "Austin": "奧斯汀", "Baltimore": "巴爾的摩", "Barcelona": "巴塞隆納", "Beijing": "北京", "Belfast": "貝爾法斯特", "Berlin": "柏林", "Birmingham": "伯明罕", "Boston": "波士頓", "Brighton": "布萊頓", "Brisbane": "布里斯本", "Bristol": "布里斯托", "Brussels": "布魯塞爾", "Budapest": "布達佩斯", "Buenos Aires": "布宜諾斯艾利斯", "Buffalo": "水牛城", "Calgary": "卡加利", "Cambridge": "劍橋", "Cardiff": "卡地夫", "Changsha": "長沙", "Changzhou": "常州", "Charlotte": "夏洛特", "Chengdu": "成都", "Chiayi": "嘉義", "Chicago": "芝加哥", "Chongqing": "重慶", "Cincinnati": "辛辛那提", "Cleveland": "克里夫蘭", "Cologne": "科隆", "Columbus": "哥倫布", "Copenhagen": "哥本哈根", "Daegu": "大邱", "Dallas": "達拉斯", "Denver": "丹佛", "Detroit": "底特律", "Dongguan": "東莞", "Dubai": "杜拜", "Dublin": "都柏林", "Edinburgh": "愛丁堡", "Edmonton": "愛德蒙頓", "Firenze": "佛羅倫斯", "Fort Lauderdale": "羅德岱堡", "Fort Worth": "沃斯堡", "Frankfurt": "法蘭克福", "Fukuoka": "福岡", "Fuzhou": "福州", "Ghent": "根特", "Gifu": "岐阜", "Glasgow": "格拉斯哥", "Gothenburg": "哥德堡", "Grand Rapids": "大急流城", "Guangzhou": "廣州", "Göteborg": "哥德堡", "Haikou": "海口", "Hamburg": "漢堡", "Hangzhou": "杭州", "Harbin": "哈爾濱", "Hefei": "合肥", "Helsinki": "赫爾辛基", "Hengyang": "衡陽", "Hiroshima": "廣島", "Houston": "休士頓", "Hsinchu": "新竹", "Hyogo": "兵庫", "Jiaxing": "嘉興", "Jinan": "濟南", "Kanagawa": "神奈川", "Kansas City": "堪薩斯城", "Kaohsiung": "高雄", "Kunshan": "崑山", "Köln": "科隆", "København": "哥本哈根", "København V": "哥本哈根", "Langfang": "廊坊", "Las Vegas": "拉斯維加斯", "Leeds": "里茲", "Liverpool": "利物浦", "London": "倫敦", "Los Angeles": "洛杉磯", "Louisville": "路易斯維爾", "Lyon": "里昂", "Madison": "麥迪遜", "Madrid": "馬德里", "Maihama": "舞濱", "Manchester": "曼徹斯特", "Melbourne": "墨爾本", "Memphis": "曼菲斯", "Mexico City": "墨西哥市", "Miami": "邁阿密", "Milano": "米蘭", "Milwaukee": "密爾瓦基", "Minneapolis": "明尼阿波利斯", "Monterrey": "蒙特雷", "Montreal": "蒙特婁", "Munich": "慕尼黑", "México": "墨西哥市", "München": "慕尼黑", "Nagoya": "名古屋", "Nanchang": "南昌", "Nanjing": "南京", "Nanning": "南寧", "Nantong": "南通", "Napoli": "拿坡里", "Nashville": "納許維爾", "New Orleans": "紐奧良", "New Taipei": "新北", "New York": "紐約", "Newcastle": "紐卡索", "Ningbo": "寧波", "Nottingham": "諾丁罕", "Oklahoma City": "奧克拉荷馬市", "Omaha": "奧馬哈", "Orlando": "奧蘭多", "Osaka": "大阪", "Oslo": "奧斯陸", "Ottawa": "渥太華", "Oxford": "牛津", "Padova": "帕多瓦", "Paris": "巴黎", "Penghu": "澎湖", "Perth": "伯斯", "Philadelphia": "費城", "Phoenix": "鳳凰城", "Pingtung": "屏東", "Pittsburgh": "匹茲堡", "Portland": "波特蘭", "Prague": "布拉格", "Praha": "布拉格", "Providence": "普羅維登斯", "Qidong": "啓東", "Qingdao": "青島", "Quzhou": "衢州", "Richmond": "里奇蒙", "Rio de Janeiro": "里約熱內盧", "Roma": "羅馬", "Rotterdam": "鹿特丹", "Salt Lake City": "鹽湖城", "San Antonio": "聖安東尼奧", "San Diego": "聖地牙哥", "San Francisco": "舊金山", "San Jose": "聖荷西", "Sapporo": "札幌", "Seattle": "西雅圖", "Seoul": "首爾", "Shanghai": "上海", "Sheffield": "雪菲爾", "Shenyang": "瀋陽", "Shenzhen": "深圳", "Singapore": "新加坡", "St. Louis": "聖路易", "Stockholm": "斯德哥爾摩", "Stuttgart": "斯圖加特", "Suzhou": "蘇州", "Swansea": "斯旺西", "Sydney": "雪梨", "São Paulo": "聖保羅", "Taichung": "台中", "Taipei": "台北", "Taitung": "台東", "Taiyuan": "太原", "Taizhou": "台州", "Takarazuka (兵庫)": "寶塚", "Tampa": "坦帕", "Tianjin": "天津", "Tokyo": "東京", "Tokyo (日比谷)": "東京", "Torino": "杜林", "Toronto": "多倫多", "Utrecht": "烏特勒支", "Vancouver": "溫哥華", "Vienna": "維也納", "Warsaw": "華沙", "Warszawa": "華沙", "Washington": "華盛頓", "Weifang": "濰坊", "Wellington": "威靈頓", "Wien": "維也納", "Wimbledon": "溫布頓", "Wuhan": "武漢", "Wuxi": "無錫", "Xi'an": "西安", "Yantai": "煙台", "Yinchuan": "銀川", "Yokohama": "橫濱", "York": "約克", "Yunlin": "雲林", "Zhengzhou": "鄭州", "Zhuhai": "珠海", "Zhuji": "諸暨", "Zibo": "淄博", "Zurich": "蘇黎世", "Zürich": "蘇黎世", "连云港": "連雲港"};
-    function cityName(c) { if (!c) return c; const base = String(c).replace(/,\s*[A-Za-z.]{2,}$/, '').trim(); return CITYZH[c] || CITYZH[base] || c; }
+    function cityName(c) { if (EN_UI || !c) return c || ''; const base = String(c).replace(/,\s*[A-Za-z.]{2,}$/, '').trim(); return CITYZH[c] || CITYZH[base] || c; }
     function cityHasZh(c) { return cityName(c) !== c; }
     function project(lat, lng) { return [(lng + 180) / 360, (90 - lat) / 180]; }
     let mapV = { z: 1, x: 0, y: 0 };
@@ -288,7 +294,7 @@
         const [px, py] = project(c.lat, c.lng); if (!isFinite(px) || !isFinite(py)) return;
         const sz = 15 + Math.sqrt(c.n) * 6.5;
         const el = document.createElement('button'); el.className = 'pin';
-        el.setAttribute('aria-label', `${c.city} · ${c.n} 部音樂劇`);
+        el.setAttribute('aria-label', TN('pin_aria', { city: c.city, n: c.n }));
         el.innerHTML = `<span class="glow" style="width:${sz * 2.4}px;height:${sz * 2.4}px"></span>
           <span class="ring"></span>
           <span class="core" style="width:${sz}px;height:${sz}px">${c.n}</span>
@@ -305,7 +311,7 @@
       const el = document.getElementById('citylist');
       const byCity = {}; S.forEach(s => { if (!s.city || isFut(s.date)) return; (byCity[s.city] = byCity[s.city] || { ...s, n: 0 }).n++; });   // 地圖/城市榜只算已到場
       const arr = Object.values(byCity).sort((a, b) => b.n - a.n);
-      el.innerHTML = `<h4>造訪城市 Cities</h4><div class="sh">${arr.length} 座城市 · ${st.countries} 國 · 共 ${st.total} 場</div>` +
+      el.innerHTML = `<h4>${esc(T('citylist_title'))}</h4><div class="sh">${esc(TN('citylist_sub', { c: arr.length, k: st.countries, t: st.total }))}</div>` +
         arr.map(c => { const d = 9 + Math.sqrt(c.n) * 4.2; return `<button class="cl-row" data-city="${esc(c.city)}">
           <span class="d" style="width:${d}px;height:${d}px"></span>
           <span class="nm"><b>${esc(cityName(c.city))}</b><span>${esc(countryZh(c.country))}</span></span>
@@ -336,9 +342,9 @@
     (function () {
       const b = document.getElementById('badges');
       const tops = st.topShows[0];
-      const badges = [['🎭', `${st.total} 場演出`, true], ['🌏', `${st.countries} 國蓋章`, st.countries >= 3], ['🏙', `${st.cities} 座城市`, false], ['🎬', `${st.unique} 部不同作品`, false]];
+      const badges = [['🎭', TN('badge_shows', { n: st.total }), true], ['🌏', TN('badge_countries', { n: st.countries }), st.countries >= 3], ['🏙', TN('badge_cities', { n: st.cities }), false], ['🎬', TN('badge_unique', { n: st.unique }), false]];
       if (tops && tops[1] > 1) badges.push(['🔁', `${tops[0]} ×${tops[1]}`, false]);
-      if (st.favCount > 0) badges.push(['❤️', `${st.favCount} 部最愛`, false]);
+      if (st.favCount > 0) badges.push(['❤️', TN('badge_fav', { n: st.favCount }), false]);
       b.innerHTML = badges.map(([ic, t, g]) => `<div class="badge ${g ? 'gold' : ''}"><span class="ic">${ic}</span>${t}</div>`).join('');
       function barList(id, items, fmt) { const el = document.getElementById(id); if (!el) return;
         if (!items || !items.length) { el.innerHTML = '<div class="sl-empty">—</div>'; return; }
@@ -370,7 +376,7 @@
       lineChart('ch-month', (st.perMonth || []).map(x => x[0]), (st.perMonth || []).map(x => x[1]));
       lineChart('ch-week', (st.perWeekday || []).map(x => x[0]), (st.perWeekday || []).map(x => x[1]));
       const p = MM.personality();
-      document.getElementById('persona').innerHTML = `<h3>你是什麼樣的劇迷？</h3>
+      document.getElementById('persona').innerHTML = `<h3>${esc(T('persona_title'))}</h3>
         <div class="pn">${p.nickname}</div><div class="pb">${p.blurb}</div>
         <div class="axes">${p.axes.map(a => { const left = a[2]; const pos = left ? 14 : 86;
           return `<div class="axis"><div class="r"><span class="${left ? 'on' : ''}">${a[0]}</span><span>${a[3]}</span><span class="${!left ? 'on' : ''}">${a[1]}</span></div><div class="track"><i style="left:calc(${pos}% - 6px)"></i></div></div>`; }).join('')}</div>`;
@@ -399,15 +405,15 @@
       else { rt.textContent = ''; rt.style.display = 'none'; }
       // 唯讀：座位/票價只在有值時顯示（公開頁隱私由 RPC 決定回不回傳）
       const rows = [
-        `<dt>劇院</dt><dd>${esc(venueZh(s.venue) || '—')}</dd>`,
-        `<dt>城市</dt><dd>${s.city ? esc(cityName(s.city) + (s.country ? ', ' + countryZh(s.country) : '')) : esc(countryZh(s.country) || '—')} ${FLAG[s.country] || ''}</dd>`,
-        `<dt>日期</dt><dd>${esc(s.date ? s.date.replace(/-/g, '/') : '—')}</dd>`,
+        `<dt>${esc(T('dt_venue'))}</dt><dd>${esc(venueZh(s.venue) || '—')}</dd>`,
+        `<dt>${esc(T('dt_city'))}</dt><dd>${s.city ? esc(cityName(s.city) + (s.country ? ', ' + countryZh(s.country) : '')) : esc(countryZh(s.country) || '—')} ${FLAG[s.country] || ''}</dd>`,
+        `<dt>${esc(T('dt_date'))}</dt><dd>${esc(s.date ? s.date.replace(/-/g, '/') : '—')}</dd>`,
       ];
-      if (s.time) rows.push(`<dt>時間</dt><dd>${esc(s.time)}</dd>`);
-      if (s.seat) rows.push(`<dt>座位</dt><dd>${esc(s.seat)}</dd>`);
-      if (s.price) rows.push(`<dt>票價</dt><dd>${esc(s.price)} ${esc(s.cur || '')}</dd>`);
+      if (s.time) rows.push(`<dt>${esc(T('dt_time'))}</dt><dd>${esc(s.time)}</dd>`);
+      if (s.seat) rows.push(`<dt>${esc(T('dt_seat'))}</dt><dd>${esc(s.seat)}</dd>`);
+      if (s.price) rows.push(`<dt>${esc(T('dt_price'))}</dt><dd>${esc(s.price)} ${esc(s.cur || '')}</dd>`);
       const durl = s.url && safeUrl(s.url);
-      if (durl) rows.push(`<dt>連結</dt><dd><a href="${esc(durl)}" target="_blank" rel="noopener noreferrer" style="color:#e3b23c;text-decoration:none;border-bottom:1px solid currentColor">${esc((durl.match(/^https?:\/\/([^\/]+)/) || [])[1] || '開啟連結')} ↗</a></dd>`);
+      if (durl) rows.push(`<dt>${esc(T('dt_link'))}</dt><dd><a href="${esc(durl)}" target="_blank" rel="noopener noreferrer" style="color:#e3b23c;text-decoration:none;border-bottom:1px solid currentColor">${esc((durl.match(/^https?:\/\/([^\/]+)/) || [])[1] || T('dt_open_link'))} ↗</a></dd>`);
       document.getElementById('dt-dl').innerHTML = rows.join('');
       document.getElementById('dt-note').textContent = '';
       document.getElementById('dt-note').style.display = 'none';
@@ -487,7 +493,7 @@
 
     const displayName = prof.display_name || handle;
     document.title = `${displayName} — My Musicals`;
-    const h1 = document.querySelector('.hero h1'); if (h1) h1.textContent = `${displayName} 的音樂劇收藏`;
+    const h1 = document.querySelector('.hero h1'); if (h1) h1.textContent = TN('h1_suffix', { name: displayName });
 
     render();
   }

@@ -169,26 +169,31 @@ window.MM = (function () {
     const classic = past.filter(s=>s.era==='classic').length;
     const spectacle = past.filter(s=>s.scale==='spectacle').length;
     const intimate = past.filter(s=>s.scale==='intimate').length;
-    const NAMES = {G:'環球旅人',L:'在地常客',Y:'念舊死忠',X:'嚐鮮探索',M:'當代派',C:'經典派',S:'大製作控',I:'小劇場魂'};
+    // i18n:頁面有載 js/mm-strings.js(公開頁 u.html)就用其字典;沒載(me.html)沿用中文字面
+    const L=(k,zh)=>{ if(window.MM_T){const v=window.MM_T(k); if(v&&v!==k)return v;} return zh; };
+    const LN=(k,zh,vars)=>{ let s=L(k,zh); Object.entries(vars||{}).forEach(([n,v])=>{ s=s.replace('{'+n+'}',v); }); return s; };
+    const NAMES = {G:L('p_G','環球旅人'),L:L('p_L','在地常客'),Y:L('p_Y','念舊死忠'),X:L('p_X','嚐鮮探索'),M:L('p_M','當代派'),C:L('p_C','經典派'),S:L('p_S','大製作控'),I:L('p_I','小劇場魂')};
     const globe = st.countries>=4, loyal = repeatRatio<0.85;
     const axes = [
-      ['環球旅人','在地常客', globe, `${st.countries} 國`],
-      ['念舊死忠','嚐鮮探索', loyal, `重看率 ${Math.round((1-repeatRatio)*100)}%`],
+      [NAMES.G,NAMES.L, globe, LN('p_n_countries',`{n} 國`,{n:st.countries})],
+      [NAMES.Y,NAMES.X, loyal, LN('p_repeat',`重看率 {n}%`,{n:Math.round((1-repeatRatio)*100)})],
     ];
     const nick = [NAMES[globe?'G':'L']];
     const parts = [
-      globe ? `你橫跨 ${st.countries} 國追劇` : `你在 ${st.countries} 個${st.countries>1?'國家':'地方'}看過戲`,
-      loyal ? '願意為愛的戲二刷三刷' : '幾乎每齣都嚐鮮',
+      globe ? LN('p_blurb_globe','你橫跨 {n} 國追劇',{n:st.countries})
+            : (st.countries>1 ? LN('p_blurb_local_country','你在 {n} 個國家看過戲',{n:st.countries})
+                              : LN('p_blurb_local_place','你在 {n} 個地方看過戲',{n:st.countries})),
+      loyal ? L('p_blurb_loyal','願意為愛的戲二刷三刷') : L('p_blurb_fresh','幾乎每齣都嚐鮮'),
     ];
-    if(hasEra){axes.push(['當代派','經典派', modern>=classic, `${modern} 現代 / ${classic} 經典`]);nick.push(NAMES[modern>=classic?'M':'C']);parts.push(modern>=classic?'口味偏當代':'鍾情經典');}
-    if(hasScale){axes.push(['大製作控','小劇場魂', spectacle>=intimate, `${spectacle} 大 / ${intimate} 小`]);nick.push(NAMES[spectacle>=intimate?'S':'I']);parts.push(spectacle>=intimate?'也擋不住大製作的聲光':'更愛小劇場的親密');}
+    if(hasEra){axes.push([NAMES.M,NAMES.C, modern>=classic, LN('p_axis_era','{m} 現代 / {c} 經典',{m:modern,c:classic})]);nick.push(NAMES[modern>=classic?'M':'C']);parts.push(modern>=classic?L('p_blurb_modern','口味偏當代'):L('p_blurb_classic','鍾情經典'));}
+    if(hasScale){axes.push([NAMES.S,NAMES.I, spectacle>=intimate, LN('p_axis_scale','{s} 大 / {i} 小',{s:spectacle,i:intimate})]);nick.push(NAMES[spectacle>=intimate?'S':'I']);parts.push(spectacle>=intimate?L('p_blurb_spectacle','也擋不住大製作的聲光'):L('p_blurb_intimate','更愛小劇場的親密'));}
     if(nick.length<2)nick.push(NAMES[loyal?'Y':'X']);   // 沒有 era/scale 時用「重看率」補第二段暱稱
     const code = [globe?'G':'L', loyal?'Y':'X', hasEra?(modern>=classic?'M':'C'):'', hasScale?(spectacle>=intimate?'S':'I'):''].join('');
     return {
       code, nickname: nick.join('・'),
       aura: (past[0]||shows[0]||{}).color||'#7c5cff', aura2: '#6A0DAD',
       axes,
-      blurb: parts.join('，') + '。',
+      blurb: parts.join(L('p_sep','，')) + L('p_end','。'),
     };
   }
 

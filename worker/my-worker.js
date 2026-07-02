@@ -70,28 +70,45 @@ export default {
       if (nh && nh !== handle) return Response.redirect(url.origin + '/' + nh, 301);
     }
 
-    // 3) 取 u.html,注入 handle + 該使用者專屬 meta
+    // 3) 取 u.html,注入 handle + 語言 + 該使用者專屬 meta
+    //    語言進網址(?hl=)才能被分語言收錄(Google 指引 + Strava/X 實務);無參數=預設繁中。
+    const hlRaw = url.searchParams.get('hl');
+    const hl = (hlRaw === 'en' || hlRaw === 'zh-hant' || hlRaw === 'zh-hans') ? hlRaw : null;
+    const lang = hl || 'zh-hant';
     const page = await fetch(GH_ORIGIN + '/u.html');
     let html = await page.text();
 
     const display = prof && prof.is_public ? (prof.display_name || seg) : null;
-    const canon = `${url.origin}/${seg}`;
-    const title = display ? `${display} 的音樂劇足跡 — My Musicals | MusicalMap` : '找不到這個公開頁 | MusicalMap';
+    const canonBase = `${url.origin}/${seg}`;
+    const canon = hl ? `${canonBase}?hl=${hl}` : canonBase;
+    const title = display
+      ? (lang === 'en' ? `${display}’s Musicals — MusicalMap` : `${display} 的音樂劇足跡 — My Musicals | MusicalMap`)
+      : (lang === 'en' ? 'This page doesn’t exist | MusicalMap' : '找不到這個公開頁 | MusicalMap');
     const desc = display
-      ? `${display} 在世界各地看過的音樂劇——海報牆、觀劇護照與足跡地圖。用 MusicalMap 建立你自己的音樂劇護照。`
-      : '這個收藏頁不存在,或擁有者尚未公開。';
+      ? (lang === 'en'
+        ? `Musicals ${display} has seen around the world — poster wall, theatre passport and a map of every city. Build your own musical passport on MusicalMap.`
+        : `${display} 在世界各地看過的音樂劇——海報牆、觀劇護照與足跡地圖。用 MusicalMap 建立你自己的音樂劇護照。`)
+      : (lang === 'en' ? 'It may have been removed, or the owner hasn’t made it public.' : '這個收藏頁不存在,或擁有者尚未公開。');
+    // hreflang:各語言版互列(zh-hant=無參數版=x-default;zh-hans P1 顯示同 zh-hant,先不列)
+    const hreflang = display ? [
+      `<link rel="alternate" hreflang="zh-Hant" href="${esc(canonBase)}" />`,
+      `<link rel="alternate" hreflang="en" href="${esc(canonBase)}?hl=en" />`,
+      `<link rel="alternate" hreflang="x-default" href="${esc(canonBase)}" />`,
+    ].join('\n') : '';
     const inject = [
-      `<script>window.MM_HANDLE=${JSON.stringify(handle)};</script>`,
+      `<script>window.MM_HANDLE=${JSON.stringify(handle)};${hl ? `window.MM_HL=${JSON.stringify(hl)};` : ''}</script>`,
       `<link rel="canonical" href="${esc(canon)}" />`,
+      hreflang,
       display ? '' : `<meta name="robots" content="noindex" />`,
       display ? `<script type="application/ld+json">${JSON.stringify({
         '@context': 'https://schema.org', '@type': 'ProfilePage',
-        mainEntity: { '@type': 'Person', name: display, url: canon },
+        mainEntity: { '@type': 'Person', name: display, url: canonBase },
         about: 'Musical theatre viewing history', isPartOf: { '@type': 'WebSite', name: 'MusicalMap', url: MAIN_SITE },
       })}</script>` : '',
     ].filter(Boolean).join('\n');
 
     html = html
+      .replace(/<html lang="[^"]*"/, `<html lang="${lang === 'en' ? 'en' : (lang === 'zh-hans' ? 'zh-Hans' : 'zh-Hant')}"`)
       .replace(/<title>[^<]*<\/title>/, `<title>${esc(title)}</title>\n<meta name="description" content="${esc(desc)}" />`)
       .replace(/(<meta property="og:title" content=")[^"]*(")/, `$1${esc(title)}$2`)
       .replace(/(<meta property="og:description" content=")[^"]*(")/, `$1${esc(desc)}$2`)

@@ -11,6 +11,16 @@
 
 ---
 
+## [v1.12.0] - 2026-07-02 13:59
+### 新功能 — 公開收藏頁(u.html)三語化 P1:繁中/英文 + 語言進網址(?hl=)
+- **`js/mm-strings.js`(新)**:足跡側 UI 字典(繁中+英文,zh-hans 暫 fallback 繁中)+ 語言解析(`?hl=` 參數優先 → Worker 注入 → navigator → 繁中)+ `data-i18n` 靜態套用 + 語言切換 pills(繁中/EN,連結式、保留 `?u=`,爬蟲可發現變體)。**語言進網址是 SEO 需求**(Google 官方反對 cookie/瀏覽器語言切換——Googlebot 不帶 Accept-Language 不留 cookie;Strava/X/Last.fm 個人頁實務零例外,見 DESIGN 文件實證)。
+- **`u.html`**:全部靜態中文節點掛 `data-i18n`;**移除 `js/i18n.js`**——它的 applyStatic 同吃 `data-i18n` 屬性、在本頁字典查無 key 時會把 key 字面蓋進畫面(e2e 抓到的真衝突),本頁由 mm-strings 全權接管。
+- **`js/u-view.js`**:~40 處 runtime 中文改 `MM_T()`;en 模式國家/城市/劇院顯示資料原文(不做中文在地化);XSS `esc()` 紀律不變(字典值進 innerHTML 也跳脫)。
+- **`data.js`**:`personality()` 語言化(有 mm-strings 用字典,me.html 未載入則沿用中文字面,零 regression)。
+- **`worker/my-worker.js`**:`?hl=` 支援——`<html lang>`/title/description/og 依語言出、注入 `MM_HL`、**hreflang 3 條互列**(zh-Hant=無參數版=x-default、en=?hl=en)+ canonical 各語言指自己。
+- **驗證**:i18n e2e **19 項 PASS**(zh 現狀不變/en 抽查 8 處+UI 容器零中文殘留/persona 英文/切換 pills/me.html 回歸含 personality 中文 fallback;真 Supabase danny 資料)+ Worker 直測 **12 項 PASS**(en/無參數/404 三態的 title/lang/canonical/hreflang);zh+en 截圖親驗。
+- 尚未做(P2+):me.html/me-input.html 的多語、zh-hans 接 OpenCC、Worker meta 的 zh-hans 版。
+
 ## [v1.11.1] - 2026-07-02 13:13
 ### 驗證 — 改名轉向全鏈路真人實測通過
 - 使用者實際操作:帳號設定 danny→danny_test→改回 danny。(a)舊網址 `?u=danny` 自動轉向 ✓(b)改回自己舊名合法 ✓(c)alias `danny_test` 永久歸原主、`handle_available=false` 別人搶不走 ✓(線上 API 確認)。username 機制無未實測環節。
