@@ -52,6 +52,40 @@
       p_blurb_modern: '口味偏當代', p_blurb_classic: '鍾情經典',
       p_blurb_spectacle: '也擋不住大製作的聲光', p_blurb_intimate: '更愛小劇場的親密',
       p_sep: '，', p_end: '。',
+      // ---- me.html 專屬(登入頁,localStorage 記語言) ----
+      gate_loading: '載入中…', gate_login: '使用 Google 登入',
+      gate_signin: '<b style="font-size:26px">我的音樂劇足跡</b><br><span style="opacity:.72;font-size:14.5px;font-weight:500">登入後，你看過的每一齣音樂劇都會存進你的帳號、跨裝置同步。</span>',
+      gate_syncing: '同步你的收藏中…', gate_no_backend: '⚠ 後端尚未設定',
+      gate_load_fail: '讀取收藏失敗，請重新整理。',
+      nav_share: '分享', nav_logout: '登出', me_hero_title: '我的音樂劇收藏',
+      demo_banner_b: '👋 這是範例收藏', demo_banner_rest: ' —— 先讓你看看蓋滿章後的樣子。按右邊加入你第一齣看過的劇，整頁就換成你自己的。',
+      demo_cta: '＋ 加入第一齣音樂劇', demo_sub: '範例預覽 · 加入後就換成你的',
+      footer2_me: '封面取自各劇官方與公開資料；目前顯示的是範例紀錄，登入後就換成你自己的。',
+      edit_this: '編輯這齣', delete_this: '刪除這齣', edit: '編輯', delete: '刪除',
+      first_west_end: 'FIRST WEST END', first_broadway: 'FIRST BROADWAY', first: 'FIRST',
+      fab_add: '＋ 加入音樂劇', log_title: '加入音樂劇', lt_undated: '未定',
+      share_title: '分享我的收藏', share_lead: '把看過的每一齣音樂劇分享給朋友。',
+      share_url_label: '你的專屬網址',
+      handle_to_acct_1: '網址名稱是你的帳號身份，要更改請到 ', handle_to_acct_link: '帳號設定', handle_to_acct_2: '。',
+      handle_input_label: '網址名稱（英文、數字、底線或連字號，1–30 字）',
+      pub_public: '公開我的收藏頁', pub_public_sub: '關閉時，就算有連結別人也看不到你的收藏。',
+      sfg_title: '公開頁要顯示哪些敏感資訊？',
+      show_price: '顯示票價', show_seat: '顯示座位', note_never: '筆記永遠不會出現在公開頁。',
+      copy: '複製', copied: '已複製！', later: '之後再說', save: '儲存', saving: '儲存中…',
+      acct_title: '帳號設定',
+      acct_lead: '網址名稱是你的帳號身份。更改後舊網址會自動轉到新網址，已分享出去的連結不會壞；舊名稱會永久保留給你，別人拿不走。',
+      acct_handle_label: '網址名稱 username', acct_display_label: '顯示名稱（公開頁的標題）', cancel: '取消',
+      onb_title: '歡迎！取一個你的網址名稱',
+      onb_lead: '這是你的帳號身份，也是公開分享網址的一部分。之後可在「帳號設定」更改，舊網址會自動轉到新的。', logout: '登出',
+      h_input_hint: '輸入英文、數字、底線或連字號（1–30 字）。', h_reserved: '這個名稱是保留字，換一個。',
+      h_current: '這是你目前的網址。', h_checking: '檢查中…',
+      h_avail: '✓ {h} 可以用！', h_taken: '✗ {h} 已被使用，換一個。', h_will_check: '儲存時會確認是否重複。',
+      h_taken_short: '✗ 已被使用，換一個。', h_bad_format: '只能用英文、數字、底線、連字號（1–30 字）。',
+      h_save_fail: '儲存失敗：', chips_tip: '可用的建議：', onb_done: '✓ 完成！',
+      url_empty: '先取一個網址名稱。', acct_url_empty: '網址名稱不能空白。',
+      saved_redirect: '✓ 已儲存。舊網址會自動轉到新網址。', display_save_fail: '顯示名稱儲存失敗：',
+      confirm_delete: '確定要刪除《{name}》這筆紀錄嗎？\n(刪除後仍可從左下角「復原」救回)',
+      this_show: '這齣', deleted: '已刪除《{name}》', undo: '復原',
     },
     'en': {
       nav_theatres: 'All Theatres', nav_map: 'Live Map', nav_create: '＋ Create your own',
@@ -97,6 +131,39 @@
       p_blurb_modern: 'tastes lean contemporary', p_blurb_classic: 'devoted to the classics',
       p_blurb_spectacle: 'can’t resist a big spectacle', p_blurb_intimate: 'prefers the intimacy of a small stage',
       p_sep: ', ', p_end: '.',
+      gate_loading: 'Loading…', gate_login: 'Sign in with Google',
+      gate_signin: '<b style="font-size:26px">My Musicals</b><br><span style="opacity:.72;font-size:14.5px;font-weight:500">Sign in and every show you’ve seen is saved to your account and synced across devices.</span>',
+      gate_syncing: 'Syncing your collection…', gate_no_backend: '⚠ Backend not configured',
+      gate_load_fail: 'Couldn’t load your collection. Please refresh.',
+      nav_share: 'Share', nav_logout: 'Sign out', me_hero_title: 'My Musicals',
+      demo_banner_b: '👋 This is a sample collection', demo_banner_rest: ' — a preview of what it looks like once stamped. Add your first show on the right and the whole page becomes yours.',
+      demo_cta: '＋ Add your first musical', demo_sub: 'Sample preview · becomes yours once you add a show',
+      footer2_me: 'Artwork comes from each show’s official and public sources. This is a sample for now — it becomes yours once you sign in.',
+      edit_this: 'Edit this show', delete_this: 'Delete this show', edit: 'Edit', delete: 'Delete',
+      first_west_end: 'FIRST WEST END', first_broadway: 'FIRST BROADWAY', first: 'FIRST',
+      fab_add: '＋ Add a musical', log_title: 'Add a musical', lt_undated: 'TBD',
+      share_title: 'Share my collection', share_lead: 'Share every musical you’ve seen with friends.',
+      share_url_label: 'Your personal URL',
+      handle_to_acct_1: 'Your URL name is your account identity. To change it, go to ', handle_to_acct_link: 'Account settings', handle_to_acct_2: '.',
+      handle_input_label: 'URL name (letters, digits, underscore or hyphen, 1–30 chars)',
+      pub_public: 'Make my collection public', pub_public_sub: 'When off, no one can see your collection even with the link.',
+      sfg_title: 'Which sensitive details to show on the public page?',
+      show_price: 'Show price', show_seat: 'Show seat', note_never: 'Notes never appear on the public page.',
+      copy: 'Copy', copied: 'Copied!', later: 'Later', save: 'Save', saving: 'Saving…',
+      acct_title: 'Account settings',
+      acct_lead: 'Your URL name is your account identity. After you change it, the old URL redirects to the new one — links you’ve already shared won’t break; the old name stays reserved for you and no one else can take it.',
+      acct_handle_label: 'URL name (username)', acct_display_label: 'Display name (the public page title)', cancel: 'Cancel',
+      onb_title: 'Welcome! Pick your URL name',
+      onb_lead: 'This is your account identity and part of your public share URL. You can change it later in Account settings — the old URL will redirect to the new one.', logout: 'Sign out',
+      h_input_hint: 'Letters, digits, underscore or hyphen (1–30 chars).', h_reserved: 'That name is reserved. Try another.',
+      h_current: 'This is your current URL.', h_checking: 'Checking…',
+      h_avail: '✓ {h} is available!', h_taken: '✗ {h} is taken. Try another.', h_will_check: 'We’ll check availability when you save.',
+      h_taken_short: '✗ Taken. Try another.', h_bad_format: 'Only letters, digits, underscore, hyphen (1–30 chars).',
+      h_save_fail: 'Save failed: ', chips_tip: 'Available suggestions:', onb_done: '✓ Done!',
+      url_empty: 'Pick a URL name first.', acct_url_empty: 'URL name can’t be empty.',
+      saved_redirect: '✓ Saved. The old URL will redirect to the new one.', display_save_fail: 'Display name save failed: ',
+      confirm_delete: 'Delete “{name}” from your records?\n(You can still restore it from “Undo” at the bottom-left.)',
+      this_show: 'this show', deleted: 'Deleted “{name}”', undo: 'Undo',
     },
   };
 
@@ -105,6 +172,10 @@
   try { q = new URLSearchParams(location.search).get('hl'); } catch (e) {}
   var hl = (q === 'en' || q === 'zh-hant' || q === 'zh-hans') ? q : null;
   if (!hl && window.MM_HL && STR[window.MM_HL === 'zh-hans' ? 'zh-hant' : window.MM_HL]) hl = window.MM_HL; // Worker 注入
+  // 登入頁(me.html)設 MM_USE_LANG_PREF → 讀主站共用的 mm_lang 偏好(en/zh)。公開頁 u.html 不設(語言只認 ?hl=,SEO 需求)。
+  if (!hl && window.MM_USE_LANG_PREF) {
+    try { var lp = localStorage.getItem('mm_lang'); if (lp === 'en') hl = 'en'; else if (lp === 'zh') hl = 'zh-hant'; } catch (e) {}
+  }
   if (!hl) {
     var nl = (navigator.language || '').toLowerCase();
     if (nl.indexOf('zh') === 0) hl = (nl.indexOf('cn') > -1 || nl.indexOf('hans') > -1 || nl.indexOf('sg') > -1) ? 'zh-hans' : 'zh-hant';
@@ -124,6 +195,7 @@
   // ---- 套用到靜態 DOM:data-i18n(textContent)/-title/-aria;<html lang>;語言切換 pills ----
   function apply() {
     document.documentElement.lang = hl === 'en' ? 'en' : (hl === 'zh-hans' ? 'zh-Hans' : 'zh-Hant');
+    if (window.MM_USE_LANG_PREF) { try { localStorage.setItem('mm_lang', hl === 'en' ? 'en' : 'zh'); } catch (e) {} } // 記住偏好(與主站共用)
     document.querySelectorAll('[data-i18n]').forEach(function (el) { el.textContent = window.MM_T(el.getAttribute('data-i18n')); });
     document.querySelectorAll('[data-i18n-title]').forEach(function (el) { el.title = window.MM_T(el.getAttribute('data-i18n-title')); });
     document.querySelectorAll('[data-i18n-aria]').forEach(function (el) { el.setAttribute('aria-label', window.MM_T(el.getAttribute('data-i18n-aria'))); });

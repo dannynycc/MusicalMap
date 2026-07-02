@@ -5,39 +5,52 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="referrer" content="no-referrer" />
 <meta name="robots" content="noindex" /><!-- 登入閘頁,爬蟲只會看到「載入中」;公開內容在 u.html -->
-<title>My Musicals · Danny 的音樂劇收藏</title>
+<title>My Musicals · MusicalMap</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,900;1,9..144,500&family=Inter:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;700;900&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet" />
 <script>/* no-flash: apply saved theme before CSS paints */(function(){try{var t=localStorage.getItem('mm-theme');if(t&&t!=='midnight')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
 <link rel="stylesheet" href="css/me-v2.css" />
+<style>
+html[lang="en"] .sec h2 .zh{display:none}   /* en 模式:section 標題旁的英文小字與主標重複 → 隱藏 */
+.hl-pick{display:flex;gap:2px;border:1px solid var(--hair2,rgba(255,255,255,.18));border-radius:999px;padding:2px}
+.hl-pick a{padding:3px 10px;border-radius:999px;font-size:12px;font-weight:700;text-decoration:none;color:var(--ink2,#aaa)}
+.hl-pick a[aria-current="true"]{background:var(--gold,#c9a85c);color:#1a1407}
+</style>
+<!-- i18n:登入頁,語言記在 localStorage(與主站共用 mm_lang);不載 js/i18n.js(會與 mm-strings 搶 data-i18n) -->
+<script>window.MM_USE_LANG_PREF=true;</script>
+<script src="js/mm-strings.js"></script>
 </head>
 <body>
 <!-- 登入閘：預設蓋住，等 Supabase 驗證後 JS 決定顯示登入/同步中/隱藏 -->
 <div id="mev2gate" style="position:fixed;inset:0;z-index:5000;background:var(--bg,#0c0d10);color:var(--ink1,#fff);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:20px;text-align:center;padding:24px;font-family:var(--ui,system-ui,sans-serif)">
-  <div id="gate-msg" style="font-size:21px;font-weight:800;line-height:1.55;max-width:420px">載入中…</div>
-  <button id="gate-login" hidden style="padding:13px 24px;border-radius:999px;border:1.5px solid var(--gold,#c9a85c);background:var(--gold,#c9a85c);color:#1a1407;font-weight:800;font-size:15px;cursor:pointer">使用 Google 登入</button>
+  <div id="gate-msg" data-i18n="gate_loading" style="font-size:21px;font-weight:800;line-height:1.55;max-width:420px">載入中…</div>
+  <button id="gate-login" data-i18n="gate_login" hidden style="padding:13px 24px;border-radius:999px;border:1.5px solid var(--gold,#c9a85c);background:var(--gold,#c9a85c);color:#1a1407;font-weight:800;font-size:15px;cursor:pointer">使用 Google 登入</button>
 </div>
 <header><div class="wrap bar">
   <a class="brand" href="index.html"><img src="logo.png" alt="" class="brand-logo" />Musical<b>Map</b></a>
   <nav class="nav">
-    <a href="theatres.html">所有劇院</a>
-    <a href="index.html">演出地圖</a>
-    <div class="theme-pick" id="themePick" role="group" aria-label="主題底色">
-      <button data-th="midnight" title="午夜（暗）" style="--sw:#13182f"></button>
-      <button data-th="gallery" title="畫廊白（亮）" style="--sw:#f4f2ec"></button>
-      <button data-th="cream" title="節目單奶油（亮）" style="--sw:#efe1c4"></button>
-      <button data-th="neon" title="霓虹（暗）" style="--sw:#ff2d7e"></button>
-      <button data-th="deco" title="裝飾金（暗）" style="--sw:#e3b23c"></button>
+    <a href="theatres.html" data-i18n="nav_theatres">所有劇院</a>
+    <a href="index.html" data-i18n="nav_map">演出地圖</a>
+    <div class="hl-pick" role="group" aria-label="Language / 語言">
+      <a data-hl-link="zh-hant" href="?">繁中</a>
+      <a data-hl-link="en" href="?hl=en">EN</a>
     </div>
-    <button type="button" id="btnShare" style="background:var(--gold,#c9a85c);border:1px solid var(--gold,#c9a85c);color:#1a1407;border-radius:999px;padding:6px 15px;font-size:13px;font-weight:800;cursor:pointer;font-family:inherit">分享</button>
-    <button type="button" id="btnLogout" style="background:none;border:1px solid var(--hair2);color:var(--ink2);border-radius:999px;padding:6px 14px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit">登出</button></nav>
+    <div class="theme-pick" id="themePick" role="group" aria-label="主題底色" data-i18n-aria="aria_theme">
+      <button data-th="midnight" title="午夜（暗）" data-i18n-title="th_midnight" style="--sw:#13182f"></button>
+      <button data-th="gallery" title="畫廊白（亮）" data-i18n-title="th_gallery" style="--sw:#f4f2ec"></button>
+      <button data-th="cream" title="節目單奶油（亮）" data-i18n-title="th_cream" style="--sw:#efe1c4"></button>
+      <button data-th="neon" title="霓虹（暗）" data-i18n-title="th_neon" style="--sw:#ff2d7e"></button>
+      <button data-th="deco" title="裝飾金（暗）" data-i18n-title="th_deco" style="--sw:#e3b23c"></button>
+    </div>
+    <button type="button" id="btnShare" data-i18n="nav_share" style="background:var(--gold,#c9a85c);border:1px solid var(--gold,#c9a85c);color:#1a1407;border-radius:999px;padding:6px 15px;font-size:13px;font-weight:800;cursor:pointer;font-family:inherit">分享</button>
+    <button type="button" id="btnLogout" data-i18n="nav_logout" style="background:none;border:1px solid var(--hair2);color:var(--ink2);border-radius:999px;padding:6px 14px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit">登出</button></nav>
 </div></header>
 
 <div class="wrap">
   <!-- DEMO/EMPTY-STATE BANNER (只在沒有真實登錄時出現) -->
   <div class="demobanner" id="demoBanner">
-    <span class="db-txt"><b>👋 這是範例收藏</b> —— 先讓你看看蓋滿章後的樣子。按右邊加入你第一齣看過的劇，整頁就換成你自己的。</span>
-    <button type="button" class="db-cta" id="demoBannerCta">＋ 加入第一齣音樂劇</button>
+    <span class="db-txt"><b data-i18n="demo_banner_b">👋 這是範例收藏</b><span data-i18n="demo_banner_rest"> —— 先讓你看看蓋滿章後的樣子。按右邊加入你第一齣看過的劇，整頁就換成你自己的。</span></span>
+    <button type="button" class="db-cta" id="demoBannerCta" data-i18n="demo_cta">＋ 加入第一齣音樂劇</button>
   </div>
   <!-- HERO -->
   <section class="hero">
@@ -46,8 +59,8 @@
     <div class="hero-in">
       <div class="crest"><img src="logo.png" alt="MusicalMap" class="crest-logo" /></div>
       <div>
-        <div class="sub">每看一場，蓋一個章</div>
-        <h1>Danny 的音樂劇收藏</h1>
+        <div class="sub" data-i18n="hero_sub">每看一場，蓋一個章</div>
+        <h1 data-i18n="me_hero_title">我的音樂劇收藏</h1>
         <div class="bignums" id="bignums"></div>
         <div class="newest" id="newest"></div>
       </div>
@@ -56,20 +69,20 @@
 
   <!-- CONTROLS -->
   <div class="controls"><div class="ctl-row">
-    <div class="seg" id="seg" role="group" aria-label="檢視模式">
+    <div class="seg" id="seg" role="group" aria-label="檢視模式" data-i18n-aria="aria_seg">
       <span class="thumb" id="segthumb"></span>
-      <button data-mode="poster" aria-pressed="true">🖼 <span>海報牆</span></button>
-      <button data-mode="passport" aria-pressed="false">🛂 <span>護照</span></button>
-      <button data-mode="log" aria-pressed="false">📋 <span>清單</span></button>
+      <button data-mode="poster" aria-pressed="true">🖼 <span data-i18n="seg_poster">海報牆</span></button>
+      <button data-mode="passport" aria-pressed="false">🛂 <span data-i18n="seg_passport">護照</span></button>
+      <button data-mode="log" aria-pressed="false">📋 <span data-i18n="seg_log">清單</span></button>
     </div>
     <div class="chips" id="chips"></div>
     <span class="spacer"></span>
     <span class="count" id="count"></span>
-    <select class="sortsel" id="sort" aria-label="排序">
-      <option value="date">最近觀看</option>
-      <option value="rating">評分</option>
-      <option value="count">次數</option>
-      <option value="title">劇名</option>
+    <select class="sortsel" id="sort" aria-label="排序" data-i18n-aria="aria_sort">
+      <option value="date" data-i18n="sort_date">最近觀看</option>
+      <option value="rating" data-i18n="sort_rating">評分</option>
+      <option value="count" data-i18n="sort_count">次數</option>
+      <option value="title" data-i18n="sort_title">劇名</option>
     </select>
   </div></div>
 
@@ -79,50 +92,50 @@
   <div id="wall-log"></div>
 
   <!-- MAP -->
-  <div class="sec"><h2>我的觀劇足跡<span class="zh">Cities</span></h2><span class="hint">點一座城市，只看那裡的收藏</span></div>
+  <div class="sec"><h2><span data-i18n="sec_map">我的觀劇足跡</span><span class="zh">Cities</span></h2><span class="hint" data-i18n="sec_map_hint">點一座城市，只看那裡的收藏</span></div>
   <div class="maprow">
     <div class="mapwrap reveal"><canvas id="mapcv"></canvas><div id="pins"></div>
-      <div class="mapzoom"><button id="mapZin" aria-label="放大">＋</button><button id="mapZout" aria-label="縮小">－</button><button id="mapZreset" aria-label="重置" title="重置">⟲</button></div>
-      <div class="maphint">滾輪縮放 · 拖曳平移</div>
-      <div class="legend"><div class="row"><span class="d" style="width:8px;height:8px"></span> 圓點 = 看過音樂劇的城市</div>
-        <div class="row"><span class="d" style="width:7px;height:7px"></span><span class="d" style="width:11px;height:11px"></span><span class="d" style="width:15px;height:15px"></span> 圓大小 = 看的場數</div></div>
+      <div class="mapzoom"><button id="mapZin" aria-label="放大" data-i18n-aria="aria_zoom_in">＋</button><button id="mapZout" aria-label="縮小" data-i18n-aria="aria_zoom_out">－</button><button id="mapZreset" aria-label="重置" title="重置" data-i18n-aria="aria_zoom_reset" data-i18n-title="aria_zoom_reset">⟲</button></div>
+      <div class="maphint" data-i18n="map_hint">滾輪縮放 · 拖曳平移</div>
+      <div class="legend"><div class="row"><span class="d" style="width:8px;height:8px"></span> <span data-i18n="legend_dot">圓點 = 看過音樂劇的城市</span></div>
+        <div class="row"><span class="d" style="width:7px;height:7px"></span><span class="d" style="width:11px;height:11px"></span><span class="d" style="width:15px;height:15px"></span> <span data-i18n="legend_size">圓大小 = 看的場數</span></div></div>
     </div>
     <div class="citylist reveal" id="citylist"></div>
   </div>
 
   <!-- STATS DASHBOARD -->
-  <div class="sec"><h2>觀劇統計<span class="zh">Stats</span></h2></div>
+  <div class="sec"><h2><span data-i18n="sec_stats">觀劇統計</span><span class="zh">Stats</span></h2></div>
   <div class="statgrid">
-    <div class="statcard sc-a reveal"><h3>🎭 最常看的劇</h3><div class="slist" id="sc-shows"></div></div>
-    <div class="statcard sc-b reveal"><h3>🌏 最常去的國家</h3><div class="slist" id="sc-countries"></div></div>
-    <div class="statcard sc-c reveal"><h3>🏙 最常去的城市</h3><div class="slist" id="sc-cities"></div></div>
-    <div class="statcard sc-d reveal"><h3>🏛 最常去的劇院</h3><div class="slist" id="sc-theatres"></div></div>
-    <div class="statcard sc-year reveal"><h3>📅 各年</h3><div class="linechart"><canvas id="ch-year"></canvas></div></div>
-    <div class="statcard sc-month reveal"><h3>📅 各月</h3><div class="linechart"><canvas id="ch-month"></canvas></div></div>
-    <div class="statcard sc-week reveal"><h3>📅 各星期</h3><div class="linechart"><canvas id="ch-week"></canvas></div></div>
+    <div class="statcard sc-a reveal"><h3 data-i18n="st_shows">🎭 最常看的劇</h3><div class="slist" id="sc-shows"></div></div>
+    <div class="statcard sc-b reveal"><h3 data-i18n="st_countries">🌏 最常去的國家</h3><div class="slist" id="sc-countries"></div></div>
+    <div class="statcard sc-c reveal"><h3 data-i18n="st_cities">🏙 最常去的城市</h3><div class="slist" id="sc-cities"></div></div>
+    <div class="statcard sc-d reveal"><h3 data-i18n="st_theatres">🏛 最常去的劇院</h3><div class="slist" id="sc-theatres"></div></div>
+    <div class="statcard sc-year reveal"><h3 data-i18n="st_year">📅 各年</h3><div class="linechart"><canvas id="ch-year"></canvas></div></div>
+    <div class="statcard sc-month reveal"><h3 data-i18n="st_month">📅 各月</h3><div class="linechart"><canvas id="ch-month"></canvas></div></div>
+    <div class="statcard sc-week reveal"><h3 data-i18n="st_week">📅 各星期</h3><div class="linechart"><canvas id="ch-week"></canvas></div></div>
   </div>
 
   <!-- PERSONA -->
-  <div class="sec"><h2>關於這位劇迷<span class="zh">You</span></h2></div>
+  <div class="sec"><h2><span data-i18n="sec_you">關於這位劇迷</span><span class="zh">You</span></h2></div>
   <div class="grid2">
     <div class="panel reveal">
-      <h3>🏅 成就徽章</h3>
+      <h3 data-i18n="badges_title">🏅 成就徽章</h3>
       <div class="badges" id="badges"></div>
     </div>
     <div class="panel persona reveal" id="persona"></div>
   </div>
 
   <footer>
-    海報牆與護照，是同一批收藏的兩種看法。<br>
-    封面取自各劇官方與公開資料；目前顯示的是範例紀錄，登入後就換成你自己的。
+    <span data-i18n="footer_1">海報牆與護照，是同一批收藏的兩種看法。</span><br>
+    <span data-i18n="footer2_me">封面取自各劇官方與公開資料；目前顯示的是範例紀錄，登入後就換成你自己的。</span>
   </footer>
 </div>
 
 <!-- DETAIL MODAL -->
 <dialog id="detail">
-  <button class="dt-close" id="dtclose" aria-label="關閉">✕</button>
+  <button class="dt-close" id="dtclose" aria-label="關閉" data-i18n-aria="aria_close">✕</button>
   <div class="dt-grid">
-    <div class="dt-poster" id="dt-poster"><img id="dt-img" alt="" /><div class="dt-fallback"><span class="kick">A Musical</span><span class="ft" id="dt-fb-en"></span><span class="fzh" id="dt-fb-zh"></span></div><span class="dt-zoom">↗ 點圖開新分頁看原圖</span></div>
+    <div class="dt-poster" id="dt-poster"><img id="dt-img" alt="" /><div class="dt-fallback"><span class="kick">A Musical</span><span class="ft" id="dt-fb-en"></span><span class="fzh" id="dt-fb-zh"></span></div><span class="dt-zoom" data-i18n="dt_zoom">↗ 點圖開新分頁看原圖</span></div>
     <div class="dt-body">
       <div class="en" id="dt-en"></div>
       <div class="zh" id="dt-zh"></div>
@@ -163,24 +176,27 @@ function proxyImg(u){if(!u||!/^https?:\/\//i.test(u)||/(wsrv\.nl|weserv\.nl)/i.t
   // 所有登錄的劇都進牆與統計；地圖之後只對「有座標」的放 pin（無座標≠丟掉、絕不退回範例冒充）
   if(mapped.length){MM.shows.length=0;MM.shows.push(...mapped);document.documentElement.dataset.live='1';}
 }catch(err){console.warn('mm-log integrate failed',err);}})();
+// i18n:UI 字串走 mm-strings 的 MM_T(?hl=/localStorage 決定語言);en 模式國家/城市/劇院顯示資料原文。
+const T=window.MM_T||(k=>k), TN=(k,v)=>{let s=T(k);for(const n in(v||{}))s=s.replace('{'+n+'}',v[n]);return s;};
+const EN_UI=(window.MM_HL||'zh-hant')==='en';
 const S=MM.shows, st=MM.stats('past'), stAll=MM.stats();   // st=只算已看過（統計/大數字）；stAll=含未來（年份 chips）
 const isFut=d=>MM.isFuture(d);
 const update=d=>String(d||'').replace(/-/g,' / ');   // 2026-11-09 → "2026 / 11 / 09"（未來卡日期）
 // 中文頁：國家名顯示繁中；劇院名只顯示中文部分（存的是「English 中文」混合字串，太累）
 const COUNTRY_ZH={'United States':'美國','USA':'美國','United Kingdom':'英國','UK':'英國','Taiwan':'台灣','Japan':'日本','South Korea':'南韓','China':'中國','Hong Kong':'香港','Macau':'澳門','Singapore':'新加坡','Australia':'澳洲','New Zealand':'紐西蘭','Canada':'加拿大','Germany':'德國','France':'法國','Austria':'奧地利','Switzerland':'瑞士','Spain':'西班牙','Italy':'義大利','Netherlands':'荷蘭','Belgium':'比利時','Sweden':'瑞典','Norway':'挪威','Denmark':'丹麥','Finland':'芬蘭','Ireland':'愛爾蘭','Poland':'波蘭','Czech Republic':'捷克','Hungary':'匈牙利','Portugal':'葡萄牙','Mexico':'墨西哥','Brazil':'巴西','Argentina':'阿根廷','United Arab Emirates':'阿聯','UAE':'阿聯','Philippines':'菲律賓','Malaysia':'馬來西亞','Thailand':'泰國','Indonesia':'印尼','India':'印度','Israel':'以色列','Turkey':'土耳其','South Africa':'南非','Russia':'俄羅斯','Vietnam':'越南','Ukraine':'烏克蘭','Bulgaria':'保加利亞','Chile':'智利','Colombia':'哥倫比亞','Croatia':'克羅埃西亞','Egypt':'埃及','Estonia':'愛沙尼亞','Greece':'希臘','Jersey':'澤西島','Latvia':'拉脫維亞','Lithuania':'立陶宛','Peru':'秘魯','Romania':'羅馬尼亞','Serbia':'塞爾維亞','Slovakia':'斯洛伐克','Slovenia':'斯洛維尼亞'};
-const countryZh=c=>COUNTRY_ZH[c]||c||'';
+const countryZh=c=>EN_UI?(c||''):(COUNTRY_ZH[c]||c||'');
 const _cjk=/[぀-ヿ㐀-鿿가-힯豈-﫿]/;   // 中日韓：假名+CJK+諺文+相容(讓日韓場館也抽得到當地名)
 const _HALL=new Set(['大劇院','中劇院','小劇院','大劇場','中劇場','小劇場','音樂廳','演奏廳','戲劇廳','歌劇廳','演藝廳','表演廳','實驗劇場','排練場','大廳','小廳']);
 // 劇院名：抽中文部分（存的是「English 中文」混合），去掉「大/中/小劇院」等廳別後綴，臺→台，
 // 讓同一劇院不同廳合併成同一個名字（臺中國家歌劇院 大劇院 → 台中國家歌劇院）。整個是館名的不砍（上海大劇院保留）。
-const venueZh=v=>{if(!v)return v||'';
+const venueZh=v=>{if(EN_UI)return v||'';if(!v)return v||'';
   const t=String(v).split(/\s+/).filter(x=>_cjk.test(x));
   if(!t.length)return v;
   const core=t.filter(x=>!_HALL.has(x));
   return (core.length?core:t).join(' ').replace(/臺/g,'台');};
 const FLAG={};   // 不顯示國旗 emoji（使用者要求）；所有 FLAG[x] 取用處皆有 ||'' fallback → 空字串
 const MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-const fdt=d=>{if(!d)return'日期未定';const[y,m,dd]=d.split('-');
+const fdt=d=>{if(!d)return T('date_tbd');const[y,m,dd]=d.split('-');
   if(dd)return`${MON[+m-1]} ${+dd}, ${y}`;        // 日精度
   if(m)return`${MON[+m-1]} ${y}`;                 // 月精度
   return`${y}`;};                                  // 年精度（不再 NaN/undefined）
@@ -194,14 +210,14 @@ const venueCode=v=>v.replace(/Theatre|Theater|劇場|劇院|\(.*\)/g,'').trim().
   const sp=document.getElementById('spines');
   [...S,...S].slice(0,16).forEach(s=>{const i=document.createElement('i');i.style.background=`linear-gradient(160deg,${shade(s.color,28)},${shade(s.color,-50)})`;sp.appendChild(i);});
   const bn=document.getElementById('bignums');
-  [['<b>'+st.total+'</b>','音樂劇 Musicals'],[st.unique,'不同作品 Unique'],[st.cities,'城市 Cities'],[st.countries,'國家 Countries']]
+  [['<b>'+st.total+'</b>',T('bn_musicals')],[st.unique,T('bn_unique')],[st.cities,T('bn_cities')],[st.countries,T('bn_countries')]]
     .forEach(([n,l])=>{const d=document.createElement('div');d.className='bn';d.innerHTML=`<div class="n tnum">${n}</div><div class="l">${l}</div>`;bn.appendChild(d);});
   const newest=MM.recent(true)[0];   // 只取「已發生」的最近一場，不被未來場次汙染
   const up=stAll.upcoming||0;
-  const upTxt=up>0?` <span class="nw" style="color:var(--gold)">· 即將 ${up} 場</span>`:'';
+  const upTxt=up>0?` <span class="nw" style="color:var(--gold)">${TN('upcoming_dot_n',{n:up})}</span>`:'';
   document.getElementById('newest').innerHTML=newest
-    ? `<span class="dot"></span><span class="nw">最新一場 <b>${newest.title}</b></span> <span class="nw">${newest.city}${newest.date?' · '+fshort(newest.date):''}</span>${upTxt}`
-    : (up>0?`<span class="dot"></span><span class="nw">還沒看過任何一場</span><span class="nw" style="color:var(--gold)">即將 ${up} 場</span>`:'');
+    ? `<span class="dot"></span><span class="nw">${T('newest_label')} <b>${newest.title}</b></span> <span class="nw">${newest.city}${newest.date?' · '+fshort(newest.date):''}</span>${upTxt}`
+    : (up>0?`<span class="dot"></span><span class="nw">${T('none_yet')}</span><span class="nw" style="color:var(--gold)">${TN('upcoming_n',{n:up})}</span>`:'');
 })();
 
 /* ---------- POSTER WALL ---------- */
@@ -223,7 +239,7 @@ function posterEl(s){
       <img alt="${s.title} poster" loading="lazy" decoding="async" ${s.posterFit==='contain'?'style="object-fit:contain;object-position:center"':''}/>
       <figcaption class="fallback"><span class="kick">A Musical</span><span class="ft">${s.title}</span><span class="fzh">${s.zh}</span><span class="rule"></span></figcaption>
       <div class="topfx"></div>
-      ${fut?`<div class="up-veil"></div><div class="up-ribbon">即將上演</div>`:''}
+      ${fut?`<div class="up-veil"></div><div class="up-ribbon">${T('ribbon_upcoming')}</div>`:''}
       <span class="flag">${FLAG[s.country]||''}</span>${s.fav?'<span class="fav">❤️</span>':''}
     </figure>
     <div class="cap"><span class="cap-t"><span class="en">${s.title}</span><span class="zh">${s.zh}</span></span>
@@ -241,7 +257,7 @@ function posterEl(s){
   if(document.documentElement.dataset.live==='1' && s.logged){
     const li=s.id-9000;
     const acts=document.createElement('div');acts.className='cardacts';
-    acts.innerHTML=`<span class="ca-btn" role="button" tabindex="0" aria-label="編輯這齣" title="編輯">✎</span><span class="ca-btn" role="button" tabindex="0" aria-label="刪除這齣" title="刪除">🗑</span>`;
+    acts.innerHTML=`<span class="ca-btn" role="button" tabindex="0" aria-label="${T('edit_this')}" title="${T('edit')}">✎</span><span class="ca-btn" role="button" tabindex="0" aria-label="${T('delete_this')}" title="${T('delete')}">🗑</span>`;
     const eb=acts.children[0], db=acts.children[1];
     eb.onclick=e=>{e.stopPropagation();window.mmEditShow&&window.mmEditShow(li);};
     db.onclick=e=>{e.stopPropagation();window.mmDeleteShow&&window.mmDeleteShow(li,s.title,s.zh);};
@@ -254,19 +270,19 @@ function renderPoster(){
   const w=document.getElementById('wall-poster');w.innerHTML='';
   const list=filtered();
   list.forEach((s,i)=>{const el=posterEl(s);el.classList.add('reveal');el.style.setProperty('--i',i%12);w.appendChild(el);io.observe(el);});
-  document.getElementById('count').textContent=`${list.length} 部音樂劇`;
+  document.getElementById('count').textContent=TN('n_musicals',{n:list.length});
 }
 /* ---------- LOG LIST VIEW（對標正式版 Log 分頁） ---------- */
 function renderLog(){
   const el=document.getElementById('wall-log');const list=filtered();
-  document.getElementById('count').textContent=`${list.length} 部音樂劇`;
+  document.getElementById('count').textContent=TN('n_musicals',{n:list.length});
   el.innerHTML=`<div class="logtable" role="table">
-    <div class="lt-head" role="row"><span>劇目</span><span>城市</span><span>日期</span><span>評分</span></div>`+
+    <div class="lt-head" role="row"><span>${T('lt_show')}</span><span>${T('lt_city')}</span><span>${T('lt_date')}</span><span>${T('lt_rate')}</span></div>`+
     list.map(s=>`<button class="lt-row" data-id="${s.id}" role="row">
       <span class="lt-show"><span class="lt-thumb">${s.poster?`<img src="${s.poster}" referrerpolicy="no-referrer" alt=""/>`:`<i>${(s.title||'?').trim()[0]||'?'}</i>`}</span>
         <span class="lt-t"><b>${s.title}</b>${s.zh?`<i>${s.zh}</i>`:''}</span></span>
       <span class="lt-city">${s.city?cityName(s.city):'<span class="muted">—</span>'} ${s.country?(FLAG[s.country]||''):''}</span>
-      <span class="lt-date">${fshort(s.date)||'<span class="muted">未定</span>'}</span>
+      <span class="lt-date">${fshort(s.date)||`<span class="muted">${T('lt_undated')}</span>`}</span>
       <span class="lt-rate">${s.rating?'★'.repeat(s.rating):'<span class="muted">—</span>'}</span>
     </button>`).join('')+`</div>`;
   el.querySelectorAll('.lt-row').forEach(r=>r.onclick=()=>{const sh=S.find(x=>String(x.id)===r.dataset.id);if(sh)openDetail(sh);});
@@ -298,7 +314,7 @@ function milestoneFor(s,idxInCountry,firstOfCountry){
 function renderPassport(){
   const w=document.getElementById('wall-passport');w.innerHTML='';
   const list=filtered();
-  document.getElementById('count').textContent=`${list.length} 部音樂劇`;   // 護照面也同步 count（篩選時不再 stale）
+  document.getElementById('count').textContent=TN('n_musicals',{n:list.length});   // 護照面也同步 count（篩選時不再 stale）
   const byC={};list.forEach(s=>{(byC[s.country]=byC[s.country]||[]).push(s);});
   const order=Object.keys(byC).sort((a,b)=>byC[b].length-byC[a].length);
   let gi=0;
@@ -307,12 +323,12 @@ function renderPassport(){
     const cities=[...new Set(arr.map(s=>s.city))].join(' · ');
     const stamped=arr.filter(s=>!isFut(s.date)).length;   // 只算已到場的戳章數
     const v=document.createElement('div');v.className='visa reveal';
-    v.innerHTML=`<div class="crow"><span class="cn">${co}</span>
+    v.innerHTML=`<div class="crow"><span class="cn">${countryZh(co)}</span>
       <span class="ct">${cities}</span><span class="prog">${stamped} STAMP${stamped!==1?'S':''}</span></div>
       <div class="stamps">${arr.map((s,j)=>{
         const dly=Math.min(j*0.05,0.5).toFixed(2);const mile=milestoneFor(s,j,j===0);const fut=isFut(s.date);
-        return `<div class="stamp${fut?' is-future':''}" data-sid="${s.id}" role="button" tabindex="0" aria-label="${(s.title||'').replace(/"/g,'&quot;')} ${fut?'（即將上演）':''}詳情" style="--ink:${s.color};--rot:${(((s.id*37)%9)-4)}deg;--dly:${dly}s">
-          ${mile&&!fut?`<span class="mile">${mile}</span>`:''}${stampSvg(s)}${fut?'<span class="up-mark">即將<br>上演</span>':''}</div>`;}).join('')}</div>`;
+        return `<div class="stamp${fut?' is-future':''}" data-sid="${s.id}" role="button" tabindex="0" aria-label="${(s.title||'').replace(/"/g,'&quot;')}${fut?T('up_suffix'):''}${T('detail_suffix')}" style="--ink:${s.color};--rot:${(((s.id*37)%9)-4)}deg;--dly:${dly}s">
+          ${mile&&!fut?`<span class="mile">${mile}</span>`:''}${stampSvg(s)}${fut?`<span class="up-mark">${T('up_mark')}</span>`:''}</div>`;}).join('')}</div>`;
     w.appendChild(v);io.observe(v);
   });
   // 戳章可點/可鍵盤開詳情（與海報牆/清單一致）
@@ -343,7 +359,7 @@ document.getElementById('seg').addEventListener('click',e=>{const b=e.target.clo
 
 /* chips */
 (function(){const c=document.getElementById('chips');
-  ['全部',...stAll.years].forEach((y,i)=>{const b=document.createElement('button');b.className='chip';b.textContent=y;b.setAttribute('aria-pressed',i===0);
+  ['全部',...stAll.years].forEach((y,i)=>{const b=document.createElement('button');b.className='chip';b.textContent=(y==='全部'?T('chip_all'):y);b.setAttribute('aria-pressed',i===0);
     b.onclick=()=>{activeYear=y;activeCity=null;[...c.children].forEach(x=>x.setAttribute('aria-pressed','false'));b.setAttribute('aria-pressed','true');rerender();};c.appendChild(b);});})();
 document.getElementById('sort').onchange=e=>{sortBy=e.target.value;rerender();};
 function rerender(){mode==='poster'?renderPoster():mode==='passport'?renderPassport():renderLog();}  // log 檢視也要重繪（排序/篩選才會生效）
@@ -354,7 +370,7 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
 /* ---------- MAP : dotted world (two-tone, no lines) + always-on labels + ranked list ---------- */
 const CITYZH={"Aarhus": "奧胡斯", "Adelaide": "阿得雷德", "Aichi": "愛知", "Albuquerque": "阿布奎基", "Amsterdam": "阿姆斯特丹", "Antwerp": "安特衛普", "Atlanta": "亞特蘭大", "Auckland": "奧克蘭", "Austin": "奧斯汀", "Baltimore": "巴爾的摩", "Barcelona": "巴塞隆納", "Beijing": "北京", "Belfast": "貝爾法斯特", "Berlin": "柏林", "Birmingham": "伯明罕", "Boston": "波士頓", "Brighton": "布萊頓", "Brisbane": "布里斯本", "Bristol": "布里斯托", "Brussels": "布魯塞爾", "Budapest": "布達佩斯", "Buenos Aires": "布宜諾斯艾利斯", "Buffalo": "水牛城", "Calgary": "卡加利", "Cambridge": "劍橋", "Cardiff": "卡地夫", "Changsha": "長沙", "Changzhou": "常州", "Charlotte": "夏洛特", "Chengdu": "成都", "Chiayi": "嘉義", "Chicago": "芝加哥", "Chongqing": "重慶", "Cincinnati": "辛辛那提", "Cleveland": "克里夫蘭", "Cologne": "科隆", "Columbus": "哥倫布", "Copenhagen": "哥本哈根", "Daegu": "大邱", "Dallas": "達拉斯", "Denver": "丹佛", "Detroit": "底特律", "Dongguan": "東莞", "Dubai": "杜拜", "Dublin": "都柏林", "Edinburgh": "愛丁堡", "Edmonton": "愛德蒙頓", "Firenze": "佛羅倫斯", "Fort Lauderdale": "羅德岱堡", "Fort Worth": "沃斯堡", "Frankfurt": "法蘭克福", "Fukuoka": "福岡", "Fuzhou": "福州", "Ghent": "根特", "Gifu": "岐阜", "Glasgow": "格拉斯哥", "Gothenburg": "哥德堡", "Grand Rapids": "大急流城", "Guangzhou": "廣州", "Göteborg": "哥德堡", "Haikou": "海口", "Hamburg": "漢堡", "Hangzhou": "杭州", "Harbin": "哈爾濱", "Hefei": "合肥", "Helsinki": "赫爾辛基", "Hengyang": "衡陽", "Hiroshima": "廣島", "Houston": "休士頓", "Hsinchu": "新竹", "Hyogo": "兵庫", "Jiaxing": "嘉興", "Jinan": "濟南", "Kanagawa": "神奈川", "Kansas City": "堪薩斯城", "Kaohsiung": "高雄", "Kunshan": "崑山", "Köln": "科隆", "København": "哥本哈根", "København V": "哥本哈根", "Langfang": "廊坊", "Las Vegas": "拉斯維加斯", "Leeds": "里茲", "Liverpool": "利物浦", "London": "倫敦", "Los Angeles": "洛杉磯", "Louisville": "路易斯維爾", "Lyon": "里昂", "Madison": "麥迪遜", "Madrid": "馬德里", "Maihama": "舞濱", "Manchester": "曼徹斯特", "Melbourne": "墨爾本", "Memphis": "曼菲斯", "Mexico City": "墨西哥市", "Miami": "邁阿密", "Milano": "米蘭", "Milwaukee": "密爾瓦基", "Minneapolis": "明尼阿波利斯", "Monterrey": "蒙特雷", "Montreal": "蒙特婁", "Munich": "慕尼黑", "México": "墨西哥市", "München": "慕尼黑", "Nagoya": "名古屋", "Nanchang": "南昌", "Nanjing": "南京", "Nanning": "南寧", "Nantong": "南通", "Napoli": "拿坡里", "Nashville": "納許維爾", "New Orleans": "紐奧良", "New Taipei": "新北", "New York": "紐約", "Newcastle": "紐卡索", "Ningbo": "寧波", "Nottingham": "諾丁罕", "Oklahoma City": "奧克拉荷馬市", "Omaha": "奧馬哈", "Orlando": "奧蘭多", "Osaka": "大阪", "Oslo": "奧斯陸", "Ottawa": "渥太華", "Oxford": "牛津", "Padova": "帕多瓦", "Paris": "巴黎", "Penghu": "澎湖", "Perth": "伯斯", "Philadelphia": "費城", "Phoenix": "鳳凰城", "Pingtung": "屏東", "Pittsburgh": "匹茲堡", "Portland": "波特蘭", "Prague": "布拉格", "Praha": "布拉格", "Providence": "普羅維登斯", "Qidong": "啓東", "Qingdao": "青島", "Quzhou": "衢州", "Richmond": "里奇蒙", "Rio de Janeiro": "里約熱內盧", "Roma": "羅馬", "Rotterdam": "鹿特丹", "Salt Lake City": "鹽湖城", "San Antonio": "聖安東尼奧", "San Diego": "聖地牙哥", "San Francisco": "舊金山", "San Jose": "聖荷西", "Sapporo": "札幌", "Seattle": "西雅圖", "Seoul": "首爾", "Shanghai": "上海", "Sheffield": "雪菲爾", "Shenyang": "瀋陽", "Shenzhen": "深圳", "Singapore": "新加坡", "St. Louis": "聖路易", "Stockholm": "斯德哥爾摩", "Stuttgart": "斯圖加特", "Suzhou": "蘇州", "Swansea": "斯旺西", "Sydney": "雪梨", "São Paulo": "聖保羅", "Taichung": "台中", "Taipei": "台北", "Taitung": "台東", "Taiyuan": "太原", "Taizhou": "台州", "Takarazuka (兵庫)": "寶塚", "Tampa": "坦帕", "Tianjin": "天津", "Tokyo": "東京", "Tokyo (日比谷)": "東京", "Torino": "杜林", "Toronto": "多倫多", "Utrecht": "烏特勒支", "Vancouver": "溫哥華", "Vienna": "維也納", "Warsaw": "華沙", "Warszawa": "華沙", "Washington": "華盛頓", "Weifang": "濰坊", "Wellington": "威靈頓", "Wien": "維也納", "Wimbledon": "溫布頓", "Wuhan": "武漢", "Wuxi": "無錫", "Xi'an": "西安", "Yantai": "煙台", "Yinchuan": "銀川", "Yokohama": "橫濱", "York": "約克", "Yunlin": "雲林", "Zhengzhou": "鄭州", "Zhuhai": "珠海", "Zhuji": "諸暨", "Zibo": "淄博", "Zurich": "蘇黎世", "Zürich": "蘇黎世", "连云港": "連雲港"};   // 英文→繁中城市對照(opencc s2t + cities_tw 覆蓋，源自 data/i18n_maps.json)
-function cityName(c){if(!c)return c;const base=String(c).replace(/,\s*[A-Za-z.]{2,}$/,'').trim();return CITYZH[c]||CITYZH[base]||c;}   // 找不到中文就回原文；剝除「, CA」州別後綴再查
+function cityName(c){if(!c)return c;const base=String(c).replace(/,\s*[A-Za-z.]{2,}$/,'').trim();return EN_UI?(base||c):(CITYZH[c]||CITYZH[base]||c);}   // en 回原文(剝州別後綴)；zh 找中文,找不到回原文
 function cityHasZh(c){return cityName(c)!==c;}
 function project(lat,lng){return[(lng+180)/360,(90-lat)/180];}
 // ===== 地圖縮放/平移：view = 可視窗左上角(x,y, base 0-1) + 縮放 z =====
@@ -394,7 +410,7 @@ function placePins(){
     const[px,py]=project(c.lat,c.lng);if(!isFinite(px)||!isFinite(py))return;
     const sz=15+Math.sqrt(c.n)*6.5;
     const el=document.createElement('button');el.className='pin';
-    el.setAttribute('aria-label',`${c.city} · ${c.n} 部音樂劇`);
+    el.setAttribute('aria-label',TN('pin_aria',{city:cityName(c.city),n:c.n}));
     el.innerHTML=`<span class="glow" style="width:${sz*2.4}px;height:${sz*2.4}px"></span>
       <span class="ring"></span>
       <span class="core" style="width:${sz}px;height:${sz}px">${c.n}</span>
@@ -411,7 +427,7 @@ function buildCityList(){
   const el=document.getElementById('citylist');
   const byCity={};S.forEach(s=>{if(!s.city||isFut(s.date))return;(byCity[s.city]=byCity[s.city]||{...s,n:0}).n++;});   // 地圖/城市榜只算已到場
   const arr=Object.values(byCity).sort((a,b)=>b.n-a.n);
-  el.innerHTML=`<h4>造訪城市 Cities</h4><div class="sh">${arr.length} 座城市 · ${st.countries} 國 · 共 ${st.total} 場</div>`+
+  el.innerHTML=`<h4>${T('citylist_title')}</h4><div class="sh">${TN('citylist_sub',{c:arr.length,k:st.countries,t:st.total})}</div>`+
     arr.map(c=>{const d=9+Math.sqrt(c.n)*4.2;return `<button class="cl-row" data-city="${c.city}">
       <span class="d" style="width:${d}px;height:${d}px"></span>
       <span class="nm"><b>${cityName(c.city)}</b><span>${countryZh(c.country)}</span></span>
@@ -444,9 +460,9 @@ let mt;addEventListener('resize',()=>{clearTimeout(mt);mt=setTimeout(()=>{render
   const b=document.getElementById('badges');
   const tops=st.topShows[0];
   // 劇院改由下方「最常去的劇院」榜呈現，徽章不再放被砍字的劇院名
-  const badges=[['🎭',`${st.total} 場演出`,true],['🌏',`${st.countries} 國蓋章`,st.countries>=3],['🏙',`${st.cities} 座城市`,false],['🎬',`${st.unique} 部不同作品`,false]];
+  const badges=[['🎭',TN('badge_shows',{n:st.total}),true],['🌏',TN('badge_countries',{n:st.countries}),st.countries>=3],['🏙',TN('badge_cities',{n:st.cities}),false],['🎬',TN('badge_unique',{n:st.unique}),false]];
   if(tops&&tops[1]>1)badges.push(['🔁',`${tops[0]} ×${tops[1]}`,false]);
-  if(st.favCount>0)badges.push(['❤️',`${st.favCount} 部最愛`,false]);
+  if(st.favCount>0)badges.push(['❤️',TN('badge_fav',{n:st.favCount}),false]);
   b.innerHTML=badges.map(([ic,t,g])=>`<div class="badge ${g?'gold':''}"><span class="ic">${ic}</span>${t}</div>`).join('');
   // ===== 統計儀表板：把已算好的 MM.stats() 畫出來 =====
   function barList(id,items,fmt){const el=document.getElementById(id);if(!el)return;
@@ -481,7 +497,7 @@ let mt;addEventListener('resize',()=>{clearTimeout(mt);mt=setTimeout(()=>{render
   lineChart('ch-month',(st.perMonth||[]).map(x=>x[0]),(st.perMonth||[]).map(x=>x[1]));
   lineChart('ch-week',(st.perWeekday||[]).map(x=>x[0]),(st.perWeekday||[]).map(x=>x[1]));
   const p=MM.personality();
-  document.getElementById('persona').innerHTML=`<h3>你是什麼樣的劇迷？</h3>
+  document.getElementById('persona').innerHTML=`<h3>${T('persona_title')}</h3>
     <div class="pn">${p.nickname}</div><div class="pb">${p.blurb}</div>
     <div class="axes">${p.axes.map(a=>{const left=a[2];const pos=left?14:86;
       return `<div class="axis"><div class="r"><span class="${left?'on':''}">${a[0]}</span><span>${a[3]}</span><span class="${!left?'on':''}">${a[1]}</span></div><div class="track"><i style="left:calc(${pos}% - 6px)"></i></div></div>`;}).join('')}</div>`;
@@ -509,13 +525,13 @@ function openDetail(s){
   if(s.rating>0){rt.textContent=stars(s.rating)+`  ${s.rating}/5`;rt.style.display='';}
   else{rt.textContent='';rt.style.display='none';}   // 未評分→隱藏，不再顯示 0/5
   document.getElementById('dt-dl').innerHTML=`
-    <dt>劇院</dt><dd>${venueZh(s.venue)||'—'}</dd>
-    <dt>城市</dt><dd>${s.city?cityName(s.city)+(s.country?', '+countryZh(s.country):''):(countryZh(s.country)||'—')} ${FLAG[s.country]||''}</dd>
-    <dt>日期</dt><dd>${s.date?s.date.replace(/-/g,'/'):'—'}</dd>
-    ${s.time?`<dt>時間</dt><dd>${s.time}</dd>`:''}
-    <dt>座位</dt><dd>${s.seat||'—'}</dd>
-    <dt>票價</dt><dd>${s.price?`${s.price} ${s.cur||''}`:'—'}</dd>
-    <dt>連結</dt><dd>${s.url?`<a href="${String(s.url).replace(/"/g,'%22')}" target="_blank" rel="noopener noreferrer" style="color:#e3b23c;text-decoration:none;border-bottom:1px solid currentColor">${((String(s.url).match(/^https?:\/\/([^\/]+)/)||[])[1]||'開啟連結')} ↗</a>`:'—'}</dd>`;
+    <dt>${T('dt_venue')}</dt><dd>${venueZh(s.venue)||'—'}</dd>
+    <dt>${T('dt_city')}</dt><dd>${s.city?cityName(s.city)+(s.country?', '+countryZh(s.country):''):(countryZh(s.country)||'—')} ${FLAG[s.country]||''}</dd>
+    <dt>${T('dt_date')}</dt><dd>${s.date?s.date.replace(/-/g,'/'):'—'}</dd>
+    ${s.time?`<dt>${T('dt_time')}</dt><dd>${s.time}</dd>`:''}
+    <dt>${T('dt_seat')}</dt><dd>${s.seat||'—'}</dd>
+    <dt>${T('dt_price')}</dt><dd>${s.price?`${s.price} ${s.cur||''}`:'—'}</dd>
+    <dt>${T('dt_link')}</dt><dd>${s.url?`<a href="${String(s.url).replace(/"/g,'%22')}" target="_blank" rel="noopener noreferrer" style="color:#e3b23c;text-decoration:none;border-bottom:1px solid currentColor">${((String(s.url).match(/^https?:\/\/([^\/]+)/)||[])[1]||T('dt_open_link'))} ↗</a>`:'—'}</dd>`;
   document.getElementById('dt-note').textContent=s.note?('「'+s.note+'」'):'';
   document.getElementById('dt-note').style.display=s.note?'block':'none';
   if(dlg.showModal)dlg.showModal();
@@ -539,12 +555,12 @@ renderPoster();buildCityList();drawMap();placePins();moveThumb();
 (function(){
   const cta=document.getElementById('demoBannerCta');
   if(cta)cta.onclick=()=>{const f=document.getElementById('fabLog');if(f)f.click();};
-  if(document.documentElement.dataset.live!=='1'){const sub=document.querySelector('.hero .sub');if(sub)sub.textContent='範例預覽 · 加入後就換成你的';}
+  if(document.documentElement.dataset.live!=='1'){const sub=document.querySelector('.hero .sub');if(sub)sub.textContent=T('demo_sub');}
 })();
 applyTheme((function(){try{return localStorage.getItem('mm-theme')||'midnight';}catch(e){return 'midnight';}})());
 window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
 </script>
-<button type="button" id="fabLog" aria-label="加入一齣音樂劇" style="position:fixed;right:22px;bottom:22px;z-index:1200;background:var(--s1);color:var(--gold);border:1.5px solid var(--gold);font-weight:800;padding:13px 20px;border-radius:999px;cursor:pointer;box-shadow:0 8px 24px rgba(0,0,0,.45);display:inline-flex;align-items:center;gap:8px;font-size:15px">＋ 加入音樂劇</button>
+<button type="button" id="fabLog" aria-label="加入一齣音樂劇" data-i18n="fab_add" data-i18n-aria="fab_add" style="position:fixed;right:22px;bottom:22px;z-index:1200;background:var(--s1);color:var(--gold);border:1.5px solid var(--gold);font-weight:800;padding:13px 20px;border-radius:999px;cursor:pointer;box-shadow:0 8px 24px rgba(0,0,0,.45);display:inline-flex;align-items:center;gap:8px;font-size:15px">＋ 加入音樂劇</button>
 <style>
 .logmodal[hidden]{display:none}
 .logmodal{position:fixed;inset:0;z-index:2000;display:flex;align-items:center;justify-content:center}
@@ -559,7 +575,7 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
 <div class="logmodal" id="logModal" hidden>
   <div class="logmodal-bd" id="logModalBd"></div>
   <div class="logmodal-card">
-    <iframe id="logFrame" title="加入音樂劇" src="about:blank"></iframe>
+    <iframe id="logFrame" title="加入音樂劇" data-i18n-title="log_title" src="about:blank"></iframe>
   </div>
 </div>
 
@@ -604,20 +620,20 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
 <div class="sharemodal" id="shareModal" hidden>
   <div class="sharemodal-bd" id="shareModalBd"></div>
   <div class="sharemodal-card">
-    <button type="button" class="sharemodal-x" id="shareX" aria-label="關閉">✕</button>
-    <h2 id="shareTitle">分享我的收藏</h2>
-    <p class="share-lead" id="shareLead">建立你的專屬公開頁，把看過的每一齣音樂劇分享給朋友。</p>
+    <button type="button" class="sharemodal-x" id="shareX" aria-label="關閉" data-i18n-aria="aria_close">✕</button>
+    <h2 id="shareTitle" data-i18n="share_title">分享我的收藏</h2>
+    <p class="share-lead" id="shareLead" data-i18n="share_lead">建立你的專屬公開頁，把看過的每一齣音樂劇分享給朋友。</p>
 
     <!-- 分享模式：網址唯讀（username＝帳號身份，改名走「帳號設定」） -->
     <div class="share-field" id="handleView" hidden>
-      <span>你的專屬網址</span>
+      <span data-i18n="share_url_label">你的專屬網址</span>
       <div class="handle-row"><span class="handle-cur" id="handleCur"></span></div>
-      <span class="handle-status muted">網址名稱是你的帳號身份，要更改請到 <a href="#" id="openAcct" style="color:var(--gold,#c9a85c);font-weight:700">帳號設定</a>。</span>
+      <span class="handle-status muted"><span data-i18n="handle_to_acct_1">網址名稱是你的帳號身份，要更改請到 </span><a href="#" id="openAcct" data-i18n="handle_to_acct_link" style="color:var(--gold,#c9a85c);font-weight:700">帳號設定</a><span data-i18n="handle_to_acct_2">。</span></span>
     </div>
 
     <!-- onboarding 模式：空白輸入 + 可用建議 chips（不預填，label 在上、非 placeholder） -->
     <label class="share-field" id="handleEdit" hidden>
-      <span>網址名稱（英文、數字、底線或連字號，1–30 字）</span>
+      <span data-i18n="handle_input_label">網址名稱（英文、數字、底線或連字號，1–30 字）</span>
       <div class="handle-row">
         <span class="handle-prefix">…/u.html?u=</span>
         <input id="pubHandle" autocomplete="off" spellcheck="false" maxlength="30" />
@@ -627,25 +643,25 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
     </label>
 
     <div id="shareBody">
-      <label class="share-switch"><input type="checkbox" id="pubPublic" /> <span>公開我的收藏頁</span></label>
-      <div class="share-sub">關閉時，就算有連結別人也看不到你的收藏。</div>
+      <label class="share-switch"><input type="checkbox" id="pubPublic" /> <span data-i18n="pub_public">公開我的收藏頁</span></label>
+      <div class="share-sub" data-i18n="pub_public_sub">關閉時，就算有連結別人也看不到你的收藏。</div>
 
       <div class="share-fields-group" id="shareFieldsGroup" hidden>
-        <div class="sfg-title">公開頁要顯示哪些敏感資訊？</div>
-        <label class="share-switch"><input type="checkbox" id="showPrice" /> <span>顯示票價</span></label>
-        <label class="share-switch"><input type="checkbox" id="showSeat" /> <span>顯示座位</span></label>
-        <div class="share-sub">筆記永遠不會出現在公開頁。</div>
+        <div class="sfg-title" data-i18n="sfg_title">公開頁要顯示哪些敏感資訊？</div>
+        <label class="share-switch"><input type="checkbox" id="showPrice" /> <span data-i18n="show_price">顯示票價</span></label>
+        <label class="share-switch"><input type="checkbox" id="showSeat" /> <span data-i18n="show_seat">顯示座位</span></label>
+        <div class="share-sub" data-i18n="note_never">筆記永遠不會出現在公開頁。</div>
       </div>
 
       <div class="share-link" id="shareLink" hidden>
         <a id="shareUrl" href="#" target="_blank" rel="noopener"></a>
-        <button type="button" id="shareCopy">複製</button>
+        <button type="button" id="shareCopy" data-i18n="copy">複製</button>
       </div>
     </div>
 
     <div class="share-actions">
-      <button type="button" class="btn-ghost" id="shareSkip">之後再說</button>
-      <button type="button" class="btn-gold" id="shareSave">儲存</button>
+      <button type="button" class="btn-ghost" id="shareSkip" data-i18n="later">之後再說</button>
+      <button type="button" class="btn-gold" id="shareSave" data-i18n="save">儲存</button>
     </div>
   </div>
 </div>
@@ -654,11 +670,11 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
 <div class="sharemodal" id="acctModal" hidden>
   <div class="sharemodal-bd" id="acctBd"></div>
   <div class="sharemodal-card">
-    <button type="button" class="sharemodal-x" id="acctX" aria-label="關閉">✕</button>
-    <h2>帳號設定</h2>
-    <p class="share-lead">網址名稱是你的帳號身份。更改後<b>舊網址會自動轉到新網址</b>，已分享出去的連結不會壞；舊名稱會永久保留給你，別人拿不走。</p>
+    <button type="button" class="sharemodal-x" id="acctX" aria-label="關閉" data-i18n-aria="aria_close">✕</button>
+    <h2 data-i18n="acct_title">帳號設定</h2>
+    <p class="share-lead" data-i18n="acct_lead">網址名稱是你的帳號身份。更改後舊網址會自動轉到新網址，已分享出去的連結不會壞；舊名稱會永久保留給你，別人拿不走。</p>
     <label class="share-field">
-      <span>網址名稱 username</span>
+      <span data-i18n="acct_handle_label">網址名稱 username</span>
       <div class="handle-row">
         <span class="handle-prefix">…/u.html?u=</span>
         <input id="acctHandle" autocomplete="off" spellcheck="false" maxlength="30" />
@@ -666,12 +682,12 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
       <span class="handle-status muted" id="acctStatus"></span>
     </label>
     <label class="share-field">
-      <span>顯示名稱（公開頁的標題）</span>
+      <span data-i18n="acct_display_label">顯示名稱（公開頁的標題）</span>
       <div class="handle-row"><input id="acctDisplay" maxlength="40" style="padding-left:11px" /></div>
     </label>
     <div class="share-actions">
-      <button type="button" class="btn-ghost" id="acctCancel">取消</button>
-      <button type="button" class="btn-gold" id="acctSave">儲存</button>
+      <button type="button" class="btn-ghost" id="acctCancel" data-i18n="cancel">取消</button>
+      <button type="button" class="btn-gold" id="acctSave" data-i18n="save">儲存</button>
     </div>
   </div>
 </div>
@@ -684,6 +700,7 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
    查重走 SECURITY DEFINER RPC handle_available（繞過 RLS；已含 alias/保留字 union 查重）。 */
 (function(){
   const $=s=>document.getElementById(s);
+  const T=window.MM_T||(k=>k), TN=(k,v)=>{let s=T(k);for(const n in(v||{}))s=s.replace('{'+n+'}',v[n]);return s;};
   const modal=$('shareModal'), acct=$('acctModal');
   let UID=null, CUR={handle:'',is_public:false,show_price:false,show_seat:false}, DISPLAY='', EMAIL='';
   let FORCED=false;   // onboarding 強制模式（無 handle 不放行）
@@ -712,15 +729,15 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
     async function check(){
       const h=norm($(inputId).value);
       st.ok=false;
-      if(!h){set('muted','輸入英文、數字、底線或連字號（1–30 字）。');return;}
-      if(RESERVED.has(h)){set('bad','這個名稱是保留字，換一個。');return;}
-      if(h===CUR.handle){st.ok=true;set('ok','這是你目前的網址。');return;}
-      set('muted','檢查中…');
+      if(!h){set('muted',T('h_input_hint'));return;}
+      if(RESERVED.has(h)){set('bad',T('h_reserved'));return;}
+      if(h===CUR.handle){st.ok=true;set('ok',T('h_current'));return;}
+      set('muted',T('h_checking'));
       const seq=++st.seq, ok=await isAvailable(h);
       if(seq!==st.seq)return;          // 有更新的輸入 → 丟棄舊結果
-      if(ok===true){st.ok=true;set('ok','✓ '+h+' 可以用！');}
-      else if(ok===false){st.ok=false;set('bad','✗ '+h+' 已被使用，換一個。');}
-      else{st.ok=true;set('muted','儲存時會確認是否重複。');}  // 無法即時判定 → 交給 save 的最後防線
+      if(ok===true){st.ok=true;set('ok',TN('h_avail',{h}));}
+      else if(ok===false){st.ok=false;set('bad',TN('h_taken',{h}));}
+      else{st.ok=true;set('muted',T('h_will_check'));}  // 無法即時判定 → 交給 save 的最後防線
     }
     $(inputId).addEventListener('input',()=>{
       const el=$(inputId),raw=el.value,n=norm(raw);
@@ -752,10 +769,10 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
     }catch(e){return 'error:'+((e&&e.message)||e);}
   }
   function explain(code,setter){
-    if(code==='taken')setter('bad','✗ 已被使用，換一個。');
-    else if(code==='reserved')setter('bad','這個名稱是保留字，換一個。');
-    else if(code==='bad_format')setter('bad','只能用英文、數字、底線、連字號（1–30 字）。');
-    else setter('bad','儲存失敗：'+code);
+    if(code==='taken')setter('bad',T('h_taken_short'));
+    else if(code==='reserved')setter('bad',T('h_reserved'));
+    else if(code==='bad_format')setter('bad',T('h_bad_format'));
+    else setter('bad',T('h_save_fail')+code);
   }
 
   // ---- 建議 chips：種子＝email 前綴（不用 Google 真名），逐顆預驗可用、主動點才填 ----
@@ -768,7 +785,7 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
     const avail=[];
     for(const c of cands){ if(avail.length>=3)break; if((await isAvailable(c))===true)avail.push(c); }
     if(!avail.length)return;
-    const tip=document.createElement('span');tip.className='chips-tip';tip.textContent='可用的建議：';box.appendChild(tip);
+    const tip=document.createElement('span');tip.className='chips-tip';tip.textContent=T('chips_tip');box.appendChild(tip);
     for(const c of avail){
       const b=document.createElement('button');b.type='button';b.textContent=c;
       b.addEventListener('click',()=>{$('pubHandle').value=c;renderLink();obCheck.check();$('pubHandle').focus();});
@@ -803,47 +820,47 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
     const btn=$('shareSave');
     if(FORCED){
       const h=norm($('pubHandle').value);
-      if(!h){obCheck.set('bad','先取一個網址名稱。');$('pubHandle').focus();return;}
-      if(RESERVED.has(h)){obCheck.set('bad','這個名稱是保留字，換一個。');return;}
-      btn.disabled=true;btn.textContent='儲存中…';
+      if(!h){obCheck.set('bad',T('url_empty'));$('pubHandle').focus();return;}
+      if(RESERVED.has(h)){obCheck.set('bad',T('h_reserved'));return;}
+      btn.disabled=true;btn.textContent=T('saving');
       try{
         const r=await setHandle(h);
         if(r!=='ok'){explain(r,obCheck.set);return;}
         CUR.handle=h;FORCED=false;
-        obCheck.set('ok','✓ 完成！');
+        obCheck.set('ok',T('onb_done'));
         setTimeout(()=>{close();},500);
-      }finally{btn.disabled=false;btn.textContent='儲存';}
+      }finally{btn.disabled=false;btn.textContent=T('save');}
       return;
     }
-    btn.disabled=true;btn.textContent='儲存中…';
+    btn.disabled=true;btn.textContent=T('saving');
     try{
       const {error}=await sb().from('profiles').upsert({id:UID,is_public:$('pubPublic').checked,show_price:$('showPrice').checked,show_seat:$('showSeat').checked});
-      if(error){$('handleCur').textContent='儲存失敗：'+(error.message||error);return;}
+      if(error){$('handleCur').textContent=T('h_save_fail')+(error.message||error);return;}
       CUR.is_public=$('pubPublic').checked;CUR.show_price=$('showPrice').checked;CUR.show_seat=$('showSeat').checked;
       renderLink();
       $('handleCur').textContent=shareUrl(CUR.handle);
     }catch(e){console.warn('save',e);}
-    finally{btn.disabled=false;btn.textContent='儲存';}
+    finally{btn.disabled=false;btn.textContent=T('save');}
   }
 
   // ---- 首次登入強制 onboarding：沒有 handle 就必須先設（欄位空白＋chips，無略過）----
   async function maybeOnboard(){
     if(CUR.handle)return;
     FORCED=true;
-    $('shareTitle').textContent='歡迎！取一個你的網址名稱';
-    $('shareLead').textContent='這是你的帳號身份，也是公開分享網址的一部分。之後可在「帳號設定」更改，舊網址會自動轉到新的。';
+    $('shareTitle').textContent=T('onb_title');
+    $('shareLead').textContent=T('onb_lead');
     $('handleEdit').hidden=false;$('handleView').hidden=true;$('shareBody').hidden=true;
     $('shareX').hidden=true;
-    const sk=$('shareSkip');sk.hidden=false;sk.textContent='登出';
-    $('pubHandle').value='';obCheck.set('muted','輸入英文、數字、底線或連字號（1–30 字）。');
+    const sk=$('shareSkip');sk.hidden=false;sk.textContent=T('logout');
+    $('pubHandle').value='';obCheck.set('muted',T('h_input_hint'));
     modal.hidden=false;document.body.style.overflow='hidden';
     buildChips();   // 背景逐顆驗可用，好了才顯示
   }
 
   function openShare(){
     FORCED=false;
-    $('shareTitle').textContent='分享我的收藏';
-    $('shareLead').textContent='把看過的每一齣音樂劇分享給朋友。';
+    $('shareTitle').textContent=T('share_title');
+    $('shareLead').textContent=T('share_lead');
     $('handleEdit').hidden=true;$('handleView').hidden=false;$('shareBody').hidden=false;
     $('shareX').hidden=false;$('shareSkip').hidden=true;
     $('handleCur').textContent=shareUrl(CUR.handle);
@@ -856,16 +873,16 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
   function openAcct(){
     $('acctHandle').value=CUR.handle;
     $('acctDisplay').value=DISPLAY;
-    acCheck.set(CUR.handle?'ok':'muted',CUR.handle?'這是你目前的網址。':'');
+    acCheck.set(CUR.handle?'ok':'muted',CUR.handle?T('h_current'):'');
     acct.hidden=false;
   }
   function closeAcct(){acct.hidden=true;}
   async function acctSave(){
     const h=norm($('acctHandle').value), d=$('acctDisplay').value.trim();
     const btn=$('acctSave');
-    if(!h){acCheck.set('bad','網址名稱不能空白。');$('acctHandle').focus();return;}
-    if(RESERVED.has(h)){acCheck.set('bad','這個名稱是保留字，換一個。');return;}
-    btn.disabled=true;btn.textContent='儲存中…';
+    if(!h){acCheck.set('bad',T('acct_url_empty'));$('acctHandle').focus();return;}
+    if(RESERVED.has(h)){acCheck.set('bad',T('h_reserved'));return;}
+    btn.disabled=true;btn.textContent=T('saving');
     try{
       if(h!==CUR.handle){
         const r=await setHandle(h);
@@ -874,13 +891,13 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
       }
       if(d!==DISPLAY){
         const {error}=await sb().from('profiles').upsert({id:UID,display_name:d||null});
-        if(error){acCheck.set('bad','顯示名稱儲存失敗：'+(error.message||error));return;}
+        if(error){acCheck.set('bad',T('display_save_fail')+(error.message||error));return;}
         DISPLAY=d;
       }
-      acCheck.set('ok','✓ 已儲存。舊網址會自動轉到新網址。');
+      acCheck.set('ok',T('saved_redirect'));
       if(!$('handleView').hidden)$('handleCur').textContent=shareUrl(CUR.handle);
       renderLink();
-    }finally{btn.disabled=false;btn.textContent='儲存';}
+    }finally{btn.disabled=false;btn.textContent=T('save');}
   }
 
   // ---- wire ----
@@ -894,7 +911,7 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
   $('shareModalBd').addEventListener('click',close);
   $('shareCopy').addEventListener('click',async()=>{
     const url=$('shareUrl').textContent;
-    try{await navigator.clipboard.writeText(url);$('shareCopy').textContent='已複製！';setTimeout(()=>$('shareCopy').textContent='複製',1600);}
+    try{await navigator.clipboard.writeText(url);$('shareCopy').textContent=T('copied');setTimeout(()=>$('shareCopy').textContent=T('copy'),1600);}
     catch(e){const r=document.createRange();r.selectNode($('shareUrl'));getSelection().removeAllRanges();getSelection().addRange(r);}
   });
   $('openAcct').addEventListener('click',e=>{e.preventDefault();openAcct();});
@@ -918,6 +935,7 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
    登入閘預設蓋住；未登入→Google 落地頁；已登入→抓 sightings→寫 localStorage mm-log(快取)→重渲染。
    localStorage 當「本 session 快取」，Supabase 當真實來源；新增/刪除雙寫，下次 session 再從雲端重抓。*/
 (function(){
+  const T=window.MM_T||(k=>k);
   const cfg=window.MM_CONFIG||{};
   const gate=document.getElementById('mev2gate'), gmsg=document.getElementById('gate-msg'), glogin=document.getElementById('gate-login');
   const showGate=(msg,login)=>{gate.style.display='flex';gmsg.innerHTML=msg;glogin.hidden=!login;};
@@ -950,14 +968,14 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
       poster_override:e.posterOverride||null,url:e.url||null};
     if(p.lat!=null&&p.lng!=null){rec.lat=p.lat;rec.lng=p.lng;}return rec;}
   window.mmEntryToRec=entryToRec;   // 給刪除復原用
-  if(!cfg.READY||typeof supabase==='undefined'){showGate('⚠ 後端尚未設定',false);return;}
+  if(!cfg.READY||typeof supabase==='undefined'){showGate(T('gate_no_backend'),false);return;}
   const sb=supabase.createClient(cfg.SUPABASE_URL,cfg.SUPABASE_ANON_KEY);
   window.mmSb=sb;
   const SYNC_VER='3';   // sightingToEntry 對映改版**或 catalog 顯示資料(zh/海報)更新**就 +1 → 強制所有 session 重新同步（否則已同步的 session 用舊快取，看不到新中文名/海報，如 v3=獅子王等 6 劇中文名）
   const syncedKey=uid=>uid+'@'+SYNC_VER;
   let _syncing=false;
   async function syncFromCloud(uid){
-    if(_syncing)return;_syncing=true;showGate('同步你的收藏中…',false);
+    if(_syncing)return;_syncing=true;showGate(T('gate_syncing'),false);
     try{
       await loadCatalogMaps();
       const {data,error}=await sb.from('sightings').select('*').eq('user_id',uid).order('seen_date',{ascending:false});  // 只撈自己的（RLS 允許讀公開帳號，故必過濾）
@@ -969,10 +987,10 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
       const rk='mev2_reloaded_'+syncedKey(uid);
       if(prev!==json && !sessionStorage.getItem(rk)){sessionStorage.setItem(rk,'1');location.reload();return;}  // 最多重載一次→渲染雲端資料；防迴圈
       hideGate();window.mmAuthReady&&window.mmAuthReady(uid);
-    }catch(e){console.error('sync',e);showGate('讀取收藏失敗，請重新整理。<br><span style="font-size:13px;opacity:.7">'+((e&&e.message)||e)+'</span>',false);}
+    }catch(e){console.error('sync',e);showGate(T('gate_load_fail')+'<br><span style="font-size:13px;opacity:.7">'+((e&&e.message)||e)+'</span>',false);}
     finally{_syncing=false;}
   }
-  function showLogin(){showGate('<b style="font-size:26px">我的音樂劇足跡</b><br><span style="opacity:.72;font-size:14.5px;font-weight:500">登入後，你看過的每一齣音樂劇都會存進你的帳號、跨裝置同步。</span>',true);}
+  function showLogin(){showGate(T('gate_signin'),true);}
   function clearLocal(){try{localStorage.removeItem('mm-log');}catch(e){}sessionStorage.removeItem('mev2_synced');Object.keys(sessionStorage).filter(k=>k.indexOf('mev2_reloaded_')===0).forEach(k=>sessionStorage.removeItem(k));}
   async function onSignedIn(user){if(sessionStorage.getItem('mev2_synced')===syncedKey(user.id)){hideGate();window.mmAuthReady&&window.mmAuthReady(user.id);return;}await syncFromCloud(user.id);}
   glogin.onclick=()=>sb.auth.signInWithOAuth({provider:'google',options:{redirectTo:location.origin+location.pathname}});
@@ -987,6 +1005,7 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
 </script>
 <script>
 (function(){
+  const T=window.MM_T||(k=>k), TN=(k,v)=>{let s=T(k);for(const n in(v||{}))s=s.replace('{'+n+'}',v[n]);return s;};
   const m=document.getElementById('logModal'),fr=document.getElementById('logFrame');
   let before='';
   const snap=()=>{try{return localStorage.getItem('mm-log')||'';}catch(e){return '';}};
@@ -997,11 +1016,11 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
   function openEdit(i){before=snap();fr.src='me-input.html?embed=1&edit='+i+cb();m.hidden=false;document.body.style.overflow='hidden';}
   window.mmEditShow=openEdit;
   window.mmDeleteShow=async function(i,title,zh){
-    if(!confirm(`確定要刪除《${zh||title||'這齣'}》這筆紀錄嗎？\n(刪除後仍可從左下角「復原」救回)`))return;   // 防誤點垃圾桶
+    if(!confirm(TN('confirm_delete',{name:zh||title||T('this_show')})))return;   // 防誤點垃圾桶
     try{const log=JSON.parse(localStorage.getItem('mm-log')||'[]');const removed=log.splice(i,1)[0];
       if(window.mmSb&&removed&&removed.sid!=null){await window.mmSb.from('sightings').delete().eq('id',removed.sid);}  // 雲端刪
       localStorage.setItem('mm-log',JSON.stringify(log));
-      sessionStorage.setItem('mm-undo',JSON.stringify({item:removed,idx:i,name:(zh||title||'這齣')}));
+      sessionStorage.setItem('mm-undo',JSON.stringify({item:removed,idx:i,name:(zh||title||T('this_show'))}));
     }catch(e){}
     location.reload();
   };
@@ -1014,7 +1033,7 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
   // 卡片刪除後 reload → 顯示可復原 toast（top-level，不被任何 modal 蓋住）
   try{const u=sessionStorage.getItem('mm-undo');if(u){sessionStorage.removeItem('mm-undo');const o=JSON.parse(u);
     const t=document.createElement('div');t.className='mm-toast';
-    t.innerHTML=`已刪除《${o.name}》<button type="button">復原</button>`;
+    t.innerHTML=TN('deleted',{name:o.name})+'<button type="button">'+T('undo')+'</button>';
     document.body.appendChild(t);requestAnimationFrame(()=>t.classList.add('show'));
     const hide=()=>{t.classList.remove('show');setTimeout(()=>t.remove(),300);};
     const tm=setTimeout(hide,6000);

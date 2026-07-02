@@ -11,6 +11,14 @@
 
 ---
 
+## [v1.13.0] - 2026-07-02 15:07
+### 新功能 — me.html 個人主頁多語化 P2(繁中/英文)
+- **`js/mm-strings.js` 擴充 me.html 專屬字典**（~70 條）:登入閘各狀態、demo 橫幅、分享 modal + 帳號設定 modal + onboarding 全部訊息、徽章/persona/詳情 modal、刪除確認/toast/復原。
+- **語言記在 localStorage `mm_lang`（與主站共用）**:`?hl=` 優先 → `mm_lang`(en/zh) → navigator → 繁中;切換寫回。nav 加 EN/繁中 pills。（登入頁 noindex,無 SEO 需求,故用 localStorage 而非只認網址。）
+- **me.html 全面 i18n**:靜態掛 `data-i18n`;4 個內嵌 script IIFE(render/分享/登入同步/刪除)動態字串改 `MM_T()`;`<html lang>` 動態;en 模式 `countryZh`/`cityName`/`venueZh` 顯示資料原文。h1 硬編「Danny 的音樂劇收藏」改中性多語標題。
+- **驗證**:playwright — 繁中 onboarding 回歸 23 項 PASS + 英文版 me.html 18 項 PASS(nav/seg/統計/persona/詳情 modal/城市名英文/UI 零中文殘留/無 JS error) + u.html 回歸 6 項 PASS;繁中/英文截圖親驗。
+- **過程抓到並修的真 bug**:(1)字典漏 `logout` key（e2e 抓到顯示 key 字面）;(2)`cityName`/FAB「加入音樂劇」漏接 EN_UI → 英文版城市仍顯示「倫敦/漢堡/台北」（截圖抓到,已補 EN_UI 分支）。
+
 ## [v1.12.0] - 2026-07-02 13:59
 ### 新功能 — 公開收藏頁(u.html)三語化 P1:繁中/英文 + 語言進網址(?hl=)
 - **`js/mm-strings.js`(新)**:足跡側 UI 字典(繁中+英文,zh-hans 暫 fallback 繁中)+ 語言解析(`?hl=` 參數優先 → Worker 注入 → navigator → 繁中)+ `data-i18n` 靜態套用 + 語言切換 pills(繁中/EN,連結式、保留 `?u=`,爬蟲可發現變體)。**語言進網址是 SEO 需求**(Google 官方反對 cookie/瀏覽器語言切換——Googlebot 不帶 Accept-Language 不留 cookie;Strava/X/Last.fm 個人頁實務零例外,見 DESIGN 文件實證)。

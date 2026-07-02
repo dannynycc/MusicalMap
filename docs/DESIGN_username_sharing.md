@@ -127,7 +127,7 @@ Worker 邏輯（`my.themusicalmap.com/<handle>`）：
 **語言必須進網址**:Google 官方明文建議每語言獨立 URL、反對 cookie/瀏覽器語言動態切換（Googlebot 不帶 Accept-Language、不留 cookie → 同 URL 只會被索引成預設語言）；有做個人頁多語+SEO 的 Strava（`?hl=`+28 hreflang）/X（`?lang=`+48 hreflang）/Last.fm（路徑式）零例外把語言放進 URL。本專案採 `?hl=` 參數式（Strava 模式）。
 
 - ✅ **P1（v1.12.0）公開頁 u.html 繁中/英文**：`js/mm-strings.js` 字典＋`?hl=` 解析＋切換 pills；u-view runtime 全 `MM_T()`；en 模式地名/館名用資料原文；Worker 依 `?hl` 出 lang/title/meta＋hreflang 3 條＋canonical 各指自己；**u.html 移除 js/i18n.js**（其 applyStatic 同吃 data-i18n、會把本頁 key 蓋成字面值——兩套系統不可同頁共存）。e2e 19＋Worker 12 全 PASS。
-- [ ] P2：me.html 多語（runtime 字典即可,登入頁無 SEO 需求）
+- ✅ **P2（v1.13.0）me.html 繁中/英文**：mm-strings 擴充 me 專屬字典（登入閘/demo 橫幅/分享+帳號設定+onboarding 全訊息/徽章/persona/detail）；靜態 data-i18n + 4 個 script IIFE 動態 `MM_T()`；語言記在 localStorage `mm_lang`（與主站共用）；en 模式 countryZh/cityName/venueZh 回資料原文。e2e：繁中 onboarding 回歸 23 項 + 英文版 18 項全 PASS；截圖親驗。過程修：漏 `logout` key、`cityName`/FAB 漏接 EN_UI（截圖抓到城市仍中文）。
 - [ ] P3：me-input.html 多語
 - [ ] P4：zh-hans 接 OpenCC（mm-strings 目前 fallback 繁中）＋ Worker zh-hans meta
 
