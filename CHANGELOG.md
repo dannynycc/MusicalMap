@@ -11,6 +11,15 @@
 
 ---
 
+## [v1.9.7] - 2026-07-02 10:53
+### 資安 — 通盤健檢 + handle 強化(修大小寫碰撞 + 格式限制)
+- **完整資安/SEO/AI-search 健檢**,結論存檔 `docs/SECURITY_AUDIT_2026-07-02.md`(RLS/授權、SQL injection、XSS、金鑰、供應鏈、SEO、AI-search、themusicalmap.com + `my.` 子網域架構建議)。
+- **線上 `pg_policies` 實測確認**:`sightings_read/write=(user_id=auth.uid())`(遮罩 migration 已套用、price/seat/note 不外洩,Critical 是啞彈);`public_sightings/handle_available/handle_new_user` 皆 SECURITY DEFINER + `search_path=public`。
+- **修 handle 大小寫碰撞(Medium)**:原 `handle unique` 區分大小寫、查詢用 `lower()` → `Danny`/`danny` 可並存並在公開頁互相混資料。改成 `profiles_handle_lower_uidx on (lower(handle))`,drop 舊 `profiles_handle_key`。DB 修復 SQL 存檔 `supabase/add_handle_hardening.sql`,已在 Dashboard 執行+實測生效。
+- **加 handle 格式 CHECK(Low)**:`^[A-Za-z0-9_-]{1,30}$`,刻意對齊前端 `me.html` 的 `norm()`(允許 `-`、上限 30、無下限),零 regression。
+- **SQL injection 靜態分析=零可利用面**:grep 全 SQL 無動態 SQL、全前端無字串拼 filter。記下兩條免疫鐵則(不可動態 SQL、不可 `.or(\`${input}\`)`)於報告與記憶。
+- 待辦(未動 code):CDN 加 SRI、`sitemap.xml` 移 `me.html`、清 `js/me.js` 死 code、`my.themusicalmap.com` Cloudflare Worker。
+
 ## [v1.9.6] - 2026-07-02 01:03
 ### 文件 — 完整 MD freshness sweep(對齊 v1.6–v1.9.5 現況)
 - 逐個掃過所有 `.md`。修正過時處:
