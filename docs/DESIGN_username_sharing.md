@@ -133,7 +133,7 @@ Worker 邏輯（`my.themusicalmap.com/<handle>`）：
 
 ## 實作順序與狀態
 
-1. ✅ DB：`supabase/add_handle_aliases.sql` —— **2026-07-02 已在 Dashboard 執行並線上實測**：anon 直打 REST 驗證 `handle_available`（danny→false／保留字 admin→false／隨機→true）、`resolve_handle`（無 alias→null）、`rename_handle`（anon→'not_authenticated' 擋下）皆正確。真正的「改名→alias→舊網址轉向」完整迴圈需登入帳號操作一次才算實測（見下）。
+1. ✅ DB：`supabase/add_handle_aliases.sql` —— **2026-07-02 已套用＋全鏈路真人實測通過**：使用者實際改名 danny→danny_test→改回，(a) 舊網址 `?u=danny` 自動轉向新名 ✓ (b) 改回自己舊名合法 ✓ (c) alias `danny_test` 永久歸原主、`handle_available('danny_test')=false` 別人搶不走 ✓（線上 API 確認）。anon 面行為（保留字/查重/not_authenticated）亦全數線上驗證。**此機制無未實測環節。**
 2. ✅ 前端：帳號設定改名 + 分享面板唯讀 + onboarding chips + 強制設定（v1.10.0）。
 3. ✅ Cloudflare Worker **程式碼完成＋本機真測 14 項 PASS**（v1.11.0，`worker/my-worker.js`，打真 GH Pages＋真 Supabase：注入 MM_HANDLE/個人化 title/canonical/JSON-LD、不存在→404+noindex、靜態代理、保留字/尾斜線/robots）——**未部署**，步驟見 `docs/SETUP_MY_SUBDOMAIN.md`（需使用者 Cloudflare 帳號 wrangler login，約 10 分鐘）。alias→301 需等首次真實改名後才有資料可驗。
 4. [ ] DNS 切 `my.` 子網域（`AAAA my 100::` 橘雲）＋ wrangler deploy——使用者執行。

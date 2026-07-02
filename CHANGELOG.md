@@ -11,6 +11,10 @@
 
 ---
 
+## [v1.11.1] - 2026-07-02 13:13
+### 驗證 — 改名轉向全鏈路真人實測通過
+- 使用者實際操作:帳號設定 danny→danny_test→改回 danny。(a)舊網址 `?u=danny` 自動轉向 ✓(b)改回自己舊名合法 ✓(c)alias `danny_test` 永久歸原主、`handle_available=false` 別人搶不走 ✓(線上 API 確認)。username 機制無未實測環節。
+
 ## [v1.11.0] - 2026-07-02 12:59
 ### 新功能 — my.themusicalmap.com Cloudflare Worker(程式碼完成,待部署)
 - **`worker/my-worker.js`(新)**:`my.themusicalmap.com/<handle>` 三合一——(1)乾淨網址:內部取 u.html 注入 `window.MM_HANDLE`;(2)舊名 301:查無 handle → `resolve_handle` → 301 現用名(alias 永久有效);(3)爬蟲可見:注入該使用者專屬 title/description/og/canonical/JSON-LD ProfilePage(解決個人頁純前端 render 爬蟲空白,對標 FR24)。另處理:靜態資源代理、不存在→404+noindex、保留字/根→主站、尾斜線 301、robots.txt。無 secret(anon key+RLS),可放公開 repo。
