@@ -44,3 +44,25 @@
 
 ## 完成
 把 A‑4 的兩個值貼我,我接上 `js/config.js`。在那之前我已把整套前端(登入、記錄表單、圖表、我的地圖)寫好,接上即可用。
+
+---
+
+## Google 登入品牌顯示（同意畫面顯示 supabase.co 的問題）
+
+**現象**：點「用 Google 登入」時,Google 畫面顯示「登入 `gtuvrhdvwjlvneispcuq.supabase.co`」「繼續使用 …supabase.co」,看起來像詐騙。
+
+**確定原因（2026-07-02 web 查證,官方雙方確認）**：
+- Google 官方（support.google.com/cloud/answer/15549049）：**App 未通過「品牌驗證（brand verification）」前,同意畫面只顯示「應用程式網域」（從 OAuth redirect_uri 推導）,不顯示 App name / logo。**「登入 X」與「繼續使用 X」同源。
+- Supabase 免費版 redirect = `xxx.supabase.co/auth/v1/callback` → 推導網域 = `supabase.co`。Supabase 官方（discussion #2532）自認免費版「該網域無法更改」,issue #33387 標為純外觀 external issue。
+- ⚠️ **只填 App name 不會生效** —— 必須「品牌驗證 + 切 In production + 發佈品牌」,name/logo 才顯示。這是「設了 App name 仍顯示 domain」的真正原因。
+
+**三種根治法（依成本）**：
+| 方法 | 成本 | 說明 |
+|---|---|---|
+| A. Google 品牌驗證 | 免費,等數天~數週 | Search Console 驗證**自家網域** + 加進 authorized domains + In production + 送品牌驗證。卡點:`supabase.co` 你不擁有無法驗證 → 回覆 Google 驗證信說明「是第三方 redirect」才過（社群經驗,非官方條文,不保證一次過） |
+| B. Supabase Pro Custom Domain | **$10/月** | 開 Pro,auth 端點換成 `auth.themusicalmap.com`,Google 畫面直接顯示自家網域,品牌驗證也變乾淨。官方 docs: platform/custom-domains |
+| **C. Cloudflare Worker 代理（推薦,免費根治）** | 免費,寫一點 code | 用 `my.` 那套 Worker 把 `auth.themusicalmap.com/auth/v1/callback` 代理到 Supabase callback,redirect_uri 落自家網域 → 品牌驗證無卡點。見 `SETUP_MY_SUBDOMAIN.md` 收尾清單 |
+
+**建議**：**跟主站遷移 themusicalmap.com 綁在一起用方法 C 做**（免費,且和 `my.` 子網域 Worker 同一套）。現網站還在 github.io、themusicalmap.com 未上線,A/C 都需自家網域,現在單獨處理會卡死。**現階段 supabase.co 顯示功能完全正常,純外觀,先接受,遷網域時一次解決。**
+
+（App name = `MusicalMap`、logo〔120×120 正方形〕、隱私 `privacy.html` / 條款 `terms.html` 連結該填的先填好,遷網域走品牌驗證時就緒即可。）

@@ -45,6 +45,7 @@
 - [ ] 分享按鈕/複製連結改產 `my.themusicalmap.com/<handle>` 形式（`me.html` 的 `shareUrl()`）
 - [ ] `u.html?u=` 舊形式加轉向到 `my.` 形式（canonical 集中）
 - [ ] og:image 個人化（用該使用者第一張海報；需再打一次 `public_sightings`，目前用品牌 logo）
+- [ ] **Google 登入品牌化（OAuth callback 代理）**：用同一個 Cloudflare Worker 把 `auth.themusicalmap.com/auth/v1/callback` 反向代理到 Supabase 的 `gtuvrhdvwjlvneispcuq.supabase.co/auth/v1/callback`，並把 Supabase Auth 的 redirect / Google OAuth client 的 authorized redirect URI 改成 `auth.themusicalmap.com`。這樣 Google 同意畫面顯示的網域就變成自家網域，走品牌驗證時也沒有「無法驗證 supabase.co」的卡點。詳見 `SETUP_ACCOUNTS.md` 的「Google 登入品牌顯示」段。
 
 ## 資安備註
 
