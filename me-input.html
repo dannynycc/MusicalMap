@@ -5,7 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="referrer" content="no-referrer" />
 <link rel="icon" href="logo.png" />
-<title>My Musicals — 記錄一齣音樂劇（輸入端）· DEMO v3</title>
+<title>My Musicals · MusicalMap</title>
+<!-- i18n:iframe 內嵌,語言跟隨父頁 me.html 寫入的 localStorage mm_lang(與主站共用) -->
+<script>window.MM_USE_LANG_PREF=true;</script>
+<script src="js/mm-strings.js"></script>
 <script>/* no-flash theme */(function(){try{var t=localStorage.getItem('mm-theme');if(t&&t!=='midnight')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,900&family=Inter:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet" />
@@ -273,45 +276,45 @@ footer{margin:48px 0 40px;color:var(--ink3);font-size:13px;text-align:center;lin
 <header><div class="wrap bar">
   <a class="brand" href="index.html"><img src="logo.png" alt=""/>Musical<b>Map</b></a>
   <nav class="nav">
-    <div class="theme-pick" id="themePick" role="group" aria-label="主題底色">
-      <button data-th="midnight" title="午夜（暗）" style="--sw:#13182f"></button>
-      <button data-th="gallery" title="畫廊白（亮）" style="--sw:#f4f2ec"></button>
-      <button data-th="cream" title="奶油（亮）" style="--sw:#efe1c4"></button>
-      <button data-th="neon" title="霓虹（暗）" style="--sw:#ff2d7e"></button>
-      <button data-th="deco" title="裝飾金（暗）" style="--sw:#e3b23c"></button>
+    <div class="theme-pick" id="themePick" role="group" aria-label="主題底色" data-i18n-aria="aria_theme">
+      <button data-th="midnight" title="午夜（暗）" data-i18n-title="th_midnight" style="--sw:#13182f"></button>
+      <button data-th="gallery" title="畫廊白（亮）" data-i18n-title="th_gallery" style="--sw:#f4f2ec"></button>
+      <button data-th="cream" title="奶油（亮）" data-i18n-title="th_cream" style="--sw:#efe1c4"></button>
+      <button data-th="neon" title="霓虹（暗）" data-i18n-title="th_neon" style="--sw:#ff2d7e"></button>
+      <button data-th="deco" title="裝飾金（暗）" data-i18n-title="th_deco" style="--sw:#e3b23c"></button>
     </div>
     <span class="demo-tag">Demo v3 · 輸入端</span><a href="demo3-merged.html">看呈現端 →</a><a href="index.html">所有方向</a></nav>
 </div></header>
 
 <div class="wrap">
   <div class="intro">
-    <h1>記錄一齣音樂劇</h1>
-    <p>這是<strong>輸入端</strong>。重點：大多數人是在<strong>加入以前看過的劇</strong>（五年前那一齣），所以日期<strong>不預設今天</strong> —— 選了劇，系統用該製作的<strong>演出區間</strong>幫你回憶是哪一年；劇院／城市／海報全自動帶入，你幾乎不用打字。</p>
-    <p class="hint">試試：打「<b>歌劇魅影</b>」或「<b>phantom</b>」或「<b>les mis</b>」或「<b>六位</b>」。資料來自 MusicalMap 真實劇目庫（130 部作品示意）。</p>
+    <h1 data-i18n="mi_h1">記錄一齣音樂劇</h1>
+    <p data-i18n="mi_intro">這是輸入端。大多數人是在加入以前看過的劇（五年前那一齣），所以日期不預設今天 —— 選了劇，系統用該製作的演出區間幫你回憶是哪一年；劇院／城市／海報全自動帶入，你幾乎不用打字。</p>
+    <p class="hint" data-i18n="mi_hint">試試：打「歌劇魅影」或「phantom」或「les mis」。資料來自 MusicalMap 真實劇目庫。</p>
   </div>
 
   <div class="cta">
-    <button class="btn btn-primary" id="openLog">＋ 記錄一齣音樂劇</button>
+    <button class="btn btn-primary" id="openLog" data-i18n="mi_open_log">＋ 記錄一齣音樂劇</button>
   </div>
 
-  <div class="sec"><h2>我的觀劇紀錄</h2><span class="ct" id="logct">尚未記錄</span></div>
+  <div class="sec"><h2 data-i18n="mi_sec_records">我的觀劇紀錄</h2><span class="ct" id="logct" data-i18n="mi_not_recorded">尚未記錄</span></div>
   <div id="empty">
-    <div class="ghosts"><span>蓋章<br>處</span><span>蓋章<br>處</span><span>蓋章<br>處</span><span>蓋章<br>處</span><span>蓋章<br>處</span></div>
-    <div>你的觀劇護照還是空白的。<br><b>按上面「＋ 記錄一齣音樂劇」</b>蓋下第一個印章。</div>
+    <div class="ghosts"><span data-i18n-html="mi_stamp_here">蓋章<br>處</span><span data-i18n-html="mi_stamp_here">蓋章<br>處</span><span data-i18n-html="mi_stamp_here">蓋章<br>處</span><span data-i18n-html="mi_stamp_here">蓋章<br>處</span><span data-i18n-html="mi_stamp_here">蓋章<br>處</span></div>
+    <div data-i18n-html="mi_empty_passport">你的觀劇護照還是空白的。<br><b>按上面「＋ 記錄一齣音樂劇」</b>蓋下第一個印章。</div>
   </div>
   <div id="wall" hidden></div>
 
-  <footer><b>My Musicals — 輸入端 demo</b>：搜尋→選製作→自動帶入→年份優先的日期→存檔蓋章。<br>
-    資料存在瀏覽器（localStorage）；海報為各劇真實封面。</footer>
+  <footer><b>My Musicals</b> · <span data-i18n="mi_footer_1">搜尋→選製作→自動帶入→年份優先的日期→存檔蓋章。</span><br>
+    <span data-i18n="mi_footer_2">資料存在瀏覽器（localStorage）；海報為各劇真實封面。</span></footer>
 </div>
 
 <!-- LOG SHEET -->
 <dialog id="logDlg"><div class="sheet">
   <header><div class="shead">
-    <span class="ttl" id="sheetTitle">記錄一齣音樂劇</span>
+    <span class="ttl" id="sheetTitle" data-i18n="mi_sheet_record">記錄一齣音樂劇</span>
     <div style="display:flex;gap:8px;align-items:center">
-      <button class="save" id="saveBtn" disabled>加入</button>
-      <button class="x" id="closeLog" aria-label="關閉">✕</button>
+      <button class="save" id="saveBtn" data-i18n="mi_add" disabled>加入</button>
+      <button class="x" id="closeLog" aria-label="關閉" data-i18n-aria="aria_close">✕</button>
     </div>
   </div></header>
   <div class="sbody" id="sbody"><!-- filled by JS --></div>
@@ -325,15 +328,17 @@ footer{margin:48px 0 40px;color:var(--ink3);font-size:13px;text-align:center;lin
 <script src="me-catalog.js"></script>
 <script>
 /* ---------- helpers ---------- */
+const T=window.MM_T||(k=>k), TN=(k,v)=>{let s=T(k);for(const n in(v||{}))s=s.replace('{'+n+'}',v[n]);return s;};
+const EN_UI=(window.MM_HL||'zh-hant')==='en';
 const FLAG={};   // 不顯示國旗 emoji（使用者要求）
 const CUR={'United Kingdom':'GBP','UK':'GBP','United States':'USD','USA':'USD','US':'USD','Japan':'JPY','South Korea':'KRW','Korea':'KRW','Taiwan':'TWD','Germany':'EUR','France':'EUR','Spain':'EUR','Austria':'EUR','Australia':'AUD','China':'CNY','Canada':'CAD','Netherlands':'EUR'};
 const CURSYM={GBP:'£',USD:'$',JPY:'¥',KRW:'₩',TWD:'NT$',EUR:'€',AUD:'A$',CNY:'¥',CAD:'C$'};
-const MON_ZH=['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'];
+const MON_ZH=EN_UI?['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']:['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'];
 const _TODAY=new Date();                       // 瀏覽器端真實今天（不再寫死）
 const NOW_Y=_TODAY.getFullYear(), NOW_M=_TODAY.getMonth();   // 年、月(0-11)
 const NOW_ISO=`${NOW_Y}-${String(NOW_M+1).padStart(2,'0')}-${String(_TODAY.getDate()).padStart(2,'0')}`;
 // 年份下拉選項（今年→1980），sel=預選的年
-const yearOptions=(sel)=>`<option value="">年</option>`+Array.from({length:NOW_Y-1980+1},(_,i)=>NOW_Y-i).map(y=>`<option value="${y}"${String(sel)===String(y)?' selected':''}>${y}</option>`).join('');
+const yearOptions=(sel)=>`<option value="">${T('opt_year')}</option>`+Array.from({length:NOW_Y-1980+1},(_,i)=>NOW_Y-i).map(y=>`<option value="${y}"${String(sel)===String(y)?' selected':''}>${y}</option>`).join('');
 function flag(c){return '';}   // 不顯示國旗 emoji（使用者要求）
 function curOf(c){return CUR[c]||'';}
 /* ===== P3c：Supabase 雲端寫入（與父頁 me.html 同 session，共用 localStorage 的登入態）===== */
@@ -343,11 +348,11 @@ function entryToRec(e){const p=e.p||{};const rec={title:(e.w&&e.w.en)||'',venue:
 // method 2：算某劇的「系統 catalog 海報」（清空自訂時還原用）
 function systemPosterFor(en){const vc=window.MM_VC;if(!vc||!en)return '';const t=(vc.titles||[]).find(x=>x.en&&x.en.toLowerCase()===String(en).toLowerCase());return (t&&vc.posters&&vc.posters[t.group])||'';}
 // 自訂海報欄位的 HTML（兩個表單共用）
-function posterFieldHTML(){return `<div class="fld"><span class="fl">自訂海報網址 Poster URL（選填）</span>
-  <input id="posterOverride" inputmode="url" autocapitalize="off" placeholder="貼上圖片網址，覆蓋系統海報；清空即還原"/>
-  <div class="poster-prev" id="posterPrevWrap" hidden><img id="posterPrev" alt=""/><span class="pp-tag">預覽</span></div></div>
-  <div class="fld"><span class="fl">連結 / 售票網址 Link（選填）</span>
-  <input id="url" inputmode="url" autocapitalize="off" placeholder="貼上這場的售票或節目連結（選填）"/></div>`;}
+function posterFieldHTML(){return `<div class="fld"><span class="fl">${T('fld_poster')}</span>
+  <input id="posterOverride" inputmode="url" autocapitalize="off" placeholder="${T('ph_poster')}"/>
+  <div class="poster-prev" id="posterPrevWrap" hidden><img id="posterPrev" alt=""/><span class="pp-tag">${T('poster_prev')}</span></div></div>
+  <div class="fld"><span class="fl">${T('fld_link')}</span>
+  <input id="url" inputmode="url" autocapitalize="off" placeholder="${T('ph_link')}"/></div>`;}
 // 接線（兩個表單呼叫）：oninput→draft.posterOverride + 即時換圖 + 預覽
 function wirePosterField(){const pu=document.getElementById('posterOverride');if(!pu)return;
   if(draft._baseImg==null)draft._baseImg=systemPosterFor(draft.w&&draft.w.en)||(draft.p&&draft.p.img)||'';
@@ -402,17 +407,17 @@ let sessionActive=false, sessionBaseLen=0;  // 一次 modal 開啟期間：基�
 /* ---------- log flow ---------- */
 const logDlg=document.getElementById('logDlg'), sbody=document.getElementById('sbody');
 const saveBtn=document.getElementById('saveBtn'), sheetTitle=document.getElementById('sheetTitle');
-document.getElementById('openLog').onclick=async()=>{logDlg.showModal();if(!MM_READY){sbody.innerHTML='<div style="padding:48px 16px;text-align:center;color:var(--ink2)">載入劇庫中…</div>';await window.MM_DATA_READY;buildCatalog();}startLog();};
+document.getElementById('openLog').onclick=async()=>{logDlg.showModal();if(!MM_READY){sbody.innerHTML='<div style="padding:48px 16px;text-align:center;color:var(--ink2)">'+T('mi_loading_lib')+'</div>';await window.MM_DATA_READY;buildCatalog();}startLog();};
 document.getElementById('closeLog').onclick=()=>logDlg.close();
 logDlg.addEventListener('click',e=>{if(e.target===logDlg)logDlg.close();});  // 點背景關閉
 
 function startLog(){
-  draft=null;saveBtn.disabled=true;sheetTitle.textContent='加入音樂劇';saveBtn.textContent='加入';
+  draft=null;saveBtn.disabled=true;sheetTitle.textContent=T('log_title');saveBtn.textContent=T('mi_add');
   sbody.innerHTML=`<div class="step">
     <div class="searchbox"><span class="mag">🔍</span>
-      <input id="q" placeholder="打中文或英文劇名…例 歌劇魅影 / phantom" autocomplete="off" inputmode="search"/></div>
+      <input id="q" placeholder="${T('mi_search_ph')}" autocomplete="off" inputmode="search"/></div>
     <div class="results" id="results"></div>
-    <div class="searchhint" id="searchHint">搜尋你看過的音樂劇 —— 中文、英文都行，搜不到也能手動新增。</div>
+    <div class="searchhint" id="searchHint">${T('mi_search_hint')}</div>
   </div>`;
   const q=document.getElementById('q'), res=document.getElementById('results');
   q.focus();
@@ -421,7 +426,7 @@ function startLog(){
   // 搜尋+渲染：首字色塊當底＋真海報蓋上（圖載好覆蓋，載失敗則留首字）；輕量 debounce
   function doSearch(){const v=q.value.trim();if(!v){res.innerHTML='';kbi=-1;lastHits=[];return;}
     const hits=search(v);lastHits=hits;
-    if(!hits.length){kbi=-1;res.innerHTML=`<div class="nores">目錄裡找不到「${v}」<br><button type="button" class="manualbtn" id="manualBtn">＋ 手動新增（自己打劇名／城市）</button></div>`;
+    if(!hits.length){kbi=-1;res.innerHTML=`<div class="nores">${TN('mi_no_result',{v})}<br><button type="button" class="manualbtn" id="manualBtn">${T('mi_manual_add')}</button></div>`;
       document.getElementById('manualBtn').onclick=()=>manualAdd(v);return;}
     res.innerHTML=hits.map((h,i)=>{
       const w=h.w;const re=new RegExp('('+esc(v)+')','i');
@@ -430,7 +435,7 @@ function startLog(){
       return `<button class="rrow" data-i="${i}">
         <span class="th"><b>${(w.zh||w.en||'?').trim()[0]||'?'}</b>${img?`<img src="${img.replace(/"/g,'&quot;')}" referrerpolicy="no-referrer" loading="lazy" decoding="async" alt=""/>`:''}</span>
         <div class="meta"><div class="t">${enH}${w.zh?`<span class="zh">${w.zh}</span>`:''}</div>
-          <div class="sub">音樂劇 · ${prodSummary(w)}</div></div>
+          <div class="sub">${T('mi_musical')} · ${prodSummary(w)}</div></div>
         <span class="chev">›</span></button>`;}).join('');
     [...res.children].forEach((b,i)=>b.onclick=()=>pickWork(hits[i].w));
     kbi=0;highlight();}
@@ -502,35 +507,35 @@ function manualAdd(title,seed,onBack){
   buildManualDB();
   const simg=(seed&&seed.prods&&seed.prods[0]&&seed.prods[0].img)||'';
   draft={w:{en:title,zh:(seed&&seed.zh)||'',g:(seed&&seed.g)||'',prods:(seed&&seed.prods)||[]},p:{label:'手動輸入',venue:'',city:'',country:'',cur:'',img:simg},cur:'',date:null,precision:'none',rating:0,seat:'',price:'',note:'',mode:'backfill',editIndex:null,manual:true};
-  sheetTitle.textContent='手動新增';saveBtn.disabled=!title.trim();
+  sheetTitle.textContent=T('mi_manual_title');saveBtn.disabled=!title.trim();
   sbody.innerHTML=`
-    <button type="button" class="backbtn" id="backToSearch2">${onBack?'← 返回':'← 返回搜尋'}</button>
-    <div class="step"><div class="lbl">手動輸入（目錄裡找不到的劇）</div>
-    <div class="fld"><span class="fl">劇名 *</span><input id="mTitle" value="${title.replace(/"/g,'&quot;')}" placeholder="劇名"/></div>
+    <button type="button" class="backbtn" id="backToSearch2">${onBack?T('mi_back'):T('mi_back_search')}</button>
+    <div class="step"><div class="lbl">${T('mi_manual_input_lbl')}</div>
+    <div class="fld"><span class="fl">${T('fld_title_req')}</span><input id="mTitle" value="${title.replace(/"/g,'&quot;')}" placeholder="${T('ph_title')}"/></div>
     <div class="row2">
-      <div class="fld"><span class="fl">城市</span><div class="combo"><input id="mCity" autocomplete="off" placeholder="例 London / 台北"/><div class="combo-panel" id="mCityPanel" hidden></div></div></div>
-      <div class="fld"><span class="fl">劇院（選填）</span><div class="combo"><input id="mVenue" autocomplete="off" placeholder="例 臺中國家歌劇院"/><div class="combo-panel" id="mVenuePanel" hidden></div></div></div>
+      <div class="fld"><span class="fl">${T('fld_city')}</span><div class="combo"><input id="mCity" autocomplete="off" placeholder="${T('ph_city')}"/><div class="combo-panel" id="mCityPanel" hidden></div></div></div>
+      <div class="fld"><span class="fl">${T('fld_venue_opt')}</span><div class="combo"><input id="mVenue" autocomplete="off" placeholder="${T('ph_venue')}"/><div class="combo-panel" id="mVenuePanel" hidden></div></div></div>
     </div>
-    <div class="fld"><span class="fl">哪一年・月・日看的（選填）</span>
+    <div class="fld"><span class="fl">${T('fld_date_opt')}</span>
       <div class="datesel">
         <select id="mYear">${yearOptions()}</select>
-        <select id="mMonth"><option value="">月</option>${Array.from({length:12},(_,i)=>`<option value="${i+1}">${i+1} 月</option>`).join('')}</select>
-        <select id="mDay"><option value="">日</option>${Array.from({length:31},(_,i)=>`<option value="${i+1}">${i+1} 日</option>`).join('')}</select>
+        <select id="mMonth"><option value="">${T('opt_month')}</option>${Array.from({length:12},(_,i)=>`<option value="${i+1}">${TN('mi_month_n',{n:i+1})}</option>`).join('')}</select>
+        <select id="mDay"><option value="">${T('opt_day')}</option>${Array.from({length:31},(_,i)=>`<option value="${i+1}">${TN('mi_day_n',{n:i+1})}</option>`).join('')}</select>
       </div>
-      <div class="fld" style="margin-top:11px"><span class="fl">時間 Time（選填）</span><input type="time" id="seenTime" class="timein"/></div>
-      <p class="ds-hint">填到「日」才能算星期幾、各月統計；只記得年份也沒關係，之後可再填。</p>
+      <div class="fld" style="margin-top:11px"><span class="fl">${T('fld_time')}</span><input type="time" id="seenTime" class="timein"/></div>
+      <p class="ds-hint">${T('ds_hint')}</p>
     </div>
-    <p class="mgeo" id="mGeo">打城市或劇院時會自動對上國家；對得上就能標在地圖。</p>
-    <button class="disclose" id="more">＋ 加入細節（評分・座位・票價・心得）</button>
+    <p class="mgeo" id="mGeo">${T('mgeo_hint')}</p>
+    <button class="disclose" id="more">${T('disclose_open')}</button>
     <div class="l2" id="l2" hidden>
-      <div class="fld"><span class="fl">評分 Rating（選填）</span><span class="rate" id="rate"></span><span class="rateval" id="rateval"></span></div>
+      <div class="fld"><span class="fl">${T('fld_rating')}</span><span class="rate" id="rate"></span><span class="rateval" id="rateval"></span></div>
       <div class="row2">
-        <div class="fld"><span class="fl">座位 Seat</span><input id="seat" placeholder="例 Stalls A12 / 一樓 H23"/></div>
-        <div class="fld"><span class="fl">票價 Price</span><div class="price-row">
-          <div class="combo"><input id="curInput" autocomplete="off" placeholder="幣別 ▾"/><div class="combo-panel" id="curPanel" hidden></div></div>
+        <div class="fld"><span class="fl">${T('fld_seat')}</span><input id="seat" placeholder="${T('ph_seat')}"/></div>
+        <div class="fld"><span class="fl">${T('fld_price')}</span><div class="price-row">
+          <div class="combo"><input id="curInput" autocomplete="off" placeholder="${T('ph_cur')}"/><div class="combo-panel" id="curPanel" hidden></div></div>
           <div class="price-in"><span class="cursym" id="curSym"></span><input id="price" inputmode="decimal" placeholder="0"/></div></div></div>
       </div>
-      <div class="fld"><span class="fl">心得 Note</span><textarea id="note" rows="2" placeholder="那一夜的記憶…"></textarea></div>
+      <div class="fld"><span class="fl">${T('fld_note')}</span><textarea id="note" rows="2" placeholder="${T('ph_note')}"></textarea></div>
       ${posterFieldHTML()}
     </div></div>`;
   const t=document.getElementById('mTitle');t.focus();
@@ -541,10 +546,10 @@ function manualAdd(title,seed,onBack){
     const g=document.getElementById('mGeo');
     if(hit){draft.p.country=hit.country;draft.p.lat=hit.lat;draft.p.lng=hit.lng;
       if(venue&&MVENUE[venue]&&MVENUE[venue].city&&!city){draft.p.city=MVENUE[venue].city;document.getElementById('mCity').value=MVENUE[venue].city;}
-      if(g)g.innerHTML=`對上 <b>${hit.country}</b>${(hit.lat!=null)?' · 會標在地圖':''}`;
+      if(g)g.innerHTML=(hit.lat!=null)?TN('geo_matched_map',{c:'<b>'+hit.country+'</b>'}):TN('geo_matched',{c:'<b>'+hit.country+'</b>'});
       if(hit.cur)setCurrency(hit.cur,true);  // 自動帶幣別＋符號（使用者未手選時）
     }else{draft.p.country='';draft.p.lat=undefined;draft.p.lng=undefined;
-      if(g)g.textContent='打城市或劇院時會自動對上國家；對得上就能標在地圖。';}
+      if(g)g.textContent=T('mgeo_hint');}
   }
   // 城市/劇院自製下拉（黏輸入框下、邊打邊 filter、台↔臺正規化）
   setupCombo(document.getElementById('mCity'),document.getElementById('mCityPanel'),()=>Object.keys(MCITY),(v)=>{draft.p.city=v;applyGeo();});
@@ -559,7 +564,7 @@ function manualAdd(title,seed,onBack){
   document.getElementById('mMonth').onchange=applyDate;
   document.getElementById('mDay').onchange=applyDate;
   {const tm=document.getElementById('seenTime');if(tm){tm.value=(draft.time||'').slice(0,5);tm.onchange=()=>{draft.time=tm.value||'';};}}  // 時間
-  document.getElementById('more').onclick=function(){const l2=document.getElementById('l2');const op=l2.hidden;l2.hidden=!op;this.textContent=op?'－ 收起細節':'＋ 加入細節（評分・座位・票價・心得）';if(op)buildRating();};
+  document.getElementById('more').onclick=function(){const l2=document.getElementById('l2');const op=l2.hidden;l2.hidden=!op;this.textContent=op?T('disclose_close'):T('disclose_open');if(op)buildRating();};
   // 幣別自製下拉：左欄只顯示代碼，符號只帶到右邊票價前；城市偵測也自動帶（除非已手選）
   let curManual=false;
   function setCurrency(code,fromGeo){if(fromGeo&&curManual)return;if(!code)return;draft.cur=code;
@@ -589,8 +594,8 @@ function pickWork(w){
   if(groups.length===1){ // 全是同一個巡演 → 直接進城市子選單（或單筆直接 detail）
     if(groups[0].items.length===1)pickProd(w,groups[0].items[0]);else pickTourCity(w,groups[0]);return;}
   sheetTitle.textContent=w.en;
-  sbody.innerHTML=`<div class="step"><button type="button" class="backbtn" id="backToSearch3">← 返回搜尋</button>
-    <div class="lbl">你看的是哪一個製作？<span class="opt">${groups.length} 個版本</span></div>
+  sbody.innerHTML=`<div class="step"><button type="button" class="backbtn" id="backToSearch3">${T('mi_back_search')}</button>
+    <div class="lbl">${T('pick_prod')}<span class="opt">${TN('prod_versions',{n:groups.length})}</span></div>
     <div class="prodcards" id="pc"></div></div>`;
   const pc=document.getElementById('pc');
   pc.innerHTML=groups.map((g,gi)=>{
@@ -602,13 +607,13 @@ function pickWork(w){
         <span class="chev">›</span></button>`;}
     const cities=[...new Set(g.items.map(x=>x.city).filter(Boolean))];
     const yrs=g.items.map(x=>yearOf(x.start)).filter(Boolean);
-    const yr=yrs.length?`${Math.min(...yrs)}–${Math.max(...yrs)}`:'巡演';
+    const yr=yrs.length?`${Math.min(...yrs)}–${Math.max(...yrs)}`:T('prod_tour');
     return `<button class="pcard" data-g="${gi}"><span class="fl">${flag(g.country)}</span>
       <span class="pm"><span class="pn">${g.label}</span>
-        <span class="pv">${cities.length} 個城市 · ${cities.slice(0,3).join('／')}${cities.length>3?'…':''}</span><span class="pr">${yr}</span></span>
+        <span class="pv">${TN('prod_cities',{n:cities.length,list:cities.slice(0,3).join('／')+(cities.length>3?'…':'')})}</span><span class="pr">${yr}</span></span>
       <span class="chev">›</span></button>`;}).join('');
   pc.insertAdjacentHTML('beforeend',`<button class="pcard escape" id="otherProd"><span class="fl">✏️</span>
-    <span class="pm"><span class="pn">以上都不是 — 我看的是別的城市／年份</span><span class="pv">自己填，劇名和海報幫你留著</span></span></button>`);
+    <span class="pm"><span class="pn">${T('pick_none')}</span><span class="pv">${T('pick_none_sub')}</span></span></button>`);
   [...pc.querySelectorAll('.pcard[data-g]')].forEach(b=>b.onclick=()=>{const g=groups[+b.dataset.g];
     if(g.items.length===1)pickProd(w,g.items[0]);else pickTourCity(w,g);});
   document.getElementById('otherProd').onclick=()=>manualAdd(w.en,w,()=>pickWork(w));
@@ -616,8 +621,8 @@ function pickWork(w){
 }
 function pickTourCity(w,g){
   sheetTitle.textContent=w.en;
-  sbody.innerHTML=`<div class="step"><button type="button" class="backbtn" id="backToProds">← 返回版本</button>
-    <div class="lbl">${g.label} — 哪一個城市？<span class="opt">${g.items.length} 站</span></div>
+  sbody.innerHTML=`<div class="step"><button type="button" class="backbtn" id="backToProds">${T('mi_back_prods')}</button>
+    <div class="lbl">${TN('pick_city_q',{label:g.label})}<span class="opt">${TN('prod_stations',{n:g.items.length})}</span></div>
     <div class="prodcards" id="pc2"></div></div>`;
   const pc=document.getElementById('pc2');
   pc.innerHTML=g.items.map((p,ci)=>{const ys=yearOf(p.start),ye=yearOf(p.end);const run=ys?(ye&&ye!==ys?`${ys}–${ye}`:`${ys}`):'';
@@ -625,7 +630,7 @@ function pickTourCity(w,g){
       <span class="pm"><span class="pn">${p.city||p.venue}</span><span class="pv">${[p.venue,p.city].filter(Boolean).join(' · ')}</span><span class="pr">${run}</span></span>
       <span class="chev">›</span></button>`;}).join('');
   pc.insertAdjacentHTML('beforeend',`<button class="pcard escape" id="cityUnsure"><span class="fl">🤔</span>
-    <span class="pm"><span class="pn">不記得是哪個城市</span><span class="pv">先記下這個巡演，城市之後再填</span></span></button>`);
+    <span class="pm"><span class="pn">${T('pick_city_none')}</span><span class="pv">${T('pick_city_none_sub')}</span></span></button>`);
   [...pc.querySelectorAll('.pcard[data-c]')].forEach(b=>b.onclick=()=>pickProd(w,g.items[+b.dataset.c]));
   document.getElementById('cityUnsure').onclick=()=>{const p={...g.items[0],city:'',venue:'',lat:undefined,lng:undefined};pickProd(w,p);};
   document.getElementById('backToProds').onclick=()=>pickWork(w);
@@ -634,7 +639,7 @@ function pickTourCity(w,g){
 function pickProd(w,p){
   const cur=p.cur||curOf(p.country);
   draft={w,p,cur,date:null,precision:null,rating:0,seat:'',price:'',note:'',mode:lastMode,editIndex:null};
-  sheetTitle.textContent='加入音樂劇';
+  sheetTitle.textContent=T('log_title');
   renderDetail();
 }
 
@@ -647,9 +652,9 @@ function renderDetail(){
   if(runEnded) draft.mode='backfill';
   const years=[];
   if(ys){const top=Math.min(ye||NOW_Y,NOW_Y);for(let y=top;y>=ys;y--)years.push(y);}
-  const runTxt = ys ? (p.end ? `本劇在 ${p.city||''} 上演 <b>${ys}${ye&&ye!==ys?'–'+ye:''}</b>` : `近期在 <b>${p.city||''}</b> 上演`) : '';
+  const runTxt = ys ? (p.end ? TN('run_playing',{city:p.city||'',range:'<b>'+ys+(ye&&ye!==ys?'–'+ye:'')+'</b>'}) : TN('run_recent',{city:'<b>'+(p.city||'')+'</b>'})) : '';
   sbody.innerHTML=`
-    <button type="button" class="backbtn" id="backToSearch">${(draft.editIndex==null&&w.prods&&w.prods.length>1)?'← 返回（選製作）':'← 返回搜尋'}</button>
+    <button type="button" class="backbtn" id="backToSearch">${(draft.editIndex==null&&w.prods&&w.prods.length>1)?T('mi_back_pick_prod'):T('mi_back_search')}</button>
     <div class="confirm">
       <img src="${p.img||''}" referrerpolicy="no-referrer" alt=""/>
       <div class="ci"><div class="en">${w.en}</div>${w.zh?`<div class="zh">${w.zh}</div>`:''}
@@ -658,37 +663,37 @@ function renderDetail(){
           <span class="chip">📍 <b>${p.city}</b></span></div></div>
     </div>
     ${draft.editIndex!=null?`<div class="step" id="editLoc">
-      <div class="lbl">劇院・城市<span class="opt">編輯可改</span></div>
+      <div class="lbl">${T('venue_city')}<span class="opt">${T('edit_can_change')}</span></div>
       <div class="row2">
-        <div class="fld"><span class="fl">城市</span><div class="combo"><input id="mCity" autocomplete="off" value="${(p.city||'').replace(/"/g,'&quot;')}" placeholder="例 London / 台北"/><div class="combo-panel" id="mCityPanel" hidden></div></div></div>
-        <div class="fld"><span class="fl">劇院</span><div class="combo"><input id="mVenue" autocomplete="off" value="${(p.venue||'').replace(/"/g,'&quot;')}" placeholder="例 臺中國家歌劇院"/><div class="combo-panel" id="mVenuePanel" hidden></div></div></div>
+        <div class="fld"><span class="fl">${T('fld_city')}</span><div class="combo"><input id="mCity" autocomplete="off" value="${(p.city||'').replace(/"/g,'&quot;')}" placeholder="${T('ph_city')}"/><div class="combo-panel" id="mCityPanel" hidden></div></div></div>
+        <div class="fld"><span class="fl">${T('fld_venue')}</span><div class="combo"><input id="mVenue" autocomplete="off" value="${(p.venue||'').replace(/"/g,'&quot;')}" placeholder="${T('ph_venue')}"/><div class="combo-panel" id="mVenuePanel" hidden></div></div></div>
       </div>
-      <p class="mgeo" id="mGeo">改城市／劇院會重新對上國家座標；對不上仍會存文字。</p>
+      <p class="mgeo" id="mGeo">${T('geo_rematch')}</p>
     </div>`:''}
 
     <div class="step" id="dateStep">
-      <div class="lbl">什麼時候看的？<span class="opt">非必填</span></div>
+      <div class="lbl">${T('when_seen')}<span class="opt">${T('not_required')}</span></div>
       <div class="datesel">
         <select id="dYear">${yearOptions()}</select>
-        <select id="dMonth"><option value="">月</option>${Array.from({length:12},(_,i)=>`<option value="${i+1}">${i+1} 月</option>`).join('')}</select>
-        <select id="dDay"><option value="">日</option>${Array.from({length:31},(_,i)=>`<option value="${i+1}">${i+1} 日</option>`).join('')}</select>
+        <select id="dMonth"><option value="">${T('opt_month')}</option>${Array.from({length:12},(_,i)=>`<option value="${i+1}">${TN('mi_month_n',{n:i+1})}</option>`).join('')}</select>
+        <select id="dDay"><option value="">${T('opt_day')}</option>${Array.from({length:31},(_,i)=>`<option value="${i+1}">${TN('mi_day_n',{n:i+1})}</option>`).join('')}</select>
       </div>
-      <div class="fld" style="margin-top:11px"><span class="fl">時間 Time（選填）</span><input type="time" id="seenTime" class="timein"/></div>
-      <p class="ds-hint">${runTxt?runTxt+'　':''}填到「日」才能算星期幾、各月統計；只記得年份也行。</p>
+      <div class="fld" style="margin-top:11px"><span class="fl">${T('fld_time')}</span><input type="time" id="seenTime" class="timein"/></div>
+      <p class="ds-hint">${runTxt?runTxt+'　':''}${T('ds_hint2')}</p>
     </div>
 
-    <button class="disclose" id="more">＋ 加入細節（評分・座位・票價・心得）</button>
+    <button class="disclose" id="more">${T('disclose_open')}</button>
     <div class="l2" id="l2" hidden>
-      <div class="fld"><span class="fl">評分 Rating（選填）</span>
+      <div class="fld"><span class="fl">${T('fld_rating')}</span>
         <span class="rate" id="rate"></span><span class="rateval" id="rateval"></span></div>
       <div class="row2">
-        <div class="fld"><span class="fl">座位 Seat</span>
-          <input id="seat" inputmode="text" autocapitalize="characters" placeholder="例 Stalls A12 / 一樓 H23"/></div>
-        <div class="fld"><span class="fl">票價 Price</span><div class="price-row">
-          <div class="combo"><input id="curInput" autocomplete="off" placeholder="幣別 ▾"/><div class="combo-panel" id="curPanel" hidden></div></div>
+        <div class="fld"><span class="fl">${T('fld_seat')}</span>
+          <input id="seat" inputmode="text" autocapitalize="characters" placeholder="${T('ph_seat')}"/></div>
+        <div class="fld"><span class="fl">${T('fld_price')}</span><div class="price-row">
+          <div class="combo"><input id="curInput" autocomplete="off" placeholder="${T('ph_cur')}"/><div class="combo-panel" id="curPanel" hidden></div></div>
           <div class="price-in"><span class="cursym" id="curSym"></span><input id="price" inputmode="decimal" placeholder="0"/></div></div></div>
       </div>
-      <div class="fld"><span class="fl">心得 Note</span><textarea id="note" rows="2" placeholder="那一夜的記憶…"></textarea></div>
+      <div class="fld"><span class="fl">${T('fld_note')}</span><textarea id="note" rows="2" placeholder="${T('ph_note')}"></textarea></div>
       ${posterFieldHTML()}
     </div>`;
   // date area — 乾淨三欄（年/月/日，全非必填，一次顯示）
@@ -711,14 +716,14 @@ function renderDetail(){
       (code)=>{draft.cur=code;show(code);},
       {showAllOnFocus:true,fmt:c=>`${curSym(c)}　${c}　${CUR_INFO[c].name}`,toInput:c=>c,onBlur:()=>show(draft.cur)});})();
   // details
-  document.getElementById('more').onclick=function(){const l2=document.getElementById('l2');const opening=l2.hidden;l2.hidden=!opening;this.textContent=opening?'－ 收起細節':'＋ 加入細節（評分・座位・票價・心得）';if(opening)buildRating();};
+  document.getElementById('more').onclick=function(){const l2=document.getElementById('l2');const opening=l2.hidden;l2.hidden=!opening;this.textContent=opening?T('disclose_close'):T('disclose_open');if(opening)buildRating();};
   ['seat','price','note','url'].forEach(id=>{const el=document.getElementById(id);if(el)el.oninput=()=>{draft[id]=el.value;};});
   wirePosterField();   // method 2：自訂海報網址
   {const tm=document.getElementById('seenTime');if(tm){tm.value=(draft.time||'').slice(0,5);tm.onchange=()=>{draft.time=tm.value||'';};}}  // 時間
   if(draft.editIndex!=null){buildManualDB();   // 編輯：城市/劇院可改（重用手動表單的地理對映）
     const cityEl=document.getElementById('mCity'),venueEl=document.getElementById('mVenue'),g=document.getElementById('mGeo');
-    const okMsg=h=>{if(g)g.innerHTML=`對上 <b>${h.country}</b>${(h.lat!=null)?' · 會標在地圖':''}`;};
-    const noMsg=()=>{if(g)g.textContent='找不到座標時仍會存城市/劇院文字（地圖上可能不顯示）。';};
+    const okMsg=h=>{if(g)g.innerHTML=(h.lat!=null)?TN('geo_matched_map',{c:'<b>'+h.country+'</b>'}):TN('geo_matched',{c:'<b>'+h.country+'</b>'});};
+    const noMsg=()=>{if(g)g.textContent=T('geo_no_coord');};
     function geoByCity(){const city=(cityEl.value||'').trim();draft.p.city=city;const hit=city&&MCITY[city];  // 改城市→用城市定位（不被舊劇院蓋掉）
       if(hit){draft.p.country=hit.country;draft.p.lat=hit.lat;draft.p.lng=hit.lng;okMsg(hit);}else noMsg();}
     function geoByVenue(){const venue=(venueEl.value||'').trim();draft.p.venue=venue;const hit=venue&&MVENUE[venue];  // 改劇院→用劇院定位，並帶出該劇院的城市
@@ -734,7 +739,7 @@ function renderDetail(){
 function buildRating(){
   const r=document.getElementById('rate'),rv=document.getElementById('rateval');if(!r||r.dataset.built)return;r.dataset.built=1;
   for(let i=1;i<=5;i++){const st=document.createElement('span');st.className='st';st.textContent='★';
-    st.title=`${i} 顆星`;st.onclick=()=>{draft.rating=(draft.rating===i?0:i);paintRate();};   // 整數，再點同顆=清除
+    st.title=TN('star_n',{n:i});st.onclick=()=>{draft.rating=(draft.rating===i?0:i);paintRate();};   // 整數，再點同顆=清除
     r.appendChild(st);}
   function paintRate(){[...r.children].forEach((st,idx)=>st.classList.toggle('full',draft.rating>=idx+1));
     rv.textContent=draft.rating?`${draft.rating} / 5`:'';}
@@ -756,30 +761,30 @@ saveBtn.onclick=async()=>{
     const si=sessionAdded.indexOf(old);if(si>=0)sessionAdded[si]=e;
     const embed=new URLSearchParams(location.search).get('embed')==='1';
     if(embed&&sessionAdded.length){addedScreen();return;}
-    logDlg.close();if(!embed)setTimeout(()=>toast('✓ 已更新這筆紀錄'),120);return;}
+    logDlg.close();if(!embed)setTimeout(()=>toast(T('toast_updated')),120);return;}
   const entry={...draft};
   if(MMSB){try{const {data,error}=await cloudUpsert(entryToRec(entry),null);if(error)throw error;if(data&&data[0])entry.sid=data[0].id;}catch(err){console.error('cloud insert',err);}}  // 雲端新增→拿 sid
   LOG.unshift(entry);sessionAdded.unshift(entry);persist();renderWall(true);
   if(new URLSearchParams(location.search).get('embed')==='1'){addedScreen();return;}
   logDlg.close();
-  setTimeout(()=>{toast(`🎭 已蓋章！這是你的第 <b>${LOG.length}</b> 齣音樂劇`,()=>{LOG.shift();renderWall(false);});},180);
+  setTimeout(()=>{toast(TN('toast_stamped',{n:LOG.length}),()=>{LOG.shift();renderWall(false);});},180);
 };
 
 /* ---------- logged wall ---------- */
-function dateLabel(d){if(!d.date)return'日期未定';
-  if(d.precision==='year')return `${d.date}年`;
-  if(d.precision==='month'){const[y,m]=d.date.split('-');return `${y}年${+m}月`;}
-  const[y,m,dd]=d.date.split('-');return `${y}年${+m}月${+dd}日`;}
+function dateLabel(d){if(!d.date)return T('date_undated');
+  if(d.precision==='year')return EN_UI?`${d.date}`:`${d.date}年`;
+  if(d.precision==='month'){const[y,m]=d.date.split('-');return EN_UI?`${MON_ZH[+m-1]} ${y}`:`${y}年${+m}月`;}
+  const[y,m,dd]=d.date.split('-');return EN_UI?`${MON_ZH[+m-1]} ${+dd}, ${y}`:`${y}年${+m}月${+dd}日`;}
 function stars(r){return '★'.repeat(Math.round(r||0));}
 function renderWall(justAdded){
   const wall=document.getElementById('wall'),empty=document.getElementById('empty');
-  document.getElementById('logct').textContent=LOG.length?`${LOG.length} 齣`:'尚未記錄';
+  document.getElementById('logct').textContent=LOG.length?TN('mi_log_ct_n',{n:LOG.length}):T('mi_not_recorded');
   if(!LOG.length){empty.hidden=false;wall.hidden=true;wall.innerHTML='';persist();return;}
   empty.hidden=true;wall.hidden=false;
   wall.innerHTML=LOG.map((d,i)=>`<div class="lcard ${justAdded&&i===0?'justadded':''}">
     <div class="pos">${d.p.img?`<img src="${d.p.img}" referrerpolicy="no-referrer" alt=""/>`:`<div class="posfall">${(d.w.en||'?').trim()[0]||'?'}</div>`}
       <div class="stamp-badge">${flag(d.p.country)}</div>
-      <div class="lacts"><button class="ledit" data-i="${i}" aria-label="編輯">✎</button><button class="ldel" data-i="${i}" aria-label="刪除">🗑</button></div></div>
+      <div class="lacts"><button class="ledit" data-i="${i}" aria-label="${T('edit')}">✎</button><button class="ldel" data-i="${i}" aria-label="${T('delete')}">🗑</button></div></div>
     <div class="cap"><div class="en">${d.w.en}</div>${d.w.zh?`<div class="zh">${d.w.zh}</div>`:''}
       <div class="dt"><span class="pre">${dateLabel(d)}</span><span class="stars">${stars(d.rating||0)}</span></div></div>
   </div>`).join('');
@@ -793,16 +798,16 @@ function renderRecent(){
   const el=document.getElementById('recentList');if(!el)return;el.hidden=false;
   const k=sessionActive?Math.max(0,LOG.length-sessionBaseLen):LOG.length;  // 只取這次 session 新增的（在 LOG 最前面）
   const items=LOG.slice(0,k);
-  const undoHtml=lastDeleted?`<div class="recent-undo">已刪除《${lastDeleted.item.w.zh||lastDeleted.item.w.en}》<button type="button" id="undoDel">復原</button></div>`:'';
+  const undoHtml=lastDeleted?`<div class="recent-undo">${TN('deleted',{name:lastDeleted.item.w.zh||lastDeleted.item.w.en})}<button type="button" id="undoDel">${T('undo')}</button></div>`:'';
   const body=items.length
-    ? `<div class="recent-h">這次加入的 · ${items.length} 齣<span>加錯了？點 ✎ 改、🗑 刪</span></div>`+
+    ? `<div class="recent-h">${TN('recent_added',{n:items.length})}<span>${T('recent_added_sub')}</span></div>`+
       items.map((d,i)=>`<div class="recent-row">
         <div class="rth">${d.p.img?`<img src="${d.p.img}" referrerpolicy="no-referrer" alt=""/>`:`<span>${(d.w.en||'?').trim()[0]||'?'}</span>`}</div>
         <div class="rmeta"><div class="rt">${d.w.zh||d.w.en}</div><div class="rsub">${dateLabel(d)}${d.p.city?' · '+d.p.city:''}</div></div>
-        <button class="rb" data-edit="${i}" aria-label="編輯">✎</button>
-        <button class="rb" data-del="${i}" aria-label="刪除">🗑</button>
+        <button class="rb" data-edit="${i}" aria-label="${T('edit')}">✎</button>
+        <button class="rb" data-del="${i}" aria-label="${T('delete')}">🗑</button>
       </div>`).join('')
-    : (lastDeleted?'':`<div class="recent-empty">搜尋你看過的音樂劇 —— 中文、英文都行，搜不到也能手動新增。<br><span class="re-sub">加好的會即時長到海報牆與護照。</span></div>`);
+    : (lastDeleted?'':`<div class="recent-empty">${T('recent_empty')}<br><span class="re-sub">${T('recent_empty_sub')}</span></div>`);
   el.innerHTML=undoHtml+body;
   if(lastDeleted)document.getElementById('undoDel').onclick=()=>{LOG.splice(lastDeleted.idx,0,lastDeleted.item);lastDeleted=null;renderWall(false);renderRecent();};
   el.querySelectorAll('[data-edit]').forEach(b=>b.onclick=()=>editEntry(+b.dataset.edit));
@@ -811,7 +816,7 @@ function renderRecent(){
 function editEntry(i){
   draft={...LOG[i],editIndex:i};
   if(draft.rating==null)draft.rating=0;if(draft.seat==null)draft.seat='';if(draft.price==null)draft.price='';if(draft.note==null)draft.note='';
-  sheetTitle.textContent='編輯紀錄';saveBtn.disabled=false;saveBtn.textContent='更新';
+  sheetTitle.textContent=T('mi_edit_record');saveBtn.disabled=false;saveBtn.textContent=T('mi_update');
   if(!logDlg.open)logDlg.showModal();           // 在 modal 內 dialog 已開，重複 showModal 會丟例外
   renderDetail();prefillEdit();
 }
@@ -824,26 +829,26 @@ function prefillEdit(){
 }
 function delEntry(i){
   const removed=LOG.splice(i,1)[0];renderWall(false);renderRecent();
-  toast(`已刪除《${removed.w.zh||removed.w.en}》`,()=>{LOG.splice(i,0,removed);renderWall(false);renderRecent();});
+  toast(TN('deleted',{name:removed.w.zh||removed.w.en}),()=>{LOG.splice(i,0,removed);renderWall(false);renderRecent();});
 }
 
 // 加入後的確認畫面：顯示「這次 session 加入的全部」、可現在編輯、再加一齣、或完成
 function addedScreen(){
-  sheetTitle.textContent='已加入';saveBtn.disabled=true;
+  sheetTitle.textContent=T('mi_added');saveBtn.disabled=true;
   const items=sessionAdded;const n=items.length;
-  const head=n===1?`🎭 已加入「${items[0].w.zh||items[0].w.en}」！`:`🎭 已加入 <b>${n}</b> 齣！`;
+  const head=n===1?TN('added_one',{name:items[0].w.zh||items[0].w.en}):TN('added_n',{n});
   sbody.innerHTML=`<div class="step">
     <div class="batchdone"><div class="bd-h">${head}</div>
-      <div class="bd-p">想記日期、評分嗎？點下面那齣就能填；不填也沒關係，回收藏後點海報卡右上角的 <b>✎</b> 隨時都能填。</div></div>
+      <div class="bd-p">${T('batch_hint')}</div></div>
     <div class="recent">${items.map(d=>`<div class="recent-row">
       <div class="rth">${d.p.img?`<img src="${d.p.img}" referrerpolicy="no-referrer" alt=""/>`:`<span>${(d.w.en||'?').trim()[0]||'?'}</span>`}</div>
       <div class="rmeta"><div class="rt">${d.w.zh||d.w.en}</div>
-        <div class="rsub">${d.date?dateLabel(d):'日期之後填'}${d.p.city?' · '+hesc(d.p.city):''}${d.rating?' · '+'★'.repeat(d.rating):''}</div>
-        ${(d.seat||d.price)?`<div class="rsub2">${[d.seat?`座位 <b>${hesc(d.seat)}</b>`:'',d.price?`票價 <b>${curSym(d.cur)}${hesc(d.price)}</b>`:''].filter(Boolean).join('　·　')}</div>`:''}
+        <div class="rsub">${d.date?dateLabel(d):T('date_later')}${d.p.city?' · '+hesc(d.p.city):''}${d.rating?' · '+'★'.repeat(d.rating):''}</div>
+        ${(d.seat||d.price)?`<div class="rsub2">${[d.seat?TN('seat_label',{v:hesc(d.seat)}):'',d.price?TN('price_label',{v:curSym(d.cur)+hesc(d.price)}):''].filter(Boolean).join('　·　')}</div>`:''}
         ${d.note?`<div class="rnote">「${hesc(d.note).slice(0,30)}${d.note.length>30?'…':''}」</div>`:''}</div>
-      <button class="rb wide" data-idx="${LOG.indexOf(d)}" aria-label="編輯">✎ 編輯</button></div>`).join('')}</div>
-    <button type="button" class="bd-more" id="addMore">＋ 再加入一齣</button>
-    <button type="button" class="bd-done" id="batchDone">完成，回我的收藏 →</button></div>`;
+      <button class="rb wide" data-idx="${LOG.indexOf(d)}" aria-label="${T('edit')}">${T('edit_btn')}</button></div>`).join('')}</div>
+    <button type="button" class="bd-more" id="addMore">${T('add_more')}</button>
+    <button type="button" class="bd-done" id="batchDone">${T('batch_done')}</button></div>`;
   sbody.querySelectorAll('[data-idx]').forEach(b=>b.onclick=()=>editEntry(+b.dataset.idx));
   document.getElementById('addMore').onclick=()=>startLog();
   document.getElementById('batchDone').onclick=()=>logDlg.close();
@@ -886,8 +891,8 @@ if(EMBED){
   const _e=new URLSearchParams(location.search).get('edit');
   const EDIT_IDX=(_e!=null&&_e!=='')?+_e:null;
   // 先開窗+顯示「載入劇庫中」，等正式版資料就緒再進搜尋/編輯
-  logDlg.showModal();sheetTitle.textContent='加入音樂劇';
-  sbody.innerHTML='<div style="padding:48px 16px;text-align:center;color:var(--ink2)">載入劇庫中…</div>';
+  logDlg.showModal();sheetTitle.textContent=T('log_title');
+  sbody.innerHTML='<div style="padding:48px 16px;text-align:center;color:var(--ink2)">'+T('mi_loading_lib')+'</div>';
   (window.MM_DATA_READY||Promise.resolve(false)).then(()=>{ buildCatalog();
     if(EDIT_IDX!=null&&LOG[EDIT_IDX])editEntry(EDIT_IDX); else startLog();   // 此時 modal 已開，startLog 只渲染內容
   });

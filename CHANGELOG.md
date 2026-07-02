@@ -11,6 +11,13 @@
 
 ---
 
+## [v1.14.0] - 2026-07-02 15:41
+### 新功能 — me-input.html 輸入表單多語化 P3(繁中/英文)
+- **`js/mm-strings.js` 擴充 me-input 專屬字典**(~70 key:mi_/fld_/ph_/geo_/pick_/run_/recent_/added_/star_n/toast_* 等 + 海報/連結欄);apply() 新增 `data-i18n-html`(給含 `<br>`/`<b>` 的信任 UI 文案,非使用者輸入)。
+- **me-input.html 全面 i18n**:head 載 mm-strings + `MM_USE_LANG_PREF`(iframe 語言跟隨父頁 me.html 寫入的 `mm_lang`);主 script 注入 `T/TN/EN_UI`;靜態(header/hero/footer/sheet/theme)掛 data-i18n;動態渲染模板全改 `MM_T()`——搜尋提示、手動表單、選製作/選城市清單、詳情表單、確認畫面、toast、`dateLabel`(EN_UI 用英文月份格式)、renderRecent、MON_ZH/yearOptions/月日 select。
+- **驗證**:playwright — 繁中回歸(搜尋提示中文/搜尋有結果/無 error) + 英文版(h1/搜尋提示/placeholder/手動表單 8 欄位全英文/sheet UI 零中文殘留/無 error) + embed 模式(iframe 自動開表單、英文、無 error)全 PASS;繁中/英文截圖親驗。
+- 註:demo 開發標記(`Demo v3 · 輸入端` 導覽,embed 下隱藏)刻意保留未 i18n。
+
 ## [v1.13.0] - 2026-07-02 15:07
 ### 新功能 — me.html 個人主頁多語化 P2(繁中/英文)
 - **`js/mm-strings.js` 擴充 me.html 專屬字典**（~70 條）:登入閘各狀態、demo 橫幅、分享 modal + 帳號設定 modal + onboarding 全部訊息、徽章/persona/詳情 modal、刪除確認/toast/復原。
