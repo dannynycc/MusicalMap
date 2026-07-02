@@ -11,6 +11,13 @@
 
 ---
 
+## [v1.15.1] - 2026-07-02 17:41
+### 修正 — 登出後 gate 卡「Loading…」+ 登入畫面美化(真人 flow 驗證)
+- **修真 bug**:`gate-msg` 掛了 `data-i18n="gate_loading"`(P2 誤加),`showLogin()` 動態設登入文案後,mm-strings 的 `apply()`(DOMContentLoaded)掃到 data-i18n **把它蓋回「Loading…」**→ 登出後出現「Loading…」與登入按鈕並存。修:gate-msg 移除 data-i18n(它是 showGate 動態容器);sb 建立後立即 `showGate(T('gate_loading'))` 用當前語言。**e2e stub 沒抓到(沒測真實無 session 的 gate flow),真人才現形。**
+- **登入畫面美化**(原「整片黑+置中 Loading+按鈕」很醜):加 logo、徑向漸層背景、按鈕陰影,新增**安全說明**「用 Google 帳戶安全登入,只讀名稱與 email,不會代你張貼」(回應使用者對 OAuth 畫面「像詐騙」的疑慮)。
+- **驗證**:playwright 真實登出狀態(headless 無 Google session = 登出後)跑真 supabase getSession → showLogin,en/繁中各驗:登入文案(非 Loading)、按鈕、安全說明、logo 皆顯示、無 JS error;截圖親驗美化。
+- 註:OAuth 同意畫面顯示 `xxx.supabase.co`(像詐騙)是 Google Cloud OAuth consent screen 的 App name 未設,需在 Google Cloud Console 設定(見 docs,前端改不了)。
+
 ## [v1.15.0] - 2026-07-02 16:02
 ### 新功能 — 足跡側簡體中文(zh-hans)P4:多語化竣工
 - **OpenCC runtime 繁→簡**:`js/mm-strings.js` 在 zh-hans 時用 `OpenCC.Converter({from:'tw',to:'cn'})`(沿用主站 i18n.js 機制)把繁中字典 runtime 轉簡體;無 OpenCC 降級繁中。**OpenCC 只在偵測到 zh-hans 時 `document.write` 條件載入**(繁中/英文使用者不下載 65KB),三頁 head 判斷語言(?hl / mm_variant / navigator)一致。

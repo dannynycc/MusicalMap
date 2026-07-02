@@ -55,6 +55,7 @@
       // ---- me.html 專屬(登入頁,localStorage 記語言) ----
       gate_loading: '載入中…', gate_login: '使用 Google 登入',
       gate_signin: '<b style="font-size:26px">我的音樂劇足跡</b><br><span style="opacity:.72;font-size:14.5px;font-weight:500">登入後，你看過的每一齣音樂劇都會存進你的帳號、跨裝置同步。</span>',
+      gate_secure: '用你的 Google 帳戶安全登入。我們只讀取你的名稱與 email,不會代你張貼任何內容。',
       gate_syncing: '同步你的收藏中…', gate_no_backend: '⚠ 後端尚未設定',
       gate_load_fail: '讀取收藏失敗，請重新整理。',
       nav_share: '分享', nav_logout: '登出', me_hero_title: '我的音樂劇收藏',
@@ -175,6 +176,7 @@
       p_sep: ', ', p_end: '.',
       gate_loading: 'Loading…', gate_login: 'Sign in with Google',
       gate_signin: '<b style="font-size:26px">My Musicals</b><br><span style="opacity:.72;font-size:14.5px;font-weight:500">Sign in and every show you’ve seen is saved to your account and synced across devices.</span>',
+      gate_secure: 'Secure sign-in with your Google account. We only read your name and email — we never post anything on your behalf.',
       gate_syncing: 'Syncing your collection…', gate_no_backend: '⚠ Backend not configured',
       gate_load_fail: 'Couldn’t load your collection. Please refresh.',
       nav_share: 'Share', nav_logout: 'Sign out', me_hero_title: 'My Musicals',
