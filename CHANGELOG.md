@@ -11,6 +11,14 @@
 
 ---
 
+## [v1.9.8] - 2026-07-02 12:08
+### 設計 — my.themusicalmap.com/<handle> 帳號身份 + 分享網址架構定案(含實證)
+- 新增 `docs/DESIGN_username_sharing.md`:username 從「分享面板暱稱」升級為「帳號固定身份」的完整實作依據。**待實作**。
+- **決策一(改名政策)**:改名後舊 handle **永久保留給原主 + 301 轉向新名**。依 web 實證——業界分三類(社群帳號立即釋放 / 冷卻折衷 / 個人頁永久保留),本專案成本結構同 Medium/Substack(名稱池無限、URL 會外部分享)故採永久保留。附 10 平台官方來源。唯一工程風險=唯一性檢查要 union `handle_aliases`(GitHub 翻車根因)。
+- **決策二(onboarding)**:username 欄位**空白 + 可用建議 chips**(預驗可用、主動點才填、種子用 email 前綴),**不預填 Google 真名**(隱私 + default-effect 地雷)。依 NN/g/Baymard/GOV.UK/W3C + Linktree/Bio.link 同類產品皆空白之實證。
+- 含資料模型(`handle_aliases` 表 + `rename_handle` 函式 + union 查重)、Cloudflare Worker(rewrite + alias 301 + 爬蟲 meta 注入)、前端改動清單、實作順序。
+- 過程修正:先前憑印象的建議(「業界都永久保留」「預填 Google 名字」)經實證調查後修正——預填真名實為最糟選項。
+
 ## [v1.9.7] - 2026-07-02 10:53
 ### 資安 — 通盤健檢 + handle 強化(修大小寫碰撞 + 格式限制)
 - **完整資安/SEO/AI-search 健檢**,結論存檔 `docs/SECURITY_AUDIT_2026-07-02.md`(RLS/授權、SQL injection、XSS、金鑰、供應鏈、SEO、AI-search、themusicalmap.com + `my.` 子網域架構建議)。
