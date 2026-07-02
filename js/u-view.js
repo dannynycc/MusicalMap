@@ -438,8 +438,9 @@
      BOOT — resolve handle → profile gate → RPC rows → map to MM.shows → render
      ========================================================================== */
   async function boot() {
-    const rawHandle = new URLSearchParams(location.search).get('u');
-    const handle = (rawHandle || '').trim().toLowerCase();   // handle 一律小寫存（訪客打 Danny 也要命中 danny）
+    // handle 來源:?u= 參數(GitHub Pages 直連)或 window.MM_HANDLE(my. 子網域 Cloudflare Worker 注入,見 worker/)
+    const rawHandle = new URLSearchParams(location.search).get('u') || window.MM_HANDLE || '';
+    const handle = String(rawHandle).trim().toLowerCase();   // handle 一律小寫存（訪客打 Danny 也要命中 danny）
     if (!cfg.READY || !handle || typeof supabase === 'undefined') { showEmpty(); return; }
     const sb = supabase.createClient(cfg.SUPABASE_URL, cfg.SUPABASE_ANON_KEY);
 

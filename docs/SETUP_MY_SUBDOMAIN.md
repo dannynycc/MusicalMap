@@ -1,0 +1,52 @@
+# 部署 my.themusicalmap.com（個人公開頁子網域）
+
+> 狀態:**Worker 程式碼已就緒（`worker/my-worker.js`），未部署**。
+> 前置:themusicalmap.com 已在 Cloudflare 管 DNS（已完成）；`add_handle_aliases.sql` 已套用（已完成）。
+> 設計依據:`docs/DESIGN_username_sharing.md`。
+
+## 這個 Worker 做什麼
+
+| 訪問 | 行為 |
+|---|---|
+| `my.themusicalmap.com/danny` | 內部取 GitHub Pages 的 `u.html`，注入 `window.MM_HANDLE='danny'` + 該使用者專屬 `<title>`/og/canonical/JSON-LD 後回傳 → 乾淨網址 + 爬蟲/AI 看得到內容 |
+| `my.../danny2`（danny 的舊名） | 查 `resolve_handle` → **301** 到 `my.../danny`（舊分享連結永久有效） |
+| `my.../不存在的名字` | 回 `u.html` 的 not-found 空狀態，HTTP **404** + noindex |
+| `my.../css/...`、`/js/...`、任何含 `.` 或 `/` 的路徑 | 代理 GitHub Pages 靜態資源（u.html 的相對路徑因此正常） |
+| `my.../`（根）、保留字 | 302 回主站 |
+| `my.../robots.txt` | Worker 自己回 allow-all |
+
+前端配合已上線（v1.11.0）:`u-view.js` 的 handle 來源是 `?u=` **或** `window.MM_HANDLE`，兩種形式並存。
+
+## 部署步驟（需要你的 Cloudflare 帳號，約 10 分鐘）
+
+1. **裝 wrangler 並登入**（第一次才要）:
+   ```
+   cd D:/ClaudeCode/MusicalMap/worker
+   npx wrangler login        # 開瀏覽器授權你的 Cloudflare 帳號
+   ```
+2. **部署**:
+   ```
+   npx wrangler deploy
+   ```
+   `wrangler.toml` 已把 route 綁到 `my.themusicalmap.com/*`（zone: themusicalmap.com）。
+3. **DNS**:Cloudflare DNS 加一筆 `my` 的記錄讓 route 生效——
+   - Type `AAAA`、Name `my`、Content `100::`、**Proxy 開啟（橘雲）**
+   -（`100::` 是佔位 IP；流量到橘雲就被 Worker route 攔走，不會真的連那個 IP。這是 Cloudflare Workers 綁自訂網域的標準做法。）
+4. **驗證**（部署後跑）:
+   - `curl -s https://my.themusicalmap.com/danny | grep MM_HANDLE` → 應看到 `window.MM_HANDLE="danny"`
+   - `curl -s https://my.themusicalmap.com/danny | grep '<title>'` → 應含顯示名稱
+   - `curl -sI https://my.themusicalmap.com/<某個舊名>` → `301` + `location: /現用名`
+   - `curl -sI https://my.themusicalmap.com/沒這人xyz` → `404`
+   - 瀏覽器開 `my.themusicalmap.com/danny` → 頁面完整 render（海報牆/地圖/統計）
+
+## 之後的收尾（主站遷移時一起）
+
+- [ ] `GH_ORIGIN` 改成 `https://themusicalmap.com`（worker/my-worker.js 頂部一行）
+- [ ] 分享按鈕/複製連結改產 `my.themusicalmap.com/<handle>` 形式（`me.html` 的 `shareUrl()`）
+- [ ] `u.html?u=` 舊形式加轉向到 `my.` 形式（canonical 集中）
+- [ ] og:image 個人化（用該使用者第一張海報；需再打一次 `public_sightings`，目前用品牌 logo）
+
+## 資安備註
+
+Worker 內只有公開 anon key（RLS 把關）與公開資料查詢，無任何 secret，程式碼可放公開 repo。
+保留字清單三處同步:DB `handle_reserved()`、`me.html` RESERVED、`worker/my-worker.js` RESERVED——改任何一處要三處一起。

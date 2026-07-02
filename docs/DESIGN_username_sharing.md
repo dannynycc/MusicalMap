@@ -129,14 +129,14 @@ Worker 邏輯（`my.themusicalmap.com/<handle>`）：
 - [x] **onboarding**：空白欄位 + label 在上（無 placeholder）+ 建議 chips（種子=email 前綴、逐顆預驗可用、主動點才填）；**強制**（無 X、ESC/backdrop 關不掉，唯一出口=登出）。
 - [x] 舊網址自動轉新：`u-view.js` 查無 handle 時走 `resolve_handle` → `location.replace` 到現用名（RPC 未部署則靜默降級 not-found）；順帶修訪客輸入大寫 `?u=Danny` 查不到的 bug。
 - [x] migration 未套用的降級：`rename_handle` 不存在 → 前端自動退回舊 `upsert` 路徑（unique 約束保底）。
-- [ ] 網址由 `?u=handle` → 支援 `my.themusicalmap.com/handle`（前端取 handle 邏輯相容兩者）——留待 Worker 階段。
+- [x] 網址相容兩形式（v1.11.0）：`u-view.js` handle 來源＝`?u=` **或** `window.MM_HANDLE`（Worker 注入）。
 
 ## 實作順序與狀態
 
 1. ✅ DB：`supabase/add_handle_aliases.sql` —— **2026-07-02 已在 Dashboard 執行並線上實測**：anon 直打 REST 驗證 `handle_available`（danny→false／保留字 admin→false／隨機→true）、`resolve_handle`（無 alias→null）、`rename_handle`（anon→'not_authenticated' 擋下）皆正確。真正的「改名→alias→舊網址轉向」完整迴圈需登入帳號操作一次才算實測（見下）。
 2. ✅ 前端：帳號設定改名 + 分享面板唯讀 + onboarding chips + 強制設定（v1.10.0）。
-3. [ ] Cloudflare Worker：rewrite + alias 301 + 爬蟲 meta 注入。
-4. [ ] DNS 切 `my.` 子網域；u.html 支援 path handle。
+3. ✅ Cloudflare Worker **程式碼完成＋本機真測 14 項 PASS**（v1.11.0，`worker/my-worker.js`，打真 GH Pages＋真 Supabase：注入 MM_HANDLE/個人化 title/canonical/JSON-LD、不存在→404+noindex、靜態代理、保留字/尾斜線/robots）——**未部署**，步驟見 `docs/SETUP_MY_SUBDOMAIN.md`（需使用者 Cloudflare 帳號 wrangler login，約 10 分鐘）。alias→301 需等首次真實改名後才有資料可驗。
+4. [ ] DNS 切 `my.` 子網域（`AAAA my 100::` 橘雲）＋ wrangler deploy——使用者執行。
 5. [ ] 對照 [[project_musicalmap_domain_migration]]：themusicalmap.com 主站遷移一併規劃。
 
 見 [[project_musicalmap_security]]（handle 唯一性/RLS 現況）、[[project_musicalmap_sharing]]。

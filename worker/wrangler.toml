@@ -1,0 +1,11 @@
+# Cloudflare Worker 設定 — my.themusicalmap.com 個人公開頁
+# 部署:cd worker && npx wrangler deploy(先 npx wrangler login)
+# 詳細步驟見 docs/SETUP_MY_SUBDOMAIN.md
+name = "musicalmap-my"
+main = "my-worker.js"
+compatibility_date = "2026-07-01"
+
+# 綁定 my. 子網域(themusicalmap.com zone 已在 Cloudflare)
+routes = [
+  { pattern = "my.themusicalmap.com/*", zone_name = "themusicalmap.com" }
+]

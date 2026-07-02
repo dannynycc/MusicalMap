@@ -11,6 +11,13 @@
 
 ---
 
+## [v1.11.0] - 2026-07-02 12:59
+### 新功能 — my.themusicalmap.com Cloudflare Worker(程式碼完成,待部署)
+- **`worker/my-worker.js`(新)**:`my.themusicalmap.com/<handle>` 三合一——(1)乾淨網址:內部取 u.html 注入 `window.MM_HANDLE`;(2)舊名 301:查無 handle → `resolve_handle` → 301 現用名(alias 永久有效);(3)爬蟲可見:注入該使用者專屬 title/description/og/canonical/JSON-LD ProfilePage(解決個人頁純前端 render 爬蟲空白,對標 FR24)。另處理:靜態資源代理、不存在→404+noindex、保留字/根→主站、尾斜線 301、robots.txt。無 secret(anon key+RLS),可放公開 repo。
+- **`worker/wrangler.toml` + `docs/SETUP_MY_SUBDOMAIN.md`(新)**:部署步驟(wrangler login/deploy + DNS `AAAA my 100::` 橘雲)+ 驗證清單 + 主站遷移時的收尾清單。
+- **`js/u-view.js`**:handle 來源改「`?u=` 或 `window.MM_HANDLE`」,兩種網址形式並存,`?u=` 零影響。
+- **驗證**:Worker handler 本機直測(真 GH Pages+真 Supabase)14 項 PASS(/danny 注入+個人化 meta/大寫/404+noindex/css 代理/根/保留字/尾斜線/robots);u-view `?u=` 回歸 6 項 PASS。alias→301 需等首次真實改名後可驗。
+
 ## [v1.10.2] - 2026-07-02 12:54
 ### 資安/SEO — CDN SRI + sitemap 修正 + 死 code 清理(健檢待辦 3 項收掉)
 - **CDN 供應鏈防護(SRI)**:所有第三方 script/css 釘死版號 + `integrity`(sha384) + `crossorigin` —— `me.html`/`me-input.html`/`u.html` 的 supabase-js(2.110.0)、chart.js(4.5.1);`build/gen_site.mjs` 模板的 leaflet(1.9.4)、markercluster(1.5.3)、opencc-js(1.3.1),重產三語 index。CDN 被竄改時瀏覽器直接拒載,護住登入頁 token。

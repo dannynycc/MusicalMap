@@ -35,7 +35,8 @@ scrapers/  ──產出──>  data/*.json  ──merge──>  data/shows.json
 | `me.html`(+`me-input.html`/`me-catalog.js`) | **My Musicals v2**(自含繁中頁:海報牆/護照/清單三檢視 + 統計儀表板 + 點陣地圖;輸入端為 iframe,搜尋/選製作/手動新增自動帶入,劇庫吃 `venues_catalog`+`shows`;Supabase Google 登入 + 雲端 `sightings`,localStorage 當快取雙寫) |
 | `me_ori.html`(+`css/me.css`/`js/me.js`) | 舊版 My Musicals(FlightRadar 風/折線圖);v2 上線後改名備份保留 |
 | `theatres.html` / `js/theatres.js` | 所有劇院地圖(全 catalog ~5,000 場館,綠色群聚圈 + 多語搜尋) |
-| `u.html` / `js/u-view.js` | 公開唯讀 profile 分享頁(`?u=<handle>`,免登入,推廣用);視覺共用 `css/me-v2.css`、比照 me.html |
+| `u.html` / `js/u-view.js` | 公開唯讀 profile 分享頁(`?u=<handle>` 或 Worker 注入 `MM_HANDLE`,免登入,推廣用);視覺共用 `css/me-v2.css`、比照 me.html |
+| `worker/` | Cloudflare Worker:`my.themusicalmap.com/<handle>` 乾淨網址 + 舊名 301 + 爬蟲 meta 注入(**已寫好未部署**,見 `docs/SETUP_MY_SUBDOMAIN.md`) |
 | `css/me-v2.css` | me.html 與 u.html **共用**的 v2 護照風樣式(從 me.html 內嵌 CSS 抽出,避免兩頁分岔) |
 | `scrapers/gen_catalog.py` → `data/venues_catalog.json` | 自動帶入字典(場館去重 / 中英劇名 / 幣別 / 海報) |
 | `css/style.css` | 淺色 UI（白底＋teal 主色） |

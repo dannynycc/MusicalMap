@@ -95,6 +95,6 @@
 - [x] CDN 加 SRI（Medium）— **v1.10.2 完成**：`me.html`/`me-input.html`/`u.html` 的 supabase(2.110.0)/chart.js(4.5.1) + `gen_site.mjs` 模板的 leaflet(1.9.4)/markercluster(1.5.3)/opencc(1.3.1)，全部釘版號 + sha384 integrity + crossorigin；e2e 10 項驗證各頁 CDN 在 SRI 下正常載入。
 - [x] `sitemap.xml` 移掉 `me.html` — **v1.10.2 完成**（改在 `gen_site.mjs` 產生器層移除，非手改產物）；`me.html` head 加 `noindex`。`u.html` canonical 留待 Worker 階段（query-param 型網址 canonical 需與 `my.` 形式一起定）。
 - [x] 清 `js/me.js` 死程式碼 — **v1.10.2 完成**：`js/me.js` + `me_ori.html` 一併移除（git 歷史可找回）。
-- [ ] `my.themusicalmap.com` Cloudflare Worker（乾淨網址 rewrite + 爬蟲 meta 注入）
+- [x] `my.themusicalmap.com` Cloudflare Worker — **v1.11.0 程式碼完成＋本機真測 14 項 PASS**（`worker/my-worker.js`；未部署，見 `docs/SETUP_MY_SUBDOMAIN.md`）
 - [ ] 遷 themusicalmap.com 時全站 domain / sitemap / canonical 更新
 - [ ] （Low，未做）meta CSP、postMessage origin 驗證、me.html 內嵌 render 補 esc
