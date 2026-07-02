@@ -103,14 +103,14 @@ function langSwitch(active) {
 function page(variant, shows) {
   const v = VARIANTS[variant];
   const t = variant === "en"
-    ? { tagline: "Musicals playing around the world right now", theatres: "🎭 All theatres", mine: "⭐ My Musicals",
+    ? { tagline: "Musicals playing around the world right now", theatres: "🎭 All theatres", mine: "⭐ My Musicals", guide: "Guide",
         search: "Search shows, cities, theatres…", privacy: "Privacy", terms: "Terms",
         h1: "MusicalMap — live world map of musicals playing now", listhdr: "Musicals playing now", filterLabel: "Category" }
     : variant === "zh-hans"
-    ? { tagline: "此刻全球正在上演的音乐剧", theatres: "🎭 所有剧院", mine: "⭐ 我的音乐剧足迹",
+    ? { tagline: "此刻全球正在上演的音乐剧", theatres: "🎭 所有剧院", mine: "⭐ 我的音乐剧足迹", guide: "使用说明",
         search: "搜寻剧名、城市、剧院…", privacy: "隐私权政策", terms: "使用条款",
         h1: "MusicalMap — 全球此刻正在上演的音乐剧即时地图", listhdr: "正在上演的音乐剧", filterLabel: "分类" }
-    : { tagline: "此刻全球正在上演的音樂劇", theatres: "🎭 所有劇院", mine: "⭐ 我的音樂劇足跡",
+    : { tagline: "此刻全球正在上演的音樂劇", theatres: "🎭 所有劇院", mine: "⭐ 我的音樂劇足跡", guide: "使用說明",
         search: "搜尋劇名、城市、劇院…", privacy: "隱私權政策", terms: "使用條款",
         h1: "MusicalMap — 全球此刻正在上演的音樂劇即時地圖", listhdr: "正在上演的音樂劇", filterLabel: "分類" };
   // zh-hans pages load OpenCC (small t2cn dict) so i18n can simplify the UI chrome strings.
@@ -152,6 +152,7 @@ function page(variant, shows) {
       <a class="foot-link" href="${BASE}privacy.html?lang=${variant}">${esc(t.privacy)}</a>
       <a class="foot-link" href="${BASE}terms.html?lang=${variant}">${esc(t.terms)}</a>
       <a class="nav-link" href="${BASE}theatres.html?lang=${variant}">${esc(t.theatres)}</a>
+      <a class="nav-link" href="${BASE}guide.html${variant === 'en' ? '?hl=en' : variant === 'zh-hans' ? '?hl=zh-hans' : ''}">${esc(t.guide)}</a>
       <a id="mine-link" class="nav-cta" href="${BASE}me.html?lang=${variant}">${esc(t.mine)}</a>
     </nav>
   </header>
@@ -242,7 +243,7 @@ function sitemap() {
     `<xhtml:link rel="alternate" hreflang="x-default" href="${SITE}/"/></url>`);
   // …plus the standalone pages (kept from the previous sitemap so they stay indexed).
   // me.html 刻意不列:登入閘頁(爬蟲只看到「載入中」),head 已加 noindex;公開內容在 u.html。
-  const pages = ["theatres.html", "privacy.html", "terms.html"].map(
+  const pages = ["theatres.html", "guide.html", "privacy.html", "terms.html"].map(
     (p) => `  <url><loc>${SITE}/${p}</loc></url>`);
   return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">

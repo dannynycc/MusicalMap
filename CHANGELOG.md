@@ -11,6 +11,13 @@
 
 ---
 
+## [v1.16.1] - 2026-07-02 23:10
+### 接上 — guide 頁 nav 連結 + sitemap 收錄(讓訪客/爬蟲找到)
+- **各頁 nav 加「使用說明」連結指向 `guide.html`**:首頁(`gen_site.mjs` t 加 guide + nav 連結,依語言帶 `?hl=`)、`me.html`/`u.html`(mm-strings 加 `nav_guide` key)、`theatres.html`(i18n.js DICT 加 `nav_guide`,zh-hans 自動 OpenCC 轉)。
+- **`sitemap.xml` 收錄 `/guide`**(gen_site 產生器層,重產)。
+- **驗證**:playwright — 首頁/me/u/theatres 四頁 nav 的 guide 連結都存在、i18n 正確套用(非 key 字面)、指向 guide.html、無 JS error;guide.html 可達,全 PASS。
+- guide 頁多語 nav 也加了 nav_guide(繁/簡/英)。**guide 頁正式接上全站入口。**
+
 ## [v1.16.0] - 2026-07-02 21:41
 ### 新功能 — 使用說明頁 guide.html(editorial 藝文風,三語)
 - **新增 `guide.html`**(網址 /guide):全球地圖探索(免登入)+ My Musicals 記錄/護照/分享的使用說明。**「觀劇手帳」editorial 風格,不是科技 SaaS**——暖米白紙本紋理底 + Fraunces 襯線大標 + 大號金色襯線數字(01/02)+ 真實產品截圖不對稱交錯 + italic 轉場句 + 深色收尾框。**零 emoji、零漸層、零對稱 feature 卡、標題非 Inter**(避開所有 AI slop 訊號)。

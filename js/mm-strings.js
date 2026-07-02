@@ -7,7 +7,7 @@
   var STR = {
     'zh-hant': {
       // ---- u.html 靜態 ----
-      nav_theatres: '所有劇院', nav_map: '演出地圖', nav_create: '＋ 建立你自己的',
+      nav_theatres: '所有劇院', nav_map: '演出地圖', nav_guide: '使用說明', nav_create: '＋ 建立你自己的',
       th_midnight: '午夜（暗）', th_gallery: '畫廊白（亮）', th_cream: '節目單奶油（亮）', th_neon: '霓虹（暗）', th_deco: '裝飾金（暗）',
       aria_theme: '主題底色', aria_seg: '檢視模式', aria_sort: '排序', aria_close: '關閉',
       hero_sub: '每看一場，蓋一個章',
@@ -147,7 +147,7 @@
       how_footer: 'MusicalMap — 全球音樂劇即時地圖,與你的觀劇護照。', how_footer_link: '回到地圖',
     },
     'en': {
-      nav_theatres: 'All Theatres', nav_map: 'Live Map', nav_create: '＋ Create your own',
+      nav_theatres: 'All Theatres', nav_map: 'Live Map', nav_guide: 'Guide', nav_create: '＋ Create your own',
       th_midnight: 'Midnight (dark)', th_gallery: 'Gallery white (light)', th_cream: 'Playbill cream (light)', th_neon: 'Neon (dark)', th_deco: 'Deco gold (dark)',
       aria_theme: 'Theme', aria_seg: 'View mode', aria_sort: 'Sort', aria_close: 'Close',
       hero_sub: 'One stamp for every show you see',
