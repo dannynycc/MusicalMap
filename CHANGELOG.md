@@ -11,6 +11,17 @@
 
 ---
 
+## [v1.15.0] - 2026-07-02 16:02
+### 新功能 — 足跡側簡體中文(zh-hans)P4:多語化竣工
+- **OpenCC runtime 繁→簡**:`js/mm-strings.js` 在 zh-hans 時用 `OpenCC.Converter({from:'tw',to:'cn'})`(沿用主站 i18n.js 機制)把繁中字典 runtime 轉簡體;無 OpenCC 降級繁中。**OpenCC 只在偵測到 zh-hans 時 `document.write` 條件載入**(繁中/英文使用者不下載 65KB),三頁 head 判斷語言(?hl / mm_variant / navigator)一致。
+- **localStorage 改讀 `mm_variant`**(en/zh-hans/zh-hant,含簡繁精確,與主站共用),優先於舊 `mm_lang`(en/zh);切換寫回兩者。
+- **資料層地名/劇名譯名也轉簡**:mm-strings 暴露 `MM_S`(zh-hans=OpenCC,否則 identity);`u-view.js`/`me.html` 的 countryZh/cityName/venueZh 包 MS;u-view `mapped.zh`(劇名譯名)亦包 → u.html 公開頁完整簡體。
+- **簡中語言 pill**:u.html/me.html nav 加「简」(繁/简/EN);修 pill active 判斷(不再讓繁中 pill 在簡中借用)。
+- **Worker**:`worker/my-worker.js` 補 zh-hans title/desc(簡體硬編)+ hreflang zh-Hans(4 條互列)。
+- **驗證**:playwright — u/me zh-hans 簡體正確(观剧统计/我的观剧足迹/海报墙/上海大剧院/歌剧魅影) + 繁中/英文回歸不受影響 + 英文版不下載 OpenCC(條件載入生效) + Worker zh-hans 8 項全 PASS;截圖親驗簡繁差異。過程修 regression:u-view render 內 `const S=MM.shows` 遮蔽我加的 S(MM_S)→ 改名 MS。
+- 已知小限制:me.html 劇名中文譯名簡體模式仍繁體(共享資料未逐處包 MS;u.html 已完整);海報圖內文字是圖片無法轉。
+- **🎉 足跡側多語化 P1–P4 全竣工**(u.html/me.html/me-input.html × 繁中/簡中/英文)。
+
 ## [v1.14.0] - 2026-07-02 15:41
 ### 新功能 — me-input.html 輸入表單多語化 P3(繁中/英文)
 - **`js/mm-strings.js` 擴充 me-input 專屬字典**(~70 key:mi_/fld_/ph_/geo_/pick_/run_/recent_/added_/star_n/toast_* 等 + 海報/連結欄);apply() 新增 `data-i18n-html`(給含 `<br>`/`<b>` 的信任 UI 文案,非使用者輸入)。

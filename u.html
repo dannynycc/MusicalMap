@@ -23,6 +23,12 @@ html[lang="en"] .sec h2 .zh{display:none}
 .hl-pick a{padding:3px 10px;border-radius:999px;font-size:12px;font-weight:700;text-decoration:none;color:var(--ink2,#aaa)}
 .hl-pick a[aria-current="true"]{background:var(--gold,#c9a85c);color:#1a1407}
 </style>
+<script>/* zh-hans:先同步載 OpenCC(繁→簡),mm-strings 才能建簡體字典;只簡中使用者下載 */(function(){try{
+var h=new URLSearchParams(location.search).get('hl'),v=(h==='en'||h==='zh-hans'||h==='zh-hant')?h:null;
+if(!v&&window.MM_USE_LANG_PREF){var mv=localStorage.getItem('mm_variant');v=(mv==='en'||mv==='zh-hans'||mv==='zh-hant')?mv:(localStorage.getItem('mm_lang')==='en'?'en':localStorage.getItem('mm_lang')==='zh'?'zh-hant':null);}
+if(!v){var nl=(navigator.language||'').toLowerCase();v=nl.indexOf('zh')===0?((nl.indexOf('cn')>-1||nl.indexOf('hans')>-1||nl.indexOf('sg')>-1)?'zh-hans':'zh-hant'):(nl?'en':'zh-hant');}
+if(v==='zh-hans')document.write('<scr'+'ipt src="https://cdn.jsdelivr.net/npm/opencc-js@1.3.1/dist/umd/t2cn.js" integrity="sha384-P/OaFUnOIAgMkLxsXIAaP6WO3Wm09591cGX5bHbW4eCOeDxH9L8U3aWYf4cE4SYl" crossorigin="anonymous"><\/scr'+'ipt>');
+}catch(e){}})();</script>
 <script src="js/mm-strings.js"></script>
 </head>
 <body>
@@ -32,7 +38,8 @@ html[lang="en"] .sec h2 .zh{display:none}
     <a href="theatres.html" data-i18n="nav_theatres">所有劇院</a>
     <a href="index.html" data-i18n="nav_map">演出地圖</a>
     <div class="hl-pick" role="group" aria-label="Language / 語言">
-      <a data-hl-link="zh-hant" href="?">繁中</a>
+      <a data-hl-link="zh-hant" href="?">繁</a>
+      <a data-hl-link="zh-hans" href="?hl=zh-hans">简</a>
       <a data-hl-link="en" href="?hl=en">EN</a>
     </div>
     <div class="theme-pick" id="themePick" role="group" aria-label="主題底色" data-i18n-aria="aria_theme">

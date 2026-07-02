@@ -8,6 +8,12 @@
 <title>My Musicals · MusicalMap</title>
 <!-- i18n:iframe 內嵌,語言跟隨父頁 me.html 寫入的 localStorage mm_lang(與主站共用) -->
 <script>window.MM_USE_LANG_PREF=true;</script>
+<script>/* zh-hans:先同步載 OpenCC(繁→簡),mm-strings 才能建簡體字典;只簡中使用者下載 */(function(){try{
+var h=new URLSearchParams(location.search).get('hl'),v=(h==='en'||h==='zh-hans'||h==='zh-hant')?h:null;
+if(!v&&window.MM_USE_LANG_PREF){var mv=localStorage.getItem('mm_variant');v=(mv==='en'||mv==='zh-hans'||mv==='zh-hant')?mv:(localStorage.getItem('mm_lang')==='en'?'en':localStorage.getItem('mm_lang')==='zh'?'zh-hant':null);}
+if(!v){var nl=(navigator.language||'').toLowerCase();v=nl.indexOf('zh')===0?((nl.indexOf('cn')>-1||nl.indexOf('hans')>-1||nl.indexOf('sg')>-1)?'zh-hans':'zh-hant'):(nl?'en':'zh-hant');}
+if(v==='zh-hans')document.write('<scr'+'ipt src="https://cdn.jsdelivr.net/npm/opencc-js@1.3.1/dist/umd/t2cn.js" integrity="sha384-P/OaFUnOIAgMkLxsXIAaP6WO3Wm09591cGX5bHbW4eCOeDxH9L8U3aWYf4cE4SYl" crossorigin="anonymous"><\/scr'+'ipt>');
+}catch(e){}})();</script>
 <script src="js/mm-strings.js"></script>
 <script>/* no-flash theme */(function(){try{var t=localStorage.getItem('mm-theme');if(t&&t!=='midnight')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />

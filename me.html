@@ -18,6 +18,12 @@ html[lang="en"] .sec h2 .zh{display:none}   /* en 模式:section 標題旁的英
 </style>
 <!-- i18n:登入頁,語言記在 localStorage(與主站共用 mm_lang);不載 js/i18n.js(會與 mm-strings 搶 data-i18n) -->
 <script>window.MM_USE_LANG_PREF=true;</script>
+<script>/* zh-hans:先同步載 OpenCC(繁→簡),mm-strings 才能建簡體字典;只簡中使用者下載 */(function(){try{
+var h=new URLSearchParams(location.search).get('hl'),v=(h==='en'||h==='zh-hans'||h==='zh-hant')?h:null;
+if(!v&&window.MM_USE_LANG_PREF){var mv=localStorage.getItem('mm_variant');v=(mv==='en'||mv==='zh-hans'||mv==='zh-hant')?mv:(localStorage.getItem('mm_lang')==='en'?'en':localStorage.getItem('mm_lang')==='zh'?'zh-hant':null);}
+if(!v){var nl=(navigator.language||'').toLowerCase();v=nl.indexOf('zh')===0?((nl.indexOf('cn')>-1||nl.indexOf('hans')>-1||nl.indexOf('sg')>-1)?'zh-hans':'zh-hant'):(nl?'en':'zh-hant');}
+if(v==='zh-hans')document.write('<scr'+'ipt src="https://cdn.jsdelivr.net/npm/opencc-js@1.3.1/dist/umd/t2cn.js" integrity="sha384-P/OaFUnOIAgMkLxsXIAaP6WO3Wm09591cGX5bHbW4eCOeDxH9L8U3aWYf4cE4SYl" crossorigin="anonymous"><\/scr'+'ipt>');
+}catch(e){}})();</script>
 <script src="js/mm-strings.js"></script>
 </head>
 <body>
@@ -32,7 +38,8 @@ html[lang="en"] .sec h2 .zh{display:none}   /* en 模式:section 標題旁的英
     <a href="theatres.html" data-i18n="nav_theatres">所有劇院</a>
     <a href="index.html" data-i18n="nav_map">演出地圖</a>
     <div class="hl-pick" role="group" aria-label="Language / 語言">
-      <a data-hl-link="zh-hant" href="?">繁中</a>
+      <a data-hl-link="zh-hant" href="?">繁</a>
+      <a data-hl-link="zh-hans" href="?hl=zh-hans">简</a>
       <a data-hl-link="en" href="?hl=en">EN</a>
     </div>
     <div class="theme-pick" id="themePick" role="group" aria-label="主題底色" data-i18n-aria="aria_theme">
@@ -179,21 +186,22 @@ function proxyImg(u){if(!u||!/^https?:\/\//i.test(u)||/(wsrv\.nl|weserv\.nl)/i.t
 // i18n:UI 字串走 mm-strings 的 MM_T(?hl=/localStorage 決定語言);en 模式國家/城市/劇院顯示資料原文。
 const T=window.MM_T||(k=>k), TN=(k,v)=>{let s=T(k);for(const n in(v||{}))s=s.replace('{'+n+'}',v[n]);return s;};
 const EN_UI=(window.MM_HL||'zh-hant')==='en';
+const MS=window.MM_S||(x=>x);   // zh-hans:資料層地名轉簡;其他語言 identity
 const S=MM.shows, st=MM.stats('past'), stAll=MM.stats();   // st=只算已看過（統計/大數字）；stAll=含未來（年份 chips）
 const isFut=d=>MM.isFuture(d);
 const update=d=>String(d||'').replace(/-/g,' / ');   // 2026-11-09 → "2026 / 11 / 09"（未來卡日期）
 // 中文頁：國家名顯示繁中；劇院名只顯示中文部分（存的是「English 中文」混合字串，太累）
 const COUNTRY_ZH={'United States':'美國','USA':'美國','United Kingdom':'英國','UK':'英國','Taiwan':'台灣','Japan':'日本','South Korea':'南韓','China':'中國','Hong Kong':'香港','Macau':'澳門','Singapore':'新加坡','Australia':'澳洲','New Zealand':'紐西蘭','Canada':'加拿大','Germany':'德國','France':'法國','Austria':'奧地利','Switzerland':'瑞士','Spain':'西班牙','Italy':'義大利','Netherlands':'荷蘭','Belgium':'比利時','Sweden':'瑞典','Norway':'挪威','Denmark':'丹麥','Finland':'芬蘭','Ireland':'愛爾蘭','Poland':'波蘭','Czech Republic':'捷克','Hungary':'匈牙利','Portugal':'葡萄牙','Mexico':'墨西哥','Brazil':'巴西','Argentina':'阿根廷','United Arab Emirates':'阿聯','UAE':'阿聯','Philippines':'菲律賓','Malaysia':'馬來西亞','Thailand':'泰國','Indonesia':'印尼','India':'印度','Israel':'以色列','Turkey':'土耳其','South Africa':'南非','Russia':'俄羅斯','Vietnam':'越南','Ukraine':'烏克蘭','Bulgaria':'保加利亞','Chile':'智利','Colombia':'哥倫比亞','Croatia':'克羅埃西亞','Egypt':'埃及','Estonia':'愛沙尼亞','Greece':'希臘','Jersey':'澤西島','Latvia':'拉脫維亞','Lithuania':'立陶宛','Peru':'秘魯','Romania':'羅馬尼亞','Serbia':'塞爾維亞','Slovakia':'斯洛伐克','Slovenia':'斯洛維尼亞'};
-const countryZh=c=>EN_UI?(c||''):(COUNTRY_ZH[c]||c||'');
+const countryZh=c=>EN_UI?(c||''):MS(COUNTRY_ZH[c]||c||'');
 const _cjk=/[぀-ヿ㐀-鿿가-힯豈-﫿]/;   // 中日韓：假名+CJK+諺文+相容(讓日韓場館也抽得到當地名)
 const _HALL=new Set(['大劇院','中劇院','小劇院','大劇場','中劇場','小劇場','音樂廳','演奏廳','戲劇廳','歌劇廳','演藝廳','表演廳','實驗劇場','排練場','大廳','小廳']);
 // 劇院名：抽中文部分（存的是「English 中文」混合），去掉「大/中/小劇院」等廳別後綴，臺→台，
 // 讓同一劇院不同廳合併成同一個名字（臺中國家歌劇院 大劇院 → 台中國家歌劇院）。整個是館名的不砍（上海大劇院保留）。
 const venueZh=v=>{if(EN_UI)return v||'';if(!v)return v||'';
   const t=String(v).split(/\s+/).filter(x=>_cjk.test(x));
-  if(!t.length)return v;
+  if(!t.length)return MS(v);
   const core=t.filter(x=>!_HALL.has(x));
-  return (core.length?core:t).join(' ').replace(/臺/g,'台');};
+  return MS((core.length?core:t).join(' ').replace(/臺/g,'台'));};
 const FLAG={};   // 不顯示國旗 emoji（使用者要求）；所有 FLAG[x] 取用處皆有 ||'' fallback → 空字串
 const MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 const fdt=d=>{if(!d)return T('date_tbd');const[y,m,dd]=d.split('-');
@@ -370,7 +378,7 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
 /* ---------- MAP : dotted world (two-tone, no lines) + always-on labels + ranked list ---------- */
 const CITYZH={"Aarhus": "奧胡斯", "Adelaide": "阿得雷德", "Aichi": "愛知", "Albuquerque": "阿布奎基", "Amsterdam": "阿姆斯特丹", "Antwerp": "安特衛普", "Atlanta": "亞特蘭大", "Auckland": "奧克蘭", "Austin": "奧斯汀", "Baltimore": "巴爾的摩", "Barcelona": "巴塞隆納", "Beijing": "北京", "Belfast": "貝爾法斯特", "Berlin": "柏林", "Birmingham": "伯明罕", "Boston": "波士頓", "Brighton": "布萊頓", "Brisbane": "布里斯本", "Bristol": "布里斯托", "Brussels": "布魯塞爾", "Budapest": "布達佩斯", "Buenos Aires": "布宜諾斯艾利斯", "Buffalo": "水牛城", "Calgary": "卡加利", "Cambridge": "劍橋", "Cardiff": "卡地夫", "Changsha": "長沙", "Changzhou": "常州", "Charlotte": "夏洛特", "Chengdu": "成都", "Chiayi": "嘉義", "Chicago": "芝加哥", "Chongqing": "重慶", "Cincinnati": "辛辛那提", "Cleveland": "克里夫蘭", "Cologne": "科隆", "Columbus": "哥倫布", "Copenhagen": "哥本哈根", "Daegu": "大邱", "Dallas": "達拉斯", "Denver": "丹佛", "Detroit": "底特律", "Dongguan": "東莞", "Dubai": "杜拜", "Dublin": "都柏林", "Edinburgh": "愛丁堡", "Edmonton": "愛德蒙頓", "Firenze": "佛羅倫斯", "Fort Lauderdale": "羅德岱堡", "Fort Worth": "沃斯堡", "Frankfurt": "法蘭克福", "Fukuoka": "福岡", "Fuzhou": "福州", "Ghent": "根特", "Gifu": "岐阜", "Glasgow": "格拉斯哥", "Gothenburg": "哥德堡", "Grand Rapids": "大急流城", "Guangzhou": "廣州", "Göteborg": "哥德堡", "Haikou": "海口", "Hamburg": "漢堡", "Hangzhou": "杭州", "Harbin": "哈爾濱", "Hefei": "合肥", "Helsinki": "赫爾辛基", "Hengyang": "衡陽", "Hiroshima": "廣島", "Houston": "休士頓", "Hsinchu": "新竹", "Hyogo": "兵庫", "Jiaxing": "嘉興", "Jinan": "濟南", "Kanagawa": "神奈川", "Kansas City": "堪薩斯城", "Kaohsiung": "高雄", "Kunshan": "崑山", "Köln": "科隆", "København": "哥本哈根", "København V": "哥本哈根", "Langfang": "廊坊", "Las Vegas": "拉斯維加斯", "Leeds": "里茲", "Liverpool": "利物浦", "London": "倫敦", "Los Angeles": "洛杉磯", "Louisville": "路易斯維爾", "Lyon": "里昂", "Madison": "麥迪遜", "Madrid": "馬德里", "Maihama": "舞濱", "Manchester": "曼徹斯特", "Melbourne": "墨爾本", "Memphis": "曼菲斯", "Mexico City": "墨西哥市", "Miami": "邁阿密", "Milano": "米蘭", "Milwaukee": "密爾瓦基", "Minneapolis": "明尼阿波利斯", "Monterrey": "蒙特雷", "Montreal": "蒙特婁", "Munich": "慕尼黑", "México": "墨西哥市", "München": "慕尼黑", "Nagoya": "名古屋", "Nanchang": "南昌", "Nanjing": "南京", "Nanning": "南寧", "Nantong": "南通", "Napoli": "拿坡里", "Nashville": "納許維爾", "New Orleans": "紐奧良", "New Taipei": "新北", "New York": "紐約", "Newcastle": "紐卡索", "Ningbo": "寧波", "Nottingham": "諾丁罕", "Oklahoma City": "奧克拉荷馬市", "Omaha": "奧馬哈", "Orlando": "奧蘭多", "Osaka": "大阪", "Oslo": "奧斯陸", "Ottawa": "渥太華", "Oxford": "牛津", "Padova": "帕多瓦", "Paris": "巴黎", "Penghu": "澎湖", "Perth": "伯斯", "Philadelphia": "費城", "Phoenix": "鳳凰城", "Pingtung": "屏東", "Pittsburgh": "匹茲堡", "Portland": "波特蘭", "Prague": "布拉格", "Praha": "布拉格", "Providence": "普羅維登斯", "Qidong": "啓東", "Qingdao": "青島", "Quzhou": "衢州", "Richmond": "里奇蒙", "Rio de Janeiro": "里約熱內盧", "Roma": "羅馬", "Rotterdam": "鹿特丹", "Salt Lake City": "鹽湖城", "San Antonio": "聖安東尼奧", "San Diego": "聖地牙哥", "San Francisco": "舊金山", "San Jose": "聖荷西", "Sapporo": "札幌", "Seattle": "西雅圖", "Seoul": "首爾", "Shanghai": "上海", "Sheffield": "雪菲爾", "Shenyang": "瀋陽", "Shenzhen": "深圳", "Singapore": "新加坡", "St. Louis": "聖路易", "Stockholm": "斯德哥爾摩", "Stuttgart": "斯圖加特", "Suzhou": "蘇州", "Swansea": "斯旺西", "Sydney": "雪梨", "São Paulo": "聖保羅", "Taichung": "台中", "Taipei": "台北", "Taitung": "台東", "Taiyuan": "太原", "Taizhou": "台州", "Takarazuka (兵庫)": "寶塚", "Tampa": "坦帕", "Tianjin": "天津", "Tokyo": "東京", "Tokyo (日比谷)": "東京", "Torino": "杜林", "Toronto": "多倫多", "Utrecht": "烏特勒支", "Vancouver": "溫哥華", "Vienna": "維也納", "Warsaw": "華沙", "Warszawa": "華沙", "Washington": "華盛頓", "Weifang": "濰坊", "Wellington": "威靈頓", "Wien": "維也納", "Wimbledon": "溫布頓", "Wuhan": "武漢", "Wuxi": "無錫", "Xi'an": "西安", "Yantai": "煙台", "Yinchuan": "銀川", "Yokohama": "橫濱", "York": "約克", "Yunlin": "雲林", "Zhengzhou": "鄭州", "Zhuhai": "珠海", "Zhuji": "諸暨", "Zibo": "淄博", "Zurich": "蘇黎世", "Zürich": "蘇黎世", "连云港": "連雲港"};   // 英文→繁中城市對照(opencc s2t + cities_tw 覆蓋，源自 data/i18n_maps.json)
-function cityName(c){if(!c)return c;const base=String(c).replace(/,\s*[A-Za-z.]{2,}$/,'').trim();return EN_UI?(base||c):(CITYZH[c]||CITYZH[base]||c);}   // en 回原文(剝州別後綴)；zh 找中文,找不到回原文
+function cityName(c){if(!c)return c;const base=String(c).replace(/,\s*[A-Za-z.]{2,}$/,'').trim();return EN_UI?(base||c):MS(CITYZH[c]||CITYZH[base]||c);}   // en 回原文(剝州別後綴)；zh 找中文,找不到回原文
 function cityHasZh(c){return cityName(c)!==c;}
 function project(lat,lng){return[(lng+180)/360,(90-lat)/180];}
 // ===== 地圖縮放/平移：view = 可視窗左上角(x,y, base 0-1) + 縮放 z =====

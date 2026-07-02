@@ -82,16 +82,25 @@ export default {
     const canonBase = `${url.origin}/${seg}`;
     const canon = hl ? `${canonBase}?hl=${hl}` : canonBase;
     const title = display
-      ? (lang === 'en' ? `${display}’s Musicals — MusicalMap` : `${display} 的音樂劇足跡 — My Musicals | MusicalMap`)
-      : (lang === 'en' ? 'This page doesn’t exist | MusicalMap' : '找不到這個公開頁 | MusicalMap');
+      ? (lang === 'en' ? `${display}’s Musicals — MusicalMap`
+        : lang === 'zh-hans' ? `${display} 的音乐剧足迹 — My Musicals | MusicalMap`
+        : `${display} 的音樂劇足跡 — My Musicals | MusicalMap`)
+      : (lang === 'en' ? 'This page doesn’t exist | MusicalMap'
+        : lang === 'zh-hans' ? '找不到这个公开页 | MusicalMap'
+        : '找不到這個公開頁 | MusicalMap');
     const desc = display
       ? (lang === 'en'
         ? `Musicals ${display} has seen around the world — poster wall, theatre passport and a map of every city. Build your own musical passport on MusicalMap.`
+        : lang === 'zh-hans'
+        ? `${display} 在世界各地看过的音乐剧——海报墙、观剧护照与足迹地图。用 MusicalMap 建立你自己的音乐剧护照。`
         : `${display} 在世界各地看過的音樂劇——海報牆、觀劇護照與足跡地圖。用 MusicalMap 建立你自己的音樂劇護照。`)
-      : (lang === 'en' ? 'It may have been removed, or the owner hasn’t made it public.' : '這個收藏頁不存在,或擁有者尚未公開。');
-    // hreflang:各語言版互列(zh-hant=無參數版=x-default;zh-hans P1 顯示同 zh-hant,先不列)
+      : (lang === 'en' ? 'It may have been removed, or the owner hasn’t made it public.'
+        : lang === 'zh-hans' ? '这个收藏页不存在,或拥有者尚未公开。'
+        : '這個收藏頁不存在,或擁有者尚未公開。');
+    // hreflang:各語言版互列(zh-Hant=無參數版=x-default;en/zh-hans 各帶參數)
     const hreflang = display ? [
       `<link rel="alternate" hreflang="zh-Hant" href="${esc(canonBase)}" />`,
+      `<link rel="alternate" hreflang="zh-Hans" href="${esc(canonBase)}?hl=zh-hans" />`,
       `<link rel="alternate" hreflang="en" href="${esc(canonBase)}?hl=en" />`,
       `<link rel="alternate" hreflang="x-default" href="${esc(canonBase)}" />`,
     ].join('\n') : '';

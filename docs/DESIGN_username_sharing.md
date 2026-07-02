@@ -129,7 +129,8 @@ Worker 邏輯（`my.themusicalmap.com/<handle>`）：
 - ✅ **P1（v1.12.0）公開頁 u.html 繁中/英文**：`js/mm-strings.js` 字典＋`?hl=` 解析＋切換 pills；u-view runtime 全 `MM_T()`；en 模式地名/館名用資料原文；Worker 依 `?hl` 出 lang/title/meta＋hreflang 3 條＋canonical 各指自己；**u.html 移除 js/i18n.js**（其 applyStatic 同吃 data-i18n、會把本頁 key 蓋成字面值——兩套系統不可同頁共存）。e2e 19＋Worker 12 全 PASS。
 - ✅ **P2（v1.13.0）me.html 繁中/英文**：mm-strings 擴充 me 專屬字典（登入閘/demo 橫幅/分享+帳號設定+onboarding 全訊息/徽章/persona/detail）；靜態 data-i18n + 4 個 script IIFE 動態 `MM_T()`；語言記在 localStorage `mm_lang`（與主站共用）；en 模式 countryZh/cityName/venueZh 回資料原文。e2e：繁中 onboarding 回歸 23 項 + 英文版 18 項全 PASS；截圖親驗。過程修：漏 `logout` key、`cityName`/FAB 漏接 EN_UI（截圖抓到城市仍中文）。
 - ✅ **P3（v1.14.0）me-input.html 繁中/英文**：字典擴充 me-input 全 key（mi_/fld_/ph_/geo_/pick_/run_/recent_/added_ 等 ~70）；靜態掛 data-i18n（含 data-i18n-html 給含 `<br>`/`<b>` 的字串）；動態渲染模板（搜尋/手動表單/選製作/選城市/詳情/確認/toast/dateLabel EN_UI 分支/renderRecent）全 `MM_T()`；MON_ZH/yearOptions/月日 select 英文化；iframe 語言跟隨父頁 mm_lang。e2e 繁中回歸 + 英文版(含 embed 模式) + 手動表單零殘留全 PASS；截圖親驗。
-- [ ] P4：zh-hans 接 OpenCC（mm-strings 目前 fallback 繁中）＋ Worker zh-hans meta
+- ✅ **P4（v1.15.0）zh-hans 簡體**：mm-strings 在 zh-hans 用 OpenCC(tw→cn) runtime 轉繁中字典（沿用主站機制）；OpenCC 只在偵測到 zh-hans 時 `document.write` 條件載入（繁中/英文使用者不下載）；localStorage 改讀 `mm_variant`（含簡繁，與主站精確共用）；u.html/me.html 加「简」pill；資料層地名/劇名譯名經 `MM_S`(OpenCC) 轉簡（u-view `mapped.zh` + countryZh/cityName/venueZh）；Worker 補 zh-hans title/desc/hreflang。e2e：u/me zh-hans 簡體正確 + 繁中/英文回歸 + 英文不下載 OpenCC + Worker zh-hans 全 PASS；截圖親驗簡繁差異。**足跡側多語化 P1–P4 全竣工。**
+  - 已知小限制：me.html（登入者自己頁）的劇名中文譯名在簡體模式仍顯示繁體（資料為 MM.shows 共享，未逐處包 MS；u.html 公開頁已完整簡體）。海報圖內文字是圖片無法轉。
 
 ## 前端改動清單（v1.10.0 已實作，e2e 23 項 PASS + u-view 回歸 6 項 PASS）
 

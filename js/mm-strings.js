@@ -257,7 +257,11 @@
   if (!hl && window.MM_HL && STR[window.MM_HL === 'zh-hans' ? 'zh-hant' : window.MM_HL]) hl = window.MM_HL; // Worker 注入
   // 登入頁(me.html)設 MM_USE_LANG_PREF → 讀主站共用的 mm_lang 偏好(en/zh)。公開頁 u.html 不設(語言只認 ?hl=,SEO 需求)。
   if (!hl && window.MM_USE_LANG_PREF) {
-    try { var lp = localStorage.getItem('mm_lang'); if (lp === 'en') hl = 'en'; else if (lp === 'zh') hl = 'zh-hant'; } catch (e) {}
+    try {
+      var mv = localStorage.getItem('mm_variant');   // 主站存 en/zh-hans/zh-hant(精確含簡繁),優先
+      if (mv === 'en' || mv === 'zh-hans' || mv === 'zh-hant') hl = mv;
+      else { var lp = localStorage.getItem('mm_lang'); if (lp === 'en') hl = 'en'; else if (lp === 'zh') hl = 'zh-hant'; }
+    } catch (e) {}
   }
   if (!hl) {
     var nl = (navigator.language || '').toLowerCase();
@@ -265,7 +269,16 @@
     else if (nl) hl = 'en';
     else hl = 'zh-hant';
   }
-  var D = STR[hl === 'zh-hans' ? 'zh-hant' : hl] || STR['zh-hant'];
+  // zh-hans:用 OpenCC(tw→cn)把繁中字典 runtime 轉簡體(沿用主站 i18n.js 機制);OpenCC 未載入則降級繁中。
+  var _conv = null;
+  if (hl === 'zh-hans') {
+    try { _conv = window.OpenCC && window.OpenCC.Converter({ from: 'tw', to: 'cn' }); } catch (e) {}
+    if (_conv && !STR['zh-hans']) { var o = {}; for (var k in STR['zh-hant']) o[k] = _conv(STR['zh-hant'][k]); STR['zh-hans'] = o; }
+  }
+  var D = STR[hl] || STR['zh-hant'];
+  // MM_S:把「資料層繁中文字」(劇院/城市/國家名,原始資料)在 zh-hans 也轉簡;其他語言 identity。
+  // u-view.js / me.html 的 countryZh/cityName/venueZh 用它,讓簡體頁不殘留繁體地名。
+  window.MM_S = _conv ? function (t) { try { return _conv(String(t == null ? '' : t)); } catch (e) { return t; } } : function (t) { return t; };
 
   window.MM_STR = STR;
   window.MM_HL = hl;
@@ -278,7 +291,7 @@
   // ---- 套用到靜態 DOM:data-i18n(textContent)/-title/-aria;<html lang>;語言切換 pills ----
   function apply() {
     document.documentElement.lang = hl === 'en' ? 'en' : (hl === 'zh-hans' ? 'zh-Hans' : 'zh-Hant');
-    if (window.MM_USE_LANG_PREF) { try { localStorage.setItem('mm_lang', hl === 'en' ? 'en' : 'zh'); } catch (e) {} } // 記住偏好(與主站共用)
+    if (window.MM_USE_LANG_PREF) { try { localStorage.setItem('mm_lang', hl === 'en' ? 'en' : 'zh'); localStorage.setItem('mm_variant', hl); } catch (e) {} } // 記住偏好(mm_variant 含簡繁,與主站共用)
     document.querySelectorAll('[data-i18n]').forEach(function (el) { el.textContent = window.MM_T(el.getAttribute('data-i18n')); });
     document.querySelectorAll('[data-i18n-html]').forEach(function (el) { el.innerHTML = window.MM_T(el.getAttribute('data-i18n-html')); });  // 含 <br>/<b> 的字串(字典值為信任的 UI 文案,非使用者輸入)
     document.querySelectorAll('[data-i18n-title]').forEach(function (el) { el.title = window.MM_T(el.getAttribute('data-i18n-title')); });
@@ -289,8 +302,7 @@
       var u = new URL(location.href);
       if (t === 'zh-hant') u.searchParams.delete('hl'); else u.searchParams.set('hl', t);
       a.href = u.pathname + (u.search || '');
-      var active = (t === hl) || (t === 'zh-hant' && hl === 'zh-hans');
-      if (active) a.setAttribute('aria-current', 'true');
+      if (t === hl) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current');
     });
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', apply);
