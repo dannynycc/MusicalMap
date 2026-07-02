@@ -11,6 +11,12 @@
 
 ---
 
+## [v1.15.2] - 2026-07-02 20:58
+### 文件 — Google 登入品牌顯示(supabase.co)查證結論存檔
+- **web 查證確定結論寫入 `docs/SETUP_ACCOUNTS.md`(新增「Google 登入品牌顯示」段)+ `docs/SETUP_MY_SUBDOMAIN.md`(收尾清單加 auth callback 代理)**:OAuth 同意畫面顯示 `xxx.supabase.co` 是官方雙方確認的規則——Google「App 未通過品牌驗證前只顯示應用程式網域」+ Supabase 免費版「回呼網域無法更改」;**只填 App name 無效**,需品牌驗證+In production+發佈。
+- 三種根治法:(A)Google 品牌驗證免費但要等+處理 supabase.co 無法驗證;(B)Supabase Pro Custom Domain $10/月;(C)**推薦免費根治=Cloudflare Worker 代理 auth callback 到 auth.themusicalmap.com,跟主站遷移+my. Worker 綁一起做**。
+- MD sweep:SETUP_ACCOUNTS/SETUP_MY_SUBDOMAIN 已補;其餘 md 本次(gate/OAuth 修正)未涉及、無過時。
+
 ## [v1.15.1] - 2026-07-02 17:41
 ### 修正 — 登出後 gate 卡「Loading…」+ 登入畫面美化(真人 flow 驗證)
 - **修真 bug**:`gate-msg` 掛了 `data-i18n="gate_loading"`(P2 誤加),`showLogin()` 動態設登入文案後,mm-strings 的 `apply()`(DOMContentLoaded)掃到 data-i18n **把它蓋回「Loading…」**→ 登出後出現「Loading…」與登入按鈕並存。修:gate-msg 移除 data-i18n(它是 showGate 動態容器);sb 建立後立即 `showGate(T('gate_loading'))` 用當前語言。**e2e stub 沒抓到(沒測真實無 session 的 gate flow),真人才現形。**
