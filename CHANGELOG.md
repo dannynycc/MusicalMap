@@ -11,6 +11,17 @@
 
 ---
 
+## [v1.10.0] - 2026-07-02 12:27
+### 新功能 — username 帳號身份化(DESIGN_username_sharing 決策一+二實作)
+- **DB migration `supabase/add_handle_aliases.sql`(待 Dashboard 執行)**:`handle_aliases` 改名歷史表(RLS 開、無 policy=不可枚舉)+ `rename_handle`(改名唯一入口;union 查重「他人現用名+他人舊 alias」防 GitHub 式撞車;改回自己舊名合法)+ `handle_available` 升級(含 alias+保留字、排除自己)+ `resolve_handle`(舊名→現用名,只回公開帳號)+ `handle_reserved`(保留字集中一處)。
+- **onboarding 強制化**:首次登入無 handle 必須取名(無 X、ESC/backdrop 關不掉、唯一出口=登出);欄位**空白不預填**(label 在上,無 placeholder)+**可用建議 chips**(種子=email 前綴、逐顆預驗可用、主動點才填)。
+- **分享面板 handle 改唯讀**:顯示固定網址+「帳號設定」連結;儲存只動公開/票價/座位開關。
+- **帳號設定 modal(新)**:改 username(走 rename_handle,提示「舊網址自動轉新」)+ 顯示名稱。
+- **舊網址自動轉新**:u-view.js 查無 handle → `resolve_handle` 解析 301-style `location.replace`;RPC 未部署靜默降級。**順帶修 bug**:訪客輸入大寫 `?u=Danny` 因 `.eq` 區分大小寫查不到 → 統一小寫後命中。
+- **降級保護**:migration 未套用時 rename_handle 不存在 → 前端自動退回舊 upsert(unique 約束保底),功能不中斷。
+- **驗證**:playwright 真 e2e 23 項 PASS(強制/chips 只列可用/ESC 關不掉/唯讀/改名 taken→成功/不重彈)+ u-view 真線上回歸 6 項 PASS(danny/Danny/不存在);截圖親驗 onboarding 與帳號設定 render。過程抓到並修掉 `.share-field{display:block}` 蓋掉 `hidden` 的 CSS 特異性 bug(補 `.share-field[hidden]{display:none}`)。
+- MD sweep:README(分享頁段改述新機制)、SETUP_ACCOUNTS(migration 清單+降級行為)、DESIGN_username_sharing(清單勾選+狀態)。
+
 ## [v1.9.8] - 2026-07-02 12:08
 ### 設計 — my.themusicalmap.com/<handle> 帳號身份 + 分享網址架構定案(含實證)
 - 新增 `docs/DESIGN_username_sharing.md`:username 從「分享面板暱稱」升級為「帳號固定身份」的完整實作依據。**待實作**。

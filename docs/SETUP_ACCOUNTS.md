@@ -23,6 +23,7 @@
    - `supabase/add_share_privacy.sql` —— **v1.4.0 公開分享頁必跑**：profiles 加全域欄位隱私開關(`show_price` / `show_seat`，預設關)；**收緊 RLS**(sightings 公開讀取不再讓 anon 直接讀他人整列)；新增 `public_sightings(handle)` SECURITY DEFINER 遮罩函式(依開關決定 price/seat 是否回傳、note 一律不回)與 `handle_available(handle)` 查重函式。**沒跑的話公開頁 `u.html` 讀不到資料**(`js/u-view.js` 改讀此函式;v1.6.0 前為舊 `js/u.js`)。⚠️ 此 SQL 與新版前端必須**同時上線**(RLS 一收緊，舊版直接 `select("*")` 就會失效)。
    - `supabase/add_public_rating.sql` —— **v1.6.0 選跑**：`public_sightings` 多回傳 `rating`(星星)/`precision`(日期精度)，讓改版後的公開頁 `u.html` 顯示星星評分與正確日期粒度。皆非敏感;不跑也能運作(u-view.js 防禦式處理，只是星星不顯示、年精度日期顯示成完整日期)。
    - `supabase/add_handle_hardening.sql` —— **v1.9.7 資安健檢**：修 handle 大小寫碰撞(建 `profiles_handle_lower_uidx on lower(handle)`,取代區分大小寫的舊唯一約束 → `Danny`/`danny` 不再並存混頁)+ 加 `handle_format` CHECK(`^[A-Za-z0-9_-]{1,30}$`,對齊前端 `norm()`)。可重複執行。
+   - `supabase/add_handle_aliases.sql` —— **v1.10.0 username 帳號身份化必跑**：`handle_aliases` 改名歷史表(舊名永久保留給原主)+ `rename_handle`(改名唯一入口,union 查重防撞車)+ `handle_available` 升級(含 alias/保留字)+ `resolve_handle`(舊網址→現用名,u.html 自動轉向)。**沒跑的話**:onboarding/改名自動退回舊 upsert 路徑(unique 約束保底,功能可用),但改名**不會**留 301 轉向、舊網址直接失效。可重複執行。
 
 ## C. 開 Google 登入
 1. **Authentication → Sign In / Providers → Google → Enable**。

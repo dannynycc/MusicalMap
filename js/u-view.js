@@ -438,14 +438,23 @@
      BOOT — resolve handle → profile gate → RPC rows → map to MM.shows → render
      ========================================================================== */
   async function boot() {
-    const handle = new URLSearchParams(location.search).get('u');
+    const rawHandle = new URLSearchParams(location.search).get('u');
+    const handle = (rawHandle || '').trim().toLowerCase();   // handle 一律小寫存（訪客打 Danny 也要命中 danny）
     if (!cfg.READY || !handle || typeof supabase === 'undefined') { showEmpty(); return; }
     const sb = supabase.createClient(cfg.SUPABASE_URL, cfg.SUPABASE_ANON_KEY);
 
     // profile gate
     const { data: prof, error: pErr } = await sb.from('profiles')
       .select('id, display_name, is_public').eq('handle', handle).maybeSingle();
-    if (pErr || !prof || !prof.is_public) { showEmpty(); return; }
+    if (pErr || !prof || !prof.is_public) {
+      // 查無 → 可能是改名前的舊網址：resolve_handle 解析成現用名並轉過去（舊分享連結永久有效）。
+      // RPC 未部署（migration 未跑）→ 靜默略過，照舊顯示 not-found。
+      try {
+        const { data: nh } = await sb.rpc('resolve_handle', { p_handle: handle });
+        if (nh && nh !== handle) { location.replace(location.pathname + '?u=' + encodeURIComponent(nh)); return; }
+      } catch (e) {}
+      showEmpty(); return;
+    }
 
     // catalog (posters + zh names + venue upgrade); failure is non-fatal
     let cat = { titles: [], posters: {}, productions: {}, venues: [] };

@@ -572,6 +572,7 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
 .sharemodal h2{margin:0 0 4px;font-size:20px;font-weight:800}
 .share-lead{margin:0 0 18px;font-size:13.5px;color:var(--ink2,#666);line-height:1.5}
 .share-field{display:block;margin-bottom:14px}
+.share-field[hidden]{display:none}   /* .share-field 的 display:block 會蓋掉 hidden 的 UA 樣式，必須明寫 */
 .share-field>span{display:block;font-size:12.5px;font-weight:700;color:var(--ink2,#666);margin-bottom:6px}
 .handle-row{display:flex;align-items:center;border:1.5px solid var(--hair2,rgba(0,0,0,.18));border-radius:10px;overflow:hidden;background:var(--bg,#fff)}
 .handle-row .handle-prefix{padding:0 2px 0 11px;font-size:13px;color:var(--ink3,#999);font-family:var(--mono,monospace);white-space:nowrap}
@@ -593,6 +594,11 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
 .share-actions .btn-ghost{background:none;border:1px solid var(--hair2,rgba(0,0,0,.2));color:var(--ink2,#666)}
 .share-actions .btn-gold{background:var(--gold,#c9a85c);color:#1a1407}
 .share-actions .btn-gold[disabled]{opacity:.5;cursor:not-allowed}
+.handle-chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:9px;align-items:center}
+.handle-chips[hidden]{display:none}
+.chips-tip{font-size:12px;color:var(--ink3,#999)}
+.handle-chips button{border:1px solid var(--gold,#c9a85c);background:color-mix(in srgb,var(--gold,#c9a85c) 10%,transparent);color:var(--ink1,#111);border-radius:999px;padding:5px 13px;font-size:12.5px;font-weight:700;cursor:pointer;font-family:var(--mono,monospace)}
+.handle-cur{flex:1;padding:10px 11px;font-family:var(--mono,monospace);font-size:12.5px;color:var(--ink1,#111);word-break:break-all}
 </style>
 <div class="sharemodal" id="shareModal" hidden>
   <div class="sharemodal-bd" id="shareModalBd"></div>
@@ -601,28 +607,39 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
     <h2 id="shareTitle">分享我的收藏</h2>
     <p class="share-lead" id="shareLead">建立你的專屬公開頁，把看過的每一齣音樂劇分享給朋友。</p>
 
-    <label class="share-field">
+    <!-- 分享模式：網址唯讀（username＝帳號身份，改名走「帳號設定」） -->
+    <div class="share-field" id="handleView" hidden>
       <span>你的專屬網址</span>
-      <div class="handle-row">
-        <span class="handle-prefix">…/u.html?u=</span>
-        <input id="pubHandle" placeholder="your-name" autocomplete="off" spellcheck="false" maxlength="30" />
-      </div>
-      <span class="handle-status muted" id="handleStatus"></span>
-    </label>
-
-    <label class="share-switch"><input type="checkbox" id="pubPublic" /> <span>公開我的收藏頁</span></label>
-    <div class="share-sub">關閉時，就算有連結別人也看不到你的收藏。</div>
-
-    <div class="share-fields-group" id="shareFieldsGroup" hidden>
-      <div class="sfg-title">公開頁要顯示哪些敏感資訊？</div>
-      <label class="share-switch"><input type="checkbox" id="showPrice" /> <span>顯示票價</span></label>
-      <label class="share-switch"><input type="checkbox" id="showSeat" /> <span>顯示座位</span></label>
-      <div class="share-sub">筆記永遠不會出現在公開頁。</div>
+      <div class="handle-row"><span class="handle-cur" id="handleCur"></span></div>
+      <span class="handle-status muted">網址名稱是你的帳號身份，要更改請到 <a href="#" id="openAcct" style="color:var(--gold,#c9a85c);font-weight:700">帳號設定</a>。</span>
     </div>
 
-    <div class="share-link" id="shareLink" hidden>
-      <a id="shareUrl" href="#" target="_blank" rel="noopener"></a>
-      <button type="button" id="shareCopy">複製</button>
+    <!-- onboarding 模式：空白輸入 + 可用建議 chips（不預填，label 在上、非 placeholder） -->
+    <label class="share-field" id="handleEdit" hidden>
+      <span>網址名稱（英文、數字、底線或連字號，1–30 字）</span>
+      <div class="handle-row">
+        <span class="handle-prefix">…/u.html?u=</span>
+        <input id="pubHandle" autocomplete="off" spellcheck="false" maxlength="30" />
+      </div>
+      <span class="handle-status muted" id="handleStatus"></span>
+      <div class="handle-chips" id="handleChips" hidden></div>
+    </label>
+
+    <div id="shareBody">
+      <label class="share-switch"><input type="checkbox" id="pubPublic" /> <span>公開我的收藏頁</span></label>
+      <div class="share-sub">關閉時，就算有連結別人也看不到你的收藏。</div>
+
+      <div class="share-fields-group" id="shareFieldsGroup" hidden>
+        <div class="sfg-title">公開頁要顯示哪些敏感資訊？</div>
+        <label class="share-switch"><input type="checkbox" id="showPrice" /> <span>顯示票價</span></label>
+        <label class="share-switch"><input type="checkbox" id="showSeat" /> <span>顯示座位</span></label>
+        <div class="share-sub">筆記永遠不會出現在公開頁。</div>
+      </div>
+
+      <div class="share-link" id="shareLink" hidden>
+        <a id="shareUrl" href="#" target="_blank" rel="noopener"></a>
+        <button type="button" id="shareCopy">複製</button>
+      </div>
     </div>
 
     <div class="share-actions">
@@ -631,32 +648,53 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
     </div>
   </div>
 </div>
+
+<!-- ===== 帳號設定 modal（改 username / 顯示名稱；username 改名走 rename_handle，舊網址自動轉新）===== -->
+<div class="sharemodal" id="acctModal" hidden>
+  <div class="sharemodal-bd" id="acctBd"></div>
+  <div class="sharemodal-card">
+    <button type="button" class="sharemodal-x" id="acctX" aria-label="關閉">✕</button>
+    <h2>帳號設定</h2>
+    <p class="share-lead">網址名稱是你的帳號身份。更改後<b>舊網址會自動轉到新網址</b>，已分享出去的連結不會壞；舊名稱會永久保留給你，別人拿不走。</p>
+    <label class="share-field">
+      <span>網址名稱 username</span>
+      <div class="handle-row">
+        <span class="handle-prefix">…/u.html?u=</span>
+        <input id="acctHandle" autocomplete="off" spellcheck="false" maxlength="30" />
+      </div>
+      <span class="handle-status muted" id="acctStatus"></span>
+    </label>
+    <label class="share-field">
+      <span>顯示名稱（公開頁的標題）</span>
+      <div class="handle-row"><input id="acctDisplay" maxlength="40" style="padding-left:11px" /></div>
+    </label>
+    <div class="share-actions">
+      <button type="button" class="btn-ghost" id="acctCancel">取消</button>
+      <button type="button" class="btn-gold" id="acctSave">儲存</button>
+    </div>
+  </div>
+</div>
 <script>
-/* ===== 分享設定 + 首次登入 onboarding =====
-   資料：profiles(handle unique / is_public / show_price / show_seat)。
-   handle 查重走 SECURITY DEFINER RPC handle_available（繞過 RLS，普通 SELECT 會被 RLS 藏私密帳號而誤判可用）。
-   RPC 尚未部署時（本機測試）→ 即時查重靜默略過，改由 save 時 unique 約束當最後防線，不顯示假的「可用」。 */
+/* ===== 分享設定 + 帳號設定 + 首次登入 onboarding（docs/DESIGN_username_sharing.md）=====
+   username＝帳號固定身份：首次登入強制設定（onboarding）、只能在「帳號設定」改名。
+   改名唯一入口＝rename_handle RPC（舊名永久保留給原主＋舊網址自動轉新）；
+   migration 未套用時（rename_handle 不存在）自動退回舊 upsert 路徑，unique 約束當最後防線。
+   onboarding 欄位空白不預填（隱私＋default-effect），給「預驗可用」的建議 chips，種子＝email 前綴。
+   查重走 SECURITY DEFINER RPC handle_available（繞過 RLS；已含 alias/保留字 union 查重）。 */
 (function(){
   const $=s=>document.getElementById(s);
-  const modal=$('shareModal');
-  let UID=null, CUR={handle:'',is_public:false,show_price:false,show_seat:false}, DISPLAY='';
-  let checkSeq=0, lastChecked=null, handleOK=false;
+  const modal=$('shareModal'), acct=$('acctModal');
+  let UID=null, CUR={handle:'',is_public:false,show_price:false,show_seat:false}, DISPLAY='', EMAIL='';
+  let FORCED=false;   // onboarding 強制模式（無 handle 不放行）
 
   const norm=v=>String(v||'').trim().toLowerCase().replace(/[^a-z0-9_-]/g,'').slice(0,30);
-  const RESERVED=new Set(['u','me','index','admin','api','app','www','null','undefined','theatres','privacy','terms']);
+  // 與 DB handle_reserved()（supabase/add_handle_aliases.sql）同步，兩邊都要改
+  const RESERVED=new Set(['u','me','index','admin','api','app','www','my','null','undefined','theatres','privacy','terms','login','logout','signup','settings','account','stats','static','assets','js','css','data','posters','logos','en','zh-hant','zh-hans','help','about','official','map','share']);
   function shareUrl(h){return location.origin+location.pathname.replace(/[^\/]*$/,'u.html')+'?u='+encodeURIComponent(h);}
-
-  function renderLink(){
-    const h=norm($('pubHandle').value), pub=$('pubPublic').checked;
-    const box=$('shareLink');
-    if(pub&&h){box.hidden=false;const a=$('shareUrl');a.textContent=shareUrl(h);a.href=shareUrl(h);}
-    else box.hidden=true;
-  }
-  function syncFieldsVisibility(){ $('shareFieldsGroup').hidden=!$('pubPublic').checked; }
-
   const sb=()=>window.mmSb;
+
   async function isAvailable(h){
-    // 回傳 true/false/null(無法判定)。與目前自己的 handle 相同→視為可用。
+    // 回傳 true/false/null(無法判定)。自己的現名→可用。
     if(h===CUR.handle&&h)return true;
     if(RESERVED.has(h))return false;
     try{
@@ -665,97 +703,192 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
       return !!data;
     }catch(e){return null;}
   }
-  function setStatus(cls,msg){const el=$('handleStatus');el.className='handle-status '+cls;el.textContent=msg;}
-  async function checkHandle(){
-    const h=norm($('pubHandle').value);
-    handleOK=false;
-    if(!h){setStatus('muted','公開分享需要一個網址名稱。');return;}
-    if(RESERVED.has(h)){setStatus('bad','這個名稱是保留字，換一個。');return;}
-    if(h===CUR.handle){handleOK=true;setStatus('ok','這是你目前的網址。');return;}
-    setStatus('muted','檢查中…');
-    const seq=++checkSeq;
-    const ok=await isAvailable(h);
-    if(seq!==checkSeq)return;          // 有更新的輸入 → 丟棄舊結果
-    lastChecked=h;
-    if(ok===true){handleOK=true;setStatus('ok','✓ '+h+' 可以用！');}
-    else if(ok===false){handleOK=false;setStatus('bad','✗ '+h+' 已被使用，換一個。');}
-    else{handleOK=true;setStatus('muted','儲存時會確認是否重複。');}  // 無法即時判定 → 交給 save 的 unique 約束
+
+  // ---- 查重邏輯（onboarding 與帳號設定各一個輸入框，共用一套）----
+  function makeChecker(inputId,statusId,onInputExtra){
+    const st={ok:false,seq:0,timer:null};
+    const set=(cls,msg)=>{const el=$(statusId);el.className='handle-status '+cls;el.textContent=msg;};
+    async function check(){
+      const h=norm($(inputId).value);
+      st.ok=false;
+      if(!h){set('muted','輸入英文、數字、底線或連字號（1–30 字）。');return;}
+      if(RESERVED.has(h)){set('bad','這個名稱是保留字，換一個。');return;}
+      if(h===CUR.handle){st.ok=true;set('ok','這是你目前的網址。');return;}
+      set('muted','檢查中…');
+      const seq=++st.seq, ok=await isAvailable(h);
+      if(seq!==st.seq)return;          // 有更新的輸入 → 丟棄舊結果
+      if(ok===true){st.ok=true;set('ok','✓ '+h+' 可以用！');}
+      else if(ok===false){st.ok=false;set('bad','✗ '+h+' 已被使用，換一個。');}
+      else{st.ok=true;set('muted','儲存時會確認是否重複。');}  // 無法即時判定 → 交給 save 的最後防線
+    }
+    $(inputId).addEventListener('input',()=>{
+      const el=$(inputId),raw=el.value,n=norm(raw);
+      if(raw!==n){                     // 有非法字元被濾掉 → 回填並把游標往回退掉被刪的字數
+        const caret=Math.max(0,(el.selectionStart||raw.length)-(raw.length-n.length));
+        el.value=n;try{el.setSelectionRange(caret,caret);}catch(e){}
+      }
+      clearTimeout(st.timer);st.timer=setTimeout(check,320);
+      if(onInputExtra)onInputExtra();
+    });
+    return {check,st,set};
+  }
+  const obCheck=makeChecker('pubHandle','handleStatus',()=>renderLink());
+  const acCheck=makeChecker('acctHandle','acctStatus');
+
+  // ---- 設 handle 唯一入口：rename_handle（migration 未套用 → 退回舊 upsert）----
+  async function setHandle(h){
+    try{
+      const {data,error}=await sb().rpc('rename_handle',{p_new:h});
+      if(error){
+        if(/function|schema cache|not find|404/i.test(error.message||'')){
+          const r=await sb().from('profiles').upsert({id:UID,handle:h});
+          if(r.error)return /duplicate|unique/i.test(r.error.message||'')?'taken':'error:'+r.error.message;
+          return 'ok';
+        }
+        return 'error:'+error.message;
+      }
+      return data||'error:empty';
+    }catch(e){return 'error:'+((e&&e.message)||e);}
+  }
+  function explain(code,setter){
+    if(code==='taken')setter('bad','✗ 已被使用，換一個。');
+    else if(code==='reserved')setter('bad','這個名稱是保留字，換一個。');
+    else if(code==='bad_format')setter('bad','只能用英文、數字、底線、連字號（1–30 字）。');
+    else setter('bad','儲存失敗：'+code);
   }
 
-  let debTimer=null;
-  function onHandleInput(){
-    const el=$('pubHandle'),raw=el.value,n=norm(raw);
-    if(raw!==n){                       // 有非法字元被濾掉 → 回填並把游標往回退掉被刪的字數
-      const caret=Math.max(0,(el.selectionStart||raw.length)-(raw.length-n.length));
-      el.value=n;try{el.setSelectionRange(caret,caret);}catch(e){}
+  // ---- 建議 chips：種子＝email 前綴（不用 Google 真名），逐顆預驗可用、主動點才填 ----
+  async function buildChips(){
+    const box=$('handleChips');box.innerHTML='';box.hidden=true;
+    const base=norm((EMAIL.split('@')[0]||''));
+    if(!base)return;
+    const year=String(new Date().getFullYear());
+    const cands=[...new Set([base,base+'musicals',base+'_'+year])].filter(c=>c&&c.length<=30&&!RESERVED.has(c));
+    const avail=[];
+    for(const c of cands){ if(avail.length>=3)break; if((await isAvailable(c))===true)avail.push(c); }
+    if(!avail.length)return;
+    const tip=document.createElement('span');tip.className='chips-tip';tip.textContent='可用的建議：';box.appendChild(tip);
+    for(const c of avail){
+      const b=document.createElement('button');b.type='button';b.textContent=c;
+      b.addEventListener('click',()=>{$('pubHandle').value=c;renderLink();obCheck.check();$('pubHandle').focus();});
+      box.appendChild(b);
     }
-    renderLink();
-    clearTimeout(debTimer);debTimer=setTimeout(checkHandle,320);
+    box.hidden=false;
   }
+
+  function renderLink(){
+    const h=FORCED?norm($('pubHandle').value):CUR.handle, pub=$('pubPublic').checked;
+    const box=$('shareLink');
+    if(pub&&h){box.hidden=false;const a=$('shareUrl');a.textContent=shareUrl(h);a.href=shareUrl(h);}
+    else box.hidden=true;
+  }
+  function syncFieldsVisibility(){ $('shareFieldsGroup').hidden=!$('pubPublic').checked; }
 
   async function loadSettings(uid){
     UID=uid;
+    try{const {data:{user}}=await sb().auth.getUser();EMAIL=(user&&user.email)||'';}catch(e){}
     try{
       const {data}=await sb().from('profiles').select('handle,is_public,show_price,show_seat,display_name').eq('id',uid).maybeSingle();
       CUR={handle:data?.handle||'',is_public:!!data?.is_public,show_price:!!data?.show_price,show_seat:!!data?.show_seat};
       DISPLAY=data?.display_name||'';
-      $('pubHandle').value=CUR.handle;
       $('pubPublic').checked=CUR.is_public;
       $('showPrice').checked=CUR.show_price;
       $('showSeat').checked=CUR.show_seat;
-      syncFieldsVisibility();renderLink();
-      if(CUR.handle)setStatus('ok','這是你目前的網址。');else setStatus('muted','');
     }catch(e){console.warn('loadSettings',e);}
   }
 
+  // ---- 分享 modal 的儲存：onboarding 模式設 handle；分享模式只存開關（handle 唯讀）----
   async function save(){
-    const h=norm($('pubHandle').value), pub=$('pubPublic').checked;
     const btn=$('shareSave');
-    if(pub&&!h){setStatus('bad','公開前先取一個網址名稱。');$('pubHandle').focus();return;}
-    if(h&&RESERVED.has(h)){setStatus('bad','這個名稱是保留字，換一個。');return;}
-    if(pub&&!handleOK&&h!==CUR.handle){await checkHandle();if(!handleOK)return;}
+    if(FORCED){
+      const h=norm($('pubHandle').value);
+      if(!h){obCheck.set('bad','先取一個網址名稱。');$('pubHandle').focus();return;}
+      if(RESERVED.has(h)){obCheck.set('bad','這個名稱是保留字，換一個。');return;}
+      btn.disabled=true;btn.textContent='儲存中…';
+      try{
+        const r=await setHandle(h);
+        if(r!=='ok'){explain(r,obCheck.set);return;}
+        CUR.handle=h;FORCED=false;
+        obCheck.set('ok','✓ 完成！');
+        setTimeout(()=>{close();},500);
+      }finally{btn.disabled=false;btn.textContent='儲存';}
+      return;
+    }
     btn.disabled=true;btn.textContent='儲存中…';
     try{
-      const {error}=await sb().from('profiles').upsert({id:UID,handle:h||null,is_public:pub,show_price:$('showPrice').checked,show_seat:$('showSeat').checked});
-      if(error){
-        if(/duplicate|unique/i.test(error.message||'')){setStatus('bad','✗ '+h+' 已被使用，換一個。');handleOK=false;}
-        else setStatus('bad','儲存失敗：'+(error.message||error));
-        return;
-      }
-      CUR={handle:h,is_public:pub,show_price:$('showPrice').checked,show_seat:$('showSeat').checked};
-      localStorage.setItem('mm-onboard-skip','1');   // 已設定過 → 不再自動彈 onboarding
+      const {error}=await sb().from('profiles').upsert({id:UID,is_public:$('pubPublic').checked,show_price:$('showPrice').checked,show_seat:$('showSeat').checked});
+      if(error){$('handleCur').textContent='儲存失敗：'+(error.message||error);return;}
+      CUR.is_public=$('pubPublic').checked;CUR.show_price=$('showPrice').checked;CUR.show_seat=$('showSeat').checked;
       renderLink();
-      if(pub&&h)setStatus('ok','✓ 已儲存！你的公開頁已上線。');else setStatus('ok','✓ 已儲存。');
-    }catch(e){setStatus('bad','儲存失敗：'+((e&&e.message)||e));}
+      $('handleCur').textContent=shareUrl(CUR.handle);
+    }catch(e){console.warn('save',e);}
     finally{btn.disabled=false;btn.textContent='儲存';}
   }
 
-  // 首次登入：無 handle 且未略過過 → 用 Google 名字找一個可用建議、開 onboarding
+  // ---- 首次登入強制 onboarding：沒有 handle 就必須先設（欄位空白＋chips，無略過）----
   async function maybeOnboard(){
-    if(CUR.handle||localStorage.getItem('mm-onboard-skip'))return;
-    let base=norm(DISPLAY)||'musicallover';
-    let sug=base, ok=await isAvailable(sug);
-    for(let i=2;ok===false&&i<=99;i++){sug=base+i;ok=await isAvailable(sug);}
-    $('pubHandle').value=(ok===false?base:sug);   // 全被佔的極端情況就給 base，讓使用者自己改
-    $('shareTitle').textContent='歡迎！為你的音樂劇護照取個名字';
-    $('shareLead').textContent='取一個專屬網址，之後就能一鍵把你的音樂劇收藏分享出去。也可以「之後再說」。';
-    open(true);
-    checkHandle();
+    if(CUR.handle)return;
+    FORCED=true;
+    $('shareTitle').textContent='歡迎！取一個你的網址名稱';
+    $('shareLead').textContent='這是你的帳號身份，也是公開分享網址的一部分。之後可在「帳號設定」更改，舊網址會自動轉到新的。';
+    $('handleEdit').hidden=false;$('handleView').hidden=true;$('shareBody').hidden=true;
+    $('shareX').hidden=true;
+    const sk=$('shareSkip');sk.hidden=false;sk.textContent='登出';
+    $('pubHandle').value='';obCheck.set('muted','輸入英文、數字、底線或連字號（1–30 字）。');
+    modal.hidden=false;document.body.style.overflow='hidden';
+    buildChips();   // 背景逐顆驗可用，好了才顯示
   }
 
-  function open(isOnboard){
-    if(!isOnboard){$('shareTitle').textContent='分享我的收藏';$('shareLead').textContent='建立你的專屬公開頁，把看過的每一齣音樂劇分享給朋友。';}
+  function openShare(){
+    FORCED=false;
+    $('shareTitle').textContent='分享我的收藏';
+    $('shareLead').textContent='把看過的每一齣音樂劇分享給朋友。';
+    $('handleEdit').hidden=true;$('handleView').hidden=false;$('shareBody').hidden=false;
+    $('shareX').hidden=false;$('shareSkip').hidden=true;
+    $('handleCur').textContent=shareUrl(CUR.handle);
     syncFieldsVisibility();renderLink();
     modal.hidden=false;document.body.style.overflow='hidden';
   }
-  function close(){modal.hidden=true;document.body.style.overflow='';}
+  function close(){if(FORCED)return;modal.hidden=true;document.body.style.overflow='';}
+
+  // ---- 帳號設定 ----
+  function openAcct(){
+    $('acctHandle').value=CUR.handle;
+    $('acctDisplay').value=DISPLAY;
+    acCheck.set(CUR.handle?'ok':'muted',CUR.handle?'這是你目前的網址。':'');
+    acct.hidden=false;
+  }
+  function closeAcct(){acct.hidden=true;}
+  async function acctSave(){
+    const h=norm($('acctHandle').value), d=$('acctDisplay').value.trim();
+    const btn=$('acctSave');
+    if(!h){acCheck.set('bad','網址名稱不能空白。');$('acctHandle').focus();return;}
+    if(RESERVED.has(h)){acCheck.set('bad','這個名稱是保留字，換一個。');return;}
+    btn.disabled=true;btn.textContent='儲存中…';
+    try{
+      if(h!==CUR.handle){
+        const r=await setHandle(h);
+        if(r!=='ok'){explain(r,acCheck.set);return;}
+        CUR.handle=h;
+      }
+      if(d!==DISPLAY){
+        const {error}=await sb().from('profiles').upsert({id:UID,display_name:d||null});
+        if(error){acCheck.set('bad','顯示名稱儲存失敗：'+(error.message||error));return;}
+        DISPLAY=d;
+      }
+      acCheck.set('ok','✓ 已儲存。舊網址會自動轉到新網址。');
+      if(!$('handleView').hidden)$('handleCur').textContent=shareUrl(CUR.handle);
+      renderLink();
+    }finally{btn.disabled=false;btn.textContent='儲存';}
+  }
 
   // ---- wire ----
-  $('pubHandle').addEventListener('input',onHandleInput);
   $('pubPublic').addEventListener('change',()=>{syncFieldsVisibility();renderLink();});
-  $('showPrice').addEventListener('change',()=>{});$('showSeat').addEventListener('change',()=>{});
   $('shareSave').addEventListener('click',save);
-  $('shareSkip').addEventListener('click',()=>{localStorage.setItem('mm-onboard-skip','1');close();});
+  $('shareSkip').addEventListener('click',async()=>{
+    if(FORCED){try{await sb().auth.signOut();}catch(e){}location.reload();return;}  // 強制模式唯一出口＝登出
+    close();
+  });
   $('shareX').addEventListener('click',close);
   $('shareModalBd').addEventListener('click',close);
   $('shareCopy').addEventListener('click',async()=>{
@@ -763,10 +896,19 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
     try{await navigator.clipboard.writeText(url);$('shareCopy').textContent='已複製！';setTimeout(()=>$('shareCopy').textContent='複製',1600);}
     catch(e){const r=document.createRange();r.selectNode($('shareUrl'));getSelection().removeAllRanges();getSelection().addRange(r);}
   });
-  window.addEventListener('keydown',e=>{if(e.key==='Escape'&&!modal.hidden)close();});
-  {const bs=document.getElementById('btnShare');if(bs)bs.addEventListener('click',()=>open(false));}
+  $('openAcct').addEventListener('click',e=>{e.preventDefault();openAcct();});
+  $('acctSave').addEventListener('click',acctSave);
+  $('acctCancel').addEventListener('click',closeAcct);
+  $('acctX').addEventListener('click',closeAcct);
+  $('acctBd').addEventListener('click',closeAcct);
+  window.addEventListener('keydown',e=>{
+    if(e.key!=='Escape')return;
+    if(!acct.hidden){closeAcct();return;}
+    if(!modal.hidden)close();          // 強制模式 close() 內部擋掉
+  });
+  {const bs=document.getElementById('btnShare');if(bs)bs.addEventListener('click',()=>{CUR.handle?openShare():maybeOnboard();});}
 
-  // auth 就緒（登入且同步完）→ 載入設定，必要時彈 onboarding
+  // auth 就緒（登入且同步完）→ 載入設定；無 handle → 強制 onboarding
   window.mmAuthReady=async function(uid){await loadSettings(uid);await maybeOnboard();};
 })();
 </script>

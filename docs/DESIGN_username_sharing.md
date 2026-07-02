@@ -122,20 +122,21 @@ Worker 邏輯（`my.themusicalmap.com/<handle>`）：
 
 ---
 
-## 前端改動清單（實作時）
+## 前端改動清單（v1.10.0 已實作，e2e 23 項 PASS + u-view 回歸 6 項 PASS）
 
-- [ ] **帳號設定**入口（新）：放改名 username（呼叫 `rename_handle`）、display_name。改名成功提示「舊網址會自動轉到新的」。
-- [ ] **分享面板**：拿掉即時改 handle，改成**唯讀顯示**固定網址 + 公開開關 + 欄位隱私 + 複製鈕。
-- [ ] **onboarding**：改成空白欄位 + 建議 chips（種子=email 前綴、預驗可用、主動點才填）；**強制設定**（首次登入未設 username 不放行主要功能）。
-- [ ] `handle_available` 前端呼叫端配合 union alias 的新後端。
-- [ ] 網址由 `?u=handle` → 支援 `my.themusicalmap.com/handle`（前端取 handle 邏輯相容兩者，過渡期並存）。
+- [x] **帳號設定**入口（新）：`me.html` `#acctModal`，改 username（呼叫 `rename_handle`）+ display_name；成功提示「舊網址會自動轉到新網址」。
+- [x] **分享面板**：handle 改**唯讀顯示** + 「到帳號設定改」連結；儲存只動公開開關/欄位隱私。
+- [x] **onboarding**：空白欄位 + label 在上（無 placeholder）+ 建議 chips（種子=email 前綴、逐顆預驗可用、主動點才填）；**強制**（無 X、ESC/backdrop 關不掉，唯一出口=登出）。
+- [x] 舊網址自動轉新：`u-view.js` 查無 handle 時走 `resolve_handle` → `location.replace` 到現用名（RPC 未部署則靜默降級 not-found）；順帶修訪客輸入大寫 `?u=Danny` 查不到的 bug。
+- [x] migration 未套用的降級：`rename_handle` 不存在 → 前端自動退回舊 `upsert` 路徑（unique 約束保底）。
+- [ ] 網址由 `?u=handle` → 支援 `my.themusicalmap.com/handle`（前端取 handle 邏輯相容兩者）——留待 Worker 階段。
 
-## 實作順序（建議）
+## 實作順序與狀態
 
-1. DB：`handle_aliases` 表 + `rename_handle` 函式 + 更新 `handle_available`（union alias）。
-2. 前端：帳號設定改名 + 分享面板改唯讀 + onboarding chips + 強制設定。
-3. Cloudflare Worker：rewrite + alias 301 + 爬蟲 meta 注入。
-4. DNS 切 `my.` 子網域；u.html 支援 path handle。
-5. 對照 [[project_musicalmap_domain_migration]]：themusicalmap.com 主站遷移一併規劃。
+1. ✅ DB：`supabase/add_handle_aliases.sql`（handle_aliases + rename_handle + handle_available 升級 + resolve_handle）——**檔案已就緒，待使用者在 Supabase Dashboard 執行**。
+2. ✅ 前端：帳號設定改名 + 分享面板唯讀 + onboarding chips + 強制設定（v1.10.0）。
+3. [ ] Cloudflare Worker：rewrite + alias 301 + 爬蟲 meta 注入。
+4. [ ] DNS 切 `my.` 子網域；u.html 支援 path handle。
+5. [ ] 對照 [[project_musicalmap_domain_migration]]：themusicalmap.com 主站遷移一併規劃。
 
 見 [[project_musicalmap_security]]（handle 唯一性/RLS 現況）、[[project_musicalmap_sharing]]。
