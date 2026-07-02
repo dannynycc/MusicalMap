@@ -11,6 +11,13 @@
 
 ---
 
+## [v1.10.2] - 2026-07-02 12:54
+### 資安/SEO — CDN SRI + sitemap 修正 + 死 code 清理(健檢待辦 3 項收掉)
+- **CDN 供應鏈防護(SRI)**:所有第三方 script/css 釘死版號 + `integrity`(sha384) + `crossorigin` —— `me.html`/`me-input.html`/`u.html` 的 supabase-js(2.110.0)、chart.js(4.5.1);`build/gen_site.mjs` 模板的 leaflet(1.9.4)、markercluster(1.5.3)、opencc-js(1.3.1),重產三語 index。CDN 被竄改時瀏覽器直接拒載,護住登入頁 token。
+- **sitemap 移掉 me.html**:登入閘頁爬蟲只看到「載入中」。第一次手改 `sitemap.xml` 被 `gen_site.mjs` 重產蓋回,**改在產生器層移除**才是正解;另 me.html head 加 `noindex`。
+- **死 code 清理**:`js/me.js` + `me_ori.html` 移除(僅互相引用、正式頁未載入;git 歷史可找回)。README/DESIGN_productions 註記同步。
+- **驗證**:playwright 對「與線上一致的 /MusicalMap/ 路徑結構」跑 SRI e2e 10 項全 PASS(主地圖 leaflet 渲染/zh-hans OpenCC/me supabase+Chart/me-input/u.html danny 真資料);onboarding e2e 23 項回歸 PASS。(過程學到:本機從 repo root 起 server 會因絕對路徑 `/MusicalMap/` 全 404,要從上層目錄起。)
+
 ## [v1.10.1] - 2026-07-02 12:35
 ### 文件 — add_handle_aliases migration 已套用+線上實測記錄
 - 使用者已在 Supabase Dashboard 執行 `add_handle_aliases.sql`(Success)。

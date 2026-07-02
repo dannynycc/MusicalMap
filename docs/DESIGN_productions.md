@@ -2,7 +2,7 @@
 
 > 狀態:**已定案 + 第一版已實作上線(v0.57.0, 2026-06-22)**。本檔是這個功能的單一事實來源。
 >
-> **⚠ 2026-06-30 更新(v0.79.0 My Musicals v2 改版)**：足跡頁已從 `js/me.js`(FlightRadar 風)改版為**自含的 `me.html` + `me-input.html`**(舊版備份於 `me_ori.html`)。本檔以下「足跡表單(`js/me.js`)」段描述的是**舊版**;新版 me-input 的海報預設由 catalog 解析(`venues_catalog.posters` by title group)、**不用** `production_key`。但 **v1.1.0 起 me.html 有用 `poster_override`**(每筆紀錄可自訂海報 URL 覆蓋系統圖，渲染序 `poster_override → catalog → 首字母`，見 `add_poster_override.sql`)——與本檔舊設計的「自訂海報欄」概念相同、但實作在新版 me.html/me-input 而非舊 me.js。「製作三層資料模型(works/productions/shows)」與 `gen_catalog.py` 仍有效(新 me-input 同樣吃 `venues_catalog` 的 productions/posters)。
+> **⚠ 2026-06-30 更新(v0.79.0 My Musicals v2 改版)**：足跡頁已從 `js/me.js`(FlightRadar 風)改版為**自含的 `me.html` + `me-input.html`**(舊版 `me_ori.html`+`js/me.js` 已於 v1.10.2 移除,git 歷史可找回)。本檔以下「足跡表單(`js/me.js`)」段描述的是**舊版**;新版 me-input 的海報預設由 catalog 解析(`venues_catalog.posters` by title group)、**不用** `production_key`。但 **v1.1.0 起 me.html 有用 `poster_override`**(每筆紀錄可自訂海報 URL 覆蓋系統圖，渲染序 `poster_override → catalog → 首字母`，見 `add_poster_override.sql`)——與本檔舊設計的「自訂海報欄」概念相同、但實作在新版 me.html/me-input 而非舊 me.js。「製作三層資料模型(works/productions/shows)」與 `gen_catalog.py` 仍有效(新 me-input 同樣吃 `venues_catalog` 的 productions/posters)。
 >
 > **實作後的重要修訂(比原設計更省工):**
 > - **`app.js`(live 地圖)完全不用動** —— 它本來就用每場自己的 `show.image`,北美巡演 13 城共用一張是「因為同屬北美巡演版」,倫敦/日本四季/各國各顯各的。所以「按版本拆海報」在 live 地圖早已成立,問題 2 其實**只發生在足跡頁(me.js)**。
