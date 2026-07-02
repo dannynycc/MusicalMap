@@ -11,6 +11,15 @@
 
 ---
 
+## [v1.16.0] - 2026-07-02 21:41
+### 新功能 — 使用說明頁 guide.html(editorial 藝文風,三語)
+- **新增 `guide.html`**(網址 /guide):全球地圖探索(免登入)+ My Musicals 記錄/護照/分享的使用說明。**「觀劇手帳」editorial 風格,不是科技 SaaS**——暖米白紙本紋理底 + Fraunces 襯線大標 + 大號金色襯線數字(01/02)+ 真實產品截圖不對稱交錯 + italic 轉場句 + 深色收尾框。**零 emoji、零漸層、零對稱 feature 卡、標題非 Inter**(避開所有 AI slop 訊號)。
+- **4 個 web 研究 agent 統合設計**:how-it-works 結構最佳實踐(Linear/Letterboxd)、藝文文化平台調性(避 SaaS 味,editorial/襯線/紙本)、crafted vs AI 模板的 16 個 slop 特徵清單、精確視覺規格(字體階層/8pt 間距/大數字 step)。
+- **真實素材** `assets/guide/`:地圖/海報牆/護照戳章/統計截圖(playwright 從實站 u.html?u=danny 截,關動畫強制可見)。文案 benefit-first、有聲音(不空泛行銷詞)。
+- **三語(繁/簡/英)** 走 mm-strings + `?hl=` + OpenCC;新增 how 專屬 key(去 emoji、editorial 文案)。
+- **驗證**:playwright 三語全頁截圖**親眼看過**(繁/英確認 editorial 質感)+ 4 素材載入 + 零殘留 key + 零 emoji + 無 JS error 全 PASS;修 h1 中文斷字(word-break)、en 內文彎引號字寬(en --sans 用西文字體)。
+- 待辦:主站各頁 nav 加「使用說明」連結 + sitemap 收錄(讓訪客/爬蟲找到)。
+
 ## [v1.15.2] - 2026-07-02 20:58
 ### 文件 — Google 登入品牌顯示(supabase.co)查證結論存檔
 - **web 查證確定結論寫入 `docs/SETUP_ACCOUNTS.md`(新增「Google 登入品牌顯示」段)+ `docs/SETUP_MY_SUBDOMAIN.md`(收尾清單加 auth callback 代理)**:OAuth 同意畫面顯示 `xxx.supabase.co` 是官方雙方確認的規則——Google「App 未通過品牌驗證前只顯示應用程式網域」+ Supabase 免費版「回呼網域無法更改」;**只填 App name 無效**,需品牌驗證+In production+發佈。
