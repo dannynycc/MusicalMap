@@ -11,6 +11,12 @@
 
 ---
 
+## [v1.10.1] - 2026-07-02 12:35
+### 文件 — add_handle_aliases migration 已套用+線上實測記錄
+- 使用者已在 Supabase Dashboard 執行 `add_handle_aliases.sql`(Success)。
+- **線上實測**:anon 直打 REST 驗 `handle_available`(danny→false/保留字 admin→false/隨機→true)、`resolve_handle`(無 alias→null)、`rename_handle`(anon→not_authenticated 擋下);GitHub Pages v1.10.0 部署確認(me.html 含 acctModal/u-view 含 resolve_handle);**真線上站** u-view 回歸 6 項 PASS(danny/Danny/不存在)。
+- 尚待真人一次:登入後在帳號設定實際改名,驗「舊網址自動轉向」完整迴圈。
+
 ## [v1.10.0] - 2026-07-02 12:27
 ### 新功能 — username 帳號身份化(DESIGN_username_sharing 決策一+二實作)
 - **DB migration `supabase/add_handle_aliases.sql`(待 Dashboard 執行)**:`handle_aliases` 改名歷史表(RLS 開、無 policy=不可枚舉)+ `rename_handle`(改名唯一入口;union 查重「他人現用名+他人舊 alias」防 GitHub 式撞車;改回自己舊名合法)+ `handle_available` 升級(含 alias+保留字、排除自己)+ `resolve_handle`(舊名→現用名,只回公開帳號)+ `handle_reserved`(保留字集中一處)。

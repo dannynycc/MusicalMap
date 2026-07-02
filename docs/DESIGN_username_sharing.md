@@ -133,7 +133,7 @@ Worker 邏輯（`my.themusicalmap.com/<handle>`）：
 
 ## 實作順序與狀態
 
-1. ✅ DB：`supabase/add_handle_aliases.sql`（handle_aliases + rename_handle + handle_available 升級 + resolve_handle）——**檔案已就緒，待使用者在 Supabase Dashboard 執行**。
+1. ✅ DB：`supabase/add_handle_aliases.sql` —— **2026-07-02 已在 Dashboard 執行並線上實測**：anon 直打 REST 驗證 `handle_available`（danny→false／保留字 admin→false／隨機→true）、`resolve_handle`（無 alias→null）、`rename_handle`（anon→'not_authenticated' 擋下）皆正確。真正的「改名→alias→舊網址轉向」完整迴圈需登入帳號操作一次才算實測（見下）。
 2. ✅ 前端：帳號設定改名 + 分享面板唯讀 + onboarding chips + 強制設定（v1.10.0）。
 3. [ ] Cloudflare Worker：rewrite + alias 301 + 爬蟲 meta 注入。
 4. [ ] DNS 切 `my.` 子網域；u.html 支援 path handle。
