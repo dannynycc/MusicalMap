@@ -7,8 +7,8 @@
   var STR = {
     'zh-hant': {
       // ---- u.html 靜態 ----
-      nav_theatres: '所有劇院', nav_map: '地圖首頁', nav_guide: '使用說明', nav_create: '＋ 建立你自己的',
-      nav_privacy: '隱私權政策', nav_terms: '使用條款', nav_about: '關於',
+      nav_theatres: '所有劇院', nav_map: '地圖首頁', nav_guide: '怎麼使用', nav_create: '＋ 建立你自己的',
+      nav_privacy: '隱私權政策', nav_terms: '使用條款', nav_about: '關於本站',
       th_midnight: '午夜（暗）', th_gallery: '畫廊白（亮）', th_cream: '節目單奶油（亮）', th_neon: '霓虹（暗）', th_deco: '裝飾金（暗）',
       aria_theme: '主題底色', aria_seg: '檢視模式', aria_sort: '排序', aria_close: '關閉',
       hero_sub: '每看一場，蓋一個章',
@@ -60,12 +60,13 @@
       gate_syncing: '同步你的收藏中…', gate_no_backend: '後端尚未設定',
       gate_load_fail: '讀取收藏失敗，請重新整理。',
       gate_preview: '登入後長這樣——你的海報牆、音樂劇護照與觀劇統計，全部自動生成：',
-      gate_browse_map: '先逛演出地圖 →', gate_see_guide: '看使用說明 →',
+      gate_browse_map: '先逛演出地圖 →', gate_see_guide: '看看怎麼使用 →',
       nav_share: '分享', nav_logout: '登出', me_hero_title: '我的音樂劇收藏',
       demo_banner_b: '這是範例收藏', demo_banner_rest: ' —— 先讓你看看蓋滿章後的樣子。按右邊加入你第一齣看過的劇，整頁就換成你自己的。',
       demo_cta: '＋ 加入第一齣音樂劇', demo_sub: '範例預覽 · 加入後就換成你的',
       footer2_me: '封面取自各劇官方與公開資料；目前顯示的是範例紀錄，登入後就換成你自己的。',
       edit_this: '編輯這齣', delete_this: '刪除這齣', edit: '編輯', delete: '刪除',
+      fav_this: '標為最愛', unfav_this: '取消最愛',
       first_west_end: 'FIRST WEST END', first_broadway: 'FIRST BROADWAY', first: 'FIRST',
       fab_add: '＋ 加入音樂劇', log_title: '加入音樂劇', lt_undated: '未定',
       share_title: '分享我的收藏', share_lead: '把看過的每一齣音樂劇分享給朋友。',
@@ -133,9 +134,9 @@
       mi_hint: '試試：打「歌劇魅影」或「phantom」或「les mis」。資料來自 MusicalMap 的音樂劇資料庫。',
       mi_stamp_here: '蓋章<br>處', mi_empty_passport: '你的音樂劇護照還是空白的。<br><b>按上面「＋ 記錄一齣音樂劇」</b>蓋下第一個印章。',
       // ---- how.html 使用說明頁 ----
-      how_title: '使用說明 — MusicalMap',
+      how_title: '怎麼使用 — MusicalMap',
       how_meta: 'MusicalMap 怎麼用：一張地圖看全世界正在上演的音樂劇，把你看過的每一齣記成一本音樂劇護照，分享出去。',
-      how_nav_start: '我的音樂劇', how_eyebrow: '使用說明',
+      how_nav_start: '我的音樂劇', how_eyebrow: '怎麼使用',
       how_hero: '一張地圖，<br>看見全世界正在上演的<em>音樂劇</em>。',
       how_lede: '免登入就能探索此刻全球正在上演的音樂劇——百老匯、倫敦西區、各國巡演。登入之後，把你看過的都記成一本音樂劇護照，分享出去。',
       how_cta_map: '探索演出地圖', how_cta_me: '建立我的音樂劇護照',
@@ -145,7 +146,7 @@
       how_a2_n: '一鍵訂票', how_a2_h: '看到喜歡的，直接過去訂', how_a2_p: '每一齣都附售票連結，多數還有官方網站。我們不賣票——只把你帶到對的地方。',
       how_bridge: '看過的那些，別讓它們只留在記憶裡。',
       how_p2_h: '記下你看過的每一齣', how_p2_lede: '登入之後，你看過的劇會長成一面海報牆、一本蓋章護照，還有你的觀劇統計。全部自動生成。',
-      how_b0_n: '你的海報牆', how_b0_h: '看過的，掛成一面牆', how_b0_p: '每加一齣，海報就掛上牆。海報牆、護照、清單——同一批收藏，三種看法。',
+      how_b0_n: '你的海報牆', how_b0_h: '看過的，掛成一面牆', how_b0_p: '每加一齣，海報就掛上牆；點卡片上的 ♥，標下你的最愛。海報牆、護照、清單——同一批收藏，三種看法。',
       how_b1_n: '加入一齣', how_b1_h: '搜音樂劇名，其餘自動帶入', how_b1_p: '中英文搜尋都行，劇院、城市、海報自動補上。填看劇的日期、評分、座位、心得——只記得年份也沒關係。每看一場，護照上就多一個章。',
       how_b15_n: '獨家', how_b15_h: '海報與連結，都能換成你的', how_b15_p: '每一齣都能貼上自訂海報網址——用你記得的那一版劇照，即時預覽。再附一條連結，把當年的節目頁或售票頁存進詳情，隨時點開。',
       how_b2_n: '你的觀劇統計', how_b2_h: '看久了，會浮現一個輪廓', how_b2_p: '最常看的音樂劇、去過的城市與國家、各年各月的觀劇分布——都幫你統計好了，一眼看出你是什麼樣的劇迷。',
@@ -154,7 +155,7 @@
       how_final_h: '從哪裡開始都可以', how_final_p: '先逛地圖找靈感，或直接記下你看過的第一齣。', how_final_cta: '建立我的音樂劇護照', how_final_cta2: '先探索地圖',
       how_footer: 'MusicalMap — 全球音樂劇即時地圖，與你的音樂劇護照。', how_footer_link: '回到地圖',
       // ---- about.html(關於頁) ----
-      about_title: '關於 — MusicalMap', about_eyebrow: '關於 MusicalMap',
+      about_title: '關於本站 — MusicalMap', about_eyebrow: '關於 MusicalMap',
       about_meta: 'MusicalMap 是一個由劇迷個人打造的網站：一張顯示全球上演中音樂劇的即時地圖，加上一本屬於你自己的音樂劇護照。',
       about_h1: '一個劇迷，把地圖和音樂劇放在一起。',
       about_lede: 'MusicalMap 是一個由劇迷個人打造的網站：一張顯示全球上演中音樂劇的即時地圖，加上一本屬於你自己的音樂劇護照。',
@@ -166,7 +167,7 @@
       about_s2_li1: '演出地圖：全球 40+ 國上演中與即將上演的音樂劇，每日自動更新；點海報看檔期、劇院與售票連結。',
       about_s2_li2: '我的音樂劇：登入後記錄看過的每一齣——海報牆、蓋章護照、觀劇統計，和一頁能分享給朋友的公開收藏。',
       about_s3_h: '資料哪裡來',
-      about_s3_p: '資料每日自動彙整自各官方售票平台與劇院官方來源（Broadway、West End、Ticketmaster、劇団四季／東宝、Interpark、OPENTIX 等）。演出資訊可能變動，購票前請以官方售票管道為準。本站不賣票；部分售票連結為分潤連結，你不會因此多付費用。',
+      about_s3_p: '資料每日自動彙整自各官方售票平台與劇院官方來源（Broadway、West End、Ticketmaster、劇団四季／東宝、Interpark、OPENTIX 等）。免責與分潤揭露詳見使用條款。',
       about_s4_h: '聯絡',
       about_s4_p: '錯誤回報、合作，或任何想說的話：dannynycc@gmail.com。',
       // ---- privacy.html / terms.html(法務頁;繁中為底,zh-hans 由 OpenCC 轉,en 用下方字典) ----
@@ -271,6 +272,7 @@
       demo_cta: '＋ Add your first musical', demo_sub: 'Sample preview · becomes yours once you add a show',
       footer2_me: 'Artwork comes from each show’s official and public sources. This is a sample for now — it becomes yours once you sign in.',
       edit_this: 'Edit this show', delete_this: 'Delete this show', edit: 'Edit', delete: 'Delete',
+      fav_this: 'Mark as favourite', unfav_this: 'Remove favourite',
       first_west_end: 'FIRST WEST END', first_broadway: 'FIRST BROADWAY', first: 'FIRST',
       fab_add: '＋ Add a musical', log_title: 'Add a musical', lt_undated: 'TBD',
       share_title: 'Share my collection', share_lead: 'Share every musical you’ve seen with friends.',
@@ -348,7 +350,7 @@
       how_a2_n: 'One tap to tickets', how_a2_h: 'Be in the room where it happens', how_a2_p: 'Every show comes with a ticket link, and most have their official site too. We don’t sell tickets — we just point you to the right place.',
       how_bridge: 'Don’t leave memories all alone in the moonlight — stamp them in.',
       how_p2_h: 'Keep every show you’ve seen', how_p2_lede: 'Once you sign in, your shows grow into a poster wall, a stamped passport and your own viewing stats. All automatic.',
-      how_b0_n: 'Your poster wall', how_b0_h: 'What you’ve seen, hung on a wall', how_b0_p: 'Every musical you add hangs its poster on the wall. Poster wall, passport, list — three views of the same collection.',
+      how_b0_n: 'Your poster wall', how_b0_h: 'What you’ve seen, hung on a wall', how_b0_p: 'Every musical you add hangs its poster on the wall; tap the ♥ on a card to mark a favourite. Poster wall, passport, list — three views of the same collection.',
       how_b1_n: 'Add a musical', how_b1_h: 'Search the title, the rest fills itself in', how_b1_p: 'Search in English or Chinese; theatre, city and poster fill in automatically. Add the date, rating, seat and notes — just the year is fine. Every show you log adds a stamp to your passport.',
       how_b15_n: 'Make it yours', how_b15_h: 'Your own poster, your own link', how_b15_p: 'Give any show a custom poster URL — the artwork you remember it by, previewed instantly. Attach a link too, so that year’s programme or ticket page is always one tap away in its details.',
       how_b2_n: 'Your theatregoing stats', how_b2_h: 'How do you measure a year? In shows, cities and stamps', how_b2_p: 'Most-seen musicals, cities and countries visited, how your theatregoing spreads across years and months — all tallied for you, showing at a glance what kind of theatregoer you are.',
@@ -369,7 +371,7 @@
       about_s2_li1: 'The live map: musicals playing now and soon across 40+ countries, refreshed daily; tap a poster for dates, theatre and ticket links.',
       about_s2_li2: 'My Musicals: sign in to log every show you’ve seen — a poster wall, a stamped passport, your theatregoing stats, and a public page to share with friends.',
       about_s3_h: 'Where the data comes from',
-      about_s3_p: 'Listings are aggregated daily from official ticketing platforms and theatre sources (Broadway, West End, Ticketmaster, Shiki/Toho, Interpark, OPENTIX and more). Details can change — always confirm with the official box office before buying. This site doesn’t sell tickets; some ticket links are affiliate links, at no extra cost to you.',
+      about_s3_p: 'Listings are aggregated daily from official ticketing platforms and theatre sources (Broadway, West End, Ticketmaster, Shiki/Toho, Interpark, OPENTIX and more). See the Terms for disclaimers and affiliate disclosure.',
       about_s4_h: 'Contact',
       about_s4_p: 'Corrections, ideas, or anything else: dannynycc@gmail.com.',
       // ---- privacy.html / terms.html ----
@@ -459,10 +461,21 @@
     [/身分/g, '身份'],   // 台灣標準「身分」;大陸標準「身份」
   ];
   function cnFix(s) { for (var i = 0; i < CN_FIX.length; i++) s = s.replace(CN_FIX[i][0], CN_FIX[i][1]); return s; }
+  // 簡中「手寫覆蓋層」:OpenCC 只能轉字+CN_FIX 轉詞,句式仍是台灣腔;敘事型長文(About 等)
+  // 在此提供大陸語感的手寫版,build 完成後覆蓋自動轉換結果。短 UI 標籤仍走自動轉換。
+  var HANS_OVERRIDE = {
+    about_h1: '一个剧迷，把地图和音乐剧放到了一起。',
+    about_lede: 'MusicalMap 由一位剧迷独立打造：一张显示全球在演音乐剧的实时地图，加上一本属于你自己的音乐剧护照。',
+    about_s1_p1: '我喜欢地图和地理，也是音乐剧迷——爱蹲 Stage Door，在台湾、美国、英国都留下过看剧的足迹，从百老汇、伦敦西区到各地巡演。',
+    about_s1_p2: '想把这些年看过的音乐剧好好收藏起来，却发现没有一个合适的平台，干脆自己动手做一个，把这些宝贵的记录永久留存。',
+    about_s1_p3: '因为喜欢地图，就把世界各地在演的音乐剧直接放上了地图。做着做着才发现：原来全世界同时有这么多不同语言的音乐剧在上演。这个世界值得被更多人看见——希望这个网站能帮上一点忙，让音乐剧被更多人认识。',
+    about_meta: 'MusicalMap 由一位剧迷独立打造：一张显示全球在演音乐剧的实时地图，加上一本属于你自己的音乐剧护照。',
+  };
   var _conv = null;
   if (hl === 'zh-hans') {
     try { _conv = window.OpenCC && window.OpenCC.Converter({ from: 'tw', to: 'cn' }); } catch (e) {}
     if (_conv && !STR['zh-hans']) { var o = {}; for (var k in STR['zh-hant']) o[k] = cnFix(_conv(STR['zh-hant'][k])); STR['zh-hans'] = o; }
+    if (STR['zh-hans']) { for (var hk in HANS_OVERRIDE) STR['zh-hans'][hk] = HANS_OVERRIDE[hk]; }
   }
   var D = STR[hl] || STR['zh-hant'];
   // MM_S:把「資料層繁中文字」(劇院/城市/國家名,原始資料)在 zh-hans 也轉簡;其他語言 identity。

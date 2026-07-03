@@ -178,6 +178,7 @@ header{position:sticky;top:0;z-index:1100;background:color-mix(in srgb,var(--bg)
 .poster .meta .en{font:700 13px/1.25 var(--ui);color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.95);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .poster .meta .where{font-size:10.5px;color:#e3ddd2;text-shadow:0 1px 3px rgba(0,0,0,.95);margin-top:5px;display:flex;justify-content:space-between;gap:6px}
 .fav{position:absolute;top:9px;right:10px;font-size:15px;color:#e5647f;filter:drop-shadow(0 1px 3px rgba(0,0,0,.7));z-index:3}  /* ♥ 文字符號取代 ❤️ emoji,自帶色 */
+.ca-btn.ca-fav.on{color:#e5647f}   /* 已標最愛的 ♥ 按鈕亮起 */
 /* en 模式:卡片/清單/詳情不顯示中文劇名(me.html 與 u.html 共用;2026-07-03 指示) */
 html[lang="en"] .cap-t .zh,
 html[lang="en"] .fallback .fzh,

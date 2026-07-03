@@ -16,7 +16,7 @@ if(v==='zh-hans'){document.write('<scr'+'ipt src="https://cdn.jsdelivr.net/npm/o
 document.write('<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet" />');/* 簡體字 TC 字型沒有→混排忽粗忽細,補 SC */}
 }catch(e){}})();</script>
 <script src="js/mm-strings.js"></script>
-<script>/* no-flash theme */(function(){try{var t=localStorage.getItem('mm-theme');if(t&&t!=='midnight')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<script>/* no-flash theme;已下架的 neon/deco 正規化回 midnight */(function(){try{var t=localStorage.getItem('mm-theme');if(t==='neon'||t==='deco'){t='midnight';localStorage.setItem('mm-theme',t);}if(t&&t!=='midnight')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,900&family=Inter:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet" />
 <style>

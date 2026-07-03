@@ -501,7 +501,7 @@
         venue: row.venue || '', city: row.city || '', country: normCountry(row.country),
         lat: row.lat, lng: row.lng, seat: row.seat || '',
         price: (row.price != null ? String(row.price) : ''), cur: row.currency || '',
-        rating: row.rating || 0, fav: false, note: '', url: row.url || '', logged: false,
+        rating: row.rating || 0, fav: !!row.fav, note: '', url: row.url || '', logged: false,   // fav 由 public_sightings RPC 帶出(add_fav.sql)
       };
     });
 
