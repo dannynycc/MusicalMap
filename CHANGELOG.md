@@ -11,6 +11,12 @@
 
 ---
 
+## [v1.32.0] - 2026-07-03 23:01
+### 修正 — 無障礙 R19:星級評分鍵盤/螢幕閱讀器無法操作
+- **根因**:評分星星是純 `<span class="st">★</span>`,只有 onclick(滑鼠)+title,**無 tabindex/role/keydown**→鍵盤與螢幕閱讀器使用者完全無法評分(me.html 卡片按鈕早有 role+keydown,此處漏)。
+- **修**:`#rate` 加 `role="group"`;每顆星加 `tabindex=0` + `role="button"` + `aria-label`(N 顆星) + keydown(Enter/Space 選定、方向鍵 +1/-1 並移焦點) + `aria-pressed` 狀態;補 `:focus-visible` 金色外框。實測真流程:Enter 設第3顆→ArrowRight 增到4(rateval「4/5」)、aria-pressed=true、focus 可見,零 error。
+- 涵蓋兩個表單(手動新增 backfill + 詳情編輯),共用 buildRating。
+
 ## [v1.31.4] - 2026-07-03 22:52
 ### 修正 — 功能完整度 R17:改名殘留掃描(u.html meta「觀劇護照」)
 - 延續 R16 的「改名沒同步」角度,全 repo 掃 session 內做過的改名舊術語。結果:觀劇足跡(0)、劇庫(只註解)、使用說明/身份/・(皆註解或正規化 regex,非殘留)。**唯一真殘留=u.html meta description 的「觀劇護照」**(同一句還混用「音樂劇護照」,自我矛盾;og:description 已統一)→改為「音樂劇護照」。

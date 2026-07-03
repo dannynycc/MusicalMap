@@ -268,6 +268,7 @@ dialog::backdrop{background:rgba(0,0,0,.66);backdrop-filter:blur(6px)}
 .row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .rate{display:inline-flex;gap:2px}
 .rate .st{font-size:30px;color:var(--star-empty);cursor:pointer;position:relative;width:34px;height:40px;line-height:40px;text-align:center}
+.rate .st:focus-visible{outline:2px solid var(--gold,#c9a85c);outline-offset:1px;border-radius:5px}   /* 鍵盤聚焦可見 */
 .rate .st .half{position:absolute;left:0;top:0;width:50%;height:100%;overflow:hidden;color:var(--gold)}
 .rate .st.full{color:var(--gold)}
 .rateval{margin-left:10px;color:var(--gold);font-weight:700;font-size:15px}
@@ -772,10 +773,18 @@ function renderDetail(){
 
 function buildRating(){
   const r=document.getElementById('rate'),rv=document.getElementById('rateval');if(!r||r.dataset.built)return;r.dataset.built=1;
+  r.setAttribute('role','group');r.setAttribute('aria-label',T('fld_rating'));   // 評分是 group;每顆星可鍵盤操作(原本純 span onclick,鍵盤/讀屏無法評分)
   for(let i=1;i<=5;i++){const st=document.createElement('span');st.className='st';st.textContent='★';
-    st.title=TN('star_n',{n:i});st.onclick=()=>{draft.rating=(draft.rating===i?0:i);paintRate();};   // 整數，再點同顆=清除
+    st.title=TN('star_n',{n:i});st.tabIndex=0;st.setAttribute('role','button');st.setAttribute('aria-label',TN('star_n',{n:i}));
+    const setR=()=>{draft.rating=(draft.rating===i?0:i);paintRate();};   // 整數，再點同顆=清除
+    st.onclick=setR;
+    st.onkeydown=e=>{
+      if(e.key==='Enter'||e.key===' '){e.preventDefault();setR();}
+      else if(e.key==='ArrowRight'||e.key==='ArrowUp'){e.preventDefault();draft.rating=Math.min(5,(draft.rating||0)+1);paintRate();(r.children[draft.rating-1]||st).focus();}
+      else if(e.key==='ArrowLeft'||e.key==='ArrowDown'){e.preventDefault();draft.rating=Math.max(0,(draft.rating||0)-1);paintRate();(r.children[Math.max(0,draft.rating-1)]||st).focus();}
+    };
     r.appendChild(st);}
-  function paintRate(){[...r.children].forEach((st,idx)=>st.classList.toggle('full',draft.rating>=idx+1));
+  function paintRate(){[...r.children].forEach((st,idx)=>{const on=draft.rating>=idx+1;st.classList.toggle('full',on);st.setAttribute('aria-pressed',String(on));});
     rv.textContent=draft.rating?`${draft.rating} / 5`:'';}
   r._paint=paintRate;
 }
