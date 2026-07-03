@@ -21,8 +21,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,900;1,9..144,400&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700;900&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet" />
-<script>/* zh-hans:同步載 OpenCC(繁→簡),僅簡中使用者下載 */(function(){try{
+<script>window.MM_USE_LANG_PREF=true;</script>
+<script>/* zh-hans:同步載 OpenCC(繁→簡),僅簡中使用者下載;語言判定比照 me/about/privacy(?hl→mm_variant→navigator),否則英文使用者直開 guide 會被丟回中文 */(function(){try{
 var h=new URLSearchParams(location.search).get('hl'),v=(h==='en'||h==='zh-hans'||h==='zh-hant')?h:null;
+if(!v){var mv=localStorage.getItem('mm_variant');v=(mv==='en'||mv==='zh-hans'||mv==='zh-hant')?mv:(localStorage.getItem('mm_lang')==='en'?'en':localStorage.getItem('mm_lang')==='zh'?'zh-hant':null);}
 if(!v){var nl=(navigator.language||'').toLowerCase();v=nl.indexOf('zh')===0?((nl.indexOf('cn')>-1||nl.indexOf('hans')>-1||nl.indexOf('sg')>-1)?'zh-hans':'zh-hant'):(nl?'en':'zh-hant');}
 if(v==='zh-hans'){document.write('<scr'+'ipt src="https://cdn.jsdelivr.net/npm/opencc-js@1.3.1/dist/umd/t2cn.js" integrity="sha384-P/OaFUnOIAgMkLxsXIAaP6WO3Wm09591cGX5bHbW4eCOeDxH9L8U3aWYf4cE4SYl" crossorigin="anonymous"><\/scr'+'ipt>');
 document.write('<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@600;700;900&display=swap" rel="stylesheet" />');/* 簡體字 TC 字型沒有→會混排系統字忽粗忽細,補 SC 字型 */}

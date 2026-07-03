@@ -11,6 +11,12 @@
 
 ---
 
+## [v1.29.12] - 2026-07-03 20:54
+### 修正 — 功能完整度 R6:guide 語言偏好不持久(唯一沒讀 mm_variant 的內容頁)
+- **根因**:about/me/privacy 都設 `MM_USE_LANG_PREF` 讀 localStorage `mm_variant`,唯獨 **guide.html 沒設**→英文使用者直開/收藏/被分享 guide.html(無 ?hl=)會被丟回中文(navigator 判定),與全站不一致。從 /en/ 首頁點 nav 因連結帶 ?hl=en 沒事,但脫離該路徑就露餡。
+- **修**:guide.html 補 `window.MM_USE_LANG_PREF=true` + head OpenCC 偵測腳本加 mm_variant 分支(比照 me.html)。實測:英文偏好直開 guide(無hl)現在正確顯示英文,零 error。
+- 另驗(皆正常,無需改):theatres.html 5165 劇院全有座標、搜尋用 v.search 欄(簡體/日文/英文全名皆可,如「Aichi Prefectural Art Theater」找得到)、空結果乾淨;index 分類 pill 篩選正常(德奧 688→10);編輯既有紀錄 8 欄全往返;公開頁 u.html 與 me.html 對等+隱私 note/price/seat 伺服器層遮罩。
+
 ## [v1.29.11] - 2026-07-03 20:40
 ### 修正 — 功能完整度 R3:劇院搜尋補簡體/別名(同 R2 根因,延伸到 venue)
 - **根因**:劇院 combo 只比對顯示名(cnorm 僅處理 臺→台/灣→湾),沒用 catalog venues 的 `search` 欄(含簡體、日文、別名)。→ 簡中使用者打簡體劇院名(爱知县艺术剧场 vs 存的 愛知県芸術劇場)搜不到。
