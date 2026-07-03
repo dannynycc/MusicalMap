@@ -49,7 +49,7 @@
       unverified_demo: "⚠ 未驗證（示範資料）",
       unverified: "未驗證",
       empty_title: "沒有符合的音樂劇",
-      empty_sub: "試試清除搜尋或開啟其他篩選",
+      empty_sub: "試試清除搜尋或取消篩選",
       playing_this_month: "本月上演",
       playing_in: "{ym} 上演",
       count: "{label}：{groups} 部音樂劇 · {n} 個地點",
