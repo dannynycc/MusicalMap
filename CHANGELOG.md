@@ -11,6 +11,12 @@
 
 ---
 
+## [v1.28.2] - 2026-07-03 18:49
+### 修正 — 無障礙審計 R5:月份滑桿與海報 marker 缺可及名稱(loop 體檢)
+- **月份時間軸滑桿** `#time-range` 原本無任何名稱→螢幕閱讀器只念「slider」+ 0-36 數字,不知是什麼、也不知選了幾月。加 `aria-label`(月份時間軸/Month timeline)+ 動態 `aria-valuetext`(隨 setMonth 更新為「2026年07月」),閱讀器現在念得出月份。
+- **海報 marker** 是背景圖 div,原本無可及名稱→閱讀器讀不到是哪一齣、滑鼠停留也無 tooltip title。marker 加 `title`/`alt`=「劇名 · 城市 · 國家」+ `keyboard:true`(Leaflet 鍵盤聚焦)。實測:掃描的 noName/inputNoLabel 全清空,marker title 內容正確。
+- 掃描結論:五頁 img alt、按鈕可及名稱、role=button 鍵盤、input label、html lang 其餘皆合格,無新問題。
+
 ## [v1.28.1] - 2026-07-03 18:42
 ### 修正 — 穩定度審計 R4:刪除/最愛的雲端失敗一致性(loop 體檢;延續 R3 資料完整性)
 - **刪除復活 bug**:`mmDeleteShow` 的 `.delete()` 失敗是回傳 `{error}` 不拋例外(try/catch 抓不到),原碼照樣刪本機+reload → 雲端還在 → 下次 syncFromCloud 那筆「復活」。修:先確認雲端刪成功(檢查 error)再動本機,失敗顯示「刪除失敗，雲端未更新…」alert 且本機不動。playwright e2e(攔 DELETE→500)實測:失敗時 logLen 維持不變、alert 觸發、本機未誤刪。

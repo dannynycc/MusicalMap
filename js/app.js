@@ -558,7 +558,9 @@ function render() {
   spreadSame(shows);   // fan same-venue shows into a tiny ring so they don't stack
   shows.forEach((s) => {
     if (typeof s.lat !== "number" || typeof s.lng !== "number") return;
-    const m = L.marker([s.dlat, s.dlng], { icon: posterMarkerIcon(s), riseOnHover: true })
+    // a11y + hover title:海報 marker 是背景圖 div,螢幕閱讀器/滑鼠停留原本讀不到是哪一齣
+    const mTitle = [displayTitle([s]), s.city, s.country].filter(Boolean).join(" · ");
+    const m = L.marker([s.dlat, s.dlng], { icon: posterMarkerIcon(s), riseOnHover: true, title: mTitle, alt: mTitle, keyboard: true })
       .bindPopup(popupHtml(s), {
         maxWidth: Math.min(720, window.innerWidth - 40),  // never wider than the screen
         className: "mm-popup",
@@ -824,7 +826,9 @@ function setMonth(offset, { fromSlider = false, fromPicker = false } = {}) {
   if (!fromSlider) els.tRange.value = monthOffset;
   if (!fromPicker) els.tMonth.value = selYM();
   // 顯示層 label 一律用「頁面語言」格式化(原生 input 只當透明點擊層,它的字樣跟瀏覽器語言走)
-  { const lbl = document.getElementById("time-month-label"); if (lbl) lbl.textContent = I18N.fmtYM(monthStart()); }
+  { const ym = I18N.fmtYM(monthStart());
+    const lbl = document.getElementById("time-month-label"); if (lbl) lbl.textContent = ym;
+    els.tRange.setAttribute("aria-valuetext", ym); }   // 螢幕閱讀器念出「幾月」而非 0-36 數字
   els.tToday.style.visibility = monthOffset === 0 ? "hidden" : "visible";
   // past months read the archive (lazy-loaded) — wait for it, then render
   ensureArchiveForView().then(render);

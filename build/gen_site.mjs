@@ -186,7 +186,7 @@ function page(variant, shows) {
         <div id="timebar">
           <button id="time-play" class="tb-btn" title="play">▶</button>
           <button id="time-today" class="tb-btn tb-now" title="today">${variant === "en" ? "This month" : variant === "zh-hans" ? "本月" : "本月"}</button>
-          <input id="time-range" type="range" min="0" max="36" value="0" step="1" />
+          <input id="time-range" type="range" min="0" max="36" value="0" step="1" aria-label="${variant === "en" ? "Month timeline" : "月份時間軸"}" />
           <!-- 原生 month input 的顯示格式跟「瀏覽器語言」走、不理頁面 lang(中文瀏覽器上英文頁會顯示 2026年07月)
                → 蓋一層自己用頁面語言格式化的 label,原生 input 透明墊底只負責點開月曆 -->
           <span id="time-month-wrap"><span id="time-month-label"></span><input id="time-month" type="month" aria-label="month" /></span>
