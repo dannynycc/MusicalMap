@@ -420,11 +420,16 @@ body:not(.ready) #count { visibility: hidden; }
   #sidebar { width: 100%; min-width: 0; height: 42%; }
   #mapcol { height: 58%; }
   #topbar { padding: 0 8px; height: 52px; }
-  #topnav { gap: 8px; }
+  #topnav { gap: 6px; }
+  #brand { gap: 7px; }
+  #brand .brand-logo { height: 28px; }
+  #brand .logo { font-size: 17px; }
   #brand .tagline { display: none; }
   #topbar #count { display: none; }            /* header too tight on phones */
   #topnav .foot-link { display: none; }        /* Privacy/Terms drop off the phone nav (kept on desktop) */
-  #topnav .nav-link { display: none; }         /* "All theatres" drops off the phone nav (My Musicals + lang stay) */
+  #topnav .nav-link { display: none; }         /* Privacy/Terms/Guide drop off the phone nav (My Musicals + lang stay) */
+  #lang-switch .lang-opt { padding: 4px 7px; }
   #filterbar { padding: 6px 12px 3px; }
-  .nav-cta { font-size: 14px; padding: 8px 14px; }
+  .nav-cta { font-size: 13px; padding: 7px 12px; }
+  /* 360px(Galaxy 級)窄機仍要塞下 品牌+繁简EN+CTA:上面全部收緊後總寬 ~310px */
 }

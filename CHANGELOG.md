@@ -11,6 +11,10 @@
 
 ---
 
+## [v1.17.1] - 2026-07-03 11:35
+### 修正 — 360px 窄機(Galaxy 級)header 溢出
+- v1.17.0 上線後複驗發現:headless 扣捲軸的 ~360px 有效寬度下,「我的音樂劇」CTA 被推出右緣。手機版 header 全面收緊(brand logo 28px/字 17px、lang pill padding 7px、CTA 13px/7×12、gap 6px),playwright 實測 360/375/412px `scrollWidth==viewport`、CTA 單行 31px 全過。
+
 ## [v1.17.0] - 2026-07-03 11:28
 ### 新功能 — 全站畫風/命名/導航統一(使用者 8 點回饋 + 自主體檢)
 - **站名統一「我的音樂劇」**:index 三語(`gen_site.mjs` t.mine)、theatres CTA、me 登入頁大標(`mm-strings gate_signin`)、i18n.js `nav_mine`、privacy/terms 內文全部由「⭐ 我的音樂劇足跡」改為「我的音樂劇」(en: My Musicals),去 ⭐。
