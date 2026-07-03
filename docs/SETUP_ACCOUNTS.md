@@ -26,7 +26,7 @@
    - `supabase/add_handle_aliases.sql` —— **v1.10.0 username 帳號身份化必跑**：`handle_aliases` 改名歷史表(舊名永久保留給原主)+ `rename_handle`(改名唯一入口,union 查重防撞車)+ `handle_available` 升級(含 alias/保留字)+ `resolve_handle`(舊網址→現用名,u.html 自動轉向)。**沒跑的話**:onboarding/改名自動退回舊 upsert 路徑(unique 約束保底,功能可用),但改名**不會**留 301 轉向、舊網址直接失效。可重複執行。
    - `supabase/fix_display_name_email_leak.sql` —— **display_name 不再落完整 email**：修 `handle_new_user()` 觸發器改用 `coalesce(full_name, split_part(email,'@',1))`,並一次性把既有落了 email 的 display_name 補成 @ 前綴。公開頁顯示名不再外洩 email。已套用 ✓。
    - `supabase/add_fav.sql` —— **v1.26.0 ♥最愛功能必跑**：`sightings` 加 `fav` 欄 + `public_sightings` 重建帶出 fav。沒跑的話海報卡點 ♥ 存不進雲端(其他功能不受影響)。已套用 ✓。
-   - `supabase/add_delete_account.sql` —— **v1.30.0 刪除帳號(GDPR 被遺忘權)必跑**：`delete_my_account()` SECURITY DEFINER RPC,只刪呼叫者本人(auth.uid())的 sightings/profile/handle_aliases(cascade)+ venues.created_by 設 null(保留社群劇院)+ auth.users。沒跑的話「帳號設定→刪除我的帳號」會顯示刪除失敗。已套用 ✓。
+   - `supabase/add_delete_account.sql` —— **v1.30.0 刪除帳號(GDPR 被遺忘權)**：`delete_my_account()` SECURITY DEFINER RPC,只刪呼叫者本人(auth.uid())的 sightings/profile/handle_aliases(cascade)+ venues.created_by 設 null(保留社群劇院)+ auth.users。已套用,但 ⚠️ **實機刪帳號仍失敗**(疑最後 `delete from auth.users` 權限問題,Supabase 該表由 supabase_auth_admin 擁有)——**待修**:改用 Edge Function+service_role 呼叫 `auth.admin.deleteUser()`。見 CHANGELOG v1.33.2。
    - `supabase/add_handle_alnum_check.sql` —— **v1.31.2 防繞過前端**：把 `handle_format` CHECK 收緊為 `^(?=.*[A-Za-z0-9])[A-Za-z0-9_-]{1,30}$`(至少一個字母數字),擋「---」類只有連字號/底線的名稱。前端已擋,此為 DB 防線。已套用 ✓。
 
 ## C. 開 Google 登入

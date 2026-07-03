@@ -11,6 +11,12 @@
 
 ---
 
+## [v1.33.2] - 2026-07-04 00:56
+### 已知問題(待修) — 刪除帳號實機失敗
+- 使用者實機測「帳號設定→刪除我的帳號」→ 跳 error(migration `add_delete_account.sql` 已套用)。
+- **高度懷疑(待錯誤訊息確認,不寫死)**:RPC 第 33 行 `delete from auth.users` 失敗——SECURITY DEFINER 以建立者身分執行,但 Supabase 的 `auth.users` 由 `supabase_auth_admin` 擁有,一般 postgres/SQL editor 角色可能無 DELETE 權限(permission denied for table users);前面刪 public schema(sightings/profiles/aliases)應正常,卡在最後刪 auth 帳號。
+- **正解方向**:改用 Supabase 官方推薦的 **Edge Function + service_role** 呼叫 `auth.admin.deleteUser()`(SQL 直刪 auth.users 在 Supabase 不可靠)。待使用者提供完整錯誤訊息確認病因後實作。
+
 ## [v1.33.1] - 2026-07-04 00:48
 ### 變更 — 全 md freshness 掃描(今日收尾)
 - 嚴格掃過全 repo 13 個 .md。更新:README(劇目數 ~1,600→~1,700、My Musicals 段補 v1.26–v1.33 近期功能:♥最愛/刪帳號/簡體搜尋/i18n 邊界修/鍵盤可及/手機底部 sheet 含「仍有超框待續」註記);SETUP_ACCOUNTS(補 4 個漏列 migration:fix_display_name_email_leak/add_fav/add_delete_account/add_handle_alnum_check,標「已套用 ✓」);SECURITY_AUDIT_2026-07-02 加後續指標(不回改日期快照)。WORKFLOW/CHANGELOG 已最新;其餘設計/資料 docs 今日未觸及、無過時。
