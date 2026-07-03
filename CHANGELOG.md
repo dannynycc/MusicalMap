@@ -11,6 +11,14 @@
 
 ---
 
+## [v1.22.0] - 2026-07-03 15:03
+### 新功能 — guide 截圖三語各自產製 + 海報牆主視覺 + 英文歌詞彩蛋(使用者指示)
+- **截圖分語言**:原本 assets/guide/*.webp 只有繁中一套、三語共用(使用者抓到)。改為 `assets/guide/{zh-hant,zh-hans,en}/` 三套 ×5 張(map/popup/form/stats/wall),全部用去 emoji 後的最新 UI 重截(playwright:美東視角地圖含英文版「Jul 2026」時間列、Wicked popup、phantom/歌劇魅影搜尋表單、統計卡、海報牆);guide 依 `MM_HL` 動態載對應語言,靜態預設繁中(SEO/no-JS)。產製腳本入 repo(`build/gen_guide_shots.cjs`+`guide_shots_to_webp.py`)。
+- **海報牆進 guide 當 Part 2 主視覺**(使用者主打):新 section「你的海報牆/看過的，掛成一面牆」＋三語文案(how_b0_*),排在加入表單與統計之前;me.html 登入頁 preview 也從統計圖換成海報牆。
+- **英文歌詞彩蛋(僅英文版,中文不動)**:bridge=Cats Memory(Don’t leave them all alone in the moonlight — stamp them in.)、購票=Hamilton(Be in the room where it happens)、統計=Rent Seasons of Love(How do you measure a year? In shows, cities and stamps)、結尾=Do-Re-Mi(Let’s start at the very beginning…)、空護照=Sunday in the Park(a blank page, so many possibilities)。
+- **時間軸文案修正**(使用者抓錯):滑桿 min=0 不能拉回過去→改「拖到未來的月份」;獨立成段(與海報段落空行);「按 ▶ 可以自動逐月播放，看巡演在城市之間移動分布變化」。
+- app.js 曝露 `window.mmMap`(截圖/測試設視角用)。
+
 ## [v1.21.0] - 2026-07-03 14:35
 ### 新功能 — 全站去 emoji + 月份列語言修正 + 側欄全展開 + 文案批次(使用者多點指示)
 - **全站 emoji 盤點消除**:掃描器逐檔列出 71 顆,彩色圖像式全清——統計卡 🎭🌏🏙🏛📅、徽章 🏅(含渲染層 icon 欄)、檢視切換 🖼🛂📋、👋banner、toast 🎭、⚠ 警告前綴、🔍搜尋、📍✏️🤔 表單、🌐 theatres、死鍵 🗺📊📋;功能符號改用文字字符(❤️→♥ 帶色、🗑→✕)。保留的 ★✓✗✕✎♪ 是文字符號非 emoji。順手修 u.html 徽章劇名未跳脫的 XSS 縫隙(esc)。

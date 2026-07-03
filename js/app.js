@@ -150,6 +150,7 @@ const map = L.map("map", {
   worldCopyJump: true,
   maxBoundsViscosity: 1.0,            // hard stop at the vertical edges (no grey strips)
 }).setView([42, -40], 3);
+window.mmMap = map;   // 給截圖/測試腳本設定視角用(guide 素材產製)
 // Never show the grey backdrop above/below the world: the world must always cover the
 // full viewport height. (1) minZoom is raised so 256·2^z ≥ box height — you can't zoom
 // out into grey; (2) maxBounds clamps latitude to the world while leaving longitude
