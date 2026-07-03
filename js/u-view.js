@@ -393,10 +393,12 @@
       lineChart('ch-month', (st.perMonth || []).map(x => x[0]), (st.perMonth || []).map(x => x[1]));
       lineChart('ch-week', (st.perWeekday || []).map(x => x[0]), (st.perWeekday || []).map(x => x[1]));
       const p = MM.personality();
-      document.getElementById('persona').innerHTML = `<h3>${esc(T('persona_title'))}</h3>
-        <div class="pn">${p.nickname}</div><div class="pb">${p.blurb}</div>
+      document.getElementById('persona').innerHTML = (p.enough === false)
+        ? `<h3>${esc(T('persona_title'))}</h3><div class="pb">${esc(p.blurb)}</div>`
+        : `<h3>${esc(T('persona_title'))}</h3>
+        <div class="pn">${esc(p.nickname)}</div><div class="pb">${esc(p.blurb)}</div>
         <div class="axes">${p.axes.map(a => { const left = a[2]; const pos = left ? 14 : 86;
-          return `<div class="axis"><div class="r"><span class="${left ? 'on' : ''}">${a[0]}</span><span>${a[3]}</span><span class="${!left ? 'on' : ''}">${a[1]}</span></div><div class="track"><i style="left:calc(${pos}% - 6px)"></i></div></div>`; }).join('')}</div>`;
+          return `<div class="axis"><div class="r"><span class="${left ? 'on' : ''}">${esc(a[0])}</span><span>${esc(a[3])}</span><span class="${!left ? 'on' : ''}">${esc(a[1])}</span></div><div class="track"><i style="left:calc(${pos}% - 6px)"></i></div></div>`; }).join('')}</div>`;
     })();
 
     /* ---------- detail modal (read-only) ---------- */

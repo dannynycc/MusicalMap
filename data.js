@@ -172,6 +172,12 @@ window.MM = (function () {
     // i18n:頁面有載 js/mm-strings.js(公開頁 u.html)就用其字典;沒載(me.html)沿用中文字面
     const L=(k,zh)=>{ if(window.MM_T){const v=window.MM_T(k); if(v&&v!==k)return v;} return zh; };
     const LN=(k,zh,vars)=>{ let s=L(k,zh); Object.entries(vars||{}).forEach(([n,v])=>{ s=s.replace('{'+n+'}',v); }); return s; };
+    // 資料不足門檻:少於 3 齣算不出有意義的類型(否則 0 齣會顯示「你在 0 個地方看過戲，幾乎每齣都嚐鮮」等無意義句)
+    if(past.length < 3){
+      return { enough:false, code:'', nickname:'', axes:[],
+        aura:(past[0]||shows[0]||{}).color||'#7c5cff', aura2:'#6A0DAD',
+        blurb: LN('p_need','再記錄 {n} 齣，這裡就會浮現你的劇迷輪廓。',{n:3-past.length}) };
+    }
     const NAMES = {G:L('p_G','環球旅人'),L:L('p_L','在地常客'),Y:L('p_Y','念舊死忠'),X:L('p_X','嚐鮮探索'),M:L('p_M','當代派'),C:L('p_C','經典派'),S:L('p_S','大製作控'),I:L('p_I','小劇場魂')};
     const globe = st.countries>=4, loyal = repeatRatio<0.85;
     const axes = [
@@ -190,6 +196,7 @@ window.MM = (function () {
     if(nick.length<2)nick.push(NAMES[loyal?'Y':'X']);   // 沒有 era/scale 時用「重看率」補第二段暱稱
     const code = [globe?'G':'L', loyal?'Y':'X', hasEra?(modern>=classic?'M':'C'):'', hasScale?(spectacle>=intimate?'S':'I'):''].join('');
     return {
+      enough:true,
       code, nickname: nick.join(' · '),   // 間隔號用「·」(「・」是日文中黑,台灣不用)
       aura: (past[0]||shows[0]||{}).color||'#7c5cff', aura2: '#6A0DAD',
       axes,
