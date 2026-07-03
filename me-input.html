@@ -770,14 +770,20 @@ saveBtn.onclick=async()=>{
   if(draft.precision==='year'&&draft.date)stickyYear=parseInt(draft.date);
   saveBtn.disabled=true;   // 防雲端寫入中重複按
   if(draft.editIndex!=null){const idx=draft.editIndex;const old=LOG[idx];const e={...draft};delete e.editIndex;
-    if(MMSB&&e.sid!=null){try{await cloudUpsert(entryToRec(e),e.sid);}catch(err){console.error('cloud update',err);}}  // 雲端更新
+    // 雲端更新:失敗必須讓使用者知道(否則下次 syncFromCloud 會把本機編輯蓋回舊值 → 靜默丟失編輯)
+    let cloudOk=true;
+    if(MMSB&&e.sid!=null){try{const {error}=await cloudUpsert(entryToRec(e),e.sid);if(error)throw error;}catch(err){console.error('cloud update',err);cloudOk=false;}}
     LOG[idx]=e;persist();renderWall(false);
     const si=sessionAdded.indexOf(old);if(si>=0)sessionAdded[si]=e;
+    if(!cloudOk){saveBtn.disabled=false;toast(T('save_cloud_fail'));return;}   // 不關窗、不假裝成功;本機已存,使用者可重試
     const embed=new URLSearchParams(location.search).get('embed')==='1';
     if(embed&&sessionAdded.length){addedScreen();return;}
     logDlg.close();if(!embed)setTimeout(()=>toast(T('toast_updated')),120);return;}
   const entry={...draft};
-  if(MMSB){try{const {data,error}=await cloudUpsert(entryToRec(entry),null);if(error)throw error;if(data&&data[0])entry.sid=data[0].id;}catch(err){console.error('cloud insert',err);}}  // 雲端新增→拿 sid
+  // 雲端新增:失敗時 sid 會是 null → 只存在本機,下次 syncFromCloud 會清掉 → 靜默永久丟失。必須擋下並告知。
+  let cloudOk=true;
+  if(MMSB){try{const {data,error}=await cloudUpsert(entryToRec(entry),null);if(error)throw error;if(data&&data[0])entry.sid=data[0].id;}catch(err){console.error('cloud insert',err);cloudOk=false;}}
+  if(!cloudOk){saveBtn.disabled=false;toast(T('save_cloud_fail'));return;}   // 未進雲端→不蓋章、不關窗,讓使用者重試(避免以為存了實則會丟)
   LOG.unshift(entry);sessionAdded.unshift(entry);persist();renderWall(true);
   if(new URLSearchParams(location.search).get('embed')==='1'){addedScreen();return;}
   logDlg.close();

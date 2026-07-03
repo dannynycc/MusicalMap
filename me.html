@@ -1135,7 +1135,7 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
   // 卡片刪除後 reload → 顯示可復原 toast（top-level，不被任何 modal 蓋住）
   try{const u=sessionStorage.getItem('mm-undo');if(u){sessionStorage.removeItem('mm-undo');const o=JSON.parse(u);
     const t=document.createElement('div');t.className='mm-toast';
-    t.innerHTML=TN('deleted',{name:o.name})+'<button type="button">'+T('undo')+'</button>';
+    t.innerHTML=TN('deleted',{name:esc(o.name)})+'<button type="button">'+T('undo')+'</button>';
     document.body.appendChild(t);requestAnimationFrame(()=>t.classList.add('show'));
     const hide=()=>{t.classList.remove('show');setTimeout(()=>t.remove(),300);};
     const tm=setTimeout(hide,6000);
