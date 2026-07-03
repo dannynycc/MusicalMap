@@ -216,6 +216,16 @@ const cluster = L.markerClusterGroup({
 });
 map.addLayer(cluster);
 
+// 手機:把開啟的 popup 移到 <body>,讓 CSS 的底部 sheet(position:fixed)生效——
+// Leaflet 的 popup pane 有 transform,fixed 會相對 pane 而非畫面,貼不到底(2026-07-04 使用者回報「圖卡」修正)。
+// 關閉時元素連同事件由 Leaflet 移除;移到 body 後 el.remove() 仍正常清掉。
+const _isPhone = () => window.matchMedia("(max-width: 680px)").matches;
+map.on("popupopen", (e) => {
+  if (!_isPhone()) return;
+  const el = e.popup.getElement();
+  if (el && el.parentElement !== document.body) document.body.appendChild(el);
+});
+
 // Cluster bubbles don't support riseOnHover (that's marker-only); on hover, raise the
 // bubble above its neighbours so an obscured circle pops fully into view (CSS then grows
 // it slightly, like the poster cards). Reset on mouse-out.
@@ -586,10 +596,12 @@ function render() {
       .bindPopup(popupHtml(s), {
         maxWidth: Math.min(720, window.innerWidth - 40),  // never wider than the screen
         className: "mm-popup",
-        // 手機:點卡片/地圖不關閉(只用 × 關)——原本 closeOnClick 預設 true,手機上一觸就消失、看不到售票資訊。
-        // autoClose 保留(點別的 marker 會換卡);autoPanPadding 讓超框的卡自動平移進視野。
-        closeOnClick: false,
-        autoPanPadding: [12, 12],
+        closeOnClick: false,   // 點卡片/地圖不關閉,只用 × 關
+        // autoPan 依裝置(2026-07-04「圖卡閃一下消失」修正):
+        //  手機=false——小地圖上開 popup 時 autoPan 想把大卡平移進視野,那個地圖移動觸發 markercluster 重新聚合→
+        //         marker 連 popup 被移除=閃退。手機改底部 sheet(見 style.css)不需 autoPan。
+        //  桌面=true——維持原本「自動平移把靠邊的 popup 帶進視野」,避免桌面靠邊 marker 的 popup 被裁。
+        autoPan: !window.matchMedia("(max-width: 680px)").matches,
       })
       .bindTooltip(tooltipHtml(s), { direction: "top", offset: [0, -68], className: "mm-tip", opacity: 1 });
     // small card never coexists with the big card
@@ -778,10 +790,10 @@ function hoverShow(show, on) {
 function focusShow(show) {
   const m = markerById[show.id];
   setActive(show.id);
-  if (m) {
-    map.setView([show.lat, show.lng], Math.max(map.getZoom(), 13), { animate: true });
-    cluster.zoomToShowLayer(m, () => m.openPopup());
-  }
+  if (!m) return;
+  // zoomToShowLayer 縮放到 marker 從群集散開的層級,callback 內開 popup。真正的「閃一下消失」修在 bindPopup 的
+  // autoPan:false(見該處註解);此處只用 zoomToShowLayer 單一動畫,不再並用 map.setView(避免兩動畫打架)。
+  cluster.zoomToShowLayer(m, () => m.openPopup());
 }
 
 // ---------- Boot ----------

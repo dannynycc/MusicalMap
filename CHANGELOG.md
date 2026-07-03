@@ -11,6 +11,12 @@
 
 ---
 
+## [v1.33.0] - 2026-07-04 00:38
+### 修正 — 手機地圖圖卡「閃一下就消失」真因 + 改底部彈出 sheet(使用者真機回報,v1.31.0 沒解決)
+- **真因(用 playwright 逐幀追出)**:v1.31.0 的 closeOnClick:false 防不了這個——popup 開啟時 Leaflet 的 **autoPan** 想把大卡平移進小手機地圖,那個地圖移動觸發 **markercluster 重新聚合**→marker 連同 popup 一起被移除=閃一下消失。(我上次太快把 headless 的「開了又關」當假象放過,是疏忽。)
+- **修**:① `autoPan` 依裝置——手機 false(不觸發 re-cluster)、桌面 true(維持靠邊 popup 自動帶進視野)。② `focusShow` 拆掉並發的 map.setView+zoomToShowLayer(兩動畫打架),只留 zoomToShowLayer。③ **手機版 popup 改「底部彈出 sheet」**:position:fixed 貼畫面底、滿寬、可上下捲、關閉鈕右上角圓形;popupopen 時把 popup 元素移到 <body>(繞過 Leaflet pane 的 transform 讓 fixed 生效)。
+- **驗證(playwright iPhone12)**:popup 開啟並「保持」(opened/finalOpen/stayedAfterOpen 全 true)、觸碰卡片內容不消失、截圖確認海報+標題+劇院+城市+檔期+購票鍵完整顯示;桌面回歸 fitsScreen:true、非 sheet、無 error。
+
 ## [v1.32.1] - 2026-07-03 23:06
 ### 修正 — 無障礙 R20:詳情海報放大鍵盤可及(a11y 一致性掃描收尾)
 - 延續 R19 星級評分,系統性掃全站可點元素的鍵盤可及性:絕大多數是 `<button>`(原生)或已有 role+keydown(♥/編輯/刪除/護照戳章/檢視切換/年份 chips/地圖 pin/城市列/combo 下拉);**唯一剩的滑鼠限定=詳情海報 `#dt-poster`(div+onclick 開原圖)**。
