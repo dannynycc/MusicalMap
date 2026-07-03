@@ -251,7 +251,9 @@ const _cjk=/[぀-ヿ㐀-鿿가-힯豈-﫿]/;   // 中日韓：假名+CJK+諺文+
 const _HALL=new Set(['大劇院','中劇院','小劇院','大劇場','中劇場','小劇場','音樂廳','演奏廳','戲劇廳','歌劇廳','演藝廳','表演廳','實驗劇場','排練場','大廳','小廳']);
 // 劇院名：抽中文部分（存的是「English 中文」混合），去掉「大/中/小劇院」等廳別後綴，臺→台，
 // 讓同一劇院不同廳合併成同一個名字（臺中國家歌劇院 大劇院 → 台中國家歌劇院）。整個是館名的不砍（上海大劇院保留）。
-const venueZh=v=>{if(EN_UI)return v||'';if(!v)return v||'';
+const venueZh=v=>{if(!v)return v||'';
+  if(EN_UI){const en=String(v).split(/\s+/).filter(x=>!_cjk.test(x)).join(' ').trim();
+    return en||String(v);}   // en 模式抽英文部分;純中日韓館名(中國本地等)無英文名→保留原文
   const t=String(v).split(/\s+/).filter(x=>_cjk.test(x));
   if(!t.length)return MS(v);
   const core=t.filter(x=>!_HALL.has(x));
@@ -1080,7 +1082,7 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
   function openEdit(i){before=snap();fr.src='me-input.html?embed=1&edit='+i+cb();m.hidden=false;document.body.style.overflow='hidden';}
   window.mmEditShow=openEdit;
   window.mmDeleteShow=async function(i,title,zh){
-    if(!confirm(TN('confirm_delete',{name:zh||title||T('this_show')})))return;   // 防誤點垃圾桶
+    if(!confirm(TN('confirm_delete',{name:(window.MM_HL==='en'?(title||zh):(zh||title))||T('this_show')})))return;   // 防誤點;名稱依語言
     try{const log=JSON.parse(localStorage.getItem('mm-log')||'[]');const removed=log.splice(i,1)[0];
       if(window.mmSb&&removed&&removed.sid!=null){await window.mmSb.from('sightings').delete().eq('id',removed.sid);}  // 雲端刪
       localStorage.setItem('mm-log',JSON.stringify(log));

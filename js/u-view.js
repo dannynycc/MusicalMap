@@ -35,7 +35,9 @@
   const countryZh = (c) => EN_UI ? (c || '') : MS(COUNTRY_ZH[c] || c || '');
   const _cjk = /[぀-ヿ㐀-鿿가-힯豈-﫿]/;
   const _HALL = new Set(['大劇院', '中劇院', '小劇院', '大劇場', '中劇場', '小劇場', '音樂廳', '演奏廳', '戲劇廳', '歌劇廳', '演藝廳', '表演廳', '實驗劇場', '排練場', '大廳', '小廳']);
-  const venueZh = (v) => { if (EN_UI) return v || ''; if (!v) return v || ''; const t = String(v).split(/\s+/).filter((x) => _cjk.test(x)); if (!t.length) return MS(v); const core = t.filter((x) => !_HALL.has(x)); return MS((core.length ? core : t).join(' ').replace(/臺/g, '台')); };
+  const venueZh = (v) => { if (!v) return v || '';
+    if (EN_UI) { const en = String(v).split(/\s+/).filter((x) => !_cjk.test(x)).join(' ').trim(); return en || String(v); }   // en 模式抽英文部分;純中日韓館名無英文名→保留原文
+    const t = String(v).split(/\s+/).filter((x) => _cjk.test(x)); if (!t.length) return MS(v); const core = t.filter((x) => !_HALL.has(x)); return MS((core.length ? core : t).join(' ').replace(/臺/g, '台')); };
 
   /* ---- catalog-driven poster + zh-name resolution (mirrors js/u.js) ---- */
   let POSTER_BY_TITLE = {};   // title(lower) -> poster url

@@ -11,6 +11,12 @@
 
 ---
 
+## [v1.22.2] - 2026-07-03 15:18
+### 調整 — 英文模式在地化三連修 + guide 開場句去推銷味(使用者指示)
+- **en 模式不顯示中文劇名**:me/u 海報卡/清單/詳情 modal 的 zh 行以 CSS 隱藏(me-v2.css,`html[lang="en"]`);me-input 搜尋結果/城市卡/最近加入同步;toast/確認刪除等 JS 組字改語言感知(`PN()` helper,en 用英文名)。實測 en 頁中文劇名 0 個、繁中頁 22 個不變。
+- **en 模式劇院名抽英文**:`venueZh` 原本 en 直接回傳原字串(「National Taichung Theater 臺中國家歌劇院 大劇院」整串上榜);改為抽非 CJK token(→「National Taichung Theater」),**沒有英文名的本地館(上海大劇院/帝国劇場)保留原文**(使用者的「另當別論」規則);_cjk 已含假名+諺文,「샤롯데씨어터 Charlotte Theater」→「Charlotte Theater」。六組真實字串單元驗證通過。
+- **guide Part1 開場句去推銷味**:「想看哪一齣，直接連過去訂票」(第一句就賣票太顯眼)→「放大、拖一拖，看看世界哪個角落的燈正亮著」;en 同步(lights on 劇場意象);訂票資訊仍在 a2 專段。
+
 ## [v1.22.1] - 2026-07-03 15:07
 ### 文案 — 英文 bridge 句採使用者版本
 - how_bridge:「Don’t leave them…」→「Don’t leave **memories** all alone in the moonlight — stamp them in.」——them 原無明確先行詞,memories 讓句子自立且直接點題 Cats〈Memory〉原詞。
