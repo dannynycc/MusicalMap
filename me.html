@@ -242,6 +242,8 @@ const T=window.MM_T||(k=>k), TN=(k,v)=>{let s=T(k);for(const n in(v||{}))s=s.rep
 const EN_UI=(window.MM_HL||'zh-hant')==='en';
 const MS=window.MM_S||(x=>x);   // zh-hans:資料層地名轉簡;其他語言 identity
 const S=MM.shows, st=MM.stats('past'), stAll=MM.stats();   // st=只算已看過（統計/大數字）；stAll=含未來（年份 chips）
+// HTML 跳脫:劇名/劇院/城市是使用者手動輸入的自由文字,innerHTML 內插前必跳脫,否則含 < " 的名稱會打壞版面(且構成 self-XSS)。u-view.js 早有,me.html 補上。
+const esc=s=>String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 const isFut=d=>MM.isFuture(d);
 const update=d=>String(d||'').replace(/-/g,' / ');   // 2026-11-09 → "2026 / 11 / 09"（未來卡日期）
 // 中文頁：國家名顯示繁中；劇院名只顯示中文部分（存的是「English 中文」混合字串，太累）
@@ -280,7 +282,7 @@ const venueCode=v=>v.replace(/Theatre|Theater|劇場|劇院|\(.*\)/g,'').trim().
   const up=stAll.upcoming||0;
   const upTxt=up>0?` <span class="nw" style="color:var(--gold)">${TN('upcoming_dot_n',{n:up})}</span>`:'';
   document.getElementById('newest').innerHTML=newest
-    ? `<span class="dot"></span><span class="nw">${T('newest_label')} <b>${newest.title}</b></span> <span class="nw">${newest.city}${newest.date?' · '+fshort(newest.date):''}</span>${upTxt}`
+    ? `<span class="dot"></span><span class="nw">${T('newest_label')} <b>${esc(newest.title)}</b></span> <span class="nw">${esc(cityName(newest.city))}${newest.date?' · '+fshort(newest.date):''}</span>${upTxt}`
     : (up>0?`<span class="dot"></span><span class="nw">${T('none_yet')}</span><span class="nw" style="color:var(--gold)">${TN('upcoming_n',{n:up})}</span>`:'');
 })();
 
@@ -300,15 +302,15 @@ function posterEl(s){
   const fut=isFut(s.date);if(fut)c.classList.add('is-future');
   c.innerHTML=`<figure class="poster" style="margin:0${s.posterBg?';background:'+s.posterBg:''}">
       <div class="skel"></div>
-      <img alt="${s.title} poster" loading="lazy" decoding="async" ${s.posterFit==='contain'?'style="object-fit:contain;object-position:center"':''}/>
-      <figcaption class="fallback"><span class="kick">A Musical</span><span class="ft">${s.title}</span><span class="fzh">${s.zh}</span><span class="rule"></span></figcaption>
+      <img alt="${esc(s.title)} poster" loading="lazy" decoding="async" ${s.posterFit==='contain'?'style="object-fit:contain;object-position:center"':''}/>
+      <figcaption class="fallback"><span class="kick">A Musical</span><span class="ft">${esc(s.title)}</span><span class="fzh">${esc(s.zh)}</span><span class="rule"></span></figcaption>
       <div class="topfx"></div>
       ${fut?`<div class="up-veil"></div><div class="up-ribbon">${T('ribbon_upcoming')}</div>`:''}
       <span class="flag">${FLAG[s.country]||''}</span>${s.fav?'<span class="fav">♥</span>':''}
     </figure>
-    <div class="cap"><span class="cap-t"><span class="en">${s.title}</span><span class="zh">${s.zh}</span></span>
-      <div class="cap-venue">${venueZh(s.venue)||''}</div>
-      <div class="cap-where">${[cityName(s.city),countryZh(s.country)].filter(Boolean).join(' · ')}</div>
+    <div class="cap"><span class="cap-t"><span class="en">${esc(s.title)}</span><span class="zh">${esc(s.zh)}</span></span>
+      <div class="cap-venue">${esc(venueZh(s.venue)||'')}</div>
+      <div class="cap-where">${[cityName(s.city),countryZh(s.country)].filter(Boolean).map(esc).join(' · ')}</div>
       <div class="cap-date">${s.date?s.date.replace(/-/g,'/'):''}</div></div>`;
   const img=c.querySelector('img'),fig=c.querySelector('.poster'),skel=c.querySelector('.skel');
   let _retried=false;
@@ -354,9 +356,9 @@ function renderLog(){
   el.innerHTML=`<div class="logtable" role="table">
     <div class="lt-head" role="row"><span>${T('lt_show')}</span><span>${T('lt_city')}</span><span>${T('lt_date')}</span><span>${T('lt_rate')}</span></div>`+
     list.map(s=>`<button class="lt-row" data-id="${s.id}" role="row">
-      <span class="lt-show"><span class="lt-thumb">${s.poster?`<img src="${s.poster}" referrerpolicy="no-referrer" alt=""/>`:`<i>${(s.title||'?').trim()[0]||'?'}</i>`}</span>
-        <span class="lt-t"><b>${s.title}</b>${s.zh?`<i>${s.zh}</i>`:''}</span></span>
-      <span class="lt-city">${s.city?cityName(s.city):'<span class="muted">—</span>'} ${s.country?(FLAG[s.country]||''):''}</span>
+      <span class="lt-show"><span class="lt-thumb">${s.poster?`<img src="${esc(s.poster)}" referrerpolicy="no-referrer" alt=""/>`:`<i>${esc((s.title||'?').trim()[0]||'?')}</i>`}</span>
+        <span class="lt-t"><b>${esc(s.title)}</b>${s.zh?`<i>${esc(s.zh)}</i>`:''}</span></span>
+      <span class="lt-city">${s.city?esc(cityName(s.city)):'<span class="muted">—</span>'} ${s.country?(FLAG[s.country]||''):''}</span>
       <span class="lt-date">${fshort(s.date)||`<span class="muted">${T('lt_undated')}</span>`}</span>
       <span class="lt-rate">${s.rating?'★'.repeat(s.rating):'<span class="muted">—</span>'}</span>
     </button>`).join('')+`</div>`;
@@ -375,9 +377,9 @@ function stampSvg(s){
     <circle cx="64" cy="64" r="56" fill="none" stroke="currentColor" stroke-width="2.4"/>
     <circle cx="64" cy="64" r="48" fill="none" stroke="currentColor" stroke-width="1"/>
     <text font-size="10.5" letter-spacing="1.2" fill="currentColor" font-family="Inter,sans-serif" font-weight="700">
-      <textPath href="#${id}t" startOffset="50%" text-anchor="middle">${enTitle}</textPath></text>
+      <textPath href="#${id}t" startOffset="50%" text-anchor="middle">${esc(enTitle)}</textPath></text>
     <text font-size="8" letter-spacing="1" fill="currentColor" font-family="Inter,sans-serif">
-      <textPath href="#${id}b" startOffset="50%" text-anchor="middle">${s.city.toUpperCase()} · ${venueCode(s.venue)}</textPath></text>
+      <textPath href="#${id}b" startOffset="50%" text-anchor="middle">${esc(s.city.toUpperCase())} · ${esc(venueCode(s.venue))}</textPath></text>
     <g transform="rotate(1.5 64 64)"><text x="64" y="68" font-size="12" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-weight="600" fill="currentColor">${dd}</text></g>
   </svg>`;
 }
@@ -395,14 +397,14 @@ function renderPassport(){
   let gi=0;
   order.forEach(co=>{
     const arr=byC[co].sort((a,b)=>a.date.localeCompare(b.date));
-    const cities=[...new Set(arr.map(s=>s.city))].join(' · ');
+    const cities=[...new Set(arr.map(s=>s.city))].map(x=>esc(cityName(x))).join(' · ');
     const stamped=arr.filter(s=>!isFut(s.date)).length;   // 只算已到場的戳章數
     const v=document.createElement('div');v.className='visa reveal';
-    v.innerHTML=`<div class="crow"><span class="cn">${countryZh(co)}</span>
+    v.innerHTML=`<div class="crow"><span class="cn">${esc(countryZh(co))}</span>
       <span class="ct">${cities}</span><span class="prog">${stamped} STAMP${stamped!==1?'S':''}</span></div>
       <div class="stamps">${arr.map((s,j)=>{
         const dly=Math.min(j*0.05,0.5).toFixed(2);const mile=milestoneFor(s,j,j===0);const fut=isFut(s.date);
-        return `<div class="stamp${fut?' is-future':''}" data-sid="${s.id}" role="button" tabindex="0" aria-label="${(s.title||'').replace(/"/g,'&quot;')}${fut?T('up_suffix'):''}${T('detail_suffix')}" style="--ink:${s.color};--rot:${(((s.id*37)%9)-4)}deg;--dly:${dly}s">
+        return `<div class="stamp${fut?' is-future':''}" data-sid="${s.id}" role="button" tabindex="0" aria-label="${esc((s.title||'')+(fut?T('up_suffix'):'')+T('detail_suffix'))}" style="--ink:${s.color};--rot:${(((s.id*37)%9)-4)}deg;--dly:${dly}s">
           ${mile&&!fut?`<span class="mile">${mile}</span>`:''}${stampSvg(s)}${fut?`<span class="up-mark">${T('up_mark')}</span>`:''}</div>`;}).join('')}</div>`;
     w.appendChild(v);io.observe(v);
   });
@@ -489,7 +491,7 @@ function placePins(){
     el.innerHTML=`<span class="glow" style="width:${sz*2.4}px;height:${sz*2.4}px"></span>
       <span class="ring"></span>
       <span class="core" style="width:${sz}px;height:${sz}px">${c.n}</span>
-      <span class="lbl">${cityName(c.city)}</span>`;
+      <span class="lbl">${esc(cityName(c.city))}</span>`;
     el.onclick=()=>filterToCity(c.city);
     pins.appendChild(el);PINS.push({el,px,py});
   });
@@ -503,9 +505,9 @@ function buildCityList(){
   const byCity={};S.forEach(s=>{if(!s.city||isFut(s.date))return;(byCity[s.city]=byCity[s.city]||{...s,n:0}).n++;});   // 地圖/城市榜只算已到場
   const arr=Object.values(byCity).sort((a,b)=>b.n-a.n);
   el.innerHTML=`<h4>${T('citylist_title')}</h4><div class="sh">${TN('citylist_sub',{c:arr.length,k:st.countries,t:st.total})}</div>`+
-    arr.map(c=>{const d=9+Math.sqrt(c.n)*4.2;return `<button class="cl-row" data-city="${c.city}">
+    arr.map(c=>{const d=9+Math.sqrt(c.n)*4.2;return `<button class="cl-row" data-city="${esc(c.city)}">
       <span class="d" style="width:${d}px;height:${d}px"></span>
-      <span class="nm"><b>${cityName(c.city)}</b><span>${countryZh(c.country)}</span></span>
+      <span class="nm"><b>${esc(cityName(c.city))}</b><span>${esc(countryZh(c.country))}</span></span>
       <span class="ct">${c.n}</span></button>`;}).join('');
   el.querySelectorAll('.cl-row').forEach(r=>r.onclick=()=>filterToCity(r.dataset.city));
 }
@@ -537,14 +539,14 @@ let mt;addEventListener('resize',()=>{clearTimeout(mt);mt=setTimeout(()=>{render
   // 劇院改由下方「最常去的劇院」榜呈現，徽章不再放被砍字的劇院名
   // 徽章不放 emoji(裝飾性 emoji 全站移除,2026-07-03 指示)
   const badges=[[TN('badge_shows',{n:st.total}),true],[TN('badge_countries',{n:st.countries}),st.countries>=3],[TN('badge_cities',{n:st.cities}),false],[TN('badge_unique',{n:st.unique}),false]];
-  if(tops&&tops[1]>1)badges.push([`${tops[0]} ×${tops[1]}`,false]);
+  if(tops&&tops[1]>1)badges.push([`${esc(tops[0])} ×${tops[1]}`,false]);   // tops[0]=劇名(使用者輸入),必跳脫
   if(st.favCount>0)badges.push([TN('badge_fav',{n:st.favCount}),false]);
   b.innerHTML=badges.map(([t,g])=>`<div class="badge ${g?'gold':''}">${t}</div>`).join('');
   // ===== 統計儀表板：把已算好的 MM.stats() 畫出來 =====
   function barList(id,items,fmt){const el=document.getElementById(id);if(!el)return;
     if(!items||!items.length){el.innerHTML='<div class="sl-empty">—</div>';return;}
     const mx=items[0][1]||1;
-    el.innerHTML=items.slice(0,6).map(([k,v])=>`<div class="sl-row"><span class="sl-k" title="${(''+k).replace(/"/g,'&quot;')}">${fmt?fmt(k):k}</span><span class="sl-bar"><i style="width:${Math.max(6,v/mx*100)}%"></i></span><span class="sl-v">${v}</span></div>`).join('');}
+    el.innerHTML=items.slice(0,6).map(([k,v])=>`<div class="sl-row"><span class="sl-k" title="${esc(k)}">${esc(fmt?fmt(k):k)}</span><span class="sl-bar"><i style="width:${Math.max(6,v/mx*100)}%"></i></span><span class="sl-v">${v}</span></div>`).join('');}
   barList('sc-shows',st.topShows);
   barList('sc-countries',st.topCountries,countryZh);
   barList('sc-cities',st.topCities,k=>`${cityName(k)}`);
@@ -601,12 +603,12 @@ function openDetail(s){
   if(s.rating>0){rt.textContent=stars(s.rating)+`  ${s.rating}/5`;rt.style.display='';}
   else{rt.textContent='';rt.style.display='none';}   // 未評分→隱藏，不再顯示 0/5
   document.getElementById('dt-dl').innerHTML=`
-    <dt>${T('dt_venue')}</dt><dd>${venueZh(s.venue)||'—'}</dd>
-    <dt>${T('dt_city')}</dt><dd>${s.city?cityName(s.city)+(s.country?', '+countryZh(s.country):''):(countryZh(s.country)||'—')} ${FLAG[s.country]||''}</dd>
-    <dt>${T('dt_date')}</dt><dd>${s.date?s.date.replace(/-/g,'/'):'—'}</dd>
-    ${s.time?`<dt>${T('dt_time')}</dt><dd>${s.time}</dd>`:''}
-    <dt>${T('dt_seat')}</dt><dd>${s.seat||'—'}</dd>
-    <dt>${T('dt_price')}</dt><dd>${s.price?`${s.price} ${s.cur||''}`:'—'}</dd>
+    <dt>${T('dt_venue')}</dt><dd>${esc(venueZh(s.venue)||'—')}</dd>
+    <dt>${T('dt_city')}</dt><dd>${s.city?esc(cityName(s.city)+(s.country?', '+countryZh(s.country):'')):esc(countryZh(s.country)||'—')} ${FLAG[s.country]||''}</dd>
+    <dt>${T('dt_date')}</dt><dd>${s.date?esc(s.date.replace(/-/g,'/')):'—'}</dd>
+    ${s.time?`<dt>${T('dt_time')}</dt><dd>${esc(s.time)}</dd>`:''}
+    <dt>${T('dt_seat')}</dt><dd>${esc(s.seat||'—')}</dd>
+    <dt>${T('dt_price')}</dt><dd>${s.price?esc(`${s.price} ${s.cur||''}`):'—'}</dd>
     <dt>${T('dt_link')}</dt><dd>${s.url?`<a href="${String(s.url).replace(/"/g,'%22')}" target="_blank" rel="noopener noreferrer" style="color:#e3b23c;text-decoration:none;border-bottom:1px solid currentColor">${((String(s.url).match(/^https?:\/\/([^\/]+)/)||[])[1]||T('dt_open_link'))} ↗</a>`:'—'}</dd>`;
   document.getElementById('dt-note').textContent=s.note?('「'+s.note+'」'):'';
   document.getElementById('dt-note').style.display=s.note?'block':'none';

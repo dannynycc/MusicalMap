@@ -11,6 +11,12 @@
 
 ---
 
+## [v1.27.2] - 2026-07-03 18:27
+### 修正 — 穩定度審計 R2:me.html 自渲染 HTML 未跳脫(loop 體檢)
+- 實測(注入含 `<b>`/`"`/`<hr>` 的劇名/劇院/城市):海報卡標題、清單、統計榜、護照戳章 SVG、hero「最新一場」全被當 HTML 解析→**版面被打壞 + self-XSS**(手動新增的自由文字劇名/劇院/城市/座位)。u-view.js(公開頁)早有 `esc()`,me.html 這條路徑沒有。
+- 修:me.html 補 `esc()` helper,套進所有 innerHTML 內插使用者資料處(posterEl/renderLog/renderPassport+stampSvg/barList/badges/citylist/pins/newest/detail-dl,共 ~18 處);aria-label 原只跳脫 `"` 改用 esc 涵蓋 `<>`。playwright 注入實測:`<b id=pwned>` 標籤不再被解析(0)、`<hr>` 不再注入(0),顯示為字面文字。
+- 註:危害有限(資料是使用者自己輸入,非他人)但破版是真的;公開頁 u.html 讀他人資料的路徑本就安全。
+
 ## [v1.27.1] - 2026-07-03 18:11
 ### 修正 — 穩定度審計 R1:首頁資料載入失敗的誤導空狀態(loop 體檢)
 - 實測(block data fetch):失敗時顯示「沒有符合的音樂劇，試試清除搜尋或取消篩選」+「本月上演：0 部音樂劇」——誤導使用者;根因=錯誤訊息寫進**早已不存在的 #data-note**(移除頁尾時留下的黑洞)。
