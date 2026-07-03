@@ -408,10 +408,11 @@ function buildCatalog(){
     const g=t.group;
     const prods=(byGroup[g]||[]).map(s=>({label:s.tour_name||null,venue:s.venue||'',city:s.city||'',country:s.country||'',lat:s.lat,lng:s.lng,img:s.image||'',start:s.start_date||null,end:s.end_date||null,cur:curOf(s.country)}));
     const poster=(vc.posters&&vc.posters[g])||(prods[0]&&prods[0].img)||'';
-    return {g,en:t.en||'',zh:t.zh||'',prods,img:poster};
+    return {g,en:t.en||'',zh:t.zh||'',search:t.search||'',prods,img:poster};   // 帶上 catalog 的 search 欄(含簡體/日文/別譯)
   }).filter(w=>w.en && (w.prods.length || w.img));   // 只留有海報或當期演出的「真」作品，濾掉雜項 title
   window.CATALOG=CATALOG;
-  INDEX=CATALOG.map(w=>({w,hay:[norm(w.en),norm(w.zh),norm(w.g),norm(w.en.split(' ').map(x=>x[0]).join(''))].filter(Boolean)}));
+  // hay 併入 norm(search):否則簡中使用者搜簡體名(女巫前传)或別譯(魔法坏女巫)找不到——catalog search 欄本就備好這些
+  INDEX=CATALOG.map(w=>({w,hay:[norm(w.en),norm(w.zh),norm(w.search),norm(w.g),norm(w.en.split(' ').map(x=>x[0]).join(''))].filter(Boolean)}));
   window.MM_VENUES=vc.venues||[]; window.MM_CITIES=vc.cities||[];
   MM_READY=true;
 }
