@@ -401,7 +401,12 @@ dialog#detail::backdrop{background:rgba(0,0,0,.72);backdrop-filter:blur(8px)}
 @media(max-width:560px){
   .bar{height:auto;min-height:56px;flex-wrap:wrap;gap:4px 10px;padding:8px 0}
   .brand{font-size:19px}
-  .nav{gap:10px;font-size:13px}.nav a{white-space:nowrap}
+  .nav{gap:8px;font-size:13px;flex-wrap:wrap;justify-content:flex-end}.nav a{white-space:nowrap}
+  /* 手機:文字導航連結收進 footer(比照首頁);nav 只留語言/主題/分享/登出,避免 375px 橫向溢出 */
+  .nav > a[data-i18n="nav_map"],.nav > a[data-i18n="nav_guide"]{display:none}
+  .ctl-row{width:100%}.chips{max-width:100%}   /* 年份 chips 橫向捲動不撐破版面 */
+  .theme-pick button{width:26px;height:26px}   /* 觸控友善:色點放大到 ≥24px 底線 */
+  .hl-pick a{padding:6px 11px}
   .hero-in{grid-template-columns:1fr;gap:14px;padding:22px 18px}
   .crest{width:60px;height:60px;border-radius:13px}.crest .crest-logo{width:38px;height:38px}
   .hero h1{font-size:25px}

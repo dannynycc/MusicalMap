@@ -17,6 +17,7 @@ html[lang="zh-Hans"] body{--ui:'Inter','Noto Sans SC',sans-serif}  /* 簡中改�
 .hl-pick{display:flex;gap:2px;border:1px solid var(--hair2,rgba(255,255,255,.18));border-radius:999px;padding:2px}
 .hl-pick a{padding:3px 10px;border-radius:999px;font-size:12px;font-weight:700;text-decoration:none;color:var(--ink2,#aaa)}
 .hl-pick a[aria-current="true"]{background:var(--gold,#c9a85c);color:#1a1407}
+@media(max-width:560px){.hl-pick a{padding:6px 11px}}   /* 觸控友善:手機語言 pill ≥24px 高 */
 /* ===== 登入閘 ===== */
 #mev2gate{position:fixed;inset:0;z-index:5000;overflow-y:auto;background:radial-gradient(120% 90% at 50% 20%,#1b1522 0%,var(--bg,#0c0d10) 60%);color:var(--ink1,#fff);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:16px;text-align:center;padding:74px 24px 40px;font-family:var(--ui,system-ui,sans-serif)}
 /* 閘上方品牌列:登出/未登入時唯一的回站路,一定要有 */

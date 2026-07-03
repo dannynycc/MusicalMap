@@ -11,6 +11,12 @@
 
 ---
 
+## [v1.29.3] - 2026-07-03 19:27
+### 修正 — 行動裝置審計 R9:me.html 手機橫向溢出 + 觸控目標(loop 體檢)
+- **me.html 375px 橫向溢出**(scrollW 425>375,個人頁左右晃):header nav(語言/地圖首頁/使用說明/主題/分享/登出)擠不下→登出鈕頂出視窗。修:≤560px 隱藏兩個文字導航連結(比照首頁,footer 已有)、nav 允許 wrap、chips max-width 限制。實測 scrollW 375=375 無溢出。
+- **觸控目標補到 ≥24px 底線**:me 頁主題色點 19×19→26×26、語言 pill 高 23→29(inline style 需在 me.html 內覆寫,me-v2.css 因載入順序壓不過);pin 31px、其餘達標。
+- 掃描結論:index/guide/about/privacy 五頁手機無橫向溢出;index tagchip(22px)等次要篩選控制未動(非溢出、非主操作)。
+
 ## [v1.29.2] - 2026-07-03 19:17
 ### 修正 — 全站 console error 回歸掃描(0 錯) + SEO/social meta 補齊(loop 體檢)
 - **回歸掃描**:18 個「頁面×語言×互動(me 切三檢視)」組合監聽 pageerror/console error → **全 0**,確認 R2-R7 改動無新副作用、TDZ 修乾淨。
