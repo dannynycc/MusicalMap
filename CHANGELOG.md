@@ -11,6 +11,11 @@
 
 ---
 
+## [v1.29.1] - 2026-07-03 19:08
+### 修正 — 穩定度審計 R7:登入閘卡死防護 + 撈到並修 TDZ 錯誤(loop 體檢)
+- **登入閘卡死防護**:`getSession()` 原無 `.catch()`(reject→unhandled)、`syncFromCloud` 的 sightings select 原無逾時(網路 hang 非 error 時→永卡「同步中」)。修:getSession 加 catch→失敗回登入頁;select 加 12s `abortSignal` 逾時;同步失敗畫面加「重試」按鈕(gate_retry 三語),不再只能重整。實測新訪客路徑正常顯示登入頁、abortSignal 為有效方法。
+- **意外撈到 TDZ 錯誤(v1.27.2 我自己引入的 regression)**:R2 把 hero「最新一場」改成 `esc(cityName(...))`,但那段 IIFE(line ~284)執行時 `CITYZH`(const,line 454)還在暫時死區→`ReferenceError: Cannot access 'CITYZH' before initialization`,**hero(最新一場+大數字)整塊從 v1.27.2 起靜默掛掉**(console 有錯但畫面只是少了那行)。修:CITYZH/cityName 宣告上移到 hero 之前,刪除原處重複宣告。實測 hero 恢復「最新一場 Hadestown 倫敦 · 2025.02」(中文城市名回來)、零 pageerror。
+
 ## [v1.29.0] - 2026-07-03 18:57
 ### 效能 — 首頁側欄縮圖延遲載入(loop 體檢;首頁 load 21.5s→1.7s)
 - **根因**:側欄 688 個劇目的縮圖用 CSS inline `background-image`(原生 lazy 管不到),渲染時**全部立即載**——實測首屏抓 ~115MB 圖片(jpg 253 檔/57MB+png 80/12MB+gif 19/6MB),`load` 事件到 **21.5 秒**。
