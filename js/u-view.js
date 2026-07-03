@@ -142,7 +142,7 @@
           <figcaption class="fallback"><span class="kick">A Musical</span><span class="ft">${esc(s.title)}</span><span class="fzh">${esc(s.zh)}</span><span class="rule"></span></figcaption>
           <div class="topfx"></div>
           ${fut ? `<div class="up-veil"></div><div class="up-ribbon">${esc(T('ribbon_upcoming'))}</div>` : ''}
-          <span class="flag">${FLAG[s.country] || ''}</span>${s.fav ? '<span class="fav">❤️</span>' : ''}
+          <span class="flag">${FLAG[s.country] || ''}</span>${s.fav ? '<span class="fav">♥</span>' : ''}
         </figure>
         <div class="cap"><span class="cap-t"><span class="en">${esc(s.title)}</span><span class="zh">${esc(s.zh)}</span></span>
           <div class="cap-venue">${esc(venueZh(s.venue) || '')}</div>
@@ -343,10 +343,11 @@
     (function () {
       const b = document.getElementById('badges');
       const tops = st.topShows[0];
-      const badges = [['🎭', TN('badge_shows', { n: st.total }), true], ['🌏', TN('badge_countries', { n: st.countries }), st.countries >= 3], ['🏙', TN('badge_cities', { n: st.cities }), false], ['🎬', TN('badge_unique', { n: st.unique }), false]];
-      if (tops && tops[1] > 1) badges.push(['🔁', `${tops[0]} ×${tops[1]}`, false]);
-      if (st.favCount > 0) badges.push(['❤️', TN('badge_fav', { n: st.favCount }), false]);
-      b.innerHTML = badges.map(([ic, t, g]) => `<div class="badge ${g ? 'gold' : ''}"><span class="ic">${ic}</span>${t}</div>`).join('');
+      // 徽章不放 emoji(裝飾性 emoji 全站移除,2026-07-03 指示;與 me.html 同步)
+      const badges = [[TN('badge_shows', { n: st.total }), true], [TN('badge_countries', { n: st.countries }), st.countries >= 3], [TN('badge_cities', { n: st.cities }), false], [TN('badge_unique', { n: st.unique }), false]];
+      if (tops && tops[1] > 1) badges.push([`${esc(tops[0])} ×${tops[1]}`, false]);   // 劇名=公開頁上他人輸入的資料,必跳脫
+      if (st.favCount > 0) badges.push([TN('badge_fav', { n: st.favCount }), false]);
+      b.innerHTML = badges.map(([t, g]) => `<div class="badge ${g ? 'gold' : ''}">${t}</div>`).join('');
       function barList(id, items, fmt) { const el = document.getElementById(id); if (!el) return;
         if (!items || !items.length) { el.innerHTML = '<div class="sl-empty">—</div>'; return; }
         const mx = items[0][1] || 1;

@@ -26,7 +26,7 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha384-sHL9NAb7lN7rfvG5lfHpm643Xkcjzp4jFvuavGOndn6pjVqS6ny56CAt3nsEVT4H" crossorigin="anonymous" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" integrity="sha384-pmjIAcz2bAn0xukfxADbZIb3t8oRT9Sv0rvO+BR5Csr6Dhqq+nZs59P0pPKQJkEV" crossorigin="anonymous" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" integrity="sha384-wgw+aLYNQ7dlhK47ZPK7FRACiq7ROZwgFNg0m04avm4CaXS+Z9Y7nMu8yNjBKYC+" crossorigin="anonymous" />
-  <link rel="stylesheet" href="/MusicalMap/css/style.css?v=84f41cf759" />
+  <link rel="stylesheet" href="/MusicalMap/css/style.css?v=72c4c193d7" />
   <script>window.MM_VARIANT="en";window.MM_BASE="/MusicalMap/";</script>
 </head>
 <body>
@@ -44,7 +44,7 @@
       </div>
       <a class="nav-link" href="/MusicalMap/en/">Map home</a>
       <!-- 所有劇院入口暫藏(2026-07-03 指示;theatres.html 頁面保留可直達)
-      <a class="nav-link" href="/MusicalMap/theatres.html?lang=en">🎭 All theatres</a> -->
+      <a class="nav-link" href="/MusicalMap/theatres.html?lang=en">All theatres</a> -->
       <a class="nav-link" href="/MusicalMap/guide.html?hl=en">Guide</a>
       <!-- 隱私/條款移到地圖右下 attribution 列(Google Maps 慣例,見 app.js addAttribution) -->
       <a id="mine-link" class="nav-cta" href="/MusicalMap/me.html?hl=en">My Musicals</a>
@@ -1796,7 +1796,9 @@
           <button id="time-play" class="tb-btn" title="play">▶</button>
           <button id="time-today" class="tb-btn tb-now" title="today">This month</button>
           <input id="time-range" type="range" min="0" max="36" value="0" step="1" />
-          <input id="time-month" class="tb-date" type="month" />
+          <!-- 原生 month input 的顯示格式跟「瀏覽器語言」走、不理頁面 lang(中文瀏覽器上英文頁會顯示 2026年07月)
+               → 蓋一層自己用頁面語言格式化的 label,原生 input 透明墊底只負責點開月曆 -->
+          <span id="time-month-wrap"><span id="time-month-label"></span><input id="time-month" type="month" aria-label="month" /></span>
         </div>
       </main>
     </div>
@@ -1804,8 +1806,8 @@
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha384-cxOPjt7s7Iz04uaHJceBmS+qpjv2JkIHNVcuOrM+YHwZOmJGBXI00mdUXEq65HTH" crossorigin="anonymous"></script>
   <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js" integrity="sha384-eXVCORTRlv4FUUgS/xmOyr66XBVraen8ATNLMESp92FKXLAMiKkerixTiBvXriZr" crossorigin="anonymous"></script>
-  <script src="/MusicalMap/js/config.js?v=84f41cf759"></script>
-  <script src="/MusicalMap/js/i18n.js?v=84f41cf759"></script>
-  <script src="/MusicalMap/js/app.js?v=84f41cf759"></script>
+  <script src="/MusicalMap/js/config.js?v=72c4c193d7"></script>
+  <script src="/MusicalMap/js/i18n.js?v=72c4c193d7"></script>
+  <script src="/MusicalMap/js/app.js?v=72c4c193d7"></script>
 </body>
 </html>

@@ -92,8 +92,8 @@ export default {
       ? (lang === 'en'
         ? `Musicals ${display} has seen around the world — poster wall, theatre passport and a map of every city. Build your own musical passport on MusicalMap.`
         : lang === 'zh-hans'
-        ? `${display} 在世界各地看过的音乐剧——海报墙、观剧护照与足迹地图。用 MusicalMap 建立你自己的音乐剧护照。`
-        : `${display} 在世界各地看過的音樂劇——海報牆、觀劇護照與足跡地圖。用 MusicalMap 建立你自己的音樂劇護照。`)
+        ? `${display} 在世界各地看过的音乐剧——海报墙、音乐剧护照与足迹地图。用 MusicalMap 创建你自己的音乐剧护照。`
+        : `${display} 在世界各地看過的音樂劇——海報牆、音樂劇護照與足跡地圖。用 MusicalMap 建立你自己的音樂劇護照。`)
       : (lang === 'en' ? 'It may have been removed, or the owner hasn’t made it public.'
         : lang === 'zh-hans' ? '这个收藏页不存在,或拥有者尚未公开。'
         : '這個收藏頁不存在,或擁有者尚未公開。');

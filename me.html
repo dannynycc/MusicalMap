@@ -67,7 +67,7 @@ document.write('<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+S
   </button>
   <div id="gate-sub" hidden></div>
   <div id="gate-preview" hidden>
-    <div class="cap" data-i18n="gate_preview">登入後長這樣——你的海報牆、觀劇護照與觀劇統計，全部自動生成：</div>
+    <div class="cap" data-i18n="gate_preview">登入後長這樣——你的海報牆、音樂劇護照與觀劇統計，全部自動生成：</div>
     <img src="assets/guide/stats.webp" alt="登入後的觀劇統計頁預覽" loading="lazy" decoding="async" />
     <div class="lnks">
       <a href="index.html" data-i18n="gate_browse_map">先逛演出地圖 →</a>
@@ -101,7 +101,7 @@ document.write('<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+S
 <div class="wrap">
   <!-- DEMO/EMPTY-STATE BANNER (只在沒有真實登錄時出現) -->
   <div class="demobanner" id="demoBanner">
-    <span class="db-txt"><b data-i18n="demo_banner_b">👋 這是範例收藏</b><span data-i18n="demo_banner_rest"> —— 先讓你看看蓋滿章後的樣子。按右邊加入你第一齣看過的劇，整頁就換成你自己的。</span></span>
+    <span class="db-txt"><b data-i18n="demo_banner_b">這是範例收藏</b><span data-i18n="demo_banner_rest"> —— 先讓你看看蓋滿章後的樣子。按右邊加入你第一齣看過的劇，整頁就換成你自己的。</span></span>
     <button type="button" class="db-cta" id="demoBannerCta" data-i18n="demo_cta">＋ 加入第一齣音樂劇</button>
   </div>
   <!-- HERO -->
@@ -123,9 +123,9 @@ document.write('<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+S
   <div class="controls"><div class="ctl-row">
     <div class="seg" id="seg" role="group" aria-label="檢視模式" data-i18n-aria="aria_seg">
       <span class="thumb" id="segthumb"></span>
-      <button data-mode="poster" aria-pressed="true">🖼 <span data-i18n="seg_poster">海報牆</span></button>
-      <button data-mode="passport" aria-pressed="false">🛂 <span data-i18n="seg_passport">護照</span></button>
-      <button data-mode="log" aria-pressed="false">📋 <span data-i18n="seg_log">清單</span></button>
+      <button data-mode="poster" aria-pressed="true"><span data-i18n="seg_poster">海報牆</span></button>
+      <button data-mode="passport" aria-pressed="false"><span data-i18n="seg_passport">護照</span></button>
+      <button data-mode="log" aria-pressed="false"><span data-i18n="seg_log">清單</span></button>
     </div>
     <div class="chips" id="chips"></div>
     <span class="spacer"></span>
@@ -158,20 +158,20 @@ document.write('<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+S
   <!-- STATS DASHBOARD -->
   <div class="sec"><h2><span data-i18n="sec_stats">觀劇統計</span><span class="zh">Stats</span></h2></div>
   <div class="statgrid">
-    <div class="statcard sc-a reveal"><h3 data-i18n="st_shows">🎭 最常看的劇</h3><div class="slist" id="sc-shows"></div></div>
-    <div class="statcard sc-b reveal"><h3 data-i18n="st_countries">🌏 最常去的國家</h3><div class="slist" id="sc-countries"></div></div>
-    <div class="statcard sc-c reveal"><h3 data-i18n="st_cities">🏙 最常去的城市</h3><div class="slist" id="sc-cities"></div></div>
-    <div class="statcard sc-d reveal"><h3 data-i18n="st_theatres">🏛 最常去的劇院</h3><div class="slist" id="sc-theatres"></div></div>
-    <div class="statcard sc-year reveal"><h3 data-i18n="st_year">📅 各年</h3><div class="linechart"><canvas id="ch-year"></canvas></div></div>
-    <div class="statcard sc-month reveal"><h3 data-i18n="st_month">📅 各月</h3><div class="linechart"><canvas id="ch-month"></canvas></div></div>
-    <div class="statcard sc-week reveal"><h3 data-i18n="st_week">📅 各星期</h3><div class="linechart"><canvas id="ch-week"></canvas></div></div>
+    <div class="statcard sc-a reveal"><h3 data-i18n="st_shows">最常看的劇</h3><div class="slist" id="sc-shows"></div></div>
+    <div class="statcard sc-b reveal"><h3 data-i18n="st_countries">最常去的國家</h3><div class="slist" id="sc-countries"></div></div>
+    <div class="statcard sc-c reveal"><h3 data-i18n="st_cities">最常去的城市</h3><div class="slist" id="sc-cities"></div></div>
+    <div class="statcard sc-d reveal"><h3 data-i18n="st_theatres">最常去的劇院</h3><div class="slist" id="sc-theatres"></div></div>
+    <div class="statcard sc-year reveal"><h3 data-i18n="st_year">各年</h3><div class="linechart"><canvas id="ch-year"></canvas></div></div>
+    <div class="statcard sc-month reveal"><h3 data-i18n="st_month">各月</h3><div class="linechart"><canvas id="ch-month"></canvas></div></div>
+    <div class="statcard sc-week reveal"><h3 data-i18n="st_week">各星期</h3><div class="linechart"><canvas id="ch-week"></canvas></div></div>
   </div>
 
   <!-- PERSONA -->
   <div class="sec"><h2><span data-i18n="sec_you">關於這位劇迷</span><span class="zh">You</span></h2></div>
   <div class="grid2">
     <div class="panel reveal">
-      <h3 data-i18n="badges_title">🏅 成就徽章</h3>
+      <h3 data-i18n="badges_title">成就徽章</h3>
       <div class="badges" id="badges"></div>
     </div>
     <div class="panel persona reveal" id="persona"></div>
@@ -299,7 +299,7 @@ function posterEl(s){
       <figcaption class="fallback"><span class="kick">A Musical</span><span class="ft">${s.title}</span><span class="fzh">${s.zh}</span><span class="rule"></span></figcaption>
       <div class="topfx"></div>
       ${fut?`<div class="up-veil"></div><div class="up-ribbon">${T('ribbon_upcoming')}</div>`:''}
-      <span class="flag">${FLAG[s.country]||''}</span>${s.fav?'<span class="fav">❤️</span>':''}
+      <span class="flag">${FLAG[s.country]||''}</span>${s.fav?'<span class="fav">♥</span>':''}
     </figure>
     <div class="cap"><span class="cap-t"><span class="en">${s.title}</span><span class="zh">${s.zh}</span></span>
       <div class="cap-venue">${venueZh(s.venue)||''}</div>
@@ -316,7 +316,7 @@ function posterEl(s){
   if(document.documentElement.dataset.live==='1' && s.logged){
     const li=s.id-9000;
     const acts=document.createElement('div');acts.className='cardacts';
-    acts.innerHTML=`<span class="ca-btn" role="button" tabindex="0" aria-label="${T('edit_this')}" title="${T('edit')}">✎</span><span class="ca-btn" role="button" tabindex="0" aria-label="${T('delete_this')}" title="${T('delete')}">🗑</span>`;
+    acts.innerHTML=`<span class="ca-btn" role="button" tabindex="0" aria-label="${T('edit_this')}" title="${T('edit')}">✎</span><span class="ca-btn" role="button" tabindex="0" aria-label="${T('delete_this')}" title="${T('delete')}">✕</span>`;
     const eb=acts.children[0], db=acts.children[1];
     eb.onclick=e=>{e.stopPropagation();window.mmEditShow&&window.mmEditShow(li);};
     db.onclick=e=>{e.stopPropagation();window.mmDeleteShow&&window.mmDeleteShow(li,s.title,s.zh);};
@@ -519,10 +519,11 @@ let mt;addEventListener('resize',()=>{clearTimeout(mt);mt=setTimeout(()=>{render
   const b=document.getElementById('badges');
   const tops=st.topShows[0];
   // 劇院改由下方「最常去的劇院」榜呈現，徽章不再放被砍字的劇院名
-  const badges=[['🎭',TN('badge_shows',{n:st.total}),true],['🌏',TN('badge_countries',{n:st.countries}),st.countries>=3],['🏙',TN('badge_cities',{n:st.cities}),false],['🎬',TN('badge_unique',{n:st.unique}),false]];
-  if(tops&&tops[1]>1)badges.push(['🔁',`${tops[0]} ×${tops[1]}`,false]);
-  if(st.favCount>0)badges.push(['❤️',TN('badge_fav',{n:st.favCount}),false]);
-  b.innerHTML=badges.map(([ic,t,g])=>`<div class="badge ${g?'gold':''}"><span class="ic">${ic}</span>${t}</div>`).join('');
+  // 徽章不放 emoji(裝飾性 emoji 全站移除,2026-07-03 指示)
+  const badges=[[TN('badge_shows',{n:st.total}),true],[TN('badge_countries',{n:st.countries}),st.countries>=3],[TN('badge_cities',{n:st.cities}),false],[TN('badge_unique',{n:st.unique}),false]];
+  if(tops&&tops[1]>1)badges.push([`${tops[0]} ×${tops[1]}`,false]);
+  if(st.favCount>0)badges.push([TN('badge_fav',{n:st.favCount}),false]);
+  b.innerHTML=badges.map(([t,g])=>`<div class="badge ${g?'gold':''}">${t}</div>`).join('');
   // ===== 統計儀表板：把已算好的 MM.stats() 畫出來 =====
   function barList(id,items,fmt){const el=document.getElementById(id);if(!el)return;
     if(!items||!items.length){el.innerHTML='<div class="sl-empty">—</div>';return;}

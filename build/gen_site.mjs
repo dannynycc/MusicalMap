@@ -104,14 +104,14 @@ function langSwitch(active) {
 function page(variant, shows) {
   const v = VARIANTS[variant];
   const t = variant === "en"
-    ? { tagline: "Musicals playing around the world right now", theatres: "🎭 All theatres", mine: "My Musicals", guide: "Guide",
+    ? { tagline: "Musicals playing around the world right now", theatres: "All theatres", mine: "My Musicals", guide: "Guide",
         maphome: "Map home", search: "Search musicals, cities, theatres…", privacy: "Privacy", terms: "Terms",
         h1: "MusicalMap — live world map of musicals playing now", listhdr: "Musicals playing now", filterLabel: "Category" }
     : variant === "zh-hans"
-    ? { tagline: "此刻全球正在上演的音乐剧", theatres: "🎭 所有剧院", mine: "我的音乐剧", guide: "使用说明",
+    ? { tagline: "此刻全球正在上演的音乐剧", theatres: "所有剧院", mine: "我的音乐剧", guide: "使用说明",
         maphome: "地图首页", search: "搜寻音乐剧名、城市、剧院…", privacy: "隐私政策", terms: "使用条款",
         h1: "MusicalMap — 全球此刻正在上演的音乐剧实时地图", listhdr: "正在上演的音乐剧", filterLabel: "分类" }
-    : { tagline: "此刻全球正在上演的音樂劇", theatres: "🎭 所有劇院", mine: "我的音樂劇", guide: "使用說明",
+    : { tagline: "此刻全球正在上演的音樂劇", theatres: "所有劇院", mine: "我的音樂劇", guide: "使用說明",
         maphome: "地圖首頁", search: "搜尋音樂劇名、城市、劇院…", privacy: "隱私權政策", terms: "使用條款",
         h1: "MusicalMap — 全球此刻正在上演的音樂劇即時地圖", listhdr: "正在上演的音樂劇", filterLabel: "分類" };
   // zh-hans pages load OpenCC (small t2cn dict) so i18n can simplify the UI chrome strings.
@@ -187,7 +187,9 @@ function page(variant, shows) {
           <button id="time-play" class="tb-btn" title="play">▶</button>
           <button id="time-today" class="tb-btn tb-now" title="today">${variant === "en" ? "This month" : variant === "zh-hans" ? "本月" : "本月"}</button>
           <input id="time-range" type="range" min="0" max="36" value="0" step="1" />
-          <input id="time-month" class="tb-date" type="month" />
+          <!-- 原生 month input 的顯示格式跟「瀏覽器語言」走、不理頁面 lang(中文瀏覽器上英文頁會顯示 2026年07月)
+               → 蓋一層自己用頁面語言格式化的 label,原生 input 透明墊底只負責點開月曆 -->
+          <span id="time-month-wrap"><span id="time-month-label"></span><input id="time-month" type="month" aria-label="month" /></span>
         </div>
       </main>
     </div>

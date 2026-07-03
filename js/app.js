@@ -584,9 +584,12 @@ function render() {
 
   // sidebar — one row per show; a show playing in multiple cities (e.g. Wicked
   // in London + New York) is a single entry you can expand to see each location.
-  // Re-rendering (slider drag, search) must NOT collapse what the user expanded.
+  // Re-rendering (slider drag, search) must NOT collapse what the user expanded —
+  // nor re-expand what the user collapsed (multi-city groups now default to open).
   const openKeys = new Set(
     [...els.list.querySelectorAll(".show-group.open")].map((el) => el.dataset.gkey));
+  const closedKeys = new Set(
+    [...els.list.querySelectorAll(".show-group.multi:not(.open)")].map((el) => el.dataset.gkey));
   els.list.innerHTML = "";
   if (!shows.length) {
     els.list.innerHTML = `<li class="empty">${esc(t("empty_title"))}<br><span>${esc(t("empty_sub"))}</span></li>`;
@@ -612,9 +615,9 @@ function render() {
         // alternate each show's tint (teal / amber) so its extent reads at a glance
         const li = showGroupItem(items, parity++ % 2 ? "B" : "A");
         li.dataset.gkey = k;
-        // auto-expand small multi-city groups (≤6 stops) so their per-city dates show
-        // without a click; bigger tours stay collapsed (would flood the list).
-        if (openKeys.has(k) || (items.length > 1 && items.length <= 6)) li.classList.add("open");
+        // 多城市一律預設展開(2026-07-03 指示:原本 >6 站的大巡演會折疊,現在通通展開);
+        // 使用者手動收合的(closedKeys)重渲染時維持收合
+        if (openKeys.has(k) || (items.length > 1 && !closedKeys.has(k))) li.classList.add("open");
         els.list.appendChild(li);
       });
   }
@@ -813,6 +816,8 @@ function setMonth(offset, { fromSlider = false, fromPicker = false } = {}) {
   monthOffset = Math.min(Math.max(offset, MIN_MONTHS), MAX_MONTHS);  // clamp [earliest archive, +MAX_MONTHS]
   if (!fromSlider) els.tRange.value = monthOffset;
   if (!fromPicker) els.tMonth.value = selYM();
+  // 顯示層 label 一律用「頁面語言」格式化(原生 input 只當透明點擊層,它的字樣跟瀏覽器語言走)
+  { const lbl = document.getElementById("time-month-label"); if (lbl) lbl.textContent = I18N.fmtYM(monthStart()); }
   els.tToday.style.visibility = monthOffset === 0 ? "hidden" : "visible";
   // past months read the archive (lazy-loaded) — wait for it, then render
   ensureArchiveForView().then(render);

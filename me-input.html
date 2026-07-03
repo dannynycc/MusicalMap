@@ -310,7 +310,7 @@ footer{margin:48px 0 40px;color:var(--ink3);font-size:13px;text-align:center;lin
   <div class="sec"><h2 data-i18n="mi_sec_records">我的觀劇紀錄</h2><span class="ct" id="logct" data-i18n="mi_not_recorded">尚未記錄</span></div>
   <div id="empty">
     <div class="ghosts"><span data-i18n-html="mi_stamp_here">蓋章<br>處</span><span data-i18n-html="mi_stamp_here">蓋章<br>處</span><span data-i18n-html="mi_stamp_here">蓋章<br>處</span><span data-i18n-html="mi_stamp_here">蓋章<br>處</span><span data-i18n-html="mi_stamp_here">蓋章<br>處</span></div>
-    <div data-i18n-html="mi_empty_passport">你的觀劇護照還是空白的。<br><b>按上面「＋ 記錄一齣音樂劇」</b>蓋下第一個印章。</div>
+    <div data-i18n-html="mi_empty_passport">你的音樂劇護照還是空白的。<br><b>按上面「＋ 記錄一齣音樂劇」</b>蓋下第一個印章。</div>
   </div>
   <div id="wall" hidden></div>
 
@@ -424,7 +424,7 @@ logDlg.addEventListener('click',e=>{if(e.target===logDlg)logDlg.close();});  // 
 function startLog(){
   draft=null;saveBtn.disabled=true;sheetTitle.textContent=T('log_title');saveBtn.textContent=T('mi_add');
   sbody.innerHTML=`<div class="step">
-    <div class="searchbox"><span class="mag">🔍</span>
+    <div class="searchbox">
       <input id="q" placeholder="${T('mi_search_ph')}" autocomplete="off" inputmode="search"/></div>
     <div class="results" id="results"></div>
     <div class="searchhint" id="searchHint">${T('mi_search_hint')}</div>
@@ -622,7 +622,7 @@ function pickWork(w){
       <span class="pm"><span class="pn">${g.label}</span>
         <span class="pv">${TN('prod_cities',{n:cities.length,list:cities.slice(0,3).join('／')+(cities.length>3?'…':'')})}</span><span class="pr">${yr}</span></span>
       <span class="chev">›</span></button>`;}).join('');
-  pc.insertAdjacentHTML('beforeend',`<button class="pcard escape" id="otherProd"><span class="fl">✏️</span>
+  pc.insertAdjacentHTML('beforeend',`<button class="pcard escape" id="otherProd"><span class="fl">✎</span>
     <span class="pm"><span class="pn">${T('pick_none')}</span><span class="pv">${T('pick_none_sub')}</span></span></button>`);
   [...pc.querySelectorAll('.pcard[data-g]')].forEach(b=>b.onclick=()=>{const g=groups[+b.dataset.g];
     if(g.items.length===1)pickProd(w,g.items[0]);else pickTourCity(w,g);});
@@ -639,7 +639,7 @@ function pickTourCity(w,g){
     return `<button class="pcard" data-c="${ci}"><span class="fl">${flag(p.country)}</span>
       <span class="pm"><span class="pn">${p.city||p.venue}</span><span class="pv">${[p.venue,p.city].filter(Boolean).join(' · ')}</span><span class="pr">${run}</span></span>
       <span class="chev">›</span></button>`;}).join('');
-  pc.insertAdjacentHTML('beforeend',`<button class="pcard escape" id="cityUnsure"><span class="fl">🤔</span>
+  pc.insertAdjacentHTML('beforeend',`<button class="pcard escape" id="cityUnsure"><span class="fl">？</span>
     <span class="pm"><span class="pn">${T('pick_city_none')}</span><span class="pv">${T('pick_city_none_sub')}</span></span></button>`);
   [...pc.querySelectorAll('.pcard[data-c]')].forEach(b=>b.onclick=()=>pickProd(w,g.items[+b.dataset.c]));
   document.getElementById('cityUnsure').onclick=()=>{const p={...g.items[0],city:'',venue:'',lat:undefined,lng:undefined};pickProd(w,p);};
@@ -669,8 +669,8 @@ function renderDetail(){
       <img src="${p.img||''}" referrerpolicy="no-referrer" alt=""/>
       <div class="ci"><div class="en">${w.en}</div>${w.zh?`<div class="zh">${w.zh}</div>`:''}
         <div class="chips"><span class="chip"><b>${p.label||p.city}</b></span>
-          ${p.venue?`<span class="chip">🎭 <b>${p.venue}</b></span>`:''}
-          <span class="chip">📍 <b>${p.city}</b></span></div></div>
+          ${p.venue?`<span class="chip"><b>${p.venue}</b></span>`:''}
+          <span class="chip"><b>${p.city}</b></span></div></div>
     </div>
     ${draft.editIndex!=null?`<div class="step" id="editLoc">
       <div class="lbl">${T('venue_city')}<span class="opt">${T('edit_can_change')}</span></div>
@@ -794,7 +794,7 @@ function renderWall(justAdded){
   wall.innerHTML=LOG.map((d,i)=>`<div class="lcard ${justAdded&&i===0?'justadded':''}">
     <div class="pos">${d.p.img?`<img src="${d.p.img}" referrerpolicy="no-referrer" alt=""/>`:`<div class="posfall">${(d.w.en||'?').trim()[0]||'?'}</div>`}
       <div class="stamp-badge">${flag(d.p.country)}</div>
-      <div class="lacts"><button class="ledit" data-i="${i}" aria-label="${T('edit')}">✎</button><button class="ldel" data-i="${i}" aria-label="${T('delete')}">🗑</button></div></div>
+      <div class="lacts"><button class="ledit" data-i="${i}" aria-label="${T('edit')}">✎</button><button class="ldel" data-i="${i}" aria-label="${T('delete')}">✕</button></div></div>
     <div class="cap"><div class="en">${d.w.en}</div>${d.w.zh?`<div class="zh">${d.w.zh}</div>`:''}
       <div class="dt"><span class="pre">${dateLabel(d)}</span><span class="stars">${stars(d.rating||0)}</span></div></div>
   </div>`).join('');
@@ -815,7 +815,7 @@ function renderRecent(){
         <div class="rth">${d.p.img?`<img src="${d.p.img}" referrerpolicy="no-referrer" alt=""/>`:`<span>${(d.w.en||'?').trim()[0]||'?'}</span>`}</div>
         <div class="rmeta"><div class="rt">${d.w.zh||d.w.en}</div><div class="rsub">${dateLabel(d)}${d.p.city?' · '+d.p.city:''}</div></div>
         <button class="rb" data-edit="${i}" aria-label="${T('edit')}">✎</button>
-        <button class="rb" data-del="${i}" aria-label="${T('delete')}">🗑</button>
+        <button class="rb" data-del="${i}" aria-label="${T('delete')}">✕</button>
       </div>`).join('')
     : (lastDeleted?'':`<div class="recent-empty">${T('recent_empty')}<br><span class="re-sub">${T('recent_empty_sub')}</span></div>`);
   el.innerHTML=undoHtml+body;
