@@ -11,6 +11,10 @@
 
 ---
 
+## [v1.24.7] - 2026-07-03 16:30
+### 調整 — llms.txt 更新(AI search 自述檔過時)
+- 雙語→三語(補简体中文與三語網址);Key pages 補 guide(How it works)與 My Musicals(海報牆/護照/統計/自訂海報連結/公開分享頁);theatres 註明「暫不在導覽但可直達」。About 頁討論結論:傳統 SEO 直接效益≈0、AI search 有實質但不可量化的幫助;llms.txt 先行更新,About 待使用者提供「為什麼做」動機再寫。
+
 ## [v1.24.6] - 2026-07-03 16:25
 ### 新功能 — guide 自訂海報/連結獨立賣點 section(使用者指示:單獨列,不埋段落)
 - 從 how_b1_p 抽出,新 section「獨家/海報與連結，都能換成你的」插在表單與統計之間,配專屬截圖(Wicked 表單:自訂海報網址+即時預覽縮圖+官網連結,三語各一張,`build/gen_guide_custom.cjs` 入 repo);統計 row 改 flip 維持交錯。三語驗證 6 張截圖皆載對應語言版。
