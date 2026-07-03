@@ -11,6 +11,13 @@
 
 ---
 
+## [v1.23.0] - 2026-07-03 15:34
+### 新功能 — guide 截圖裁切總修 + 劇院英文名回 catalog 查(使用者三點抓錯)
+- **截圖裁切通盤修正**(使用者連抓海報牆/統計卡被切):根因=用固定高度裁而非元素邊界。海報牆改寬版 1440(7 欄)+「第 2 排卡片底部」精準邊界=14 張完整海報零裁切;統計卡改拍完整 .statgrid 元素(7 卡+圖表全入鏡);表單裁在第一筆結果底部。三語重產,修正版腳本入 repo(`build/gen_guide_wall.cjs`/`gen_guide_stats_form.cjs`)。
+- **en 模式劇院名回 catalog 查官方英文名**(使用者質疑「上海大劇院/帝国劇場怎麼可能沒英文」——對,catalog 有 `Shanghai Grand Theatre 上海大劇院`,是我上一版只做字串抽取沒查表):me.html 同步時 `venueEnOf()` 以 CJK 名查 catalog search/name 對出英文,存 `p.venueEn`,**SYNC_VER 3→4** 強制全 session 重同步;u-view 同邏輯 runtime 處理;「上海大劇院 Lyric Theatre」正確變 Shanghai Grand Theatre(不再誤用廳名)。demo 資料 6 筆中文館名補官方英文(Imperial Theatre 帝国劇場 等),en/zh 雙模式實測正確。
+- **catalog 缺英文名盤點**(agent 全量掃描):5157 館中 **227 館 name 無英文**(中國 166/台灣 22/俄 14/日 13/希 9),**180 館正被現行檔期使用**(含臺北國家戲劇院、武汉琴台大剧院等一線館);根因=`cn_venues.json` 等區域檔僅百餘筆,查無 en 即落回原文;正確補法=往 `data/cn_venues.json`/`tw_venues.json` 等補 `{native,en}` 條目(gen_catalog 邏輯不用改)。**資料補名待辦**,見下一步。
+- 修自埋雷:venue 對映 IIFE 先於 `const EN_UI` 宣告執行會 TDZ 錯誤讓登入者看到範例資料——改行內判斷(commit 前抓到)。
+
 ## [v1.22.2] - 2026-07-03 15:18
 ### 調整 — 英文模式在地化三連修 + guide 開場句去推銷味(使用者指示)
 - **en 模式不顯示中文劇名**:me/u 海報卡/清單/詳情 modal 的 zh 行以 CSS 隱藏(me-v2.css,`html[lang="en"]`);me-input 搜尋結果/城市卡/最近加入同步;toast/確認刪除等 JS 組字改語言感知(`PN()` helper,en 用英文名)。實測 en 頁中文劇名 0 個、繁中頁 22 個不變。

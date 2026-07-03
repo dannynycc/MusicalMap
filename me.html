@@ -230,7 +230,8 @@ function proxyImg(u){if(!u||!/^https?:\/\//i.test(u)||/(wsrv\.nl|weserv\.nl)/i.t
     id:9000+i, title:(e.w&&e.w.en)||'?', zh:(e.w&&e.w.zh)||'', prod:(e.p&&e.p.label)||'', color:'#7c5cff',
     poster:(e.p&&e.p.img)?(e.posterOverride?proxyImg(e.p.img):e.p.img):null, posterFull:(e.posterOverride||(e.p&&e.p.img))||null, posterFit:'cover', posterBg:null,
     date:e.date||'', precision:e.precision||'none', time:(e.time||'').slice(0,5),
-    venue:(e.p&&e.p.venue)||'', city:(e.p&&e.p.city)||'', country:normCountry(e.p&&e.p.country), cc:'',
+    venue:(((window.MM_HL||'zh-hant')==='en')&&e.p&&e.p.venueEn)?e.p.venueEn:((e.p&&e.p.venue)||''),   // en 模式優先用 catalog 對出的官方英文名(不可用下方 EN_UI:此 IIFE 先於其宣告執行)
+    city:(e.p&&e.p.city)||'', country:normCountry(e.p&&e.p.country), cc:'',
     lat:e.p&&e.p.lat, lng:e.p&&e.p.lng, seat:e.seat||'', price:e.price||'', cur:e.cur||'',
     rating:e.rating||0, fav:false, note:e.note||'', url:e.url||'', era:null, scale:null, logged:true
   }));
@@ -1012,16 +1013,29 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
   function partialDate(seen,prec){if(!seen)return null;
     if(prec==='year')return seen.slice(0,4);if(prec==='month')return seen.slice(0,7);return seen;}
   // 劇名→中文名/海報（render 時用，不存進雲端）
-  let ZH={},POS={};
+  let ZH={},POS={},VENS=[];
   async function loadCatalogMaps(){try{
     const ctrl=new AbortController();const to=setTimeout(()=>ctrl.abort(),9000);
     const cat=await fetch('data/venues_catalog.json',{signal:ctrl.signal}).then(r=>r.json());clearTimeout(to);
+    VENS=cat.venues||[];
     (cat.titles||[]).forEach(t=>{if(!t.en)return;const k=t.en.toLowerCase(),g=t.group;
       if(t.zh)ZH[k]=t.zh;if(cat.posters&&cat.posters[g])POS[k]=cat.posters[g];});}catch(e){console.warn('catalog maps',e);}}  // 逾時/失敗就略過 zh/poster，不擋同步
+  // 劇院官方英文名:存的字串抽 CJK 部分回 catalog 查(「上海大劇院 Lyric Theatre」→ Shanghai Grand Theatre;
+  // catalog 也沒有英文名的(見 2026-07-03 盤點:227 館缺)先回退拉丁部分或原文,待資料層補名)
+  const _cjkV=/[぀-ヿ㐀-鿿가-힯豈-﫿]/;
+  function venueEnOf(v){if(!v)return '';const parts=String(v).split(/\s+/);
+    const latin=parts.filter(x=>!_cjkV.test(x)).join(' ').trim();
+    const zh=parts.filter(x=>_cjkV.test(x)).join(' ').trim();
+    if(!zh)return latin;
+    const hit=VENS.find(c=>c.search&&(c.search.includes(zh)||c.search.includes(zh.toLowerCase())))
+            ||VENS.find(c=>c.name&&c.name.includes(zh))
+            ||(parts.length>1?VENS.find(c=>c.search&&c.search.includes(parts.find(x=>_cjkV.test(x)))):null);
+    if(hit){const en=String(hit.name).split(/\s+/).filter(x=>!_cjkV.test(x)).join(' ').trim();if(en)return en;}
+    return latin;}
   function sightingToEntry(s){const k=(s.title||'').toLowerCase();const prec=s.precision||(s.seen_date?'day':'none');
     const ov=s.poster_override||'';
     return {sid:s.id, w:{en:s.title||'',zh:ZH[k]||''},
-      p:{label:null,venue:s.venue||'',city:s.city||'',country:s.country||'',lat:s.lat,lng:s.lng,img:(ov||POS[k]||''),cur:s.currency||''},
+      p:{label:null,venue:s.venue||'',venueEn:venueEnOf(s.venue||''),city:s.city||'',country:s.country||'',lat:s.lat,lng:s.lng,img:(ov||POS[k]||''),cur:s.currency||''},
       posterOverride:ov,   // 自訂海報網址（method 2）：有就優先當圖
       url:s.url||'',       // 連結/售票網址（沿用既有 url 欄；保住不洗掉）
       date:partialDate(s.seen_date,prec),precision:prec,
@@ -1037,7 +1051,7 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
   const sb=supabase.createClient(cfg.SUPABASE_URL,cfg.SUPABASE_ANON_KEY);
   window.mmSb=sb;
   showGate(T('gate_loading'),false);   // 立即用當前語言顯示 Loading(gate-msg 無 data-i18n,不會被 apply 蓋);getSession 回來再 showLogin/onSignedIn
-  const SYNC_VER='3';   // sightingToEntry 對映改版**或 catalog 顯示資料(zh/海報)更新**就 +1 → 強制所有 session 重新同步（否則已同步的 session 用舊快取，看不到新中文名/海報，如 v3=獅子王等 6 劇中文名）
+  const SYNC_VER='4';   // sightingToEntry 對映改版**或 catalog 顯示資料(zh/海報)更新**就 +1 → 強制所有 session 重新同步（否則已同步的 session 用舊快取，看不到新中文名/海報。v4=venueEn 劇院英文名欄位）
   const syncedKey=uid=>uid+'@'+SYNC_VER;
   let _syncing=false;
   async function syncFromCloud(uid){

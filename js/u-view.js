@@ -78,6 +78,19 @@
       const near = cv.filter((v) => distM(s.lat, s.lng, v.lat, v.lng) <= 40);
       if (near.length === 1) s.venue = near[0].name;
     });
+    // en 模式:純 CJK 館名回 catalog 查官方英文名(與 me.html venueEnOf 同邏輯;查不到保留原文)
+    if (EN_UI) {
+      const vens = cat.venues || [];
+      rows.forEach((s) => {
+        if (!s.venue) return;
+        const parts = String(s.venue).split(/\s+/);
+        const latin = parts.filter((x) => !_cjk.test(x)).join(' ').trim();
+        if (latin) return;   // 已含英文部分,交給 venueZh 抽取
+        const zh = parts.filter((x) => _cjk.test(x)).join(' ').trim();
+        const hit = vens.find((c) => c.search && c.search.includes(zh)) || vens.find((c) => c.name && c.name.includes(zh));
+        if (hit) { const en = String(hit.name).split(/\s+/).filter((x) => !_cjk.test(x)).join(' ').trim(); if (en) s.venue = hit.name; }
+      });
+    }
   }
 
   /* RPC seen_date (full) + precision → the partial date string me.html expects */
