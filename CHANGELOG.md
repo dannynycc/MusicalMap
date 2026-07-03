@@ -11,6 +11,10 @@
 
 ---
 
+## [v1.18.1] - 2026-07-03 12:15
+### 調整 — 「本月上演」即時計數移到搜尋欄下方(使用者指示)
+- `#count` 從 header 移進側欄 `#controls`(搜尋欄下、分隔線上);header 右側只剩 nav。CSS 對應搬移(舊 `#topbar #count`/手機隱藏規則移除,新位置手機也看得到);`body:not(.ready)` 防閃規則沿用。
+
 ## [v1.18.0] - 2026-07-03 12:00
 ### 新功能 — 隱私/條款三語化 + 全站 nav 完全對齊(使用者回饋)
 - **privacy/terms 三語內容**:接上 mm-strings 系統(`?hl=` → 主站共用偏好 `mm_variant` → navigator)——英文全文進字典(pp_*/tou_* 共 40+ 鍵)、簡中由 OpenCC runtime 轉繁中、html lang/title/meta 隨語言;語言 pills 改 `data-hl-link`(改寫 `?hl=` 留在本頁),**不再點简/EN 就跳回首頁**;head 補 hreflang 三語 alternate。

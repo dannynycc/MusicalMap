@@ -151,7 +151,6 @@ function page(variant, shows) {
       <span class="logo">Musical<span class="logo-em">Map</span></span>
       <span class="tagline">${esc(t.tagline)}</span>
     </a>
-    <span id="count"></span>
     <nav id="topnav">
       ${langSwitch(variant)}
       <a class="nav-link" href="${BASE}${variant}/">${esc(t.maphome)}</a>
@@ -170,6 +169,7 @@ function page(variant, shows) {
     <aside id="sidebar">
       <div id="controls">
         <input id="search" type="search" placeholder="${esc(t.search)}" autocomplete="off" />
+        <div id="count"></div><!-- 本月上演即時計數(app.js 填字);位置=搜尋欄下、#controls 底線上 -->
       </div>
       <!-- prerendered for crawlers (Google + AI bots that don't run JS); the app
            replaces this list on load for interactive users. -->

@@ -26,7 +26,7 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha384-sHL9NAb7lN7rfvG5lfHpm643Xkcjzp4jFvuavGOndn6pjVqS6ny56CAt3nsEVT4H" crossorigin="anonymous" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" integrity="sha384-pmjIAcz2bAn0xukfxADbZIb3t8oRT9Sv0rvO+BR5Csr6Dhqq+nZs59P0pPKQJkEV" crossorigin="anonymous" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" integrity="sha384-wgw+aLYNQ7dlhK47ZPK7FRACiq7ROZwgFNg0m04avm4CaXS+Z9Y7nMu8yNjBKYC+" crossorigin="anonymous" />
-  <link rel="stylesheet" href="/MusicalMap/css/style.css?v=cfac7073ff" />
+  <link rel="stylesheet" href="/MusicalMap/css/style.css?v=e804d02ee5" />
   <script>window.MM_VARIANT="zh-hant";window.MM_BASE="/MusicalMap/";</script>
 </head>
 <body>
@@ -36,7 +36,6 @@
       <span class="logo">Musical<span class="logo-em">Map</span></span>
       <span class="tagline">此刻全球正在上演的音樂劇</span>
     </a>
-    <span id="count"></span>
     <nav id="topnav">
       <div id="lang-switch" role="group" aria-label="Language / 語言">
         <a class="lang-opt active" href="/MusicalMap/zh-hant/" lang="zh-Hant" aria-current="true">繁</a>
@@ -59,6 +58,7 @@
     <aside id="sidebar">
       <div id="controls">
         <input id="search" type="search" placeholder="搜尋劇名、城市、劇院…" autocomplete="off" />
+        <div id="count"></div><!-- 本月上演即時計數(app.js 填字);位置=搜尋欄下、#controls 底線上 -->
       </div>
       <!-- prerendered for crawlers (Google + AI bots that don't run JS); the app
            replaces this list on load for interactive users. -->
@@ -1805,8 +1805,8 @@
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha384-cxOPjt7s7Iz04uaHJceBmS+qpjv2JkIHNVcuOrM+YHwZOmJGBXI00mdUXEq65HTH" crossorigin="anonymous"></script>
   <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js" integrity="sha384-eXVCORTRlv4FUUgS/xmOyr66XBVraen8ATNLMESp92FKXLAMiKkerixTiBvXriZr" crossorigin="anonymous"></script>
-  <script src="/MusicalMap/js/config.js?v=cfac7073ff"></script>
-  <script src="/MusicalMap/js/i18n.js?v=cfac7073ff"></script>
-  <script src="/MusicalMap/js/app.js?v=cfac7073ff"></script>
+  <script src="/MusicalMap/js/config.js?v=e804d02ee5"></script>
+  <script src="/MusicalMap/js/i18n.js?v=e804d02ee5"></script>
+  <script src="/MusicalMap/js/app.js?v=e804d02ee5"></script>
 </body>
 </html>

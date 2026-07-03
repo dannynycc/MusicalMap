@@ -147,7 +147,9 @@ body { display: flex; flex-direction: column; height: 100vh; }
 .foot-links a { color: var(--muted); text-decoration: none; }
 .foot-links a:hover { color: var(--gold); }
 
-#count { padding: 11px 20px 4px; font-size: 12px; color: var(--muted); font-weight: 600; }
+/* 本月上演即時計數 — 在 #controls 內、搜尋欄下方(底線之上) */
+#count { margin: 9px 3px 0; font-size: 12px; color: var(--muted); font-weight: 600;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
 #show-list { list-style: none; margin: 0; padding: 0 8px 10px; overflow-y: auto; flex: 1; }
 /* Until app.js finishes its first render with real data (adds body.ready), hide the
@@ -383,11 +385,9 @@ body:not(.ready) #count { visibility: hidden; }
   text-align: center; pointer-events: none; user-select: none;
 }
 
-/* ============ Top filter bar layout (filters live over the map; count in header) ============
+/* ============ Top filter bar layout (filters live over the map) ============
    The tradition pills moved out of the narrow sidebar into a bar over the map, so the
-   sidebar is all list. The live count lives in the header (a live version of the tagline). */
-#topbar #count { flex: 1; min-width: 0; margin: 0; padding: 0; font-size: 12px; font-weight: 600;
-  color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-align: right; }
+   sidebar is all list. The live count sits under the search box (v1.18.1). */
 #topnav .foot-link { color: var(--muted); text-decoration: none; font-size: 13px; }
 #topnav .foot-link:hover { color: var(--accent); }
 
@@ -426,7 +426,6 @@ body:not(.ready) #count { visibility: hidden; }
   #brand .brand-logo { height: 28px; }
   #brand .logo { font-size: 17px; }
   #brand .tagline { display: none; }
-  #topbar #count { display: none; }            /* header too tight on phones */
   #topnav .foot-link { display: none; }        /* Privacy/Terms drop off the phone nav (kept on desktop) */
   #topnav .nav-link { display: none; }         /* Privacy/Terms/Guide drop off the phone nav (My Musicals + lang stay) */
   #lang-switch .lang-opt { padding: 4px 7px; }
