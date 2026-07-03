@@ -399,10 +399,27 @@
     else hl = 'zh-hant';
   }
   // zh-hans:用 OpenCC(tw→cn)把繁中字典 runtime 轉簡體(沿用主站 i18n.js 機制);OpenCC 未載入則降級繁中。
+  // OpenCC 只轉「字」不轉「詞」——台灣用語要再過一層詞彙表(只作用於 UI 字典,不動劇名/地名資料)。
+  var CN_FIX = [
+    [/登入/g, '登录'], [/登出/g, '退出登录'],
+    [/连结/g, '链接'],
+    [/每一出/g, '每一部'], [/一出正在上演的剧/g, '一部正在上演的剧'],
+    [/建立/g, '创建'],
+    [/跨装置/g, '跨设备'], [/装置/g, '设备'],
+    [/帐号/g, '账号'], [/帐户/g, '账户'],
+    [/本机储存/g, '本地存储'], [/储存/g, '存储'],
+    [/工作阶段/g, '会话'],
+    [/透过/g, '通过'],
+    [/币别/g, '币种'],
+    [/资料库/g, '数据库'],
+    [/智慧财产/g, '知识产权'],
+    [/准据法/g, '适用法律'],
+  ];
+  function cnFix(s) { for (var i = 0; i < CN_FIX.length; i++) s = s.replace(CN_FIX[i][0], CN_FIX[i][1]); return s; }
   var _conv = null;
   if (hl === 'zh-hans') {
     try { _conv = window.OpenCC && window.OpenCC.Converter({ from: 'tw', to: 'cn' }); } catch (e) {}
-    if (_conv && !STR['zh-hans']) { var o = {}; for (var k in STR['zh-hant']) o[k] = _conv(STR['zh-hant'][k]); STR['zh-hans'] = o; }
+    if (_conv && !STR['zh-hans']) { var o = {}; for (var k in STR['zh-hant']) o[k] = cnFix(_conv(STR['zh-hant'][k])); STR['zh-hans'] = o; }
   }
   var D = STR[hl] || STR['zh-hant'];
   // MM_S:把「資料層繁中文字」(劇院/城市/國家名,原始資料)在 zh-hans 也轉簡;其他語言 identity。

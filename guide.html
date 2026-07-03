@@ -23,7 +23,8 @@
 <script>/* zh-hans:同步載 OpenCC(繁→簡),僅簡中使用者下載 */(function(){try{
 var h=new URLSearchParams(location.search).get('hl'),v=(h==='en'||h==='zh-hans'||h==='zh-hant')?h:null;
 if(!v){var nl=(navigator.language||'').toLowerCase();v=nl.indexOf('zh')===0?((nl.indexOf('cn')>-1||nl.indexOf('hans')>-1||nl.indexOf('sg')>-1)?'zh-hans':'zh-hant'):(nl?'en':'zh-hant');}
-if(v==='zh-hans')document.write('<scr'+'ipt src="https://cdn.jsdelivr.net/npm/opencc-js@1.3.1/dist/umd/t2cn.js" integrity="sha384-P/OaFUnOIAgMkLxsXIAaP6WO3Wm09591cGX5bHbW4eCOeDxH9L8U3aWYf4cE4SYl" crossorigin="anonymous"><\/scr'+'ipt>');
+if(v==='zh-hans'){document.write('<scr'+'ipt src="https://cdn.jsdelivr.net/npm/opencc-js@1.3.1/dist/umd/t2cn.js" integrity="sha384-P/OaFUnOIAgMkLxsXIAaP6WO3Wm09591cGX5bHbW4eCOeDxH9L8U3aWYf4cE4SYl" crossorigin="anonymous"><\/scr'+'ipt>');
+document.write('<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@600;700;900&display=swap" rel="stylesheet" />');/* 簡體字 TC 字型沒有→會混排系統字忽粗忽細,補 SC 字型 */}
 }catch(e){}})();</script>
 <script src="js/mm-strings.js"></script>
 <style>
@@ -39,37 +40,39 @@ html{scroll-behavior:smooth}
 body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.68;-webkit-font-smoothing:antialiased;
   background-image:repeating-linear-gradient(135deg,rgba(160,122,52,.025) 0 2px,transparent 2px 9px)}
 html[lang="en"] body{--serif:"Fraunces",Georgia,serif;--sans:"Inter","Segoe UI",system-ui,sans-serif}
+/* 簡中:改用 SC 字型(TC 字型缺簡體獨有字,否則簡體字回退系統字、與共用字混排忽粗忽細) */
+html[lang="zh-Hans"] body{--serif:"Fraunces","Noto Serif SC",Georgia,serif;--sans:"Noto Sans SC","Inter","Segoe UI",system-ui,sans-serif}
 a{color:inherit}
 .wrap{max-width:1080px;margin:0 auto;padding:0 26px}
 .serif{font-family:var(--serif)}
 /* header */
+/* header 幾何/字重比照首頁 #topbar(58px 滿版、鏈結 14px/600),跨頁切換上排不跳動 */
 header{position:sticky;top:0;z-index:50;background:rgba(244,239,228,.9);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
-.bar{display:flex;align-items:center;gap:14px;height:62px}
-.brand{display:flex;align-items:center;gap:9px;font-family:var(--serif);font-weight:900;font-size:19px;text-decoration:none;letter-spacing:-.01em;white-space:nowrap}
-.brand img{width:auto;height:32px}  /* logo.png 是 122×200 直式圖,定寬高會壓變形 — 跟首頁一樣保持原比例 */
+.bar{display:flex;align-items:center;gap:14px;height:58px;max-width:none;padding:0 24px}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--serif);font-weight:900;font-size:20px;text-decoration:none;letter-spacing:-.01em;white-space:nowrap}
+.brand img{width:auto;height:34px}  /* logo.png 是 122×200 直式圖,定寬高會壓變形 — 跟首頁一樣保持原比例 */
 .brand b{color:var(--gold)}
-.nav{margin-left:auto;display:flex;align-items:center;gap:4px}
-.nav a{padding:7px 12px;border-radius:999px;font-size:14px;font-weight:500;color:var(--ink2);text-decoration:none;white-space:nowrap}
-.nav a:hover{color:var(--ink)}
-.nav a.cta{background:var(--ink);color:var(--paper);font-weight:600}
-.nav a.cta:hover{background:#000}
-.hl-pick{display:flex;gap:1px;border:1px solid var(--line);border-radius:999px;padding:2px;margin-left:4px}
+.nav{margin-left:auto;display:flex;align-items:center;gap:14px}
+.nav a{font-size:14px;font-weight:600;color:var(--ink);text-decoration:none;white-space:nowrap}
+.nav a:hover{color:var(--gold)}
+.nav a.cta{background:var(--ink);color:var(--paper);font-weight:600;padding:9px 16px;border-radius:999px}
+.nav a.cta:hover{background:#000;color:var(--paper)}
+.hl-pick{display:flex;gap:1px;border:1px solid var(--line);border-radius:999px;padding:2px}
 .hl-pick a{padding:4px 9px;border-radius:999px;font-size:12px;font-weight:600;color:var(--ink2);text-decoration:none}
 .hl-pick a[aria-current="true"]{background:var(--gold);color:#fff}
-/* 手機:收掉文字連結(地圖/劇院入口保留在 hero CTA 與 footer),留語言切換+主 CTA */
+/* 手機:收掉文字連結(入口保留在 hero CTA 與 footer),留語言切換+主 CTA — 幾何比照首頁 @680 */
 @media(max-width:700px){
-  .bar{gap:8px}
-  .nav{gap:2px}
+  .bar{gap:8px;height:52px;padding:0 8px}
+  .nav{gap:6px}
   .nav > a:not(.cta){display:none}
-  .brand{font-size:17px}
+  .brand{font-size:17px;gap:7px}
+  .brand img{width:auto;height:28px}
+  .hl-pick a{padding:4px 7px}
+  .nav a.cta{font-size:13px;padding:7px 12px}
 }
 @media(max-width:430px){
   .wrap{padding:0 16px}
-  .brand{font-size:15.5px;gap:7px}
-  .brand img{width:auto;height:27px}
-  .nav a.cta{padding:6px 10px;font-size:13px}
-  .hl-pick{margin-left:0}
-  .hl-pick a{padding:3px 7px;font-size:11px}
+  .bar{padding:0 8px}
 }
 /* hero — 不置中,editorial 左對齊 */
 .hero{padding:88px 0 40px;max-width:760px}
@@ -132,6 +135,9 @@ footer .sp{margin-left:auto}
       <a data-hl-link="en" href="?hl=en">EN</a>
     </div>
     <a href="index.html" data-i18n="nav_map">地圖首頁</a>
+    <a href="privacy.html" data-i18n="nav_privacy">隱私權政策</a>
+    <a href="terms.html" data-i18n="nav_terms">使用條款</a>
+    <a href="guide.html" data-i18n="nav_guide">使用說明</a>
     <!-- 所有劇院入口暫藏(2026-07-03 指示;theatres.html 頁面保留可直達) <a href="theatres.html" data-i18n="nav_theatres">所有劇院</a> -->
     <a class="cta" href="me.html" data-i18n="how_nav_start">我的音樂劇</a>
   </nav>

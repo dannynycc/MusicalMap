@@ -20,6 +20,7 @@
 <style>
 /* i18n:en 模式時 section 標題旁的英文小字(原本是中文標題的英文對照)會與主標重複 → 隱藏 */
 html[lang="en"] .sec h2 .zh{display:none}
+html[lang="zh-Hans"] body{--ui:'Inter','Noto Sans SC',sans-serif}  /* 簡中改用 SC 字型,避免混排忽粗忽細 */
 .hl-pick{display:flex;gap:2px;border:1px solid var(--hair2,rgba(255,255,255,.18));border-radius:999px;padding:2px}
 .hl-pick a{padding:3px 10px;border-radius:999px;font-size:12px;font-weight:700;text-decoration:none;color:var(--ink2,#aaa)}
 .hl-pick a[aria-current="true"]{background:var(--gold,#c9a85c);color:#1a1407}
@@ -28,7 +29,8 @@ html[lang="en"] .sec h2 .zh{display:none}
 var h=new URLSearchParams(location.search).get('hl'),v=(h==='en'||h==='zh-hans'||h==='zh-hant')?h:null;
 if(!v&&window.MM_USE_LANG_PREF){var mv=localStorage.getItem('mm_variant');v=(mv==='en'||mv==='zh-hans'||mv==='zh-hant')?mv:(localStorage.getItem('mm_lang')==='en'?'en':localStorage.getItem('mm_lang')==='zh'?'zh-hant':null);}
 if(!v){var nl=(navigator.language||'').toLowerCase();v=nl.indexOf('zh')===0?((nl.indexOf('cn')>-1||nl.indexOf('hans')>-1||nl.indexOf('sg')>-1)?'zh-hans':'zh-hant'):(nl?'en':'zh-hant');}
-if(v==='zh-hans')document.write('<scr'+'ipt src="https://cdn.jsdelivr.net/npm/opencc-js@1.3.1/dist/umd/t2cn.js" integrity="sha384-P/OaFUnOIAgMkLxsXIAaP6WO3Wm09591cGX5bHbW4eCOeDxH9L8U3aWYf4cE4SYl" crossorigin="anonymous"><\/scr'+'ipt>');
+if(v==='zh-hans'){document.write('<scr'+'ipt src="https://cdn.jsdelivr.net/npm/opencc-js@1.3.1/dist/umd/t2cn.js" integrity="sha384-P/OaFUnOIAgMkLxsXIAaP6WO3Wm09591cGX5bHbW4eCOeDxH9L8U3aWYf4cE4SYl" crossorigin="anonymous"><\/scr'+'ipt>');
+document.write('<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet" />');/* 簡體字 TC 字型沒有→混排忽粗忽細,補 SC */}
 }catch(e){}})();</script>
 <script src="js/mm-strings.js"></script>
 </head>

@@ -12,7 +12,8 @@
 var h=new URLSearchParams(location.search).get('hl'),v=(h==='en'||h==='zh-hans'||h==='zh-hant')?h:null;
 if(!v&&window.MM_USE_LANG_PREF){var mv=localStorage.getItem('mm_variant');v=(mv==='en'||mv==='zh-hans'||mv==='zh-hant')?mv:(localStorage.getItem('mm_lang')==='en'?'en':localStorage.getItem('mm_lang')==='zh'?'zh-hant':null);}
 if(!v){var nl=(navigator.language||'').toLowerCase();v=nl.indexOf('zh')===0?((nl.indexOf('cn')>-1||nl.indexOf('hans')>-1||nl.indexOf('sg')>-1)?'zh-hans':'zh-hant'):(nl?'en':'zh-hant');}
-if(v==='zh-hans')document.write('<scr'+'ipt src="https://cdn.jsdelivr.net/npm/opencc-js@1.3.1/dist/umd/t2cn.js" integrity="sha384-P/OaFUnOIAgMkLxsXIAaP6WO3Wm09591cGX5bHbW4eCOeDxH9L8U3aWYf4cE4SYl" crossorigin="anonymous"><\/scr'+'ipt>');
+if(v==='zh-hans'){document.write('<scr'+'ipt src="https://cdn.jsdelivr.net/npm/opencc-js@1.3.1/dist/umd/t2cn.js" integrity="sha384-P/OaFUnOIAgMkLxsXIAaP6WO3Wm09591cGX5bHbW4eCOeDxH9L8U3aWYf4cE4SYl" crossorigin="anonymous"><\/scr'+'ipt>');
+document.write('<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet" />');/* 簡體字 TC 字型沒有→混排忽粗忽細,補 SC */}
 }catch(e){}})();</script>
 <script src="js/mm-strings.js"></script>
 <script>/* no-flash theme */(function(){try{var t=localStorage.getItem('mm-theme');if(t&&t!=='midnight')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
@@ -26,6 +27,9 @@ if(v==='zh-hans')document.write('<scr'+'ipt src="https://cdn.jsdelivr.net/npm/op
   --gold:#c9a85c;--gold-soft:rgba(201,168,92,.16);--glow:0 0 22px rgba(201,168,92,.35);
   --green:#5cb85c;--ease:cubic-bezier(.22,1,.36,1);--spring:cubic-bezier(.34,1.56,.64,1);
   --fr:'Fraunces',serif;--ui:'Inter','Noto Sans TC',sans-serif;
+}
+html[lang="zh-Hans"]{--ui:'Inter','Noto Sans SC',sans-serif}  /* 簡中改用 SC 字型,避免混排忽粗忽細 */
+:root{
   --shadow:0 1px 0 rgba(255,255,255,.04) inset,0 2px 4px rgba(0,0,0,.4),0 12px 30px rgba(0,0,0,.5);
   --bg-mesh:radial-gradient(800px 500px at 12% -5%,rgba(201,168,92,.06),transparent 60%);
   --on-accent:#1a1407; --star-empty:#6f6f7a;
