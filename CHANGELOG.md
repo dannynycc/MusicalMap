@@ -11,6 +11,11 @@
 
 ---
 
+## [v1.17.2] - 2026-07-03 11:41
+### 調整 — privacy/terms header 與首頁完全同排版(使用者指示)
+- privacy/terms 的 topnav 改成與首頁一模一樣的順序與位置:繁/简/EN pills + 隱私權政策 + 使用條款 + 使用說明 + 「我的音樂劇」CTA,只在最前面多一個「地圖首頁」——跨頁切換上排不跳動。pills 連到各語言首頁(這兩頁本身僅繁中)。
+- 註:v1.17.1 的 Pages deploy 在 GitHub 端失敗(`Deployment failed, try again later`,同 v1.16.3 當天的平台抽風),本次 push 觸發新 deploy 一併補上。
+
 ## [v1.17.1] - 2026-07-03 11:35
 ### 修正 — 360px 窄機(Galaxy 級)header 溢出
 - v1.17.0 上線後複驗發現:headless 扣捲軸的 ~360px 有效寬度下,「我的音樂劇」CTA 被推出右緣。手機版 header 全面收緊(brand logo 28px/字 17px、lang pill padding 7px、CTA 13px/7×12、gap 6px),playwright 實測 360/375/412px `scrollWidth==viewport`、CTA 單行 31px 全過。
