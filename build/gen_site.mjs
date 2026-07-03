@@ -154,11 +154,11 @@ function page(variant, shows) {
     <nav id="topnav">
       ${langSwitch(variant)}
       <a class="nav-link" href="${BASE}${variant}/">${esc(t.maphome)}</a>
-      <a class="nav-link" href="${BASE}privacy.html?hl=${variant}">${esc(t.privacy)}</a>
-      <a class="nav-link" href="${BASE}terms.html?hl=${variant}">${esc(t.terms)}</a>
       <!-- 所有劇院入口暫藏(2026-07-03 指示;theatres.html 頁面保留可直達)
       <a class="nav-link" href="${BASE}theatres.html?lang=${variant}">${esc(t.theatres)}</a> -->
       <a class="nav-link" href="${BASE}guide.html?hl=${variant}">${esc(t.guide)}</a>
+      <a class="nav-link" href="${BASE}privacy.html?hl=${variant}">${esc(t.privacy)}</a>
+      <a class="nav-link" href="${BASE}terms.html?hl=${variant}">${esc(t.terms)}</a>
       <a id="mine-link" class="nav-cta" href="${BASE}me.html?hl=${variant}">${esc(t.mine)}</a>
     </nav>
   </header>

@@ -160,5 +160,15 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
+      # Pages 對短時間連續部署會回「Deployment failed, try again later」(暫時性 throttle,
+      # 2026-07-03 一小時內多次 push 觸發三次)。第一次失敗不讓 run 掛掉,等 2 分鐘重試一次;
+      # 重試再失敗才是真錯誤。
       - id: deployment
+        uses: actions/deploy-pages@v4
+        continue-on-error: true
+      - name: Wait before retry (Pages throttle)
+        if: steps.deployment.outcome == 'failure'
+        run: sleep 120
+      - id: deployment-retry
+        if: steps.deployment.outcome == 'failure'
         uses: actions/deploy-pages@v4

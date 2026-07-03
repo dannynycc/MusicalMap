@@ -57,7 +57,7 @@ document.write('<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+S
 <body>
 <!-- 登入閘：預設蓋住，等 Supabase 驗證後 JS 決定顯示登入/同步中/隱藏 -->
 <div id="mev2gate">
-  <a id="gate-brand" href="index.html"><img src="logo.png" alt="" />Musical<b>Map</b><span class="bk" data-i18n="nav_map">地圖首頁</span></a>
+  <a id="gate-brand" href="index.html"><img src="logo.png" alt="" /><span>Musical<b>Map</b></span><span class="bk" data-i18n="nav_map">地圖首頁</span></a>
   <img id="gate-logo" src="logo.png" alt="MusicalMap" />
   <!-- gate-msg 由 JS(showGate)動態設,不掛 data-i18n(否則 apply() 會蓋回 Loading) -->
   <div id="gate-msg">載入中…</div>
@@ -76,7 +76,7 @@ document.write('<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+S
   </div>
 </div>
 <header><div class="wrap bar">
-  <a class="brand" href="index.html"><img src="logo.png" alt="" class="brand-logo" />Musical<b>Map</b></a>
+  <a class="brand" href="index.html"><img src="logo.png" alt="" class="brand-logo" /><span>Musical<b>Map</b></span></a>
   <nav class="nav">
     <!-- pills 永遠在 nav 最前,與首頁/法務頁一致(跨頁不跳動) -->
     <div class="hl-pick" role="group" aria-label="Language / 語言">

@@ -11,6 +11,13 @@
 
 ---
 
+## [v1.19.2] - 2026-07-03 12:38
+### 調整 — nav 慣例排序 + guide 標題/品牌字修正 + deploy 重試(使用者三點回饋)
+- **nav 排序改業界慣例**:內容頁在前、法務頁在後——地圖首頁 · 使用說明 · 隱私權政策 · 使用條款(隱私/條款是查閱型,慣例放最後或 footer;使用說明是使用者真的會點的,前移)。index 三語+guide+privacy+terms 同步,me/u footer 本來就是此順序。
+- **guide 補品牌 tagline**:「此刻全球正在上演的音樂劇」比照首頁(data-i18n=legal_tagline 三語,手機隱藏)。
+- **修「Musical Map」多一個空格**:根因=guide/me/u/me-input 的 `.brand` 是 flex 容器,裸文字節點 `Musical` 和 `<b>Map</b>` 被當兩個 flex item 被 `gap` 撐開;包進單一 `<span>` 修正,五處全修。三頁 header 量測 x 座標仍全等(745/860/930/1000/1084/1154)。
+- **deploy 失敗信根治**:v1.17.1/v1.18.1/v1.19.1 三次失敗全是 GitHub Pages 對連續部署的暫時性 throttle(`Deployment failed, try again later`);workflow deploy job 加「失敗等 120 秒自動重試一次」,重試再敗才算真失敗。
+
 ## [v1.19.1] - 2026-07-03 12:30
 ### 文案 — 「劇名/shows」統一改「音樂劇名/musicals」(使用者指示)
 - 首頁搜尋欄三語:搜尋音樂劇名、城市、劇院… / 搜寻音乐剧名… / Search musicals, cities, theatres…(gen_site + i18n.js `search_ph`,en 順帶 venues→theatres 統一)。
