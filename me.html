@@ -833,6 +833,7 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
       const h=norm($(inputId).value);
       st.ok=false;
       if(!h){set('muted',T('h_input_hint'));return;}
+      if(!/[a-z0-9]/.test(h)){set('muted',T('h_input_hint'));return;}   // 只有 -/_ (如 "---")不算有效名稱,要求至少一個字母或數字
       if(RESERVED.has(h)){set('bad',T('h_reserved'));return;}
       if(h===CUR.handle){st.ok=true;set('ok',T('h_current'));return;}
       set('muted',T('h_checking'));
@@ -924,6 +925,7 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
     if(FORCED){
       const h=norm($('pubHandle').value);
       if(!h){obCheck.set('bad',T('url_empty'));$('pubHandle').focus();return;}
+      if(!/[a-z0-9]/.test(h)){obCheck.set('bad',T('h_input_hint'));$('pubHandle').focus();return;}   // 至少一個字母或數字
       if(RESERVED.has(h)){obCheck.set('bad',T('h_reserved'));return;}
       btn.disabled=true;btn.textContent=T('saving');
       try{
@@ -1002,6 +1004,7 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
     const h=norm($('acctHandle').value), d=$('acctDisplay').value.trim();
     const btn=$('acctSave');
     if(!h){acCheck.set('bad',T('acct_url_empty'));$('acctHandle').focus();return;}
+    if(!/[a-z0-9]/.test(h)){acCheck.set('bad',T('h_input_hint'));$('acctHandle').focus();return;}   // 至少一個字母或數字
     if(RESERVED.has(h)){acCheck.set('bad',T('h_reserved'));return;}
     btn.disabled=true;btn.textContent=T('saving');
     try{
