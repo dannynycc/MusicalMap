@@ -11,6 +11,12 @@
 
 ---
 
+## [v1.28.1] - 2026-07-03 18:42
+### 修正 — 穩定度審計 R4:刪除/最愛的雲端失敗一致性(loop 體檢;延續 R3 資料完整性)
+- **刪除復活 bug**:`mmDeleteShow` 的 `.delete()` 失敗是回傳 `{error}` 不拋例外(try/catch 抓不到),原碼照樣刪本機+reload → 雲端還在 → 下次 syncFromCloud 那筆「復活」。修:先確認雲端刪成功(檢查 error)再動本機,失敗顯示「刪除失敗，雲端未更新…」alert 且本機不動。playwright e2e(攔 DELETE→500)實測:失敗時 logLen 維持不變、alert 觸發、本機未誤刪。
+- **♥ 最愛失敗還原**:fav 雲端 update 失敗原本只 console.warn,本機/UI 已翻 → 下次 sync 靜默還原,UI 說謊。修:失敗時本機翻回+`mmRevertFav` 就地把卡片 ♥ 還原(不重刷),UI 與雲端保持一致。
+- delete_cloud_fail i18n 三語。
+
 ## [v1.28.0] - 2026-07-03 18:34
 ### 修正 — 穩定度審計 R3:雲端寫入失敗導致「靜默永久丟失紀錄」(loop 體檢;此輪最嚴重)
 - **根因**:me-input 新增/編輯音樂劇時,雲端寫入失敗**只 console.error 後照常往下走**——顯示「🎭 已蓋章!」成功 toast、只存 localStorage(sid=null)。下次 session 的 syncFromCloud 用雲端資料覆蓋 localStorage → **這筆使用者以為存好的紀錄永久消失**。對「永久保存你的觀劇紀錄」這個產品核心承諾是最致命的 bug。編輯路徑同理:失敗仍顯示「已更新」,下次同步把編輯蓋回舊值。

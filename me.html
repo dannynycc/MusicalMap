@@ -325,16 +325,21 @@ function posterEl(s){
     const acts=document.createElement('div');acts.className='cardacts';
     acts.innerHTML=`<span class="ca-btn ca-fav${s.fav?' on':''}" role="button" tabindex="0" aria-label="${T(s.fav?'unfav_this':'fav_this')}" title="${T(s.fav?'unfav_this':'fav_this')}">♥</span><span class="ca-btn" role="button" tabindex="0" aria-label="${T('edit_this')}" title="${T('edit')}">✎</span><span class="ca-btn" role="button" tabindex="0" aria-label="${T('delete_this')}" title="${T('delete')}">✕</span>`;
     const fb=acts.children[0], eb=acts.children[1], db=acts.children[2];
+    const paintFav=(on)=>{
+      s.fav=on;
+      fb.classList.toggle('on',on);
+      const lbl=T(on?'unfav_this':'fav_this');fb.setAttribute('aria-label',lbl);fb.title=lbl;
+      const fig=c.querySelector('.poster');let fv=fig&&fig.querySelector('.fav');
+      if(on&&!fv&&fig){fv=document.createElement('span');fv.className='fav';fv.textContent='♥';fig.appendChild(fv);}
+      else if(!on&&fv)fv.remove();
+    };
     fb.onclick=e=>{e.stopPropagation();
       if(!window.mmToggleFav)return;
       const nf=window.mmToggleFav(li);            // 就地切換,不重刷
       if(nf===null)return;
-      s.fav=nf;
-      fb.classList.toggle('on',nf);
-      const lbl=T(nf?'unfav_this':'fav_this');fb.setAttribute('aria-label',lbl);fb.title=lbl;
-      const fig=c.querySelector('.poster');let fv=fig&&fig.querySelector('.fav');
-      if(nf&&!fv&&fig){fv=document.createElement('span');fv.className='fav';fv.textContent='♥';fig.appendChild(fv);}
-      else if(!nf&&fv)fv.remove();
+      paintFav(nf);
+      // 雲端失敗時 mmToggleFav 會呼叫 mmRevertFav(li,原值) → 這裡就地還原,UI 不說謊
+      window.mmRevertFav=(idx,orig)=>{if(idx===li)paintFav(orig);};
     };
     eb.onclick=e=>{e.stopPropagation();window.mmEditShow&&window.mmEditShow(li);};
     db.onclick=e=>{e.stopPropagation();window.mmDeleteShow&&window.mmDeleteShow(li,s.title,s.zh);};
@@ -1091,10 +1096,13 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
   window.mmToggleFav=function(i){
     try{
       const log=JSON.parse(localStorage.getItem('mm-log')||'[]');if(!log[i])return null;
-      log[i].fav=!log[i].fav;
+      const nf=!log[i].fav;log[i].fav=nf;
       localStorage.setItem('mm-log',JSON.stringify(log));
-      if(log[i].sid!=null){sb.from('sightings').update({fav:log[i].fav}).eq('id',log[i].sid).then(({error})=>{if(error)console.warn('fav sync',error);});}
-      return log[i].fav;
+      // 雲端同步失敗→把本機/UI 改回去(否則下次 sync 會靜默還原,UI 與雲端不一致);回呼由呼叫端 window.mmRevertFav 就地復原
+      if(log[i].sid!=null){sb.from('sightings').update({fav:nf}).eq('id',log[i].sid).then(({error})=>{
+        if(error){console.warn('fav sync',error);try{const l2=JSON.parse(localStorage.getItem('mm-log')||'[]');if(l2[i]){l2[i].fav=!nf;localStorage.setItem('mm-log',JSON.stringify(l2));}}catch(e){}window.mmRevertFav&&window.mmRevertFav(i,!nf);}
+      });}
+      return nf;
     }catch(e){console.warn('fav',e);return null;}
   };
   {const bl=document.getElementById('btnLogout');if(bl)bl.onclick=window.mmLogout;}
@@ -1119,11 +1127,15 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
   window.mmEditShow=openEdit;
   window.mmDeleteShow=async function(i,title,zh){
     if(!confirm(TN('confirm_delete',{name:(window.MM_HL==='en'?(title||zh):(zh||title))||T('this_show')})))return;   // 防誤點;名稱依語言
-    try{const log=JSON.parse(localStorage.getItem('mm-log')||'[]');const removed=log.splice(i,1)[0];
-      if(window.mmSb&&removed&&removed.sid!=null){await window.mmSb.from('sightings').delete().eq('id',removed.sid);}  // 雲端刪
-      localStorage.setItem('mm-log',JSON.stringify(log));
-      sessionStorage.setItem('mm-undo',JSON.stringify({item:removed,idx:i,name:(zh||title||T('this_show'))}));
-    }catch(e){}
+    const log=JSON.parse(localStorage.getItem('mm-log')||'[]');const removed=log[i];
+    // 先確認雲端刪成功再改本機:Supabase .delete() 失敗是回傳 {error} 不拋例外,
+    // 若不檢查就刪本機→下次 syncFromCloud 那筆會復活(刪了又回來)。網路錯誤則會 reject→catch。
+    if(window.mmSb&&removed&&removed.sid!=null){
+      try{const {error}=await window.mmSb.from('sightings').delete().eq('id',removed.sid);if(error)throw error;}
+      catch(e){console.error('cloud delete',e);alert(T('delete_cloud_fail'));return;}   // 雲端沒刪成→不動本機,避免不一致
+    }
+    log.splice(i,1);localStorage.setItem('mm-log',JSON.stringify(log));
+    try{sessionStorage.setItem('mm-undo',JSON.stringify({item:removed,idx:i,name:(zh||title||T('this_show'))}));}catch(e){}
     location.reload();
   };
   const nl=document.getElementById('navLog');if(nl)nl.addEventListener('click',openLog);
