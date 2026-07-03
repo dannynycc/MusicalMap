@@ -489,7 +489,7 @@ let MCITY=null, MVENUE=null;
 function buildManualDB(){
   if(MCITY)return;MCITY={};MVENUE={};
   (window.MM_VENUES||[]).forEach(v=>{   // 正式版 5117 劇院（含中文名/台↔臺變體、座標）
-    if(v.name&&!MVENUE[v.name])MVENUE[v.name]={city:v.city||'',country:v.country||'',lat:v.lat,lng:v.lng,cur:curOf(v.country)};
+    if(v.name&&!MVENUE[v.name])MVENUE[v.name]={city:v.city||'',country:v.country||'',lat:v.lat,lng:v.lng,cur:curOf(v.country),_s:v.search||''};   // _s=catalog search 欄(簡體/日文/別名),供 combo 比對
     if(v.city&&!MCITY[v.city])MCITY[v.city]={country:v.country||'',lat:v.lat,lng:v.lng,cur:curOf(v.country)};  // 城市取該市第一個劇院的座標當代表
   });
   (window.MM_CITIES||[]).forEach(c=>{   // 補上沒有劇院的城市（無座標）
@@ -515,7 +515,8 @@ function setupCombo(input,panel,getItems,onpick,opts){
   opts=opts||{};const fmt=opts.fmt||(x=>x), toInput=opts.toInput||(x=>x), onType=opts.onType;
   let active=-1, shown=[];
   function render(all){const q=all?'':input.value.trim();const items=getItems();
-    shown=items.map(it=>({it,s:comboMatch(q,fmt(it))})).filter(x=>x.s>0).sort((a,b)=>b.s-a.s||fmt(a.it).localeCompare(fmt(b.it))).slice(0,60).map(x=>x.it);
+    // 比對顯示名;若提供 searchOf(如劇院的簡體/日文/別名),也比對它,取較高分→簡中使用者搜簡體劇院名也找得到
+    shown=items.map(it=>({it,s:Math.max(comboMatch(q,fmt(it)),opts.searchOf?comboMatch(q,opts.searchOf(it)):0)})).filter(x=>x.s>0).sort((a,b)=>b.s-a.s||fmt(a.it).localeCompare(fmt(b.it))).slice(0,60).map(x=>x.it);
     if(!shown.length){panel.hidden=true;return;}
     active=-1;
     panel.innerHTML=shown.map((it,i)=>`<button type="button" class="combo-row" data-i="${i}">${fmt(it).replace(/</g,'&lt;')}</button>`).join('');
@@ -583,7 +584,7 @@ function manualAdd(title,seed,onBack){
   }
   // 城市/劇院自製下拉（黏輸入框下、邊打邊 filter、台↔臺正規化）
   setupCombo(document.getElementById('mCity'),document.getElementById('mCityPanel'),()=>Object.keys(MCITY),(v)=>{draft.p.city=v;applyGeo();});
-  setupCombo(document.getElementById('mVenue'),document.getElementById('mVenuePanel'),()=>Object.keys(MVENUE),(v)=>{draft.p.venue=v;applyGeo();});
+  setupCombo(document.getElementById('mVenue'),document.getElementById('mVenuePanel'),()=>Object.keys(MVENUE),(v)=>{draft.p.venue=v;applyGeo();},{searchOf:name=>(MVENUE[name]&&MVENUE[name]._s)||''});
   // 日期：年（必）月日（選填）→ 精度 year/month/day，讓星期・月份統計能算
   function applyDate(){const y=document.getElementById('mYear').value.trim(),mo=document.getElementById('mMonth').value,da=document.getElementById('mDay').value;
     if(!/^\d{4}$/.test(y)){draft.date=null;draft.precision='none';return;}
