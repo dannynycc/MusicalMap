@@ -11,6 +11,11 @@
 
 ---
 
+## [v1.20.1] - 2026-07-03 13:20
+### 文案 — 英文全站母語級校對(使用者指示;Fable 5 逐字典 review)
+- 逐字檢查三個英文來源(i18n.js en / mm-strings.js en / gen_site.mjs en)。整體評價:既有英文(Opus 4.8 寫)大multipart分道地——英式拼寫一致(theatregoer/catalogue/favourites)、劇場術語正確(Stalls/Circle/run dates)、guide 文案有水準,不需重寫。
+- 修正 10 處:日文間隔號「・」混入英文(Year・month・day → Year / month / day、Theatre・City → Theatre · City);時間軸按鈕 today "Now"→"This month"(與烘焙文案一致);"No musicals match"→"No matching musicals";"No “{v}” in the catalogue"→"No results for…";"Which sensitive details to show…"→"Which details should appear on your public page?";"Fill to the day"→"Add the exact date";劇場慣用語 watch→see("See enough, and a shape emerges")、viewing→theatregoing;"Dot = a city with shows seen"→"…with shows logged";theatres tagline "musical theatres"→"musical-theatre venues"。
+
 ## [v1.20.0] - 2026-07-03 13:15
 ### 新功能 — 法務連結移到地圖 attribution 列(Google Maps 慣例;使用者採納建議)
 - 隱私/條款從頂部 nav 移除,改進地圖右下 attribution 列(`Leaflet | © Mapbox © OpenStreetMap, 隱私權 · 條款`;app.js `addAttribution`,i18n 三語 privacy_short/terms_short)。全螢幕地圖 app 無頁尾,這是 Google Maps/FR24 的標準位置;手機版原本 nav 藏掉法務連結,現在 attribution 列看得到。
