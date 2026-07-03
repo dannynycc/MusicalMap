@@ -11,6 +11,12 @@
 
 ---
 
+## [v1.29.2] - 2026-07-03 19:17
+### 修正 — 全站 console error 回歸掃描(0 錯) + SEO/social meta 補齊(loop 體檢)
+- **回歸掃描**:18 個「頁面×語言×互動(me 切三檢視)」組合監聽 pageerror/console error → **全 0**,確認 R2-R7 改動無新副作用、TDZ 修乾淨。
+- **SEO/social meta 補齊**:掃出缺漏並補——首頁補 og:image(主要分享網址原本社群分享無縮圖);guide/about 補 twitter:card;privacy/terms 從「只有 title」補齊 description+og:title/desc/image/url+twitter:card(可索引內容頁原本 Google 摘要差、分享無預覽);theatres 補 og:*+twitter;u.html 靜態補 description。重掃:所有可索引頁 meta 完整。
+- 保留正確的「缺」:me=noindex 登入閘(不需 meta);u 的 canonical/og:url 由 Cloudflare Worker 依 handle 動態注入(靜態不可寫死,否則所有公開頁指向同一 URL)。
+
 ## [v1.29.1] - 2026-07-03 19:08
 ### 修正 — 穩定度審計 R7:登入閘卡死防護 + 撈到並修 TDZ 錯誤(loop 體檢)
 - **登入閘卡死防護**:`getSession()` 原無 `.catch()`(reject→unhandled)、`syncFromCloud` 的 sightings select 原無逾時(網路 hang 非 error 時→永卡「同步中」)。修:getSession 加 catch→失敗回登入頁;select 加 12s `abortSignal` 逾時;同步失敗畫面加「重試」按鈕(gate_retry 三語),不再只能重整。實測新訪客路徑正常顯示登入頁、abortSignal 為有效方法。

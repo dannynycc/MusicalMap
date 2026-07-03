@@ -132,6 +132,7 @@ function page(variant, shows) {
   <meta property="og:title" content="${esc(v.label)}" />
   <meta property="og:description" content="${esc(v.desc)}" />
   <meta property="og:url" content="${SITE}/${variant}/" />
+  <meta property="og:image" content="${SITE}/logo.png" />
   <meta name="twitter:card" content="summary" />
   <link rel="icon" href="${BASE}logo.png" />
   ${jsonLd(variant, shows)}
