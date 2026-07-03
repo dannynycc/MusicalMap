@@ -417,8 +417,12 @@
         } else img.classList.add('ready'); }
       else { dp.classList.add('is-fallback'); img.removeAttribute('src'); dp.style.setProperty('--dt-accent', s.color || '#7c5cff');
         document.getElementById('dt-fb-en').textContent = s.title; document.getElementById('dt-fb-zh').textContent = s.zh || ''; }
-      dp.onclick = () => { const full = s.posterFull || s.poster; if (full) window.open(full, '_blank', 'noopener'); };   // 點海報→開新分頁直接顯示原始高解析大圖
+      // 點海報→開原圖;補鍵盤可及(同 me.html)
+      const openFull = () => { const full = s.posterFull || s.poster; if (full) window.open(full, '_blank', 'noopener'); };
+      dp.onclick = openFull;
       dp.style.cursor = s.poster ? 'zoom-in' : 'default';
+      if (s.poster) { dp.tabIndex = 0; dp.setAttribute('role', 'button'); dp.setAttribute('aria-label', T('dt_zoom')); dp.onkeydown = e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openFull(); } }; }
+      else { dp.removeAttribute('tabindex'); dp.removeAttribute('role'); dp.onkeydown = null; }
       document.getElementById('dt-en').textContent = s.title;
       document.getElementById('dt-zh').textContent = s.zh;
       const rt = document.getElementById('dt-rate');

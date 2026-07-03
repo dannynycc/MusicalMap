@@ -11,6 +11,11 @@
 
 ---
 
+## [v1.32.1] - 2026-07-03 23:06
+### 修正 — 無障礙 R20:詳情海報放大鍵盤可及(a11y 一致性掃描收尾)
+- 延續 R19 星級評分,系統性掃全站可點元素的鍵盤可及性:絕大多數是 `<button>`(原生)或已有 role+keydown(♥/編輯/刪除/護照戳章/檢視切換/年份 chips/地圖 pin/城市列/combo 下拉);**唯一剩的滑鼠限定=詳情海報 `#dt-poster`(div+onclick 開原圖)**。
+- 修:有海報時加 `tabindex=0`+`role=button`+`aria-label`(dt_zoom)+Enter/Space keydown;無海報時移除(不可互動)。me.html + u-view.js(公開頁)同步。實測 tabindex/role/aria/keydown 齊、零 error。鍵盤可及性掃描收斂完成。
+
 ## [v1.32.0] - 2026-07-03 23:01
 ### 修正 — 無障礙 R19:星級評分鍵盤/螢幕閱讀器無法操作
 - **根因**:評分星星是純 `<span class="st">★</span>`,只有 onclick(滑鼠)+title,**無 tabindex/role/keydown**→鍵盤與螢幕閱讀器使用者完全無法評分(me.html 卡片按鈕早有 role+keydown,此處漏)。

@@ -608,8 +608,12 @@ function openDetail(s){
     }else img.classList.add('ready');}                    // 同一張(重開)→直接顯示
   else{dp.classList.add('is-fallback');img.removeAttribute('src');dp.style.setProperty('--dt-accent',s.color||'#7c5cff');  // 無海報→文字 fallback，不破圖
     document.getElementById('dt-fb-en').textContent=s.title;document.getElementById('dt-fb-zh').textContent=s.zh||'';}
-  dp.onclick=()=>{const full=s.posterFull||s.poster;if(full)window.open(full,'_blank','noopener');};   // 點海報→開新分頁直接顯示原始高解析大圖
+  // 點海報→開新分頁顯示原圖;補鍵盤可及(原本純 div onclick,鍵盤/讀屏開不了原圖)
+  const openFull=()=>{const full=s.posterFull||s.poster;if(full)window.open(full,'_blank','noopener');};
+  dp.onclick=openFull;
   dp.style.cursor=s.poster?'zoom-in':'default';
+  if(s.poster){dp.tabIndex=0;dp.setAttribute('role','button');dp.setAttribute('aria-label',T('dt_zoom'));dp.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openFull();}};}
+  else{dp.removeAttribute('tabindex');dp.removeAttribute('role');dp.onkeydown=null;}
   document.getElementById('dt-en').textContent=s.title;
   document.getElementById('dt-zh').textContent=s.zh;
   const rt=document.getElementById('dt-rate');
