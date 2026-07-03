@@ -1,6 +1,7 @@
 # 資安 / SEO 通盤健檢報告 — 2026-07-02
 
 > 對 MusicalMap（GitHub Pages 靜態站 + Supabase 後端）做的完整資安、SEO、AI-search 健檢紀錄。
+> **後續（2026-07-03/04，見 CHANGELOG）**：另修 display_name 落 email(`fix_display_name_email_leak.sql`)、公開頁自訂海報可當追蹤信標(v1.29.13,posterFull 一律走代理+referrerpolicy)、handle 至少需字母數字(v1.31.2 前端+DB `add_handle_alnum_check.sql`)、新增刪除帳號 GDPR RPC(`add_delete_account.sql`)。本報告為 07-02 當日快照，不回改。
 > 涵蓋：RLS/授權、SQL injection、XSS、金鑰、供應鏈、SEO、AI-search，以及 themusicalmap.com 遷移與 `my.` 子網域架構建議。
 
 ## 架構前提（理解一切的基礎）

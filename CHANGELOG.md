@@ -11,6 +11,11 @@
 
 ---
 
+## [v1.33.1] - 2026-07-04 00:48
+### 變更 — 全 md freshness 掃描(今日收尾)
+- 嚴格掃過全 repo 13 個 .md。更新:README(劇目數 ~1,600→~1,700、My Musicals 段補 v1.26–v1.33 近期功能:♥最愛/刪帳號/簡體搜尋/i18n 邊界修/鍵盤可及/手機底部 sheet 含「仍有超框待續」註記);SETUP_ACCOUNTS(補 4 個漏列 migration:fix_display_name_email_leak/add_fav/add_delete_account/add_handle_alnum_check,標「已套用 ✓」);SECURITY_AUDIT_2026-07-02 加後續指標(不回改日期快照)。WORKFLOW/CHANGELOG 已最新;其餘設計/資料 docs 今日未觸及、無過時。
+- **待續(明日)**:手機地圖底部 sheet 雖不再閃退,仍有超框改進空間(使用者真機回報)。
+
 ## [v1.33.0] - 2026-07-04 00:38
 ### 修正 — 手機地圖圖卡「閃一下就消失」真因 + 改底部彈出 sheet(使用者真機回報,v1.31.0 沒解決)
 - **真因(用 playwright 逐幀追出)**:v1.31.0 的 closeOnClick:false 防不了這個——popup 開啟時 Leaflet 的 **autoPan** 想把大卡平移進小手機地圖,那個地圖移動觸發 **markercluster 重新聚合**→marker 連同 popup 一起被移除=閃一下消失。(我上次太快把 headless 的「開了又關」當假象放過,是疏忽。)
