@@ -436,7 +436,7 @@ function tooltipHtml(show) {
   return `<div class="tt">${img}<div class="tt-meta">
       <div class="tt-title">${esc(canonTitle(show))}</div>
       <div class="tt-sub">${esc(show.venue)}</div>
-      <div class="tt-sub">${esc(show.city)}, ${esc(show.country)}</div>
+      <div class="tt-sub">${esc(cityCountry(show))}</div>
       <div class="tt-date">${fmtDates(show)}</div>
     </div></div>`;
 }
@@ -524,7 +524,7 @@ function popupHtml(show) {
       ${tagBadge(show.tag)}
       ${tourLine}
       <div class="p-row"><b>${esc(show.venue)}</b></div>
-      <div class="p-row">${esc(show.city)}, ${esc(show.country)}</div>
+      <div class="p-row">${esc(cityCountry(show))}</div>
       <div class="p-row">${fmtDates(show)}</div>
       ${ticket}${unverified}
     </div></div>`;
@@ -687,13 +687,18 @@ function fitShowBounds(items) {
 // venue / city / date trio — the same little block for a single card and for each
 // multi-city stop, so single and multi read as the same component. The status dot
 // (with a gentle pulse) appears only on open-ended "long-running" runs.
+// 城邦(新加坡/香港/澳門等)city===country 時只顯示一次,避免「新加坡, 新加坡」的重複
+function cityCountry(s) {
+  if (s.country && s.country !== s.city) return `${s.city}, ${s.country}`;
+  return s.city || s.country || "";
+}
 function locTrio(s) {
   const dt = fmtDates(s);
   const ven = s.venue ? `<div class="ven">${esc(s.venue)}</div>` : "";
   const date = s.end_rolling
     ? `<div class="vdate now"><span class="vdot pulse"></span>${esc(dt)}</div>`
     : (dt ? `<div class="vdate">${esc(dt)}</div>` : "");
-  const loc = s.country ? `${s.city}, ${s.country}` : s.city;
+  const loc = cityCountry(s);
   return `${ven}<div class="city">${esc(loc)}</div>${date}`;
 }
 
