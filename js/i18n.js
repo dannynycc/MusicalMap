@@ -59,7 +59,8 @@
       city_count: "{n} 個城市",
       updated: "更新於 {d}",
       sources: "{u} · 來源：Broadway · West End · 巡演 · 國際 · Ticketmaster",
-      load_error: "無法載入 data/shows.json（需用本機 server 開啟，見 README）",
+      load_error: "演出資料載入失敗",
+      load_error_sub: "請檢查網路連線後重新整理頁面",
       // theatres.html
       tagline_theatres: "全球音樂劇場館地圖",
       nav_map: "地圖首頁",
@@ -195,7 +196,8 @@
       city_count: "{n} Cities",
       updated: "Updated {d}",
       sources: "{u} · Sources: Broadway · West End · Tours · International · Ticketmaster",
-      load_error: "Couldn't load data/shows.json (serve over a local server — see README)",
+      load_error: "Couldn’t load the show data",
+      load_error_sub: "Check your connection and refresh the page",
       // theatres.html
       tagline_theatres: "World map of musical-theatre venues",
       nav_map: "Map home",

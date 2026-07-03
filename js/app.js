@@ -248,6 +248,7 @@ function spreadSame(list) {
 
 // ---------- State ----------
 let ALL = [];                                 // live snapshot (current + future) from shows.json
+let LOAD_FAILED = false;                      // shows.json 載入失敗 → 空狀態顯示錯誤而非「0 部音樂劇」
 let ARCH = {};                                // year -> historical runs (lazy-loaded from data/archive/<year>.json)
 let ARCH_INDEX = null;                        // data/archive/index.json (which years exist)
 const archLoading = {};                       // year -> in-flight fetch promise (dedup)
@@ -594,7 +595,9 @@ function render() {
     [...els.list.querySelectorAll(".show-group.multi:not(.open)")].map((el) => el.dataset.gkey));
   els.list.innerHTML = "";
   if (!shows.length) {
-    els.list.innerHTML = `<li class="empty">${esc(t("empty_title"))}<br><span>${esc(t("empty_sub"))}</span></li>`;
+    els.list.innerHTML = LOAD_FAILED
+      ? `<li class="empty">${esc(t("load_error"))}<br><span>${esc(t("load_error_sub"))}</span></li>`
+      : `<li class="empty">${esc(t("empty_title"))}<br><span>${esc(t("empty_sub"))}</span></li>`;
   } else {
     const byGroup = new Map();
     shows.forEach((s) => {
@@ -626,7 +629,7 @@ function render() {
 
   const groups = new Set(shows.map((s) => s.group || s.title)).size;
   const label = isThisMonth() ? t("playing_this_month") : t("playing_in", { ym: I18N.fmtYM(monthStart()) });
-  els.count.textContent = t("count", { label, groups, n: shows.length });
+  els.count.textContent = LOAD_FAILED ? "" : t("count", { label, groups, n: shows.length });   // 載入失敗不顯示「0 部」假計數
 
   // fit to all markers once, on first load
   if (!didFitBounds && latlngs.length) {
@@ -762,8 +765,10 @@ async function boot() {
     DATA_UPDATED = data.meta?.generated_at || "";
     renderDataNote();
   } catch (e) {
-    if (els.note) els.note.textContent = t("load_error");
-    console.error(e);
+    // 舊實作把錯誤寫進已不存在的 #data-note(黑洞),然後照常渲染出「0 部音樂劇/試試清除搜尋」
+    // 的誤導空狀態 — 改設旗標,render 的空狀態分支顯示真正的錯誤訊息
+    LOAD_FAILED = true;
+    console.error("shows data load failed (local dev: serve over http, see README)", e);
   }
   // historical archive index (enables dragging the timeline into the past)
   if (SHOW_HISTORY) {
