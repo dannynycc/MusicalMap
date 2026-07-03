@@ -11,6 +11,12 @@
 
 ---
 
+## [v1.29.7] - 2026-07-03 19:59
+### 修正 — 無障礙 R13:自訂 modal 的 focus trap + dialog 語意(loop 體檢)
+- **背景**:詳情視窗是原生 `<dialog>`(自帶焦點陷阱+Escape),但**分享/帳號設定 modal 是自訂 `<div>`**——Escape 有處理,但開啟時焦點沒移進去、Tab 會跑到背景遮罩後的頁面控件、且無 `role="dialog"`(螢幕閱讀器不知是彈窗)。首次登入強制 onboarding(必設帳號)這個關鍵流程尤其受影響。
+- **修**:兩張卡加 `role="dialog" aria-modal="true" aria-labelledby`;新增 `trapModal()`——開啟時焦點移入第一個可聚焦元素、Tab/Shift+Tab 在卡片內循環,關閉時解除。三個開啟路徑(maybeOnboard/openShare/openAcct)都接上,close/closeAcct 解除。實測靜態 aria 屬性齊全、focus DOM 正確、全站回歸 0 error。
+- 未動:log modal 內是 me-input iframe(自管焦點,跨 iframe 陷阱複雜且它有 Escape+背景關閉),維持現狀。
+
 ## [v1.29.6] - 2026-07-03 19:49
 ### 修正 — 資料儲存邊界:票價欄輸入淨化 + localStorage 配額防護(loop 體檢)
 - **票價欄無驗證**(`inputmode=decimal` 的文字框,非 type=number):可打字母/多小數點/負號→存 DB 時 `+price` 得 NaN 靜默存 null(使用者輸入消失)、或存成負價。加即時淨化 `sanitizePrice`(只留數字+單一小數點、去負號、上限 12 字),兩處價格欄綁定改走 `bindField`。playwright 實測 6 種惡意輸入(abc/-50/12.3.4/1e5/12abc34)全正確淨化。

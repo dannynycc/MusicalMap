@@ -706,7 +706,7 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
 </style>
 <div class="sharemodal" id="shareModal" hidden>
   <div class="sharemodal-bd" id="shareModalBd"></div>
-  <div class="sharemodal-card">
+  <div class="sharemodal-card" role="dialog" aria-modal="true" aria-labelledby="shareTitle">
     <button type="button" class="sharemodal-x" id="shareX" aria-label="關閉" data-i18n-aria="aria_close">✕</button>
     <h2 id="shareTitle" data-i18n="share_title">分享我的收藏</h2>
     <p class="share-lead" id="shareLead" data-i18n="share_lead">建立你的專屬公開頁，把看過的每一齣音樂劇分享給朋友。</p>
@@ -756,9 +756,9 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
 <!-- ===== 帳號設定 modal（改 username / 顯示名稱；username 改名走 rename_handle，舊網址自動轉新）===== -->
 <div class="sharemodal" id="acctModal" hidden>
   <div class="sharemodal-bd" id="acctBd"></div>
-  <div class="sharemodal-card">
+  <div class="sharemodal-card" role="dialog" aria-modal="true" aria-labelledby="acctTitle">
     <button type="button" class="sharemodal-x" id="acctX" aria-label="關閉" data-i18n-aria="aria_close">✕</button>
-    <h2 data-i18n="acct_title">帳號設定</h2>
+    <h2 id="acctTitle" data-i18n="acct_title">帳號設定</h2>
     <p class="share-lead" data-i18n="acct_lead">網址名稱是你的帳號身分。更改後舊網址會自動轉到新網址，已分享出去的連結不會壞；舊名稱會永久保留給你，別人拿不走。</p>
     <label class="share-field">
       <span data-i18n="acct_handle_label">網址名稱 username</span>
@@ -931,6 +931,24 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
   }
 
   // ---- 首次登入強制 onboarding：沒有 handle 就必須先設（欄位空白＋chips，無略過）----
+  // 焦點陷阱:自訂 div modal(非原生 <dialog>)開啟時把 Tab 困在卡片內,並把焦點移進去;
+  // onboarding(強制首次登入)尤其需要,否則鍵盤/螢幕閱讀器使用者焦點還留在背景。
+  function trapModal(cardEl){
+    const sel='a[href],button:not([disabled]),input:not([disabled]):not([type=hidden]),select,textarea,[tabindex]:not([tabindex="-1"])';
+    const focusables=()=>[...cardEl.querySelectorAll(sel)].filter(el=>el.offsetParent!==null);
+    const f=focusables();(f[0]||cardEl).focus();
+    const onKey=e=>{
+      if(e.key!=='Tab')return;
+      const list=focusables();if(!list.length)return;
+      const first=list[0],last=list[list.length-1];
+      if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}
+      else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}
+    };
+    cardEl.addEventListener('keydown',onKey);
+    cardEl._untrap=()=>cardEl.removeEventListener('keydown',onKey);
+  }
+  function untrap(cardEl){if(cardEl&&cardEl._untrap)cardEl._untrap();}
+  const shareCard=modal.querySelector('.sharemodal-card'), acctCard=acct.querySelector('.sharemodal-card');
   async function maybeOnboard(){
     if(CUR.handle)return;
     FORCED=true;
@@ -940,7 +958,7 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
     $('shareX').hidden=true;
     const sk=$('shareSkip');sk.hidden=false;sk.textContent=T('logout');
     $('pubHandle').value='';obCheck.set('muted',T('h_input_hint'));
-    modal.hidden=false;document.body.style.overflow='hidden';
+    modal.hidden=false;document.body.style.overflow='hidden';if(shareCard)trapModal(shareCard);
     buildChips();   // 背景逐顆驗可用，好了才顯示
   }
 
@@ -952,18 +970,18 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
     $('shareX').hidden=false;$('shareSkip').hidden=true;
     $('handleCur').textContent=shareUrl(CUR.handle);
     syncFieldsVisibility();renderLink();
-    modal.hidden=false;document.body.style.overflow='hidden';
+    modal.hidden=false;document.body.style.overflow='hidden';if(shareCard)trapModal(shareCard);
   }
-  function close(){if(FORCED)return;modal.hidden=true;document.body.style.overflow='';}
+  function close(){if(FORCED)return;untrap(shareCard);modal.hidden=true;document.body.style.overflow='';}
 
   // ---- 帳號設定 ----
   function openAcct(){
     $('acctHandle').value=CUR.handle;
     $('acctDisplay').value=DISPLAY;
     acCheck.set(CUR.handle?'ok':'muted',CUR.handle?T('h_current'):'');
-    acct.hidden=false;
+    acct.hidden=false;if(acctCard)trapModal(acctCard);
   }
-  function closeAcct(){acct.hidden=true;}
+  function closeAcct(){untrap(acctCard);acct.hidden=true;}
   async function acctSave(){
     const h=norm($('acctHandle').value), d=$('acctDisplay').value.trim();
     const btn=$('acctSave');
