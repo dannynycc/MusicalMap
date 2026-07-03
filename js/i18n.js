@@ -19,6 +19,7 @@
       terms: "使用條款",
       privacy_short: "隱私權",
       terms_short: "條款",
+      about_short: "關於",
       lang_toggle: "EN",            // label shows the OTHER language you can switch to
       map: "地圖",
       satellite: "衛星",
@@ -154,6 +155,7 @@
       terms: "Terms",
       privacy_short: "Privacy",
       terms_short: "Terms",
+      about_short: "About",
       lang_toggle: "中",
       map: "Map",
       satellite: "Satellite",

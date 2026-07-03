@@ -1,0 +1,527 @@
+{
+ "_comment": "DRAFT 2 (batch 2) - official English/romanized names for non-China venues with no Latin name in venues_catalog.json (Taiwan, Russia, Japan, Greece, Hungary, Italy). Not merged into any live data file. Generated 2026-07-03. Hall/room suffixes (演藝廳/大ホール/實驗劇場/多功能廳 etc.) intentionally stripped from 'en' where the parent building has an official English name. 'native' matches the venues_catalog.json name field exactly (including doubled strings). Low-confidence entries left with empty 'en' (no invented transliteration).",
+ "venues": [
+  {
+   "native": "介壽堂 馬祖南竿介壽堂",
+   "en": "",
+   "city": "Lienchiang",
+   "country": "Taiwan",
+   "confidence": "low",
+   "source": "https://matsumemory.tw/node/20525",
+   "note": "Historic 1970s cinema/hall in Jieshou Village, Nangan. No official English name found on Lienchiang County or any government English source; left empty per no-invent rule."
+  },
+  {
+   "native": "台北生技園區多功能廳",
+   "en": "Taipei Bioinnovation Park",
+   "city": "Taipei",
+   "country": "Taiwan",
+   "confidence": "medium",
+   "source": "https://tbip.com.tw/ev_0710_1.php?lang=en",
+   "note": "Stripped 多功能廳 (Multipurpose Hall) to building level. Operator's official English site uses 'Taipei Bioinnovation Park'."
+  },
+  {
+   "native": "國立陽明交通大學 演藝廳 國立陽明交通大學 演藝廳",
+   "en": "NYCU Music Performance Hall",
+   "city": "Hsinchu",
+   "country": "Taiwan",
+   "confidence": "medium",
+   "source": "https://arts.nycu.edu.tw/about-us-en/venue/",
+   "note": "University's official arts English page names 演藝廳 'Music Performance Hall'; NYCU is the official English abbreviation."
+  },
+  {
+   "native": "國立陽明交通大學光復校區大禮堂",
+   "en": "",
+   "city": "Hsinchu",
+   "country": "Taiwan",
+   "confidence": "low",
+   "source": "https://placerent.nycu.edu.tw/charge_place01.php",
+   "note": "Guangfu Campus grand auditorium (大禮堂); no official English name published, left empty."
+  },
+  {
+   "native": "廣藝廳 廣藝廳",
+   "en": "Quanta Hall",
+   "city": "Taoyuan",
+   "country": "Taiwan",
+   "confidence": "medium",
+   "source": "https://www.facebook.com/p/%E5%BB%A3%E8%97%9D%E5%BB%B3-Quanta-Hall-100064144383227/",
+   "note": "Run by Quanta Arts Foundation; foundation's own verified page names it '廣藝廳 (Quanta Hall)'."
+  },
+  {
+   "native": "彰化演藝廳 彰化縣政府文化局 演藝廳",
+   "en": "",
+   "city": "Changhua",
+   "country": "Taiwan",
+   "confidence": "low",
+   "source": "https://web.arte.gov.tw/Music/upfile/www/%E5%BD%B0%E5%8C%96%E5%8D%80%E5%A0%B4%E5%9C%B0%E8%B3%87%E6%96%99.pdf",
+   "note": "Auditorium on 1F of Changhua County Cultural Affairs Bureau; Bureau's English site lists no English name, left empty."
+  },
+  {
+   "native": "新竹縣政府文化局演藝廳",
+   "en": "Hsinchu County Performance Hall",
+   "city": "Hsinchu",
+   "country": "Taiwan",
+   "confidence": "high",
+   "source": "https://www.hchcc.gov.tw/En/Common/ThirdSinglepage?filter=c8683308-1958-498e-b234-fa3a327f385f",
+   "note": "Named 'Hsinchu County Performance Hall' on the Cultural Affairs Bureau of Hsinchu County Government's official English site."
+  },
+  {
+   "native": "樹林藝文中心（演藝廳） 樹林藝文中心 演藝廳",
+   "en": "Shulin Arts Center",
+   "city": "New Taipei",
+   "country": "Taiwan",
+   "confidence": "high",
+   "source": "https://www.culture.ntpc.gov.tw/shulin_artcenter_en",
+   "note": "Stripped 演藝廳 (Performance Hall) to building level. 'Shulin Arts Center' per New Taipei Culture Bureau's official English site."
+  },
+  {
+   "native": "澎湖縣演藝廳",
+   "en": "Penghu Performance Hall",
+   "city": "Penghu",
+   "country": "Taiwan",
+   "confidence": "medium",
+   "source": "https://www.facebook.com/penghuperformancehall/",
+   "note": "Under Penghu County Cultural Affairs Bureau; consistent English rendering (official FB handle penghuperformancehall), no formal gov English page."
+  },
+  {
+   "native": "空軍三重一村時藝劇場",
+   "en": "",
+   "city": "New Taipei",
+   "country": "Taiwan",
+   "confidence": "low",
+   "source": "https://mediasphere.com.tw/venues/9",
+   "note": "Black-box theatre in Air Force Sanchong First Village, branded by operator MediaSphere. No official English name published for 時藝劇場; left empty."
+  },
+  {
+   "native": "臺中市屯區藝文中心實驗劇場",
+   "en": "Taichung City Tun District Art Center",
+   "city": "Taichung",
+   "country": "Taiwan",
+   "confidence": "high",
+   "source": "https://www.ttdac.taichung.gov.tw/English/",
+   "note": "Stripped 實驗劇場 (Experimental Theater) to building level. Name per its own official English site."
+  },
+  {
+   "native": "臺北市政府親子劇場 臺北市政府親子劇場",
+   "en": "Parent-Child Theater",
+   "city": "Taipei",
+   "country": "Taiwan",
+   "confidence": "medium",
+   "source": "https://www.tapo.gov.taipei/",
+   "note": "Venue at Taipei City Hall 2F, run by Taipei Arts Promotion Office. Direct translation of 親子劇場; exact venue-name English not fully settled."
+  },
+  {
+   "native": "臺東藝文中心 臺東縣政府文化處藝文中心 演藝廳",
+   "en": "Taitung Art and Culture Center",
+   "city": "Taitung",
+   "country": "Taiwan",
+   "confidence": "high",
+   "source": "https://culture.taitung.gov.tw/facility/taitungartandculturecenter",
+   "note": "Stripped 演藝廳 (Performance Hall) to building level. Name per Taitung County Cultural Affairs Dept. official material."
+  },
+  {
+   "native": "臺灣大學藝文中心遊心劇場",
+   "en": "University Players Theatre",
+   "city": "Taipei",
+   "country": "Taiwan",
+   "confidence": "high",
+   "source": "https://www.ntu.edu.tw/spotlight/2022/2117_20221229.html",
+   "note": "NTU's own naming: official article states the English name of 遊心劇場 is 'University Players Theatre'."
+  },
+  {
+   "native": "萬座曉劇場 萬座曉劇場",
+   "en": "Wan Theater",
+   "city": "Taipei",
+   "country": "Taiwan",
+   "confidence": "medium",
+   "source": "https://www.facebook.com/WanTheater/",
+   "note": "Wanhua venue run by Shinehouse Theatre (曉劇場); own official FB names it '萬座曉劇場 Wan Theater'."
+  },
+  {
+   "native": "誠品表演廳",
+   "en": "eslite Performance Hall",
+   "city": "Taipei",
+   "country": "Taiwan",
+   "confidence": "high",
+   "source": "https://meet.eslite.com/tw/en/gallery/201803010001",
+   "note": "'eslite Performance Hall' on eslite's own official English page (Songshan Cultural and Creative Park)."
+  },
+  {
+   "native": "遊牧計畫",
+   "en": "Project Nomad",
+   "city": "Taipei",
+   "country": "Taiwan",
+   "confidence": "medium",
+   "source": "https://www.threads.com/@projectnomad.taipei",
+   "note": "Shared/event space; self-identified official English 'Project Nomad' (handle projectnomad.taipei), no formal institutional page."
+  },
+  {
+   "native": "雲林表演廳",
+   "en": "Yunlin Performance Hall",
+   "city": "Yunlin",
+   "country": "Taiwan",
+   "confidence": "high",
+   "source": "https://content.yunlin.gov.tw/cl.aspx?n=34223",
+   "note": "Yunlin County Cultural Affairs Dept. venue; 'Yunlin Performance Hall' used consistently by county official channels."
+  },
+  {
+   "native": "駁二正港小劇場",
+   "en": "Kaohsiung Experimental Theatre",
+   "city": "Kaohsiung",
+   "country": "Taiwan",
+   "confidence": "high",
+   "source": "https://en.pier2.org/spot/",
+   "note": "The 正港小劇場 at Pier-2 is officially 'Kaohsiung Experimental Theatre' (KET) per Pier-2's English site."
+  },
+  {
+   "native": "高雄市立社會教育館 高雄市社教館 演藝廳",
+   "en": "Kaohsiung Municipal Social Education Center",
+   "city": "Kaohsiung",
+   "country": "Taiwan",
+   "confidence": "high",
+   "source": "https://www.kmseh.gov.tw/eng/",
+   "note": "Stripped 演藝廳 (Performance Hall) to building level. Name per the institution's own official English site."
+  },
+  {
+   "native": "Академический Малый драматический театр – Театр Европы Академический Малый драматический театр – Театр Европы",
+   "en": "Maly Drama Theatre – Theatre of Europe",
+   "city": "Saint Petersburg",
+   "country": "Russia",
+   "confidence": "high",
+   "source": "https://en.wikipedia.org/wiki/Maly_Drama_Theatre",
+   "note": "English Wikipedia title 'Maly Drama Theatre'; own English site renders full 'Maly Drama Theatre – Theatre of Europe'. Native string doubled."
+  },
+  {
+   "native": "Большой драматический театр имени Г. А. Товстоногова Большой драматический театр имени Г. А. Товстоногова",
+   "en": "Tovstonogov Bolshoi Drama Theatre",
+   "city": "Saint Petersburg",
+   "country": "Russia",
+   "confidence": "high",
+   "source": "https://en.wikipedia.org/wiki/Tovstonogov_Bolshoi_Drama_Theater",
+   "note": "English Wikipedia article title; named after Georgy Tovstonogov, aka BDT. Native string doubled."
+  },
+  {
+   "native": "Большой театр. Камерная сцена им.Покровского Большой театр. Камерная сцена им.Покровского",
+   "en": "Bolshoi Theatre – Boris Pokrovsky Chamber Stage",
+   "city": "Moscow",
+   "country": "Russia",
+   "confidence": "high",
+   "source": "https://www.operabase.com/boris-pokrovsky-chamber-stage-of-the-bolshoi-theater-venue-o62508/en",
+   "note": "Former Pokrovsky Chamber Opera merged into Bolshoi (2017); Operabase/Bolshoi English render 'Boris Pokrovsky Chamber Stage of the Bolshoi Theatre'. Native string doubled."
+  },
+  {
+   "native": "Государственный Академический Театр имени Евгения Вахтангова",
+   "en": "Vakhtangov State Academic Theatre",
+   "city": "Moscow",
+   "country": "Russia",
+   "confidence": "high",
+   "source": "https://en.wikipedia.org/wiki/Vakhtangov_State_Academic_Theatre",
+   "note": "Exact English Wikipedia article title; official site vakhtangov.ru/en."
+  },
+  {
+   "native": "ДК «Приморский»",
+   "en": "",
+   "city": "Novosibirsk",
+   "country": "Russia",
+   "confidence": "low",
+   "source": "http://www.dk-primorsky.ru/",
+   "note": "Municipal House of Culture (ДК); no official English name and no English Wikipedia article. Left empty."
+  },
+  {
+   "native": "Дом актёра Дом актера",
+   "en": "",
+   "city": "Novosibirsk",
+   "country": "Russia",
+   "confidence": "low",
+   "source": "https://da-nsk.ru/",
+   "note": "Local Actors' House / Union of Theatre Workers venue; no official English name. Native string doubled. Left empty."
+  },
+  {
+   "native": "Дом культуры и творчества им. В.П. Чкалова",
+   "en": "",
+   "city": "Novosibirsk",
+   "country": "Russia",
+   "confidence": "low",
+   "source": "https://dkchkalova.ru/",
+   "note": "House of Culture named after V.P. Chkalov; no official English name, only auto-translations. Left empty."
+  },
+  {
+   "native": "Камерный Театр Объединенного Музея Писателей Урала Камерный Театр Объединенного Музея Писателей Урала",
+   "en": "",
+   "city": "Yekaterinburg",
+   "country": "Russia",
+   "confidence": "low",
+   "source": "https://ompural.ru/theatre",
+   "note": "Chamber Theatre of the United Museum of Ural Writers; only Russian sources, no official English name. Native string doubled. Left empty."
+  },
+  {
+   "native": "Концертный зал «У Финляндского»",
+   "en": "",
+   "city": "Saint Petersburg",
+   "country": "Russia",
+   "confidence": "low",
+   "source": "https://finzal.kalinkdc.ru/",
+   "note": "Concert hall near Finland Station; official site Russian-only, no established English name. Left empty."
+  },
+  {
+   "native": "Театр Модерн",
+   "en": "Modern Theatre",
+   "city": "Moscow",
+   "country": "Russia",
+   "confidence": "medium",
+   "source": "https://www.modern-theatre.ru/",
+   "note": "No English Wikipedia article, but theatre's own domain self-renders as 'Modern Theatre' (Art Nouveau/Modern style). Also 'Moscow Drama Theatre Modern'."
+  },
+  {
+   "native": "Театр Ромэн",
+   "en": "Romen Theatre",
+   "city": "Moscow",
+   "country": "Russia",
+   "confidence": "high",
+   "source": "https://en.wikipedia.org/wiki/Romen_Theatre",
+   "note": "Exact English Wikipedia article title; world's oldest Romani theatre, founded 1931."
+  },
+  {
+   "native": "Театр на Бронной",
+   "en": "Theatre on Bronnaya",
+   "city": "Moscow",
+   "country": "Russia",
+   "confidence": "medium",
+   "source": "https://www.wikidata.org/wiki/Q4304134",
+   "note": "Renamed from 'Theatre on Malaya Bronnaya' to 'Theatre on Bronnaya' (2021); mos.ru English renders 'Theatre on (Malaya) Bronnaya'. No standalone English Wikipedia article."
+  },
+  {
+   "native": "Центральный академический театр Российской Армии",
+   "en": "Central Academic Theatre of the Russian Army",
+   "city": "Moscow",
+   "country": "Russia",
+   "confidence": "high",
+   "source": "https://www.wikidata.org/wiki/Q1958711",
+   "note": "Wikidata English label matches native literally; English Wikipedia article under short title 'Russian Army Theatre'."
+  },
+  {
+   "native": "Электротеатр Станиславский",
+   "en": "Electrotheatre Stanislavsky",
+   "city": "Moscow",
+   "country": "Russia",
+   "confidence": "high",
+   "source": "https://en.wikipedia.org/wiki/Electrotheatre_Stanislavsky",
+   "note": "Exact English Wikipedia article title; official site uses 'Stanislavsky Electrotheatre'. Member of Union of Theatres of Europe."
+  },
+  {
+   "native": "アイプラザ豊橋",
+   "en": "Aiplaza Toyohashi",
+   "city": "Aichi",
+   "country": "Japan",
+   "confidence": "medium",
+   "source": "https://www.aiplaza-toyohashi.jp/",
+   "note": "Official site gives no English name; 'Aiplaza Toyohashi' is the established romanization (also on venue Facebook). aka 豊橋勤労福祉会館."
+  },
+  {
+   "native": "アクリエひめじ(姫路市文化コンベンションセンター)",
+   "en": "Himeji City Culture Convention Center",
+   "city": "Hyogo",
+   "country": "Japan",
+   "confidence": "high",
+   "source": "https://mice.jnto.go.jp/organizer-support/search/venue-detail/645.html",
+   "note": "Building-level official English (JNTO + operator). Nickname アクリエ has no official romanization; returned official building name."
+  },
+  {
+   "native": "サンケイホールブリーゼ",
+   "en": "Sankei Hall Breeze",
+   "city": "Osaka",
+   "country": "Japan",
+   "confidence": "high",
+   "source": "https://mice.osaka-info.jp/en/venue_search/sankei-hall-breeze/index.php",
+   "note": "Official English used by Osaka Convention Bureau and builder Kajima."
+  },
+  {
+   "native": "シアターH",
+   "en": "Theater H",
+   "city": "Tokyo",
+   "country": "Japan",
+   "confidence": "medium",
+   "source": "https://japantravel.navitime.com/en/area/jp/spot/02022-10038478/",
+   "note": "No official English site; 'Theater H' used consistently by NAVITIME. Shinagawa-ku."
+  },
+  {
+   "native": "シアターサンモール",
+   "en": "Theater Sunmall",
+   "city": "Tokyo",
+   "country": "Japan",
+   "confidence": "medium",
+   "source": "http://theatersunmall.server-shared.com/",
+   "note": "Official site Japanese-only; 'Theater Sunmall' (also 'Theater Sun-mall') consistent romanization. Shinjuku."
+  },
+  {
+   "native": "パルテノン多摩 大ホール",
+   "en": "Parthenon Tama",
+   "city": "Tokyo",
+   "country": "Japan",
+   "confidence": "high",
+   "source": "https://www.parthenon.or.jp/",
+   "note": "Stripped 大ホール (Large Hall); 'Parthenon Tama' is the building's official Latin-script name."
+  },
+  {
+   "native": "ヒューリックホール東京",
+   "en": "Hulic Hall Tokyo",
+   "city": "Tokyo",
+   "country": "Japan",
+   "confidence": "high",
+   "source": "https://www.hulic-theater.com/",
+   "note": "Official English name (operator Hulic). Yurakucho, Chiyoda-ku."
+  },
+  {
+   "native": "刈谷市総合文化センター アイリス 大ホール",
+   "en": "Kariya Cultural Center Iris",
+   "city": "Aichi",
+   "country": "Japan",
+   "confidence": "medium",
+   "source": "https://www.tokyoartbeat.com/venues/-/kariya-cultural-center-iris",
+   "note": "Stripped 大ホール (Large Hall); 'Kariya Cultural Center Iris' per Tokyo Art Beat. No English on official site."
+  },
+  {
+   "native": "呉信用金庫ホール",
+   "en": "The Kure Shinkin Bank Hall",
+   "city": "Hiroshima",
+   "country": "Japan",
+   "confidence": "high",
+   "source": "https://www.kure-bunka.jp/?cn=100005",
+   "note": "Official English on venue site: 'THE KURE SHINKIN BANK HALL'. Naming-rights name of 呉市文化ホール."
+  },
+  {
+   "native": "土岐市文化プラザ サンホール",
+   "en": "",
+   "city": "Gifu",
+   "country": "Japan",
+   "confidence": "low",
+   "source": "http://www.toki-bunka.or.jp/plaza",
+   "note": "No official English found (site JP-only). Building ~ Toki City Cultural Plaza, hall = サンホール (Sun Hall); no established English, left empty."
+  },
+  {
+   "native": "有楽町朝日ホール",
+   "en": "Yurakucho Asahi Hall",
+   "city": "Tokyo",
+   "country": "Japan",
+   "confidence": "high",
+   "source": "https://www.asahi-hall.jp/yurakucho/",
+   "note": "Official English (asahi-hall.jp). 11F Yurakucho Mullion, Chiyoda-ku."
+  },
+  {
+   "native": "福岡市民ホール 大ホール",
+   "en": "Fukuoka Civic Hall",
+   "city": "Fukuoka",
+   "country": "Japan",
+   "confidence": "high",
+   "source": "https://www.fukuoka-civic-hall.jp/",
+   "note": "Stripped 大ホール (Main Hall); official English building name 'Fukuoka Civic Hall'. Opened 2025, successor to 福岡市民会館."
+  },
+  {
+   "native": "WE WE",
+   "en": "WE",
+   "city": "Thessaloniki",
+   "country": "Greece",
+   "confidence": "high",
+   "source": "https://www.songkick.com/venues/2979858-we",
+   "note": "Venue's own name is 'WE' (native doubles it); multipurpose venue in a former military warehouse. Latin-script proper name kept."
+  },
+  {
+   "native": "Ανοικτό Θέατρο Συκεών «Μάνος Κατράκης»",
+   "en": "Sykies Open-Air Theatre \"Manos Katrakis\"",
+   "city": "Thessaloniki",
+   "country": "Greece",
+   "confidence": "medium",
+   "source": "https://www.artandlife.gr/thessaloniki/locations/Anoikto_Theatro_Sykeon_Manos_Katrakis",
+   "note": "Standard transliteration/translation; open-air municipal theatre in Sykies named after actor Manos Katrakis. No official English name."
+  },
+  {
+   "native": "Θέατρο T",
+   "en": "Theatro T",
+   "city": "Thessaloniki",
+   "country": "Greece",
+   "confidence": "medium",
+   "source": "https://www.tripadvisor.com/Attraction_Review-g189473-d10622169-Reviews-Theatro_T-Thessaloniki_Thessaloniki_Region_Central_Macedonia.html",
+   "note": "Transliterated 'Theatro T' by TripAdvisor; kept romanized proper name."
+  },
+  {
+   "native": "Θέατρο ΕΛΕΡ Ελένη Ερήμου",
+   "en": "ELER Theatre – Eleni Erimou",
+   "city": "Athens",
+   "country": "Greece",
+   "confidence": "medium",
+   "source": "https://eler-theater.gr/",
+   "note": "Standard transliteration; theatre in Plaka. No official English rendering on site."
+  },
+  {
+   "native": "Θέατρο Τεχνών Θεσσαλονίκης Θέατρο Τεχνών Θεσσαλονίκης",
+   "en": "Thessaloniki Theatre of Arts",
+   "city": "Thessaloniki",
+   "country": "Greece",
+   "confidence": "medium",
+   "source": "https://artstheater.gr/",
+   "note": "Native string doubled. Standard translation; 250-seat venue in Faliro, Thessaloniki."
+  },
+  {
+   "native": "Θέατρο Τζένη Καρέζη",
+   "en": "Jenny Karezi Theatre",
+   "city": "Athens",
+   "country": "Greece",
+   "confidence": "medium",
+   "source": "https://theatrotzenikarezi.gr/",
+   "note": "Named after actress Jenny (Tzeni) Karezi; venue at Akademias 3, Athens."
+  },
+  {
+   "native": "Κινηματογράφος ΘΗΣΕΙΟΝ",
+   "en": "Cine Thision (Thiseion Open-Air Cinema)",
+   "city": "Athens",
+   "country": "Greece",
+   "confidence": "high",
+   "source": "https://www.thisisathens.org/arts-entertainment/urban-culture/open-air-cinemas",
+   "note": "Established English name; historic 1935 open-air cinema opposite the Acropolis, per official Athens guide."
+  },
+  {
+   "native": "Μικρή Σκηνή Μικρή Σκηνή",
+   "en": "Small Stage",
+   "city": "Thessaloniki",
+   "country": "Greece",
+   "confidence": "medium",
+   "source": "https://www.artandlife.gr/thessaloniki/locations/Small_Stage_@_Anatolika_proastia",
+   "note": "Native string doubled. 'Μικρή Σκηνή' = 'Small Stage'; music/theatre venue in Kato Toumpa."
+  },
+  {
+   "native": "Ωδείο Αθηνών",
+   "en": "Athens Conservatoire",
+   "city": "Athens",
+   "country": "Greece",
+   "confidence": "high",
+   "source": "https://en.wikipedia.org/wiki/Athens_Conservatoire",
+   "note": "Official English name (own site + English Wikipedia). Oldest performing-arts institution in modern Greece, founded 1871."
+  },
+  {
+   "native": "A38",
+   "en": "A38 Ship",
+   "city": "Budapest",
+   "country": "Hungary",
+   "confidence": "high",
+   "source": "https://www.a38.hu/en",
+   "note": "Official English name 'A38 Ship' (Hungarian 'A38 Hajó'). Concert hall on a reconstructed ship on the Danube."
+  },
+  {
+   "native": "Dóm tér",
+   "en": "Dóm tér (Cathedral Square)",
+   "city": "Szeged",
+   "country": "Hungary",
+   "confidence": "medium",
+   "source": "https://szegedtourism.hu/en/open-air-festival-of-szeged/",
+   "note": "Already Latin-script; 'Dóm tér' = 'Cathedral Square'. Open-air square hosting the Szeged Open-Air Festival (~4,000 seats)."
+  },
+  {
+   "native": "Q77",
+   "en": "Teatro Q77",
+   "city": "Turin",
+   "country": "Italy",
+   "confidence": "high",
+   "source": "https://www.teatroq77.it/",
+   "note": "Already Latin-script; official name 'Teatro Q77' (also 'Q77 Vertigo Live'). 200-seat multipurpose theatre at Corso Brescia 77, Turin."
+  }
+ ]
+}

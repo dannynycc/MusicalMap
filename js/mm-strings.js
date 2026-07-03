@@ -154,6 +154,7 @@
       how_b4_n: '登入很單純', how_b4_h: '用 Google 登入，跨裝置同步', how_b4_p: '我們只讀你的名稱與 email（Google 授權會附帶頭像，本站不使用），不會代你張貼任何內容。你的收藏存在帳號裡，換手機、換電腦都在。',
       how_final_h: '從哪裡開始都可以', how_final_p: '先逛地圖找靈感，或直接記下你看過的第一齣。', how_final_cta: '建立我的音樂劇護照', how_final_cta2: '先探索地圖',
       how_footer: 'MusicalMap — 全球音樂劇即時地圖，與你的音樂劇護照。', how_footer_link: '回到地圖',
+      how_final_about: '這個網站由一位音樂劇迷獨立打造——背後的故事 →',
       // ---- about.html(關於頁) ----
       about_title: '關於本站 — MusicalMap', about_eyebrow: '關於 MusicalMap',
       about_meta: 'MusicalMap 是一個由劇迷個人打造的網站：一張顯示全球上演中音樂劇的即時地圖，加上一本屬於你自己的音樂劇護照。',
@@ -358,6 +359,7 @@
       how_b4_n: 'Signing in is simple', how_b4_h: 'Sign in with Google, synced everywhere', how_b4_p: 'We only read your name and email (Google bundles an avatar with the grant; this site doesn’t use it) — we never post anything on your behalf. Your collection lives in your account, on every phone and laptop.',
       how_final_h: 'Start anywhere', how_final_p: 'Let’s start at the very beginning — browse the map, or log the first show you ever saw.', how_final_cta: 'Build your passport', how_final_cta2: 'Explore the map first',
       how_footer: 'MusicalMap — a live world map of musicals, and your theatre passport.', how_footer_link: 'Back to the map',
+      how_final_about: 'Built by one theatre fan who loves maps — the story →',
       // ---- about.html ----
       about_title: 'About — MusicalMap', about_eyebrow: 'About MusicalMap',
       about_meta: 'MusicalMap is built by one theatre fan: a live world map of musicals playing right now, plus a theatre passport of your own.',

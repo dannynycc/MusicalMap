@@ -146,6 +146,12 @@ body { display: flex; flex-direction: column; height: 100vh; }
 .foot-links { margin-top: 8px; font-size: 13px; color: var(--muted); }
 .foot-links a { color: var(--muted); text-decoration: none; }
 .foot-links a:hover { color: var(--gold); }
+/* 共用頁尾(與 guide 同款):左標語、右金色連結列 — about/privacy/terms 用 */
+.site-foot { border-top: 1px solid var(--border); padding: 30px 0 44px; color: var(--muted); font-size: 14px; margin-top: 56px; }
+.site-foot .sf-in { max-width: 1080px; margin: 0 auto; padding: 0 26px; display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: center; }
+.site-foot .sp { margin-left: auto; }
+.site-foot a { color: var(--gold); text-decoration: none; }
+.site-foot a:hover { text-decoration: underline; }
 
 /* 本月上演即時計數 — 在 #controls 內、搜尋欄下方(底線之上) */
 #count { margin: 9px 3px 0; font-size: 12px; color: var(--muted); font-weight: 600;

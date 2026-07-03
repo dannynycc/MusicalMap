@@ -181,6 +181,7 @@ L.control.layers({ [t("map")]: streets, [t("satellite")]: satellite }, null, { p
 // 法務連結放 attribution 列(Google Maps 慣例:全螢幕地圖 app 無頁尾,隱私/條款跟圖資出處同列);
 // 頂部 nav 留給功能項,手機版也因此看得到法務連結(nav-link 在手機被藏)
 map.attributionControl.addAttribution(
+  `<a href="${window.MM_BASE || "/"}about.html?hl=${window.MM_VARIANT || "zh-hant"}">${t("about_short")}</a> · ` +
   `<a href="${window.MM_BASE || "/"}privacy.html?hl=${window.MM_VARIANT || "zh-hant"}">${t("privacy_short")}</a> · ` +
   `<a href="${window.MM_BASE || "/"}terms.html?hl=${window.MM_VARIANT || "zh-hant"}">${t("terms_short")}</a>`);
 

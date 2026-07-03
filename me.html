@@ -323,7 +323,17 @@ function posterEl(s){
     const acts=document.createElement('div');acts.className='cardacts';
     acts.innerHTML=`<span class="ca-btn ca-fav${s.fav?' on':''}" role="button" tabindex="0" aria-label="${T(s.fav?'unfav_this':'fav_this')}" title="${T(s.fav?'unfav_this':'fav_this')}">♥</span><span class="ca-btn" role="button" tabindex="0" aria-label="${T('edit_this')}" title="${T('edit')}">✎</span><span class="ca-btn" role="button" tabindex="0" aria-label="${T('delete_this')}" title="${T('delete')}">✕</span>`;
     const fb=acts.children[0], eb=acts.children[1], db=acts.children[2];
-    fb.onclick=e=>{e.stopPropagation();window.mmToggleFav&&window.mmToggleFav(li);};
+    fb.onclick=e=>{e.stopPropagation();
+      if(!window.mmToggleFav)return;
+      const nf=window.mmToggleFav(li);            // 就地切換,不重刷
+      if(nf===null)return;
+      s.fav=nf;
+      fb.classList.toggle('on',nf);
+      const lbl=T(nf?'unfav_this':'fav_this');fb.setAttribute('aria-label',lbl);fb.title=lbl;
+      const fig=c.querySelector('.poster');let fv=fig&&fig.querySelector('.fav');
+      if(nf&&!fv&&fig){fv=document.createElement('span');fv.className='fav';fv.textContent='♥';fig.appendChild(fv);}
+      else if(!nf&&fv)fv.remove();
+    };
     eb.onclick=e=>{e.stopPropagation();window.mmEditShow&&window.mmEditShow(li);};
     db.onclick=e=>{e.stopPropagation();window.mmDeleteShow&&window.mmDeleteShow(li,s.title,s.zh);};
     [fb,eb,db].forEach(x=>x.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();e.stopPropagation();x.click();}});  // span role=button 需手動接 Enter/Space
@@ -1051,7 +1061,7 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
   const sb=supabase.createClient(cfg.SUPABASE_URL,cfg.SUPABASE_ANON_KEY);
   window.mmSb=sb;
   showGate(T('gate_loading'),false);   // 立即用當前語言顯示 Loading(gate-msg 無 data-i18n,不會被 apply 蓋);getSession 回來再 showLogin/onSignedIn
-  const SYNC_VER='6';   // sightingToEntry 對映改版**或 catalog 顯示資料(zh/海報)更新**就 +1 → 強制所有 session 重新同步（v4=venueEn;v5=catalog 補 38 館英文名;v6=fav 最愛欄位）
+  const SYNC_VER='7';   // sightingToEntry 對映改版**或 catalog 顯示資料(zh/海報)更新**就 +1 → 強制所有 session 重新同步（v5=38 館英文名;v6=fav;v7=第二批 124 館英文名）
   const syncedKey=uid=>uid+'@'+SYNC_VER;
   let _syncing=false;
   async function syncFromCloud(uid){
@@ -1075,15 +1085,15 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
   async function onSignedIn(user){if(sessionStorage.getItem('mev2_synced')===syncedKey(user.id)){hideGate();window.mmAuthReady&&window.mmAuthReady(user.id);return;}await syncFromCloud(user.id);}
   glogin.onclick=()=>sb.auth.signInWithOAuth({provider:'google',options:{redirectTo:location.origin+location.pathname}});
   window.mmLogout=()=>sb.auth.signOut().then(()=>{clearLocal();location.reload();});
-  // ♥ 最愛切換:本機快取即改+雲端更新,reload 讓卡片/徽章一致(與刪除同 UX 模式)
-  window.mmToggleFav=async function(i){
+  // ♥ 最愛切換:本機快取即改+雲端背景更新,回傳新狀態給卡片就地更新(不重刷;統計/徽章下次載入時跟上)
+  window.mmToggleFav=function(i){
     try{
-      const log=JSON.parse(localStorage.getItem('mm-log')||'[]');if(!log[i])return;
+      const log=JSON.parse(localStorage.getItem('mm-log')||'[]');if(!log[i])return null;
       log[i].fav=!log[i].fav;
       localStorage.setItem('mm-log',JSON.stringify(log));
-      if(log[i].sid!=null){await sb.from('sightings').update({fav:log[i].fav}).eq('id',log[i].sid);}
-    }catch(e){console.warn('fav',e);}
-    location.reload();
+      if(log[i].sid!=null){sb.from('sightings').update({fav:log[i].fav}).eq('id',log[i].sid).then(({error})=>{if(error)console.warn('fav sync',error);});}
+      return log[i].fav;
+    }catch(e){console.warn('fav',e);return null;}
   };
   {const bl=document.getElementById('btnLogout');if(bl)bl.onclick=window.mmLogout;}
   sb.auth.onAuthStateChange((event,session)=>{

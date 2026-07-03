@@ -1,0 +1,1076 @@
+{
+ "_comment": "DRAFT ONLY (batch 2 - China remaining). Official English names for Chinese venues in venues_catalog.json not covered by _venue_en_draft.json. Not merged into any live data file. Generated 2026-07-03. Hall/room suffixes (-大剧场/-歌剧厅/-戏剧厅/-小剧场/-中剧场/-多功能剧场/黑盒/号馆 etc.) excluded from 'en' (building level). 'native' matches venues_catalog.json name field byte-for-byte. low-confidence entries left with empty 'en' (never transliterated).",
+ "venues": [
+  {
+   "native": "(通州区)北京艺术中心-戏剧场-国家大剧院分址",
+   "en": "Beijing Performing Arts Centre",
+   "city": "Beijing",
+   "country": "China",
+   "confidence": "high",
+   "source": "https://english.beijing.gov.cn/latest/news/202312/t20231225_3508971.html",
+   "note": "NCPA Grand Canal branch; stripped -戏剧场 (drama hall) and 国家大剧院分址 (NCPA branch)"
+  },
+  {
+   "native": "上海保利大剧院",
+   "en": "Shanghai Poly Grand Theatre",
+   "city": "Shanghai",
+   "country": "China",
+   "confidence": "high",
+   "source": "http://english.jiading.gov.cn/2025-04/30/c_1089835.htm",
+   "note": "Jiading district, Tadao Ando; Jiading gov + Baidu EN. Distinct from 保利上海城市剧院"
+  },
+  {
+   "native": "东安湖大剧院·大剧场",
+   "en": "Dong'an Lake Grand Theatre",
+   "city": "Chengdu",
+   "country": "China",
+   "confidence": "high",
+   "source": "https://www.trip.com/travel-guide/attraction/chengdu/dong-an-lake-grand-theatre-151269991/",
+   "note": "Trip.com listing; stripped ·大剧场"
+  },
+  {
+   "native": "光明文化艺术中心 演艺中心·大剧场",
+   "en": "Guangming Culture and Art Center",
+   "city": "Shenzhen",
+   "country": "China",
+   "confidence": "high",
+   "source": "https://en.wikipedia.org/wiki/Guangming_Culture_and_Art_Center",
+   "note": "Wikipedia + Shenzhen gov EN; stripped 演艺中心·大剧场"
+  },
+  {
+   "native": "十二楼音乐剧之城 -6号剧场[B-103防空洞]",
+   "en": "",
+   "city": "Shanghai",
+   "country": "China",
+   "confidence": "low",
+   "source": "",
+   "note": "Immersive musical-city room (Hall 6, air-raid shelter B-103); no official English name"
+  },
+  {
+   "native": "大智无界空中小镇-无界剧场",
+   "en": "",
+   "city": "Wuhan",
+   "country": "China",
+   "confidence": "low",
+   "source": "",
+   "note": "Brand-named immersive theatre in themed complex; no official English name"
+  },
+  {
+   "native": "天津大剧院",
+   "en": "Tianjin Grand Theatre",
+   "city": "Tianjin",
+   "country": "China",
+   "confidence": "high",
+   "source": "https://en.wikipedia.org/wiki/Tianjin_Grand_Theatre",
+   "note": "Wikipedia + official site english.tjgtheatre.org"
+  },
+  {
+   "native": "安托山公共文化中心-大剧场",
+   "en": "Antuoshan Public Cultural Center",
+   "city": "Shenzhen",
+   "country": "China",
+   "confidence": "high",
+   "source": "https://macaonews.org/news/greater-bay-area/shenzhen-antuoshan-public-cultural-centre/",
+   "note": "Baidu EN + macaonews; stripped -大剧场"
+  },
+  {
+   "native": "广州花都大剧院",
+   "en": "Guangzhou Huadu Grand Theatre",
+   "city": "Guangzhou",
+   "country": "China",
+   "confidence": "medium",
+   "source": "https://us.trip.com/travel-guide/attraction/guangzhou/guangzhou-grand-theatre-15066938/",
+   "note": "Huadu district + 大剧院 convention; NOT the separate Sunac Guangzhou Grand Theatre"
+  },
+  {
+   "native": "张家港保利大剧院",
+   "en": "Zhangjiagang Poly Grand Theatre",
+   "city": "Zhangjiagang",
+   "country": "China",
+   "confidence": "high",
+   "source": "https://www.polytheatre.com/",
+   "note": "Poly network; city verified Zhangjiagang"
+  },
+  {
+   "native": "星空间1023号·涵金小剧场",
+   "en": "",
+   "city": "Shanghai",
+   "country": "China",
+   "confidence": "low",
+   "source": "",
+   "note": "Star-space immersive small theatre (No.1023); no official English name"
+  },
+  {
+   "native": "星空间1号·一台好戏小剧场",
+   "en": "",
+   "city": "Shanghai",
+   "country": "China",
+   "confidence": "low",
+   "source": "",
+   "note": "Star-space immersive small theatre (No.1); no official English name"
+  },
+  {
+   "native": "星空间420号·伸个懒腰剧场",
+   "en": "",
+   "city": "Shanghai",
+   "country": "China",
+   "confidence": "low",
+   "source": "",
+   "note": "Star-space immersive theatre (No.420); no official English name"
+  },
+  {
+   "native": "星空间9号·鲸剧场",
+   "en": "",
+   "city": "Shanghai",
+   "country": "China",
+   "confidence": "low",
+   "source": "",
+   "note": "Star-space immersive theatre (No.9, Whale); no official English name"
+  },
+  {
+   "native": "桑塔露琪亚·广州馆",
+   "en": "",
+   "city": "Guangzhou",
+   "country": "China",
+   "confidence": "low",
+   "source": "",
+   "note": "Branded immersive show room (Santa Lucia, Guangzhou); no official English name"
+  },
+  {
+   "native": "淄博大剧院",
+   "en": "Zibo Grand Theatre",
+   "city": "Zibo",
+   "country": "China",
+   "confidence": "medium",
+   "source": "https://us.trip.com/travel-guide/attraction/zibo/zibo-grand-theater-80063979/",
+   "note": "Trip.com listing; Poly-operated; 大剧院 convention"
+  },
+  {
+   "native": "湖北剧院",
+   "en": "Hubei Theatre",
+   "city": "Wuhan",
+   "country": "China",
+   "confidence": "high",
+   "source": "https://www.tripadvisor.com/Attraction_Review-g297437-d15207190-Reviews-Hubei_Theater-Wuhan_Hubei.html",
+   "note": "Provincial theatre in Wuhan; 剧院=Theatre"
+  },
+  {
+   "native": "珠影壹号新空间A馆",
+   "en": "",
+   "city": "Guangzhou",
+   "country": "China",
+   "confidence": "low",
+   "source": "",
+   "note": "Immersive 'new space' in former Pearl River Film Studio; no official English name; stripped A馆"
+  },
+  {
+   "native": "童梦剧场",
+   "en": "",
+   "city": "Shanghai",
+   "country": "China",
+   "confidence": "low",
+   "source": "",
+   "note": "Small brand immersive/children's theatre; no official English name"
+  },
+  {
+   "native": "艺海剧院-大剧场",
+   "en": "Yihai Theatre",
+   "city": "Shanghai",
+   "country": "China",
+   "confidence": "high",
+   "source": "https://www.tripadvisor.com/Attraction_Review-g308272-d8365397-Reviews-Yihai_Theater-Shanghai.html",
+   "note": "Tripadvisor 'Yihai Theater'; stripped -大剧场"
+  },
+  {
+   "native": "蝴蝶剧场(小百花越剧场)",
+   "en": "Zhejiang Xiaobaihua Yue Theatre",
+   "city": "Hangzhou",
+   "country": "China",
+   "confidence": "high",
+   "source": "https://www.trip.com/travel-guide/attraction/hangzhou/zhejiang-xiaobaihua-yue-theater-79649724/",
+   "note": "Trip.com + Hangzhou gov; 蝴蝶剧场/Butterfly Theatre is the nickname"
+  },
+  {
+   "native": "邦尼剧场",
+   "en": "",
+   "city": "Shanghai",
+   "country": "China",
+   "confidence": "low",
+   "source": "",
+   "note": "Small brand-named theatre (Bonnie); no official English name"
+  },
+  {
+   "native": "青海大剧院-音乐厅",
+   "en": "Qinghai Grand Theatre",
+   "city": "Xining",
+   "country": "China",
+   "confidence": "high",
+   "source": "https://www.trip.com/travel-guide/attraction/xining/qinghai-grand-theatre-38963962/",
+   "note": "Trip.com; stripped -音乐厅 (concert hall)"
+  },
+  {
+   "native": "黄浦剧场",
+   "en": "Huangpu Theatre",
+   "city": "Shanghai",
+   "country": "China",
+   "confidence": "high",
+   "source": "https://www.chinaservicesinfo.com/s/201911/15/WS5dce1260498e7df3800ef643/huangpu-theater.html",
+   "note": "China Daily/gov EN; historic former Jincheng Grand Theatre"
+  },
+  {
+   "native": "579百工集百老汇舞厅",
+   "en": "",
+   "city": "Jinan",
+   "country": "China",
+   "confidence": "low",
+   "source": "",
+   "note": "Immersive Broadway-style dance-hall brand venue; no official English name"
+  },
+  {
+   "native": "上海西岸大剧院-大剧场",
+   "en": "Shanghai West Bund Grand Theatre",
+   "city": "Shanghai",
+   "country": "China",
+   "confidence": "high",
+   "source": "https://www.archdaily.com/1032036/the-west-bund-grand-theatre-shl",
+   "note": "Stripped -大剧场; architect SHL/Perkins&Will"
+  },
+  {
+   "native": "中华剧院",
+   "en": "Zhonghua Theatre",
+   "city": "Tianjin",
+   "country": "China",
+   "confidence": "medium",
+   "source": "https://m.dahepiao.com/venue/venue_104259.html",
+   "note": "剧院=Theatre; romanized proper noun; Tianjin Hexi District; also seen 'China Theatre'"
+  },
+  {
+   "native": "北京艺术中心歌剧院",
+   "en": "Beijing Performing Arts Centre",
+   "city": "Beijing",
+   "country": "China",
+   "confidence": "high",
+   "source": "https://english.beijing.gov.cn/latest/news/202312/t20231225_3508971.html",
+   "note": "Stripped 歌剧院 (opera house); BPAC Tongzhou, 2023"
+  },
+  {
+   "native": "十二楼音乐剧之城 -9号剧场[圆形剧场]",
+   "en": "",
+   "city": "Shanghai",
+   "country": "China",
+   "confidence": "low",
+   "source": "",
+   "note": "Room #9 (round theatre) inside 12th Floor Musical City; no official English name"
+  },
+  {
+   "native": "大连开发区大剧院",
+   "en": "Dalian Development Area Grand Theatre",
+   "city": "Dalian",
+   "country": "China",
+   "confidence": "high",
+   "source": "https://culture.pl/en/place/dalian-development-area-grand-theatre",
+   "note": "Trip.com + culture.pl; also 'Dalian Development Zone Grand Theater'"
+  },
+  {
+   "native": "太原青年宫演艺中心",
+   "en": "Taiyuan Youth Palace Performing Arts Centre",
+   "city": "Taiyuan",
+   "country": "China",
+   "confidence": "medium",
+   "source": "https://m.dahepiao.com/venue/venue_98217.html",
+   "note": "演艺中心 convention; ticketing + Baidu Baike; no official English page"
+  },
+  {
+   "native": "宛平剧院",
+   "en": "Wanping Theatre",
+   "city": "Shanghai",
+   "country": "China",
+   "confidence": "high",
+   "source": "https://wanpingtheater.com/",
+   "note": "Official site + Shanghai gov EN; Xuhui opera venue"
+  },
+  {
+   "native": "广西文化艺术中心",
+   "en": "Guangxi Culture and Art Center",
+   "city": "Nanning",
+   "country": "China",
+   "confidence": "high",
+   "source": "https://www.archdaily.com/901449/guangxi-culture-and-art-center-gmp-architects",
+   "note": "Architect gmp + Trip.com; Nanning, 2018"
+  },
+  {
+   "native": "徐州淮海国际博览中心E3馆",
+   "en": "Huaihai International Expo Center",
+   "city": "Xuzhou",
+   "country": "China",
+   "confidence": "high",
+   "source": "http://xghiec.cn/en/facility",
+   "note": "Stripped E3馆; official /en site name; expo hall used as venue"
+  },
+  {
+   "native": "星空间129号·夭蛾剧场",
+   "en": "",
+   "city": "Shanghai",
+   "country": "China",
+   "confidence": "low",
+   "source": "",
+   "note": "Star-space #129 immersive small theatre; no official English name"
+  },
+  {
+   "native": "星空间2047号·新贵剧场",
+   "en": "",
+   "city": "Shanghai",
+   "country": "China",
+   "confidence": "low",
+   "source": "",
+   "note": "Star-space #2047 immersive small theatre; no official English name"
+  },
+  {
+   "native": "星空间55号·五十五剧场",
+   "en": "",
+   "city": "Shanghai",
+   "country": "China",
+   "confidence": "low",
+   "source": "",
+   "note": "Star-space #55 immersive small theatre; no official English name"
+  },
+  {
+   "native": "星空间·星空穹顶剧场",
+   "en": "",
+   "city": "Shanghai",
+   "country": "China",
+   "confidence": "low",
+   "source": "",
+   "note": "Star-space dome theatre; immersive brand room; no official English name"
+  },
+  {
+   "native": "河南艺术中心",
+   "en": "Henan Art Center",
+   "city": "Zhengzhou",
+   "country": "China",
+   "confidence": "high",
+   "source": "https://www.trip.com/travel-guide/attraction/zhengzhou/henan-art-center-10758458/",
+   "note": "Established English name; Zhengdong CBD; Trip.com + Baidu EN"
+  },
+  {
+   "native": "淮安大剧院",
+   "en": "Huai'an Grand Theatre",
+   "city": "Huai'an",
+   "country": "China",
+   "confidence": "medium",
+   "source": "http://www.hactg.com/",
+   "note": "大剧院 convention; Huai'an Cultural Tourism Group (NOT Poly); no official English page"
+  },
+  {
+   "native": "湖北剧院",
+   "en": "Hubei Theatre",
+   "city": "Wuhan",
+   "country": "China",
+   "confidence": "high",
+   "source": "https://www.tripadvisor.com/Attraction_Review-g297437-d15207190-Reviews-Hubei_Theater-Wuhan_Hubei.html",
+   "note": "Same venue as 湖北剧院/Wuhan entry; 剧院=Theatre"
+  },
+  {
+   "native": "珠海金湾艺术中心·多功能厅(B馆)",
+   "en": "Zhuhai Jinwan Civic Art Centre",
+   "city": "Zhuhai",
+   "country": "China",
+   "confidence": "high",
+   "source": "https://en.wikipedia.org/wiki/Jinwan_Arts_Center",
+   "note": "Stripped 多功能厅(B馆); Zaha Hadid Architects building name"
+  },
+  {
+   "native": "童梦剧场",
+   "en": "",
+   "city": "Shanghai",
+   "country": "China",
+   "confidence": "low",
+   "source": "",
+   "note": "Children's/immersive theatre; no authoritative English name"
+  },
+  {
+   "native": "苏州开明大戏院-沁兰剧场",
+   "en": "Kaiming Theatre",
+   "city": "Suzhou",
+   "country": "China",
+   "confidence": "high",
+   "source": "http://english.suzhou.gov.cn/szsenglish/szoldtown/202411/053d9780504b40b49ef016963baab237.shtml",
+   "note": "Stripped 沁兰剧场; Suzhou gov EN; Guanqian St, 1927"
+  },
+  {
+   "native": "西安广电大剧院",
+   "en": "Xi'an Radio and Television Grand Theatre",
+   "city": "Xi'an",
+   "country": "China",
+   "confidence": "high",
+   "source": "https://maps.apple.com/",
+   "note": "Apple Maps official English; High-tech Zone (Xiyan Space)"
+  },
+  {
+   "native": "鄂尔多斯大剧院-歌剧厅",
+   "en": "Ordos Grand Theatre",
+   "city": "Ordos",
+   "country": "China",
+   "confidence": "high",
+   "source": "https://us.trip.com/travel-guide/attraction/ordos/ordos-grand-theatre-10541039/",
+   "note": "Stripped 歌剧厅; Trip.com + China Daily; Kangbashi"
+  },
+  {
+   "native": "顺义大剧院",
+   "en": "Shunyi Grand Theatre",
+   "city": "Beijing",
+   "country": "China",
+   "confidence": "high",
+   "source": "https://www.chinadaily.com.cn/a/202305/28/WS64744adca310b6054fad59d1.html",
+   "note": "Trip.com + China Daily; Shunyi District, 2021"
+  },
+  {
+   "native": "黄浦剧场--中剧场",
+   "en": "Huangpu Theatre",
+   "city": "Shanghai",
+   "country": "China",
+   "confidence": "high",
+   "source": "https://govt.chinadaily.com.cn/s/201911/15/WS649d5004498ea274927c21f7/huangpu-theater.html",
+   "note": "Stripped 中剧场; China Daily gov + SmartShanghai; ex-Jincheng Grand Theater"
+  },
+  {
+   "native": "一台好戏方寸剧场·去你的夏天",
+   "en": "",
+   "city": "Shanghai",
+   "country": "China",
+   "confidence": "low",
+   "source": "",
+   "note": "Immersive brand room (一台好戏 co., 方寸剧场); 去你的夏天 is a show title; no official English name"
+  },
+  {
+   "native": "上海话剧艺术中心 D6空间",
+   "en": "Shanghai Dramatic Arts Centre",
+   "city": "Shanghai",
+   "country": "China",
+   "confidence": "high",
+   "source": "https://en.wikipedia.org/wiki/Shanghai_Dramatic_Arts_Centre",
+   "note": "Wikipedia + shanghai.gov.cn; stripped 'D6空间' (D6 Space)"
+  },
+  {
+   "native": "中国大戏院",
+   "en": "The Great Theatre of China",
+   "city": "Shanghai",
+   "country": "China",
+   "confidence": "medium",
+   "source": "https://www.smartshanghai.com/venue/15549/the_great_theater_of_china_niuzhuang_lu",
+   "note": "SmartShanghai 'The Great Theater of China'; historic 1930s house, reopened 2018"
+  },
+  {
+   "native": "北外滩友邦大剧院-大剧场",
+   "en": "AIA Grand Theatre",
+   "city": "Shanghai",
+   "country": "China",
+   "confidence": "high",
+   "source": "https://english.shanghai.gov.cn/en-Theaters/20240726/01ca995a197042ecb36b087bb8fe119b.html",
+   "note": "Official shanghai.gov.cn; stripped -大剧场; 北外滩=North Bund location prefix"
+  },
+  {
+   "native": "南宁剧场",
+   "en": "Nanning Theatre",
+   "city": "Nanning",
+   "country": "China",
+   "confidence": "high",
+   "source": "https://en.damai.cn/Theatre-Tickets/Nanning",
+   "note": "Damai English ticketing page"
+  },
+  {
+   "native": "大零号湾文化艺术中心",
+   "en": "",
+   "city": "Shanghai",
+   "country": "China",
+   "confidence": "low",
+   "source": "",
+   "note": "Opened 2023 (ECNU + Minhang); 大零号湾 proper-name tech park; no official English name"
+  },
+  {
+   "native": "好好有戏小剧场",
+   "en": "",
+   "city": "Guangzhou",
+   "country": "China",
+   "confidence": "low",
+   "source": "",
+   "note": "Brand-named immersive small theatre (好好有戏); no official English name"
+  },
+  {
+   "native": "宛平剧院-小剧场",
+   "en": "Wanping Theatre",
+   "city": "Shanghai",
+   "country": "China",
+   "confidence": "high",
+   "source": "https://wanpingtheater.com/",
+   "note": "Official site + SmartShanghai; stripped -小剧场"
+  },
+  {
+   "native": "延边工人文化艺术中心",
+   "en": "Yanbian Workers' Cultural Art Center",
+   "city": "Yanji",
+   "country": "China",
+   "confidence": "medium",
+   "source": "https://www.racpro.net/jyjc/47.html?l=en",
+   "note": "AV consultant project page; Yanji City, Yanbian Prefecture, Jilin"
+  },
+  {
+   "native": "慈溪大剧院",
+   "en": "Cixi Grand Theatre",
+   "city": "Cixi",
+   "country": "China",
+   "confidence": "high",
+   "source": "https://news.cgtn.com/news/2023-05-18/Celadon-music-performance-at-Cixi-Grand-Theatre-1jyHCNGknw4/index.html",
+   "note": "CGTN + Facebook; 大剧院 convention"
+  },
+  {
+   "native": "星空间12号·耶比剧场",
+   "en": "",
+   "city": "Shanghai",
+   "country": "China",
+   "confidence": "low",
+   "source": "",
+   "note": "Star-space immersive room (No.12); no official English name"
+  },
+  {
+   "native": "星空间216号·果然有戏小剧场",
+   "en": "",
+   "city": "Shanghai",
+   "country": "China",
+   "confidence": "low",
+   "source": "",
+   "note": "Star-space immersive room (No.216); no official English name"
+  },
+  {
+   "native": "星空间6号·一台好戏小剧场",
+   "en": "",
+   "city": "Shanghai",
+   "country": "China",
+   "confidence": "low",
+   "source": "",
+   "note": "Star-space immersive room (No.6); no official English name"
+  },
+  {
+   "native": "曌剧场",
+   "en": "",
+   "city": "Shanghai",
+   "country": "China",
+   "confidence": "low",
+   "source": "",
+   "note": "Brand-named immersive theatre; no official English name"
+  },
+  {
+   "native": "海口演艺新空间",
+   "en": "Haikou New Performing Arts Space",
+   "city": "Haikou",
+   "country": "China",
+   "confidence": "medium",
+   "source": "https://www.alamy.com/",
+   "note": "Sipa/Alamy news caption English; adjunct to Haikou Bay PAC; borderline"
+  },
+  {
+   "native": "深圳·鹭湖艺术中心 大剧场",
+   "en": "Luhu Art Center",
+   "city": "Shenzhen",
+   "country": "China",
+   "confidence": "high",
+   "source": "https://www.eyeshenzhen.com/content/2026-01/15/content_31904903.htm",
+   "note": "EYESHENZHEN/sz.gov.cn; opened 2026 Longhua; stripped 深圳· prefix and 大剧场"
+  },
+  {
+   "native": "澳门文化中心黑盒II",
+   "en": "Macao Cultural Centre",
+   "city": "Macau",
+   "country": "China",
+   "confidence": "high",
+   "source": "https://www.ccm.gov.mo/en/index.asp",
+   "note": "Official ccm.gov.mo; stripped 黑盒II (Black Box II)"
+  },
+  {
+   "native": "珠海金湾艺术中心·大剧院(A馆)",
+   "en": "Zhuhai Jinwan Civic Art Centre",
+   "city": "Zhuhai",
+   "country": "China",
+   "confidence": "high",
+   "source": "https://en.wikipedia.org/wiki/Jinwan_Arts_Center",
+   "note": "Zaha Hadid; stripped ·大剧院(A馆)"
+  },
+  {
+   "native": "缪时客·月光下小剧场",
+   "en": "",
+   "city": "Shanghai",
+   "country": "China",
+   "confidence": "low",
+   "source": "",
+   "note": "缪时客 brand immersive venue; no official English name"
+  },
+  {
+   "native": "苏州湾大剧院",
+   "en": "Suzhou Bay Grand Theatre",
+   "city": "Suzhou",
+   "country": "China",
+   "confidence": "high",
+   "source": "https://www.operabase.com/suzhou-bay-grand-theatre-theatersaal-venue-o68263/en",
+   "note": "Operabase + Wujiang gov EN; 2020, Wujiang District"
+  },
+  {
+   "native": "西安浐灞保利大剧院",
+   "en": "Xi'an Chanba Poly Grand Theatre",
+   "city": "Xi'an",
+   "country": "China",
+   "confidence": "high",
+   "source": "https://www.racpro.net/zlyc/212.html?l=en",
+   "note": "Poly-managed; Chanba; Poly Grand Theatre convention"
+  },
+  {
+   "native": "长江剧场",
+   "en": "Changjiang Theatre",
+   "city": "Shanghai",
+   "country": "China",
+   "confidence": "high",
+   "source": "https://us.trip.com/travel-guide/attraction/shanghai/changjiang-theater-31664504/",
+   "note": "Historic Carlton; reopened 2018; Trip.com + culture bureau"
+  },
+  {
+   "native": "香山大剧院",
+   "en": "",
+   "city": "Zhongshan",
+   "country": "China",
+   "confidence": "low",
+   "source": "",
+   "note": "香山 (Xiangshan) is a proper name not the city (Zhongshan); no verifiable English name; not invented"
+  },
+  {
+   "native": "黄浦剧场-小剧场",
+   "en": "Huangpu Theatre",
+   "city": "Shanghai",
+   "country": "China",
+   "confidence": "high",
+   "source": "https://www.chinaservicesinfo.com/s/201911/15/WS5dce1260498e7df3800ef643/huangpu-theater.html",
+   "note": "China Daily gov EN; stripped -小剧场"
+  },
+  {
+   "native": "万象天地剧场",
+   "en": "Shenzhen MixC World Theatre",
+   "city": "Shenzhen",
+   "country": "China",
+   "confidence": "medium",
+   "source": "https://www.trip.com/travel-guide/attraction/shenzhen/shenzhen-mixc-world-theater-133552315/",
+   "note": "Trip.com; MixC World (万象天地) mall complex in-mall theatre"
+  },
+  {
+   "native": "上海话剧艺术中心-戏剧沙龙",
+   "en": "Shanghai Dramatic Arts Centre",
+   "city": "Shanghai",
+   "country": "China",
+   "confidence": "high",
+   "source": "https://en.wikipedia.org/wiki/Shanghai_Dramatic_Arts_Centre",
+   "note": "Wikipedia + shanghai.gov.cn; stripped 戏剧沙龙 (Drama Salon)"
+  },
+  {
+   "native": "保利剧聚空间",
+   "en": "",
+   "city": "Shenzhen",
+   "country": "China",
+   "confidence": "low",
+   "source": "",
+   "note": "Poly brand small-venue space (剧聚空间); no official English name"
+  },
+  {
+   "native": "十二楼音乐剧之城 -1号剧场[小说编辑部]",
+   "en": "",
+   "city": "Shanghai",
+   "country": "China",
+   "confidence": "low",
+   "source": "",
+   "note": "Immersive brand room inside 十二楼音乐剧之城; no official English name"
+  },
+  {
+   "native": "周口双创园展演中心",
+   "en": "",
+   "city": "Zhoukou",
+   "country": "China",
+   "confidence": "low",
+   "source": "https://www.dahepiao.com/venue/venue_539107.html",
+   "note": "New Zhoukou venue (2025, China Oriental Performing Arts Group); Chinese-only, no official English name"
+  },
+  {
+   "native": "天桥艺术中心-中剧场",
+   "en": "Beijing Tianqiao Performing Arts Center",
+   "city": "Beijing",
+   "country": "China",
+   "confidence": "high",
+   "source": "https://english.beijing.gov.cn/beijinginfo/culture/culturaltreasures/thecityofperformingarts/list/202401/t20240116_3536851.html",
+   "note": "Official beijing.gov.cn; stripped 中剧场 (medium theatre)"
+  },
+  {
+   "native": "宁波大剧院",
+   "en": "Ningbo Grand Theatre",
+   "city": "Ningbo",
+   "country": "China",
+   "confidence": "high",
+   "source": "https://www.wikidata.org/wiki/Q10945972",
+   "note": "Wikidata + Operabase"
+  },
+  {
+   "native": "小柯剧场",
+   "en": "",
+   "city": "Beijing",
+   "country": "China",
+   "confidence": "low",
+   "source": "https://www.xiaokejuchang.cn/",
+   "note": "Personal-brand theatre (composer Xiao Ke); only transliteration attested; left empty per no-transliteration rule"
+  },
+  {
+   "native": "延边工人文化艺术中心(延边工人文化宫)",
+   "en": "Yanbian Workers' Cultural Art Center",
+   "city": "Yanbian",
+   "country": "China",
+   "confidence": "medium",
+   "source": "https://www.racpro.net/jyjc/47.html?l=en",
+   "note": "AV-integrator project page; 工人文化艺术中心 convention; Yanji/Yanbian, Jilin"
+  },
+  {
+   "native": "施光南大剧院",
+   "en": "Shi Guangnan Grand Theatre",
+   "city": "Chongqing",
+   "country": "China",
+   "confidence": "high",
+   "source": "https://govt.chinadaily.com.cn/s/202307/31/WS64c73112498ea274927c695e/shi-guangnan-grand-theater.html",
+   "note": "China Daily + ichongqing gov EN; named after composer Shi Guangnan"
+  },
+  {
+   "native": "星空间18号·谜剧场",
+   "en": "",
+   "city": "Shanghai",
+   "country": "China",
+   "confidence": "low",
+   "source": "",
+   "note": "星空间 immersive star-space room; no official English name"
+  },
+  {
+   "native": "星空间2号·好好有戏剧场",
+   "en": "",
+   "city": "Shanghai",
+   "country": "China",
+   "confidence": "low",
+   "source": "",
+   "note": "星空间 immersive star-space room; no official English name"
+  },
+  {
+   "native": "星空间8808号·涵金小剧场",
+   "en": "",
+   "city": "Shanghai",
+   "country": "China",
+   "confidence": "low",
+   "source": "",
+   "note": "星空间 immersive star-space room; no official English name"
+  },
+  {
+   "native": "杭州西湖钱王祠阅礼堂",
+   "en": "",
+   "city": "Hangzhou",
+   "country": "China",
+   "confidence": "low",
+   "source": "",
+   "note": "Immersive hall (阅礼堂) inside King Qian's Temple (钱王祠), West Lake; no official English name"
+  },
+  {
+   "native": "海珠大戏院",
+   "en": "Haizhu Theatre",
+   "city": "Guangzhou",
+   "country": "China",
+   "confidence": "medium",
+   "source": "https://news.dayoo.com/guangzhou/202602/09/139995_54926866.htm",
+   "note": "124-yr-old Guangzhou theatre reopened 2026; 'Haizhu Theatre' in English news"
+  },
+  {
+   "native": "深圳南山文化馆剧院",
+   "en": "",
+   "city": "Shenzhen",
+   "country": "China",
+   "confidence": "low",
+   "source": "https://whgy.szmassart.com/nsqwhg/web/index.html",
+   "note": "Theatre in Nanshan District Cultural Center; no confirmed English name; collision risk with Nanshan Cultural & Sports Center Theater; left empty"
+  },
+  {
+   "native": "澳门文化中心黑盒剧场-黑盒I",
+   "en": "Macao Cultural Centre",
+   "city": "Macau",
+   "country": "China",
+   "confidence": "high",
+   "source": "https://www.ccm.gov.mo/en/",
+   "note": "Official ccm.gov.mo; stripped 黑盒剧场/黑盒I (Black Box Theatre I)"
+  },
+  {
+   "native": "相信有戏剧场(原开心麻花疯狂星有团)",
+   "en": "",
+   "city": "Hangzhou",
+   "country": "China",
+   "confidence": "low",
+   "source": "",
+   "note": "Mahua-linked comedy brand theatre (formerly 疯狂星有团); no official English name"
+  },
+  {
+   "native": "缪时客小剧场",
+   "en": "",
+   "city": "Nanjing",
+   "country": "China",
+   "confidence": "low",
+   "source": "",
+   "note": "缪时客 (Music House) brand small theatre; no official English name"
+  },
+  {
+   "native": "茉莉花剧场",
+   "en": "",
+   "city": "Shanghai",
+   "country": "China",
+   "confidence": "low",
+   "source": "",
+   "note": "Small brand theatre; no official English name"
+  },
+  {
+   "native": "西施大剧院",
+   "en": "Xishi Grand Theatre",
+   "city": "Shaoxing",
+   "country": "China",
+   "confidence": "medium",
+   "source": "https://www.agoda.com/orange-hotel-zhuji-xishi-grand-theater/hotel/shaoxing-cn.html",
+   "note": "In Zhuji (county-level city of Shaoxing); consistent hotel/ticketing rendering; 大剧院 convention"
+  },
+  {
+   "native": "长江剧场-红匣子",
+   "en": "Changjiang Theatre",
+   "city": "Shanghai",
+   "country": "China",
+   "confidence": "high",
+   "source": "https://www.smartshanghai.com/venue/16766/changjiang_theatre_huanghe_lu",
+   "note": "SmartShanghai/Tripadvisor; stripped 红匣子 (Red Box auditorium)"
+  },
+  {
+   "native": "马鞍山大剧院",
+   "en": "Ma'anshan Grand Theatre",
+   "city": "Ma'anshan",
+   "country": "China",
+   "confidence": "medium",
+   "source": "https://www.facebook.com/pages/535911013497883/",
+   "note": "Poly-managed; official FB 'Grand Theatre Of Maanshan'; {City} Grand Theatre convention"
+  },
+  {
+   "native": "鼓楼西剧场",
+   "en": "Drum Tower West Theatre",
+   "city": "Beijing",
+   "country": "China",
+   "confidence": "high",
+   "source": "https://r.visitbeijing.com.cn/leisure/426",
+   "note": "Official English 'Drum Tower West Theatre' (visitbeijing.com.cn)"
+  },
+  {
+   "native": "上海东方艺术中心",
+   "en": "Shanghai Oriental Art Center",
+   "city": "Shanghai",
+   "country": "China",
+   "confidence": "high",
+   "source": "https://en.wikipedia.org/wiki/Shanghai_Oriental_Art_Center",
+   "note": "Wikipedia/gov English (SHOAC)"
+  },
+  {
+   "native": "世纪剧院",
+   "en": "Century Theatre",
+   "city": "Beijing",
+   "country": "China",
+   "confidence": "high",
+   "source": "https://english.beijing.gov.cn/beijinginfo/culture/culturaltreasures/thecityofperformingarts/list/202401/t20240116_3536853.html",
+   "note": "Beijing gov English"
+  },
+  {
+   "native": "保利剧聚空间370号",
+   "en": "",
+   "city": "Shenzhen",
+   "country": "China",
+   "confidence": "low",
+   "source": "",
+   "note": "Poly-branded small immersive space (剧聚空间, No.370); no official English name"
+  },
+  {
+   "native": "十二楼音乐剧之城 -3号剧场[玛利亚布隆学院]",
+   "en": "",
+   "city": "Shanghai",
+   "country": "China",
+   "confidence": "low",
+   "source": "",
+   "note": "Immersive musical-city themed room; no verifiable English name"
+  },
+  {
+   "native": "大上海新空间",
+   "en": "",
+   "city": "Shanghai",
+   "country": "China",
+   "confidence": "low",
+   "source": "",
+   "note": "Immersive brand space; no official English name"
+  },
+  {
+   "native": "天桥艺术中心-多功能剧场",
+   "en": "Beijing Tianqiao Performing Arts Center",
+   "city": "Beijing",
+   "country": "China",
+   "confidence": "high",
+   "source": "https://english.beijing.gov.cn/beijinginfo/culture/culturaltreasures/thecityofperformingarts/list/202401/t20240116_3536851.html",
+   "note": "Beijing gov; stripped -多功能剧场 (multifunctional theatre)"
+  },
+  {
+   "native": "安托山公共文化中心-2F簕杜鹃厅",
+   "en": "Antuoshan Public Cultural Center",
+   "city": "Shenzhen",
+   "country": "China",
+   "confidence": "high",
+   "source": "https://macaonews.org/news/greater-bay-area/shenzhen-antuoshan-public-cultural-centre/",
+   "note": "Baidu-EN/news; stripped -2F簕杜鹃厅 (2F Bougainvillea Hall)"
+  },
+  {
+   "native": "广州正佳大剧院",
+   "en": "Grandview Theatre",
+   "city": "Guangzhou",
+   "country": "China",
+   "confidence": "medium",
+   "source": "https://www.thatsmags.com/guangzhou/directory/18707/zhengjia-theatre",
+   "note": "In Grandview Mall (正佳广场); also Zhengjia Theatre; not Guangzhou Opera House"
+  },
+  {
+   "native": "开心麻花剧场(横琴文化艺术中心)",
+   "en": "Hengqin Culture and Art Complex",
+   "city": "Zhuhai",
+   "country": "China",
+   "confidence": "high",
+   "source": "https://www.archdaily.com/1027760/hengqin-culture-and-art-complex-atelier-apeiron",
+   "note": "Building name (ArchDaily/Dezeen); 开心麻花 (Mahua FunAge) tenant theatre stripped"
+  },
+  {
+   "native": "时光剧场",
+   "en": "",
+   "city": "Shanghai",
+   "country": "China",
+   "confidence": "low",
+   "source": "",
+   "note": "Small brand theatre; no official English name"
+  },
+  {
+   "native": "星空间19号·剧魅剧场",
+   "en": "",
+   "city": "Shanghai",
+   "country": "China",
+   "confidence": "low",
+   "source": "",
+   "note": "星空间 immersive star-space room; no official English name"
+  },
+  {
+   "native": "星空间33号·鲸剧场",
+   "en": "",
+   "city": "Shanghai",
+   "country": "China",
+   "confidence": "low",
+   "source": "",
+   "note": "星空间 immersive star-space room; no official English name"
+  },
+  {
+   "native": "星空间919号·风铃剧场",
+   "en": "",
+   "city": "Shanghai",
+   "country": "China",
+   "confidence": "low",
+   "source": "",
+   "note": "星空间 immersive star-space room; no official English name"
+  },
+  {
+   "native": "桂林漓江歌剧院·歌剧厅",
+   "en": "Guilin Lijiang Opera House",
+   "city": "Guilin",
+   "country": "China",
+   "confidence": "medium",
+   "source": "https://baike.baidu.com/item/%E5%B9%BF%E8%A5%BF%E6%A1%82%E6%9E%97%E6%BC%93%E6%B1%9F%E6%AD%8C%E5%89%A7%E9%99%A2/63286392",
+   "note": "歌剧院=Opera House convention + Baidu; stripped ·歌剧厅"
+  },
+  {
+   "native": "淄博大剧院",
+   "en": "Zibo Grand Theatre",
+   "city": "Zibo",
+   "country": "China",
+   "confidence": "medium",
+   "source": "https://us.trip.com/travel-guide/attraction/zibo/zibo-grand-theater-80063979/",
+   "note": "大剧院 convention + Trip.com/Poly listing; same venue as 淄博/淄博大剧院"
+  },
+  {
+   "native": "温州高新文化广场 大剧院",
+   "en": "Wenzhou High-Tech Cultural Square",
+   "city": "Wenzhou",
+   "country": "China",
+   "confidence": "medium",
+   "source": "https://www.archdaily.com/1014827/wenzhou-high-tech-cultural-square-tjad",
+   "note": "ArchDaily building name; 大剧院 hall stripped; distinct from separate Wenzhou Grand Theater"
+  },
+  {
+   "native": "烟台大剧院",
+   "en": "Yantai Grand Theatre",
+   "city": "Yantai",
+   "country": "China",
+   "confidence": "high",
+   "source": "http://en.polyculture.com.cn/",
+   "note": "Poly Culture official English page"
+  },
+  {
+   "native": "福州海峡文化艺术中心",
+   "en": "Fuzhou Strait Culture and Art Centre",
+   "city": "Fuzhou",
+   "country": "China",
+   "confidence": "high",
+   "source": "https://www.archdaily.com/904225/the-fuzhou-strait-culture-and-art-centre-pes-architects",
+   "note": "Official architect/ArchDaily English (SCAC)"
+  },
+  {
+   "native": "联创艺空间4号·梦境剧场",
+   "en": "",
+   "city": "Wuhan",
+   "country": "China",
+   "confidence": "low",
+   "source": "",
+   "note": "Lianchuang art-space immersive room; no official English name"
+  },
+  {
+   "native": "蜂巢剧场",
+   "en": "Beehive Theatre",
+   "city": "Beijing",
+   "country": "China",
+   "confidence": "high",
+   "source": "https://www.hkaaa.org.hk/archive/meng-jinghui-director-national-theatre-china-artistic-director-beijing-beehive-theater",
+   "note": "Meng Jinghui's Beijing Beehive Theater; established English name"
+  },
+  {
+   "native": "连云港大剧院",
+   "en": "Lianyungang Grand Theatre",
+   "city": "Lianyungang",
+   "country": "China",
+   "confidence": "medium",
+   "source": "https://au.trip.com/travel-guide/attraction/lianyungang/lianyungang-grand-theater-140550183/",
+   "note": "大剧院 convention + Trip.com; no 保利 so not the Poly Grand Theatre"
+  },
+  {
+   "native": "阿波罗尼亚·广州馆",
+   "en": "",
+   "city": "Guangzhou",
+   "country": "China",
+   "confidence": "low",
+   "source": "",
+   "note": "Apollonia immersive musical brand venue (Guangzhou branch); no official English name"
+  },
+  {
+   "native": "黄冈黄梅戏大剧院",
+   "en": "Huanggang Huangmei Opera Grand Theatre",
+   "city": "Huanggang",
+   "country": "China",
+   "confidence": "medium",
+   "source": "https://baike.baidu.com/item/%E9%BB%84%E6%A2%85%E6%88%8F%E5%A4%A7%E5%89%A7%E9%99%A2/6029689",
+   "note": "黄梅戏=Huangmei Opera + 大剧院 convention; Poly-managed; Baidu"
+  }
+ ]
+}

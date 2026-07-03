@@ -321,7 +321,11 @@ html[data-live] .demobanner{display:none}
 .demobanner .db-cta{flex:none;background:var(--gold);color:var(--on-accent);border:none;border-radius:10px;padding:11px 18px;font-weight:800;font-size:14px;cursor:pointer;font-family:inherit}
 .demobanner .db-cta:hover{filter:brightness(1.05)}
 /* stats dashboard (bento) */
-.statgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:42px}
+/* 12 欄制:四張榜單卡一排(各 span3),三張圖表一排(各 span4);窄幅降級(2026-07-03 指示:2×2 中間留白太多) */
+.statgrid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px;margin-bottom:42px}
+.statgrid .statcard{grid-column:span 3}
+.statgrid .sc-year,.statgrid .sc-month,.statgrid .sc-week{grid-column:span 4}
+@media(max-width:1100px){.statgrid .statcard{grid-column:span 6}.statgrid .sc-year,.statgrid .sc-month,.statgrid .sc-week{grid-column:span 12}}
 .statcard{border-radius:16px;padding:18px 18px 16px;color:#fff;box-shadow:var(--shadow-1)}
 .statcard h3{font-size:14px;font-weight:800;margin:0 0 13px;letter-spacing:.02em}
 .statcard.wide{grid-column:1/-1}
@@ -341,7 +345,7 @@ html[data-live] .demobanner{display:none}
 .sc-year{background:linear-gradient(150deg,#1fb89c,#138a76)}
 .sc-month{background:linear-gradient(150deg,#4aa8ec,#2b86d4)}
 .sc-week{background:linear-gradient(150deg,#6e7ed6,#4f5fc0)}
-@media(max-width:680px){.statgrid{grid-template-columns:1fr}}
+@media(max-width:680px){.statgrid .statcard,.statgrid .sc-year,.statgrid .sc-month,.statgrid .sc-week{grid-column:1/-1}}
 .grid2{display:grid;grid-template-columns:1.1fr .9fr;gap:18px}
 .panel{background:var(--s1);border:1px solid var(--hair);border-radius:18px;padding:22px;box-shadow:var(--shadow-1)}
 .panel h3{margin:0 0 16px;font-family:var(--fr);font-weight:700;font-size:18px}

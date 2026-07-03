@@ -5,7 +5,7 @@ const OUT = 'C:/Users/Home/AppData/Local/Temp/claude/C--Users-Home/79bfe7d5-ce91
 (async () => {
   const br = await chromium.launch({ channel: 'chrome', headless: true });
   for (const hl of ['zh-hant', 'zh-hans', 'en']) {
-    const ctx = await br.newContext({ viewport: { width: 1000, height: 2400 }, deviceScaleFactor: 2 });
+    const ctx = await br.newContext({ viewport: { width: 1300, height: 2400 }, deviceScaleFactor: 2 });   // >1100:統計卡 4+3 一排(v1.26.1 版型)
 
     // stats:拍完整 .statgrid 元素(不裁)
     const pm = await ctx.newPage();
