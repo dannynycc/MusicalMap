@@ -353,6 +353,12 @@ const NOW_Y=_TODAY.getFullYear(), NOW_M=_TODAY.getMonth();   // 年、月(0-11)
 const NOW_ISO=`${NOW_Y}-${String(NOW_M+1).padStart(2,'0')}-${String(_TODAY.getDate()).padStart(2,'0')}`;
 // 年份下拉選項（今年→1980），sel=預選的年
 const yearOptions=(sel)=>`<option value="">${T('opt_year')}</option>`+Array.from({length:NOW_Y-1980+1},(_,i)=>NOW_Y-i).map(y=>`<option value="${y}"${String(sel)===String(y)?' selected':''}>${y}</option>`).join('');
+// 該年月的天數(閏年自動處理);年或月未選時預設 31,選定後才收斂
+function daysInMonth(y,mo){if(!mo)return 31;const yy=/^\d{4}$/.test(String(y))?+y:2024;return new Date(yy,+mo,0).getDate();}
+// 依年月重建「日」下拉,只列合法天數;若原本選的日超出新月上限(如 31→2月)自動夾到最後一天,避免產生 2/31 這種假日期
+function syncDayOptions(yEl,moEl,dEl,onchange){if(!dEl)return;const max=daysInMonth(yEl&&yEl.value,moEl&&moEl.value);let cur=+dEl.value||0;if(cur>max)cur=max;
+  dEl.innerHTML=`<option value="">${T('opt_day')}</option>`+Array.from({length:max},(_,i)=>`<option value="${i+1}"${cur===i+1?' selected':''}>${TN('mi_day_n',{n:i+1})}</option>`).join('');
+  if(cur>0&&+dEl.value!==cur)dEl.value=String(cur);if(onchange)onchange();}
 function flag(c){return '';}   // 不顯示國旗 emoji（使用者要求）
 function curOf(c){return CUR[c]||'';}
 /* ===== P3c：Supabase 雲端寫入（與父頁 me.html 同 session，共用 localStorage 的登入態）===== */
@@ -579,9 +585,10 @@ function manualAdd(title,seed,onBack){
     if(mo&&da){draft.date=`${y}-${String(mo).padStart(2,'0')}-${String(da).padStart(2,'0')}`;draft.precision='day';}
     else if(mo){draft.date=`${y}-${String(mo).padStart(2,'0')}`;draft.precision='month';}
     else{draft.date=y;draft.precision='year';}}
-  document.getElementById('mYear').onchange=applyDate;
-  document.getElementById('mMonth').onchange=applyDate;
-  document.getElementById('mDay').onchange=applyDate;
+  const _mY=document.getElementById('mYear'),_mM=document.getElementById('mMonth'),_mD=document.getElementById('mDay');
+  _mY.onchange=()=>{syncDayOptions(_mY,_mM,_mD);applyDate();};   // 改年(閏年)可能改 2 月天數
+  _mM.onchange=()=>{syncDayOptions(_mY,_mM,_mD);applyDate();};   // 改月重建合法日數
+  _mD.onchange=applyDate;
   {const tm=document.getElementById('seenTime');if(tm){tm.value=(draft.time||'').slice(0,5);tm.onchange=()=>{draft.time=tm.value||'';};}}  // 時間
   document.getElementById('more').onclick=function(){const l2=document.getElementById('l2');const op=l2.hidden;l2.hidden=!op;this.textContent=op?T('disclose_close'):T('disclose_open');if(op)buildRating();};
   // 幣別自製下拉：左欄只顯示代碼，符號只帶到右邊票價前；城市偵測也自動帶（除非已手選）
@@ -719,14 +726,16 @@ function renderDetail(){
   draft.mode='backfill';
   const dY=document.getElementById('dYear'),dM=document.getElementById('dMonth'),dD=document.getElementById('dDay');
   (function(){const seed=draft.date || (years.length?String(years[0]):'');  // 編輯用既有日期；否則預填最近的上演年份（可改）
-    if(seed){const[sy,sm,sd]=String(seed).split('-');dY.value=sy||'';if(sm)dM.value=String(+sm);if(sd)dD.value=String(+sd);}})();
+    if(seed){const[sy,sm,sd]=String(seed).split('-');dY.value=sy||'';if(sm)dM.value=String(+sm);syncDayOptions(dY,dM,dD);if(sd)dD.value=String(+sd);}})();
   function applyDateD(){const y=dY.value.trim(),mo=dM.value,da=dD.value;
     if(!/^\d{4}$/.test(y)){draft.date=null;draft.precision='none';}
     else if(mo&&da){draft.date=`${y}-${String(mo).padStart(2,'0')}-${String(da).padStart(2,'0')}`;draft.precision='day';}
     else if(mo){draft.date=`${y}-${String(mo).padStart(2,'0')}`;draft.precision='month';}
     else{draft.date=y;draft.precision='year';}
     updateSave();}
-  dY.onchange=applyDateD;dM.onchange=applyDateD;dD.onchange=applyDateD;applyDateD();
+  dY.onchange=()=>{syncDayOptions(dY,dM,dD);applyDateD();};
+  dM.onchange=()=>{syncDayOptions(dY,dM,dD);applyDateD();};
+  dD.onchange=applyDateD;applyDateD();
   // 票價幣別下拉（同手動新增：顯示符號·代碼·名稱、選了把符號帶到票價前；預填本製作幣別、可改）
   (function(){const ci=document.getElementById('curInput'),sy=document.getElementById('curSym');
     const show=code=>{if(ci)ci.value=code||'';if(sy)sy.textContent=code?curSym(code):'';};
