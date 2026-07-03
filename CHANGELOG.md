@@ -11,6 +11,15 @@
 
 ---
 
+## [v1.20.3] - 2026-07-03 13:46
+### 文案 — 三語復查(渲染級全頁傾印)抓到的漏網之魚(使用者指示)
+- **方法升級**:不只讀字典——playwright 把 21 個「頁面×語言」組合真實渲染後倒出全部可見文字逐行檢查(me.html 本機隱藏登入閘檢查閘後 demo 渲染、含分享/帳號設定 modal),另掃 7 支 JS 的非註解硬編碼中文。
+- **me-input 開發殘留**:頁頂「Demo v3 · 輸入端／看呈現端」連到已不存在的 demo3-merged.html——整段移除。
+- **persona 暱稱間隔號**:data.js `nick.join('・')`(日文中黑)→「 · 」(me/u 的「環球旅人 · 當代派 · 大製作控」)。
+- **en persona 敘述句主詞斷裂**:'tastes lean contemporary'→'with tastes that lean contemporary'、'can’t resist…'→'unable to resist…'、'prefers…'→'partial to…',整句 appositive 鏈成立。
+- mi_hint「試試:」→「試試：」、「劇目庫」→「劇庫」統一。
+- 硬編碼掃描結論:u-view.js 國名字典(南韓/紐西蘭/義大利)、data.js demo 心得、app.js 平台名(寬宏/udn 售票)全為道地台灣用語,無需改。簡中 me 頁實測:繁「身分」/簡「身份」雙向各自正確。
+
 ## [v1.20.2] - 2026-07-03 13:29
 ### 文案 — 繁中全站台灣母語級校對(使用者指示;Fable 5 逐字典 review)
 - 逐字檢查繁中三來源(gen_site zh-hant / i18n.js zh / mm-strings zh-hant + 法務頁)。整體評價:既有繁中是道地台灣用語(登入/網址/幣別/選填/非必填/一樓 H23/臺中國家歌劇院),不需重寫。

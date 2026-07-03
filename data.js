@@ -190,7 +190,7 @@ window.MM = (function () {
     if(nick.length<2)nick.push(NAMES[loyal?'Y':'X']);   // 沒有 era/scale 時用「重看率」補第二段暱稱
     const code = [globe?'G':'L', loyal?'Y':'X', hasEra?(modern>=classic?'M':'C'):'', hasScale?(spectacle>=intimate?'S':'I'):''].join('');
     return {
-      code, nickname: nick.join('・'),
+      code, nickname: nick.join(' · '),   // 間隔號用「·」(「・」是日文中黑,台灣不用)
       aura: (past[0]||shows[0]||{}).color||'#7c5cff', aura2: '#6A0DAD',
       axes,
       blurb: parts.join(L('p_sep','，')) + L('p_end','。'),
