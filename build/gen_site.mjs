@@ -251,7 +251,7 @@ function sitemap() {
     `<xhtml:link rel="alternate" hreflang="x-default" href="${SITE}/"/></url>`);
   // …plus the standalone pages (kept from the previous sitemap so they stay indexed).
   // me.html 刻意不列:登入閘頁(爬蟲只看到「載入中」),head 已加 noindex;公開內容在 u.html。
-  const pages = ["theatres.html", "guide.html", "privacy.html", "terms.html"].map(
+  const pages = ["theatres.html", "guide.html", "about.html", "privacy.html", "terms.html"].map(
     (p) => `  <url><loc>${SITE}/${p}</loc></url>`);
   return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">

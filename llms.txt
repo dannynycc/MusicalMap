@@ -11,6 +11,7 @@ Data layer and presentation layer are separate: Python scrapers write `data/*.js
 - [How it works / guide](https://dannynycc.github.io/MusicalMap/guide.html): what the map does and how My Musicals works, with screenshots (?hl=en / ?hl=zh-hans for other languages).
 - [My Musicals](https://dannynycc.github.io/MusicalMap/me.html): sign in with Google to log every musical you've seen — poster wall, stamped passport, stats (top shows/cities/theatres, by year/month/weekday), custom poster URL and link per show, and a shareable public page.
 - [All theatres](https://dannynycc.github.io/MusicalMap/theatres.html): searchable directory of ~5,000 musical-theatre venues worldwide (currently unlisted from the nav but fully functional).
+- [About](https://dannynycc.github.io/MusicalMap/about.html): who runs the site, why it exists, and where the data comes from.
 
 ## Data sources
 - Broadway, West End (londontheatre.co.uk), North American & international tours (broadway.org), Ticketmaster (global), Shiki/Toho (Japan), Interpark (Korea), OPENTIX/KHAM/UDN (Taiwan), jegy.hu/prazskemuzikaly (Central Europe), regional scrapers (Italy/Nordic/Netherlands/Poland/Austria/Spain), Middle East (Platinumlist), and China (Shanghai Culture Square official API + Poly Theatre chain API).

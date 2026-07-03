@@ -11,6 +11,12 @@
 
 ---
 
+## [v1.25.0] - 2026-07-03 16:47
+### 新功能 — About 頁上線(使用者提供真實動機)
+- `about.html`(三語,legal 骨架+serif 大標):四段式——定位/為什麼做(使用者親述:地圖迷×劇迷×Stage Door,想永久收藏觀劇紀錄找不到平台就自己做,做了才發現全球多語音樂劇市場的潛力想幫忙推廣)/這裡有什麼/資料哪裡來+聯絡。
+- 接入:guide/privacy/terms/me/u footer 加「關於」連結(nav_about 三語鍵);sitemap 收錄;llms.txt Key pages 補 About。頂部 nav 維持精簡不放。
+- 定位說明:傳統 SEO 直接效益≈0(無搜尋量),價值在 E-E-A-T 信任信號與 AI search 可引用自述(與 llms.txt 互相印證)。
+
 ## [v1.24.7] - 2026-07-03 16:30
 ### 調整 — llms.txt 更新(AI search 自述檔過時)
 - 雙語→三語(補简体中文與三語網址);Key pages 補 guide(How it works)與 My Musicals(海報牆/護照/統計/自訂海報連結/公開分享頁);theatres 註明「暫不在導覽但可直達」。About 頁討論結論:傳統 SEO 直接效益≈0、AI search 有實質但不可量化的幫助;llms.txt 先行更新,About 待使用者提供「為什麼做」動機再寫。
