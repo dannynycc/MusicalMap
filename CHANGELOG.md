@@ -11,6 +11,14 @@
 
 ---
 
+## [v1.18.0] - 2026-07-03 12:00
+### 新功能 — 隱私/條款三語化 + 全站 nav 完全對齊(使用者回饋)
+- **privacy/terms 三語內容**:接上 mm-strings 系統(`?hl=` → 主站共用偏好 `mm_variant` → navigator)——英文全文進字典(pp_*/tou_* 共 40+ 鍵)、簡中由 OpenCC runtime 轉繁中、html lang/title/meta 隨語言;語言 pills 改 `data-hl-link`(改寫 `?hl=` 留在本頁),**不再點简/EN 就跳回首頁**;head 補 hreflang 三語 alternate。
+- **index 也放「地圖首頁」**:三語首頁 nav 加同位置「地圖首頁」(en: Map home/hans: 地图首页),全站每頁 nav 順序完全一致:[繁简EN pills] 地圖首頁 隱私權政策 使用條款 使用說明 [我的音樂劇]。
+- **pills 永遠在 nav 最前**:guide/me/u 的語言 pills 從 nav 中段移到最前,與首頁/法務頁對齊,跨頁切換上排零跳動。
+- **首頁 nav 連結帶語言**:privacy/terms 連結補 `?hl=${variant}`(英文/簡中使用者點進去直接對的語言);「我的音樂劇」連結修掉無作用的 `?lang=` 改 `?hl=`(me.html 只認 hl)。
+- 驗證:playwright — privacy `?hl=en` 全英文/`?hl=zh-hans` 全簡中、terms 點 EN pill 留在 terms.html、index nav 五項順序、guide/me pills 最前,全過;截圖確認。
+
 ## [v1.17.2] - 2026-07-03 11:41
 ### 調整 — privacy/terms header 與首頁完全同排版(使用者指示)
 - privacy/terms 的 topnav 改成與首頁一模一樣的順序與位置:繁/简/EN pills + 隱私權政策 + 使用條款 + 使用說明 + 「我的音樂劇」CTA,只在最前面多一個「地圖首頁」——跨頁切換上排不跳動。pills 連到各語言首頁(這兩頁本身僅繁中)。

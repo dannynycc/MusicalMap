@@ -3,70 +3,83 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>使用條款 Terms of Use — MusicalMap</title>
+  <title data-i18n="tou_title">使用條款 — MusicalMap</title>
+  <link rel="canonical" href="https://dannynycc.github.io/MusicalMap/terms.html" />
+  <link rel="alternate" hreflang="en" href="https://dannynycc.github.io/MusicalMap/terms.html?hl=en" />
+  <link rel="alternate" hreflang="zh-Hans" href="https://dannynycc.github.io/MusicalMap/terms.html?hl=zh-hans" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://dannynycc.github.io/MusicalMap/terms.html" />
+  <link rel="alternate" hreflang="x-default" href="https://dannynycc.github.io/MusicalMap/terms.html" />
   <link rel="icon" href="logo.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
+  <!-- i18n:語言認 ?hl= → 主站共用偏好(mm_variant) → navigator;內容繁中為底,en 走字典,zh-hans 由 OpenCC 轉 -->
+  <script>window.MM_USE_LANG_PREF=true;</script>
+  <script>/* zh-hans:先同步載 OpenCC(繁→簡),mm-strings 才能建簡體字典;只簡中使用者下載 */(function(){try{
+  var h=new URLSearchParams(location.search).get('hl'),v=(h==='en'||h==='zh-hans'||h==='zh-hant')?h:null;
+  if(!v){var mv=localStorage.getItem('mm_variant');v=(mv==='en'||mv==='zh-hans'||mv==='zh-hant')?mv:(localStorage.getItem('mm_lang')==='en'?'en':localStorage.getItem('mm_lang')==='zh'?'zh-hant':null);}
+  if(!v){var nl=(navigator.language||'').toLowerCase();v=nl.indexOf('zh')===0?((nl.indexOf('cn')>-1||nl.indexOf('hans')>-1||nl.indexOf('sg')>-1)?'zh-hans':'zh-hant'):(nl?'en':'zh-hant');}
+  if(v==='zh-hans')document.write('<scr'+'ipt src="https://cdn.jsdelivr.net/npm/opencc-js@1.3.1/dist/umd/t2cn.js" integrity="sha384-P/OaFUnOIAgMkLxsXIAaP6WO3Wm09591cGX5bHbW4eCOeDxH9L8U3aWYf4cE4SYl" crossorigin="anonymous"><\/scr'+'ipt>');
+  }catch(e){}})();</script>
+  <script src="js/mm-strings.js"></script>
 </head>
 <body>
   <header id="topbar">
     <a id="brand" href="index.html">
       <img class="brand-logo" src="logo.png" alt="" />
       <span class="logo">Musical<span class="logo-em">Map</span></span>
-      <span class="tagline">此刻全球正在上演的音樂劇</span>
+      <span class="tagline" data-i18n="legal_tagline">此刻全球正在上演的音樂劇</span>
     </a>
-    <!-- nav 與首頁同排版同順序(語言pills+隱私/條款/說明+CTA),跨頁不跳動;只多「地圖首頁」 -->
+    <!-- nav 與首頁同排版同順序(語言pills+地圖首頁+隱私/條款/說明+CTA),跨頁不跳動;pills 切換本頁語言(?hl=) -->
     <nav id="topnav">
       <div id="lang-switch" role="group" aria-label="Language / 語言">
-        <a class="lang-opt active" href="zh-hant/" lang="zh-Hant" aria-current="true">繁</a>
-        <a class="lang-opt" href="zh-hans/" lang="zh-Hans">简</a>
-        <a class="lang-opt" href="en/" lang="en">EN</a>
+        <a class="lang-opt" data-hl-link="zh-hant" href="?hl=zh-hant" lang="zh-Hant">繁</a>
+        <a class="lang-opt" data-hl-link="zh-hans" href="?hl=zh-hans" lang="zh-Hans">简</a>
+        <a class="lang-opt" data-hl-link="en" href="?hl=en" lang="en">EN</a>
       </div>
-      <a class="nav-link" href="index.html">地圖首頁</a>
-      <a class="nav-link" href="privacy.html">隱私權政策</a>
-      <a class="nav-link" href="terms.html">使用條款</a>
-      <a class="nav-link" href="guide.html">使用說明</a>
-      <a class="nav-cta" href="me.html">我的音樂劇</a>
+      <a class="nav-link" href="index.html" data-i18n="nav_map">地圖首頁</a>
+      <a class="nav-link" href="privacy.html" data-i18n="nav_privacy">隱私權政策</a>
+      <a class="nav-link" href="terms.html" data-i18n="nav_terms">使用條款</a>
+      <a class="nav-link" href="guide.html" data-i18n="nav_guide">使用說明</a>
+      <a class="nav-cta" href="me.html" data-i18n="how_nav_start">我的音樂劇</a>
     </nav>
   </header>
 
   <main class="legal">
-    <h1>使用條款 · Terms of Use</h1>
-    <p class="updated">最後更新 Last updated: 2026-07-03</p>
+    <h1 data-i18n="tou_h1">使用條款</h1>
+    <p class="updated" data-i18n="tou_updated">最後更新：2026-07-03</p>
 
-    <p>歡迎使用 MusicalMap（「本網站」）。使用本網站即表示你同意以下條款。聯絡方式：<a href="mailto:dannynycc@gmail.com">dannynycc@gmail.com</a>。</p>
-    <p><em>By using MusicalMap you agree to these terms. Contact: dannynycc@gmail.com.</em></p>
+    <p data-i18n-html="tou_intro">歡迎使用 MusicalMap（「本網站」）。使用本網站即表示你同意以下條款。聯絡方式：<a href="mailto:dannynycc@gmail.com">dannynycc@gmail.com</a>。</p>
 
-    <h2>1. 服務說明</h2>
-    <p>本網站是一個免費的資訊性服務，彙整公開來源呈現全球音樂劇的演出地點與檔期。資料來自各售票平台與官方來源，可能有<strong>延遲、變動或錯誤</strong>。</p>
+    <h2 data-i18n="tou_s1_h">1. 服務說明</h2>
+    <p data-i18n-html="tou_s1_p">本網站是一個免費的資訊性服務，彙整公開來源呈現全球音樂劇的演出地點與檔期。資料來自各售票平台與官方來源，可能有<strong>延遲、變動或錯誤</strong>。</p>
 
-    <h2>2. 資料準確性與免責</h2>
-    <p>本網站<strong>不保證</strong>演出時間、地點、票務狀態或價格之正確性與即時性。<strong>購票或安排行程前，請務必向官方售票管道或劇院再次確認。</strong>本網站對因依賴本站資訊所生之任何損失，於法律允許範圍內不負責任。服務以「現狀」提供，不附任何明示或默示擔保。</p>
+    <h2 data-i18n="tou_s2_h">2. 資料準確性與免責</h2>
+    <p data-i18n-html="tou_s2_p">本網站<strong>不保證</strong>演出時間、地點、票務狀態或價格之正確性與即時性。<strong>購票或安排行程前，請務必向官方售票管道或劇院再次確認。</strong>本網站對因依賴本站資訊所生之任何損失，於法律允許範圍內不負責任。服務以「現狀」提供，不附任何明示或默示擔保。</p>
 
-    <h2>3. 售票連結與分潤揭露</h2>
-    <p>地圖上的售票連結導向第三方平台；部分<strong>可能為分潤連結</strong>，本網站可能因此獲得少額佣金，<strong>你不會多付費用</strong>。實際交易（付款、出票、退換）由各該售票平台依其條款處理，與本網站無涉。</p>
+    <h2 data-i18n="tou_s3_h">3. 售票連結與分潤揭露</h2>
+    <p data-i18n-html="tou_s3_p">地圖上的售票連結導向第三方平台；部分<strong>可能為分潤連結</strong>，本網站可能因此獲得少額佣金，<strong>你不會多付費用</strong>。實際交易（付款、出票、退換）由各該售票平台依其條款處理，與本網站無涉。</p>
 
-    <h2>4. 第三方連結</h2>
-    <p>本網站包含連往第三方網站的連結，僅為方便提供。本網站不對其內容、商品、服務或交易負責，連結不代表背書。</p>
+    <h2 data-i18n="tou_s4_h">4. 第三方連結</h2>
+    <p data-i18n-html="tou_s4_p">本網站包含連往第三方網站的連結，僅為方便提供。本網站不對其內容、商品、服務或交易負責，連結不代表背書。</p>
 
-    <h2>5. 帳號與你的內容</h2>
-    <p>使用「我的音樂劇」需以 Google 帳號登入。你應對自己輸入的觀劇紀錄負責。你保留你內容的權利；為提供此功能，你授權本網站儲存並向你本人顯示這些內容。你可隨時刪除。我們得移除違法或濫用之內容。</p>
+    <h2 data-i18n="tou_s5_h">5. 帳號與你的內容</h2>
+    <p data-i18n-html="tou_s5_p">使用「我的音樂劇」需以 Google 帳號登入。你應對自己輸入的觀劇紀錄負責。你保留你內容的權利；為提供此功能，你授權本網站儲存並向你本人顯示這些內容。你可隨時刪除。我們得移除違法或濫用之內容。</p>
 
-    <h2>6. 可接受使用</h2>
-    <p>請勿對本網站進行自動化大量擷取、攻擊、干擾服務，或以任何違法、侵權方式使用本網站。</p>
+    <h2 data-i18n="tou_s6_h">6. 可接受使用</h2>
+    <p data-i18n-html="tou_s6_p">請勿對本網站進行自動化大量擷取、攻擊、干擾服務，或以任何違法、侵權方式使用本網站。</p>
 
-    <h2>7. 智慧財產</h2>
-    <p>演出資料來自公開來源；海報、商標、作品名稱等權利屬各該權利人所有，於本網站僅作識別與資訊用途。本網站之程式碼與原創呈現受著作權保護。</p>
+    <h2 data-i18n="tou_s7_h">7. 智慧財產</h2>
+    <p data-i18n-html="tou_s7_p">演出資料來自公開來源；海報、商標、作品名稱等權利屬各該權利人所有，於本網站僅作識別與資訊用途。本網站之程式碼與原創呈現受著作權保護。</p>
 
-    <h2>8. 準據法</h2>
-    <p>本條款依<strong>中華民國（台灣）</strong>法律解釋與適用。</p>
+    <h2 data-i18n="tou_s8_h">8. 準據法</h2>
+    <p data-i18n-html="tou_s8_p">本條款依<strong>中華民國（台灣）</strong>法律解釋與適用。</p>
 
-    <h2>9. 變更</h2>
-    <p>本條款可能不定期更新，異動將反映於本頁頂端的「最後更新」日期；繼續使用即視為接受。</p>
+    <h2 data-i18n="tou_s9_h">9. 變更</h2>
+    <p data-i18n-html="tou_s9_p">本條款可能不定期更新，異動將反映於本頁頂端的「最後更新」日期；繼續使用即視為接受。</p>
 
-    <p class="foot-links"><a href="index.html">地圖首頁</a> · <a href="guide.html">使用說明</a> · <a href="privacy.html">隱私權政策</a> · <a href="mailto:dannynycc@gmail.com">聯絡</a></p>
+    <p class="foot-links"><a href="index.html" data-i18n="nav_map">地圖首頁</a> · <a href="guide.html" data-i18n="nav_guide">使用說明</a> · <a href="privacy.html" data-i18n="nav_privacy">隱私權政策</a> · <a href="mailto:dannynycc@gmail.com" data-i18n="legal_contact">聯絡</a></p>
   </main>
 </body>
 </html>

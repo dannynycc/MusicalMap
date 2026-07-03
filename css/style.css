@@ -51,7 +51,8 @@ body { display: flex; flex-direction: column; height: 100vh; }
 #lang-switch .lang-opt { border: none; background: none; cursor: pointer; color: var(--muted);
   font-size: 12px; font-weight: 600; padding: 4px 9px; border-radius: 999px; line-height: 1; font-family: inherit; text-decoration: none; }
 #lang-switch .lang-opt:hover { color: var(--text); }
-#lang-switch .lang-opt.active { background: var(--gold); color: #fff; }
+#lang-switch .lang-opt.active,
+#lang-switch .lang-opt[aria-current="true"] { background: var(--gold); color: #fff; } /* aria-current: legal 頁 data-hl-link 由 mm-strings 標 */
 
 /* all-theatres page: floating search panel + small venue dots */
 #venue-panel {
