@@ -89,28 +89,29 @@ function prerenderList(variant, shows) {
   return li;
 }
 
+// compact 繁/简/EN pills — same pattern as guide/me/u .hl-pick (full autonyms broke the
+// 375px phone header: labels wrapped and overlapped).
 function langSwitch(active) {
   const opt = (v, txt, lang) =>
     `<a class="lang-opt${v === active ? " active" : ""}" href="${BASE}${v}/" lang="${lang}"${v === active ? ' aria-current="true"' : ""}>${txt}</a>`;
   return `<div id="lang-switch" role="group" aria-label="Language / 語言">
-        <span class="globe" aria-hidden="true">🌐</span>
-        ${opt("zh-hant", "繁體中文", "zh-Hant")}
-        ${opt("zh-hans", "简体中文", "zh-Hans")}
-        ${opt("en", "English", "en")}
+        ${opt("zh-hant", "繁", "zh-Hant")}
+        ${opt("zh-hans", "简", "zh-Hans")}
+        ${opt("en", "EN", "en")}
       </div>`;
 }
 
 function page(variant, shows) {
   const v = VARIANTS[variant];
   const t = variant === "en"
-    ? { tagline: "Musicals playing around the world right now", theatres: "🎭 All theatres", mine: "⭐ My Musicals", guide: "Guide",
+    ? { tagline: "Musicals playing around the world right now", theatres: "🎭 All theatres", mine: "My Musicals", guide: "Guide",
         search: "Search shows, cities, theatres…", privacy: "Privacy", terms: "Terms",
         h1: "MusicalMap — live world map of musicals playing now", listhdr: "Musicals playing now", filterLabel: "Category" }
     : variant === "zh-hans"
-    ? { tagline: "此刻全球正在上演的音乐剧", theatres: "🎭 所有剧院", mine: "⭐ 我的音乐剧足迹", guide: "使用说明",
+    ? { tagline: "此刻全球正在上演的音乐剧", theatres: "🎭 所有剧院", mine: "我的音乐剧", guide: "使用说明",
         search: "搜寻剧名、城市、剧院…", privacy: "隐私权政策", terms: "使用条款",
         h1: "MusicalMap — 全球此刻正在上演的音乐剧即时地图", listhdr: "正在上演的音乐剧", filterLabel: "分类" }
-    : { tagline: "此刻全球正在上演的音樂劇", theatres: "🎭 所有劇院", mine: "⭐ 我的音樂劇足跡", guide: "使用說明",
+    : { tagline: "此刻全球正在上演的音樂劇", theatres: "🎭 所有劇院", mine: "我的音樂劇", guide: "使用說明",
         search: "搜尋劇名、城市、劇院…", privacy: "隱私權政策", terms: "使用條款",
         h1: "MusicalMap — 全球此刻正在上演的音樂劇即時地圖", listhdr: "正在上演的音樂劇", filterLabel: "分類" };
   // zh-hans pages load OpenCC (small t2cn dict) so i18n can simplify the UI chrome strings.
@@ -132,7 +133,11 @@ function page(variant, shows) {
   <meta property="og:description" content="${esc(v.desc)}" />
   <meta property="og:url" content="${SITE}/${variant}/" />
   <meta name="twitter:card" content="summary" />
+  <link rel="icon" href="${BASE}logo.png" />
   ${jsonLd(variant, shows)}
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha384-sHL9NAb7lN7rfvG5lfHpm643Xkcjzp4jFvuavGOndn6pjVqS6ny56CAt3nsEVT4H" crossorigin="anonymous" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" integrity="sha384-pmjIAcz2bAn0xukfxADbZIb3t8oRT9Sv0rvO+BR5Csr6Dhqq+nZs59P0pPKQJkEV" crossorigin="anonymous" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" integrity="sha384-wgw+aLYNQ7dlhK47ZPK7FRACiq7ROZwgFNg0m04avm4CaXS+Z9Y7nMu8yNjBKYC+" crossorigin="anonymous" />
@@ -149,8 +154,8 @@ function page(variant, shows) {
     <span id="count"></span>
     <nav id="topnav">
       ${langSwitch(variant)}
-      <a class="foot-link" href="${BASE}privacy.html?lang=${variant}">${esc(t.privacy)}</a>
-      <a class="foot-link" href="${BASE}terms.html?lang=${variant}">${esc(t.terms)}</a>
+      <a class="nav-link" href="${BASE}privacy.html">${esc(t.privacy)}</a>
+      <a class="nav-link" href="${BASE}terms.html">${esc(t.terms)}</a>
       <!-- 所有劇院入口暫藏(2026-07-03 指示;theatres.html 頁面保留可直達)
       <a class="nav-link" href="${BASE}theatres.html?lang=${variant}">${esc(t.theatres)}</a> -->
       <a class="nav-link" href="${BASE}guide.html${variant === 'en' ? '?hl=en' : variant === 'zh-hans' ? '?hl=zh-hans' : ''}">${esc(t.guide)}</a>

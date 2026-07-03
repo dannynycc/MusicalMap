@@ -2,7 +2,7 @@
 
 一張地圖，呈現**此刻全球正在上演的音樂劇** —— 常駐型（Broadway / West End）與巡演型（tour，顯示目前在哪座城市）。
 
-頂部 header bar（品牌 ＋ 此刻劇目/地點**即時計數** ＋ Privacy/Terms ＋ 醒目「⭐ 我的音樂劇足跡」入口）、淺色地圖鋪滿畫面、海報縮圖當 marker + cluster、hover 預覽卡、點擊跳 popup。**側欄只放搜尋 ＋ 劇目列表**（一劇一列、同劇自動合併、依血統分類排序、多城市可展開看各地點；各站帶「圓點＋豎線脊柱」＋各自海報——不同城市/製作海報不同）。**類型篩選移到地圖上方的橫條 filter bar**（依血統 tag：Broadway/West End（百老匯/西區）、德奧、法語、西語、葡語、中／台／日／韓、歐陸其他；點 pill 多選，勾「Broadway/West End」連在澳洲巡演的 Wicked 也一起出現；分類太多塞不下時整條可橫向捲動）。**時間軸**（**月份**滑桿＋月份選擇器同步，選哪個月就顯示「演出期間跨過該月」的劇；▶ 播放每月推進可看巡演在城市間移動；**可往回拖到過去月份看歷史檔期**，資料來自每日累積的歷史檔）。（footer 已移除，Privacy/Terms 改置頂部 nav。）
+頂部 header bar（Fraunces 金字品牌 ＋ 此刻劇目/地點**即時計數** ＋ 繁/简/EN 語言 pills ＋ Privacy/Terms/使用說明 ＋「我的音樂劇」墨色入口，v1.17.0 與 guide 統一畫風）、暖米白地圖鋪滿畫面、海報縮圖當 marker + cluster、hover 預覽卡、點擊跳 popup。**側欄只放搜尋 ＋ 劇目列表**（一劇一列、同劇自動合併、依血統分類排序、多城市可展開看各地點；各站帶「圓點＋豎線脊柱」＋各自海報——不同城市/製作海報不同）。**類型篩選移到地圖上方的橫條 filter bar**（依血統 tag：Broadway/West End（百老匯/西區）、德奧、法語、西語、葡語、中／台／日／韓、歐陸其他；點 pill 多選，勾「Broadway/West End」連在澳洲巡演的 Wicked 也一起出現；分類太多塞不下時整條可橫向捲動）。**時間軸**（**月份**滑桿＋月份選擇器同步，選哪個月就顯示「演出期間跨過該月」的劇；▶ 播放每月推進可看巡演在城市間移動；**可往回拖到過去月份看歷史檔期**，資料來自每日累積的歷史檔）。（footer 已移除，Privacy/Terms 改置頂部 nav。）
 
 > **日期語意（列表副標題統一「城市 · 日期」）**：有結束日→「**至 M/D**」、開放式長演→「**長期上演**」、本月才首演→「**M/D 起**」、缺日期留白；跨年才補年份。「長期上演」**只給開放式 sit-down 劇院**（百老匯／西區／Stage Entertainment 漢堡·斯圖加特），由 `build_shows` 標 `end_rolling`（Broadway 的 end 是滾動售票期；West End／德國認「**無閉幕日且已開演**」，有閉幕日的限定檔仍顯示「至 X」）；其餘地區（日／韓／巡演／2.5 次元短檔）一律真實「至 X」。Stage Entertainment 來源缺日期，正確檔期人工補在 `overrides.json`。**官網做成「劇名標題」的超連結**（官網不分潤，不單獨給圖卡免得稀釋售票平台點擊）；「購票」圖卡區只放**售票平台**（多平台並列，圖卡寬度依數量自適應、單一來源也填滿不留白）。
 
@@ -40,7 +40,7 @@ scrapers/  ──產出──>  data/*.json  ──merge──>  data/shows.json
 | `worker/` | Cloudflare Worker:`my.themusicalmap.com/<handle>` 乾淨網址 + 舊名 301 + 爬蟲 meta 注入(**已寫好未部署**,見 `docs/SETUP_MY_SUBDOMAIN.md`) |
 | `css/me-v2.css` | me.html 與 u.html **共用**的 v2 護照風樣式(從 me.html 內嵌 CSS 抽出,避免兩頁分岔) |
 | `scrapers/gen_catalog.py` → `data/venues_catalog.json` | 自動帶入字典(場館去重 / 中英劇名 / 幣別 / 海報) |
-| `css/style.css` | 淺色 UI（白底＋teal 主色） |
+| `css/style.css` | 暖米白 ivory UI（與 guide.html 同 `--paper` 色系；teal 留給地圖元件、金色給品牌字，v1.17.0 全站統一畫風） |
 | `data/shows.json` | **前端唯一讀的檔**，由 build 產生 |
 | `data/broadway.json` | Broadway scraper 輸出（broadway-show-tickets.com） |
 | `data/westend.json` | West End scraper 輸出（londontheatre.co.uk） |

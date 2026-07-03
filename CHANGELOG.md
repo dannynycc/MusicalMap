@@ -11,6 +11,19 @@
 
 ---
 
+## [v1.17.0] - 2026-07-03 11:28
+### 新功能 — 全站畫風/命名/導航統一(使用者 8 點回饋 + 自主體檢)
+- **站名統一「我的音樂劇」**:index 三語(`gen_site.mjs` t.mine)、theatres CTA、me 登入頁大標(`mm-strings gate_signin`)、i18n.js `nav_mine`、privacy/terms 內文全部由「⭐ 我的音樂劇足跡」改為「我的音樂劇」(en: My Musicals),去 ⭐。
+- **語言切換統一「繁 简 EN」精簡 pills**(比照 guide `.hl-pick`):`gen_site langSwitch()` 去 🌐 全字版;順帶修掉 375px 手機 header 語言鈕折行疊字的爆版。active pill 金色。
+- **Google 登入按鈕走 Google 品牌風**:白底 + 官方四色 G(inline SVG,無外連)+ `#dadce0` 邊框,取代無辨識度的純金膠囊。
+- **修「載入中仍顯示登入按鈕」真因**:舊按鈕 inline style 寫死 `display:inline-flex`,優先權蓋掉 `hidden` 屬性 → 按鈕永遠藏不住。改為 CSS class + `#gate-login[hidden]{display:none}`;playwright e2e 驗證 loading/無後端路徑按鈕與 preview 皆真隱藏。
+- **登入頁補導航與 preview**:閘頂加品牌列(logo+MusicalMap+「地圖首頁」→ index);登入鈕下方加登入後畫面 preview(`assets/guide/stats.webp`)+「先逛演出地圖/看使用說明」出口,登出後不再是死路。
+- **全站 ivory 統一畫風**:`css/style.css` tokens 換成 guide 的 `--paper/#f4efe4` 色系(header/sidebar/panel/border/muted 全暖色化,teal 留給地圖元件),index 三語+privacy+terms+theatres 生效;me/u 深色個人頁維持不變。
+- **品牌字統一**:index/privacy/terms/theatres 的 MusicalMap wordmark 改 Fraunces 900 + 金色「Map」(與 guide/me/u 一致);guide 30×30 方框壓變形的 logo 改回 122×200 原比例(me 登入閘同修)。
+- **nav/footer 一致化**:「🗺 演出地圖」→「地圖首頁」(mm-strings/i18n.js/privacy/terms/theatres,en: Map home);index 頂欄三連結(隱私/條款/使用說明)同字級;guide/me/u footer 補齊 隱私權政策+使用條款 連結;privacy/terms nav 補使用說明、footer 統一「地圖首頁 · 使用說明 · 法務 · 聯絡」。
+- **自主體檢加修**:全站補 favicon(原本只 guide 有);`<title>` 統一「X — MusicalMap」(me/u 原 `·`/無品牌);u.html og:title 足跡→我的音樂劇;index nav 的 privacy/terms 連結拿掉無作用的 `?lang=` 參數;privacy/terms「最後更新」bump 2026-07-03。
+- **驗證**:本機 `/MusicalMap/` 前綴 server + headless 截圖(5 頁×桌機/手機)+playwright 量測(375px header scrollWidth=375 無溢出、CTA nowrap)+跨語言 e2e(guide/me `?hl=en`、zh-hans index)全過;背景色像素實測 `#f4efe4`。
+
 ## [v1.16.3] - 2026-07-03 09:58
 ### 調整 — guide 地圖截圖換美東(紐約)視角;全站暫藏「所有劇院」入口
 - **guide 地圖 fig 換視角**:亞洲視角 → 美東視角(NYC「48」聚合圈醒目,Mamma Mia/LOTR/Suffs/The Notebook/Matilda 海報+各城市圓圈+月份時間軸)。也試拍 NYC 特寫(z7)但資訊密度低+有未載入空卡,棄用。`map.webp` 同尺寸 1600×1336 覆蓋,HTML 不用改。

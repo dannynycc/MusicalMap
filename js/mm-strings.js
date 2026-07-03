@@ -7,7 +7,8 @@
   var STR = {
     'zh-hant': {
       // ---- u.html 靜態 ----
-      nav_theatres: '所有劇院', nav_map: '演出地圖', nav_guide: '使用說明', nav_create: '＋ 建立你自己的',
+      nav_theatres: '所有劇院', nav_map: '地圖首頁', nav_guide: '使用說明', nav_create: '＋ 建立你自己的',
+      nav_privacy: '隱私權政策', nav_terms: '使用條款',
       th_midnight: '午夜（暗）', th_gallery: '畫廊白（亮）', th_cream: '節目單奶油（亮）', th_neon: '霓虹（暗）', th_deco: '裝飾金（暗）',
       aria_theme: '主題底色', aria_seg: '檢視模式', aria_sort: '排序', aria_close: '關閉',
       hero_sub: '每看一場，蓋一個章',
@@ -54,10 +55,12 @@
       p_sep: '，', p_end: '。',
       // ---- me.html 專屬(登入頁,localStorage 記語言) ----
       gate_loading: '載入中…', gate_login: '使用 Google 登入',
-      gate_signin: '<b style="font-size:26px">我的音樂劇足跡</b><br><span style="opacity:.72;font-size:14.5px;font-weight:500">登入後，你看過的每一齣音樂劇都會存進你的帳號、跨裝置同步。</span>',
+      gate_signin: '<b style="font-size:26px">我的音樂劇</b><br><span style="opacity:.72;font-size:14.5px;font-weight:500">登入後，你看過的每一齣音樂劇都會存進你的帳號、跨裝置同步。</span>',
       gate_secure: '用你的 Google 帳戶安全登入。我們只讀取你的名稱與 email,不會代你張貼任何內容。',
       gate_syncing: '同步你的收藏中…', gate_no_backend: '⚠ 後端尚未設定',
       gate_load_fail: '讀取收藏失敗，請重新整理。',
+      gate_preview: '登入後長這樣——你的海報牆、觀劇護照與觀劇統計，全部自動生成：',
+      gate_browse_map: '先逛演出地圖 →', gate_see_guide: '看使用說明 →',
       nav_share: '分享', nav_logout: '登出', me_hero_title: '我的音樂劇收藏',
       demo_banner_b: '👋 這是範例收藏', demo_banner_rest: ' —— 先讓你看看蓋滿章後的樣子。按右邊加入你第一齣看過的劇，整頁就換成你自己的。',
       demo_cta: '＋ 加入第一齣音樂劇', demo_sub: '範例預覽 · 加入後就換成你的',
@@ -149,7 +152,8 @@
       how_footer: 'MusicalMap — 全球音樂劇即時地圖，與你的觀劇護照。', how_footer_link: '回到地圖',
     },
     'en': {
-      nav_theatres: 'All Theatres', nav_map: 'Live Map', nav_guide: 'Guide', nav_create: '＋ Create your own',
+      nav_theatres: 'All Theatres', nav_map: 'Map home', nav_guide: 'Guide', nav_create: '＋ Create your own',
+      nav_privacy: 'Privacy', nav_terms: 'Terms',
       th_midnight: 'Midnight (dark)', th_gallery: 'Gallery white (light)', th_cream: 'Playbill cream (light)', th_neon: 'Neon (dark)', th_deco: 'Deco gold (dark)',
       aria_theme: 'Theme', aria_seg: 'View mode', aria_sort: 'Sort', aria_close: 'Close',
       hero_sub: 'One stamp for every show you see',
@@ -197,6 +201,8 @@
       gate_secure: 'Secure sign-in with your Google account. We only read your name and email — we never post anything on your behalf.',
       gate_syncing: 'Syncing your collection…', gate_no_backend: '⚠ Backend not configured',
       gate_load_fail: 'Couldn’t load your collection. Please refresh.',
+      gate_preview: 'After you sign in — your poster wall, theatre passport and stats, all generated automatically:',
+      gate_browse_map: 'Browse the map first →', gate_see_guide: 'Read the guide →',
       nav_share: 'Share', nav_logout: 'Sign out', me_hero_title: 'My Musicals',
       demo_banner_b: '👋 This is a sample collection', demo_banner_rest: ' — a preview of what it looks like once stamped. Add your first show on the right and the whole page becomes yours.',
       demo_cta: '＋ Add your first musical', demo_sub: 'Sample preview · becomes yours once you add a show',
