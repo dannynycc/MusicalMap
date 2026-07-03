@@ -286,11 +286,21 @@
     LANG = MV === "en" ? "en" : MV === "zh-hans" ? "zh-hans" : "zh";
     // Build the Simplified UI dict from the Traditional one. OpenCC (t2cn, ~65KB) is loaded
     // only on zh-hans pages; if absent, degrade to Traditional strings rather than break.
+    // OpenCC 只轉「字」不轉「詞」——台灣用語再過一層詞彙表(與 js/mm-strings.js 的 CN_FIX 同步維護)。
+    const CN_FIX = [
+      [/登入/g, "登录"], [/登出/g, "退出登录"],
+      [/连结/g, "链接"], [/建立/g, "创建"],
+      [/装置/g, "设备"], [/帐号/g, "账号"], [/帐户/g, "账户"],
+      [/储存/g, "存储"], [/透过/g, "通过"],
+      [/即时/g, "实时"], [/隐私权政策/g, "隐私政策"],
+      [/示范资料/g, "示例数据"], [/范例/g, "示例"],
+    ];
+    const cnFix = (s) => { for (const [re, to] of CN_FIX) s = s.replace(re, to); return s; };
     if (LANG === "zh-hans" && !DICT["zh-hans"]) {
       try {
         const conv = window.OpenCC && OpenCC.Converter({ from: "tw", to: "cn" });
         const out = {};
-        for (const k in DICT.zh) out[k] = conv ? conv(DICT.zh[k]) : DICT.zh[k];
+        for (const k in DICT.zh) out[k] = conv ? cnFix(conv(DICT.zh[k])) : DICT.zh[k];
         DICT["zh-hans"] = out;
       } catch (e) { DICT["zh-hans"] = DICT.zh; }
     }

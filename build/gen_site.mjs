@@ -13,8 +13,8 @@ const SITE = "https://dannynycc.github.io/MusicalMap";
 const VARIANTS = {
   "en":      { lang: "en",      hreflang: "en",      label: "MusicalMap — live world map of musicals",
                desc: "Musicals playing around the world right now — Broadway, West End, tours and original productions across 40+ countries." },
-  "zh-hans": { lang: "zh-Hans", hreflang: "zh-Hans", label: "MusicalMap — 全球音乐剧即时地图",
-               desc: "此刻全球正在上演的音乐剧即时地图：百老汇、西区、巡演与各国原创音乐剧，涵盖 40+ 国家，每日更新。" },
+  "zh-hans": { lang: "zh-Hans", hreflang: "zh-Hans", label: "MusicalMap — 全球音乐剧实时地图",
+               desc: "此刻全球正在上演的音乐剧实时地图：百老汇、西区、巡演与各国原创音乐剧，涵盖 40+ 国家，每日更新。" },
   "zh-hant": { lang: "zh-Hant", hreflang: "zh-Hant", label: "MusicalMap — 全球音樂劇即時地圖",
                desc: "此刻全球正在上演的音樂劇即時地圖：百老匯、西區、巡演與各國原創音樂劇,涵蓋 40+ 國家,每日更新。" },
 };
@@ -109,8 +109,8 @@ function page(variant, shows) {
         h1: "MusicalMap — live world map of musicals playing now", listhdr: "Musicals playing now", filterLabel: "Category" }
     : variant === "zh-hans"
     ? { tagline: "此刻全球正在上演的音乐剧", theatres: "🎭 所有剧院", mine: "我的音乐剧", guide: "使用说明",
-        maphome: "地图首页", search: "搜寻音乐剧名、城市、剧院…", privacy: "隐私权政策", terms: "使用条款",
-        h1: "MusicalMap — 全球此刻正在上演的音乐剧即时地图", listhdr: "正在上演的音乐剧", filterLabel: "分类" }
+        maphome: "地图首页", search: "搜寻音乐剧名、城市、剧院…", privacy: "隐私政策", terms: "使用条款",
+        h1: "MusicalMap — 全球此刻正在上演的音乐剧实时地图", listhdr: "正在上演的音乐剧", filterLabel: "分类" }
     : { tagline: "此刻全球正在上演的音樂劇", theatres: "🎭 所有劇院", mine: "我的音樂劇", guide: "使用說明",
         maphome: "地圖首頁", search: "搜尋音樂劇名、城市、劇院…", privacy: "隱私權政策", terms: "使用條款",
         h1: "MusicalMap — 全球此刻正在上演的音樂劇即時地圖", listhdr: "正在上演的音樂劇", filterLabel: "分類" };

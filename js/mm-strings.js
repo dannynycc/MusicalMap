@@ -14,7 +14,7 @@
       hero_sub: '每看一場，蓋一個章',
       seg_poster: '海報牆', seg_passport: '護照', seg_log: '清單',
       sort_date: '最近觀看', sort_rating: '評分', sort_count: '次數', sort_title: '劇名',
-      sec_map: '我的觀劇足跡', sec_map_hint: '點一座城市，只看那裡的收藏',
+      sec_map: '我的音樂劇足跡', sec_map_hint: '點一座城市，只看那裡的收藏',
       aria_zoom_in: '放大', aria_zoom_out: '縮小', aria_zoom_reset: '重置',
       map_hint: '滾輪縮放 · 拖曳平移',
       legend_dot: '圓點 = 看過音樂劇的城市', legend_size: '圓大小 = 看的場數',
@@ -414,6 +414,8 @@
     [/资料库/g, '数据库'],
     [/智慧财产/g, '知识产权'],
     [/准据法/g, '适用法律'],
+    [/即时/g, '实时'], [/隐私权政策/g, '隐私政策'],
+    [/示范资料/g, '示例数据'], [/范例/g, '示例'],
   ];
   function cnFix(s) { for (var i = 0; i < CN_FIX.length; i++) s = s.replace(CN_FIX[i][0], CN_FIX[i][1]); return s; }
   var _conv = null;
