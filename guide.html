@@ -77,6 +77,13 @@ header{position:sticky;top:0;z-index:50;background:rgba(244,239,228,.9);backdrop
   .wrap{padding:0 16px}
   .bar{padding:0 8px}
 }
+@media(max-width:360px){   /* iPhone SE 等窄機:brand+語言+CTA 在 320px 擠不下→再收緊,避免橫向溢出 */
+  .bar{gap:6px}
+  .brand{font-size:15px;gap:6px}
+  .brand img{height:25px}
+  .hl-pick a{padding:4px 6px;font-size:11px}
+  .nav a.cta{font-size:12px;padding:6px 10px}
+}
 /* hero — 不置中,editorial 左對齊 */
 .hero{padding:88px 0 40px;max-width:760px}
 @media(max-width:700px){.hero{padding:56px 0 32px}}

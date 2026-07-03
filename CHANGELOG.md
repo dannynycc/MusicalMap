@@ -11,6 +11,11 @@
 
 ---
 
+## [v1.29.5] - 2026-07-03 19:42
+### 修正 — 320px 窄機溢出 + 超長字串容錯(loop 體檢)
+- **guide 在 320px(iPhone SE/小 Android)橫向溢出**:header 的 brand+繁简EN+「我的音樂劇」CTA 擠不下→CTA 頂出。加 ≤360px 規則(brand 15px/img 25px、hl-pick padding 收緊、CTA 12px)。實測 guide 三語 + index/me/about/privacy/terms/theatres/u 全數 320px 無溢出。
+- **超長字串容錯**:注入誇張長劇名(100 字)+超長劇院/城市名 → me 頁統計卡/海報牆/hero 未撐破(既有 text-overflow/word-break 生效),確認良好。
+
 ## [v1.29.4] - 2026-07-03 19:36
 ### 修正 — 圖片載入失敗 fallback 補完(loop 體檢)
 - **背景**:海報牆/詳情/popup 的 `<img>` 都有 onerror→優雅退回(色塊/文字),但**清單檢視縮圖 + 輸入端「確認/最近加入」縮圖(5 處)無 onerror**——自訂海報貼壞 URL(使用者可貼任意網址)時顯示破圖 icon。
