@@ -11,6 +11,12 @@
 
 ---
 
+## [v1.16.3] - 2026-07-03 09:58
+### 調整 — guide 地圖截圖換美東(紐約)視角;全站暫藏「所有劇院」入口
+- **guide 地圖 fig 換視角**:亞洲視角 → 美東視角(NYC「48」聚合圈醒目,Mamma Mia/LOTR/Suffs/The Notebook/Matilda 海報+各城市圓圈+月份時間軸)。也試拍 NYC 特寫(z7)但資訊密度低+有未載入空卡,棄用。`map.webp` 同尺寸 1600×1336 覆蓋,HTML 不用改。
+- **「所有劇院」連結全站暫藏**(theatres.html 頁面保留、可直達、sitemap 續收):`guide.html`/`me.html`/`u.html` nav 註解掉;`gen_site.mjs` 模板註解 + 本機重產三語首頁(en/zh-hans/zh-hant)。要恢復時解註解+重跑 gen_site 即可。
+- **驗證**:playwright 開 index(zh-hant)/guide/me/u 四頁,「所有劇院」皆不可見、其餘 nav 連結正常。
+
 ## [v1.16.2] - 2026-07-03 09:19
 ### 修正 — guide 頁全面體檢:手機版壞版、內文不實宣稱、截圖錯置(Fable 5 重新檢視)
 - **手機版修復(390px 實測溢出 155px → 0)**:h1 `word-break:keep-all` + em nowrap 造成整頁橫向溢出、右緣文字被切 → 移除 keep-all(em 保留 nowrap,「音樂劇。」不拆字);header nav 無手機處理(「我的音樂劇」CTA 整顆被擠出畫面外、文字連結被壓成直排)→ ≤700px 收掉文字連結、≤430px 縮小 brand/CTA/語言切換;b3/b4 欄的 inline `border-left+44px` 手機殘留 → 改 `.copy.divided` class,堆疊時轉上緣分隔線。

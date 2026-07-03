@@ -151,7 +151,8 @@ function page(variant, shows) {
       ${langSwitch(variant)}
       <a class="foot-link" href="${BASE}privacy.html?lang=${variant}">${esc(t.privacy)}</a>
       <a class="foot-link" href="${BASE}terms.html?lang=${variant}">${esc(t.terms)}</a>
-      <a class="nav-link" href="${BASE}theatres.html?lang=${variant}">${esc(t.theatres)}</a>
+      <!-- 所有劇院入口暫藏(2026-07-03 指示;theatres.html 頁面保留可直達)
+      <a class="nav-link" href="${BASE}theatres.html?lang=${variant}">${esc(t.theatres)}</a> -->
       <a class="nav-link" href="${BASE}guide.html${variant === 'en' ? '?hl=en' : variant === 'zh-hans' ? '?hl=zh-hans' : ''}">${esc(t.guide)}</a>
       <a id="mine-link" class="nav-cta" href="${BASE}me.html?lang=${variant}">${esc(t.mine)}</a>
     </nav>
