@@ -11,6 +11,13 @@
 
 ---
 
+## [v1.24.4] - 2026-07-03 16:14
+### 資安 — 修 display_name 洩漏完整 email 的 fallback(使用者「你有存嗎」追問挖出)
+- **email 儲存現況(對碼確認)**:auth.users 系統表存 email(登入辨識必要);前端只在記憶體用 @ 前綴產生網址名稱建議,自建表(profiles/sightings)無 email 欄。
+- **地雷**:`handle_new_user()` 觸發器在 Google 帳號無 full_name 時把**完整 email**寫進 `profiles.display_name`——而 display_name 是公開頁標題,設公開後 email 會被公開展示(機率低但設計錯誤)。
+- 修法:fallback 改 `split_part(email,'@',1)`(@ 前綴);附一次性 UPDATE 修正既有恰等於本人 email 的 display_name(精準比對,不動自訂名稱)。schema.sql 源頭同步修。
+- ⚠ **migration 待套用**:`supabase/fix_display_name_email_leak.sql` 需在 Supabase 後台 SQL editor 執行(本機無 CLI)。
+
 ## [v1.24.3] - 2026-07-03 16:02
 ### 調整 — 頭像說法精確化 + 「設定公開」用字(使用者兩點指示)
 - 頭像:說明機制後改為「附帶但不使用」的準確表述——Google 基本資料授權把名稱與頭像綁定提供、無法只取名稱(顯示名稱是公開頁標題預設值,必須要);本站不使用、不顯示、不存自有資料表。gate_secure/how_b4(三語)改「名稱與 email（Google 授權會附帶頭像，本站不使用）」;privacy §2 詳述綁定機制。

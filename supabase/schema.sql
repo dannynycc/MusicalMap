@@ -76,8 +76,10 @@ create policy venues_insert on venues for insert to authenticated with check (tr
 create or replace function handle_new_user() returns trigger
 language plpgsql security definer set search_path = public as $$
 begin
+  -- fallback 用 email 的 @ 前綴,不落完整 email(display_name 是公開頁標題,完整 email 會被公開展示;
+  -- 見 supabase/fix_display_name_email_leak.sql, 2026-07-03)
   insert into public.profiles (id, display_name)
-  values (new.id, coalesce(new.raw_user_meta_data->>'full_name', new.email))
+  values (new.id, coalesce(new.raw_user_meta_data->>'full_name', split_part(new.email, '@', 1)))
   on conflict (id) do nothing;
   return new;
 end; $$;
