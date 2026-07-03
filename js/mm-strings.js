@@ -130,21 +130,23 @@
       mi_hint: '試試:打「歌劇魅影」或「phantom」或「les mis」。資料來自 MusicalMap 真實劇目庫。',
       mi_stamp_here: '蓋章<br>處', mi_empty_passport: '你的觀劇護照還是空白的。<br><b>按上面「＋ 記錄一齣音樂劇」</b>蓋下第一個印章。',
       // ---- how.html 使用說明頁 ----
+      how_title: '使用說明 — MusicalMap',
+      how_meta: 'MusicalMap 怎麼用：一張地圖看全世界正在上演的音樂劇，把你看過的每一齣記成一本觀劇護照，分享出去。',
       how_nav_start: '我的音樂劇', how_eyebrow: '使用說明',
-      how_hero: '一張地圖,<br>看見全世界正在上演的<em>音樂劇</em>。',
-      how_lede: '免登入就能探索此刻全球上演的每一齣——百老匯、倫敦西區、各國巡演。登入之後,把你看過的都記成一本觀劇護照,分享出去。',
+      how_hero: '一張地圖，<br>看見全世界正在上演的<em>音樂劇</em>。',
+      how_lede: '免登入就能探索此刻全球正在上演的音樂劇——百老匯、倫敦西區、各國巡演。登入之後，把你看過的都記成一本觀劇護照，分享出去。',
       how_cta_map: '探索演出地圖', how_cta_me: '建立我的觀劇護照',
-      how_p1_h: '探索,不必註冊', how_p1_lede: '打開地圖,全球此刻正在上演的音樂劇一次看盡。想看哪一齣,直接連到官網訂票。',
-      how_a1_n: '在地圖上', how_a1_h: '每個標記,都是一座正在上演的城市', how_a1_p: '圓越大,同時在演的劇越多。點一座城市,看那裡有哪些劇;點一齣劇,看檔期、劇院、海報與簡介。', how_a1_t1: '藍　長期駐演', how_a1_t2: '紅　巡演',
-      how_a2_n: '一鍵訂票', how_a2_h: '看到喜歡的,直接過去訂', how_a2_p: '每一齣都附官方網站與售票連結。我們不賣票、不抽成——只把你帶到對的地方。',
-      how_bridge: '看過的那些,別讓它們只留在記憶裡。',
-      how_p2_h: '記下你看過的每一齣', how_p2_lede: '登入之後,你看過的劇會長成一面海報牆、一本蓋章護照,還有你的觀劇統計。全部自動生成。',
-      how_b1_n: '加入一齣', how_b1_h: '搜劇名,其餘自動帶入', how_b1_p: '中英文搜尋都行,劇院、城市、海報自動補上。填看劇的日期、評分、座位、心得——只記得年份也沒關係。每看一場,護照上就多一個章。',
-      how_b2_n: '你的觀劇統計', how_b2_h: '看久了,會浮現一個輪廓', how_b2_p: '最常看的劇、去過的城市與國家、各年各月的觀劇分布——不用自己算,一目了然你是什麼樣的劇迷。',
-      how_b3_n: '分享出去', how_b3_h: '你的專屬頁,一個網址就能分享', how_b3_p: '設一個網址名稱,就有一個公開頁能傳給朋友。票價、座位要不要公開由你決定;筆記永遠只有你看得到。',
-      how_b4_n: '登入很單純', how_b4_h: '用 Google 登入,跨裝置同步', how_b4_p: '我們只讀你的名稱與 email,不會代你張貼任何內容。你的收藏存在帳號裡,換手機、換電腦都在。',
-      how_final_h: '從哪裡開始都可以', how_final_p: '先逛地圖找靈感,或直接記下你看過的第一齣。', how_final_cta: '建立我的觀劇護照', how_final_cta2: '先探索地圖',
-      how_footer: 'MusicalMap — 全球音樂劇即時地圖,與你的觀劇護照。', how_footer_link: '回到地圖',
+      how_p1_h: '探索，不必註冊', how_p1_lede: '打開地圖，全球此刻正在上演的音樂劇一次看盡。想看哪一齣，直接連過去訂票。',
+      how_a1_n: '在地圖上', how_a1_h: '每張海報，都是一齣正在上演的劇', how_a1_p: '地圖上的標記就是各劇的海報，靠近的會聚成一顆數字圓圈——數字是那一帶正在演的場數。點一張海報，看檔期、劇院與售票連結。',
+      how_a2_n: '一鍵訂票', how_a2_h: '看到喜歡的，直接過去訂', how_a2_p: '每一齣都附售票連結，多數還有官方網站。我們不賣票——只把你帶到對的地方。',
+      how_bridge: '看過的那些，別讓它們只留在記憶裡。',
+      how_p2_h: '記下你看過的每一齣', how_p2_lede: '登入之後，你看過的劇會長成一面海報牆、一本蓋章護照，還有你的觀劇統計。全部自動生成。',
+      how_b1_n: '加入一齣', how_b1_h: '搜劇名，其餘自動帶入', how_b1_p: '中英文搜尋都行，劇院、城市、海報自動補上。填看劇的日期、評分、座位、心得——只記得年份也沒關係。每看一場，護照上就多一個章。',
+      how_b2_n: '你的觀劇統計', how_b2_h: '看久了，會浮現一個輪廓', how_b2_p: '最常看的劇、去過的城市與國家、各年各月的觀劇分布——不用自己算，一眼看出你是什麼樣的劇迷。',
+      how_b3_n: '分享出去', how_b3_h: '你的專屬頁，一個網址就能分享', how_b3_p: '設一個網址名稱，就有一個公開頁能傳給朋友。票價、座位要不要公開由你決定；筆記永遠只有你看得到。',
+      how_b4_n: '登入很單純', how_b4_h: '用 Google 登入，跨裝置同步', how_b4_p: '我們只讀你的名稱與 email，不會代你張貼任何內容。你的收藏存在帳號裡，換手機、換電腦都在。',
+      how_final_h: '從哪裡開始都可以', how_final_p: '先逛地圖找靈感，或直接記下你看過的第一齣。', how_final_cta: '建立我的觀劇護照', how_final_cta2: '先探索地圖',
+      how_footer: 'MusicalMap — 全球音樂劇即時地圖，與你的觀劇護照。', how_footer_link: '回到地圖',
     },
     'en': {
       nav_theatres: 'All Theatres', nav_map: 'Live Map', nav_guide: 'Guide', nav_create: '＋ Create your own',
@@ -265,13 +267,15 @@
       mi_intro: 'Most people add shows they saw years ago, so the date isn’t preset to today — pick a show and we use its run dates to help you recall the year; theatre, city and artwork auto-fill, so you barely type.',
       mi_hint: 'Try: type “phantom”, “les mis”, or a Chinese title. Data comes from MusicalMap’s real catalogue.',
       mi_stamp_here: 'stamp<br>here', mi_empty_passport: 'Your passport is still blank.<br><b>Tap “＋ Log a musical” above</b> to add your first stamp.',
+      how_title: 'How it works — MusicalMap',
+      how_meta: 'How MusicalMap works: one live map of musicals playing worldwide, and a theatre passport for every show you’ve seen.',
       how_nav_start: 'My Musicals', how_eyebrow: 'How it works',
       how_hero: 'One map for<br>every musical playing <em>right now</em>.',
       how_lede: 'Explore what’s on around the world without signing in — Broadway, the West End, tours everywhere. Sign in, and every show you’ve seen becomes a theatre passport you can share.',
       how_cta_map: 'Explore the map', how_cta_me: 'Build your passport',
-      how_p1_h: 'Explore — no sign-up', how_p1_lede: 'Open the map and see every musical playing around the world right now. Found one you like? Straight to official tickets.',
-      how_a1_n: 'On the map', how_a1_h: 'Every marker is a city with a show on', how_a1_p: 'The bigger the dot, the more shows at once. Tap a city to see what’s playing; tap a show for its dates, theatre, poster and blurb.', how_a1_t1: 'Blue　resident run', how_a1_t2: 'Rose　touring',
-      how_a2_n: 'One tap to tickets', how_a2_h: 'See one you like? Go straight there', how_a2_p: 'Every show links to its official site and box office. We don’t sell tickets or take a cut — we just point you to the right place.',
+      how_p1_h: 'Explore — no sign-up', how_p1_lede: 'Open the map and see what’s playing around the world right now. Found one you like? Go straight to tickets.',
+      how_a1_n: 'On the map', how_a1_h: 'Every poster on the map is a show playing now', how_a1_p: 'Markers are the shows’ own posters; nearby ones gather into a numbered circle — that’s how many are playing around there. Tap a poster for its dates, theatre and ticket links.',
+      how_a2_n: 'One tap to tickets', how_a2_h: 'See one you like? Go straight there', how_a2_p: 'Every show comes with a ticket link, and most have their official site too. We don’t sell tickets — we just point you to the right place.',
       how_bridge: 'Don’t let the ones you’ve seen live only in memory.',
       how_p2_h: 'Keep every show you’ve seen', how_p2_lede: 'Once you sign in, your shows grow into a poster wall, a stamped passport and your own viewing stats. All automatic.',
       how_b1_n: 'Add a show', how_b1_h: 'Search the title, the rest fills itself in', how_b1_p: 'Search in English or Chinese; theatre, city and poster fill in automatically. Add the date, rating, seat and notes — just the year is fine. Every show you log adds a stamp to your passport.',
@@ -329,11 +333,14 @@
     document.querySelectorAll('[data-i18n-html]').forEach(function (el) { el.innerHTML = window.MM_T(el.getAttribute('data-i18n-html')); });  // 含 <br>/<b> 的字串(字典值為信任的 UI 文案,非使用者輸入)
     document.querySelectorAll('[data-i18n-title]').forEach(function (el) { el.title = window.MM_T(el.getAttribute('data-i18n-title')); });
     document.querySelectorAll('[data-i18n-aria]').forEach(function (el) { el.setAttribute('aria-label', window.MM_T(el.getAttribute('data-i18n-aria'))); });
-    // 語言切換:改寫 ?hl= 並保留其他參數(如 ?u=)——連結而非按鈕,爬蟲也能發現語言變體
+    document.querySelectorAll('[data-i18n-content]').forEach(function (el) { el.setAttribute('content', window.MM_T(el.getAttribute('data-i18n-content'))); });  // <meta> description/og
+    // 語言切換:改寫 ?hl= 並保留其他參數(如 ?u=)——連結而非按鈕,爬蟲也能發現語言變體。
+    // 繁也要「明寫 ?hl=zh-hant」:若刪參數,簡體/英文瀏覽器會被 navigator 重新偵測回原語言,永遠切不回繁
+    // (無參數 URL 仍是 zh-hant canonical,由各頁 hreflang/canonical 標記,同 theatres.html ?lang= 模式)。
     document.querySelectorAll('[data-hl-link]').forEach(function (a) {
       var t = a.getAttribute('data-hl-link');
       var u = new URL(location.href);
-      if (t === 'zh-hant') u.searchParams.delete('hl'); else u.searchParams.set('hl', t);
+      u.searchParams.set('hl', t);
       a.href = u.pathname + (u.search || '');
       if (t === hl) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current');
     });

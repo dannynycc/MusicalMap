@@ -11,6 +11,15 @@
 
 ---
 
+## [v1.16.2] - 2026-07-03 09:19
+### 修正 — guide 頁全面體檢:手機版壞版、內文不實宣稱、截圖錯置(Fable 5 重新檢視)
+- **手機版修復(390px 實測溢出 155px → 0)**:h1 `word-break:keep-all` + em nowrap 造成整頁橫向溢出、右緣文字被切 → 移除 keep-all(em 保留 nowrap,「音樂劇。」不拆字);header nav 無手機處理(「我的音樂劇」CTA 整顆被擠出畫面外、文字連結被壓成直排)→ ≤700px 收掉文字連結、≤430px 縮小 brand/CTA/語言切換;b3/b4 欄的 inline `border-left+44px` 手機殘留 → 改 `.copy.divided` class,堆疊時轉上緣分隔線。
+- **內文事實修正(對照 code/資料逐句查證)**:「不抽成」刪除(affiliate 分潤機制上線中,不能這樣寫);「每一齣都附官方網站與售票連結」→「每一齣都附售票連結,多數還有官方網站」(實測 1658/1658 有售票連結、1095/1658 有官網);「每個標記=城市/圓越大=劇越多/藍駐演紅巡演」全段改寫(舊文描述的是截錯的個人足跡地圖;產品無藍紅圖例)→ 改為海報 marker+聚合數字圓圈的真實行為;刪「簡介」(popup 無此欄位);全篇半形標點改全形(，；),en 同步修正。
+- **四張截圖全部重截(舊圖三張有事)**:map.png 截錯畫面(是 u.html 個人足跡地圖,非主站地圖)→ 主站實截(海報 marker+聚圈+月份時間軸);wall.png(個人收藏頁)配「一鍵訂票」圖文無關 → 換 Wicked popup 實截(購票方塊+官網標題連結);passport.png 構圖弱且不對題 → 換記錄表單搜尋「歌劇魅影」實截;stats.png 截壞(卡片標題被切+一整塊空卡,肇因 `.reveal` 捲動動畫未觸發)→ 先捲動觸發 reveal、藏 sticky 後重截,七卡完整。
+- **效能**:4 張 PNG 3.8MB → 4 張 WebP 388KB(-90%);`<img>` 補 width/height(防 CLS)+`decoding=async`;preconnect 補 `fonts.gstatic.com` crossorigin。
+- **i18n/SEO**:mm-strings 語言切換「繁」改明寫 `?hl=zh-hant`(原本刪參數→簡體/英文瀏覽器按「繁」被 navigator 重偵測彈回,永遠切不回繁;全站共用機制一併修好);`<title>`/meta description/og 隨語言切換(apply() 新增 `data-i18n-content`,新 key `how_title`/`how_meta`);補 canonical+hreflang alternates(?hl= 三變體,同 theatres.html 模式)+og:url。
+- **驗證**:playwright 量像素(390 溢出=0、CTA 可見、divided 手機轉上緣線)+ 桌機/手機/en/zh-hans 四情境全頁截圖親看 + 四圖捲動後載入 OK + 零 console error + 零殘留 key。
+
 ## [v1.16.1] - 2026-07-02 23:10
 ### 接上 — guide 頁 nav 連結 + sitemap 收錄(讓訪客/爬蟲找到)
 - **各頁 nav 加「使用說明」連結指向 `guide.html`**:首頁(`gen_site.mjs` t 加 guide + nav 連結,依語言帶 `?hl=`)、`me.html`/`u.html`(mm-strings 加 `nav_guide` key)、`theatres.html`(i18n.js DICT 加 `nav_guide`,zh-hans 自動 OpenCC 轉)。

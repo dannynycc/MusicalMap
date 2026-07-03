@@ -3,15 +3,22 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>使用說明 — MusicalMap</title>
-<meta name="description" content="MusicalMap 怎麼用:一張地圖看全世界正在上演的音樂劇,並把你看過的每一齣記成一本觀劇護照,分享出去。" />
+<title data-i18n="how_title">使用說明 — MusicalMap</title>
+<meta name="description" data-i18n-content="how_meta" content="MusicalMap 怎麼用：一張地圖看全世界正在上演的音樂劇，把你看過的每一齣記成一本觀劇護照，分享出去。" />
+<link rel="canonical" href="https://dannynycc.github.io/MusicalMap/guide.html" />
+<link rel="alternate" hreflang="en" href="https://dannynycc.github.io/MusicalMap/guide.html?hl=en" />
+<link rel="alternate" hreflang="zh-Hans" href="https://dannynycc.github.io/MusicalMap/guide.html?hl=zh-hans" />
+<link rel="alternate" hreflang="zh-Hant" href="https://dannynycc.github.io/MusicalMap/guide.html" />
+<link rel="alternate" hreflang="x-default" href="https://dannynycc.github.io/MusicalMap/guide.html" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="MusicalMap" />
-<meta property="og:title" content="使用說明 — MusicalMap" />
-<meta property="og:description" content="一張地圖追全世界的音樂劇,一本護照記下你看過的每一齣。" />
+<meta property="og:url" content="https://dannynycc.github.io/MusicalMap/guide.html" />
+<meta property="og:title" data-i18n-content="how_title" content="使用說明 — MusicalMap" />
+<meta property="og:description" data-i18n-content="how_meta" content="MusicalMap 怎麼用：一張地圖看全世界正在上演的音樂劇，把你看過的每一齣記成一本觀劇護照，分享出去。" />
 <meta property="og:image" content="https://dannynycc.github.io/MusicalMap/logo.png" />
 <link rel="icon" href="logo.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,900;1,9..144,400&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700;900&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet" />
 <script>/* zh-hans:同步載 OpenCC(繁→簡),僅簡中使用者下載 */(function(){try{
 var h=new URLSearchParams(location.search).get('hl'),v=(h==='en'||h==='zh-hans'||h==='zh-hant')?h:null;
@@ -38,23 +45,38 @@ a{color:inherit}
 /* header */
 header{position:sticky;top:0;z-index:50;background:rgba(244,239,228,.9);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
 .bar{display:flex;align-items:center;gap:14px;height:62px}
-.brand{display:flex;align-items:center;gap:9px;font-family:var(--serif);font-weight:900;font-size:19px;text-decoration:none;letter-spacing:-.01em}
+.brand{display:flex;align-items:center;gap:9px;font-family:var(--serif);font-weight:900;font-size:19px;text-decoration:none;letter-spacing:-.01em;white-space:nowrap}
 .brand img{width:30px;height:30px;border-radius:7px}
 .brand b{color:var(--gold)}
 .nav{margin-left:auto;display:flex;align-items:center;gap:4px}
-.nav a{padding:7px 12px;border-radius:999px;font-size:14px;font-weight:500;color:var(--ink2);text-decoration:none}
+.nav a{padding:7px 12px;border-radius:999px;font-size:14px;font-weight:500;color:var(--ink2);text-decoration:none;white-space:nowrap}
 .nav a:hover{color:var(--ink)}
 .nav a.cta{background:var(--ink);color:var(--paper);font-weight:600}
 .nav a.cta:hover{background:#000}
 .hl-pick{display:flex;gap:1px;border:1px solid var(--line);border-radius:999px;padding:2px;margin-left:4px}
 .hl-pick a{padding:4px 9px;border-radius:999px;font-size:12px;font-weight:600;color:var(--ink2);text-decoration:none}
 .hl-pick a[aria-current="true"]{background:var(--gold);color:#fff}
+/* 手機:收掉文字連結(地圖/劇院入口保留在 hero CTA 與 footer),留語言切換+主 CTA */
+@media(max-width:700px){
+  .bar{gap:8px}
+  .nav{gap:2px}
+  .nav > a:not(.cta){display:none}
+  .brand{font-size:17px}
+}
+@media(max-width:430px){
+  .wrap{padding:0 16px}
+  .brand{font-size:15.5px;gap:7px}
+  .brand img{width:26px;height:26px}
+  .nav a.cta{padding:6px 10px;font-size:13px}
+  .hl-pick{margin-left:0}
+  .hl-pick a{padding:3px 7px;font-size:11px}
+}
 /* hero — 不置中,editorial 左對齊 */
 .hero{padding:88px 0 40px;max-width:760px}
+@media(max-width:700px){.hero{padding:56px 0 32px}}
 .eyebrow{font-family:var(--mono);font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:22px}
 h1{font-family:var(--serif);font-weight:900;font-size:clamp(38px,6.2vw,68px);line-height:1.04;letter-spacing:-.025em;margin:0 0 24px}
-h1 em{font-style:italic;font-weight:400;white-space:nowrap}
-h1{word-break:keep-all}
+h1 em{font-style:italic;font-weight:400;white-space:nowrap}  /* 「音樂劇。」整組不拆行;h1 不設 keep-all,行可斷在 em 前,390px 不會溢出 */
 .lede{font-size:clamp(17px,2.2vw,21px);color:var(--ink2);max-width:600px;margin:0 0 34px}
 .cta-row{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
 .btn{display:inline-flex;align-items:center;padding:13px 26px;border-radius:999px;font-weight:600;font-size:15.5px;text-decoration:none;border:1.5px solid transparent;transition:none}
@@ -81,9 +103,9 @@ h1{word-break:keep-all}
 .copy .n{font-family:var(--serif);font-size:15px;color:var(--gold);letter-spacing:.02em;margin-bottom:6px}
 .copy h3{font-family:var(--serif);font-weight:600;font-size:clamp(21px,2.6vw,26px);line-height:1.2;letter-spacing:-.01em;margin:0 0 10px}
 .copy p{color:var(--ink2);font-size:16.5px;margin:0}
-.copy .tags{margin-top:14px;display:flex;gap:8px;flex-wrap:wrap}
-.copy .tag{font-family:var(--mono);font-size:12px;color:var(--ink2);border:1px solid var(--line);border-radius:999px;padding:3px 11px}
-.copy .tag.resident{color:#005daa}.copy .tag.tour{color:#c0324a}
+/* b3/b4 並排時的分隔線;手機堆疊改為上緣線 */
+.row .copy.divided{border-left:1px solid var(--line);padding-left:44px}
+@media(max-width:760px){.row .copy.divided{border-left:0;padding-left:0;border-top:1px solid var(--line);padding-top:24px}}
 /* bridge quote */
 .bridge{text-align:center;padding:20px 0;margin:16px 0}
 .bridge p{font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(22px,3.4vw,32px);color:var(--ink);letter-spacing:-.01em;max-width:640px;margin:0 auto;line-height:1.3}
@@ -94,7 +116,7 @@ h1{word-break:keep-all}
 .final .btn-primary{background:var(--gold)}
 .final .btn-ghost{color:var(--paper);border-color:rgba(244,239,228,.3)}
 .final .btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
-footer{border-top:1px solid var(--line);padding:30px 0 44px;color:var(--ink2);font-size:14px;display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+footer{border-top:1px solid var(--line);padding:30px 0 44px;color:var(--ink2);font-size:14px}
 footer a{color:var(--gold);text-decoration:none}
 footer .sp{margin-left:auto}
 </style>
@@ -106,7 +128,7 @@ footer .sp{margin-left:auto}
     <a href="index.html" data-i18n="nav_map">演出地圖</a>
     <a href="theatres.html" data-i18n="nav_theatres">所有劇院</a>
     <div class="hl-pick" role="group" aria-label="Language / 語言">
-      <a data-hl-link="zh-hant" href="?">繁</a>
+      <a data-hl-link="zh-hant" href="?hl=zh-hant">繁</a>
       <a data-hl-link="zh-hans" href="?hl=zh-hans">简</a>
       <a data-hl-link="en" href="?hl=en">EN</a>
     </div>
@@ -118,8 +140,8 @@ footer .sp{margin-left:auto}
   <!-- HERO -->
   <section class="hero">
     <div class="eyebrow" data-i18n="how_eyebrow">使用說明</div>
-    <h1 data-i18n-html="how_hero">一張地圖,<br>看見全世界正在上演的<em>音樂劇</em>。</h1>
-    <p class="lede" data-i18n="how_lede">免登入就能探索此刻全球上演的每一齣——百老匯、倫敦西區、各國巡演。登入之後,把你看過的都記成一本觀劇護照,分享出去。</p>
+    <h1 data-i18n-html="how_hero">一張地圖，<br>看見全世界正在上演的<em>音樂劇</em>。</h1>
+    <p class="lede" data-i18n="how_lede">免登入就能探索此刻全球正在上演的音樂劇——百老匯、倫敦西區、各國巡演。登入之後，把你看過的都記成一本觀劇護照，分享出去。</p>
     <div class="cta-row">
       <a class="btn btn-primary" href="index.html" data-i18n="how_cta_map">探索演出地圖</a>
       <a class="btn btn-ghost" href="me.html" data-i18n="how_cta_me">建立我的觀劇護照</a>
@@ -129,75 +151,71 @@ footer .sp{margin-left:auto}
   <hr class="rule" />
 
   <!-- PART 1: MAP -->
-  <div class="part"><span class="pno serif">01</span><h2 data-i18n="how_p1_h">探索,不必註冊</h2></div>
-  <p class="part-lede" data-i18n="how_p1_lede">打開地圖,全球此刻正在上演的音樂劇一次看盡。想看哪一齣,直接連到官網訂票。</p>
+  <div class="part"><span class="pno serif">01</span><h2 data-i18n="how_p1_h">探索，不必註冊</h2></div>
+  <p class="part-lede" data-i18n="how_p1_lede">打開地圖，全球此刻正在上演的音樂劇一次看盡。想看哪一齣，直接連過去訂票。</p>
 
   <div class="row">
-    <div class="fig"><img src="assets/guide/map.png" alt="MusicalMap 世界地圖:每座城市一個標記,圓越大代表同時在演的劇越多" loading="lazy" /></div>
+    <div class="fig"><img src="assets/guide/map.webp" width="1600" height="1336" alt="MusicalMap 主地圖：各劇海報散布在地圖上，靠近的聚成數字圓圈，底部有月份時間軸" loading="lazy" decoding="async" /></div>
     <div class="copy">
       <div class="n serif" data-i18n="how_a1_n">在地圖上</div>
-      <h3 data-i18n="how_a1_h">每個標記,都是一座正在上演的城市</h3>
-      <p data-i18n="how_a1_p">圓越大,同時在演的劇越多。點一座城市,看那裡有哪些劇;點一齣劇,看檔期、劇院、海報與簡介。</p>
-      <div class="tags">
-        <span class="tag resident" data-i18n="how_a1_t1">藍　長期駐演</span>
-        <span class="tag tour" data-i18n="how_a1_t2">紅　巡演</span>
-      </div>
+      <h3 data-i18n="how_a1_h">每張海報，都是一齣正在上演的劇</h3>
+      <p data-i18n="how_a1_p">地圖上的標記就是各劇的海報，靠近的會聚成一顆數字圓圈——數字是那一帶正在演的場數。點一張海報，看檔期、劇院與售票連結。</p>
     </div>
   </div>
 
   <div class="row flip">
-    <div class="fig"><img src="assets/guide/wall.png" alt="音樂劇海報牆:歌劇魅影、悲慘世界、西貢小姐等真實海報" loading="lazy" /></div>
+    <div class="fig"><img src="assets/guide/popup.webp" width="1328" height="764" alt="劇目視窗：Wicked 在 Gershwin Theatre 長期上演，附購票連結，標題連到官方網站" loading="lazy" decoding="async" /></div>
     <div class="copy">
       <div class="n serif" data-i18n="how_a2_n">一鍵訂票</div>
-      <h3 data-i18n="how_a2_h">看到喜歡的,直接過去訂</h3>
-      <p data-i18n="how_a2_p">每一齣都附官方網站與售票連結。我們不賣票、不抽成——只把你帶到對的地方。</p>
+      <h3 data-i18n="how_a2_h">看到喜歡的，直接過去訂</h3>
+      <p data-i18n="how_a2_p">每一齣都附售票連結，多數還有官方網站。我們不賣票——只把你帶到對的地方。</p>
     </div>
   </div>
 
   <!-- BRIDGE -->
-  <div class="bridge"><p class="serif" data-i18n="how_bridge">看過的那些,別讓它們只留在記憶裡。</p></div>
+  <div class="bridge"><p class="serif" data-i18n="how_bridge">看過的那些，別讓它們只留在記憶裡。</p></div>
 
   <hr class="rule" />
 
   <!-- PART 2: MY MUSICALS -->
   <div class="part"><span class="pno serif">02</span><h2 data-i18n="how_p2_h">記下你看過的每一齣</h2></div>
-  <p class="part-lede" data-i18n="how_p2_lede">登入之後,你看過的劇會長成一面海報牆、一本蓋章護照,還有你的觀劇統計。全部自動生成。</p>
+  <p class="part-lede" data-i18n="how_p2_lede">登入之後，你看過的劇會長成一面海報牆、一本蓋章護照，還有你的觀劇統計。全部自動生成。</p>
 
   <div class="row">
-    <div class="fig paper"><img src="assets/guide/passport.png" alt="觀劇護照:台灣的四個蓋章戳記,像護照的入境章" loading="lazy" /></div>
+    <div class="fig"><img src="assets/guide/form.webp" width="1120" height="516" alt="記錄表單：輸入「歌劇魅影」，自動找到 The Phantom of the Opera 與海報、演出城市" loading="lazy" decoding="async" /></div>
     <div class="copy">
       <div class="n serif" data-i18n="how_b1_n">加入一齣</div>
-      <h3 data-i18n="how_b1_h">搜劇名,其餘自動帶入</h3>
-      <p data-i18n="how_b1_p">中英文搜尋都行,劇院、城市、海報自動補上。填看劇的日期、評分、座位、心得——只記得年份也沒關係。每看一場,護照上就多一個章。</p>
+      <h3 data-i18n="how_b1_h">搜劇名，其餘自動帶入</h3>
+      <p data-i18n="how_b1_p">中英文搜尋都行，劇院、城市、海報自動補上。填看劇的日期、評分、座位、心得——只記得年份也沒關係。每看一場，護照上就多一個章。</p>
     </div>
   </div>
 
   <div class="row flip">
-    <div class="fig"><img src="assets/guide/stats.png" alt="觀劇統計:最常看的劇、去過的國家與城市、各年各月分布" loading="lazy" /></div>
+    <div class="fig"><img src="assets/guide/stats.webp" width="1600" height="1299" alt="觀劇統計：最常看的劇、最常去的國家城市與劇院、各年各月各星期的觀劇分布" loading="lazy" decoding="async" /></div>
     <div class="copy">
       <div class="n serif" data-i18n="how_b2_n">你的觀劇統計</div>
-      <h3 data-i18n="how_b2_h">看久了,會浮現一個輪廓</h3>
-      <p data-i18n="how_b2_p">最常看的劇、去過的城市與國家、各年各月的觀劇分布——不用自己算,一目了然你是什麼樣的劇迷。</p>
+      <h3 data-i18n="how_b2_h">看久了，會浮現一個輪廓</h3>
+      <p data-i18n="how_b2_p">最常看的劇、去過的城市與國家、各年各月的觀劇分布——不用自己算，一眼看出你是什麼樣的劇迷。</p>
     </div>
   </div>
 
   <div class="row">
     <div class="copy">
       <div class="n serif" data-i18n="how_b3_n">分享出去</div>
-      <h3 data-i18n="how_b3_h">你的專屬頁,一個網址就能分享</h3>
-      <p data-i18n="how_b3_p">設一個網址名稱,就有一個公開頁能傳給朋友。票價、座位要不要公開由你決定;筆記永遠只有你看得到。</p>
+      <h3 data-i18n="how_b3_h">你的專屬頁，一個網址就能分享</h3>
+      <p data-i18n="how_b3_p">設一個網址名稱，就有一個公開頁能傳給朋友。票價、座位要不要公開由你決定；筆記永遠只有你看得到。</p>
     </div>
-    <div class="copy" style="border-left:1px solid var(--line);padding-left:44px">
+    <div class="copy divided">
       <div class="n serif" data-i18n="how_b4_n">登入很單純</div>
-      <h3 data-i18n="how_b4_h">用 Google 登入,跨裝置同步</h3>
-      <p data-i18n="how_b4_p">我們只讀你的名稱與 email,不會代你張貼任何內容。你的收藏存在帳號裡,換手機、換電腦都在。</p>
+      <h3 data-i18n="how_b4_h">用 Google 登入，跨裝置同步</h3>
+      <p data-i18n="how_b4_p">我們只讀你的名稱與 email，不會代你張貼任何內容。你的收藏存在帳號裡，換手機、換電腦都在。</p>
     </div>
   </div>
 
   <!-- FINAL -->
   <div class="final">
     <h2 data-i18n="how_final_h">從哪裡開始都可以</h2>
-    <p data-i18n="how_final_p">先逛地圖找靈感,或直接記下你看過的第一齣。</p>
+    <p data-i18n="how_final_p">先逛地圖找靈感，或直接記下你看過的第一齣。</p>
     <div class="cta-row" style="justify-content:center">
       <a class="btn btn-primary" href="me.html" data-i18n="how_final_cta">建立我的觀劇護照</a>
       <a class="btn btn-ghost" href="index.html" data-i18n="how_final_cta2">先探索地圖</a>
@@ -206,7 +224,7 @@ footer .sp{margin-left:auto}
 </div>
 
 <footer><div class="wrap" style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;width:100%">
-  <span data-i18n="how_footer">MusicalMap — 全球音樂劇即時地圖,與你的觀劇護照。</span>
+  <span data-i18n="how_footer">MusicalMap — 全球音樂劇即時地圖，與你的觀劇護照。</span>
   <span class="sp"></span>
   <a href="index.html" data-i18n="how_footer_link">回到地圖</a>
   <a href="me.html" data-i18n="how_nav_start">我的音樂劇</a>
