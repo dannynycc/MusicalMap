@@ -328,7 +328,7 @@
       how_a1_n: 'On the map', how_a1_h: 'Every poster on the map is a show playing now', how_a1_p: 'Markers are the musicals’ own posters; neighbouring ones gather into a numbered circle — that’s how many are playing around there. Tap a poster for its dates, theatre and ticket links.',
       how_a1_p2: 'Drag the month timeline at the bottom to any upcoming month to see what’s playing then; press ▶ to play month by month and watch tours move between cities.',
       how_a2_n: 'One tap to tickets', how_a2_h: 'Be in the room where it happens', how_a2_p: 'Every show comes with a ticket link, and most have their official site too. We don’t sell tickets — we just point you to the right place.',
-      how_bridge: 'Don’t leave them all alone in the moonlight — stamp them in.',
+      how_bridge: 'Don’t leave memories all alone in the moonlight — stamp them in.',
       how_p2_h: 'Keep every show you’ve seen', how_p2_lede: 'Once you sign in, your shows grow into a poster wall, a stamped passport and your own viewing stats. All automatic.',
       how_b0_n: 'Your poster wall', how_b0_h: 'What you’ve seen, hung on a wall', how_b0_p: 'Every musical you add hangs its poster on the wall; mark your favourites with a ♥. Poster wall, passport, list — three views of the same collection.',
       how_b1_n: 'Add a musical', how_b1_h: 'Search the title, the rest fills itself in', how_b1_p: 'Search in English or Chinese; theatre, city and poster fill in automatically. Add the date, rating, seat and notes — just the year is fine. Every show you log adds a stamp to your passport.',

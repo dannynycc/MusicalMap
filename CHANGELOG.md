@@ -11,6 +11,10 @@
 
 ---
 
+## [v1.22.1] - 2026-07-03 15:07
+### 文案 — 英文 bridge 句採使用者版本
+- how_bridge:「Don’t leave them…」→「Don’t leave **memories** all alone in the moonlight — stamp them in.」——them 原無明確先行詞,memories 讓句子自立且直接點題 Cats〈Memory〉原詞。
+
 ## [v1.22.0] - 2026-07-03 15:03
 ### 新功能 — guide 截圖三語各自產製 + 海報牆主視覺 + 英文歌詞彩蛋(使用者指示)
 - **截圖分語言**:原本 assets/guide/*.webp 只有繁中一套、三語共用(使用者抓到)。改為 `assets/guide/{zh-hant,zh-hans,en}/` 三套 ×5 張(map/popup/form/stats/wall),全部用去 emoji 後的最新 UI 重截(playwright:美東視角地圖含英文版「Jul 2026」時間列、Wicked popup、phantom/歌劇魅影搜尋表單、統計卡、海報牆);guide 依 `MM_HL` 動態載對應語言,靜態預設繁中(SEO/no-JS)。產製腳本入 repo(`build/gen_guide_shots.cjs`+`guide_shots_to_webp.py`)。
