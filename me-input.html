@@ -499,6 +499,10 @@ function buildManualDB(){
 const CUR_INFO={TWD:{sym:'NT$',name:'新台幣'},USD:{sym:'$',name:'美元'},GBP:{sym:'£',name:'英鎊'},EUR:{sym:'€',name:'歐元'},JPY:{sym:'¥',name:'日圓'},KRW:{sym:'₩',name:'韓元'},CNY:{sym:'¥',name:'人民幣'},HKD:{sym:'HK$',name:'港幣'},AUD:{sym:'A$',name:'澳元'},CAD:{sym:'C$',name:'加元'},SGD:{sym:'S$',name:'星幣'},CHF:{sym:'CHF',name:'瑞士法郎'},SEK:{sym:'kr',name:'瑞典克朗'},NOK:{sym:'kr',name:'挪威克朗'},DKK:{sym:'kr',name:'丹麥克朗'},CZK:{sym:'Kč',name:'捷克克朗'},HUF:{sym:'Ft',name:'匈牙利福林'},PLN:{sym:'zł',name:'波蘭茲羅提'}};
 const CUR_LIST=Object.keys(CUR_INFO);
 const curSym=c=>(CUR_INFO[c]&&CUR_INFO[c].sym)||c||'';
+// 貨幣名稱多語:原本只有繁中→英文/簡中使用者在貨幣選單看到繁中名(i18n 缺口)。
+const CUR_EN={TWD:'New Taiwan Dollar',USD:'US Dollar',GBP:'British Pound',EUR:'Euro',JPY:'Japanese Yen',KRW:'Korean Won',CNY:'Chinese Yuan',HKD:'Hong Kong Dollar',AUD:'Australian Dollar',CAD:'Canadian Dollar',SGD:'Singapore Dollar',CHF:'Swiss Franc',SEK:'Swedish Krona',NOK:'Norwegian Krone',DKK:'Danish Krone',CZK:'Czech Koruna',HUF:'Hungarian Forint',PLN:'Polish Zloty'};
+const CUR_SC={TWD:'新台币',GBP:'英镑',JPY:'日元',KRW:'韩元',CNY:'人民币',HKD:'港币',DKK:'丹麦克朗',PLN:'波兰兹罗提'};   // 與繁中不同的簡中名(其餘同繁中)
+function curName(c){if(EN_UI)return CUR_EN[c]||c;if(window.MM_HL==='zh-hans')return CUR_SC[c]||(CUR_INFO[c]&&CUR_INFO[c].name)||c;return (CUR_INFO[c]&&CUR_INFO[c].name)||c;}
 // 正規化：小寫、去重音、臺→台、只留字母數字與 CJK（讓「台中歌劇院」對得上「臺中國家歌劇院大劇院」）
 function cnorm(s){return (s||'').toLowerCase().normalize('NFKD').replace(/[̀-ͯ]/g,'').replace(/臺/g,'台').replace(/灣/g,'湾').replace(/[^\p{L}\p{N}]/gu,'');}
 // 比對分數：完全相同3、包含2、字元為子序列1、不中0（子序列讓少打中間字也找得到）
@@ -598,7 +602,7 @@ function manualAdd(title,seed,onBack){
     if(ci)ci.value=code;if(sy)sy.textContent=curSym(code);}
   setupCombo(document.getElementById('curInput'),document.getElementById('curPanel'),()=>CUR_LIST,
     (code)=>{curManual=true;setCurrency(code,false);},
-    {showAllOnFocus:true, fmt:c=>`${curSym(c)}　${c}　${CUR_INFO[c].name}`, toInput:c=>c,
+    {showAllOnFocus:true, fmt:c=>`${curSym(c)}　${c}　${curName(c)}`, toInput:c=>c,
      onBlur:()=>{const ci=document.getElementById('curInput');if(ci)ci.value=draft.cur||'';}});
   ['seat','price','note','url'].forEach(bindField);
   wirePosterField();   // method 2：自訂海報網址
@@ -742,7 +746,7 @@ function renderDetail(){
     show(draft.cur);
     if(ci)setupCombo(ci,document.getElementById('curPanel'),()=>CUR_LIST,
       (code)=>{draft.cur=code;show(code);},
-      {showAllOnFocus:true,fmt:c=>`${curSym(c)}　${c}　${CUR_INFO[c].name}`,toInput:c=>c,onBlur:()=>show(draft.cur)});})();
+      {showAllOnFocus:true,fmt:c=>`${curSym(c)}　${c}　${curName(c)}`,toInput:c=>c,onBlur:()=>show(draft.cur)});})();
   // details
   document.getElementById('more').onclick=function(){const l2=document.getElementById('l2');const opening=l2.hidden;l2.hidden=!opening;this.textContent=opening?T('disclose_close'):T('disclose_open');if(opening)buildRating();};
   ['seat','price','note','url'].forEach(bindField);
