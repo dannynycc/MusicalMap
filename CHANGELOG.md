@@ -11,6 +11,13 @@
 
 ---
 
+## [v1.24.0] - 2026-07-03 15:48
+### 新功能 — 場館官方英文名補齊第一批(38 館;agent 官方來源逐一查證)
+- 現行檔期引用最多的 40 個缺英文名場館:agent 逐一查官網/維基/官方售票頁,23 高信心+15 中信心採用、**2 筆查無官方英文名誠實留空不編造**(包河凤凰剧院/星空间28号);草稿含來源網址存 `data/_venue_en_draft.json` 供追溯。
+- 合併進區域對照檔:`cn_venues.json` +28 新條目、+10 補既有空 en(诸暨西施/衢州保利等其實早有條目但 en=""——catalog 沒英文的另一半根因);`tw_venues.json` +2(臺北國家戲劇院=National Theater、城市舞台=Metropolitan Hall);`jp_venues.json` +1(Pia Arena MM)。
+- 重產 venues_catalog:實測 38 館 name 皆為「English 原文」;全 catalog 缺英文名 227→190(剩餘多為引用少場館+俄/希臘,後續批次)。SYNC_VER 4→5(catalog 顯示資料更新)。
+- 防呆備註採納:保利上海城市剧院=Shanghai City Theatre(≠上海保利大劇院);臺北國家戲劇院官方英文=National Theater(NTCH 戲劇廳);城市舞台英文不含「藝文推廣處」機關名。
+
 ## [v1.23.1] - 2026-07-03 15:43
 ### 修正 — guide 移除「標最愛 ♥」不實文案(使用者抓到)
 - 「最愛的標上 ♥」寫的是**不存在的功能**:♥ 只在 demo 範例資料上渲染,真實使用者無處可標(輸入表單無此欄、sightings 表無此欄、同步一律 fav:false)。文案與 alt 移除該句(三語)。
