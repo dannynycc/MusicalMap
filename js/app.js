@@ -586,6 +586,10 @@ function render() {
       .bindPopup(popupHtml(s), {
         maxWidth: Math.min(720, window.innerWidth - 40),  // never wider than the screen
         className: "mm-popup",
+        // 手機:點卡片/地圖不關閉(只用 × 關)——原本 closeOnClick 預設 true,手機上一觸就消失、看不到售票資訊。
+        // autoClose 保留(點別的 marker 會換卡);autoPanPadding 讓超框的卡自動平移進視野。
+        closeOnClick: false,
+        autoPanPadding: [12, 12],
       })
       .bindTooltip(tooltipHtml(s), { direction: "top", offset: [0, -68], className: "mm-tip", opacity: 1 });
     // small card never coexists with the big card

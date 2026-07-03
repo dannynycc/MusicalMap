@@ -449,4 +449,11 @@ body:not(.ready) #count { visibility: hidden; }
   #filterbar { padding: 6px 12px 3px; }
   .nav-cta { font-size: 13px; padding: 7px 12px; }
   /* 360px(Galaxy 級)窄機仍要塞下 品牌+繁简EN+CTA:上面全部收緊後總寬 ~310px */
+  /* ── 手機版 popup ──:桌面是「海報 340px 高橫排」,手機短地圖框(58%)裝不下→改直式:
+     海報在上(限高)、內容在下、整卡限高可上下捲動,避免超框(2026-07-03 使用者回報) */
+  .popup { flex-direction: column; }
+  .pop-poster { height: auto; width: 100%; max-width: 100%; max-height: 26vh; border-radius: 14px 14px 0 0; }
+  .pop-body { width: 100% !important; align-self: stretch; padding: 13px 15px; }
+  .mm-popup .leaflet-popup-content { max-height: 64vh; overflow-y: auto; -webkit-overflow-scrolling: touch; overscroll-behavior: contain; }
+  .p-title { font-size: 17px; }
 }

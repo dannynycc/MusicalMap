@@ -11,6 +11,12 @@
 
 ---
 
+## [v1.31.0] - 2026-07-03 22:24
+### 修正 — 手機地圖 popup 兩個 bug(使用者實機回報)
+- **Bug 1 超框**:桌面 popup 是「海報 340px 高橫排卡」,手機短地圖框(58%)裝不下→超出畫面、UI 差。修:手機版(≤680px)改**直式**——海報在上(限高 26vh)、內容在下、整卡 `max-height:64vh` + `overflow-y:auto` 可上下捲;pop-body inline 寬度用 `100%!important` 蓋掉。實測 fitsScreen ✓、截圖確認完整顯示。
+- **Bug 2 觸碰消失**:一觸卡片就關閉→看不到售票資訊。根因=Leaflet popup `closeOnClick` 預設 true(點地圖/卡片就關)。修:bindPopup 加 `closeOnClick:false`——只有 × 鈕或點別的 marker 才換卡,觸碰卡片內容不再消失;加 `autoPanPadding` 讓超框卡自動平移進視野。
+- 驗證:注入 popup DOM 量電腦 computed style(column/poster 172px/content overflow auto/fitsScreen true) + iPhone 12 截圖確認直式完整;服務端 JS 已含 closeOnClick:false。
+
 ## [v1.30.2] - 2026-07-03 21:31
 ### 修正 — 功能完整度 R11:城邦地名重複(新加坡, 新加坡)
 - 城邦(新加坡/香港/澳門等)city===country 時,首頁 popup/tooltip/側欄 + me/u 卡片/詳情都顯示「新加坡, 新加坡」重複。加 `cityCountry()` helper(翻譯後比對,相等只顯示一次),套 app.js 3 處+me.html 2 處+u-view.js 2 處。實測 popup 顯示單一「新加坡」、全頁無殘留、零 error。影響現行 4 齣新加坡場次。
