@@ -11,6 +11,12 @@
 
 ---
 
+## [v1.30.0] - 2026-07-03 21:09
+### 新功能 — 刪除帳號(high-level 一級缺口:GDPR 被遺忘權+基本信任)
+- **背景**:高階檢查發現使用者用 Google 登入交了資料,卻**無法刪除自己的帳號**——GDPR「被遺忘權」硬要求+要登入的產品該有的退出機制,是切正式域名前的紅線。
+- **前端**(已上線):帳號設定 modal 加「危險操作」區+「刪除我的帳號」按鈕(紅框、需輸入 username 二次確認防誤刪)→呼叫 `delete_my_account` RPC→登出+清本機+回首頁。三語(簡中 OpenCC 自動轉),零 error。
+- **⚠️ migration 待執行**:`supabase/add_delete_account.sql` 需在 Supabase SQL editor 貼上執行,按鈕才會真的生效(未執行前點刪除會顯示「刪除失敗」)。RPC 為 SECURITY DEFINER 但只刪 auth.uid() 本人:sightings/profiles/handle_aliases(cascade)+ venues.created_by 設 null(保留社群劇院)+ auth.users。
+
 ## [v1.29.13] - 2026-07-03 21:03
 ### 修正 — 隱私/安全 R7:公開頁自訂海報可被當追蹤信標(high-level 檢查延伸)
 - **根因**:公開頁 u.html 的自訂海報主圖走 wsrv 代理(訪客 IP 不外洩,正確),但 `posterFull` 保留了**原始未代理 URL**——proxy 失敗時 onerror 會讓「訪客」瀏覽器直連海報主機、點圖也開原始 URL。攻擊情境:某人拿自己的公開頁當追蹤信標(設惡意海報 URL+讓 wsrv 失敗)→蒐集所有瀏覽者 IP,牴觸本站「不追蹤」立場。主圖也缺 referrerpolicy(洩漏 profile URL 給海報主機)。

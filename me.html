@@ -698,6 +698,13 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
 .share-actions .btn-ghost{background:none;border:1px solid var(--hair2,rgba(0,0,0,.2));color:var(--ink2,#666)}
 .share-actions .btn-gold{background:var(--gold,#c9a85c);color:#1a1407}
 .share-actions .btn-gold[disabled]{opacity:.5;cursor:not-allowed}
+/* 危險操作區:刪除帳號(邊界分隔、紅字警示、非破壞性配色避免誤點) */
+.acct-danger{margin-top:22px;padding-top:16px;border-top:1px solid var(--hair2,rgba(0,0,0,.12))}
+.acct-danger-h{font-size:12px;font-weight:800;letter-spacing:.04em;color:#b3261e;margin-bottom:6px}
+.acct-danger-p{font-size:12.5px;color:var(--ink2,#666);margin:0 0 12px;line-height:1.5}
+.btn-danger{background:none;border:1px solid #d9534f;color:#c0392b;font-weight:600;padding:8px 16px;border-radius:999px;cursor:pointer;font-family:inherit;font-size:13.5px}
+.btn-danger:hover{background:#d9534f;color:#fff}
+.btn-danger[disabled]{opacity:.5;cursor:progress}
 .handle-chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:9px;align-items:center}
 .handle-chips[hidden]{display:none}
 .chips-tip{font-size:12px;color:var(--ink3,#999)}
@@ -775,6 +782,11 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
     <div class="share-actions">
       <button type="button" class="btn-ghost" id="acctCancel" data-i18n="cancel">取消</button>
       <button type="button" class="btn-gold" id="acctSave" data-i18n="save">儲存</button>
+    </div>
+    <div class="acct-danger">
+      <div class="acct-danger-h" data-i18n="del_zone">危險操作</div>
+      <p class="acct-danger-p" data-i18n="del_desc">刪除帳號會永久移除你的所有觀劇紀錄、公開頁與網址名稱，無法復原。</p>
+      <button type="button" class="btn-danger" id="acctDelete" data-i18n="del_account">刪除我的帳號</button>
     </div>
   </div>
 </div>
@@ -1021,6 +1033,22 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
   });
   $('openAcct').addEventListener('click',e=>{e.preventDefault();openAcct();});
   $('acctSave').addEventListener('click',acctSave);
+  // 刪除帳號:不可逆→要求輸入 username 二次確認;RPC delete_my_account 級聯刪 sightings/profile/handle_aliases + auth.users
+  $('acctDelete').addEventListener('click',async()=>{
+    const h=(CUR.handle||'').trim();
+    const typed=prompt(h?TN('del_confirm_prompt',{handle:h}):T('del_confirm_plain'));
+    if(typed==null)return;                                            // 使用者取消
+    if(h && typed.trim().toLowerCase()!==h.toLowerCase()){alert(T('del_confirm_mismatch'));return;}
+    const btn=$('acctDelete');btn.disabled=true;btn.textContent=T('del_deleting');
+    try{
+      const {error}=await sb().rpc('delete_my_account');
+      if(error)throw error;
+      try{await sb().auth.signOut();}catch(e){}
+      clearLocal();
+      alert(T('del_done'));
+      location.href='index.html';
+    }catch(e){console.error('delete account',e);btn.disabled=false;btn.textContent=T('del_account');alert(T('del_fail')+'\n'+((e&&e.message)||e));}
+  });
   $('acctCancel').addEventListener('click',closeAcct);
   $('acctX').addEventListener('click',closeAcct);
   $('acctBd').addEventListener('click',closeAcct);
