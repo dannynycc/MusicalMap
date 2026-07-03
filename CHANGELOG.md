@@ -11,6 +11,12 @@
 
 ---
 
+## [v1.19.1] - 2026-07-03 12:30
+### 文案 — 「劇名/shows」統一改「音樂劇名/musicals」(使用者指示)
+- 首頁搜尋欄三語:搜尋音樂劇名、城市、劇院… / 搜寻音乐剧名… / Search musicals, cities, theatres…(gen_site + i18n.js `search_ph`,en 順帶 venues→theatres 統一)。
+- guide:「搜劇名」→「搜音樂劇名」、en「Add a show」→「Add a musical」;輸入端搜尋框「打中文或英文劇名」→「…音樂劇名」。
+- 全 repo 掃過其餘「劇名/shows」:My Musicals 內部語境(看過場次/{n} shows)不改,theatres 頁搜劇院不涉及。
+
 ## [v1.19.0] - 2026-07-03 12:25
 ### 新功能 — guide nav 補齊對齊 + 簡中字型/用語修正(使用者三點回饋)
 - **guide.html nav 補齊**:加上 隱私權政策/使用條款/使用說明,與首頁/法務頁完全同項目同順序;header 幾何比照首頁(58px 滿版、連結 14px/600、CTA 9×16 墨丸、手機 52px);playwright 實測 index/guide/privacy 三頁 nav 各元素 x 座標完全一致(745/860/930/1014/1084/1154),跨頁切換上排零跳動。

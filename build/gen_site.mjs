@@ -105,14 +105,14 @@ function page(variant, shows) {
   const v = VARIANTS[variant];
   const t = variant === "en"
     ? { tagline: "Musicals playing around the world right now", theatres: "🎭 All theatres", mine: "My Musicals", guide: "Guide",
-        maphome: "Map home", search: "Search shows, cities, theatres…", privacy: "Privacy", terms: "Terms",
+        maphome: "Map home", search: "Search musicals, cities, theatres…", privacy: "Privacy", terms: "Terms",
         h1: "MusicalMap — live world map of musicals playing now", listhdr: "Musicals playing now", filterLabel: "Category" }
     : variant === "zh-hans"
     ? { tagline: "此刻全球正在上演的音乐剧", theatres: "🎭 所有剧院", mine: "我的音乐剧", guide: "使用说明",
-        maphome: "地图首页", search: "搜寻剧名、城市、剧院…", privacy: "隐私权政策", terms: "使用条款",
+        maphome: "地图首页", search: "搜寻音乐剧名、城市、剧院…", privacy: "隐私权政策", terms: "使用条款",
         h1: "MusicalMap — 全球此刻正在上演的音乐剧即时地图", listhdr: "正在上演的音乐剧", filterLabel: "分类" }
     : { tagline: "此刻全球正在上演的音樂劇", theatres: "🎭 所有劇院", mine: "我的音樂劇", guide: "使用說明",
-        maphome: "地圖首頁", search: "搜尋劇名、城市、劇院…", privacy: "隱私權政策", terms: "使用條款",
+        maphome: "地圖首頁", search: "搜尋音樂劇名、城市、劇院…", privacy: "隱私權政策", terms: "使用條款",
         h1: "MusicalMap — 全球此刻正在上演的音樂劇即時地圖", listhdr: "正在上演的音樂劇", filterLabel: "分類" };
   // zh-hans pages load OpenCC (small t2cn dict) so i18n can simplify the UI chrome strings.
   const openccTag = variant === "zh-hans"
