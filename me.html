@@ -1092,7 +1092,9 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
       if(error)throw error;
       const json=JSON.stringify((data||[]).map(sightingToEntry));
       const prev=localStorage.getItem('mm-log')||'';
-      localStorage.setItem('mm-log',json);sessionStorage.setItem('mev2_synced',syncedKey(uid));
+      // setItem 可能 QuotaExceeded(收藏極多/瀏覽器限額):雲端已成功抓到,渲染仍可用快取,只是無法離線快取→記 log 不擋
+      try{localStorage.setItem('mm-log',json);}catch(qe){console.warn('mm-log cache quota',qe);}
+      sessionStorage.setItem('mev2_synced',syncedKey(uid));
       if(location.hash){try{history.replaceState(null,'',location.pathname+location.search);}catch(e){}}  // 去掉 OAuth 轉址的 #token，避免 reload 重新處理→迴圈
       const rk='mev2_reloaded_'+syncedKey(uid);
       if(prev!==json && !sessionStorage.getItem(rk)){sessionStorage.setItem(rk,'1');location.reload();return;}  // 最多重載一次→渲染雲端資料；防迴圈

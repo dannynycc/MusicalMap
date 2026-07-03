@@ -385,6 +385,11 @@ function norm(s){return (s||'').toLowerCase().normalize('NFKD').replace(/[̀-ͯ]
 function yearOf(d){return d?parseInt(d.slice(0,4),10):null;}
 function esc(s){return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');}
 function hesc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}  // HTML 轉義（座位/心得是使用者輸入）
+// 票價欄淨化:只留數字+單一小數點(去字母/負號/多餘點/超長)——否則 +price 得 NaN→靜默存 null、或存到負價
+function sanitizePrice(v){let s=String(v==null?'':v).replace(/[^\d.]/g,'');const i=s.indexOf('.');if(i>=0)s=s.slice(0,i+1)+s.slice(i+1).replace(/\./g,'');return s.slice(0,12);}
+// 通用欄位綁定:price 走淨化(即時回寫 input,使用者看到被擋掉的字元);其餘原樣
+function bindField(id){const el=document.getElementById(id);if(!el)return;
+  el.oninput=id==='price'?()=>{const c=sanitizePrice(el.value);if(c!==el.value)el.value=c;draft.price=c;}:()=>{draft[id]=el.value;};}
 
 /* ---------- 劇庫：從正式版 venues_catalog.json + shows.json 組裝（取代舊 catalog.js） ---------- */
 let CATALOG=[], INDEX=[], MM_READY=false;
@@ -588,7 +593,7 @@ function manualAdd(title,seed,onBack){
     (code)=>{curManual=true;setCurrency(code,false);},
     {showAllOnFocus:true, fmt:c=>`${curSym(c)}　${c}　${CUR_INFO[c].name}`, toInput:c=>c,
      onBlur:()=>{const ci=document.getElementById('curInput');if(ci)ci.value=draft.cur||'';}});
-  ['seat','price','note','url'].forEach(id=>{const el=document.getElementById(id);if(el)el.oninput=()=>{draft[id]=el.value;};});
+  ['seat','price','note','url'].forEach(bindField);
   wirePosterField();   // method 2：自訂海報網址
   const bk=document.getElementById('backToSearch2');if(bk)bk.onclick=onBack||(()=>startLog());
 }
@@ -731,7 +736,7 @@ function renderDetail(){
       {showAllOnFocus:true,fmt:c=>`${curSym(c)}　${c}　${CUR_INFO[c].name}`,toInput:c=>c,onBlur:()=>show(draft.cur)});})();
   // details
   document.getElementById('more').onclick=function(){const l2=document.getElementById('l2');const opening=l2.hidden;l2.hidden=!opening;this.textContent=opening?T('disclose_close'):T('disclose_open');if(opening)buildRating();};
-  ['seat','price','note','url'].forEach(id=>{const el=document.getElementById(id);if(el)el.oninput=()=>{draft[id]=el.value;};});
+  ['seat','price','note','url'].forEach(bindField);
   wirePosterField();   // method 2：自訂海報網址
   {const tm=document.getElementById('seenTime');if(tm){tm.value=(draft.time||'').slice(0,5);tm.onchange=()=>{draft.time=tm.value||'';};}}  // 時間
   if(draft.editIndex!=null){buildManualDB();   // 編輯：城市/劇院可改（重用手動表單的地理對映）

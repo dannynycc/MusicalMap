@@ -11,6 +11,12 @@
 
 ---
 
+## [v1.29.6] - 2026-07-03 19:49
+### 修正 — 資料儲存邊界:票價欄輸入淨化 + localStorage 配額防護(loop 體檢)
+- **票價欄無驗證**(`inputmode=decimal` 的文字框,非 type=number):可打字母/多小數點/負號→存 DB 時 `+price` 得 NaN 靜默存 null(使用者輸入消失)、或存成負價。加即時淨化 `sanitizePrice`(只留數字+單一小數點、去負號、上限 12 字),兩處價格欄綁定改走 `bindField`。playwright 實測 6 種惡意輸入(abc/-50/12.3.4/1e5/12abc34)全正確淨化。
+- **localStorage 配額防護**:me.html syncFromCloud 的 `setItem('mm-log')` 原無獨立 try(收藏極多時 QuotaExceeded→被外層當「讀取失敗」誤報)。改獨立 try/catch:雲端已抓到資料、渲染照常,僅無法離線快取,不擋流程、不誤報。
+- 全站 18 組回歸 0 error。
+
 ## [v1.29.5] - 2026-07-03 19:42
 ### 修正 — 320px 窄機溢出 + 超長字串容錯(loop 體檢)
 - **guide 在 320px(iPhone SE/小 Android)橫向溢出**:header 的 brand+繁简EN+「我的音樂劇」CTA 擠不下→CTA 頂出。加 ≤360px 規則(brand 15px/img 25px、hl-pick padding 收緊、CTA 12px)。實測 guide 三語 + index/me/about/privacy/terms/theatres/u 全數 320px 無溢出。
