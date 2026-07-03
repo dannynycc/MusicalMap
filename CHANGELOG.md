@@ -11,6 +11,11 @@
 
 ---
 
+## [v1.20.0] - 2026-07-03 13:15
+### 新功能 — 法務連結移到地圖 attribution 列(Google Maps 慣例;使用者採納建議)
+- 隱私/條款從頂部 nav 移除,改進地圖右下 attribution 列(`Leaflet | © Mapbox © OpenStreetMap, 隱私權 · 條款`;app.js `addAttribution`,i18n 三語 privacy_short/terms_short)。全螢幕地圖 app 無頁尾,這是 Google Maps/FR24 的標準位置;手機版原本 nav 藏掉法務連結,現在 attribution 列看得到。
+- 全站頂部 nav 精簡為:[繁简EN] 地圖首頁 · 使用說明 · [我的音樂劇],index/guide/privacy/terms 四處同步;法務頁互連與 guide/me/u 的法務連結留在各自 footer。
+
 ## [v1.19.3] - 2026-07-03 12:47
 ### 調整 — 簡中用語層補齊「每一個」簡中頁 + 我的音樂劇足跡(使用者兩點回饋)
 - **CN_FIX 補上主站首頁**:簡中首頁走 js/i18n.js(與 mm-strings 不同系統),原本只有 OpenCC 逐字轉;i18n.js 加同一套詞彙層(與 mm-strings 同步維護)。新增詞條:即时→实时、隐私权政策→隐私政策、范例→示例、示范资料→示例数据;gen_site 簡中 baked 文案(title/desc/h1「实时地图」、nav「隐私政策」)同步。

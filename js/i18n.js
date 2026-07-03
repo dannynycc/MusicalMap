@@ -17,6 +17,8 @@
       today_title: "回到本月",
       privacy: "隱私權政策",
       terms: "使用條款",
+      privacy_short: "隱私權",
+      terms_short: "條款",
       lang_toggle: "EN",            // label shows the OTHER language you can switch to
       map: "地圖",
       satellite: "衛星",
@@ -150,6 +152,8 @@
       today_title: "Back to this month",
       privacy: "Privacy",
       terms: "Terms",
+      privacy_short: "Privacy",
+      terms_short: "Terms",
       lang_toggle: "中",
       map: "Map",
       satellite: "Satellite",
