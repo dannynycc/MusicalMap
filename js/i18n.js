@@ -10,7 +10,7 @@
       tagline: "此刻全球正在上演的音樂劇",
       nav_theatres: "所有劇院",
       nav_mine: "我的音樂劇",
-      nav_guide: "使用說明",
+      nav_guide: "怎麼使用",
       search_ph: "搜尋音樂劇名、城市、劇院…",
       play_title: "自動播放時間軸（每月）",
       today: "本月",

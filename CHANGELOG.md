@@ -11,6 +11,13 @@
 
 ---
 
+## [v1.31.3] - 2026-07-03 22:49
+### 修正 — 功能完整度 R16:i18n.js 漏掉「使用說明→怎麼使用」改名(theatres nav 舊標籤)
+- **根因**:v1.26.0 把「使用說明」改「怎麼使用」只改了 mm-strings.js,漏了 i18n.js(另一套字典)。首頁 nav 因走 gen_site.mjs 烘焙值(無 data-i18n)沒中招,但 **theatres.html 用 i18n.js 的 `nav_guide` → 顯示舊的「使用說明」**,與全站不一致。
+- **修**:i18n.js `nav_guide` 使用說明→怎麼使用;theatres.html 靜態 fallback 同步。實測 theatres zh nav 顯示「地圖首頁·怎麼使用」✓。(英文/簡中經 i18n.js 的 Guide/OpenCC 自動轉,正確。)
+- 同輪驗證(皆正常):統計計算精準(星期分布無時區 bug、unique/cities/countries 全對)、8 頁英文模式無未翻譯殘留(除刻意的語言 pill 原生標籤)、display name 用 textContent 無 XSS、排序/時間軸/播放正確。
+- 已知小 gap(未修):theatres.html 僅 zh/en 兩語(用舊 i18n.js),無 zh-hans;次要工具頁,影響低。
+
 ## [v1.31.2] - 2026-07-03 22:37
 ### 修正 — 功能完整度 R14:handle 只有 -/_ 也能過(如 "---")
 - **根因**:handle 驗證只擋空字串+保留字+字元集,`norm("---")="---"` 非空、非保留字→通過→變成 /u.html?u=--- 這種無意義網址。DB CHECK `^[A-Za-z0-9_-]{1,30}$` 也只驗字元集,不要求含字母數字。實測 "---"/"___"/"-_-" 修前顯示「檢查中…」(=已通過格式)。
