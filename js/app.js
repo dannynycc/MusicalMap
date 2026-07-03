@@ -364,6 +364,28 @@ function posterStyle(show, w, h) {
   const t = thumb(show.image, w, h);
   return t ? `background-image:url('${cssUrl(t)}')` : "";
 }
+// 側欄縮圖延遲載入:原本 688 個劇目的 background-image 全部立即載(~100MB/首頁 load 21s)。
+// 改成先寫 data-bg,IntersectionObserver 在捲進視野附近才套 background-image。
+function posterLazyAttr(show, w, h) {
+  const t = thumb(show.image, w, h);
+  return t ? `data-bg="${cssUrl(t).replace(/"/g, "&quot;")}"` : "";
+}
+const bgIO = ("IntersectionObserver" in window)
+  ? new IntersectionObserver((ents, ob) => {
+      ents.forEach((e) => {
+        if (!e.isIntersecting) return;
+        const el = e.target, bg = el.getAttribute("data-bg");
+        if (bg) { el.style.backgroundImage = `url('${bg}')`; el.removeAttribute("data-bg"); }
+        ob.unobserve(el);
+      });
+    }, { rootMargin: "300px" })   // 提前 300px 開始載,捲到時已就緒
+  : null;
+function observeLazyThumbs(root) {
+  (root || document).querySelectorAll("[data-bg]").forEach((el) => {
+    if (bgIO) bgIO.observe(el);
+    else { const bg = el.getAttribute("data-bg"); el.style.backgroundImage = `url('${bg}')`; el.removeAttribute("data-bg"); }
+  });
+}
 function fallbackGlyph(show) {
   // shows with no poster (e.g. tour samples) get a music-note tile
   return show.image ? "" : `<span class="glyph">♪</span>`;
@@ -627,6 +649,7 @@ function render() {
         if (openKeys.has(k) || (items.length > 1 && !closedKeys.has(k))) li.classList.add("open");
         els.list.appendChild(li);
       });
+    observeLazyThumbs(els.list);   // 縮圖延遲載入:只載捲進視野的
   }
 
   const groups = new Set(shows.map((s) => s.group || s.title)).size;
@@ -684,7 +707,7 @@ function showGroupItem(items, parity) {
   // header poster = the canonical art: prefer a resident (Broadway/West End) production's
   // poster over tour/localized versions, so the big tile shows the classic key art.
   const imgShow = items.find((s) => s.end_rolling && s.image) || items.find((s) => s.image) || first;
-  const thumb = `<div class="thumb ${imgShow.image ? "" : "noimg"}" style="${posterStyle(imgShow, 124, 186)}">${fallbackGlyph(imgShow)}</div>`;
+  const thumb = `<div class="thumb ${imgShow.image ? "" : "noimg"}" ${posterLazyAttr(imgShow, 124, 186)}>${fallbackGlyph(imgShow)}</div>`;
 
   if (!multi) {
     li.innerHTML = `
@@ -712,7 +735,7 @@ function showGroupItem(items, parity) {
       <span class="chev">▾</span>
     </div>
     <div class="stops"><div class="stops-inner">${items.map((s) =>
-      `<div class="stop" data-id="${esc(s.id)}"><div class="stop-thumb ${s.image ? "" : "noimg"}" style="${posterStyle(s, 80, 120)}">${fallbackGlyph(s)}</div><div class="si">${locTrio(s)}</div><span class="chev-r">›</span></div>`).join("")}</div></div>`;
+      `<div class="stop" data-id="${esc(s.id)}"><div class="stop-thumb ${s.image ? "" : "noimg"}" ${posterLazyAttr(s, 80, 120)}>${fallbackGlyph(s)}</div><div class="si">${locTrio(s)}</div><span class="chev-r">›</span></div>`).join("")}</div></div>`;
 
   li.querySelector(".show-item").addEventListener("click", () => {
     const opening = !li.classList.contains("open");
