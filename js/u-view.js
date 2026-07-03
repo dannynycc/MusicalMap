@@ -153,7 +153,7 @@
       const fut = isFut(s.date); if (fut) c.classList.add('is-future');
       c.innerHTML = `<figure class="poster" style="margin:0${s.posterBg ? ';background:' + s.posterBg : ''}">
           <div class="skel"></div>
-          <img alt="${esc(s.title)} poster" loading="lazy" decoding="async" ${s.posterFit === 'contain' ? 'style="object-fit:contain;object-position:center"' : ''}/>
+          <img alt="${esc(s.title)} poster" loading="lazy" decoding="async" referrerpolicy="no-referrer" ${s.posterFit === 'contain' ? 'style="object-fit:contain;object-position:center"' : ''}/>
           <figcaption class="fallback"><span class="kick">A Musical</span><span class="ft">${esc(s.title)}</span><span class="fzh">${esc(s.zh)}</span><span class="rule"></span></figcaption>
           <div class="topfx"></div>
           ${fut ? `<div class="up-veil"></div><div class="up-ribbon">${esc(T('ribbon_upcoming'))}</div>` : ''}
@@ -496,7 +496,9 @@
       const prec = row.precision || precisionOf(row.seen_date);
       return {
         id: row.id, title: row.title || '?', zh: MS(ZH_BY_TITLE[k] || ''), prod: '', color: '#7c5cff',
-        poster: resolvePoster(row), posterFull: (row.poster_override && safeUrl(row.poster_override)) || resolvePoster(row), posterFit: 'cover', posterBg: null,
+        // 公開頁 posterFull 一律走代理(不留原始自訂 URL):否則 proxy 失敗的 onerror/點圖會讓「訪客」瀏覽器直連海報主機
+        // → 洩漏訪客 IP/Referer,可被拿來當追蹤信標(牴觸本站不追蹤立場)。owner 自己的 me.html 不受此限。
+        poster: resolvePoster(row), posterFull: resolvePoster(row), posterFit: 'cover', posterBg: null,
         date: partialDate(row.seen_date, prec), precision: prec, time: '',
         venue: row.venue || '', city: row.city || '', country: normCountry(row.country),
         lat: row.lat, lng: row.lng, seat: row.seat || '',

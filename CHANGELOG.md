@@ -11,6 +11,12 @@
 
 ---
 
+## [v1.29.13] - 2026-07-03 21:03
+### 修正 — 隱私/安全 R7:公開頁自訂海報可被當追蹤信標(high-level 檢查延伸)
+- **根因**:公開頁 u.html 的自訂海報主圖走 wsrv 代理(訪客 IP 不外洩,正確),但 `posterFull` 保留了**原始未代理 URL**——proxy 失敗時 onerror 會讓「訪客」瀏覽器直連海報主機、點圖也開原始 URL。攻擊情境:某人拿自己的公開頁當追蹤信標(設惡意海報 URL+讓 wsrv 失敗)→蒐集所有瀏覽者 IP,牴觸本站「不追蹤」立場。主圖也缺 referrerpolicy(洩漏 profile URL 給海報主機)。
+- **修**:u-view.js 的 posterFull 一律改走 resolvePoster(=proxyImg),公開頁**不再保留任何原始自訂 URL**(唯一使用點 L52 已經 proxyImg);主海報 img 補 `referrerpolicy="no-referrer"`。owner 自己的 me.html 不受影響(自己的 URL,無第三方風險)。實測 u.html 三語載入乾淨、無 raw override 洩漏點、零 error。
+- 註:owner 頁點圖看原圖的 full-res 在公開頁改為看 600px 代理圖(可接受;公開頁本就不該曝露原始 URL)。
+
 ## [v1.29.12] - 2026-07-03 20:54
 ### 修正 — 功能完整度 R6:guide 語言偏好不持久(唯一沒讀 mm_variant 的內容頁)
 - **根因**:about/me/privacy 都設 `MM_USE_LANG_PREF` 讀 localStorage `mm_variant`,唯獨 **guide.html 沒設**→英文使用者直開/收藏/被分享 guide.html(無 ?hl=)會被丟回中文(navigator 判定),與全站不一致。從 /en/ 首頁點 nav 因連結帶 ?hl=en 沒事,但脫離該路徑就露餡。
