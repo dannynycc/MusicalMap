@@ -670,7 +670,7 @@ function renderDetail(){
   sbody.innerHTML=`
     <button type="button" class="backbtn" id="backToSearch">${(draft.editIndex==null&&w.prods&&w.prods.length>1)?T('mi_back_pick_prod'):T('mi_back_search')}</button>
     <div class="confirm">
-      <img src="${p.img||''}" referrerpolicy="no-referrer" alt=""/>
+      <img src="${p.img||''}" referrerpolicy="no-referrer" alt="" onerror="this.style.visibility='hidden'"/>
       <div class="ci"><div class="en">${w.en}</div>${w.zh?`<div class="zh">${w.zh}</div>`:''}
         <div class="chips"><span class="chip"><b>${p.label||p.city}</b></span>
           ${p.venue?`<span class="chip"><b>${p.venue}</b></span>`:''}
@@ -802,7 +802,7 @@ function renderWall(justAdded){
   if(!LOG.length){empty.hidden=false;wall.hidden=true;wall.innerHTML='';persist();return;}
   empty.hidden=true;wall.hidden=false;
   wall.innerHTML=LOG.map((d,i)=>`<div class="lcard ${justAdded&&i===0?'justadded':''}">
-    <div class="pos">${d.p.img?`<img src="${d.p.img}" referrerpolicy="no-referrer" alt=""/>`:`<div class="posfall">${(d.w.en||'?').trim()[0]||'?'}</div>`}
+    <div class="pos">${d.p.img?`<img src="${d.p.img}" referrerpolicy="no-referrer" alt="" onerror="this.remove()"/>`:`<div class="posfall">${(d.w.en||'?').trim()[0]||'?'}</div>`}
       <div class="stamp-badge">${flag(d.p.country)}</div>
       <div class="lacts"><button class="ledit" data-i="${i}" aria-label="${T('edit')}">✎</button><button class="ldel" data-i="${i}" aria-label="${T('delete')}">✕</button></div></div>
     <div class="cap"><div class="en">${d.w.en}</div>${d.w.zh?`<div class="zh">${d.w.zh}</div>`:''}
@@ -823,7 +823,7 @@ function renderRecent(){
   const body=items.length
     ? `<div class="recent-h">${TN('recent_added',{n:items.length})}<span>${T('recent_added_sub')}</span></div>`+
       items.map((d,i)=>`<div class="recent-row">
-        <div class="rth">${d.p.img?`<img src="${d.p.img}" referrerpolicy="no-referrer" alt=""/>`:`<span>${(d.w.en||'?').trim()[0]||'?'}</span>`}</div>
+        <div class="rth">${d.p.img?`<img src="${d.p.img}" referrerpolicy="no-referrer" alt="" onerror="this.remove()"/>`:`<span>${(d.w.en||'?').trim()[0]||'?'}</span>`}</div>
         <div class="rmeta"><div class="rt">${PN(d.w)}</div><div class="rsub">${dateLabel(d)}${d.p.city?' · '+d.p.city:''}</div></div>
         <button class="rb" data-edit="${i}" aria-label="${T('edit')}">✎</button>
         <button class="rb" data-del="${i}" aria-label="${T('delete')}">✕</button>
@@ -862,7 +862,7 @@ function addedScreen(){
     <div class="batchdone"><div class="bd-h">${head}</div>
       <div class="bd-p">${T('batch_hint')}</div></div>
     <div class="recent">${items.map(d=>`<div class="recent-row">
-      <div class="rth">${d.p.img?`<img src="${d.p.img}" referrerpolicy="no-referrer" alt=""/>`:`<span>${(d.w.en||'?').trim()[0]||'?'}</span>`}</div>
+      <div class="rth">${d.p.img?`<img src="${d.p.img}" referrerpolicy="no-referrer" alt="" onerror="this.remove()"/>`:`<span>${(d.w.en||'?').trim()[0]||'?'}</span>`}</div>
       <div class="rmeta"><div class="rt">${PN(d.w)}</div>
         <div class="rsub">${d.date?dateLabel(d):T('date_later')}${d.p.city?' · '+hesc(d.p.city):''}${d.rating?' · '+'★'.repeat(d.rating):''}</div>
         ${(d.seat||d.price)?`<div class="rsub2">${[d.seat?TN('seat_label',{v:hesc(d.seat)}):'',d.price?TN('price_label',{v:curSym(d.cur)+hesc(d.price)}):''].filter(Boolean).join('　·　')}</div>`:''}

@@ -11,6 +11,12 @@
 
 ---
 
+## [v1.29.4] - 2026-07-03 19:36
+### 修正 — 圖片載入失敗 fallback 補完(loop 體檢)
+- **背景**:海報牆/詳情/popup 的 `<img>` 都有 onerror→優雅退回(色塊/文字),但**清單檢視縮圖 + 輸入端「確認/最近加入」縮圖(5 處)無 onerror**——自訂海報貼壞 URL(使用者可貼任意網址)時顯示破圖 icon。
+- 修:5 處縮圖加 `onerror`(me.html 清單 this.remove()、me-input 三處 this.remove()/visibility:hidden)→壞 URL 降級為容器底色,無破圖。playwright 實測:壞 URL 的清單縮圖 img 被移除(imgLeft:0)、海報牆退回文字 fallback、零錯誤。
+- 未動:地圖 marker/側欄縮圖用 CSS background-image(無法偵測載入失敗),但那些吃 catalog 官方 URL(可靠),非使用者自訂;風險低。全站 18 組回歸 0 error。
+
 ## [v1.29.3] - 2026-07-03 19:27
 ### 修正 — 行動裝置審計 R9:me.html 手機橫向溢出 + 觸控目標(loop 體檢)
 - **me.html 375px 橫向溢出**(scrollW 425>375,個人頁左右晃):header nav(語言/地圖首頁/使用說明/主題/分享/登出)擠不下→登出鈕頂出視窗。修:≤560px 隱藏兩個文字導航連結(比照首頁,footer 已有)、nav 允許 wrap、chips max-width 限制。實測 scrollW 375=375 無溢出。

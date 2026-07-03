@@ -366,7 +366,7 @@ function renderLog(){
   el.innerHTML=`<div class="logtable" role="table">
     <div class="lt-head" role="row"><span>${T('lt_show')}</span><span>${T('lt_city')}</span><span>${T('lt_date')}</span><span>${T('lt_rate')}</span></div>`+
     list.map(s=>`<button class="lt-row" data-id="${s.id}" role="row">
-      <span class="lt-show"><span class="lt-thumb">${s.poster?`<img src="${esc(s.poster)}" referrerpolicy="no-referrer" alt=""/>`:`<i>${esc((s.title||'?').trim()[0]||'?')}</i>`}</span>
+      <span class="lt-show"><span class="lt-thumb">${s.poster?`<img src="${esc(s.poster)}" referrerpolicy="no-referrer" alt="" onerror="this.remove()"/>`:`<i>${esc((s.title||'?').trim()[0]||'?')}</i>`}</span>
         <span class="lt-t"><b>${esc(s.title)}</b>${s.zh?`<i>${esc(s.zh)}</i>`:''}</span></span>
       <span class="lt-city">${s.city?esc(cityName(s.city)):'<span class="muted">—</span>'} ${s.country?(FLAG[s.country]||''):''}</span>
       <span class="lt-date">${fshort(s.date)||`<span class="muted">${T('lt_undated')}</span>`}</span>
