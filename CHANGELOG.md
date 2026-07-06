@@ -11,6 +11,14 @@
 
 ---
 
+## [v2.4.0] - 2026-07-06 12:08
+### 重大 — 託管切換完成:themusicalmap.com 改由 Cloudflare Pages 出貨(全流量進 Cloudflare,可完整監控)
+- 使用者在 Pages 專案掛 Custom domains(themusicalmap.com+www),DNS 由 CF 自動改 CNAME→musicalmap.pages.dev;切換空窗僅 ~15 秒(輪詢實測 12:06:33 522→12:06:49 200)。
+- Worker `GH_ORIGIN`→`https://musicalmap.pages.dev`(同家調貨;CI 雙部署保證與 GH 位元級一致)。
+- 驗收全過:主網域 16 路徑 200(Server: cloudflare)、www 200、舊 github.io 首頁+深層連結仍 301、my. 三情境(訪客 200/本人 cookie 200/不存在 404)、線上 playwright e2e 七項 PASS、主站截圖 render 正常。
+- **GitHub Pages 保留原地當熱備援**(CI 照常雙部署;反悔=DNS 改回 A 記錄即回滾)。
+- 架構現況:主站+my. 全部 Cloudflare 出貨;GitHub=程式碼+每日爬蟲 CI。剩使用者一鍵:Pages 專案開 Web Analytics(訪客層統計)。
+
 ## [v2.3.1] - 2026-07-06 11:54
 ### 新增 — CI 雙部署:每次 push 同步部署 GitHub Pages + Cloudflare Pages
 - update.yml 加 `deploy-cloudflare` job(wrangler-action@v3):下載 build job 的同一份 Pages artifact 解包後 `pages deploy` 到 musicalmap 專案——兩邊內容位元級一致。與 GH Pages 部署平行跑,互不阻擋。

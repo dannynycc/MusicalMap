@@ -10,7 +10,7 @@
    資安:此處只用公開 anon key + 只讀公開資料(profiles 的 RLS 只放行 is_public;
    resolve_handle 只回公開帳號)。無任何秘密,程式碼可公開。 */
 
-const GH_ORIGIN = 'https://themusicalmap.com';   // 主站來源(2026-07-06 已遷移至自訂網域)
+const GH_ORIGIN = 'https://musicalmap.pages.dev';   // 素材來源=Cloudflare Pages(2026-07-06 託管遷移;同家調貨,CI 雙部署位元級同步)
 const MAIN_SITE = 'https://themusicalmap.com';
 const SUPABASE_URL = 'https://gtuvrhdvwjlvneispcuq.supabase.co';
 const ANON_KEY = 'sb_publishable_liJcmr-g9eU9xLLkKixJaA_9s8YjCni';   // 公開 key(RLS 把關)
