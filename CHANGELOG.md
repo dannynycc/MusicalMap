@@ -11,6 +11,12 @@
 
 ---
 
+## [v2.2.2] - 2026-07-06 11:05
+### 修正 — 分享面板「儲存」成功後不會自動關閉(使用者實測回報)
+- `me.html` `save()` 非 onboarding 分支成功後從未呼叫 `close()`(只有首次取名那條會關)。修:成功→按鈕短暫顯示「✓ 已儲存」(新字串 `saved_ok`,繁英+簡中 runtime 轉)→450ms 自動關閉;失敗仍留在面板顯示錯誤。
+- 驗證:playwright 真頁 e2e(真 DOM,僅 Supabase 寫入 stub)七項 PASS——開面板/網址=my./danny/儲存顯示✓/自動關閉/按鈕復原/重開/X 關閉;push 後對線上站重跑同測。
+- 登入回跳問題結案:病因=Supabase Redirect URLs 未含 my. 網域(用 /auth/v1/verify 不需帳號實測證實),使用者加 `https://my.themusicalmap.com/**`+Site URL 改 my. 後,線上實測回跳正確。
+
 ## [v2.2.1] - 2026-07-06 10:48
 ### 修正 — 熱路徑零轉向(使用者指正「頁面跳來跳去效率差」)
 - 全站導覽「我的音樂劇」直連 `https://my.themusicalmap.com/`(手寫頁 about/guide/privacy/terms/theatres/u.html 共 14 處 + gen_site.mjs 模板帶 ?hl,三語頁重建)——不再經 me.html 再跳。

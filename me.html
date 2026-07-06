@@ -959,14 +959,17 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
       return;
     }
     btn.disabled=true;btn.textContent=T('saving');
+    let ok=false;
     try{
       const {error}=await sb().from('profiles').upsert({id:UID,is_public:$('pubPublic').checked,show_price:$('showPrice').checked,show_seat:$('showSeat').checked});
       if(error){$('handleCur').textContent=T('h_save_fail')+(error.message||error);return;}
       CUR.is_public=$('pubPublic').checked;CUR.show_price=$('showPrice').checked;CUR.show_seat=$('showSeat').checked;
       renderLink();
       $('handleCur').textContent=shareUrl(CUR.handle);
+      ok=true;
     }catch(e){console.warn('save',e);}
-    finally{btn.disabled=false;btn.textContent=T('save');}
+    finally{btn.disabled=false;btn.textContent=ok?T('saved_ok'):T('save');}
+    if(ok)setTimeout(()=>{close();btn.textContent=T('save');},450);   // 成功→短暫顯示「已儲存」後自動關閉(失敗則留在面板顯示錯誤)
   }
 
   // ---- 首次登入強制 onboarding：沒有 handle 就必須先設（欄位空白＋chips，無略過）----

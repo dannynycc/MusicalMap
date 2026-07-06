@@ -94,7 +94,7 @@
       h_taken_short: '✗ 已被使用，換一個。', h_bad_format: '只能用英文、數字、底線、連字號（1–30 字）。',
       h_save_fail: '儲存失敗：', chips_tip: '可用的建議：', onb_done: '✓ 完成！',
       url_empty: '先取一個網址名稱。', acct_url_empty: '網址名稱不能空白。',
-      saved_redirect: '✓ 已儲存。舊網址會自動轉到新網址。', display_save_fail: '顯示名稱儲存失敗：',
+      saved_redirect: '✓ 已儲存。舊網址會自動轉到新網址。', saved_ok: '✓ 已儲存', display_save_fail: '顯示名稱儲存失敗：',
       confirm_delete: '確定要刪除《{name}》這筆紀錄嗎？\n(刪除後仍可從左下角「復原」救回)',
       this_show: '這齣', deleted: '已刪除《{name}》', undo: '復原',
       // ---- me-input.html 專屬(輸入表單,iframe) ----
@@ -307,7 +307,7 @@
       h_taken_short: '✗ Taken. Try another.', h_bad_format: 'Only letters, digits, underscore, hyphen (1–30 chars).',
       h_save_fail: 'Save failed: ', chips_tip: 'Available suggestions:', onb_done: '✓ Done!',
       url_empty: 'Pick a URL name first.', acct_url_empty: 'URL name can’t be empty.',
-      saved_redirect: '✓ Saved. The old URL will redirect to the new one.', display_save_fail: 'Display name save failed: ',
+      saved_redirect: '✓ Saved. The old URL will redirect to the new one.', saved_ok: '✓ Saved', display_save_fail: 'Display name save failed: ',
       confirm_delete: 'Delete “{name}” from your records?\n(You can still restore it from “Undo” at the bottom-left.)',
       this_show: 'this show', deleted: 'Deleted “{name}”', undo: 'Undo',
       mi_h1: 'Log a musical', mi_open_log: '＋ Log a musical', mi_sheet_record: 'Log a musical',
