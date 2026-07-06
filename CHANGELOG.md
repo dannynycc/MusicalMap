@@ -11,6 +11,13 @@
 
 ---
 
+## [v2.3.1] - 2026-07-06 11:54
+### 新增 — CI 雙部署:每次 push 同步部署 GitHub Pages + Cloudflare Pages
+- update.yml 加 `deploy-cloudflare` job(wrangler-action@v3):下載 build job 的同一份 Pages artifact 解包後 `pages deploy` 到 musicalmap 專案——兩邊內容位元級一致。與 GH Pages 部署平行跑,互不阻擋。
+- 憑證:使用者建立 Cloudflare API token(僅 Account→Cloudflare Pages→Edit 權限,無 IP 限制無到期)→ 存 repo Secrets `CLOUDFLARE_API_TOKEN`+`CLOUDFLARE_ACCOUNT_ID`(先驗證過 token 可列出 Pages 專案)。
+- Supabase 端:使用者已重跑 add_handle_aliases.sql(保留字 guide/me-input 生效)。
+- 本 push 本身即是雙部署首跑驗證。
+
 ## [v2.3.0] - 2026-07-06 11:40
 ### 準備 — Cloudflare Pages 遷移前置:全站內部連結無副檔名化 + 平行預覽站
 - 使用者拍板遷移託管到 Cloudflare Pages(目標=在 Cloudflare 精準監控所有流量)。採零風險路徑:先平行預覽,DNS 最後才切。

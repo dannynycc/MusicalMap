@@ -153,6 +153,24 @@ jobs:
         with:
           path: .
 
+  # 同步部署到 Cloudflare Pages(musicalmap 專案)。複用上面 build job 的同一份
+  # artifact → 與 GitHub Pages 部署的內容完全一致,不會兩邊版本漂移。
+  # 失敗不擋 GH Pages 部署(兩個 job 平行);token/帳號 ID 在 repo Secrets。
+  deploy-cloudflare:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: github-pages
+      - name: Unpack Pages artifact
+        run: mkdir site && tar -xf artifact.tar -C site
+      - uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy site --project-name=musicalmap --branch=main --commit-dirty=true
+
   deploy:
     needs: build
     runs-on: ubuntu-latest
