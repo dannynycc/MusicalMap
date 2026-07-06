@@ -68,5 +68,6 @@
 | **C. Cloudflare Worker 代理（推薦,免費根治）** | 免費,寫一點 code | 用 `my.` 那套 Worker 把 `auth.themusicalmap.com/auth/v1/callback` 代理到 Supabase callback,redirect_uri 落自家網域 → 品牌驗證無卡點。見 `SETUP_MY_SUBDOMAIN.md` 收尾清單 |
 
 **建議**：**用方法 C 做**（免費,且和 `my.` 子網域 Worker 同一套）。主站已於 2026-07-06 遷移至 themusicalmap.com,自家網域門檻已解除,方法 A/C 皆可著手;supabase.co 顯示為純外觀問題,功能正常,可與 `my.` Worker 部署一起排程處理。
+**前置進度（2026-07-06 晚）**：Search Console 網域資源 `sc-domain:themusicalmap.com` 已完成 DNS TXT 驗證＋sitemap 提交（Google 當日讀取）——方法 A 的「Search Console 驗證自家網域」一項已就緒。另 GA4 已全站上線（`G-GC07MYC1MY`,獨立帳戶 MusicalMap,v2.5.0）,Cloudflare Web Analytics 站點=f5debd92(zone 自動注入)。
 
 （App name = `MusicalMap`、logo〔120×120 正方形〕、隱私 `privacy.html` / 條款 `terms.html` 連結該填的先填好,遷網域走品牌驗證時就緒即可。）

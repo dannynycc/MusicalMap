@@ -11,6 +11,15 @@
 
 ---
 
+## [v2.5.1] - 2026-07-07 01:05
+### 文件 — 全 repo MD 過時掃描更新（13 檔全查,5 檔修）+ 站外事項收尾入檔
+- README:worker/ 條目「已寫好未部署」→ 已上線(2026-07-06,回源 CF Pages,含 FR24 根路徑模式)。
+- SETUP_MY_SUBDOMAIN:Worker 行為表全面翻新——回源 GitHub Pages→**Cloudflare Pages(musicalmap.pages.dev,v2.4.0)**;根路徑 302 主站→**直接出 me.html(FR24 模式,v2.2.0)**;本人 cookie 同網址編輯版;保留字獨立列。
+- DESIGN_username_sharing:「主站維持 GitHub Pages」→ 主站亦已遷 CF Pages(GH 熱備援)。
+- SETUP_ACCOUNTS:OAuth 品牌驗證前置補進度——Search Console 網域驗證+sitemap 完成(2026-07-06)、GA4 上線(G-GC07MYC1MY,獨立帳戶 MusicalMap)、CF WA 站點 f5debd92。
+- AFFILIATE_SETUP:補 Sovrn 網站送審狀態(themusicalmap.com 2026-07-06 送審;審核由首批分潤點擊觸發;舊 github.io 條目永久 Pending 屬預期、勿刪)。
+- 站外(無 code):GA4 資源已移入獨立帳戶 MusicalMap(400154354),與 SunFlightMap 平行;CF WA 邊緣凍結 22:05 自癒,f5debd92 全鏈路 204+GraphQL 驗證通過。
+
 ## [v2.5.0] - 2026-07-06 21:04
 ### 新增 — Google Analytics(GA4)全站上線 + 隱私聲明同步更新 + CF WA 殭屍注入結案
 - **GA4 埋碼**:評估 ID `G-GC07MYC1MY`(資源 MusicalMap/串流「MusicalMap 主站」,同一 ID 涵蓋主站與 my. 網域,報表以 hostname 區分)。插入點=gen_site 模板(三語生成頁)+8 手寫頁(about/guide/privacy/terms/theatres/**me/u/me-input**——後三頁經 Worker 原樣供 my.,埋檔案即涵蓋);root 路由頁不埋(立即轉走);不加 SRI(gtag.js 滾動更新,釘 hash 靜默斷統計)。

@@ -6,13 +6,16 @@
 
 ## 這個 Worker 做什麼
 
+> 回源更新（2026-07-06 v2.4.0 託管遷移）：Worker 的 `GH_ORIGIN` 已改指 **Cloudflare Pages（musicalmap.pages.dev）**，下表「回源」皆指它（原 GitHub Pages 僅留作熱備援）。根路徑行為 v2.2.0 起改 FR24 模式。
+
 | 訪問 | 行為 |
 |---|---|
-| `my.themusicalmap.com/danny` | 內部取 GitHub Pages 的 `u.html`，注入 `window.MM_HANDLE='danny'` + 該使用者專屬 `<title>`/og/canonical/JSON-LD 後回傳 → 乾淨網址 + 爬蟲/AI 看得到內容 |
+| `my.themusicalmap.com/danny` | 內部取回源的 `u.html`，注入 `window.MM_HANDLE='danny'` + 該使用者專屬 `<title>`/og/canonical/JSON-LD 後回傳 → 乾淨網址 + 爬蟲/AI 看得到內容；本人（`mm_owner` cookie 相符）同網址直接出編輯版 `me.html`（FR24 模式，v2.2.0） |
 | `my.../danny2`（danny 的舊名） | 查 `resolve_handle` → **301** 到 `my.../danny`（舊分享連結永久有效） |
 | `my.../不存在的名字` | 回 `u.html` 的 not-found 空狀態，HTTP **404** + noindex |
-| `my.../css/...`、`/js/...`、任何含 `.` 或 `/` 的路徑 | 代理 GitHub Pages 靜態資源（u.html 的相對路徑因此正常） |
-| `my.../`（根）、保留字 | 302 回主站 |
+| `my.../css/...`、`/js/...`、任何含 `.` 或 `/` 的路徑 | 代理回源靜態資源（u.html 的相對路徑因此正常；cache-control 壓回 600s） |
+| `my.../`（根） | 直接出 `me.html` app shell（登入閘，no-store；v2.2.0 起不再 302 主站） |
+| 保留字（u/me/admin…） | 302 回主站 |
 | `my.../robots.txt` | Worker 自己回 allow-all |
 
 前端配合已上線（v1.11.0）:`u-view.js` 的 handle 來源是 `?u=` **或** `window.MM_HANDLE`，兩種形式並存。

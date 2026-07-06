@@ -110,7 +110,7 @@ create policy handle_aliases_read on handle_aliases for select using (true);  --
 
 ## Cloudflare Worker（my. 子網域）
 
-DNS：`my.themusicalmap.com` → Cloudflare（已管 DNS）。主站 `themusicalmap.com`/`www` 維持 GitHub Pages。
+DNS：`my.themusicalmap.com` → Cloudflare（已管 DNS）。主站 `themusicalmap.com`/`www` 亦已於 2026-07-06（v2.4.0）遷至 Cloudflare Pages（GitHub Pages 留作熱備援）；Worker 回源同步改 `musicalmap.pages.dev`。
 
 Worker 邏輯（`my.themusicalmap.com/<handle>`）：
 1. 取 path 的 `<handle>`，小寫正規化。
