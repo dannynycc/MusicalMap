@@ -44,8 +44,14 @@ export default {
     if (path === '/robots.txt') {
       return new Response('User-agent: *\nAllow: /\n', { headers: { 'content-type': 'text/plain' } });
     }
-    // 根 → 本子網域的「我的音樂劇」入口(FR24 模式:my. 就是個人應用的家;登入後前端會把網址改成 /<handle>)
-    if (path === '/' || path === '') return Response.redirect(url.origin + '/me.html', 302);
+    // 根 = 「我的音樂劇」入口,直接出內容不 302(FR24 模式:my. 就是個人應用的家;
+    // 登入後前端 replaceState 把網址列改成 /<handle>,不重載)。app shell 登入閘,不快取。
+    if (path === '/' || path === '') {
+      const shell = await fetch(GH_ORIGIN + '/me.html');
+      return new Response(await shell.text(), {
+        headers: { 'content-type': 'text/html; charset=utf-8', 'cache-control': 'private, no-store' },
+      });
+    }
 
     const seg = path.replace(/^\/+|\/+$/g, '');
     // 含 . 或 / 的是靜態資源(css/js/data/posters/圖檔) → 直接代理 GitHub Pages

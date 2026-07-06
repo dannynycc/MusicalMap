@@ -11,6 +11,12 @@
 
 ---
 
+## [v2.2.1] - 2026-07-06 10:48
+### 修正 — 熱路徑零轉向(使用者指正「頁面跳來跳去效率差」)
+- 全站導覽「我的音樂劇」直連 `https://my.themusicalmap.com/`(手寫頁 about/guide/privacy/terms/theatres/u.html 共 14 處 + gen_site.mjs 模板帶 ?hl,三語頁重建)——不再經 me.html 再跳。
+- Worker 根路徑 `/` 改**直接出 app 內容**(原 302 到 /me.html 也省掉);登入後網址列變 /<handle> 用 replaceState 原地改字,不重載。
+- 轉向只保留三種舊連結救援(舊書籤 me.html/舊分享 u.html?u=/github.io 301),正常動線零轉向。
+
 ## [v2.2.0] - 2026-07-06 10:44
 ### 重大 — FR24 式同網址模式:my.themusicalmap.com/<handle> 一個網址,本人=編輯版、訪客=唯讀版
 - 使用者指正:FlightRadar24 是同一網址(my.flightradar24.com/Chiang),登入與否只差能否編輯——不是「管理後台/公開頁」兩個網址。照此重構:

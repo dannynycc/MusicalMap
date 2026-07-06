@@ -159,7 +159,7 @@ function page(variant, shows) {
       <a class="nav-link" href="${BASE}theatres.html?lang=${variant}">${esc(t.theatres)}</a> -->
       <a class="nav-link" href="${BASE}guide.html?hl=${variant}">${esc(t.guide)}</a>
       <!-- 隱私/條款移到地圖右下 attribution 列(Google Maps 慣例,見 app.js addAttribution) -->
-      <a id="mine-link" class="nav-cta" href="${BASE}me.html?hl=${variant}">${esc(t.mine)}</a>
+      <a id="mine-link" class="nav-cta" href="https://my.themusicalmap.com/?hl=${variant}">${esc(t.mine)}</a>
     </nav>
   </header>
 
