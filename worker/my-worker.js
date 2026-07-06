@@ -54,9 +54,14 @@ export default {
     }
 
     const seg = path.replace(/^\/+|\/+$/g, '');
-    // 含 . 或 / 的是靜態資源(css/js/data/posters/圖檔) → 直接代理 GitHub Pages
+    // 含 . 或 / 的是靜態資源(css/js/data/posters/圖檔) → 代理 GitHub Pages。
+    // cache-control 壓回 10 分鐘:Cloudflare 會把瀏覽器 TTL 拉到預設 4 小時,
+    // 造成部署後 my. 網域使用者拿舊 JS/CSS 最多 4 小時;與主站(GH Pages 600s)對齊。
     if (seg.includes('.') || seg.includes('/')) {
-      return fetch(GH_ORIGIN + path + url.search);
+      const r = await fetch(GH_ORIGIN + path + url.search);
+      const h = new Headers(r.headers);
+      h.set('cache-control', 'public, max-age=600');
+      return new Response(r.body, { status: r.status, headers: h });
     }
     // 保留字不是 handle → 丟回主站對應頁(或首頁)
     if (RESERVED.has(seg.toLowerCase())) return Response.redirect(MAIN_SITE, 302);
