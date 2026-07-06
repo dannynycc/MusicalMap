@@ -145,7 +145,7 @@ function page(variant, shows) {
   <link rel="stylesheet" href="${BASE}css/style.css?v=${VER}" />
   <script>window.MM_VARIANT="${variant}";window.MM_BASE="${BASE}";</script>${openccTag}
   <!-- Cloudflare Web Analytics(themusicalmap.com 站點;無 cookie。不加 SRI:beacon 由 CF 滾動更新,釘 hash 會靜默斷統計;root 路由頁不埋(立即轉走),my. 網域由 Worker 注入各自 token) -->
-  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "93711998dbf24271ba7d8b2ef389cee3"}'></script>
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "c6bab8419908448183d302514c431c8c"}'></script>
 </head>
 <body>
   <header id="topbar">

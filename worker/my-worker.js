@@ -26,7 +26,9 @@ const esc = (s) => String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').re
 // my. 的頁面由 Worker 動態組出,zone 的自動注入碰不到 → 由這裡對每個 HTML 出口注入。
 // 不加 SRI(刻意,全站 CDN 釘 SRI 的唯一例外):beacon 由 CF 滾動更新,釘 hash 一更新統計就靜默斷;
 // 頁面本身即由 Cloudflare 出貨,該網域已在信任鏈內,SRI 在此無額外防護價值。
-const CF_BEACON = `<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "880db80ec22c4e60b9e2e305d29b730e"}'></script>`;
+// token=2026-07-06 重建的唯一站點 token,與主站頁面同一把。
+// 教訓:在儀表板刪掉 Web Analytics 站點卡片=該站 token 立即失效、上報被拒收——換 token 必須同步改這裡+主站模板+5 手寫頁。
+const CF_BEACON = `<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "c6bab8419908448183d302514c431c8c"}'></script>`;
 const withBeacon = (html) => html.includes('cloudflareinsights.com/beacon') ? html : html.replace('</head>', CF_BEACON + '\n</head>');
 
 async function sbGet(path) {

@@ -11,6 +11,12 @@
 
 ---
 
+## [v2.4.2] - 2026-07-06 14:33
+### 修正 — Web Analytics 站點重建,全站統一單一 token
+- 事故鏈:WA 介面同時存在「網域整合站點(收全部)+手動站點(空殼)」的三胞胎混亂 → 使用者把清單裡兩張卡都刪除 → **站點卡片刪除=其 token 立即失效,全站上報被拒收**(API 實證:刪除後兩次受控真實造訪等 11 分鐘零入帳;歷史 13 筆保留)。
+- 修:使用者重建**唯一**站點(themusicalmap.com,手動 snippet 模式)→ 全站換新 token `c6bab841…`(gen_site 模板+5 手寫頁+Worker CF_BEACON),Pages 直傳+Worker 部署+線上抽驗兩網域皆新 token。主機分流看儀表板 Hosts 維度。
+- 驗收標準改為 **GraphQL 原始入帳**(rumPageloadEventsAdaptiveGroups),不再信清單卡片預覽數字(快取極懶)。教訓已寫 worker 註解+記憶。
+
 ## [v2.4.1] - 2026-07-06 12:43
 ### 新增 — Cloudflare Web Analytics 訪客層統計全站上線(兩站點分流)
 - **my.themusicalmap.com 站點**:Worker 對四個 HTML 出口注入 beacon(根入口/訪客公開頁/本人編輯頁/代理 .html 如 me-input)——my. 頁面是 Worker 動態組出,zone 自動注入碰不到,故 Worker 注入;`withBeacon()` 有防重複 guard。已部署+四出口線上驗證各 1 份。
