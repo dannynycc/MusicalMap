@@ -22,6 +22,13 @@ const RESERVED = new Set(['u','me','index','admin','api','app','www','my','null'
 
 const esc = (s) => String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 
+// Cloudflare Web Analytics(my.themusicalmap.com 專屬 site token,公開值非秘密)。
+// my. 的頁面由 Worker 動態組出,zone 的自動注入碰不到 → 由這裡對每個 HTML 出口注入。
+// 不加 SRI(刻意,全站 CDN 釘 SRI 的唯一例外):beacon 由 CF 滾動更新,釘 hash 一更新統計就靜默斷;
+// 頁面本身即由 Cloudflare 出貨,該網域已在信任鏈內,SRI 在此無額外防護價值。
+const CF_BEACON = `<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "880db80ec22c4e60b9e2e305d29b730e"}'></script>`;
+const withBeacon = (html) => html.includes('cloudflareinsights.com/beacon') ? html : html.replace('</head>', CF_BEACON + '\n</head>');
+
 async function sbGet(path) {
   const r = await fetch(SUPABASE_URL + path, { headers: { apikey: ANON_KEY } });
   return r.ok ? r.json() : null;
@@ -48,7 +55,7 @@ export default {
     // 登入後前端 replaceState 把網址列改成 /<handle>,不重載)。app shell 登入閘,不快取。
     if (path === '/' || path === '') {
       const shell = await fetch(GH_ORIGIN + '/me.html');
-      return new Response(await shell.text(), {
+      return new Response(withBeacon(await shell.text()), {
         headers: { 'content-type': 'text/html; charset=utf-8', 'cache-control': 'private, no-store' },
       });
     }
@@ -61,6 +68,10 @@ export default {
       const r = await fetch(GH_ORIGIN + path + url.search);
       const h = new Headers(r.headers);
       h.set('cache-control', 'public, max-age=600');
+      // .html 頁(如 iframe 的 me-input.html)也注入統計碼;其他資源原樣串流
+      if (/\.html$/.test(path)) {
+        return new Response(withBeacon(await r.text()), { status: r.status, headers: h });
+      }
       return new Response(r.body, { status: r.status, headers: h });
     }
     // 保留字不是 handle → 丟回主站對應頁(或首頁)
@@ -78,7 +89,7 @@ export default {
     const own = ck.match(/(?:^|;\s*)mm_owner=([A-Za-z0-9_%-]+)/);
     if (own && decodeURIComponent(own[1]).toLowerCase() === handle) {
       const owner = await fetch(GH_ORIGIN + '/me.html');
-      return new Response(await owner.text(), {
+      return new Response(withBeacon(await owner.text()), {
         status: 200,
         headers: { 'content-type': 'text/html; charset=utf-8', 'cache-control': 'private, no-store' },
       });
@@ -147,7 +158,7 @@ export default {
       .replace(/(<meta property="og:description" content=")[^"]*(")/, `$1${esc(desc)}$2`)
       .replace('</head>', `${inject}\n<meta property="og:url" content="${esc(canon)}" />\n</head>`);
 
-    return new Response(html, {
+    return new Response(withBeacon(html), {
       status: display ? 200 : 404,   // 查無 → 404(頁面本身會顯示 not-found 空狀態)
       // Vary: Cookie:同網址依 mm_owner 出不同版面,瀏覽器快取必須跟著 cookie 區分,
       // 否則本人登入後可能拿到快取的公開版(反之亦然)。

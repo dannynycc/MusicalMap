@@ -11,6 +11,14 @@
 
 ---
 
+## [v2.4.1] - 2026-07-06 12:43
+### 新增 — Cloudflare Web Analytics 訪客層統計全站上線(兩站點分流)
+- **my.themusicalmap.com 站點**:Worker 對四個 HTML 出口注入 beacon(根入口/訪客公開頁/本人編輯頁/代理 .html 如 me-input)——my. 頁面是 Worker 動態組出,zone 自動注入碰不到,故 Worker 注入;`withBeacon()` 有防重複 guard。已部署+四出口線上驗證各 1 份。
+- **themusicalmap.com 站點**:zone 自動注入對 Pages 出貨實測無效(0 注入)→ 改埋進頁面本身:gen_site.mjs 變體模板+5 個手寫頁(guide/about/privacy/terms/theatres),root 路由頁不埋(立即轉走)。站點設定改「Enable with JS Snippet installation」關掉自動注入避免將來雙計數。
+- **token 分流鐵則**:me/u/me-input 原始檔**不可**埋主站 token(它們經 my. 出貨,Worker 注入 my. token;埋了會因防重 guard 讓 my. 流量記到主站站點)。本機驗證:主站 8 頁各 1 份主站 token、me/u/me-input=0。
+- SRI 刻意例外(全站 CDN 釘 SRI 的唯一例外):beacon 由 CF 滾動更新,釘 hash 會靜默斷統計;出貨方即 Cloudflare,已在信任鏈內。註解已載明。
+- 免費方案更正:zone Traffic 的完整機器人分析是付費功能,免費版看不到(先前說法有誤);真人數據看 Web Analytics 兩站點儀表板。
+
 ## [v2.4.0] - 2026-07-06 12:08
 ### 重大 — 託管切換完成:themusicalmap.com 改由 Cloudflare Pages 出貨(全流量進 Cloudflare,可完整監控)
 - 使用者在 Pages 專案掛 Custom domains(themusicalmap.com+www),DNS 由 CF 自動改 CNAME→musicalmap.pages.dev;切換空窗僅 ~15 秒(輪詢實測 12:06:33 522→12:06:49 200)。
