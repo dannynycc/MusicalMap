@@ -11,6 +11,13 @@
 
 ---
 
+## [v2.5.0] - 2026-07-06 21:04
+### 新增 — Google Analytics(GA4)全站上線 + 隱私聲明同步更新 + CF WA 殭屍注入結案
+- **GA4 埋碼**:評估 ID `G-GC07MYC1MY`(資源 MusicalMap/串流「MusicalMap 主站」,同一 ID 涵蓋主站與 my. 網域,報表以 hostname 區分)。插入點=gen_site 模板(三語生成頁)+8 手寫頁(about/guide/privacy/terms/theatres/**me/u/me-input**——後三頁經 Worker 原樣供 my.,埋檔案即涵蓋);root 路由頁不埋(立即轉走);不加 SRI(gtag.js 滾動更新,釘 hash 靜默斷統計)。
+- **隱私聲明翻新**(privacy.html+mm-strings.js 繁英兩處,hans 由 OpenCC 轉):§1 揭露 CF WA(無 cookie)+GA 統計、託管宣稱 GitHub Pages→Cloudflare Pages(v2.4.0 遷移後過時);§3 揭露 GA 統計 cookie。
+- **CF WA 未結案項處置**(v2.4.4 交接案,設定操作非 code):實證 Pages 整合 snippet POST 到死端點(404)且壓制正常 beacon→**已停用 Pages WA 整合**+CI 重佈清除;Worker 部署更新至 v2.4.3 版(repo 已 no-op 但線上是舊版);**邊緣注入凍結在已刪站 token 93711998→8f6e**,站點重建×2/rum off-on/ruleset 全試無效,判定 CF 側傳播故障,資料持續入 8f6e(僅 GraphQL 可查)待自癒,詳見記憶 project_musicalmap_analytics。
+- Search Console 網域資源+TXT 驗證+sitemap 提交、sovrn themusicalmap.com 送審——同日站外設定,無 code 變更。
+
 ## [v2.4.4] - 2026-07-06 18:20
 ### 交接 — Web Analytics 未結案狀態入檔(使用者換 session)
 - 全站已統一 Pages 專案層 WA token(9683049c,建置時注入,殭屍已清);待確認新站點入帳(09:54Z 後 >10 分零入帳,可能是新站首次延遲)。分析查詢 token 存 scrapers/.cf_analytics_token(本 commit 加入 .gitignore 保護)。下一步=使用者 Global API Key 做 RUM API 手術;僅限 Cloudflare 原生解法。完整交接見記憶 project_musicalmap_analytics。

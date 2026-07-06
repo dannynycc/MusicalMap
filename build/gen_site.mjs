@@ -144,6 +144,9 @@ function page(variant, shows) {
   <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" integrity="sha384-wgw+aLYNQ7dlhK47ZPK7FRACiq7ROZwgFNg0m04avm4CaXS+Z9Y7nMu8yNjBKYC+" crossorigin="anonymous" />
   <link rel="stylesheet" href="${BASE}css/style.css?v=${VER}" />
   <script>window.MM_VARIANT="${variant}";window.MM_BASE="${BASE}";</script>${openccTag}
+  <!-- Google Analytics(GA4 G-GC07MYC1MY;訪客來源/行為分析。root 路由頁不埋(立即轉走);隱私揭露見 privacy.html §1/§3) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-GC07MYC1MY"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-GC07MYC1MY');</script>
 </head>
 <body>
   <header id="topbar">
