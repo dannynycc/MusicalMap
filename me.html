@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="referrer" content="no-referrer" />
 <meta name="robots" content="noindex" /><!-- 登入閘頁,爬蟲只會看到「載入中」;公開內容在 u.html -->
+<script>/* FR24 模式:「我的音樂劇」住在 my. 子網域,登入後網址=my.themusicalmap.com/<handle>。
+主網域舊網址一律轉過去(localhost/GH 預覽不轉,本機測試不受影響) */
+if(location.hostname==='themusicalmap.com'||location.hostname==='www.themusicalmap.com')location.replace('https://my.themusicalmap.com/me.html'+location.search);</script>
 <title>My Musicals — MusicalMap</title>
 <link rel="icon" href="logo.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -816,6 +819,18 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
   // 與 DB handle_reserved()（supabase/add_handle_aliases.sql）同步，兩邊都要改
   const RESERVED=new Set(['u','me','index','admin','api','app','www','my','null','undefined','theatres','privacy','terms','login','logout','signup','settings','account','stats','static','assets','js','css','data','posters','logos','en','zh-hant','zh-hans','help','about','official','map','share']);
   function shareUrl(h){return 'https://my.themusicalmap.com/'+encodeURIComponent(h);}
+  // 本人標記 cookie(跨子網域):my. Worker 收到 /<handle> 時看它決定出「編輯版(me.html)」或「公開版(u.html)」。
+  // 只是選版面的提示——真正的資料權限永遠由 Supabase session+RLS 把關,偽造只會看到登入閘。
+  function ownerCookie(h){try{
+    if(!/(^|\.)themusicalmap\.com$/.test(location.hostname))return;   // localhost/預覽不種
+    document.cookie=h?('mm_owner='+encodeURIComponent(h)+'; Domain=.themusicalmap.com; Path=/; Max-Age=31536000; Secure; SameSite=Lax')
+                     :'mm_owner=; Domain=.themusicalmap.com; Path=/; Max-Age=0; Secure; SameSite=Lax';
+  }catch(e){}}
+  window.mmOwnerCookie=ownerCookie;
+  // FR24 式同網址:登入後把網址列改成 my./<handle>(replaceState 不重載;改名也跟著換)
+  function canonPath(h){try{
+    if(location.hostname==='my.themusicalmap.com'&&h&&location.pathname!=='/'+h)history.replaceState(null,'','/'+h+location.search);
+  }catch(e){}}
   const sb=()=>window.mmSb;
 
   async function isAvailable(h){
@@ -917,6 +932,7 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
       const {data}=await sb().from('profiles').select('handle,is_public,show_price,show_seat,display_name').eq('id',uid).maybeSingle();
       CUR={handle:data?.handle||'',is_public:!!data?.is_public,show_price:!!data?.show_price,show_seat:!!data?.show_seat};
       DISPLAY=data?.display_name||'';
+      if(CUR.handle){ownerCookie(CUR.handle);canonPath(CUR.handle);}   // 種本人標記+網址列改 my./<handle>
       $('pubPublic').checked=CUR.is_public;
       $('showPrice').checked=CUR.show_price;
       $('showSeat').checked=CUR.show_seat;
@@ -936,6 +952,7 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
         const r=await setHandle(h);
         if(r!=='ok'){explain(r,obCheck.set);return;}
         CUR.handle=h;FORCED=false;
+        ownerCookie(h);canonPath(h);
         obCheck.set('ok',T('onb_done'));
         setTimeout(()=>{close();},500);
       }finally{btn.disabled=false;btn.textContent=T('save');}
@@ -1016,6 +1033,7 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
         const r=await setHandle(h);
         if(r!=='ok'){explain(r,acCheck.set);return;}
         CUR.handle=h;
+        ownerCookie(h);canonPath(h);   // 改名後 cookie+網址列跟著換新名(舊名連結由 alias 301 接手)
       }
       if(d!==DISPLAY){
         const {error}=await sb().from('profiles').upsert({id:UID,display_name:d||null});
@@ -1032,7 +1050,7 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
   $('pubPublic').addEventListener('change',()=>{syncFieldsVisibility();renderLink();});
   $('shareSave').addEventListener('click',save);
   $('shareSkip').addEventListener('click',async()=>{
-    if(FORCED){try{await sb().auth.signOut();}catch(e){}location.reload();return;}  // 強制模式唯一出口＝登出
+    if(FORCED){ownerCookie('');try{await sb().auth.signOut();}catch(e){}location.reload();return;}  // 強制模式唯一出口＝登出
     close();
   });
   $('shareX').addEventListener('click',close);
@@ -1054,6 +1072,7 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
     try{
       const {error}=await sb().rpc('delete_my_account');
       if(error)throw error;
+      ownerCookie('');
       try{await sb().auth.signOut();}catch(e){}
       clearLocal();
       alert(T('del_done'));
@@ -1163,7 +1182,7 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
   function clearLocal(){try{localStorage.removeItem('mm-log');}catch(e){}sessionStorage.removeItem('mev2_synced');Object.keys(sessionStorage).filter(k=>k.indexOf('mev2_reloaded_')===0).forEach(k=>sessionStorage.removeItem(k));}
   async function onSignedIn(user){if(sessionStorage.getItem('mev2_synced')===syncedKey(user.id)){hideGate();window.mmAuthReady&&window.mmAuthReady(user.id);return;}await syncFromCloud(user.id);}
   glogin.onclick=()=>sb.auth.signInWithOAuth({provider:'google',options:{redirectTo:location.origin+location.pathname}});
-  window.mmLogout=()=>sb.auth.signOut().then(()=>{clearLocal();location.reload();});
+  window.mmLogout=()=>{window.mmOwnerCookie&&window.mmOwnerCookie('');sb.auth.signOut().then(()=>{clearLocal();location.reload();});};
   // ♥ 最愛切換:本機快取即改+雲端背景更新,回傳新狀態給卡片就地更新(不重刷;統計/徽章下次載入時跟上)
   window.mmToggleFav=function(i){
     try{

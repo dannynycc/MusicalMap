@@ -44,8 +44,8 @@ export default {
     if (path === '/robots.txt') {
       return new Response('User-agent: *\nAllow: /\n', { headers: { 'content-type': 'text/plain' } });
     }
-    // 根 → 主站
-    if (path === '/' || path === '') return Response.redirect(MAIN_SITE, 302);
+    // 根 → 本子網域的「我的音樂劇」入口(FR24 模式:my. 就是個人應用的家;登入後前端會把網址改成 /<handle>)
+    if (path === '/' || path === '') return Response.redirect(url.origin + '/me.html', 302);
 
     const seg = path.replace(/^\/+|\/+$/g, '');
     // 含 . 或 / 的是靜態資源(css/js/data/posters/圖檔) → 直接代理 GitHub Pages
@@ -59,6 +59,19 @@ export default {
     if (path.endsWith('/')) return Response.redirect(url.origin + '/' + seg, 301);
 
     const handle = seg.toLowerCase();
+
+    // 0) FR24 式同網址:本人(mm_owner cookie 相符)→ 同網址出「編輯版」me.html。
+    //    cookie 只是選版面的提示,偽造只會拿到登入閘;資料權限由 Supabase session+RLS 把關。
+    //    private no-store:編輯版絕不可被快取共用。
+    const ck = req.headers.get('Cookie') || '';
+    const own = ck.match(/(?:^|;\s*)mm_owner=([A-Za-z0-9_%-]+)/);
+    if (own && decodeURIComponent(own[1]).toLowerCase() === handle) {
+      const owner = await fetch(GH_ORIGIN + '/me.html');
+      return new Response(await owner.text(), {
+        status: 200,
+        headers: { 'content-type': 'text/html; charset=utf-8', 'cache-control': 'private, no-store' },
+      });
+    }
 
     // 1) 查現用 handle(RLS:只回公開帳號 → 私密帳號自然走 not-found,不洩漏存在性)
     const profs = await sbGet(`/rest/v1/profiles?select=display_name,is_public&handle=eq.${encodeURIComponent(handle)}&limit=1`);
@@ -125,7 +138,9 @@ export default {
 
     return new Response(html, {
       status: display ? 200 : 404,   // 查無 → 404(頁面本身會顯示 not-found 空狀態)
-      headers: { 'content-type': 'text/html; charset=utf-8', 'cache-control': 'public, max-age=300' },
+      // Vary: Cookie:同網址依 mm_owner 出不同版面,瀏覽器快取必須跟著 cookie 區分,
+      // 否則本人登入後可能拿到快取的公開版(反之亦然)。
+      headers: { 'content-type': 'text/html; charset=utf-8', 'cache-control': 'public, max-age=300', 'vary': 'Cookie' },
     });
   },
 };

@@ -11,6 +11,15 @@
 
 ---
 
+## [v2.2.0] - 2026-07-06 10:44
+### 重大 — FR24 式同網址模式:my.themusicalmap.com/<handle> 一個網址,本人=編輯版、訪客=唯讀版
+- 使用者指正:FlightRadar24 是同一網址(my.flightradar24.com/Chiang),登入與否只差能否編輯——不是「管理後台/公開頁」兩個網址。照此重構:
+- **Worker**:`/<handle>` 先看 `mm_owner` cookie——與路徑相符(本人)→ 同網址出 me.html 編輯版(`private, no-store`);否則照舊出 u.html 公開版(補 `Vary: Cookie`,防登入前後拿到彼此的瀏覽器快取)。cookie 僅選版面,偽造只拿到登入閘,資料權限仍由 Supabase session+RLS 把關。根路徑 `/` 改 302 到 `/me.html`(my.=個人應用的家)。
+- **me.html**:登入取得 handle 後種 `mm_owner` cookie(Domain=.themusicalmap.com)+`history.replaceState` 把網址列改成 `/<handle>`(改名同步換、alias 接舊名);登出/刪帳號清 cookie→同網址變回公開版。主網域 `themusicalmap.com/me.html` 一律轉到 `my.themusicalmap.com/me.html`(localhost 不轉)。
+- 驗證(線上 curl):根 302→/me.html、/me.html 200、/danny 無 cookie=u.html 公開版、本人 cookie=me.html 編輯版、他人 cookie=公開版、Vary/快取標頭正確。登入後編輯流程需真人 OAuth 驗收。
+- **使用者待辦**:Supabase Redirect URLs 加 `https://my.themusicalmap.com/**`(沒加則 my. 網域 Google 登入無法回跳)。
+- 下一步(使用者已給 FR24 Account settings 截圖參考):帳號設定重整為獨立設定區(Display name/隱私分級 pills 版面)。
+
 ## [v2.1.0] - 2026-07-06 10:29
 ### 新功能 — my.themusicalmap.com/<username> 個人公開頁上線（FR24 式乾淨網址）
 - **Cloudflare Worker 部署完成**（使用者 wrangler login 授權後 `npx wrangler deploy`;`wrangler.toml` 改 `custom_domain=true` 讓 Cloudflare 自動建 `my` DNS+憑證,免手動 AAAA 100::）。版本 4d807b44。
