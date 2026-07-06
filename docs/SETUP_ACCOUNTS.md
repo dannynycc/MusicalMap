@@ -35,7 +35,7 @@
    - https://console.cloud.google.com → 建/選一個專案 → **APIs & Services → Credentials → Create Credentials → OAuth client ID**。
    - Application type:**Web application**。
    - **Authorized JavaScript origins** 加:
-     - `https://dannynycc.github.io`
+     - `https://themusicalmap.com`
      - `http://localhost:8753`(本機測試)
    - **Authorized redirect URIs** 加 Supabase 給你的那條(Google provider 頁面上會顯示,形如 `https://xxxx.supabase.co/auth/v1/callback`)。
    - 建立後複製 **Client ID / Client Secret** 貼回 Supabase 的 Google provider。
@@ -43,8 +43,8 @@
 
 ## D. 設定授權網域(Supabase 端)
 - **Authentication → URL Configuration**:
-  - **Site URL**:`https://dannynycc.github.io/MusicalMap/`
-  - **Redirect URLs** 加:`https://dannynycc.github.io/MusicalMap/me.html` 與 `http://localhost:8753/me.html`
+  - **Site URL**:`https://themusicalmap.com/`
+  - **Redirect URLs** 加:`https://themusicalmap.com/me.html` 與 `http://localhost:8753/me.html`
 
 ## 完成
 把 A‑4 的兩個值貼我,我接上 `js/config.js`。在那之前我已把整套前端(登入、記錄表單、圖表、我的地圖)寫好,接上即可用。
@@ -67,6 +67,6 @@
 | B. Supabase Pro Custom Domain | **$10/月** | 開 Pro,auth 端點換成 `auth.themusicalmap.com`,Google 畫面直接顯示自家網域,品牌驗證也變乾淨。官方 docs: platform/custom-domains |
 | **C. Cloudflare Worker 代理（推薦,免費根治）** | 免費,寫一點 code | 用 `my.` 那套 Worker 把 `auth.themusicalmap.com/auth/v1/callback` 代理到 Supabase callback,redirect_uri 落自家網域 → 品牌驗證無卡點。見 `SETUP_MY_SUBDOMAIN.md` 收尾清單 |
 
-**建議**：**跟主站遷移 themusicalmap.com 綁在一起用方法 C 做**（免費,且和 `my.` 子網域 Worker 同一套）。現網站還在 github.io、themusicalmap.com 未上線,A/C 都需自家網域,現在單獨處理會卡死。**現階段 supabase.co 顯示功能完全正常,純外觀,先接受,遷網域時一次解決。**
+**建議**：**用方法 C 做**（免費,且和 `my.` 子網域 Worker 同一套）。主站已於 2026-07-06 遷移至 themusicalmap.com,自家網域門檻已解除,方法 A/C 皆可著手;supabase.co 顯示為純外觀問題,功能正常,可與 `my.` Worker 部署一起排程處理。
 
 （App name = `MusicalMap`、logo〔120×120 正方形〕、隱私 `privacy.html` / 條款 `terms.html` 連結該填的先填好,遷網域走品牌驗證時就緒即可。）

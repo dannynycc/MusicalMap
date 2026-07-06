@@ -180,7 +180,7 @@
       // ---- privacy.html / terms.html(法務頁;繁中為底,zh-hans 由 OpenCC 轉,en 用下方字典) ----
       legal_tagline: '此刻全球正在上演的音樂劇', legal_contact: '聯絡',
       pp_title: '隱私權政策 — MusicalMap', pp_h1: '隱私權政策', pp_updated: '最後更新：2026-07-03',
-      pp_intro: 'MusicalMap（「本網站」，<a href="https://dannynycc.github.io/MusicalMap/">dannynycc.github.io/MusicalMap</a>）是一個由個人經營、呈現全球音樂劇演出的互動地圖。本政策說明我們蒐集什麼資料、如何使用與保存。聯絡方式：<a href="mailto:dannynycc@gmail.com">dannynycc@gmail.com</a>。',
+      pp_intro: 'MusicalMap（「本網站」，<a href="https://themusicalmap.com/">themusicalmap.com</a>）是一個由個人經營、呈現全球音樂劇演出的互動地圖。本政策說明我們蒐集什麼資料、如何使用與保存。聯絡方式：<a href="mailto:dannynycc@gmail.com">dannynycc@gmail.com</a>。',
       pp_s1_h: '1. 瀏覽地圖（不需登入）',
       pp_s1_p: '單純瀏覽地圖<strong>不需要帳號</strong>。本網站是託管於 GitHub Pages 的靜態網站，我們<strong>不</strong>放置廣告追蹤碼，目前也<strong>未</strong>使用第三方數據分析（如 Google Analytics）。GitHub 作為主機可能依其政策記錄標準伺服器日誌（如 IP），詳見 GitHub 隱私聲明。',
       pp_s2_h: '2. 「我的音樂劇」（選擇性登入）',
@@ -391,7 +391,7 @@
       // ---- privacy.html / terms.html ----
       legal_tagline: 'Musicals playing around the world right now', legal_contact: 'Contact',
       pp_title: 'Privacy Policy — MusicalMap', pp_h1: 'Privacy Policy', pp_updated: 'Last updated: 2026-07-03',
-      pp_intro: 'MusicalMap ("this site", <a href="https://dannynycc.github.io/MusicalMap/">dannynycc.github.io/MusicalMap</a>) is a personally-operated interactive map of musicals playing worldwide. This policy explains what data we collect, and how it is used and stored. Contact: <a href="mailto:dannynycc@gmail.com">dannynycc@gmail.com</a>.',
+      pp_intro: 'MusicalMap ("this site", <a href="https://themusicalmap.com/">themusicalmap.com</a>) is a personally-operated interactive map of musicals playing worldwide. This policy explains what data we collect, and how it is used and stored. Contact: <a href="mailto:dannynycc@gmail.com">dannynycc@gmail.com</a>.',
       pp_s1_h: '1. Browsing the map (no sign-in)',
       pp_s1_p: 'Simply browsing the map requires <strong>no account</strong>. This site is a static website hosted on GitHub Pages; we place <strong>no</strong> advertising trackers and currently use <strong>no</strong> third-party analytics (such as Google Analytics). GitHub, as the host, may record standard server logs (such as IP addresses) under its own policies — see the GitHub Privacy Statement.',
       pp_s2_h: '2. "My Musicals" (optional sign-in)',

@@ -13,7 +13,7 @@
 - [x] **隱私權政策頁**(`privacy.html`)+ **使用條款頁**(`terms.html`)— ✅ 已建立,首頁**頂部 nav**（v0.78.0 起 footer 移除、Privacy/Terms 改置頂部）與各頁導覽皆可連達。
 - [x] **收款資料**:美國銀行帳戶 EFT(免手續費,直收 USD)— ✅ 已設定(Impact)。
 - [x] **稅表 W-8BEN**(台灣=非美國人,0% 預扣、無 treaty、電子收件同意)— ✅ 已於 2026-06-23 線上送出。
-- [ ] 網站網址:`https://dannynycc.github.io/MusicalMap/`(申請時填這個)。
+- [ ] 網站網址:`https://themusicalmap.com/`(申請時填這個)。
 - [ ] 簡述受眾:「全球音樂劇即時地圖,導流到各售票平台」。
 
 ---
@@ -48,7 +48,7 @@
 3. 填基本資料(沿用你已備好的):
    - 名字:**英文本名**(同 Impact)
    - 國家:**台灣**
-   - 網站:`https://dannynycc.github.io/MusicalMap/`
+   - 網站:`https://themusicalmap.com/`
    - 類型:**publisher / content / editorial**(若問)
    - 自我介紹:貼**那段 964 字 profile**(可截短)
 4. **送出對 ATG 計畫的申請** → 等 ATG 核准(通常數天)。

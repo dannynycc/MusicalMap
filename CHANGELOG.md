@@ -11,6 +11,15 @@
 
 ---
 
+## [v1.34.0] - 2026-07-06 10:01
+### 重大 — 主站遷移至自訂網域 https://themusicalmap.com（網域/DNS 於 2026-06-24 已就緒，今日完成程式面）
+- `build/gen_site.mjs`:`BASE` `/MusicalMap/`→`/`、`SITE`→`https://themusicalmap.com`,重建三語頁(en/zh-hans/zh-hant,各 1,728 筆)+root router+`sitemap.xml`+`robots.txt`。
+- 新增 repo 根 `CNAME`(`themusicalmap.com`)——CI push 部署把 repo 現狀當 artifact,`CNAME` 在根即被 Pages 認領。
+- 手寫頁絕對網址全換新網域:about/guide/privacy/terms/theatres/u.html(canonical/hreflang/og:url/og:image)、`llms.txt`、`js/mm-strings.js`(隱私政策 pp_intro 繁英)、README、docs/AFFILIATE_SETUP、docs/SETUP_ACCOUNTS(Google OAuth origins 改新網域;「未上線」過時敘述更新)、worker/my-worker.js `GH_ORIGIN`。CHANGELOG 歷史條目與 `js/config.js` Mapbox 白名單註解(陳述事實)不改。
+- 程式面不用改的(查證過):me.html OAuth `redirectTo` 用 `location.origin` 動態值;Mapbox token 白名單 2026-06-24 建立時已含裸網域 `themusicalmap.com`(自動涵蓋子網域)。
+- 驗證:全 repo grep 無舊網址殘留(歷史/事實註解除外);本機 http.server+headless Chrome 截圖確認 en 頁資產(BASE=/)全載入、地圖/卡片/海報正常 render。
+- **站外待辦**:Supabase Redirect URLs 加 `https://themusicalmap.com/me.html`(使用者後台操作);GitHub Pages Custom domain+HTTPS(push 後 gh api 設定);sovrn 後台 +Site 重送審。
+
 ## [v1.33.2] - 2026-07-04 00:56
 ### 已知問題(待修) — 刪除帳號實機失敗
 - 使用者實機測「帳號設定→刪除我的帳號」→ 跳 error(migration `add_delete_account.sql` 已套用)。

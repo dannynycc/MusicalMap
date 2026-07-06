@@ -4,12 +4,12 @@
 // Each variant page is PRERENDERED: the show list + JSON-LD are baked into static HTML so
 // Google and (JS-blind) AI crawlers see real content. The Leaflet app then hydrates on top
 // for humans, reading the matching data variant. Shared js/css/data load via absolute
-// /MusicalMap/ paths so the page works from a subdirectory.
+// root paths (custom domain serves the repo at /).
 import fs from "fs";
 import crypto from "crypto";
 
-const BASE = "/MusicalMap/";
-const SITE = "https://dannynycc.github.io/MusicalMap";
+const BASE = "/";
+const SITE = "https://themusicalmap.com";
 const VARIANTS = {
   "en":      { lang: "en",      hreflang: "en",      label: "MusicalMap — live world map of musicals",
                desc: "Musicals playing around the world right now — Broadway, West End, tours and original productions across 40+ countries." },
