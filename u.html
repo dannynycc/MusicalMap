@@ -4,6 +4,11 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="referrer" content="no-referrer" />
+<script>/* 舊形式 u.html?u=xxx → 正式網址 my.themusicalmap.com/xxx(canonical 集中;僅主網域觸發,localhost/my. 不轉) */(function(){try{
+var q=new URLSearchParams(location.search),u=q.get('u');
+if(u&&/(^|\.)themusicalmap\.com$/.test(location.hostname)&&location.hostname.indexOf('my.')!==0){
+var hl=q.get('hl');location.replace('https://my.themusicalmap.com/'+encodeURIComponent(u)+(hl?'?hl='+encodeURIComponent(hl):''));}
+}catch(e){}})();</script>
 <title>My Musicals — MusicalMap</title>
 <meta name="description" content="看看我在世界各地看過的音樂劇——海報牆、音樂劇護照與足跡地圖。用 MusicalMap 建立你自己的音樂劇護照。" />
 <!-- 社群分享預覽（爬蟲不執行 JS → 顯示 MusicalMap 品牌卡；Cloudflare Worker 會依 handle 注入個人化 meta+canonical） -->

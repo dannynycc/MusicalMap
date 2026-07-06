@@ -1,6 +1,6 @@
 # 部署 my.themusicalmap.com（個人公開頁子網域）
 
-> 狀態:**Worker 程式碼已就緒（`worker/my-worker.js`），未部署**。
+> 狀態:**✅ 2026-07-06 已部署上線**（wrangler `custom_domain=true` 自動建 DNS+憑證,版本 4d807b44）。線上驗證過:`/danny` 200+MM_HANDLE 注入+個人化 title/canonical、舊名 301、不存在 404、根 302 回主站、css 代理 200、瀏覽器完整 render。
 > 前置:themusicalmap.com 已在 Cloudflare 管 DNS（已完成）；`add_handle_aliases.sql` 已套用（已完成）。
 > 設計依據:`docs/DESIGN_username_sharing.md`。
 
@@ -41,9 +41,9 @@
 
 ## 之後的收尾（主站遷移時一起）
 
-- [ ] `GH_ORIGIN` 改成 `https://themusicalmap.com`（worker/my-worker.js 頂部一行）
-- [ ] 分享按鈕/複製連結改產 `my.themusicalmap.com/<handle>` 形式（`me.html` 的 `shareUrl()`）
-- [ ] `u.html?u=` 舊形式加轉向到 `my.` 形式（canonical 集中）
+- [x] `GH_ORIGIN` 改成 `https://themusicalmap.com`（2026-07-06 主站遷移時完成）
+- [x] 分享按鈕/複製連結改產 `my.themusicalmap.com/<handle>` 形式（2026-07-06,`me.html` `shareUrl()`+兩處 prefix 標籤）
+- [x] `u.html?u=` 舊形式加轉向到 `my.` 形式（2026-07-06,u.html head 早期 script;僅主網域觸發、帶 `?hl=`、localhost 不轉方便本機測試）
 - [ ] og:image 個人化（用該使用者第一張海報；需再打一次 `public_sightings`，目前用品牌 logo）
 - [ ] **Google 登入品牌化（OAuth callback 代理）**：用同一個 Cloudflare Worker 把 `auth.themusicalmap.com/auth/v1/callback` 反向代理到 Supabase 的 `gtuvrhdvwjlvneispcuq.supabase.co/auth/v1/callback`，並把 Supabase Auth 的 redirect / Google OAuth client 的 authorized redirect URI 改成 `auth.themusicalmap.com`。這樣 Google 同意畫面顯示的網域就變成自家網域，走品牌驗證時也沒有「無法驗證 supabase.co」的卡點。詳見 `SETUP_ACCOUNTS.md` 的「Google 登入品牌顯示」段。
 

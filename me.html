@@ -737,7 +737,7 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
     <label class="share-field" id="handleEdit" hidden>
       <span data-i18n="handle_input_label">網址名稱（英文、數字、底線或連字號，1–30 字）</span>
       <div class="handle-row">
-        <span class="handle-prefix">…/u.html?u=</span>
+        <span class="handle-prefix">my.themusicalmap.com/</span>
         <input id="pubHandle" autocomplete="off" spellcheck="false" maxlength="30" />
       </div>
       <span class="handle-status muted" id="handleStatus"></span>
@@ -778,7 +778,7 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
     <label class="share-field">
       <span data-i18n="acct_handle_label">網址名稱 username</span>
       <div class="handle-row">
-        <span class="handle-prefix">…/u.html?u=</span>
+        <span class="handle-prefix">my.themusicalmap.com/</span>
         <input id="acctHandle" autocomplete="off" spellcheck="false" maxlength="30" />
       </div>
       <span class="handle-status muted" id="acctStatus"></span>
@@ -815,7 +815,7 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
   const norm=v=>String(v||'').trim().toLowerCase().replace(/[^a-z0-9_-]/g,'').slice(0,30);
   // 與 DB handle_reserved()（supabase/add_handle_aliases.sql）同步，兩邊都要改
   const RESERVED=new Set(['u','me','index','admin','api','app','www','my','null','undefined','theatres','privacy','terms','login','logout','signup','settings','account','stats','static','assets','js','css','data','posters','logos','en','zh-hant','zh-hans','help','about','official','map','share']);
-  function shareUrl(h){return location.origin+location.pathname.replace(/[^\/]*$/,'u.html')+'?u='+encodeURIComponent(h);}
+  function shareUrl(h){return 'https://my.themusicalmap.com/'+encodeURIComponent(h);}
   const sb=()=>window.mmSb;
 
   async function isAvailable(h){

@@ -11,6 +11,14 @@
 
 ---
 
+## [v2.1.0] - 2026-07-06 10:29
+### 新功能 — my.themusicalmap.com/<username> 個人公開頁上線（FR24 式乾淨網址）
+- **Cloudflare Worker 部署完成**（使用者 wrangler login 授權後 `npx wrangler deploy`;`wrangler.toml` 改 `custom_domain=true` 讓 Cloudflare 自動建 `my` DNS+憑證,免手動 AAAA 100::）。版本 4d807b44。
+- 線上逐項驗證:`/danny` 200+`window.MM_HANDLE` 注入+個人化 `<title>`/canonical、不存在的名字 404、根路徑 302 回主站、robots.txt allow、`css/me-v2.css` 代理 200、headless 截圖完整 render(hero 統計/海報牆/即將上演緞帶)。
+- `me.html`:`shareUrl()` 改產 `https://my.themusicalmap.com/<handle>`;onboarding 與帳號設定兩處 prefix 標籤 `…/u.html?u=`→`my.themusicalmap.com/`。
+- `u.html`:head 加早期轉向 script——主網域 `u.html?u=xxx` 一律 `location.replace` 到 `my.themusicalmap.com/xxx`(帶 `?hl=`;localhost 與 my. 網域不觸發,本機測試不受影響)。
+- docs/SETUP_MY_SUBDOMAIN.md 狀態更新,收尾清單 3/4 勾掉(剩 og:image 個人化);首次登入強制取名/建議名/改名舊名 301 為 v1.10.0 既有功能,本版只換網址形式。
+
 ## [v2.0.0] - 2026-07-06 10:01
 ### 重大 — 主站遷移至自訂網域 https://themusicalmap.com（網域/DNS 於 2026-06-24 已就緒，今日完成程式面；網址全面變更=不相容變更，進 MAJOR）
 - `build/gen_site.mjs`:`BASE` `/MusicalMap/`→`/`、`SITE`→`https://themusicalmap.com`,重建三語頁(en/zh-hans/zh-hant,各 1,728 筆)+root router+`sitemap.xml`+`robots.txt`。

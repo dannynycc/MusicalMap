@@ -6,6 +6,7 @@ main = "my-worker.js"
 compatibility_date = "2026-07-01"
 
 # 綁定 my. 子網域(themusicalmap.com zone 已在 Cloudflare)
+# custom_domain=true:Cloudflare 部署時自動建立 my 的 DNS 記錄+憑證,免手動加 AAAA 100::
 routes = [
-  { pattern = "my.themusicalmap.com/*", zone_name = "themusicalmap.com" }
+  { pattern = "my.themusicalmap.com", custom_domain = true }
 ]
