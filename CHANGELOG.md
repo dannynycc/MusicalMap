@@ -11,6 +11,10 @@
 
 ---
 
+## [v2.4.4] - 2026-07-06 18:20
+### 交接 — Web Analytics 未結案狀態入檔(使用者換 session)
+- 全站已統一 Pages 專案層 WA token(9683049c,建置時注入,殭屍已清);待確認新站點入帳(09:54Z 後 >10 分零入帳,可能是新站首次延遲)。分析查詢 token 存 scrapers/.cf_analytics_token(本 commit 加入 .gitignore 保護)。下一步=使用者 Global API Key 做 RUM API 手術;僅限 Cloudflare 原生解法。完整交接見記憶 project_musicalmap_analytics。
+
 ## [v2.4.3] - 2026-07-06 16:50
 ### 定案 — Web Analytics 全面改走 zone 自動注入,拆除全部手工統計碼(v2.4.1/v2.4.2 作法作廢)
 - **API 鐵證翻案**:手動 snippet 上報在本帳號**從未入帳過任何一筆**(15 分鐘輪詢×多輪+7 天對照全零);唯一有效機制=zone RUM 自動注入(edge 對瀏覽器請求的 HTML 回應加 beacon——**注入器跳過非瀏覽器 UA,所以 curl 檢查永遠看不到、曾誤判為無效**)。

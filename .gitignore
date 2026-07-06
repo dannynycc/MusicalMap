@@ -15,3 +15,7 @@ data/_*
 # Node (opencc-js for the i18n build) — deps installed in CI, never committed
 node_modules/
 package-lock.json
+
+# Cloudflare Analytics 查詢 token(僅本機,絕不入庫)
+.cf_analytics_token
+scrapers/.cf_analytics_token
