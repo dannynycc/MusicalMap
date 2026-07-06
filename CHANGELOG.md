@@ -11,6 +11,14 @@
 
 ---
 
+## [v2.3.0] - 2026-07-06 11:40
+### 準備 — Cloudflare Pages 遷移前置:全站內部連結無副檔名化 + 平行預覽站
+- 使用者拍板遷移託管到 Cloudflare Pages(目標=在 Cloudflare 精準監控所有流量)。採零風險路徑:先平行預覽,DNS 最後才切。
+- **全站內部連結去 .html**(CF Pages 會把 .html 網址 308 到無副檔名;GH Pages 兩種都直達 → 先改連結,兩平台皆零轉向):手寫頁 guide/about/privacy/terms/theatres 相對連結改根路徑(/guide 等);**me/u/me-input(跑在 my. 網域)改完整網址 https://themusicalmap.com/...(相對路徑會被 Worker 當 handle 查詢)**;app.js attribution 三連結、gen_site.mjs 模板與 sitemap、llms.txt(me 連結改 https://my.themusicalmap.com/)。註解裡的隱藏連結一併修。**保留不動**:me-input.html iframe 引用(靠 .html 走 Worker 代理共享登入態)、Worker 伺服器端 fetch。
+- **保留字補漏**:RESERVED 三處清單(me.html/worker/DB migration)都缺 guide → 補 guide+me-input;**DB 端需使用者在 Supabase 重跑 add_handle_aliases.sql**(冪等)。
+- **平行預覽站** https://musicalmap.pages.dev(專案 musicalmap,wrangler 直傳,241 檔遠低於 2 萬上限):9 條路徑 200 全零轉向、四頁內部 .html 連結數=0;正式站(GH)無副檔名路徑 5 條全 200(切換前相容確認);me.html e2e 七項回歸 PASS。
+- 待辦(使用者 Cloudflare 後台):連接 Git 整合(push 自動雙部署)→ 評估後把 themusicalmap.com 自訂網域掛到 Pages 專案(=正式切換,Worker GH_ORIGIN 同步改)。
+
 ## [v2.2.4] - 2026-07-06 11:11
 ### 修正 — 使用者短暫看到 saved_ok 字面(字典檔快取空窗根治)
 - 病因鏈:新增字串只存在新字典,使用者瀏覽器抱著舊字典(且 v2.2.3 之前被 Cloudflare 給了 4h TTL)→ 新程式要不到字串,把內部代號顯示出來。**非設計行為,是缺陷**。

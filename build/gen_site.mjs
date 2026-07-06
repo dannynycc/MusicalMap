@@ -155,9 +155,9 @@ function page(variant, shows) {
     <nav id="topnav">
       ${langSwitch(variant)}
       <a class="nav-link" href="${BASE}${variant}/">${esc(t.maphome)}</a>
-      <!-- 所有劇院入口暫藏(2026-07-03 指示;theatres.html 頁面保留可直達)
-      <a class="nav-link" href="${BASE}theatres.html?lang=${variant}">${esc(t.theatres)}</a> -->
-      <a class="nav-link" href="${BASE}guide.html?hl=${variant}">${esc(t.guide)}</a>
+      <!-- 所有劇院入口暫藏(2026-07-03 指示;/theatres 頁面保留可直達)
+      <a class="nav-link" href="${BASE}theatres?lang=${variant}">${esc(t.theatres)}</a> -->
+      <a class="nav-link" href="${BASE}guide?hl=${variant}">${esc(t.guide)}</a>
       <!-- 隱私/條款移到地圖右下 attribution 列(Google Maps 慣例,見 app.js addAttribution) -->
       <a id="mine-link" class="nav-cta" href="https://my.themusicalmap.com/?hl=${variant}">${esc(t.mine)}</a>
     </nav>
@@ -252,7 +252,8 @@ function sitemap() {
     `<xhtml:link rel="alternate" hreflang="x-default" href="${SITE}/"/></url>`);
   // …plus the standalone pages (kept from the previous sitemap so they stay indexed).
   // me.html 刻意不列:登入閘頁(爬蟲只看到「載入中」),head 已加 noindex;公開內容在 u.html。
-  const pages = ["theatres.html", "guide.html", "about.html", "privacy.html", "terms.html"].map(
+  // 無副檔名 canonical:GH Pages 與 Cloudflare Pages 皆直達 200(CF 對 .html 形式會 308 到無副檔名)。
+  const pages = ["theatres", "guide", "about", "privacy", "terms"].map(
     (p) => `  <url><loc>${SITE}/${p}</loc></url>`);
   return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">

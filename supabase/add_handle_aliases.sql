@@ -16,7 +16,8 @@ returns boolean language sql immutable set search_path = public as $$
     'u','me','index','admin','api','app','www','my','null','undefined',
     'theatres','privacy','terms','login','logout','signup','settings',
     'account','stats','static','assets','js','css','data','posters','logos',
-    'en','zh-hant','zh-hans','help','about','official','map','share'
+    'en','zh-hant','zh-hans','help','about','official','map','share',
+    'guide','me-input'   -- 2026-07-06 補漏:頁面路徑不可被註冊成 handle
   ]);
 $$;
 

@@ -18,7 +18,7 @@ const ANON_KEY = 'sb_publishable_liJcmr-g9eU9xLLkKixJaA_9s8YjCni';   // 公開 k
 // 與 DB handle_reserved()、me.html RESERVED 同步(supabase/add_handle_aliases.sql)
 const RESERVED = new Set(['u','me','index','admin','api','app','www','my','null','undefined',
   'theatres','privacy','terms','login','logout','signup','settings','account','stats','static',
-  'assets','js','css','data','posters','logos','en','zh-hant','zh-hans','help','about','official','map','share']);
+  'assets','js','css','data','posters','logos','en','zh-hant','zh-hans','help','about','official','map','share','guide','me-input']);
 
 const esc = (s) => String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 
