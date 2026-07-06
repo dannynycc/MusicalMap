@@ -11,8 +11,8 @@
 
 ---
 
-## [v1.34.0] - 2026-07-06 10:01
-### 重大 — 主站遷移至自訂網域 https://themusicalmap.com（網域/DNS 於 2026-06-24 已就緒，今日完成程式面）
+## [v2.0.0] - 2026-07-06 10:01
+### 重大 — 主站遷移至自訂網域 https://themusicalmap.com（網域/DNS 於 2026-06-24 已就緒，今日完成程式面；網址全面變更=不相容變更，進 MAJOR）
 - `build/gen_site.mjs`:`BASE` `/MusicalMap/`→`/`、`SITE`→`https://themusicalmap.com`,重建三語頁(en/zh-hans/zh-hant,各 1,728 筆)+root router+`sitemap.xml`+`robots.txt`。
 - 新增 repo 根 `CNAME`(`themusicalmap.com`)——CI push 部署把 repo 現狀當 artifact,`CNAME` 在根即被 Pages 認領。
 - 手寫頁絕對網址全換新網域:about/guide/privacy/terms/theatres/u.html(canonical/hreflang/og:url/og:image)、`llms.txt`、`js/mm-strings.js`(隱私政策 pp_intro 繁英)、README、docs/AFFILIATE_SETUP、docs/SETUP_ACCOUNTS(Google OAuth origins 改新網域;「未上線」過時敘述更新)、worker/my-worker.js `GH_ORIGIN`。CHANGELOG 歷史條目與 `js/config.js` Mapbox 白名單註解(陳述事實)不改。
