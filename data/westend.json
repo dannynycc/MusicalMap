@@ -1,7 +1,7 @@
 {
   "meta": {
     "source": "londontheatre.co.uk",
-    "count": 53,
+    "count": 54,
     "missing_coords": []
   },
   "shows": [
@@ -533,23 +533,6 @@
       "source": "londontheatre.co.uk"
     },
     {
-      "id": "westend-the-smartest-giant-in-town",
-      "title": "The Smartest Giant in Town",
-      "type": "resident",
-      "venue": "St. Martin's Theatre",
-      "city": "London",
-      "country": "UK",
-      "lat": 51.512898,
-      "lng": -0.127604,
-      "start_date": "2026-12-09",
-      "end_date": "2027-01-03",
-      "ticket_url": "https://www.londontheatre.co.uk/show/47131-the-smartest-giant-in-town",
-      "image": "https://images.ctfassets.net/6pezt69ih962/4LB8L61KJVCeIUkg5JAtj1/ff60453c951933590c034198340bb496/TSGIT_480x720.jpg",
-      "tour_name": null,
-      "verified": true,
-      "source": "londontheatre.co.uk"
-    },
-    {
       "id": "westend-theare-royalty-drury-lane",
       "title": "Theatre Royalty Drury Lane",
       "type": "resident",
@@ -562,6 +545,23 @@
       "end_date": "2026-08-23",
       "ticket_url": "https://www.londontheatre.co.uk/show/47206-theare-royalty-drury-lane",
       "image": "https://images.ctfassets.net/6pezt69ih962/36YyfMlHTdX4HG11GkcFoA/09d78bd344ae051326b2970bc530c3e0/THEATRE_ROYALTY_480x720.jpg",
+      "tour_name": null,
+      "verified": true,
+      "source": "londontheatre.co.uk"
+    },
+    {
+      "id": "westend-the-smartest-giant-in-town",
+      "title": "The Smartest Giant in Town",
+      "type": "resident",
+      "venue": "St. Martin's Theatre",
+      "city": "London",
+      "country": "UK",
+      "lat": 51.512898,
+      "lng": -0.127604,
+      "start_date": "2026-12-09",
+      "end_date": "2027-01-03",
+      "ticket_url": "https://www.londontheatre.co.uk/show/47131-the-smartest-giant-in-town",
+      "image": "https://images.ctfassets.net/6pezt69ih962/4LB8L61KJVCeIUkg5JAtj1/ff60453c951933590c034198340bb496/TSGIT_480x720.jpg",
       "tour_name": null,
       "verified": true,
       "source": "londontheatre.co.uk"
@@ -817,6 +817,23 @@
       "end_date": "2026-08-08",
       "ticket_url": "https://www.londontheatre.co.uk/show/46452-dark-of-the-moon",
       "image": "https://images.ctfassets.net/6pezt69ih962/ucUPmOsuOJNtqLJY67wJi/19c4e3fefc8350b730f88bf45db857fb/DOTM_TTIX_480x720.jpg",
+      "tour_name": null,
+      "verified": true,
+      "source": "londontheatre.co.uk"
+    },
+    {
+      "id": "westend-jack-and-the-beanstalk",
+      "title": "Jack and The Beanstalk",
+      "type": "resident",
+      "venue": "Hackney Empire",
+      "city": "London",
+      "country": "UK",
+      "lat": 51.545623,
+      "lng": -0.055703,
+      "start_date": "2026-11-21",
+      "end_date": "2026-12-31",
+      "ticket_url": "https://www.londontheatre.co.uk/show/47299-jack-and-the-beanstalk",
+      "image": "https://images.ctfassets.net/6pezt69ih962/2z6ynzMcWgWoWHSVdihjn7/57bde68573100ffb26e2c48f488721c9/JATB_HACKNEY_480x720px.jpg",
       "tour_name": null,
       "verified": true,
       "source": "londontheatre.co.uk"
