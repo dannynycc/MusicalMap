@@ -22,14 +22,10 @@ const RESERVED = new Set(['u','me','index','admin','api','app','www','my','null'
 
 const esc = (s) => String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 
-// Cloudflare Web Analytics(my.themusicalmap.com 專屬 site token,公開值非秘密)。
-// my. 的頁面由 Worker 動態組出,zone 的自動注入碰不到 → 由這裡對每個 HTML 出口注入。
-// 不加 SRI(刻意,全站 CDN 釘 SRI 的唯一例外):beacon 由 CF 滾動更新,釘 hash 一更新統計就靜默斷;
-// 頁面本身即由 Cloudflare 出貨,該網域已在信任鏈內,SRI 在此無額外防護價值。
-// token=2026-07-06 重建的唯一站點 token,與主站頁面同一把。
-// 教訓:在儀表板刪掉 Web Analytics 站點卡片=該站 token 立即失效、上報被拒收——換 token 必須同步改這裡+主站模板+5 手寫頁。
-const CF_BEACON = `<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "c6bab8419908448183d302514c431c8c"}'></script>`;
-const withBeacon = (html) => html.includes('cloudflareinsights.com/beacon') ? html : html.replace('</head>', CF_BEACON + '\n</head>');
+// Web Analytics:不在此注入統計碼。2026-07-06 API 實證——手動 snippet 上報在本帳號從未入帳,
+// 唯一有效機制=zone 的 RUM 自動注入(edge 對經過 Cloudflare 的 HTML 回應自動加 beacon,含本 Worker 的輸出,
+// 早上 10:15-12:15 的 my./主站事件皆由它入帳)。手工再埋反而有雙重注入風險。統計設定=WA 站點選「Enable(自動注入)」。
+const withBeacon = (html) => html;   // 保留掛點:若日後要 Worker 端注入,改這裡一處即可
 
 async function sbGet(path) {
   const r = await fetch(SUPABASE_URL + path, { headers: { apikey: ANON_KEY } });

@@ -11,6 +11,13 @@
 
 ---
 
+## [v2.4.3] - 2026-07-06 16:50
+### 定案 — Web Analytics 全面改走 zone 自動注入,拆除全部手工統計碼(v2.4.1/v2.4.2 作法作廢)
+- **API 鐵證翻案**:手動 snippet 上報在本帳號**從未入帳過任何一筆**(15 分鐘輪詢×多輪+7 天對照全零);唯一有效機制=zone RUM 自動注入(edge 對瀏覽器請求的 HTML 回應加 beacon——**注入器跳過非瀏覽器 UA,所以 curl 檢查永遠看不到、曾誤判為無效**)。
+- 拆除:gen_site 模板+5 手寫頁 beacon、Worker CF_BEACON/withBeacon 注入(留 no-op 掛點)。使用者把站點切回「Enable(自動注入)」。
+- **結案驗收**:受控真實造訪(16:42)→ GraphQL 入帳確認 my./danny + 主站 zh-hant 各 1 筆,歸戶 siteTag `8f6e823a…`(zone 整合實體;涵蓋主站+www+my. 含 Worker 動態頁)。
+- **儀表板正解**:dash.cloudflare.com/23cd…/web-analytics/overview?siteTag=8f6e823a5c2e4ec285b61d9f11569682(直達網址;清單卡片的預覽數字不可信)。
+
 ## [v2.4.2] - 2026-07-06 14:33
 ### 修正 — Web Analytics 站點重建,全站統一單一 token
 - 事故鏈:WA 介面同時存在「網域整合站點(收全部)+手動站點(空殼)」的三胞胎混亂 → 使用者把清單裡兩張卡都刪除 → **站點卡片刪除=其 token 立即失效,全站上報被拒收**(API 實證:刪除後兩次受控真實造訪等 11 分鐘零入帳;歷史 13 筆保留)。
