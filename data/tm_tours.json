@@ -1,9 +1,9 @@
 {
   "meta": {
     "source": "ticketmaster attraction sweep",
-    "shows_swept": 629,
-    "shows_matched": 176,
-    "stops": 481
+    "shows_swept": 634,
+    "shows_matched": 175,
+    "stops": 483
   },
   "shows": [
     {
@@ -1349,6 +1349,25 @@
       "end_date": "2027-06-20",
       "ticket_url": "https://www.ticketmaster.com/beetlejuice-touring-tickets/artist/2867362",
       "attraction_url": "https://www.ticketmaster.com/beetlejuice-touring-tickets/artist/2867362",
+      "image": null,
+      "tour_name": null,
+      "verified": true,
+      "onsale_only": true,
+      "source": "ticketmaster"
+    },
+    {
+      "id": "tmt-beetlejuice-centro-cultural-teatro-i",
+      "title": "Beetlejuice",
+      "type": "tour",
+      "venue": "Centro Cultural Teatro I",
+      "city": "México",
+      "country": "Mexico",
+      "lat": 19.425159,
+      "lng": -99.15564,
+      "start_date": "2026-10-10",
+      "end_date": "2026-10-18",
+      "ticket_url": "https://www.ticketmaster.com/beetlejuice-el-musical-tickets/artist/1816800",
+      "attraction_url": "https://www.ticketmaster.com/beetlejuice-el-musical-tickets/artist/1816800",
       "image": null,
       "tour_name": null,
       "verified": true,
@@ -5054,6 +5073,25 @@
       "end_date": "2026-08-15",
       "ticket_url": "https://www.ticketmaster.com/matilda-the-musical-tickets/artist/1601714",
       "attraction_url": "https://www.ticketmaster.com/matilda-the-musical-tickets/artist/1601714",
+      "image": null,
+      "tour_name": null,
+      "verified": true,
+      "onsale_only": true,
+      "source": "ticketmaster"
+    },
+    {
+      "id": "tmt-matilda-bord-gais-energy-theatre",
+      "title": "Matilda",
+      "type": "tour",
+      "venue": "Bord Gais Energy Theatre",
+      "city": "Dublin",
+      "country": "Ireland",
+      "lat": 53.344201,
+      "lng": -6.240274,
+      "start_date": "2026-09-15",
+      "end_date": "2026-10-18",
+      "ticket_url": "https://www.ticketmaster.com/matilda-the-musical-touring-tickets/artist/2019437",
+      "attraction_url": "https://www.ticketmaster.com/matilda-the-musical-touring-tickets/artist/2019437",
       "image": null,
       "tour_name": null,
       "verified": true,
