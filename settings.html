@@ -84,7 +84,7 @@ if(!v){var nl=(navigator.language||'').toLowerCase();v=nl.indexOf('zh')===0?((nl
 if(v==='zh-hans'){document.write('<scr'+'ipt src="https://cdn.jsdelivr.net/npm/opencc-js@1.3.1/dist/umd/t2cn.js" integrity="sha384-P/OaFUnOIAgMkLxsXIAaP6WO3Wm09591cGX5bHbW4eCOeDxH9L8U3aWYf4cE4SYl" crossorigin="anonymous"><\/scr'+'ipt>');
 document.write('<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&display=swap" rel="stylesheet" />');}
 }catch(e){}})();</script>
-<script src="js/mm-strings.js?v=227"></script>
+<script src="js/mm-strings.js?v=228"></script>
 <script src="js/mm-acct-menu.js?v=227" defer></script><!-- nav 頭像:autoMount 讀 mm_owner/mm_av cookie 自動換,與全站一致 -->
 <!-- GA4(同站統計;隱私揭露見 privacy §1/§3) --><script async src="https://www.googletagmanager.com/gtag/js?id=G-GC07MYC1MY"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-GC07MYC1MY');</script>
 </head>
@@ -348,8 +348,11 @@ document.write('<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+
   $('showPrice').addEventListener('change',saveToggles);
   $('showSeat').addEventListener('change',saveToggles);
   $('shareCopy').addEventListener('click',async()=>{
-    const url=$('shareUrl').textContent;
-    try{await navigator.clipboard.writeText(url);$('shareCopy').textContent=T('copied');setTimeout(()=>$('shareCopy').textContent=T('copy'),1600);}catch(e){}
+    const url=$('shareUrl').textContent, b=$('shareCopy');
+    try{await navigator.clipboard.writeText(url);b.textContent=T('copied');setTimeout(()=>b.textContent=T('copy'),1600);}
+    catch(e){   // clipboard 不可用→選取網址讓使用者自己 Ctrl+C,不靜默
+      try{const r=document.createRange();r.selectNode($('shareUrl'));getSelection().removeAllRanges();getSelection().addRange(r);b.textContent=T('copy_manual');setTimeout(()=>b.textContent=T('copy'),2500);}catch(e2){}
+    }
   });
 
   // 登出(頁面本體按鈕;nav 選單的登出=?signout=1 也走同一套)

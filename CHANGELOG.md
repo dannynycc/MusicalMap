@@ -11,6 +11,13 @@
 
 ---
 
+## [v2.8.6] - 2026-07-07 14:20
+### 修正 — 複製網址在 clipboard API 不可用時靜默無回饋（PM 稽核循環 R9,第二批 backlog）
+
+- **真 bug**:me.html hero 帳號列的複製鈕 `pfCopy` 與 settings.html 的 `shareCopy`,`navigator.clipboard.writeText` 失敗時是空 `catch(e){}`——非 HTTPS context、使用者拒絕剪貼簿權限、企業瀏覽器政策擋 clipboard 時,按複製完全無反應、無提示、無 fallback。舊版 shareCopy(v2.5 前)本有「選取文字讓使用者 Ctrl+C」的 fallback,v2.6 帳號中心改版時漏帶。
+- 修:兩處 catch 補 fallback——選取網址文字（Range/Selection）+按鈕變「已選取，按 Ctrl+C / Selected — press Ctrl+C」（新 i18n key `copy_manual` 繁英）。
+- e2e 補斷言:mock `clipboard.writeText` reject → 驗按鈕提示手動複製 + 網址文字已被選取（2 項 PASS）。三主題(midnight/gallery/cream)pill 對比度截圖人眼驗清晰（綠色語意 status 色三底皆可讀）。`?v=228`;主 e2e 57 項全 PASS。
+
 ## [v2.8.5] - 2026-07-07 14:01
 ### 修正 — 8 個手寫頁的 mm-acct-menu.js 漏 bump cache（PM 稽核循環 R5,死 code 掃描時抓到）
 
