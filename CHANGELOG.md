@@ -11,6 +11,13 @@
 
 ---
 
+## [v2.9.0] - 2026-07-07 15:49
+### 變更 — 站內聯絡方式全改為 contact@themusicalmap.com（不再露私人 gmail）
+
+- 使用者要求:站上所有聯絡方式從私人 `dannynycc@gmail.com` 換成專屬 `contact@themusicalmap.com`。
+- 改動:`js/mm-strings.js` 8 處（about_s4_p/pp_intro/pp_s6_p/tou_intro 繁英）+ about/privacy/terms 三頁靜態 fallback（mailto+顯示文字）。CHANGELOG 歷史紀錄不動（當時事實）。頁面/JS 已零 dannynycc 殘留。`?v=229` bump;e2e 57 項全 PASS。
+- **email 後端**（站外,不在 repo）:`contact@themusicalmap.com` 以 **Zoho Mail 免費版**建立（真信箱,可收發回信、原件留存 Zoho）。DNS 在 Cloudflare 用 API 設定:Zoho 驗證 TXT + MX(mx/mx2/mx3.zoho.com,prio 10/20/50) + SPF(v=spf1 include:zoho.com ~all),經 Google DNS 8.8.8.8 驗證全球生效。DKIM + 轉發到 Gmail 收尾中。
+
 ## [v2.8.6] - 2026-07-07 14:20
 ### 修正 — 複製網址在 clipboard API 不可用時靜默無回饋（PM 稽核循環 R9,第二批 backlog）
 
