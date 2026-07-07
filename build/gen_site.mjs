@@ -146,8 +146,12 @@ function page(variant, shows) {
   <meta property="og:title" content="${esc(v.label)}" />
   <meta property="og:description" content="${esc(v.desc)}" />
   <meta property="og:url" content="${SITE}/${variant}/" />
-  <meta property="og:image" content="${SITE}/logo.png" />
-  <meta name="twitter:card" content="summary" />
+  <meta property="og:image" content="${SITE}/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="MusicalMap — live world map of musicals" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="${SITE}/og-image.png" />
   <!-- favicon: Google 只收正方形且 ≥48px 的圖示;舊版指 logo.png(122×200 直式)會被拒→退回地球圖示 -->
   <link rel="icon" href="${BASE}favicon.ico" sizes="any" />
   <link rel="icon" type="image/png" sizes="96x96" href="${BASE}favicon-96.png" />
@@ -243,6 +247,15 @@ function rootRouter() {
   <link rel="icon" href="${BASE}favicon.ico" sizes="any" />
   <link rel="icon" type="image/png" sizes="96x96" href="${BASE}favicon-96.png" />
   <link rel="apple-touch-icon" href="${BASE}apple-touch-icon.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="MusicalMap — Live World Map of Musicals" />
+  <meta property="og:description" content="Musicals playing around the world right now — Broadway, West End, tours and original productions across 40+ countries." />
+  <meta property="og:url" content="${SITE}/" />
+  <meta property="og:image" content="${SITE}/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="${SITE}/og-image.png" />
   ${hreflangLinks()}
   <script>
     (function () {

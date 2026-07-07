@@ -11,6 +11,13 @@
 
 ---
 
+## [v2.10.1] - 2026-07-07 19:58
+### SEO — 社群分享卡 og:image(PM 稽核循環,全站 debug 抓到)
+
+- **問題**:`og:image` 指向 `logo.png`(122×200 直式),任何人分享 themusicalmap.com 到 FB/Line/iMessage/X 的預覽圖是一張又小又窄的直條 logo,不專業。
+- 修:製作 **1200×630 標準社群橫幅** `og-image.png`(emblem 去背浮於暖白底 + Musical[深藍]Map[金] 字標 Georgia Bold + 金色分隔線 + tagline + 網域,上下金色細邊)。三語頁 + root router 全改指 og-image.png,補 `og:image:width/height/alt`,`twitter:card` 由 summary 升 **summary_large_image** + `twitter:image`。
+- emblem 去背:logo.png 有不透明近白背景框,knock out r/g/b>214 的不透明像素為透明,才不會在暖白底露出白方框。headless 預覽人眼驗證無白框無光暈。
+
 ## [v2.10.0] - 2026-07-07 19:26
 ### SEO / 品牌 — 搜尋結果標題大小寫、favicon、實體 schema、BIMI logo（使用者 Google 搜尋回報三病根）
 
