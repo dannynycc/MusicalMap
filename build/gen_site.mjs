@@ -11,7 +11,7 @@ import crypto from "crypto";
 const BASE = "/";
 const SITE = "https://themusicalmap.com";
 const VARIANTS = {
-  "en":      { lang: "en",      hreflang: "en",      label: "MusicalMap — live world map of musicals",
+  "en":      { lang: "en",      hreflang: "en",      label: "MusicalMap — Live World Map of Musicals",
                desc: "Musicals playing around the world right now — Broadway, West End, tours and original productions across 40+ countries." },
   "zh-hans": { lang: "zh-Hans", hreflang: "zh-Hans", label: "MusicalMap — 全球音乐剧实时地图",
                desc: "此刻全球正在上演的音乐剧实时地图：百老汇、西区、巡演与各国原创音乐剧，涵盖 40+ 国家，每日更新。" },
@@ -60,7 +60,21 @@ function jsonLd(variant, shows) {
   };
   const list = { "@context": "https://schema.org", "@type": "ItemList",
     "name": v.label, "numberOfItems": items.length, "itemListElement": items };
-  return `<script type="application/ld+json">${JSON.stringify(app)}</script>\n  ` +
+  // Organization + WebSite entity signals. Google/AI 一度把品牌認成既有的 "Musicmap"
+  // (musicmap.info,講音樂流派史的另一站);明確宣告 name/alternateName/url/logo 幫助
+  // 知識圖譜把 MusicalMap 建成獨立實體。@id 用網域錨定,三語頁指向同一實體。
+  const org = { "@context": "https://schema.org", "@type": "Organization",
+    "@id": `${SITE}/#organization`, "name": "MusicalMap",
+    "alternateName": ["The Musical Map", "themusicalmap"],
+    "url": `${SITE}/`, "logo": `${SITE}/favicon-512.png`,
+    "description": "MusicalMap is a live, interactive world map of stage musicals currently playing — Broadway, West End, international tours and original productions across 40+ countries. Not affiliated with Musicmap." };
+  const site = { "@context": "https://schema.org", "@type": "WebSite",
+    "@id": `${SITE}/#website`, "name": "MusicalMap", "alternateName": v.label,
+    "url": `${SITE}/`, "inLanguage": v.hreflang,
+    "publisher": { "@id": `${SITE}/#organization` }, "description": v.desc };
+  return `<script type="application/ld+json">${JSON.stringify(org)}</script>\n  ` +
+         `<script type="application/ld+json">${JSON.stringify(site)}</script>\n  ` +
+         `<script type="application/ld+json">${JSON.stringify(app)}</script>\n  ` +
          `<script type="application/ld+json">${JSON.stringify(list)}</script>`;
 }
 
@@ -106,7 +120,7 @@ function page(variant, shows) {
   const t = variant === "en"
     ? { tagline: "Musicals playing around the world right now", theatres: "All theatres", mine: "My Musicals", guide: "Guide",
         maphome: "Map home", search: "Search musicals, cities, theatres…", privacy: "Privacy", terms: "Terms",
-        h1: "MusicalMap — live world map of musicals playing now", listhdr: "Musicals playing now", filterLabel: "Category" }
+        h1: "MusicalMap — Live World Map of Musicals Playing Now", listhdr: "Musicals playing now", filterLabel: "Category" }
     : variant === "zh-hans"
     ? { tagline: "此刻全球正在上演的音乐剧", theatres: "所有剧院", mine: "我的音乐剧", guide: "怎么使用",
         maphome: "地图首页", search: "搜寻音乐剧名、城市、剧院…", privacy: "隐私政策", terms: "使用条款",
@@ -134,7 +148,11 @@ function page(variant, shows) {
   <meta property="og:url" content="${SITE}/${variant}/" />
   <meta property="og:image" content="${SITE}/logo.png" />
   <meta name="twitter:card" content="summary" />
-  <link rel="icon" href="${BASE}logo.png" />
+  <!-- favicon: Google 只收正方形且 ≥48px 的圖示;舊版指 logo.png(122×200 直式)會被拒→退回地球圖示 -->
+  <link rel="icon" href="${BASE}favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="96x96" href="${BASE}favicon-96.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="${BASE}favicon-192.png" />
+  <link rel="apple-touch-icon" href="${BASE}apple-touch-icon.png" />
   ${jsonLd(variant, shows)}
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -219,9 +237,12 @@ function rootRouter() {
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MusicalMap — live world map of musicals 全球音樂劇即時地圖</title>
+  <title>MusicalMap — Live World Map of Musicals 全球音樂劇即時地圖</title>
   <meta name="description" content="An interactive map of musicals playing around the world right now — Broadway, West End, tours and original productions. 全球正在上演的音樂劇即時地圖。" />
   <link rel="canonical" href="${SITE}/" />
+  <link rel="icon" href="${BASE}favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="96x96" href="${BASE}favicon-96.png" />
+  <link rel="apple-touch-icon" href="${BASE}apple-touch-icon.png" />
   ${hreflangLinks()}
   <script>
     (function () {

@@ -11,6 +11,16 @@
 
 ---
 
+## [v2.10.0] - 2026-07-07 19:26
+### SEO / 品牌 — 搜尋結果標題大小寫、favicon、實體 schema、BIMI logo（使用者 Google 搜尋回報三病根）
+
+- 使用者實搜 `themusicalmap` 發現三問題,逐一修:
+- **① 搜尋結果標題小寫**:Google 挑破折號後的「live world map of musicals」當標題且全小寫。改 `build/gen_site.mjs` 的 `en.label` + `h1` + root router title 為 Title Case:**MusicalMap — Live World Map of Musicals**。
+- **② favicon 不顯示（退回地球圖示）**:舊 `<link rel="icon">` 指向 `logo.png`（**122×200 直式**）,Google 只收正方形且 ≥48px→被拒。新增 `favicon.ico`(16/32/48 多解析)+`favicon-96/192/512.png`+`apple-touch-icon.png`(由 logo emblem 置中白底方形化,tighter padding 保小尺寸清晰),三語頁+root 都掛上。
+- **③ AI 摘要把品牌認成 Musicmap**（musicmap.info,講音樂流派史的另一站）:加 **Organization + WebSite JSON-LD**(`@id` 錨定網域、name=MusicalMap、alternateName、logo、"Not affiliated with Musicmap" 描述),強化知識圖譜實體區隔。屬長期訊號,非即時生效。
+- **BIMI logo（免費部分）**:`logo.png` 無向量原稿,以 vtracer 把 emblem 分深藍/金雙色遮罩各自描摹、依正確層序組成 **BIMI SVG Tiny PS**(`bimi/logo.svg`,9.6KB<32KB、方形 viewBox、有 title、白底不透明、無 raster/script)。headless Chrome 240/64/48px 圓裁人眼驗證與原 logo 一致。**注意**:Gmail 顯示 BIMI logo 需付費 VMC/CMC 憑證(經查證無免費路);此 SVG + 待發佈的 BIMI DNS 記錄 + DMARC 收緊,可讓 Apple Mail/Fastmail 等不需憑證的供應商顯示 logo。
+- 產物已 `node build/gen_site.mjs` 重生（en/zh-hans/zh-hant/index.html）。
+
 ## [v2.9.0] - 2026-07-07 15:49
 ### 變更 — 站內聯絡方式全改為 contact@themusicalmap.com（不再露私人 gmail）
 
