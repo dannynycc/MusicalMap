@@ -11,6 +11,12 @@
 
 ---
 
+## [v2.11.6] - 2026-07-07 22:34
+### Email — 重新加回免費 BIMI（使用者決定復原）
+
+- v2.11.4 曾應要求刪除 `bimi/`+DNS 記錄;使用者了解「Gmail 需付費憑證、但 Apple Mail/Fastmail 免費」後決定加回。
+- 重生 `bimi/logo.svg`(方形白底、實心金+藍、BIMI Tiny PS、16.5KB<32KB),重新發佈 `default._bimi` DNS 記錄指向它。→ Apple Mail/Fastmail 等不需憑證的收件人可免費顯示 logo;也是未來若買 CMC 憑證(Gmail 顯示)的地基。DMARC quarantine 本就保留。
+
 ## [v2.11.5] - 2026-07-07 22:03
 ### 文件 — MD freshness 全掃 + 清 stale 註解
 
