@@ -929,6 +929,8 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
   const shareCard=modal.querySelector('.sharemodal-card');
   async function maybeOnboard(){
     if(CUR.handle)return;
+    if(FORCED)return;   // 重入防護:auth 事件(INITIAL_SESSION/SIGNED_IN/getSession)會多次觸發 mmAuthReady,
+                        // 不擋會併發跑 buildChips→建議 chips 渲染三份+trapModal 疊監聽(R2 稽核 375px 截圖抓到)
     FORCED=true;
     $('shareTitle').textContent=T('onb_title');
     $('shareLead').textContent=T('onb_lead');

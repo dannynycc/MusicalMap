@@ -11,6 +11,13 @@
 
 ---
 
+## [v2.8.3] - 2026-07-07 13:32
+### 修正 — 首次登入 onboarding 建議 chips 渲染三份（PM 稽核循環 R2 於 375px 截圖抓到）
+
+- 根因:Supabase auth 事件（INITIAL_SESSION/SIGNED_IN + getSession）會多次觸發 `mmAuthReady` → `maybeOnboard`/`buildChips` 併發執行,`box.innerHTML=''` 在各自 await 前就跑完,三個併發各自 append → 使用者首次登入看到三排重複建議、focus trap 疊三層監聽。
+- 修:`maybeOnboard()` 加 `if(FORCED)return` 重入防護（FORCED 首次進入即設,後續呼叫直接擋）。
+- 桌面 e2e 先前只驗 chips 存在沒驗數量所以漏掉;補「chips 只渲染一份」斷言,e2e **57 項全 PASS**;375px onboarding/u.html 公開頁(長名)無橫向溢出稽核同輪 PASS。
+
 ## [v2.8.2] - 2026-07-07 12:00
 ### 修正 — settings 手機版橫向溢出（使用者質疑「才一個?」後補掃出的真 bug）
 
