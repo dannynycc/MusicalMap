@@ -124,20 +124,7 @@ header{position:sticky;top:0;z-index:1100;background:color-mix(in srgb,var(--bg)
   background:var(--gold);border:1px solid var(--gold);color:var(--on-accent,#1a1407);white-space:nowrap}
 .hero-acct .btn-addshow:hover{filter:brightness(1.06)}
 
-/* ===== settings.html 專屬帳號設定頁（FR24 風單欄）===== */
-.st-wrap{max-width:720px;margin:0 auto;padding:26px 20px 70px}
-.st-wrap h1{font-family:var(--fr);font-weight:900;font-size:clamp(26px,3.2vw,34px);letter-spacing:-.6px;margin:14px 0 6px}
-.st-id{display:flex;align-items:center;gap:14px;margin:14px 0 8px}
-.st-mono{flex:none;width:52px;height:52px;border-radius:50%;display:grid;place-items:center;
-  font-family:var(--fr);font-weight:900;font-size:24px;color:var(--gold);text-transform:uppercase;
-  background:radial-gradient(120% 120% at 30% 20%,color-mix(in srgb,var(--gold) 26%,transparent),transparent 70%),var(--s3);
-  border:1.5px solid color-mix(in srgb,var(--gold) 55%,transparent)}
-.st-id-name{font-family:var(--fr);font-weight:700;font-size:19px;color:var(--ink1)}
-.st-id-sub{font-size:12.5px;color:var(--ink3);margin-top:3px}
-.st-sec{padding:22px 0;border-top:1px dashed var(--hair2)}
-.st-sec:first-of-type{border-top:none}
-.st-sec-h{font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
-.st-note{font-size:12.5px;color:var(--ink3);line-height:1.55;margin:8px 0 0}
+/* settings.html 已改走主站淺色骨架(css/style.css+頁內樣式;2026-07-07 使用者指示風格與主頁一致),st-* 樣式移出本檔 */
 @media(max-width:560px){.pf-url-t{max-width:60vw}}
 
 /* ===== HERO : passport-cover banner ===== */
