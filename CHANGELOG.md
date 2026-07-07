@@ -11,6 +11,13 @@
 
 ---
 
+## [v2.11.4] - 2026-07-07 21:22
+### 清理 — 刪 logo.png + bimi/ 資料夾,logo 全站統一 SVG（使用者指示）
+
+- 刪 `logo.png`(照片漸層版,使用者選定扁平 SVG 後不再需要;repo 內已無引用,header 早於 v2.11.3 改用 logo.svg)。
+- 刪 `bimi/` 整個資料夾(BIMI email logo)。**連帶**:`default._bimi` DNS 記錄原指向 `bimi/logo.svg`,已在 Cloudflare 同步移除該 TXT 記錄(否則成指向 404 的死記錄)= 放棄免費 BIMI(Gmail 本就需付費憑證,免費僅 Apple Mail/Fastmail 有效)。DMARC quarantine 保留(反詐騙防護,與 BIMI 無關)。
+- logo 全站統一 `logo.svg`(扁平實心金+藍,v2.11.3 定稿)。
+
 ## [v2.11.3] - 2026-07-07 21:15
 ### 品牌 — logo.svg 定稿為乾淨扁平版 + 全站改用 SVG（使用者拍板）
 
