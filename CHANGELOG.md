@@ -11,6 +11,14 @@
 
 ---
 
+## [v2.8.4] - 2026-07-07 13:38
+### 清理 — i18n 孤兒 key 掃描（PM 稽核循環 R3）:刪 9 個無使用 key
+
+- 寫掃描器對 mm-strings 210+ key 全 repo（含 data.js/me-catalog.js 等資料層）比對使用處,真孤兒 9 個（繁英各一份）全刪:
+  `del_zone`（settings 改 adv_zone 後遺留）、`footer2_me`（me.html 舊 footer）、`first_west_end/first_broadway/first`（舊版徽章遺留）、`nav_account/menu_my/pc_account`（大頭照選單 label 已內建於 mm-acct-menu.js）、`fld_title`（me-input 只用 fld_title_req）。
+- persona `p_*` 等 16 個初判候選中 7 個為掃描器漏含 data.js 的假陽性,已修掃描器複驗=零孤兒。
+- `?v=227` bump;e2e 57 項全 PASS。
+
 ## [v2.8.3] - 2026-07-07 13:32
 ### 修正 — 首次登入 onboarding 建議 chips 渲染三份（PM 稽核循環 R2 於 375px 截圖抓到）
 
