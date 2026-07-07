@@ -11,6 +11,17 @@
 
 ---
 
+## [v2.11.0] - 2026-07-07 20:26
+### 品牌 — 全站 logo 資產從高解析原稿重製(向量 SVG + 全 raster 資產)
+
+- 使用者提供高解析 logo 圖(舊 `logo.png` 僅 122×200 低解析)。從 2816px master 裁出高解析 emblem,重製**所有品牌資產**:
+- **`logo.svg`(新,向量)**:emblem 雙色遮罩分層描摹(vtracer,源圖 **4× 放大 + 遮罩高斯模糊再二值化**去鋸齒——消掉 clef 交界缺口與描邊小凸起等微瑕疵,整張全域平滑)+ 金色套 **3 段線性漸層**還原金屬質感 + 背景透明。66KB(使用者授權可較大以換品質)。header 品牌圖改用它(向量,任何螢幕不糊)。
+- **`logo.png`**:改為從高解析 emblem 去背的**透明高清版**(900px 高),舊的所有 `<img src=logo.png>` 引用一次全部升級。
+- **favicon / apple-touch / og-image / 頭像**:全部改從高解析 emblem 重生,比舊低解析來源清楚。
+- **`bimi/logo.svg`**:同源重製(1024 內部解析,扁平金,15KB<32KB BIMI 上限)。
+- **手寫頁修正(順帶清 v2.10.0 遺留)**:`about/guide/privacy/terms/theatres/me/u/settings/me-input` 9 頁——① favicon 從壞掉的直式 `logo.png` 改為方形合規組(Google 之前退回地球圖示的病根)② og:image → og-image.png 社群卡 ③ 品牌 img → logo.svg 向量。
+- 全程 headless Chrome 放大人眼驗證(含單獨放大音符確認曲線平滑、透明去背無白框、header 34px 渲染)。
+
 ## [v2.10.1] - 2026-07-07 19:58
 ### SEO — 社群分享卡 og:image(PM 稽核循環,全站 debug 抓到)
 

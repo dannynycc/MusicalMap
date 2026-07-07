@@ -16,9 +16,11 @@ var hl=q.get('hl');location.replace('https://my.themusicalmap.com/'+encodeURICom
 <meta property="og:site_name" content="MusicalMap" />
 <meta property="og:title" content="My Musicals — 我的音樂劇" />
 <meta property="og:description" content="看看我在世界各地看過的音樂劇。用 MusicalMap 建立你自己的音樂劇護照。" />
-<meta property="og:image" content="https://themusicalmap.com/logo.png" />
+<meta property="og:image" content="https://themusicalmap.com/og-image.png" />
 <meta name="twitter:card" content="summary" />
-<link rel="icon" href="logo.png" />
+<link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,900;1,9..144,500&family=Inter:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;700;900&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet" />
 <script>/* no-flash: apply saved theme before CSS paints;已下架的 neon/deco 正規化回 midnight */(function(){try{var t=localStorage.getItem('mm-theme');if(t==='neon'||t==='deco'){t='midnight';localStorage.setItem('mm-theme',t);}if(t&&t!=='midnight')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
@@ -44,7 +46,7 @@ document.write('<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+S
 </head>
 <body>
 <header><div class="wrap bar">
-  <a class="brand" href="https://themusicalmap.com/"><img src="logo.png" alt="" class="brand-logo" /><span>Musical<b>Map</b></span></a>
+  <a class="brand" href="https://themusicalmap.com/"><img src="logo.svg" alt="" class="brand-logo" /><span>Musical<b>Map</b></span></a>
   <nav class="nav">
     <!-- pills 永遠在 nav 最前,與首頁/法務頁一致(跨頁不跳動) -->
     <div class="hl-pick" role="group" aria-label="Language / 語言">
@@ -71,7 +73,7 @@ document.write('<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+S
     <div class="spines" id="spines"></div>
     <div class="veil"></div><div class="guil"></div>
     <div class="hero-in">
-      <div class="crest"><img src="logo.png" alt="MusicalMap" class="crest-logo" /></div>
+      <div class="crest"><img src="logo.svg" alt="MusicalMap" class="crest-logo" /></div>
       <div>
         <div class="sub" data-i18n="hero_sub">每看一場，蓋一個章</div>
         <h1>My Musicals</h1>
