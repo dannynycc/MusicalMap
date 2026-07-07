@@ -94,13 +94,14 @@
       saved_redirect: '✓ 已儲存。舊網址會自動轉到新網址。', saved_ok: '✓ 已儲存', display_save_fail: '顯示名稱儲存失敗：',
       confirm_delete: '確定要刪除《{name}》這筆紀錄嗎？\n(刪除後仍可從左下角「復原」救回)',
       this_show: '這齣', deleted: '已刪除《{name}》', undo: '復原',
-      // ---- 帳號中心（me.html 身分卡＋統一帳號設定面板）----
+      // ---- 帳號選單（nav 大頭照 dropdown）＋hero 帳號列＋settings.html 專屬設定頁 ----
+      nav_account: '我的帳號', menu_my: '我的音樂劇',
       pc_account: '帳號設定', pc_add: '＋ 加入音樂劇',
-      pc_public: '公開中', pc_private: '私密',
+      pc_public: '公開中', pc_private: '未公開',
       pc_public_hint: '任何有連結的人都看得到你的收藏頁', pc_private_hint: '只有你看得到，別人就算有連結也看不到',
       pc_joined: '加入於 {y}年{m}月', pc_copy_url: '複製網址',
-      pc_shows_n: '{n} 部音樂劇', pc_show_one: '1 部音樂劇',   // 與同頁清單標頭「{n} 部音樂劇」一致
       pf_sec_identity: '帳號身分', pf_sec_share: '公開分享',
+      st_email: '登入帳號', st_saved_auto: '✓ 已生效', st_signing_out: '登出中…',
       // ---- me-input.html 專屬(輸入表單,iframe) ----
       mi_h1: '記錄一齣音樂劇', mi_open_log: '＋ 記錄一齣音樂劇', mi_sheet_record: '記錄一齣音樂劇',
       mi_sec_records: '我的觀劇紀錄', mi_not_recorded: '尚未記錄', mi_add: '加入', mi_update: '更新',
@@ -311,12 +312,13 @@
       saved_redirect: '✓ Saved. The old URL will redirect to the new one.', saved_ok: '✓ Saved', display_save_fail: 'Display name save failed: ',
       confirm_delete: 'Delete “{name}” from your records?\n(You can still restore it from “Undo” at the bottom-left.)',
       this_show: 'this show', deleted: 'Deleted “{name}”', undo: 'Undo',
-      pc_account: 'Account', pc_add: '＋ Add a musical',
+      nav_account: 'My account', menu_my: 'My Musicals',
+      pc_account: 'Account settings', pc_add: '＋ Add a musical',
       pc_public: 'Public', pc_private: 'Private',
       pc_public_hint: 'Anyone with the link can see your collection', pc_private_hint: 'Only you can see it — the link won’t work for anyone else',
       pc_joined: 'Joined {m} {y}', pc_copy_url: 'Copy link',
-      pc_shows_n: '{n} musicals', pc_show_one: '1 musical',
       pf_sec_identity: 'Account identity', pf_sec_share: 'Public sharing',
+      st_email: 'Signed in as', st_saved_auto: '✓ Applied', st_signing_out: 'Signing out…',
       mi_h1: 'Log a musical', mi_open_log: '＋ Log a musical', mi_sheet_record: 'Log a musical',
       mi_sec_records: 'My records', mi_not_recorded: 'Nothing logged yet', mi_add: 'Add', mi_update: 'Update',
       mi_footer_1: 'Search → pick production → auto-fill → year-first date → save & stamp.', mi_footer_2: 'Records are saved to your account and synced across devices; artwork is each show’s real cover.',

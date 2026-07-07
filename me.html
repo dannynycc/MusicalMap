@@ -56,7 +56,8 @@ if(!v){var nl=(navigator.language||'').toLowerCase();v=nl.indexOf('zh')===0?((nl
 if(v==='zh-hans'){document.write('<scr'+'ipt src="https://cdn.jsdelivr.net/npm/opencc-js@1.3.1/dist/umd/t2cn.js" integrity="sha384-P/OaFUnOIAgMkLxsXIAaP6WO3Wm09591cGX5bHbW4eCOeDxH9L8U3aWYf4cE4SYl" crossorigin="anonymous"><\/scr'+'ipt>');
 document.write('<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet" />');/* 簡體字 TC 字型沒有→混排忽粗忽細,補 SC */}
 }catch(e){}})();</script>
-<script src="js/mm-strings.js?v=224"></script>
+<script src="js/mm-strings.js?v=225"></script>
+<script src="js/mm-acct-menu.js?v=225"></script>
 <!-- Google Analytics(GA4 G-GC07MYC1MY;訪客來源/行為分析,同一 ID 涵蓋主站與 my. 網域(報表以 hostname 區分);不加 SRI:gtag.js 由 Google 滾動更新,釘 hash 會靜默斷統計;隱私揭露見 privacy §1/§3) --><script async src="https://www.googletagmanager.com/gtag/js?id=G-GC07MYC1MY"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-GC07MYC1MY');</script>
 </head>
 <body>
@@ -101,35 +102,11 @@ var hl=window.MM_HL;if(hl&&hl!=='zh-hant'){var im=document.getElementById('gate-
       <button data-th="cream" title="節目單奶油（亮）" data-i18n-title="th_cream" style="--sw:#efe1c4"></button>
       <!-- neon/deco 兩色已移除(2026-07-03 指示);曾選過的使用者由 no-flash script 正規化回 midnight -->
     </div>
-    <!-- 分享/登出已移入頁面頂部「帳號中心」身分卡(#profCard),nav 不再放帳號類按鈕 --></nav>
+    <!-- 大頭照選單(我的音樂劇/帳號設定/登出):登入後由 JS 掛進來 -->
+    <span id="navAcct"></span></nav>
 </div></header>
 
 <div class="wrap">
-  <!-- ===== PROFILE / 帳號中心（FR24 式身分卡;登入且設定載入後由 JS 填入並顯示）===== -->
-  <section class="profcard" id="profCard" hidden aria-label="帳號" data-i18n-aria="pc_account">
-    <div class="pf-id">
-      <div class="pf-mono" id="pfMono" aria-hidden="true"></div>
-      <div class="pf-meta">
-        <div class="pf-namerow">
-          <span class="pf-name" id="pfName"></span>
-          <button type="button" class="pf-status" id="pfStatus" data-pub="0">
-            <span class="pf-dot"></span><span class="pf-status-t" id="pfStatusT"></span>
-          </button>
-        </div>
-        <div class="pf-urlrow" id="pfUrlRow">
-          <a class="pf-url" id="pfUrl" href="#" target="_blank" rel="noopener"><span class="pf-url-t" id="pfUrlT"></span><span class="pf-open" aria-hidden="true">↗</span></a>
-          <button type="button" class="pf-copy" id="pfCopy" aria-label="複製網址" data-i18n-aria="pc_copy_url" data-i18n="copy">複製</button>
-        </div>
-        <div class="pf-sub" id="pfSub"></div>
-      </div>
-    </div>
-    <div class="pf-actions">
-      <button type="button" class="pf-btn pf-btn-primary" id="pfAdd" data-i18n="pc_add">＋ 加入音樂劇</button>
-      <button type="button" class="pf-btn" id="pfAcct" data-i18n="pc_account">帳號設定</button>
-      <button type="button" class="pf-btn pf-btn-ghost" id="pfLogout" data-i18n="nav_logout">登出</button>
-    </div>
-  </section>
-
   <!-- DEMO/EMPTY-STATE BANNER (只在沒有真實登錄時出現) -->
   <div class="demobanner" id="demoBanner">
     <span class="db-txt"><b data-i18n="demo_banner_b">這是範例收藏</b><span data-i18n="demo_banner_rest"> —— 先讓你看看蓋滿章後的樣子。按右邊加入你第一齣看過的劇，整頁就換成你自己的。</span></span>
@@ -146,6 +123,13 @@ var hl=window.MM_HL;if(hl&&hl!=='zh-hant'){var im=document.getElementById('gate-
         <h1 data-i18n="me_hero_title">我的音樂劇收藏</h1>
         <div class="bignums" id="bignums"></div>
         <div class="newest" id="newest"></div>
+        <!-- 帳號列:公開狀態 pill(點了去帳號設定)+專屬網址+複製+加入音樂劇;登入且設定載入後由 JS 填入 -->
+        <div class="hero-acct" id="heroAcct" hidden>
+          <a class="pf-status" id="pfStatus" data-pub="0" href="settings.html"><span class="pf-dot"></span><span id="pfStatusT"></span></a>
+          <a class="pf-url" id="pfUrl" href="#" target="_blank" rel="noopener"><span class="pf-url-t" id="pfUrlT"></span><span class="pf-open" aria-hidden="true">↗</span></a>
+          <button type="button" class="pf-copy" id="pfCopy" aria-label="複製網址" data-i18n-aria="pc_copy_url" data-i18n="copy">複製</button>
+          <button type="button" class="btn-addshow" id="heroAdd" data-i18n="pc_add">＋ 加入音樂劇</button>
+        </div>
       </div>
     </div>
   </section>
@@ -772,57 +756,8 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
   </div>
 </div>
 
-<!-- ===== 帳號設定 modal＝統一帳號中心面板（帳號身分＋公開分享＋刪除帳號;改名走 rename_handle，舊網址自動轉新）===== -->
-<style>
-.pf-sec-h{margin:20px 0 10px;padding-top:16px;border-top:1px solid var(--hair2,rgba(0,0,0,.12));font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--gold,#c9a85c)}
-.pf-sec-h:first-of-type{margin-top:12px;padding-top:0;border-top:none}
-</style>
-<div class="sharemodal" id="acctModal" hidden>
-  <div class="sharemodal-bd" id="acctBd"></div>
-  <div class="sharemodal-card" role="dialog" aria-modal="true" aria-labelledby="acctTitle">
-    <button type="button" class="sharemodal-x" id="acctX" aria-label="關閉" data-i18n-aria="aria_close">✕</button>
-    <h2 id="acctTitle" data-i18n="acct_title">帳號設定</h2>
+<!-- 帳號設定已移到專屬頁 settings.html（v2.7.0,使用者指示:獨立頁面而非彈窗）;此處不再有 acctModal -->
 
-    <div class="pf-sec-h" data-i18n="pf_sec_identity">帳號身分</div>
-    <p class="share-lead" data-i18n="acct_lead">網址名稱是你的帳號身分。更改後舊網址會自動轉到新網址，已分享出去的連結不會壞；舊名稱會永久保留給你，別人拿不走。</p>
-    <label class="share-field">
-      <span data-i18n="acct_handle_label">網址名稱 username</span>
-      <div class="handle-row">
-        <span class="handle-prefix">my.themusicalmap.com/</span>
-        <input id="acctHandle" autocomplete="off" spellcheck="false" maxlength="30" />
-      </div>
-      <span class="handle-status muted" id="acctStatus"></span>
-    </label>
-    <label class="share-field">
-      <span data-i18n="acct_display_label">顯示名稱（公開頁的標題）</span>
-      <div class="handle-row"><input id="acctDisplay" maxlength="40" style="padding-left:11px" /></div>
-    </label>
-
-    <div class="pf-sec-h" data-i18n="pf_sec_share">公開分享</div>
-    <label class="share-switch"><input type="checkbox" id="pubPublic" /> <span data-i18n="pub_public">公開我的收藏頁</span></label>
-    <div class="share-sub" data-i18n="pub_public_sub">關閉時，就算有連結別人也看不到你的收藏。</div>
-    <div class="share-fields-group" id="shareFieldsGroup" hidden>
-      <div class="sfg-title" data-i18n="sfg_title">公開頁要顯示哪些敏感資訊？</div>
-      <label class="share-switch"><input type="checkbox" id="showPrice" /> <span data-i18n="show_price">顯示票價</span></label>
-      <label class="share-switch"><input type="checkbox" id="showSeat" /> <span data-i18n="show_seat">顯示座位</span></label>
-      <div class="share-sub" data-i18n="note_never">筆記永遠不會出現在公開頁。</div>
-    </div>
-    <div class="share-link" id="shareLink" hidden>
-      <a id="shareUrl" href="#" target="_blank" rel="noopener"></a>
-      <button type="button" id="shareCopy" data-i18n="copy">複製</button>
-    </div>
-
-    <div class="share-actions">
-      <button type="button" class="btn-ghost" id="acctCancel" data-i18n="cancel">取消</button>
-      <button type="button" class="btn-gold" id="acctSave" data-i18n="save">儲存</button>
-    </div>
-    <div class="acct-danger">
-      <div class="acct-danger-h" data-i18n="del_zone">危險操作</div>
-      <p class="acct-danger-p" data-i18n="del_desc">刪除帳號會永久移除你的所有觀劇紀錄、公開頁與網址名稱，無法復原。</p>
-      <button type="button" class="btn-danger" id="acctDelete" data-i18n="del_account">刪除我的帳號</button>
-    </div>
-  </div>
-</div>
 <script>
 /* ===== 分享設定 + 帳號設定 + 首次登入 onboarding（docs/DESIGN_username_sharing.md）=====
    username＝帳號固定身份：首次登入強制設定（onboarding）、只能在「帳號設定」改名。
@@ -833,7 +768,7 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
 (function(){
   const $=s=>document.getElementById(s);
   const T=window.MM_T||(k=>k), TN=(k,v)=>{let s=T(k);for(const n in(v||{}))s=s.replace('{'+n+'}',v[n]);return s;};
-  const modal=$('shareModal'), acct=$('acctModal');
+  const modal=$('shareModal');
   let UID=null, CUR={handle:'',is_public:false,show_price:false,show_seat:false}, DISPLAY='', EMAIL='', CREATED='';
   let FORCED=false;   // onboarding 強制模式（無 handle 不放行）
 
@@ -895,8 +830,7 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
     });
     return {check,st,set};
   }
-  const obCheck=makeChecker('pubHandle','handleStatus');
-  const acCheck=makeChecker('acctHandle','acctStatus');
+  const obCheck=makeChecker('pubHandle','handleStatus');   // onboarding 用;帳號設定的查重在 settings.html 自持一份
 
   // ---- 設 handle 唯一入口：rename_handle（migration 未套用 → 退回舊 upsert）----
   async function setHandle(h){
@@ -933,19 +867,11 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
     const tip=document.createElement('span');tip.className='chips-tip';tip.textContent=T('chips_tip');box.appendChild(tip);
     for(const c of avail){
       const b=document.createElement('button');b.type='button';b.textContent=c;
-      b.addEventListener('click',()=>{$('pubHandle').value=c;renderLink();obCheck.check();$('pubHandle').focus();});
+      b.addEventListener('click',()=>{$('pubHandle').value=c;obCheck.check();$('pubHandle').focus();});
       box.appendChild(b);
     }
     box.hidden=false;
   }
-
-  function renderLink(){
-    const h=CUR.handle, pub=$('pubPublic').checked;   // 面板內即時預覽（依勾選狀態），儲存才寫入雲端
-    const box=$('shareLink');
-    if(pub&&h){box.hidden=false;const a=$('shareUrl');a.textContent=shareUrl(h);a.href=shareUrl(h);}
-    else box.hidden=true;
-  }
-  function syncFieldsVisibility(){ $('shareFieldsGroup').hidden=!$('pubPublic').checked; }
 
   async function loadSettings(uid){
     UID=uid;
@@ -956,13 +882,10 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
       DISPLAY=data?.display_name||'';
       CREATED=data?.created_at||'';
       if(CUR.handle){ownerCookie(CUR.handle);canonPath(CUR.handle);}   // 種本人標記+網址列改 my./<handle>
-      $('pubPublic').checked=CUR.is_public;
-      $('showPrice').checked=CUR.show_price;
-      $('showSeat').checked=CUR.show_seat;
     }catch(e){console.warn('loadSettings',e);}
   }
 
-  // ---- onboarding modal 的儲存：只負責首次設 handle（公開開關已整併到帳號設定 acctSave）----
+  // ---- onboarding modal 的儲存：只負責首次設 handle（其餘帳號設定在 settings.html）----
   async function save(){
     if(!FORCED)return;   // 此 modal 僅剩 onboarding 用途
     const btn=$('shareSave');
@@ -977,7 +900,7 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
       CUR.handle=h;FORCED=false;
       ownerCookie(h);canonPath(h);
       obCheck.set('ok',T('onb_done'));
-      renderProfCard();
+      renderHeroAcct();mountMenu();
       setTimeout(()=>{close();},500);
     }finally{btn.disabled=false;btn.textContent=T('save');}
   }
@@ -1000,7 +923,7 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
     cardEl._untrap=()=>cardEl.removeEventListener('keydown',onKey);
   }
   function untrap(cardEl){if(cardEl&&cardEl._untrap)cardEl._untrap();}
-  const shareCard=modal.querySelector('.sharemodal-card'), acctCard=acct.querySelector('.sharemodal-card');
+  const shareCard=modal.querySelector('.sharemodal-card');
   async function maybeOnboard(){
     if(CUR.handle)return;
     FORCED=true;
@@ -1015,92 +938,38 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
 
   function close(){if(FORCED)return;untrap(shareCard);modal.hidden=true;document.body.style.overflow='';}
 
-  // ---- 帳號設定（統一面板:身分＋公開分享）----
-  function openAcct(){
-    $('acctHandle').value=CUR.handle;
-    $('acctDisplay').value=DISPLAY;
-    acCheck.set(CUR.handle?'ok':'muted',CUR.handle?T('h_current'):'');
-    // 開關每次開面板都從已儲存狀態重置（上次取消未存的勾選不殘留）
-    $('pubPublic').checked=CUR.is_public;
-    $('showPrice').checked=CUR.show_price;
-    $('showSeat').checked=CUR.show_seat;
-    syncFieldsVisibility();renderLink();
-    acct.hidden=false;document.body.style.overflow='hidden';if(acctCard)trapModal(acctCard);
-  }
-  function closeAcct(){untrap(acctCard);acct.hidden=true;document.body.style.overflow='';}
-  async function acctSave(){
-    const h=norm($('acctHandle').value), d=$('acctDisplay').value.trim();
-    const btn=$('acctSave');
-    if(!h){acCheck.set('bad',T('acct_url_empty'));$('acctHandle').focus();return;}
-    if(!/[a-z0-9]/.test(h)){acCheck.set('bad',T('h_input_hint'));$('acctHandle').focus();return;}   // 至少一個字母或數字
-    if(RESERVED.has(h)){acCheck.set('bad',T('h_reserved'));return;}
-    const renamed=h!==CUR.handle;
-    btn.disabled=true;btn.textContent=T('saving');
+  // ---- hero 帳號列:公開狀態 pill(→settings)+專屬網址+複製+加入;帳號設定本體在 settings.html ----
+  function renderHeroAcct(){
+    const row=$('heroAcct'); if(!row)return;
     try{
-      if(renamed){
-        const r=await setHandle(h);
-        if(r!=='ok'){explain(r,acCheck.set);return;}
-        CUR.handle=h;
-        ownerCookie(h);canonPath(h);   // 改名後 cookie+網址列跟著換新名(舊名連結由 alias 301 接手)
-      }
-      // 顯示名稱＋公開開關＋欄位隱私:有變才寫,一次 upsert
-      const pub=$('pubPublic').checked, sp=$('showPrice').checked, ss=$('showSeat').checked;
-      const patch={};
-      if(d!==DISPLAY)patch.display_name=d||null;
-      if(pub!==CUR.is_public)patch.is_public=pub;
-      if(sp!==CUR.show_price)patch.show_price=sp;
-      if(ss!==CUR.show_seat)patch.show_seat=ss;
-      if(Object.keys(patch).length){
-        patch.id=UID;
-        const {error}=await sb().from('profiles').upsert(patch);
-        if(error){acCheck.set('bad',T('h_save_fail')+(error.message||error));return;}
-        if('display_name' in patch)DISPLAY=d;
-        CUR.is_public=pub;CUR.show_price=sp;CUR.show_seat=ss;
-      }
-      acCheck.set('ok',renamed?T('saved_redirect'):T('saved_ok'));   // 只有真的改名才提舊網址轉向
-      renderLink();renderProfCard();   // 改名/顯示名稱/公開狀態即時更新帳號中心卡片
-    }finally{btn.disabled=false;btn.textContent=T('save');}
-  }
-
-  // ---- profile 身分卡（帳號中心）：純呈現 + 路由到既有 modal，不碰資料權限 ----
-  const EN_MONTHS=['January','February','March','April','May','June','July','August','September','October','November','December'];
-  function renderProfCard(){
-    const card=$('profCard'); if(!card)return;
-    try{
-      const name=DISPLAY||CUR.handle||'';
-      $('pfName').textContent=name||'—';
-      $('pfMono').textContent=((name||'?').trim()[0])||'?';   // 首字母章;CJK 名取首字
-      // 公開網址列：有 handle 才顯示（onboarding 未設前先藏）
-      const urlRow=$('pfUrlRow');
-      if(CUR.handle){urlRow.hidden=false;
-        const u=shareUrl(CUR.handle);$('pfUrl').href=u;$('pfUrlT').textContent='my.themusicalmap.com/'+CUR.handle;
-      }else urlRow.hidden=true;
-      // 公開/私密狀態 pill（一眼可見；CSS 依 data-pub 換色）
       const pub=!!CUR.is_public, sp=$('pfStatus');
       sp.setAttribute('data-pub',pub?'1':'0');
+      sp.href='settings.html?hl='+(window.MM_HL||'zh-hant');   // 點狀態→帳號設定頁管理公開與否
       $('pfStatusT').textContent=T(pub?'pc_public':'pc_private');
       sp.title=T(pub?'pc_public_hint':'pc_private_hint');
-      // 副標：加入日期 · 收藏數
-      let sub='';
-      if(CREATED){const d=new Date(CREATED);if(!isNaN(d)){const y=d.getFullYear(),m=d.getMonth()+1;
-        sub=(window.MM_HL==='en')?TN('pc_joined',{m:EN_MONTHS[m-1],y}):TN('pc_joined',{y,m});}}
-      // 收藏數只在真有登錄資料(live)時顯示;空帳號 MM.shows 仍是範例資料,不可拿範例數冒充
-      try{if(document.documentElement.dataset.live==='1'&&window.MM&&MM.stats){const n=MM.stats('past').total;if(n)sub+=(sub?' · ':'')+TN(n===1?'pc_show_one':'pc_shows_n',{n});}}catch(e){}
-      $('pfSub').textContent=sub;
-      card.hidden=false;
-    }catch(e){console.warn('renderProfCard',e);card.hidden=false;}   // 出錯也要露出卡片（登出鈕在裡面）
+      const urlA=$('pfUrl');
+      if(CUR.handle){
+        urlA.hidden=false;$('pfCopy').hidden=false;
+        const u=shareUrl(CUR.handle);urlA.href=u;$('pfUrlT').textContent='my.themusicalmap.com/'+CUR.handle;
+      }else{urlA.hidden=true;$('pfCopy').hidden=true;}
+      row.hidden=false;
+    }catch(e){console.warn('renderHeroAcct',e);row.hidden=false;}
   }
-  window.mmRenderProfCard=renderProfCard;
+  // ---- nav 大頭照選單(我的音樂劇/帳號設定/登出;元件=js/mm-acct-menu.js) ----
+  function mountMenu(){
+    const slot=$('navAcct');if(!slot||!window.MMAcctMenu)return;
+    slot.innerHTML='';
+    const hl='?hl='+(window.MM_HL||'zh-hant');
+    slot.appendChild(MMAcctMenu.build({
+      letter:(DISPLAY||CUR.handle||EMAIL||'?').charAt(0),
+      links:{my:CUR.handle?shareUrl(CUR.handle)+hl:('me.html'+hl),settings:'settings.html'+hl},
+      onLogout:()=>{window.mmLogout&&window.mmLogout();}
+    }));
+  }
 
   // ---- wire ----
-  $('pubPublic').addEventListener('change',()=>{syncFieldsVisibility();renderLink();});
   $('shareSave').addEventListener('click',save);
-  // 帳號中心按鈕：加入音樂劇→FAB 既有流程;帳號設定/公開狀態 pill→統一面板;登出→全域 mmLogout
-  const toAcct=()=>{CUR.handle?openAcct():maybeOnboard();};   // 沒 handle 先走強制 onboarding
-  $('pfAdd').addEventListener('click',()=>{const f=document.getElementById('fabLog');if(f)f.click();});
-  $('pfAcct').addEventListener('click',toAcct);
-  $('pfStatus').addEventListener('click',toAcct);   // 點狀態=去管理公開設定
-  $('pfLogout').addEventListener('click',()=>{window.mmLogout&&window.mmLogout();});
+  $('heroAdd').addEventListener('click',()=>{const f=document.getElementById('fabLog');if(f)f.click();});
   $('pfCopy').addEventListener('click',async()=>{
     if(!CUR.handle)return;const b=$('pfCopy');
     try{await navigator.clipboard.writeText(shareUrl(CUR.handle));b.textContent=T('copied');setTimeout(()=>b.textContent=T('copy'),1500);}
@@ -1112,40 +981,12 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
   });
   $('shareX').addEventListener('click',close);
   $('shareModalBd').addEventListener('click',close);
-  $('shareCopy').addEventListener('click',async()=>{
-    const url=$('shareUrl').textContent;
-    try{await navigator.clipboard.writeText(url);$('shareCopy').textContent=T('copied');setTimeout(()=>$('shareCopy').textContent=T('copy'),1600);}
-    catch(e){const r=document.createRange();r.selectNode($('shareUrl'));getSelection().removeAllRanges();getSelection().addRange(r);}
-  });
-  $('acctSave').addEventListener('click',acctSave);
-  // 刪除帳號:不可逆→要求輸入 username 二次確認;RPC delete_my_account 級聯刪 sightings/profile/handle_aliases + auth.users
-  $('acctDelete').addEventListener('click',async()=>{
-    const h=(CUR.handle||'').trim();
-    const typed=prompt(h?TN('del_confirm_prompt',{handle:h}):T('del_confirm_plain'));
-    if(typed==null)return;                                            // 使用者取消
-    if(h && typed.trim().toLowerCase()!==h.toLowerCase()){alert(T('del_confirm_mismatch'));return;}
-    const btn=$('acctDelete');btn.disabled=true;btn.textContent=T('del_deleting');
-    try{
-      const {error}=await sb().rpc('delete_my_account');
-      if(error)throw error;
-      ownerCookie('');
-      try{await sb().auth.signOut();}catch(e){}
-      // clearLocal 定義在 auth IIFE(不同作用域),必須走 window 橋接;直呼會 ReferenceError→誤報「刪除失敗」
-      window.mmClearLocal&&window.mmClearLocal();
-      alert(T('del_done'));
-      location.href='index.html';
-    }catch(e){console.error('delete account',e);btn.disabled=false;btn.textContent=T('del_account');alert(T('del_fail')+'\n'+((e&&e.message)||e));}
-  });
-  $('acctCancel').addEventListener('click',closeAcct);
-  $('acctX').addEventListener('click',closeAcct);
-  $('acctBd').addEventListener('click',closeAcct);
   window.addEventListener('keydown',e=>{
     if(e.key!=='Escape')return;
-    if(!acct.hidden){closeAcct();return;}
     if(!modal.hidden)close();          // 強制模式 close() 內部擋掉
   });
   // auth 就緒（登入且同步完）→ 載入設定；無 handle → 強制 onboarding
-  window.mmAuthReady=async function(uid){await loadSettings(uid);renderProfCard();await maybeOnboard();};
+  window.mmAuthReady=async function(uid){await loadSettings(uid);renderHeroAcct();mountMenu();await maybeOnboard();};
 })();
 </script>
 <script>

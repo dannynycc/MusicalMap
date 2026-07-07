@@ -72,7 +72,8 @@ export default {
       }
       return new Response(r.body, { status: r.status, headers: h });
     }
-    // 保留字不是 handle → 丟回主站對應頁(或首頁)
+    // 保留字不是 handle → settings 留在本 origin(session 住 my.,設定頁必須同源才讀得到登入);其餘丟回主站
+    if (seg.toLowerCase() === 'settings') return Response.redirect(url.origin + '/settings.html' + url.search, 302);
     if (RESERVED.has(seg.toLowerCase())) return Response.redirect(MAIN_SITE, 302);
 
     // 尾斜線正規化(相對路徑解析需要 /danny 而非 /danny/)

@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="referrer" content="no-referrer" />
+<meta name="robots" content="noindex" /><!-- 帳號設定頁,登入閘後才有內容 -->
+<script>/* FR24 模式:session 住 my. 子網域;主網域打開一律轉過去(localhost/預覽不轉) */
+if(location.hostname==='themusicalmap.com'||location.hostname==='www.themusicalmap.com')location.replace('https://my.themusicalmap.com/settings.html'+location.search);</script>
+<title>帳號設定 — MusicalMap</title>
+<link rel="icon" href="logo.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,900;1,9..144,500&family=Inter:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;700;900&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet" />
+<script>/* no-flash: apply saved theme before CSS paints */(function(){try{var t=localStorage.getItem('mm-theme');if(t==='neon'||t==='deco'){t='midnight';localStorage.setItem('mm-theme',t);}if(t&&t!=='midnight')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<link rel="stylesheet" href="css/me-v2.css?v=261" />
+<style>
+html[lang="zh-Hans"] body{--ui:'Inter','Noto Sans SC',sans-serif}
+.hl-pick{display:flex;gap:2px;border:1px solid var(--hair2,rgba(255,255,255,.18));border-radius:999px;padding:2px}
+.hl-pick a{padding:3px 10px;border-radius:999px;font-size:12px;font-weight:700;text-decoration:none;color:var(--ink2,#aaa)}
+.hl-pick a[aria-current="true"]{background:var(--gold,#c9a85c);color:#1a1407}
+@media(max-width:560px){.hl-pick a{padding:6px 11px}}
+/* 登入閘(同 me.html,無 preview) */
+#stgate{position:fixed;inset:0;z-index:5000;overflow-y:auto;background:radial-gradient(120% 90% at 50% 20%,#1b1522 0%,var(--bg,#0c0d10) 60%);color:var(--ink1,#fff);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:16px;text-align:center;padding:74px 24px 40px;font-family:var(--ui,system-ui,sans-serif)}
+#gate-brand{position:absolute;top:0;left:0;right:0;height:56px;display:flex;align-items:center;gap:9px;padding:0 22px;font-family:var(--fr,Fraunces,serif);font-weight:900;font-size:19px;color:var(--ink1,#fff);text-decoration:none}
+#gate-brand img{width:auto;height:26px}
+#gate-brand b{color:var(--gold,#c9a85c)}
+#gate-logo{width:auto;height:72px;filter:drop-shadow(0 8px 26px rgba(0,0,0,.5))}
+#gate-msg{font-size:20px;font-weight:800;line-height:1.55;max-width:440px}
+#gate-login{display:inline-flex;align-items:center;gap:11px;padding:12px 24px 12px 16px;border-radius:999px;border:1px solid #dadce0;background:#fff;color:#1f1f1f;font-weight:600;font-size:15px;cursor:pointer;font-family:var(--ui,system-ui,sans-serif);box-shadow:0 4px 16px rgba(0,0,0,.35)}
+#gate-login[hidden]{display:none}
+/* 設定頁沿用面板欄位樣式(share-field/handle-row/share-switch 已在下方定義;me-v2.css 供版型與變數) */
+.share-field{display:block;margin-bottom:16px;max-width:520px}
+.share-field>span{display:block;font-size:12.5px;font-weight:700;color:var(--ink2,#666);margin-bottom:6px}
+.handle-row{display:flex;align-items:center;border:1.5px solid var(--hair2,rgba(0,0,0,.18));border-radius:10px;overflow:hidden;background:var(--s1,rgba(255,255,255,.03))}
+.handle-row .handle-prefix{padding:0 2px 0 11px;font-size:13px;color:var(--ink3,#999);font-family:var(--mono,monospace);white-space:nowrap}
+.handle-row input{flex:1;border:none;background:none;padding:10px 11px;font-size:14px;color:var(--ink1,#111);font-family:var(--ui,inherit);outline:none;min-width:0}
+.handle-row input#stHandle{font-family:var(--mono,monospace);padding-left:2px}
+.handle-status{display:block;min-height:16px;margin-top:5px;font-size:12px;font-weight:600}
+.handle-status.ok{color:#1f9e63}.handle-status.bad{color:#d14343}.handle-status.muted{color:var(--ink3,#999)}
+.share-switch{display:flex;align-items:center;gap:9px;font-size:14px;font-weight:600;cursor:pointer;padding:7px 0;color:var(--ink1)}
+.share-switch input{width:17px;height:17px;accent-color:var(--gold,#c9a85c);cursor:pointer}
+.share-sub{font-size:12px;color:var(--ink3,#999);margin:0 0 4px 26px;line-height:1.45}
+.share-fields-group{margin:10px 0 6px;padding:12px 14px;border:1px solid var(--hair,rgba(0,0,0,.08));border-radius:12px;background:color-mix(in srgb,var(--gold,#c9a85c) 7%,transparent);max-width:520px}
+.share-fields-group[hidden]{display:none}
+.sfg-title{font-size:12.5px;font-weight:800;color:var(--ink2,#555);margin-bottom:4px}
+.share-link{display:flex;align-items:center;gap:10px;margin:14px 0 4px;padding:10px 12px;border-radius:10px;background:color-mix(in srgb,var(--gold,#c9a85c) 12%,transparent);font-size:13px;max-width:520px}
+.share-link[hidden]{display:none}
+.share-link a{flex:1;color:var(--ink1,#111);text-decoration:none;word-break:break-all;font-family:var(--mono,monospace);font-size:12px;opacity:1}
+.share-link button{padding:6px 13px;background:var(--gold,#c9a85c);color:#1a1407;border:none;border-radius:999px;font-weight:800;font-size:13px;cursor:pointer;font-family:inherit}
+.btn-gold{background:var(--gold,#c9a85c);color:#1a1407;border:1px solid var(--gold,#c9a85c);border-radius:999px;font-weight:800;font-size:13px;cursor:pointer;font-family:inherit;padding:9px 20px}
+.btn-gold[disabled]{opacity:.5;cursor:progress}
+.acct-danger-p{font-size:12.5px;color:var(--ink2,#666);margin:0 0 12px;line-height:1.5;max-width:520px}
+.btn-danger{background:none;border:1px solid #d9534f;color:#c0392b;font-weight:600;padding:8px 16px;border-radius:999px;cursor:pointer;font-family:inherit;font-size:13.5px}
+.btn-danger:hover{background:#d9534f;color:#fff}
+.btn-danger[disabled]{opacity:.5;cursor:progress}
+.btn-ghostout{background:none;border:1px solid var(--hair2,rgba(128,128,128,.35));color:var(--ink1);font-weight:700;padding:8px 20px;border-radius:999px;cursor:pointer;font-family:inherit;font-size:13.5px}
+.btn-ghostout:hover{border-color:var(--gold,#c9a85c);color:var(--gold,#c9a85c)}
+.st-sec-h.danger{color:#b3261e}
+</style>
+<script>window.MM_USE_LANG_PREF=true;</script>
+<script>/* zh-hans:先同步載 OpenCC,mm-strings 才能建簡體字典;只簡中使用者下載 */(function(){try{
+var h=new URLSearchParams(location.search).get('hl'),v=(h==='en'||h==='zh-hans'||h==='zh-hant')?h:null;
+if(!v&&window.MM_USE_LANG_PREF){var mv=localStorage.getItem('mm_variant');v=(mv==='en'||mv==='zh-hans'||mv==='zh-hant')?mv:(localStorage.getItem('mm_lang')==='en'?'en':localStorage.getItem('mm_lang')==='zh'?'zh-hant':null);}
+if(!v){var nl=(navigator.language||'').toLowerCase();v=nl.indexOf('zh')===0?((nl.indexOf('cn')>-1||nl.indexOf('hans')>-1||nl.indexOf('sg')>-1)?'zh-hans':'zh-hant'):(nl?'en':'zh-hant');}
+if(v==='zh-hans'){document.write('<scr'+'ipt src="https://cdn.jsdelivr.net/npm/opencc-js@1.3.1/dist/umd/t2cn.js" integrity="sha384-P/OaFUnOIAgMkLxsXIAaP6WO3Wm09591cGX5bHbW4eCOeDxH9L8U3aWYf4cE4SYl" crossorigin="anonymous"><\/scr'+'ipt>');
+document.write('<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet" />');}
+}catch(e){}})();</script>
+<script src="js/mm-strings.js?v=225"></script>
+<script src="js/mm-acct-menu.js?v=225"></script>
+<!-- GA4(同站統計;隱私揭露見 privacy §1/§3) --><script async src="https://www.googletagmanager.com/gtag/js?id=G-GC07MYC1MY"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-GC07MYC1MY');</script>
+</head>
+<body>
+<!-- 登入閘 -->
+<div id="stgate">
+  <a id="gate-brand" href="https://themusicalmap.com/"><img src="logo.png" alt="" /><span>Musical<b>Map</b></span></a>
+  <img id="gate-logo" src="logo.png" alt="MusicalMap" />
+  <div id="gate-msg">載入中…</div>
+  <button id="gate-login" hidden>
+    <svg width="20" height="20" viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+    <span data-i18n="gate_login">使用 Google 登入</span>
+  </button>
+</div>
+
+<header><div class="wrap bar">
+  <a class="brand" href="https://themusicalmap.com/"><img src="logo.png" alt="" class="brand-logo" /><span>Musical<b>Map</b></span></a>
+  <nav class="nav">
+    <div class="hl-pick" role="group" aria-label="Language / 語言">
+      <a data-hl-link="zh-hant" href="?">繁</a>
+      <a data-hl-link="zh-hans" href="?hl=zh-hans">简</a>
+      <a data-hl-link="en" href="?hl=en">EN</a>
+    </div>
+    <a href="https://themusicalmap.com/" data-i18n="nav_map">地圖首頁</a>
+    <span id="navAcct"></span>
+  </nav>
+</div></header>
+
+<div class="wrap st-wrap">
+  <h1 data-i18n="acct_title">帳號設定</h1>
+  <div class="st-id">
+    <div class="st-mono" id="stMono" aria-hidden="true">?</div>
+    <div>
+      <div class="st-id-name" id="stName">—</div>
+      <div class="st-id-sub"><span data-i18n="st_email">登入帳號</span>：<span id="stEmail">—</span><span id="stJoined"></span></div>
+    </div>
+  </div>
+
+  <section class="st-sec">
+    <div class="st-sec-h" data-i18n="pf_sec_identity">帳號身分</div>
+    <label class="share-field">
+      <span data-i18n="acct_display_label">顯示名稱（公開頁的標題）</span>
+      <div class="handle-row"><input id="stDisplay" maxlength="40" /></div>
+    </label>
+    <label class="share-field">
+      <span data-i18n="acct_handle_label">網址名稱 username</span>
+      <div class="handle-row">
+        <span class="handle-prefix">my.themusicalmap.com/</span>
+        <input id="stHandle" autocomplete="off" spellcheck="false" maxlength="30" />
+      </div>
+      <span class="handle-status muted" id="stStatus"></span>
+    </label>
+    <p class="st-note" data-i18n="acct_lead">網址名稱是你的帳號身分。更改後舊網址會自動轉到新網址，已分享出去的連結不會壞；舊名稱會永久保留給你，別人拿不走。</p>
+    <div style="margin-top:14px"><button type="button" class="btn-gold" id="stSave" data-i18n="save">儲存</button></div>
+  </section>
+
+  <section class="st-sec">
+    <div class="st-sec-h" data-i18n="pf_sec_share">公開分享</div>
+    <label class="share-switch"><input type="checkbox" id="pubPublic" /> <span data-i18n="pub_public">公開我的收藏頁</span></label>
+    <div class="share-sub" data-i18n="pub_public_sub">關閉時，就算有連結別人也看不到你的收藏。</div>
+    <div class="share-fields-group" id="shareFieldsGroup" hidden>
+      <div class="sfg-title" data-i18n="sfg_title">公開頁要顯示哪些敏感資訊？</div>
+      <label class="share-switch"><input type="checkbox" id="showPrice" /> <span data-i18n="show_price">顯示票價</span></label>
+      <label class="share-switch"><input type="checkbox" id="showSeat" /> <span data-i18n="show_seat">顯示座位</span></label>
+      <div class="share-sub" data-i18n="note_never">筆記永遠不會出現在公開頁。</div>
+    </div>
+    <div class="share-link" id="shareLink" hidden>
+      <a id="shareUrl" href="#" target="_blank" rel="noopener"></a>
+      <button type="button" id="shareCopy" data-i18n="copy">複製</button>
+    </div>
+    <span class="handle-status muted" id="stShareStatus"></span>
+  </section>
+
+  <section class="st-sec">
+    <div class="st-sec-h" data-i18n="nav_logout">登出</div>
+    <button type="button" class="btn-ghostout" id="stSignout" data-i18n="nav_logout">登出</button>
+  </section>
+
+  <section class="st-sec">
+    <div class="st-sec-h danger" data-i18n="del_zone">危險操作</div>
+    <p class="acct-danger-p" data-i18n="del_desc">刪除帳號會永久移除你的所有觀劇紀錄、公開頁與網址名稱，無法復原。</p>
+    <button type="button" class="btn-danger" id="stDelete" data-i18n="del_account">刪除我的帳號</button>
+  </section>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.110.0/dist/umd/supabase.js" integrity="sha384-3wY11tldQ5+yWqAvmTN4XtQvnjoTva0cV15O/O/O5NTtp0ivVopSzLOzsVXWZse9" crossorigin="anonymous"></script>
+<script src="js/config.js"></script>
+<script>
+/* 帳號設定頁:輕量 auth(不同步 sightings)+身分/公開/刪帳號;規則與 me.html/DESIGN_username_sharing.md 一致。
+   改名唯一入口=rename_handle RPC;查重=handle_available;?signout=1=全站登出入口(主站 nav 的登出導here)。 */
+(function(){
+  const $=s=>document.getElementById(s);
+  const T=window.MM_T||(k=>k), TN=(k,v)=>{let s=T(k);for(const n in(v||{}))s=s.replace('{'+n+'}',v[n]);return s;};
+  const cfg=window.MM_CONFIG||{};
+  const gate=$('stgate'), gmsg=$('gate-msg'), glogin=$('gate-login');
+  const showGate=(msg,login)=>{gate.style.display='flex';gmsg.textContent=msg;glogin.hidden=!login;};
+  const hideGate=()=>{gate.style.display='none';};
+  if(!cfg.READY||typeof supabase==='undefined'){showGate(T('gate_no_backend'),false);return;}
+  const sb=supabase.createClient(cfg.SUPABASE_URL,cfg.SUPABASE_ANON_KEY);
+  showGate(T('gate_loading'),false);
+
+  const norm=v=>String(v||'').trim().toLowerCase().replace(/[^a-z0-9_-]/g,'').slice(0,30);
+  // 與 DB handle_reserved()（supabase/add_handle_aliases.sql）同步，兩邊都要改
+  const RESERVED=new Set(['u','me','index','admin','api','app','www','my','null','undefined','theatres','privacy','terms','login','logout','signup','settings','account','stats','static','assets','js','css','data','posters','logos','en','zh-hant','zh-hans','help','about','official','map','share','guide','me-input']);
+  const shareUrl=h=>'https://my.themusicalmap.com/'+encodeURIComponent(h);
+  function ownerCookie(h){try{
+    if(!/(^|\.)themusicalmap\.com$/.test(location.hostname))return;
+    document.cookie=h?('mm_owner='+encodeURIComponent(h)+'; Domain=.themusicalmap.com; Path=/; Max-Age=31536000; Secure; SameSite=Lax')
+                     :'mm_owner=; Domain=.themusicalmap.com; Path=/; Max-Age=0; Secure; SameSite=Lax';
+  }catch(e){}}
+  function clearLocalAll(){try{localStorage.removeItem('mm-log');}catch(e){}try{sessionStorage.removeItem('mev2_synced');Object.keys(sessionStorage).filter(k=>k.indexOf('mev2_reloaded_')===0).forEach(k=>sessionStorage.removeItem(k));}catch(e){}}
+
+  // ?signout=1:全站登出入口(session 住本 origin;主站/各頁 nav 的「登出」導這裡)
+  const SIGNOUT=new URLSearchParams(location.search).get('signout')==='1';
+
+  let UID=null, CUR={handle:'',is_public:false,show_price:false,show_seat:false}, DISPLAY='', EMAIL='', CREATED='';
+  const EN_MONTHS=['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+  async function isAvailable(h){
+    if(h===CUR.handle&&h)return true;
+    if(RESERVED.has(h))return false;
+    try{const {data,error}=await sb.rpc('handle_available',{p_handle:h});if(error)return null;return !!data;}catch(e){return null;}
+  }
+  const st={ok:false,seq:0,timer:null};
+  const setSt=(cls,msg)=>{const el=$('stStatus');el.className='handle-status '+cls;el.textContent=msg;};
+  async function check(){
+    const h=norm($('stHandle').value);
+    st.ok=false;
+    if(!h){setSt('muted',T('h_input_hint'));return;}
+    if(!/[a-z0-9]/.test(h)){setSt('muted',T('h_input_hint'));return;}
+    if(RESERVED.has(h)){setSt('bad',T('h_reserved'));return;}
+    if(h===CUR.handle){st.ok=true;setSt('ok',T('h_current'));return;}
+    setSt('muted',T('h_checking'));
+    const seq=++st.seq, ok=await isAvailable(h);
+    if(seq!==st.seq)return;
+    if(ok===true){st.ok=true;setSt('ok',TN('h_avail',{h}));}
+    else if(ok===false){st.ok=false;setSt('bad',TN('h_taken',{h}));}
+    else{st.ok=true;setSt('muted',T('h_will_check'));}
+  }
+  $('stHandle').addEventListener('input',()=>{
+    const el=$('stHandle'),raw=el.value,n=norm(raw);
+    if(raw!==n){const caret=Math.max(0,(el.selectionStart||raw.length)-(raw.length-n.length));el.value=n;try{el.setSelectionRange(caret,caret);}catch(e){}}
+    clearTimeout(st.timer);st.timer=setTimeout(check,320);
+  });
+
+  async function setHandle(h){
+    try{
+      const {data,error}=await sb.rpc('rename_handle',{p_new:h});
+      if(error){
+        if(/function|schema cache|not find|404/i.test(error.message||'')){
+          const r=await sb.from('profiles').upsert({id:UID,handle:h});
+          if(r.error)return /duplicate|unique/i.test(r.error.message||'')?'taken':'error:'+r.error.message;
+          return 'ok';
+        }
+        return 'error:'+error.message;
+      }
+      return data||'error:empty';
+    }catch(e){return 'error:'+((e&&e.message)||e);}
+  }
+  function explain(code){
+    if(code==='taken')setSt('bad',T('h_taken_short'));
+    else if(code==='reserved')setSt('bad',T('h_reserved'));
+    else if(code==='bad_format')setSt('bad',T('h_bad_format'));
+    else setSt('bad',T('h_save_fail')+code);
+  }
+
+  function renderId(){
+    const name=DISPLAY||CUR.handle||'—';
+    $('stName').textContent=name;
+    $('stMono').textContent=(String(name).trim().charAt(0)||'?');
+    $('stEmail').textContent=EMAIL||'—';
+    let j='';
+    if(CREATED){const d=new Date(CREATED);if(!isNaN(d)){const y=d.getFullYear(),m=d.getMonth()+1;
+      j=' · '+((window.MM_HL==='en')?TN('pc_joined',{m:EN_MONTHS[m-1],y}):TN('pc_joined',{y,m}));}}
+    $('stJoined').textContent=j;
+  }
+  function renderLink(){
+    const box=$('shareLink');
+    if($('pubPublic').checked&&CUR.handle){box.hidden=false;const a=$('shareUrl');a.textContent=shareUrl(CUR.handle);a.href=shareUrl(CUR.handle);}
+    else box.hidden=true;
+  }
+  const syncFields=()=>{$('shareFieldsGroup').hidden=!$('pubPublic').checked;};
+
+  // 身分區儲存(顯示名稱+改名;改名走 RPC)
+  $('stSave').addEventListener('click',async()=>{
+    const h=norm($('stHandle').value), d=$('stDisplay').value.trim(), btn=$('stSave');
+    if(!h){setSt('bad',T('acct_url_empty'));$('stHandle').focus();return;}
+    if(!/[a-z0-9]/.test(h)){setSt('bad',T('h_input_hint'));$('stHandle').focus();return;}
+    if(RESERVED.has(h)){setSt('bad',T('h_reserved'));return;}
+    const renamed=h!==CUR.handle;
+    btn.disabled=true;btn.textContent=T('saving');
+    try{
+      if(renamed){
+        const r=await setHandle(h);
+        if(r!=='ok'){explain(r);return;}
+        CUR.handle=h;ownerCookie(h);
+      }
+      if(d!==DISPLAY){
+        const {error}=await sb.from('profiles').upsert({id:UID,display_name:d||null});
+        if(error){setSt('bad',T('display_save_fail')+(error.message||error));return;}
+        DISPLAY=d;
+      }
+      setSt('ok',renamed?T('saved_redirect'):T('saved_ok'));
+      renderId();renderLink();mountMenu();
+    }finally{btn.disabled=false;btn.textContent=T('save');}
+  });
+
+  // 公開分享:開關即時生效(FR24 式);失敗回滾
+  async function saveToggles(){
+    const pub=$('pubPublic').checked, sp=$('showPrice').checked, ss=$('showSeat').checked;
+    const el=$('stShareStatus');
+    el.className='handle-status muted';el.textContent=T('saving');
+    const {error}=await sb.from('profiles').upsert({id:UID,is_public:pub,show_price:sp,show_seat:ss});
+    if(error){
+      $('pubPublic').checked=CUR.is_public;$('showPrice').checked=CUR.show_price;$('showSeat').checked=CUR.show_seat;
+      syncFields();renderLink();
+      el.className='handle-status bad';el.textContent=T('h_save_fail')+(error.message||error);return;
+    }
+    CUR.is_public=pub;CUR.show_price=sp;CUR.show_seat=ss;
+    el.className='handle-status ok';el.textContent=T('st_saved_auto');
+    setTimeout(()=>{if(el.textContent===T('st_saved_auto'))el.textContent='';},1800);
+  }
+  $('pubPublic').addEventListener('change',()=>{syncFields();renderLink();saveToggles();});
+  $('showPrice').addEventListener('change',saveToggles);
+  $('showSeat').addEventListener('change',saveToggles);
+  $('shareCopy').addEventListener('click',async()=>{
+    const url=$('shareUrl').textContent;
+    try{await navigator.clipboard.writeText(url);$('shareCopy').textContent=T('copied');setTimeout(()=>$('shareCopy').textContent=T('copy'),1600);}catch(e){}
+  });
+
+  // 登出(頁面本體按鈕;與 nav 選單同一流程)
+  $('stSignout').addEventListener('click',async()=>{
+    const b=$('stSignout');b.disabled=true;b.textContent=T('st_signing_out');
+    ownerCookie('');try{await sb.auth.signOut();}catch(e){}clearLocalAll();
+    location.href='https://themusicalmap.com/';
+  });
+
+  // 刪除帳號(輸入 username 二次確認;RPC delete_my_account)
+  $('stDelete').addEventListener('click',async()=>{
+    const h=(CUR.handle||'').trim();
+    const typed=prompt(h?TN('del_confirm_prompt',{handle:h}):T('del_confirm_plain'));
+    if(typed==null)return;
+    if(h&&typed.trim().toLowerCase()!==h.toLowerCase()){alert(T('del_confirm_mismatch'));return;}
+    const btn=$('stDelete');btn.disabled=true;btn.textContent=T('del_deleting');
+    try{
+      const {error}=await sb.rpc('delete_my_account');
+      if(error)throw error;
+      ownerCookie('');
+      try{await sb.auth.signOut();}catch(e){}
+      clearLocalAll();
+      alert(T('del_done'));
+      location.href='https://themusicalmap.com/';
+    }catch(e){console.error('delete account',e);btn.disabled=false;btn.textContent=T('del_account');alert(T('del_fail')+'\n'+((e&&e.message)||e));}
+  });
+
+  // nav 頭像選單
+  function mountMenu(){
+    const slot=$('navAcct');if(!slot||!window.MMAcctMenu)return;
+    slot.innerHTML='';
+    const hl='?hl='+(window.MM_HL||'zh-hant');
+    slot.appendChild(MMAcctMenu.build({
+      letter:(DISPLAY||CUR.handle||EMAIL||'?').charAt(0),
+      links:{my:CUR.handle?shareUrl(CUR.handle)+hl:('https://my.themusicalmap.com/'+hl),settings:'#'},
+      onLogout:async()=>{ownerCookie('');try{await sb.auth.signOut();}catch(e){}clearLocalAll();location.href='https://themusicalmap.com/';}
+    }));
+  }
+
+  async function load(uid){
+    UID=uid;
+    try{const {data:{user}}=await sb.auth.getUser();EMAIL=(user&&user.email)||'';}catch(e){}
+    try{
+      const {data}=await sb.from('profiles').select('handle,is_public,show_price,show_seat,display_name,created_at').eq('id',uid).maybeSingle();
+      CUR={handle:data?.handle||'',is_public:!!data?.is_public,show_price:!!data?.show_price,show_seat:!!data?.show_seat};
+      DISPLAY=data?.display_name||'';CREATED=data?.created_at||'';
+      if(CUR.handle)ownerCookie(CUR.handle);
+    }catch(e){console.warn('load profile',e);}
+    $('stDisplay').value=DISPLAY;
+    $('stHandle').value=CUR.handle;
+    setSt(CUR.handle?'ok':'muted',CUR.handle?T('h_current'):T('h_input_hint'));
+    $('pubPublic').checked=CUR.is_public;$('showPrice').checked=CUR.show_price;$('showSeat').checked=CUR.show_seat;
+    syncFields();renderLink();renderId();mountMenu();
+    hideGate();
+  }
+
+  async function doSignout(){
+    showGate(T('st_signing_out'),false);
+    ownerCookie('');
+    try{await sb.auth.signOut();}catch(e){}
+    clearLocalAll();
+    location.replace('https://themusicalmap.com/');
+  }
+
+  glogin.onclick=()=>sb.auth.signInWithOAuth({provider:'google',options:{redirectTo:location.origin+location.pathname}});
+  sb.auth.onAuthStateChange((event,session)=>{
+    if(SIGNOUT)return;
+    if(event==='SIGNED_OUT'){showGate(T('gate_signin'),true);return;}
+    if(session&&session.user)load(session.user.id);
+  });
+  sb.auth.getSession().then(({data})=>{
+    const s=data.session;
+    if(SIGNOUT){doSignout();return;}   // 有無 session 都走:清 cookie/快取→回主站
+    if(s&&s.user)load(s.user.id);else showGate(T('gate_signin'),true);
+  }).catch(e=>{console.warn('getSession',e);if(SIGNOUT){doSignout();return;}showGate(T('gate_signin'),true);});
+})();
+</script>
+</body>
+</html>

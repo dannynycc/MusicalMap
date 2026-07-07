@@ -23,7 +23,7 @@ const JSONLD_CAP = 300; // cap Event ItemList; full text list is unbounded (chea
 // cache-bust token for js/css so returning visitors never run a stale app.js (the bug
 // where a cached old app.js fetched a relative data path and showed an empty map). Token
 // is a content hash of the actual assets → it changes IFF the js/css change.
-const ASSETS = ["js/app.js", "js/i18n.js", "js/config.js", "css/style.css"];
+const ASSETS = ["js/app.js", "js/i18n.js", "js/config.js", "js/mm-acct-menu.js", "css/style.css"];
 const VER = (() => {
   const h = crypto.createHash("md5");
   for (const p of ASSETS) h.update(fs.readFileSync(p));
@@ -144,6 +144,8 @@ function page(variant, shows) {
   <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" integrity="sha384-wgw+aLYNQ7dlhK47ZPK7FRACiq7ROZwgFNg0m04avm4CaXS+Z9Y7nMu8yNjBKYC+" crossorigin="anonymous" />
   <link rel="stylesheet" href="${BASE}css/style.css?v=${VER}" />
   <script>window.MM_VARIANT="${variant}";window.MM_BASE="${BASE}";</script>${openccTag}
+  <script src="${BASE}js/mm-acct-menu.js?v=${VER}" defer></script><!-- 登入過(mm_owner cookie)→「我的音樂劇」CTA 自動換成大頭照選單;未登入照常顯示 CTA -->
+
   <!-- Google Analytics(GA4 G-GC07MYC1MY;訪客來源/行為分析。root 路由頁不埋(立即轉走);隱私揭露見 privacy.html §1/§3) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-GC07MYC1MY"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-GC07MYC1MY');</script>

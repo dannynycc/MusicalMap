@@ -11,6 +11,19 @@
 
 ---
 
+## [v2.7.0] - 2026-07-07 10:53
+### 改版 — 帳號介面全面重構（使用者定稿版）:專屬設定頁 settings.html + 全站 nav 大頭照選單 + hero 帳號列
+
+**使用者對 v2.6.0 的修正指示**:①主站等各頁右上角「我的音樂劇」→登入後換成**大頭照展開選單**（我的音樂劇/帳號設定/登出）,未登入照常顯示 CTA（比登入更有 incentive）;②帳號設定=**專屬頁面**（非彈窗）,含 Display name/Profile privacy/Sign out/Delete account,風格維持本站金色紙感（FR24 只取結構）;③v2.6.0 的身分卡整區移除,「公開狀態 pill/專屬網址+複製/＋加入音樂劇」三樣整合進 hero。
+
+- **`settings.html`（新）**:單欄設定頁——身分頭部（monogram+名稱+登入 email+加入於）、帳號身分（顯示名稱+username 改名,即時查重,儲存鈕）、公開分享（公開開關+票價/座位+分享連結複製,**開關即時生效** FR24 式,失敗自動回滾）、登出、危險操作（刪除帳號）。輕量 auth（不同步 sightings）;`?signout=1`=全站登出入口（signOut+清 cookie/快取→回主站）;主網域開啟自動轉 my. 子網域（session 同源）;noindex;三語。
+- **`js/mm-acct-menu.js`（新,全自包元件）**:monogram 頭像+下拉選單,自帶樣式與三語標籤;autoMount 偵測 `mm_owner` cookie,把 nav 上的「我的音樂劇」CTA 換成頭像（未登入不動）。掛進 **index(gen_site 模板)/about/guide/privacy/terms/theatres/u.html** 七處+me/settings 手動掛載;u.html 的「＋建立你自己的」CTA 補 `id="mine-link"` 一併適用。
+- **me.html**:v2.6.0 profcard 整區移除;hero 下緣新增帳號列（公開中/未公開 pill→settings、`my./handle` ↗+複製、＋加入音樂劇）;nav 掛頭像選單;acctModal 刪除（帳號設定改連 settings.html）;分享 modal 維持 onboarding 專用。
+- **Worker**:保留字 `/settings` 改 302 到 `my./settings.html`（同源才讀得到 session）,不再丟回主站。**需 wrangler deploy**。
+- **gen_site.mjs**:模板掛 mm-acct-menu(defer);元件檔納入 VER 資產雜湊;三語 index 重產。
+- **i18n**:pc_private「私密→未公開」（使用者用語）;新 key nav_account/menu_my/st_*;移除 pc_shows_n/pc_show_one(卡片已拆,hero 有 bignums 不重複);`?v=225` 全站 bump。
+- **驗證**:Playwright(真 Chrome+mock Supabase)e2e **45 項全 PASS**——me hero 列/複製/加入/頭像選單三項連結/登出、onboarding 回歸、settings 頁載值/改名 RPC/顯示名/開關即時存+回滾路徑/頁面登出/`?signout=1`、主站 index 無 cookie=CTA・有 cookie=頭像+選單連結、about 頁 spot check、EN/簡中（账号设定/Account settings）;繁英簡+捲動底部截圖親驗（fullPage 接縫確認為拼接假象,真捲動無縫）。
+
 ## [v2.6.1] - 2026-07-07 10:13
 ### 修正 — me-v2.css 加 `?v=` cache-bust（使用者回報上線後看不到帳號中心）
 

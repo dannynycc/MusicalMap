@@ -134,7 +134,7 @@ Worker 邏輯（`my.themusicalmap.com/<handle>`）：
 
 ## 前端改動清單（v1.10.0 已實作，e2e 23 項 PASS + u-view 回歸 6 項 PASS）
 
-> ⚠️ **v2.6.0（2026-07-07）版面整併**：帳號功能已集中到「帳號中心」——頁面頂部身分卡（公開/私密 pill＋專屬網址＋複製＋加入音樂劇/帳號設定/登出）＋統一帳號設定面板（`#acctModal` 擴充:帳號身分＋公開分享開關＋刪除帳號）。**舊「分享」modal 只剩 onboarding（首次強制取名）用途**；nav 分享/登出鈕移除。下列清單描述的是 v1.10.0 當時版面,機制（rename_handle/alias 301/onboarding chips）不變。e2e 34 項 PASS（2026-07-07）。
+> ⚠️ **v2.7.0（2026-07-07）版面定稿**：帳號功能現況——①**專屬設定頁 `settings.html`**（顯示名稱/username 改名/公開與欄位隱私（開關即時生效）/登出/刪除帳號;`?signout=1` 全站登出;主網域自動轉 my. 同源）;②**全站 nav 大頭照選單**（`js/mm-acct-menu.js`,mm_owner cookie 偵測,未登入照常顯示「我的音樂劇」CTA）;③me.html hero 帳號列（公開狀態 pill＋專屬網址複製＋加入音樂劇）。**「分享」modal 只剩 onboarding（首次強制取名）**;v2.6.0 的身分卡與 acctModal 已拆除。機制（rename_handle/alias 301/onboarding chips）不變。e2e 45 項 PASS（2026-07-07）。下列清單描述 v1.10.0 當時版面,僅供機制對照。
 
 - [x] **帳號設定**入口（新）：`me.html` `#acctModal`，改 username（呼叫 `rename_handle`）+ display_name；成功提示「舊網址會自動轉到新網址」。（v2.6.0 起入口=身分卡「帳號設定」鈕）
 - [x] **分享面板**：handle 改**唯讀顯示** + 「到帳號設定改」連結；儲存只動公開開關/欄位隱私。（v2.6.0 起公開開關/欄位隱私併入帳號設定面板）
