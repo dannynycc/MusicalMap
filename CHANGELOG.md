@@ -11,6 +11,14 @@
 
 ---
 
+## [v2.8.5] - 2026-07-07 14:01
+### 修正 — 8 個手寫頁的 mm-acct-menu.js 漏 bump cache（PM 稽核循環 R5,死 code 掃描時抓到）
+
+- **真 bug**:`js/mm-acct-menu.js` 在 v2.8.2 改過（頭像 img 絕對定位修正,防撐爆圓框）,但 me/settings/u/about/guide/privacy/terms/theatres 八個手寫頁的 `?v=` 全釘死在 226 沒跟著 bump→這些頁的既有訪客最多 4hr（CF Pages .js 快取）拿到舊版、頭像仍撐爆。主站 index 走 gen_site content-hash 自動更新沒事,手寫頁是手動釘版號才漏掉。
+- 修:八頁 `mm-acct-menu.js?v=226→227`,與 mm-strings 對齊。
+- **流程教訓**:改共用 JS 檔（mm-acct-menu/mm-strings）時,cache-bust bump 必須掃「所有手動釘版號的手寫頁」,不能只 bump 當下在改的那頁。
+- e2e 57 項全 PASS。
+
 ## [v2.8.4] - 2026-07-07 13:38
 ### 清理 — i18n 孤兒 key 掃描（PM 稽核循環 R3）:刪 9 個無使用 key
 
