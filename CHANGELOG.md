@@ -11,6 +11,12 @@
 
 ---
 
+## [v2.11.5] - 2026-07-07 22:03
+### 文件 — MD freshness 全掃 + 清 stale 註解
+
+- 全 repo MD(README + docs/ 12 檔）掃過 logo.png/bimi/BIMI/DMARC/email/zoho 等這波改動相關字,**皆無過時**(BIMI 從未寫進 MD;README「logo tile」指售票平台 logo 非品牌 logo,正確)。
+- 修 `guide.html` 一個現在式 stale 註解:`logo.png 是 122×200` → 改述 `logo.svg 直式徽章`(logo.png 已於 v2.11.4 刪除)。
+
 ## [v2.11.4] - 2026-07-07 21:22
 ### 清理 — 刪 logo.png + bimi/ 資料夾,logo 全站統一 SVG（使用者指示）
 
