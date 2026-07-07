@@ -15,6 +15,9 @@ if(location.hostname==='themusicalmap.com'||location.hostname==='www.themusicalm
 <link rel="stylesheet" href="css/style.css?v=226" /><!-- 與主頁/about/legal 同一套淺色紙感(使用者指定:風格與主頁一致) -->
 <style>
 /* 帳號設定頁:legal 骨架(淺色紙感)+表單欄位;調色沿 style.css tokens(--text/--muted/--gold) */
+/* style.css body 是 flex 容器(column)+main 有 margin:0 auto → main 以 fit-content 佈局,會被 handle 輸入列
+   固有寬(nowrap 前綴+input 預設 size=20)撐爆 375px 視窗。雙保險:main 上限鎖視窗寬+input 固有寬歸零(寬度全由 flex 分配) */
+main.legal{min-width:0;max-width:min(760px,100%)}
 .legal h1.st-h1{font-family:"Fraunces","Noto Serif TC",Georgia,serif;font-weight:900;font-size:clamp(30px,4.6vw,44px);line-height:1.12;letter-spacing:-.02em;margin:0 0 18px}
 html[lang="zh-Hans"] .st-h1{font-family:"Fraunces","Noto Serif SC",Georgia,serif}
 .st-id{display:flex;align-items:center;gap:14px;margin:6px 0 10px}
@@ -32,7 +35,7 @@ html[lang="zh-Hans"] .st-h1{font-family:"Fraunces","Noto Serif SC",Georgia,serif
 .share-field>span{display:block;font-size:12.5px;font-weight:700;color:var(--muted);margin-bottom:6px}
 .handle-row{display:flex;align-items:center;border:1.5px solid rgba(60,46,28,.28);border-radius:10px;overflow:hidden;background:#fff}
 .handle-row .handle-prefix{padding:0 2px 0 11px;font-size:13px;color:#9b917f;font-family:ui-monospace,Consolas,monospace;white-space:nowrap}
-.handle-row input{flex:1;border:none;background:none;padding:10px 11px;font-size:14px;color:var(--text);font-family:inherit;outline:none;min-width:0}
+.handle-row input{flex:1;width:0;border:none;background:none;padding:10px 11px;font-size:14px;color:var(--text);font-family:inherit;outline:none;min-width:0}
 .handle-row input#stHandle{font-family:ui-monospace,Consolas,monospace;padding-left:2px}
 .handle-row:focus-within{border-color:var(--gold)}
 .handle-status{display:block;min-height:16px;margin-top:5px;font-size:12px;font-weight:600}

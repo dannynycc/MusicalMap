@@ -11,6 +11,14 @@
 
 ---
 
+## [v2.8.2] - 2026-07-07 12:00
+### 修正 — settings 手機版橫向溢出（使用者質疑「才一個?」後補掃出的真 bug）
+
+- 使用者質疑通盤檢查只抓一個 bug 不可信——正確。補掃四個未覆蓋面向（RWD 375px×3頁、其餘五頁頭像替換、無 handle 新帳號流程、超長名字溢出）,**再抓到一個**:settings 在 375px 寬**橫向溢出 19px**（scrollW 394）。
+- 根因（Playwright 逐元素隱藏+override 實驗定位）:style.css `body{display:flex;flex-direction:column}`＋`main.legal{margin:0 auto}` → main 以 fit-content 佈局,被 handle 輸入列固有寬（nowrap 網址前綴＋input 預設 `size=20`）撐爆。about/privacy 全是可換行文字所以沒踩到。
+- 修:`main.legal{min-width:0;max-width:min(760px,100%)}`＋`.handle-row input{width:0}`（固有寬歸零,寬度全由 flex 分配）。
+- 驗證:補充稽核 **15 項全 PASS**（guide/privacy/terms/theatres/u 五頁頭像替換、settings/me/index 375px 無溢出、無 handle 首次設名、長名不溢出）＋桌面 e2e **56 項全 PASS**＋375px 截圖親驗。
+
 ## [v2.8.1] - 2026-07-07 11:46
 ### 修正 — settings.html 改用主站淺色紙感＋補頁尾（使用者抓到:我沒對照指定參考頁就交卷）
 
