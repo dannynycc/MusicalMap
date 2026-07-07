@@ -134,8 +134,10 @@ Worker 邏輯（`my.themusicalmap.com/<handle>`）：
 
 ## 前端改動清單（v1.10.0 已實作，e2e 23 項 PASS + u-view 回歸 6 項 PASS）
 
-- [x] **帳號設定**入口（新）：`me.html` `#acctModal`，改 username（呼叫 `rename_handle`）+ display_name；成功提示「舊網址會自動轉到新網址」。
-- [x] **分享面板**：handle 改**唯讀顯示** + 「到帳號設定改」連結；儲存只動公開開關/欄位隱私。
+> ⚠️ **v2.6.0（2026-07-07）版面整併**：帳號功能已集中到「帳號中心」——頁面頂部身分卡（公開/私密 pill＋專屬網址＋複製＋加入音樂劇/帳號設定/登出）＋統一帳號設定面板（`#acctModal` 擴充:帳號身分＋公開分享開關＋刪除帳號）。**舊「分享」modal 只剩 onboarding（首次強制取名）用途**；nav 分享/登出鈕移除。下列清單描述的是 v1.10.0 當時版面,機制（rename_handle/alias 301/onboarding chips）不變。e2e 34 項 PASS（2026-07-07）。
+
+- [x] **帳號設定**入口（新）：`me.html` `#acctModal`，改 username（呼叫 `rename_handle`）+ display_name；成功提示「舊網址會自動轉到新網址」。（v2.6.0 起入口=身分卡「帳號設定」鈕）
+- [x] **分享面板**：handle 改**唯讀顯示** + 「到帳號設定改」連結；儲存只動公開開關/欄位隱私。（v2.6.0 起公開開關/欄位隱私併入帳號設定面板）
 - [x] **onboarding**：空白欄位 + label 在上（無 placeholder）+ 建議 chips（種子=email 前綴、逐顆預驗可用、主動點才填）；**強制**（無 X、ESC/backdrop 關不掉，唯一出口=登出）。
 - [x] 舊網址自動轉新：`u-view.js` 查無 handle 時走 `resolve_handle` → `location.replace` 到現用名（RPC 未部署則靜默降級 not-found）；順帶修訪客輸入大寫 `?u=Danny` 查不到的 bug。
 - [x] migration 未套用的降級：`rename_handle` 不存在 → 前端自動退回舊 `upsert` 路徑（unique 約束保底）。

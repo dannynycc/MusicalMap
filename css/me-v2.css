@@ -87,6 +87,53 @@ header{position:sticky;top:0;z-index:1100;background:color-mix(in srgb,var(--bg)
 .nav a{opacity:.8;text-decoration:none}.nav a:hover{opacity:1;color:var(--gold)}
 .demo-tag{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--ink3);border:1px solid var(--hair);border-radius:999px;padding:3px 10px}
 
+/* ===== PROFILE / 帳號中心 (me.html only;u.html 無 #profCard 不受影響) ===== */
+.profcard{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:18px 26px;
+  margin:22px 0 0;padding:20px 22px;border-radius:18px;border:1px solid var(--hair);
+  background:linear-gradient(135deg,var(--gold-soft),transparent 58%),var(--s1);box-shadow:var(--shadow-1)}
+.profcard[hidden]{display:none}
+.pf-id{display:flex;align-items:center;gap:16px;min-width:0}
+.pf-mono{flex:none;width:60px;height:60px;border-radius:50%;display:grid;place-items:center;
+  font-family:var(--fr);font-weight:900;font-size:28px;color:var(--gold);text-transform:uppercase;
+  background:radial-gradient(120% 120% at 30% 20%,color-mix(in srgb,var(--gold) 26%,transparent),transparent 70%),var(--s3);
+  border:1.5px solid color-mix(in srgb,var(--gold) 55%,transparent);box-shadow:0 0 0 4px color-mix(in srgb,var(--gold) 8%,transparent)}
+.pf-meta{min-width:0}
+.pf-namerow{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.pf-name{font-family:var(--fr);font-weight:700;font-size:clamp(19px,1.4vw,24px);letter-spacing:-.4px;color:var(--ink1);word-break:break-word}
+.pf-status{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:4px 11px;cursor:pointer;
+  font-family:inherit;font-size:12px;font-weight:700;border:1px solid transparent;transition:background .15s,border-color .15s,filter .15s}
+.pf-status .pf-dot{width:7px;height:7px;border-radius:50%;flex:none}
+.pf-status[data-pub="1"]{background:rgba(31,158,99,.14);color:#1f9e63;border-color:rgba(31,158,99,.34)}
+.pf-status[data-pub="1"] .pf-dot{background:#1f9e63;box-shadow:0 0 0 3px rgba(31,158,99,.2)}
+.pf-status[data-pub="0"]{background:var(--s3);color:var(--ink3);border-color:var(--hair2)}
+.pf-status[data-pub="0"] .pf-dot{background:var(--ink3)}
+.pf-status:hover{filter:brightness(1.1)}
+.pf-urlrow{display:flex;align-items:center;gap:8px;margin-top:6px;max-width:100%}
+.pf-urlrow[hidden]{display:none}
+.pf-url{display:inline-flex;align-items:center;gap:5px;text-decoration:none;font-family:var(--mono);font-size:12.5px;color:var(--ink2);
+  min-width:0;border-bottom:1px solid transparent;transition:color .15s}
+.pf-url:hover{color:var(--gold);border-bottom-color:currentColor}
+.pf-url-t{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pf-open{flex:none;font-size:11px;opacity:.7}
+.pf-copy{flex:none;border:1px solid var(--hair2);background:none;color:var(--ink3);border-radius:8px;
+  padding:3px 10px;font-family:inherit;font-size:11.5px;font-weight:700;cursor:pointer;line-height:1.4;transition:all .15s}
+.pf-copy:hover{color:var(--gold);border-color:var(--gold)}
+.pf-sub{margin-top:8px;font-size:12px;color:var(--ink3);font-weight:600;letter-spacing:.2px}
+.pf-actions{display:flex;flex-wrap:wrap;gap:9px;align-items:center}
+.pf-btn{font-family:inherit;font-size:13px;font-weight:700;border-radius:999px;padding:9px 16px;cursor:pointer;
+  border:1px solid var(--hair2);background:var(--s2);color:var(--ink1);white-space:nowrap;
+  transition:border-color var(--dur-2) var(--ease-out),color var(--dur-2) var(--ease-out),background var(--dur-2) var(--ease-out)}
+.pf-btn:hover{border-color:var(--gold);color:var(--gold)}
+.pf-btn-primary{background:var(--gold);border-color:var(--gold);color:var(--on-accent)}
+.pf-btn-primary:hover{filter:brightness(1.06);color:var(--on-accent);border-color:var(--gold)}
+.pf-btn-ghost{background:none}
+@media(max-width:680px){
+  .profcard{padding:16px;gap:16px}
+  .pf-mono{width:52px;height:52px;font-size:24px}
+  .pf-actions{width:100%}
+  .pf-btn{flex:1 1 auto;text-align:center}
+}
+
 /* ===== HERO : passport-cover banner ===== */
 /* hero = a passport cover that ADAPTS to the theme (light on light themes, rich on dark) */
 .hero{margin:22px 0 0;border-radius:22px;overflow:hidden;position:relative;border:1px solid var(--hair);box-shadow:var(--shadow-1);

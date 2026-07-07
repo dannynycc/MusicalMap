@@ -11,6 +11,19 @@
 
 ---
 
+## [v2.6.0] - 2026-07-07 09:41
+### 新功能 — me.html 帳號中心：頁面頂部身分卡 + 統一帳號設定面板（參考 my.flightradar24 個人頁）
+
+**個人頁新增專屬 profile 介面,帳號相關事宜（取名/改名、公開與否、加入音樂劇、登出、刪除帳號）全部集中一處,不再散在 nav 按鈕與兩個 modal。**
+
+- **身分卡 `#profCard`**（header 下方,登入後顯示）:金色首字母 monogram + 顯示名稱 + **公開中/私密狀態 pill**（一眼可見,點了直接開設定）+ 專屬網址 `my.themusicalmap.com/<handle>`（可點開公開頁 + 複製鈕）+ 副標（加入於 年月 · N 部音樂劇,收藏數只算真實紀錄不拿範例資料冒充）+ 三顆動作鈕:**＋加入音樂劇 / 帳號設定 / 登出**。樣式進 `css/me-v2.css`（u.html 無此節點不受影響）,窄幅 RWD 按鈕滿版。
+- **統一帳號設定面板**（原 `#acctModal` 擴充）:「帳號身分」（username 改名走 `rename_handle`+顯示名稱）+「公開分享」（公開開關/顯示票價/顯示座位/分享連結+複製,自舊分享 modal 整併移入）+「危險操作」（刪除帳號）。儲存合併為一顆:改名走 RPC、其餘欄位有變才一次 `upsert`;只有真的改名才顯示「舊網址會自動轉向」訊息。開面板時開關一律從已儲存狀態重置,取消不殘留。
+- **舊「分享」modal 縮編為 onboarding 專用**（首次登入強制取名,原 23 項 e2e 流程不動:空白欄位+建議 chips+唯一出口登出）;nav 的「分享」「登出」按鈕移除（功能都在身分卡）。孤兒 i18n key（share_title/share_lead/share_url_label/handle_to_acct_*/nav_share）清除。
+- **修既有 bug**:刪除帳號流程呼叫的 `clearLocal()` 定義在另一個 IIFE 作用域,實際執行會 ReferenceError→刪除成功卻誤報「刪除失敗」;改走 `window.mmClearLocal` 橋接。
+- **i18n**:新 key `pc_*`（pill/提示/加入於/複製網址/N 部音樂劇）+ `pf_sec_*`（面板段落標題）,繁英雙字典、簡中 OpenCC 自動轉（驗證出「账号身份/公开分享/公开中」）;`mm-strings.js?v=224` 全站 bump（7 頁）。
+- **驗證**:Playwright 真 Chrome e2e **34 項全 PASS**（mock Supabase:種 session token+攔 REST/RPC/auth）——身分卡渲染/pill 狀態/複製網址進剪貼簿/開關儲存後 pill 即時翻轉/改名後卡片網址更新/ESC/點 pill 開面板/加入音樂劇 iframe/登出 signOut/onboarding 強制流程回歸（chips=email 前綴/設名後卡片即現網址）/英文+簡中面板;繁/英/簡截圖親驗。inline script 10 塊 V8 語法解析全過。
+- **過程備註**:本次曾與一個誤啟動的背景分身 session 並行改檔（身分卡方案來自該分身）,已由使用者裁示本 session 主導,成果為兩方案合體:分身的卡片殼 + 本 session 的面板整併與驗證。
+
 ## [v2.5.1] - 2026-07-07 01:05
 ### 文件 — 全 repo MD 過時掃描更新（13 檔全查,5 檔修）+ 站外事項收尾入檔
 - README:worker/ 條目「已寫好未部署」→ 已上線(2026-07-06,回源 CF Pages,含 FR24 根路徑模式)。
