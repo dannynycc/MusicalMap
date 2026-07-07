@@ -11,6 +11,16 @@
 
 ---
 
+## [v2.8.0] - 2026-07-07 11:22
+### 改進 — Google 大頭貼上 nav + settings 版面微調（使用者指示四項）
+
+- **nav 頭像=Google 大頭貼**:me/settings 從 session `user_metadata.avatar_url` 取得,同時種跨子網域 `mm_av` cookie 給主站等 cookie-only 頁;元件端只信 googleusercontent/gstatic 圖床(防 cookie 塞怪網址)、`referrerPolicy=no-referrer`、載入失敗自動退回首字母。settings 頁頂 monogram 同步換大頭貼。
+  - **文案同步（隱私宣稱不可與功能打架）**:原「Google 授權會附帶頭像,本站不使用」6 處全改——gate_secure/how_b4_p/pp_s2_li1 繁英+guide/privacy 靜態 HTML;新宣稱=「頭像只顯示給你本人(登入後選單與設定頁),不會出現在公開頁」;隱私政策「最後更新」bump 2026-07-07。terms 無頭像字句(掃過)。
+  - **修 CSS bug**:頭像 img 在 `display:grid` auto 軌內 `height:100%` 解析不到定值→照圖片比例撐爆圓框;改 `position:absolute;inset:0` 定位(先量 computed 32×32/50×50 再截圖雙驗)。
+- **me.html hero**:「最新一場 …」整行移除（使用者指示,hero 留大數字+帳號列）。
+- **settings.html**:儲存鈕移到「公開分享」下方、「登出」上方（附說明:開關即時生效,身分修改才要按儲存）;「危險操作」→「**進階操作**」(adv_zone)且**預設收合**(`<details>`,展開才見刪除帳號)。
+- 驗證:e2e 擴到 **50 項全 PASS**(新增:大頭貼 img 出現於 nav/設定頁頂、最新一場已移除、儲存鈕 DOM 順序、進階預設收合/展開可見刪除鈕);`?v=226` bump+gen_site 重產;截圖親驗。
+
 ## [v2.7.0] - 2026-07-07 10:53
 ### 改版 — 帳號介面全面重構（使用者定稿版）:專屬設定頁 settings.html + 全站 nav 大頭照選單 + hero 帳號列
 

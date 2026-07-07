@@ -55,7 +55,14 @@ html[lang="zh-Hans"] body{--ui:'Inter','Noto Sans SC',sans-serif}
 .btn-danger[disabled]{opacity:.5;cursor:progress}
 .btn-ghostout{background:none;border:1px solid var(--hair2,rgba(128,128,128,.35));color:var(--ink1);font-weight:700;padding:8px 20px;border-radius:999px;cursor:pointer;font-family:inherit;font-size:13.5px}
 .btn-ghostout:hover{border-color:var(--gold,#c9a85c);color:var(--gold,#c9a85c)}
-.st-sec-h.danger{color:#b3261e}
+.st-savebar{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.st-adv summary{cursor:pointer;list-style:none;display:inline-flex;align-items:center;gap:7px}
+.st-adv summary::-webkit-details-marker{display:none}
+.st-adv summary::after{content:'▸';font-size:11px;color:var(--ink3);transition:transform .15s}
+.st-adv[open] summary::after{transform:rotate(90deg)}
+.st-adv-body{margin-top:12px}
+.st-mono{position:relative;overflow:hidden}
+.st-mono img{position:absolute;inset:0;width:100%;height:100%;border-radius:50%;object-fit:cover;display:block}  /* 絕對定位:grid auto 軌內 %高度解析不到會照圖片比例撐爆 */
 </style>
 <script>window.MM_USE_LANG_PREF=true;</script>
 <script>/* zh-hans:先同步載 OpenCC,mm-strings 才能建簡體字典;只簡中使用者下載 */(function(){try{
@@ -65,8 +72,8 @@ if(!v){var nl=(navigator.language||'').toLowerCase();v=nl.indexOf('zh')===0?((nl
 if(v==='zh-hans'){document.write('<scr'+'ipt src="https://cdn.jsdelivr.net/npm/opencc-js@1.3.1/dist/umd/t2cn.js" integrity="sha384-P/OaFUnOIAgMkLxsXIAaP6WO3Wm09591cGX5bHbW4eCOeDxH9L8U3aWYf4cE4SYl" crossorigin="anonymous"><\/scr'+'ipt>');
 document.write('<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet" />');}
 }catch(e){}})();</script>
-<script src="js/mm-strings.js?v=225"></script>
-<script src="js/mm-acct-menu.js?v=225"></script>
+<script src="js/mm-strings.js?v=226"></script>
+<script src="js/mm-acct-menu.js?v=226"></script>
 <!-- GA4(同站統計;隱私揭露見 privacy §1/§3) --><script async src="https://www.googletagmanager.com/gtag/js?id=G-GC07MYC1MY"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-GC07MYC1MY');</script>
 </head>
 <body>
@@ -119,7 +126,6 @@ document.write('<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+S
       <span class="handle-status muted" id="stStatus"></span>
     </label>
     <p class="st-note" data-i18n="acct_lead">網址名稱是你的帳號身分。更改後舊網址會自動轉到新網址，已分享出去的連結不會壞；舊名稱會永久保留給你，別人拿不走。</p>
-    <div style="margin-top:14px"><button type="button" class="btn-gold" id="stSave" data-i18n="save">儲存</button></div>
   </section>
 
   <section class="st-sec">
@@ -139,15 +145,26 @@ document.write('<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+S
     <span class="handle-status muted" id="stShareStatus"></span>
   </section>
 
+  <!-- 儲存(帳號身分欄位;公開分享的開關是即時生效不用按) -->
+  <section class="st-sec st-savebar">
+    <button type="button" class="btn-gold" id="stSave" data-i18n="save">儲存</button>
+    <span class="st-note" style="margin:0" data-i18n="st_save_hint">「公開分享」的開關會立即生效；「帳號身分」的修改要按儲存。</span>
+  </section>
+
   <section class="st-sec">
     <div class="st-sec-h" data-i18n="nav_logout">登出</div>
     <button type="button" class="btn-ghostout" id="stSignout" data-i18n="nav_logout">登出</button>
   </section>
 
+  <!-- 進階操作:預設收合,展開才看到刪除帳號 -->
   <section class="st-sec">
-    <div class="st-sec-h danger" data-i18n="del_zone">危險操作</div>
-    <p class="acct-danger-p" data-i18n="del_desc">刪除帳號會永久移除你的所有觀劇紀錄、公開頁與網址名稱，無法復原。</p>
-    <button type="button" class="btn-danger" id="stDelete" data-i18n="del_account">刪除我的帳號</button>
+    <details class="st-adv" id="stAdv">
+      <summary class="st-sec-h" style="margin-bottom:0" data-i18n="adv_zone">進階操作</summary>
+      <div class="st-adv-body">
+        <p class="acct-danger-p" data-i18n="del_desc">刪除帳號會永久移除你的所有觀劇紀錄、公開頁與網址名稱，無法復原。</p>
+        <button type="button" class="btn-danger" id="stDelete" data-i18n="del_account">刪除我的帳號</button>
+      </div>
+    </details>
   </section>
 </div>
 
@@ -175,13 +192,19 @@ document.write('<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+S
     if(!/(^|\.)themusicalmap\.com$/.test(location.hostname))return;
     document.cookie=h?('mm_owner='+encodeURIComponent(h)+'; Domain=.themusicalmap.com; Path=/; Max-Age=31536000; Secure; SameSite=Lax')
                      :'mm_owner=; Domain=.themusicalmap.com; Path=/; Max-Age=0; Secure; SameSite=Lax';
+    if(!h)avCookie('');   // 登出連頭像 cookie 一起清
   }catch(e){}}
   function clearLocalAll(){try{localStorage.removeItem('mm-log');}catch(e){}try{sessionStorage.removeItem('mev2_synced');Object.keys(sessionStorage).filter(k=>k.indexOf('mev2_reloaded_')===0).forEach(k=>sessionStorage.removeItem(k));}catch(e){}}
 
   // ?signout=1:全站登出入口(session 住本 origin;主站/各頁 nav 的「登出」導這裡)
   const SIGNOUT=new URLSearchParams(location.search).get('signout')==='1';
 
-  let UID=null, CUR={handle:'',is_public:false,show_price:false,show_seat:false}, DISPLAY='', EMAIL='', CREATED='';
+  let UID=null, CUR={handle:'',is_public:false,show_price:false,show_seat:false}, DISPLAY='', EMAIL='', CREATED='', AVATAR='';
+  function avCookie(url){try{
+    if(!/(^|\.)themusicalmap\.com$/.test(location.hostname))return;
+    if(url)document.cookie='mm_av='+encodeURIComponent(url)+'; Domain=.themusicalmap.com; Path=/; Max-Age=31536000; Secure; SameSite=Lax';
+    else document.cookie='mm_av=; Domain=.themusicalmap.com; Path=/; Max-Age=0; Secure; SameSite=Lax';
+  }catch(e){}}
   const EN_MONTHS=['January','February','March','April','May','June','July','August','September','October','November','December'];
 
   async function isAvailable(h){
@@ -236,6 +259,8 @@ document.write('<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+S
     const name=DISPLAY||CUR.handle||'—';
     $('stName').textContent=name;
     $('stMono').textContent=(String(name).trim().charAt(0)||'?');
+    if(AVATAR){const im=new Image();im.alt='';im.referrerPolicy='no-referrer';
+      im.onload=()=>{$('stMono').textContent='';$('stMono').appendChild(im);};im.src=AVATAR;}
     $('stEmail').textContent=EMAIL||'—';
     let j='';
     if(CREATED){const d=new Date(CREATED);if(!isNaN(d)){const y=d.getFullYear(),m=d.getMonth()+1;
@@ -328,6 +353,7 @@ document.write('<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+S
     const hl='?hl='+(window.MM_HL||'zh-hant');
     slot.appendChild(MMAcctMenu.build({
       letter:(DISPLAY||CUR.handle||EMAIL||'?').charAt(0),
+      avatar:AVATAR,
       links:{my:CUR.handle?shareUrl(CUR.handle)+hl:('https://my.themusicalmap.com/'+hl),settings:'#'},
       onLogout:async()=>{ownerCookie('');try{await sb.auth.signOut();}catch(e){}clearLocalAll();location.href='https://themusicalmap.com/';}
     }));
@@ -335,7 +361,10 @@ document.write('<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+S
 
   async function load(uid){
     UID=uid;
-    try{const {data:{user}}=await sb.auth.getUser();EMAIL=(user&&user.email)||'';}catch(e){}
+    try{const {data:{user}}=await sb.auth.getUser();EMAIL=(user&&user.email)||'';
+      AVATAR=(user&&user.user_metadata&&(user.user_metadata.avatar_url||user.user_metadata.picture))||'';
+      if(AVATAR)avCookie(AVATAR);
+    }catch(e){}
     try{
       const {data}=await sb.from('profiles').select('handle,is_public,show_price,show_seat,display_name,created_at').eq('id',uid).maybeSingle();
       CUR={handle:data?.handle||'',is_public:!!data?.is_public,show_price:!!data?.show_price,show_seat:!!data?.show_seat};

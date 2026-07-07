@@ -33,9 +33,18 @@ window.MMAcctMenu = (function () {
     try { var m = document.cookie.match(/(?:^|;\s*)mm_owner=([^;]+)/); return m ? decodeURIComponent(m[1]) : ''; }
     catch (e) { return ''; }
   }
+  // Google 頭像 URL(me.html/settings.html 登入時種的 mm_av cookie;只給本人 nav 顯示,不進公開頁)
+  function readAvatarCookie() {
+    try {
+      var m = document.cookie.match(/(?:^|;\s*)mm_av=([^;]+)/); if (!m) return '';
+      var u = decodeURIComponent(m[1]);
+      return /^https:\/\/[a-z0-9.-]+\.(googleusercontent|gstatic)\.com\//.test(u) ? u : '';   // 只信 Google 圖床,防 cookie 被塞奇怪網址
+    } catch (e) { return ''; }
+  }
   var CSS = '.acmenu{position:relative;display:inline-flex}' +
-    '.acmenu-btn{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;cursor:pointer;font-family:var(--fr,Fraunces,Georgia,serif);font-weight:900;font-size:16px;color:var(--gold,#a07a34);text-transform:uppercase;background:color-mix(in srgb,var(--gold,#a07a34) 14%,transparent);border:1.5px solid color-mix(in srgb,var(--gold,#a07a34) 55%,transparent);transition:box-shadow .15s;padding:0;line-height:1}' +
+    '.acmenu-btn{position:relative;overflow:hidden;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;cursor:pointer;font-family:var(--fr,Fraunces,Georgia,serif);font-weight:900;font-size:16px;color:var(--gold,#a07a34);text-transform:uppercase;background:color-mix(in srgb,var(--gold,#a07a34) 14%,transparent);border:1.5px solid color-mix(in srgb,var(--gold,#a07a34) 55%,transparent);transition:box-shadow .15s;padding:0;line-height:1}' +
     '.acmenu-btn:hover,.acmenu-btn[aria-expanded="true"]{box-shadow:0 0 0 3px color-mix(in srgb,var(--gold,#a07a34) 18%,transparent)}' +
+    '.acmenu-av{position:absolute;inset:0;width:100%;height:100%;border-radius:50%;object-fit:cover;display:block}' +   /* 絕對定位:grid auto 軌內 height:100% 解析不到定值會照圖片比例撐爆 */
     '.acmenu-pop{position:absolute;top:calc(100% + 8px);right:0;min-width:172px;z-index:2600;padding:6px;background:var(--s1,var(--paper,#fffdf7));border:1px solid var(--hair2,rgba(90,80,60,.28));border-radius:12px;box-shadow:0 16px 44px rgba(0,0,0,.28)}' +
     '.acmenu-pop[hidden]{display:none}' +
     '.acmenu-it{display:block;padding:9px 12px;border-radius:8px;font-size:13.5px;font-weight:600;color:var(--ink1,var(--text,#221f18));text-decoration:none;opacity:1}' +
@@ -48,7 +57,7 @@ window.MMAcctMenu = (function () {
   }
   function el(html) { var t = document.createElement('template'); t.innerHTML = html.trim(); return t.content.firstChild; }
 
-  /* o = { letter, lang?, labels?, links:{my,settings}, onLogout? }  onLogout 缺省=導 my./settings.html?signout=1 */
+  /* o = { letter, avatar?, lang?, labels?, links:{my,settings}, onLogout? }  onLogout 缺省=導 my./settings.html?signout=1 */
   function build(o) {
     injectCss();
     var L = o.labels || LABELS[o.lang || detectLang()] || LABELS['zh-hant'];
@@ -56,6 +65,12 @@ window.MMAcctMenu = (function () {
     var btn = el('<button type="button" class="acmenu-btn" aria-haspopup="menu" aria-expanded="false"></button>');
     btn.setAttribute('aria-label', L.account); btn.title = L.account;
     btn.textContent = (String(o.letter || '?').trim().charAt(0) || '?').toUpperCase();
+    if (o.avatar) {   // Google 大頭貼;載入失敗(過期/擋圖)自動退回首字母
+      var im = new Image();
+      im.className = 'acmenu-av'; im.alt = ''; im.referrerPolicy = 'no-referrer';
+      im.onload = function () { btn.textContent = ''; btn.appendChild(im); };
+      im.src = o.avatar;
+    }
     var menu = el('<div class="acmenu-pop" role="menu" hidden></div>');
     function item(label, href, onclick) {
       var a = el('<a class="acmenu-it" role="menuitem"></a>');
@@ -90,7 +105,7 @@ window.MMAcctMenu = (function () {
     if (!cta) return;
     var lang = detectLang(), hl = '?hl=' + lang;
     cta.replaceWith(build({
-      letter: h.charAt(0), lang: lang,
+      letter: h.charAt(0), avatar: readAvatarCookie(), lang: lang,
       links: { my: 'https://my.themusicalmap.com/' + encodeURIComponent(h) + hl, settings: 'https://my.themusicalmap.com/settings.html' + hl }
     }));
   }
