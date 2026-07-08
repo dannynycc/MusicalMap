@@ -11,6 +11,27 @@
 
 ---
 
+## [v2.14.0] - 2026-07-08 22:42
+### 全庫認真掃(1740 筆):10 類髒資料掃描器+22 處標題修正+19 筆補座標
+
+**掃描器**(行銷尾巴/引號劇名/主辦前綴/城市尾綴/非音樂劇/同館近似重複/超長標題/tour_name 不含劇名/全大寫/無日期/無座標)掃出後逐項判讀,假警報(Mentidrags=真 drag 版、Sabina/Serrat=兩齣不同劇、Burlesque The Musical=真劇名)不動。
+
+**新通用規則(全庫模擬回歸,抓到並擋掉 2 誤傷:「Un paseo por Madrid」「Festival de Mérida」城市是劇名本體→介係詞守門)**:
+- 「{Show} Presented By {社區劇團}」尾綴(Meadowvale 五齣:Sister Act/Spongebob/Urinetown/Dirty Rotten Scoundrels/Come From Away)。
+- 「{Venue}'s {SHOW}」館名前綴(Walnut Street Theatre 三齣)——僅前綴=本列場館時。
+- 城市尾綴裸接/破折號接(Princess Story - Valladolid、Generación Milenial en Mérida…)——僅尾巴=本列城市+介係詞守門+砍完太短不砍。
+- presents 前綴多語(presenta/présente/präsentiert+分號)。
+- PERF_TYPE 加 NZSL/ASL/AD & Touch Tour(Cabaret 奧克蘭無障礙場×2 併回主檔期)。
+- DASH_NOTICE 加 premium/vip seats(Aschenbrödel Premium Seats 重複列移除)。
+
+**個案 overrides(generic 蓋不到)**:匈牙利作者/藝術節前綴×4(A Padlás×2/A dzsungel könyve/A Pál utcai fiúk)、¡Bienvenidos! 巡演各鎮列名統一×4、Titanique/La Mofeta Presumida 行銷副標修剪。
+
+**下架**:Broadway Bound Teen Cabaret(歌舞之夜非音樂劇,入 not_musical)。
+
+**19 筆無座標(根本不出現在地圖)全補**:同城既有列平均座標優先,否則城市中心點;overrides 固定。
+
+**彈窗 tour_name 改人名啟發式**:v2.13.7 的「須包含劇名」守門會誤殺 107 個正當的在地化製作名(& Julia/アラジン/빌리 엘리어트…)→改為只擋「2~3 個首字大寫單字+無標點+無 musical/tour 字眼」的人名型 attraction(Harper Jones 型),在地化名照顯。
+
 ## [v2.13.9] - 2026-07-08 22:28
 ### 劇名/資料清理六案(使用者連抓)+ 閘門微調
 

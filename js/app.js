@@ -516,10 +516,12 @@ function popupHtml(show) {
       <span class="pop-tile-label">${lab}</span>
       <span class="pop-tile-arr">→</span></a>`;
   }).join("")}</div></div>` : "";
-  // tour_name 只在「包含劇名」時才拿來當顯示名(如「The Lion King North American Tour」);
-  // TM 的 attraction 名有時是人名/品牌(如獨角戲的演員名),不含劇名就別讓它蓋掉正式劇名。
-  const tname = (show.tour_name && show.tour_name.toLowerCase().includes((show.title||"").toLowerCase()))
-    ? show.tour_name.replace(show.title, canonTitle(show)) : "";
+  // tour_name 通常是在地化/巡演製作名(「& Julia」「アラジン」「…North American Tour」),照用;
+  // 但 TM 的 attraction 有時是「人名」(獨角戲演員,如 Harper Jones)——2~3 個首字大寫單字、
+  // 無數字/標點、不含 musical/tour 等字眼 → 視為人名,回落正式劇名,別讓人名蓋掉劇名。
+  const _tn = show.tour_name || "";
+  const _looksPerson = /^[A-Z][a-zà-ÿ]+(?: [A-Z][a-zà-ÿ'’-]+){1,2}$/.test(_tn) && !/musical|tour|show|live|concert/i.test(_tn);
+  const tname = (_tn && !_looksPerson) ? _tn.replace(show.title, canonTitle(show)) : "";
   const tourLine = "";  // production name (tour / localized version) now lives in the title itself
   const unverified = show.verified ? "" : `<div class="p-row warn">${esc(t("unverified_demo"))}</div>`;
   const titleTxt = esc(tname || canonTitle(show));  // the specific production's real name

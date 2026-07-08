@@ -220,7 +220,7 @@ NOTICE_RE = re.compile(
 # 年齡建議/購票規定字眼,避免誤砍真副標(如 "Sweeney Todd - The Demon Barber")。
 DASH_NOTICE_RE = re.compile(
     r"\s*[-–—:]\s*[^-–—:]*(?:recommended ages?|regardless of age|require[s]? (?:a )?ticket|"
-    r"all guests|babes in arms|no children under|ages? \d+ (?:and|&) (?:up|over)|18\+|21\+)[^-–—]*$", re.I)
+    r"all guests|babes in arms|no children under|ages? \d+ (?:and|&) (?:up|over)|premium seats?|vip seats?|18\+|21\+)[^-–—]*$", re.I)
 
 
 # Trailing location/tour qualifier some sources append to disambiguate, e.g.
@@ -236,7 +236,7 @@ LOC_QUALIFIER_RE = re.compile(
 # Performance-TYPE suffix after a dash (accessibility / special perfs) — not a
 # different show. "Paddington The Musical - Relaxed Performance" → "Paddington…".
 PERF_TYPE_RE = re.compile(
-    r"\s*[-–—:]\s*(?:relaxed|captioned|audio[- ]?describ\w*|signed|bsl|"
+    r"\s*[-–—:]\s*(?:relaxed|captioned|audio[- ]?describ\w*|signed|bsl|nzsl|asl|ad\s*&\s*touch tour|(?:sign|nzsl|bsl|asl)[- ]?interpreted|"
     r"matinee|opening night|press night|gala night|previews?|sensory|autism[- ]?friendly|"
     r"dementia[- ]?friendly|touch tour|sing[- ]?along|auslan)\b.*$", re.I)
 
@@ -247,9 +247,11 @@ def clean_title(t):
     # promoter/venue prefix → "{Show}". Handles "{Company} presents [: ] {Show}"
     # ("Lyric Theatre of Oklahoma presents Annie", "Ford's Theatre presents: Come
     # From Away") and "{Company} production of {Show}" ("NYT production of …").
-    t = re.sub(r"^.{0,70}?\b(?:presents|production of)\b\s*:?\s+", "", t, flags=re.I)
+    t = re.sub(r"^.{0,70}?\b(?:presents|presenta|pr[eé]sente|präsentiert|production of)\b\s*[:;]?\s+", "", t, flags=re.I)
     # 已知「主辦品牌: 劇名」前綴(冒號前綴不能通殺——SIX: The Musical 是真劇名,逐一列舉)
     t = re.sub(r"^(?:Magatzem d['’]Ars)\s*:\s*", "", t, flags=re.I)
+    # 「{Show} Presented By {社區劇團}」尾綴(TM 常見)→ 取劇名本體
+    t = re.sub(r"\s+Presented By\s+.{2,60}$", "", t, flags=re.I)
     # 引號包劇名+行銷尾巴 → 取引號內:"'I GRIEVE DIFFERENT' written by and starring Harper Jones"
     # → "I Grieve Different"。只在「開頭就是引號劇名 + written/created/... by」時觸發,避免誤傷真副標。
     m = re.match(r"^['‘“\"](.+?)['’”\"]\s+(?:written|created|conceived|directed)\s+by\b.*$", t, flags=re.I)
@@ -280,6 +282,29 @@ def strip_city_qualifier(title, city):
         title = re.sub(rf"\s*\(\s*{re.escape(c)}\s*\)\s*$", "", title, flags=re.I).strip()
         # "… in Dubai" / ", en Barcelona" / ", a València" 等各語尾綴(西/加泰/法/義)
         title = re.sub(rf",?\s+(?:in|en|a|à|em|w)\s+{re.escape(c)}\s*$", "", title, flags=re.I).strip()
+        # 裸接/破折號接城市尾("…80 y 90 La Puebla de Montalbán"、"…-Villanueva de la Serena"):
+        # 僅當尾巴=本列城市;砍完剩太短則不砍;城市前一個字是介係詞則不砍——
+        # 「Un paseo por Madrid」「Festival de Mérida」的城市是劇名本體(全庫回歸抓過的誤傷)
+        m = re.search(rf"(\S+)\s+{re.escape(c)}\s*$", title, flags=re.I)
+        _PREPS = {"por","de","del","della","di","da","in","von","im","zum","zur","fur","für",
+                  "sur","à","au","aux","a","al","en","w","em","the","of","dans","nach"}
+        if not (m and m.group(1).lower().strip("-–—,") in _PREPS and m.group(1) not in ("-","–","—",",")):
+            t2 = re.sub(rf"\s*[-–—,]?\s+{re.escape(c)}\s*$", "", title, flags=re.I).strip()
+            if len(t2) >= 6 and t2 != title:
+                title = t2
+    return title
+
+
+def strip_venue_prefix(title, venue):
+    """Strip a leading "{Venue}'s " that merely names the presenting house, e.g.
+    "Walnut Street Theatre's THE ADDAMS FAMILY" (venue "Walnut Street Theatre")
+    → "THE ADDAMS FAMILY". Only when the prefix equals THIS record's venue."""
+    v = (venue or "").strip()
+    if v and title:
+        for pv in (v, v[4:] if v.lower().startswith("the ") else v):
+            m = __import__("re").match(rf"^(?:the\s+)?{__import__('re').escape(pv)}[’']s\s+", title, flags=2)
+            if m and len(title) - m.end() >= 3:
+                return title[m.end():].strip()
     return title
 
 
