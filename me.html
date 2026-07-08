@@ -58,6 +58,23 @@ html[lang="zh-Hans"] body{--ui:'Inter','Noto Sans SC',sans-serif}  /* 簡中改�
 #gate-login[hidden]{display:none}
 #gate-login svg{flex:none}
 #gate-sub{font-size:12px;color:var(--ink3,#8a8a8a);max-width:360px;line-height:1.65}
+/* Email OTP 登入區(gate):跟主題 tokens 走(cream/深色都成立) */
+#gate-email{display:flex;flex-direction:column;gap:10px;align-items:center;width:100%;max-width:340px}
+#gate-email[hidden]{display:none}
+.gate-or{display:flex;align-items:center;gap:10px;width:100%;color:var(--ink3,#8a8a8a);font-size:12px;font-weight:600}
+.gate-or::before,.gate-or::after{content:'';flex:1;height:1px;background:var(--hair2,rgba(128,128,128,.3))}
+.ge-lead{font-size:13px;color:var(--ink2,#aaa);font-weight:600}
+.ge-row{display:flex;gap:8px;width:100%}
+.ge-row[hidden]{display:none}
+.ge-row input{flex:1;min-width:0;padding:11px 13px;border-radius:10px;border:1px solid var(--hair2,#ccc);background:var(--s1,#fff);color:var(--ink1,#222);font-size:14px;font-family:var(--ui,system-ui,sans-serif)}
+.ge-row input:focus{outline:2px solid var(--gold,#a07a34);outline-offset:-1px}
+.ge-row button{flex:none;padding:11px 16px;border-radius:10px;border:1px solid var(--gold,#a07a34);background:transparent;color:var(--gold,#a07a34);font-weight:700;font-size:13.5px;cursor:pointer;font-family:var(--ui,system-ui,sans-serif);white-space:nowrap}
+.ge-row button:hover{background:var(--gold-soft,rgba(160,122,52,.12))}
+.ge-row button:disabled{opacity:.55;cursor:default}
+.ge-msg{font-size:12.5px;line-height:1.6;color:var(--ink2,#aaa);max-width:340px}
+.ge-msg.err{color:#b3261e}
+.ge-msg[hidden]{display:none}
+.ge-msg .ge-resend{background:none;border:none;color:var(--gold,#a07a34);font-weight:700;cursor:pointer;font-size:12.5px;padding:0;text-decoration:underline;font-family:inherit}
 /* 閘門頁尾:對齊主站 site-foot(品牌句左、連結右、金色連結、頂部髮絲線) */
 .gate-foot{position:absolute;left:0;right:0;bottom:0;border-top:1px solid var(--hair2);background:var(--bg-mesh),var(--bg);padding:15px 24px;text-align:left}
 .gate-foot .sf-in{max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px;font-size:13px;color:var(--ink2)}
@@ -75,7 +92,7 @@ if(!v){var nl=(navigator.language||'').toLowerCase();v=nl.indexOf('zh')===0?((nl
 if(v==='zh-hans'){document.write('<scr'+'ipt src="https://cdn.jsdelivr.net/npm/opencc-js@1.3.1/dist/umd/t2cn.js" integrity="sha384-P/OaFUnOIAgMkLxsXIAaP6WO3Wm09591cGX5bHbW4eCOeDxH9L8U3aWYf4cE4SYl" crossorigin="anonymous"><\/scr'+'ipt>');
 document.write('<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet" />');/* 簡體字 TC 字型沒有→混排忽粗忽細,補 SC */}
 }catch(e){}})();</script>
-<script src="js/mm-strings.js?v=231"></script>
+<script src="js/mm-strings.js?v=232"></script>
 <script src="js/mm-acct-menu.js?v=227"></script>
 <!-- Google Analytics(GA4 G-GC07MYC1MY;訪客來源/行為分析,同一 ID 涵蓋主站與 my. 網域(報表以 hostname 區分);不加 SRI:gtag.js 由 Google 滾動更新,釘 hash 會靜默斷統計;隱私揭露見 privacy §1/§3) --><script async src="https://www.googletagmanager.com/gtag/js?id=G-GC07MYC1MY"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-GC07MYC1MY');</script>
 </head>
@@ -91,6 +108,21 @@ document.write('<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+S
     <svg width="20" height="20" viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
     <span data-i18n="gate_login">使用 Google 登入</span>
   </button>
+  <!-- Email OTP 登入:給收不到/用不了 Google 的使用者(如中國網路環境)。流程=寄 6 位數驗證碼→輸入→verifyOtp;
+       成功後走與 Google 相同的 onAuthStateChange→onSignedIn,首次登入 onboarding(取名)照常。 -->
+  <div id="gate-email" hidden>
+    <div class="gate-or"><span data-i18n="gate_or">或</span></div>
+    <div class="ge-lead" data-i18n="gate_email_lead">無法使用 Google？用 Email 收驗證碼登入：</div>
+    <div class="ge-row">
+      <input id="ge-mail" type="email" autocomplete="email" inputmode="email" placeholder="你的 Email" data-i18n-ph="gate_email_ph" />
+      <button id="ge-send" type="button" data-i18n="gate_email_send">傳送驗證碼</button>
+    </div>
+    <div class="ge-row" id="ge-step2" hidden>
+      <input id="ge-code" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="6" placeholder="6 位數驗證碼" data-i18n-ph="gate_email_code_ph" />
+      <button id="ge-verify" type="button" data-i18n="gate_email_verify">驗證並登入</button>
+    </div>
+    <div class="ge-msg" id="ge-msg" hidden></div>
+  </div>
   <div id="gate-sub" hidden></div>
   <footer class="gate-foot"><div class="sf-in">
     <span data-i18n="how_footer">MusicalMap — 全球音樂劇即時地圖，與你的音樂劇護照。</span>
@@ -1059,7 +1091,7 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
   const T=window.MM_T||(k=>k);
   const cfg=window.MM_CONFIG||{};
   const gate=document.getElementById('mev2gate'), gmsg=document.getElementById('gate-msg'), glogin=document.getElementById('gate-login');
-  const showGate=(msg,login)=>{gate.style.display='flex';gmsg.innerHTML=msg;glogin.hidden=!login;var gs=document.getElementById('gate-sub');if(gs)gs.hidden=true;var gp=document.getElementById('gate-preview');if(gp)gp.hidden=!login;};
+  const showGate=(msg,login)=>{gate.style.display='flex';gmsg.innerHTML=msg;glogin.hidden=!login;var ge=document.getElementById('gate-email');if(ge)ge.hidden=!login;var gs=document.getElementById('gate-sub');if(gs)gs.hidden=true;var gp=document.getElementById('gate-preview');if(gp)gp.hidden=!login;};
   const hideGate=()=>{gate.style.display='none';};
   // 日期：demo 部分日期(date+precision) ↔ sightings 完整 seen_date
   function fullDate(date,prec){if(!date)return null;const d=String(date);
@@ -1141,6 +1173,39 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
   window.mmClearLocal=clearLocal;   // 給 profile IIFE 的刪除帳號流程用（跨 IIFE 作用域）
   async function onSignedIn(user){if(sessionStorage.getItem('mev2_synced')===syncedKey(user.id)){hideGate();window.mmAuthReady&&window.mmAuthReady(user.id);return;}await syncFromCloud(user.id);}
   glogin.onclick=()=>sb.auth.signInWithOAuth({provider:'google',options:{redirectTo:location.origin+location.pathname}});
+  // ── Email OTP 登入(中國等收不到 Google 的環境):寄 6 位數碼→verifyOtp;成功觸發 onAuthStateChange 走既有流程 ──
+  (function(){
+    const mail=document.getElementById('ge-mail'),code=document.getElementById('ge-code'),
+          send=document.getElementById('ge-send'),verify=document.getElementById('ge-verify'),
+          step2=document.getElementById('ge-step2'),msg=document.getElementById('ge-msg');
+    if(!mail)return;
+    const TN2=(k,v)=>{let s=T(k);for(const n in(v||{}))s=s.replace('{'+n+'}',v[n]);return s;};
+    const say=(t,err,resend)=>{msg.hidden=false;msg.className='ge-msg'+(err?' err':'');
+      msg.textContent=t;
+      if(resend){const b=document.createElement('button');b.type='button';b.className='ge-resend';b.textContent=T('gate_email_resend');b.onclick=doSend;msg.appendChild(document.createTextNode(' '));msg.appendChild(b);}};
+    async function doSend(){
+      const em=(mail.value||'').trim();
+      if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)){say(T('gate_email_invalid'),true);return;}
+      send.disabled=true;send.textContent=T('gate_email_sending');
+      // shouldCreateUser:true=新使用者直接建帳號(onboarding 首次登入照常跑)
+      const {error}=await sb.auth.signInWithOtp({email:em,options:{shouldCreateUser:true}});
+      send.disabled=false;send.textContent=T('gate_email_send');
+      if(error){say(TN2('gate_email_send_fail',{msg:error.message||error}),true);return;}
+      step2.hidden=false;code.focus();say(TN2('gate_email_sent',{email:em}),false,true);
+    }
+    async function doVerify(){
+      const em=(mail.value||'').trim(),tk=(code.value||'').trim();
+      if(tk.length<6){say(T('gate_email_bad_code'),true);return;}
+      verify.disabled=true;verify.textContent=T('gate_email_verifying');
+      const {error}=await sb.auth.verifyOtp({email:em,token:tk,type:'email'});
+      verify.disabled=false;verify.textContent=T('gate_email_verify');
+      if(error){say(T('gate_email_bad_code')+' ',true,true);return;}
+      // 成功:onAuthStateChange(SIGNED_IN)→onSignedIn 接手,這裡不用做事
+    }
+    send.onclick=doSend;verify.onclick=doVerify;
+    mail.addEventListener('keydown',e=>{if(e.key==='Enter')doSend();});
+    code.addEventListener('keydown',e=>{if(e.key==='Enter')doVerify();});
+  })();
   window.mmLogout=()=>{window.mmOwnerCookie&&window.mmOwnerCookie('');sb.auth.signOut().then(()=>{clearLocal();location.reload();});};
   // ♥ 最愛切換:本機快取即改+雲端背景更新,回傳新狀態給卡片就地更新(不重刷;統計/徽章下次載入時跟上)
   window.mmToggleFav=function(i){

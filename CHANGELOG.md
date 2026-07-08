@@ -11,6 +11,16 @@
 
 ---
 
+## [v2.13.0] - 2026-07-08 19:23
+### Email 驗證碼登入(給收不到 Google 的環境,如中國)
+
+登入閘新增 **Email OTP 登入**:輸入 Email → 寄 6 位數驗證碼 → 輸入驗證碼登入。給無法使用 Google 的使用者(中國網路環境封鎖 Google 服務)。
+
+- me.html 閘門加「或——無法使用 Google?用 Email 收驗證碼登入」區塊(Email 輸入+傳送驗證碼→驗證碼輸入+驗證並登入,含重寄/錯誤提示);樣式走主題 tokens(cream/深色皆成立)。
+- Supabase `signInWithOtp`(shouldCreateUser:true,新使用者直接建號)+ `verifyOtp`(type:email);成功走與 Google 相同的 onAuthStateChange→onSignedIn,首次登入 onboarding(取 handle)照常。
+- 三語字串 13 鍵(mm-strings.js?v=232,简中由 OpenCC 自動轉)。
+- Supabase 後端:Email provider 原已啟用;信件模板暫用預設(自訂模板需先接 custom SMTP)。
+
 ## [v2.12.17] - 2026-07-08 17:32
 ### 文件 freshness:README 補上今日功能
 
