@@ -11,6 +11,11 @@
 
 ---
 
+## [v2.12.12] - 2026-07-08 17:00
+### 公開分享頁(u.html)地圖補上 cluster(與 me.html 同步)
+
+v2.12.4 的重疊城市 cluster 只做在登入版 me.html,**公開分享頁 u-view.js 還是舊版**(pins 直接投影、無 cluster 無 declutter)——訪客看到的地圖仍是擠成一團的 marker(姊妹頁同 bug,主動巡檢抓到)。把 me.html 的 greedy 螢幕距離分群+點擊放大+單一城市標籤 declutter 完整移植到 u-view.js(PINS 帶場次數 n、CLUSTER_POOL 含 isConnected 防卸離);CSS 共用 me-v2.css 的 .pin-cluster 免改。`u-view.js?v=2` 破快取。
+
 ## [v2.12.11] - 2026-07-08 16:47
 ### Favicon 恢復透明 SVG 原樣(撤深藍底)+ 修 Google 搜尋顯示網址而非站名
 

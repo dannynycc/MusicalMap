@@ -318,13 +318,53 @@
           <span class="core" style="width:${sz}px;height:${sz}px">${c.n}</span>
           <span class="lbl">${esc(cityName(c.city))}</span>`;
         el.onclick = () => filterToCity(c.city);
-        pins.appendChild(el); PINS.push({ el, px, py });
+        pins.appendChild(el); PINS.push({ el, px, py, n: c.n });
       });
       positionPins();
     }
-    function positionPins() { PINS.forEach(p => { const [sx, sy] = tf(p.px, p.py);
-      if (sx < -0.01 || sx > 1.01 || sy < -0.01 || sy > 1.01) { p.el.style.display = 'none'; }
-      else { p.el.style.display = ''; p.el.style.left = sx * 100 + '%'; p.el.style.top = sy * 100 + '%'; } }); }
+    // 重疊城市併成 cluster(圈圈=總場次+「N 城市」,點擊放大展開)——與 me.html 同步移植;
+    // 公開分享頁沒做會讓訪客看到擠成一團的 marker(姊妹頁同 bug)。CSS 共用 me-v2.css 的 .pin-cluster。
+    let CLUSTER_POOL = [];
+    function positionPins() {
+      const host = document.getElementById('pins'); if (!host) return;
+      const W = host.clientWidth || 600, H = host.clientHeight || 375;
+      const vis = [];
+      PINS.forEach(p => { const [sx, sy] = tf(p.px, p.py);
+        if (sx < -0.02 || sx > 1.02 || sy < -0.02 || sy > 1.02) { p.el.style.display = 'none'; }
+        else { p._sx = sx; p._sy = sy; vis.push(p); } });
+      vis.sort((a, b) => b.n - a.n);                       // 場次多者當 cluster 錨點
+      const R = 44, used = new Set(), clusters = [];       // 螢幕距離 <R px 併群;放大自動散開
+      vis.forEach(a => { if (used.has(a)) return; used.add(a); const mem = [a];
+        vis.forEach(b => { if (used.has(b)) return; const dx = (a._sx - b._sx) * W, dy = (a._sy - b._sy) * H;
+          if (dx * dx + dy * dy < R * R) { used.add(b); mem.push(b); } });
+        clusters.push(mem); });
+      CLUSTER_POOL.forEach(e => e.style.display = 'none');
+      const singles = []; let ci = 0;
+      clusters.forEach(mem => {
+        if (mem.length === 1) { const p = mem[0]; p.el.style.display = ''; p.el.classList.remove('lbl-off');
+          p.el.style.left = p._sx * 100 + '%'; p.el.style.top = p._sy * 100 + '%'; singles.push(p); return; }
+        mem.forEach(p => p.el.style.display = 'none');
+        let cx = 0, cy = 0, bx = 0, by = 0, sum = 0; mem.forEach(p => { cx += p._sx; cy += p._sy; bx += p.px; by += p.py; sum += p.n; });
+        const k = mem.length; cx /= k; cy /= k; bx /= k; by /= k;
+        let el = CLUSTER_POOL[ci];
+        if (!el || !el.isConnected) { el = document.createElement('button'); el.className = 'pin pin-cluster'; host.appendChild(el); CLUSTER_POOL[ci] = el; }   // placePins 清空 #pins 會卸離 cluster 元素→重用前檢查 isConnected
+        el.style.display = ''; el.style.left = cx * 100 + '%'; el.style.top = cy * 100 + '%';
+        const sz = 18 + Math.sqrt(sum) * 5.2, word = document.documentElement.lang === 'en' ? (k + ' cities') : (k + ' 城市');
+        el.innerHTML = `<span class="glow" style="width:${sz * 2.2}px;height:${sz * 2.2}px"></span><span class="core" style="width:${sz}px;height:${sz}px">${sum}</span><span class="lbl">${word}</span>`;
+        el.setAttribute('aria-label', word + '，共 ' + sum + ' 場，點擊放大');
+        el.onclick = () => { const nz = Math.min(12, Math.max(mapV.z * 2.4, 2.6)); mapV.z = nz; mapV.x = bx - 0.5 / nz; mapV.y = by - 0.5 / nz; clampV(); renderMap(); };
+        ci++;
+      });
+      try { declutterSingleLabels(singles, host); } catch (e) {}
+    }
+    function declutterSingleLabels(singles, host) {
+      singles.sort((a, b) => b.n - a.n);
+      const base = host.getBoundingClientRect(), kept = [];
+      singles.forEach(p => { const lbl = p.el.querySelector('.lbl'); if (!lbl) return;
+        const r = lbl.getBoundingClientRect(); const box = { x: r.left - base.left, y: r.top - base.top, w: r.width, h: r.height };
+        const hit = kept.some(b => box.x < b.x + b.w + 2 && box.x + box.w + 2 > b.x && box.y < b.y + b.h + 2 && box.y + box.h + 2 > b.y);
+        if (hit) p.el.classList.add('lbl-off'); else kept.push(box); });
+    }
     function buildCityList() {
       const el = document.getElementById('citylist');
       const byCity = {}; S.forEach(s => { if (!s.city || isFut(s.date)) return; (byCity[s.city] = byCity[s.city] || { ...s, n: 0 }).n++; });   // 地圖/城市榜只算已到場
