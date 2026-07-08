@@ -11,6 +11,11 @@
 
 ---
 
+## [v2.12.15] - 2026-07-08 17:22
+### 修「新訪客看公開頁仍是深色」(u-view 預設主題覆蓋 bug)
+
+Playwright 全新 profile(=新訪客,無 localStorage)390px 巡檢時抓到:公開頁 u.html 對新訪客渲染**深色**,不是 v2.12.0 起的 cream 淡米黃。根因:no-flash script 預設 cream 沒錯,但 `u-view.js` init 的 `applyTheme(localStorage.getItem('mm-theme') || 'midnight')` **fallback=midnight**——蓋掉 no-flash 的 cream、還把 midnight 寫進 localStorage 讓新訪客**永久卡深色**。自家瀏覽器看不出來,因為逛過 me.html 已被寫入 cream(=「驗自己的瀏覽器≠驗新訪客」的教訓)。修:fallback 改 'cream'。`u-view.js?v=4`。
+
 ## [v2.12.14] - 2026-07-08 17:14
 ### me-input.html 補 noindex(SEO 巡檢)
 

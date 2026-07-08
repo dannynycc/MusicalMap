@@ -501,7 +501,7 @@
 
     /* init */
     renderPoster(); buildCityList(); drawMap(); placePins(); moveThumb();
-    applyTheme((function () { try { return localStorage.getItem('mm-theme') || 'midnight'; } catch (e) { return 'midnight'; } })());
+    applyTheme((function () { try { return localStorage.getItem('mm-theme') || 'cream'; } catch (e) { return 'cream'; } })());   // 預設 cream:fallback 若是 midnight 會蓋掉 no-flash 的 cream 且寫進 localStorage,讓「只看公開頁的新訪客」永久卡深色(自家瀏覽器因逛過 me.html 已存 cream 而看不出來)
     window.addEventListener('load', () => { drawMap(); placePins(); moveThumb(); });
     requestAnimationFrame(() => { drawMap(); placePins(); moveThumb(); });
   }
