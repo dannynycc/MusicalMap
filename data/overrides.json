@@ -155,5 +155,21 @@
     "title": "Beauty and the Beast",
     "group": "beauty and the beast",
     "_why": "TM 列名帶『- Recommended ages…』購票須知尾巴;DASH_NOTICE_RE 已加通用規則,此為保險。與 broadway.org SF 站同檔期,合併後由 (group,city) 去重。"
+  },
+  "stage-bibi-tina-weihnachten-berlin-hamburg": {
+    "start_date": "2026-11-21",
+    "end_date": "2027-01-03",
+    "end_rolling": false,
+    "_why": "聖誕限定檔被標長期上演(來源無日期+舊邏輯無日期預設 open run,已改);官方 stage-entertainment.de:2026-11-21~2027-01-03 @Operettenhaus。"
+  },
+  "tm-h-r-the-musical-edinburgh-fringe-fundraiser-season-herald-theatre-aotea-centre": {
+    "title": "H.R. The Musical",
+    "group": "h r the musical",
+    "_why": "『- Edinburgh Fringe fundraiser season』是檔期描述非劇名。"
+  },
+  "atr-libre-melomans-homenaje-nino-bravo-4943414": {
+    "title": "Libre",
+    "group": "libre",
+    "_why": "『- Melomans - Homenaje Nino Bravo』=團名+副題;與 Madrid 的 Libre 同作品(Nino Bravo 致敬音樂劇),取正式名合併。"
   }
 }

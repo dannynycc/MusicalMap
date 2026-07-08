@@ -11,6 +11,28 @@
 
 ---
 
+## [v2.13.9] - 2026-07-08 22:28
+### 劇名/資料清理六案(使用者連抓)+ 閘門微調
+
+**通用規則(build_shows,全部經全庫回歸+單測)**:
+- `group_key` 尾綴「(the/das/el…) musical」折疊——**僅折疊後命中 works registry 才合併**(通殺會誤傷 High School Musical/La Caja Musical=音樂盒/Lotería Musical,回歸驗過只剩 Addams Family、A Christmas Carol 兩個正確合併)。
+- `strip_city_qualifier` 支援西/加泰/法/義/葡尾綴(", en Barcelona"、" a València"…)。
+- `clean_title` 加已知主辦品牌冒號前綴(Magatzem d'Ars:)——冒號不能通殺,SIX: The Musical 是真劇名。
+- **無日期≠長期上演**:stage/londontheatre 來源完全沒抓到日期時不再預設 open run(Bibi&Tina 聖誕檔誤標的根因)。
+
+**個案(overrides+四份資料熱修)**:
+- H.R. The Musical(刪「- Edinburgh Fringe fundraiser season」檔期描述)。
+- The Addams Family(NZ):兩個 TM 來源同場館同檔期沒合併(一個帶 Musical 尾綴)→合併留一筆。
+- El Musical de los 80s-90s(Barcelona):atrapalo「, en Barcelona」尾綴致重複→合併入 teatrebarcelona 長檔。
+- Libre(Valencia):「- Melomans - Homenaje Nino Bravo」→ 正式名 Libre,與 Madrid 站合併為一劇兩城。
+- Magatzem d'Ars 三檔(Aladí/El llibre de la selva/La Bella i la Bèstia):去主辦品牌前綴。
+- WEIHNACHTEN MIT BIBI & TINA:誤標「長期上演」→官方檔期 2026-11-21~2027-01-03(限期聖誕檔)。
+- Dirty Dancing - 80s Throwback Summer Movie Series:**電影放映非音樂劇**→not_musical 排除。
+
+**閘門**:隱私句刪去頭像括號說明(三語);內容改靠上(logo 上方固定 44px,不再置中留一大片)。mm-strings v237。
+
+**Kiki's Delivery Service 中文名**:works registry 本就有「魔女宅急便」alias(地圖搜尋打中文找得到);顯示走既定「只顯示正式原文」慣例。
+
 ## [v2.13.8] - 2026-07-08 22:08
 ### 劇名破折號購票須知尾巴 + BATB 舊金山站劇院錯誤(使用者抓到)
 

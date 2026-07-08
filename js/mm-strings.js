@@ -58,7 +58,7 @@
       // ---- me.html 專屬(登入頁,localStorage 記語言) ----
       gate_loading: '載入中…', gate_login: '使用 Google 登入',
       gate_signin: '<b style="font-size:26px">我的音樂劇</b><br><span style="opacity:.72;font-size:14.5px;font-weight:500">記下你看過的每一齣音樂劇，收成海報牆、護照與足跡地圖——存在你的帳號，跨裝置同步。</span>',
-      gate_secure: '用你的 Google 帳戶安全登入。我們只讀取名稱、email 與頭像（頭像只顯示在你自己登入後的選單，不會出現在公開頁），不會代你張貼任何內容。',
+      gate_secure: '用你的 Google 帳戶安全登入。我們只讀取名稱、email 與頭像，不會代你張貼任何內容。',
       gate_or: '或', gate_email_lead: '用 Email 收驗證碼登入：',
       gate_email_ph: '你的 Email', gate_email_send: '傳送驗證碼', gate_email_sending: '傳送中…',
       gate_email_sent: '6 位數驗證碼已寄到 {email}，輸入下方即可登入（垃圾郵件夾也看一下）。',
@@ -282,7 +282,7 @@
       p_need: 'Log a few more shows and your theatre-fan profile will take shape here.',
       gate_loading: 'Loading…', gate_login: 'Sign in with Google',
       gate_signin: '<b style="font-size:26px">My Musicals</b><br><span style="opacity:.72;font-size:14.5px;font-weight:500">Log the musicals you’ve seen and turn them into your poster wall, passport and map — saved to your account, synced across devices.</span>',
-      gate_secure: 'Secure sign-in with your Google account. We only read your name, email and avatar (the avatar appears only in your own signed-in menu, never on public pages) — we never post anything on your behalf.',
+      gate_secure: 'Secure sign-in with your Google account. We only read your name, email and avatar — we never post anything on your behalf.',
       gate_or: 'or', gate_email_lead: 'Sign in with an email code:',
       gate_email_ph: 'Your email', gate_email_send: 'Send code', gate_email_sending: 'Sending…',
       gate_email_sent: 'A 6-digit code was sent to {email} — enter it below to sign in (check spam too).',

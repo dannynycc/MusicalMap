@@ -109,10 +109,21 @@ WORK_IDX, TRADITION_BY_CGROUP, ALIASES_BY_CGROUP = _load_works()
 
 def group_key(title):
     """Registry-aware canonical group: normalise, then collapse any known alias to
-    its canonical group (so 'Macskák' / 'キャッツ' / 'Cats' share one group)."""
+    its canonical group (so 'Macskák' / 'キャッツ' / 'Cats' share one group).
+    尾綴「(the/das/el/le/il) musical」摺疊:『The Addams Family Musical』與『The Addams
+    Family』是同一齣,尾綴只是來源加註——去掉後再查 registry/當 group,兩種列法才會合併。"""
     t = _norm(title)
     w = WORK_IDX.get(t)
-    return w["cgroup"] if w else t
+    if w:
+        return w["cgroup"]
+    # 只有折疊後「命中 registry」才合併——通殺會誤傷 musical 是本體/形容詞的劇名
+    # (High School Musical、La Caja Musical=音樂盒、Lotería Musical…),全庫回歸驗過。
+    t2 = re.sub(r"\s+(?:the|das|el|le|il|het|de)?\s*musical$", "", t).strip()
+    if t2 and t2 != t:
+        w2 = WORK_IDX.get(t2)
+        if w2:
+            return w2["cgroup"]
+    return t
 
 
 def resolve_work(title):
@@ -237,6 +248,8 @@ def clean_title(t):
     # ("Lyric Theatre of Oklahoma presents Annie", "Ford's Theatre presents: Come
     # From Away") and "{Company} production of {Show}" ("NYT production of …").
     t = re.sub(r"^.{0,70}?\b(?:presents|production of)\b\s*:?\s+", "", t, flags=re.I)
+    # 已知「主辦品牌: 劇名」前綴(冒號前綴不能通殺——SIX: The Musical 是真劇名,逐一列舉)
+    t = re.sub(r"^(?:Magatzem d['’]Ars)\s*:\s*", "", t, flags=re.I)
     # 引號包劇名+行銷尾巴 → 取引號內:"'I GRIEVE DIFFERENT' written by and starring Harper Jones"
     # → "I Grieve Different"。只在「開頭就是引號劇名 + written/created/... by」時觸發,避免誤傷真副標。
     m = re.match(r"^['‘“\"](.+?)['’”\"]\s+(?:written|created|conceived|directed)\s+by\b.*$", t, flags=re.I)
@@ -265,8 +278,8 @@ def strip_city_qualifier(title, city):
     c = (city or "").split(",")[0].strip()
     if c and title:
         title = re.sub(rf"\s*\(\s*{re.escape(c)}\s*\)\s*$", "", title, flags=re.I).strip()
-        # also "… in Dubai" / "… in Abu Dhabi" trailing (Platinumlist Gulf titles)
-        title = re.sub(rf"\s+in\s+{re.escape(c)}\s*$", "", title, flags=re.I).strip()
+        # "… in Dubai" / ", en Barcelona" / ", a València" 等各語尾綴(西/加泰/法/義)
+        title = re.sub(rf",?\s+(?:in|en|a|à|em|w)\s+{re.escape(c)}\s*$", "", title, flags=re.I).strip()
     return title
 
 
@@ -741,9 +754,11 @@ def main():
         elif ("londontheatre" in src or "stage-entertainment" in src) and not s.get("end_date"):
             st = s.get("start_date")
             try:
-                open_run = datetime.fromisoformat(st).date() <= today if st else True
+                # 完全沒日期(start 也沒有)≠ 長期上演——那是「沒抓到檔期」,不能猜成 open run
+                # (Bibi&Tina 聖誕限定檔曾因此被標「長期上演」)。有 start 且已開演才算。
+                open_run = datetime.fromisoformat(st).date() <= today if st else False
             except ValueError:
-                open_run = True
+                open_run = False
         if open_run and not s.get("end_rolling"):
             s["end_rolling"] = True
             n_open += 1

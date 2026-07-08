@@ -20846,15 +20846,15 @@
    "country": "Germany",
    "lat": 53.54928,
    "lng": 9.967008,
-   "start_date": null,
-   "end_date": null,
+   "start_date": "2026-11-21",
+   "end_date": "2027-01-03",
    "ticket_url": "https://www.stage-entertainment.de/musicals-shows/bibi-tina-weihnachten-berlin-hamburg",
    "image": "https://mediaportal.stage-entertainment.com/transform/210b8c20-47de-455f-b789-733fd351fe32/WBT-BER---Header-26---Mobile-2?io=transform:fill,width:1200&format=webp",
    "tour_name": null,
    "verified": true,
    "source": "stage-entertainment.de",
    "group": "weihnachten mit bibi tina",
-   "end_rolling": true,
+   "end_rolling": false,
    "link_kind": "official",
    "tag": "德奧音樂劇",
    "ticket_links": [
@@ -21421,7 +21421,7 @@
   },
   {
    "id": "bcn-magatzem-dars-el-llibre-de-la-selva",
-   "title": "Magatzem d'Ars: El llibre de la selva",
+   "title": "El llibre de la selva",
    "type": "tour",
    "venue": "Sala Ars",
    "city": "Barcelona",
@@ -21435,7 +21435,7 @@
    "tour_name": "Magatzem d'Ars: El llibre de la selva",
    "verified": true,
    "source": "teatrebarcelona.com",
-   "group": "magatzem dars el llibre de la selva",
+   "group": "el llibre de la selva",
    "link_kind": "ticketing",
    "tag": "西葡音樂劇",
    "ticket_links": [
@@ -21447,7 +21447,7 @@
   },
   {
    "id": "bcn-magatzem-dars-aladi",
-   "title": "Magatzem d’Ars: Aladí",
+   "title": "Aladí",
    "type": "tour",
    "venue": "Sala Ars",
    "city": "Barcelona",
@@ -21461,7 +21461,7 @@
    "tour_name": "Magatzem d’Ars: Aladí",
    "verified": true,
    "source": "teatrebarcelona.com",
-   "group": "magatzem dars aladi",
+   "group": "aladi",
    "link_kind": "ticketing",
    "tag": "西葡音樂劇",
    "ticket_links": [
@@ -21610,7 +21610,7 @@
   },
   {
    "id": "bcn-magatzem-dars-la-bella-i-la-bestia",
-   "title": "Magatzem d’Ars: La Bella i la Bèstia",
+   "title": "La Bella i la Bèstia",
    "type": "tour",
    "venue": "Sala Ars",
    "city": "Barcelona",
@@ -21624,7 +21624,7 @@
    "tour_name": "Magatzem d’Ars: La Bella i la Bèstia",
    "verified": true,
    "source": "teatrebarcelona.com",
-   "group": "magatzem dars la bella i la bestia",
+   "group": "la bella i la bestia",
    "link_kind": "ticketing",
    "tag": "西葡音樂劇",
    "ticket_links": [
@@ -22124,34 +22124,6 @@
    "ticket_links": [
     {
      "url": "https://www.atrapalo.com/entradas/despres-de-nosaltres-grec-2026_e4945307/",
-     "kind": "ticketing"
-    }
-   ]
-  },
-  {
-   "id": "atr-el-musical-de-los-80s-90s-en-barcelona-4874680",
-   "title": "El Musical de los 80s-90s, en Barcelona",
-   "type": "tour",
-   "venue": "Teatre Apolo",
-   "city": "Barcelona",
-   "country": "Spain",
-   "lat": 41.374717,
-   "lng": 2.170461,
-   "start_date": "2026-07-11",
-   "end_date": "2026-07-18",
-   "ticket_url": "https://www.atrapalo.com/entradas/el-musical-de-los-80s-90s-en-barcelona_e4874680/",
-   "image": "https://cdn.atrapalo.com/o/event/4874680/1490380.jpg",
-   "tour_name": "El Musical de los 80s-90s, en Barcelona",
-   "verified": true,
-   "source": "atrapalo.com",
-   "price_from": "20.00",
-   "currency": "EUR",
-   "group": "el musical de los 80s 90s en barcelona",
-   "link_kind": "ticketing",
-   "tag": "西葡音樂劇",
-   "ticket_links": [
-    {
-     "url": "https://www.atrapalo.com/entradas/el-musical-de-los-80s-90s-en-barcelona_e4874680/",
      "kind": "ticketing"
     }
    ]
@@ -24989,7 +24961,7 @@
   },
   {
    "id": "atr-libre-melomans-homenaje-nino-bravo-4943414",
-   "title": "Libre - Melomans - Homenaje Nino Bravo",
+   "title": "Libre",
    "type": "tour",
    "venue": "Teatro Olympia",
    "city": "Valencia",
@@ -25005,7 +24977,7 @@
    "source": "atrapalo.com",
    "price_from": "26.00",
    "currency": "EUR",
-   "group": "libre melomans homenaje nino bravo",
+   "group": "libre",
    "link_kind": "ticketing",
    "tag": "西葡音樂劇",
    "ticket_links": [
@@ -41544,34 +41516,6 @@
    "tag": "Broadway/West End"
   },
   {
-   "id": "tm-harris-center-presents-dirty-dancing-80s-throwback-summer-movie-series-harris-center-for-the-arts",
-   "title": "Dirty Dancing - 80s Throwback Summer Movie Series",
-   "type": "tour",
-   "venue": "Harris Center for the Arts",
-   "city": "Folsom",
-   "country": "USA",
-   "lat": 38.664799,
-   "lng": -121.141403,
-   "start_date": "2026-07-08",
-   "end_date": "2026-07-08",
-   "ticket_url": "https://www.ticketmaster.com/dirty-dancing-tickets/artist/1518833",
-   "attraction_url": "https://www.ticketmaster.com/dirty-dancing-tickets/artist/1518833",
-   "ticket_links": [
-    {
-     "country": "US",
-     "url": "https://www.ticketmaster.com/dirty-dancing-tickets/artist/1518833"
-    }
-   ],
-   "image": "https://s1.ticketm.net/dam/a/c6f/9d59a22b-294c-4b71-8092-5caa91e94c6f_SOURCE",
-   "tour_name": "Dirty Dancing",
-   "verified": true,
-   "source": "ticketmaster",
-   "onsale_only": true,
-   "group": "dirty dancing 80s throwback summer movie series",
-   "link_kind": "ticketing",
-   "tag": "Broadway/West End"
-  },
-  {
    "id": "tm-the-lexington-theatre-co-presents-les-mis-rables-lexington-opera-house",
    "title": "Les Misérables",
    "type": "tour",
@@ -45062,36 +45006,8 @@
    "alt": "Moulin Rouge! 红磨坊 紅磨坊 ムーラン・ルージュ 夢斷花都 梦断花都"
   },
   {
-   "id": "tm-the-addams-family-musical-bruce-mason-centre",
-   "title": "The Addams Family Musical",
-   "type": "tour",
-   "venue": "Bruce Mason Centre",
-   "city": "Takapuna Beach",
-   "country": "New Zealand",
-   "lat": -36.784098,
-   "lng": 174.772975,
-   "start_date": "2026-07-10",
-   "end_date": "2026-07-11",
-   "ticket_url": "https://www.ticketmaster.com/the-addams-family-tickets/artist/1732718",
-   "attraction_url": "https://www.ticketmaster.com/the-addams-family-tickets/artist/1732718",
-   "ticket_links": [
-    {
-     "country": "NZ",
-     "url": "https://www.ticketmaster.com/the-addams-family-tickets/artist/1732718"
-    }
-   ],
-   "image": "https://s1.ticketm.net/dam/a/248/ec5d1392-3eb8-4bab-8636-90a259d12248_SOURCE",
-   "tour_name": "The Addams Family",
-   "verified": true,
-   "source": "ticketmaster",
-   "onsale_only": true,
-   "group": "addams family musical",
-   "link_kind": "ticketing",
-   "tag": "Broadway/West End"
-  },
-  {
    "id": "tm-h-r-the-musical-edinburgh-fringe-fundraiser-season-herald-theatre-aotea-centre",
-   "title": "H.R. The Musical - Edinburgh Fringe fundraiser season",
+   "title": "H.R. The Musical",
    "type": "tour",
    "venue": "Herald Theatre, Aotea Centre",
    "city": "Auckland",
@@ -45113,7 +45029,7 @@
    "verified": true,
    "source": "ticketmaster",
    "onsale_only": true,
-   "group": "h r the musical edinburgh fringe fundraiser season",
+   "group": "h r the musical",
    "link_kind": "ticketing",
    "tag": "Broadway/West End"
   },
