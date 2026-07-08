@@ -11,6 +11,14 @@
 
 ---
 
+## [v2.13.8] - 2026-07-08 22:08
+### 劇名破折號購票須知尾巴 + BATB 舊金山站劇院錯誤(使用者抓到)
+
+「Beauty And The Beast - Recommended ages 6 and Up. All guests require ticket, regardless of age」整句當劇名、自成一組沒併進 Beauty and the Beast。兩層問題:
+
+- **通用**:NOTICE_RE 只清括號內須知,TM 常把年齡/購票規定接在「- 」後 → 新增 `DASH_NOTICE_RE`(關鍵字鎖 recommended ages/regardless of age/require ticket/all guests/18+/21+ 等),單測 5/5 驗證不誤砍真副標(Sweeney Todd - The Demon Barber 不受影響)。
+- **資料**:該 TM 列與 broadway.org 的 SF 站同檔期(7/14–8/9)但**劇院不同**(Curran vs Orpheum)。官方查證(BroadwaySF/ATG):**Orpheum Theatre** 才對 → broadway.org 列 venue 改 Orpheum+座標(overrides 固定),TM 重複列刪除;下次自動重建由 (group,city) 去重接手。
+
 ## [v2.13.7] - 2026-07-08 21:54
 ### 彈窗標題仍顯示人名:tour_name 蓋掉劇名(承 v2.13.6)
 

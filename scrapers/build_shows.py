@@ -204,6 +204,13 @@ NOTICE_RE = re.compile(
     r"recommended|running time|interval|approx|under \d|relaxed|auslan|captioned|"
     r"audio[- ]?desc|matinee|preview)[^)]*\)\s*", re.I)
 
+# 同類須知但接在破折號/冒號後(TM 常見):"Beauty And The Beast - Recommended ages 6
+# and Up. All guests require ticket, regardless of age" → 砍尾。關鍵字鎖定
+# 年齡建議/購票規定字眼,避免誤砍真副標(如 "Sweeney Todd - The Demon Barber")。
+DASH_NOTICE_RE = re.compile(
+    r"\s*[-–—:]\s*[^-–—:]*(?:recommended ages?|regardless of age|require[s]? (?:a )?ticket|"
+    r"all guests|babes in arms|no children under|ages? \d+ (?:and|&) (?:up|over)|18\+|21\+)[^-–—]*$", re.I)
+
 
 # Trailing location/tour qualifier some sources append to disambiguate, e.g.
 # Ticketmaster "Wicked (NY)" — it breaks grouping (→ a duplicate marker next to the
@@ -241,6 +248,7 @@ def clean_title(t):
     while prev != t:
         prev = t
         t = NOTICE_RE.sub(" ", t).strip()
+        t = DASH_NOTICE_RE.sub("", t).strip()
         t = LOC_QUALIFIER_RE.sub("", t).strip()
         t = PERF_TYPE_RE.sub("", t).strip()                     # "- Relaxed Performance" etc.
         t = re.sub(r"\s*\((?:19|20)\d{2}\)\s*$", "", t).strip()  # trailing year, e.g. "(1993)"

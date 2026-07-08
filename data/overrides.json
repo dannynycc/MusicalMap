@@ -144,5 +144,16 @@
     "group": "i grieve different",
     "_why": "TM listing 名稱是整句行銷文案('I GRIEVE DIFFERENT' written by and starring Harper Jones);正式劇名=I Grieve Different(Harper Jones 自編自演獨角戲)。clean_title 已加通用規則,此為保險。",
     "tour_name": null
+  },
+  "tour-beauty-and-the-beast-30th-anniversary-san-francisco-ca-2026-07-14": {
+    "venue": "Orpheum Theatre",
+    "lat": 37.779,
+    "lng": -122.4136,
+    "_why": "broadway.org 把 SF 站標成 Curran;官方 BroadwaySF/ATG=Orpheum Theatre(1192 Market St),7/14-8/9。"
+  },
+  "tm-beauty-and-the-beast-recommended-ages-6-and-up-all-guests-require-ticket-regardless-of-age-orpheum-theatre-san-francisco": {
+    "title": "Beauty and the Beast",
+    "group": "beauty and the beast",
+    "_why": "TM 列名帶『- Recommended ages…』購票須知尾巴;DASH_NOTICE_RE 已加通用規則,此為保險。與 broadway.org SF 站同檔期,合併後由 (group,city) 去重。"
   }
 }
