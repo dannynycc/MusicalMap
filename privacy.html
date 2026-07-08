@@ -23,7 +23,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,900&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/style.css?v=227" />
   <!-- i18n:語言認 ?hl= → 主站共用偏好(mm_variant) → navigator;內容繁中為底,en 走字典,zh-hans 由 OpenCC 轉 -->
   <script>window.MM_USE_LANG_PREF=true;</script>
   <script>/* zh-hans:先同步載 OpenCC(繁→簡),mm-strings 才能建簡體字典;只簡中使用者下載 */(function(){try{
@@ -32,7 +32,8 @@
   if(!v){var nl=(navigator.language||'').toLowerCase();v=nl.indexOf('zh')===0?((nl.indexOf('cn')>-1||nl.indexOf('hans')>-1||nl.indexOf('sg')>-1)?'zh-hans':'zh-hant'):(nl?'en':'zh-hant');}
   if(v==='zh-hans')document.write('<scr'+'ipt src="https://cdn.jsdelivr.net/npm/opencc-js@1.3.1/dist/umd/t2cn.js" integrity="sha384-P/OaFUnOIAgMkLxsXIAaP6WO3Wm09591cGX5bHbW4eCOeDxH9L8U3aWYf4cE4SYl" crossorigin="anonymous"><\/scr'+'ipt>');
   }catch(e){}})();</script>
-  <script src="js/mm-strings.js?v=229"></script>
+  <script src="js/mm-strings.js?v=231"></script>
+  <script src="js/mm-lang.js?v=230" defer></script>
   <script src="js/mm-acct-menu.js?v=227" defer></script>
 <!-- Google Analytics(GA4 G-GC07MYC1MY;訪客來源/行為分析,同一 ID 涵蓋主站與 my. 網域(報表以 hostname 區分);不加 SRI:gtag.js 由 Google 滾動更新,釘 hash 會靜默斷統計;隱私揭露見 privacy §1/§3) --><script async src="https://www.googletagmanager.com/gtag/js?id=G-GC07MYC1MY"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-GC07MYC1MY');</script>
 </head>
@@ -46,9 +47,12 @@
     <!-- nav 與首頁同排版同順序(語言pills+地圖首頁+隱私/條款/說明+CTA),跨頁不跳動;pills 切換本頁語言(?hl=) -->
     <nav id="topnav">
       <div id="lang-switch" role="group" aria-label="Language / 語言">
-        <a class="lang-opt" data-hl-link="zh-hant" href="?hl=zh-hant" lang="zh-Hant">繁</a>
-        <a class="lang-opt" data-hl-link="zh-hans" href="?hl=zh-hans" lang="zh-Hans">简</a>
-        <a class="lang-opt" data-hl-link="en" href="?hl=en" lang="en">EN</a>
+        <button type="button" class="lang-trigger" aria-haspopup="true" aria-expanded="false" aria-label="選擇語言 / Select language"><svg class="lang-globe" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 2.5 15 0 18M12 3c-2.5 2.5-2.5 15 0 18M4.5 7.5c4.5 2.5 10.5 2.5 15 0M4.5 16.5c4.5-2.5 10.5-2.5 15 0"/></svg><span class="lang-cur">繁中</span><svg class="lang-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8l7 7 7-7"/></svg></button>
+        <div class="lang-pop" role="menu" hidden>
+          <a class="lang-opt" role="menuitem" data-hl-link="zh-hant" href="?hl=zh-hant" lang="zh-Hant" hreflang="zh-Hant"><span>繁體中文</span><svg class="lang-tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12l5 5L20 6"/></svg></a>
+          <a class="lang-opt" role="menuitem" data-hl-link="zh-hans" href="?hl=zh-hans" lang="zh-Hans" hreflang="zh-Hans"><span>简体中文</span><svg class="lang-tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12l5 5L20 6"/></svg></a>
+          <a class="lang-opt" role="menuitem" data-hl-link="en" href="?hl=en" lang="en" hreflang="en"><span>English</span><svg class="lang-tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12l5 5L20 6"/></svg></a>
+        </div>
       </div>
       <a class="nav-link" href="/" data-i18n="nav_map">地圖首頁</a>
       <a class="nav-link" href="/guide" data-i18n="nav_guide">怎麼使用</a>

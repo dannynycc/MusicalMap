@@ -11,6 +11,22 @@
 
 ---
 
+## [v2.12.0] - 2026-07-08 11:06
+### 語言切換器全站改造(地球下拉)＋ my. 頁面對齊主站淡米黃
+
+**新增/變更 — 語言切換器**
+- 全站 11 頁的語言切換從「繁/简/EN 並排 pills」改成 **地球圖示 + 下拉**:收合顯示「地球＋當前短碼(繁中/简中/EN)」(手機僅地球),點開下拉為母語寫法 **繁體中文 / 简体中文 / English**、當前項金色打勾、**零國旗**(繁簡共用不了一面旗、English 無旗;NN/g 等權威一致)。展開下拉、Esc/方向鍵、點外關閉:`js/mm-lang.js`(變體/標準頁)或內聯(me/u 子網域免部署風險)。保留真實 `<a href>`＋`hreflang`(SEO),切換仍走 `?hl=`/URL,持久化 `mm_variant` 不變。
+- 涵蓋:地圖變體頁(`build/gen_site.mjs langSwitch`)、about/privacy/terms/settings、guide、me/u(含登入閘門)、theatres。逐頁真瀏覽器(Playwright/Claude-in-Chrome)驗證:切換、持久化、當前打勾、手機不裁切、零 console 錯誤、零橫向溢出。
+
+**變更 — my.themusicalmap.com(me.html/u.html)對齊主站風格**
+- 預設主題從深色 `midnight` 改為 **`cream` 淡米黃**,並把 cream 色板調成主站 `style.css` 的 `--bg:#f4efe4` + 金 `#a07a34` + 135° 斜線紋理(`--bg-mesh`)。一次性 `mm-theme-mig` 遷移:既有被 applyTheme 自動存成 midnight 的使用者翻回 cream(picker 仍可選回深色)。
+- 登入閘門(`#mev2gate`):**移除海報牆預覽**、修掉硬編碼深紫漸層(改用主題 token)、**加主站式 footer**(品牌句左＋回到地圖/我的音樂劇/關於本站/隱私權政策/使用條款 金色連結右)＋補回斜線紋理;閘門頂欄補上語言切換器(登出者原本無法切語言)。
+
+**修正**
+- `js/mm-strings.js`:補 `data-i18n-ph`(placeholder)處理——theatres 從 i18n.js 遷來後搜尋框 placeholder 不再被翻譯/簡化的 bug;`.lang-cur` 短碼隨語言更新(全域);跨網域到 `my.` 的「我的音樂劇」CTA 補 `?hl=`(localStorage 不跨 origin,登出者語言原本會丟)。
+- theatres.html 從 i18n.js(zh/en binary、無簡體)遷到 mm-strings **三語**(繁/簡/英,簡體 OpenCC 自動),與全站一致;補 `tagline_theatres/search_ph_theatres/nav_mine` 字典鍵。
+- 快取 cache-bust:`mm-strings.js?v=231`、`style.css?v=227`(about/privacy/terms/theatres 原本裸連結無版號)、`me-v2.css?v=264`——避免 CF Pages `.css` max-age=14400 部署後最多 4hr 拿舊樣式。
+
 ## [v2.11.6] - 2026-07-07 22:34
 ### Email — 重新加回免費 BIMI（使用者決定復原）
 

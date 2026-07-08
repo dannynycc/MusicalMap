@@ -14,19 +14,36 @@ if(location.hostname==='themusicalmap.com'||location.hostname==='www.themusicalm
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,900;1,9..144,500&family=Inter:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;700;900&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet" />
-<script>/* no-flash: apply saved theme before CSS paints;已下架的 neon/deco 正規化回 midnight */(function(){try{var t=localStorage.getItem('mm-theme');if(t==='neon'||t==='deco'){t='midnight';localStorage.setItem('mm-theme',t);}if(t&&t!=='midnight')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
-<link rel="stylesheet" href="css/me-v2.css?v=262" /><!-- CSS 也要 cache-bust:CF Pages 對 .css 出 max-age=14400,不掛 ?v 改版後最多 4hr 拿舊樣式 -->
+<script>/* no-flash: apply saved theme before CSS paints;預設 cream(對齊主站淡米黃)。
+   一次性遷移:舊版 applyTheme 會把預設 midnight 自動寫進 localStorage,使既有使用者卡在深色;
+   mm-theme-mig 未設時清一次 mm-theme,讓大家重新落到 cream 預設(之後仍尊重使用者用 picker 的選擇)。 */(function(){try{if(!localStorage.getItem('mm-theme-mig')){localStorage.removeItem('mm-theme');localStorage.setItem('mm-theme-mig','1');}var t=localStorage.getItem('mm-theme')||'cream';if(t==='neon'||t==='deco'){t='midnight';localStorage.setItem('mm-theme',t);}if(t!=='midnight')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<link rel="stylesheet" href="css/me-v2.css?v=264" /><!-- CSS 也要 cache-bust:CF Pages 對 .css 出 max-age=14400,不掛 ?v 改版後最多 4hr 拿舊樣式 -->
 <style>
 html[lang="en"] .sec h2 .zh{display:none}   /* en 模式:section 標題旁的英文小字與主標重複 → 隱藏 */
 html[lang="zh-Hans"] body{--ui:'Inter','Noto Sans SC',sans-serif}  /* 簡中改用 SC 字型,避免混排忽粗忽細 */
-.hl-pick{display:flex;gap:2px;border:1px solid var(--hair2,rgba(255,255,255,.18));border-radius:999px;padding:2px}
-.hl-pick a{padding:3px 10px;border-radius:999px;font-size:12px;font-weight:700;text-decoration:none;color:var(--ink2,#aaa)}
-.hl-pick a[aria-current="true"]{background:var(--gold,#c9a85c);color:#1a1407}
-@media(max-width:560px){.hl-pick a{padding:6px 11px}}   /* 觸控友善:手機語言 pill ≥24px 高 */
+.lang-switch{position:relative;display:inline-flex}
+.lang-trigger{display:inline-flex;align-items:center;gap:6px;cursor:pointer;border:1px solid var(--hair2,rgba(255,255,255,.14));background:var(--s2,#1c1c27);color:var(--ink1,#f3f1ec);font:inherit;font-size:13px;font-weight:600;line-height:1;padding:6px 9px;border-radius:9px}
+.lang-trigger:hover,.lang-trigger[aria-expanded="true"]{border-color:var(--gold,#c9a85c)}
+.lang-globe{width:16px;height:16px;fill:none;stroke:var(--ink2,#c6c2bb);stroke-width:1.7;flex:none}
+.lang-chev{width:10px;height:10px;fill:none;stroke:var(--ink2,#c6c2bb);stroke-width:2;flex:none;transition:transform .15s}
+.lang-trigger[aria-expanded="true"] .lang-globe{stroke:var(--gold,#c9a85c)}
+.lang-trigger[aria-expanded="true"] .lang-chev{transform:rotate(180deg)}
+.lang-pop{position:absolute;top:calc(100% + 8px);right:0;min-width:150px;z-index:2200;background:var(--s3,#24242f);border:1px solid var(--hair2,rgba(255,255,255,.14));border-radius:12px;padding:6px;box-shadow:0 14px 40px rgba(0,0,0,.5)}
+.lang-pop[hidden]{display:none}
+.lang-switch .lang-opt{display:flex;align-items:center;justify-content:flex-start;gap:8px;text-decoration:none;color:var(--ink1,#f3f1ec);font-size:14px;font-weight:500;padding:9px 11px;border-radius:8px;line-height:1.1}
+.lang-switch .lang-opt:hover{background:var(--s2,#1c1c27)}
+.lang-switch .lang-opt[aria-current="true"]{color:var(--gold,#c9a85c);font-weight:700}
+.lang-tick{width:15px;height:15px;fill:none;stroke:var(--gold,#c9a85c);stroke-width:2.2;flex:none;opacity:0}
+.lang-switch .lang-opt[aria-current="true"] .lang-tick{opacity:1}
+@media(max-width:560px){.lang-cur{display:none}}
+@media(max-width:560px){.lang-cur{display:none}}   /* 觸控友善:手機語言 pill ≥24px 高 */
 /* ===== 登入閘 ===== */
-#mev2gate{position:fixed;inset:0;z-index:5000;overflow-y:auto;background:radial-gradient(120% 90% at 50% 20%,#1b1522 0%,var(--bg,#0c0d10) 60%);color:var(--ink1,#fff);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:16px;text-align:center;padding:74px 24px 40px;font-family:var(--ui,system-ui,sans-serif)}
+#mev2gate{position:fixed;inset:0;z-index:5000;overflow-y:auto;background:var(--bg-mesh),radial-gradient(120% 90% at 50% 20%,var(--s1) 0%,var(--bg) 60%);color:var(--ink1,#fff);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:16px;text-align:center;padding:74px 24px 92px;font-family:var(--ui,system-ui,sans-serif)}
 /* 閘上方品牌列:登出/未登入時唯一的回站路,一定要有 */
-#gate-brand{position:absolute;top:0;left:0;right:0;height:56px;display:flex;align-items:center;gap:9px;padding:0 22px;font-family:var(--fr,Fraunces,serif);font-weight:900;font-size:19px;color:var(--ink1,#fff);text-decoration:none}
+#gate-brand{position:absolute;top:0;left:0;height:56px;display:flex;align-items:center;gap:9px;padding:0 22px;font-family:var(--fr,Fraunces,serif);font-weight:900;font-size:19px;color:var(--ink1,#fff);text-decoration:none;z-index:2}
+.gate-nav{position:absolute;top:0;right:0;height:56px;display:flex;align-items:center;gap:14px;padding:0 22px;z-index:3}
+.gate-bk{font-family:var(--ui,system-ui,sans-serif);font-size:13px;font-weight:600;color:var(--ink2,#aaa);text-decoration:none;white-space:nowrap}
+.gate-bk:hover{color:var(--ink1,#fff)}
 #gate-brand img{width:auto;height:26px}
 #gate-brand b{color:var(--gold,#c9a85c)}
 #gate-brand span.bk{margin-left:auto;font-family:var(--ui,system-ui,sans-serif);font-size:13px;font-weight:600;color:var(--ink2,#aaa)}
@@ -40,14 +57,13 @@ html[lang="zh-Hans"] body{--ui:'Inter','Noto Sans SC',sans-serif}  /* 簡中改�
 #gate-login[hidden]{display:none}
 #gate-login svg{flex:none}
 #gate-sub{font-size:12px;color:var(--ink3,#8a8a8a);max-width:360px;line-height:1.65}
-/* 登入後長什麼樣 — 一眼 preview */
-#gate-preview{margin-top:18px;max-width:520px;width:100%}
-#gate-preview[hidden]{display:none}
-#gate-preview .cap{font-size:13px;color:var(--ink2,#bbb);margin-bottom:10px}
-#gate-preview img{display:block;width:100%;height:auto;border-radius:14px;border:1px solid rgba(255,255,255,.14);box-shadow:0 18px 48px rgba(0,0,0,.5)}
-#gate-preview .lnks{margin-top:14px;font-size:13px;display:flex;justify-content:center;gap:18px}
-#gate-preview .lnks a{color:var(--gold,#c9a85c);text-decoration:none;font-weight:600}
-#gate-preview .lnks a:hover{text-decoration:underline}
+/* 閘門頁尾:對齊主站 site-foot(品牌句左、連結右、金色連結、頂部髮絲線) */
+.gate-foot{position:absolute;left:0;right:0;bottom:0;border-top:1px solid var(--hair2);background:var(--bg-mesh),var(--bg);padding:15px 24px;text-align:left}
+.gate-foot .sf-in{max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px;font-size:13px;color:var(--ink2)}
+.gate-foot .sp{flex:1}
+.gate-foot a{color:var(--gold);text-decoration:none;font-weight:600;white-space:nowrap}
+.gate-foot a:hover{text-decoration:underline}
+@media(max-width:560px){.gate-foot{position:static;margin-top:24px}#mev2gate{padding-bottom:40px}}
 </style>
 <!-- i18n:登入頁,語言記在 localStorage(與主站共用 mm_lang);不載 js/i18n.js(會與 mm-strings 搶 data-i18n) -->
 <script>window.MM_USE_LANG_PREF=true;</script>
@@ -58,14 +74,15 @@ if(!v){var nl=(navigator.language||'').toLowerCase();v=nl.indexOf('zh')===0?((nl
 if(v==='zh-hans'){document.write('<scr'+'ipt src="https://cdn.jsdelivr.net/npm/opencc-js@1.3.1/dist/umd/t2cn.js" integrity="sha384-P/OaFUnOIAgMkLxsXIAaP6WO3Wm09591cGX5bHbW4eCOeDxH9L8U3aWYf4cE4SYl" crossorigin="anonymous"><\/scr'+'ipt>');
 document.write('<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet" />');/* 簡體字 TC 字型沒有→混排忽粗忽細,補 SC */}
 }catch(e){}})();</script>
-<script src="js/mm-strings.js?v=229"></script>
+<script src="js/mm-strings.js?v=231"></script>
 <script src="js/mm-acct-menu.js?v=227"></script>
 <!-- Google Analytics(GA4 G-GC07MYC1MY;訪客來源/行為分析,同一 ID 涵蓋主站與 my. 網域(報表以 hostname 區分);不加 SRI:gtag.js 由 Google 滾動更新,釘 hash 會靜默斷統計;隱私揭露見 privacy §1/§3) --><script async src="https://www.googletagmanager.com/gtag/js?id=G-GC07MYC1MY"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-GC07MYC1MY');</script>
 </head>
 <body>
 <!-- 登入閘：預設蓋住，等 Supabase 驗證後 JS 決定顯示登入/同步中/隱藏 -->
 <div id="mev2gate">
-  <a id="gate-brand" href="https://themusicalmap.com/"><img src="logo.svg" alt="" /><span>Musical<b>Map</b></span><span class="bk" data-i18n="nav_map">地圖首頁</span></a>
+  <a id="gate-brand" href="https://themusicalmap.com/"><img src="logo.svg" alt="" /><span>Musical<b>Map</b></span></a>
+  <div class="gate-nav"><div class="lang-switch" role="group" aria-label="Language / 語言"><button type="button" class="lang-trigger" aria-haspopup="true" aria-expanded="false" aria-label="選擇語言 / Select language"><svg class="lang-globe" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 2.5 15 0 18M12 3c-2.5 2.5-2.5 15 0 18M4.5 7.5c4.5 2.5 10.5 2.5 15 0M4.5 16.5c4.5-2.5 10.5-2.5 15 0"/></svg><span class="lang-cur">繁中</span><svg class="lang-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8l7 7 7-7"/></svg></button><div class="lang-pop" role="menu" hidden><a class="lang-opt" role="menuitem" data-hl-link="zh-hant" href="?" lang="zh-Hant" hreflang="zh-Hant"><span>繁體中文</span><svg class="lang-tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12l5 5L20 6"/></svg></a><a class="lang-opt" role="menuitem" data-hl-link="zh-hans" href="?hl=zh-hans" lang="zh-Hans" hreflang="zh-Hans"><span>简体中文</span><svg class="lang-tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12l5 5L20 6"/></svg></a><a class="lang-opt" role="menuitem" data-hl-link="en" href="?hl=en" lang="en" hreflang="en"><span>English</span><svg class="lang-tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12l5 5L20 6"/></svg></a></div></div><a class="gate-bk" href="https://themusicalmap.com/" data-i18n="nav_map">地圖首頁</a></div>
   <img id="gate-logo" src="logo.svg" alt="MusicalMap" />
   <!-- gate-msg 由 JS(showGate)動態設,不掛 data-i18n(否則 apply() 會蓋回 Loading) -->
   <div id="gate-msg">載入中…</div>
@@ -74,27 +91,21 @@ document.write('<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+S
     <span data-i18n="gate_login">使用 Google 登入</span>
   </button>
   <div id="gate-sub" hidden></div>
-  <div id="gate-preview" hidden>
-    <div class="cap" data-i18n="gate_preview">登入後長這樣——你的海報牆、音樂劇護照與觀劇統計，全部自動生成：</div>
-    <img id="gate-shot" src="assets/guide/zh-hant/wall.webp" alt="登入後的海報牆預覽" loading="lazy" decoding="async" />
-    <div class="lnks">
-      <a href="https://themusicalmap.com/" data-i18n="gate_browse_map">先逛演出地圖 →</a>
-      <a href="https://themusicalmap.com/guide" data-i18n="gate_see_guide">看看怎麼使用 →</a>
-    </div>
-  </div>
+  <footer class="gate-foot"><div class="sf-in">
+    <span data-i18n="how_footer">MusicalMap — 全球音樂劇即時地圖，與你的音樂劇護照。</span>
+    <span class="sp"></span>
+    <a href="https://themusicalmap.com/" data-i18n="how_footer_link">回到地圖</a>
+    <a href="https://my.themusicalmap.com/" data-i18n="nav_mine">我的音樂劇</a>
+    <a href="https://themusicalmap.com/about" data-i18n="nav_about">關於本站</a>
+    <a href="https://themusicalmap.com/privacy" data-i18n="nav_privacy">隱私權政策</a>
+    <a href="https://themusicalmap.com/terms" data-i18n="nav_terms">使用條款</a>
+  </div></footer>
 </div>
-<script>/* gate preview 截圖依語言載對應版本 */(function(){try{
-var hl=window.MM_HL;if(hl&&hl!=='zh-hant'){var im=document.getElementById('gate-shot');if(im)im.src='assets/guide/'+hl+'/wall.webp';}
-}catch(e){}})();</script>
 <header><div class="wrap bar">
   <a class="brand" href="https://themusicalmap.com/"><img src="logo.svg" alt="" class="brand-logo" /><span>Musical<b>Map</b></span></a>
   <nav class="nav">
     <!-- pills 永遠在 nav 最前,與首頁/法務頁一致(跨頁不跳動) -->
-    <div class="hl-pick" role="group" aria-label="Language / 語言">
-      <a data-hl-link="zh-hant" href="?">繁</a>
-      <a data-hl-link="zh-hans" href="?hl=zh-hans">简</a>
-      <a data-hl-link="en" href="?hl=en">EN</a>
-    </div>
+    <div class="lang-switch" role="group" aria-label="Language / 語言"><button type="button" class="lang-trigger" aria-haspopup="true" aria-expanded="false" aria-label="選擇語言 / Select language"><svg class="lang-globe" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 2.5 15 0 18M12 3c-2.5 2.5-2.5 15 0 18M4.5 7.5c4.5 2.5 10.5 2.5 15 0M4.5 16.5c4.5-2.5 10.5-2.5 15 0"/></svg><span class="lang-cur">繁中</span><svg class="lang-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8l7 7 7-7"/></svg></button><div class="lang-pop" role="menu" hidden><a class="lang-opt" role="menuitem" data-hl-link="zh-hant" href="?" lang="zh-Hant" hreflang="zh-Hant"><span>繁體中文</span><svg class="lang-tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12l5 5L20 6"/></svg></a><a class="lang-opt" role="menuitem" data-hl-link="zh-hans" href="?hl=zh-hans" lang="zh-Hans" hreflang="zh-Hans"><span>简体中文</span><svg class="lang-tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12l5 5L20 6"/></svg></a><a class="lang-opt" role="menuitem" data-hl-link="en" href="?hl=en" lang="en" hreflang="en"><span>English</span><svg class="lang-tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12l5 5L20 6"/></svg></a></div></div>
     <!-- 所有劇院入口暫藏(2026-07-03 指示;theatres.html 頁面保留可直達) <a href="https://themusicalmap.com/theatres" data-i18n="nav_theatres">所有劇院</a> -->
     <a href="https://themusicalmap.com/" data-i18n="nav_map">地圖首頁</a>
     <a href="https://themusicalmap.com/guide" data-i18n="nav_guide">怎麼使用</a>
@@ -660,7 +671,7 @@ renderPoster();buildCityList();drawMap();placePins();moveThumb();
   if(cta)cta.onclick=()=>{const f=document.getElementById('fabLog');if(f)f.click();};
   if(document.documentElement.dataset.live!=='1'){const sub=document.querySelector('.hero .sub');if(sub)sub.textContent=T('demo_sub');}
 })();
-applyTheme((function(){try{return localStorage.getItem('mm-theme')||'midnight';}catch(e){return 'midnight';}})());
+applyTheme((function(){try{return localStorage.getItem('mm-theme')||'cream';}catch(e){return 'cream';}})());
 window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
 </script>
 <button type="button" id="fabLog" aria-label="加入一齣音樂劇" data-i18n="fab_add" data-i18n-aria="fab_add" style="position:fixed;right:22px;bottom:22px;z-index:1200;background:var(--s1);color:var(--gold);border:1.5px solid var(--gold);font-weight:800;padding:13px 20px;border-radius:999px;cursor:pointer;box-shadow:0 8px 24px rgba(0,0,0,.45);display:inline-flex;align-items:center;gap:8px;font-size:15px">＋ 加入音樂劇</button>
@@ -1161,5 +1172,15 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
   }}catch(e){}
 })();
 </script>
+<script>/* 語言切換下拉開關(內聯:my. 子網域免外部檔部署) */
+(function(){function wire(root){var tr=root.querySelector('.lang-trigger'),pop=root.querySelector('.lang-pop');if(!tr||!pop||tr.dataset.w)return;tr.dataset.w=1;
+function opn(){pop.hidden=false;tr.setAttribute('aria-expanded','true');document.addEventListener('click',dc,true);document.addEventListener('keydown',ky,true);}
+function cls(f){pop.hidden=true;tr.setAttribute('aria-expanded','false');document.removeEventListener('click',dc,true);document.removeEventListener('keydown',ky,true);if(f)tr.focus();}
+function dc(e){if(!root.contains(e.target))cls(false);}
+function ky(e){var it=[].slice.call(pop.querySelectorAll('.lang-opt')),i=it.indexOf(document.activeElement);if(e.key==='Escape'){e.preventDefault();cls(true);}else if(e.key==='ArrowDown'){e.preventDefault();(it[i+1]||it[0]).focus();}else if(e.key==='ArrowUp'){e.preventDefault();(it[i-1]||it[it.length-1]).focus();}else if(e.key==='Tab'){cls(false);}}
+tr.addEventListener('click',function(e){e.preventDefault();if(pop.hidden){opn();var c=pop.querySelector('.lang-opt[aria-current="true"]')||pop.querySelector('.lang-opt');if(c)c.focus();}else cls(false);});
+pop.addEventListener('click',function(){cls(false);});}
+function init(){document.querySelectorAll('.lang-switch').forEach(wire);}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();window.MM_WIRE_LANG=init;})();</script>
 </body>
 </html>

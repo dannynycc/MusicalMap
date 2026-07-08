@@ -103,15 +103,25 @@ function prerenderList(variant, shows) {
   return li;
 }
 
-// compact 繁/简/EN pills — same pattern as guide/me/u .hl-pick (full autonyms broke the
-// 375px phone header: labels wrapped and overlapped).
+// Globe icon + current short code (繁中 / 简中 / EN) → dropdown of full autonyms on click.
+// Collapsed stays compact for the 375px phone header (short code hides < 430px, globe only);
+// expanded shows full names. No flags. Behaviour: js/mm-lang.js. Highlight baked at build.
+const LANG_GLOBE = '<svg class="lang-globe" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 2.5 15 0 18M12 3c-2.5 2.5-2.5 15 0 18M4.5 7.5c4.5 2.5 10.5 2.5 15 0M4.5 16.5c4.5-2.5 10.5-2.5 15 0"/></svg>';
+const LANG_CHEV = '<svg class="lang-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8l7 7 7-7"/></svg>';
+const LANG_TICK = '<svg class="lang-tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12l5 5L20 6"/></svg>';
+const LANG_CODE = { "zh-hant": "繁中", "zh-hans": "简中", "en": "EN" };
+const LANG_NAME = { "zh-hant": "繁體中文", "zh-hans": "简体中文", "en": "English" };
+const LANG_TAG = { "zh-hant": "zh-Hant", "zh-hans": "zh-Hans", "en": "en" };
 function langSwitch(active) {
-  const opt = (v, txt, lang) =>
-    `<a class="lang-opt${v === active ? " active" : ""}" href="${BASE}${v}/" lang="${lang}"${v === active ? ' aria-current="true"' : ""}>${txt}</a>`;
+  const opt = (v) =>
+    `<a class="lang-opt${v === active ? " active" : ""}" role="menuitem" href="${BASE}${v}/" lang="${LANG_TAG[v]}" hreflang="${LANG_TAG[v]}"${v === active ? ' aria-current="true"' : ""}><span>${LANG_NAME[v]}</span>${LANG_TICK}</a>`;
   return `<div id="lang-switch" role="group" aria-label="Language / 語言">
-        ${opt("zh-hant", "繁", "zh-Hant")}
-        ${opt("zh-hans", "简", "zh-Hans")}
-        ${opt("en", "EN", "en")}
+        <button type="button" class="lang-trigger" aria-haspopup="true" aria-expanded="false" aria-label="選擇語言 / Select language">${LANG_GLOBE}<span class="lang-cur">${LANG_CODE[active]}</span>${LANG_CHEV}</button>
+        <div class="lang-pop" role="menu" hidden>
+          ${opt("zh-hant")}
+          ${opt("zh-hans")}
+          ${opt("en")}
+        </div>
       </div>`;
 }
 
@@ -167,6 +177,7 @@ function page(variant, shows) {
   <link rel="stylesheet" href="${BASE}css/style.css?v=${VER}" />
   <script>window.MM_VARIANT="${variant}";window.MM_BASE="${BASE}";</script>${openccTag}
   <script src="${BASE}js/mm-acct-menu.js?v=${VER}" defer></script><!-- 登入過(mm_owner cookie)→「我的音樂劇」CTA 自動換成大頭照選單;未登入照常顯示 CTA -->
+  <script src="${BASE}js/mm-lang.js?v=${VER}" defer></script><!-- 語言切換下拉(globe→繁中/简中/English)開關行為 -->
 
   <!-- Google Analytics(GA4 G-GC07MYC1MY;訪客來源/行為分析。root 路由頁不埋(立即轉走);隱私揭露見 privacy.html §1/§3) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-GC07MYC1MY"></script>

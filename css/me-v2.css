@@ -31,14 +31,15 @@
   --bg-mesh:none; --noise-op:0; --poster-edge:rgba(0,0,0,.12); --glow:none;
   --maplbl:rgba(255,255,255,.9); --ocean:#eaf0f7; --land-fill:#d5e0ec; --land-dot:rgba(94,118,155,.95); --pin:#c8881f;
 }
+/* cream = 對齊主站 style.css 的淡米黃 paper 主題(--bg #f4efe4 + 金 #a07a34);me/u 預設 */
 [data-theme="cream"]{
-  --bg:#f4ebd9; --s1:#fbf5e8; --s2:#fffdf6; --s3:#f0e6d2;
-  --ink1:#221b10; --ink2:#6e6044; --ink3:#6d6044;
-  --hair:rgba(60,46,28,.16); --hair2:rgba(60,46,28,.26);
-  --gold:#a23b2e; --gold-soft:rgba(162,59,46,.12); --on-accent:#ffffff;
-  --shadow-1:0 1px 0 #dac9a6,0 10px 26px rgba(60,48,24,.12);
-  --bg-mesh:none; --noise-op:0; --poster-edge:rgba(60,46,28,.18); --glow:none;
-  --maplbl:rgba(255,253,246,.92); --ocean:#f4ebd9; --land-fill:#e3d5b6; --land-dot:rgba(120,98,60,.8); --pin:#a23b2e;
+  --bg:#f4efe4; --s1:#fdfaf2; --s2:#fffdf7; --s3:#efe8d8;
+  --ink1:#221f18; --ink2:#6d6555; --ink3:#8a8069;
+  --hair:rgba(60,46,28,.14); --hair2:rgba(60,46,28,.22);
+  --gold:#a07a34; --gold-soft:rgba(160,122,52,.14); --on-accent:#ffffff;
+  --shadow-1:0 1px 0 #e6dcc6,0 10px 26px rgba(60,48,24,.10);
+  --bg-mesh:repeating-linear-gradient(135deg,rgba(160,122,52,.03) 0 2px,transparent 2px 9px); --noise-op:0; --poster-edge:rgba(60,46,28,.16); --glow:none;  /* 135° 斜線紋理,對齊主站 style.css/guide 的 paper 質感 */
+  --maplbl:rgba(255,253,246,.92); --ocean:#f4efe4; --land-fill:#e6dcc4; --land-dot:rgba(120,98,60,.75); --pin:#a07a34;
 }
 [data-theme="neon"]{
   --bg:#0a0612; --s1:#160c28; --s2:#1f1138; --s3:#2a1850;

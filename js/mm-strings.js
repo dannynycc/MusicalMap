@@ -8,6 +8,7 @@
     'zh-hant': {
       // ---- u.html 靜態 ----
       nav_theatres: '所有劇院', nav_map: '地圖首頁', nav_guide: '怎麼使用', nav_create: '＋ 建立你自己的',
+      nav_mine: '我的音樂劇', tagline_theatres: '全球音樂劇場館地圖', search_ph_theatres: '搜尋劇院、城市…（中／英／原文皆可）',
       nav_privacy: '隱私權政策', nav_terms: '使用條款', nav_about: '關於本站',
       th_midnight: '午夜（暗）', th_gallery: '畫廊白（亮）', th_cream: '節目單奶油（亮）', th_neon: '霓虹（暗）', th_deco: '裝飾金（暗）',
       aria_theme: '主題底色', aria_seg: '檢視模式', aria_sort: '排序', aria_close: '關閉',
@@ -228,6 +229,7 @@
     },
     'en': {
       nav_theatres: 'All Theatres', nav_map: 'Map home', nav_guide: 'Guide', nav_create: '＋ Create your own',
+      nav_mine: 'My Musicals', tagline_theatres: 'World map of musical-theatre venues', search_ph_theatres: 'Search theatres, cities… (EN / 中文 / native)',
       nav_privacy: 'Privacy', nav_terms: 'Terms', nav_about: 'About',
       th_midnight: 'Midnight (dark)', th_gallery: 'Gallery white (light)', th_cream: 'Playbill cream (light)', th_neon: 'Neon (dark)', th_deco: 'Deco gold (dark)',
       aria_theme: 'Theme', aria_seg: 'View mode', aria_sort: 'Sort', aria_close: 'Close',
@@ -516,6 +518,7 @@
     document.documentElement.lang = hl === 'en' ? 'en' : (hl === 'zh-hans' ? 'zh-Hans' : 'zh-Hant');
     if (window.MM_USE_LANG_PREF) { try { localStorage.setItem('mm_lang', hl === 'en' ? 'en' : 'zh'); localStorage.setItem('mm_variant', hl); } catch (e) {} } // 記住偏好(mm_variant 含簡繁,與主站共用)
     document.querySelectorAll('[data-i18n]').forEach(function (el) { el.textContent = window.MM_T(el.getAttribute('data-i18n')); });
+    document.querySelectorAll('[data-i18n-ph]').forEach(function (el) { el.placeholder = window.MM_T(el.getAttribute('data-i18n-ph')); });  // placeholder(搜尋框等);i18n.js 有此處理,遷來 mm-strings 需補
     document.querySelectorAll('[data-i18n-html]').forEach(function (el) { el.innerHTML = window.MM_T(el.getAttribute('data-i18n-html')); });  // 含 <br>/<b> 的字串(字典值為信任的 UI 文案,非使用者輸入)
     document.querySelectorAll('[data-i18n-title]').forEach(function (el) { el.title = window.MM_T(el.getAttribute('data-i18n-title')); });
     document.querySelectorAll('[data-i18n-aria]').forEach(function (el) { el.setAttribute('aria-label', window.MM_T(el.getAttribute('data-i18n-aria'))); });
@@ -529,6 +532,14 @@
       u.searchParams.set('hl', t);
       a.href = u.pathname + (u.search || '');
       if (t === hl) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current');
+    });
+    // 語言切換觸發鈕的短碼隨當前語言變(繁中 / 简中 / EN);展開下拉仍是全名。
+    var _code = { 'zh-hant': '繁中', 'zh-hans': '简中', 'en': 'EN' };
+    document.querySelectorAll('.lang-cur').forEach(function (el) { el.textContent = _code[hl] || el.textContent; });
+    // 跨網域到 my. 子網域會丟 localStorage(不同 origin);每個 my. CTA 補上目前語言 ?hl=,語言才不會亂跑。
+    // (登入者的頭像選單由 mm-acct-menu 另補 hl;此處救未登入者的靜態「我的音樂劇」連結。)
+    document.querySelectorAll('a.nav-cta[href^="https://my.themusicalmap.com"], a.cta[href^="https://my.themusicalmap.com"], #mine-link[href^="https://my.themusicalmap.com"]').forEach(function (a) {
+      try { var mu = new URL(a.href); mu.searchParams.set('hl', hl); a.href = mu.href; } catch (e) {}
     });
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', apply);

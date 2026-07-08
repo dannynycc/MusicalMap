@@ -44,15 +44,37 @@ body { display: flex; flex-direction: column; height: 100vh; }
 #topnav { display: flex; align-items: center; gap: 14px; }
 .nav-link { color: var(--text); text-decoration: none; font-size: 14px; font-weight: 600; }
 .nav-link:hover { color: var(--accent); }
-/* Language switch: compact pills 繁 / 简 / EN (same as guide/me/u .hl-pick — short labels
-   fit the phone header). No flags (country ≠ language). */
-#lang-switch { display: inline-flex; align-items: center; gap: 1px;
-  border: 1px solid var(--border); border-radius: 999px; padding: 2px; }
-#lang-switch .lang-opt { border: none; background: none; cursor: pointer; color: var(--muted);
-  font-size: 12px; font-weight: 600; padding: 4px 9px; border-radius: 999px; line-height: 1; font-family: inherit; text-decoration: none; }
-#lang-switch .lang-opt:hover { color: var(--text); }
+/* Language switch: globe icon + current short code (繁中 / 简中 / EN) → click opens a
+   dropdown of full autonyms. No flags (country ≠ language; 繁/简 can't share one, English
+   has none). Collapsed = compact; expanded = full names. Behaviour in js/mm-lang.js. */
+#lang-switch { position: relative; display: inline-flex; }
+.lang-trigger { display: inline-flex; align-items: center; gap: 6px; cursor: pointer;
+  border: 1px solid var(--border); background: var(--panel); color: var(--text);
+  font-family: inherit; font-size: 13px; font-weight: 600; line-height: 1;
+  padding: 6px 9px; border-radius: 9px; }
+.lang-trigger:hover { border-color: var(--gold); }
+.lang-globe { width: 16px; height: 16px; fill: none; stroke: var(--muted); stroke-width: 1.7; flex: none; }
+.lang-chev { width: 10px; height: 10px; fill: none; stroke: var(--muted); stroke-width: 2; flex: none;
+  transition: transform .15s ease; }
+.lang-trigger[aria-expanded="true"] { border-color: var(--gold); }
+.lang-trigger[aria-expanded="true"] .lang-globe { stroke: var(--gold); }
+.lang-trigger[aria-expanded="true"] .lang-chev { transform: rotate(180deg); }
+.lang-cur { letter-spacing: .01em; }
+.lang-pop { position: absolute; top: calc(100% + 8px); right: 0; min-width: 150px; z-index: 1200;
+  background: var(--panel); border: 1px solid var(--border); border-radius: 12px; padding: 6px;
+  box-shadow: 0 12px 34px rgba(0,0,0,.16); }
+.lang-pop[hidden] { display: none; }
+#lang-switch .lang-opt { display: flex; align-items: center; justify-content: flex-start; gap: 8px;
+  text-decoration: none; color: var(--text); font-size: 14px; font-weight: 500;
+  padding: 9px 11px; border-radius: 8px; line-height: 1.1; }
+#lang-switch .lang-opt:hover { background: var(--panel-2); }
 #lang-switch .lang-opt.active,
-#lang-switch .lang-opt[aria-current="true"] { background: var(--gold); color: #fff; } /* aria-current: legal 頁 data-hl-link 由 mm-strings 標 */
+#lang-switch .lang-opt[aria-current="true"] { color: var(--gold); font-weight: 700; } /* aria-current: legal 頁 data-hl-link 由 mm-strings 標 */
+.lang-tick { width: 15px; height: 15px; fill: none; stroke: var(--gold); stroke-width: 2.2; flex: none; opacity: 0; }
+#lang-switch .lang-opt.active .lang-tick,
+#lang-switch .lang-opt[aria-current="true"] .lang-tick { opacity: 1; }
+/* phone: hide the short code, keep just the globe to save header width */
+@media (max-width: 430px) { .lang-trigger .lang-cur { display: none; } }
 
 /* all-theatres page: floating search panel + small venue dots */
 #venue-panel {
