@@ -11,6 +11,11 @@
 
 ---
 
+## [v2.13.7] - 2026-07-08 21:54
+### 彈窗標題仍顯示人名:tour_name 蓋掉劇名(承 v2.13.6)
+
+修完劇名後彈窗仍顯示「Harper Jones」——真兇是 `tour_name`(Ticketmaster 的 attraction/藝人欄),`popupHtml` 無條件優先顯示它。通用修:**tour_name 只在包含劇名時才當顯示名**(它本來就是給「The Lion King North American Tour」這種用的),是人名/品牌就回落正式劇名;該筆資料 tour_name 一併清空(overrides+四份資料熱修)。
+
 ## [v2.13.6] - 2026-07-08 21:48
 ### 修劇名提取:整句行銷文案被當劇名(使用者抓到)
 

@@ -516,7 +516,10 @@ function popupHtml(show) {
       <span class="pop-tile-label">${lab}</span>
       <span class="pop-tile-arr">→</span></a>`;
   }).join("")}</div></div>` : "";
-  const tname = show.tour_name ? show.tour_name.replace(show.title, canonTitle(show)) : "";
+  // tour_name 只在「包含劇名」時才拿來當顯示名(如「The Lion King North American Tour」);
+  // TM 的 attraction 名有時是人名/品牌(如獨角戲的演員名),不含劇名就別讓它蓋掉正式劇名。
+  const tname = (show.tour_name && show.tour_name.toLowerCase().includes((show.title||"").toLowerCase()))
+    ? show.tour_name.replace(show.title, canonTitle(show)) : "";
   const tourLine = "";  // production name (tour / localized version) now lives in the title itself
   const unverified = show.verified ? "" : `<div class="p-row warn">${esc(t("unverified_demo"))}</div>`;
   const titleTxt = esc(tname || canonTitle(show));  // the specific production's real name
