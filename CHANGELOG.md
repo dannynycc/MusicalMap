@@ -11,6 +11,11 @@
 
 ---
 
+## [v2.12.5] - 2026-07-08 12:51
+### 修 v2.12.4 地圖 cluster 元素被卸離不顯示的 bug
+
+- v2.12.4 的 cluster 元素存在 `CLUSTER_POOL` 重用池,但 `placePins()` 會 `#pins.innerHTML=''` 清空容器(使用者新增音樂劇→頻繁重建),把已建的 cluster 元素卸離 DOM;positionPins 重用時仍握著卸離的參照→cluster 不顯示(客觀驗證發現 `CLUSTER_POOL.length=3` 但 `querySelectorAll('.pin-cluster')=0`)。修:重用前檢查 `el.isConnected`,卸離就重建並重新 append。純 me.html inline JS,免版號。
+
 ## [v2.12.4] - 2026-07-08 12:46
 ### 足跡地圖改用 cluster(取代藏標籤)+ 修海報卡 hover 戳出工具列
 
