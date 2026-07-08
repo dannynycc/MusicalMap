@@ -200,7 +200,7 @@ header{position:sticky;top:0;z-index:1100;background:var(--bg-mesh),var(--bg);bo
 .poster::after{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:0 16px 36px rgba(0,0,0,.55);opacity:0;transition:opacity var(--dur-3) var(--ease-out);pointer-events:none}
 .poster img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block;opacity:0;transition:opacity var(--dur-3) var(--ease-out)}
 .poster img.ready{opacity:1}
-.poster .skel{position:absolute;inset:0;background:#15151c;overflow:hidden}
+.poster .skel{position:absolute;inset:0;background:var(--s3);overflow:hidden}  /* 載入骨架隨主題(cream=淺米黃),不再深色壓在米黃頁上 */
 .poster .skel::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,transparent 20%,rgba(255,255,255,.06) 50%,transparent 80%);transform:translateX(-100%);animation:shimmer 1.4s ease-in-out infinite}
 @keyframes shimmer{to{transform:translateX(100%)}}
 /* fallback poster */
@@ -336,6 +336,10 @@ html[lang="en"] #dt-fb-zh{display:none}
   color:var(--ink1);background:var(--maplbl);border:1px solid var(--hair);border-radius:999px;padding:2px 4px 2px 9px;opacity:1;pointer-events:none;
   box-shadow:0 2px 6px rgba(0,0,0,.3);display:inline-flex;align-items:center;gap:6px;backdrop-filter:blur(3px)}
 .pin .lbl .lc{background:var(--pin);color:#241a05;font-weight:800;border-radius:999px;padding:0 6px;font-size:10px}
+/* 標籤防碰撞:近距城市會撞→隱藏被遮者的標籤(marker 數字仍在),hover/聚焦時顯示並提到最上層;放大後自動恢復。v2.12.3 */
+.pin.lbl-off .lbl{opacity:0}
+.pin:hover,.pin:focus-visible{z-index:20}
+.pin:hover .lbl,.pin:focus-visible .lbl{opacity:1}
 .legend{position:absolute;left:12px;bottom:12px;z-index:4;background:var(--maplbl);border:1px solid var(--hair);border-radius:10px;
   padding:9px 12px;font-size:11px;color:var(--ink2);display:flex;flex-direction:column;gap:6px;backdrop-filter:blur(3px)}
 .legend .row{display:flex;align-items:center;gap:8px}
@@ -417,7 +421,7 @@ dialog#detail{border:none;padding:0;border-radius:20px;width:min(1060px,96vw);ba
   box-shadow:0 40px 100px rgba(0,0,0,.6);overflow:hidden}
 dialog#detail::backdrop{background:rgba(0,0,0,.72);backdrop-filter:blur(8px)}
 .dt-grid{display:grid;grid-template-columns:400px 1fr}
-.dt-poster{position:relative;background:#101015;cursor:zoom-in}
+.dt-poster{position:relative;background:var(--bg);cursor:zoom-in}  /* 米黃框(v2.12.3,使用者選 A=#f4efe4):海報載入中/失敗那片不再整片深色,隨主題(cream=米黃/midnight=深) */
 .dt-poster img{width:100%;height:100%;object-fit:cover;display:block;min-height:540px;opacity:0}
 .dt-poster img.ready{opacity:1;transition:opacity .3s ease}   /* 切換時先隱藏舊圖(移除 ready→瞬間透明)，新圖載入完才淡入，不閃前一張 */
 .dt-poster .dt-zoom{position:absolute;right:10px;bottom:10px;background:rgba(0,0,0,.55);color:#fff;font-size:11px;font-weight:600;padding:4px 9px;border-radius:999px;backdrop-filter:blur(3px);pointer-events:none;opacity:0;transition:opacity .2s}
