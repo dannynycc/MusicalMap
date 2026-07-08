@@ -976,6 +976,13 @@ def main():
     for s in shows:
         s["link_kind"] = src_kind(s.get("source"))
         s["tag"] = classify_tag(s["group"], s.get("source"), s.get("country"))
+        # TM 常全大寫列名("THE ADDAMS FAMILY"):命中 registry 就用 canonical 正名;
+        # 沒命中的(匈/捷原文慣例大寫)不動
+        _t = s.get("title") or ""
+        if len(_t) > 7 and _t.upper() == _t and re.search(r"[A-Z]{4}", _t):
+            _w = resolve_work(_t)
+            if _w:
+                s["title"] = _w["canonical"]
         alt = ALIASES_BY_CGROUP.get(s["group"])   # 中文/日文… aliases, for map search
         if alt and alt.lower() != (s.get("title") or "").lower():
             s["alt"] = alt

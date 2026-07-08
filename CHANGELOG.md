@@ -11,6 +11,13 @@
 
 ---
 
+## [v2.14.2] - 2026-07-08 22:49
+### 掃描器入庫+全大寫正名收尾
+
+- `scrapers/audit_catalog.py`:11 類髒資料掃描器入庫(唯讀、人工判讀用),之後可隨時 `python scrapers/audit_catalog.py` 重掃。
+- 全大寫列名+命中作品庫 → 用 registry canonical 正名(「THE ADDAMS FAMILY」「COME FROM AWAY」←Walnut 去前綴後殘留;匈/捷原文慣例大寫不在庫、不動)。
+- 複掃結果:A行銷尾巴/B引號/C非音樂劇/D套餐/E主辦前綴/I無日期/J無座標/K同館重複 全部歸零;殘餘=F×1(Das Phantom der Oper Sasson/Sautter 版,刻意保留的獨立作品)、G×14(非拉丁/原文慣例大寫)、H×106(在地化製作名,by design)。
+
 ## [v2.14.1] - 2026-07-08 22:45
 ### A Beautiful Noise:逗號功能性副標通用規則
 
