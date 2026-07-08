@@ -75,13 +75,18 @@ a{color:inherit} ::selection{background:rgba(201,168,92,.32);color:#fff}
 .tnum{font-variant-numeric:tabular-nums}
 
 /* header */
-header{position:sticky;top:0;z-index:1100;background:var(--bg-mesh),var(--bg);border-bottom:1px solid var(--hair)}  /* 不透明:半透明+blur 會讓底下捲過的彩色海報/圖表透上來染 header(淺色主題尤醜);順帶去 backdrop-filter 卡頓 */
+header{position:sticky;top:0;z-index:1100;background:var(--bg);border-bottom:1px solid var(--hair2,var(--hair));box-shadow:0 1px 3px rgba(0,0,0,.04)}  /* 規格對齊主站 #topbar:平底色(無斜紋)、58px、髮絲線+淡影 */  /* 不透明:半透明+blur 會讓底下捲過的彩色海報/圖表透上來染 header(淺色主題尤醜);順帶去 backdrop-filter 卡頓 */
 .theme-pick{display:flex;gap:6px;align-items:center;margin-right:4px}
 .theme-pick button{width:19px;height:19px;border-radius:50%;border:1px solid var(--hair2);background:var(--sw);cursor:pointer;padding:0;transition:transform .15s var(--ease-out)}
 .theme-pick button:hover{transform:scale(1.18)}
 .theme-pick button[aria-pressed=true]{box-shadow:0 0 0 2px var(--bg),0 0 0 3.5px var(--gold)}
-.bar{height:60px;display:flex;align-items:center;justify-content:space-between}
-.brand{font-family:var(--fr);font-weight:900;font-size:22px;letter-spacing:-.5px;text-decoration:none;display:inline-flex;align-items:center;gap:9px}
+.bar{height:58px;display:flex;align-items:center;justify-content:space-between}
+.brand{font-family:var(--fr);font-weight:900;font-size:19px;letter-spacing:-.5px;text-decoration:none;display:inline-flex;align-items:center;gap:9px}
+.brand .tagline{font-family:var(--ui);font-weight:400;font-size:13px;color:var(--ink3);margin-left:6px;letter-spacing:0}
+@media(max-width:760px){.brand .tagline{display:none}}
+/* nav-cta:主站黑底 pill 規格(u.html 訪客 CTA/一致視覺) */
+.nav .nav-cta{display:inline-flex;align-items:center;gap:6px;white-space:nowrap;background:var(--ink1);color:var(--bg);text-decoration:none;font-size:14px;font-weight:600;padding:9px 16px;border-radius:999px;transition:background .12s,transform .12s}
+.nav .nav-cta:hover{background:#000;color:#f4efe4;transform:translateY(-1px)}
 .brand-logo{width:27px;height:27px;object-fit:contain}
 .brand b{color:var(--gold)}
 .nav{display:flex;gap:14px;align-items:center;font-size:14px}
@@ -407,7 +412,7 @@ html[data-live] .demobanner{display:none}
 .axes{margin-top:16px;display:flex;flex-direction:column;gap:12px}
 .axis .r{display:flex;justify-content:space-between;font-size:12px;color:var(--ink3);margin-bottom:5px}
 .axis .r .on{color:var(--ink1);font-weight:700}
-.axis .track{height:6px;border-radius:3px;background:rgba(255,255,255,.1);position:relative}
+.axis .track{height:6px;border-radius:3px;background:var(--gold-soft,rgba(160,122,52,.16));border:1px solid var(--hair2,rgba(128,128,128,.18));position:relative}  /* 舊值 rgba(255,255,255,.1)=深色主題遺留,米黃底上隱形→金點像懸空(使用者抓到) */
 .axis .track i{position:absolute;top:-3px;width:12px;height:12px;border-radius:50%;background:var(--gold);box-shadow:0 0 10px var(--gold)}
 .toplist{display:flex;flex-direction:column;gap:10px}
 .tl{display:flex;align-items:center;gap:10px;font-size:13px}
@@ -416,8 +421,13 @@ html[data-live] .demobanner{display:none}
 .tl .f{display:block;height:100%;border-radius:4px;background:linear-gradient(90deg,var(--gold),#ffe08a)}
 .tl .v{width:20px;text-align:right;font-weight:700}
 
-footer{margin:60px 0 96px;color:var(--ink3);font-size:13px;text-align:center;line-height:1.8}
+footer{margin:56px 0 0;padding:30px 0 44px;border-top:1px solid var(--hair2,var(--hair));color:var(--ink2);font-size:14px;text-align:left;line-height:1.8}  /* 規格照主站 .site-foot */
 footer b{color:var(--ink2)}
+footer .sf-in{max-width:1080px;margin:0 auto;padding:0 26px;display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center}
+footer .sp{flex:1}
+footer a{color:var(--gold);text-decoration:none;font-weight:600;white-space:nowrap}
+footer a:hover{text-decoration:underline}
+footer .credit{width:100%;font-size:12.5px;color:var(--ink3)}
 
 /* ===== detail modal ===== */
 dialog#detail{border:none;padding:0;border-radius:20px;width:min(1060px,96vw);background:var(--s2);color:var(--ink1);

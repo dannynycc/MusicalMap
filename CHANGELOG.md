@@ -11,6 +11,14 @@
 
 ---
 
+## [v2.14.5] - 2026-07-09 01:21
+### 公開分享頁/儀表板 頁首頁尾對齊主站規格 + 劇迷光譜軸線隱形修復(使用者抓到)
+
+- **頁首**(me-v2 header):去斜紋、平底色、58px、髮絲線+淡影、brand 加 tagline(規格照 style.css #topbar);u.html 訪客 CTA「＋ 建立你自己的」由金底 inline 樣式改主站黑底 pill。
+- **頁尾**:u.html/me.html 的置中文字塊改 .site-foot 同構(border-top、padding 30px 0 44px、1080 置中、品牌句左+連結右);u.html 保留海報出處聲明(footer_credit 新 key,三語)。
+- **劇迷光譜「懸空點點」**:`.axis .track` 軸線底色是深色主題遺留的 rgba(255,255,255,.1),米黃底上隱形→只剩金點像懸空;改 --gold-soft+髮絲框。
+- mm-strings v238、me-v2.css v268。
+
 ## [v2.14.4] - 2026-07-09 00:58
 ### 緊急修:登入後整頁不能捲(v2.13.5 迴歸)
 

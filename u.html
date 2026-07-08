@@ -30,7 +30,7 @@ var hl=q.get('hl');location.replace('https://my.themusicalmap.com/'+encodeURICom
 /* mig=2:v2.12.15 前 u-view fallback bug 會把 midnight 寫進訪客 localStorage(u.html 無 picker,訪客身上的 midnight 幾乎必是 bug 產物)→一次性清掉,讓卡深色的訪客回到 cream。副作用:曾在 me.html 手選 midnight 的登入者訪自己公開頁會被重設一次(可再選回)。 */
 if(localStorage.getItem('mm-theme-mig')!=='2'){if(localStorage.getItem('mm-theme')==='midnight')localStorage.removeItem('mm-theme');localStorage.setItem('mm-theme-mig','2');}
 var t=localStorage.getItem('mm-theme')||'cream';if(t==='neon'||t==='deco'){t='midnight';localStorage.setItem('mm-theme',t);}if(t!=='midnight')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
-<link rel="stylesheet" href="css/me-v2.css?v=267" /><!-- CSS cache-bust:與 me.html 同步,CF Pages .css max-age=14400 -->
+<link rel="stylesheet" href="css/me-v2.css?v=268" /><!-- CSS cache-bust:與 me.html 同步,CF Pages .css max-age=14400 -->
 <style>
 /* i18n:en 模式時 section 標題旁的英文小字(原本是中文標題的英文對照)會與主標重複 → 隱藏 */
 html[lang="en"] .sec h2 .zh{display:none}
@@ -58,13 +58,13 @@ if(!v){var nl=(navigator.language||'').toLowerCase();v=nl.indexOf('zh')===0?((nl
 if(v==='zh-hans'){document.write('<scr'+'ipt src="https://cdn.jsdelivr.net/npm/opencc-js@1.3.1/dist/umd/t2cn.js" integrity="sha384-P/OaFUnOIAgMkLxsXIAaP6WO3Wm09591cGX5bHbW4eCOeDxH9L8U3aWYf4cE4SYl" crossorigin="anonymous"><\/scr'+'ipt>');
 document.write('<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet" />');/* 簡體字 TC 字型沒有→混排忽粗忽細,補 SC */}
 }catch(e){}})();</script>
-<script src="js/mm-strings.js?v=237"></script>
+<script src="js/mm-strings.js?v=238"></script>
 <script src="js/mm-acct-menu.js?v=227" defer></script>
 <!-- Google Analytics(GA4 G-GC07MYC1MY;訪客來源/行為分析,同一 ID 涵蓋主站與 my. 網域(報表以 hostname 區分);不加 SRI:gtag.js 由 Google 滾動更新,釘 hash 會靜默斷統計;隱私揭露見 privacy §1/§3) --><script async src="https://www.googletagmanager.com/gtag/js?id=G-GC07MYC1MY"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-GC07MYC1MY');</script>
 </head>
 <body>
 <header><div class="wrap bar">
-  <a class="brand" href="https://themusicalmap.com/"><img src="logo.svg" alt="" class="brand-logo" /><span>Musical<b>Map</b></span></a>
+  <a class="brand" href="https://themusicalmap.com/"><img src="logo.svg" alt="" class="brand-logo" /><span>Musical<b>Map</b></span><span class="tagline" data-i18n="legal_tagline">此刻全球正在上演的音樂劇</span></a>
   <nav class="nav">
     <!-- pills 永遠在 nav 最前,與首頁/法務頁一致(跨頁不跳動) -->
     <div id="lang-switch" role="group" aria-label="Language / 語言"><button type="button" class="lang-trigger" aria-haspopup="true" aria-expanded="false" aria-label="選擇語言 / Select language"><svg class="lang-globe" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 2.5 15 0 18M12 3c-2.5 2.5-2.5 15 0 18M4.5 7.5c4.5 2.5 10.5 2.5 15 0M4.5 16.5c4.5-2.5 10.5-2.5 15 0"/></svg><span class="lang-cur">繁中</span><svg class="lang-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8l7 7 7-7"/></svg></button><div class="lang-pop" role="menu" hidden><a class="lang-opt" role="menuitem" data-hl-link="zh-hant" href="?" lang="zh-Hant" hreflang="zh-Hant"><span>繁體中文</span><svg class="lang-tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12l5 5L20 6"/></svg></a><a class="lang-opt" role="menuitem" data-hl-link="zh-hans" href="?hl=zh-hans" lang="zh-Hans" hreflang="zh-Hans"><span>简体中文</span><svg class="lang-tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12l5 5L20 6"/></svg></a><a class="lang-opt" role="menuitem" data-hl-link="en" href="?hl=en" lang="en" hreflang="en"><span>English</span><svg class="lang-tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12l5 5L20 6"/></svg></a></div></div>
@@ -72,7 +72,7 @@ document.write('<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+S
     <a href="https://themusicalmap.com/" data-i18n="nav_map">地圖首頁</a>
     <a href="https://themusicalmap.com/guide" data-i18n="nav_guide">怎麼使用</a>
     <!-- 主題選擇器移除:公開頁 nav 對齊主站(主站無 picker)+ 原本 u.html 缺 applyTheme handler 是死控件(v2.12.1) -->
-    <a id="mine-link" class="nav-cta" href="https://my.themusicalmap.com/" data-i18n="nav_create" style="background:var(--gold,#c9a85c);border:1px solid var(--gold,#c9a85c);color:#1a1407;border-radius:999px;padding:6px 15px;font-size:13px;font-weight:800;text-decoration:none">＋ 建立你自己的</a>
+    <a id="mine-link" class="nav-cta" href="https://my.themusicalmap.com/" data-i18n="nav_create">＋ 建立你自己的</a>
   </nav>
 </div></header>
 
@@ -150,17 +150,16 @@ document.write('<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+S
     <div class="panel persona reveal" id="persona"></div>
   </div>
 
-  <footer>
-    <span data-i18n="footer_1">海報牆與護照，是同一批收藏的兩種看法。</span><br>
-    <span data-i18n="footer_2">封面取自各劇官方與公開資料。想擁有自己的音樂劇護照？</span><a href="https://my.themusicalmap.com/" data-i18n="footer_cta" style="color:var(--gold,#c9a85c)">建立你自己的 →</a><br>
-    <span style="display:inline-flex;gap:14px;margin-top:8px">
-      <a href="https://themusicalmap.com/" data-i18n="nav_map" style="color:var(--gold,#c9a85c);text-decoration:none">地圖首頁</a>
-      <a href="https://themusicalmap.com/guide" data-i18n="nav_guide" style="color:var(--gold,#c9a85c);text-decoration:none">怎麼使用</a>
-      <a href="https://themusicalmap.com/about" data-i18n="nav_about" style="color:var(--gold,#c9a85c);text-decoration:none">關於</a>
-      <a href="https://themusicalmap.com/privacy" data-i18n="nav_privacy" style="color:var(--gold,#c9a85c);text-decoration:none">隱私權政策</a>
-      <a href="https://themusicalmap.com/terms" data-i18n="nav_terms" style="color:var(--gold,#c9a85c);text-decoration:none">使用條款</a>
-    </span>
-  </footer>
+  <footer><div class="sf-in">
+    <span data-i18n="how_footer">MusicalMap — 全球音樂劇即時地圖，與你的音樂劇護照。</span>
+    <span class="sp"></span>
+    <a href="https://themusicalmap.com/" data-i18n="how_footer_link">回到地圖</a>
+    <a href="https://my.themusicalmap.com/" data-i18n="nav_mine">我的音樂劇</a>
+    <a href="https://themusicalmap.com/about" data-i18n="nav_about">關於本站</a>
+    <a href="https://themusicalmap.com/privacy" data-i18n="nav_privacy">隱私權政策</a>
+    <a href="https://themusicalmap.com/terms" data-i18n="nav_terms">使用條款</a>
+    <span class="credit" data-i18n="footer_credit">封面取自各劇官方與公開資料。</span>
+  </div></footer>
 </div>
 
 <!-- NOT-FOUND / EMPTY -->
