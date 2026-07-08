@@ -259,7 +259,7 @@ dialog::backdrop{background:rgba(0,0,0,.66);backdrop-filter:blur(6px)}
 .fld select,.datesel select{appearance:none;-webkit-appearance:none;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23999' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 11px center;padding-right:28px}
 .combo{position:relative}
 .combo-panel{position:absolute;top:100%;left:0;right:0;z-index:60;margin-top:5px;min-width:172px;background:var(--s2);border:1px solid var(--hair2);border-radius:10px;max-height:230px;overflow-y:auto;box-shadow:0 14px 30px rgba(0,0,0,.45)}
-.combo-row{display:block;width:100%;text-align:left;padding:10px 12px;background:none;border:none;border-bottom:1px solid var(--hair);color:var(--ink1);cursor:pointer;font-size:14px;font-family:inherit;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.combo-row{display:block;width:100%;text-align:left;padding:10px 12px;background:none;border:none;border-bottom:1px solid var(--hair);color:var(--ink1);cursor:pointer;font-size:14px;font-family:inherit;white-space:normal;line-height:1.35;word-break:break-word}  /* 可換行:截尾 ellipsis 會把「大劇院/中劇院/小劇場」等關鍵尾綴藏掉,三個廳看起來一模一樣(使用者抓到) */
 .combo-row:last-child{border-bottom:none}
 .combo-row:hover,.combo-row.on{background:var(--gold-soft);color:var(--gold);font-weight:600}
 .datesel{display:grid;grid-template-columns:1.1fr 1fr 1fr;gap:8px}
@@ -542,6 +542,8 @@ function setupCombo(input,panel,getItems,onpick,opts){
     panel.hidden=false;}
   function choose(i){const it=shown[i];input.value=toInput(it);panel.hidden=true;onpick(it);}
   function upd(){[...panel.children].forEach((bb,i)=>bb.classList.toggle('on',i===active));if(active>=0&&panel.children[active])panel.children[active].scrollIntoView({block:'nearest'});}
+  // 面板任何地方(含捲軸)按下都不搶焦點:拖捲軸造成 input blur→下拉整個關掉(使用者抓到)
+  panel.addEventListener('mousedown',e=>e.preventDefault());
   input.addEventListener('focus',()=>{if(opts.showAllOnFocus){try{input.select();}catch(e){}}render(opts.showAllOnFocus);});
   input.addEventListener('input',()=>{render();if(onType)onType(input.value.trim());});
   input.addEventListener('blur',()=>setTimeout(()=>{panel.hidden=true;if(opts.onBlur)opts.onBlur();},160));

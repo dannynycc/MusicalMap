@@ -292,12 +292,24 @@ function proxyImg(u){if(!u||!/^https?:\/\//i.test(u)||/(wsrv\.nl|weserv\.nl)/i.t
 (function(){try{
   const log=JSON.parse(localStorage.getItem('mm-log')||'[]');
   if(!Array.isArray(log)||!log.length)return;
+  // 同館/城市顯示統整(與 u-view.js 同步邏輯;me.html 不載 u-view,需自帶):不動資料只折顯示
+  window.MMFoldVenue=window.MMFoldVenue||function(v){ if(!v) return v;
+    if(/國家戲劇院|国家戏剧院/.test(v)) return '國家戲劇院';
+    if(/[臺台]中國家歌劇院|台中国家歌剧院|National Taichung Theater/i.test(v)) return '臺中國家歌劇院';
+    return v; };
+  window.MMFoldCity=window.MMFoldCity||function(c){ if(!c) return c;
+    if((window.MM_HL||'zh-hant')==='en') return c;
+    if(/^(taipei|台北|臺北)/i.test(c)) return '臺北';
+    if(/^(taichung|台中|臺中)/i.test(c)) return '臺中';
+    if(/^(tainan|台南|臺南)/i.test(c)) return '臺南';
+    if(/^(kaohsiung|高雄)/i.test(c)) return '高雄';
+    return c; };
   const mapped=log.map((e,i)=>({
     id:9000+i, title:(e.w&&e.w.en)||'?', zh:(e.w&&e.w.zh)||'', prod:(e.p&&e.p.label)||'', color:'#7c5cff',
     poster:(e.p&&e.p.img)?(e.posterOverride?proxyImg(e.p.img):e.p.img):null, posterFull:(e.posterOverride||(e.p&&e.p.img))||null, posterFit:'cover', posterBg:null,
     date:e.date||'', precision:e.precision||'none', time:(e.time||'').slice(0,5),
-    venue:(((window.MM_HL||'zh-hant')==='en')&&e.p&&e.p.venueEn)?e.p.venueEn:((e.p&&e.p.venue)||''),   // en 模式優先用 catalog 對出的官方英文名(不可用下方 EN_UI:此 IIFE 先於其宣告執行)
-    city:(e.p&&e.p.city)||'', country:normCountry(e.p&&e.p.country), cc:'',
+    venue:(window.MMFoldVenue||(x=>x))((((window.MM_HL||'zh-hant')==='en')&&e.p&&e.p.venueEn)?e.p.venueEn:((e.p&&e.p.venue)||'')),   // en 模式優先用 catalog 對出的官方英文名(不可用下方 EN_UI:此 IIFE 先於其宣告執行)
+    city:(window.MMFoldCity||(x=>x))((e.p&&e.p.city)||''), country:normCountry(e.p&&e.p.country), cc:'',
     lat:e.p&&e.p.lat, lng:e.p&&e.p.lng, seat:e.seat||'', price:e.price||'', cur:e.cur||'',
     rating:e.rating||0, fav:!!e.fav, note:e.note||'', url:e.url||'', era:null, scale:null, logged:true
   }));

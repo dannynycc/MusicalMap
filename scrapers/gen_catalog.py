@@ -396,6 +396,10 @@ def main():
         ("philadelphia", "Academy of Music", ["academy of music"]),
         ("tampa", "Straz Center for the Performing Arts", ["straz cent", "carol morsani"]),
         ("worcester", "The Hanover Theatre", ["hanover theatre"]),
+        # 兩廳院的戲劇院兩種列名(NTCH 全名式 vs 臺北前綴式);用近全名比對,
+        # 免得「national theater」子字串誤吞同棟的實驗劇場(Experimental Theater)
+        ("taipei", "National Theater 國家戲劇院",
+         ["national theater and concert hall 國家戲劇院", "national theater 臺北國家戲劇院"]),
     ]
     alias_merged = 0
     for city_sub, canonical, subs in ALIAS_MERGES:

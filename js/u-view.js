@@ -9,6 +9,21 @@
 
   /* ---- helpers shared by mapping + render ---- */
   const CCNORM = { 'UK': 'United Kingdom', 'USA': 'United States', 'US': 'United States', 'Korea': 'South Korea', 'U.S.': 'United States', 'U.K.': 'United Kingdom' };
+  // 同館別名折疊(顯示層,不動資料):兩廳院戲劇院各種列名→國家戲劇院;臺中歌劇院含廳名→臺中國家歌劇院
+  function foldVenue(v){ if(!v) return v;
+    if(/國家戲劇院|国家戏剧院/.test(v)) return '國家戲劇院';
+    if(/[臺台]中國家歌劇院|台中国家歌剧院|National Taichung Theater/i.test(v)) return '臺中國家歌劇院';
+    return v; }
+  window.MMFoldVenue = foldVenue;
+  // 城市顯示統整(zh 介面):Taipei/台北→臺北 等官方「臺」字;en 介面保留英文
+  function foldCity(c){ if(!c) return c;
+    if((window.MM_HL||'zh-hant')==='en') return c;
+    if(/^(taipei|台北|臺北)/i.test(c)) return '臺北';
+    if(/^(taichung|台中|臺中)/i.test(c)) return '臺中';
+    if(/^(tainan|台南|臺南)/i.test(c)) return '臺南';
+    if(/^(kaohsiung|高雄)/i.test(c)) return '高雄';
+    return c; }
+  window.MMFoldCity = foldCity;
   function normCountry(c) { return CCNORM[c] || c || ''; }
 
   function safeUrl(u) {
@@ -549,7 +564,7 @@
         // → 洩漏訪客 IP/Referer,可被拿來當追蹤信標(牴觸本站不追蹤立場)。owner 自己的 me.html 不受此限。
         poster: resolvePoster(row), posterFull: resolvePoster(row), posterFit: 'cover', posterBg: null,
         date: partialDate(row.seen_date, prec), precision: prec, time: '',
-        venue: row.venue || '', city: row.city || '', country: normCountry(row.country),
+        venue: foldVenue(row.venue || ''), city: foldCity(row.city || ''), country: normCountry(row.country),
         lat: row.lat, lng: row.lng, seat: row.seat || '',
         price: (row.price != null ? String(row.price) : ''), cur: row.currency || '',
         rating: row.rating || 0, fav: !!row.fav, note: '', url: row.url || '', logged: false,   // fav 由 public_sightings RPC 帶出(add_fav.sql)
