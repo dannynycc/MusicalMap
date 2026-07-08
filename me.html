@@ -39,17 +39,19 @@ html[lang="zh-Hans"] body{--ui:'Inter','Noto Sans SC',sans-serif}  /* 簡中改�
 @media(max-width:560px){.lang-cur{display:none}}
 @media(max-width:560px){.lang-cur{display:none}}   /* 觸控友善:手機語言 pill ≥24px 高 */
 /* ===== 登入閘 ===== */
-#mev2gate{position:fixed;inset:0;z-index:5000;overflow-y:auto;background:var(--bg-mesh),radial-gradient(120% 90% at 50% 20%,var(--s1) 0%,var(--bg) 60%);color:var(--ink1,#fff);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:16px;text-align:center;padding:74px 24px 92px;font-family:var(--ui,system-ui,sans-serif)}
-/* 閘上方品牌列:登出/未登入時唯一的回站路,一定要有 */
-#gate-brand{position:absolute;top:0;left:0;height:56px;display:flex;align-items:center;gap:9px;padding:0 22px;font-family:var(--fr,Fraunces,serif);font-weight:900;font-size:19px;color:var(--ink1,#fff);text-decoration:none;z-index:2}
-.gate-nav{position:absolute;top:0;right:0;height:56px;display:flex;align-items:center;gap:14px;padding:0 22px;z-index:3}
-.gate-bk{font-family:var(--ui,system-ui,sans-serif);font-size:13px;font-weight:600;color:var(--ink2,#aaa);text-decoration:none;white-space:nowrap}
-.gate-bk:hover{color:var(--ink1,#fff)}
-#gate-brand img{width:auto;height:26px}
-#gate-brand b{color:var(--gold,#c9a85c)}
-#gate-brand span.bk{margin-left:auto;font-family:var(--ui,system-ui,sans-serif);font-size:13px;font-weight:600;color:var(--ink2,#aaa)}
-#gate-brand:hover span.bk{color:var(--ink1,#fff)}
-#gate-logo{width:auto;height:72px;filter:drop-shadow(0 8px 26px rgba(0,0,0,.5))}
+/* 閘門版面對齊 privacy 頁:無斜線紋理、平底色;58px topbar、內容置中、footer 走文件流(不覆蓋內容、不產生假捲軸) */
+#mev2gate{position:fixed;inset:0;z-index:5000;overflow-y:auto;background:var(--bg);color:var(--ink1,#222);display:flex;flex-direction:column;font-family:var(--ui,system-ui,sans-serif)}
+.gate-top{flex:none;height:58px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;background:var(--bg);border-bottom:1px solid var(--hair2,rgba(128,128,128,.25));box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.gt-brand{display:flex;align-items:center;gap:9px;text-decoration:none;color:var(--ink1,#222)}
+.gt-brand img{width:auto;height:26px}
+.gt-brand .logo{font-family:var(--fr,Fraunces,serif);font-weight:900;font-size:19px}
+.gt-brand .logo b{color:var(--gold,#a07a34)}
+.gt-tag{font-size:13px;color:var(--ink3,#8a8a8a);margin-left:6px}
+@media(max-width:760px){.gt-tag{display:none}}
+.gt-nav{display:flex;align-items:center;gap:14px}
+.gt-nav>a{color:var(--ink1,#222);text-decoration:none;font-size:14px;font-weight:600;white-space:nowrap}
+.gate-main{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;text-align:center;padding:40px 24px}
+#gate-logo{width:auto;height:72px;filter:drop-shadow(0 8px 22px rgba(0,0,0,.22))}
 #gate-msg{font-size:20px;font-weight:800;line-height:1.55;max-width:440px}
 /* Google 品牌規範按鈕:白底+官方四色 G。display 規則寫在 [hidden] 之外,
    不寫進 inline style — inline display 會蓋掉 hidden 屬性(之前「載入中」還亮著按鈕的 bug 根源) */
@@ -75,13 +77,12 @@ html[lang="zh-Hans"] body{--ui:'Inter','Noto Sans SC',sans-serif}  /* 簡中改�
 .ge-msg.err{color:#b3261e}
 .ge-msg[hidden]{display:none}
 .ge-msg .ge-resend{background:none;border:none;color:var(--gold,#a07a34);font-weight:700;cursor:pointer;font-size:12.5px;padding:0;text-decoration:underline;font-family:inherit}
-/* 閘門頁尾:對齊主站 site-foot(品牌句左、連結右、金色連結、頂部髮絲線) */
-.gate-foot{position:absolute;left:0;right:0;bottom:0;border-top:1px solid var(--hair2);background:var(--bg-mesh),var(--bg);padding:15px 24px;text-align:left}
-.gate-foot .sf-in{max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px;font-size:13px;color:var(--ink2)}
+/* 閘門頁尾:規格照 privacy 的 .site-foot(文件流最底、border-top、padding 30px 0 44px、1080 置中) */
+.gate-foot{flex:none;border-top:1px solid var(--hair2,rgba(128,128,128,.25));background:var(--bg);padding:30px 0 44px;text-align:left;color:var(--ink2);font-size:14px}
+.gate-foot .sf-in{max-width:1080px;margin:0 auto;padding:0 26px;display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px}
 .gate-foot .sp{flex:1}
 .gate-foot a{color:var(--gold);text-decoration:none;font-weight:600;white-space:nowrap}
 .gate-foot a:hover{text-decoration:underline}
-@media(max-width:560px){.gate-foot{position:static;margin-top:24px}#mev2gate{padding-bottom:40px}}
 </style>
 <!-- i18n:登入頁,語言記在 localStorage(與主站共用 mm_lang);不載 js/i18n.js(會與 mm-strings 搶 data-i18n) -->
 <script>window.MM_USE_LANG_PREF=true;</script>
@@ -92,15 +93,19 @@ if(!v){var nl=(navigator.language||'').toLowerCase();v=nl.indexOf('zh')===0?((nl
 if(v==='zh-hans'){document.write('<scr'+'ipt src="https://cdn.jsdelivr.net/npm/opencc-js@1.3.1/dist/umd/t2cn.js" integrity="sha384-P/OaFUnOIAgMkLxsXIAaP6WO3Wm09591cGX5bHbW4eCOeDxH9L8U3aWYf4cE4SYl" crossorigin="anonymous"><\/scr'+'ipt>');
 document.write('<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet" />');/* 簡體字 TC 字型沒有→混排忽粗忽細,補 SC */}
 }catch(e){}})();</script>
-<script src="js/mm-strings.js?v=235"></script>
+<script src="js/mm-strings.js?v=236"></script>
 <script src="js/mm-acct-menu.js?v=227"></script>
 <!-- Google Analytics(GA4 G-GC07MYC1MY;訪客來源/行為分析,同一 ID 涵蓋主站與 my. 網域(報表以 hostname 區分);不加 SRI:gtag.js 由 Google 滾動更新,釘 hash 會靜默斷統計;隱私揭露見 privacy §1/§3) --><script async src="https://www.googletagmanager.com/gtag/js?id=G-GC07MYC1MY"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-GC07MYC1MY');</script>
 </head>
 <body>
 <!-- 登入閘：預設蓋住，等 Supabase 驗證後 JS 決定顯示登入/同步中/隱藏 -->
 <div id="mev2gate">
-  <a id="gate-brand" href="https://themusicalmap.com/"><img src="logo.svg" alt="" /><span>Musical<b>Map</b></span></a>
-  <div class="gate-nav"><div class="lang-switch" role="group" aria-label="Language / 語言"><button type="button" class="lang-trigger" aria-haspopup="true" aria-expanded="false" aria-label="選擇語言 / Select language"><svg class="lang-globe" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 2.5 15 0 18M12 3c-2.5 2.5-2.5 15 0 18M4.5 7.5c4.5 2.5 10.5 2.5 15 0M4.5 16.5c4.5-2.5 10.5-2.5 15 0"/></svg><span class="lang-cur">繁中</span><svg class="lang-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8l7 7 7-7"/></svg></button><div class="lang-pop" role="menu" hidden><a class="lang-opt" role="menuitem" data-hl-link="zh-hant" href="?" lang="zh-Hant" hreflang="zh-Hant"><span>繁體中文</span><svg class="lang-tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12l5 5L20 6"/></svg></a><a class="lang-opt" role="menuitem" data-hl-link="zh-hans" href="?hl=zh-hans" lang="zh-Hans" hreflang="zh-Hans"><span>简体中文</span><svg class="lang-tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12l5 5L20 6"/></svg></a><a class="lang-opt" role="menuitem" data-hl-link="en" href="?hl=en" lang="en" hreflang="en"><span>English</span><svg class="lang-tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12l5 5L20 6"/></svg></a></div></div><a class="gate-bk" href="https://themusicalmap.com/" data-i18n="nav_map">地圖首頁</a></div>
+  <!-- 閘門 topbar:規格照 privacy #topbar(品牌+tagline 左、語言/地圖首頁/怎麼使用 右) -->
+  <div class="gate-top">
+    <a class="gt-brand" href="https://themusicalmap.com/"><img src="logo.svg" alt="" /><span class="logo">Musical<b>Map</b></span><span class="gt-tag" data-i18n="legal_tagline">此刻全球正在上演的音樂劇</span></a>
+    <nav class="gt-nav"><div class="lang-switch" role="group" aria-label="Language / 語言"><button type="button" class="lang-trigger" aria-haspopup="true" aria-expanded="false" aria-label="選擇語言 / Select language"><svg class="lang-globe" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 2.5 15 0 18M12 3c-2.5 2.5-2.5 15 0 18M4.5 7.5c4.5 2.5 10.5 2.5 15 0M4.5 16.5c4.5-2.5 10.5-2.5 15 0"/></svg><span class="lang-cur">繁中</span><svg class="lang-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8l7 7 7-7"/></svg></button><div class="lang-pop" role="menu" hidden><a class="lang-opt" role="menuitem" data-hl-link="zh-hant" href="?" lang="zh-Hant" hreflang="zh-Hant"><span>繁體中文</span><svg class="lang-tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12l5 5L20 6"/></svg></a><a class="lang-opt" role="menuitem" data-hl-link="zh-hans" href="?hl=zh-hans" lang="zh-Hans" hreflang="zh-Hans"><span>简体中文</span><svg class="lang-tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12l5 5L20 6"/></svg></a><a class="lang-opt" role="menuitem" data-hl-link="en" href="?hl=en" lang="en" hreflang="en"><span>English</span><svg class="lang-tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12l5 5L20 6"/></svg></a></div></div><a href="https://themusicalmap.com/" data-i18n="nav_map">地圖首頁</a><a href="https://themusicalmap.com/guide" data-i18n="nav_guide">怎麼使用</a></nav>
+  </div>
+  <div class="gate-main">
   <img id="gate-logo" src="logo.svg" alt="MusicalMap" />
   <!-- gate-msg 由 JS(showGate)動態設,不掛 data-i18n(否則 apply() 會蓋回 Loading) -->
   <div id="gate-msg">載入中…</div>
@@ -108,11 +113,13 @@ document.write('<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+S
     <svg width="20" height="20" viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
     <span data-i18n="gate_login">使用 Google 登入</span>
   </button>
+  <!-- 隱私說明緊接在 Google 按鈕正下方(使用者指示) -->
+  <div id="gate-sub" hidden></div>
   <!-- Email OTP 登入:給收不到/用不了 Google 的使用者(如中國網路環境)。流程=寄 6 位數驗證碼→輸入→verifyOtp;
        成功後走與 Google 相同的 onAuthStateChange→onSignedIn,首次登入 onboarding(取名)照常。 -->
   <div id="gate-email" hidden>
     <div class="gate-or"><span data-i18n="gate_or">或</span></div>
-    <div class="ge-lead" data-i18n="gate_email_lead">無法使用 Google？用 Email 收驗證碼登入：</div>
+    <div class="ge-lead" data-i18n="gate_email_lead">用 Email 收驗證碼登入：</div>
     <div class="ge-row">
       <input id="ge-mail" type="email" autocomplete="email" inputmode="email" placeholder="你的 Email" data-i18n-ph="gate_email_ph" />
       <button id="ge-send" type="button" data-i18n="gate_email_send">傳送驗證碼</button>
@@ -123,7 +130,7 @@ document.write('<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+S
     </div>
     <div class="ge-msg" id="ge-msg" hidden></div>
   </div>
-  <div id="gate-sub" hidden></div>
+  </div>
   <footer class="gate-foot"><div class="sf-in">
     <span data-i18n="how_footer">MusicalMap — 全球音樂劇即時地圖，與你的音樂劇護照。</span>
     <span class="sp"></span>
