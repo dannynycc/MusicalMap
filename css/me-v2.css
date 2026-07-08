@@ -82,13 +82,13 @@ header{position:sticky;top:0;z-index:1100;background:var(--bg);border-bottom:1px
 .theme-pick button[aria-pressed=true]{box-shadow:0 0 0 2px var(--bg),0 0 0 3.5px var(--gold)}
 .bar{height:58px;display:flex;align-items:center;justify-content:space-between}
 header .wrap{max-width:none}  /* 對齊主頁 #topbar:全寬 padding 24px,頭像/導覽貼齊右緣(1320 容器會讓它比主頁靠內) */
-.brand{font-family:var(--fr);font-weight:900;font-size:19px;letter-spacing:-.5px;text-decoration:none;display:inline-flex;align-items:center;gap:9px}
+.brand{font-family:var(--fr);font-weight:900;font-size:20px;letter-spacing:-.5px;text-decoration:none;display:inline-flex;align-items:center;gap:9px}  /* 20px+34px logo=主頁實測值(19/27 偏小被抓) */
 .brand .tagline{font-family:var(--ui);font-weight:400;font-size:13px;color:var(--ink3);margin-left:6px;letter-spacing:0}
 @media(max-width:760px){.brand .tagline{display:none}}
 /* nav-cta:主站黑底 pill 規格(u.html 訪客 CTA/一致視覺) */
 .nav .nav-cta{display:inline-flex;align-items:center;gap:6px;white-space:nowrap;background:var(--ink1);color:var(--bg);text-decoration:none;font-size:14px;font-weight:600;padding:9px 16px;border-radius:999px;transition:background .12s,transform .12s}
 .nav .nav-cta:hover{background:#000;color:#f4efe4;transform:translateY(-1px)}
-.brand-logo{width:27px;height:27px;object-fit:contain}
+.brand-logo{width:auto;height:34px;object-fit:contain}
 .brand b{color:var(--gold)}
 .nav{display:flex;gap:14px;align-items:center;font-size:14px}
 .nav a{opacity:.8;text-decoration:none}.nav a:hover{opacity:1;color:var(--gold)}
