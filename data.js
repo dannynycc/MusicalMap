@@ -108,16 +108,18 @@ window.MM = (function () {
   function mo(d){ return parseInt(d.slice(5,7),10)-1; }
 
   // ── 已看(過去) vs 即將(未來)：用「場次日期 vs 今天」判定，不改 DB schema ──
-  // 部分日期採「該粒度最後一天」判定：年精度 YYYY→年底、月精度 YYYY-MM→月底、
-  // 日精度直接比。當天(=今天)算「已看」。
+  // 部分日期用「該粒度最早一天」判「即將」：年精度 YYYY→1/1、月精度 YYYY-MM→當月1日、日精度直接比。
+  // 「即將上演」= 整段日期都晚於今天才算;個人足跡預設記的是看過的,只填「當年年份」(如今年 2026)=已看,
+  // 不再被誤標即將(舊版補到期末 YYYY-12-31→當年只填年份被判未來=bug)。當天(=今天)算「已看」。
+  // 未來年份(如 2027→2027-01-01)仍正確判為即將;當年未來月份(如 2026-11→2026-11-01)也仍是即將。
   function todayStr(){ const d=new Date(); const p=n=>String(n).padStart(2,'0');
     return d.getFullYear()+'-'+p(d.getMonth()+1)+'-'+p(d.getDate()); }
-  function normDate(d){ if(!d)return '';
-    if(d.length===4)return d+'-12-31';
-    if(d.length===7){const[y,m]=d.split('-');return y+'-'+m+'-'+String(new Date(+y,+m,0).getDate()).padStart(2,'0');}
+  function normStart(d){ if(!d)return '';
+    if(d.length===4)return d+'-01-01';
+    if(d.length===7)return d+'-01';
     return d; }
-  function isPast(d){ return !!d && normDate(d) <= todayStr(); }
-  function isFuture(d){ return !!d && normDate(d) > todayStr(); }
+  function isFuture(d){ return !!d && normStart(d) > todayStr(); }   // 最早可能日都晚於今天才算即將
+  function isPast(d){ return !!d && !isFuture(d); }                  // 有日期且非未來=已看
   function pick(which){ return which==='past'?shows.filter(s=>isPast(s.date)) : which==='future'?shows.filter(s=>isFuture(s.date)) : shows; }
 
   function countBy(key, list){
