@@ -75,7 +75,7 @@ a{color:inherit} ::selection{background:rgba(201,168,92,.32);color:#fff}
 .tnum{font-variant-numeric:tabular-nums}
 
 /* header */
-header{position:sticky;top:0;z-index:1100;background:color-mix(in srgb,var(--bg) 80%,transparent);backdrop-filter:saturate(1.4) blur(12px);border-bottom:1px solid var(--hair)}
+header{position:sticky;top:0;z-index:1100;background:var(--bg-mesh),var(--bg);border-bottom:1px solid var(--hair)}  /* 不透明:半透明+blur 會讓底下捲過的彩色海報/圖表透上來染 header(淺色主題尤醜);順帶去 backdrop-filter 卡頓 */
 .theme-pick{display:flex;gap:6px;align-items:center;margin-right:4px}
 .theme-pick button{width:19px;height:19px;border-radius:50%;border:1px solid var(--hair2);background:var(--sw);cursor:pointer;padding:0;transition:transform .15s var(--ease-out)}
 .theme-pick button:hover{transform:scale(1.18)}
@@ -156,7 +156,7 @@ header{position:sticky;top:0;z-index:1100;background:color-mix(in srgb,var(--bg)
 
 /* ===== control bar ===== */
 .controls{position:sticky;top:60px;z-index:1000;margin:20px 0 0;padding:12px 0;
-  background:linear-gradient(180deg,var(--bg) 60%,transparent);backdrop-filter:blur(6px)}
+  background:var(--bg-mesh),var(--bg)}  /* 不透明:同 header,避免捲過的彩色內容透上來染這條篩選列 */
 .ctl-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
 .seg{display:inline-flex;background:var(--s1);border:1px solid var(--hair);border-radius:999px;padding:4px;position:relative}
 .seg button{position:relative;z-index:2;border:none;background:none;color:var(--ink2);font-family:inherit;font-weight:700;font-size:14px;

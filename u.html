@@ -26,7 +26,7 @@ var hl=q.get('hl');location.replace('https://my.themusicalmap.com/'+encodeURICom
 <script>/* no-flash: apply saved theme before CSS paints;預設 cream(對齊主站淡米黃)。
    一次性遷移:舊版 applyTheme 會把預設 midnight 自動寫進 localStorage,使既有使用者卡在深色;
    mm-theme-mig 未設時清一次 mm-theme,讓大家重新落到 cream 預設(之後仍尊重使用者用 picker 的選擇)。 */(function(){try{if(!localStorage.getItem('mm-theme-mig')){localStorage.removeItem('mm-theme');localStorage.setItem('mm-theme-mig','1');}var t=localStorage.getItem('mm-theme')||'cream';if(t==='neon'||t==='deco'){t='midnight';localStorage.setItem('mm-theme',t);}if(t!=='midnight')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
-<link rel="stylesheet" href="css/me-v2.css?v=264" /><!-- CSS cache-bust:與 me.html 同步,CF Pages .css max-age=14400 -->
+<link rel="stylesheet" href="css/me-v2.css?v=265" /><!-- CSS cache-bust:與 me.html 同步,CF Pages .css max-age=14400 -->
 <style>
 /* i18n:en 模式時 section 標題旁的英文小字(原本是中文標題的英文對照)會與主標重複 → 隱藏 */
 html[lang="en"] .sec h2 .zh{display:none}
@@ -67,12 +67,7 @@ document.write('<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+S
     <!-- 所有劇院入口暫藏(2026-07-03 指示;theatres.html 頁面保留可直達) <a href="https://themusicalmap.com/theatres" data-i18n="nav_theatres">所有劇院</a> -->
     <a href="https://themusicalmap.com/" data-i18n="nav_map">地圖首頁</a>
     <a href="https://themusicalmap.com/guide" data-i18n="nav_guide">怎麼使用</a>
-    <div class="theme-pick" id="themePick" role="group" aria-label="主題底色" data-i18n-aria="aria_theme">
-      <button data-th="midnight" title="午夜（暗）" data-i18n-title="th_midnight" style="--sw:#13182f"></button>
-      <button data-th="gallery" title="畫廊白（亮）" data-i18n-title="th_gallery" style="--sw:#f4f2ec"></button>
-      <button data-th="cream" title="節目單奶油（亮）" data-i18n-title="th_cream" style="--sw:#efe1c4"></button>
-      <!-- neon/deco 兩色已移除(2026-07-03 指示) -->
-    </div>
+    <!-- 主題選擇器移除:公開頁 nav 對齊主站(主站無 picker)+ 原本 u.html 缺 applyTheme handler 是死控件(v2.12.1) -->
     <a id="mine-link" class="nav-cta" href="https://my.themusicalmap.com/" data-i18n="nav_create" style="background:var(--gold,#c9a85c);border:1px solid var(--gold,#c9a85c);color:#1a1407;border-radius:999px;padding:6px 15px;font-size:13px;font-weight:800;text-decoration:none">＋ 建立你自己的</a>
   </nav>
 </div></header>
@@ -169,6 +164,13 @@ document.write('<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+S
   <div data-i18n="empty_title" style="font-size:23px;font-weight:900;font-family:var(--ui,system-ui,sans-serif);color:var(--ink1)">找不到這個公開頁</div>
   <div data-i18n="empty_sub" style="font-size:15px;color:var(--ink2);max-width:420px;line-height:1.6">這個收藏頁不存在，或擁有者尚未公開。</div>
   <a href="https://my.themusicalmap.com/" data-i18n="empty_cta" style="background:var(--gold,#c9a85c);color:#1a1407;border-radius:999px;padding:12px 22px;font-size:15px;font-weight:800;text-decoration:none">＋ 建立你自己的 My Musicals</a>
+  <div style="margin-top:30px;display:flex;flex-wrap:wrap;gap:14px;justify-content:center;font-size:13px">
+    <a href="https://themusicalmap.com/" data-i18n="nav_map" style="color:var(--gold);text-decoration:none">地圖首頁</a>
+    <a href="https://themusicalmap.com/guide" data-i18n="nav_guide" style="color:var(--gold);text-decoration:none">怎麼使用</a>
+    <a href="https://themusicalmap.com/about" data-i18n="nav_about" style="color:var(--gold);text-decoration:none">關於本站</a>
+    <a href="https://themusicalmap.com/privacy" data-i18n="nav_privacy" style="color:var(--gold);text-decoration:none">隱私權政策</a>
+    <a href="https://themusicalmap.com/terms" data-i18n="nav_terms" style="color:var(--gold);text-decoration:none">使用條款</a>
+  </div>
 </section>
 
 <!-- DETAIL MODAL -->
