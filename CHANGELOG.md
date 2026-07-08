@@ -11,6 +11,17 @@
 
 ---
 
+## [v2.12.6] - 2026-07-08 13:14
+### 劇院庫三修:歷史/改名/同名場館撈不到(使用者登錄舊觀劇找不到劇院)
+
+使用者登錄多年前的觀劇(紐約 Majestic 的歌劇魅影、倫敦 Queen's Theatre 的 Les Mis)在劇院選單找不到,被迫誤選錯的劇院(King's Theatre)。三個根因:
+
+- **① 距離去重誤刪相鄰劇院**:`gen_catalog.py` 對 discovered 場館用「距離 ≤55m 就去重」,但百老匯劇院擠在 44/45 街、彼此不到 55m——紐約 Majestic(緊鄰 St. James)被當重複剔掉。修:距離去重**同時要求名稱有共同識別字**(去掉 theatre/center 等通用字),不同名劇院不再誤併。catalog 5187→5361,找回 173 個被誤併的劇院(含紐約 Majestic)。
+- **② 改名場館的舊名搜不到**:倫敦 Queen's Theatre 2019 改名 Sondheim Theatre,庫裡只有現名。新增 `HIST_VENUES` 機制:額外加一筆「當年名字」entry + `former` 提示欄(座標用現址)。**選單顯示「Queen's Theatre — 現 Sondheim Theatre」提示讓人認得,但選了存的/海報牆呈現的是乾淨舊名「Queen's Theatre」**(忠於當年原味,不顯示提示)。me-input 新增 `venueFmt` 顯示提示、`MVENUE.former` 傳遞。
+- **③ 同名多城市帶錯座標**:「Majestic Theatre」多城市都有(紐約/San Antonio/Madison…),me-input 的 `MVENUE` 用名字當 key 只留第一個(San Antonio),選了會帶錯座標、甚至覆蓋使用者填的城市。新增 `MVENUE_CK`(名字+城市 精準查),`applyGeo`/`geoByVenue` 已填城市時優先用該城市座標消歧,且**城市已填就不覆蓋**。
+
+me-input 以 `?_=Date.now()` 載入免版號;venues_catalog.json 已重建(CI 每日重建亦沿用新 gen_catalog 邏輯)。
+
 ## [v2.12.5] - 2026-07-08 12:51
 ### 修 v2.12.4 地圖 cluster 元素被卸離不顯示的 bug
 

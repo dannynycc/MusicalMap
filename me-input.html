@@ -490,11 +490,12 @@ function startLog(){
 }
 
 // 從劇庫建城市/劇院資料庫，供手動新增自動補完＋帶出國家座標（手動劇也能上地圖）
-let MCITY=null, MVENUE=null;
+let MCITY=null, MVENUE=null, MVENUE_CK=null;
 function buildManualDB(){
-  if(MCITY)return;MCITY={};MVENUE={};
+  if(MCITY)return;MCITY={};MVENUE={};MVENUE_CK={};
   (window.MM_VENUES||[]).forEach(v=>{   // 正式版 5117 劇院（含中文名/台↔臺變體、座標）
-    if(v.name&&!MVENUE[v.name])MVENUE[v.name]={city:v.city||'',country:v.country||'',lat:v.lat,lng:v.lng,cur:curOf(v.country),_s:v.search||''};   // _s=catalog search 欄(簡體/日文/別名),供 combo 比對
+    if(v.name&&!MVENUE[v.name])MVENUE[v.name]={city:v.city||'',country:v.country||'',lat:v.lat,lng:v.lng,cur:curOf(v.country),_s:v.search||'',former:v.former||''};   // _s=catalog search 欄(簡體/日文/別名)供 combo 比對;former=舊名場館的現名提示(僅選單顯示,不入存的值)
+    if(v.name&&v.city){const kk=v.name+'|'+cnorm(v.city);if(!MVENUE_CK[kk])MVENUE_CK[kk]={country:v.country||'',lat:v.lat,lng:v.lng,cur:curOf(v.country),city:v.city};}  // 名字+城市精準查:同名多城市(Majestic 紐約/San Antonio…)靠已選城市消歧
     if(v.city&&!MCITY[v.city])MCITY[v.city]={country:v.country||'',lat:v.lat,lng:v.lng,cur:curOf(v.country)};  // 城市取該市第一個劇院的座標當代表
   });
   (window.MM_CITIES||[]).forEach(c=>{   // 補上沒有劇院的城市（無座標）
@@ -514,6 +515,8 @@ function cnorm(s){return (s||'').toLowerCase().normalize('NFKD').replace(/[̀-ͯ
 // 比對分數：完全相同3、包含2、字元為子序列1、不中0（子序列讓少打中間字也找得到）
 function comboMatch(q,item){const nq=cnorm(q);if(!nq)return 1;const ni=cnorm(item);if(ni===nq)return 3;if(ni.includes(nq))return 2;
   let i=0;for(const ch of nq){i=ni.indexOf(ch,i);if(i<0)return 0;i++;}return 1;}
+// 劇院下拉顯示:舊名場館附「— 現名」提示讓人認得(僅選單顯示);toInput/onpick 仍是乾淨名字,存的與海報牆呈現不含提示(忠於原味)
+function venueFmt(name){return (MVENUE&&MVENUE[name]&&MVENUE[name].former)?name+' — '+MVENUE[name].former:name;}
 // 自製下拉：黏在輸入框正下方、邊打邊 filter、鍵盤可選（取代原生 datalist/select 的爛體驗）
 // opts.fmt 自訂每列顯示、opts.toInput 選後填回輸入框的值、opts.onType 每次打字回呼（城市/劇院即時對地理用）
 function setupCombo(input,panel,getItems,onpick,opts){
@@ -578,7 +581,7 @@ function manualAdd(title,seed,onBack){
   t.oninput=e=>{draft.w.en=e.target.value;saveBtn.disabled=!e.target.value.trim();};
   function applyGeo(){
     const city=document.getElementById('mCity').value.trim(), venue=document.getElementById('mVenue').value.trim();
-    let hit = (venue&&MVENUE[venue]) || (city&&MCITY[city]) || null;
+    let hit = (venue&&city&&MVENUE_CK&&MVENUE_CK[venue+'|'+cnorm(city)]) || (venue&&MVENUE[venue]) || (city&&MCITY[city]) || null;   // 已選城市時,同名劇院優先用該城市的座標(Majestic 紐約 vs San Antonio)
     const g=document.getElementById('mGeo');
     if(hit){draft.p.country=hit.country;draft.p.lat=hit.lat;draft.p.lng=hit.lng;
       if(venue&&MVENUE[venue]&&MVENUE[venue].city&&!city){draft.p.city=MVENUE[venue].city;document.getElementById('mCity').value=MVENUE[venue].city;}
@@ -589,7 +592,7 @@ function manualAdd(title,seed,onBack){
   }
   // 城市/劇院自製下拉（黏輸入框下、邊打邊 filter、台↔臺正規化）
   setupCombo(document.getElementById('mCity'),document.getElementById('mCityPanel'),()=>Object.keys(MCITY),(v)=>{draft.p.city=v;applyGeo();});
-  setupCombo(document.getElementById('mVenue'),document.getElementById('mVenuePanel'),()=>Object.keys(MVENUE),(v)=>{draft.p.venue=v;applyGeo();},{searchOf:name=>(MVENUE[name]&&MVENUE[name]._s)||''});
+  setupCombo(document.getElementById('mVenue'),document.getElementById('mVenuePanel'),()=>Object.keys(MVENUE),(v)=>{draft.p.venue=v;applyGeo();},{searchOf:name=>(MVENUE[name]&&MVENUE[name]._s)||'',fmt:venueFmt});
   // 日期：年（必）月日（選填）→ 精度 year/month/day，讓星期・月份統計能算
   function applyDate(){const y=document.getElementById('mYear').value.trim(),mo=document.getElementById('mMonth').value,da=document.getElementById('mDay').value;
     if(!/^\d{4}$/.test(y)){draft.date=null;draft.precision='none';return;}
@@ -765,10 +768,11 @@ function renderDetail(){
     const noMsg=()=>{if(g)g.textContent=T('geo_no_coord');};
     function geoByCity(){const city=(cityEl.value||'').trim();draft.p.city=city;const hit=city&&MCITY[city];  // 改城市→用城市定位（不被舊劇院蓋掉）
       if(hit){draft.p.country=hit.country;draft.p.lat=hit.lat;draft.p.lng=hit.lng;okMsg(hit);}else noMsg();}
-    function geoByVenue(){const venue=(venueEl.value||'').trim();draft.p.venue=venue;const hit=venue&&MVENUE[venue];  // 改劇院→用劇院定位，並帶出該劇院的城市
-      if(hit){draft.p.country=hit.country;draft.p.lat=hit.lat;draft.p.lng=hit.lng;if(hit.city){draft.p.city=hit.city;cityEl.value=hit.city;}okMsg(hit);}else noMsg();}
+    function geoByVenue(){const venue=(venueEl.value||'').trim();draft.p.venue=venue;const city=(cityEl.value||'').trim();  // 改劇院→定位;同名多城市時優先用已填城市消歧
+      const hit=(venue&&city&&MVENUE_CK&&MVENUE_CK[venue+'|'+cnorm(city)])||(venue&&MVENUE[venue]);
+      if(hit){draft.p.country=hit.country;draft.p.lat=hit.lat;draft.p.lng=hit.lng;if(hit.city&&!city){draft.p.city=hit.city;cityEl.value=hit.city;}okMsg(hit);}else noMsg();}   // 城市已填就不覆蓋(免把紐約蓋成 San Antonio)
     if(cityEl){setupCombo(cityEl,document.getElementById('mCityPanel'),()=>Object.keys(MCITY),(v)=>{cityEl.value=v;geoByCity();});cityEl.addEventListener('input',geoByCity);}
-    if(venueEl){setupCombo(venueEl,document.getElementById('mVenuePanel'),()=>Object.keys(MVENUE),(v)=>{venueEl.value=v;geoByVenue();});venueEl.addEventListener('input',geoByVenue);}
+    if(venueEl){setupCombo(venueEl,document.getElementById('mVenuePanel'),()=>Object.keys(MVENUE),(v)=>{venueEl.value=v;geoByVenue();},{searchOf:name=>(MVENUE[name]&&MVENUE[name]._s)||'',fmt:venueFmt});venueEl.addEventListener('input',geoByVenue);}
   }
   const bk=document.getElementById('backToSearch');if(bk)bk.onclick=()=>{
     if(draft.editIndex==null&&w.prods&&w.prods.length>1)pickWork(w);   // 多製作→回版本清單（上一頁）

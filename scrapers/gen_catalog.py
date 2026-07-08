@@ -361,10 +361,17 @@ def main():
             en, native = v.get("en", ""), v.get("native", "")
             city, country = v.get("city", ""), v.get("country", "")
             nm = _clean(en or native).lower()
+            # 名稱的「識別字」(去掉 theatre/center 等通用字)——供距離去重時判斷是否真同一場館
+            _GENERIC = {"theatre","theater","center","centre","hall","opera","house","arts",
+                        "performing","the","playhouse","music","auditorium","stage","for","of","and"}
+            toks = [t for t in re.split(r"\W+", nm) if len(t) >= 4 and t not in _GENERIC]
             dup = None
             for u in idx.get(ckey(city), []):
+                # ①同名(子字串)才算重複;②距離 ≤55m 也要有共同識別字才算——否則百老匯那種
+                # 相鄰但不同名的劇院(Majestic vs St. James,<55m)會被誤併,歷史場館就撈不到。
                 if (len(nm) > 3 and nm in u["search"]) or \
-                   (isinstance(u.get("lat"), (int, float)) and _distm(v["lat"], v["lng"], u["lat"], u["lng"]) <= 55):
+                   (isinstance(u.get("lat"), (int, float)) and _distm(v["lat"], v["lng"], u["lat"], u["lng"]) <= 55
+                    and any(t in u["search"] for t in toks)):
                     dup = u; break
             blob = search_blob(en, native)
             if dup:
@@ -403,6 +410,23 @@ def main():
             venues.remove(v)
             alias_merged += 1
     print(f"  alias-merged {alias_merged} duplicate venue(s)")
+
+    # 歷史/舊名場館:改名或當年名字不同的知名場館,額外加一筆「當年名字」的 entry(座標用現址)。
+    # 讓使用者憑改名前的記憶搜得到(否則像倫敦 Queen's Theatre=Les Misérables 之家、2019 改名
+    # Sondheim Theatre,登錄 2010 觀劇搜「Queen's」會落空、誤選成別家)。`former` 欄=給選單顯示的
+    # 提示("現 Sondheim Theatre");**選了存的是乾淨舊名、海報牆不顯示提示**,忠於當年原味。
+    # (舊名, city, country, 提示, lat, lng)
+    HIST_VENUES = [
+        ("Queen's Theatre", "London", "UK", "現 Sondheim Theatre", 51.51268, -0.13046),
+    ]
+    hist_added = 0
+    for hname, hcity, hcountry, former, hlat, hlng in HIST_VENUES:
+        if any(hname.lower() == v["name"].lower() and hcity.lower() in ckey(v["city"]) for v in venues):
+            continue   # 同名已存在就不重複加
+        venues.append({"name": hname, "city": hcity, "country": hcountry, "lat": hlat, "lng": hlng,
+                       "search": search_blob(hname, ""), "former": former})
+        hist_added += 1
+    print(f"  + {hist_added} historical-name venue(s)")
 
     cities = sorted({(s.get("city"), s.get("country") or "") for s in shows if s.get("city")})
 
