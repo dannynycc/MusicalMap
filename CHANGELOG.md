@@ -11,6 +11,13 @@
 
 ---
 
+## [v2.12.2] - 2026-07-08 11:41
+### 修「加入音樂劇」輸入表單的主題殘留(紅色按鈕)
+
+- **`me-input.html`(新增/編輯表單,以 iframe 嵌在 me.html)有自己一套 inline 主題 CSS**,v2.12.0 改 `me-v2.css` cream 時沒同步到它——它的 `[data-theme="cream"]` 還是舊值(`--bg:#f4ebd9`+`--gold:#a23b2e` 紅),導致 iframe 讀共用 `mm-theme=cream` 時套出**紅色「加入」按鈕 + 舊米黃底**,與全站金色淡米黃不一致。
+- 修正:me-input 的 cream 對齊 `#f4efe4`+金 `#a07a34`+135° 斜線紋理;no-flash/applyTheme 預設 midnight→cream + 一次性 `mm-theme-mig`(與 me/u 共用 localStorage)。iframe 以 `?_=Date.now()` 載入(永遠最新),免版號即生效。
+- 全站掃描確認無其他殘留舊 cream(`#a23b2e`/`#f4ebd9` 皆 0)。
+
 ## [v2.12.1] - 2026-07-08 11:24
 ### my. 頁面視覺瑕疵修正(登入後儀表板 + 公開頁,真瀏覽器實測)
 
