@@ -333,7 +333,8 @@
         if (sx < -0.02 || sx > 1.02 || sy < -0.02 || sy > 1.02) { p.el.style.display = 'none'; }
         else { p._sx = sx; p._sy = sy; vis.push(p); } });
       vis.sort((a, b) => b.n - a.n);                       // 場次多者當 cluster 錨點
-      const R = 44, used = new Set(), clusters = [];       // 螢幕距離 <R px 併群;放大自動散開
+      // R 隨 zoom 縮小;zoom 封頂(12)時不再併群(R=0),否則相近城市(台北/台中 ~22px)點到 max zoom 也永不展開=死胡同
+      const R = mapV.z >= 11.5 ? 0 : (mapV.z >= 6 ? 22 : 44), used = new Set(), clusters = [];
       vis.forEach(a => { if (used.has(a)) return; used.add(a); const mem = [a];
         vis.forEach(b => { if (used.has(b)) return; const dx = (a._sx - b._sx) * W, dy = (a._sy - b._sy) * H;
           if (dx * dx + dy * dy < R * R) { used.add(b); mem.push(b); } });
