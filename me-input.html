@@ -490,14 +490,18 @@ function startLog(){
 }
 
 // 從劇庫建城市/劇院資料庫，供手動新增自動補完＋帶出國家座標（手動劇也能上地圖）
-let MCITY=null, MVENUE=null, MVENUE_CK=null;
+let MCITY=null, MVENUE=null, MVENUE_CK=null, MVENUE_LIST=null, NAME_AMBIG=null;
 function buildManualDB(){
-  if(MCITY)return;MCITY={};MVENUE={};MVENUE_CK={};
-  (window.MM_VENUES||[]).forEach(v=>{   // 正式版 5117 劇院（含中文名/台↔臺變體、座標）
-    if(v.name&&!MVENUE[v.name])MVENUE[v.name]={city:v.city||'',country:v.country||'',lat:v.lat,lng:v.lng,cur:curOf(v.country),_s:v.search||'',former:v.former||''};   // _s=catalog search 欄(簡體/日文/別名)供 combo 比對;former=舊名場館的現名提示(僅選單顯示,不入存的值)
-    if(v.name&&v.city){const kk=v.name+'|'+cnorm(v.city);if(!MVENUE_CK[kk])MVENUE_CK[kk]={country:v.country||'',lat:v.lat,lng:v.lng,cur:curOf(v.country),city:v.city};}  // 名字+城市精準查:同名多城市(Majestic 紐約/San Antonio…)靠已選城市消歧
+  if(MCITY)return;MCITY={};MVENUE={};MVENUE_CK={};MVENUE_LIST=[];const _nc={};
+  (window.MM_VENUES||[]).forEach(v=>{   // 正式版 5300+ 劇院（含中文名/台↔臺變體、座標）
+    if(!v.name)return;
+    if(!MVENUE[v.name])MVENUE[v.name]={city:v.city||'',country:v.country||'',lat:v.lat,lng:v.lng,cur:curOf(v.country),_s:v.search||'',former:v.former||''};   // _s=catalog search 欄(簡體/日文/別名);former=舊名場館的現名提示
+    if(v.city){const kk=v.name+'|'+cnorm(v.city);if(!MVENUE_CK[kk])MVENUE_CK[kk]={country:v.country||'',lat:v.lat,lng:v.lng,cur:curOf(v.country),city:v.city};}  // 名字+城市精準查:同名多城市靠已選城市消歧
+    MVENUE_LIST.push({name:v.name,city:v.city||'',country:v.country||'',lat:v.lat,lng:v.lng,cur:curOf(v.country),_s:v.search||'',former:v.former||''});  // combo 用:全場館(同名多城市各自一筆,下拉標城市)
+    (_nc[v.name]=_nc[v.name]||new Set()).add(cnorm(v.city||''));
     if(v.city&&!MCITY[v.city])MCITY[v.city]={country:v.country||'',lat:v.lat,lng:v.lng,cur:curOf(v.country)};  // 城市取該市第一個劇院的座標當代表
   });
+  NAME_AMBIG=new Set(Object.keys(_nc).filter(n=>_nc[n].size>1));   // 出現在多個城市的劇院名→下拉要標城市消歧
   (window.MM_CITIES||[]).forEach(c=>{   // 補上沒有劇院的城市（無座標）
     if(c.city&&!MCITY[c.city])MCITY[c.city]={country:c.country||'',lat:undefined,lng:undefined,cur:curOf(c.country)};
   });
@@ -516,7 +520,12 @@ function cnorm(s){return (s||'').toLowerCase().normalize('NFKD').replace(/[̀-ͯ
 function comboMatch(q,item){const nq=cnorm(q);if(!nq)return 1;const ni=cnorm(item);if(ni===nq)return 3;if(ni.includes(nq))return 2;
   let i=0;for(const ch of nq){i=ni.indexOf(ch,i);if(i<0)return 0;i++;}return 1;}
 // 劇院下拉顯示:舊名場館附「— 現名」提示讓人認得(僅選單顯示);toInput/onpick 仍是乾淨名字,存的與海報牆呈現不含提示(忠於原味)
-function venueFmt(name){return (MVENUE&&MVENUE[name]&&MVENUE[name].former)?name+' — '+MVENUE[name].former:name;}
+function venueFmt(e){
+  if(typeof e==='string')e={name:e,city:(MVENUE&&MVENUE[e]&&MVENUE[e].city)||'',former:(MVENUE&&MVENUE[e]&&MVENUE[e].former)||''};
+  let s=e.name;
+  if(e.city)s+=' · '+e.city;       // 一律標城市讓人看得清是哪個(尤其同名多城市 Majestic · New York / · Dallas)
+  if(e.former)s+=' — '+e.former;    // 舊名→標現名提示
+  return s;}
 // 自製下拉：黏在輸入框正下方、邊打邊 filter、鍵盤可選（取代原生 datalist/select 的爛體驗）
 // opts.fmt 自訂每列顯示、opts.toInput 選後填回輸入框的值、opts.onType 每次打字回呼（城市/劇院即時對地理用）
 function setupCombo(input,panel,getItems,onpick,opts){
@@ -552,8 +561,8 @@ function manualAdd(title,seed,onBack){
     <div class="step"><div class="lbl">${T('mi_manual_input_lbl')}</div>
     <div class="fld"><span class="fl">${T('fld_title_req')}</span><input id="mTitle" value="${title.replace(/"/g,'&quot;')}" placeholder="${T('ph_title')}"/></div>
     <div class="row2">
-      <div class="fld"><span class="fl">${T('fld_city')}</span><div class="combo"><input id="mCity" autocomplete="off" placeholder="${T('ph_city')}"/><div class="combo-panel" id="mCityPanel" hidden></div></div></div>
       <div class="fld"><span class="fl">${T('fld_venue_opt')}</span><div class="combo"><input id="mVenue" autocomplete="off" placeholder="${T('ph_venue')}"/><div class="combo-panel" id="mVenuePanel" hidden></div></div></div>
+      <div class="fld"><span class="fl">${T('fld_city')}</span><div class="combo"><input id="mCity" autocomplete="off" placeholder="${T('ph_city')}"/><div class="combo-panel" id="mCityPanel" hidden></div></div></div>
     </div>
     <div class="fld"><span class="fl">${T('fld_date_opt')}</span>
       <div class="datesel">
@@ -592,7 +601,7 @@ function manualAdd(title,seed,onBack){
   }
   // 城市/劇院自製下拉（黏輸入框下、邊打邊 filter、台↔臺正規化）
   setupCombo(document.getElementById('mCity'),document.getElementById('mCityPanel'),()=>Object.keys(MCITY),(v)=>{draft.p.city=v;applyGeo();});
-  setupCombo(document.getElementById('mVenue'),document.getElementById('mVenuePanel'),()=>Object.keys(MVENUE),(v)=>{draft.p.venue=v;applyGeo();},{searchOf:name=>(MVENUE[name]&&MVENUE[name]._s)||'',fmt:venueFmt});
+  setupCombo(document.getElementById('mVenue'),document.getElementById('mVenuePanel'),()=>MVENUE_LIST,(e)=>{draft.p.venue=e.name;const ci=document.getElementById('mCity');ci.value=e.city;draft.p.city=e.city;applyGeo();},{searchOf:e=>((e._s||'')+' '+(e.city||'')),fmt:venueFmt,toInput:e=>e.name});
   // 日期：年（必）月日（選填）→ 精度 year/month/day，讓星期・月份統計能算
   function applyDate(){const y=document.getElementById('mYear').value.trim(),mo=document.getElementById('mMonth').value,da=document.getElementById('mDay').value;
     if(!/^\d{4}$/.test(y)){draft.date=null;draft.precision='none';return;}
@@ -705,8 +714,8 @@ function renderDetail(){
     ${draft.editIndex!=null?`<div class="step" id="editLoc">
       <div class="lbl">${T('venue_city')}<span class="opt">${T('edit_can_change')}</span></div>
       <div class="row2">
-        <div class="fld"><span class="fl">${T('fld_city')}</span><div class="combo"><input id="mCity" autocomplete="off" value="${(p.city||'').replace(/"/g,'&quot;')}" placeholder="${T('ph_city')}"/><div class="combo-panel" id="mCityPanel" hidden></div></div></div>
         <div class="fld"><span class="fl">${T('fld_venue')}</span><div class="combo"><input id="mVenue" autocomplete="off" value="${(p.venue||'').replace(/"/g,'&quot;')}" placeholder="${T('ph_venue')}"/><div class="combo-panel" id="mVenuePanel" hidden></div></div></div>
+        <div class="fld"><span class="fl">${T('fld_city')}</span><div class="combo"><input id="mCity" autocomplete="off" value="${(p.city||'').replace(/"/g,'&quot;')}" placeholder="${T('ph_city')}"/><div class="combo-panel" id="mCityPanel" hidden></div></div></div>
       </div>
       <p class="mgeo" id="mGeo">${T('geo_rematch')}</p>
     </div>`:''}
@@ -772,7 +781,7 @@ function renderDetail(){
       const hit=(venue&&city&&MVENUE_CK&&MVENUE_CK[venue+'|'+cnorm(city)])||(venue&&MVENUE[venue]);
       if(hit){draft.p.country=hit.country;draft.p.lat=hit.lat;draft.p.lng=hit.lng;if(hit.city&&!city){draft.p.city=hit.city;cityEl.value=hit.city;}okMsg(hit);}else noMsg();}   // 城市已填就不覆蓋(免把紐約蓋成 San Antonio)
     if(cityEl){setupCombo(cityEl,document.getElementById('mCityPanel'),()=>Object.keys(MCITY),(v)=>{cityEl.value=v;geoByCity();});cityEl.addEventListener('input',geoByCity);}
-    if(venueEl){setupCombo(venueEl,document.getElementById('mVenuePanel'),()=>Object.keys(MVENUE),(v)=>{venueEl.value=v;geoByVenue();},{searchOf:name=>(MVENUE[name]&&MVENUE[name]._s)||'',fmt:venueFmt});venueEl.addEventListener('input',geoByVenue);}
+    if(venueEl){setupCombo(venueEl,document.getElementById('mVenuePanel'),()=>MVENUE_LIST,(e)=>{venueEl.value=e.name;if(e.city){cityEl.value=e.city;draft.p.city=e.city;}geoByVenue();},{searchOf:e=>((e._s||'')+' '+(e.city||'')),fmt:venueFmt,toInput:e=>e.name});venueEl.addEventListener('input',geoByVenue);}
   }
   const bk=document.getElementById('backToSearch');if(bk)bk.onclick=()=>{
     if(draft.editIndex==null&&w.prods&&w.prods.length>1)pickWork(w);   // 多製作→回版本清單（上一頁）
