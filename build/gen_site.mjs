@@ -41,13 +41,24 @@ function hreflangLinks() {
 
 function jsonLd(variant, shows) {
   const v = VARIANTS[variant];
-  const items = shows.slice(0, JSONLD_CAP).map((s, i) => {
+  // 只有具備 startDate 的場次才吐成 Event —— schema.org Event 的 startDate 是必填,缺了會被
+  // Google Search Console 判為重大錯誤(功能無法進搜尋)。缺 start_date 的場次仍在地圖上,只是
+  // 不進結構化資料。同時補上 Google 建議的欄位(eventStatus/image/description/offers),都用真資料;
+  // performer(卡司)無來源資料故不填(不捏造)。
+  const items = shows.filter((s) => s.start_date).slice(0, JSONLD_CAP).map((s, i) => {
+    const ticket = (s.ticket_links && s.ticket_links[0] && s.ticket_links[0].url) || s.ticket_url || undefined;
+    const where = s.venue ? `${s.venue}${s.city ? ", " + s.city : ""}` : (s.city || "");
     const ev = {
-      "@type": "Event", "position": i + 1, "name": s.title,
-      "startDate": s.start_date || undefined, "endDate": s.end_date || undefined,
+      "@type": "Event", "name": s.title,
+      "startDate": s.start_date, "endDate": s.end_date || undefined,
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
       "location": { "@type": "Place", "name": s.venue || s.city,
         "address": { "@type": "PostalAddress", "addressLocality": s.city, "addressCountry": s.country } },
-      "url": (s.ticket_links && s.ticket_links[0] && s.ticket_links[0].url) || s.ticket_url || undefined,
+      "image": s.image || undefined,
+      "description": where ? `${s.title} — live stage musical at ${where}.` : `${s.title} — live stage musical.`,
+      "offers": ticket ? { "@type": "Offer", "url": ticket, "availability": "https://schema.org/InStock", "validFrom": s.start_date } : undefined,
+      "url": ticket,
     };
     return { "@type": "ListItem", "position": i + 1, "item": ev };
   });

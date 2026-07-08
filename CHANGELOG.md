@@ -11,6 +11,17 @@
 
 ---
 
+## [v2.12.8] - 2026-07-08 15:04
+### 修 Google Search Console「活動結構化資料」錯誤(startDate 缺失 + 補建議欄位)
+
+GSC 回報 themusicalmap.com 的 Event 結構化資料有問題:重大=`startDate` 缺失(功能無法進搜尋),非重大=`eventStatus`/`offers`/`description`/`image`/`performer` 缺。根因在 `gen_site.mjs` 的 JSON-LD:每場 show 都吐成 Event,但 `startDate: s.start_date || undefined`——1750 場中有 13 場沒有 start_date,`undefined` 被 `JSON.stringify` 丟掉→Event 無 startDate(schema.org 必填)。
+
+- **重大修正**:缺 `start_date` 的場次**不吐成 Event**(`shows.filter(s=>s.start_date)`);仍在地圖上,只是不進結構化資料。三語 index.html 的 300 個 Event 現在 startDate 覆蓋率 100%(0 缺失)。
+- **補 Google 建議欄位**(皆用真資料):`eventStatus`=EventScheduled、`eventAttendanceMode`=OfflineEventAttendanceMode、`image`=海報、`description`=「劇名 — live stage musical at 劇院, 城市」、`offers`=購票連結(url+availability+validFrom)。覆蓋率全部 300/300。
+- **不填 `performer`**:無卡司/演出團體來源資料,不捏造(此為非重大建議項)。
+- 移除 Event 內非法的 `position` 欄位(位置由外層 ListItem 表示)。
+- 重建 en/zh-hant/zh-hans/index.html;GSC 需數日重新檢索才會清除告警。
+
 ## [v2.12.7] - 2026-07-08 13:20
 ### 手動新增/編輯:劇院下拉顯示城市 + 欄位左右對調
 
