@@ -11,6 +11,11 @@
 
 ---
 
+## [v2.12.16] - 2026-07-08 17:26
+### 清掉 v2.12.15 bug 期間被寫入深色的訪客(一次性 re-migration)
+
+v2.12.15 修了 fallback,但 **bug 存活期間(今日 ~12:00–17:25)看過公開頁的訪客 localStorage 已被寫入 midnight 且 mig=1**——修好後他們仍永久卡深色。u.html 無主題選擇器,訪客身上的 midnight 幾乎必是 bug 產物 → no-flash 加 mig=2 一次性清除:stored=midnight 就移除、回到 cream 預設。已知副作用(接受):曾在 me.html 手選 midnight 的登入者,訪自己公開頁會被重設一次(可再選回)。
+
 ## [v2.12.15] - 2026-07-08 17:22
 ### 修「新訪客看公開頁仍是深色」(u-view 預設主題覆蓋 bug)
 

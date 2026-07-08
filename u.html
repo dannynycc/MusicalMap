@@ -26,7 +26,10 @@ var hl=q.get('hl');location.replace('https://my.themusicalmap.com/'+encodeURICom
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,900;1,9..144,500&family=Inter:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;700;900&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet" />
 <script>/* no-flash: apply saved theme before CSS paints;預設 cream(對齊主站淡米黃)。
    一次性遷移:舊版 applyTheme 會把預設 midnight 自動寫進 localStorage,使既有使用者卡在深色;
-   mm-theme-mig 未設時清一次 mm-theme,讓大家重新落到 cream 預設(之後仍尊重使用者用 picker 的選擇)。 */(function(){try{if(!localStorage.getItem('mm-theme-mig')){localStorage.removeItem('mm-theme');localStorage.setItem('mm-theme-mig','1');}var t=localStorage.getItem('mm-theme')||'cream';if(t==='neon'||t==='deco'){t='midnight';localStorage.setItem('mm-theme',t);}if(t!=='midnight')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+   mm-theme-mig 未設時清一次 mm-theme,讓大家重新落到 cream 預設(之後仍尊重使用者用 picker 的選擇)。 */(function(){try{if(!localStorage.getItem('mm-theme-mig')){localStorage.removeItem('mm-theme');localStorage.setItem('mm-theme-mig','1');}
+/* mig=2:v2.12.15 前 u-view fallback bug 會把 midnight 寫進訪客 localStorage(u.html 無 picker,訪客身上的 midnight 幾乎必是 bug 產物)→一次性清掉,讓卡深色的訪客回到 cream。副作用:曾在 me.html 手選 midnight 的登入者訪自己公開頁會被重設一次(可再選回)。 */
+if(localStorage.getItem('mm-theme-mig')!=='2'){if(localStorage.getItem('mm-theme')==='midnight')localStorage.removeItem('mm-theme');localStorage.setItem('mm-theme-mig','2');}
+var t=localStorage.getItem('mm-theme')||'cream';if(t==='neon'||t==='deco'){t='midnight';localStorage.setItem('mm-theme',t);}if(t!=='midnight')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
 <link rel="stylesheet" href="css/me-v2.css?v=267" /><!-- CSS cache-bust:與 me.html 同步,CF Pages .css max-age=14400 -->
 <style>
 /* i18n:en 模式時 section 標題旁的英文小字(原本是中文標題的英文對照)會與主標重複 → 隱藏 */
