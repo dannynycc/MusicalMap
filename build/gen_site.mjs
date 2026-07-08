@@ -174,10 +174,10 @@ function page(variant, shows) {
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="${SITE}/og-image.png" />
   <!-- favicon: Google 只收正方形且 ≥48px 的圖示;舊版指 logo.png(122×200 直式)會被拒→退回地球圖示 -->
-  <link rel="icon" href="${BASE}favicon.ico" sizes="any" />
-  <link rel="icon" type="image/png" sizes="96x96" href="${BASE}favicon-96.png" />
-  <link rel="icon" type="image/png" sizes="192x192" href="${BASE}favicon-192.png" />
-  <link rel="apple-touch-icon" href="${BASE}apple-touch-icon.png" />
+  <link rel="icon" href="${BASE}favicon.ico?v=2" sizes="any" />
+  <link rel="icon" type="image/png" sizes="96x96" href="${BASE}favicon-96.png?v=2" />
+  <link rel="icon" type="image/png" sizes="192x192" href="${BASE}favicon-192.png?v=2" />
+  <link rel="apple-touch-icon" href="${BASE}apple-touch-icon.png?v=2" />
   ${jsonLd(variant, shows)}
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -266,9 +266,9 @@ function rootRouter() {
   <title>MusicalMap — Live World Map of Musicals 全球音樂劇即時地圖</title>
   <meta name="description" content="An interactive map of musicals playing around the world right now — Broadway, West End, tours and original productions. 全球正在上演的音樂劇即時地圖。" />
   <link rel="canonical" href="${SITE}/" />
-  <link rel="icon" href="${BASE}favicon.ico" sizes="any" />
-  <link rel="icon" type="image/png" sizes="96x96" href="${BASE}favicon-96.png" />
-  <link rel="apple-touch-icon" href="${BASE}apple-touch-icon.png" />
+  <link rel="icon" href="${BASE}favicon.ico?v=2" sizes="any" />
+  <link rel="icon" type="image/png" sizes="96x96" href="${BASE}favicon-96.png?v=2" />
+  <link rel="apple-touch-icon" href="${BASE}apple-touch-icon.png?v=2" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="MusicalMap — Live World Map of Musicals" />
   <meta property="og:description" content="Musicals playing around the world right now — Broadway, West End, tours and original productions across 40+ countries." />

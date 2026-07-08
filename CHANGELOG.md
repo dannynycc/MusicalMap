@@ -11,6 +11,15 @@
 
 ---
 
+## [v2.12.9] - 2026-07-08 16:01
+### Favicon 改深藍底填滿版(解決 Google 上小又糊)
+
+舊 favicon 是高瘦的釘形 logo + 左右透明留白,在 Google 搜尋/瀏覽器分頁那種小尺寸下,logo 縮成中間細細一條,又小又糊。改成使用者選定的 **D 深藍底方案**:金色高音譜號釘置於深藍(#1a2a4a)圓角底、emblem 佔 80% 高、圓角半徑 22%,**填滿整個方形圖示空間**,16→512px 都清楚。
+
+- 重產全套:`favicon.ico`(16/32/48 多尺寸,小尺寸用滿版方形較清楚)、`favicon-48/96/192/512.png`(深藍圓角底)、`apple-touch-icon.png`(180、**滿版深藍方形**,因 iOS 自己會圓角)。
+- 全站 favicon 宣告加 `?v=2` 破除瀏覽器/CDN 快取(檔名沒變,不加版本號會服務舊圖):gen_site.mjs(變體頁+root)+ 9 個獨立頁(me/u/me-input/guide/about/theatres/settings/privacy/terms)。
+- 產生腳本 `make_favicon_final.py`(playwright 渲染 logo.svg → PIL 合成),1024 master 降階,邊緣最乾淨。
+
 ## [v2.12.8] - 2026-07-08 15:04
 ### 修 Google Search Console「活動結構化資料」錯誤(startDate 缺失 + 補建議欄位)
 
