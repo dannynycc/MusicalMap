@@ -1104,7 +1104,7 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
   const gate=document.getElementById('mev2gate'), gmsg=document.getElementById('gate-msg'), glogin=document.getElementById('gate-login');
   // 閘門顯示時鎖 body 捲動:背後的儀表板內容仍在文件流,不鎖的話瀏覽器會出現「捲了沒反應」的假捲軸
   const showGate=(msg,login)=>{gate.style.display='flex';document.body.style.overflow='hidden';gmsg.innerHTML=msg;glogin.hidden=!login;var ge=document.getElementById('gate-email');if(ge)ge.hidden=!login;var gs=document.getElementById('gate-sub');if(gs)gs.hidden=true;var gp=document.getElementById('gate-preview');if(gp)gp.hidden=!login;};
-  const hideGate=()=>{gate.style.display='none';document.body.style.overflow='';};
+  const hideGate=()=>{gate.style.display='none';document.body.style.overflow='auto';};  // 必須明確 'auto':設 '' 會落回 CSS 的 body{overflow:hidden} 預設鎖→登入後整頁不能捲(踩過)
   // 日期：demo 部分日期(date+precision) ↔ sightings 完整 seen_date
   function fullDate(date,prec){if(!date)return null;const d=String(date);
     if(prec==='year'||d.length===4)return d.slice(0,4)+'-01-01';
