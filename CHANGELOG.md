@@ -11,6 +11,11 @@
 
 ---
 
+## [v2.12.14] - 2026-07-08 17:14
+### me-input.html 補 noindex(SEO 巡檢)
+
+巡檢 sitemap/robots/索引控制時發現:me.html 與 settings 都有 `noindex`,但 **me-input.html(iframe 專用表單殼)沒有**——它是隻給 iframe 載入的半成品頁,登入 gate 又是 client-side,搜尋引擎可能把裸表單收進索引。補上 `<meta name="robots" content="noindex">`。同輪確認:sitemap 8 URL 全 200、robots.txt 健康、公開頁 u.html 正確可索引、社群分享 og 個人化正常。
+
 ## [v2.12.13] - 2026-07-08 17:04
 ### 修 cluster 死胡同:相近城市點到 max zoom 也展不開
 
