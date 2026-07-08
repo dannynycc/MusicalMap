@@ -252,6 +252,10 @@ def clean_title(t):
     t = re.sub(r"^(?:Magatzem d['’]Ars)\s*:\s*", "", t, flags=re.I)
     # 「{Show} Presented By {社區劇團}」尾綴(TM 常見)→ 取劇名本體
     t = re.sub(r"\s+Presented By\s+.{2,60}$", "", t, flags=re.I)
+    # 「{作品名}, The {人物} Musical」逗號功能性副標(bio-jukebox 慣例):
+    # "A Beautiful Noise, The Neil Diamond Musical" → "A Beautiful Noise"。
+    # 要求 The 與 Musical 之間 ≥2 個詞(人名)——「Diana, The Musical」這種真標題不動。
+    t = re.sub(r",\s*The\s+(?:[\w.'’-]+\s+){2,4}Musical\s*$", "", t)
     # 引號包劇名+行銷尾巴 → 取引號內:"'I GRIEVE DIFFERENT' written by and starring Harper Jones"
     # → "I Grieve Different"。只在「開頭就是引號劇名 + written/created/... by」時觸發,避免誤傷真副標。
     m = re.match(r"^['‘“\"](.+?)['’”\"]\s+(?:written|created|conceived|directed)\s+by\b.*$", t, flags=re.I)

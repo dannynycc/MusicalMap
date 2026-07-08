@@ -11,6 +11,11 @@
 
 ---
 
+## [v2.14.1] - 2026-07-08 22:45
+### A Beautiful Noise:逗號功能性副標通用規則
+
+「A Beautiful Noise, The Neil Diamond Musical」的「, The Neil Diamond Musical」是行銷用功能性副標,非法定作品名(bio-jukebox 慣例,同 MJ 之於 MJ the Musical)。分組本就已合併(_norm 折尾綴),但 KC 巡演站彈窗仍露長名(tour_name)→ clean_title 加通用規則:逗號接「The {≥2詞人名} Musical」尾綴才砍(「Diana, The Musical」零中間詞不動,回歸驗證);KC 列 title+tour_name 熱修。全庫僅此 1 筆受影響。
+
 ## [v2.14.0] - 2026-07-08 22:42
 ### 全庫認真掃(1740 筆):10 類髒資料掃描器+22 處標題修正+19 筆補座標
 
