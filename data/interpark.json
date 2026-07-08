@@ -1,8 +1,10 @@
 {
   "meta": {
     "source": "world.nol.com (Interpark)",
-    "count": 23,
+    "count": 25,
     "dropped_no_coords": [
+      "HAEMONGGA @ Yes 24 Stage 1",
+      "［Subtitle］ Musical  The Brothers Karamazov @ NOL THEATER DAEHAKRO WOORI INVESTMENT SECURITIES HALL",
       "［Hell’s Kitchen］ @ GS Arts Center",
       "The Origin of Species @ Dongduk Women's University Performing Arts Cente, Cotton Hall",
       "Park Yeol @ LINK ARTS CENTER DREAM 4 Hall",
@@ -22,6 +24,40 @@
     ]
   },
   "shows": [
+    {
+      "id": "ip-26007764",
+      "title": "LEE EUN GYEOL 30th Anniversary  ONE OF ONE",
+      "type": "tour",
+      "venue": "Sejong Center",
+      "city": "Seoul",
+      "country": "South Korea",
+      "lat": 37.5725,
+      "lng": 126.976,
+      "start_date": "2026-08-22",
+      "end_date": "2026-09-06",
+      "ticket_url": "https://world.nol.com/en/ticket/places/25000462/products/26007764",
+      "image": "https://ticketimage.interpark.com/Play/image/large/26/26007764_p.gif",
+      "tour_name": null,
+      "verified": true,
+      "source": "world.nol.com (Interpark)"
+    },
+    {
+      "id": "ip-26007416",
+      "title": "Frozen",
+      "type": "tour",
+      "venue": "Charlotte Theater",
+      "city": "Seoul",
+      "country": "South Korea",
+      "lat": 37.5111,
+      "lng": 127.0996,
+      "start_date": "2026-08-13",
+      "end_date": "2027-03-01",
+      "ticket_url": "https://world.nol.com/en/ticket/places/21000636/products/26007416",
+      "image": "https://ticketimage.interpark.com/Play/image/large/26/26007416_p.gif",
+      "tour_name": null,
+      "verified": true,
+      "source": "world.nol.com (Interpark)"
+    },
     {
       "id": "ip-26007442",
       "title": "Dear Evan Hansen",
