@@ -11,6 +11,14 @@
 
 ---
 
+## [v2.14.9] - 2026-07-09 02:09
+### 文件全面校新(MD freshness 掃描)
+
+掃 README+docs/*.md 全部 13 份,修過時內容:
+- README:登入方式補 **Email 驗證碼**(v2.13,原只寫 Google);me/u 視覺段補 v2.13.4–v2.14.8 的閘門/頁首頁尾對齊、跨網域語言傳遞、場館/城市統整;檔案表新增 `scrapers/audit_catalog.py`(11 類髒資料掃描器)與 `js/mm-xlang.js`。
+- docs/SETUP_ACCOUNTS.md:補 Email OTP 設定要點(custom SMTP 前內建只寄團隊成員、MAILER_OTP_LENGTH=6)。
+- 其餘(WORKFLOW/SOURCES/DESIGN_*/SECURITY_AUDIT/CI 頻率)核對無過時。
+
 ## [v2.14.8] - 2026-07-09 02:00
 ### my. 頁品牌字對齊主頁實測值
 

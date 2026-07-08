@@ -1,5 +1,7 @@
 # 帳號功能設定指南(Supabase + Google 登入)
 
+> **v2.13 起另有 Email 驗證碼登入**:Supabase Auth Email OTP+custom SMTP(Zoho,contact@themusicalmap.com)、6 位數碼模板(MAILER_OTP_LENGTH=6)。注意:**沒接 custom SMTP 前,內建 SMTP 只寄給專案團隊成員**;模板要接了 custom SMTP 才能編輯。
+
 > 一次性設定,約 10 分鐘。完成後把 **2 個值** 貼給我:`Project URL` 與 `anon public key`。
 > anon key 是公開金鑰(放前端用),真正的保護靠資料庫的 Row Level Security,外洩無妨。
 
