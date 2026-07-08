@@ -17,7 +17,7 @@ if(location.hostname==='themusicalmap.com'||location.hostname==='www.themusicalm
 <script>/* no-flash: apply saved theme before CSS paints;預設 cream(對齊主站淡米黃)。
    一次性遷移:舊版 applyTheme 會把預設 midnight 自動寫進 localStorage,使既有使用者卡在深色;
    mm-theme-mig 未設時清一次 mm-theme,讓大家重新落到 cream 預設(之後仍尊重使用者用 picker 的選擇)。 */(function(){try{if(!localStorage.getItem('mm-theme-mig')){localStorage.removeItem('mm-theme');localStorage.setItem('mm-theme-mig','1');}var t=localStorage.getItem('mm-theme')||'cream';if(t==='neon'||t==='deco'){t='midnight';localStorage.setItem('mm-theme',t);}if(t!=='midnight')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
-<link rel="stylesheet" href="css/me-v2.css?v=266" /><!-- CSS 也要 cache-bust:CF Pages 對 .css 出 max-age=14400,不掛 ?v 改版後最多 4hr 拿舊樣式 -->
+<link rel="stylesheet" href="css/me-v2.css?v=267" /><!-- CSS 也要 cache-bust:CF Pages 對 .css 出 max-age=14400,不掛 ?v 改版後最多 4hr 拿舊樣式 -->
 <style>
 html[lang="en"] .sec h2 .zh{display:none}   /* en 模式:section 標題旁的英文小字與主標重複 → 隱藏 */
 html[lang="zh-Hans"] body{--ui:'Inter','Noto Sans SC',sans-serif}  /* 簡中改用 SC 字型,避免混排忽粗忽細 */
@@ -527,25 +527,47 @@ function placePins(){
   });
   positionPins();
 }
+// 地圖 pin:重疊的城市併成一個 cluster(圈圈+總場次,標籤「N 城市」),點擊放大展開;放大分開後自動變回個別城市(比照主頁 Leaflet cluster 的體驗,但此圖自繪故自實作)。
+let CLUSTER_POOL=[];
 function positionPins(){
-  PINS.forEach(p=>{const[sx,sy]=tf(p.px,p.py);
-    if(sx<-0.01||sx>1.01||sy<-0.01||sy>1.01){p.el.style.display='none';}
-    else{p.el.style.display='';p.el.style.left=sx*100+'%';p.el.style.top=sy*100+'%';}});
-  try{declutterLabels();}catch(e){}   // 防碰撞是增強,出錯絕不可拖垮地圖 render
-}
-// 標籤防碰撞:量每個標籤實際 bounding box,場次多的城市優先保留標籤;會與已保留標籤重疊者隱藏標籤(marker 數字仍在、hover 顯示)。縮放/平移每次重跑,放大分開後自動恢復。
-function declutterLabels(){
   const host=document.getElementById('pins');if(!host)return;
-  const vis=PINS.filter(p=>p.el.style.display!=='none').sort((a,b)=>b.n-a.n);
-  vis.forEach(p=>p.el.classList.remove('lbl-off'));
-  const base=host.getBoundingClientRect(),kept=[];
-  vis.forEach(p=>{
-    const lbl=p.el.querySelector('.lbl');if(!lbl)return;
-    const r=lbl.getBoundingClientRect();
-    const box={x:r.left-base.left,y:r.top-base.top,w:r.width,h:r.height};
-    const hit=kept.some(b=>box.x<b.x+b.w+2&&box.x+box.w+2>b.x&&box.y<b.y+b.h+2&&box.y+box.h+2>b.y);
-    if(hit)p.el.classList.add('lbl-off');else kept.push(box);
+  const W=host.clientWidth||600,H=host.clientHeight||375;
+  const vis=[];
+  PINS.forEach(p=>{const[sx,sy]=tf(p.px,p.py);
+    if(sx<-0.02||sx>1.02||sy<-0.02||sy>1.02){p.el.style.display='none';}
+    else{p._sx=sx;p._sy=sy;vis.push(p);}});
+  vis.sort((a,b)=>b.n-a.n);                          // 場次多者當 cluster 錨點
+  const R=44,used=new Set(),clusters=[];             // 螢幕距離 <R px 就併群;放大後距離拉開自動散開
+  vis.forEach(a=>{if(used.has(a))return;used.add(a);const mem=[a];
+    vis.forEach(b=>{if(used.has(b))return;const dx=(a._sx-b._sx)*W,dy=(a._sy-b._sy)*H;
+      if(dx*dx+dy*dy<R*R){used.add(b);mem.push(b);}});
+    clusters.push(mem);});
+  CLUSTER_POOL.forEach(e=>e.style.display='none');
+  const singles=[];let ci=0;
+  clusters.forEach(mem=>{
+    if(mem.length===1){const p=mem[0];p.el.style.display='';p.el.classList.remove('lbl-off');
+      p.el.style.left=p._sx*100+'%';p.el.style.top=p._sy*100+'%';singles.push(p);return;}
+    mem.forEach(p=>p.el.style.display='none');
+    let cx=0,cy=0,bx=0,by=0,sum=0;mem.forEach(p=>{cx+=p._sx;cy+=p._sy;bx+=p.px;by+=p.py;sum+=p.n;});
+    const k=mem.length;cx/=k;cy/=k;bx/=k;by/=k;
+    let el=CLUSTER_POOL[ci];
+    if(!el){el=document.createElement('button');el.className='pin pin-cluster';host.appendChild(el);CLUSTER_POOL[ci]=el;}
+    el.style.display='';el.style.left=cx*100+'%';el.style.top=cy*100+'%';
+    const sz=18+Math.sqrt(sum)*5.2, word=document.documentElement.lang==='en'?(k+' cities'):(k+' 城市');
+    el.innerHTML=`<span class="glow" style="width:${sz*2.2}px;height:${sz*2.2}px"></span><span class="core" style="width:${sz}px;height:${sz}px">${sum}</span><span class="lbl">${word}</span>`;
+    el.setAttribute('aria-label',word+'，共 '+sum+' 場，點擊放大');
+    el.onclick=()=>{const nz=Math.min(12,Math.max(mapV.z*2.4,2.6));mapV.z=nz;mapV.x=bx-0.5/nz;mapV.y=by-0.5/nz;clampV();renderMap();};
+    ci++;
   });
+  try{declutterSingleLabels(singles,host);}catch(e){}   // 剩下的單一城市若標籤仍互撞,收尾隱藏被遮者(marker+hover 名)
+}
+function declutterSingleLabels(singles,host){
+  singles.sort((a,b)=>b.n-a.n);
+  const base=host.getBoundingClientRect(),kept=[];
+  singles.forEach(p=>{const lbl=p.el.querySelector('.lbl');if(!lbl)return;
+    const r=lbl.getBoundingClientRect();const box={x:r.left-base.left,y:r.top-base.top,w:r.width,h:r.height};
+    const hit=kept.some(b=>box.x<b.x+b.w+2&&box.x+box.w+2>b.x&&box.y<b.y+b.h+2&&box.y+box.h+2>b.y);
+    if(hit)p.el.classList.add('lbl-off');else kept.push(box);});
 }
 function buildCityList(){
   const el=document.getElementById('citylist');
