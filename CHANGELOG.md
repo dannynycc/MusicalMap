@@ -11,6 +11,12 @@
 
 ---
 
+## [v2.12.11] - 2026-07-08 16:47
+### Favicon 恢復透明 SVG 原樣(撤深藍底)+ 修 Google 搜尋顯示網址而非站名
+
+- **Favicon 撤深藍底**:使用者反饋 v2.12.9 的深藍底把網頁分頁 logo 也變了;恢復**透明底原 SVG 樣貌**,但保留修正——正方形畫布、emblem 96% 填滿、1024 master 高解析(解決最初「比例不對/解析度低」)。重產 favicon.ico(16/32/48)/favicon-48/96/192/512.png/apple-touch-icon.png,全站 `?v=3` 破快取,並全站加 `<link rel="icon" type="image/svg+xml" href="/logo.svg">`(支援的瀏覽器直接用向量,最清晰)。
+- **修 Google 顯示「themusicalmap.com」而非「MusicalMap」**:Google 站名(site name)讀**首頁 root** 的 WebSite 結構化資料 + og:site_name;先前只有 /en/ 等變體頁有 JSON-LD、root 完全沒有、全站也無 og:site_name → Google 退回顯示網域。root router 加 Organization+WebSite JSON-LD(同 @id 錨定)、全部頁面加 `og:site_name=MusicalMap`。Google 端生效需等重新檢索(數天~數週,無法立即)。
+
 ## [v2.12.10] - 2026-07-08 16:34
 ### 修「只填當年年份的已看場次被誤標『即將上演』」
 

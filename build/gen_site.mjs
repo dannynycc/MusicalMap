@@ -164,6 +164,7 @@ function page(variant, shows) {
   <link rel="canonical" href="${SITE}/${variant}/" />
   ${hreflangLinks()}
   <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="MusicalMap" />
   <meta property="og:title" content="${esc(v.label)}" />
   <meta property="og:description" content="${esc(v.desc)}" />
   <meta property="og:url" content="${SITE}/${variant}/" />
@@ -174,10 +175,11 @@ function page(variant, shows) {
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="${SITE}/og-image.png" />
   <!-- favicon: Google 只收正方形且 ≥48px 的圖示;舊版指 logo.png(122×200 直式)會被拒→退回地球圖示 -->
-  <link rel="icon" href="${BASE}favicon.ico?v=2" sizes="any" />
-  <link rel="icon" type="image/png" sizes="96x96" href="${BASE}favicon-96.png?v=2" />
-  <link rel="icon" type="image/png" sizes="192x192" href="${BASE}favicon-192.png?v=2" />
-  <link rel="apple-touch-icon" href="${BASE}apple-touch-icon.png?v=2" />
+  <link rel="icon" href="${BASE}favicon.ico?v=3" sizes="any" />
+  <link rel="icon" type="image/svg+xml" href="${BASE}logo.svg" />
+  <link rel="icon" type="image/png" sizes="96x96" href="${BASE}favicon-96.png?v=3" />
+  <link rel="icon" type="image/png" sizes="192x192" href="${BASE}favicon-192.png?v=3" />
+  <link rel="apple-touch-icon" href="${BASE}apple-touch-icon.png?v=3" />
   ${jsonLd(variant, shows)}
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -266,10 +268,12 @@ function rootRouter() {
   <title>MusicalMap — Live World Map of Musicals 全球音樂劇即時地圖</title>
   <meta name="description" content="An interactive map of musicals playing around the world right now — Broadway, West End, tours and original productions. 全球正在上演的音樂劇即時地圖。" />
   <link rel="canonical" href="${SITE}/" />
-  <link rel="icon" href="${BASE}favicon.ico?v=2" sizes="any" />
-  <link rel="icon" type="image/png" sizes="96x96" href="${BASE}favicon-96.png?v=2" />
-  <link rel="apple-touch-icon" href="${BASE}apple-touch-icon.png?v=2" />
+  <link rel="icon" href="${BASE}favicon.ico?v=3" sizes="any" />
+  <link rel="icon" type="image/svg+xml" href="${BASE}logo.svg" />
+  <link rel="icon" type="image/png" sizes="96x96" href="${BASE}favicon-96.png?v=3" />
+  <link rel="apple-touch-icon" href="${BASE}apple-touch-icon.png?v=3" />
   <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="MusicalMap" />
   <meta property="og:title" content="MusicalMap — Live World Map of Musicals" />
   <meta property="og:description" content="Musicals playing around the world right now — Broadway, West End, tours and original productions across 40+ countries." />
   <meta property="og:url" content="${SITE}/" />
@@ -278,6 +282,10 @@ function rootRouter() {
   <meta property="og:image:height" content="630" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="${SITE}/og-image.png" />
+  <!-- Google「網站名稱」(搜尋結果顯示 MusicalMap 而非網址)要求首頁(root)有 WebSite 結構化資料
+       +og:site_name;先前只有 /en/ 等變體頁有、root 沒有 → Google 退回顯示網域。 -->
+  <script type="application/ld+json">${JSON.stringify({ "@context": "https://schema.org", "@type": "Organization", "@id": `${SITE}/#organization`, "name": "MusicalMap", "alternateName": ["The Musical Map", "themusicalmap"], "url": `${SITE}/`, "logo": `${SITE}/favicon-512.png` })}</script>
+  <script type="application/ld+json">${JSON.stringify({ "@context": "https://schema.org", "@type": "WebSite", "@id": `${SITE}/#website`, "name": "MusicalMap", "alternateName": ["The Musical Map", "themusicalmap"], "url": `${SITE}/`, "publisher": { "@id": `${SITE}/#organization` } })}</script>
   ${hreflangLinks()}
   <script>
     (function () {
