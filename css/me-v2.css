@@ -81,6 +81,7 @@ header{position:sticky;top:0;z-index:1100;background:var(--bg);border-bottom:1px
 .theme-pick button:hover{transform:scale(1.18)}
 .theme-pick button[aria-pressed=true]{box-shadow:0 0 0 2px var(--bg),0 0 0 3.5px var(--gold)}
 .bar{height:58px;display:flex;align-items:center;justify-content:space-between}
+header .wrap{max-width:none}  /* 對齊主頁 #topbar:全寬 padding 24px,頭像/導覽貼齊右緣(1320 容器會讓它比主頁靠內) */
 .brand{font-family:var(--fr);font-weight:900;font-size:19px;letter-spacing:-.5px;text-decoration:none;display:inline-flex;align-items:center;gap:9px}
 .brand .tagline{font-family:var(--ui);font-weight:400;font-size:13px;color:var(--ink3);margin-left:6px;letter-spacing:0}
 @media(max-width:760px){.brand .tagline{display:none}}
