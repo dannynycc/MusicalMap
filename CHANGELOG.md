@@ -11,6 +11,11 @@
 
 ---
 
+## [v2.13.6] - 2026-07-08 21:48
+### 修劇名提取:整句行銷文案被當劇名(使用者抓到)
+
+Ticketmaster 列名「'I GRIEVE DIFFERENT' written by and starring Harper Jones」整句被當劇名入庫(側欄顯示整句、彈窗顯示「Harper Jones」)。正式劇名=**I Grieve Different**(Harper Jones 自編自演獨角戲)。三層修:①`clean_title` 加通用規則——開頭為引號劇名+written/created/conceived/directed by 時取引號內、全大寫轉首字大寫(單測驗證不誤傷「JCS starring Sam Ryder」「Two Strangers (Carry a Cake…)」);②overrides.json 對該 id 保險覆蓋 title+group;③現有 shows.json+三語 variants 熱修+重建頁面。
+
 ## [v2.13.5] - 2026-07-08 21:43
 ### 閘門捲軸真兇二連修
 

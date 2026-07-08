@@ -230,6 +230,13 @@ def clean_title(t):
     # ("Lyric Theatre of Oklahoma presents Annie", "Ford's Theatre presents: Come
     # From Away") and "{Company} production of {Show}" ("NYT production of …").
     t = re.sub(r"^.{0,70}?\b(?:presents|production of)\b\s*:?\s+", "", t, flags=re.I)
+    # 引號包劇名+行銷尾巴 → 取引號內:"'I GRIEVE DIFFERENT' written by and starring Harper Jones"
+    # → "I Grieve Different"。只在「開頭就是引號劇名 + written/created/... by」時觸發,避免誤傷真副標。
+    m = re.match(r"^['‘“\"](.+?)['’”\"]\s+(?:written|created|conceived|directed)\s+by\b.*$", t, flags=re.I)
+    if m:
+        t = m.group(1).strip()
+        if t.isupper():  # TM 常全大寫;逐字 capitalize(不用 .title(),它會把 I'll 弄成 I'Ll)
+            t = " ".join(w.capitalize() for w in t.split())
     prev = None
     while prev != t:
         prev = t
