@@ -285,7 +285,7 @@
       gate_secure: 'Secure sign-in with your Google account. We only read your name, email and avatar (the avatar appears only in your own signed-in menu, never on public pages) — we never post anything on your behalf.',
       gate_or: 'or', gate_email_lead: 'Can\'t use Google? Sign in with an email code:',
       gate_email_ph: 'Your email', gate_email_send: 'Send code', gate_email_sending: 'Sending…',
-      gate_email_sent: 'Sign-in email sent to {email} (check spam too). If it contains a 6-digit code, enter it below; if it's a sign-in link, just click the link.',
+      gate_email_sent: 'Sign-in email sent to {email} (check spam too). If it contains a 6-digit code, enter it below; if it is a sign-in link, just click the link.',
       gate_email_code_ph: '6-digit code', gate_email_verify: 'Verify & sign in', gate_email_verifying: 'Verifying…',
       gate_email_resend: 'Resend code', gate_email_invalid: 'Please enter a valid email.',
       gate_email_send_fail: 'Failed to send: {msg}', gate_email_bad_code: 'Wrong or expired code — try again or resend.',
