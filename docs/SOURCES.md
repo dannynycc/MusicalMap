@@ -42,6 +42,7 @@
 | **南非**(Oliver!) | webtickets.co.za(Mamma Mia 由 Ticketmaster.co.za 自動抓,非 manual) | Oliver!(開普敦 Artscape + 約堡 Teatro Montecasino,2026-12→2027-03) | 2026-06-15 |
 | **新加坡**(SISTIC/SRT/MBS) | sistic.com.sg、srt.com.sg、marinabaysands.com(MBS=Akamai HTTP2 擋;SISTIC 有官方 API「STIX」但 production 需 Bearer 授權,用戶無法取得→維持手填) | 4 齣到 2027:Legally Blonde(Esplanade)、Jesus Christ Superstar、Cats、Moulin Rouge!(以上 Sands Theatre) | 2026-06-15 |
 | **葡萄牙** | bol.pt(JSON-LD,已有 `portugal.py` 自動抓) | Evita @ Capitólio Lisboa | 2026-06-15 |
+| **德國波鴻**(Starlight Express) | starlight-express.info、售票 atgtickets.de(德國 ATG,未接自動來源) | 星光快車 1988– 專用劇場 Starlight Express Theater 常設(open-end),全球最長跑之一;OSM 實查座標;哨兵劇目之一 | 2026-07-09 |
 | 各劇巡演段(雜) | 官網/票務 | Les Mis Arena(RAH/Radio City)、Miss Saigon(UK 巡演)、Beetlejuice(澳)、Chicago(東京/大阪/杜拜)、SIX(澳)、Heathers(坎培拉)、Les Mis Arena 等 | 2026-06-15 |
 
 > **海報**:反爬 CDN(Sympla 等)的海報 hotlink 會 403/破圖 → 下載 rehost 到 `posters/`(同源)。國際知名劇缺圖則借資料庫同劇現有海報。手填劇新鮮度由 `scrapers/audit_manual.py`(CI)守門。
