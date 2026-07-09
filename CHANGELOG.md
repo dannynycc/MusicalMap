@@ -11,6 +11,10 @@
 
 ---
 
+## [v2.15.1] - 2026-07-09 11:25
+### 文件 — Google OAuth 品牌驗證核准入檔
+- Google 核准信(07-09 10:57):專案 755937688446(musicalmap-499207)品牌驗證通過。真瀏覽器實測:同意畫面顯示 MusicalMap logo+「繼續使用『MusicalMap』」,supabase.co 字樣消失。SETUP_ACCOUNTS.md 該節標注已解決(走方法 A),保留核准信提醒:改 scope/consent screen 設定要重新送驗。
+
 ## [v2.15.0] - 2026-07-09 11:02
 ### 新功能 — about/guide/privacy/terms 拆三語靜態變體(根治中文搜尋出現英文標題)
 - **問題**:這 4 頁是單一網址靠 client-side 換字,Googlebot 用英文環境渲染 → 中文搜尋出現英文標題+「翻譯這個網頁」,且搜尋結果網址尾巴混雜(首頁 zh-hant、內容頁 about/guide)。

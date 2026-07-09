@@ -55,6 +55,8 @@
 
 ## Google 登入品牌顯示（同意畫面顯示 supabase.co 的問題）
 
+> ✅ **已解決(2026-07-09)**:Google OAuth 品牌驗證**核准**(專案 755937688446 / musicalmap-499207,核准信 2026-07-09 10:57)。真瀏覽器實測同意畫面已顯示 MusicalMap logo+「繼續使用『MusicalMap』」+隱私/條款連結掛 MusicalMap,不再顯示 supabase.co。注意核准信提醒:**新增 scope 或改動 OAuth consent screen 設定都要重新送驗**;Project Owner/Editor 帳號要保持最新。以下原因分析與三方案留作歷史記錄(最終走方法 A,redirect_uri 仍在 supabase.co 但品牌驗證過了)。
+
 **現象**：點「用 Google 登入」時,Google 畫面顯示「登入 `gtuvrhdvwjlvneispcuq.supabase.co`」「繼續使用 …supabase.co」,看起來像詐騙。
 
 **確定原因（2026-07-02 web 查證,官方雙方確認）**：
