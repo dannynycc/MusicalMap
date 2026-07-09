@@ -99,9 +99,14 @@ function jsonLd(variant, shows) {
 // From; else blank. Keeps the prerendered SEO list consistent with what humans see.
 function runLabel(s, variant) {
   const t = new Date(); t.setHours(0, 0, 0, 0);
-  const f = (iso) => { const [y, m, d] = iso.split("-").map(Number); return y === t.getFullYear() ? `${m}/${d}` : `${y}/${m}/${d}`; };
   const en = variant === "en";
+  // en 用月名(Jul 8):數字 7/8 對美式讀者可能讀成 Aug 7;與 js/app.js fmtD 同步(2026-07-09)
+  const MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  const f = (iso) => { const [y, m, d] = iso.split("-").map(Number);
+    if (en) return y === t.getFullYear() ? `${MON[m - 1]} ${d}` : `${MON[m - 1]} ${d}, ${y}`;
+    return y === t.getFullYear() ? `${m}/${d}` : `${y}/${m}/${d}`; };
   if (s.end_rolling) return en ? "Long-running" : (variant === "zh-hans" ? "长期上演" : "長期上演");
+  if (s.start_date && s.end_date) return `${f(s.start_date)} – ${f(s.end_date)}`;   // 期間限定:完整起迄(與 app.js fmtDates 同步)
   if (s.end_date) return (en ? "Until " : "至 ") + f(s.end_date);
   if (s.start_date && new Date(s.start_date) > t) return en ? "From " + f(s.start_date) : f(s.start_date) + " 起";
   return "";

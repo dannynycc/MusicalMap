@@ -327,10 +327,14 @@ body:not(.ready) #count { visibility: hidden; }
 .mm-popup .leaflet-popup-content-wrapper { background: var(--panel); color: var(--text); border-radius: 14px; box-shadow: var(--shadow); }
 .mm-popup .leaflet-popup-content { margin: 0; width: auto !important; }
 .mm-popup .leaflet-popup-tip { background: var(--panel); }
-/* poster fills the full card height; its width follows aspect ratio (no crop,
-   no blank space). The card widens to fit. */
+/* 海報自適應(2026-07-09 v2.19.0 使用者規格):原比例完整顯示、絕不裁切/變形;
+   欄位拉滿卡片高(跟著內文 stretch),海報置中,剩餘空間用同張海報的模糊放大版填滿
+   —— 修掉兩個問題:①內文比海報高時底部露出卡片底色的空白條;②橫式海報被 object-fit:cover 裁字。
+   模糊用 filter(靜態一張圖,非 backdrop-filter,無捲動效能疑慮)。 */
 .popup { display: flex; gap: 0; align-items: stretch; }
-.pop-poster { height: 340px; width: auto; max-width: 340px; object-fit: cover; display: block; border-radius: 14px 0 0 14px; }
+.pop-poster-wrap { position: relative; flex: none; display: flex; align-items: center; justify-content: center; overflow: hidden; border-radius: 14px 0 0 14px; }
+.pop-poster-bg { position: absolute; inset: -16px; background-size: cover; background-position: center; filter: blur(16px) brightness(.92) saturate(1.05); transform: scale(1.12); }
+.pop-poster { position: relative; display: block; max-height: 340px; max-width: 340px; width: auto; height: auto; }
 /* DEFINITE width (set inline by tile count in popupHtml) — never fit-content: Leaflet
    measures the popup to size the white wrapper, and fit-content made it under-measure →
    text+tiles overflowed the box. border-box keeps poster(≤340)+body(≤380) within maxWidth. */
@@ -481,7 +485,9 @@ body:not(.ready) #count { visibility: hidden; }
   /* 關閉鈕:sheet 右上角、圓形深底、觸控友善(原本 Leaflet 定位在移到 body 後會跑掉) */
   .mm-popup .leaflet-popup-close-button { position: absolute !important; top: 8px; right: 10px; width: 34px; height: 34px; font-size: 24px; line-height: 32px; text-align: center; background: rgba(0,0,0,.42); color: #fff; border-radius: 50%; z-index: 3; }
   .popup { flex-direction: column; }
-  .pop-poster { height: auto; width: 100%; max-width: 100%; max-height: 24vh; border-radius: 0; }
+  /* 手機 bottom-sheet:海報帶橫向滿版,原比例置中(≤24vh),左右餘白由模糊底填 */
+  .pop-poster-wrap { border-radius: 0; width: 100%; }
+  .pop-poster { height: auto; width: auto; max-width: 100%; max-height: 24vh; }
   .pop-body { width: 100% !important; align-self: stretch; padding: 14px 16px 18px; }
   .mm-popup .leaflet-popup-content { max-height: 66vh; overflow-y: auto; -webkit-overflow-scrolling: touch; overscroll-behavior: contain; margin: 0; }
   .p-title { font-size: 17px; }

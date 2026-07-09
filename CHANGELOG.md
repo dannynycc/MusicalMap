@@ -11,6 +11,15 @@
 
 ---
 
+## [v2.19.0] - 2026-07-09 17:16
+### 資料品質總體檢 第一波(使用者發起;雙 agent 稽核+逐項修復)
+- **分類誤標 7 筆全修**(使用者抓到如蝶翩翩標「台灣」):works.json 補 6 部權威註冊(如蝶翩翩/6點下班/月亮雪酪/阿波羅尼亞/德米安=韓國原創;Honk!=百老匯/西區)——registry 對所有來源生效,大麥的六点下班/阿波罗尼亚/德米安一併修正。**病根**:OPENTIX 的 core_title 把「韓國音樂劇《…》」外框標記洗掉→未註冊劇掉進「平台=分類」fallback。
+- **系統性防再犯**:opentix.py 新增 `tag_hint()`(洗標題前判讀外框標記:韓國/百老匯/日本/法文/德語);build_shows classify_tag 優先序=registry>hint>來源 fallback。實測 6 筆命中全對。
+- **海報自適應圖卡**(使用者規格:不裁切不變形):popup 海報改「原比例完整顯示+置中+同張海報模糊放大版填滿剩餘空間」——修掉①內文較高時海報下露底色空白條②橫式海報(Masquerade 等)被 cover 裁字;手機 bottom-sheet 同步。filter 模糊非 backdrop-filter,無效能疑慮。
+- **日期顯示升級**:起迄皆知的期間限定 → 顯示完整範圍「7/11 – 7/26」(原只有「至 7/26」);**英文版全面改月名「Jul 11 – Jul 26」**(數字 7/8 會被美式讀者讀成 Aug 7)——app.js fmtD/fmtDates 與 gen_site runLabel(預渲染清單)同步。
+- **日期稽核結論**:1665 筆中 98.1% 起迄完整、格式 100% 乾淨、OPENTIX 0 殘缺(API 欄位已全用);end_rolling 邏輯穩健。唯一真洞=broadway.org/international 3 筆長跑劇(Lion King 巴黎/墨西哥城、Moulin Rouge 科隆)沒進 rolling 白名單→日期全空,已修(build_shows 白名單+1),實測 3 筆標上長期上演。
+- **待查 backlog**(需 ground truth,不猜):teatrebarcelona 4 筆 2022-2025 舊 listing(殭屍或真週末長跑?)、shiki/toho 的 end_date 疑為訂票地平線非真閉幕、中國原創 112 劇名中可能還有未註冊韓/西授權劇(跑 --discover 覆核)、阿根廷手動 2 筆缺 end。
+
 ## [v2.18.0] - 2026-07-09 16:37
 ### 移除 — theatres 所有劇院頁撤站(使用者指示:本就 hidden、不重要)
 - 刪除 `theatres.html`+`js/theatres.js`(git 歷史可復原);sitemap 不再列(15 URLs);llms.txt 移除該行;mm-strings 撤 theatres 專用 key(nav/tagline/search_ph + v2.17.3 剛加的 6 個);me/u/guide/首頁模板的「入口暫藏」死註解全清。

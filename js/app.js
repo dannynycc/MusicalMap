@@ -412,9 +412,14 @@ function posterMarkerIcon(show) {
 }
 
 // Compact date: "7/31" within the current year, "2027/1/5" across years.
+const _MON_EN = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 function fmtD(iso) {
   if (!iso) return "";
   const [y, m, d] = iso.split("-").map(Number);
+  // en 一律月名(Jul 8):數字 7/8 對美式讀者可能被讀成 Aug 7(2026-07-09 使用者規格)
+  if (document.documentElement.lang === "en") {
+    return y === CUR_Y ? `${_MON_EN[m - 1]} ${d}` : `${_MON_EN[m - 1]} ${d}, ${y}`;
+  }
   return y === CUR_Y ? `${m}/${d}` : `${y}/${m}/${d}`;
 }
 // ONE consistent date line, classified by what the viewer needs to know — NOT by
@@ -432,6 +437,7 @@ function fmtDates(show) {
   // long but scattered date span — keeps its real "至 {end}".
   const longRun = show.end_rolling;
   if (longRun) return t("long_run");
+  if (s && e) return `${fmtD(s)} – ${fmtD(e)}`;   // 期間限定且起迄皆知 → 顯示完整範圍(2026-07-09 使用者規格)
   if (e) return t("date_until", { e: fmtD(e) });
   if (s && new Date(s) > TODAY0) return t("date_from", { s: fmtD(s) });
   return "";
@@ -478,7 +484,8 @@ function platformName(host, fallback) {
 
 function popupHtml(show) {
   const poster = posterFull(show.image, 400);
-  const img = poster ? `<img class="pop-poster" src="${esc(poster)}" alt="">` : "";
+  // 海報包一層 wrap:置中原比例完整海報+同圖模糊底(見 style.css .pop-poster-wrap 註解)
+  const img = poster ? `<div class="pop-poster-wrap"><span class="pop-poster-bg" style="background-image:url('${esc(poster)}')"></span><img class="pop-poster" src="${esc(poster)}" alt=""></div>` : "";
   let links = Array.isArray(show.ticket_links) ? show.ticket_links.filter((l) => safeUrl(l.url)) : [];
   if (!links.length && safeUrl(show.ticket_url)) {
     links = [{ url: show.ticket_url, label: show.link_kind === "official" ? t("buy_official") : t("buy_tickets"), kind: show.link_kind }];

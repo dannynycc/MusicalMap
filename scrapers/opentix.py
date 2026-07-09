@@ -75,6 +75,20 @@ def ymd(ms):
     return datetime.fromtimestamp(ms / 1000, TW_TZ).strftime("%Y-%m-%d")
 
 
+def tag_hint(raw):
+    """從『外框標記』讀作品的起源傳統(core_title 會把它洗掉,classify 就再也看不到):
+    「韓國音樂劇《如蝶翩翩》」「百老匯授權音樂劇《Honk!》」——先於 core_title 判讀,
+    輸出 build_shows classify_tag 認得的 tradition;無標記回 None(照舊走 fallback)。
+    2026-07-09 資料品質稽核:如蝶翩翩/6點下班/月亮雪酪/Honk 全因此誤標「台灣」。"""
+    t = raw or ""
+    if re.search(r"韓國|韩国", t): return "韓國原創"
+    if re.search(r"百老匯|西區|倫敦|London|Broadway", t, re.I): return "Broadway/West End"
+    if re.search(r"日本|寶塚|宝塚|2\.5次元", t): return "日本原創"
+    if re.search(r"法文|法語|法國音樂劇", t): return "法式音樂劇"
+    if re.search(r"德語|德文|維也納", t): return "德奧音樂劇"
+    return None
+
+
 def core_title(t):
     """Organisers wrap the real show name in 《》 with festival/company/marketing
     text around it — '《幸福三姐妹》音樂劇' / '果陀劇場《生命中最美好的5分鐘》2026音樂奇蹟重現'.
@@ -126,7 +140,7 @@ def main():
             if end and end < today:                  # this stop already finished
                 continue
             kept_any = True
-            shows.append({
+            rec = {
                 "id": f"opentix-{pid}-{vi}",
                 "title": core_title(zh_title) or en_title,   # real show name, festival/company wrapper stripped
                 "title_en": en_title,
@@ -135,7 +149,11 @@ def main():
                 "image": s.get("imageUrl"),
                 "ticket_url": f"https://www.opentix.life/program/{pid}" if pid else None,
                 "type": "tour", "verified": True, "source": "opentix.life",
-            })
+            }
+            th = tag_hint(zh_title)          # 外框標記(韓國/百老匯授權…)在洗標題前先判讀
+            if th:
+                rec["tag_hint"] = th
+            shows.append(rec)
         if not kept_any:
             dropped.append(zh_title + " (無未來場次/座標)")
     out = {"meta": {"source": "opentix.life", "count": len(shows)}, "shows": shows}

@@ -399,14 +399,19 @@ CONTINENTAL_C = {"Belgium", "Netherlands", "Denmark", "Italy", "Norway", "Sweden
 ANGLO_SRC = ("broadway", "londontheatre", "atgtickets")  # English-language houses
 
 
-def classify_tag(group, source, country):
+def classify_tag(group, source, country, hint=None):
     """Origin-tradition tag. A registered work's tradition wins everywhere; an
     unregistered show falls to its source/country's home tradition. Broadway/West
     End is NOT the catch-all — only Anglo sources, Anglo markets, and registered
-    Anglo works get it."""
+    Anglo works get it.
+    hint=scraper 從原始標題外框標記判讀的 tradition(如 OPENTIX「韓國音樂劇《…》」;
+    2026-07-09 加,防止未註冊的進口授權劇掉進「來源平台=分類」誤標在地原創)——
+    優先序:registry > hint > 來源/國家 fallback。"""
     trad = TRADITION_BY_CGROUP.get(group)
     if trad:
         return trad
+    if hint:
+        return hint
     src = (source or "").lower()
     c = country or ""
     for keys, tag in TAG_LOCAL_SRC:          # TW/JP/KR + HU/CZ local scrapers
@@ -780,6 +785,10 @@ def main():
         open_run = False
         if "broadway-show-tickets" in src:
             open_run = True
+        elif "broadway.org/international" in src:
+            # intl.py 的頁面本來就沒日期(Lion King 巴黎/墨西哥城、Moulin Rouge 科隆等開放式定目劇);
+            # 不標 rolling 會變成「日期全空」的殘缺卡(2026-07-09 日期稽核抓到,3 筆全中)。
+            open_run = True
         elif ("londontheatre" in src or "stage-entertainment" in src) and not s.get("end_date"):
             st = s.get("start_date")
             try:
@@ -975,7 +984,7 @@ def main():
     # original title) — do NOT recompute it here.
     for s in shows:
         s["link_kind"] = src_kind(s.get("source"))
-        s["tag"] = classify_tag(s["group"], s.get("source"), s.get("country"))
+        s["tag"] = classify_tag(s["group"], s.get("source"), s.get("country"), s.get("tag_hint"))
         # TM 常全大寫列名("THE ADDAMS FAMILY"):命中 registry 就用 canonical 正名;
         # 沒命中的(匈/捷原文慣例大寫)不動
         _t = s.get("title") or ""
