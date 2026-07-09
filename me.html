@@ -97,7 +97,7 @@ if(!v){var nl=(navigator.language||'').toLowerCase();v=nl.indexOf('zh')===0?((nl
 if(v==='zh-hans'){document.write('<scr'+'ipt src="https://cdn.jsdelivr.net/npm/opencc-js@1.3.1/dist/umd/t2cn.js" integrity="sha384-P/OaFUnOIAgMkLxsXIAaP6WO3Wm09591cGX5bHbW4eCOeDxH9L8U3aWYf4cE4SYl" crossorigin="anonymous"><\/scr'+'ipt>');
 document.write('<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet" />');/* 簡體字 TC 字型沒有→混排忽粗忽細,補 SC */}
 }catch(e){}})();</script>
-<script src="js/mm-strings.js?v=241"></script>
+<script src="js/mm-strings.js?v=242"></script>
 <script src="js/mm-acct-menu.js?v=227"></script>
 <!-- Google Analytics(GA4 G-GC07MYC1MY;訪客來源/行為分析,同一 ID 涵蓋主站與 my. 網域(報表以 hostname 區分);不加 SRI:gtag.js 由 Google 滾動更新,釘 hash 會靜默斷統計;隱私揭露見 privacy §1/§3) --><script async src="https://www.googletagmanager.com/gtag/js?id=G-GC07MYC1MY"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-GC07MYC1MY');</script>
 </head>
@@ -1194,7 +1194,19 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
     const TN2=(k,v)=>{let s=T(k);for(const n in(v||{}))s=s.replace('{'+n+'}',v[n]);return s;};
     const say=(t,err,resend)=>{msg.hidden=false;msg.className='ge-msg'+(err?' err':'');
       msg.textContent=t;
-      if(resend){const b=document.createElement('button');b.type='button';b.className='ge-resend';b.textContent=T('gate_email_resend');b.onclick=doSend;msg.appendChild(document.createTextNode(' '));msg.appendChild(b);}};
+      if(resend){const b=document.createElement('button');b.type='button';b.className='ge-resend';b.onclick=doSend;msg.appendChild(document.createTextNode(' '));msg.appendChild(b);wireResendCooldown(b);}};
+    // 重寄冷卻:對齊 Supabase「同一 email 60 秒一次」server 規則,倒數完才可按(否則按了必吃 429)
+    let lastSend=0,rsTimer=null,sentLock=false;   // sentLock=送碼成功後鎖定送出鈕(改 email 才解)
+    function wireResendCooldown(b){
+      if(rsTimer){clearInterval(rsTimer);rsTimer=null;}
+      const tick=()=>{
+        if(!b.isConnected){clearInterval(rsTimer);rsTimer=null;return;}
+        const left=Math.ceil((lastSend+60000-Date.now())/1000);
+        if(left>0){b.disabled=true;b.textContent=T('gate_email_resend')+'（'+left+'）';}
+        else{b.disabled=false;b.textContent=T('gate_email_resend');clearInterval(rsTimer);rsTimer=null;}
+      };
+      tick();if(b.disabled)rsTimer=setInterval(tick,1000);
+    }
     // 驗證碼倒數:與 Supabase Email OTP expiry(600 秒)同步;到期改顯示過期+重寄
     let sentTo='',cdTimer=null,cdEnd=0;
     const CD_MS=10*60*1000;
@@ -1218,9 +1230,10 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
       // data.hl=頁面語言 → email 模板 {{ .Data.hl }} 分語言(新用戶生效;既有用戶用註冊時的值,無值走雙語 fallback)
       const hl=(window.MM_HL==='en'||window.MM_HL==='zh-hans')?window.MM_HL:'zh-hant';
       const {error}=await sb.auth.signInWithOtp({email:em,options:{shouldCreateUser:true,data:{hl:hl}}});
-      send.disabled=false;send.textContent=T('gate_email_send');
-      if(error){say(TN2('gate_email_send_fail',{msg:error.message||error}),true);return;}
-      sentTo=em;  // 驗證一律用「送碼當下」的信箱:送碼後改輸入框會導致驗證必失敗
+      if(error){send.disabled=false;send.textContent=T('gate_email_send');say(TN2('gate_email_send_fail',{msg:error.message||error}),true);return;}
+      // 送出成功:按鈕鎖定為「驗證碼已傳送」;唯一解鎖條件=使用者改動 email 輸入框(input 監聽)
+      sentTo=em;lastSend=Date.now();sentLock=true;  // 驗證一律用「送碼當下」的信箱:送碼後改輸入框會導致驗證必失敗
+      send.disabled=true;send.textContent=T('gate_email_sent_btn');
       step2.hidden=false;code.focus();say(TN2('gate_email_sent',{email:em}),false,true);
       startCd();
     }
@@ -1234,7 +1247,11 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
       // 成功:onAuthStateChange(SIGNED_IN)→onSignedIn 接手,這裡不用做事
     }
     send.onclick=doSend;verify.onclick=doVerify;
-    mail.addEventListener('keydown',e=>{if(e.key==='Enter')doSend();});
+    // 改動 email 輸入框 → 解鎖「驗證碼已傳送」回到可按的「傳送驗證碼」(重寄連結不受影響,自有 60 秒冷卻)
+    mail.addEventListener('input',()=>{
+      if(sentLock){sentLock=false;send.disabled=false;send.textContent=T('gate_email_send');}
+    });
+    mail.addEventListener('keydown',e=>{if(e.key==='Enter'&&!send.disabled)doSend();});
     code.addEventListener('keydown',e=>{if(e.key==='Enter')doVerify();});
   })();
   window.mmLogout=()=>{window.mmOwnerCookie&&window.mmOwnerCookie('');sb.auth.signOut().then(()=>{clearLocal();location.reload();});};

@@ -11,6 +11,13 @@
 
 ---
 
+## [v2.17.2] - 2026-07-09 14:20
+### 改善 — Email 登入送碼按鈕狀態機+重寄 60 秒冷卻(使用者規格)
+- **送碼成功後「傳送驗證碼」按鈕反灰、字改「驗證碼已傳送」**;唯一解鎖條件=使用者改動 email 輸入框(input 監聽,sentLock 旗標,寄送中打字不誤解鎖);Enter 鍵同樣受鎖定管制。
+- **「重寄驗證碼」連結加 60 秒倒數冷卻**(顯示「重寄驗證碼(59)」),對齊 Supabase server 端「同一 email 60 秒一次」規則——倒數完才可按,不再按了吃 429 錯誤。
+- 送達訊息刪掉尾句「,輸入下方即可登入(垃圾郵件夾也看一下)。」(使用者指示);新 key gate_email_sent_btn 三語;mm-strings v=242。
+- **IP 限流查證結論(官方文件+業界)**:Supabase 內建三層已生效——同一 email 60 秒一次、OTP 寄送全專案 30 封/小時(Auth→Rate Limits 可調)、/verify 驗證每 IP 360 次/小時(防暴力猜碼,不可調)。業界標準再上一層=Cloudflare Turnstile 無感 CAPTCHA(Supabase 原生支援:Bot and Abuse Protection 開關+前端 captchaToken),流量大或被濫用時再開,目前規模不需要。
+
 ## [v2.17.1] - 2026-07-09 13:16
 ### 修正 — modal 關閉後頁面鎖捲動(`''` 落回 CSS 陷阱)
 - `close()`(onboarding)與 `closeLog()`(記錄/編輯 modal)關閉時把 body overflow 設 `''`——落回 CSS `body{overflow:hidden}` 預設鎖,整頁不能捲(hideGate 註解早記載過同一個坑,這兩處漏改)。改明確設 `'auto'`。
