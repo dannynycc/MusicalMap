@@ -1,8 +1,9 @@
 {
   "meta": {
     "source": "world.nol.com (Interpark)",
-    "count": 25,
+    "count": 26,
     "dropped_no_coords": [
+      "중국 공동기획 공연 뮤지컬  보옥 @ Arko Art Theater, Grand Hall",
       "HAEMONGGA @ Yes 24 Stage 1",
       "［Subtitle］ Musical  The Brothers Karamazov @ NOL THEATER DAEHAKRO WOORI INVESTMENT SECURITIES HALL",
       "［Hell’s Kitchen］ @ GS Arts Center",
@@ -24,6 +25,23 @@
     ]
   },
   "shows": [
+    {
+      "id": "ip-26008022",
+      "title": "Solo Leveling on ICE",
+      "type": "tour",
+      "venue": "Mokdong Ice Rink",
+      "city": "Seoul",
+      "country": "South Korea",
+      "lat": 37.530785,
+      "lng": 126.879256,
+      "start_date": "2026-08-07",
+      "end_date": "2026-08-17",
+      "ticket_url": "https://world.nol.com/en/ticket/places/26000633/products/26008022",
+      "image": "https://ticketimage.interpark.com/Play/image/large/26/26008022_p.gif",
+      "tour_name": null,
+      "verified": true,
+      "source": "world.nol.com (Interpark)"
+    },
     {
       "id": "ip-26007764",
       "title": "LEE EUN GYEOL 30th Anniversary  ONE OF ONE",
