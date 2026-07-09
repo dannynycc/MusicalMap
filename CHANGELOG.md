@@ -11,6 +11,20 @@
 
 ---
 
+## [v2.21.0] - 2026-07-09 21:27
+### 官網覆蓋大補完+audit_official 制度化(使用者抓到波鴻星光快車官網缺漏後全庫掃)
+- **修「同劇不同城市不同官網」漏洞**:starlight express 條目原只有 uk(倫敦版官網),波鴻 de 區駐演整個對不到 → 補 global/de=starlightexpress.com、uk 保留倫敦版。全庫掃「地區沒對上」僅此一組。
+- **補 40+ 條經逐一 WebFetch 驗證的官網**(四路 agents 並行查證):
+  - 日本 2.5 次元/東宝/四季 22 條(テニミュ/刀ミュ/ヒプステ/忍たま/東宝町田くん…);サンレッドショー確認無官網不收。
+  - 歐美 17 條:維也納 MARIA THERESIA(VBW)、柏林 Stage 三劇、奧斯陸 Det Norske Teatret 四劇、聖保羅兩劇、倫敦新作五劇等;Diana(São Paulo)確認無官網不收。
+  - 錯配修正 13 條:東京歌舞線上→四季頁、ラ・カージュ→東宝頁、NINE→梅田藝術劇場頁、サンセット大通り→Orb頁、維也納美女與野獸→VBW、斯圖加特 WWRY→Stage、里斯本 Grease、奧斯陸 Annie/Cabaret/悲慘/魅影、布宜諾 Annie、Ostrava Elisabeth(NDM);倫敦 Into the Woods→Noël Coward 場館官方頁。
+  - 大状王升級為香港話劇團巡演專頁。
+- **清授權目錄頁污染 15 條**:Concord/MTI/TRW 的授權商頁(Shrek/Dracula/Company/Into the Woods/Addams Family…)一直被當「官方網站」掛在卡片上——不是官網,全刪。
+- **中國 122 組無條目=證實非缺漏**:8/8 抽查(Fan Letter/阿波羅尼亞/红莲/时光代理人…)全無獨立官網,生態=微信公眾號/微博宣發+大麥售票;結論落檔 official_sites.json `_note_cn`,勿重查。
+- **audit_official.py 入 CI**:①resident「有條目但地區對不到」②授權頁網域黑名單(首跑即抓到 addams family 漏網)③非中國 resident 無條目基線(現況 3 組,上限 15)。
+- 同名陷阱實例:倫敦 Jack and the Beanstalk 是 Hackney Empire 的 panto,不是 Palladium 版——agent 給錯製作被抓下,官方頁未上線故不收,寧缺勿錯。
+- 全庫 1118 筆卡片掛官網(重建後六點抽驗:波鴻/東京×2/維也納/奧斯陸/斯圖加特全對)。
+
 ## [v2.20.5] - 2026-07-09 20:50
 ### 文件同步(MD freshness)
 - README:audit_sentinels 哨兵體檢入稽核工具清單;manual 策展清單補波鴻星光快車。
