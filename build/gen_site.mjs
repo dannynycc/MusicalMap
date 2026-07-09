@@ -171,7 +171,7 @@ function page(variant, shows) {
   <meta property="og:image" content="${SITE}/og-image.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="MusicalMap — live world map of musicals" />
+  <meta property="og:image:alt" content="MusicalMap — Live World Map of Musicals" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="${SITE}/og-image.png" />
   <!-- favicon: Google 只收正方形且 ≥48px 的圖示;SVG 必須用 favicon.svg(2244×2244 方形置中版),logo.svg 是 1245×2244 直式會被拒→退回地球圖示 -->

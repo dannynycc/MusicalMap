@@ -173,9 +173,9 @@
       how_footer: 'MusicalMap — 全球音樂劇即時地圖，與你的音樂劇護照。', how_footer_link: '回到地圖',
       how_final_about: '這個網站由一位音樂劇迷獨立打造——背後的故事 →',
       // ---- about.html(關於頁) ----
-      about_title: '關於本站 — MusicalMap', about_eyebrow: '關於 MusicalMap',
+      about_title: '關於本站 — MusicalMap',
       about_meta: 'MusicalMap 是一個由劇迷個人打造的網站：一張顯示全球上演中音樂劇的即時地圖，加上一本屬於你自己的音樂劇護照。',
-      about_h1: '一個劇迷，把地圖和音樂劇放在一起。',
+      about_h1: '關於 MusicalMap',
       about_lede: 'MusicalMap 是一個由劇迷個人打造的網站：一張顯示全球上演中音樂劇的即時地圖，加上一本屬於你自己的音樂劇護照。',
       about_s1_h: '為什麼做這個網站',
       about_s1_p1: '我喜歡地圖和地理，也是音樂劇迷——喜歡跑 Stage Door，在台灣、美國、英國都留下看戲的足跡，從百老匯、倫敦西區到各地巡演。',
@@ -394,9 +394,9 @@
       how_footer: 'MusicalMap — a live world map of musicals, and your theatre passport.', how_footer_link: 'Back to the map',
       how_final_about: 'Built by one theatre fan who loves maps — the story →',
       // ---- about.html ----
-      about_title: 'About — MusicalMap', about_eyebrow: 'About MusicalMap',
+      about_title: 'About — MusicalMap',
       about_meta: 'MusicalMap is built by one theatre fan: a live world map of musicals playing right now, plus a theatre passport of your own.',
-      about_h1: 'One theatre fan, putting maps and musicals together.',
+      about_h1: 'About MusicalMap',
       about_lede: 'MusicalMap is built by one theatre fan: a live world map of musicals playing right now, plus a theatre passport of your own.',
       about_s1_h: 'Why this site exists',
       about_s1_p1: 'I love maps and geography, and I’m a musical-theatre fan — the kind who waits at the stage door. I’ve seen shows in Taiwan, the US and the UK: Broadway, the West End, and tours everywhere in between.',
@@ -499,7 +499,6 @@
   // 簡中「手寫覆蓋層」:OpenCC 只能轉字+CN_FIX 轉詞,句式仍是台灣腔;敘事型長文(About 等)
   // 在此提供大陸語感的手寫版,build 完成後覆蓋自動轉換結果。短 UI 標籤仍走自動轉換。
   var HANS_OVERRIDE = {
-    about_h1: '一个剧迷，把地图和音乐剧放到了一起。',
     about_lede: 'MusicalMap 由一位剧迷独立打造：一张显示全球在演音乐剧的实时地图，加上一本属于你自己的音乐剧护照。',
     about_s1_p1: '我喜欢地图和地理，也是音乐剧迷——爱蹲 Stage Door，在台湾、美国、英国都留下过看剧的足迹，从百老汇、伦敦西区到各地巡演。',
     about_s1_p2: '想把这些年看过的音乐剧好好收藏起来，却发现没有一个合适的平台，干脆自己动手做一个，把这些宝贵的记录永久留存。',

@@ -11,6 +11,12 @@
 
 ---
 
+## [v2.14.11] - 2026-07-09 10:06
+### 修正 — 搜尋結果標題/文案整頓(使用者回報搜尋結果「不順」)
+- **about 頁刪 AI 味 tagline**:原 H1「一個劇迷，把地圖和音樂劇放在一起。」被 Google 拿去當搜尋結果標題(Google 認為原 title 籠統時會改用 H1),且該句與 lede 首句重複、帶句點、不知所云(使用者:「AI 味超級重」)。改為 H1=「關於 MusicalMap」(三語:About MusicalMap / 关于 MusicalMap),tagline 整句刪除,金色 eyebrow 併入 H1(視覺=serif 大標,eyebrow CSS 移除);mm-strings 三語 about_h1 改值、about_eyebrow key 刪除、HANS_OVERRIDE about_h1 刪除(自動轉換已足)。headless Chrome 三語截圖驗證。
+- **英文 doc_title 大小寫統一**:`js/i18n.js` en doc_title 原為小寫「live world map of musicals」,與靜態 title「Live World Map of Musicals」不一致——Google 拼接標題時抓到小寫版,造成搜尋結果出現「How it works — MusicalMap - live world map of musicals」混雜樣。統一為 Title Case;`gen_site.mjs` og:image:alt 同步改,三語首頁重產。
+- **診斷紀錄(Google 端,無法站方控制)**:①breadcrumb 尾巴混雜(zh-hant/about/guide)=首頁有三語靜態目錄、about/guide 等是單一網址 client-side 切語言,根治需拆三語靜態頁(未動工,待決策);②AI 摘要講霍格華茲=Google 對關鍵字聯想;③標題被拼接後綴,site name 生效後(v2.12.11 已修、已要求重新索引)Google 會改顯示站名。
+
 ## [v2.14.10] - 2026-07-09 09:23
 ### 修正 — SVG favicon 改用方形版 favicon.svg(Google 搜尋圖示)
 - **問題**:全站 `<link rel="icon" type="image/svg+xml">` 指向 `logo.svg`(1245×2244 直式非正方形)。Google favicon 規範要求正方形;實測 Google faviconV2 重抓時取到的就是這張直式圖,快取更新後搜尋結果圓框會出現上下留白的窄長 pin。gen_site 模板註解自己寫著「Google 只收正方形」但 SVG 行漏改。

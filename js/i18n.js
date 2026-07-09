@@ -143,7 +143,7 @@
       me_col_price: "票價",
     },
     en: {
-      doc_title: "MusicalMap — live world map of musicals",
+      doc_title: "MusicalMap — Live World Map of Musicals",
       tagline: "Musicals playing around the world right now",
       nav_theatres: "All Theatres",
       nav_mine: "My Musicals",
