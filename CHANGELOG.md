@@ -11,6 +11,13 @@
 
 ---
 
+## [v2.14.10] - 2026-07-09 09:23
+### 修正 — SVG favicon 改用方形版 favicon.svg(Google 搜尋圖示)
+- **問題**:全站 `<link rel="icon" type="image/svg+xml">` 指向 `logo.svg`(1245×2244 直式非正方形)。Google favicon 規範要求正方形;實測 Google faviconV2 重抓時取到的就是這張直式圖,快取更新後搜尋結果圓框會出現上下留白的窄長 pin。gen_site 模板註解自己寫著「Google 只收正方形」但 SVG 行漏改。
+- **新增 `favicon.svg`**:2244×2244 方形畫布、pin 水平置中(translate 499.5),由 logo.svg 程式化產生。headless Chrome 渲染 96×96 與 favicon-96.png 逐像素比對構圖:bbox (21,0,75,96) vs (20,0,76,96),1px 差在抗鋸齒範圍,構圖一致。
+- **改動**:`build/gen_site.mjs` 模板 2 處 + 12 個 HTML(3 語言首頁、root router、about/guide/privacy/terms/theatres/me/u/settings)icon link `logo.svg` → `favicon.svg`;跑 gen_site 重產確認零漂移。`logo.svg` 本身不動(header 品牌圖等仍用)。
+- **背景說明(使用者回報搜尋結果圖示模糊+站名顯示網域)**:兩者皆為 Google 舊快取——站名 WebSite JSON-LD 已於 v2.12.11(07-08 16:47)上線,favicon 站上供應的 ico(16/32/48)+96/192/512 PNG 皆清晰;實測 Google s2 快取 64px 仍是舊模糊版,需等 Google 重爬(通常數天)。
+
 ## [v2.14.9] - 2026-07-09 02:09
 ### 文件全面校新(MD freshness 掃描)
 

@@ -174,9 +174,9 @@ function page(variant, shows) {
   <meta property="og:image:alt" content="MusicalMap — live world map of musicals" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="${SITE}/og-image.png" />
-  <!-- favicon: Google 只收正方形且 ≥48px 的圖示;舊版指 logo.png(122×200 直式)會被拒→退回地球圖示 -->
+  <!-- favicon: Google 只收正方形且 ≥48px 的圖示;SVG 必須用 favicon.svg(2244×2244 方形置中版),logo.svg 是 1245×2244 直式會被拒→退回地球圖示 -->
   <link rel="icon" href="${BASE}favicon.ico?v=3" sizes="any" />
-  <link rel="icon" type="image/svg+xml" href="${BASE}logo.svg" />
+  <link rel="icon" type="image/svg+xml" href="${BASE}favicon.svg" />
   <link rel="icon" type="image/png" sizes="96x96" href="${BASE}favicon-96.png?v=3" />
   <link rel="icon" type="image/png" sizes="192x192" href="${BASE}favicon-192.png?v=3" />
   <link rel="apple-touch-icon" href="${BASE}apple-touch-icon.png?v=3" />
@@ -270,7 +270,7 @@ function rootRouter() {
   <meta name="description" content="An interactive map of musicals playing around the world right now — Broadway, West End, tours and original productions. 全球正在上演的音樂劇即時地圖。" />
   <link rel="canonical" href="${SITE}/" />
   <link rel="icon" href="${BASE}favicon.ico?v=3" sizes="any" />
-  <link rel="icon" type="image/svg+xml" href="${BASE}logo.svg" />
+  <link rel="icon" type="image/svg+xml" href="${BASE}favicon.svg" />
   <link rel="icon" type="image/png" sizes="96x96" href="${BASE}favicon-96.png?v=3" />
   <link rel="apple-touch-icon" href="${BASE}apple-touch-icon.png?v=3" />
   <meta property="og:type" content="website" />
