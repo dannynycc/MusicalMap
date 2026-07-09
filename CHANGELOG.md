@@ -11,6 +11,15 @@
 
 ---
 
+## [v2.16.0] - 2026-07-09 12:02
+### 修正+新功能 — Email OTP 新用戶收到連結信 bug + 驗證信三語化 + 10 分鐘效期倒數
+- **Bug(使用者實測抓到)**:新 email 用戶第一次登入收到的是「Confirm your email address」**連結**信,不是 6 位數驗證碼——Supabase 對新用戶走「Confirm sign up」模板,v2.13 只改了「Magic link or OTP」模板,漏了這條路(當時 e2e 用既有帳號測,只覆蓋 Magic Link 路徑)。**修法**:Confirm sign up 模板改成與 OTP 模板相同的 6 位數碼版。
+- **驗證信三語化(使用者需求)**:兩個模板的 Subject+Body 都用 Go template `{{ if eq .Data.hl ... }}` 分流 en/zh-hans/zh-hant,無語言資訊(如舊帳號)fallback 中英雙語。前端 `signInWithOtp` 帶 `options.data.hl`(當前頁面語言)。**限制**:既有用戶的 hl 以註冊當時為準(Supabase 不在登入時更新 metadata),之後切換語言登入仍收原語言信。
+- **效期 3600→600 秒+雙端提示**:Supabase Email OTP expiration 改 10 分鐘(比 5 分鐘寬,容忍郵件遞送延遲);信裡明寫「10 分鐘內有效」三語;**網頁送碼後顯示 mm:ss 倒數**(與後端同步),到期改顯示「驗證碼已過期,請重寄一組」。
+- **連帶修掉一個 foot-gun**:doVerify 原用輸入框「當下」的值——送碼後改動輸入框會導致驗證必失敗;改為一律用「送碼當下」的信箱(sentTo)。
+- mm-strings 新 key `gate_email_expiry`/`gate_email_expired`(三語,简中走 OpenCC),v=240 全站 bump。
+- Supabase 後台改動皆重載頁面驗證持久化(模板×2、OTP expiry)。
+
 ## [v2.15.1] - 2026-07-09 11:25
 ### 文件 — Google OAuth 品牌驗證核准入檔
 - Google 核准信(07-09 10:57):專案 755937688446(musicalmap-499207)品牌驗證通過。真瀏覽器實測:同意畫面顯示 MusicalMap logo+「繼續使用『MusicalMap』」,supabase.co 字樣消失。SETUP_ACCOUNTS.md 該節標注已解決(走方法 A),保留核准信提醒:改 scope/consent screen 設定要重新送驗。

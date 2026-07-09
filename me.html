@@ -97,7 +97,7 @@ if(!v){var nl=(navigator.language||'').toLowerCase();v=nl.indexOf('zh')===0?((nl
 if(v==='zh-hans'){document.write('<scr'+'ipt src="https://cdn.jsdelivr.net/npm/opencc-js@1.3.1/dist/umd/t2cn.js" integrity="sha384-P/OaFUnOIAgMkLxsXIAaP6WO3Wm09591cGX5bHbW4eCOeDxH9L8U3aWYf4cE4SYl" crossorigin="anonymous"><\/scr'+'ipt>');
 document.write('<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet" />');/* 簡體字 TC 字型沒有→混排忽粗忽細,補 SC */}
 }catch(e){}})();</script>
-<script src="js/mm-strings.js?v=239"></script>
+<script src="js/mm-strings.js?v=240"></script>
 <script src="js/mm-acct-menu.js?v=227"></script>
 <!-- Google Analytics(GA4 G-GC07MYC1MY;訪客來源/行為分析,同一 ID 涵蓋主站與 my. 網域(報表以 hostname 區分);不加 SRI:gtag.js 由 Google 滾動更新,釘 hash 會靜默斷統計;隱私揭露見 privacy §1/§3) --><script async src="https://www.googletagmanager.com/gtag/js?id=G-GC07MYC1MY"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-GC07MYC1MY');</script>
 </head>
@@ -1205,18 +1205,37 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
     const say=(t,err,resend)=>{msg.hidden=false;msg.className='ge-msg'+(err?' err':'');
       msg.textContent=t;
       if(resend){const b=document.createElement('button');b.type='button';b.className='ge-resend';b.textContent=T('gate_email_resend');b.onclick=doSend;msg.appendChild(document.createTextNode(' '));msg.appendChild(b);}};
+    // 驗證碼倒數:與 Supabase Email OTP expiry(600 秒)同步;到期改顯示過期+重寄
+    let sentTo='',cdTimer=null,cdEnd=0;
+    const CD_MS=10*60*1000;
+    function stopCd(){if(cdTimer){clearInterval(cdTimer);cdTimer=null;}}
+    function startCd(){
+      stopCd();cdEnd=Date.now()+CD_MS;
+      const sp=document.createElement('span');
+      msg.appendChild(document.createTextNode(' '));msg.appendChild(sp);
+      const tick=()=>{
+        const s=Math.max(0,Math.ceil((cdEnd-Date.now())/1000));
+        sp.textContent='（'+TN2('gate_email_expiry',{t:Math.floor(s/60)+':'+String(s%60).padStart(2,'0')})+'）';
+        if(s<=0){stopCd();say(T('gate_email_expired'),true,true);}
+      };
+      tick();cdTimer=setInterval(tick,1000);
+    }
     async function doSend(){
       const em=(mail.value||'').trim();
       if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)){say(T('gate_email_invalid'),true);return;}
       send.disabled=true;send.textContent=T('gate_email_sending');
       // shouldCreateUser:true=新使用者直接建帳號(onboarding 首次登入照常跑)
-      const {error}=await sb.auth.signInWithOtp({email:em,options:{shouldCreateUser:true}});
+      // data.hl=頁面語言 → email 模板 {{ .Data.hl }} 分語言(新用戶生效;既有用戶用註冊時的值,無值走雙語 fallback)
+      const hl=(window.MM_HL==='en'||window.MM_HL==='zh-hans')?window.MM_HL:'zh-hant';
+      const {error}=await sb.auth.signInWithOtp({email:em,options:{shouldCreateUser:true,data:{hl:hl}}});
       send.disabled=false;send.textContent=T('gate_email_send');
       if(error){say(TN2('gate_email_send_fail',{msg:error.message||error}),true);return;}
+      sentTo=em;  // 驗證一律用「送碼當下」的信箱:送碼後改輸入框會導致驗證必失敗
       step2.hidden=false;code.focus();say(TN2('gate_email_sent',{email:em}),false,true);
+      startCd();
     }
     async function doVerify(){
-      const em=(mail.value||'').trim(),tk=(code.value||'').trim();
+      const em=sentTo||(mail.value||'').trim(),tk=(code.value||'').trim();
       if(tk.length<6){say(T('gate_email_bad_code'),true);return;}
       verify.disabled=true;verify.textContent=T('gate_email_verifying');
       const {error}=await sb.auth.verifyOtp({email:em,token:tk,type:'email'});
