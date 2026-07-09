@@ -17,7 +17,22 @@ returns boolean language sql immutable set search_path = public as $$
     'theatres','privacy','terms','login','logout','signup','settings',
     'account','stats','static','assets','js','css','data','posters','logos',
     'en','zh-hant','zh-hans','help','about','official','map','share',
-    'guide','me-input'   -- 2026-07-06 補漏:頁面路徑不可被註冊成 handle
+    'guide','me-input',  -- 2026-07-06 補漏:頁面路徑不可被註冊成 handle
+    -- 2026-07-09 系統帳號/冒用/Unix/破壞性動詞類補漏(使用者抓到 sudo 可註冊);與 me.html/settings.html RESERVED 同步
+    'sudo','su','visudo','root','administrator','moderator','mod','staff','support','system',
+    'security','privilege','privileges','superuser','operator','owner','wheel','daemon','nobody','guest','anonymous',
+    'etc','bin','sbin','usr','var','tmp','proc','sys','boot','opt','lib','srv','home',
+    'exec','shell','bash','sh','zsh','csh','ksh','tcsh','powershell','pwsh','script','scripts','cmd','terminal','console','kernel','linux','unix','windows','localhost','server','host',
+    'delete','remove','drop','truncate','kill','purge','new','edit',
+    'insert','select','alter','create','grant','revoke','union','join','table','schema','view','trigger','commit','rollback','merge','upsert','declare','execute','where','values',
+    'python','java','perl','php','ruby','node','nodejs','javascript','typescript','golang','rust','wasm','eval','void','nan',
+    'injection','inject','exploit','hack','hacker','hacking','malware','virus','phishing','spam','xss','csrf','ddos','botnet',
+    'public','local',  -- DB schema/命名空間類(業界清單)
+    'config','setup','install','update','upgrade','debug','ssh','ftp','smtp','imap','pop3','dns',
+    'vpn','proxy','firewall','database','db','sql','backup','cron','cache','log','logs',
+    'abuse','postmaster','webmaster','noreply','no-reply','mail','email','contact','info','team','dev','test','demo',
+    'user','users','profile','profiles','auth','callback','verify','search','dashboard','signin','register',
+    'password','musicalmap','themusicalmap','sitemap','robots','favicon','error','status','docs','blog','news','download'
   ]);
 $$;
 
@@ -41,7 +56,11 @@ declare
   old text;
 begin
   if uid is null then return 'not_authenticated'; end if;
-  if n !~ '^[a-z0-9_-]{1,30}$' then return 'bad_format'; end if;
+  -- 格式(2026-07-09 收緊,與前端 okFormat 同步):3–30 字、首尾英數、不可連續符號、不可全數字
+  -- 既有不合新規的 handle 不受影響(只擋新設定/改名)
+  if n !~ '^[a-z0-9][a-z0-9_-]{1,28}[a-z0-9]$' then return 'bad_format'; end if;
+  if n ~ '[_-]{2}' then return 'bad_format'; end if;
+  if n ~ '^[0-9]+$' then return 'bad_format'; end if;
   if handle_reserved(n) then return 'reserved'; end if;
 
   select lower(handle) into old from profiles where id = uid;

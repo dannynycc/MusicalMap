@@ -87,7 +87,7 @@ if(!v){var nl=(navigator.language||'').toLowerCase();v=nl.indexOf('zh')===0?((nl
 if(v==='zh-hans'){document.write('<scr'+'ipt src="https://cdn.jsdelivr.net/npm/opencc-js@1.3.1/dist/umd/t2cn.js" integrity="sha384-P/OaFUnOIAgMkLxsXIAaP6WO3Wm09591cGX5bHbW4eCOeDxH9L8U3aWYf4cE4SYl" crossorigin="anonymous"><\/scr'+'ipt>');
 document.write('<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&display=swap" rel="stylesheet" />');}
 }catch(e){}})();</script>
-<script src="js/mm-strings.js?v=240"></script>
+<script src="js/mm-strings.js?v=241"></script>
   <script src="js/mm-lang.js?v=230" defer></script>
 <script src="js/mm-acct-menu.js?v=227" defer></script><!-- nav 頭像:autoMount 讀 mm_owner/mm_av cookie 自動換,與全站一致 -->
 <!-- GA4(同站統計;隱私揭露見 privacy §1/§3) --><script async src="https://www.googletagmanager.com/gtag/js?id=G-GC07MYC1MY"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-GC07MYC1MY');</script>
@@ -221,8 +221,20 @@ document.write('<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+
   showGate(T('gate_loading'),false);
 
   const norm=v=>String(v||'').trim().toLowerCase().replace(/[^a-z0-9_-]/g,'').slice(0,30);
-  // 與 DB handle_reserved()（supabase/add_handle_aliases.sql）同步，兩邊都要改
-  const RESERVED=new Set(['u','me','index','admin','api','app','www','my','null','undefined','theatres','privacy','terms','login','logout','signup','settings','account','stats','static','assets','js','css','data','posters','logos','en','zh-hant','zh-hans','help','about','official','map','share','guide','me-input']);
+  // 格式規則(與 DB rename_handle 同步;me.html 也有一份):3–30 字、首尾英數、不可連續符號、不可全數字
+  const okFormat=h=>/^[a-z0-9][a-z0-9_-]{1,28}[a-z0-9]$/.test(h)&&!/[_-]{2}/.test(h)&&!/^[0-9]+$/.test(h);
+  // 與 DB handle_reserved()（supabase/add_handle_aliases.sql）同步，兩邊都要改(me.html 也有一份)
+  const RESERVED=new Set(['u','me','index','admin','api','app','www','my','null','undefined','theatres','privacy','terms','login','logout','signup','settings','account','stats','static','assets','js','css','data','posters','logos','en','zh-hant','zh-hans','help','about','official','map','share','guide','me-input',
+    // 2026-07-09 系統帳號/冒用/Unix/破壞性動詞類補漏(使用者抓到 sudo 可註冊)
+    'sudo','su','visudo','root','administrator','moderator','mod','staff','support','system','security','privilege','privileges','superuser','operator','owner','wheel','daemon','nobody','guest','anonymous',
+    'etc','bin','sbin','usr','var','tmp','proc','sys','boot','opt','lib','srv','home','exec','shell','bash','sh','zsh','csh','ksh','tcsh','powershell','pwsh','script','scripts','cmd','terminal','console','kernel','linux','unix','windows','localhost','server','host',
+    'delete','remove','drop','truncate','kill','purge','new','edit',
+    'insert','select','alter','create','grant','revoke','union','join','table','schema','view','trigger','commit','rollback','merge','upsert','declare','execute','where','values',
+    'python','java','perl','php','ruby','node','nodejs','javascript','typescript','golang','rust','wasm','eval','void','nan',
+    'injection','inject','exploit','hack','hacker','hacking','malware','virus','phishing','spam','xss','csrf','ddos','botnet','public','local',
+    'config','setup','install','update','upgrade','debug','ssh','ftp','smtp','imap','pop3','dns','vpn','proxy','firewall','database','db','sql','backup','cron','cache','log','logs',
+    'abuse','postmaster','webmaster','noreply','no-reply','mail','email','contact','info','team','dev','test','demo',
+    'user','users','profile','profiles','auth','callback','verify','search','dashboard','signin','register','password','musicalmap','themusicalmap','sitemap','robots','favicon','error','status','docs','blog','news','download']);
   const shareUrl=h=>'https://my.themusicalmap.com/'+encodeURIComponent(h);
   function avCookie(url){try{
     if(!/(^|\.)themusicalmap\.com$/.test(location.hostname))return;
@@ -254,7 +266,7 @@ document.write('<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+
     const h=norm($('stHandle').value);
     st.ok=false;
     if(!h){setSt('muted',T('h_input_hint'));return;}
-    if(!/[a-z0-9]/.test(h)){setSt('muted',T('h_input_hint'));return;}
+    if(!okFormat(h)){setSt('muted',T('h_input_hint'));return;}
     if(RESERVED.has(h)){setSt('bad',T('h_reserved'));return;}
     if(h===CUR.handle){st.ok=true;setSt('ok',T('h_current'));return;}
     setSt('muted',T('h_checking'));
@@ -316,7 +328,7 @@ document.write('<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+
   $('stSave').addEventListener('click',async()=>{
     const h=norm($('stHandle').value), d=$('stDisplay').value.trim(), btn=$('stSave');
     if(!h){saveMsg('bad',T('acct_url_empty'));$('stHandle').focus();return;}
-    if(!/[a-z0-9]/.test(h)){saveMsg('bad',T('h_input_hint'));$('stHandle').focus();return;}
+    if(!okFormat(h)){saveMsg('bad',T('h_bad_format'));$('stHandle').focus();return;}
     if(RESERVED.has(h)){saveMsg('bad',T('h_reserved'));return;}
     const renamed=h!==CUR.handle;
     btn.disabled=true;btn.textContent=T('saving');

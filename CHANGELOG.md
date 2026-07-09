@@ -11,6 +11,15 @@
 
 ---
 
+## [v2.17.0] - 2026-07-09 12:48
+### 修正+收緊 — 網址名稱(handle)規則全面整頓(使用者抓到 sudo 可註冊)
+- **建議 chips 移除**:onboarding 的「可用的建議」以 email 前綴當種子,等於把使用者信箱帳號洩漏進公開網址建議(使用者指示拿掉)。連同 CSS/字串/buildChips 全清。
+- **保留字大擴充**(me.html/settings.html/DB handle_reserved 三處同步,已在 Supabase 執行並驗證):系統帳號(sudo/su/root/administrator…)、Unix 路徑與 shell(etc/bin/tmp/bash/zsh/powershell…)、SQL 關鍵字(select/insert/drop/union…)、程式語言(python/java/perl…)、攻擊詞(injection/xss/csrf…)、基礎設施(ssh/database/config…)、信箱角色(abuse/postmaster…業界規範)、品牌(musicalmap/themusicalmap)、DB 命名空間(public/local)。實測 handle_reserved('sudo'/'select'/'linux')=true、handle_available('sudo')=false。
+- **格式收緊**(參考業界+Google 使用者名稱規範;前端 okFormat+DB rename_handle 同步):**3–30 字**(原 1–30)、**首尾須英數**、**不可連續符號**(--/__)、**不可全數字**;大小寫維持視為相同(全轉小寫儲存,防冒充)。既有不合規 handle 不受影響(只擋新設定/改名)。
+- **onboarding 不再鎖背景捲動**:頂部 banner 邀使用者「先看看蓋滿章後的樣子」,鎖捲動與文案矛盾(使用者回報「被鎖住沒辦法往下滾」)。
+- **既有資料稽核**:全表掃描,僅 1 筆違規=使用者自己的測試帳號已註冊 'sudo'(待使用者指示處置);其餘帳號全部合規。
+- mm-strings v=241;格式文案三語更新(3–30 字+規則說明)。
+
 ## [v2.16.0] - 2026-07-09 12:02
 ### 修正+新功能 — Email OTP 新用戶收到連結信 bug + 驗證信三語化 + 10 分鐘效期倒數
 - **Bug(使用者實測抓到)**:新 email 用戶第一次登入收到的是「Confirm your email address」**連結**信,不是 6 位數驗證碼——Supabase 對新用戶走「Confirm sign up」模板,v2.13 只改了「Magic link or OTP」模板,漏了這條路(當時 e2e 用既有帳號測,只覆蓋 Magic Link 路徑)。**修法**:Confirm sign up 模板改成與 OTP 模板相同的 6 位數碼版。

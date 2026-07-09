@@ -97,7 +97,7 @@ if(!v){var nl=(navigator.language||'').toLowerCase();v=nl.indexOf('zh')===0?((nl
 if(v==='zh-hans'){document.write('<scr'+'ipt src="https://cdn.jsdelivr.net/npm/opencc-js@1.3.1/dist/umd/t2cn.js" integrity="sha384-P/OaFUnOIAgMkLxsXIAaP6WO3Wm09591cGX5bHbW4eCOeDxH9L8U3aWYf4cE4SYl" crossorigin="anonymous"><\/scr'+'ipt>');
 document.write('<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet" />');/* 簡體字 TC 字型沒有→混排忽粗忽細,補 SC */}
 }catch(e){}})();</script>
-<script src="js/mm-strings.js?v=240"></script>
+<script src="js/mm-strings.js?v=241"></script>
 <script src="js/mm-acct-menu.js?v=227"></script>
 <!-- Google Analytics(GA4 G-GC07MYC1MY;訪客來源/行為分析,同一 ID 涵蓋主站與 my. 網域(報表以 hostname 區分);不加 SRI:gtag.js 由 Google 滾動更新,釘 hash 會靜默斷統計;隱私揭露見 privacy §1/§3) --><script async src="https://www.googletagmanager.com/gtag/js?id=G-GC07MYC1MY"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-GC07MYC1MY');</script>
 </head>
@@ -826,10 +826,6 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
 .btn-danger{background:none;border:1px solid #d9534f;color:#c0392b;font-weight:600;padding:8px 16px;border-radius:999px;cursor:pointer;font-family:inherit;font-size:13.5px}
 .btn-danger:hover{background:#d9534f;color:#fff}
 .btn-danger[disabled]{opacity:.5;cursor:progress}
-.handle-chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:9px;align-items:center}
-.handle-chips[hidden]{display:none}
-.chips-tip{font-size:12px;color:var(--ink3,#999)}
-.handle-chips button{border:1px solid var(--gold,#c9a85c);background:color-mix(in srgb,var(--gold,#c9a85c) 10%,transparent);color:var(--ink1,#111);border-radius:999px;padding:5px 13px;font-size:12.5px;font-weight:700;cursor:pointer;font-family:var(--mono,monospace)}
 .handle-cur{flex:1;padding:10px 11px;font-family:var(--mono,monospace);font-size:12.5px;color:var(--ink1,#111);word-break:break-all}
 </style>
 <div class="sharemodal" id="shareModal" hidden>
@@ -839,15 +835,14 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
     <h2 id="shareTitle" data-i18n="onb_title">歡迎！取一個你的網址名稱</h2>
     <p class="share-lead" id="shareLead" data-i18n="onb_lead">這是你的帳號身分，也是公開分享網址的一部分。之後可在「帳號設定」更改，舊網址會自動轉到新的。</p>
 
-    <!-- 空白輸入 + 可用建議 chips（不預填，label 在上、非 placeholder） -->
+    <!-- 空白輸入（不預填,label 在上、非 placeholder;建議 chips 已移除——種子=email 前綴會把信箱帳號洩進公開網址建議,2026-07-09 使用者指示拿掉） -->
     <label class="share-field" id="handleEdit">
-      <span data-i18n="handle_input_label">網址名稱（英文、數字、底線或連字號，1–30 字）</span>
+      <span data-i18n="handle_input_label">網址名稱（英文、數字、底線或連字號，3–30 字，首尾須為英數）</span>
       <div class="handle-row">
         <span class="handle-prefix">my.themusicalmap.com/</span>
         <input id="pubHandle" autocomplete="off" spellcheck="false" maxlength="30" />
       </div>
       <span class="handle-status muted" id="handleStatus"></span>
-      <div class="handle-chips" id="handleChips" hidden></div>
     </label>
 
     <div class="share-actions">
@@ -874,8 +869,20 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
   let FORCED=false;   // onboarding 強制模式（無 handle 不放行）
 
   const norm=v=>String(v||'').trim().toLowerCase().replace(/[^a-z0-9_-]/g,'').slice(0,30);
-  // 與 DB handle_reserved()（supabase/add_handle_aliases.sql）同步，兩邊都要改
-  const RESERVED=new Set(['u','me','index','admin','api','app','www','my','null','undefined','theatres','privacy','terms','login','logout','signup','settings','account','stats','static','assets','js','css','data','posters','logos','en','zh-hant','zh-hans','help','about','official','map','share','guide','me-input']);
+  // 格式規則(與 DB rename_handle 同步;settings.html 也有一份):3–30 字、首尾英數、不可連續符號、不可全數字
+  const okFormat=h=>/^[a-z0-9][a-z0-9_-]{1,28}[a-z0-9]$/.test(h)&&!/[_-]{2}/.test(h)&&!/^[0-9]+$/.test(h);
+  // 與 DB handle_reserved()（supabase/add_handle_aliases.sql）同步，兩邊都要改(settings.html 也有一份)
+  const RESERVED=new Set(['u','me','index','admin','api','app','www','my','null','undefined','theatres','privacy','terms','login','logout','signup','settings','account','stats','static','assets','js','css','data','posters','logos','en','zh-hant','zh-hans','help','about','official','map','share','guide','me-input',
+    // 2026-07-09 系統帳號/冒用/Unix/破壞性動詞類補漏(使用者抓到 sudo 可註冊)
+    'sudo','su','visudo','root','administrator','moderator','mod','staff','support','system','security','privilege','privileges','superuser','operator','owner','wheel','daemon','nobody','guest','anonymous',
+    'etc','bin','sbin','usr','var','tmp','proc','sys','boot','opt','lib','srv','home','exec','shell','bash','sh','zsh','csh','ksh','tcsh','powershell','pwsh','script','scripts','cmd','terminal','console','kernel','linux','unix','windows','localhost','server','host',
+    'delete','remove','drop','truncate','kill','purge','new','edit',
+    'insert','select','alter','create','grant','revoke','union','join','table','schema','view','trigger','commit','rollback','merge','upsert','declare','execute','where','values',
+    'python','java','perl','php','ruby','node','nodejs','javascript','typescript','golang','rust','wasm','eval','void','nan',
+    'injection','inject','exploit','hack','hacker','hacking','malware','virus','phishing','spam','xss','csrf','ddos','botnet','public','local',
+    'config','setup','install','update','upgrade','debug','ssh','ftp','smtp','imap','pop3','dns','vpn','proxy','firewall','database','db','sql','backup','cron','cache','log','logs',
+    'abuse','postmaster','webmaster','noreply','no-reply','mail','email','contact','info','team','dev','test','demo',
+    'user','users','profile','profiles','auth','callback','verify','search','dashboard','signin','register','password','musicalmap','themusicalmap','sitemap','robots','favicon','error','status','docs','blog','news','download']);
   function shareUrl(h){return 'https://my.themusicalmap.com/'+encodeURIComponent(h);}
   // 本人標記 cookie(跨子網域):my. Worker 收到 /<handle> 時看它決定出「編輯版(me.html)」或「公開版(u.html)」。
   // 只是選版面的提示——真正的資料權限永遠由 Supabase session+RLS 把關,偽造只會看到登入閘。
@@ -916,7 +923,7 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
       const h=norm($(inputId).value);
       st.ok=false;
       if(!h){set('muted',T('h_input_hint'));return;}
-      if(!/[a-z0-9]/.test(h)){set('muted',T('h_input_hint'));return;}   // 只有 -/_ (如 "---")不算有效名稱,要求至少一個字母或數字
+      if(!okFormat(h)){set('muted',T('h_input_hint'));return;}   // 3–30 字、首尾英數、不可連續符號、不可全數字
       if(RESERVED.has(h)){set('bad',T('h_reserved'));return;}
       if(h===CUR.handle){st.ok=true;set('ok',T('h_current'));return;}
       set('muted',T('h_checking'));
@@ -961,24 +968,7 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
     else setter('bad',T('h_save_fail')+code);
   }
 
-  // ---- 建議 chips：種子＝email 前綴（不用 Google 真名），逐顆預驗可用、主動點才填 ----
-  async function buildChips(){
-    const box=$('handleChips');box.innerHTML='';box.hidden=true;
-    const base=norm((EMAIL.split('@')[0]||''));
-    if(!base)return;
-    const year=String(new Date().getFullYear());
-    const cands=[...new Set([base,base+'musicals',base+'_'+year])].filter(c=>c&&c.length<=30&&!RESERVED.has(c));
-    const avail=[];
-    for(const c of cands){ if(avail.length>=3)break; if((await isAvailable(c))===true)avail.push(c); }
-    if(!avail.length)return;
-    const tip=document.createElement('span');tip.className='chips-tip';tip.textContent=T('chips_tip');box.appendChild(tip);
-    for(const c of avail){
-      const b=document.createElement('button');b.type='button';b.textContent=c;
-      b.addEventListener('click',()=>{$('pubHandle').value=c;obCheck.check();$('pubHandle').focus();});
-      box.appendChild(b);
-    }
-    box.hidden=false;
-  }
+  // （建議 chips 已移除:種子=email 前綴會把信箱帳號洩進公開網址建議,2026-07-09 使用者指示拿掉）
 
   async function loadSettings(uid){
     UID=uid;
@@ -1001,7 +991,7 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
     const btn=$('shareSave');
     const h=norm($('pubHandle').value);
     if(!h){obCheck.set('bad',T('url_empty'));$('pubHandle').focus();return;}
-    if(!/[a-z0-9]/.test(h)){obCheck.set('bad',T('h_input_hint'));$('pubHandle').focus();return;}   // 至少一個字母或數字
+    if(!okFormat(h)){obCheck.set('bad',T('h_bad_format'));$('pubHandle').focus();return;}
     if(RESERVED.has(h)){obCheck.set('bad',T('h_reserved'));return;}
     btn.disabled=true;btn.textContent=T('saving');
     try{
@@ -1037,15 +1027,15 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
   async function maybeOnboard(){
     if(CUR.handle)return;
     if(FORCED)return;   // 重入防護:auth 事件(INITIAL_SESSION/SIGNED_IN/getSession)會多次觸發 mmAuthReady,
-                        // 不擋會併發跑 buildChips→建議 chips 渲染三份+trapModal 疊監聽(R2 稽核 375px 截圖抓到)
+                        // 不擋會 trapModal 疊監聽
     FORCED=true;
     $('shareTitle').textContent=T('onb_title');
     $('shareLead').textContent=T('onb_lead');
     $('shareX').hidden=true;
     const sk=$('shareSkip');sk.hidden=false;sk.textContent=T('logout');
     $('pubHandle').value='';obCheck.set('muted',T('h_input_hint'));
-    modal.hidden=false;document.body.style.overflow='hidden';if(shareCard)trapModal(shareCard);
-    buildChips();   // 背景逐顆驗可用，好了才顯示
+    // 不鎖背景捲動:頂部 banner 邀使用者「先看看蓋滿章後的樣子」,鎖捲動與文案矛盾(2026-07-09 使用者回報)
+    modal.hidden=false;if(shareCard)trapModal(shareCard);
   }
 
   function close(){if(FORCED)return;untrap(shareCard);modal.hidden=true;document.body.style.overflow='';}
