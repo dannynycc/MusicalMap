@@ -3,107 +3,37 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title data-i18n="tou_title">使用條款 — MusicalMap</title>
-  <meta name="description" content="MusicalMap 的使用條款：服務說明、資料準確性與免責、售票連結與分潤揭露。" />
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="MusicalMap" />
-  <meta property="og:title" content="使用條款 — MusicalMap" />
-  <meta property="og:description" content="MusicalMap 的使用條款：服務說明、資料準確性與免責、售票連結與分潤揭露。" />
-  <meta property="og:url" content="https://themusicalmap.com/terms" />
-  <meta property="og:image" content="https://themusicalmap.com/og-image.png" />
-  <meta name="twitter:card" content="summary" />
+  <title>使用條款 — MusicalMap · Terms of Use</title>
+  <meta name="description" content="" />
   <link rel="canonical" href="https://themusicalmap.com/terms" />
-  <link rel="alternate" hreflang="en" href="https://themusicalmap.com/terms?hl=en" />
-  <link rel="alternate" hreflang="zh-Hans" href="https://themusicalmap.com/terms?hl=zh-hans" />
-  <link rel="alternate" hreflang="zh-Hant" href="https://themusicalmap.com/terms" />
+  <link rel="alternate" hreflang="en" href="https://themusicalmap.com/en/terms" />
+  <link rel="alternate" hreflang="zh-Hans" href="https://themusicalmap.com/zh-hans/terms" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://themusicalmap.com/zh-hant/terms" />
   <link rel="alternate" hreflang="x-default" href="https://themusicalmap.com/terms" />
   <link rel="icon" href="/favicon.ico?v=3" sizes="any" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png?v=3" />
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,900&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css?v=227" />
-  <!-- i18n:語言認 ?hl= → 主站共用偏好(mm_variant) → navigator;內容繁中為底,en 走字典,zh-hans 由 OpenCC 轉 -->
-  <script>window.MM_USE_LANG_PREF=true;</script>
-  <script>/* zh-hans:先同步載 OpenCC(繁→簡),mm-strings 才能建簡體字典;只簡中使用者下載 */(function(){try{
-  var h=new URLSearchParams(location.search).get('hl'),v=(h==='en'||h==='zh-hans'||h==='zh-hant')?h:null;
-  if(!v){var mv=localStorage.getItem('mm_variant');v=(mv==='en'||mv==='zh-hans'||mv==='zh-hant')?mv:(localStorage.getItem('mm_lang')==='en'?'en':localStorage.getItem('mm_lang')==='zh'?'zh-hant':null);}
-  if(!v){var nl=(navigator.language||'').toLowerCase();v=nl.indexOf('zh')===0?((nl.indexOf('cn')>-1||nl.indexOf('hans')>-1||nl.indexOf('sg')>-1)?'zh-hans':'zh-hant'):(nl?'en':'zh-hant');}
-  if(v==='zh-hans')document.write('<scr'+'ipt src="https://cdn.jsdelivr.net/npm/opencc-js@1.3.1/dist/umd/t2cn.js" integrity="sha384-P/OaFUnOIAgMkLxsXIAaP6WO3Wm09591cGX5bHbW4eCOeDxH9L8U3aWYf4cE4SYl" crossorigin="anonymous"><\/scr'+'ipt>');
-  }catch(e){}})();</script>
-  <script src="js/mm-strings.js?v=238"></script>
-  <script src="js/mm-lang.js?v=230" defer></script>
-  <script src="js/mm-acct-menu.js?v=227" defer></script>
-<!-- Google Analytics(GA4 G-GC07MYC1MY;訪客來源/行為分析,同一 ID 涵蓋主站與 my. 網域(報表以 hostname 區分);不加 SRI:gtag.js 由 Google 滾動更新,釘 hash 會靜默斷統計;隱私揭露見 privacy §1/§3) --><script async src="https://www.googletagmanager.com/gtag/js?id=G-GC07MYC1MY"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-GC07MYC1MY');</script>
+  <script>
+    (function () {
+      var h = null;
+      try { h = new URLSearchParams(location.search).get("hl"); } catch (e) {}
+      var v = (h === "en" || h === "zh-hans" || h === "zh-hant") ? h : null;
+      if (!v) { try { var mv = localStorage.getItem("mm_variant"); if (mv === "en" || mv === "zh-hans" || mv === "zh-hant") v = mv; } catch (e) {} }
+      if (!v) {
+        var l = (navigator.language || "en").toLowerCase();
+        v = l.indexOf("zh") === 0
+          ? (l.indexOf("cn") > -1 || l.indexOf("hans") > -1 || l.indexOf("sg") > -1 ? "zh-hans" : "zh-hant")
+          : "en";
+      }
+      location.replace("/" + v + "/terms");
+    })();
+  </script>
 </head>
 <body>
-  <header id="topbar">
-    <a id="brand" href="/">
-      <img class="brand-logo" src="logo.svg" alt="" />
-      <span class="logo">Musical<span class="logo-em">Map</span></span>
-      <span class="tagline" data-i18n="legal_tagline">此刻全球正在上演的音樂劇</span>
-    </a>
-    <!-- nav 與首頁同排版同順序(語言pills+地圖首頁+隱私/條款/說明+CTA),跨頁不跳動;pills 切換本頁語言(?hl=) -->
-    <nav id="topnav">
-      <div id="lang-switch" role="group" aria-label="Language / 語言">
-        <button type="button" class="lang-trigger" aria-haspopup="true" aria-expanded="false" aria-label="選擇語言 / Select language"><svg class="lang-globe" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 2.5 15 0 18M12 3c-2.5 2.5-2.5 15 0 18M4.5 7.5c4.5 2.5 10.5 2.5 15 0M4.5 16.5c4.5-2.5 10.5-2.5 15 0"/></svg><span class="lang-cur">繁中</span><svg class="lang-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8l7 7 7-7"/></svg></button>
-        <div class="lang-pop" role="menu" hidden>
-          <a class="lang-opt" role="menuitem" data-hl-link="zh-hant" href="?hl=zh-hant" lang="zh-Hant" hreflang="zh-Hant"><span>繁體中文</span><svg class="lang-tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12l5 5L20 6"/></svg></a>
-          <a class="lang-opt" role="menuitem" data-hl-link="zh-hans" href="?hl=zh-hans" lang="zh-Hans" hreflang="zh-Hans"><span>简体中文</span><svg class="lang-tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12l5 5L20 6"/></svg></a>
-          <a class="lang-opt" role="menuitem" data-hl-link="en" href="?hl=en" lang="en" hreflang="en"><span>English</span><svg class="lang-tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12l5 5L20 6"/></svg></a>
-        </div>
-      </div>
-      <a class="nav-link" href="/" data-i18n="nav_map">地圖首頁</a>
-      <a class="nav-link" href="/guide" data-i18n="nav_guide">怎麼使用</a>
-      <!-- 隱私/條款不進頂部 nav(首頁在地圖 attribution 列,本頁互連在 footer) -->
-      <a class="nav-cta" href="https://my.themusicalmap.com/" data-i18n="how_nav_start">我的音樂劇</a>
-    </nav>
-  </header>
-
-  <main class="legal">
-    <h1 data-i18n="tou_h1">使用條款</h1>
-    <p class="updated" data-i18n="tou_updated">最後更新：2026-07-03</p>
-
-    <p data-i18n-html="tou_intro">歡迎使用 MusicalMap（「本網站」）。使用本網站即表示你同意以下條款。聯絡方式：<a href="mailto:contact@themusicalmap.com">contact@themusicalmap.com</a>。</p>
-
-    <h2 data-i18n="tou_s1_h">1. 服務說明</h2>
-    <p data-i18n-html="tou_s1_p">本網站是一個免費的資訊性服務，彙整公開來源呈現全球音樂劇的演出地點與檔期。資料來自各售票平台與官方來源，可能有<strong>延遲、變動或錯誤</strong>。</p>
-
-    <h2 data-i18n="tou_s2_h">2. 資料準確性與免責</h2>
-    <p data-i18n-html="tou_s2_p">本網站<strong>不保證</strong>演出時間、地點、票務狀態或價格之正確性與即時性。<strong>購票或安排行程前，請務必向官方售票管道或劇院再次確認。</strong>本網站對因依賴本站資訊所生之任何損失，於法律允許範圍內不負責任。服務以「現狀」提供，不附任何明示或默示擔保。</p>
-
-    <h2 data-i18n="tou_s3_h">3. 售票連結與分潤揭露</h2>
-    <p data-i18n-html="tou_s3_p">地圖上的售票連結導向第三方平台；部分<strong>可能為分潤連結</strong>，本網站可能因此獲得少額佣金，<strong>你不會多付費用</strong>。實際交易（付款、出票、退換）由各該售票平台依其條款處理，與本網站無涉。</p>
-
-    <h2 data-i18n="tou_s4_h">4. 第三方連結</h2>
-    <p data-i18n-html="tou_s4_p">本網站包含連往第三方網站的連結，僅為方便提供。本網站不對其內容、商品、服務或交易負責，連結不代表背書。</p>
-
-    <h2 data-i18n="tou_s5_h">5. 帳號與你的內容</h2>
-    <p data-i18n-html="tou_s5_p">使用「我的音樂劇」需以 Google 帳號登入。你應對自己輸入的觀劇紀錄負責。你保留你內容的權利；為提供此功能，你授權本網站儲存並向你本人顯示這些內容。你可隨時刪除。我們得移除違法或濫用之內容。</p>
-
-    <h2 data-i18n="tou_s6_h">6. 可接受使用</h2>
-    <p data-i18n-html="tou_s6_p">請勿對本網站進行自動化大量擷取、攻擊、干擾服務，或以任何違法、侵權方式使用本網站。</p>
-
-    <h2 data-i18n="tou_s7_h">7. 智慧財產</h2>
-    <p data-i18n-html="tou_s7_p">演出資料來自公開來源；海報、商標、作品名稱等權利屬各該權利人所有，於本網站僅作識別與資訊用途。本網站之程式碼與原創呈現受著作權保護。</p>
-
-    <h2 data-i18n="tou_s8_h">8. 準據法</h2>
-    <p data-i18n-html="tou_s8_p">本條款依<strong>中華民國（台灣）</strong>法律解釋與適用。</p>
-
-    <h2 data-i18n="tou_s9_h">9. 變更</h2>
-    <p data-i18n-html="tou_s9_p">本條款可能不定期更新，異動將反映於本頁頂端的「最後更新」日期；繼續使用即視為接受。</p>
-
-  </main>
-  <footer class="site-foot"><div class="sf-in">
-    <span data-i18n="how_footer">MusicalMap — 全球音樂劇即時地圖，與你的音樂劇護照。</span>
-    <span class="sp"></span>
-    <a href="/" data-i18n="how_footer_link">回到地圖</a>
-    <a href="https://my.themusicalmap.com/" data-i18n="how_nav_start">我的音樂劇</a>
-    <a href="/about" data-i18n="nav_about">關於本站</a>
-    <a href="/privacy" data-i18n="nav_privacy">隱私權政策</a>
-  </div></footer>
-<script src="js/mm-xlang.js?v=1" defer></script>
+  <p>使用條款 — MusicalMap — choose your language / 選擇語言:
+    <a href="/zh-hant/terms">繁體中文</a> ·
+    <a href="/zh-hans/terms">简体中文</a> ·
+    <a href="/en/terms">English</a>
+  </p>
 </body>
 </html>

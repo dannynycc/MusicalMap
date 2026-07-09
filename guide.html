@@ -1,301 +1,39 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title data-i18n="how_title">怎麼使用 — MusicalMap</title>
-<meta name="description" data-i18n-content="how_meta" content="MusicalMap 怎麼用：一張地圖看全世界正在上演的音樂劇，把你看過的每一齣記成一本音樂劇護照，分享出去。" />
-<link rel="canonical" href="https://themusicalmap.com/guide" />
-<link rel="alternate" hreflang="en" href="https://themusicalmap.com/guide?hl=en" />
-<link rel="alternate" hreflang="zh-Hans" href="https://themusicalmap.com/guide?hl=zh-hans" />
-<link rel="alternate" hreflang="zh-Hant" href="https://themusicalmap.com/guide" />
-<link rel="alternate" hreflang="x-default" href="https://themusicalmap.com/guide" />
-<meta property="og:type" content="website" />
-<meta property="og:site_name" content="MusicalMap" />
-<meta property="og:url" content="https://themusicalmap.com/guide" />
-<meta property="og:title" data-i18n-content="how_title" content="怎麼使用 — MusicalMap" />
-<meta property="og:description" data-i18n-content="how_meta" content="MusicalMap 怎麼用：一張地圖看全世界正在上演的音樂劇，把你看過的每一齣記成一本音樂劇護照，分享出去。" />
-<meta property="og:image" content="https://themusicalmap.com/og-image.png" />
-<meta name="twitter:card" content="summary" />
-<link rel="icon" href="/favicon.ico?v=3" sizes="any" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>怎麼使用 — MusicalMap · How it works</title>
+  <meta name="description" content="MusicalMap 怎麼用：一張地圖看全世界正在上演的音樂劇，把你看過的每一齣記成一本音樂劇護照，分享出去。" />
+  <link rel="canonical" href="https://themusicalmap.com/guide" />
+  <link rel="alternate" hreflang="en" href="https://themusicalmap.com/en/guide" />
+  <link rel="alternate" hreflang="zh-Hans" href="https://themusicalmap.com/zh-hans/guide" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://themusicalmap.com/zh-hant/guide" />
+  <link rel="alternate" hreflang="x-default" href="https://themusicalmap.com/guide" />
+  <link rel="icon" href="/favicon.ico?v=3" sizes="any" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png?v=3" />
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,900;1,9..144,400&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700;900&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet" />
-<script>window.MM_USE_LANG_PREF=true;</script>
-<script>/* zh-hans:同步載 OpenCC(繁→簡),僅簡中使用者下載;語言判定比照 me/about/privacy(?hl→mm_variant→navigator),否則英文使用者直開 guide 會被丟回中文 */(function(){try{
-var h=new URLSearchParams(location.search).get('hl'),v=(h==='en'||h==='zh-hans'||h==='zh-hant')?h:null;
-if(!v){var mv=localStorage.getItem('mm_variant');v=(mv==='en'||mv==='zh-hans'||mv==='zh-hant')?mv:(localStorage.getItem('mm_lang')==='en'?'en':localStorage.getItem('mm_lang')==='zh'?'zh-hant':null);}
-if(!v){var nl=(navigator.language||'').toLowerCase();v=nl.indexOf('zh')===0?((nl.indexOf('cn')>-1||nl.indexOf('hans')>-1||nl.indexOf('sg')>-1)?'zh-hans':'zh-hant'):(nl?'en':'zh-hant');}
-if(v==='zh-hans'){document.write('<scr'+'ipt src="https://cdn.jsdelivr.net/npm/opencc-js@1.3.1/dist/umd/t2cn.js" integrity="sha384-P/OaFUnOIAgMkLxsXIAaP6WO3Wm09591cGX5bHbW4eCOeDxH9L8U3aWYf4cE4SYl" crossorigin="anonymous"><\/scr'+'ipt>');
-document.write('<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@600;700;900&display=swap" rel="stylesheet" />');/* 簡體字 TC 字型沒有→會混排系統字忽粗忽細,補 SC 字型 */}
-}catch(e){}})();</script>
-<script src="js/mm-strings.js?v=238"></script>
-  <script src="js/mm-acct-menu.js?v=227" defer></script>
-  <script src="js/mm-lang.js?v=230" defer></script><!-- 語言切換下拉開關 -->
-<style>
-:root{
-  --paper:#f4efe4; --paper2:#efe8d8; --ink:#221f18; --ink2:#6d6555; --gold:#a07a34; --gold-ink:#fff;
-  --line:#ddd3bf; --stamp:#5646c0; --radius:14px;
-  --serif:"Fraunces","Noto Serif TC",Georgia,serif;
-  --sans:"Noto Sans TC","Inter","Segoe UI",system-ui,"Microsoft JhengHei",sans-serif;
-  --mono:"IBM Plex Mono",monospace;
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.68;-webkit-font-smoothing:antialiased;
-  background-image:repeating-linear-gradient(135deg,rgba(160,122,52,.025) 0 2px,transparent 2px 9px)}
-html[lang="en"] body{--serif:"Fraunces",Georgia,serif;--sans:"Inter","Segoe UI",system-ui,sans-serif}
-/* 簡中:改用 SC 字型(TC 字型缺簡體獨有字,否則簡體字回退系統字、與共用字混排忽粗忽細) */
-html[lang="zh-Hans"] body{--serif:"Fraunces","Noto Serif SC",Georgia,serif;--sans:"Noto Sans SC","Inter","Segoe UI",system-ui,sans-serif}
-a{color:inherit}
-.wrap{max-width:1080px;margin:0 auto;padding:0 26px}
-.serif{font-family:var(--serif)}
-/* header */
-/* header 幾何/字重比照首頁 #topbar(58px 滿版、鏈結 14px/600),跨頁切換上排不跳動 */
-header{position:sticky;top:0;z-index:50;background:rgba(244,239,228,.9);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
-.bar{display:flex;align-items:center;gap:14px;height:58px;max-width:none;padding:0 24px}
-.brand{display:flex;align-items:center;gap:10px;font-family:var(--serif);font-weight:900;font-size:20px;text-decoration:none;letter-spacing:-.01em;white-space:nowrap}
-.brand img{width:auto;height:34px}  /* logo.svg 是直式徽章,定寬高會壓變形 — 跟首頁一樣只定高、寬 auto 保持原比例 */
-.brand b{color:var(--gold)}
-.bar-tagline{font-size:13px;color:var(--ink2);white-space:nowrap;margin-left:-3px}  /* 比照首頁 #brand .tagline;-3px 補 gap 差(首頁 10px/此處 14px) */
-.nav{margin-left:auto;display:flex;align-items:center;gap:14px}
-.nav a{font-size:14px;font-weight:600;color:var(--ink);text-decoration:none;white-space:nowrap}
-.nav a:hover{color:var(--gold)}
-.nav a.cta{background:var(--ink);color:var(--paper);font-weight:600;padding:9px 16px;border-radius:999px}
-.nav a.cta:hover{background:#000;color:var(--paper)}
-#lang-switch{position:relative;display:inline-flex}
-.lang-trigger{display:inline-flex;align-items:center;gap:6px;cursor:pointer;border:1px solid var(--line);background:#fdfaf2;color:var(--ink);font:inherit;font-size:13px;font-weight:600;line-height:1;padding:6px 9px;border-radius:9px}
-.lang-trigger:hover,.lang-trigger[aria-expanded="true"]{border-color:var(--gold)}
-.lang-globe{width:16px;height:16px;fill:none;stroke:var(--ink2);stroke-width:1.7;flex:none}
-.lang-chev{width:10px;height:10px;fill:none;stroke:var(--ink2);stroke-width:2;flex:none;transition:transform .15s}
-.lang-trigger[aria-expanded="true"] .lang-globe{stroke:var(--gold)}
-.lang-trigger[aria-expanded="true"] .lang-chev{transform:rotate(180deg)}
-.lang-pop{position:absolute;top:calc(100% + 8px);right:0;min-width:150px;z-index:60;background:#fff;border:1px solid var(--line);border-radius:12px;padding:6px;box-shadow:0 12px 34px rgba(0,0,0,.16)}
-.lang-pop[hidden]{display:none}
-#lang-switch .lang-opt{display:flex;align-items:center;justify-content:flex-start;gap:8px;text-decoration:none;color:var(--ink);font-size:14px;font-weight:500;padding:9px 11px;border-radius:8px;line-height:1.1}
-#lang-switch .lang-opt:hover{background:var(--paper2);color:var(--ink)}
-#lang-switch .lang-opt[aria-current="true"]{color:var(--gold);font-weight:700}
-.lang-tick{width:15px;height:15px;fill:none;stroke:var(--gold);stroke-width:2.2;flex:none;opacity:0}
-#lang-switch .lang-opt[aria-current="true"] .lang-tick{opacity:1}
-/* 手機:收掉文字連結(入口保留在 hero CTA 與 footer),留語言切換+主 CTA — 幾何比照首頁 @680 */
-@media(max-width:700px){
-  .bar{gap:8px;height:52px;padding:0 8px}
-  .bar-tagline{display:none}  /* 比照首頁手機版 */
-  .nav{gap:6px}
-  .nav > a:not(.cta){display:none}
-  .brand{font-size:17px;gap:7px}
-  .brand img{width:auto;height:28px}
-  .lang-cur{display:none}
-  .nav a.cta{font-size:13px;padding:7px 12px}
-}
-@media(max-width:430px){
-  .wrap{padding:0 16px}
-  .bar{padding:0 8px}
-}
-@media(max-width:360px){   /* iPhone SE 等窄機:brand+語言+CTA 在 320px 擠不下→再收緊,避免橫向溢出 */
-  .bar{gap:6px}
-  .brand{font-size:15px;gap:6px}
-  .brand img{height:25px}
-  .lang-cur{display:none}
-  .nav a.cta{font-size:12px;padding:6px 10px}
-}
-/* hero — 不置中,editorial 左對齊 */
-.hero{padding:88px 0 40px;max-width:760px}
-@media(max-width:700px){.hero{padding:56px 0 32px}}
-.eyebrow{font-family:var(--mono);font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:22px}
-h1{font-family:var(--serif);font-weight:900;font-size:clamp(38px,6.2vw,68px);line-height:1.04;letter-spacing:-.025em;margin:0 0 24px}
-h1 em{font-style:italic;font-weight:400;white-space:nowrap}  /* 「音樂劇。」整組不拆行;h1 不設 keep-all,行可斷在 em 前,390px 不會溢出 */
-.lede{font-size:clamp(17px,2.2vw,21px);color:var(--ink2);max-width:600px;margin:0 0 34px}
-.cta-row{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
-.btn{display:inline-flex;align-items:center;padding:13px 26px;border-radius:999px;font-weight:600;font-size:15.5px;text-decoration:none;border:1.5px solid transparent;transition:none}
-.btn-primary{background:var(--gold);color:#fff}
-.btn-primary:hover{background:#8a6829}
-.btn-ghost{background:transparent;color:var(--ink);border-color:var(--line)}
-.btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
-.textlink{font-weight:600;color:var(--gold);text-decoration:none;border-bottom:1.5px solid var(--line);padding-bottom:1px}
-.textlink:hover{border-color:var(--gold)}
-/* rule */
-.rule{border:0;border-top:1px solid var(--line);margin:64px 0}
-/* part heading */
-.part{display:flex;align-items:baseline;gap:16px;margin:0 0 8px}
-.part .pno{font-family:var(--serif);font-size:clamp(40px,7vw,72px);font-weight:400;line-height:.9;color:var(--gold);opacity:.55}
-.part h2{font-family:var(--serif);font-weight:900;font-size:clamp(26px,3.6vw,38px);line-height:1.1;letter-spacing:-.02em;margin:0}
-.part-lede{color:var(--ink2);font-size:17px;max-width:620px;margin:2px 0 40px 0}
-/* editorial row: 圖文交錯,不對稱 */
-.row{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:center;margin:40px 0}
-.row.flip .fig{order:2}
-@media(max-width:760px){.row{grid-template-columns:1fr;gap:24px}.row.flip .fig{order:0}}
-.fig{border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);box-shadow:0 18px 40px rgba(34,31,24,.14);background:#12141a}
-.fig img{display:block;width:100%;height:auto}
-.fig.paper{background:var(--paper2)}
-.copy .n{font-family:var(--serif);font-size:15px;color:var(--gold);letter-spacing:.02em;margin-bottom:6px}
-.copy h3{font-family:var(--serif);font-weight:600;font-size:clamp(21px,2.6vw,26px);line-height:1.2;letter-spacing:-.01em;margin:0 0 10px}
-.copy p{color:var(--ink2);font-size:16.5px;margin:0}
-.copy p+p{margin-top:12px}  /* 兩段之間空一行(時間軸段落與海報段落分開) */
-/* b3/b4 並排時的分隔線;手機堆疊改為上緣線 */
-.row .copy.divided{border-left:1px solid var(--line);padding-left:44px}
-@media(max-width:760px){.row .copy.divided{border-left:0;padding-left:0;border-top:1px solid var(--line);padding-top:24px}}
-/* bridge quote */
-.bridge{text-align:center;padding:20px 0;margin:16px 0}
-.bridge p{font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(22px,3.4vw,32px);color:var(--ink);letter-spacing:-.01em;max-width:640px;margin:0 auto;line-height:1.3}
-/* final */
-.final{background:var(--ink);color:var(--paper);border-radius:22px;padding:64px 40px;margin:72px 0;text-align:center}
-.final h2{font-family:var(--serif);font-weight:900;font-size:clamp(28px,4vw,40px);letter-spacing:-.02em;margin:0 0 12px}
-.final p{color:rgba(244,239,228,.72);font-size:17px;margin:0 0 28px}
-.final .btn-primary{background:var(--gold)}
-.final .btn-ghost{color:var(--paper);border-color:rgba(244,239,228,.3)}
-.final .btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
-footer{border-top:1px solid var(--line);padding:30px 0 44px;color:var(--ink2);font-size:14px}
-footer a{color:var(--gold);text-decoration:none}
-footer .sp{margin-left:auto}
-</style>
-<!-- Google Analytics(GA4 G-GC07MYC1MY;訪客來源/行為分析,同一 ID 涵蓋主站與 my. 網域(報表以 hostname 區分);不加 SRI:gtag.js 由 Google 滾動更新,釘 hash 會靜默斷統計;隱私揭露見 privacy §1/§3) --><script async src="https://www.googletagmanager.com/gtag/js?id=G-GC07MYC1MY"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-GC07MYC1MY');</script>
+  <script>
+    (function () {
+      var h = null;
+      try { h = new URLSearchParams(location.search).get("hl"); } catch (e) {}
+      var v = (h === "en" || h === "zh-hans" || h === "zh-hant") ? h : null;
+      if (!v) { try { var mv = localStorage.getItem("mm_variant"); if (mv === "en" || mv === "zh-hans" || mv === "zh-hant") v = mv; } catch (e) {} }
+      if (!v) {
+        var l = (navigator.language || "en").toLowerCase();
+        v = l.indexOf("zh") === 0
+          ? (l.indexOf("cn") > -1 || l.indexOf("hans") > -1 || l.indexOf("sg") > -1 ? "zh-hans" : "zh-hant")
+          : "en";
+      }
+      location.replace("/" + v + "/guide");
+    })();
+  </script>
 </head>
 <body>
-<header><div class="wrap bar">
-  <a class="brand" href="/"><img src="logo.svg" alt="" /><span>Musical<b>Map</b></span></a><!-- 包單一 span:flex gap 會把裸文字節點和 <b> 撐開成「Musical Map」 -->
-  <span class="bar-tagline" data-i18n="legal_tagline">此刻全球正在上演的音樂劇</span>
-  <nav class="nav">
-    <!-- pills 永遠在 nav 最前,與首頁/法務頁一致(跨頁不跳動) -->
-    <div id="lang-switch" role="group" aria-label="Language / 語言">
-      <button type="button" class="lang-trigger" aria-haspopup="true" aria-expanded="false" aria-label="選擇語言 / Select language"><svg class="lang-globe" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 2.5 15 0 18M12 3c-2.5 2.5-2.5 15 0 18M4.5 7.5c4.5 2.5 10.5 2.5 15 0M4.5 16.5c4.5-2.5 10.5-2.5 15 0"/></svg><span class="lang-cur">繁中</span><svg class="lang-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8l7 7 7-7"/></svg></button>
-      <div class="lang-pop" role="menu" hidden>
-        <a class="lang-opt" role="menuitem" data-hl-link="zh-hant" href="?hl=zh-hant" lang="zh-Hant" hreflang="zh-Hant"><span>繁體中文</span><svg class="lang-tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12l5 5L20 6"/></svg></a>
-        <a class="lang-opt" role="menuitem" data-hl-link="zh-hans" href="?hl=zh-hans" lang="zh-Hans" hreflang="zh-Hans"><span>简体中文</span><svg class="lang-tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12l5 5L20 6"/></svg></a>
-        <a class="lang-opt" role="menuitem" data-hl-link="en" href="?hl=en" lang="en" hreflang="en"><span>English</span><svg class="lang-tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12l5 5L20 6"/></svg></a>
-      </div>
-    </div>
-    <a href="/" data-i18n="nav_map">地圖首頁</a>
-    <a href="/guide" data-i18n="nav_guide">怎麼使用</a>
-    <!-- 隱私/條款不進頂部 nav(首頁在地圖 attribution 列,本頁在 footer) -->
-    <!-- 所有劇院入口暫藏(2026-07-03 指示;theatres.html 頁面保留可直達) <a href="/theatres" data-i18n="nav_theatres">所有劇院</a> -->
-    <a class="cta" href="https://my.themusicalmap.com/" data-i18n="how_nav_start">我的音樂劇</a>
-  </nav>
-</div></header>
-
-<div class="wrap">
-  <!-- HERO -->
-  <section class="hero">
-    <div class="eyebrow" data-i18n="how_eyebrow">怎麼使用</div>
-    <h1 data-i18n-html="how_hero">一張地圖，<br>看見全世界正在上演的<em>音樂劇</em>。</h1>
-    <p class="lede" data-i18n="how_lede">免登入就能探索此刻全球正在上演的音樂劇——百老匯、倫敦西區、各國巡演。登入之後，把你看過的都記成一本音樂劇護照，分享出去。</p>
-    <div class="cta-row">
-      <a class="btn btn-primary" href="/" data-i18n="how_cta_map">探索演出地圖</a>
-      <a class="btn btn-ghost" href="https://my.themusicalmap.com/" data-i18n="how_cta_me">建立我的音樂劇護照</a>
-    </div>
-  </section>
-
-  <hr class="rule" />
-
-  <!-- PART 1: MAP -->
-  <div class="part"><span class="pno serif">01</span><h2 data-i18n="how_p1_h">探索，不必註冊</h2></div>
-  <p class="part-lede" data-i18n="how_p1_lede">打開地圖，全球此刻正在上演的音樂劇一次看盡。放大、拖一拖，看看世界哪個角落的燈正亮著。</p>
-
-  <div class="row">
-    <div class="fig"><img src="assets/guide/zh-hant/map.webp" data-shot="map" width="1600" height="1336" alt="MusicalMap 主地圖：各音樂劇海報散布在地圖上，相鄰的聚成數字圓圈，底部有月份時間軸" loading="lazy" decoding="async" /></div>
-    <div class="copy">
-      <div class="n serif" data-i18n="how_a1_n">在地圖上</div>
-      <h3 data-i18n="how_a1_h">每張海報，都是一齣正在上演的劇</h3>
-      <p data-i18n="how_a1_p">地圖上的標記就是各音樂劇的海報，相鄰的會聚成一顆數字圓圈——數字是那一帶正在演的場數。點一張海報，看檔期、劇院與售票連結。</p>
-      <p data-i18n="how_a1_p2">底部的月份時間軸可以拖到未來的月份，看那個月全球在演什麼；按 ▶ 可以自動逐月播放，看巡演在城市之間移動分布變化。</p>
-    </div>
-  </div>
-
-  <div class="row flip">
-    <div class="fig"><img src="assets/guide/zh-hant/popup.webp" data-shot="popup" width="1328" height="764" alt="劇目視窗：Wicked 在 Gershwin Theatre 長期上演，附購票連結，標題連到官方網站" loading="lazy" decoding="async" /></div>
-    <div class="copy">
-      <div class="n serif" data-i18n="how_a2_n">一鍵訂票</div>
-      <h3 data-i18n="how_a2_h">看到喜歡的，直接過去訂</h3>
-      <p data-i18n="how_a2_p">每一齣都附售票連結，多數還有官方網站。我們不賣票——只把你帶到對的地方。</p>
-    </div>
-  </div>
-
-  <!-- BRIDGE -->
-  <div class="bridge"><p class="serif" data-i18n="how_bridge">看過的那些，別讓它們只留在記憶裡。</p></div>
-
-  <hr class="rule" />
-
-  <!-- PART 2: MY MUSICALS -->
-  <div class="part"><span class="pno serif">02</span><h2 data-i18n="how_p2_h">記下你看過的每一齣</h2></div>
-  <p class="part-lede" data-i18n="how_p2_lede">登入之後，你看過的劇會長成一面海報牆、一本蓋章護照，還有你的觀劇統計。全部自動生成。</p>
-
-  <div class="row">
-    <div class="fig"><img src="assets/guide/zh-hant/wall.webp" data-shot="wall" width="1272" height="800" alt="海報牆：看過的音樂劇海報一張張掛成一面牆" loading="lazy" decoding="async" /></div>
-    <div class="copy">
-      <div class="n serif" data-i18n="how_b0_n">你的海報牆</div>
-      <h3 data-i18n="how_b0_h">看過的，掛成一面牆</h3>
-      <p data-i18n="how_b0_p">每加一齣，海報就掛上牆；點卡片上的 ♥，標下你的最愛。海報牆、護照、清單——同一批收藏，三種看法。</p>
-    </div>
-  </div>
-
-  <div class="row flip">
-    <div class="fig"><img src="assets/guide/zh-hant/form.webp" data-shot="form" width="1120" height="460" alt="記錄表單：輸入「歌劇魅影」，自動找到 The Phantom of the Opera 與海報、演出城市" loading="lazy" decoding="async" /></div>
-    <div class="copy">
-      <div class="n serif" data-i18n="how_b1_n">加入一齣</div>
-      <h3 data-i18n="how_b1_h">搜音樂劇名，其餘自動帶入</h3>
-      <p data-i18n="how_b1_p">中英文搜尋都行，劇院、城市、海報自動補上。填看劇的日期、評分、座位、心得——只記得年份也沒關係。每看一場，護照上就多一個章。</p>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="fig"><img src="assets/guide/zh-hant/custom.webp" data-shot="custom" width="1120" height="504" alt="自訂海報與連結：貼上海報網址即時預覽，並可為每一齣附上節目頁或售票連結" loading="lazy" decoding="async" /></div>
-    <div class="copy">
-      <div class="n serif" data-i18n="how_b15_n">獨家</div>
-      <h3 data-i18n="how_b15_h">海報與連結，都能換成你的</h3>
-      <p data-i18n="how_b15_p">每一齣都能貼上自訂海報網址——用你記得的那一版劇照，即時預覽。再附一條連結，把當年的節目頁或售票頁存進詳情，隨時點開。</p>
-    </div>
-  </div>
-
-  <div class="row flip">
-    <div class="fig"><img src="assets/guide/zh-hant/stats.webp" data-shot="stats" width="1252" height="518" alt="觀劇統計：最常看的音樂劇、最常去的國家城市與劇院、各年各月各星期的觀劇分布" loading="lazy" decoding="async" /></div>
-    <div class="copy">
-      <div class="n serif" data-i18n="how_b2_n">你的觀劇統計</div>
-      <h3 data-i18n="how_b2_h">看久了，會浮現一個輪廓</h3>
-      <p data-i18n="how_b2_p">最常看的音樂劇、去過的城市與國家、各年各月的觀劇分布——都幫你統計好了，一眼看出你是什麼樣的劇迷。</p>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="copy">
-      <div class="n serif" data-i18n="how_b3_n">分享出去</div>
-      <h3 data-i18n="how_b3_h">你的個人專屬頁面，一鍵就能分享</h3>
-      <p data-i18n="how_b3_p">登入取的名字就是你的專屬網址；到「分享」設定公開，這一頁就能傳給朋友。票價、座位要不要公開由你決定；筆記永遠只有你看得到。</p>
-    </div>
-    <div class="copy divided">
-      <div class="n serif" data-i18n="how_b4_n">登入很單純</div>
-      <h3 data-i18n="how_b4_h">用 Google 登入，跨裝置同步</h3>
-      <p data-i18n="how_b4_p">我們只讀你的名稱、email 與頭像（頭像只顯示在你自己登入後的選單，不會出現在公開頁），不會代你張貼任何內容。你的收藏存在帳號裡，換手機、換電腦都在。</p>
-    </div>
-  </div>
-
-  <!-- FINAL -->
-  <div class="final">
-    <h2 data-i18n="how_final_h">從哪裡開始都可以</h2>
-    <p data-i18n="how_final_p">先逛地圖找靈感，或直接記下你看過的第一齣。</p>
-    <div class="cta-row" style="justify-content:center">
-      <a class="btn btn-primary" href="https://my.themusicalmap.com/" data-i18n="how_final_cta">建立我的音樂劇護照</a>
-      <a class="btn btn-ghost" href="/" data-i18n="how_final_cta2">先探索地圖</a>
-    </div>
-    <p style="margin:26px 0 0;font-size:14px;color:rgba(244,239,228,.55)"><a href="/about" data-i18n="how_final_about" style="color:var(--gold);text-decoration:none">這個網站由一位音樂劇迷獨立打造——背後的故事 →</a></p>
-  </div>
-</div>
-
-<footer><div class="wrap" style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;width:100%">
-  <span data-i18n="how_footer">MusicalMap — 全球音樂劇即時地圖，與你的音樂劇護照。</span>
-  <span class="sp"></span>
-  <a href="/" data-i18n="how_footer_link">回到地圖</a>
-  <a href="https://my.themusicalmap.com/" data-i18n="how_nav_start">我的音樂劇</a>
-  <a href="/about" data-i18n="nav_about">關於</a>
-  <a href="/privacy" data-i18n="nav_privacy">隱私權政策</a>
-  <a href="/terms" data-i18n="nav_terms">使用條款</a>
-</div></footer>
-<script>/* 截圖依語言載對應版本(assets/guide/{hl}/);靜態預設 zh-hant */(function(){
-var hl=window.MM_HL;if(!hl||hl==='zh-hant')return;
-document.querySelectorAll('img[data-shot]').forEach(function(im){im.src='assets/guide/'+hl+'/'+im.getAttribute('data-shot')+'.webp';});
-})();</script>
-<script src="js/mm-xlang.js?v=1" defer></script>
+  <p>怎麼使用 — MusicalMap — choose your language / 選擇語言:
+    <a href="/zh-hant/guide">繁體中文</a> ·
+    <a href="/zh-hans/guide">简体中文</a> ·
+    <a href="/en/guide">English</a>
+  </p>
 </body>
 </html>

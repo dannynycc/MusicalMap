@@ -1,38 +1,50 @@
 # MusicalMap — open to all crawlers, including AI/answer engines.
 User-agent: *
 Allow: /
+Disallow: /build/
 
 User-agent: Googlebot
 Allow: /
+Disallow: /build/
 
 User-agent: Bingbot
 Allow: /
+Disallow: /build/
 
 User-agent: GPTBot
 Allow: /
+Disallow: /build/
 
 User-agent: OAI-SearchBot
 Allow: /
+Disallow: /build/
 
 User-agent: ChatGPT-User
 Allow: /
+Disallow: /build/
 
 User-agent: ClaudeBot
 Allow: /
+Disallow: /build/
 
 User-agent: Claude-Web
 Allow: /
+Disallow: /build/
 
 User-agent: Claude-SearchBot
 Allow: /
+Disallow: /build/
 
 User-agent: PerplexityBot
 Allow: /
+Disallow: /build/
 
 User-agent: Google-Extended
 Allow: /
+Disallow: /build/
 
 User-agent: Applebot-Extended
 Allow: /
+Disallow: /build/
 
 Sitemap: https://themusicalmap.com/sitemap.xml

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title data-i18n="about_title">About — MusicalMap</title>
+  <meta name="description" data-i18n-content="about_meta" content="MusicalMap is built by one theatre fan: a live world map of musicals playing right now, plus a theatre passport of your own." />
+  <link rel="canonical" href="https://themusicalmap.com/en/about" />
+  <link rel="alternate" hreflang="en" href="https://themusicalmap.com/en/about" />
+  <link rel="alternate" hreflang="zh-Hans" href="https://themusicalmap.com/zh-hans/about" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://themusicalmap.com/zh-hant/about" />
+  <link rel="alternate" hreflang="x-default" href="https://themusicalmap.com/about" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="MusicalMap" />
+  <meta property="og:url" content="https://themusicalmap.com/en/about" />
+  <meta property="og:title" data-i18n-content="about_title" content="About — MusicalMap" />
+  <meta property="og:description" data-i18n-content="about_meta" content="MusicalMap is built by one theatre fan: a live world map of musicals playing right now, plus a theatre passport of your own." />
+  <meta property="og:image" content="https://themusicalmap.com/og-image.png" />
+  <meta name="twitter:card" content="summary" />
+  <link rel="icon" href="/favicon.ico?v=3" sizes="any" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png?v=3" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,900&family=Noto+Serif+TC:wght@900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/style.css?v=227" />
+  <!-- i18n:語言認 ?hl= → 主站共用偏好(mm_variant) → navigator;繁中為底,en 走字典,zh-hans 由 OpenCC 轉 -->
+  <script>window.MM_USE_LANG_PREF=true;</script>
+  <script>window.MM_HL="en";window.MM_STATIC_VARIANT="about";</script>
+  <script>/* zh-hans:先同步載 OpenCC(繁→簡),mm-strings 才能建簡體字典;只簡中使用者下載 */(function(){try{
+  var h=new URLSearchParams(location.search).get('hl'),v=(h==='en'||h==='zh-hans'||h==='zh-hant')?h:null;if(!v&&window.MM_HL)v=window.MM_HL;
+  if(!v){var mv=localStorage.getItem('mm_variant');v=(mv==='en'||mv==='zh-hans'||mv==='zh-hant')?mv:(localStorage.getItem('mm_lang')==='en'?'en':localStorage.getItem('mm_lang')==='zh'?'zh-hant':null);}
+  if(!v){var nl=(navigator.language||'').toLowerCase();v=nl.indexOf('zh')===0?((nl.indexOf('cn')>-1||nl.indexOf('hans')>-1||nl.indexOf('sg')>-1)?'zh-hans':'zh-hant'):(nl?'en':'zh-hant');}
+  if(v==='zh-hans'){document.write('<scr'+'ipt src="https://cdn.jsdelivr.net/npm/opencc-js@1.3.1/dist/umd/t2cn.js" integrity="sha384-P/OaFUnOIAgMkLxsXIAaP6WO3Wm09591cGX5bHbW4eCOeDxH9L8U3aWYf4cE4SYl" crossorigin="anonymous"><\/scr'+'ipt>');
+  document.write('<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&display=swap" rel="stylesheet" />');/* 簡體字 TC 字型沒有→混排忽粗忽細,補 SC */}
+  }catch(e){}})();</script>
+  <script src="/js/mm-strings.js?v=239"></script>
+  <script src="/js/mm-lang.js?v=230" defer></script>
+  <script src="/js/mm-acct-menu.js?v=227" defer></script>
+  <style>
+    /* 關於頁:legal 骨架 + 一點 guide 的 editorial 味(serif 大標) */
+    .legal h1.about-h1{font-family:"Fraunces","Noto Serif TC",Georgia,serif;font-weight:900;font-size:clamp(30px,4.6vw,44px);line-height:1.12;letter-spacing:-.02em;margin:6px 0 14px}
+    html[lang="zh-Hans"] .about-h1{font-family:"Fraunces","Noto Serif SC",Georgia,serif}  /* 簡中用 SC 免混排 */
+    .about-lede{font-size:17px;color:var(--muted);max-width:620px;margin:0 0 8px}
+  </style>
+<!-- Google Analytics(GA4 G-GC07MYC1MY;訪客來源/行為分析,同一 ID 涵蓋主站與 my. 網域(報表以 hostname 區分);不加 SRI:gtag.js 由 Google 滾動更新,釘 hash 會靜默斷統計;隱私揭露見 privacy §1/§3) --><script async src="https://www.googletagmanager.com/gtag/js?id=G-GC07MYC1MY"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-GC07MYC1MY');</script>
+</head>
+<body>
+  <header id="topbar">
+    <a id="brand" href="/en/">
+      <img class="brand-logo" src="/logo.svg" alt="" />
+      <span class="logo">Musical<span class="logo-em">Map</span></span>
+      <span class="tagline" data-i18n="legal_tagline">Musicals playing around the world right now</span>
+    </a>
+    <!-- nav 與全站同排版同順序;pills 切換本頁語言(?hl=) -->
+    <nav id="topnav">
+      <div id="lang-switch" role="group" aria-label="Language / 語言">
+        <button type="button" class="lang-trigger" aria-haspopup="true" aria-expanded="false" aria-label="選擇語言 / Select language"><svg class="lang-globe" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 2.5 15 0 18M12 3c-2.5 2.5-2.5 15 0 18M4.5 7.5c4.5 2.5 10.5 2.5 15 0M4.5 16.5c4.5-2.5 10.5-2.5 15 0"/></svg><span class="lang-cur">EN</span><svg class="lang-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8l7 7 7-7"/></svg></button>
+        <div class="lang-pop" role="menu" hidden>
+          <a class="lang-opt" role="menuitem" data-hl-link="zh-hant" href="/zh-hant/about" lang="zh-Hant" hreflang="zh-Hant"><span>繁體中文</span><svg class="lang-tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12l5 5L20 6"/></svg></a>
+          <a class="lang-opt" role="menuitem" data-hl-link="zh-hans" href="/zh-hans/about" lang="zh-Hans" hreflang="zh-Hans"><span>简体中文</span><svg class="lang-tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12l5 5L20 6"/></svg></a>
+          <a class="lang-opt" role="menuitem" data-hl-link="en" href="/en/about" lang="en" hreflang="en" aria-current="true"><span>English</span><svg class="lang-tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12l5 5L20 6"/></svg></a>
+        </div>
+      </div>
+      <a class="nav-link" href="/en/" data-i18n="nav_map">Map home</a>
+      <a class="nav-link" href="/en/guide" data-i18n="nav_guide">Guide</a>
+      <a class="nav-cta" href="https://my.themusicalmap.com/" data-i18n="how_nav_start">My Musicals</a>
+    </nav>
+  </header>
+
+  <main class="legal">
+    <h1 class="about-h1" data-i18n="about_h1">About MusicalMap</h1>
+    <p class="about-lede" data-i18n="about_lede">MusicalMap is built by one theatre fan: a live world map of musicals playing right now, plus a theatre passport of your own.</p>
+
+    <h2 data-i18n="about_s1_h">Why this site exists</h2>
+    <p data-i18n="about_s1_p1">I love maps and geography, and I’m a musical-theatre fan — the kind who waits at the stage door. I’ve seen shows in Taiwan, the US and the UK: Broadway, the West End, and tours everywhere in between.</p>
+    <p data-i18n="about_s1_p2">When I wanted to gather all the musicals I’d seen over the years, I couldn’t find a platform that did it well — so I decided to build one, to keep those records for good.</p>
+    <p data-i18n="about_s1_p3">And because I love maps, I put every musical playing around the world straight onto one. Building it taught me something: there are far more musicals playing at once, in far more languages, than I ever imagined. That world deserves a bigger audience — I hope this site helps more people find it.</p>
+
+    <h2 data-i18n="about_s2_h">What’s here</h2>
+    <ul>
+      <li data-i18n="about_s2_li1">The live map: musicals playing now and soon across 40+ countries, refreshed daily; tap a poster for dates, theatre and ticket links.</li>
+      <li data-i18n="about_s2_li2">My Musicals: sign in to log every show you’ve seen — a poster wall, a stamped passport, your theatregoing stats, and a public page to share with friends.</li>
+    </ul>
+
+    <h2 data-i18n="about_s3_h">Where the data comes from</h2>
+    <p data-i18n="about_s3_p">Listings are aggregated daily from official ticketing platforms and theatre sources (Broadway, West End, Ticketmaster, Shiki/Toho, Interpark, OPENTIX and more). See the Terms for disclaimers and affiliate disclosure.</p>
+
+    <h2 data-i18n="about_s4_h">Contact</h2>
+    <p data-i18n="about_s4_p">Corrections, ideas, or anything else: contact@themusicalmap.com.</p>
+
+  </main>
+  <footer class="site-foot"><div class="sf-in">
+    <span data-i18n="how_footer">MusicalMap — a live world map of musicals, and your theatre passport.</span>
+    <span class="sp"></span>
+    <a href="/en/" data-i18n="how_footer_link">Back to the map</a>
+    <a href="https://my.themusicalmap.com/" data-i18n="how_nav_start">My Musicals</a>
+    <a href="/en/guide" data-i18n="nav_guide">Guide</a>
+    <a href="/en/privacy" data-i18n="nav_privacy">Privacy</a>
+    <a href="/en/terms" data-i18n="nav_terms">Terms</a>
+  </div></footer>
+<script src="/js/mm-xlang.js?v=1" defer></script>
+</body>
+</html>

@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title data-i18n="how_title">How it works — MusicalMap</title>
+<meta name="description" data-i18n-content="how_meta" content="How MusicalMap works: one live map of musicals playing worldwide, and a theatre passport for every show you’ve seen." />
+<link rel="canonical" href="https://themusicalmap.com/en/guide" />
+  <link rel="alternate" hreflang="en" href="https://themusicalmap.com/en/guide" />
+  <link rel="alternate" hreflang="zh-Hans" href="https://themusicalmap.com/zh-hans/guide" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://themusicalmap.com/zh-hant/guide" />
+  <link rel="alternate" hreflang="x-default" href="https://themusicalmap.com/guide" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="MusicalMap" />
+<meta property="og:url" content="https://themusicalmap.com/en/guide" />
+<meta property="og:title" data-i18n-content="how_title" content="How it works — MusicalMap" />
+<meta property="og:description" data-i18n-content="how_meta" content="How MusicalMap works: one live map of musicals playing worldwide, and a theatre passport for every show you’ve seen." />
+<meta property="og:image" content="https://themusicalmap.com/og-image.png" />
+<meta name="twitter:card" content="summary" />
+<link rel="icon" href="/favicon.ico?v=3" sizes="any" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png?v=3" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,900;1,9..144,400&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700;900&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet" />
+<script>window.MM_USE_LANG_PREF=true;</script>
+  <script>window.MM_HL="en";window.MM_STATIC_VARIANT="guide";</script>
+<script>/* zh-hans:同步載 OpenCC(繁→簡),僅簡中使用者下載;語言判定比照 me/about/privacy(?hl→mm_variant→navigator),否則英文使用者直開 guide 會被丟回中文 */(function(){try{
+var h=new URLSearchParams(location.search).get('hl'),v=(h==='en'||h==='zh-hans'||h==='zh-hant')?h:null;if(!v&&window.MM_HL)v=window.MM_HL;
+if(!v){var mv=localStorage.getItem('mm_variant');v=(mv==='en'||mv==='zh-hans'||mv==='zh-hant')?mv:(localStorage.getItem('mm_lang')==='en'?'en':localStorage.getItem('mm_lang')==='zh'?'zh-hant':null);}
+if(!v){var nl=(navigator.language||'').toLowerCase();v=nl.indexOf('zh')===0?((nl.indexOf('cn')>-1||nl.indexOf('hans')>-1||nl.indexOf('sg')>-1)?'zh-hans':'zh-hant'):(nl?'en':'zh-hant');}
+if(v==='zh-hans'){document.write('<scr'+'ipt src="https://cdn.jsdelivr.net/npm/opencc-js@1.3.1/dist/umd/t2cn.js" integrity="sha384-P/OaFUnOIAgMkLxsXIAaP6WO3Wm09591cGX5bHbW4eCOeDxH9L8U3aWYf4cE4SYl" crossorigin="anonymous"><\/scr'+'ipt>');
+document.write('<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@600;700;900&display=swap" rel="stylesheet" />');/* 簡體字 TC 字型沒有→會混排系統字忽粗忽細,補 SC 字型 */}
+}catch(e){}})();</script>
+<script src="/js/mm-strings.js?v=239"></script>
+  <script src="/js/mm-acct-menu.js?v=227" defer></script>
+  <script src="/js/mm-lang.js?v=230" defer></script><!-- 語言切換下拉開關 -->
+<style>
+:root{
+  --paper:#f4efe4; --paper2:#efe8d8; --ink:#221f18; --ink2:#6d6555; --gold:#a07a34; --gold-ink:#fff;
+  --line:#ddd3bf; --stamp:#5646c0; --radius:14px;
+  --serif:"Fraunces","Noto Serif TC",Georgia,serif;
+  --sans:"Noto Sans TC","Inter","Segoe UI",system-ui,"Microsoft JhengHei",sans-serif;
+  --mono:"IBM Plex Mono",monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.68;-webkit-font-smoothing:antialiased;
+  background-image:repeating-linear-gradient(135deg,rgba(160,122,52,.025) 0 2px,transparent 2px 9px)}
+html[lang="en"] body{--serif:"Fraunces",Georgia,serif;--sans:"Inter","Segoe UI",system-ui,sans-serif}
+/* 簡中:改用 SC 字型(TC 字型缺簡體獨有字,否則簡體字回退系統字、與共用字混排忽粗忽細) */
+html[lang="zh-Hans"] body{--serif:"Fraunces","Noto Serif SC",Georgia,serif;--sans:"Noto Sans SC","Inter","Segoe UI",system-ui,sans-serif}
+a{color:inherit}
+.wrap{max-width:1080px;margin:0 auto;padding:0 26px}
+.serif{font-family:var(--serif)}
+/* header */
+/* header 幾何/字重比照首頁 #topbar(58px 滿版、鏈結 14px/600),跨頁切換上排不跳動 */
+header{position:sticky;top:0;z-index:50;background:rgba(244,239,228,.9);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;gap:14px;height:58px;max-width:none;padding:0 24px}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--serif);font-weight:900;font-size:20px;text-decoration:none;letter-spacing:-.01em;white-space:nowrap}
+.brand img{width:auto;height:34px}  /* logo.svg 是直式徽章,定寬高會壓變形 — 跟首頁一樣只定高、寬 auto 保持原比例 */
+.brand b{color:var(--gold)}
+.bar-tagline{font-size:13px;color:var(--ink2);white-space:nowrap;margin-left:-3px}  /* 比照首頁 #brand .tagline;-3px 補 gap 差(首頁 10px/此處 14px) */
+.nav{margin-left:auto;display:flex;align-items:center;gap:14px}
+.nav a{font-size:14px;font-weight:600;color:var(--ink);text-decoration:none;white-space:nowrap}
+.nav a:hover{color:var(--gold)}
+.nav a.cta{background:var(--ink);color:var(--paper);font-weight:600;padding:9px 16px;border-radius:999px}
+.nav a.cta:hover{background:#000;color:var(--paper)}
+#lang-switch{position:relative;display:inline-flex}
+.lang-trigger{display:inline-flex;align-items:center;gap:6px;cursor:pointer;border:1px solid var(--line);background:#fdfaf2;color:var(--ink);font:inherit;font-size:13px;font-weight:600;line-height:1;padding:6px 9px;border-radius:9px}
+.lang-trigger:hover,.lang-trigger[aria-expanded="true"]{border-color:var(--gold)}
+.lang-globe{width:16px;height:16px;fill:none;stroke:var(--ink2);stroke-width:1.7;flex:none}
+.lang-chev{width:10px;height:10px;fill:none;stroke:var(--ink2);stroke-width:2;flex:none;transition:transform .15s}
+.lang-trigger[aria-expanded="true"] .lang-globe{stroke:var(--gold)}
+.lang-trigger[aria-expanded="true"] .lang-chev{transform:rotate(180deg)}
+.lang-pop{position:absolute;top:calc(100% + 8px);right:0;min-width:150px;z-index:60;background:#fff;border:1px solid var(--line);border-radius:12px;padding:6px;box-shadow:0 12px 34px rgba(0,0,0,.16)}
+.lang-pop[hidden]{display:none}
+#lang-switch .lang-opt{display:flex;align-items:center;justify-content:flex-start;gap:8px;text-decoration:none;color:var(--ink);font-size:14px;font-weight:500;padding:9px 11px;border-radius:8px;line-height:1.1}
+#lang-switch .lang-opt:hover{background:var(--paper2);color:var(--ink)}
+#lang-switch .lang-opt[aria-current="true"]{color:var(--gold);font-weight:700}
+.lang-tick{width:15px;height:15px;fill:none;stroke:var(--gold);stroke-width:2.2;flex:none;opacity:0}
+#lang-switch .lang-opt[aria-current="true"] .lang-tick{opacity:1}
+/* 手機:收掉文字連結(入口保留在 hero CTA 與 footer),留語言切換+主 CTA — 幾何比照首頁 @680 */
+@media(max-width:700px){
+  .bar{gap:8px;height:52px;padding:0 8px}
+  .bar-tagline{display:none}  /* 比照首頁手機版 */
+  .nav{gap:6px}
+  .nav > a:not(.cta){display:none}
+  .brand{font-size:17px;gap:7px}
+  .brand img{width:auto;height:28px}
+  .lang-cur{display:none}
+  .nav a.cta{font-size:13px;padding:7px 12px}
+}
+@media(max-width:430px){
+  .wrap{padding:0 16px}
+  .bar{padding:0 8px}
+}
+@media(max-width:360px){   /* iPhone SE 等窄機:brand+語言+CTA 在 320px 擠不下→再收緊,避免橫向溢出 */
+  .bar{gap:6px}
+  .brand{font-size:15px;gap:6px}
+  .brand img{height:25px}
+  .lang-cur{display:none}
+  .nav a.cta{font-size:12px;padding:6px 10px}
+}
+/* hero — 不置中,editorial 左對齊 */
+.hero{padding:88px 0 40px;max-width:760px}
+@media(max-width:700px){.hero{padding:56px 0 32px}}
+.eyebrow{font-family:var(--mono);font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:22px}
+h1{font-family:var(--serif);font-weight:900;font-size:clamp(38px,6.2vw,68px);line-height:1.04;letter-spacing:-.025em;margin:0 0 24px}
+h1 em{font-style:italic;font-weight:400;white-space:nowrap}  /* 「音樂劇。」整組不拆行;h1 不設 keep-all,行可斷在 em 前,390px 不會溢出 */
+.lede{font-size:clamp(17px,2.2vw,21px);color:var(--ink2);max-width:600px;margin:0 0 34px}
+.cta-row{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+.btn{display:inline-flex;align-items:center;padding:13px 26px;border-radius:999px;font-weight:600;font-size:15.5px;text-decoration:none;border:1.5px solid transparent;transition:none}
+.btn-primary{background:var(--gold);color:#fff}
+.btn-primary:hover{background:#8a6829}
+.btn-ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
+.textlink{font-weight:600;color:var(--gold);text-decoration:none;border-bottom:1.5px solid var(--line);padding-bottom:1px}
+.textlink:hover{border-color:var(--gold)}
+/* rule */
+.rule{border:0;border-top:1px solid var(--line);margin:64px 0}
+/* part heading */
+.part{display:flex;align-items:baseline;gap:16px;margin:0 0 8px}
+.part .pno{font-family:var(--serif);font-size:clamp(40px,7vw,72px);font-weight:400;line-height:.9;color:var(--gold);opacity:.55}
+.part h2{font-family:var(--serif);font-weight:900;font-size:clamp(26px,3.6vw,38px);line-height:1.1;letter-spacing:-.02em;margin:0}
+.part-lede{color:var(--ink2);font-size:17px;max-width:620px;margin:2px 0 40px 0}
+/* editorial row: 圖文交錯,不對稱 */
+.row{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:center;margin:40px 0}
+.row.flip .fig{order:2}
+@media(max-width:760px){.row{grid-template-columns:1fr;gap:24px}.row.flip .fig{order:0}}
+.fig{border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);box-shadow:0 18px 40px rgba(34,31,24,.14);background:#12141a}
+.fig img{display:block;width:100%;height:auto}
+.fig.paper{background:var(--paper2)}
+.copy .n{font-family:var(--serif);font-size:15px;color:var(--gold);letter-spacing:.02em;margin-bottom:6px}
+.copy h3{font-family:var(--serif);font-weight:600;font-size:clamp(21px,2.6vw,26px);line-height:1.2;letter-spacing:-.01em;margin:0 0 10px}
+.copy p{color:var(--ink2);font-size:16.5px;margin:0}
+.copy p+p{margin-top:12px}  /* 兩段之間空一行(時間軸段落與海報段落分開) */
+/* b3/b4 並排時的分隔線;手機堆疊改為上緣線 */
+.row .copy.divided{border-left:1px solid var(--line);padding-left:44px}
+@media(max-width:760px){.row .copy.divided{border-left:0;padding-left:0;border-top:1px solid var(--line);padding-top:24px}}
+/* bridge quote */
+.bridge{text-align:center;padding:20px 0;margin:16px 0}
+.bridge p{font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(22px,3.4vw,32px);color:var(--ink);letter-spacing:-.01em;max-width:640px;margin:0 auto;line-height:1.3}
+/* final */
+.final{background:var(--ink);color:var(--paper);border-radius:22px;padding:64px 40px;margin:72px 0;text-align:center}
+.final h2{font-family:var(--serif);font-weight:900;font-size:clamp(28px,4vw,40px);letter-spacing:-.02em;margin:0 0 12px}
+.final p{color:rgba(244,239,228,.72);font-size:17px;margin:0 0 28px}
+.final .btn-primary{background:var(--gold)}
+.final .btn-ghost{color:var(--paper);border-color:rgba(244,239,228,.3)}
+.final .btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
+footer{border-top:1px solid var(--line);padding:30px 0 44px;color:var(--ink2);font-size:14px}
+footer a{color:var(--gold);text-decoration:none}
+footer .sp{margin-left:auto}
+</style>
+<!-- Google Analytics(GA4 G-GC07MYC1MY;訪客來源/行為分析,同一 ID 涵蓋主站與 my. 網域(報表以 hostname 區分);不加 SRI:gtag.js 由 Google 滾動更新,釘 hash 會靜默斷統計;隱私揭露見 privacy §1/§3) --><script async src="https://www.googletagmanager.com/gtag/js?id=G-GC07MYC1MY"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-GC07MYC1MY');</script>
+</head>
+<body>
+<header><div class="wrap bar">
+  <a class="brand" href="/en/"><img src="/logo.svg" alt="" /><span>Musical<b>Map</b></span></a><!-- 包單一 span:flex gap 會把裸文字節點和 <b> 撐開成「Musical Map」 -->
+  <span class="bar-tagline" data-i18n="legal_tagline">Musicals playing around the world right now</span>
+  <nav class="nav">
+    <!-- pills 永遠在 nav 最前,與首頁/法務頁一致(跨頁不跳動) -->
+    <div id="lang-switch" role="group" aria-label="Language / 語言">
+      <button type="button" class="lang-trigger" aria-haspopup="true" aria-expanded="false" aria-label="選擇語言 / Select language"><svg class="lang-globe" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 2.5 15 0 18M12 3c-2.5 2.5-2.5 15 0 18M4.5 7.5c4.5 2.5 10.5 2.5 15 0M4.5 16.5c4.5-2.5 10.5-2.5 15 0"/></svg><span class="lang-cur">EN</span><svg class="lang-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8l7 7 7-7"/></svg></button>
+      <div class="lang-pop" role="menu" hidden>
+        <a class="lang-opt" role="menuitem" data-hl-link="zh-hant" href="/zh-hant/guide" lang="zh-Hant" hreflang="zh-Hant"><span>繁體中文</span><svg class="lang-tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12l5 5L20 6"/></svg></a>
+        <a class="lang-opt" role="menuitem" data-hl-link="zh-hans" href="/zh-hans/guide" lang="zh-Hans" hreflang="zh-Hans"><span>简体中文</span><svg class="lang-tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12l5 5L20 6"/></svg></a>
+        <a class="lang-opt" role="menuitem" data-hl-link="en" href="/en/guide" lang="en" hreflang="en" aria-current="true"><span>English</span><svg class="lang-tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12l5 5L20 6"/></svg></a>
+      </div>
+    </div>
+    <a href="/en/" data-i18n="nav_map">Map home</a>
+    <a href="/en/guide" data-i18n="nav_guide">Guide</a>
+    <!-- 隱私/條款不進頂部 nav(首頁在地圖 attribution 列,本頁在 footer) -->
+    <!-- 所有劇院入口暫藏(2026-07-03 指示;theatres.html 頁面保留可直達) <a href="/theatres" data-i18n="nav_theatres">All Theatres</a> -->
+    <a class="cta" href="https://my.themusicalmap.com/" data-i18n="how_nav_start">My Musicals</a>
+  </nav>
+</div></header>
+
+<div class="wrap">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="eyebrow" data-i18n="how_eyebrow">How it works</div>
+    <h1 data-i18n-html="how_hero">One map for<br>every musical playing <em>right now</em>.</h1>
+    <p class="lede" data-i18n="how_lede">Explore what’s on around the world without signing in — Broadway, the West End, tours everywhere. Sign in, and every show you’ve seen becomes a theatre passport you can share.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="/en/" data-i18n="how_cta_map">Explore the map</a>
+      <a class="btn btn-ghost" href="https://my.themusicalmap.com/" data-i18n="how_cta_me">Build your passport</a>
+    </div>
+  </section>
+
+  <hr class="rule" />
+
+  <!-- PART 1: MAP -->
+  <div class="part"><span class="pno serif">01</span><h2 data-i18n="how_p1_h">Explore — no sign-up</h2></div>
+  <p class="part-lede" data-i18n="how_p1_lede">Open the map and see what’s playing around the world right now — zoom in and find which corners of the world have their lights on.</p>
+
+  <div class="row">
+    <div class="fig"><img src="/assets/guide/en/map.webp" data-shot="map" width="1600" height="1336" alt="MusicalMap 主地圖：各音樂劇海報散布在地圖上，相鄰的聚成數字圓圈，底部有月份時間軸" loading="lazy" decoding="async" /></div>
+    <div class="copy">
+      <div class="n serif" data-i18n="how_a1_n">On the map</div>
+      <h3 data-i18n="how_a1_h">Every poster on the map is a show playing now</h3>
+      <p data-i18n="how_a1_p">Markers are the musicals’ own posters; neighbouring ones gather into a numbered circle — that’s how many are playing around there. Tap a poster for its dates, theatre and ticket links.</p>
+      <p data-i18n="how_a1_p2">Drag the month timeline at the bottom to any upcoming month to see what’s playing then; press ▶ to play month by month and watch tours move between cities.</p>
+    </div>
+  </div>
+
+  <div class="row flip">
+    <div class="fig"><img src="/assets/guide/en/popup.webp" data-shot="popup" width="1328" height="764" alt="劇目視窗：Wicked 在 Gershwin Theatre 長期上演，附購票連結，標題連到官方網站" loading="lazy" decoding="async" /></div>
+    <div class="copy">
+      <div class="n serif" data-i18n="how_a2_n">One tap to tickets</div>
+      <h3 data-i18n="how_a2_h">Be in the room where it happens</h3>
+      <p data-i18n="how_a2_p">Every show comes with a ticket link, and most have their official site too. We don’t sell tickets — we just point you to the right place.</p>
+    </div>
+  </div>
+
+  <!-- BRIDGE -->
+  <div class="bridge"><p class="serif" data-i18n="how_bridge">Don’t leave memories all alone in the moonlight — stamp them in.</p></div>
+
+  <hr class="rule" />
+
+  <!-- PART 2: MY MUSICALS -->
+  <div class="part"><span class="pno serif">02</span><h2 data-i18n="how_p2_h">Keep every show you’ve seen</h2></div>
+  <p class="part-lede" data-i18n="how_p2_lede">Once you sign in, your shows grow into a poster wall, a stamped passport and your own viewing stats. All automatic.</p>
+
+  <div class="row">
+    <div class="fig"><img src="/assets/guide/en/wall.webp" data-shot="wall" width="1272" height="800" alt="海報牆：看過的音樂劇海報一張張掛成一面牆" loading="lazy" decoding="async" /></div>
+    <div class="copy">
+      <div class="n serif" data-i18n="how_b0_n">Your poster wall</div>
+      <h3 data-i18n="how_b0_h">What you’ve seen, hung on a wall</h3>
+      <p data-i18n="how_b0_p">Every musical you add hangs its poster on the wall; tap the ♥ on a card to mark a favourite. Poster wall, passport, list — three views of the same collection.</p>
+    </div>
+  </div>
+
+  <div class="row flip">
+    <div class="fig"><img src="/assets/guide/en/form.webp" data-shot="form" width="1120" height="460" alt="記錄表單：輸入「歌劇魅影」，自動找到 The Phantom of the Opera 與海報、演出城市" loading="lazy" decoding="async" /></div>
+    <div class="copy">
+      <div class="n serif" data-i18n="how_b1_n">Add a musical</div>
+      <h3 data-i18n="how_b1_h">Search the title, the rest fills itself in</h3>
+      <p data-i18n="how_b1_p">Search in English or Chinese; theatre, city and poster fill in automatically. Add the date, rating, seat and notes — just the year is fine. Every show you log adds a stamp to your passport.</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="fig"><img src="/assets/guide/en/custom.webp" data-shot="custom" width="1120" height="504" alt="自訂海報與連結：貼上海報網址即時預覽，並可為每一齣附上節目頁或售票連結" loading="lazy" decoding="async" /></div>
+    <div class="copy">
+      <div class="n serif" data-i18n="how_b15_n">Make it yours</div>
+      <h3 data-i18n="how_b15_h">Your own poster, your own link</h3>
+      <p data-i18n="how_b15_p">Give any show a custom poster URL — the artwork you remember it by, previewed instantly. Attach a link too, so that year’s programme or ticket page is always one tap away in its details.</p>
+    </div>
+  </div>
+
+  <div class="row flip">
+    <div class="fig"><img src="/assets/guide/en/stats.webp" data-shot="stats" width="1252" height="518" alt="觀劇統計：最常看的音樂劇、最常去的國家城市與劇院、各年各月各星期的觀劇分布" loading="lazy" decoding="async" /></div>
+    <div class="copy">
+      <div class="n serif" data-i18n="how_b2_n">Your theatregoing stats</div>
+      <h3 data-i18n="how_b2_h">How do you measure a year? In shows, cities and stamps</h3>
+      <p data-i18n="how_b2_p">Most-seen musicals, cities and countries visited, how your theatregoing spreads across years and months — all tallied for you, showing at a glance what kind of theatregoer you are.</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="copy">
+      <div class="n serif" data-i18n="how_b3_n">Share it</div>
+      <h3 data-i18n="how_b3_h">Your own personal page, shared in one click</h3>
+      <p data-i18n="how_b3_p">The name you pick at sign-up is your personal URL; flip the switch in “Share” and the page is ready to send to friends. You decide whether price and seat are shown; your notes stay yours alone.</p>
+    </div>
+    <div class="copy divided">
+      <div class="n serif" data-i18n="how_b4_n">Signing in is simple</div>
+      <h3 data-i18n="how_b4_h">Sign in with Google, synced everywhere</h3>
+      <p data-i18n="how_b4_p">We only read your name, email and avatar (the avatar appears only in your own signed-in menu, never on public pages) — we never post anything on your behalf. Your collection lives in your account, on every phone and laptop.</p>
+    </div>
+  </div>
+
+  <!-- FINAL -->
+  <div class="final">
+    <h2 data-i18n="how_final_h">Start anywhere</h2>
+    <p data-i18n="how_final_p">Let’s start at the very beginning — browse the map, or log the first show you ever saw.</p>
+    <div class="cta-row" style="justify-content:center">
+      <a class="btn btn-primary" href="https://my.themusicalmap.com/" data-i18n="how_final_cta">Build your passport</a>
+      <a class="btn btn-ghost" href="/en/" data-i18n="how_final_cta2">Explore the map first</a>
+    </div>
+    <p style="margin:26px 0 0;font-size:14px;color:rgba(244,239,228,.55)"><a href="/en/about" data-i18n="how_final_about" style="color:var(--gold);text-decoration:none">Built by one theatre fan who loves maps — the story →</a></p>
+  </div>
+</div>
+
+<footer><div class="wrap" style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;width:100%">
+  <span data-i18n="how_footer">MusicalMap — a live world map of musicals, and your theatre passport.</span>
+  <span class="sp"></span>
+  <a href="/en/" data-i18n="how_footer_link">Back to the map</a>
+  <a href="https://my.themusicalmap.com/" data-i18n="how_nav_start">My Musicals</a>
+  <a href="/en/about" data-i18n="nav_about">About</a>
+  <a href="/en/privacy" data-i18n="nav_privacy">Privacy</a>
+  <a href="/en/terms" data-i18n="nav_terms">Terms</a>
+</div></footer>
+<script>/* 截圖依語言載對應版本(assets/guide/{hl}/);靜態預設 zh-hant */(function(){
+var hl=window.MM_HL;if(!hl||hl==='zh-hant')return;
+document.querySelectorAll('img[data-shot]').forEach(function(im){im.src='/assets/guide/'+hl+'/'+im.getAttribute('data-shot')+'.webp';});/* 絕對路徑:變體頁在 /{lang}/ 底下 */
+})();</script>
+<script src="/js/mm-xlang.js?v=1" defer></script>
+</body>
+</html>

@@ -539,9 +539,14 @@
     // (無參數 URL 仍是 zh-hant canonical,由各頁 hreflang/canonical 標記,同 theatres.html ?lang= 模式)。
     document.querySelectorAll('[data-hl-link]').forEach(function (a) {
       var t = a.getAttribute('data-hl-link');
-      var u = new URL(location.href);
-      u.searchParams.set('hl', t);
-      a.href = u.pathname + (u.search || '');
+      if (window.MM_STATIC_VARIANT) {
+        // 靜態變體頁(gen_pages.mjs 產的 /{lang}/about 等):語言切換=導向 sibling 變體網址
+        a.href = '/' + t + '/' + window.MM_STATIC_VARIANT;
+      } else {
+        var u = new URL(location.href);
+        u.searchParams.set('hl', t);
+        a.href = u.pathname + (u.search || '');
+      }
       if (t === hl) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current');
     });
     // 語言切換觸發鈕的短碼隨當前語言變(繁中 / 简中 / EN);展開下拉仍是全名。

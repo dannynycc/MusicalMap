@@ -7,6 +7,7 @@
 // root paths (custom domain serves the repo at /).
 import fs from "fs";
 import crypto from "crypto";
+import { genPages, PAGE_SLUGS } from "./gen_pages.mjs";
 
 const BASE = "/";
 const SITE = "https://themusicalmap.com";
@@ -323,8 +324,14 @@ function sitemap() {
   // …plus the standalone pages (kept from the previous sitemap so they stay indexed).
   // me.html 刻意不列:登入閘頁(爬蟲只看到「載入中」),head 已加 noindex;公開內容在 u.html。
   // 無副檔名 canonical:GH Pages 與 Cloudflare Pages 皆直達 200(CF 對 .html 形式會 308 到無副檔名)。
-  const pages = ["theatres", "guide", "about", "privacy", "terms"].map(
-    (p) => `  <url><loc>${SITE}/${p}</loc></url>`);
+  // about/guide/privacy/terms 已拆三語靜態變體(gen_pages.mjs):列變體網址+hreflang 叢集,根網址=x-default 路由。
+  const pageCluster = (p) => ["en", "zh-hans", "zh-hant"].map((v) =>
+    `  <url><loc>${SITE}/${v}/${p}</loc>` +
+    `<xhtml:link rel="alternate" hreflang="en" href="${SITE}/en/${p}"/>` +
+    `<xhtml:link rel="alternate" hreflang="zh-Hans" href="${SITE}/zh-hans/${p}"/>` +
+    `<xhtml:link rel="alternate" hreflang="zh-Hant" href="${SITE}/zh-hant/${p}"/>` +
+    `<xhtml:link rel="alternate" hreflang="x-default" href="${SITE}/${p}"/></url>`);
+  const pages = [`  <url><loc>${SITE}/theatres</loc></url>`, ...PAGE_SLUGS.flatMap(pageCluster)];
   return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
 ${[...variants, ...pages].join("\n")}
@@ -339,9 +346,11 @@ function robots() {
   const bots = ["Googlebot", "Bingbot", "GPTBot", "OAI-SearchBot", "ChatGPT-User",
                 "ClaudeBot", "Claude-Web", "Claude-SearchBot", "PerplexityBot",
                 "Google-Extended", "Applebot-Extended"];
+  // /build/ = 頁面 source 模板(build/pages/*.html),部署會帶出去但不該被收錄(與變體頁重複內容)。
+  // 每個 UA 群組都要各自 Disallow:爬蟲匹配到具名群組後會忽略 * 群組的規則。
   return "# MusicalMap — open to all crawlers, including AI/answer engines.\n" +
-         "User-agent: *\nAllow: /\n\n" +
-         bots.map((b) => `User-agent: ${b}\nAllow: /`).join("\n\n") +
+         "User-agent: *\nAllow: /\nDisallow: /build/\n\n" +
+         bots.map((b) => `User-agent: ${b}\nAllow: /\nDisallow: /build/`).join("\n\n") +
          `\n\nSitemap: ${SITE}/sitemap.xml\n`;
 }
 
@@ -353,6 +362,7 @@ for (const variant of Object.keys(VARIANTS)) {
   console.log(`${variant.padEnd(8)} → ${variant}/index.html (${shows.length} shows, ${Math.min(shows.length, JSONLD_CAP)} in JSON-LD)`);
 }
 fs.writeFileSync("index.html", rootRouter());
+genPages();
 fs.writeFileSync("sitemap.xml", sitemap());
 fs.writeFileSync("robots.txt", robots());
 console.log("root index.html (router) + sitemap.xml + robots.txt written");

@@ -11,6 +11,16 @@
 
 ---
 
+## [v2.15.0] - 2026-07-09 11:02
+### 新功能 — about/guide/privacy/terms 拆三語靜態變體(根治中文搜尋出現英文標題)
+- **問題**:這 4 頁是單一網址靠 client-side 換字,Googlebot 用英文環境渲染 → 中文搜尋出現英文標題+「翻譯這個網頁」,且搜尋結果網址尾巴混雜(首頁 zh-hant、內容頁 about/guide)。
+- **架構**(仿首頁三語目錄):source 模板移到 `build/pages/*.html`,新 `build/gen_pages.mjs`(由 gen_site.mjs 呼叫)烘出 `/{en,zh-hans,zh-hant}/{slug}` 12 個變體頁:翻譯烘入靜態 HTML(zh-hans 用 node 端 opencc-js 重現瀏覽器 CDN 轉換+CN_FIX+HANS_OVERRIDE)、`<html lang>`/title/meta/og/canonical 各自正確、hreflang 四向叢集(x-default=根路由)、相對資產轉根絕對、站內連結轉同語言變體、語言切換器烘成 sibling 網址+aria-current。
+- **根網址不斷鏈**:`/about` 等 4 個舊網址改為語言路由頁(同 root index.html 模式:?hl= 參數 → localStorage → navigator 轉址),舊 `?hl=` 連結全部照常到達正確語言。
+- **runtime 配套**:變體頁釘選 `window.MM_HL`(mm-strings 判斷序先於 localStorage/navigator);mm-strings `apply()` 的 data-hl-link 在 `MM_STATIC_VARIANT` 下導 sibling 網址(v=239 全站 bump);OpenCC loader 補認 MM_HL(否則簡中變體不載 OpenCC 會被 runtime 蓋回繁中);guide 語言別截圖改絕對路徑+烘入本語言版。
+- **SEO 配套**:sitemap 列 12 變體網址(xhtml:link hreflang 叢集,共 16 URL);robots 每個 UA 群組 Disallow `/build/`(source 模板不收錄;具名群組會忽略 * 群組故各自加)。
+- **驗證**:playwright e2e 全過——12 頁 JS 關/開內文逐字一致(烘錯會被 runtime 改字,此法能抓)+title/lang/console 零錯誤;router 轉向×5(en/zh-TW/zh-CN locale+?hl= 兩種);/en/about 真點擊切繁中並驗 h1;三語截圖目視(header/footer/底色/翻譯)。修掉 2 個 bake bug:`\b` 使 content= 誤中 data-i18n-content=(加 `(?<![\w-])`)、guide 截圖 swap 相對路徑在 /{lang}/ 下 404。
+- **未含**:theatres.html(另一套 ?lang= 機制+內容全 JS 渲染,留待後續);guide 截圖的 alt 文字未分語言(維持繁中)。
+
 ## [v2.14.11] - 2026-07-09 10:06
 ### 修正 — 搜尋結果標題/文案整頓(使用者回報搜尋結果「不順」)
 - **about 頁刪 AI 味 tagline**:原 H1「一個劇迷，把地圖和音樂劇放在一起。」被 Google 拿去當搜尋結果標題(Google 認為原 title 籠統時會改用 H1),且該句與 lede 首句重複、帶句點、不知所云(使用者:「AI 味超級重」)。改為 H1=「關於 MusicalMap」(三語:About MusicalMap / 关于 MusicalMap),tagline 整句刪除,金色 eyebrow 併入 H1(視覺=serif 大標,eyebrow CSS 移除);mm-strings 三語 about_h1 改值、about_eyebrow key 刪除、HANS_OVERRIDE about_h1 刪除(自動轉換已足)。headless Chrome 三語截圖驗證。
