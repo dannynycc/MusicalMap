@@ -214,9 +214,7 @@ function page(variant, shows) {
     <nav id="topnav">
       ${langSwitch(variant)}
       <a class="nav-link" href="${BASE}${variant}/">${esc(t.maphome)}</a>
-      <!-- 所有劇院入口暫藏(2026-07-03 指示;/theatres 頁面保留可直達)
-      <a class="nav-link" href="${BASE}theatres?lang=${variant}">${esc(t.theatres)}</a> -->
-      <a class="nav-link" href="${BASE}guide?hl=${variant}">${esc(t.guide)}</a>
+      <a class="nav-link" href="${BASE}${variant}/guide">${esc(t.guide)}</a><!-- 直連同語言靜態變體(v2.15.0 起),不繞 ?hl= 路由;theatres 已撤站(v2.18.0) -->
       <!-- 隱私/條款移到地圖右下 attribution 列(Google Maps 慣例,見 app.js addAttribution) -->
       <a id="mine-link" class="nav-cta" href="https://my.themusicalmap.com/?hl=${variant}">${esc(t.mine)}</a>
     </nav>
@@ -329,6 +327,7 @@ function sitemap() {
     `<xhtml:link rel="alternate" hreflang="x-default" href="${SITE}/"/></url>`);
   // …plus the standalone pages (kept from the previous sitemap so they stay indexed).
   // me.html 刻意不列:登入閘頁(爬蟲只看到「載入中」),head 已加 noindex;公開內容在 u.html。
+  // theatres.html 已撤站(2026-07-09 使用者指示,v2.18.0):檔案刪除→404,sitemap 不再列。
   // 無副檔名 canonical:GH Pages 與 Cloudflare Pages 皆直達 200(CF 對 .html 形式會 308 到無副檔名)。
   // about/guide/privacy/terms 已拆三語靜態變體(gen_pages.mjs):列變體網址+hreflang 叢集,根網址=x-default 路由。
   const pageCluster = (p) => ["en", "zh-hans", "zh-hant"].map((v) =>
@@ -337,7 +336,7 @@ function sitemap() {
     `<xhtml:link rel="alternate" hreflang="zh-Hans" href="${SITE}/zh-hans/${p}"/>` +
     `<xhtml:link rel="alternate" hreflang="zh-Hant" href="${SITE}/zh-hant/${p}"/>` +
     `<xhtml:link rel="alternate" hreflang="x-default" href="${SITE}/${p}"/></url>`);
-  const pages = [`  <url><loc>${SITE}/theatres</loc></url>`, ...PAGE_SLUGS.flatMap(pageCluster)];
+  const pages = PAGE_SLUGS.flatMap(pageCluster);
   return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
 ${[...variants, ...pages].join("\n")}

@@ -36,7 +36,7 @@ scrapers/  ──產出──>  data/*.json  ──merge──>  data/shows.json
 | `js/app.js` | 地圖、海報 marker、側欄、搜尋/篩選、popup、同劇合併與多地點 overview;變體頁載 `data/variants/`,中文判斷用 `isZh()`(繁簡皆是);含 `overlapsMonth` 與 XSS 跳脫 |
 | `me.html`(+`me-input.html`/`me-catalog.js`) | **My Musicals v2**(自含繁中頁:海報牆/護照/清單三檢視 + 統計儀表板 + 點陣地圖;輸入端為 iframe,搜尋/選製作/手動新增自動帶入,劇庫吃 `venues_catalog`+`shows`;Supabase Google 登入 + 雲端 `sightings`,localStorage 當快取雙寫) |
 | `me_ori.html`(+`css/me.css`/`js/me.js`) | 舊版 My Musicals(FlightRadar 風/折線圖);v2 上線後改名備份保留 |
-| `theatres.html` / `js/theatres.js` | 所有劇院地圖(全 catalog ~5,000 場館,綠色群聚圈 + 多語搜尋) |
+| ~~theatres.html~~ | **已撤站(2026-07-09,v2.18.0 使用者指示)**:原所有劇院地圖頁;檔案已刪(git 歷史可復原),`venues_catalog` 資料仍供自動帶入/統計使用;`theatres` 留在 handle 保留字 |
 | `u.html` / `js/u-view.js` | 公開唯讀 profile 分享頁(`?u=<handle>` 或 Worker 注入 `MM_HANDLE`,免登入,推廣用);視覺共用 `css/me-v2.css`、比照 me.html |
 | `build/pages/{about,guide,privacy,terms}.html` + `build/gen_pages.mjs` → `/{en,zh-hans,zh-hant}/{slug}.html` + 根路由頁 | **內容頁三語靜態變體**(v2.15.0):source 模板(繁中為底+data-i18n)由 gen_pages 烘成 12 個變體頁(翻譯+canonical/hreflang+釘選 `MM_HL`)+4 個根語言路由頁(honor `?hl=` 舊連結)。**改這 4 頁請改 `build/pages/` 再跑 `node build/gen_site.mjs`,根目錄的同名檔是產物**。guide=editorial 藝文風,截圖素材在 `assets/guide/{lang}/` |
 | `worker/` | Cloudflare Worker:`my.themusicalmap.com/<handle>` 乾淨網址 + 舊名 301 + 爬蟲 meta 注入 + 根路徑出 me.html(FR24 模式)(**2026-07-06 已上線**,回源 Cloudflare Pages,見 `docs/SETUP_MY_SUBDOMAIN.md`) |

@@ -7,13 +7,9 @@
   var STR = {
     'zh-hant': {
       // ---- u.html 靜態 ----
-      nav_theatres: '所有劇院', nav_map: '地圖首頁', nav_guide: '怎麼使用', nav_create: '＋ 建立你自己的',
-      nav_mine: '我的音樂劇', tagline_theatres: '全球音樂劇場館地圖', search_ph_theatres: '搜尋劇院、城市…（中／英／原文皆可）',
+      nav_map: '地圖首頁', nav_guide: '怎麼使用', nav_create: '＋ 建立你自己的',
+      nav_mine: '我的音樂劇',   // theatres 相關 key 已隨頁面撤站移除(v2.18.0)
       nav_privacy: '隱私權政策', nav_terms: '使用條款', nav_about: '關於本站',
-      // theatres.js(v2.17.3 修復:原依賴 i18n.js 的 t(),遷移後未載入 → 整頁 JS 死亡)
-      map: '地圖', satellite: '衛星',
-      v_count: '{n} 個劇院', v_count_filtered: '{n} 個劇院（共 {total}）',
-      v_more: '…還有 {n} 個，請再縮小搜尋', load_error_venues: '無法載入場館資料（需用本機 server 開啟）',
       th_midnight: '午夜（暗）', th_gallery: '畫廊白（亮）', th_cream: '節目單奶油（亮）', th_neon: '霓虹（暗）', th_deco: '裝飾金（暗）',
       aria_theme: '主題底色', aria_seg: '檢視模式', aria_sort: '排序', aria_close: '關閉',
       hero_sub: '每看一場，蓋一個章',
@@ -239,13 +235,9 @@
       tou_s9_p: '本條款可能不定期更新，異動將反映於本頁頂端的「最後更新」日期；繼續使用即視為接受。',
     },
     'en': {
-      nav_theatres: 'All Theatres', nav_map: 'Map home', nav_guide: 'Guide', nav_create: '＋ Create your own',
-      nav_mine: 'My Musicals', tagline_theatres: 'World map of musical-theatre venues', search_ph_theatres: 'Search theatres, cities… (EN / 中文 / native)',
+      nav_map: 'Map home', nav_guide: 'Guide', nav_create: '＋ Create your own',
+      nav_mine: 'My Musicals',
       nav_privacy: 'Privacy', nav_terms: 'Terms', nav_about: 'About',
-      // theatres.js(v2.17.3;與 zh-hant 區同組 key)
-      map: 'Map', satellite: 'Satellite',
-      v_count: '{n} theatres', v_count_filtered: '{n} theatres (of {total})',
-      v_more: '…and {n} more — narrow your search', load_error_venues: "Couldn't load venue data (serve over a local server)",
       th_midnight: 'Midnight (dark)', th_gallery: 'Gallery white (light)', th_cream: 'Playbill cream (light)', th_neon: 'Neon (dark)', th_deco: 'Deco gold (dark)',
       aria_theme: 'Theme', aria_seg: 'View mode', aria_sort: 'Sort', aria_close: 'Close',
       hero_sub: 'One stamp for every show you see',

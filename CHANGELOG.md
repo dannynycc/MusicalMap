@@ -11,6 +11,13 @@
 
 ---
 
+## [v2.18.0] - 2026-07-09 16:37
+### 移除 — theatres 所有劇院頁撤站(使用者指示:本就 hidden、不重要)
+- 刪除 `theatres.html`+`js/theatres.js`(git 歷史可復原);sitemap 不再列(15 URLs);llms.txt 移除該行;mm-strings 撤 theatres 專用 key(nav/tagline/search_ph + v2.17.3 剛加的 6 個);me/u/guide/首頁模板的「入口暫藏」死註解全清。
+- **保留**:`venues_catalog` 資料(自動帶入/統計仍用)、`theatres` handle 保留字(路徑不開放註冊)、i18n.js 內共用 key(map/satellite 主地圖仍用)。
+- 順手:首頁 nav 的 guide 連結改直連同語言靜態變體(`/{variant}/guide`),不再繞 `?hl=` 路由跳一次。
+- 舊網址 `/theatres` 自然 404,Google 會自行除名。
+
 ## [v2.17.3] - 2026-07-09 15:34
 ### 修正 — 多維度獵蟲 11 項(自動掃描+雙 agent 稽核;使用者指示至少抓 5 個)
 - **P0|theatres 頁整頁 JS 死亡**:theatres.js 頂層呼叫 i18n.js 的 `t()`,但該頁已於語言機制遷移時改載 mm-strings(當時註解誤稱「theatres.js 不依賴 i18n runtime」)→ 第 31 行 ReferenceError,地圖/叢集/搜尋/計數全滅。修:theatres.js 改走 `MM_T`+本地插值,mm-strings 補 6 個 key(zh-hant+en,简中 OpenCC);playwright 三語驗證(叢集 30、計數三語正確、搜尋有結果、零 pageerror);theatres.js 加 ?v=2。
