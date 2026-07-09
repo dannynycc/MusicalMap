@@ -710,6 +710,24 @@
       "verified": true,
       "source": "timeout / sistic (manual)",
       "_checked": "2026-06-15"
+    },
+    {
+      "id": "manual-starlight-bochum",
+      "title": "Starlight Express",
+      "type": "resident",
+      "venue": "Starlight Express Theater",
+      "city": "Bochum",
+      "country": "Germany",
+      "lat": 51.492682,
+      "lng": 7.234196,
+      "start_date": "1988-06-12",
+      "end_date": null,
+      "end_rolling": true,
+      "ticket_url": "https://www.atgtickets.de/musicals-shows/starlight-express/",
+      "image": null,
+      "verified": true,
+      "source": "starlight-express.info (manual)",
+      "_note": "2026-07-09 哨兵體檢補漏:全年無休 open-end(官網+ATG.de 售票);ATG 德國站(.de)是未開發來源"
     }
   ]
 }
