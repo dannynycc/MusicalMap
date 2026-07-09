@@ -789,6 +789,17 @@ def main():
             # intl.py 的頁面本來就沒日期(Lion King 巴黎/墨西哥城、Moulin Rouge 科隆等開放式定目劇);
             # 不標 rolling 會變成「日期全空」的殘缺卡(2026-07-09 日期稽核抓到,3 筆全中)。
             open_run = True
+        elif "shiki" in src:
+            # 劇団四季「専用劇場」=開放式定目劇(有明=獅子王 1998-、電通[海]=阿拉丁、JR東日本[春/秋]=
+            # 冰雪奇緣/回到未來、舞浜=小美人魚常設)——其 end_date 是售票窗口(12/31、3/31)不是真閉幕,
+            # 顯示「至 12/31」=假期間限定(2026-07-09 使用者指正)。自由劇場/名古屋/大阪=輪演檔期,保留真日期。
+            _OPEN_VENUES = ("有明四季劇場", "電通四季劇場", "JR東日本四季劇場", "舞浜アンフィシアター")
+            st = s.get("start_date")
+            try:
+                _started = datetime.fromisoformat(st).date() <= today if st else False
+            except ValueError:
+                _started = False
+            open_run = _started and any(v in (s.get("venue") or "") for v in _OPEN_VENUES)
         elif ("londontheatre" in src or "stage-entertainment" in src) and not s.get("end_date"):
             st = s.get("start_date")
             try:

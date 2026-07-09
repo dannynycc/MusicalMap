@@ -111,14 +111,16 @@ header .wrap{max-width:none}  /* 對齊主頁 #topbar:全寬 padding 24px,頭像
 /* ===== hero 帳號列（me.html:公開狀態 pill＋專屬網址＋複製＋加入音樂劇）===== */
 .hero-acct{display:flex;flex-wrap:wrap;align-items:center;gap:10px 12px;margin-top:16px}
 .hero-acct[hidden]{display:none}
-.pf-status{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:4px 11px;cursor:pointer;
+/* 公開切換:pill 內含左右滑動開關(2026-07-09 使用者規格:點擊即時切換,不重整) */
+.pf-status{display:inline-flex;align-items:center;gap:7px;border-radius:999px;padding:4px 11px;cursor:pointer;
   font-family:inherit;font-size:12px;font-weight:700;border:1px solid transparent;text-decoration:none;transition:background .15s,border-color .15s,filter .15s}
-.pf-status .pf-dot{width:7px;height:7px;border-radius:50%;flex:none}
 .pf-status[data-pub="1"]{background:rgba(31,158,99,.14);color:#1f9e63;border-color:rgba(31,158,99,.34)}
-.pf-status[data-pub="1"] .pf-dot{background:#1f9e63;box-shadow:0 0 0 3px rgba(31,158,99,.2)}
 .pf-status[data-pub="0"]{background:var(--s3);color:var(--ink3);border-color:var(--hair2)}
-.pf-status[data-pub="0"] .pf-dot{background:var(--ink3)}
-.pf-status:hover{filter:brightness(1.1)}
+.pf-status:hover{filter:brightness(1.06)}
+.pf-switch{position:relative;flex:none;width:28px;height:16px;border-radius:999px;background:rgba(120,120,120,.35);transition:background .18s}
+.pf-status[data-pub="1"] .pf-switch{background:#1f9e63}
+.pf-knob{position:absolute;top:2px;left:2px;width:12px;height:12px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.3);transition:left .18s}
+.pf-status[data-pub="1"] .pf-knob{left:14px}
 .pf-url{display:inline-flex;align-items:center;gap:5px;text-decoration:none;font-family:var(--mono);font-size:12.5px;color:var(--ink2);
   min-width:0;border-bottom:1px solid transparent;transition:color .15s;opacity:1}
 .pf-url:hover{color:var(--gold);border-bottom-color:currentColor}

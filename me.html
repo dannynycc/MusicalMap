@@ -18,7 +18,7 @@ if(location.hostname==='themusicalmap.com'||location.hostname==='www.themusicalm
 <script>/* no-flash: apply saved theme before CSS paints;預設 cream(對齊主站淡米黃)。
    一次性遷移:舊版 applyTheme 會把預設 midnight 自動寫進 localStorage,使既有使用者卡在深色;
    mm-theme-mig 未設時清一次 mm-theme,讓大家重新落到 cream 預設(之後仍尊重使用者用 picker 的選擇)。 */(function(){try{if(!localStorage.getItem('mm-theme-mig')){localStorage.removeItem('mm-theme');localStorage.setItem('mm-theme-mig','1');}var t=localStorage.getItem('mm-theme')||'cream';if(t==='neon'||t==='deco'){t='midnight';localStorage.setItem('mm-theme',t);}if(t!=='midnight')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
-<link rel="stylesheet" href="css/me-v2.css?v=270" /><!-- CSS 也要 cache-bust:CF Pages 對 .css 出 max-age=14400,不掛 ?v 改版後最多 4hr 拿舊樣式 -->
+<link rel="stylesheet" href="css/me-v2.css?v=13" /><!-- CSS 也要 cache-bust:CF Pages 對 .css 出 max-age=14400,不掛 ?v 改版後最多 4hr 拿舊樣式 -->
 <style>
 html[lang="en"] .sec h2 .zh{display:none}   /* en 模式:section 標題旁的英文小字與主標重複 → 隱藏 */
 html[lang="zh-Hans"] body{--ui:'Inter','Noto Sans SC',sans-serif}  /* 簡中改用 SC 字型,避免混排忽粗忽細 */
@@ -182,7 +182,8 @@ document.write('<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+S
         <div class="bignums" id="bignums"></div>
         <!-- 帳號列:公開狀態 pill(點了去帳號設定)+專屬網址+複製+加入音樂劇;登入且設定載入後由 JS 填入 -->
         <div class="hero-acct" id="heroAcct" hidden>
-          <a class="pf-status" id="pfStatus" data-pub="0" href="settings.html"><span class="pf-dot"></span><span id="pfStatusT"></span></a>
+          <!-- 公開切換:左右開關,點擊即時寫 Supabase(樂觀更新,不重整;2026-07-09 使用者規格) -->
+          <button type="button" class="pf-status" id="pfStatus" data-pub="0" aria-pressed="false"><span class="pf-switch" aria-hidden="true"><span class="pf-knob"></span></span><span id="pfStatusT"></span></button>
           <a class="pf-url" id="pfUrl" href="#" target="_blank" rel="noopener"><span class="pf-url-t" id="pfUrlT"></span><span class="pf-open" aria-hidden="true">↗</span></a>
           <button type="button" class="pf-copy" id="pfCopy" aria-label="複製網址" data-i18n-aria="pc_copy_url" data-i18n="copy">複製</button>
           <button type="button" class="btn-addshow" id="heroAdd" data-i18n="pc_add">＋ 加入音樂劇</button>
@@ -1047,8 +1048,7 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
     const row=$('heroAcct'); if(!row)return;
     try{
       const pub=!!CUR.is_public, sp=$('pfStatus');
-      sp.setAttribute('data-pub',pub?'1':'0');
-      sp.href='settings.html?hl='+(window.MM_HL||'zh-hant');   // 點狀態→帳號設定頁管理公開與否
+      sp.setAttribute('data-pub',pub?'1':'0');sp.setAttribute('aria-pressed',pub?'true':'false');
       $('pfStatusT').textContent=T(pub?'pc_public':'pc_private');
       sp.title=T(pub?'pc_public_hint':'pc_private_hint');
       const urlA=$('pfUrl');
@@ -1072,7 +1072,21 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
     }));
   }
 
+  // 公開切換開關:樂觀更新(先改 UI 再寫雲端,失敗回滾),不重整頁面
+  async function togglePublic(){
+    const sp=$('pfStatus'); if(!UID||sp.dataset.busy)return;
+    const to=!CUR.is_public;
+    sp.dataset.busy='1';
+    CUR.is_public=to;renderHeroAcct();
+    try{
+      const {error}=await sb().from('profiles').update({is_public:to}).eq('id',UID);
+      if(error)throw error;
+    }catch(e){CUR.is_public=!to;renderHeroAcct();console.warn('togglePublic',e);}
+    finally{delete sp.dataset.busy;}
+  }
+
   // ---- wire ----
+  $('pfStatus').addEventListener('click',togglePublic);
   $('shareSave').addEventListener('click',save);
   $('heroAdd').addEventListener('click',()=>{const f=document.getElementById('fabLog');if(f)f.click();});
   $('pfCopy').addEventListener('click',async()=>{

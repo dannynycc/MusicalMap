@@ -81,11 +81,12 @@ def tag_hint(raw):
     輸出 build_shows classify_tag 認得的 tradition;無標記回 None(照舊走 fallback)。
     2026-07-09 資料品質稽核:如蝶翩翩/6點下班/月亮雪酪/Honk 全因此誤標「台灣」。"""
     t = raw or ""
-    if re.search(r"韓國|韩国", t): return "韓國原創"
-    if re.search(r"百老匯|西區|倫敦|London|Broadway", t, re.I): return "Broadway/West End"
-    if re.search(r"日本|寶塚|宝塚|2\.5次元", t): return "日本原創"
-    if re.search(r"法文|法語|法國音樂劇", t): return "法式音樂劇"
-    if re.search(r"德語|德文|維也納", t): return "德奧音樂劇"
+    # 中英標記都讀(caller 應傳 zh_title+' '+en_title;英文顯示題名也可能帶 Korean/Broadway 等標記)
+    if re.search(r"韓國|韩国|Korean?\b", t, re.I): return "韓國原創"
+    if re.search(r"百老匯|西區|倫敦|London|Broadway|West\s*End", t, re.I): return "Broadway/West End"
+    if re.search(r"日本|寶塚|宝塚|2\.5次元|Japanese|Takarazuka", t, re.I): return "日本原創"
+    if re.search(r"法文|法語|法國音樂劇|French\s+musical", t, re.I): return "法式音樂劇"
+    if re.search(r"德語|德文|維也納|German\s+musical|Vienna", t, re.I): return "德奧音樂劇"
     return None
 
 
@@ -150,7 +151,7 @@ def main():
                 "ticket_url": f"https://www.opentix.life/program/{pid}" if pid else None,
                 "type": "tour", "verified": True, "source": "opentix.life",
             }
-            th = tag_hint(zh_title)          # 外框標記(韓國/百老匯授權…)在洗標題前先判讀
+            th = tag_hint(zh_title + " " + en_title)   # 外框標記(韓國/百老匯授權…)在洗標題前先判讀;中英題名都讀
             if th:
                 rec["tag_hint"] = th
             shows.append(rec)

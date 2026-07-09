@@ -181,6 +181,7 @@ L.control.layers({ [t("map")]: streets, [t("satellite")]: satellite }, null, { p
 // 法務連結放 attribution 列(Google Maps 慣例:全螢幕地圖 app 無頁尾,隱私/條款跟圖資出處同列);
 // 頂部 nav 留給功能項,手機版也因此看得到法務連結(nav-link 在手機被藏)
 map.attributionControl.addAttribution(
+  `© ${new Date().getFullYear()} MusicalMap · ` +   // 短版版權(法律上非必要但具專業識別;不用過時的 All Rights Reserved)
   `<a href="${window.MM_BASE || "/"}about?hl=${window.MM_VARIANT || "zh-hant"}">${t("about_short")}</a> · ` +
   `<a href="${window.MM_BASE || "/"}privacy?hl=${window.MM_VARIANT || "zh-hant"}">${t("privacy_short")}</a> · ` +
   `<a href="${window.MM_BASE || "/"}terms?hl=${window.MM_VARIANT || "zh-hant"}">${t("terms_short")}</a>`);
@@ -481,6 +482,21 @@ function platformName(host, fallback) {
   // last resort: the bare domain (e.g. "example.com") rather than a blank label
   return fallback || (host.replace(/^www\./, "") || "");
 }
+// 資料層的 ticket link label 是寫死的中文(build_shows SOURCE_LABEL)——en 頁會冒出「Broadway票務」
+// (2026-07-09 使用者抓到)。en 模式把已知中文 label 換英文;沒對到且含 CJK → 用網域名兜底。
+const LABEL_EN = { "Broadway票務": "Broadway.com", "大麥": "Damai", "聚橙": "Juooo", "保利票務": "Poly Theatre",
+  "票務": "Tickets", "官方售票": "Official tickets", "官方網站": "Official site", "售票連結": "Tickets",
+  "四季官網": "Shiki Official", "宝塚官網": "Takarazuka Official", "Stage官網": "Stage Entertainment",
+  "寬宏": "KHAM", "udn 售票": "udn tickets" };
+function localizedLabel(raw, host, country) {
+  if (document.documentElement.lang !== "en" || !raw) return raw;
+  if (LABEL_EN[raw]) return LABEL_EN[raw];
+  if (/[㐀-鿿぀-ヿ가-힯]/.test(raw)) {   // CJK 殘留 → 平台名/網域兜底
+    const p = platformName(host || "", country);
+    return /[㐀-鿿]/.test(p) ? (host || "").replace(/^www\./, "") : p;
+  }
+  return raw;
+}
 
 function popupHtml(show) {
   const poster = posterFull(show.image, 400);
@@ -512,7 +528,7 @@ function popupHtml(show) {
   const ticket = ordered.length ? `<div class="pop-tix"><div class="pop-tix-h">${esc(t("get_tickets"))}</div><div class="pop-tiles">${ordered.map((l) => {
     const u = safeUrl(l.url); if (!u) return "";
     let host = ""; try { host = new URL(u).hostname; } catch { /* */ }
-    const lab = esc(l.label || platformName(host, l.country));
+    const lab = esc(localizedLabel(l.label, host, l.country) || platformName(host, l.country));
     const ico = host ? platformIcon(host) : "";
     // Hover shows the CLEAN destination (href); the affiliate redirect is swapped in on
     // mousedown so the ugly viglink URL never appears in the status bar, yet click and
