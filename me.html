@@ -1038,7 +1038,7 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
     modal.hidden=false;if(shareCard)trapModal(shareCard);
   }
 
-  function close(){if(FORCED)return;untrap(shareCard);modal.hidden=true;document.body.style.overflow='';}
+  function close(){if(FORCED)return;untrap(shareCard);modal.hidden=true;document.body.style.overflow='auto';}  // 'auto' 不能設 '':會落回 CSS body{overflow:hidden} 預設鎖(同 hideGate 註解的坑)
 
   // ---- hero 帳號列:公開狀態 pill(→settings)+專屬網址+複製+加入;帳號設定本體在 settings.html ----
   function renderHeroAcct(){
@@ -1268,7 +1268,7 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
   const snap=()=>{try{return localStorage.getItem('mm-log')||'';}catch(e){return '';}};
   const cb=()=>'&_='+Date.now();   // cache-bust：每次都載最新輸入頁（避免瀏覽器快取舊版）
   function openLog(){before=snap();fr.src='me-input.html?embed=1'+cb();m.hidden=false;document.body.style.overflow='hidden';}
-  function closeLog(){m.hidden=true;fr.src='about:blank';document.body.style.overflow='';
+  function closeLog(){m.hidden=true;fr.src='about:blank';document.body.style.overflow='auto';  // 'auto' 不能設 '':會落回 CSS body{overflow:hidden}
     if(snap()!==before)location.reload();}   // 有新登錄→即時長到牆/地圖/統計
   function openEdit(i){before=snap();fr.src='me-input.html?embed=1&edit='+i+cb();m.hidden=false;document.body.style.overflow='hidden';}
   window.mmEditShow=openEdit;

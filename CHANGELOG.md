@@ -11,6 +11,11 @@
 
 ---
 
+## [v2.17.1] - 2026-07-09 13:16
+### 修正 — modal 關閉後頁面鎖捲動(`''` 落回 CSS 陷阱)
+- `close()`(onboarding)與 `closeLog()`(記錄/編輯 modal)關閉時把 body overflow 設 `''`——落回 CSS `body{overflow:hidden}` 預設鎖,整頁不能捲(hideGate 註解早記載過同一個坑,這兩處漏改)。改明確設 `'auto'`。
+- onboarding 開啟時「背景仍捲不動」持續調查中(v2.17.0 已移除顯式鎖但 e2e 實測仍鎖,本版先修關閉後的部分)。
+
 ## [v2.17.0] - 2026-07-09 12:48
 ### 修正+收緊 — 網址名稱(handle)規則全面整頓(使用者抓到 sudo 可註冊)
 - **建議 chips 移除**:onboarding 的「可用的建議」以 email 前綴當種子,等於把使用者信箱帳號洩漏進公開網址建議(使用者指示拿掉)。連同 CSS/字串/buildChips 全清。
