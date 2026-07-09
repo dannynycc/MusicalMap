@@ -130,6 +130,16 @@ function router(slug, STR) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>${esc(zhT)} · ${esc(enShort)}</title>
   <meta name="description" content="${escAttr(desc)}" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="MusicalMap" />
+  <meta property="og:title" content="${escAttr(zhT)}" />
+  <meta property="og:description" content="${escAttr(desc)}" />
+  <meta property="og:url" content="${SITE}/${slug}" />
+  <meta property="og:image" content="${SITE}/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="${escAttr(zhT)}" />
+  <meta name="twitter:description" content="${escAttr(desc)}" />
+  <meta name="twitter:image" content="${SITE}/og-image.png" />
   <link rel="canonical" href="${SITE}/${slug}" />
   <link rel="alternate" hreflang="en" href="${SITE}/en/${slug}" />
   <link rel="alternate" hreflang="zh-Hans" href="${SITE}/zh-hans/${slug}" />

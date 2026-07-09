@@ -18,7 +18,7 @@ if(!v){var nl=(navigator.language||'').toLowerCase();v=nl.indexOf('zh')===0?((nl
 if(v==='zh-hans'){document.write('<scr'+'ipt src="https://cdn.jsdelivr.net/npm/opencc-js@1.3.1/dist/umd/t2cn.js" integrity="sha384-P/OaFUnOIAgMkLxsXIAaP6WO3Wm09591cGX5bHbW4eCOeDxH9L8U3aWYf4cE4SYl" crossorigin="anonymous"><\/scr'+'ipt>');
 document.write('<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet" />');/* 簡體字 TC 字型沒有→混排忽粗忽細,補 SC */}
 }catch(e){}})();</script>
-<script src="js/mm-strings.js?v=242"></script>
+<script src="js/mm-strings.js?v=243"></script>
 <script>/* no-flash theme;預設 cream(對齊主站淡米黃)+一次性遷移(與 me/u 共用 localStorage,mig 旗標由 me.html 先設就不重清);已下架 neon/deco 正規化回 midnight */(function(){try{if(!localStorage.getItem('mm-theme-mig')){localStorage.removeItem('mm-theme');localStorage.setItem('mm-theme-mig','1');}var t=localStorage.getItem('mm-theme')||'cream';if(t==='neon'||t==='deco'){t='midnight';localStorage.setItem('mm-theme',t);}if(t!=='midnight')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,900&family=Inter:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet" />
@@ -708,11 +708,11 @@ function renderDetail(){
   sbody.innerHTML=`
     <button type="button" class="backbtn" id="backToSearch">${(draft.editIndex==null&&w.prods&&w.prods.length>1)?T('mi_back_pick_prod'):T('mi_back_search')}</button>
     <div class="confirm">
-      <img src="${p.img||''}" referrerpolicy="no-referrer" alt="" onerror="this.style.visibility='hidden'"/>
-      <div class="ci"><div class="en">${w.en}</div>${w.zh?`<div class="zh">${w.zh}</div>`:''}
-        <div class="chips"><span class="chip"><b>${p.label||p.city}</b></span>
-          ${p.venue?`<span class="chip"><b>${p.venue}</b></span>`:''}
-          <span class="chip"><b>${p.city}</b></span></div></div>
+      <img src="${String(p.img||'').replace(/"/g,'&quot;')}" referrerpolicy="no-referrer" alt="" onerror="this.style.visibility='hidden'"/>
+      <div class="ci"><div class="en">${hesc(w.en)}</div>${w.zh?`<div class="zh">${hesc(w.zh)}</div>`:''}
+        <div class="chips"><span class="chip"><b>${hesc(p.label||p.city)}</b></span>
+          ${p.venue?`<span class="chip"><b>${hesc(p.venue)}</b></span>`:''}
+          <span class="chip"><b>${hesc(p.city)}</b></span></div></div>
     </div>
     ${draft.editIndex!=null?`<div class="step" id="editLoc">
       <div class="lbl">${T('venue_city')}<span class="opt">${T('edit_can_change')}</span></div>
@@ -751,7 +751,9 @@ function renderDetail(){
   // date area — 乾淨三欄（年/月/日，全非必填，一次顯示）
   draft.mode='backfill';
   const dY=document.getElementById('dYear'),dM=document.getElementById('dMonth'),dD=document.getElementById('dDay');
-  (function(){const seed=draft.date || (years.length?String(years[0]):'');  // 編輯用既有日期；否則預填最近的上演年份（可改）
+  // 編輯既有紀錄:只用它自己的日期——不可 fallback 上演年份,否則「刻意留白日期」的紀錄
+  // 在編輯任何其他欄位存檔時會被靜默補上年份(applyDateD 於下方立即執行)。新增才預填最近年份。
+  (function(){const seed=draft.date || (draft.editIndex==null&&years.length?String(years[0]):'');
     if(seed){const[sy,sm,sd]=String(seed).split('-');dY.value=sy||'';if(sm)dM.value=String(+sm);syncDayOptions(dY,dM,dD);if(sd)dD.value=String(+sd);}})();
   function applyDateD(){const y=dY.value.trim(),mo=dM.value,da=dD.value;
     if(!/^\d{4}$/.test(y)){draft.date=null;draft.precision='none';}
@@ -850,11 +852,12 @@ function renderWall(justAdded){
   document.getElementById('logct').textContent=LOG.length?TN('mi_log_ct_n',{n:LOG.length}):T('mi_not_recorded');
   if(!LOG.length){empty.hidden=false;wall.hidden=true;wall.innerHTML='';persist();return;}
   empty.hidden=true;wall.hidden=false;
+  /* hesc/quot-escape:手動輸入的劇名與自訂海報 URL 是使用者輸入,含 <"' 會破版/自傷 XSS(比照 addedScreen 的 hesc) */
   wall.innerHTML=LOG.map((d,i)=>`<div class="lcard ${justAdded&&i===0?'justadded':''}">
-    <div class="pos">${d.p.img?`<img src="${d.p.img}" referrerpolicy="no-referrer" alt="" onerror="this.remove()"/>`:`<div class="posfall">${(d.w.en||'?').trim()[0]||'?'}</div>`}
+    <div class="pos">${d.p.img?`<img src="${String(d.p.img).replace(/"/g,'&quot;')}" referrerpolicy="no-referrer" alt="" onerror="this.remove()"/>`:`<div class="posfall">${hesc((d.w.en||'?').trim()[0]||'?')}</div>`}
       <div class="stamp-badge">${flag(d.p.country)}</div>
       <div class="lacts"><button class="ledit" data-i="${i}" aria-label="${T('edit')}">✎</button><button class="ldel" data-i="${i}" aria-label="${T('delete')}">✕</button></div></div>
-    <div class="cap"><div class="en">${d.w.en}</div>${d.w.zh?`<div class="zh">${d.w.zh}</div>`:''}
+    <div class="cap"><div class="en">${hesc(d.w.en)}</div>${d.w.zh?`<div class="zh">${hesc(d.w.zh)}</div>`:''}
       <div class="dt"><span class="pre">${dateLabel(d)}</span><span class="stars">${stars(d.rating||0)}</span></div></div>
   </div>`).join('');
   wall.querySelectorAll('.ledit').forEach(b=>b.onclick=()=>editEntry(+b.dataset.i));
@@ -868,12 +871,12 @@ function renderRecent(){
   const el=document.getElementById('recentList');if(!el)return;el.hidden=false;
   const k=sessionActive?Math.max(0,LOG.length-sessionBaseLen):LOG.length;  // 只取這次 session 新增的（在 LOG 最前面）
   const items=LOG.slice(0,k);
-  const undoHtml=lastDeleted?`<div class="recent-undo">${TN('deleted',{name:PN(lastDeleted.item.w)})}<button type="button" id="undoDel">${T('undo')}</button></div>`:'';
+  const undoHtml=lastDeleted?`<div class="recent-undo">${TN('deleted',{name:hesc(PN(lastDeleted.item.w))})}<button type="button" id="undoDel">${T('undo')}</button></div>`:'';
   const body=items.length
     ? `<div class="recent-h">${TN('recent_added',{n:items.length})}<span>${T('recent_added_sub')}</span></div>`+
       items.map((d,i)=>`<div class="recent-row">
-        <div class="rth">${d.p.img?`<img src="${d.p.img}" referrerpolicy="no-referrer" alt="" onerror="this.remove()"/>`:`<span>${(d.w.en||'?').trim()[0]||'?'}</span>`}</div>
-        <div class="rmeta"><div class="rt">${PN(d.w)}</div><div class="rsub">${dateLabel(d)}${d.p.city?' · '+d.p.city:''}</div></div>
+        <div class="rth">${d.p.img?`<img src="${String(d.p.img).replace(/"/g,'&quot;')}" referrerpolicy="no-referrer" alt="" onerror="this.remove()"/>`:`<span>${hesc((d.w.en||'?').trim()[0]||'?')}</span>`}</div>
+        <div class="rmeta"><div class="rt">${hesc(PN(d.w))}</div><div class="rsub">${dateLabel(d)}${d.p.city?' · '+hesc(d.p.city):''}</div></div>
         <button class="rb" data-edit="${i}" aria-label="${T('edit')}">✎</button>
         <button class="rb" data-del="${i}" aria-label="${T('delete')}">✕</button>
       </div>`).join('')

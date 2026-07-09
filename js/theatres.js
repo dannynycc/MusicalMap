@@ -20,6 +20,14 @@ function foldLatin(s) {
 }
 const norm = (s) => foldLatin((s || "").toLowerCase().replace(/臺/g, "台")).replace(PUNCT, " ").replace(/\s+/g, " ").trim();
 
+// i18n:走 mm-strings 的 MM_T(2026-07-09 修復:原呼叫 i18n.js 的 t(),但本頁已改載 mm-strings、
+// i18n.js 未載入 → 頂層 ReferenceError 整頁 JS 死亡,地圖/搜尋/計數全滅)。MM_T 不做插值,這裡補。
+const t = (k, vars) => {
+  let s = (window.MM_T ? window.MM_T(k) : k);
+  for (const n in (vars || {})) s = s.replace("{" + n + "}", vars[n]);
+  return s;
+};
+
 const map = L.map("map", { zoomControl: true, worldCopyJump: true }).setView([30, 10], 2);
 const streets = L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png", {
   attribution: "&copy; OpenStreetMap &copy; CARTO", subdomains: "abcd", maxZoom: 19,

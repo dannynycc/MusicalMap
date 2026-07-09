@@ -97,7 +97,7 @@ if(!v){var nl=(navigator.language||'').toLowerCase();v=nl.indexOf('zh')===0?((nl
 if(v==='zh-hans'){document.write('<scr'+'ipt src="https://cdn.jsdelivr.net/npm/opencc-js@1.3.1/dist/umd/t2cn.js" integrity="sha384-P/OaFUnOIAgMkLxsXIAaP6WO3Wm09591cGX5bHbW4eCOeDxH9L8U3aWYf4cE4SYl" crossorigin="anonymous"><\/scr'+'ipt>');
 document.write('<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet" />');/* 簡體字 TC 字型沒有→混排忽粗忽細,補 SC */}
 }catch(e){}})();</script>
-<script src="js/mm-strings.js?v=242"></script>
+<script src="js/mm-strings.js?v=243"></script>
 <script src="js/mm-acct-menu.js?v=227"></script>
 <!-- Google Analytics(GA4 G-GC07MYC1MY;訪客來源/行為分析,同一 ID 涵蓋主站與 my. 網域(報表以 hostname 區分);不加 SRI:gtag.js 由 Google 滾動更新,釘 hash 會靜默斷統計;隱私揭露見 privacy §1/§3) --><script async src="https://www.googletagmanager.com/gtag/js?id=G-GC07MYC1MY"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-GC07MYC1MY');</script>
 </head>
@@ -521,7 +521,8 @@ document.getElementById('seg').addEventListener('click',e=>{const b=e.target.clo
 
 /* chips */
 (function(){const c=document.getElementById('chips');
-  ['全部',...stAll.years].forEach((y,i)=>{const b=document.createElement('button');b.className='chip';b.textContent=(y==='全部'?T('chip_all'):y);b.setAttribute('aria-pressed',i===0);
+  // filter(Boolean):未填日期的紀錄 yr()='' 會混進 years → 產生一顆空白可點的 chip(行為同「全部」但看起來是破版)
+  ['全部',...stAll.years.filter(Boolean)].forEach((y,i)=>{const b=document.createElement('button');b.className='chip';b.textContent=(y==='全部'?T('chip_all'):y);b.setAttribute('aria-pressed',i===0);
     b.onclick=()=>{activeYear=y;activeCity=null;[...c.children].forEach(x=>x.setAttribute('aria-pressed','false'));b.setAttribute('aria-pressed','true');rerender();};c.appendChild(b);});})();
 document.getElementById('sort').onchange=e=>{sortBy=e.target.value;rerender();};
 function rerender(){mode==='poster'?renderPoster():mode==='passport'?renderPassport():renderLog();}  // log 檢視也要重繪（排序/篩選才會生效）
@@ -610,7 +611,7 @@ function positionPins(){
     el.style.display='';el.style.left=cx*100+'%';el.style.top=cy*100+'%';
     const sz=18+Math.sqrt(sum)*5.2, word=document.documentElement.lang==='en'?(k+' cities'):(k+' 城市');
     el.innerHTML=`<span class="glow" style="width:${sz*2.2}px;height:${sz*2.2}px"></span><span class="core" style="width:${sz}px;height:${sz}px">${sum}</span><span class="lbl">${word}</span>`;
-    el.setAttribute('aria-label',word+'，共 '+sum+' 場，點擊放大');
+    el.setAttribute('aria-label',document.documentElement.lang==='en'?(word+', '+sum+' shows, click to zoom in'):(word+'，共 '+sum+' 場，點擊放大'));   // en 模式別唸中文(螢幕閱讀器)
     el.onclick=()=>{const nz=Math.min(12,Math.max(mapV.z*2.4,2.6));mapV.z=nz;mapV.x=bx-0.5/nz;mapV.y=by-0.5/nz;clampV();renderMap();};
     ci++;
   });
@@ -739,7 +740,7 @@ function openDetail(s){
     ${s.time?`<dt>${T('dt_time')}</dt><dd>${esc(s.time)}</dd>`:''}
     <dt>${T('dt_seat')}</dt><dd>${esc(s.seat||'—')}</dd>
     <dt>${T('dt_price')}</dt><dd>${s.price?esc(`${s.price} ${s.cur||''}`):'—'}</dd>
-    <dt>${T('dt_link')}</dt><dd>${s.url?`<a href="${String(s.url).replace(/"/g,'%22')}" target="_blank" rel="noopener noreferrer" style="color:#e3b23c;text-decoration:none;border-bottom:1px solid currentColor">${((String(s.url).match(/^https?:\/\/([^\/]+)/)||[])[1]||T('dt_open_link'))} ↗</a>`:'—'}</dd>`;
+    <dt>${T('dt_link')}</dt><dd>${(s.url&&/^https?:\/\//i.test(String(s.url).trim()))?`<a href="${esc(String(s.url).trim())}" target="_blank" rel="noopener noreferrer" style="color:#e3b23c;text-decoration:none;border-bottom:1px solid currentColor">${esc((String(s.url).match(/^https?:\/\/([^\/]+)/i)||[])[1]||T('dt_open_link'))} ↗</a>`:'—'}</dd>`;/* 只放行 http(s)(擋 javascript:)+host 走 esc,比照 u-view.js safeUrl 防線 */
   document.getElementById('dt-note').textContent=s.note?('「'+s.note+'」'):'';
   document.getElementById('dt-note').style.display=s.note?'block':'none';
   if(dlg.showModal)dlg.showModal();

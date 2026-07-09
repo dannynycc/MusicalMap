@@ -58,6 +58,10 @@ function jsonLd(variant, shows) {
         "address": { "@type": "PostalAddress", "addressLocality": s.city, "addressCountry": s.country } },
       "image": s.image || undefined,
       "description": where ? `${s.title} — live stage musical at ${where}.` : `${s.title} — live stage musical.`,
+      // performer/organizer:Google Event 建議欄位(缺=Rich Results 警告)。資料層沒有製作公司,
+      // 用「該劇目的製作」當 PerformingGroup(業界常見做法,不虛構個人/公司名)。
+      "performer": { "@type": "PerformingGroup", "name": `${s.title} company` },
+      "organizer": { "@type": "Organization", "name": s.venue || s.city || "Theatre", "url": ticket || undefined },
       "offers": ticket ? { "@type": "Offer", "url": ticket, "availability": "https://schema.org/InStock", "validFrom": s.start_date } : undefined,
       "url": ticket,
     };
@@ -174,6 +178,8 @@ function page(variant, shows) {
   <meta property="og:image:height" content="630" />
   <meta property="og:image:alt" content="MusicalMap — Live World Map of Musicals" />
   <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="${esc(v.label)}" />
+  <meta name="twitter:description" content="${esc(v.desc)}" />
   <meta name="twitter:image" content="${SITE}/og-image.png" />
   <!-- favicon: Google 只收正方形且 ≥48px 的圖示;SVG 必須用 favicon.svg(2244×2244 方形置中版),logo.svg 是 1245×2244 直式會被拒→退回地球圖示 -->
   <link rel="icon" href="${BASE}favicon.ico?v=3" sizes="any" />

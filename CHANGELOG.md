@@ -11,6 +11,21 @@
 
 ---
 
+## [v2.17.3] - 2026-07-09 15:34
+### 修正 — 多維度獵蟲 11 項(自動掃描+雙 agent 稽核;使用者指示至少抓 5 個)
+- **P0|theatres 頁整頁 JS 死亡**:theatres.js 頂層呼叫 i18n.js 的 `t()`,但該頁已於語言機制遷移時改載 mm-strings(當時註解誤稱「theatres.js 不依賴 i18n runtime」)→ 第 31 行 ReferenceError,地圖/叢集/搜尋/計數全滅。修:theatres.js 改走 `MM_T`+本地插值,mm-strings 補 6 個 key(zh-hant+en,简中 OpenCC);playwright 三語驗證(叢集 30、計數三語正確、搜尋有結果、零 pageerror);theatres.js 加 ?v=2。
+- **SEO|theatres hreflang 無效叢集**:指向 `?lang=` 非 canonical 網址+缺 zh-Hans+參數機制早已改 ?hl=——Google 會整組忽略。修:移除 hreflang(單一網址頁無變體可宣告),留 canonical。
+- **SEO|root 路由頁(about/guide/privacy/terms)零 og/twitter 標記**:分享無預覽。修:gen_pages router 模板補 og:type/site_name/title/description/url/image+twitter card。
+- **SEO|Event JSON-LD 補 performer/organizer**(Google 建議欄位,缺=Rich Results 警告):performer=PerformingGroup「{title} company」、organizer=場館。
+- **SEO|三語首頁補 twitter:title/twitter:description**(原只有 card+image)。
+- **AI 搜尋|llms.txt 過時連結**:guide 語言變體還寫 `?hl=` 舊式,改 /en/guide 等三語靜態網址;My Musicals 描述補 email 登入。
+- **UX|未填日期的紀錄產生「空白年份 chip」**(me.html+u-view.js):yr('')='' 混進年份清單→一顆空白可點按鈕。修:filter(Boolean)。
+- **資料|編輯未填日期的收藏會被靜默補上年份**(me-input.html):日期種子 fallback 上演年份+立即 applyDateD → 改任何欄位存檔就竄改日期。修:編輯(editIndex!=null)只用自己的日期。
+- **安全|me.html 詳情視窗連結漏 safeUrl**:`javascript:` URL 可點+host 文字未跳脫(自傷 XSS)。修:只放行 http(s)+esc,比照 u-view.js。
+- **安全|me-input.html 多處 innerHTML 未跳脫**(海報牆/最近新增/確認畫面的劇名/場館/自訂海報 URL):手動輸入含 <"' 會破版。修:hesc()+src quot-escape,比照 addedScreen 既有做法。
+- **a11y|地圖叢集 aria-label 中文寫死**(me.html+u-view.js):en 模式螢幕閱讀器唸「3 cities，共 12 場，點擊放大」。修:依 lang 分流。
+- mm-strings v=243、u-view.js v=6。已驗:本機三語 theatres e2e 全過;其餘見部署後線上驗證。
+
 ## [v2.17.2] - 2026-07-09 14:20
 ### 改善 — Email 登入送碼按鈕狀態機+重寄 60 秒冷卻(使用者規格)
 - **送碼成功後「傳送驗證碼」按鈕反灰、字改「驗證碼已傳送」**;唯一解鎖條件=使用者改動 email 輸入框(input 監聽,sentLock 旗標,寄送中打字不誤解鎖);Enter 鍵同樣受鎖定管制。

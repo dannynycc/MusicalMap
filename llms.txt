@@ -8,10 +8,10 @@ Data layer and presentation layer are separate: Python scrapers write `data/*.js
 
 ## Key pages
 - [Live map of musicals](https://themusicalmap.com/): the main map — what's playing now/soon worldwide, filter by month and tradition, click a marker for venue, dates and ticket links. Language variants: [/en/](https://themusicalmap.com/en/), [/zh-hant/](https://themusicalmap.com/zh-hant/), [/zh-hans/](https://themusicalmap.com/zh-hans/).
-- [How it works / guide](https://themusicalmap.com/guide): what the map does and how My Musicals works, with screenshots (?hl=en / ?hl=zh-hans for other languages).
-- [My Musicals](https://my.themusicalmap.com/): sign in with Google to log every musical you've seen — poster wall, stamped passport, stats (top shows/cities/theatres, by year/month/weekday), custom poster URL and link per show, and a shareable public page.
+- [How it works / guide](https://themusicalmap.com/en/guide): what the map does and how My Musicals works, with screenshots. Language variants: [/zh-hant/guide](https://themusicalmap.com/zh-hant/guide), [/zh-hans/guide](https://themusicalmap.com/zh-hans/guide).
+- [My Musicals](https://my.themusicalmap.com/): sign in with Google or an email code to log every musical you've seen — poster wall, stamped passport, stats (top shows/cities/theatres, by year/month/weekday), custom poster URL and link per show, and a shareable public page.
 - [All theatres](https://themusicalmap.com/theatres): searchable directory of ~5,000 musical-theatre venues worldwide (currently unlisted from the nav but fully functional).
-- [About](https://themusicalmap.com/about): who runs the site, why it exists, and where the data comes from.
+- [About](https://themusicalmap.com/en/about): who runs the site, why it exists, and where the data comes from. Language variants: [/zh-hant/about](https://themusicalmap.com/zh-hant/about), [/zh-hans/about](https://themusicalmap.com/zh-hans/about).
 
 ## Data sources
 - Broadway, West End (londontheatre.co.uk), North American & international tours (broadway.org), Ticketmaster (global), Shiki/Toho (Japan), Interpark (Korea), OPENTIX/KHAM/UDN (Taiwan), jegy.hu/prazskemuzikaly (Central Europe), regional scrapers (Italy/Nordic/Netherlands/Poland/Austria/Spain), Middle East (Platinumlist), and China (Shanghai Culture Square official API + Poly Theatre chain API).

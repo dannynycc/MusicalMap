@@ -13,9 +13,8 @@
   <meta property="og:image" content="https://themusicalmap.com/og-image.png" />
   <meta name="twitter:card" content="summary" />
   <link rel="canonical" href="https://themusicalmap.com/theatres" />
-  <link rel="alternate" hreflang="en" href="https://themusicalmap.com/theatres?lang=en" />
-  <link rel="alternate" hreflang="zh-Hant" href="https://themusicalmap.com/theatres?lang=zh" />
-  <link rel="alternate" hreflang="x-default" href="https://themusicalmap.com/theatres" />
+  <!-- hreflang 已移除(2026-07-09):原本指向 ?lang= 非 canonical 網址且缺 zh-Hans=無效叢集,Google 會整組忽略。
+       本頁是單一網址 client-side 切語言(?hl=),沒有語言變體網址可宣告;若日後拆三語靜態頁(gen_pages)再補。 -->
   <link rel="icon" href="/favicon.ico?v=3" sizes="any" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png?v=3" />
@@ -62,7 +61,7 @@
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
   <!-- i18n:語言認 ?hl= → 主站共用偏好(mm_variant) → navigator;繁中為底,en 走字典,zh-hans 由 OpenCC 轉。
-       (原 i18n.js 為 zh/en binary,無簡體;改用 mm-strings 三語,與全站一致。theatres.js 不依賴 i18n runtime,?hl= 整頁重載即重繪。) -->
+       (原 i18n.js 為 zh/en binary,無簡體;改用 mm-strings 三語,與全站一致。theatres.js 的字串走 mm-strings MM_T(v2.17.3 修復:此前註解誤稱不依賴 i18n、實際呼叫 i18n.js 的 t() 導致整頁 JS 死亡),?hl= 整頁重載即重繪。) -->
   <script>window.MM_USE_LANG_PREF=true;</script>
   <script>(function(){try{
   var h=new URLSearchParams(location.search).get('hl'),v=(h==='en'||h==='zh-hans'||h==='zh-hant')?h:null;
@@ -70,10 +69,10 @@
   if(!v){var nl=(navigator.language||'').toLowerCase();v=nl.indexOf('zh')===0?((nl.indexOf('cn')>-1||nl.indexOf('hans')>-1||nl.indexOf('sg')>-1)?'zh-hans':'zh-hant'):(nl?'en':'zh-hant');}
   if(v==='zh-hans'){document.write('<scr'+'ipt src="https://cdn.jsdelivr.net/npm/opencc-js@1.3.1/dist/umd/t2cn.js" integrity="sha384-P/OaFUnOIAgMkLxsXIAaP6WO3Wm09591cGX5bHbW4eCOeDxH9L8U3aWYf4cE4SYl" crossorigin="anonymous"><\/scr'+'ipt>');}
   }catch(e){}})();</script>
-  <script src="js/mm-strings.js?v=242"></script>
+  <script src="js/mm-strings.js?v=243"></script>
   <script src="js/mm-lang.js?v=230" defer></script>
 <script src="js/mm-acct-menu.js?v=227" defer></script>
-  <script src="js/theatres.js"></script>
+  <script src="js/theatres.js?v=2"></script>
 <script src="js/mm-xlang.js?v=1" defer></script>
 </body>
 </html>

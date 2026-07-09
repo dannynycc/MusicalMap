@@ -277,7 +277,8 @@
 
     /* chips */
     (function () { const c = document.getElementById('chips');
-      ['全部', ...stAll.years].forEach((y, i) => { const b = document.createElement('button'); b.className = 'chip'; b.textContent = (y === '全部' ? T('chip_all') : y); b.setAttribute('aria-pressed', i === 0);
+      // filter(Boolean):未填日期的紀錄 yr()='' 會混進 years → 空白 chip(同 me.html 修法)
+      ['全部', ...stAll.years.filter(Boolean)].forEach((y, i) => { const b = document.createElement('button'); b.className = 'chip'; b.textContent = (y === '全部' ? T('chip_all') : y); b.setAttribute('aria-pressed', i === 0);
         b.onclick = () => { activeYear = y; activeCity = null; [...c.children].forEach(x => x.setAttribute('aria-pressed', 'false')); b.setAttribute('aria-pressed', 'true'); rerender(); }; c.appendChild(b); }); })();
     document.getElementById('sort').onchange = e => { sortBy = e.target.value; rerender(); };
     function rerender() { mode === 'poster' ? renderPoster() : mode === 'passport' ? renderPassport() : renderLog(); }
@@ -367,7 +368,7 @@
         el.style.display = ''; el.style.left = cx * 100 + '%'; el.style.top = cy * 100 + '%';
         const sz = 18 + Math.sqrt(sum) * 5.2, word = document.documentElement.lang === 'en' ? (k + ' cities') : (k + ' 城市');
         el.innerHTML = `<span class="glow" style="width:${sz * 2.2}px;height:${sz * 2.2}px"></span><span class="core" style="width:${sz}px;height:${sz}px">${sum}</span><span class="lbl">${word}</span>`;
-        el.setAttribute('aria-label', word + '，共 ' + sum + ' 場，點擊放大');
+        el.setAttribute('aria-label', document.documentElement.lang === 'en' ? (word + ', ' + sum + ' shows, click to zoom in') : (word + '，共 ' + sum + ' 場，點擊放大'));   // en 模式別唸中文(螢幕閱讀器)
         el.onclick = () => { const nz = Math.min(12, Math.max(mapV.z * 2.4, 2.6)); mapV.z = nz; mapV.x = bx - 0.5 / nz; mapV.y = by - 0.5 / nz; clampV(); renderMap(); };
         ci++;
       });
