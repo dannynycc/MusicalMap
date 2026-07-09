@@ -64,6 +64,17 @@ def iso(d):
     return f"{m.group(3)}-{m.group(2)}-{m.group(1)}" if m else None
 
 
+def detail_dates(url):
+    """列表項常只印一個日期(週末親子劇的零星場次尤其),導致 end 缺 → 圖卡日期空白。
+    詳情頁列出全部場次(dd/mm/yyyy),抓回來取 min/max 當起迄(2026-07-09 資料品質稽核:
+    No me toques el cuento 列表只有 2025-01-18,詳情頁實有 2026/04-05 場次)。"""
+    try:
+        page = fetch(url)
+    except Exception:  # noqa: BLE001
+        return []
+    return sorted({iso(x) for x in re.findall(r"\d{2}/\d{2}/\d{4}", page) if iso(x)})
+
+
 def main():
     shows = {}
     for n in range(1, 8):
@@ -89,6 +100,11 @@ def main():
             dates = re.findall(r"(\d{2}/\d{2}/\d{4})", re.sub(r"<[^>]+>", " ", it))
             start = iso(dates[0]) if dates else None
             end = iso(dates[1]) if len(dates) > 1 else None
+            if not end:   # 列表只給一個(或零個)日期 → 進詳情頁補完整檔期
+                dd = [x for x in detail_dates(href.group(1)) if not start or x >= start]
+                if dd:
+                    start = start or dd[0]
+                    end = dd[-1]
             img = re.search(r'(?:data-src|src)="(https://www\.teatrebarcelona\.com/[^"]+\.(?:jpg|jpeg|png|webp))"', it)
             title = canon(title_es)
             if "por confirmar" in venue.lower() or "confirmar" in venue.lower():

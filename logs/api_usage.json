@@ -3345,6 +3345,23 @@
       },
       "updated_utc": "2026-07-09T09:15:23+00:00",
       "total_calls": 4
+    },
+    {
+      "run": "local-2026-07-09T11",
+      "started_utc": "2026-07-09T11:47:44+00:00",
+      "hosts": {
+        "www.teatrebarcelona.com": {
+          "calls": 28
+        },
+        "nominatim.openstreetmap.org": {
+          "calls": 2
+        },
+        "teatromadrid.com": {
+          "calls": 30
+        }
+      },
+      "updated_utc": "2026-07-09T11:50:38+00:00",
+      "total_calls": 60
     }
   ]
 }

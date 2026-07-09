@@ -67,6 +67,16 @@ def iso(d):
     return f"{m.group(3)}-{m.group(2)}-{m.group(1)}" if m else None
 
 
+def detail_dates(url):
+    """列表項缺日期時進詳情頁補完整檔期(同 barcelona.py;同一套 WordPress 平台,
+    2026-07-09 資料品質稽核:3 筆無任何日期,列表項只寫 Próximamente)。"""
+    try:
+        page = fetch(url)
+    except Exception:  # noqa: BLE001
+        return []
+    return sorted({iso(x) for x in re.findall(r"\d{2}/\d{2}/\d{4}", page) if iso(x)})
+
+
 def main():
     shows = {}
     for n in range(1, 7):
@@ -91,6 +101,11 @@ def main():
             dates = re.findall(r"(\d{2}/\d{2}/\d{4})", re.sub(r"<[^>]+>", " ", it))
             start = iso(dates[0]) if dates else None
             end = iso(dates[1]) if len(dates) > 1 else None
+            if not end:   # 列表只給一個(或零個)日期 → 詳情頁補完整檔期
+                dd = [x for x in detail_dates(href.group(1)) if not start or x >= start]
+                if dd:
+                    start = start or dd[0]
+                    end = dd[-1]
             img = re.search(r'(?:data-src|src)="(https://teatromadrid\.com/wp-content/uploads/[^"]+\.(?:jpg|jpeg|png|webp))"', it)
             title = canon(title_es)
             if "por confirmar" in venue.lower():
