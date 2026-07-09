@@ -44,7 +44,10 @@ def _norm(title):
     # to "high" (real bug: its group missed the official-site table entirely).
     # \W*$ allows trailing punctuation: "MAMMA MIA! The Musical!" (trailing "!")
     # must still strip to "mamma mia" (else it splits from "Mamma Mia!").
-    t = re.sub(r"\s+the\s+(?:[\w'!\-]+\s+){0,4}musical\W*$", "", t)
+    # 中間字禁再出現 the:否則 "Back To The Future The Musical" 從最左的 the 吞到底
+    # 剩 "back to",與 ticketmaster 的 "back to the future" 分裂成兩組、同巡演站重複
+    # 上圖(2026-07-09 實案:Bristol/Edinburgh/Liverpool/Manchester 各兩份)。
+    t = re.sub(r"\s+the\s+(?:(?!the\s)[\w'!\-]+\s+){0,4}musical\W*$", "", t)
     # foreign "… Il/De/El/Le/Das Musical" suffix (no dash), e.g. Italian
     # "Moulin Rouge! Il Musical", Dutch "… De Musical" → strip so it matches the
     # canonical ("moulin rouge"). The article is REQUIRED (so "High School Musical"
@@ -753,6 +756,7 @@ def main():
     # Apply manual coordinate/field corrections (source data errors).
     overrides_path = DATA / "overrides.json"
     applied = 0
+    locked_rolling = set()   # override 明示 end_rolling 的 id,下面白名單不得再改
     if overrides_path.exists():
         overrides = json.loads(overrides_path.read_text(encoding="utf-8"))
         for sid, patch in overrides.items():
@@ -761,6 +765,10 @@ def main():
             for k, v in patch.items():
                 if not k.startswith("_"):
                     by_id[sid][k] = v
+            if "end_rolling" in patch:
+                # 已公告閉幕日的長跑劇(如 Mincemeat 2027-02-14)用 override 關 rolling,
+                # 不上鎖會被下面來源白名單無條件蓋回 True(2026-07-09 抓到)
+                locked_rolling.add(sid)
             by_id[sid]["source"] += "+override"
             applied += 1
         print(f"  applied {applied} override(s)")
@@ -780,6 +788,8 @@ def main():
     n_open = 0
     for s in by_id.values():
         if s.get("type") not in ("resident", "sit-down"):
+            continue
+        if s.get("id") in locked_rolling:
             continue
         src = s.get("source") or ""
         open_run = False

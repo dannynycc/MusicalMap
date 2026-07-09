@@ -307,5 +307,18 @@
     "lat": 31.21327,
     "lng": 121.47529,
     "_why": "無座標→不出現在地圖;以同城平均/城市中心點補(城市層級精度)。"
+  },
+  "it-0fb1317c": {
+    "end_date": "2026-12-31",
+    "_why": "teatro.it JSON-LD 只列首演夜 12/17 一場;真檔期 12/17→12/31 共 11 場,依 ilsistina.it 官網查證(2026-07-09 日期 ground-truth 抽驗 MISMATCH 修正)"
+  },
+  "bway-32609": {
+    "end_date": "2027-02-14",
+    "end_rolling": false,
+    "_why": "Operation Mincemeat 百老匯已公告閉幕 2027-02-14(第九次延長,DKC O&M/broadway.com,2026-07-09 查證);來源 closingDate 空著被 rolling 白名單蓋過,補公告閉幕日"
+  },
+  "tour-the-sound-of-music-2025-mexico-city-2026-08-11": {
+    "country": "Mexico",
+    "_why": "broadway.org 巡演 country 硬編碼 USA(2026-07-09 座標交叉驗證抓到);broadway_tours.py 已修,此為現役資料即時修正,下次全抓後可刪"
   }
 }

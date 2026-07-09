@@ -17,9 +17,10 @@ Because teatro.it's "musical-varietà" bucket also leaks tribute/solo concerts,
 stand-up comedians, opera/lirica, prose plays and drone shows, we run a keyword
 KEEP/DROP filter (see is_musical) and log everything we drop.
 
-Each show is emitted as ONE row (type:"tour"): the run spans the earliest future
-performance to the latest future performance, and the primary venue/city is the
-earliest future performance's location.
+Each show is emitted PER STOP (type:"tour"): one row per (venue, city) with that
+stop's own first/last future performance. (Was: one aggregated row whose end date
+took the MAX across the whole tour — Padova's A Christmas Carol carried Torino's
+Jan-2 closing; caught by the 2026-07-09 date ground-truth audit.)
 
 Output: data/italy.json     Run: python scrapers/italy.py
 """
@@ -35,6 +36,8 @@ from datetime import datetime, timezone, timedelta
 from pathlib import Path
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from geocode import geocode  # noqa: E402  (Nominatim + persistent cache, shared)
 DATA = Path(__file__).resolve().parent.parent / "data"
 CET = timezone(timedelta(hours=1))
 UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/124.0",
@@ -243,30 +246,37 @@ def scrape():
             dropped.append(f"{title} [{slug}] — already ended / no future dates")
             continue
 
-        future.sort(key=lambda x: x[0])
-        start = future[0][0]
-        end = max(x[1] for x in future)
-        venue = future[0][2]               # primary = earliest future stop
-        city = future[0][3]
-        # Fall back to series-level location if the subEvent had none.
-        if not venue:
-            venue, scity = loc_fields(head)
-            city = city or scity
-        if not venue:
+        # 一站一筆:teatro.it 的 EventSeries 把「歷年所有場次+全巡演各城」全塞同一串,
+        # 舊做法取最早站當 venue、end 取全巡演最大值 → Padova 的聖誕頌歌掛到杜林的
+        # 1/2 結束日(2026-07-09 ground-truth 抽驗抓到)。按 (venue,city) 分組,
+        # 每站自己的首末場才是真檔期;順帶把其餘巡演站也上圖。
+        stops = {}
+        for sd, ed, venue, city in future:
+            if not venue:
+                venue, scity = loc_fields(head)
+                city = city or scity
+            if not venue:
+                continue
+            k = (venue.lower(), (city or "").lower())
+            cur = stops.setdefault(k, {"venue": venue, "city": city or "",
+                                       "start": sd, "end": ed})
+            cur["start"] = min(cur["start"], sd)
+            cur["end"] = max(cur["end"], ed)
+        if not stops:
             dropped.append(f"{title} [{slug}] — no venue")
             continue
 
-        key = (title.lower(), (venue or "").lower())
-        if key in seen:
-            continue
-        seen.add(key)
-
-        out.append({
-            "title": title, "venue": venue, "city": city or "",
-            "start": start, "end": end,
-            "image": first_image(head) or first_image(future and perfs[0]),
-            "url": url,
-        })
+        img = first_image(head) or first_image(perfs[0] if perfs else None)
+        for stop in stops.values():
+            key = (title.lower(), stop["venue"].lower())
+            if key in seen:
+                continue
+            seen.add(key)
+            out.append({
+                "title": title, "venue": stop["venue"], "city": stop["city"],
+                "start": stop["start"], "end": stop["end"],
+                "image": img, "url": url,
+            })
     return out, dropped
 
 
@@ -276,6 +286,12 @@ def main():
     n_coords = 0
     for s in rows:
         lat, lng = venue_coords(s["venue"], s["city"])
+        if lat is None and s["city"]:
+            # 一站一筆後站點變多,手表蓋不住 → 共用 Nominatim 快取;場館查不到退城市中心
+            lat, lng = geocode(f"{s['venue']}|{s['city']}|it".lower(),
+                               f"{s['venue']}, {s['city']}, Italy")
+            if lat is None:
+                lat, lng = geocode(f"city|{s['city']}|italy".lower(), f"{s['city']}, Italy")
         if lat is not None:
             n_coords += 1
         sid = "it-" + hashlib.md5(

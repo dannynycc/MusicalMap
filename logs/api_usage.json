@@ -3379,6 +3379,20 @@
       },
       "updated_utc": "2026-07-09T12:19:37+00:00",
       "total_calls": 59
+    },
+    {
+      "run": "local-2026-07-09T13",
+      "started_utc": "2026-07-09T13:46:41+00:00",
+      "hosts": {
+        "www.teatro.it": {
+          "calls": 108
+        },
+        "nominatim.openstreetmap.org": {
+          "calls": 109
+        }
+      },
+      "updated_utc": "2026-07-09T13:53:37+00:00",
+      "total_calls": 217
     }
   ]
 }

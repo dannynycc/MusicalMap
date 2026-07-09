@@ -11,6 +11,17 @@
 
 ---
 
+## [v2.21.1] - 2026-07-09 21:56
+### 日期 100% 精準戰役第一波+官網死鏈全量清理(使用者升級盯場項目後的深掃)
+- **日期 ground-truth 抽驗 28 齣×14 來源**(agents 逐齣對官方來源):26 齣逐字吻合;抓到 2 錯全修——
+  - **Operation Mincemeat 百老匯**:已公告 2027-02-14 閉幕(第九度延長)被 rolling 白名單蓋住 → override 補閉幕日;並修 build_shows:override 明示 end_rolling 的 id 上鎖,白名單不得再蓋(否則 override 無效,本次實測抓到)。
+  - **Mamma Mia! @ 羅馬 Sistina**:teatro.it 只列首演夜致地圖標「單日」,真檔期 12/17→12/31 共 11 場(ilsistina.it 查證)→ override。
+- **italy.py 巡演日期結構性修正**:teatro.it 的 EventSeries 把歷年+全巡演場次混在一串,舊 code venue 取最早站、end 取全巡演最大值(Padova 聖誕頌歌掛到杜林 1/2 結束日)→ 改一站一筆,27→161 筆,每站精準單日;接共用 Nominatim 快取 geocode,座標 161/161。
+- **country/座標交叉驗證**新抓 bug:broadway.org 巡演 country 硬編碼 USA,墨西哥城站標成美國 → broadway_tours.py 修城市判國+現役資料 override。
+- **group 正規化 bug(同站重複上圖)**:「the…musical」尾巴 regex 從最左 the 吞起,"Back To The Future The Musical"→殘缺 group `back to`,與 ticketmaster 分裂,Bristol/Edinburgh/Liverpool/Manchester 四站各兩份 → regex 中間字禁 the(1014 劇名回歸僅目標 1 筆變動);Spamalot/Dirty Dancing 補 registry 別名合流。
+- **官網死鏈全量掃(359 URL)**:10 死站——7 找到搬家新址換掉(Elf 巡演/HAIR 澳洲/羅朱 LiveNation/西語真善美/Zorro 官方/阿根廷 Anastasia IG)、3 查證無可靠新址老實刪(Tootsie 憑證死/綠野仙蹤/海綿寶寶新域 DNS 失效);17 個 403 逐一驗=防爬誤傷站都活著;**2 個「網址活內容換劇」**(Music Man→轉址 Tootsie、迪士尼 HSM 頁→綠野仙蹤停演頁)刪除;HSM 倫敦補官方專站 highschoolmusicalonstage.com(順帶驗證檔期 10/12→1/3 與地圖吻合)。
+- 總筆數 1656→1783(義大利一站一筆+回歸);哨兵/官網體檢全過。
+
 ## [v2.21.0] - 2026-07-09 21:27
 ### 官網覆蓋大補完+audit_official 制度化(使用者抓到波鴻星光快車官網缺漏後全庫掃)
 - **修「同劇不同城市不同官網」漏洞**:starlight express 條目原只有 uk(倫敦版官網),波鴻 de 區駐演整個對不到 → 補 global/de=starlightexpress.com、uk 保留倫敦版。全庫掃「地區沒對上」僅此一組。

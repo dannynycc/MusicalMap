@@ -108,7 +108,10 @@ def main():
         print(f"  {title}  ({len(stops)} current/upcoming stops)")
         for st in stops:
             city = st["city"]
-            country = "Canada" if re.search(r",\s*(QC|ON|BC|AB|MB|SK|NS|NB|NL|PE)$", city) else "USA"
+            # 巡演偶有國際站:Mexico City 曾被硬編碼成 USA(2026-07-09 座標交叉驗證抓到)
+            country = ("Canada" if re.search(r",\s*(QC|ON|BC|AB|MB|SK|NS|NB|NL|PE)$", city)
+                       else "Mexico" if re.match(r"(?i)mexico city|monterrey|guadalajara", city.strip())
+                       else "USA")
             lat, lng = geocode(f"{st['venue']}|{city}".lower(),
                                f"{st['venue']}, {city}, {country}")
             if lat is None:  # fall back to city centroid
@@ -120,7 +123,7 @@ def main():
                 "type": "tour",
                 "venue": st["venue"],
                 "city": st["city"],
-                "country": "USA",
+                "country": country,
                 "lat": lat,
                 "lng": lng,
                 "start_date": st["start_date"],
