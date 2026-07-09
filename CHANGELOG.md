@@ -11,6 +11,13 @@
 
 ---
 
+## [v2.20.2] - 2026-07-09 20:04
+### 修正 — 維也納 VBW 來源整個歸零(使用者抓到 Maria Theresia/美女與野獸全漏)
+- **根因**:musicalvienna.at 改版後,austria.py 的舊日期解析(德文月名散抓)只撈到新聞稿日期——Maria Theresia 被判「已結束 2/20」、美女與野獸「無日期」,雙雙被丟棄,VBW 來源產出=0,地圖上維也納只剩 TM 撈到的零星 Mamma Mia。
+- **修法**:新 `run_line()` 解析頁內官方檔期列「{Raimund Theater|Ronacher} {TITLE} 10.10.2025 - 26.06.2027」(權威場館+起迄一次拿齊,標題比對用去符號鍵容忍 –/- 差異);舊解析降為 fallback。實測救回:Maria Theresia @ Ronacher(2025-10-10→2027-06-26)、DIE SCHÖNE UND DAS BIEST @ Raimund(2026-09-25→2027-06-27)。
+- **連鎖修正**:美女與野獸德文劇名不在註冊表 → fallback 誤標「德奧」;works.json 補 alias「Die Schöne und das Biest」→ 正確歸 Broadway/West End(站規:作品起源傳統);austria.py 補 tour_name 保留德文製作名。Maria Theresia=VBW 原創,德奧分類正確。
+- **來源性質說明**:VBW 無公開 API,此線抓官網伺服器渲染頁(官方一手來源),每日兩次 CI 自動跑——非人工;本次是改版導致的解析失效。
+
 ## [v2.20.1] - 2026-07-09 19:53
 ### 資料品質 backlog 清空(使用者問責「自己找 5 個並修好」後補完)
 - **barcelona/madrid 詳情頁日期回補**:列表項只印一個日期(週末親子劇零星場次尤甚)→ end 缺、圖卡日期空白。兩個 scraper(同 WordPress 平台)新增 detail_dates():缺 end 時進 /espectacle//espectaculo/ 詳情頁抓全部場次取起迄。實測:原「殭屍嫌疑」No me toques el cuento 詳情頁實有 2026/4-5 場次(是活的零星檔,非殭屍);馬德里殘缺 3→1(剩 1 筆來源真的無日期)。

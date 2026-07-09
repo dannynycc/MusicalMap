@@ -1,7 +1,44 @@
 {
   "meta": {
     "source": "musicalvienna.at (VBW)",
-    "count": 0
+    "count": 2
   },
-  "shows": []
+  "shows": [
+    {
+      "id": "at-8f2f62c3",
+      "title": "MARIA THERESIA – DAS MUSICAL",
+      "title_en": "",
+      "venue": "Ronacher",
+      "city": "Vienna",
+      "country": "Austria",
+      "lat": 48.2073,
+      "lng": 16.376,
+      "start_date": "2025-10-10",
+      "end_date": "2027-06-26",
+      "image": "https://www.musicalvienna.at/_media/image/100553_1080x1080px_MT_New_6_26.jpg",
+      "ticket_url": "https://www.musicalvienna.at/de/spielplan/100028/MARIA-THERESIA-DAS-MUSICAL",
+      "type": "resident",
+      "verified": true,
+      "tour_name": "MARIA THERESIA – DAS MUSICAL",
+      "source": "musicalvienna.at"
+    },
+    {
+      "id": "at-5d775537",
+      "title": "DIE SCHÖNE UND DAS BIEST",
+      "title_en": "",
+      "venue": "Raimund Theater",
+      "city": "Vienna",
+      "country": "Austria",
+      "lat": 48.1969,
+      "lng": 16.3438,
+      "start_date": "2026-09-25",
+      "end_date": "2027-06-27",
+      "image": "https://www.musicalvienna.at/_media/image/101171_1080x1080px_SCHOENE_U_bersichtsbild_ohne_11_25.jpg",
+      "ticket_url": "https://www.musicalvienna.at/de/spielplan/100050/DIE-SCHOeNE-UND-DAS-BIEST",
+      "type": "resident",
+      "verified": true,
+      "tour_name": "DIE SCHÖNE UND DAS BIEST",
+      "source": "musicalvienna.at"
+    }
+  ]
 }

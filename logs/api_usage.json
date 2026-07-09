@@ -3358,10 +3358,24 @@
         },
         "teatromadrid.com": {
           "calls": 30
+        },
+        "www.musicalvienna.at": {
+          "calls": 3
         }
       },
-      "updated_utc": "2026-07-09T11:50:38+00:00",
-      "total_calls": 60
+      "updated_utc": "2026-07-09T11:57:10+00:00",
+      "total_calls": 63
+    },
+    {
+      "run": "local-2026-07-09T12",
+      "started_utc": "2026-07-09T12:02:00+00:00",
+      "hosts": {
+        "www.musicalvienna.at": {
+          "calls": 3
+        }
+      },
+      "updated_utc": "2026-07-09T12:02:00+00:00",
+      "total_calls": 3
     }
   ]
 }
