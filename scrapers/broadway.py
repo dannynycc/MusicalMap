@@ -114,6 +114,14 @@ def parse_detail(html):
     return venue, lat, lng, city
 
 
+# detail 頁掛掉時的兜底(2026-07-09 來源健康掃描:Book of Mormon detail 404、
+# Lost Boys 來源座標飄到 NYC 外)。座標取自自家 venues_catalog 權威值。
+FALLBACK_VENUE = {
+    "The Book of Mormon": ("Eugene O'Neill Theatre", 40.761133, -73.985659),
+    "The Lost Boys: A New Musical": ("Palace Theatre", 40.7589, -73.9846),
+}
+
+
 def main():
     print("Fetching Broadway listing…")
     listing = next_data(fetch_html(LISTING_URL))
@@ -146,6 +154,9 @@ def main():
             print(f"  [fix] {title}: swapped lat/lng")
         elif geo_status == "out_of_region":
             print(f"  [drop] {title}: coords outside NYC — dropped (likely wrong venue match)")
+        if lat is None and title in FALLBACK_VENUE:
+            venue, lat, lng = FALLBACK_VENUE[title]
+            print(f"  [fallback] {title}: 已知劇院兜底 @ {venue}")
 
         rec = {
             "id": f"bway-{tgid}",

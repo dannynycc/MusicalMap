@@ -1110,6 +1110,28 @@ def main():
         },
         "shows": shows,
     }
+    # ── 來源健康守門(2026-07-09):單一 scraper 壞抓(暫時故障/改版)會靜默寫出殘缺檔,
+    # 之後每天沿用壞資料——維也納 VBW 歸零、broadway 28→16 都這樣漏過去。寫檔前與
+    # 「上一版 shows.json」逐來源比對,驟降 >40%(且原本 ≥5 筆)或歸零就吼出來;
+    # ::warning 讓 GitHub Actions 在 run 頁面顯示黃色警告,本機跑也看得到。只警告不擋
+    # (真下檔潮也存在),但再也不會無聲。
+    try:
+        prev = json.loads((DATA / "shows.json").read_text(encoding="utf-8"))
+        prev_by_src = {}
+        for s in prev.get("shows", []):
+            k = (s.get("source") or "?").split("+")[0]
+            prev_by_src[k] = prev_by_src.get(k, 0) + 1
+        new_by_src = {}
+        for s in shows:
+            k = (s.get("source") or "?").split("+")[0]
+            new_by_src[k] = new_by_src.get(k, 0) + 1
+        for k, was in sorted(prev_by_src.items()):
+            now_n = new_by_src.get(k, 0)
+            if was >= 5 and (now_n == 0 or now_n < was * 0.6):
+                print(f"::warning::source health: {k} {was} -> {now_n} 筆(驟降 {100 - now_n * 100 // was}%)— scraper 可能壞了,檢查該來源")
+    except Exception as e:  # noqa: BLE001  守門本身壞了不擋 build
+        print(f"  (source health check skipped: {e})")
+
     (DATA / "shows.json").write_text(
         json.dumps(out, ensure_ascii=False, indent=2), encoding="utf-8"
     )

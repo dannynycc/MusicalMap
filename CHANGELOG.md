@@ -11,6 +11,15 @@
 
 ---
 
+## [v2.20.3] - 2026-07-09 20:21
+### 主動偵錯 — 全來源健康掃描(使用者指示:別只做 gating)+ broadway 壞抓修復
+- **掃描方法**:30+ 來源檔逐一盤點筆數/現役比/最新 end,可疑者對 git 30/60 天前比對。
+- **抓到第二個維也納:broadway.json 28→16(-43%)**。根因≠scraper 壞——現在重跑=27 部正常;是**某次 CI 壞抓(來源暫時故障)寫出殘缺檔,之後每天沿用壞資料**。災情:12 部熱演劇從主來源消失,11 部被 TM 兜住但**失去長期上演標記**(Maybe Happy Ending 等顯示假閉幕日),Titanique 完全消失。已重抓復原:27 部、rolling 全回歸、NYC 32→33。
+- **連帶修 2 部無座標**:Book of Mormon(detail 頁 404)/Lost Boys(來源座標飄出 NYC)→ broadway.py 加已知劇院兜底(座標取自 venues_catalog 權威值)。
+- **Death Becomes Her 查證=真閉幕**(2026-06-28 演畢,20 個月 650 場),不在地圖是正確的;9 月起北美巡演 36 城屆時 TM 自動接住。
+- **來源健康守門上線**(build_shows):寫檔前與上一版 shows.json 逐來源比對,≥5 筆的來源驟降 >40% 或歸零 → `::warning`(GitHub Actions run 頁黃色警告+本機可見)。只警告不擋(真下檔潮存在),但從此不再無聲。
+- **其餘小數來源判定**:utiki=3(台灣檔期本就少,OPENTIX 54 筆為主力)、netherlands=2(Stage NL 現役)屬合理;china_chinaticket=1 且無日期列入觀察(守門警報會盯)。
+
 ## [v2.20.2] - 2026-07-09 20:04
 ### 修正 — 維也納 VBW 來源整個歸零(使用者抓到 Maria Theresia/美女與野獸全漏)
 - **根因**:musicalvienna.at 改版後,austria.py 的舊日期解析(德文月名散抓)只撈到新聞稿日期——Maria Theresia 被判「已結束 2/20」、美女與野獸「無日期」,雙雙被丟棄,VBW 來源產出=0,地圖上維也納只剩 TM 撈到的零星 Mamma Mia。
