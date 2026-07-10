@@ -11,6 +11,12 @@
 
 ---
 
+## [v2.25.1] - 2026-07-10 16:26
+### 公開頁 u.html a11y/FOUC parity(第三輪修正原只套 me.html,補公開頁)
+- 正式站驗證發現 canvas aria、FOUC 修正原只在 me.html(登入後自己頁),公開頁 u.html 沒跟上。
+- u.html:地圖+統計 canvas 補 role=img+aria-label;非繁中 body FOUC 隱藏+失效保險。
+- (公開頁海報卡本就無巢狀按鈕,BUTTON 合法,不需改;海報牆 2 欄由共用 me-v2.css 已生效。)
+
 ## [v2.25.0] - 2026-07-10 16:22
 ### 「我的音樂劇」第三輪深掃:4 路 agent+自測,修 16 個真 bug(settings/認證並發/a11y/RWD)
 換全新角度(前輪未掃 settings 頁/無障礙/多分頁/跨網域/行動版)。

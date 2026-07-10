@@ -57,6 +57,10 @@ if(!v&&window.MM_USE_LANG_PREF){var mv=localStorage.getItem('mm_variant');v=(mv=
 if(!v){var nl=(navigator.language||'').toLowerCase();v=nl.indexOf('zh')===0?((nl.indexOf('cn')>-1||nl.indexOf('hans')>-1||nl.indexOf('sg')>-1)?'zh-hans':'zh-hant'):(nl?'en':'zh-hant');}
 if(v==='zh-hans'){document.write('<scr'+'ipt src="/js/vendor/opencc-t2cn-1.3.1.js"><\/scr'+'ipt>');
 document.write('<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet" />');/* 簡體字 TC 字型沒有→混排忽粗忽細,補 SC */}
+// FOUC:非繁中先隱藏 body,apply() 後顯示;1500ms 失效保險(與 me.html 同,2026-07-10)
+if(v&&v!=='zh-hant'){document.write('<style id="mm-fouc">body{visibility:hidden}</style>');
+  var _rv=function(){var s=document.getElementById('mm-fouc');if(s)s.remove();};
+  window.addEventListener('DOMContentLoaded',function(){setTimeout(_rv,0);});setTimeout(_rv,1500);}
 }catch(e){}})();</script>
 <script src="js/mm-strings.js?v=244"></script>
 <script src="js/mm-acct-menu.js?v=227" defer></script>
@@ -120,7 +124,7 @@ document.write('<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+S
   <!-- MAP -->
   <div class="sec"><h2><span data-i18n="sec_map">我的音樂劇足跡</span><span class="zh">Cities</span></h2><span class="hint" data-i18n="sec_map_hint">點一座城市，只看那裡的收藏</span></div>
   <div class="maprow">
-    <div class="mapwrap reveal"><canvas id="mapcv"></canvas><div id="pins"></div>
+    <div class="mapwrap reveal"><canvas id="mapcv" role="img" aria-label="音樂劇足跡地圖 / Musicals visited map"></canvas><div id="pins"></div>
       <div class="mapzoom"><button id="mapZin" aria-label="放大" data-i18n-aria="aria_zoom_in">＋</button><button id="mapZout" aria-label="縮小" data-i18n-aria="aria_zoom_out">－</button><button id="mapZreset" aria-label="重置" title="重置" data-i18n-aria="aria_zoom_reset" data-i18n-title="aria_zoom_reset">⟲</button></div>
       <div class="maphint" data-i18n="map_hint">滾輪縮放 · 拖曳平移</div>
       <div class="legend"><div class="row"><span class="d" style="width:8px;height:8px"></span> <span data-i18n="legend_dot">圓點 = 看過音樂劇的城市</span></div>
@@ -136,9 +140,9 @@ document.write('<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+S
     <div class="statcard sc-b reveal"><h3 data-i18n="st_countries">最常去的國家</h3><div class="slist" id="sc-countries"></div></div>
     <div class="statcard sc-c reveal"><h3 data-i18n="st_cities">最常去的城市</h3><div class="slist" id="sc-cities"></div></div>
     <div class="statcard sc-d reveal"><h3 data-i18n="st_theatres">最常去的劇院</h3><div class="slist" id="sc-theatres"></div></div>
-    <div class="statcard sc-year reveal"><h3 data-i18n="st_year">各年</h3><div class="linechart"><canvas id="ch-year"></canvas></div></div>
-    <div class="statcard sc-month reveal"><h3 data-i18n="st_month">各月</h3><div class="linechart"><canvas id="ch-month"></canvas></div></div>
-    <div class="statcard sc-week reveal"><h3 data-i18n="st_week">各星期</h3><div class="linechart"><canvas id="ch-week"></canvas></div></div>
+    <div class="statcard sc-year reveal"><h3 data-i18n="st_year">各年</h3><div class="linechart"><canvas id="ch-year" role="img" aria-label="各年觀劇數 / Shows per year"></canvas></div></div>
+    <div class="statcard sc-month reveal"><h3 data-i18n="st_month">各月</h3><div class="linechart"><canvas id="ch-month" role="img" aria-label="各月觀劇數 / Shows per month"></canvas></div></div>
+    <div class="statcard sc-week reveal"><h3 data-i18n="st_week">各星期</h3><div class="linechart"><canvas id="ch-week" role="img" aria-label="各星期觀劇數 / Shows per weekday"></canvas></div></div>
   </div>
 
   <!-- PERSONA -->
