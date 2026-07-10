@@ -233,7 +233,9 @@
       const dd = _d ? `${_d}·${MON[_m - 1].toUpperCase()}·${_y}` : (_m ? `${MON[_m - 1].toUpperCase()}·${_y}` : (_y || '—'));
       const enTitle = (s.title.length > 15 ? venueShort(s.title) : s.title).toUpperCase();
       // 城市名截斷:圓形戳章底弧空間有限,長名(SÃO PAULO、中文長名)會溢出弧線(2026-07-10);null 防呆
-      const stampCity = String(s.city || '—').toUpperCase().slice(0, 12);
+      // ≤16 字完整(SAN FRANCISCO 不再切成 SAN FRANCISC);需截斷才在詞界斷(2026-07-10)
+      const _sc = String(s.city || '—').toUpperCase();
+      const stampCity = _sc.length <= 16 ? _sc : (() => { const c = _sc.slice(0, 16), sp = c.lastIndexOf(' '); return sp > 8 ? c.slice(0, sp) : c; })();
       return `<svg viewBox="0 0 128 128" style="--rot:${rot}deg">
         <defs><path id="${id}t" d="${top}"/><path id="${id}b" d="${bot}"/></defs>
         <circle cx="64" cy="64" r="56" fill="none" stroke="currentColor" stroke-width="2.4"/>
@@ -459,7 +461,7 @@
         _charts[id] = new Chart(el, { type: 'line',
           data: { labels, datasets: [{ data: values, borderColor: w, backgroundColor: 'rgba(255,255,255,.22)', fill: true, tension: .3, pointBackgroundColor: w, pointRadius: 3, borderWidth: 2.5 }] },
           options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } },
-            scales: { y: { beginAtZero: true, ticks: { precision: 0, color: tc }, grid: { color: g }, border: { color: g } },
+            scales: { y: { beginAtZero: true, grace: '20%', ticks: { precision: 0, color: tc }, grid: { color: g }, border: { color: g } },
                       x: { ticks: { color: tc }, grid: { color: g }, border: { color: g } } } } });
       }
       const validYears = (st.years || []).filter(y => y && !isNaN(+y)).map(Number);

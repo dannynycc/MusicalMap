@@ -429,12 +429,7 @@ body:not(.ready) #count { display: none; }
 .leaflet-marker-icon:hover .mm-cluster { transform: scale(1.25); }
 
 /* visible live zoom-level readout (under the +/- buttons) */
-.mm-zoom-level {
-  background: var(--panel, #fdfaf2); border: 1px solid var(--border, #ddd3bf); border-radius: 6px;
-  padding: 3px 9px; font: 700 13px/1 system-ui, sans-serif;
-  color: var(--text, #221f18); box-shadow: 0 1px 4px rgba(34,31,24,.2);
-  text-align: center; pointer-events: none; user-select: none;
-}
+/* .mm-zoom-level 已移除:開發用的縮放層級讀數(z2 debug),連同 JS 一併刪(2026-07-10) */
 
 /* ============ Top filter bar layout (filters live over the map) ============
    The tradition pills moved out of the narrow sidebar into a bar over the map, so the

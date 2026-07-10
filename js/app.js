@@ -192,17 +192,7 @@ map.attributionControl.addAttribution(
   `<a href="${window.MM_BASE || "/"}privacy?hl=${window.MM_VARIANT || "zh-hant"}">${t("privacy_short")}</a> · ` +
   `<a href="${window.MM_BASE || "/"}terms?hl=${window.MM_VARIANT || "zh-hant"}">${t("terms_short")}</a>`);
 
-// Visible zoom-level readout (live), under the +/- buttons — handy for judging at which
-// zoom clusters break apart, etc.
-const zoomReadout = L.control({ position: "topleft" });
-zoomReadout.onAdd = () => {
-  const el = L.DomUtil.create("div", "mm-zoom-level");
-  const sync = () => { el.textContent = "z " + Math.round(map.getZoom()); };
-  sync();
-  map.on("zoom zoomend", sync);
-  return el;
-};
-zoomReadout.addTo(map);
+// (移除:開發用的縮放層級讀數「z 2」原本露在 +/- 下方給使用者看——dev 殘留,破壞精品感,2026-07-10)
 const cluster = L.markerClusterGroup({
   maxClusterRadius: 90,
   spiderfyOnMaxZoom: true,

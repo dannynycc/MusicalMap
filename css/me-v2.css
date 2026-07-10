@@ -151,7 +151,7 @@ header .wrap{max-width:none}  /* 對齊主頁 #topbar:全寬 padding 24px,頭像
   box-shadow:0 10px 30px rgba(0,0,0,.5),0 0 0 1px rgba(0,0,0,.3) inset;position:relative}
 .crest .crest-logo{width:66px;height:66px;object-fit:contain;filter:drop-shadow(0 2px 8px rgba(0,0,0,.45))}
 .hero h1{font-family:var(--fr);font-weight:900;font-size:var(--fs-hero);line-height:1.06;letter-spacing:-1.2px;margin:5px 0 6px;color:var(--ink1)}
-.hero h1 .zh{font-size:.5em;font-weight:600;color:var(--gold);letter-spacing:2px;font-style:italic}
+.hero h1 .zh{font-size:.5em;font-weight:500;color:var(--gold);letter-spacing:2px;font-style:italic}/* 500=唯一載入的 Fraunces 斜體字重;用 600 會被瀏覽器假斜體合成(2026-07-10) */
 .hero .sub{color:var(--ink2);font-size:14px;font-weight:600;letter-spacing:.3px;margin-bottom:3px}
 .hero .bignums{display:flex;gap:30px;margin:20px 0 4px;flex-wrap:wrap}
 .bignums .bn .n{font-family:var(--fr);font-weight:900;font-size:clamp(28px,3vw,40px);line-height:1;letter-spacing:-1px;color:var(--ink1)}
@@ -185,7 +185,7 @@ header .wrap{max-width:none}  /* 對齊主頁 #topbar:全寬 padding 24px,頭像
 /* ===== section heads ===== */
 .sec{margin:48px 0 18px;display:flex;align-items:baseline;justify-content:space-between;gap:16px}
 .sec h2{font-family:var(--fr);font-weight:700;font-size:var(--fs-h2);margin:0;letter-spacing:-.4px}
-.sec h2 .zh{color:var(--ink3);font-weight:400;font-size:.62em;margin-left:8px;font-style:italic}
+.sec h2 .zh{color:var(--ink3);font-weight:500;font-size:.62em;margin-left:8px;font-style:italic}/* 500=載入的斜體字重,避免假斜體合成(2026-07-10) */
 .sec .hint{color:var(--ink3);font-size:13px}
 
 /* ===== reveal ===== */
@@ -332,8 +332,9 @@ html[lang="en"] #dt-fb-zh{display:none}
 #mapcv{position:absolute;inset:0;width:100%;height:100%}
 .mapwrap{cursor:grab}.mapwrap.grabbing{cursor:grabbing}
 .mapzoom{position:absolute;top:12px;right:12px;z-index:6;display:flex;flex-direction:column;gap:6px}
-.mapzoom button{width:34px;height:34px;border-radius:9px;border:1px solid var(--hair2);background:rgba(20,18,28,.78);backdrop-filter:blur(6px);color:#fff;font-size:17px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1}
-.mapzoom button:hover{background:rgba(20,18,28,.95);border-color:var(--gold)}
+/* 隨主題:cream 用淺底金框(不再是深色主題殘留的黑塊,2026-07-10);深色主題仍有對比 */
+.mapzoom button{width:34px;height:34px;border-radius:9px;border:1px solid var(--gold);background:var(--s1);color:var(--gold);font-size:17px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1;box-shadow:var(--shadow)}
+.mapzoom button:hover{background:var(--s2);border-color:var(--gold)}
 .maphint{position:absolute;right:12px;bottom:12px;z-index:6;font-size:11px;color:#fff;opacity:.72;background:rgba(20,18,28,.55);backdrop-filter:blur(4px);padding:4px 9px;border-radius:8px;pointer-events:none}
 .pin{position:absolute;transform:translate(-50%,-50%);cursor:pointer;z-index:3;background:none;border:none;padding:0;font-family:inherit}
 .pin .glow{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);border-radius:50%;
@@ -393,7 +394,7 @@ html[data-live] .demobanner{display:none}
 .sc-d{background:linear-gradient(150deg,#674391,#4d316c)}
 .sc-e{background:linear-gradient(150deg,#177a70,#115852)}
 .slist{display:flex;flex-direction:column;gap:3px}
-.sl-row{display:grid;grid-template-columns:1fr 96px 22px;align-items:center;gap:10px;padding:4px 0;font-size:13px}
+.sl-row{display:grid;grid-template-columns:1fr 96px 30px;align-items:center;gap:10px;padding:4px 0;font-size:13px}/* 數字欄 22→30px:3 位數(如 100+ 場)不被裁切/擠壓(2026-07-10) */
 .sl-k{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:600}
 .sl-bar{height:7px;background:rgba(255,255,255,.24);border-radius:4px;overflow:hidden}
 .sl-bar i{display:block;height:100%;background:rgba(255,255,255,.95);border-radius:4px}

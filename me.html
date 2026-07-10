@@ -18,7 +18,7 @@ if(location.hostname==='themusicalmap.com'||location.hostname==='www.themusicalm
 <script>/* no-flash: apply saved theme before CSS paints;預設 cream(對齊主站淡米黃)。
    一次性遷移:舊版 applyTheme 會把預設 midnight 自動寫進 localStorage,使既有使用者卡在深色;
    mm-theme-mig 未設時清一次 mm-theme,讓大家重新落到 cream 預設(之後仍尊重使用者用 picker 的選擇)。 */(function(){try{if(!localStorage.getItem('mm-theme-mig')){localStorage.removeItem('mm-theme');localStorage.setItem('mm-theme-mig','1');}var t=localStorage.getItem('mm-theme')||'cream';if(t==='neon'||t==='deco'){t='midnight';localStorage.setItem('mm-theme',t);}if(t!=='midnight')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
-<link rel="stylesheet" href="css/me-v2.css?v=13" /><!-- CSS 也要 cache-bust:CF Pages 對 .css 出 max-age=14400,不掛 ?v 改版後最多 4hr 拿舊樣式 -->
+<link rel="stylesheet" href="css/me-v2.css?v=14" /><!-- CSS 也要 cache-bust:CF Pages 對 .css 出 max-age=14400,不掛 ?v 改版後最多 4hr 拿舊樣式 -->
 <style>
 html[lang="en"] .sec h2 .zh{display:none}   /* en 模式:section 標題旁的英文小字與主標重複 → 隱藏 */
 html[lang="zh-Hans"] body{--ui:'Inter','Noto Sans SC',sans-serif}  /* 簡中改用 SC 字型,避免混排忽粗忽細 */
@@ -472,7 +472,9 @@ function stampSvg(s){
   const _y=s.date?s.date.slice(0,4):'',_m=(s.date&&s.date.length>=7)?+s.date.slice(5,7):0,_d=(s.date&&s.date.length>=10)?s.date.slice(8,10):'';
   const dd=_d?`${_d}·${MON[_m-1].toUpperCase()}·${_y}`:(_m?`${MON[_m-1].toUpperCase()}·${_y}`:(_y||'—'));
   const enTitle=(s.title.length>15?venueShort(s.title):s.title).toUpperCase();
-  const stampCity=String(s.city||'—').toUpperCase().slice(0,12);   // 戳章底弧空間有限,長名截斷+null 防呆(2026-07-10)
+  // 戳章底弧:≤16 字完整顯示(SAN FRANCISCO=13 不再被切成 SAN FRANCISC);需截斷才在詞界斷,不切字中間(2026-07-10)
+  const _sc=String(s.city||'—').toUpperCase();
+  const stampCity=_sc.length<=16?_sc:(()=>{const c=_sc.slice(0,16),sp=c.lastIndexOf(' ');return sp>8?c.slice(0,sp):c;})();
   return `<svg viewBox="0 0 128 128" style="--rot:${rot}deg">
     <defs><path id="${id}t" d="${top}"/><path id="${id}b" d="${bot}"/></defs>
     <circle cx="64" cy="64" r="56" fill="none" stroke="currentColor" stroke-width="2.4"/>
@@ -704,7 +706,7 @@ let mt;addEventListener('resize',()=>{clearTimeout(mt);mt=setTimeout(()=>{render
     _charts[id]=new Chart(el,{type:'line',
       data:{labels,datasets:[{data:values,borderColor:w,backgroundColor:'rgba(255,255,255,.22)',fill:true,tension:.3,pointBackgroundColor:w,pointRadius:3,borderWidth:2.5}]},
       options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
-        scales:{y:{beginAtZero:true,ticks:{precision:0,color:tc},grid:{color:g},border:{color:g}},
+        scales:{y:{beginAtZero:true,grace:'20%',ticks:{precision:0,color:tc},grid:{color:g},border:{color:g}},
                 x:{ticks:{color:tc},grid:{color:g},border:{color:g}}}}});
   }
   // 各年：填補中間沒看劇的年份為 0，讓折線連續（如 2016–2026）
@@ -791,7 +793,7 @@ renderPoster();buildCityList();drawMap();placePins();moveThumb();
 applyTheme((function(){try{return localStorage.getItem('mm-theme')||'cream';}catch(e){return 'cream';}})());
 window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
 </script>
-<button type="button" id="fabLog" aria-label="加入一齣音樂劇" data-i18n="fab_add" data-i18n-aria="fab_add" style="position:fixed;right:22px;bottom:22px;z-index:1200;background:var(--s1);color:var(--gold);border:1.5px solid var(--gold);font-weight:800;padding:13px 20px;border-radius:999px;cursor:pointer;box-shadow:0 8px 24px rgba(0,0,0,.45);display:inline-flex;align-items:center;gap:8px;font-size:15px">＋ 加入音樂劇</button>
+<button type="button" id="fabLog" aria-label="加入一齣音樂劇" data-i18n="fab_add" data-i18n-aria="fab_add" style="position:fixed;right:22px;bottom:22px;z-index:1200;background:var(--s1);color:var(--gold);border:1.5px solid var(--gold);font-weight:800;padding:13px 20px;border-radius:999px;cursor:pointer;box-shadow:var(--shadow,0 6px 18px rgba(60,48,24,.18));display:inline-flex;align-items:center;gap:8px;font-size:15px">＋ 加入音樂劇</button>
 <style>
 .logmodal[hidden]{display:none}
 .logmodal{position:fixed;inset:0;z-index:2000;display:flex;align-items:center;justify-content:center}
