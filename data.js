@@ -103,7 +103,9 @@ window.MM = (function () {
   const WEEKDAYS_ZH = ['日','一','二','三','四','五','六'];
   const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 
-  function wd(d){ return new Date(d+'T00:00:00').getDay(); }
+  // wd 只對「完整日期(YYYY-MM-DD)」有意義:new Date('2026T…')=1/1(週四)、new Date('2026-03T…')=該月1號,
+  // 只填年/年月的紀錄會被灌進「各星期」某個假星期(年→全算週四)。回 -1 讓 perWeekday 排除(2026-07-10)。
+  function wd(d){ return (d && d.length >= 10) ? new Date(d+'T00:00:00').getDay() : -1; }
   function yr(d){ return d.slice(0,4); }
   function mo(d){ return parseInt(d.slice(5,7),10)-1; }
 
@@ -119,7 +121,10 @@ window.MM = (function () {
     if(d.length===7)return d+'-01';
     return d; }
   function isFuture(d){ return !!d && normStart(d) > todayStr(); }   // 最早可能日都晚於今天才算即將
-  function isPast(d){ return !!d && !isFuture(d); }                  // 有日期且非未來=已看
+  // 非未來=已看,含「無日期」(記了卻沒填時間=看過但不記得哪天,仍是已看)。
+  // 舊版 isPast('')=false → 無日期紀錄既非過去也非未來:hero 大數字(stats('past'))漏算它,
+  // 但海報牆(全 S)與護照蓋章(!isFuture)有算 → 同頁數字兜不攏(2026-07-10)。與 !isFuture 對齊。
+  function isPast(d){ return !isFuture(d); }
   function pick(which){ return which==='past'?shows.filter(s=>isPast(s.date)) : which==='future'?shows.filter(s=>isFuture(s.date)) : shows; }
 
   function countBy(key, list){

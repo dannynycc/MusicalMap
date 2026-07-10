@@ -445,7 +445,7 @@ function renderLog(){
   el.innerHTML=`<div class="logtable" role="table">
     <div class="lt-head" role="row"><span>${T('lt_show')}</span><span>${T('lt_city')}</span><span>${T('lt_date')}</span><span>${T('lt_rate')}</span></div>`+
     list.map(s=>`<button class="lt-row" data-id="${s.id}" role="row">
-      <span class="lt-show"><span class="lt-thumb">${s.poster?`<img src="${esc(s.poster)}" referrerpolicy="no-referrer" alt="" onerror="this.remove()"/>`:`<i>${esc((s.title||'?').trim()[0]||'?')}</i>`}</span>
+      <span class="lt-show"><span class="lt-thumb">${s.poster?`<img src="${esc(s.poster)}" loading="lazy" decoding="async" referrerpolicy="no-referrer" alt="" onerror="this.remove()"/>`:`<i>${esc((s.title||'?').trim()[0]||'?')}</i>`}</span>
         <span class="lt-t"><b>${esc(s.title)}</b>${s.zh?`<i>${esc(s.zh)}</i>`:''}</span></span>
       <span class="lt-city">${s.city?esc(cityName(s.city)):'<span class="muted">—</span>'} ${s.country?(FLAG[s.country]||''):''}</span>
       <span class="lt-date">${fshort(s.date)||`<span class="muted">${T('lt_undated')}</span>`}</span>
@@ -490,7 +490,7 @@ function renderPassport(){
     const cities=[...new Set(arr.map(s=>s.city))].map(x=>esc(cityName(x))).join(' · ');
     const stamped=arr.filter(s=>!isFut(s.date)).length;   // 只算已到場的戳章數
     const v=document.createElement('div');v.className='visa reveal';
-    v.innerHTML=`<div class="crow"><span class="cn">${esc(countryZh(co))}</span>
+    v.innerHTML=`<div class="crow"><span class="cn">${esc(countryZh(co)||'—')}</span>
       <span class="ct">${cities}</span><span class="prog">${stamped} STAMP${stamped!==1?'S':''}</span></div>
       <div class="stamps">${arr.map((s,j)=>{
         const dly=Math.min(j*0.05,0.5).toFixed(2);const mile=milestoneFor(s,j,j===0);const fut=isFut(s.date);
@@ -649,11 +649,12 @@ let mt;addEventListener('resize',()=>{clearTimeout(mt);mt=setTimeout(()=>{render
     mapV.z=Math.max(1,Math.min(12,mapV.z*factor));mapV.x=bx-cx/mapV.z;mapV.y=by-cy/mapV.z;clampV();renderMap();}
   wrap.addEventListener('wheel',e=>{e.preventDefault();const r=wrap.getBoundingClientRect();
     zoomAt((e.clientX-r.left)/r.width,(e.clientY-r.top)/r.height,e.deltaY<0?1.2:1/1.2);},{passive:false});
-  let drag=null;
+  let drag=null,_rafP=false;
+  const renderMapRAF=()=>{if(_rafP)return;_rafP=true;requestAnimationFrame(()=>{_rafP=false;renderMap();});};  // 合併每 frame 一次:pointermove 每次同步重繪 2685 點+群集會卡(2026-07-10)
   wrap.addEventListener('pointerdown',e=>{if(e.target.closest('.pin')||e.target.closest('.mapzoom'))return;
     drag={x:e.clientX,y:e.clientY};try{wrap.setPointerCapture(e.pointerId);}catch(_){}wrap.classList.add('grabbing');});
   wrap.addEventListener('pointermove',e=>{if(!drag)return;const r=wrap.getBoundingClientRect();
-    mapV.x-=(e.clientX-drag.x)/(r.width*mapV.z);mapV.y-=(e.clientY-drag.y)/(r.height*mapV.z);drag={x:e.clientX,y:e.clientY};clampV();renderMap();});
+    mapV.x-=(e.clientX-drag.x)/(r.width*mapV.z);mapV.y-=(e.clientY-drag.y)/(r.height*mapV.z);drag={x:e.clientX,y:e.clientY};clampV();renderMapRAF();});
   const end=()=>{drag=null;wrap.classList.remove('grabbing');};
   wrap.addEventListener('pointerup',end);wrap.addEventListener('pointercancel',end);wrap.addEventListener('pointerleave',end);
   const zin=document.getElementById('mapZin'),zout=document.getElementById('mapZout'),zr=document.getElementById('mapZreset');
@@ -1139,6 +1140,7 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
   const showGate=(msg,login)=>{gate.style.display='flex';document.body.style.overflow='hidden';gmsg.innerHTML=msg;glogin.hidden=!login;var ge=document.getElementById('gate-email');if(ge)ge.hidden=!login;var gs=document.getElementById('gate-sub');if(gs)gs.hidden=true;var gp=document.getElementById('gate-preview');if(gp)gp.hidden=!login;};
   const hideGate=()=>{gate.style.display='none';document.body.style.overflow='auto';window._gateStopTimers&&window._gateStopTimers();};  // 必須明確 'auto':設 '' 會落回 CSS 的 body{overflow:hidden} 預設鎖→登入後整頁不能捲(踩過);順帶停 OTP 倒數 timer
   // 日期：demo 部分日期(date+precision) ↔ sightings 完整 seen_date
+  function _httpOnly(u){u=(u||'').trim();return /^https?:\/\//i.test(u)?u:null;}   // URL 欄只收 http(s),擋 javascript:/data:(與 me-input 一致)
   function fullDate(date,prec){if(!date)return null;const d=String(date);
     if(prec==='year'||d.length===4)return d.slice(0,4)+'-01-01';
     if(prec==='month'||d.length===7)return d.slice(0,7)+'-01';return d;}
@@ -1171,19 +1173,23 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
       posterOverride:ov,   // 自訂海報網址（method 2）：有就優先當圖
       url:s.url||'',       // 連結/售票網址（沿用既有 url 欄；保住不洗掉）
       date:partialDate(s.seen_date,prec),precision:prec,
+      // cur 必須放 top-level:entryToRec/顯示/編輯全讀 e.cur,舊版只放 p.cur → 重新同步後幣別
+      // 從畫面消失、且編輯任何欄位會把雲端 currency 永久清成 null(2026-07-10 資料流稽核)
+      cur:s.currency||'',
       rating:s.rating||0,fav:!!s.fav,seat:s.seat||'',price:(s.price!=null?String(s.price):''),note:s.note||'',time:s.seen_time||''};}
   function entryToRec(e){const p=e.p||{};
     const rec={title:(e.w&&e.w.en)||'',venue:p.venue||null,city:p.city||null,country:p.country||null,
       seen_date:fullDate(e.date,e.precision),precision:e.precision||'none',
       rating:e.rating||0,fav:!!e.fav,seat:e.seat||null,price:(e.price!==''&&e.price!=null?+e.price:null),currency:e.cur||null,note:e.note||null,seen_time:e.time||null,
-      poster_override:e.posterOverride||null,url:e.url||null};
-    if(p.lat!=null&&p.lng!=null){rec.lat=p.lat;rec.lng=p.lng;}return rec;}
+      poster_override:_httpOnly(e.posterOverride),url:_httpOnly(e.url)};   // 與 me-input 一致淨化非 http(s)(2026-07-10)
+    // 一律帶 lat/lng(null 代表清除):條件帶入時 update 會省略該欄→雲端永遠清不掉舊座標(2026-07-10)
+    rec.lat=(p.lat!=null?p.lat:null);rec.lng=(p.lng!=null?p.lng:null);return rec;}
   window.mmEntryToRec=entryToRec;   // 給刪除復原用
   if(!cfg.READY||typeof supabase==='undefined'){showGate(T('gate_no_backend'),false);return;}
   const sb=supabase.createClient(cfg.SUPABASE_URL,cfg.SUPABASE_ANON_KEY);
   window.mmSb=sb;
   showGate(T('gate_loading'),false);   // 立即用當前語言顯示 Loading(gate-msg 無 data-i18n,不會被 apply 蓋);getSession 回來再 showLogin/onSignedIn
-  const SYNC_VER='7';   // sightingToEntry 對映改版**或 catalog 顯示資料(zh/海報)更新**就 +1 → 強制所有 session 重新同步（v5=38 館英文名;v6=fav;v7=第二批 124 館英文名）
+  const SYNC_VER='8';   // sightingToEntry 對映改版**或 catalog 顯示資料(zh/海報)更新**就 +1 → 強制所有 session 重新同步（v5=38 館英文名;v6=fav;v7=第二批 124 館英文名;v8=幣別 cur 移到 top-level）
   const syncedKey=uid=>uid+'@'+SYNC_VER;
   let _syncing=false;
   // 同步失敗畫面:訊息 + 一顆「重試」按鈕(掛在 gate-msg 內);避免使用者只能重整或卡死

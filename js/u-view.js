@@ -120,9 +120,16 @@
   function partialDate(seen, prec) { if (!seen) return ''; const p = prec || precisionOf(seen); if (p === 'year') return seen.slice(0, 4); if (p === 'month') return seen.slice(0, 7); return seen; }
 
   /* ---- empty / not-found ---- */
-  function showEmpty() {
+  function showEmpty(mode) {
     const w = document.getElementById('pub-wrap'); if (w) w.style.display = 'none';
     const e = document.getElementById('pub-empty'); if (e) e.hidden = false;
+    // 'none'=帳號存在且公開但 0 筆(≠不存在):換成「還沒有紀錄」文案,別誤導成頁面不存在(2026-07-10)
+    if (mode === 'none') {
+      const ti = document.querySelector('#pub-empty [data-i18n="empty_title"]');
+      const su = document.querySelector('#pub-empty [data-i18n="empty_sub"]');
+      if (ti) { ti.setAttribute('data-i18n', 'empty_none_title'); ti.textContent = T('empty_none_title'); }
+      if (su) { su.setAttribute('data-i18n', 'empty_none_sub'); su.textContent = T('empty_none_sub'); }
+    }
   }
 
   /* ============================================================================
@@ -209,7 +216,7 @@
       el.innerHTML = `<div class="logtable" role="table">
         <div class="lt-head" role="row"><span>${esc(T('lt_show'))}</span><span>${esc(T('lt_city'))}</span><span>${esc(T('lt_date'))}</span><span>${esc(T('lt_rate'))}</span></div>` +
         list.map(s => `<button class="lt-row" data-id="${s.id}" role="row">
-          <span class="lt-show"><span class="lt-thumb">${s.poster ? `<img src="${esc(s.poster)}" referrerpolicy="no-referrer" alt=""/>` : `<i>${esc((s.title || '?').trim()[0] || '?')}</i>`}</span>
+          <span class="lt-show"><span class="lt-thumb">${s.poster ? `<img src="${esc(s.poster)}" loading="lazy" decoding="async" referrerpolicy="no-referrer" alt=""/>` : `<i>${esc((s.title || '?').trim()[0] || '?')}</i>`}</span>
             <span class="lt-t"><b>${esc(s.title)}</b>${s.zh ? `<i>${esc(s.zh)}</i>` : ''}</span></span>
           <span class="lt-city">${s.city ? esc(cityName(s.city)) : '<span class="muted">—</span>'} ${s.country ? (FLAG[s.country] || '') : ''}</span>
           <span class="lt-date">${fshort(s.date) || `<span class="muted">${esc(T('lt_tbd'))}</span>`}</span>
@@ -254,7 +261,7 @@
         const cities = [...new Set(arr.map(s => s.city))].join(' · ');
         const stamped = arr.filter(s => !isFut(s.date)).length;   // 只算已到場的戳章數
         const v = document.createElement('div'); v.className = 'visa reveal';
-        v.innerHTML = `<div class="crow"><span class="cn">${esc(countryZh(co))}</span>
+        v.innerHTML = `<div class="crow"><span class="cn">${esc(countryZh(co) || '—')}</span>
           <span class="ct">${esc(cities)}</span><span class="prog">${stamped} STAMP${stamped !== 1 ? 'S' : ''}</span></div>
           <div class="stamps">${arr.map((s, j) => {
             const dly = Math.min(j * 0.05, 0.5).toFixed(2); const mile = milestoneFor(s, j, j === 0); const fut = isFut(s.date);
@@ -411,11 +418,12 @@
         mapV.z = Math.max(1, Math.min(12, mapV.z * factor)); mapV.x = bx - cx / mapV.z; mapV.y = by - cy / mapV.z; clampV(); renderMap(); }
       wrap.addEventListener('wheel', e => { e.preventDefault(); const r = wrap.getBoundingClientRect();
         zoomAt((e.clientX - r.left) / r.width, (e.clientY - r.top) / r.height, e.deltaY < 0 ? 1.2 : 1 / 1.2); }, { passive: false });
-      let drag = null;
+      let drag = null, _rafP = false;
+      const renderMapRAF = () => { if (_rafP) return; _rafP = true; requestAnimationFrame(() => { _rafP = false; renderMap(); }); };  // 合併每 frame 一次(2026-07-10)
       wrap.addEventListener('pointerdown', e => { if (e.target.closest('.pin') || e.target.closest('.mapzoom')) return;
         drag = { x: e.clientX, y: e.clientY }; try { wrap.setPointerCapture(e.pointerId); } catch (_) {} wrap.classList.add('grabbing'); });
       wrap.addEventListener('pointermove', e => { if (!drag) return; const r = wrap.getBoundingClientRect();
-        mapV.x -= (e.clientX - drag.x) / (r.width * mapV.z); mapV.y -= (e.clientY - drag.y) / (r.height * mapV.z); drag = { x: e.clientX, y: e.clientY }; clampV(); renderMap(); });
+        mapV.x -= (e.clientX - drag.x) / (r.width * mapV.z); mapV.y -= (e.clientY - drag.y) / (r.height * mapV.z); drag = { x: e.clientX, y: e.clientY }; clampV(); renderMapRAF(); });
       const end = () => { drag = null; wrap.classList.remove('grabbing'); };
       wrap.addEventListener('pointerup', end); wrap.addEventListener('pointercancel', end); wrap.addEventListener('pointerleave', end);
       const zin = document.getElementById('mapZin'), zout = document.getElementById('mapZout'), zr = document.getElementById('mapZreset');
@@ -555,7 +563,13 @@
       // RPC 未部署（migration 未跑）→ 靜默略過，照舊顯示 not-found。
       try {
         const { data: nh } = await sb.rpc('resolve_handle', { p_handle: handle });
-        if (nh && nh !== handle) { location.replace(location.pathname + '?u=' + encodeURIComponent(nh)); return; }
+        // my. 子網域用乾淨路徑 /newhandle(舊版 pathname+'?u=' 在 my. 會變 /oldhandle?u=newhandle 髒網址,
+        // 且 u.html 的 canonical 清理只在 apex 網域跑,永不修正,2026-07-10)
+        if (nh && nh !== handle) {
+          const onMy = /(^|\.)my\./i.test(location.hostname) || location.hostname.indexOf('my.') === 0;
+          location.replace(onMy ? '/' + encodeURIComponent(nh) : location.pathname + '?u=' + encodeURIComponent(nh));
+          return;
+        }
       } catch (e) {}
       showEmpty(); return;
     }
@@ -567,7 +581,9 @@
 
     // read-only sightings via SECURITY DEFINER RPC (owner's price/seat privacy flags applied server-side)
     const { data: rows, error: rpcErr } = await sb.rpc('public_sightings', { p_handle: handle });
-    if (rpcErr || !rows || !rows.length) { console.warn('public_sightings', rpcErr); showEmpty(); return; }
+    // 到這裡 prof 已通過 gate(存在且公開)。rpcErr=真錯誤→not-found;rows 空但無錯=帳號公開但 0 筆→'none'
+    if (rpcErr) { console.warn('public_sightings', rpcErr); showEmpty(); return; }
+    if (!rows || !rows.length) { showEmpty('none'); return; }
     upgradeVenueNames(rows, cat);
 
     // map each row → me.html S-show shape

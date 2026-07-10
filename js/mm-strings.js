@@ -27,6 +27,7 @@
       footer_2: '封面取自各劇官方與公開資料。想擁有自己的音樂劇護照？', footer_credit: '封面取自各劇官方與公開資料。',
       footer_cta: '建立你自己的 →',
       empty_title: '找不到這個公開頁', empty_sub: '這個收藏頁不存在，或擁有者尚未公開。',
+      empty_none_title: '這裡還沒有紀錄', empty_none_sub: '這位使用者還沒公開任何看過的音樂劇。',
       empty_cta: '＋ 建立你自己的 My Musicals',
       dt_zoom: '↗ 點圖開新分頁看原圖',
       // ---- u-view.js runtime ----
@@ -255,6 +256,7 @@
       footer_2: 'Artwork comes from each show’s official and public sources. Want your own musical passport?', footer_credit: 'Poster art from each show’s official and public sources.',
       footer_cta: 'Create your own →',
       empty_title: 'This page doesn’t exist', empty_sub: 'It may have been removed, or the owner hasn’t made it public.',
+      empty_none_title: 'Nothing here yet', empty_none_sub: 'This user hasn’t shared any musicals they’ve seen.',
       empty_cta: '＋ Create your own My Musicals',
       dt_zoom: '↗ Open full-size image in a new tab',
       bn_musicals: 'Musicals', bn_unique: 'Unique shows', bn_cities: 'Cities', bn_countries: 'Countries',

@@ -376,7 +376,7 @@ function _httpOnly(u){u=(u||'').trim();return /^https?:\/\//i.test(u)?u:null;}
 // 存檔當下從 mm-log 依 sid 讀「最新」fav,而非用本頁載入時的快照:embed 編輯期間父頁 me.html
 // 可能剛切了最愛,用快照會把它清掉(2026-07-10)。新增(無 sid)則用 e.fav(false)。
 function _freshFav(e){if(e.sid==null)return !!e.fav;try{const log=JSON.parse(localStorage.getItem('mm-log')||'[]');const row=log.find(x=>x&&x.sid===e.sid);return row?!!row.fav:!!e.fav;}catch(_){return !!e.fav;}}
-function entryToRec(e){const p=e.p||{};const rec={title:(e.w&&e.w.en)||'',venue:p.venue||null,city:p.city||null,country:p.country||null,seen_date:_fullDate(e.date,e.precision),precision:e.precision||'none',rating:e.rating||0,fav:_freshFav(e),seat:e.seat||null,price:(e.price!==''&&e.price!=null?+e.price:null),currency:e.cur||null,note:e.note||null,seen_time:e.time||null,poster_override:_httpOnly(e.posterOverride),url:_httpOnly(e.url)};if(p.lat!=null&&p.lng!=null){rec.lat=p.lat;rec.lng=p.lng;}return rec;}
+function entryToRec(e){const p=e.p||{};const rec={title:(e.w&&e.w.en)||'',venue:p.venue||null,city:p.city||null,country:p.country||null,seen_date:_fullDate(e.date,e.precision),precision:e.precision||'none',rating:e.rating||0,fav:_freshFav(e),seat:e.seat||null,price:(e.price!==''&&e.price!=null?+e.price:null),currency:e.cur||null,note:e.note||null,seen_time:e.time||null,poster_override:_httpOnly(e.posterOverride),url:_httpOnly(e.url)};rec.lat=(p.lat!=null?p.lat:null);rec.lng=(p.lng!=null?p.lng:null);return rec;}
 // method 2：算某劇的「系統 catalog 海報」（清空自訂時還原用）
 function systemPosterFor(en){const vc=window.MM_VC;if(!vc||!en)return '';const t=(vc.titles||[]).find(x=>x.en&&x.en.toLowerCase()===String(en).toLowerCase());return (t&&vc.posters&&vc.posters[t.group])||'';}
 // 自訂海報欄位的 HTML（兩個表單共用）
@@ -404,7 +404,7 @@ function yearOf(d){return d?parseInt(d.slice(0,4),10):null;}
 function esc(s){return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');}
 function hesc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}  // HTML 轉義（座位/心得是使用者輸入）
 // 票價欄淨化:只留數字+單一小數點(去字母/負號/多餘點/超長)——否則 +price 得 NaN→靜默存 null、或存到負價
-function sanitizePrice(v){let s=String(v==null?'':v).replace(/[^\d.]/g,'');const i=s.indexOf('.');if(i>=0)s=s.slice(0,i+1)+s.slice(i+1).replace(/\./g,'');return s.slice(0,12);}
+function sanitizePrice(v){let s=String(v==null?'':v).replace(/[^\d.]/g,'');const i=s.indexOf('.');if(i>=0)s=s.slice(0,i+1)+s.slice(i+1).replace(/\./g,'');if(s==='.')s='';return s.slice(0,12);}   // 純「.」→+price 得 NaN,清掉(2026-07-10)
 // 通用欄位綁定:price 走淨化(即時回寫 input,使用者看到被擋掉的字元);其餘原樣
 function bindField(id){const el=document.getElementById(id);if(!el)return;
   el.oninput=id==='price'?()=>{const c=sanitizePrice(el.value);if(c!==el.value)el.value=c;draft.price=c;}:()=>{draft[id]=el.value;};}
@@ -484,6 +484,7 @@ function startLog(){
   };
   // 鍵盤導航：↑↓ 移動、Enter 選取（debounce 期間按 Enter 先 flush 渲染）
   q.onkeydown=(e)=>{
+    if(e.isComposing||e.keyCode===229)return;   // 輸入法組字中的 Enter=確認候選字,別搶去選第一筆(中日文,2026-07-10)
     if(e.key==='Enter'){e.preventDefault();
       if(searchTimer){clearTimeout(searchTimer);searchTimer=null;doSearch();}  // flush 待渲染
       const rows=[...res.querySelectorAll('.rrow')];
@@ -696,7 +697,9 @@ function pickTourCity(w,g){
 
 function pickProd(w,p){
   const cur=p.cur||curOf(p.country);
-  draft={w,p,cur,date:null,precision:null,rating:0,seat:'',price:'',note:'',mode:lastMode,editIndex:null};
+  // p 直接是 CATALOG 的製作物件——不複製的話 wirePosterField/geo 會就地改到它,
+  // 同一齣劇的多筆足跡+搜尋結果縮圖全被污染(2026-07-10;與 editEntry 深拷貝同類、不同路徑)
+  draft={w,p:{...p},cur,date:null,precision:null,rating:0,seat:'',price:'',note:'',mode:lastMode,editIndex:null};
   sheetTitle.textContent=T('log_title');
   renderDetail();
 }
@@ -786,11 +789,14 @@ function renderDetail(){
     const cityEl=document.getElementById('mCity'),venueEl=document.getElementById('mVenue'),g=document.getElementById('mGeo');
     const okMsg=h=>{if(g)g.innerHTML=(h.lat!=null)?TN('geo_matched_map',{c:'<b>'+h.country+'</b>'}):TN('geo_matched',{c:'<b>'+h.country+'</b>'});};
     const noMsg=()=>{if(g)g.textContent=T('geo_no_coord');};
+    // 查無座標必清舊 lat/lng/country(比照新增 applyGeo):否則把城市改成拼錯值時,
+    // 保留原城市的舊座標→存出「城市 A + 座標 B」釘錯點(2026-07-10)
+    function clearGeo(){draft.p.country='';draft.p.lat=undefined;draft.p.lng=undefined;noMsg();}
     function geoByCity(){const city=(cityEl.value||'').trim();draft.p.city=city;const hit=city&&MCITY[city];  // 改城市→用城市定位（不被舊劇院蓋掉）
-      if(hit){draft.p.country=hit.country;draft.p.lat=hit.lat;draft.p.lng=hit.lng;okMsg(hit);}else noMsg();}
+      if(hit){draft.p.country=hit.country;draft.p.lat=hit.lat;draft.p.lng=hit.lng;okMsg(hit);}else clearGeo();}
     function geoByVenue(){const venue=(venueEl.value||'').trim();draft.p.venue=venue;const city=(cityEl.value||'').trim();  // 改劇院→定位;同名多城市時優先用已填城市消歧
       const hit=(venue&&city&&MVENUE_CK&&MVENUE_CK[venue+'|'+cnorm(city)])||(venue&&MVENUE[venue]);
-      if(hit){draft.p.country=hit.country;draft.p.lat=hit.lat;draft.p.lng=hit.lng;if(hit.city&&!city){draft.p.city=hit.city;cityEl.value=hit.city;}okMsg(hit);}else noMsg();}   // 城市已填就不覆蓋(免把紐約蓋成 San Antonio)
+      if(hit){draft.p.country=hit.country;draft.p.lat=hit.lat;draft.p.lng=hit.lng;if(hit.city&&!city){draft.p.city=hit.city;cityEl.value=hit.city;}okMsg(hit);}else clearGeo();}   // 城市已填就不覆蓋(免把紐約蓋成 San Antonio)
     if(cityEl){setupCombo(cityEl,document.getElementById('mCityPanel'),()=>Object.keys(MCITY),(v)=>{cityEl.value=v;geoByCity();});cityEl.addEventListener('input',geoByCity);}
     if(venueEl){setupCombo(venueEl,document.getElementById('mVenuePanel'),()=>MVENUE_LIST,(e)=>{venueEl.value=e.name;if(e.city){cityEl.value=e.city;draft.p.city=e.city;}geoByVenue();},{searchOf:e=>((e._s||'')+' '+(e.city||'')),fmt:venueFmt,toInput:e=>e.name});venueEl.addEventListener('input',geoByVenue);}
   }

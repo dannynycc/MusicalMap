@@ -11,6 +11,28 @@
 
 ---
 
+## [v2.24.0] - 2026-07-10 15:42
+### 「我的音樂劇」第二輪深掃:5 路 agent + 自測,修 12 個真 bug(資料流/統計/表單/渲染/分享)
+換更深角度(前輪掃邏輯/i18n/XSS)。5 路 agent(資料一致性/統計計算/表單 flow/渲染記憶體/分享邊界)+ 我自己 node 反例測試。
+**資料流(高)**
+- **幣別重新同步後消失且編輯永久清空**:sightingToEntry 把 currency 放進 `p.cur`,但 entryToRec/顯示/編輯全讀 top-level `e.cur` → 關瀏覽器重同步後幣別不見,編輯任何欄位把雲端 currency 清成 null。改放 top-level + bump SYNC_VER→8。
+- **座標無法清除/修正**:entryToRec 條件式帶 lat/lng → update 省略該欄,雲端舊座標永遠清不掉;編輯查無座標時也不重設 draft 座標 → 城市改錯保留舊座標釘錯點。改一律帶(null=清除)+ 編輯 no-hit clearGeo。
+**統計/日期(高/中,含我自測)**
+- **各星期圖表捏造假星期**:`new Date('2026T…')`=1/1=週四,只填年份的紀錄全被算成週四、只填年月算成該月 1 號的星期(Chrome 捏造/Safari 靜默漏算,兩邊不一致)。wd 對非完整日期回 -1 排除。
+- **hero 數字 vs 海報牆/護照打架**:無日期紀錄 isPast('')=false 被 hero 大數字漏算,卻出現在牆面與護照蓋章。isPast 改與 !isFuture 一致(無日期=已看)。
+**表單 flow(中)**
+- **pickProd 共用 CATALOG 物件**:新增路徑 draft.p 直接指向 catalog 製作物件,同劇多筆足跡+搜尋縮圖互相污染(與已修 editEntry 同類、不同路徑)→ 淺拷貝隔離。
+- **搜尋框 Enter 搶 IME 組字**:中日文選候選字按 Enter 被搶去選第一筆 → 加 isComposing/keyCode 229 防護。
+- **票價純「.」→ NaN**:sanitizePrice 補擋。
+**分享/公開(高/中/低)**
+- **公開頁全部 0 星 + 捏造精確日期(HIGH)**:線上 public_sightings RPC 實測缺 rating+precision(三份互斥 migration 只最後一份生效)→ 每齣戲 0 星、只填年份的舊劇被 seen_date 補成 YYYY-01-01 後在訪客頁**捏造**成 1/1。**修需跑 SQL**:supabase/add_public_sightings_full.sql(一次補齊 rating+precision+fav)——待授權套用。
+- **空的公開帳號誤顯示「不存在」**:0 筆公開帳號落到 not-found 文案 → 加 'none' 模式顯示「還沒有紀錄」。
+- **改名轉址在 my. 子網域產生髒網址**:/oldhandle?u=newhandle 永不正規化 → my. 用乾淨路徑 /newhandle。
+- **護照空國家空白標頭** → fallback '—'。
+**渲染/效能(中)**
+- **地圖拖曳每次同步重繪 2685 點**→ pointermove 加 requestAnimationFrame 合併(me.html+u-view)。
+- **清單縮圖無 lazy load**:500 筆一次全載 → 加 loading=lazy/decoding=async。
+
 ## [v2.23.1] - 2026-07-10 14:21
 ### 清掉全部已知低優先項(三路 QA agent 標記的剩餘瑕疵)
 - **分頁標題三語化**:me.html/u.html 的 `<title>` 原固定英文;me.html 掛 data-i18n、u-view.js 動態標題後綴走字典 → 繁「我的音樂劇」/簡「我的音乐剧」/en「My Musicals」(playwright 三語驗證)。
