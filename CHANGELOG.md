@@ -11,6 +11,21 @@
 
 ---
 
+## [v2.27.0] - 2026-07-10 21:02
+### 主地圖站深掃(旗艦頁,前四輪都在「我的音樂劇」)+效能+三語文案:3 路 agent+自測修 16 個真 bug
+**主地圖 app.js 邏輯(高/中)**
+- **分類 pill 計數漏 search 欄位→數字對不上清單(HIGH)**:updateTagCounts 少了 s.search(variant 檔獨有的多語搜尋大字串,1568/1839 筆有專屬 token);抽出 matchesSearch 單一真相來源,pill 與清單/地圖同欄位。
+- **end_rolling 劇卡片寫「長期上演」但地圖過 end_date 就消失(HIGH)**:fmtDates 忽略 end_date、overlapsMonth 卻硬切→紅磨坊/Ragtime/Titanique 拖過當月從地圖消失。overlapsMonth 對 end_rolling 忽略 end_date、當開放式走 horizon。
+- **時區 off-by-one(美洲受眾)**:new Date('2026-04-01') 解析成 UTC 午夜、月界用本地建構→UTC- 時區月初開演劇提早一個月出現(紐約實測 4/1 劇誤入 3 月)。加 localDate() 本地解析;recomputeRange 同步。
+- **日文中黑點搜尋漏配**:fold 保留 ・→「レ・ミゼラブル」搜不到「レミゼラブル」;加 ・/･ 正規化。
+**效能(高/中)**
+- **shows.json 每次全下載(1.9MB)無快取**:fetch 用 cache:no-store→改版號 ?v=hash+移除 no-store,回訪走快取/304;<head> 加 preload 同 URL 並行下載。
+- **prerendered 清單 visibility:hidden 仍佈局 4000+ 節點**→ display:none 跳過佈局(爬蟲仍讀原始碼,SEO 不受影響)。
+- **缺 preconnect**:unpkg(Leaflet)+mapbox(圖磚)在 LCP 關鍵路徑未預熱→加 preconnect,省 ~100-300ms 握手。
+**三語文案(高/中/低)**
+- **漏改的「40+ 國家」**:root router og:description + about 靜態 fallback 仍 40+(其餘上輪已改動態 30);root 改 build 時真值、about 改 30+。
+- me-input undo 鈕寫死繁中「復原」→ T('undo')(en/簡中正確);CN_FIX 補 网路→网络、预设→默认(OpenCC 台味殘留);gen_site zh-hant desc/FAQ/summary 半形標點→全形(與字典/zh-hans 一致);empty_cta 繁中夾英文「My Musicals」→「音樂劇收藏」;logModal aria-label 走字典;清 FAQ 無效三元。
+
 ## [v2.26.0] - 2026-07-10 19:41
 ### 全站 AI 搜尋(AEO)+ SEO + CSS 視覺:3 路 agent+自測,修 16 個真問題
 使用者重視 AI 答案引擎(ChatGPT/Claude/Perplexity/Google AI Overview)引用正確性。

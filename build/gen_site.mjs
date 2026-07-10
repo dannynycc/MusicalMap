@@ -19,7 +19,7 @@ const VARIANTS = {
   "zh-hans": { lang: "zh-Hans", hreflang: "zh-Hans", label: "MusicalMap — 全球音乐剧实时地图",
                desc: "此刻全球正在上演的音乐剧实时地图：百老汇、西区、巡演与各国原创音乐剧，涵盖 {NC} 个国家，每日更新。" },
   "zh-hant": { lang: "zh-Hant", hreflang: "zh-Hant", label: "MusicalMap — 全球音樂劇即時地圖",
-               desc: "此刻全球正在上演的音樂劇即時地圖：百老匯、西區、巡演與各國原創音樂劇,涵蓋 {NC} 個國家,每日更新。" },
+               desc: "此刻全球正在上演的音樂劇即時地圖：百老匯、西區、巡演與各國原創音樂劇，涵蓋 {NC} 個國家，每日更新。" },
 };
 
 // build 時從資料算真實統計,填進所有對外文案/結構化資料(勿寫死數字→會過時/誇大)。
@@ -31,6 +31,8 @@ function siteStats(shows) {
 function fillDesc(desc, st) { return desc.replace(/\{NC\}/g, st.nCountries); }
 // build 日期(UTC,ISO):dateModified 用;CI 每日跑=每日更新,給答案引擎新鮮度訊號。
 const BUILD_DATE = new Date().toISOString().slice(0, 10);
+// root router(無 shows 資料)的國家數:run loop 算好真值填入,不寫死「40+」(2026-07-10)。
+let ROOT_NC = 30;
 const esc = (s) => String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 const JSONLD_CAP = 300; // cap Event ItemList; full text list is unbounded (cheap)
 // cache-bust token for js/css so returning visitors never run a stale app.js (the bug
@@ -137,17 +139,17 @@ function faqPage(variant, shows, st) {
   const T = {
     en: [
       [`How many musicals are playing right now?`, `MusicalMap currently tracks ${st.nShows.toLocaleString()} musical productions across ${st.nCountries} countries and ${st.nCities.toLocaleString()} cities, updated daily from official sources.`],
-      [`What musicals are playing on Broadway right now?`, `About ${inCountry("USA") ? nyc : nyc} musicals are currently playing in New York, including long-running Broadway shows like The Lion King, Wicked, Hamilton and Aladdin. See the live list on MusicalMap.`],
+      [`What musicals are playing on Broadway right now?`, `About ${nyc} musicals are currently playing in New York, including long-running Broadway shows like The Lion King, Wicked, Hamilton and Aladdin. See the live list on MusicalMap.`],
       [`What's playing in London's West End?`, `Around ${lon} musicals are currently playing in London, including long-runners such as The Lion King, Les Misérables, Phantom of the Opera and Wicked. MusicalMap shows exact venues, dates and official ticket links.`],
       [`Is MusicalMap free?`, `Yes. MusicalMap is completely free, has no ads, and does not sell tickets — ticket links point to official box offices or primary ticketing platforms.`],
       [`How often is the data updated?`, `The map is refreshed daily (as of ${today}) by scraping official sources: Broadway, West End, international tours, and original productions worldwide.`],
     ],
     "zh-hant": [
-      [`現在全球有多少音樂劇正在上演？`, `MusicalMap 目前收錄 ${st.nShows.toLocaleString()} 個音樂劇製作,橫跨 ${st.nCountries} 個國家、${st.nCities.toLocaleString()} 座城市,每日從官方來源更新。`],
-      [`現在紐約百老匯在演哪些音樂劇？`, `目前紐約約有 ${nyc} 齣音樂劇上演,包括獅子王、Wicked、漢密爾頓、阿拉丁等長跑名劇。可在 MusicalMap 看即時清單。`],
-      [`倫敦西區現在在演什麼？`, `倫敦目前約有 ${lon} 齣音樂劇上演,包括獅子王、悲慘世界、歌劇魅影、Wicked 等長跑劇。MusicalMap 提供確切劇院、檔期與官方售票連結。`],
+      [`現在全球有多少音樂劇正在上演？`, `MusicalMap 目前收錄 ${st.nShows.toLocaleString()} 個音樂劇製作，橫跨 ${st.nCountries} 個國家、${st.nCities.toLocaleString()} 座城市，每日從官方來源更新。`],
+      [`現在紐約百老匯在演哪些音樂劇？`, `目前紐約約有 ${nyc} 齣音樂劇上演，包括獅子王、Wicked、漢密爾頓、阿拉丁等長跑名劇。可在 MusicalMap 看即時清單。`],
+      [`倫敦西區現在在演什麼？`, `倫敦目前約有 ${lon} 齣音樂劇上演，包括獅子王、悲慘世界、歌劇魅影、Wicked 等長跑劇。MusicalMap 提供確切劇院、檔期與官方售票連結。`],
       [`MusicalMap 免費嗎？`, `是的,MusicalMap 完全免費、無廣告、不販售門票——售票連結指向官方售票處或主要票務平台。`],
-      [`資料多久更新一次？`, `地圖每日更新(截至 ${today}),從官方來源抓取:百老匯、西區、國際巡演與各國原創製作。`],
+      [`資料多久更新一次？`, `地圖每日更新（截至 ${today}），從官方來源抓取：百老匯、西區、國際巡演與各國原創製作。`],
     ],
     "zh-hans": [
       [`现在全球有多少音乐剧正在上演？`, `MusicalMap 目前收录 ${st.nShows.toLocaleString()} 个音乐剧制作，横跨 ${st.nCountries} 个国家、${st.nCities.toLocaleString()} 座城市，每日从官方来源更新。`],
@@ -186,7 +188,7 @@ function summaryLine(variant, st) {
   const n = st.nShows.toLocaleString(), c = st.nCities.toLocaleString();
   if (variant === "en") return `MusicalMap tracks ${n} musical productions currently playing or coming in the next year across ${st.nCountries} countries and ${c} cities — Broadway, West End, international tours and original productions. Updated daily (${BUILD_DATE}). Free, no ads, does not sell tickets.`;
   if (variant === "zh-hans") return `MusicalMap 收录 ${n} 个正在上演或未来一年即将上演的音乐剧制作，横跨 ${st.nCountries} 个国家、${c} 座城市——百老汇、西区、国际巡演与各国原创。每日更新（${BUILD_DATE}）。免费、无广告、不贩售门票。`;
-  return `MusicalMap 收錄 ${n} 個正在上演或未來一年即將上演的音樂劇製作,橫跨 ${st.nCountries} 個國家、${c} 座城市——百老匯、西區、國際巡演與各國原創。每日更新(${BUILD_DATE})。免費、無廣告、不販售門票。`;
+  return `MusicalMap 收錄 ${n} 個正在上演或未來一年即將上演的音樂劇製作，橫跨 ${st.nCountries} 個國家、${c} 座城市——百老匯、西區、國際巡演與各國原創。每日更新（${BUILD_DATE}）。免費、無廣告、不販售門票。`;
 }
 
 function prerenderList(variant, shows) {
@@ -274,12 +276,17 @@ function page(variant, shows) {
   ${jsonLd(variant, shows)}
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- LCP 關鍵路徑預熱:Leaflet CSS/JS 從 unpkg、地圖圖磚從 mapbox(2026-07-10 效能)。未預連=首屏前
+       多付一次 DNS+TCP+TLS 握手(~100-300ms)。preload 資料檔=與腳本並行下載,省 LCP。 -->
+  <link rel="preconnect" href="https://unpkg.com" crossorigin />
+  <link rel="preconnect" href="https://api.mapbox.com" crossorigin />
+  <link rel="preload" as="fetch" type="application/json" crossorigin href="${BASE}data/variants/shows.${variant}.json?v=${VER}" />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha384-sHL9NAb7lN7rfvG5lfHpm643Xkcjzp4jFvuavGOndn6pjVqS6ny56CAt3nsEVT4H" crossorigin="anonymous" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" integrity="sha384-pmjIAcz2bAn0xukfxADbZIb3t8oRT9Sv0rvO+BR5Csr6Dhqq+nZs59P0pPKQJkEV" crossorigin="anonymous" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" integrity="sha384-wgw+aLYNQ7dlhK47ZPK7FRACiq7ROZwgFNg0m04avm4CaXS+Z9Y7nMu8yNjBKYC+" crossorigin="anonymous" />
   <link rel="stylesheet" href="${BASE}css/style.css?v=${VER}" />
-  <script>window.MM_VARIANT="${variant}";window.MM_BASE="${BASE}";</script>${openccTag}
+  <script>window.MM_VARIANT="${variant}";window.MM_BASE="${BASE}";window.MM_DATA_VER="${VER}";</script>${openccTag}
   <script src="${BASE}js/mm-acct-menu.js?v=${VER}" defer></script>
   <script src="${BASE}js/mm-xlang.js?v=1" defer></script><!-- 跨網域語言傳遞 --><!-- 登入過(mm_owner cookie)→「我的音樂劇」CTA 自動換成大頭照選單;未登入照常顯示 CTA -->
   <script src="${BASE}js/mm-lang.js?v=${VER}" defer></script><!-- 語言切換下拉(globe→繁中/简中/English)開關行為 -->
@@ -367,7 +374,7 @@ function rootRouter() {
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="MusicalMap" />
   <meta property="og:title" content="MusicalMap — Live World Map of Musicals" />
-  <meta property="og:description" content="Musicals playing around the world right now — Broadway, West End, tours and original productions across 40+ countries." />
+  <meta property="og:description" content="Musicals playing around the world right now — Broadway, West End, tours and original productions across ${ROOT_NC} countries." />
   <meta property="og:url" content="${SITE}/" />
   <meta property="og:image" content="${SITE}/og-image.png" />
   <meta property="og:image:width" content="1200" />
@@ -449,6 +456,7 @@ function robots() {
 // ---- run ----
 for (const variant of Object.keys(VARIANTS)) {
   const shows = JSON.parse(fs.readFileSync(`data/variants/shows.${variant}.json`, "utf8")).shows;
+  ROOT_NC = siteStats(shows).nCountries;   // 真實國家數,給 rootRouter og 用(勿寫死 40+)
   fs.mkdirSync(variant, { recursive: true });
   fs.writeFileSync(`${variant}/index.html`, page(variant, shows));
   console.log(`${variant.padEnd(8)} → ${variant}/index.html (${shows.length} shows, ${Math.min(shows.length, JSONLD_CAP)} in JSON-LD)`);

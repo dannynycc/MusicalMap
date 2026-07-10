@@ -35,6 +35,7 @@ const fold = (s) => (s || "").toLowerCase().normalize("NFKD")
   .replace(/[̀-ͯ]/g, "")                 // strip combining accents
   .replace(/['’ʼ]/g, "")                  // drop apostrophes (kiki's → kikis)
   .replace(/臺/g, "台")                    // 異體字: 臺北/臺灣 ⇄ 台北/台灣 (search both forms)
+  .replace(/[・･]/g, "")                    // 日文中黑點:レ・ミゼラブル ⇄ レミゼラブル 都搜得到 (2026-07-10)
   .replace(/[^a-z0-9　-鿿가-힯]+/g, " ")  // other punctuation → space
   .replace(/\s+/g, " ").trim();
 
@@ -130,10 +131,15 @@ function posterFull(url) {
 // Club, booked through Jan 2027, still showing at 2029). Cap them at a ~1yr booking
 // horizon from today; shows WITH a real end_date (tours) are unaffected.
 const OPEN_RUN_HORIZON = 12;  // months ahead an open-ended run is assumed to still play
+// 'YYYY-MM-DD' → 本地午夜 Date。直接 new Date('2026-04-01') 會解析成 UTC 午夜,美洲時區(UTC-)
+// 會變成前一天晚上 → 選月份時多顯示/漏顯示邊界一天的劇(2026-07-10 實測紐約:4/1 開演劇誤入 3 月)。
+function localDate(s) { if (!s) return null; const [y, m, d] = String(s).slice(0, 10).split("-").map(Number); return (y && m) ? new Date(y, m - 1, d || 1) : null; }
 function overlapsMonth(show) {
   const ms = monthStart(), me = monthEnd();
-  const start = show.start_date ? new Date(show.start_date) : null;
-  const end = show.end_date ? new Date(show.end_date) : null;
+  const start = localDate(show.start_date);
+  // end_rolling 劇卡片顯示「長期上演」(fmtDates 忽略 end_date);地圖判定也必須忽略 end_date、當開放式
+  // 走 horizon,否則旗艦定目劇(紅磨坊/Ragtime/Titanique)拖過 end_date 當月就從地圖消失、與標籤矛盾(2026-07-10)。
+  const end = show.end_rolling ? null : localDate(show.end_date);
   if (start && start > me) return false;   // run begins after this month
   if (end) {
     if (end < ms) return false;            // run ended before this month
@@ -350,7 +356,7 @@ function updateTagCounts() {
   const counts = {};
   for (const s of pool()) {
     if (!overlapsMonth(s)) continue;
-    if (q && ![s.title, s.city, s.venue, s.tour_name, s.alt].some((f) => fold(f).includes(q))) continue;
+    if (q && !matchesSearch(s, q)) continue;   // 與 visibleShows 同一組欄位(含 search),否則 pill 數字對不上清單(2026-07-10)
     counts[s.tag] = (counts[s.tag] || 0) + 1;
   }
   for (const tag in tagCountSpans) {
@@ -596,13 +602,17 @@ function ensureArchiveForView() {
   return Promise.all([loadArchiveYear(y), loadArchiveYear(y - 1)]);
 }
 
+// 搜尋命中判定(單一真相來源,pill 計數與清單/地圖共用,欄位一致含 search 大字串)
+function matchesSearch(s, q) {
+  return [s.title, s.city, s.venue, s.tour_name, s.alt, s.search].some((f) => fold(f).includes(q));
+}
 function visibleShows() {
   const q = fold(els.search.value.trim());
   return pool().filter((s) => {
     if (!overlapsMonth(s)) return false;
     if (ACTIVE_TAGS.size && !ACTIVE_TAGS.has(s.tag)) return false;
     if (!q) return true;
-    return [s.title, s.city, s.venue, s.tour_name, s.alt, s.search].some((f) => fold(f).includes(q));
+    return matchesSearch(s, q);
   });
 }
 
@@ -828,12 +838,15 @@ function focusShow(show) {
 // Variant pages (/en//zh-hans//zh-hant/) load their prebuilt, language-converted data file
 // from an absolute base; legacy/dev context falls back to the canonical data/shows.json.
 const MM_BASE = window.MM_BASE || "";
+// ?v= 內容雜湊版號(每日 build 換)→ 可長快取+回訪走 304/快取,不必每次全下載 1.9MB。
+// 與 <head> 的 preload 同 URL 才會被重用(2026-07-10 效能)。
+const _dv = window.MM_DATA_VER ? `?v=${window.MM_DATA_VER}` : "";
 const SHOWS_URL = window.MM_VARIANT
-  ? `${MM_BASE}data/variants/shows.${window.MM_VARIANT}.json`
+  ? `${MM_BASE}data/variants/shows.${window.MM_VARIANT}.json${_dv}`
   : "data/shows.json";
 async function boot() {
   try {
-    const res = await fetch(SHOWS_URL, { cache: "no-store" });
+    const res = await fetch(SHOWS_URL);   // 移除 cache:no-store:版號已保證新鮮,回訪可走快取/304
     const data = await res.json();
     ALL = data.shows || [];
     DATA_UPDATED = data.meta?.generated_at || "";
@@ -864,7 +877,8 @@ function recomputeRange() {
   let maxOff = 1;
   for (const s of ALL) {
     if (!s.start_date) continue;
-    const d = new Date(s.start_date);
+    const d = localDate(s.start_date);   // 本地解析(同 overlapsMonth,避免 UTC 邊界差月)
+    if (!d) continue;
     const off = (d.getFullYear() - CUR_Y) * 12 + (d.getMonth() - CUR_M);
     if (off > maxOff) maxOff = off;
   }

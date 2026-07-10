@@ -184,8 +184,10 @@ body { display: flex; flex-direction: column; height: 100vh; }
    crawler-only prerendered list AND the count line — otherwise a language switch (which
    navigates between the /en//zh-hans//zh-hant/ trees) flashes the SEO list, then a
    misleading "0 musicals · 0 locations" while data is still loading. */
+/* display:none(非 visibility:hidden):hidden 仍會佈局 ~1839 個 <li>(4000+ 節點),
+   拖慢首屏 layout;none 直接跳過佈局。爬蟲仍讀得到 HTML 原始碼裡的清單(SEO 不受影響,2026-07-10)。 */
 body:not(.ready) #show-list,
-body:not(.ready) #count { visibility: hidden; }
+body:not(.ready) #count { display: none; }
 
 /* ===== show list — per-show tinted cards, alternating teal / amber theme ===== */
 .show-group { list-style: none; border-radius: 12px; margin: 5px 3px; overflow: hidden; }

@@ -28,7 +28,7 @@
       footer_cta: '建立你自己的 →',
       empty_title: '找不到這個公開頁', empty_sub: '這個收藏頁不存在，或擁有者尚未公開。',
       empty_none_title: '這裡還沒有紀錄', empty_none_sub: '這位使用者還沒公開任何看過的音樂劇。',
-      empty_cta: '＋ 建立你自己的 My Musicals',
+      empty_cta: '＋ 建立你自己的音樂劇收藏',
       dt_zoom: '↗ 點圖開新分頁看原圖',
       // ---- u-view.js runtime ----
       bn_musicals: '音樂劇 Musicals', bn_unique: '不同作品 Unique', bn_cities: '城市 Cities', bn_countries: '國家 Countries',
@@ -74,7 +74,7 @@
       del_confirm_mismatch: '輸入的名稱不符，已取消。', del_deleting: '刪除中…', del_done: '你的帳號與所有資料已刪除。感謝你曾經使用 MusicalMap。', del_fail: '刪除失敗，請稍後再試：',
       gate_preview: '登入後長這樣——你的海報牆、音樂劇護照與觀劇統計，全部自動生成：',
       gate_browse_map: '先逛演出地圖 →', gate_see_guide: '看看怎麼使用 →',
-      nav_logout: '登出', me_hero_title: '我的音樂劇收藏', doc_title_me: '我的音樂劇 — MusicalMap', doc_title_suffix: '我的音樂劇',
+      nav_logout: '登出', me_hero_title: '我的音樂劇收藏', doc_title_me: '我的音樂劇 — MusicalMap', doc_title_suffix: '我的音樂劇', log_modal_label: '新增／編輯觀劇紀錄',
       demo_banner_b: '這是範例收藏', demo_banner_rest: ' —— 先讓你看看蓋滿章後的樣子。按右邊加入你第一齣看過的劇，整頁就換成你自己的。',
       demo_cta: '＋ 加入第一齣音樂劇', demo_sub: '範例預覽 · 加入後就換成你的',
       edit_this: '編輯這齣', delete_this: '刪除這齣', edit: '編輯', delete: '刪除',
@@ -300,7 +300,7 @@
       del_confirm_mismatch: 'That didn’t match — cancelled.', del_deleting: 'Deleting…', del_done: 'Your account and all data have been deleted. Thank you for using MusicalMap.', del_fail: 'Deletion failed, please try again later:',
       gate_preview: 'After you sign in — your poster wall, theatre passport and stats, all generated automatically:',
       gate_browse_map: 'Browse the map first →', gate_see_guide: 'Read the guide →',
-      nav_logout: 'Sign out', me_hero_title: 'My Musicals', doc_title_me: 'My Musicals — MusicalMap', doc_title_suffix: 'My Musicals',
+      nav_logout: 'Sign out', me_hero_title: 'My Musicals', doc_title_me: 'My Musicals — MusicalMap', doc_title_suffix: 'My Musicals', log_modal_label: 'Add / edit a show you\'ve seen',
       demo_banner_b: 'This is a sample collection', demo_banner_rest: ' — a preview of what it looks like once stamped. Add your first show on the right and the whole page becomes yours.',
       demo_cta: '＋ Add your first musical', demo_sub: 'Sample preview · becomes yours once you add a show',
       edit_this: 'Edit this show', delete_this: 'Delete this show', edit: 'Edit', delete: 'Delete',
@@ -484,6 +484,8 @@
   var CN_FIX = [
     [/登入/g, '登录'], [/登出/g, '退出登录'],
     [/连结/g, '链接'],
+    [/网路/g, '网络'],   // OpenCC 只轉字:網路→网路(台味),大陸標準=网络(2026-07-10)
+    [/预设/g, '默认'],   // 預設→预设(台味),大陸標準=默认
     [/每一出/g, '每一部'], [/一出正在上演的剧/g, '一部正在上演的剧'],
     [/建立/g, '创建'],
     [/跨装置/g, '跨设备'], [/装置/g, '设备'],
