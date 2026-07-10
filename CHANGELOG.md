@@ -11,6 +11,17 @@
 
 ---
 
+## [v2.23.1] - 2026-07-10 14:21
+### 清掉全部已知低優先項(三路 QA agent 標記的剩餘瑕疵)
+- **分頁標題三語化**:me.html/u.html 的 `<title>` 原固定英文;me.html 掛 data-i18n、u-view.js 動態標題後綴走字典 → 繁「我的音樂劇」/簡「我的音乐剧」/en「My Musicals」(playwright 三語驗證)。
+- **詳情筆記引號依語言**:en 頁筆記原本也用中文「」包 → 英文頁改彎引號「“”」。
+- **地圖群集 aria-label 簡體化**:zh-hans 讀屏原唸繁體「共 X 場,點擊放大」→ 過 MS(OpenCC)轉簡。
+- **護照戳章城市名截斷**:圓形戳章底弧空間有限,長名(SÃO PAULO/中文長名)溢出弧線 → 截 12 字 + null 防呆(me.html + u-view.js 兩處)。
+- **localStorage 配額溢出不再假同步**:收藏極多致 setItem 失敗時,舊版仍標 mev2_synced+reload → reload 讀到沒寫進去的舊快取卻自認同步完成;改為僅快取寫成功才走 reload 快路徑+標同步,失敗則不標(下次重試)。
+- **OTP 倒數 timer 登入後清除**:驗證成功走 hideGate 後,10 分鐘倒數 setInterval 仍每秒跑並對已隱藏 gate say(expired) → hideGate 加 `_gateStopTimers` 清理。
+- **onSignedIn 去重**:onAuthStateChange 與 getSession 會各觸發一次同 uid → loadSettings/mountMenu 做兩遍;加 `_signedInFor` 旗標(登出重置)。
+- **me-input entryToRec 明確帶 fav**:消除「靠 update 只寫提供欄位」的隱性耦合;且存檔當下從 mm-log 依 sid 讀最新 fav(而非 embed 載入時的快照),避免父頁剛切最愛被清。
+
 ## [v2.23.0] - 2026-07-10 13:19
 ### 「我的音樂劇」深度 QA:三路 agent 掃出並修 8 個真 bug(邏輯/i18n/安全)
 使用者要求「每項功能都要站在使用者角度驗 flow、做到 flawless」。三路平行 review(邏輯狀態/i18n/XSS)+ playwright 三語真頁驗證。

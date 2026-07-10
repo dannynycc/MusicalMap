@@ -372,7 +372,11 @@ let MMSB=null;(function(){const cfg=window.MM_CONFIG;if(cfg&&cfg.READY&&typeof s
 function _fullDate(date,prec){if(!date)return null;const d=String(date);if(prec==='year'||d.length===4)return d.slice(0,4)+'-01-01';if(prec==='month'||d.length===7)return d.slice(0,7)+'-01';return d;}
 // URL 欄位只收 http(s):javascript:/data: 存進去會在 openFull(window.open)/href 變攻擊面(2026-07-10 review)
 function _httpOnly(u){u=(u||'').trim();return /^https?:\/\//i.test(u)?u:null;}
-function entryToRec(e){const p=e.p||{};const rec={title:(e.w&&e.w.en)||'',venue:p.venue||null,city:p.city||null,country:p.country||null,seen_date:_fullDate(e.date,e.precision),precision:e.precision||'none',rating:e.rating||0,seat:e.seat||null,price:(e.price!==''&&e.price!=null?+e.price:null),currency:e.cur||null,note:e.note||null,seen_time:e.time||null,poster_override:_httpOnly(e.posterOverride),url:_httpOnly(e.url)};if(p.lat!=null&&p.lng!=null){rec.lat=p.lat;rec.lng=p.lng;}return rec;}
+// fav 明確帶上,消除「靠 update 只寫提供欄位」的隱性耦合(日後改 upsert 才不會靜默清最愛)。
+// 存檔當下從 mm-log 依 sid 讀「最新」fav,而非用本頁載入時的快照:embed 編輯期間父頁 me.html
+// 可能剛切了最愛,用快照會把它清掉(2026-07-10)。新增(無 sid)則用 e.fav(false)。
+function _freshFav(e){if(e.sid==null)return !!e.fav;try{const log=JSON.parse(localStorage.getItem('mm-log')||'[]');const row=log.find(x=>x&&x.sid===e.sid);return row?!!row.fav:!!e.fav;}catch(_){return !!e.fav;}}
+function entryToRec(e){const p=e.p||{};const rec={title:(e.w&&e.w.en)||'',venue:p.venue||null,city:p.city||null,country:p.country||null,seen_date:_fullDate(e.date,e.precision),precision:e.precision||'none',rating:e.rating||0,fav:_freshFav(e),seat:e.seat||null,price:(e.price!==''&&e.price!=null?+e.price:null),currency:e.cur||null,note:e.note||null,seen_time:e.time||null,poster_override:_httpOnly(e.posterOverride),url:_httpOnly(e.url)};if(p.lat!=null&&p.lng!=null){rec.lat=p.lat;rec.lng=p.lng;}return rec;}
 // method 2：算某劇的「系統 catalog 海報」（清空自訂時還原用）
 function systemPosterFor(en){const vc=window.MM_VC;if(!vc||!en)return '';const t=(vc.titles||[]).find(x=>x.en&&x.en.toLowerCase()===String(en).toLowerCase());return (t&&vc.posters&&vc.posters[t.group])||'';}
 // 自訂海報欄位的 HTML（兩個表單共用）

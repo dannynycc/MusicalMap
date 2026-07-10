@@ -8,7 +8,7 @@
 <script>/* FR24 模式:「我的音樂劇」住在 my. 子網域,登入後網址=my.themusicalmap.com/<handle>。
 主網域舊網址一律轉過去(localhost/GH 預覽不轉,本機測試不受影響) */
 if(location.hostname==='themusicalmap.com'||location.hostname==='www.themusicalmap.com')location.replace('https://my.themusicalmap.com/me.html'+location.search);</script>
-<title>My Musicals — MusicalMap</title>
+<title data-i18n="doc_title_me">My Musicals — MusicalMap</title>
 <link rel="icon" href="/favicon.ico?v=3" sizes="any" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png?v=3" />
@@ -461,6 +461,7 @@ function stampSvg(s){
   const _y=s.date?s.date.slice(0,4):'',_m=(s.date&&s.date.length>=7)?+s.date.slice(5,7):0,_d=(s.date&&s.date.length>=10)?s.date.slice(8,10):'';
   const dd=_d?`${_d}·${MON[_m-1].toUpperCase()}·${_y}`:(_m?`${MON[_m-1].toUpperCase()}·${_y}`:(_y||'—'));
   const enTitle=(s.title.length>15?venueShort(s.title):s.title).toUpperCase();
+  const stampCity=String(s.city||'—').toUpperCase().slice(0,12);   // 戳章底弧空間有限,長名截斷+null 防呆(2026-07-10)
   return `<svg viewBox="0 0 128 128" style="--rot:${rot}deg">
     <defs><path id="${id}t" d="${top}"/><path id="${id}b" d="${bot}"/></defs>
     <circle cx="64" cy="64" r="56" fill="none" stroke="currentColor" stroke-width="2.4"/>
@@ -468,7 +469,7 @@ function stampSvg(s){
     <text font-size="10.5" letter-spacing="1.2" fill="currentColor" font-family="Inter,sans-serif" font-weight="700">
       <textPath href="#${id}t" startOffset="50%" text-anchor="middle">${esc(enTitle)}</textPath></text>
     <text font-size="8" letter-spacing="1" fill="currentColor" font-family="Inter,sans-serif">
-      <textPath href="#${id}b" startOffset="50%" text-anchor="middle">${esc(s.city.toUpperCase())} · ${esc(venueCode(s.venue))}</textPath></text>
+      <textPath href="#${id}b" startOffset="50%" text-anchor="middle">${esc(stampCity)} · ${esc(venueCode(s.venue))}</textPath></text>
     <g transform="rotate(1.5 64 64)"><text x="64" y="68" font-size="12" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-weight="600" fill="currentColor">${dd}</text></g>
   </svg>`;
 }
@@ -615,7 +616,7 @@ function positionPins(){
     el.style.display='';el.style.left=cx*100+'%';el.style.top=cy*100+'%';
     const sz=18+Math.sqrt(sum)*5.2, word=document.documentElement.lang==='en'?(k+' cities'):(k+' 城市');
     el.innerHTML=`<span class="glow" style="width:${sz*2.2}px;height:${sz*2.2}px"></span><span class="core" style="width:${sz}px;height:${sz}px">${sum}</span><span class="lbl">${word}</span>`;
-    el.setAttribute('aria-label',document.documentElement.lang==='en'?(word+', '+sum+' shows, click to zoom in'):(word+'，共 '+sum+' 場，點擊放大'));   // en 模式別唸中文(螢幕閱讀器)
+    el.setAttribute('aria-label',document.documentElement.lang==='en'?(word+', '+sum+' shows, click to zoom in'):MS(word+'，共 '+sum+' 場，點擊放大'));   // en 別唸中文;zh-hans 過 MS 轉簡(讀屏繁體殘留,2026-07-10)
     el.onclick=()=>{const nz=Math.min(12,Math.max(mapV.z*2.4,2.6));mapV.z=nz;mapV.x=bx-0.5/nz;mapV.y=by-0.5/nz;clampV();renderMap();};
     ci++;
   });
@@ -749,7 +750,8 @@ function openDetail(s){
     <dt>${T('dt_seat')}</dt><dd>${esc(s.seat||'—')}</dd>
     <dt>${T('dt_price')}</dt><dd>${s.price?esc(`${s.price} ${s.cur||''}`):'—'}</dd>
     <dt>${T('dt_link')}</dt><dd>${(s.url&&/^https?:\/\//i.test(String(s.url).trim()))?`<a href="${esc(String(s.url).trim())}" target="_blank" rel="noopener noreferrer" style="color:#e3b23c;text-decoration:none;border-bottom:1px solid currentColor">${esc((String(s.url).match(/^https?:\/\/([^\/]+)/i)||[])[1]||T('dt_open_link'))} ↗</a>`:'—'}</dd>`;/* 只放行 http(s)(擋 javascript:)+host 走 esc,比照 u-view.js safeUrl 防線 */
-  document.getElementById('dt-note').textContent=s.note?('「'+s.note+'」'):'';
+  // 引號依語言:中文頁用「」,en 頁用彎引號(英文筆記包中文引號很怪,2026-07-10)
+  document.getElementById('dt-note').textContent=s.note?((window.MM_HL==='en'?'“'+s.note+'”':'「'+s.note+'」')):'';
   document.getElementById('dt-note').style.display=s.note?'block':'none';
   if(dlg.showModal)dlg.showModal();
 }
@@ -1135,7 +1137,7 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
   const gate=document.getElementById('mev2gate'), gmsg=document.getElementById('gate-msg'), glogin=document.getElementById('gate-login');
   // 閘門顯示時鎖 body 捲動:背後的儀表板內容仍在文件流,不鎖的話瀏覽器會出現「捲了沒反應」的假捲軸
   const showGate=(msg,login)=>{gate.style.display='flex';document.body.style.overflow='hidden';gmsg.innerHTML=msg;glogin.hidden=!login;var ge=document.getElementById('gate-email');if(ge)ge.hidden=!login;var gs=document.getElementById('gate-sub');if(gs)gs.hidden=true;var gp=document.getElementById('gate-preview');if(gp)gp.hidden=!login;};
-  const hideGate=()=>{gate.style.display='none';document.body.style.overflow='auto';};  // 必須明確 'auto':設 '' 會落回 CSS 的 body{overflow:hidden} 預設鎖→登入後整頁不能捲(踩過)
+  const hideGate=()=>{gate.style.display='none';document.body.style.overflow='auto';window._gateStopTimers&&window._gateStopTimers();};  // 必須明確 'auto':設 '' 會落回 CSS 的 body{overflow:hidden} 預設鎖→登入後整頁不能捲(踩過);順帶停 OTP 倒數 timer
   // 日期：demo 部分日期(date+precision) ↔ sightings 完整 seen_date
   function fullDate(date,prec){if(!date)return null;const d=String(date);
     if(prec==='year'||d.length===4)return d.slice(0,4)+'-01-01';
@@ -1201,12 +1203,17 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
       if(error)throw error;
       const json=JSON.stringify((data||[]).map(sightingToEntry));
       const prev=localStorage.getItem('mm-log')||'';
-      // setItem 可能 QuotaExceeded(收藏極多/瀏覽器限額):雲端已成功抓到,渲染仍可用快取,只是無法離線快取→記 log 不擋
-      try{localStorage.setItem('mm-log',json);}catch(qe){console.warn('mm-log cache quota',qe);}
-      sessionStorage.setItem('mev2_synced',syncedKey(uid));
+      // setItem 可能 QuotaExceeded(收藏極多/瀏覽器限額)。舊版失敗仍標 synced+reload→
+      // reload 讀到「沒寫進去的舊快取」卻自認同步完成,畫面停舊資料(2026-07-10)。
+      // 快取寫成功才走 reload 快路徑+標 synced;失敗則不標(下次重試)、不 reload(reload 必讀舊)。
+      let cacheOk=true;
+      try{localStorage.setItem('mm-log',json);}catch(qe){cacheOk=false;console.warn('mm-log cache quota',qe);}
       if(location.hash){try{history.replaceState(null,'',location.pathname+location.search);}catch(e){}}  // 去掉 OAuth 轉址的 #token，避免 reload 重新處理→迴圈
-      const rk='mev2_reloaded_'+syncedKey(uid);
-      if(prev!==json && !sessionStorage.getItem(rk)){sessionStorage.setItem(rk,'1');location.reload();return;}  // 最多重載一次→渲染雲端資料；防迴圈
+      if(cacheOk){
+        sessionStorage.setItem('mev2_synced',syncedKey(uid));
+        const rk='mev2_reloaded_'+syncedKey(uid);
+        if(prev!==json && !sessionStorage.getItem(rk)){sessionStorage.setItem(rk,'1');location.reload();return;}  // 最多重載一次→渲染雲端資料；防迴圈
+      }
       hideGate();window.mmAuthReady&&window.mmAuthReady(uid);
     }catch(e){console.error('sync',e);showSyncError(uid,(e&&e.message)||e);}
     finally{_syncing=false;}
@@ -1214,7 +1221,10 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
   function showLogin(){showGate(T('gate_signin'),true);var gs=document.getElementById('gate-sub');if(gs){gs.hidden=false;gs.textContent=T('gate_secure');}}
   function clearLocal(){try{localStorage.removeItem('mm-log');}catch(e){}sessionStorage.removeItem('mev2_synced');Object.keys(sessionStorage).filter(k=>k.indexOf('mev2_reloaded_')===0).forEach(k=>sessionStorage.removeItem(k));}
   window.mmClearLocal=clearLocal;   // 給 profile IIFE 的刪除帳號流程用（跨 IIFE 作用域）
-  async function onSignedIn(user){if(sessionStorage.getItem('mev2_synced')===syncedKey(user.id)){hideGate();window.mmAuthReady&&window.mmAuthReady(user.id);return;}await syncFromCloud(user.id);}
+  let _signedInFor=null;   // 去重:onAuthStateChange(INITIAL_SESSION/SIGNED_IN)與 getSession 會各觸發一次同 uid → loadSettings/mountMenu 做兩遍(2026-07-10)
+  async function onSignedIn(user){
+    if(_signedInFor===user.id)return;_signedInFor=user.id;
+    if(sessionStorage.getItem('mev2_synced')===syncedKey(user.id)){hideGate();window.mmAuthReady&&window.mmAuthReady(user.id);return;}await syncFromCloud(user.id);}
   glogin.onclick=()=>sb.auth.signInWithOAuth({provider:'google',options:{redirectTo:location.origin+location.pathname}});
   // ── Email OTP 登入(中國等收不到 Google 的環境):寄 6 位數碼→verifyOtp;成功觸發 onAuthStateChange 走既有流程 ──
   (function(){
@@ -1278,6 +1288,7 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
       // 成功:onAuthStateChange(SIGNED_IN)→onSignedIn 接手,這裡不用做事
     }
     send.onclick=doSend;verify.onclick=doVerify;
+    window._gateStopTimers=()=>{stopCd();if(rsTimer){clearInterval(rsTimer);rsTimer=null;}};   // 登入成功後 hideGate 呼叫:否則倒數 setInterval 持續跑、到期對已隱藏的 gate say(expired)(2026-07-10)
     // 改動 email 輸入框 → 解鎖「驗證碼已傳送」回到可按的「傳送驗證碼」(重寄連結不受影響,自有 60 秒冷卻)
     mail.addEventListener('input',()=>{
       if(sentLock){sentLock=false;send.disabled=false;send.textContent=T('gate_email_send');}
@@ -1300,7 +1311,7 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
     }catch(e){console.warn('fav',e);return null;}
   };
   sb.auth.onAuthStateChange((event,session)=>{
-    if(event==='SIGNED_OUT'){clearLocal();showLogin();return;}
+    if(event==='SIGNED_OUT'){_signedInFor=null;clearLocal();showLogin();return;}   // 登出重置去重旗標,換帳號可重跑
     if(session&&session.user){onSignedIn(session.user);}   // 忽略非 SIGNED_OUT 的 null session（OAuth 處理中的暫態），不清旗標
   });
   // getSession 加 .catch:reject(極少見,如儲存損毀)時不留 unhandled、直接回登入頁,不卡「載入中」

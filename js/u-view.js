@@ -225,6 +225,8 @@
       const _y = s.date ? s.date.slice(0, 4) : '', _m = (s.date && s.date.length >= 7) ? +s.date.slice(5, 7) : 0, _d = (s.date && s.date.length >= 10) ? s.date.slice(8, 10) : '';
       const dd = _d ? `${_d}·${MON[_m - 1].toUpperCase()}·${_y}` : (_m ? `${MON[_m - 1].toUpperCase()}·${_y}` : (_y || '—'));
       const enTitle = (s.title.length > 15 ? venueShort(s.title) : s.title).toUpperCase();
+      // 城市名截斷:圓形戳章底弧空間有限,長名(SÃO PAULO、中文長名)會溢出弧線(2026-07-10);null 防呆
+      const stampCity = String(s.city || '—').toUpperCase().slice(0, 12);
       return `<svg viewBox="0 0 128 128" style="--rot:${rot}deg">
         <defs><path id="${id}t" d="${top}"/><path id="${id}b" d="${bot}"/></defs>
         <circle cx="64" cy="64" r="56" fill="none" stroke="currentColor" stroke-width="2.4"/>
@@ -232,7 +234,7 @@
         <text font-size="10.5" letter-spacing="1.2" fill="currentColor" font-family="Inter,sans-serif" font-weight="700">
           <textPath href="#${id}t" startOffset="50%" text-anchor="middle">${esc(enTitle)}</textPath></text>
         <text font-size="8" letter-spacing="1" fill="currentColor" font-family="Inter,sans-serif">
-          <textPath href="#${id}b" startOffset="50%" text-anchor="middle">${esc(s.city.toUpperCase())} · ${esc(venueCode(s.venue))}</textPath></text>
+          <textPath href="#${id}b" startOffset="50%" text-anchor="middle">${esc(stampCity)} · ${esc(venueCode(s.venue))}</textPath></text>
         <g transform="rotate(1.5 64 64)"><text x="64" y="68" font-size="12" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-weight="600" fill="currentColor">${dd}</text></g>
       </svg>`;
     }
@@ -589,7 +591,7 @@
     MM.shows.length = 0; MM.shows.push(...mapped);
 
     const displayName = prof.display_name || handle;
-    document.title = `${displayName} — My Musicals`;
+    document.title = `${displayName} — ${T('doc_title_suffix')}`;   // 「我的音樂劇/My Musicals」依語言(2026-07-10)
     const h1 = document.querySelector('.hero h1'); if (h1) h1.textContent = TN('h1_suffix', { name: displayName });
 
     render();
