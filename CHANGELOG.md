@@ -11,6 +11,20 @@
 
 ---
 
+## [v2.23.0] - 2026-07-10 13:19
+### 「我的音樂劇」深度 QA:三路 agent 掃出並修 8 個真 bug(邏輯/i18n/安全)
+使用者要求「每項功能都要站在使用者角度驗 flow、做到 flawless」。三路平行 review(邏輯狀態/i18n/XSS)+ playwright 三語真頁驗證。
+- **①[高] 回訪用戶被誤鎖進強制取名**:loadSettings 只解構 data、忽略 error;profiles 讀取遇暫時性失敗(斷線/RLS 抖動)→ CUR.handle 空 → maybeOnboard 誤判「新用戶」彈強制改名遮罩(唯一出口=登出,輸自己現名又判 taken)。加 PROFILE_OK 旗標:讀取失敗≠沒 profile,重試一次仍失敗則放行本次。
+- **②[高] 中文頁圖表軸永遠英文**:各月配 Jan/Feb、各星期配 Sun/Mon(WEEKDAYS_ZH 一直有定義卻沒接線)。me.html + u-view.js 兩處接上,zh 頁改「1月/日一二…」,en 保留英文。playwright 攔 Chart labels 三語驗證通過。
+- **③[高] zh-hans 押注 CDN 靜默半殘**:OpenCC 走 jsdelivr,掛掉→整頁退繁體且資料層地名不轉;而 zh-hans 主受眾(大陸)正是 jsdelivr 最常被斷之地。四頁(me/u/me-input/settings)改同源自架 /js/vendor/opencc-t2cn-1.3.1.js(sha384 與原 pin 逐位相符)。
+- **④[中] me-input 自訂海報 URL 注入**:img src 內插漏跳雙引號(姊妹渲染都有、唯此漏),`x" onerror="…` 可注入;addedScreen 的劇名/海報也補 hesc/quot。
+- **⑤[中/低] URL scheme 未擋**:自訂海報/連結沒擋 javascript:/data: → entryToRec 加 _httpOnly 只收 http(s);me.html openFull(window.open)對舊資料也加 http(s) 前置檢查。
+- **⑥[中] ♥ 最愛回滾認錯卡**:mmRevertFav 單一全域被每張卡覆寫,快點多卡時前卡雲端失敗回滾指向後卡、♥ 不還原(UI 說謊)→ 改 index→painter 註冊表。
+- **⑦[中] 編輯淺拷貝殘留**:editEntry 的 draft.p/draft.w 與 LOG[i] 共用 reference,編輯中改城市/海報就地污染原資料、取消仍殘留 → 深拷貝 p/w。
+- **⑧[中] 刪除/復原只動本機不刪雲端**:delEntry 與蓋章 undo 沒刪 Supabase row,下次同步復活 → 補雲端 delete + 復原重 insert 取新 sid;編輯存檔順序改「先驗雲端成功再寫本機」與 insert 分支一致。
+- 附:me.html esc 補單引號與 u-view 對齊;u-view 海報加第三層 fallback(自訂圖床死→退官方 catalog 海報,不歸零成文字卡)。
+- **公開分享頁(u.html)經專項掃描零跨用戶 stored XSS**——他人資料每條渲染路徑都已 esc+safeUrl。
+
 ## [v2.22.0] - 2026-07-10 12:44
 ### 資料品質戰役第三波:5 大 bug 修復+Google 全量座標驗證(使用者授權動用 Maps API)
 - **①場館座標污染(最大宗,戲被畫到錯的城市)**:venue_coords.json「權威修正表」裡 12 筆錯值——南昌/啟東/衡陽保利被批次貼上上海保利(嘉定)座標(錯 616/59/989km)、蘇州/衢州保利貼成常熟保利(46/352km)、大邱 Dream Hall 拿首爾座標、南京缪时客查無此館(改城市級座標)、西施大劇院(諸暨)、蘇州狮山大剧院(貼成苏州湾;OSM 定位狮山文化廣場)、北京艺术中心三種鍵寫法全是國家大剧院市中心座標(實在通州綠心,OSM 實證,cn_venues 同步修)。

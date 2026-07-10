@@ -15,7 +15,7 @@
 var h=new URLSearchParams(location.search).get('hl'),v=(h==='en'||h==='zh-hans'||h==='zh-hant')?h:null;
 if(!v&&window.MM_USE_LANG_PREF){var mv=localStorage.getItem('mm_variant');v=(mv==='en'||mv==='zh-hans'||mv==='zh-hant')?mv:(localStorage.getItem('mm_lang')==='en'?'en':localStorage.getItem('mm_lang')==='zh'?'zh-hant':null);}
 if(!v){var nl=(navigator.language||'').toLowerCase();v=nl.indexOf('zh')===0?((nl.indexOf('cn')>-1||nl.indexOf('hans')>-1||nl.indexOf('sg')>-1)?'zh-hans':'zh-hant'):(nl?'en':'zh-hant');}
-if(v==='zh-hans'){document.write('<scr'+'ipt src="https://cdn.jsdelivr.net/npm/opencc-js@1.3.1/dist/umd/t2cn.js" integrity="sha384-P/OaFUnOIAgMkLxsXIAaP6WO3Wm09591cGX5bHbW4eCOeDxH9L8U3aWYf4cE4SYl" crossorigin="anonymous"><\/scr'+'ipt>');
+if(v==='zh-hans'){document.write('<scr'+'ipt src="/js/vendor/opencc-t2cn-1.3.1.js"><\/scr'+'ipt>');
 document.write('<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet" />');/* 簡體字 TC 字型沒有→混排忽粗忽細,補 SC */}
 }catch(e){}})();</script>
 <script src="js/mm-strings.js?v=244"></script>
@@ -370,7 +370,9 @@ function curOf(c){return CUR[c]||'';}
 /* ===== P3c：Supabase 雲端寫入（與父頁 me.html 同 session，共用 localStorage 的登入態）===== */
 let MMSB=null;(function(){const cfg=window.MM_CONFIG;if(cfg&&cfg.READY&&typeof supabase!=='undefined'){try{MMSB=supabase.createClient(cfg.SUPABASE_URL,cfg.SUPABASE_ANON_KEY);}catch(e){}}})();
 function _fullDate(date,prec){if(!date)return null;const d=String(date);if(prec==='year'||d.length===4)return d.slice(0,4)+'-01-01';if(prec==='month'||d.length===7)return d.slice(0,7)+'-01';return d;}
-function entryToRec(e){const p=e.p||{};const rec={title:(e.w&&e.w.en)||'',venue:p.venue||null,city:p.city||null,country:p.country||null,seen_date:_fullDate(e.date,e.precision),precision:e.precision||'none',rating:e.rating||0,seat:e.seat||null,price:(e.price!==''&&e.price!=null?+e.price:null),currency:e.cur||null,note:e.note||null,seen_time:e.time||null,poster_override:e.posterOverride||null,url:e.url||null};if(p.lat!=null&&p.lng!=null){rec.lat=p.lat;rec.lng=p.lng;}return rec;}
+// URL 欄位只收 http(s):javascript:/data: 存進去會在 openFull(window.open)/href 變攻擊面(2026-07-10 review)
+function _httpOnly(u){u=(u||'').trim();return /^https?:\/\//i.test(u)?u:null;}
+function entryToRec(e){const p=e.p||{};const rec={title:(e.w&&e.w.en)||'',venue:p.venue||null,city:p.city||null,country:p.country||null,seen_date:_fullDate(e.date,e.precision),precision:e.precision||'none',rating:e.rating||0,seat:e.seat||null,price:(e.price!==''&&e.price!=null?+e.price:null),currency:e.cur||null,note:e.note||null,seen_time:e.time||null,poster_override:_httpOnly(e.posterOverride),url:_httpOnly(e.url)};if(p.lat!=null&&p.lng!=null){rec.lat=p.lat;rec.lng=p.lng;}return rec;}
 // method 2：算某劇的「系統 catalog 海報」（清空自訂時還原用）
 function systemPosterFor(en){const vc=window.MM_VC;if(!vc||!en)return '';const t=(vc.titles||[]).find(x=>x.en&&x.en.toLowerCase()===String(en).toLowerCase());return (t&&vc.posters&&vc.posters[t.group])||'';}
 // 自訂海報欄位的 HTML（兩個表單共用）
@@ -824,9 +826,9 @@ saveBtn.onclick=async()=>{
     // 雲端更新:失敗必須讓使用者知道(否則下次 syncFromCloud 會把本機編輯蓋回舊值 → 靜默丟失編輯)
     let cloudOk=true;
     if(MMSB&&e.sid!=null){try{const {error}=await cloudUpsert(entryToRec(e),e.sid);if(error)throw error;}catch(err){console.error('cloud update',err);cloudOk=false;}}
+    if(!cloudOk){saveBtn.disabled=false;toast(T('save_cloud_fail'));return;}   // 雲端失敗→不碰本機(與 insert 分支一致):先寫本機再檢查會造成雲端舊值下次同步蓋回、編輯遺失(2026-07-10 review)
     LOG[idx]=e;persist();renderWall(false);
     const si=sessionAdded.indexOf(old);if(si>=0)sessionAdded[si]=e;
-    if(!cloudOk){saveBtn.disabled=false;toast(T('save_cloud_fail'));return;}   // 不關窗、不假裝成功;本機已存,使用者可重試
     const embed=new URLSearchParams(location.search).get('embed')==='1';
     if(embed&&sessionAdded.length){addedScreen();return;}
     logDlg.close();if(!embed)setTimeout(()=>toast(T('toast_updated')),120);return;}
@@ -838,7 +840,9 @@ saveBtn.onclick=async()=>{
   LOG.unshift(entry);sessionAdded.unshift(entry);persist();renderWall(true);
   if(new URLSearchParams(location.search).get('embed')==='1'){addedScreen();return;}
   logDlg.close();
-  setTimeout(()=>{toast(TN('toast_stamped',{n:LOG.length}),()=>{LOG.shift();renderWall(false);});},180);
+  // 蓋章 toast 的「復原」也要刪雲端:否則 undo 只清本機,雲端 row 還在,下次同步復活(2026-07-10 review)
+  setTimeout(()=>{toast(TN('toast_stamped',{n:LOG.length}),async()=>{const u=LOG.shift();if(u===entry&&sessionAdded[0]===entry)sessionAdded.shift();renderWall(false);persist();
+    if(MMSB&&entry.sid!=null){try{await MMSB.from('sightings').delete().eq('id',entry.sid);}catch(err){console.error('cloud delete(undo)',err);}}});},180);
 };
 
 /* ---------- logged wall ---------- */
@@ -887,7 +891,10 @@ function renderRecent(){
   el.querySelectorAll('[data-del]').forEach(b=>b.onclick=()=>delEntry(+b.dataset.del));
 }
 function editEntry(i){
-  draft={...LOG[i],editIndex:i};
+  // 深拷貝 p/w:淺拷貝會共用同一 reference,編輯中 geoByCity/wirePosterField 就地改到 LOG[i].p,
+  // 取消編輯仍殘留、下次 persist 偷渡進本機(2026-07-10 review)
+  const src=LOG[i];
+  draft={...src,editIndex:i,p:src.p?{...src.p}:src.p,w:src.w?{...src.w}:src.w};
   if(draft.rating==null)draft.rating=0;if(draft.seat==null)draft.seat='';if(draft.price==null)draft.price='';if(draft.note==null)draft.note='';
   sheetTitle.textContent=T('mi_edit_record');saveBtn.disabled=false;saveBtn.textContent=T('mi_update');
   if(!logDlg.open)logDlg.showModal();           // 在 modal 內 dialog 已開，重複 showModal 會丟例外
@@ -900,22 +907,27 @@ function prefillEdit(){
   const r=document.getElementById('rate');if(r&&r._paint)r._paint();
   updateSave();
 }
-function delEntry(i){
-  const removed=LOG.splice(i,1)[0];renderWall(false);renderRecent();
-  toast(TN('deleted',{name:PN(removed.w)}),()=>{LOG.splice(i,0,removed);renderWall(false);renderRecent();});
+async function delEntry(i){
+  const removed=LOG.splice(i,1)[0];renderWall(false);renderRecent();persist();
+  // 也刪雲端:舊版只動本機,下次 syncFromCloud 會把 row 抓回來(刪了又復活,2026-07-10 review)。
+  // 復原時重 insert 取回新 sid(原 row 已刪,舊 sid 失效)。
+  if(MMSB&&removed.sid!=null){try{const {error}=await MMSB.from('sightings').delete().eq('id',removed.sid);if(error)throw error;}catch(err){console.error('cloud delete',err);}}
+  toast(TN('deleted',{name:hesc(PN(removed.w))}),async()=>{
+    if(MMSB){try{const {data,error}=await cloudUpsert(entryToRec(removed),null);if(!error&&data&&data[0])removed.sid=data[0].id;}catch(err){console.error('cloud re-insert',err);}}
+    LOG.splice(i,0,removed);renderWall(false);renderRecent();persist();});
 }
 
 // 加入後的確認畫面：顯示「這次 session 加入的全部」、可現在編輯、再加一齣、或完成
 function addedScreen(){
   sheetTitle.textContent=T('mi_added');saveBtn.disabled=true;
   const items=sessionAdded;const n=items.length;
-  const head=n===1?TN('added_one',{name:PN(items[0].w)}):TN('added_n',{n});
+  const head=n===1?TN('added_one',{name:hesc(PN(items[0].w))}):TN('added_n',{n});
   sbody.innerHTML=`<div class="step">
     <div class="batchdone"><div class="bd-h">${head}</div>
       <div class="bd-p">${T('batch_hint')}</div></div>
     <div class="recent">${items.map(d=>`<div class="recent-row">
-      <div class="rth">${d.p.img?`<img src="${d.p.img}" referrerpolicy="no-referrer" alt="" onerror="this.remove()"/>`:`<span>${(d.w.en||'?').trim()[0]||'?'}</span>`}</div>
-      <div class="rmeta"><div class="rt">${PN(d.w)}</div>
+      <div class="rth">${d.p.img?`<img src="${String(d.p.img).replace(/"/g,'&quot;')}" referrerpolicy="no-referrer" alt="" onerror="this.remove()"/>`:`<span>${hesc((d.w.en||'?').trim()[0]||'?')}</span>`}</div>
+      <div class="rmeta"><div class="rt">${hesc(PN(d.w))}</div>
         <div class="rsub">${d.date?dateLabel(d):T('date_later')}${d.p.city?' · '+hesc(d.p.city):''}${d.rating?' · '+'★'.repeat(d.rating):''}</div>
         ${(d.seat||d.price)?`<div class="rsub2">${[d.seat?TN('seat_label',{v:hesc(d.seat)}):'',d.price?TN('price_label',{v:curSym(d.cur)+hesc(d.price)}):''].filter(Boolean).join('　·　')}</div>`:''}
         ${d.note?`<div class="rnote">「${hesc(d.note).slice(0,30)}${d.note.length>30?'…':''}」</div>`:''}</div>

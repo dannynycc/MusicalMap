@@ -69,6 +69,13 @@
     if (p && p.poster) return p.poster;
     return posterFor(s.title);
   }
+  // 自訂海報的「備援官方海報」:外站圖床會死(2026-07-10 實案:IG 簽章 URL 過期,
+  // Phantom 卡整張退成文字卡)。死了退 catalog/production 官方圖,體驗不歸零。
+  function altPoster(s) {
+    if (!s.poster_override) return null;   // 沒自訂=本來就用官方圖,無備援需求
+    const p = s.production_key && PRODUCTION_BY_KEY[s.production_key];
+    return (p && p.poster) || posterFor(s.title) || null;
+  }
   function buildCatalogMaps(cat) {
     Object.values(cat.productions || {}).forEach((arr) => arr.forEach((p) => { PRODUCTION_BY_KEY[p.key] = p; }));
     (cat.titles || []).forEach((t) => {
@@ -181,7 +188,9 @@
       const img = c.querySelector('img'), fig = c.querySelector('.poster'), skel = c.querySelector('.skel');
       let _retried = false;
       img.onload = () => { img.classList.add('ready'); skel.style.display = 'none'; };
-      img.onerror = () => { if (!_retried && s.posterFull && s.posterFull !== s.poster) { _retried = true; img.src = s.posterFull; return; } fig.classList.add('is-fallback'); };   // 代理失敗→退回原圖→都失敗才色塊
+      img.onerror = () => { if (!_retried && s.posterFull && s.posterFull !== s.poster) { _retried = true; img.src = s.posterFull; return; }
+        if (s.posterAlt && img.src !== s.posterAlt) { img.src = s.posterAlt; return; }   // 自訂圖床死→退官方海報(alt 也死時 src 已相等,自然落到色塊,不迴圈)
+        fig.classList.add('is-fallback'); };   // 代理失敗→原圖→官方備援→都失敗才色塊
       img.src = s.poster || '';
       if (!s.poster) fig.classList.add('is-fallback');
       c.onclick = () => openDetail(s);
@@ -449,8 +458,10 @@
         const y0 = Math.min(...validYears), y1 = Math.max(...validYears);
         for (let y = y0; y <= y1; y++) { yLabels.push('' + y); yVals.push(cnt[y] || 0); } }
       lineChart('ch-year', yLabels, yVals);
-      lineChart('ch-month', (st.perMonth || []).map(x => x[0]), (st.perMonth || []).map(x => x[1]));
-      lineChart('ch-week', (st.perWeekday || []).map(x => x[0]), (st.perWeekday || []).map(x => x[1]));
+      // 軸標籤在地化(與 me.html 同款修正):中文頁「各月/各星期」不能配 Jan/Sun 英文軸
+      const _zhAxis = !EN_UI;
+      lineChart('ch-month', (st.perMonth || []).map((x, i) => _zhAxis ? String(i + 1) + '月' : x[0]), (st.perMonth || []).map(x => x[1]));
+      lineChart('ch-week', (st.perWeekday || []).map((x, i) => _zhAxis ? MM.WEEKDAYS_ZH[i] : x[0]), (st.perWeekday || []).map(x => x[1]));
       const p = MM.personality();
       document.getElementById('persona').innerHTML = (p.enough === false)
         ? `<h3>${esc(T('persona_title'))}</h3><div class="pb">${esc(p.blurb)}</div>`
@@ -469,7 +480,9 @@
         if (img.getAttribute('src') !== s.poster) {
           img.classList.remove('ready'); let _dtr = false;
           img.onload = () => img.classList.add('ready');
-          img.onerror = () => { if (!_dtr && s.posterFull && s.posterFull !== s.poster) { _dtr = true; img.src = s.posterFull; return; } img.classList.add('ready'); };  // 代理失敗→退回原圖
+          img.onerror = () => { if (!_dtr && s.posterFull && s.posterFull !== s.poster) { _dtr = true; img.src = s.posterFull; return; }
+            if (s.posterAlt && img.src !== s.posterAlt) { img.src = s.posterAlt; return; }   // 自訂圖床死→退官方海報
+            img.classList.add('ready'); };  // 代理失敗→原圖→官方備援
           img.src = s.poster;
         } else img.classList.add('ready'); }
       else { dp.classList.add('is-fallback'); img.removeAttribute('src'); dp.style.setProperty('--dt-accent', s.color || '#7c5cff');
@@ -563,7 +576,7 @@
         id: row.id, title: row.title || '?', zh: MS(ZH_BY_TITLE[k] || ''), prod: '', color: '#7c5cff',
         // 公開頁 posterFull 一律走代理(不留原始自訂 URL):否則 proxy 失敗的 onerror/點圖會讓「訪客」瀏覽器直連海報主機
         // → 洩漏訪客 IP/Referer,可被拿來當追蹤信標(牴觸本站不追蹤立場)。owner 自己的 me.html 不受此限。
-        poster: resolvePoster(row), posterFull: resolvePoster(row), posterFit: 'cover', posterBg: null,
+        poster: resolvePoster(row), posterFull: resolvePoster(row), posterAlt: altPoster(row), posterFit: 'cover', posterBg: null,
         date: partialDate(row.seen_date, prec), precision: prec, time: '',
         venue: foldVenue(row.venue || ''), city: foldCity(row.city || ''), country: normCountry(row.country),
         lat: row.lat, lng: row.lng, seat: row.seat || '',
