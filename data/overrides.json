@@ -299,9 +299,9 @@
     "_why": "無座標→不出現在地圖;以同城平均/城市中心點補(城市層級精度)。"
   },
   "damai-1037244885542": {
-    "lat": 31.66062,
-    "lng": 120.78029,
-    "_why": "無座標→不出現在地圖;以同城平均/城市中心點補(城市層級精度)。"
+    "lat": 28.972901,
+    "lng": 118.852641,
+    "_why": "衢州保利大剧院(大剧场)——原「城市平均」補值誤用常熟座標(2026-07-10 座標污染清理);改衢州保利權威值"
   },
   "damai-1055727223091": {
     "lat": 31.21327,
@@ -320,5 +320,17 @@
   "tour-the-sound-of-music-2025-mexico-city-2026-08-11": {
     "country": "Mexico",
     "_why": "broadway.org 巡演 country 硬編碼 USA(2026-07-09 座標交叉驗證抓到);broadway_tours.py 已修,此為現役資料即時修正,下次全抓後可刪"
+  },
+  "bway-27108": {
+    "start_date": "2022-11-20",
+    "_why": "Titanique 起演日:2022-11-20 Daryl Roth Theatre 首場(Playbill/BWW;Asylum 舊檔 2022-06-23~11-13);來源 reopeningDate 空(2026-07-10 缺起演日稽核)"
+  },
+  "atg-shows-something-rotten-opera-house-manchester": {
+    "start_date": "2026-06-16",
+    "_why": "UK 首演檔 previews 2026-06-16 起(Ents24/WhatsOnStage;press night 06-26);ATG 頁缺起日"
+  },
+  "nl-d379b0b7": {
+    "start_date": "2024-09-07",
+    "_why": "荷蘭版 previews 2024-09-07 起(theater.nl;première 09-19);stage-entertainment.nl 缺起日"
   }
 }

@@ -452,7 +452,7 @@ function tooltipHtml(show) {
     : `<div class="tt-poster noimg"><span class="glyph">♪</span></div>`;
   return `<div class="tt">${img}<div class="tt-meta">
       <div class="tt-title">${esc(canonTitle(show))}</div>
-      <div class="tt-sub">${esc(show.venue)}</div>
+      ${show.venue ? `<div class="tt-sub">${esc(show.venue)}</div>` : ""}
       <div class="tt-sub">${esc(cityCountry(show))}</div>
       <div class="tt-date">${fmtDates(show)}</div>
     </div></div>`;
@@ -561,7 +561,7 @@ function popupHtml(show) {
       ${title}
       ${tagBadge(show.tag)}
       ${tourLine}
-      <div class="p-row"><b>${esc(show.venue)}</b></div>
+      ${show.venue ? `<div class="p-row"><b>${esc(show.venue)}</b></div>` : ""}
       <div class="p-row">${esc(cityCountry(show))}</div>
       <div class="p-row">${fmtDates(show)}</div>
       ${ticket}${unverified}

@@ -106,6 +106,8 @@ jobs:
           python scrapers/_run.py scrapers/audit_sentinels.py || echo "::warning::sentinel audit failed to run"
           # 官網體檢:地區沒對上/授權頁污染/無條目數(2026-07-09 星光快車官網漏洞後制度化)
           python scrapers/_run.py scrapers/audit_official.py || echo "::warning::official audit failed to run"
+          # 地理體檢:國界框+venue_coords 修正表自體檢(2026-07-10 保利座標污染事件後入 CI)
+          python scrapers/_run.py scrapers/audit_geo.py || echo "::warning::geo audit failed to run"
           # Accumulate today's snapshot into the immutable historical archive
           # (separate stateful layer; never deletes closed runs). Pure build above
           # stays stateless. See scrapers/archive.py.

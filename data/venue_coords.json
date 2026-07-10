@@ -1,4371 +1,4835 @@
 {
-  "_comment": "Authoritative venue coords (Google, building-level ~<=30m), keyed by 'venue|city'. Applied in build_shows.py. Regenerate: scrapers/geocode_google.py (incremental; --all to re-do every venue).",
-  "(通州区)北京艺术中心-戏剧场-国家大剧院分址|beijing": [
-    39.904799,
-    116.389671
-  ],
-  "(通州区)北京艺术中心-歌剧院-国家大剧院分址|beijing": [
-    39.904799,
-    116.389671
-  ],
-  "3olympia theatre|dublin": [
-    53.344309,
-    -6.266065
-  ],
-  "3q米食|miaoli": [
-    24.417593,
-    120.68336
-  ],
-  "3q米食|苗栗": [
-    24.417593,
-    120.68336
-  ],
-  "579百工集百老汇舞厅|jinan": [
-    36.68149,
-    117.08859
-  ],
-  "aalborghallen|aalborg": [
-    57.043514,
-    9.913634
-  ],
-  "abba arena|london": [
-    51.532937,
-    -0.013508
-  ],
-  "abcホール|osaka": [
-    34.693689,
-    135.488298
-  ],
-  "aberdeen music hall|aberdeen": [
-    57.145221,
-    -2.104737
-  ],
-  "academy of music - pa|philadelphia": [
-    39.947984,
-    -75.164898
-  ],
-  "academy of music: kimmel center|philadelphia": [
-    39.947984,
-    -75.164898
-  ],
-  "act of connecticut|ridgefield": [
-    41.28609,
-    -73.491119
-  ],
-  "adelphi theatre|london": [
-    51.510122,
-    -0.122762
-  ],
-  "adler theatre|davenport": [
-    41.522532,
-    -90.573344
-  ],
-  "adrienne arsht center|miami": [
-    25.787628,
-    -80.189903
-  ],
-  "agora - művelődési és sportház|szombathely": [
-    47.23648,
-    16.621417
-  ],
-  "ahmanson theatre|los angeles": [
-    34.057974,
-    -118.247558
-  ],
-  "aiia 2.5 theater kobe|hyogo": [
-    34.704334,
-    135.195164
-  ],
-  "akron civic theatre|akron": [
-    41.080692,
-    -81.520355
-  ],
-  "al hirschfeld theatre|new york": [
-    40.759261,
-    -73.989201
-  ],
-  "aldwych theatre|london": [
-    51.512995,
-    -0.118557
-  ],
-  "alexandra palace|london": [
-    51.594237,
-    -0.130811
-  ],
-  "alexis park resort hotel|las vegas": [
-    36.107577,
-    -115.156252
-  ],
-  "alfieri|torino": [
-    45.06987,
-    7.677284
-  ],
-  "algonquin arts theatre|manasquan": [
-    40.122345,
-    -74.050064
-  ],
-  "algonquin commons theatre|nepean": [
-    45.349691,
-    -75.755823
-  ],
-  "alhambra theatre|dunfermline": [
-    56.07007,
-    -3.457891
-  ],
-  "allen elizabethan theatre|ashland": [
-    42.196054,
-    -122.71513
-  ],
-  "alliance theatre|atlanta": [
-    33.789247,
-    -84.385409
-  ],
-  "altria theater|richmond": [
-    37.546198,
-    -77.451698
-  ],
-  "altınoluk amphi theater|balıkesir": [
-    39.57724,
-    26.740868
-  ],
-  "amaturo theater at broward center|fort lauderdale": [
-    26.119331,
-    -80.149155
-  ],
-  "amaturo theater at broward center|ft lauderdale": [
-    26.119331,
-    -80.149155
-  ],
-  "ambassador theatre|new york": [
-    40.761292,
-    -73.985083
-  ],
-  "ames center|burnsville": [
-    44.774036,
-    -93.279488
-  ],
-  "apollo theater|chicago": [
-    41.928063,
-    -87.652822
-  ],
-  "apollo victoria theatre|london": [
-    51.495745,
-    -0.142734
-  ],
-  "arcimboldi|milano": [
-    45.514842,
-    9.213553
-  ],
-  "arena du pays d'aix|aix-en-provence": [
-    43.47322,
-    5.403862
-  ],
-  "arona|arona": [
-    28.09995,
-    -16.679977
-  ],
-  "aronoff center-procter & gamble hall|cincinnati": [
-    39.103564,
-    -84.51179
-  ],
-  "aronoff center: procter &amp; gamble hall|cincinnati": [
-    39.103564,
-    -84.51179
-  ],
-  "artespacio plot point|madrid": [
-    40.401971,
-    -3.702038
-  ],
-  "artscape opera house|cape town": [
-    -33.919686,
-    18.43045
-  ],
-  "asb waterfront theatre|auckland": [
-    -36.842086,
-    174.757489
-  ],
-  "asu gammage|tempe": [
-    33.416265,
-    -111.938001
-  ],
-  "at&amp;t performing arts center|dallas": [
-    32.791229,
-    -96.797525
-  ],
-  "athenaeum theatre one|melbourne": [
-    -37.814949,
-    144.967453
-  ],
-  "auditori barradas|hospitalet de llobregat": [
-    41.362823,
-    2.100824
-  ],
-  "auditori de cornellà|cornellà de llobregat": [
-    41.349404,
-    2.081428
-  ],
-  "auditori sixto mir|sant carles de la ràpita": [
-    40.612667,
-    0.58428
-  ],
-  "auditorio banamex|monterrey": [
-    25.677595,
-    -100.280868
-  ],
-  "auditorio municipal paco de lucía|alcalá de henares": [
-    40.471037,
-    -3.375645
-  ],
-  "auditorio reveriano soutullo|ponteareas": [
-    42.174299,
-    -8.506983
-  ],
-  "auditorio telmex|zapopan": [
-    20.733319,
-    -103.381159
-  ],
-  "auditorium theatre of roosevelt univ.|chicago": [
-    41.87585,
-    -87.625241
-  ],
-  "auditorium theatre|rochester": [
-    43.160741,
-    -77.588659
-  ],
-  "avenir centre|moncton": [
-    46.085531,
-    -64.784471
-  ],
-  "aylesbury waterside theatre|aylesbury": [
-    51.814792,
-    -0.809475
-  ],
-  "balaton színház|keszthely": [
-    46.76583,
-    17.243758
-  ],
-  "balletsalen, det ny teater|københavn v": [
-    55.673186,
-    12.555286
-  ],
-  "barbican centre|london": [
-    51.520208,
-    -0.093786
-  ],
-  "barclays arena|hamburg": [
-    53.589333,
-    9.899105
-  ],
-  "bass concert hall @ u of tx at austin|austin": [
-    30.286392,
-    -97.7312
-  ],
-  "bass concert hall|austin": [
-    30.286392,
-    -97.7312
-  ],
-  "bass performance hall|fort worth": [
-    32.754875,
-    -97.329881
-  ],
-  "bath forum|bath": [
-    51.378586,
-    -2.360637
-  ],
-  "bay city players|bay city": [
-    43.589048,
-    -83.878578
-  ],
-  "beatrix theater utrecht|utrecht": [
-    52.088455,
-    5.107443
-  ],
-  "beatrix theatre utrecht|utrecht": [
-    52.088455,
-    5.107443
-  ],
-  "beau rivage theatre|biloxi": [
-    30.392345,
-    -88.891732
-  ],
-  "belasco theatre|new york": [
-    40.756639,
-    -73.983886
-  ],
-  "belk theatre|charlotte": [
-    35.227317,
-    -80.841542
-  ],
-  "benedum center|pittsburgh": [
-    40.442985,
-    -80.000016
-  ],
-  "benjamin &amp; marian schuster performing arts center|dayton": [
-    39.761183,
-    -84.193306
-  ],
-  "bergen performing arts center|englewood": [
-    40.895292,
-    -73.974933
-  ],
-  "berglund performing arts theatre|roanoke": [
-    37.280128,
-    -79.935814
-  ],
-  "bernard b. jacobs theatre|new york": [
-    40.758768,
-    -73.987706
-  ],
-  "birmingham-jefferson concert hall|birmingham": [
-    33.525636,
-    -86.812339
-  ],
-  "bjcc concert hall|birmingham": [
-    33.525636,
-    -86.812339
-  ],
-  "blackpool opera house|blackpool": [
-    53.817524,
-    -3.050858
-  ],
-  "bloomington center for the performing arts|bloomington": [
-    40.484139,
-    -88.992834
-  ],
-  "bloomington, in|bloomington": [
-    39.169574,
-    -86.538555
-  ],
-  "blue square|seoul": [
-    37.540703,
-    127.002648
-  ],
-  "blumenthal center: belk theater|charlotte": [
-    35.227317,
-    -80.841542
-  ],
-  "boch center shubert theatre|boston": [
-    42.350401,
-    -71.065401
-  ],
-  "boch center wang theatre|boston": [
-    42.350371,
-    -71.064804
-  ],
-  "bord gais energy theatre|dublin": [
-    53.344185,
-    -6.240018
-  ],
-  "bournemouth pavilion|bournemouth": [
-    50.717919,
-    -1.874783
-  ],
-  "bradford live|bradford": [
-    53.792342,
-    -1.7567
-  ],
-  "brancaccio|roma": [
-    41.893591,
-    12.500826
-  ],
-  "brighton centre|london": [
-    50.821232,
-    -0.146474
-  ],
-  "brighton dome|brighton": [
-    50.8237,
-    -0.138084
-  ],
-  "bristol hippodrome|bristol": [
-    51.453194,
-    -2.598262
-  ],
-  "broadhurst theatre|new york": [
-    40.758162,
-    -73.987565
-  ],
-  "broadway playhouse at water tower place|chicago": [
-    41.89819,
-    -87.622225
-  ],
-  "broadway theatre|new york": [
-    40.763259,
-    -73.983051
-  ],
-  "broome county forum theatre|binghamton": [
-    42.101431,
-    -75.912367
-  ],
-  "broward center for the perf. arts|fort lauderdale": [
-    26.119756,
-    -80.149577
-  ],
-  "bruce mason centre|takapuna beach": [
-    -36.784098,
-    174.772975
-  ],
-  "brunnsparken, ronneby|ronneby": [
-    56.19553,
-    15.286543
-  ],
-  "buckhead theatre|atlanta": [
-    33.840302,
-    -84.379665
-  ],
-  "budapesti operettszínház|budapest": [
-    47.503908,
-    19.060105
-  ],
-  "buell theatre|denver": [
-    39.744541,
-    -104.997696
-  ],
-  "burgberg|heinsberg": [
-    51.060156,
-    6.093399
-  ],
-  "bursa kültür park open air theatre|bursa": [
-    40.196763,
-    29.041519
-  ],
-  "bushnell/ belding theater|hartford": [
-    41.762675,
-    -72.680019
-  ],
-  "bushnell|hartford": [
-    41.762595,
-    -72.680897
-  ],
-  "cabaret du casino de montreal|montreal": [
-    45.504609,
-    -73.525995
-  ],
-  "cadillac palace theatre|chicago": [
-    41.884239,
-    -87.633058
-  ],
-  "cadillac palace|chicago": [
-    41.884239,
-    -87.633058
-  ],
-  "cadogan hall|london": [
-    51.493792,
-    -0.157232
-  ],
-  "california theatre of the performing arts|san bernardino": [
-    34.106814,
-    -117.295449
-  ],
-  "cambridge theatre|london": [
-    51.513665,
-    -0.126629
-  ],
-  "canberra theatre centre|canberra": [
-    -35.281702,
-    149.130507
-  ],
-  "cape playhouse|dennis": [
-    41.740685,
-    -70.191788
-  ],
-  "capital theatre|london": [
-    51.479658,
-    0.015974
-  ],
-  "capitol center for the arts - nh|concord": [
-    43.201258,
-    -71.534745
-  ],
-  "capitol theater - overture center|madison": [
-    43.074219,
-    -89.388452
-  ],
-  "capitol theatre, sydney|haymarket": [
-    -33.879399,
-    151.206303
-  ],
-  "capitol theatre, sydney|sydney": [
-    -33.879399,
-    151.206303
-  ],
-  "capitole gent|ghent": [
-    51.04812,
-    3.732177
-  ],
-  "capitólio|lisboa": [
-    38.718876,
-    -9.146637
-  ],
-  "carlisle sands centre|carlisle": [
-    54.899775,
-    -2.934079
-  ],
-  "carolina civic center historic theater|lumberton": [
-    34.619236,
-    -79.007947
-  ],
-  "cartiere carrara|firenze": [
-    43.766572,
-    11.296013
-  ],
-  "casa de cultura - tobarra|tobarra": [
-    38.590928,
-    -1.68825
-  ],
-  "casa de cultura maría zambrano|bargas": [
-    39.940473,
-    -4.018267
-  ],
-  "casa de la cultura francisco rabal|águilas": [
-    37.403035,
-    -1.580241
-  ],
-  "casa manana|fort worth": [
-    32.746028,
-    -97.362537
-  ],
-  "casa municipal de puerto de sagunto|puerto de sagunto": [
-    39.658539,
-    -0.219433
-  ],
-  "cascades theatrical co|bend": [
-    44.060212,
-    -121.309732
-  ],
-  "casino rama resort|rama": [
-    44.648697,
-    -79.344879
-  ],
-  "casino vancouver|coquitlam": [
-    49.227446,
-    -122.83746
-  ],
-  "centennial hall|tucson": [
-    32.231477,
-    -110.955463
-  ],
-  "center stage theater|atlanta": [
-    33.792215,
-    -84.387956
-  ],
-  "centerpoint legacy theatre|centerville": [
-    40.923195,
-    -111.886249
-  ],
-  "centre stage -sc|greenville": [
-    34.849363,
-    -82.402174
-  ],
-  "centro cultural malaposta|lisboa": [
-    38.787265,
-    -9.170165
-  ],
-  "centro cultural teatro i|méxico": [
-    19.424791,
-    -99.154315
-  ],
-  "centro cultural virgen del carmen|torrevieja": [
-    37.977358,
-    -0.675201
-  ],
-  "centro pumarin-gijón sur|gijón": [
-    43.524977,
-    -5.67737
-  ],
-  "cgv daegu hanil|daegu": [
-    35.870497,
-    128.595378
-  ],
-  "chandler center for the arts|chandler": [
-    33.307388,
-    -111.842392
-  ],
-  "chapman music hall at tulsa pac|tulsa": [
-    36.154174,
-    -95.989204
-  ],
-  "charing cross theatre|london": [
-    51.508026,
-    -0.124121
-  ],
-  "charline mccombs empire theatre|san antonio": [
-    29.42605,
-    -98.491253
-  ],
-  "chateau neuf,storsalen|oslo": [
-    59.932338,
-    10.712599
-  ],
-  "chester fritz performing arts center|grand forks": [
-    47.921624,
-    -97.078762
-  ],
-  "chungmu arts center|seoul": [
-    37.565929,
-    127.014859
-  ],
-  "cibc theatre|chicago": [
-    41.880805,
-    -87.62851
-  ],
-  "cidade das artes (bibi ferreira)|rio de janeiro": [
-    -22.999156,
-    -43.365798
-  ],
-  "circle in the square theatre & school|new york": [
-    40.762021,
-    -73.985072
-  ],
-  "citizens opera house|boston": [
-    42.353987,
-    -71.062304
-  ],
-  "ciudad romana de cáparra|guijo de granadilla": [
-    40.164086,
-    -6.098943
-  ],
-  "civic center music hall|oklahoma city": [
-    35.469054,
-    -97.523563
-  ],
-  "ckis – dom kultury oskard|konin": [
-    52.227952,
-    18.2545
-  ],
-  "clowes memorial hall|indianapolis": [
-    39.840439,
-    -86.169985
-  ],
-  "club regent event centre|winnipeg": [
-    49.896964,
-    -97.045071
-  ],
-  "coca-cola arena|dubai": [
-    25.20431,
-    55.265382
-  ],
-  "coex artium|seoul": [
-    37.510006,
-    127.061479
-  ],
-  "colorado springs, co|colorado springs": [
-    38.835314,
-    -104.821601
-  ],
-  "columbia county performing arts center|evans": [
-    33.543887,
-    -82.127735
-  ],
-  "comedy theatre|melbourne": [
-    -37.810291,
-    144.970024
-  ],
-  "congress theatre|eastbourne": [
-    50.762778,
-    0.283333
-  ],
-  "connor palace - cleveland|cleveland": [
-    41.501732,
-    -81.680458
-  ],
-  "connor palace|cleveland": [
-    41.501732,
-    -81.680458
-  ],
-  "costa de adeje|costa de adeje": [
-    28.076663,
-    -16.731999
-  ],
-  "crighton theatre|conroe": [
-    30.310879,
-    -95.456876
-  ],
-  "criterion theatre|london": [
-    51.509727,
-    -0.134269
-  ],
-  "cross insurance center|bangor": [
-    44.789706,
-    -68.778777
-  ],
-  "croswell opera house|adrian": [
-    41.898759,
-    -84.035365
-  ],
-  "crown theatre perth|burswood": [
-    -31.959777,
-    115.89513
-  ],
-  "crown theatre perth|perth": [
-    -31.959777,
-    115.89513
-  ],
-  "csajághy laura szabadtéri színpad|kápolnásnyék": [
-    47.231914,
-    18.677085
-  ],
-  "cubierta de leganes|leganés": [
-    40.326296,
-    -3.758278
-  ],
-  "curran theatre|san francisco": [
-    37.786854,
-    -122.410619
-  ],
-  "cygnet theatre|san deigo": [
-    32.738126,
-    -117.21498
-  ],
-  "cygnet theatre|san diego": [
-    32.738126,
-    -117.21498
-  ],
-  "daegu ayang art center|daegu": [
-    35.879784,
-    128.65196
-  ],
-  "daegu bongsan cultural center|daegu": [
-    35.863327,
-    128.596595
-  ],
-  "daegu culture & arts centre|daegu": [
-    35.844659,
-    128.558741
-  ],
-  "daejeon arts center|daejeon": [
-    36.366503,
-    127.383958
-  ],
-  "daryl roth theatre|new york": [
-    40.735408,
-    -73.98963
-  ],
-  "david a. straz center - carol morsani hall|tampa": [
-    27.951607,
-    -82.464191
-  ],
-  "de montfort hall|leicester": [
-    52.625005,
-    -1.121988
-  ],
-  "debrecen főnix aréna|debrecen": [
-    47.545598,
-    21.642969
-  ],
-  "decc symphony hall|duluth": [
-    46.779961,
-    -92.09881
-  ],
-  "dell'aquila|fermo": [
-    43.160405,
-    13.717631
-  ],
-  "delmar hall|saint louis": [
-    38.655547,
-    -90.2972
-  ],
-  "des moines civic center|des moines": [
-    41.587309,
-    -93.620501
-  ],
-  "det ny teater|københavn v": [
-    55.673186,
-    12.555286
-  ],
-  "devos hall|grand rapids": [
-    42.968226,
-    -85.673072
-  ],
-  "diamond head theatre|honolulu": [
-    21.2708,
-    -157.803151
-  ],
-  "divadlo broadway|prague": [
-    50.086603,
-    14.426985
-  ],
-  "divadlo hybernia|prague": [
-    50.087403,
-    14.428806
-  ],
-  "divadlo jiřího myrona (ndm)|ostrava": [
-    49.836276,
-    18.288177
-  ],
-  "divadlo kalich|prague": [
-    50.080276,
-    14.421772
-  ],
-  "divadlo radka brzobohatého|prague": [
-    50.081539,
-    14.429499
-  ],
-  "dominion theatre|london": [
-    51.516681,
-    -0.12986
-  ],
-  "dorfman theatre|london": [
-    51.507043,
-    -0.113328
-  ],
-  "dr. phillips center for the performing arts: walt disney  theater|orlando": [
-    28.537459,
-    -81.376959
-  ],
-  "dr. phillips performing arts center|orlando": [
-    28.537825,
-    -81.377381
-  ],
-  "dream hall|daegu": [
-    37.550333,
-    126.915793
-  ],
-  "dream hall|seoul": [
-    37.550333,
-    126.915793
-  ],
-  "dream live at american dream|east rutherford": [
-    40.809129,
-    -74.068567
-  ],
-  "drury lane theatre oakbrook terrace|villa park": [
-    41.859528,
-    -87.952947
-  ],
-  "duke of york's theatre|london": [
-    51.510237,
-    -0.127074
-  ],
-  "dunakeszi nyári színház|dunakeszi": [
-    47.645366,
-    19.133115
-  ],
-  "dundee caird hall|dundee": [
-    56.459938,
-    -2.968609
-  ],
-  "durham performing arts center|durham": [
-    35.993248,
-    -78.902192
-  ],
-  "e.j. thomas hall - the university of akron|akron": [
-    41.078244,
-    -81.514698
-  ],
-  "eccles theater|salt lake city": [
-    40.766363,
-    -111.890583
-  ],
-  "edinburgh playhouse|edinburgh": [
-    55.956898,
-    -3.185397
-  ],
-  "effingham performance center|effingham": [
-    39.137246,
-    -88.575118
-  ],
-  "egri vár|eger": [
-    47.90451,
-    20.379905
-  ],
-  "el cantoral|mexico": [
-    19.361982,
-    -99.166296
-  ],
-  "embassy theatre|fort wayne": [
-    41.075737,
-    -85.139762
-  ],
-  "emerson colonial theatre|boston": [
-    42.352339,
-    -71.065438
-  ],
-  "empress museum|london": [
-    51.488006,
-    -0.198684
-  ],
-  "erkel színház|budapest": [
-    47.496919,
-    19.076806
-  ],
-  "escenario gnp seguros|monterrey": [
-    25.666174,
-    -100.316342
-  ],
-  "espacio alma|madrid": [
-    40.417335,
-    -3.703097
-  ],
-  "espacio broadway (madrid)|madrid": [
-    40.426053,
-    -3.707854
-  ],
-  "espacio escénico adolfo suárez|viator": [
-    36.88949,
-    -2.423816
-  ],
-  "espai texas|barcelona": [
-    41.402039,
-    2.163679
-  ],
-  "esplanade theatre|singapore": [
-    1.289793,
-    103.855817
-  ],
-  "etihad arena|abu dhabi": [
-    24.460342,
-    54.604356
-  ],
-  "eugene o'neill theatre|new york": [
-    40.761133,
-    -73.985659
-  ],
-  "europahalle|trier": [
-    49.752092,
-    6.63669
-  ],
-  "evans, ga|evans": [
-    33.533746,
-    -82.130675
-  ],
-  "eventim apollo|london": [
-    51.490993,
-    -0.22461
-  ],
-  "falconersalen|frederiksberg": [
-    55.679713,
-    12.532895
-  ],
-  "feinstein's at the nikko|san francisco": [
-    37.786008,
-    -122.409296
-  ],
-  "festival theatre|adelaide": [
-    -34.919813,
-    138.598372
-  ],
-  "festspiel- und kongresshaus|bregenz": [
-    47.50464,
-    9.737331
-  ],
-  "first interstate center for the arts|spokane": [
-    47.660556,
-    -117.417222
-  ],
-  "firstontario concert hall|hamilton": [
-    43.256371,
-    -79.871727
-  ],
-  "fisher theatre|detroit": [
-    42.369513,
-    -83.076734
-  ],
-  "flat rock playhouse|flat rock": [
-    35.273777,
-    -82.443285
-  ],
-  "folketeateret|oslo": [
-    59.914329,
-    10.750466
-  ],
-  "ford's theatre|washington": [
-    38.896676,
-    -77.025591
-  ],
-  "forrest theatre|philadelphia": [
-    39.948539,
-    -75.159557
-  ],
-  "fortune theatre|london": [
-    51.513287,
-    -0.120693
-  ],
-  "foundry theatre|pyrmont": [
-    -33.868321,
-    151.196234
-  ],
-  "foundry theatre|sydney": [
-    -33.868321,
-    151.196234
-  ],
-  "fox cities pac|appleton": [
-    44.262354,
-    -88.411558
-  ],
-  "fox cities performing arts center|appleton": [
-    44.262354,
-    -88.411558
-  ],
-  "fox theatre - atlanta|atlanta": [
-    33.772614,
-    -84.38534
-  ],
-  "fox theatre|atlanta": [
-    33.772614,
-    -84.38534
-  ],
-  "fox theatre|st. louis": [
-    38.638903,
-    -90.231845
-  ],
-  "fraschini|pavia": [
-    45.188506,
-    9.156173
-  ],
-  "fred kavli theatre- b of a performing arts center,thousand oaks|thousand oaks": [
-    34.174491,
-    -118.848929
-  ],
-  "freeman arts pavilion|selbyville": [
-    38.466017,
-    -75.112054
-  ],
-  "fulton county southwest arts center|atlanta": [
-    33.729722,
-    -84.541667
-  ],
-  "fulton opera house|lancaster": [
-    40.038054,
-    -76.308231
-  ],
-  "gaiety theatre|dublin": [
-    53.340461,
-    -6.261575
-  ],
-  "garrick theatre|london": [
-    51.510074,
-    -0.127911
-  ],
-  "gerald schoenfeld theatre|new york": [
-    40.758614,
-    -73.987311
-  ],
-  "gershwin theatre|new york": [
-    40.762547,
-    -73.98497
-  ],
-  "gielgud theatre|london": [
-    51.511789,
-    -0.132825
-  ],
-  "gleneagle arena|co. kerry": [
-    52.044466,
-    -9.502486
-  ],
-  "golden|palermo": [
-    38.129741,
-    13.344788
-  ],
-  "gran teatre del liceu|barcelona": [
-    41.380197,
-    2.173295
-  ],
-  "gran teatro caixabank príncipe pío|madrid": [
-    40.420887,
-    -3.718805
-  ],
-  "gran teatro geox|padova": [
-    45.417396,
-    11.855976
-  ],
-  "gran teatro pavón|madrid": [
-    40.410031,
-    -3.706155
-  ],
-  "grand opera house york|york": [
-    53.957241,
-    -1.08202
-  ],
-  "grey eagle event centre|calgary": [
-    51.007495,
-    -114.147247
-  ],
-  "gulfshore playhouse|naples": [
-    26.146347,
-    -81.791338
-  ],
-  "guthrie theater - mcguire proscenium stage|minneapolis": [
-    44.97817,
-    -93.255866
-  ],
-  "gyulai várszínház|gyula": [
-    46.645937,
-    21.285727
-  ],
-  "győr audi aréna|győr": [
-    47.698293,
-    17.666476
-  ],
-  "győri nemzeti színház|győr": [
-    47.686581,
-    17.635384
-  ],
-  "gödöllői királyi kastély|gödöllő": [
-    47.596009,
-    19.347578
-  ],
-  "hackensack meridian health theatre at the count basie center|red bank": [
-    40.349145,
-    -74.07012
-  ],
-  "hale center theatre at mountain america|sandy": [
-    40.571681,
-    -111.898212
-  ],
-  "hale centre theatre - arizona|gilbert": [
-    33.355223,
-    -111.790642
-  ],
-  "hampstead theatre|london": [
-    51.543817,
-    -0.173679
-  ],
-  "hanover theatre|worcester": [
-    42.26075,
-    -71.803117
-  ],
-  "harbiye cemil topuzlu açıkhava tiyatrosu|i̇stanbul": [
-    41.046061,
-    28.99003
-  ],
-  "hard rock cafe - nyc|new york": [
-    40.757035,
-    -73.986611
-  ],
-  "hard rock cafe|new york": [
-    40.757035,
-    -73.986611
-  ],
-  "harevutai|tokyo": [
-    35.731953,
-    139.715591
-  ],
-  "harrah's cabaret at harrah's las vegas|las vegas": [
-    36.119599,
-    -115.172051
-  ],
-  "harrison opera house|norfolk": [
-    36.858039,
-    -76.290483
-  ],
-  "hawth theatre|crawley": [
-    51.111467,
-    -0.174699
-  ],
-  "hayes hall|naples": [
-    26.216016,
-    -81.803822
-  ],
-  "helen devitt jones theater at the buddy holly hall|lubbock": [
-    33.590746,
-    -101.849288
-  ],
-  "herald theatre, aotea centre|auckland": [
-    -36.851685,
-    174.762127
-  ],
-  "here at outernet|london": [
-    51.515689,
-    -0.129875
-  ],
-  "hershey theatre|hershey": [
-    40.285216,
-    -76.648512
-  ],
-  "hershey, pa|hershey": [
-    40.285924,
-    -76.650247
-  ],
-  "hippodrome theatre|baltimore": [
-    39.289869,
-    -76.62166
-  ],
-  "his majesty’s theatre|london": [
-    51.508243,
-    -0.131863
-  ],
-  "hobby center for the perf. arts|houston": [
-    29.761667,
-    -95.369722
-  ],
-  "hollywood pantages theatre|los angeles": [
-    34.101843,
-    -118.325609
-  ],
-  "hongdae nanta theater|seoul": [
-    37.553087,
-    126.921119
-  ],
-  "hongik daehangno art center|seoul": [
-    37.576664,
-    127.001851
-  ],
-  "hotel kilmore|co.cavan": [
-    53.986571,
-    -7.322304
-  ],
-  "house of blues las vegas|las vegas": [
-    36.093044,
-    -115.175564
-  ],
-  "howard l. schrott center for the arts|indianapolis": [
-    39.840055,
-    -86.16945
-  ],
-  "howard theatre|washington": [
-    38.915374,
-    -77.021089
-  ],
-  "hudební divadlo karlín|prague": [
-    50.090156,
-    14.441942
-  ],
-  "hull city hall|hull": [
-    53.743781,
-    -0.339818
-  ],
-  "hull new theatre|hull": [
-    53.747489,
-    -0.33736
-  ],
-  "hult center for the performing arts|eugene": [
-    44.052743,
-    -123.093179
-  ],
-  "hírös agóra|kecskemét": [
-    46.90706,
-    19.689587
-  ],
-  "höga kusten friluftsteater|lövvik": [
-    62.801636,
-    18.06864
-  ],
-  "i 4 mori|livorno": [
-    43.549529,
-    10.304753
-  ],
-  "i'm a show|tokyo": [
-    35.673596,
-    139.763452
-  ],
-  "il sistina chapiteau - milano|sesto san giovanni": [
-    45.526434,
-    9.246771
-  ],
-  "il sistina|roma": [
-    41.904255,
-    12.486967
-  ],
-  "imperial theatre - ny|new york": [
-    40.758991,
-    -73.987377
-  ],
-  "imperial theatre|new york": [
-    40.758991,
-    -73.987377
-  ],
-  "indiana university auditorium|bloomington": [
-    39.168484,
-    -86.51816
-  ],
-  "ing剧场·一台好戏星空间131号|shanghai": [
-    31.233864,
-    121.47809
-  ],
-  "ing剧场·一台好戏星空间1739号|shanghai": [
-    31.233864,
-    121.47809
-  ],
-  "intiman|stockholm": [
-    59.342071,
-    18.048466
-  ],
-  "ipswich regent theatre|ipswich": [
-    52.057441,
-    1.160287
-  ],
-  "i̇zmir kültürpark open air theatre|i̇zmir": [
-    38.428481,
-    27.145345
-  ],
-  "jacksonville center for the performing arts: moran theatre|jacksonville": [
-    30.324873,
-    -81.662749
-  ],
-  "james m. nederlander theatre|chicago": [
-    41.884664,
-    -87.628712
-  ],
-  "jefferson perf arts center|metairie": [
-    29.976377,
-    -90.203646
-  ],
-  "jewel box at hale centre theatre sandy|sandy": [
-    40.571217,
-    -111.897959
-  ],
-  "jiří myron theatre (ndm, repertory)|ostrava": [
-    49.836276,
-    18.288177
-  ],
-  "john golden theatre|new york": [
-    40.758828,
-    -73.987899
-  ],
-  "john w engeman theater|northport": [
-    40.900697,
-    -73.346626
-  ],
-  "jr東日本四季劇場[春] (竹芝)|tokyo": [
-    35.656881,
-    139.761854
-  ],
-  "jr東日本四季劇場[秋] (竹芝)|tokyo": [
-    35.656881,
-    139.761854
-  ],
-  "jtn art hall (大學路)|seoul": [
-    37.576758,
-    127.003912
-  ],
-  "julie rogers theatre|beaumont": [
-    30.081818,
-    -94.09601
-  ],
-  "kaat 神奈川芸術劇場|yokohama": [
-    35.445429,
-    139.646049
-  ],
-  "kaat 神奈川芸術劇場〈ホール〉|kanagawa": [
-    35.445429,
-    139.646049
-  ],
-  "kadıköy belediyesi selamiçeşme|i̇stanbul": [
-    40.975851,
-    29.050754
-  ],
-  "kanadevia hall|tokyo": [
-    35.703364,
-    139.754219
-  ],
-  "keller auditorium|portland": [
-    45.512499,
-    -122.678246
-  ],
-  "kentucky center for the perf. arts|louisville": [
-    38.257089,
-    -85.758791
-  ],
-  "keybank state theatre-playhouse square center|cleveland": [
-    41.501184,
-    -81.680768
-  ],
-  "keybank state theatre|cleveland": [
-    41.501184,
-    -81.680768
-  ],
-  "kinepolis full (splau)|cornellà de llobregat": [
-    41.347441,
-    2.078822
-  ],
-  "king's theatre, glasgow|glasgow": [
-    55.864993,
-    -4.268655
-  ],
-  "king's theatre|glasgow": [
-    55.864993,
-    -4.268655
-  ],
-  "kings theatre edinburgh|edinburgh": [
-    55.941988,
-    -3.203102
-  ],
-  "kinépolis alicante|alicante": [
-    38.354463,
-    -0.471938
-  ],
-  "kinépolis mataró parc|mataró": [
-    41.554974,
-    2.433538
-  ],
-  "kiri te kanawa theatre|auckland": [
-    -36.851926,
-    174.762085
-  ],
-  "klub momenty|wrocław": [
-    51.107965,
-    17.034359
-  ],
-  "kravis center for the performing arts|west palm beach": [
-    26.70658,
-    -80.059363
-  ],
-  "kvártélyház|zalaegerszeg": [
-    46.84425,
-    16.845674
-  ],
-  "kwanglim arts center|seoul": [
-    37.524217,
-    127.026563
-  ],
-  "kyounghyang art hill (貞洞)|seoul": [
-    37.56817,
-    126.969992
-  ],
-  "kálmán imre szabadtéri színpad|siófok": [
-    46.908934,
-    18.051116
-  ],
-  "la casa dels contes|barcelona": [
-    41.402903,
-    2.158896
-  ],
-  "la mirada theatre for the performing arts|la mirada": [
-    33.896777,
-    -118.009556
-  ],
-  "la off barcelona|barcelona": [
-    41.403874,
-    2.167898
-  ],
-  "landmark theatre|syracuse": [
-    43.047373,
-    -76.152576
-  ],
-  "larum|łódź": [
-    51.76512,
-    19.458404
-  ],
-  "ldlc arena|lyon-décines": [
-    45.769271,
-    4.979854
-  ],
-  "le galaxie|amnéville": [
-    49.245578,
-    6.128039
-  ],
-  "le palais des congrès de paris|paris": [
-    48.879384,
-    2.283644
-  ],
-  "le petit theatre|new orleans": [
-    29.957515,
-    -90.064205
-  ],
-  "leeds grand theatre|leeds": [
-    53.8,
-    -1.541111
-  ],
-  "lena horne theatre|new york": [
-    40.759937,
-    -73.9869
-  ],
-  "lewis family playhouse|rancho cucamonga": [
-    34.112922,
-    -117.532576
-  ],
-  "lexington opera house|lexington": [
-    38.049844,
-    -84.499167
-  ],
-  "lexington, ky|lexington": [
-    38.038909,
-    -84.515266
-  ],
-  "lg arts center seoul|seoul": [
-    37.565087,
-    126.829593
-  ],
-  "lied center for performing arts|lincoln": [
-    40.816393,
-    -96.704725
-  ],
-  "lincoln center for the performing arts|new york": [
-    40.772464,
-    -73.983489
-  ],
-  "liverpool empire theatre|liverpool": [
-    53.408873,
-    -2.978285
-  ],
-  "liverpool empire|liverpool": [
-    53.408873,
-    -2.978285
-  ],
-  "liverpool philharmonic hall|liverpool": [
-    53.401334,
-    -2.970268
-  ],
-  "london coliseum|london": [
-    51.509869,
-    -0.126656
-  ],
-  "london palladium|london": [
-    51.51457,
-    -0.140452
-  ],
-  "longacre theatre|new york": [
-    40.760446,
-    -73.985883
-  ],
-  "lorensbergsteatern|göteborg": [
-    57.698333,
-    11.979862
-  ],
-  "lunt-fontanne theatre|new york": [
-    40.759221,
-    -73.986037
-  ],
-  "lyceum theatre|london": [
-    51.51154,
-    -0.120081
-  ],
-  "lyric theatre of oklahoma|oklahoma city": [
-    35.486339,
-    -97.539799
-  ],
-  "lyric theatre, qpac|brisbane": [
-    -27.474241,
-    153.019486
-  ],
-  "lyric theatre|london": [
-    51.51122,
-    -0.133782
-  ],
-  "m&s bank arena liverpool|london": [
-    53.397479,
-    -2.991593
-  ],
-  "maag halle|zürich": [
-    47.38689,
-    8.51685
-  ],
-  "madách színház|budapest": [
-    47.501177,
-    19.068345
-  ],
-  "magyar színház|budapest": [
-    47.503361,
-    19.072744
-  ],
-  "magyarock dalszínház színházi egyesület|komárom": [
-    47.741867,
-    18.122564
-  ],
-  "maihaugsalen|lillehammer": [
-    61.112644,
-    10.477742
-  ],
-  "majestic theatre|san antonio": [
-    29.426173,
-    -98.490606
-  ],
-  "margitszigeti szabadtéri színpad|budapest": [
-    47.530012,
-    19.050065
-  ],
-  "marlowe theatre|canterbury": [
-    51.281034,
-    1.078564
-  ],
-  "marriott theater - lincolnshire il|lincolnshire": [
-    42.19575,
-    -87.925205
-  ],
-  "masquerade nyc|new york": [
-    40.765724,
-    -73.981206
-  ],
-  "masquerade — 218 w 57th st (immersive)|new york": [
-    40.765724,
-    -73.981206
-  ],
-  "mayflower theatre|southampton": [
-    50.908614,
-    -1.41019
-  ],
-  "mccallum theatre for the perf. arts|palm desert": [
-    33.729917,
-    -116.389105
-  ],
-  "mckelligon canyon theatre|el paso": [
-    31.837528,
-    -106.484694
-  ],
-  "mehr! theater am großmarkt|hambug": [
-    53.54294,
-    10.016439
-  ],
-  "metronom theater|oberhausen": [
-    51.4913,
-    6.885566
-  ],
-  "metropol theater bremen|bremen": [
-    53.078346,
-    8.814134
-  ],
-  "mexico city|mexico city": [
-    19.432608,
-    -99.133208
-  ],
-  "milton keynes theatre|milton keynes": [
-    52.044081,
-    -0.748787
-  ],
-  "milton theatre|milton": [
-    38.778233,
-    -75.310919
-  ],
-  "minskoff theatre|new york": [
-    40.757908,
-    -73.986077
-  ],
-  "morris performing arts center|south bend": [
-    41.678141,
-    -86.250905
-  ],
-  "morrison center for the perf. arts|boise": [
-    43.606816,
-    -116.207057
-  ],
-  "morrison center for the performing arts|boise": [
-    43.606816,
-    -116.207057
-  ],
-  "mount errigal hotel|co. donegal": [
-    54.95023,
-    -7.713776
-  ],
-  "movistar arena (palacio de deportes)|madrid": [
-    40.423879,
-    -3.671751
-  ],
-  "movistar arena de madrid (antiguo wizink center)|madrid": [
-    40.423879,
-    -3.671751
-  ],
-  "mtg名古屋四季劇場|nagoya": [
-    35.128961,
-    136.912139
-  ],
-  "municipal auditorium music hall|kansas city": [
-    39.098508,
-    -94.58666
-  ],
-  "murat centre|indianapolis": [
-    39.774377,
-    -86.151116
-  ],
-  "music box at the borgata|atlantic city": [
-    39.376581,
-    -74.436343
-  ],
-  "music hall at fair park|dallas": [
-    32.780371,
-    -96.765915
-  ],
-  "musical dome|cologne": [
-    50.94285,
-    6.961592
-  ],
-  "myeongdong nanta theater|seoul": [
-    37.563575,
-    126.983619
-  ],
-  "myeongnyun art hall|seoul": [
-    37.576758,
-    127.003912
-  ],
-  "myungbo art hall|seoul": [
-    37.564687,
-    126.993231
-  ],
-  "móricz zsigmond színház|nyíregyháza": [
-    47.954445,
-    21.711515
-  ],
-  "national arts centre: southam hall|ottawa": [
-    45.423189,
-    -75.693948
-  ],
-  "national theatre|washington": [
-    38.896339,
-    -77.030517
-  ],
-  "neal s blaisdell concert hall|honolulu": [
-    21.300228,
-    -157.851236
-  ],
-  "nederlander theatre|new york": [
-    40.7555,
-    -73.988283
-  ],
-  "neil simon theatre|new york": [
-    40.763178,
-    -73.984539
-  ],
-  "neptune theatre|seattle": [
-    47.661172,
-    -122.313981
-  ],
-  "new amsterdam theatre|new york": [
-    40.756091,
-    -73.987788
-  ],
-  "new brunswick, nj|new brunswick": [
-    40.496657,
-    -74.44428
-  ],
-  "new theatre cardiff|cardiff": [
-    51.483616,
-    -3.175445
-  ],
-  "new theatre oxford|oxford": [
-    51.753971,
-    -1.259897
-  ],
-  "new theatre peterborough|peterborough": [
-    52.577003,
-    -0.240727
-  ],
-  "new wimbledon theatre|london": [
-    51.419216,
-    -0.201481
-  ],
-  "new wimbledon theatre|wimbledon": [
-    51.419216,
-    -0.201481
-  ],
-  "new world stages|new york": [
-    40.762797,
-    -73.987647
-  ],
-  "nol uniplex (大學路)|seoul": [
-    37.581133,
-    127.0037
-  ],
-  "northern alberta jubilee auditorium|edmonton": [
-    53.521796,
-    -113.528737
-  ],
-  "novello theatre|london": [
-    51.512291,
-    -0.119187
-  ],
-  "noël coward theatre|london": [
-    51.511145,
-    -0.127226
-  ],
-  "nuevo recinto de fiestas de los alcázares|murcia": [
-    37.740739,
-    -0.858144
-  ],
-  "nuevo teatro alcalá|madrid": [
-    40.423397,
-    -3.678246
-  ],
-  "nuovo teatro verdi|brindisi": [
-    40.638874,
-    17.944646
-  ],
-  "nyári szabadtéri esték|vecsés": [
-    47.40634,
-    19.26393
-  ],
-  "o2 apollo manchester|manchester": [
-    53.469567,
-    -2.222142
-  ],
-  "o2 city hall newcastle|newcastle upon tyne": [
-    54.977173,
-    -1.609948
-  ],
-  "off latina|madrid": [
-    40.412046,
-    -3.711973
-  ],
-  "ohio theatre|columbus": [
-    39.960177,
-    -82.999069
-  ],
-  "old national centre|indianapolis": [
-    39.774377,
-    -86.151116
-  ],
-  "opera house manchester|manchester": [
-    53.478841,
-    -2.251327
-  ],
-  "opera house, manchester|manchester": [
-    53.478841,
-    -2.251327
-  ],
-  "opera house|boston": [
-    42.353987,
-    -71.062304
-  ],
-  "operaen, holmen|københavn k": [
-    55.682176,
-    12.600093
-  ],
-  "oran mor|glasgow": [
-    55.877563,
-    -4.28976
-  ],
-  "ordway center for the perf. arts|st. paul": [
-    44.944511,
-    -93.097855
-  ],
-  "ordway theatre|saint paul": [
-    44.944511,
-    -93.097855
-  ],
-  "orix theater|osaka": [
-    34.678551,
-    135.495387
-  ],
-  "orpheum theater - omaha|omaha": [
-    41.256127,
-    -95.936855
-  ],
-  "orpheum theater|omaha": [
-    41.256127,
-    -95.936855
-  ],
-  "orpheum theatre - memphis|memphis": [
-    35.140187,
-    -90.055483
-  ],
-  "orpheum theatre-san francisco|san francisco": [
-    37.779179,
-    -122.414538
-  ],
-  "orpheum theatre|minneapolis": [
-    44.976302,
-    -93.277463
-  ],
-  "orpheum theatre|san francisco": [
-    37.779179,
-    -122.414538
-  ],
-  "overture center for the arts|madison": [
-    43.074105,
-    -89.388285
-  ],
-  "overture center|madison": [
-    43.074105,
-    -89.388285
-  ],
-  "pabellón wah show en ifema madrid|madrid": [
-    40.467597,
-    -3.619408
-  ],
-  "palace theatre manchester|manchester": [
-    53.474995,
-    -2.240978
-  ],
-  "palace theatre|new york": [
-    40.758836,
-    -73.984042
-  ],
-  "palacio de congresos de badajoz|badajoz": [
-    38.874992,
-    -6.969451
-  ],
-  "palacio de congresos de mérida|mérida": [
-    38.917599,
-    -6.358287
-  ],
-  "palacio de congresos de plasencia|plasencia": [
-    40.037789,
-    -6.095236
-  ],
-  "palais nikaïa|nice": [
-    43.678674,
-    7.199481
-  ],
-  "palapartenope|napoli": [
-    40.820922,
-    14.17783
-  ],
-  "palau sant jordi|barcelona": [
-    41.363959,
-    2.152041
-  ],
-  "palaunical teatro (ex grana padano theatre)|mantova": [
-    45.167069,
-    10.825202
-  ],
-  "pannon várszínház nonprofit kft.|veszprém": [
-    47.09311,
-    17.907723
-  ],
-  "pantages theatre|los angeles": [
-    34.101843,
-    -118.325609
-  ],
-  "paper mill playhouse|millburn": [
-    40.72815,
-    -74.309185
-  ],
-  "papp lászló budapest sportaréna|budapest": [
-    47.501869,
-    19.105707
-  ],
-  "paramount theatre - il|aurora": [
-    41.757722,
-    -88.314654
-  ],
-  "paramount theatre|seattle": [
-    47.613524,
-    -122.331513
-  ],
-  "parco ducale di parma|parma": [
-    44.806151,
-    10.319791
-  ],
-  "pavilion theatre glasgow|glasgow": [
-    55.865082,
-    -4.255724
-  ],
-  "peace center for the perf. arts|greenville": [
-    34.847562,
-    -82.401107
-  ],
-  "pensacola saenger theatre|pensacola": [
-    30.410688,
-    -87.21484
-  ],
-  "peoria civic center theatre|peoria": [
-    40.691694,
-    -89.593961
-  ],
-  "pequeño teatro gran vía|madrid": [
-    40.422317,
-    -3.70883
-  ],
-  "phoenix theatre - hormel theatre|phoenix": [
-    33.467159,
-    -112.072348
-  ],
-  "phoenix theatre-az|phoenix": [
-    33.467159,
-    -112.072348
-  ],
-  "piccadilly theatre|london": [
-    51.510951,
-    -0.135575
-  ],
-  "pioneer center|reno": [
-    39.524288,
-    -119.811446
-  ],
-  "place des arts|montreal": [
-    45.50832,
-    -73.566431
-  ],
-  "planet royale|northbridge": [
-    -31.948399,
-    115.856708
-  ],
-  "planet royale|perth": [
-    -31.948399,
-    115.856708
-  ],
-  "playground 南村劇場．青鳥．有.設計|taipei": [
-    25.030993,
-    121.561764
-  ],
-  "playground 南村劇場．青鳥．有.設計|臺北": [
-    25.030993,
-    121.561764
-  ],
-  "playhouse theatre|london": [
-    51.507005,
-    -0.123609
-  ],
-  "playhouse, qpac|brisbane": [
-    -27.475125,
-    153.02037
-  ],
-  "plymouth arena|plymouth": [
-    50.369443,
-    -4.149678
-  ],
-  "popejoy hall|albuquerque": [
-    35.082309,
-    -106.619884
-  ],
-  "portland, me|portland": [
-    43.670822,
-    -70.284382
-  ],
-  "portsmouth guildhall|portsmouth": [
-    50.797583,
-    -1.09254
-  ],
-  "prince edward theatre|london": [
-    51.513512,
-    -0.130742
-  ],
-  "prince of wales theatre|london": [
-    51.510234,
-    -0.132087
-  ],
-  "princess theatre - torquay|torquay": [
-    50.461291,
-    -3.529995
-  ],
-  "princess theatre, torquay|torquay": [
-    50.461291,
-    -3.529995
-  ],
-  "pro kultúra sopron nonprofit kft.|sopron": [
-    47.683437,
-    16.588745
-  ],
-  "proctor's theatre|schenectady": [
-    42.812368,
-    -73.941795
-  ],
-  "proctors|schenectady": [
-    42.812368,
-    -73.941795
-  ],
-  "providence performing arts center|providence": [
-    41.821356,
-    -71.412496
-  ],
-  "punch l!ne club berlin|berlin": [
-    52.507322,
-    13.372329
-  ],
-  "queen elizabeth hall - southbank centre|london": [
-    51.5066,
-    -0.116517
-  ],
-  "queen elizabeth theatre|vancouver": [
-    49.28039,
-    -123.112655
-  ],
-  "radio city music hall|new york": [
-    40.759976,
-    -73.979977
-  ],
-  "raimund theater|vienna": [
-    48.19212,
-    16.339607
-  ],
-  "red mountain theatre|birmingham": [
-    33.507676,
-    -86.808006
-  ],
-  "regent theatre, stoke-on-trent|stoke": [
-    53.024643,
-    -2.177048
-  ],
-  "regent theatre|stoke-on-trent": [
-    53.024643,
-    -2.177048
-  ],
-  "regent's park open air theatre|london": [
-    51.52843,
-    -0.154732
-  ],
-  "reggies rock club|chicago": [
-    41.853918,
-    -87.626852
-  ],
-  "reims arena|reims": [
-    49.264153,
-    4.032024
-  ],
-  "renaissance theatre - oh|mansfield": [
-    40.759101,
-    -82.520544
-  ],
-  "reynolds hall|las vegas": [
-    36.168998,
-    -115.151444
-  ],
-  "richard rodgers theatre|new york": [
-    40.759092,
-    -73.98654
-  ],
-  "richmond theatre|richmond": [
-    51.462199,
-    -0.303951
-  ],
-  "rivertown theaters for the performing arts|kenner": [
-    29.974366,
-    -90.247626
-  ],
-  "robinson center|little rock": [
-    34.749229,
-    -92.27446
-  ],
-  "robinson performance hall|little rock": [
-    34.749229,
-    -92.27446
-  ],
-  "rondo|göteborg": [
-    57.697187,
-    11.992509
-  ],
-  "roslyn packer theatre walsh bay|millers point": [
-    -33.857222,
-    151.205
-  ],
-  "roslyn packer theatre walsh bay|sydney": [
-    -33.857222,
-    151.205
-  ],
-  "royal alexandra theatre|toronto": [
-    43.647362,
-    -79.387589
-  ],
-  "royal and derngate|northampton": [
-    52.23639,
-    -0.894153
-  ],
-  "royal concert hall nottingham|nottingham": [
-    52.955239,
-    -1.151333
-  ],
-  "royal festival hall|london": [
-    51.505806,
-    -0.116629
-  ],
-  "rózsakert szabadtéri színpad|nyíregyháza": [
-    47.950468,
-    21.713381
-  ],
-  "saenger theater hattiesburg|hattiesburg": [
-    31.325869,
-    -89.29067
-  ],
-  "saenger theatre|new orleans": [
-    29.956527,
-    -90.072476
-  ],
-  "safe credit union performing arts center|sacramento": [
-    38.577313,
-    -121.489444
-  ],
-  "sala ars teatre|barcelona": [
-    41.38848,
-    2.17388
-  ],
-  "sala ars|barcelona": [
-    41.38848,
-    2.17388
-  ],
-  "sala azarte|madrid": [
-    40.421417,
-    -3.698352
-  ],
-  "sala beckett|barcelona": [
-    41.404705,
-    2.199426
-  ],
-  "sala borja|valladolid": [
-    41.652759,
-    -4.720446
-  ],
-  "sala galileo galilei|madrid": [
-    40.438462,
-    -3.709778
-  ],
-  "sala multifuncional de ciempozuelos|ciempozuelos": [
-    40.155317,
-    -3.628437
-  ],
-  "sala pangolí|barcelona": [
-    41.401547,
-    2.164676
-  ],
-  "san antonio, tx|san antonio": [
-    29.42519,
-    -98.494592
-  ],
-  "san bartolomé de tirajana|san bartolomé de tirajana": [
-    27.923929,
-    -15.573108
-  ],
-  "san diego civic theatre|san diego": [
-    32.717585,
-    -117.162218
-  ],
-  "san jose center for performing arts|san jose": [
-    37.329773,
-    -121.892506
-  ],
-  "san jose center for the perf. arts|san jose": [
-    37.329773,
-    -121.892506
-  ],
-  "san rocco|seregno": [
-    45.650031,
-    9.210554
-  ],
-  "sands theatre|singapore": [
-    1.285451,
-    103.859763
-  ],
-  "sara kulturhus stage 1|skellefteå": [
-    64.752049,
-    20.953974
-  ],
-  "savoy theatre|london": [
-    51.510205,
-    -0.120924
-  ],
-  "scranton cultural center|scranton": [
-    41.410846,
-    -75.660182
-  ],
-  "sec armadillo|glasgow": [
-    55.859456,
-    -4.286906
-  ],
-  "segerstrom center for the arts-segerstrom hall|costa mesa": [
-    33.692705,
-    -117.882142
-  ],
-  "segerstrom center for the arts|costa mesa": [
-    33.692705,
-    -117.882142
-  ],
-  "sejong center|seoul": [
-    37.572525,
-    126.975643
-  ],
-  "seoul arts center|seoul": [
-    37.47929,
-    127.012861
-  ],
-  "seoul forest galleria foret|seoul": [
-    37.545702,
-    127.042425
-  ],
-  "shaftesbury theatre|london": [
-    51.516072,
-    -0.12593
-  ],
-  "shea&#039;s performing arts center|buffalo": [
-    42.891744,
-    -78.873201
-  ],
-  "shea's 710 theatre|buffalo": [
-    42.893149,
-    -78.872184
-  ],
-  "shea's performing arts center|buffalo": [
-    42.891744,
-    -78.873201
-  ],
-  "shea's smith theatre|buffalo": [
-    42.891851,
-    -78.872684
-  ],
-  "sheffield city hall oval hall|sheffield": [
-    53.380578,
-    -1.472282
-  ],
-  "short north stage - garden theater|columbus": [
-    39.986572,
-    -83.005658
-  ],
-  "showcenter complex|monterrey": [
-    25.649006,
-    -100.335687
-  ],
-  "signature theatre|arlington": [
-    38.840802,
-    -77.090266
-  ],
-  "sir howard morrison centre|rotorua": [
-    -38.135303,
-    176.25419
-  ],
-  "sociale|valenza": [
-    45.013087,
-    8.6443494
-  ],
-  "soho place|london": [
-    51.515706,
-    -0.130608
-  ],
-  "sohoplace|london": [
-    51.515706,
-    -0.130608
-  ],
-  "soldiers and sailors memorial auditorium|chattanooga": [
-    35.048098,
-    -85.305555
-  ],
-  "sondheim theatre|london": [
-    51.511869,
-    -0.132601
-  ],
-  "southend cliffs pavilion|southend-on-sea": [
-    51.535183,
-    0.697235
-  ],
-  "southern alberta jubilee auditorium|calgary": [
-    51.06259,
-    -114.092516
-  ],
-  "southwark playhouse elephant|london": [
-    51.492469,
-    -0.102435
-  ],
-  "spartanburg memorial auditorium|spartanburg": [
-    34.956561,
-    -81.936005
-  ],
-  "springfield, mo|springfield": [
-    37.208957,
-    -93.292299
-  ],
-  "st james theatre wellington|wellington": [
-    -41.293157,
-    174.779814
-  ],
-  "st. martin's theatre|london": [
-    51.512874,
-    -0.127576
-  ],
-  "stadsschouwburg antwerpen|antwerp": [
-    51.215499,
-    4.409893
-  ],
-  "stage apollo theater|stuttgart": [
-    48.722296,
-    9.162507
-  ],
-  "stage gran teatro musical|madrid": [
-    40.422317,
-    -3.70883
-  ],
-  "stage operettenhaus|hamburg": [
-    53.54928,
-    9.967008
-  ],
-  "stage palladium theater|stuttgart": [
-    48.723656,
-    9.162102
-  ],
-  "stage theater an der elbe|hamburg": [
-    53.539752,
-    9.974495
-  ],
-  "stage theater des westens|berlin": [
-    52.50569,
-    13.329062
-  ],
-  "stage theater im hafen|hamburg": [
-    53.539728,
-    9.973148
-  ],
-  "stage theater neue flora|hamburg": [
-    53.562671,
-    9.949664
-  ],
-  "stages - sterling stage|houston": [
-    29.75826,
-    -95.399248
-  ],
-  "starlight theatre|kansas city": [
-    39.007454,
-    -94.532822
-  ],
-  "stephen sondheim theatre|new york": [
-    40.755868,
-    -73.9849
-  ],
-  "steven tanger center for the performing arts|greensboro": [
-    36.075152,
-    -79.789753
-  ],
-  "stockton globe|stockton-on-tees": [
-    54.567111,
-    -1.313428
-  ],
-  "stranahan theater and great hall|toledo": [
-    41.592697,
-    -83.651812
-  ],
-  "straz center for the performing arts|tampa": [
-    27.95166,
-    -82.464062
-  ],
-  "studio 54|new york": [
-    40.764406,
-    -73.983719
-  ],
-  "sud de france arena|montpellier": [
-    43.573437,
-    3.95149
-  ],
-  "sunderland empire|sunderland": [
-    54.906352,
-    -1.388941
-  ],
-  "suseong artpia|daegu": [
-    35.829543,
-    128.628415
-  ],
-  "swansea building society arena|swansea": [
-    51.616051,
-    -3.942342
-  ],
-  "swansea grand theatre|swansea": [
-    51.618054,
-    -3.948001
-  ],
-  "sydjysk sparekasse skansen|sønderborg": [
-    54.911347,
-    9.770136
-  ],
-  "sydney event centre|sydney": [
-    -33.868279,
-    151.194991
-  ],
-  "sydney lyric|pyrmont": [
-    -33.868333,
-    151.196104
-  ],
-  "sydney lyric|sydney": [
-    -33.868333,
-    151.196104
-  ],
-  "sydney opera house- joan sutherland theatre|sydney": [
-    -33.856908,
-    151.215504
-  ],
-  "symphony hall|birmingham": [
-    52.478564,
-    -1.910109
-  ],
-  "szeged városi sportcsarnok|szeged": [
-    46.244849,
-    20.162709
-  ],
-  "szegedi szabadtéri játékok|szeged": [
-    46.248844,
-    20.149186
-  ],
-  "szentendre fő tér|szentendre": [
-    47.667668,
-    19.075717
-  ],
-  "szolnoki szigligeti színház|szolnok": [
-    47.172458,
-    20.19641
-  ],
-  "sønderborg teater|sønderborg": [
-    54.905987,
-    9.787735
-  ],
-  "taproot theatre|seattle": [
-    47.6907,
-    -122.356316
-  ],
-  "tbs akasaka act theater|tokyo": [
-    35.672842,
-    139.735111
-  ],
-  "teatr studio buffo w warszawie|warszawa": [
-    52.227947,
-    21.026116
-  ],
-  "teatr syrena w warszawie|warszawa": [
-    52.21643,
-    21.022132
-  ],
-  "teatre apolo|barcelona": [
-    41.374717,
-    2.170461
-  ],
-  "teatre condal|barcelona": [
-    41.374794,
-    2.164637
-  ],
-  "teatre gaudí barcelona|barcelona": [
-    41.407216,
-    2.169777
-  ],
-  "teatre grec|barcelona": [
-    41.369507,
-    2.159737
-  ],
-  "teatre la fàbrica|barcelona": [
-    41.403809,
-    2.148443
-  ],
-  "teatre lliure - gràcia|barcelona": [
-    41.402772,
-    2.156031
-  ],
-  "teatre poliorama|barcelona": [
-    41.384151,
-    2.170693
-  ],
-  "teatre tívoli|barcelona": [
-    41.388928,
-    2.170365
-  ],
-  "teatro - at the italian forum|leichhardt": [
-    -33.887009,
-    151.158291
-  ],
-  "teatro - at the italian forum|sydney": [
-    -33.887009,
-    151.158291
-  ],
-  "teatro albéniz umusic hotel|madrid": [
-    40.415345,
-    -3.704102
-  ],
-  "teatro alcázar|madrid": [
-    40.417741,
-    -3.699077
-  ],
-  "teatro aldama|méxico": [
-    19.438115,
-    -99.161705
-  ],
-  "teatro amaya|madrid": [
-    40.435138,
-    -3.697141
-  ],
-  "teatro apolo madrid|madrid": [
-    40.412189,
-    -3.703334
-  ],
-  "teatro apolo madrid|spain": [
-    40.412189,
-    -3.703334
-  ],
-  "teatro arlequín gran vía|madrid": [
-    40.421126,
-    -3.708278
-  ],
-  "teatro astral|buenos aires": [
-    -34.603935,
-    -58.389922
-  ],
-  "teatro at montecasino|johannesburg": [
-    -26.024336,
-    28.013336
-  ],
-  "teatro bellas artes|madrid": [
-    40.418243,
-    -3.696481
-  ],
-  "teatro broadway|buenos aires": [
-    -34.603659,
-    -58.383063
-  ],
-  "teatro calderón|madrid": [
-    40.414043,
-    -3.703511
-  ],
-  "teatro capitol gran vía|madrid": [
-    40.420446,
-    -3.706582
-  ],
-  "teatro casablanca|arganda del rey": [
-    40.299245,
-    -3.438812
-  ],
-  "teatro clerici|brescia": [
-    45.513517,
-    10.213314
-  ],
-  "teatro de los insurgentes|méxico": [
-    19.364163,
-    -99.18247
-  ],
-  "teatro do sesi (centro cultural fiesp)|são paulo": [
-    -23.563503,
-    -46.654447
-  ],
-  "teatro flumen|valencia": [
-    39.482948,
-    -0.385431
-  ],
-  "teatro fundación caixa rural|castellón": [
-    39.937407,
-    -0.100999
-  ],
-  "teatro fígaro|madrid": [
-    40.413471,
-    -3.703597
-  ],
-  "teatro galerías|zapopan": [
-    20.6458,
-    -103.404493
-  ],
-  "teatro gran vía|madrid": [
-    40.422317,
-    -3.70883
-  ],
-  "teatro gutiérrez de alba|alcalá de guadaíra": [
-    37.335144,
-    -5.847608
-  ],
-  "teatro hidalgo|méxico": [
-    19.436677,
-    -99.141874
-  ],
-  "teatro infanta isabel|madrid": [
-    40.422245,
-    -3.69553
-  ],
-  "teatro la latina|madrid": [
-    40.411433,
-    -3.708745
-  ],
-  "teatro lara - sala lola membrives|madrid": [
-    40.422109,
-    -3.704467
-  ],
-  "teatro lara|madrid": [
-    40.422109,
-    -3.704467
-  ],
-  "teatro las vegas ( villanueva de la serena)|villanueva de la serena": [
-    38.971806,
-    -5.799134
-  ],
-  "teatro las vegas|madrid": [
-    40.43664,
-    -3.636693
-  ],
-  "teatro liberdade|são paulo": [
-    -23.561697,
-    -46.637461
-  ],
-  "teatro lope de vega|madrid": [
-    40.421828,
-    -3.708712
-  ],
-  "teatro manuel españa (mijas)|mijas": [
-    36.545315,
-    -4.639933
-  ],
-  "teatro marquina|madrid": [
-    40.421966,
-    -3.693728
-  ],
-  "teatro miguel fleta de utebo|utebo": [
-    41.711342,
-    -0.996983
-  ],
-  "teatro milán|méxico": [
-    19.429999,
-    -99.156662
-  ],
-  "teatro municipal de cúllar vega|cullar": [
-    37.158017,
-    -3.676819
-  ],
-  "teatro nuevo alcalá|madrid": [
-    40.423397,
-    -3.678246
-  ],
-  "teatro ocaso coliseum|madrid": [
-    40.423284,
-    -3.71034
-  ],
-  "teatro olympia|valencia": [
-    39.470784,
-    -0.377889
-  ],
-  "teatro porto seguro|são paulo": [
-    -23.530238,
-    -46.645357
-  ],
-  "teatro remondini|bassano del grappa": [
-    45.768148,
-    11.722553
-  ],
-  "teatro renault|são paulo": [
-    -23.554294,
-    -46.638497
-  ],
-  "teatro rialto madrid|madrid": [
-    40.421345,
-    -3.707231
-  ],
-  "teatro rialto|madrid": [
-    40.421345,
-    -3.707231
-  ],
-  "teatro romano de medellín|medellin": [
-    38.966188,
-    -5.955968
-  ],
-  "teatro romano de mérida|mérida": [
-    38.915214,
-    -6.338521
-  ],
-  "teatro salesianos estrecho|madrid": [
-    40.455079,
-    -3.703969
-  ],
-  "teatro sanpol|madrid": [
-    40.423934,
-    -3.727008
-  ],
-  "teatro santander|são paulo": [
-    -23.592825,
-    -46.691715
-  ],
-  "teatro sofía|madrid": [
-    40.422895,
-    -3.709441
-  ],
-  "teatro soho madrid|madrid": [
-    40.42256,
-    -3.71184
-  ],
-  "teatro team|bari": [
-    41.099358,
-    16.903395
-  ],
-  "teatro telcel|mexico city": [
-    19.440968,
-    -99.203876
-  ],
-  "teatro telcel|méxico": [
-    19.440968,
-    -99.203876
-  ],
-  "teatro tepeyac|méxico": [
-    19.473365,
-    -99.121365
-  ],
-  "teatro triana|sevilla": [
-    37.380141,
-    -6.00746
-  ],
-  "teatro xola julio prieto|méxico": [
-    19.396024,
-    -99.161299
-  ],
-  "teatros del canal|madrid": [
-    40.438279,
-    -3.705184
-  ],
-  "teatros luchana|madrid": [
-    40.431872,
-    -3.698259
-  ],
-  "temple theatre|saginaw": [
-    43.434753,
-    -83.939028
-  ],
-  "tennessee performing arts center|nashville": [
-    36.164658,
-    -86.782552
-  ],
-  "tennessee theatre|knoxville": [
-    35.964137,
-    -83.917496
-  ],
-  "teseo teatro|madrid": [
-    40.408495,
-    -3.715887
-  ],
-  "the alexandra, birmingham|birmingham": [
-    52.47616,
-    -1.901186
-  ],
-  "the apollo's jonelle procope theater|new york": [
-    40.809927,
-    -73.950135
-  ],
-  "the arena at pickering casino resort|pickering": [
-    43.84309,
-    -79.05397
-  ],
-  "the argyle theatre at babylon village|babylon": [
-    40.696212,
-    -73.323712
-  ],
-  "the arts at marble arch powered by todaytix|london": [
-    51.51322,
-    -0.159169
-  ],
-  "the auditorium|chicago": [
-    41.87585,
-    -87.625241
-  ],
-  "the brighton centre|brighton": [
-    50.821232,
-    -0.146474
-  ],
-  "the castro theatre|san francisco": [
-    37.762033,
-    -122.434759
-  ],
-  "the civic, auckland|auckland": [
-    -36.850979,
-    174.764185
-  ],
-  "the danforth music hall|toronto": [
-    43.676244,
-    -79.357008
-  ],
-  "the embassy theatre|fort wayne": [
-    41.075737,
-    -85.139762
-  ],
-  "the glasshouse international centre for music|gateshead": [
-    54.967785,
-    -1.602003
-  ],
-  "the guild theatre - ca|menlo park": [
-    37.45242,
-    -122.181247
-  ],
-  "the hanover theatre and conservatory for the performing arts|worcester": [
-    42.26075,
-    -71.803117
-  ],
-  "the ingersoll|des moines": [
-    41.586467,
-    -93.667401
-  ],
-  "the mckithan hotel (舊大韓劇場, 忠武路)|seoul": [
-    37.561076,
-    126.99533
-  ],
-  "the minskoff theatre|new york": [
-    40.757908,
-    -73.986077
-  ],
-  "the national theater of korea|seoul": [
-    37.55286,
-    126.999813
-  ],
-  "the national theatre|washington": [
-    38.896339,
-    -77.030517
-  ],
-  "the o2|london": [
-    51.503038,
-    0.003154
-  ],
-  "the other palace - main theatre|london": [
-    51.498864,
-    -0.142233
-  ],
-  "the parkway theater|minneapolis": [
-    44.91558,
-    -93.263038
-  ],
-  "the peabody daytona beach|daytona beach": [
-    29.227165,
-    -81.010617
-  ],
-  "the playhouse on rodney square|wilmington": [
-    39.745797,
-    -75.547852
-  ],
-  "the plaza theatre|el paso": [
-    31.758666,
-    -106.489356
-  ],
-  "the ruth and nathan hale theater|pleasant grove": [
-    40.359052,
-    -111.761341
-  ],
-  "the santander performing arts center|reading": [
-    40.33788,
-    -75.926
-  ],
-  "the smith center|las vegas": [
-    36.16911,
-    -115.152017
-  ],
-  "the sse arena, belfast|belfast": [
-    54.603643,
-    -5.914228
-  ],
-  "the stanley|utica": [
-    43.099207,
-    -75.235366
-  ],
-  "the theater at mount jordan|sandy": [
-    40.581215,
-    -111.883128
-  ],
-  "the tuacahn amphitheatre|ivins": [
-    37.191115,
-    -113.659035
-  ],
-  "the venetian theatre at the venetian resort|las vegas": [
-    36.121213,
-    -115.169365
-  ],
-  "the vogel at count basie center for the arts|red bank": [
-    40.348875,
-    -74.070148
-  ],
-  "theatre du casino du lac-leamy|gatineau": [
-    45.446409,
-    -75.724722
-  ],
-  "theatre royal brighton|brighton": [
-    50.823328,
-    -0.139707
-  ],
-  "theatre royal drury lane|london": [
-    51.512854,
-    -0.120371
-  ],
-  "theatre royal glasgow|glasgow": [
-    55.866351,
-    -4.256219
-  ],
-  "theatre royal haymarket|london": [
-    51.50853,
-    -0.131547
-  ],
-  "theatre royal nottingham|nottingham": [
-    52.955239,
-    -1.151333
-  ],
-  "theatre royal sydney|sydney": [
-    -33.868753,
-    151.208954
-  ],
-  "theatre three - ny|port jefferson": [
-    40.943691,
-    -73.067537
-  ],
-  "thebarton theatre|torrensville": [
-    -34.923615,
-    138.569034
-  ],
-  "thelma gaylord performing arts theatre|oklahoma city": [
-    35.4862,
-    -97.541605
-  ],
-  "thunder bay community auditorium|thunder bay": [
-    48.422123,
-    -89.241535
-  ],
-  "théâtre beanfield|montreal": [
-    45.482834,
-    -73.575073
-  ],
-  "théâtre capitole|quebec": [
-    46.812805,
-    -71.213904
-  ],
-  "théâtre manuvie|brossard": [
-    45.441416,
-    -73.440735
-  ],
-  "théâtre mogador|paris": [
-    48.875347,
-    2.331067
-  ],
-  "théâtre royal|mons": [
-    50.455416,
-    3.952304
-  ],
-  "tn performing arts center andrew jackson hall|nashville": [
-    36.164658,
-    -86.782552
-  ],
-  "toby's dinner theatre columbia|columbia": [
-    39.208978,
-    -76.858485
-  ],
-  "tokaj fesztiválkatlan|tokaj": [
-    48.132201,
-    21.403923
-  ],
-  "tokyu theatre orb (渋谷ヒカリエ)|tokyo": [
-    35.659076,
-    139.703047
-  ],
-  "toronto, on|toronto": [
-    43.654825,
-    -79.388447
-  ],
-  "town hall|new york": [
-    40.756053,
-    -73.98453
-  ],
-  "trixxo theater hasselt|hasselt": [
-    50.933674,
-    5.365292
-  ],
-  "tropicana showroom at tropicana atlantic city|atlantic city": [
-    39.352369,
-    -74.444562
-  ],
-  "troubadour wembley park theatre|london": [
-    51.560871,
-    -0.281283
-  ],
-  "tyrol|stockholm": [
-    59.324167,
-    18.096365
-  ],
-  "uihlein hall at marcus performing arts center|milwaukee": [
-    43.042907,
-    -87.911399
-  ],
-  "underbelly boulevard|london": [
-    51.51274,
-    -0.13413
-  ],
-  "unitedhealth group stage-the childrens theatre|minneapolis": [
-    44.958138,
-    -93.273352
-  ],
-  "university of wolverhampton at the civic hall|wolverhampton": [
-    52.586698,
-    -2.130407
-  ],
-  "utep dinner theatre|el paso": [
-    31.77138,
-    -106.503999
-  ],
-  "utica, ny|utica": [
-    43.101095,
-    -75.235581
-  ],
-  "utilita arena cardiff|cardiff": [
-    51.478942,
-    -3.172433
-  ],
-  "utilita arena|birmingham": [
-    52.479699,
-    -1.914798
-  ],
-  "vaillant live, derby|derby": [
-    52.921441,
-    -1.479967
-  ],
-  "vaudeville theatre|london": [
-    51.510273,
-    -0.122382
-  ],
-  "verdi|montecatini-terme": [
-    43.885202,
-    10.772909
-  ],
-  "veszprémi petőfi színház|veszprém": [
-    47.09194,
-    17.906877
-  ],
-  "ves互动剧场|xi'an": [
-    34.202264,
-    108.891735
-  ],
-  "victoria palace theatre|london": [
-    51.496657,
-    -0.14258
-  ],
-  "victoria theatre|halifax": [
-    53.721111,
-    -1.861389
-  ],
-  "victoria, bc|victoria": [
-    48.428421,
-    -123.365644
-  ],
-  "virginia samford theatre|birmingham": [
-    33.503286,
-    -86.786986
-  ],
-  "vorst nationaal/forest national|forest (brussels)": [
-    50.810124,
-    4.326321
-  ],
-  "városmajori szabadtéri színpad|budapest": [
-    47.506971,
-    19.019245
-  ],
-  "vígszínház|budapest": [
-    47.512324,
-    19.051308
-  ],
-  "wales millennium centre|cardiff": [
-    51.464842,
-    -3.163183
-  ],
-  "walnut street theatre|philadelphia": [
-    39.948384,
-    -75.155359
-  ],
-  "walter kerr theatre|new york": [
-    40.760724,
-    -73.985667
-  ],
-  "walton arts center|fayetteville": [
-    36.066002,
-    -94.164853
-  ],
-  "wang theatre at the boch center|boston": [
-    42.350371,
-    -71.064804
-  ],
-  "warwick arts centre, coventry|coventry": [
-    52.380003,
-    -1.561488
-  ],
-  "washington pavilion|sioux falls": [
-    43.544014,
-    -96.728504
-  ],
-  "washington, dc|washington": [
-    38.907287,
-    -77.036927
-  ],
-  "waterfront hall auditorium|belfast": [
-    54.59748,
-    -5.920051
-  ],
-  "westside theatre|new york": [
-    40.759606,
-    -73.992542
-  ],
-  "wharton center for the performing arts|east lansing": [
-    42.723852,
-    -84.470701
-  ],
-  "whitby pavilion theatre|whitby": [
-    54.490911,
-    -0.620435
-  ],
-  "whitney hall|louisville": [
-    38.257089,
-    -85.758791
-  ],
-  "wiener stadthalle - halle f|vienna": [
-    48.202319,
-    16.332896
-  ],
-  "wilmington, nc|wilmington": [
-    34.210389,
-    -77.886812
-  ],
-  "wilshire ebell theatre|los angeles": [
-    34.060702,
-    -118.325149
-  ],
-  "wilson center-nc|wilmington": [
-    34.243594,
-    -77.947297
-  ],
-  "winsupply theatre|dayton": [
-    39.761183,
-    -84.193306
-  ],
-  "winter garden theatre|new york": [
-    40.761711,
-    -73.983725
-  ],
-  "winter gardens|blackpool": [
-    53.816654,
-    -3.051653
-  ],
-  "woking theatre|woking": [
-    51.320058,
-    -0.560601
-  ],
-  "wolf theatre at denver center for the performing|denver": [
-    39.744397,
-    -104.999306
-  ],
-  "wycombe swan theatre|high wycombe": [
-    51.627983,
-    -0.750144
-  ],
-  "yes24 art one (大學路)|seoul": [
-    37.580232,
-    127.004
-  ],
-  "york barbican|york": [
-    53.953639,
-    -1.07429
-  ],
-  "young vic (main house)|london": [
-    51.503161,
-    -0.107526
-  ],
-  "yucaipa performing arts center indoor theatre|yucaipa": [
-    34.034555,
-    -117.039034
-  ],
-  "zach theatre|austin": [
-    30.264184,
-    -97.758211
-  ],
-  "zenthe ferenc színház nonprofit kft.|salgótarján": [
-    48.104889,
-    19.809324
-  ],
-  "zepp divercity(tokyo)|tokyo": [
-    35.624748,
-    139.774591
-  ],
-  "zepp namba(osaka)|osaka": [
-    34.657366,
-    135.501283
-  ],
-  "zepp sapporo|sapporo": [
-    43.049534,
-    141.353324
-  ],
-  "ziff ballet opera house-adrienne arsht pac|miami": [
-    25.788007,
-    -80.190322
-  ],
-  "zénith de dijon|dijon": [
-    47.355276,
-    5.058178
-  ],
-  "【哈尔滨大剧院】|harbin": [
-    45.806496,
-    126.57767
-  ],
-  "こくみん共済 coop ホール／スペースゼロ|tokyo": [
-    35.686979,
-    139.69728
-  ],
-  "ぴあアリーナmm|kanagawa": [
-    35.455879,
-    139.628718
-  ],
-  "アイプラザ豊橋|aichi": [
-    34.732531,
-    137.381366
-  ],
-  "アクリエひめじ(姫路市文化コンベンションセンター)|hyogo": [
-    34.826712,
-    134.699598
-  ],
-  "サンケイホールブリーゼ|osaka": [
-    34.698734,
-    135.494029
-  ],
-  "サンパール荒川（荒川区民会館）|tokyo": [
-    35.735213,
-    139.785108
-  ],
-  "シアター1010|tokyo": [
-    35.750848,
-    139.804595
-  ],
-  "シアターh|tokyo": [
-    35.596284,
-    139.744086
-  ],
-  "シアタークリエ|tokyo": [
-    35.672583,
-    139.759659
-  ],
-  "シアターサンモール|tokyo": [
-    35.689761,
-    139.712893
-  ],
-  "シアターｈ|tokyo": [
-    35.596284,
-    139.744086
-  ],
-  "パルテノン多摩 大ホール|tokyo": [
-    35.621677,
-    139.42628
-  ],
-  "ヒューリックホール東京|tokyo": [
-    35.673653,
-    139.762373
-  ],
-  "一台好戏方寸剧场·去你的夏天|shanghai": [
-    31.235697,
-    121.490682
-  ],
-  "万象天地剧场|shenzhen": [
-    22.541818,
-    113.955705
-  ],
-  "上剧场|shanghai": [
-    31.19336,
-    121.43972
-  ],
-  "上海东方艺术中心|shanghai": [
-    31.222745,
-    121.541422
-  ],
-  "上海共舞台|shanghai": [
-    31.228826,
-    121.479242
-  ],
-  "上海大剧院-中剧场|shanghai": [
-    31.229638,
-    121.471245
-  ],
-  "上海大劇院 lyric theatre|shanghai": [
-    31.231561,
-    121.467276
-  ],
-  "上海文化广场 shanghai culture square|shanghai": [
-    31.212022,
-    121.462142
-  ],
-  "上海西岸大剧院-大剧场|shanghai": [
-    31.229624,
-    121.471805
-  ],
-  "上海话剧艺术中心 d6空间|shanghai": [
-    31.213582,
-    121.441107
-  ],
-  "上海话剧艺术中心-戏剧沙龙|shanghai": [
-    31.213541,
-    121.441111
-  ],
-  "世纪剧院|beijing": [
-    39.952005,
-    116.471927
-  ],
-  "东安湖大剧院·大剧场|chengdu": [
-    30.659075,
-    104.06824
-  ],
-  "东方艺术中心-歌剧厅|shanghai": [
-    31.222745,
-    121.541422
-  ],
-  "东莞玉兰大剧院|dongguan": [
-    23.014084,
-    113.747981
-  ],
-  "丝绸之路国际艺术交流中心-歌剧厅|langfang": [
-    39.56641,
-    116.72189
-  ],
-  "丝绸之路国际艺术交流中心|langfang": [
-    39.56641,
-    116.72189
-  ],
-  "中华剧院|tianjin": [
-    39.08467,
-    117.217095
-  ],
-  "中国大戏院|shanghai": [
-    31.237608,
-    121.476659
-  ],
-  "中演·成都大剧院-大剧场|chengdu": [
-    30.659075,
-    104.06824
-  ],
-  "二七剧场|beijing": [
-    39.910649,
-    116.345319
-  ],
-  "交通银行前滩31演艺中心 · 大剧场|shanghai": [
-    31.150877,
-    121.485216
-  ],
-  "京都劇場|kyoto": [
-    34.986028,
-    135.760657
-  ],
-  "人民大舞台|shanghai": [
-    31.234242,
-    121.477853
-  ],
-  "佛山琼花大剧院|foshan": [
-    23.032018,
-    113.111799
-  ],
-  "保利上海城市剧院|shanghai": [
-    31.10507,
-    121.38961
-  ],
-  "光明文化艺术中心 演艺中心·大剧场|shenzhen": [
-    22.77454,
-    113.90365
-  ],
-  "刈谷市総合文化センター アイリス 大ホール|aichi": [
-    34.989289,
-    137.006869
-  ],
-  "包河凤凰剧院|hefei": [
-    31.815974,
-    117.22487
-  ],
-  "北九州メッセ（旧西日本総合展示場新館）|fukuoka": [
-    33.889573,
-    130.885283
-  ],
-  "北京保利剧院|beijing": [
-    39.934391,
-    116.435416
-  ],
-  "北京喜剧院|beijing": [
-    39.93017,
-    116.43328
-  ],
-  "北京艺术中心-歌剧院|beijing": [
-    39.902112,
-    116.64292
-  ],
-  "北外滩友邦大剧院-大剧场|shanghai": [
-    31.229624,
-    121.471805
-  ],
-  "十二楼音乐剧之城 -1号剧场[小说编辑部]|shanghai": [
-    31.235118,
-    121.473677
-  ],
-  "十二楼音乐剧之城 -3号剧场[玛利亚布隆学院]|shanghai": [
-    31.235118,
-    121.473677
-  ],
-  "十二楼音乐剧之城 -6号剧场[b-103防空洞]|shanghai": [
-    31.235118,
-    121.473677
-  ],
-  "十二楼音乐剧之城 -9号剧场[圆形剧场]|shanghai": [
-    31.235118,
-    121.473677
-  ],
-  "南京保利大剧院|nanjing": [
-    31.991638,
-    118.708052
-  ],
-  "南宁剧场|nanning": [
-    22.80718,
-    108.31423
-  ],
-  "南昌保利大剧院|nanchang": [
-    31.353802,
-    121.26291
-  ],
-  "南通大剧院-歌剧厅|nantong": [
-    31.96501,
-    120.94267
-  ],
-  "台北生技園區多功能廳|taipei": [
-    25.051943,
-    121.609703
-  ],
-  "合肥大剧院|hefei": [
-    31.815974,
-    117.22487
-  ],
-  "启东保利大剧院-南通市|nantong": [
-    31.96501,
-    120.94267
-  ],
-  "启东保利大剧院|qidong": [
-    31.353802,
-    121.26291
-  ],
-  "呉信用金庫ホール|hiroshima": [
-    34.247108,
-    132.562375
-  ],
-  "周口双创园展演中心|zhoukou": [
-    33.645599,
-    114.650473
-  ],
-  "品川プリンスホテル ステラボール|tokyo": [
-    35.627614,
-    139.735465
-  ],
-  "嘉兴大剧院大剧场|jiaxing": [
-    30.738355,
-    120.760094
-  ],
-  "嘉義縣表演藝術中心演藝廳|chiayi": [
-    23.544112,
-    120.432058
-  ],
-  "四川大剧院·大剧场|chengdu": [
-    30.659075,
-    104.06824
-  ],
-  "国立代々木競技場 第一体育館|tokyo": [
-    35.667647,
-    139.700146
-  ],
-  "國家戲劇院|taipei": [
-    25.035305,
-    121.51816
-  ],
-  "國家音樂廳|taipei": [
-    25.037049,
-    121.519236
-  ],
-  "國立陽明交通大學光復校區大禮堂|hsinchu": [
-    24.78835,
-    120.99861
-  ],
-  "國立陽明交通大學光復校區大禮堂|新竹": [
-    24.78835,
-    120.99861
-  ],
-  "土岐市文化プラザ サンホール|gifu": [
-    35.352714,
-    137.184079
-  ],
-  "大上海新空间|shanghai": [
-    30.826955,
-    121.473811
-  ],
-  "大學路 art madang|seoul": [
-    37.522743,
-    127.035315
-  ],
-  "大學路|seoul": [
-    37.578276,
-    127.001601
-  ],
-  "大智无界空中小镇-无界剧场|wuhan": [
-    30.58987,
-    114.29485
-  ],
-  "大连开发区大剧院|dalian": [
-    39.047287,
-    121.789786
-  ],
-  "大阪四季劇場 (梅田)|osaka": [
-    34.699654,
-    135.494686
-  ],
-  "大零号湾文化艺术中心|shanghai": [
-    31.249362,
-    121.440185
-  ],
-  "天桥艺术中心-中剧场|beijing": [
-    39.883806,
-    116.397678
-  ],
-  "天桥艺术中心-多功能剧场|beijing": [
-    39.883806,
-    116.397678
-  ],
-  "天桥艺术中心-大剧场|beijing": [
-    39.883806,
-    116.397678
-  ],
-  "天桥艺术中心-小剧场|beijing": [
-    39.883806,
-    116.397678
-  ],
-  "天津大剧院|tianjin": [
-    39.087454,
-    117.215987
-  ],
-  "天王洲 銀河劇場|tokyo": [
-    35.623442,
-    139.751278
-  ],
-  "太原青年宫演艺中心|taiyuan": [
-    37.874149,
-    112.541851
-  ],
-  "好好有戏小剧场|guangzhou": [
-    23.115245,
-    113.321921
-  ],
-  "宁夏人民剧院大剧场|yinchuan": [
-    38.485516,
-    106.238202
-  ],
-  "宁波大剧院|ningbo": [
-    29.898831,
-    121.551053
-  ],
-  "宁波大剧院大剧场|ningbo": [
-    29.898831,
-    121.551053
-  ],
-  "宁波文化广场大剧院|ningbo": [
-    29.8588,
-    121.62
-  ],
-  "安托山公共文化中心-大剧场|shenzhen": [
-    22.29385,
-    114.170323
-  ],
-  "宛平剧院-小剧场|shanghai": [
-    31.185068,
-    121.451095
-  ],
-  "宝塚大劇場|takarazuka (兵庫)": [
-    34.807226,
-    135.346246
-  ],
-  "小柯剧场|beijing": [
-    39.984417,
-    116.49822
-  ],
-  "小馬廄|taipei": [
-    25.035638,
-    121.545527
-  ],
-  "屏東藝術館|pingtung": [
-    22.676996,
-    120.477178
-  ],
-  "山东省会大剧院|jinan": [
-    36.655116,
-    116.906266
-  ],
-  "山西大剧院|taiyuan": [
-    37.807658,
-    112.533232
-  ],
-  "山西大剧院大剧场|taiyuan": [
-    37.807658,
-    112.533232
-  ],
-  "常州大剧院|changzhou": [
-    31.808153,
-    119.975679
-  ],
-  "广东省友谊剧院|guangzhou": [
-    23.145122,
-    113.257635
-  ],
-  "广州大剧院歌剧厅|guangzhou": [
-    23.115245,
-    113.321921
-  ],
-  "广州正佳大剧院|guangzhou": [
-    23.115245,
-    113.321921
-  ],
-  "广州花都大剧院|guangzhou": [
-    23.115245,
-    113.321921
-  ],
-  "广西文化艺术中心|nanning": [
-    22.776593,
-    108.368732
-  ],
-  "延边工人文化艺术中心(延边工人文化宫)|yanbian": [
-    31.777118,
-    119.964058
-  ],
-  "开心麻花剧场(横琴文化艺术中心)|zhuhai": [
-    22.272166,
-    113.547816
-  ],
-  "张家港保利大剧院|zhangjiagang": [
-    31.871433,
-    120.571092
-  ],
-  "徐州淮海国际博览中心e3馆|xuzhou": [
-    34.254753,
-    117.25146
-  ],
-  "恆春文化中心劇場館表演廳|pingtung": [
-    22.00261,
-    120.748859
-  ],
-  "恆春文化中心劇場館表演廳|屏東": [
-    22.00261,
-    120.748859
-  ],
-  "成都城市音乐厅-歌剧厅|chengdu": [
-    30.63556,
-    104.0796
-  ],
-  "成都高新中演大剧院-大剧场|chengdu": [
-    30.659075,
-    104.06824
-  ],
-  "新北市藝文中心演藝廳|new taipei": [
-    25.02597,
-    121.471741
-  ],
-  "新国立劇場 中劇場|tokyo": [
-    35.682841,
-    139.68536
-  ],
-  "新竹市文化局演藝廳音樂廳|hsinchu": [
-    24.811367,
-    120.968174
-  ],
-  "新竹縣政府文化局演藝廳|hsinchu": [
-    24.829948,
-    121.012175
-  ],
-  "施光南大剧院|chongqing": [
-    29.53816,
-    106.58652
-  ],
-  "无锡大剧院|wuxi": [
-    31.513432,
-    120.280104
-  ],
-  "日本青年館ホール|tokyo": [
-    35.674275,
-    139.715409
-  ],
-  "日生劇場|tokyo": [
-    35.673227,
-    139.758451
-  ],
-  "时光剧场|shanghai": [
-    31.278053,
-    121.451741
-  ],
-  "昆山文化艺术中心|kunshan": [
-    31.381315,
-    120.905076
-  ],
-  "星空间1023号·涵金小剧场|shanghai": [
-    31.23488,
-    121.474773
-  ],
-  "星空间10号·moriginal box|shanghai": [
-    31.22833,
-    121.47928
-  ],
-  "星空间11号·moriginal box|shanghai": [
-    31.22833,
-    121.47928
-  ],
-  "星空间18号·谜剧场|shanghai": [
-    31.23488,
-    121.474773
-  ],
-  "星空间1号·一台好戏小剧场|shanghai": [
-    31.23385,
-    121.4781
-  ],
-  "星空间2047号·新贵剧场|shanghai": [
-    31.234358,
-    121.47559
-  ],
-  "星空间28号·好好有戏小剧场|shanghai": [
-    31.23385,
-    121.4781
-  ],
-  "星空间2号·好好有戏剧场|shanghai": [
-    31.23385,
-    121.4781
-  ],
-  "星空间322号 take one|shanghai": [
-    31.234358,
-    121.47559
-  ],
-  "星空间33号·鲸剧场|shanghai": [
-    31.23488,
-    121.474773
-  ],
-  "星空间6号·一台好戏小剧场|shanghai": [
-    31.23385,
-    121.4781
-  ],
-  "星空间8808号·涵金小剧场|shanghai": [
-    31.23488,
-    121.474773
-  ],
-  "星空间9号·鲸剧场|shanghai": [
-    31.23385,
-    121.4781
-  ],
-  "星空间·星空穹顶剧场|shanghai": [
-    30.914488,
-    121.921499
-  ],
-  "春日井市民会館|aichi": [
-    35.246707,
-    136.972533
-  ],
-  "曌剧场|shanghai": [
-    31.217344,
-    121.44
-  ],
-  "有明四季劇場|tokyo": [
-    35.638904,
-    139.795029
-  ],
-  "有楽町朝日ホール|tokyo": [
-    35.673289,
-    139.763026
-  ],
-  "杭州东坡大剧院|hangzhou": [
-    30.253326,
-    120.16316
-  ],
-  "杭州临平大剧院|hangzhou": [
-    30.421008,
-    120.299839
-  ],
-  "杭州大剧院-歌剧院|hangzhou": [
-    30.244474,
-    120.215438
-  ],
-  "杭州西湖钱王祠阅礼堂|hangzhou": [
-    30.242691,
-    120.15806
-  ],
-  "杭州金沙湖大剧院-歌剧厅|hangzhou": [
-    30.162317,
-    120.24678
-  ],
-  "東京ドームシティ シアターgロッソ|tokyo": [
-    35.704536,
-    139.754142
-  ],
-  "東京宝塚劇場|tokyo (日比谷)": [
-    35.67273,
-    139.759216
-  ],
-  "東京建物 brillia hall 箕面 大ホール（箕面市立文化芸能劇場）|osaka": [
-    34.82178,
-    135.49146
-  ],
-  "東大阪市文化創造館 dream house 大ホール|osaka": [
-    34.665889,
-    135.589518
-  ],
-  "東急シアターオーブ|tokyo": [
-    35.659076,
-    139.703047
-  ],
-  "桂林漓江歌剧院·歌剧厅|guilin": [
-    25.272792,
-    110.298138
-  ],
-  "桑塔露琪亚·广州馆|guangzhou": [
-    23.142906,
-    113.280684
-  ],
-  "武汉琴台大剧院|wuhan": [
-    30.561032,
-    114.259481
-  ],
-  "水源劇場|taipei": [
-    25.013604,
-    121.5349
-  ],
-  "江苏大剧院-戏剧厅|nanjing": [
-    32.015102,
-    118.714821
-  ],
-  "江苏大剧院-歌剧厅|nanjing": [
-    32.015102,
-    118.714821
-  ],
-  "沈阳盛京大剧院|shenyang": [
-    41.752642,
-    123.444402
-  ],
-  "河南艺术中心|zhengzhou": [
-    34.771306,
-    113.723828
-  ],
-  "泰州大剧院|taizhou": [
-    32.449434,
-    119.920022
-  ],
-  "海口湾演艺中心|haikou": [
-    20.028061,
-    110.309418
-  ],
-  "海口演艺新空间|haikou": [
-    20.030146,
-    110.305095
-  ],
-  "海珠大戏院|guangzhou": [
-    23.111341,
-    113.259496
-  ],
-  "淄博大剧院|zibo": [
-    36.82584,
-    117.9887
-  ],
-  "淮安大剧院|huai'an": [
-    33.549785,
-    119.11098
-  ],
-  "深圳·鹭湖艺术中心 大剧场|shenzhen": [
-    22.547193,
-    114.092825
-  ],
-  "深圳保利剧院|shenzhen": [
-    22.564711,
-    114.052097
-  ],
-  "深圳南山文化馆剧院|shenzhen": [
-    22.524145,
-    113.910304
-  ],
-  "深圳坪山大剧院|shenzhen": [
-    22.704816,
-    114.346622
-  ],
-  "温州高新文化广场 大剧院|wenzhou": [
-    27.990662,
-    120.702713
-  ],
-  "湖北剧院|wuhan": [
-    30.540908,
-    114.304729
-  ],
-  "滨港商业中心·今潮8弄-ark live house|shanghai": [
-    31.25051,
-    121.48454
-  ],
-  "潍坊大剧院|weifang": [
-    36.70019,
-    119.16058
-  ],
-  "澎湖縣演藝廳|penghu": [
-    23.571209,
-    119.577952
-  ],
-  "澳门文化中心黑盒ii|macau": [
-    22.1891,
-    113.5552
-  ],
-  "澳门文化中心黑盒剧场-黑盒i|macau": [
-    22.1891,
-    113.5552
-  ],
-  "烟台大剧院|yantai": [
-    37.537982,
-    121.396263
-  ],
-  "珠影壹号新空间a馆|guangzhou": [
-    23.094885,
-    113.320716
-  ],
-  "珠海大剧院|zhuhai": [
-    22.281204,
-    113.589364
-  ],
-  "珠海金湾艺术中心·多功能厅(b馆)|zhuhai": [
-    22.11341,
-    113.36081
-  ],
-  "珠海金湾艺术中心·大剧院(a馆)|zhuhai": [
-    22.11341,
-    113.36081
-  ],
-  "神戸ワールド記念ホール|hyogo": [
-    34.66386,
-    135.210569
-  ],
-  "福岡市民ホール 大ホール|fukuoka": [
-    33.596319,
-    130.398928
-  ],
-  "福州海峡文化艺术中心|fuzhou": [
-    25.99574,
-    119.41734
-  ],
-  "空軍三重一村時藝劇場|new taipei": [
-    25.057865,
-    121.499048
-  ],
-  "童梦剧场|shanghai": [
-    31.196309,
-    121.494657
-  ],
-  "纯粹脱口秀club|guangzhou": [
-    23.131811,
-    113.285401
-  ],
-  "缪时客·月光下小剧场|shanghai": [
-    31.227027,
-    121.477828
-  ],
-  "缪时客小剧场|nanjing": [
-    31.217344,
-    121.44
-  ],
-  "联创艺空间4号·梦境剧场|wuhan": [
-    30.57688,
-    114.36409
-  ],
-  "自由劇場 (浜松町)|tokyo": [
-    35.657484,
-    139.761244
-  ],
-  "臺中國家歌劇院|taichung": [
-    24.162649,
-    120.640303
-  ],
-  "臺中國家歌劇院中劇院|taichung": [
-    24.162649,
-    120.640303
-  ],
-  "臺中國家歌劇院中劇院|臺中": [
-    24.162649,
-    120.640303
-  ],
-  "臺中國家歌劇院大劇院|taichung": [
-    24.162649,
-    120.640303
-  ],
-  "臺中國家歌劇院大劇院|臺中": [
-    24.162649,
-    120.640303
-  ],
-  "臺中市中山堂|taichung": [
-    24.155279,
-    120.682782
-  ],
-  "臺中市中山堂|臺中": [
-    24.155279,
-    120.682782
-  ],
-  "臺中市屯區藝文中心實驗劇場|taichung": [
-    24.156861,
-    120.735018
-  ],
-  "臺中市葫蘆墩文化中心演奏廳|taichung": [
-    24.252697,
-    120.730232
-  ],
-  "臺北國家戲劇院|taipei": [
-    25.035305,
-    121.51816
-  ],
-  "臺北市客家音樂戲劇中心二樓劇場|taipei": [
-    25.019678,
-    121.52565
-  ],
-  "臺北市藝文推廣處城市舞台|taipei": [
-    25.048415,
-    121.551495
-  ],
-  "臺北表演藝術中心 大劇院|taipei": [
-    25.085124,
-    121.524369
-  ],
-  "臺北表演藝術中心 球劇場|taipei": [
-    25.085124,
-    121.524369
-  ],
-  "臺北表演藝術中心 藍盒子|taipei": [
-    25.085124,
-    121.524369
-  ],
-  "臺東縣政府文化處藝文中心演藝廳|taitung": [
-    22.756543,
-    121.144612
-  ],
-  "臺灣大學藝文中心遊心劇場|taipei": [
-    25.014518,
-    121.53792
-  ],
-  "臺灣戲曲中心多功能廳|taipei": [
-    25.102277,
-    121.519779
-  ],
-  "臺灣戲曲中心多功能廳|臺北": [
-    25.102277,
-    121.519779
-  ],
-  "舞浜アンフィシアター|maihama": [
-    35.632586,
-    139.889227
-  ],
-  "艺海剧院-大剧场|shanghai": [
-    31.234929,
-    121.452463
-  ],
-  "苏州保利大剧院|suzhou": [
-    31.66062,
-    120.780285
-  ],
-  "苏州开明大戏院-沁兰剧场|suzhou": [
-    31.309632,
-    120.624975
-  ],
-  "苏州湾大剧院-歌剧厅|suzhou": [
-    31.13223,
-    120.58587
-  ],
-  "苏州湾大剧院|suzhou": [
-    31.13223,
-    120.58587
-  ],
-  "苏州狮山大剧院-大剧场|suzhou": [
-    31.13223,
-    120.58587
-  ],
-  "苗北藝文中心實驗劇場|miaoli": [
-    24.690734,
-    120.885946
-  ],
-  "茉莉花剧场|shanghai": [
-    31.230243,
-    121.478407
-  ],
-  "蜂巢剧场|beijing": [
-    39.94033,
-    116.438871
-  ],
-  "蝴蝶剧场(小百花越剧场)|hangzhou": [
-    30.26543,
-    120.14192
-  ],
-  "衛武營國家藝術文化中心戲劇院|kaohsiung": [
-    22.623,
-    120.342441
-  ],
-  "衛武營國家藝術文化中心戲劇院|高雄": [
-    22.623,
-    120.342441
-  ],
-  "衛武營國家藝術文化中心歌劇院|kaohsiung": [
-    22.623,
-    120.342441
-  ],
-  "衛武營國家藝術文化中心表演廳|kaohsiung": [
-    22.623,
-    120.342441
-  ],
-  "衡阳保利大剧院|hengyang": [
-    31.353802,
-    121.26291
-  ],
-  "衢州保利大剧院|quzhou": [
-    31.66062,
-    120.780285
-  ],
-  "西安人民剧院|xi'an": [
-    34.266794,
-    108.947043
-  ],
-  "西安浐灞保利大剧院|xi'an": [
-    34.315366,
-    108.997398
-  ],
-  "西施大剧院|shaoxing": [
-    30.001432,
-    120.579607
-  ],
-  "誠品表演廳|taipei": [
-    25.044561,
-    121.561351
-  ],
-  "诸暨西施大剧院|zhuji": [
-    29.71052,
-    120.236726
-  ],
-  "连云港大剧院|连云港": [
-    34.61983,
-    119.2134
-  ],
-  "遊牧計畫|taipei": [
-    25.023493,
-    121.522789
-  ],
-  "邦尼剧场|shanghai": [
-    31.283524,
-    121.457038
-  ],
-  "鄂尔多斯大剧院-歌剧厅|ordos": [
-    39.602121,
-    109.788321
-  ],
-  "重庆大剧院|chongqing": [
-    29.569956,
-    106.581187
-  ],
-  "重庆大剧院中剧场|chongqing": [
-    29.606402,
-    106.574673
-  ],
-  "长江剧场-红匣子|shanghai": [
-    31.21907,
-    121.44978
-  ],
-  "长沙梅溪湖国际文化艺术中心大剧院|changsha": [
-    28.19552,
-    112.90712
-  ],
-  "阿波罗尼亚·广州馆|guangzhou": [
-    23.207961,
-    113.542764
-  ],
-  "陕西大剧院-歌剧厅|xi'an": [
-    34.209185,
-    108.961517
-  ],
-  "雲林表演廳|yunlin": [
-    23.695535,
-    120.524944
-  ],
-  "電通四季劇場[海] (汐留)|tokyo": [
-    35.664887,
-    139.762493
-  ],
-  "青岛大剧院|qingdao": [
-    36.09964,
-    120.473667
-  ],
-  "青海大剧院-音乐厅|xining": [
-    36.64547,
-    101.719116
-  ],
-  "顺义大剧院|beijing": [
-    39.904799,
-    116.389671
-  ],
-  "香山大剧院|zhongshan": [
-    29.706344,
-    118.289496
-  ],
-  "駁二正港小劇場|kaohsiung": [
-    22.620929,
-    120.278198
-  ],
-  "高雄市文化中心至德堂|kaohsiung": [
-    22.625257,
-    120.317944
-  ],
-  "高雄市文化中心至德堂|高雄": [
-    22.625257,
-    120.317944
-  ],
-  "黄浦剧场--中剧场|shanghai": [
-    31.23837,
-    121.475561
-  ],
-  "黄浦剧场-小剧场|shanghai": [
-    31.23837,
-    121.475561
-  ],
-  "鼓楼西剧场|beijing": [
-    39.94585,
-    116.387142
-  ],
-  "ｃｂｇｋシブゲキ!!|tokyo": [
-    35.659527,
-    139.698318
-  ],
-  "ｓｋｙシアターｍｂｓ|osaka": [
-    34.700629,
-    135.494151
-  ],
-  "alliance theatre - coca-cola stage|atlanta": [
-    33.789247,
-    -84.385409
-  ],
-  "ckl stage|seoul": [
-    37.568489,
-    126.981613
-  ],
-  "carolyn blount theatre festival stage|montgomery": [
-    32.349909,
-    -86.212917
-  ],
-  "dream hall (大邱 대덕문화전당)|daegu": [
-    35.831315,
-    128.577002
-  ],
-  "det norske teatret|oslo": [
-    59.915085,
-    10.738549
-  ],
-  "eccles theater - salt lake city|salt lake city": [
-    40.766363,
-    -111.890583
-  ],
-  "hala globus|lublin": [
-    51.238696,
-    22.532277
-  ],
-  "hala stulecia|wrocław": [
-    51.106953,
-    17.077329
-  ],
-  "kultkikötő - balatonszárszó|balatonszárszó": [
-    46.832863,
-    17.831329
-  ],
-  "oscarsteatern|stockholm": [
-    59.333472,
-    18.055964
-  ],
-  "parker arts culture and events center|parker": [
-    39.516892,
-    -104.757619
-  ],
-  "recinto de peñas de benicarló|benicarló": [
-    40.420103,
-    0.432855
-  ],
-  "teatro nazionale italiana assicurazioni|milano": [
-    45.46676,
-    9.154212
-  ],
-  "teatro off|valencia": [
-    39.476592,
-    -0.385444
-  ],
-  "西演space·西安广电大剧院|xi'an": [
-    34.205985,
-    108.974756
-  ],
-  "保利剧聚空间370号|shenzhen": [
-    22.51941,
-    113.93394
-  ],
-  "安托山公共文化中心-2f簕杜鹃厅|shenzhen": [
-    22.5512,
-    114.002
-  ],
-  "星空间129号·夭蛾剧场|shanghai": [
-    31.2297,
-    121.4747
-  ],
-  "星空间12号·耶比剧场|shanghai": [
-    31.23762,
-    121.4708
-  ],
-  "星空间19号·剧魅剧场|shanghai": [
-    31.23588,
-    121.47355
-  ],
-  "星空间216号·果然有戏小剧场|shanghai": [
-    31.23762,
-    121.4708
-  ],
-  "星空间420号·伸个懒腰剧场|shanghai": [
-    31.23762,
-    121.4708
-  ],
-  "星空间55号·五十五剧场|shanghai": [
-    31.23588,
-    121.47355
-  ],
-  "星空间919号·风铃剧场|shanghai": [
-    31.23643,
-    121.47121
-  ],
-  "相信有戏剧场(原开心麻花疯狂星有团)|hangzhou": [
-    30.275,
-    120.158
-  ],
-  "auditorio de la casa de cultura|la puebla de montalbán": [
-    39.86624,
-    -4.3596
-  ]
+ "_comment": "Authoritative venue coords (Google, building-level ~<=30m), keyed by 'venue|city'. Applied in build_shows.py. Regenerate: scrapers/geocode_google.py (incremental; --all to re-do every venue).",
+ "(通州区)北京艺术中心-戏剧场-国家大剧院分址|beijing": [
+  39.885282,
+  116.712456
+ ],
+ "(通州区)北京艺术中心-歌剧院-国家大剧院分址|beijing": [
+  39.885282,
+  116.712456
+ ],
+ "3olympia theatre|dublin": [
+  53.344309,
+  -6.266065
+ ],
+ "3q米食|miaoli": [
+  24.417593,
+  120.68336
+ ],
+ "3q米食|苗栗": [
+  24.417593,
+  120.68336
+ ],
+ "579百工集百老汇舞厅|jinan": [
+  36.68149,
+  117.08859
+ ],
+ "aalborghallen|aalborg": [
+  57.043514,
+  9.913634
+ ],
+ "abba arena|london": [
+  51.532937,
+  -0.013508
+ ],
+ "abcホール|osaka": [
+  34.693689,
+  135.488298
+ ],
+ "aberdeen music hall|aberdeen": [
+  57.145221,
+  -2.104737
+ ],
+ "acacia|napoli": [
+  40.849528,
+  14.230351
+ ],
+ "academy of music - pa|philadelphia": [
+  39.947984,
+  -75.164898
+ ],
+ "academy of music: kimmel center|philadelphia": [
+  39.947984,
+  -75.164898
+ ],
+ "act of connecticut|ridgefield": [
+  41.28609,
+  -73.491119
+ ],
+ "adelphi theatre|london": [
+  51.510122,
+  -0.122762
+ ],
+ "adler theatre|davenport": [
+  41.522532,
+  -90.573344
+ ],
+ "adrienne arsht center|miami": [
+  25.787628,
+  -80.189903
+ ],
+ "agora - művelődési és sportház|szombathely": [
+  47.23648,
+  16.621417
+ ],
+ "ahmanson theatre|los angeles": [
+  34.057974,
+  -118.247558
+ ],
+ "aiia 2.5 theater kobe|hyogo": [
+  34.704334,
+  135.195164
+ ],
+ "akron civic theatre|akron": [
+  41.080692,
+  -81.520355
+ ],
+ "al hirschfeld theatre|new york": [
+  40.759261,
+  -73.989201
+ ],
+ "al massimo|palermo": [
+  38.119776,
+  13.357956
+ ],
+ "aldwych theatre|london": [
+  51.512995,
+  -0.118557
+ ],
+ "alexandra palace|london": [
+  51.594237,
+  -0.130811
+ ],
+ "alexis park resort hotel|las vegas": [
+  36.107577,
+  -115.156252
+ ],
+ "alfieri|asti": [
+  44.899686,
+  8.207646
+ ],
+ "alfieri|torino": [
+  45.06987,
+  7.677284
+ ],
+ "algonquin arts theatre|manasquan": [
+  40.122345,
+  -74.050064
+ ],
+ "algonquin commons theatre|nepean": [
+  45.349691,
+  -75.755823
+ ],
+ "alhambra theatre|dunfermline": [
+  56.07007,
+  -3.457891
+ ],
+ "alighieri|ravenna": [
+  44.417196,
+  12.201067
+ ],
+ "allen elizabethan theatre|ashland": [
+  42.196054,
+  -122.71513
+ ],
+ "alley theatre-hubbard stage|houston": [
+  29.762094,
+  -95.365372
+ ],
+ "alliance theatre - coca-cola stage|atlanta": [
+  33.789247,
+  -84.385409
+ ],
+ "alliance theatre|atlanta": [
+  33.789247,
+  -84.385409
+ ],
+ "altria theater|richmond": [
+  37.546198,
+  -77.451698
+ ],
+ "altınoluk amphi theater|balıkesir": [
+  39.57724,
+  26.740868
+ ],
+ "amaturo theater at broward center|fort lauderdale": [
+  26.119331,
+  -80.149155
+ ],
+ "amaturo theater at broward center|ft lauderdale": [
+  26.119331,
+  -80.149155
+ ],
+ "ambassador theatre|new york": [
+  40.761292,
+  -73.985083
+ ],
+ "ames center|burnsville": [
+  44.774036,
+  -93.279488
+ ],
+ "anchecinema|bari": [
+  41.117729,
+  16.864294
+ ],
+ "apollo theater|chicago": [
+  41.928063,
+  -87.652822
+ ],
+ "apollo victoria theatre|london": [
+  51.495745,
+  -0.142734
+ ],
+ "arcimboldi|milano": [
+  45.514842,
+  9.213553
+ ],
+ "arena del mare|sabaudia": [
+  41.298591,
+  13.020693
+ ],
+ "arena du pays d'aix|aix-en-provence": [
+  43.47322,
+  5.403862
+ ],
+ "arena|verona": [
+  45.438996,
+  10.994357
+ ],
+ "arona|arona": [
+  28.09995,
+  -16.679977
+ ],
+ "aronoff center-procter & gamble hall|cincinnati": [
+  39.103564,
+  -84.51179
+ ],
+ "aronoff center: procter &amp; gamble hall|cincinnati": [
+  39.103564,
+  -84.51179
+ ],
+ "artespacio plot point|madrid": [
+  40.401971,
+  -3.702038
+ ],
+ "artscape opera house|cape town": [
+  -33.919686,
+  18.43045
+ ],
+ "asb waterfront theatre|auckland": [
+  -36.842086,
+  174.757489
+ ],
+ "asu gammage|tempe": [
+  33.416265,
+  -111.938001
+ ],
+ "at&amp;t performing arts center|dallas": [
+  32.791229,
+  -96.797525
+ ],
+ "athenaeum theatre one|melbourne": [
+  -37.814949,
+  144.967453
+ ],
+ "auditori barradas|hospitalet de llobregat": [
+  41.362823,
+  2.100824
+ ],
+ "auditori de cornellà|cornellà de llobregat": [
+  41.349404,
+  2.081428
+ ],
+ "auditori sixto mir|sant carles de la ràpita": [
+  40.612667,
+  0.58428
+ ],
+ "auditorio banamex|monterrey": [
+  25.677595,
+  -100.280868
+ ],
+ "auditorio de la casa de cultura|la puebla de montalbán": [
+  39.86624,
+  -4.3596
+ ],
+ "auditorio municipal paco de lucía|alcalá de henares": [
+  40.471037,
+  -3.375645
+ ],
+ "auditorio reveriano soutullo|ponteareas": [
+  42.174299,
+  -8.506983
+ ],
+ "auditorio telmex|zapopan": [
+  20.733319,
+  -103.381159
+ ],
+ "auditorium conciliazione|roma": [
+  41.902547,
+  12.463612
+ ],
+ "auditorium paganini|parma": [
+  44.801571,
+  10.343208
+ ],
+ "auditorium theatre of roosevelt univ.|chicago": [
+  41.87585,
+  -87.625241
+ ],
+ "auditorium theatre|rochester": [
+  43.160741,
+  -77.588659
+ ],
+ "augusteo|salerno": [
+  40.678432,
+  14.756134
+ ],
+ "avenir centre|moncton": [
+  46.085531,
+  -64.784471
+ ],
+ "aylesbury waterside theatre|aylesbury": [
+  51.814792,
+  -0.809475
+ ],
+ "balaton színház|keszthely": [
+  46.76583,
+  17.243758
+ ],
+ "balletsalen, det ny teater|københavn v": [
+  55.673186,
+  12.555286
+ ],
+ "barbican centre|london": [
+  51.520208,
+  -0.093786
+ ],
+ "barclays arena|hamburg": [
+  53.589333,
+  9.899105
+ ],
+ "bass concert hall @ u of tx at austin|austin": [
+  30.286392,
+  -97.7312
+ ],
+ "bass concert hall|austin": [
+  30.286392,
+  -97.7312
+ ],
+ "bass performance hall|fort worth": [
+  32.754875,
+  -97.329881
+ ],
+ "bath forum|bath": [
+  51.378586,
+  -2.360637
+ ],
+ "baton rouge river center theater|baton rouge": [
+  30.444965,
+  -91.187957
+ ],
+ "bay city players|bay city": [
+  43.589048,
+  -83.878578
+ ],
+ "beatrix theater utrecht|utrecht": [
+  52.088455,
+  5.107443
+ ],
+ "beatrix theatre utrecht|utrecht": [
+  52.088455,
+  5.107443
+ ],
+ "beau rivage theatre|biloxi": [
+  30.392345,
+  -88.891732
+ ],
+ "belasco theatre|new york": [
+  40.756639,
+  -73.983886
+ ],
+ "belk theatre|charlotte": [
+  35.227317,
+  -80.841542
+ ],
+ "benedum center|pittsburgh": [
+  40.442985,
+  -80.000016
+ ],
+ "benjamin &amp; marian schuster performing arts center|dayton": [
+  39.761183,
+  -84.193306
+ ],
+ "bergen performing arts center|englewood": [
+  40.895292,
+  -73.974933
+ ],
+ "berglund performing arts theatre|roanoke": [
+  37.280128,
+  -79.935814
+ ],
+ "bernard b. jacobs theatre|new york": [
+  40.758768,
+  -73.987706
+ ],
+ "biddeford city theater|biddeford": [
+  43.493583,
+  -70.456682
+ ],
+ "bijou theatre|knoxville": [
+  35.962487,
+  -83.916895
+ ],
+ "birmingham-jefferson concert hall|birmingham": [
+  33.525636,
+  -86.812339
+ ],
+ "bjcc concert hall|birmingham": [
+  33.525636,
+  -86.812339
+ ],
+ "blackpool opera house|blackpool": [
+  53.817524,
+  -3.050858
+ ],
+ "bloomington center for the performing arts|bloomington": [
+  40.484139,
+  -88.992834
+ ],
+ "bloomington, in|bloomington": [
+  39.169574,
+  -86.538555
+ ],
+ "blue square|seoul": [
+  37.540703,
+  127.002648
+ ],
+ "blumenthal center: belk theater|charlotte": [
+  35.227317,
+  -80.841542
+ ],
+ "boch center shubert theatre|boston": [
+  42.350401,
+  -71.065401
+ ],
+ "boch center wang theatre|boston": [
+  42.350371,
+  -71.064804
+ ],
+ "bord gais energy theatre|dublin": [
+  53.344185,
+  -6.240018
+ ],
+ "bournemouth pavilion|bournemouth": [
+  50.717919,
+  -1.874783
+ ],
+ "bradford live|bradford": [
+  53.792342,
+  -1.7567
+ ],
+ "brancaccio|roma": [
+  41.893591,
+  12.500826
+ ],
+ "brighton centre|london": [
+  50.821232,
+  -0.146474
+ ],
+ "brighton dome|brighton": [
+  50.8237,
+  -0.138084
+ ],
+ "bristol hippodrome|bristol": [
+  51.453194,
+  -2.598262
+ ],
+ "broadhurst theatre|new york": [
+  40.758162,
+  -73.987565
+ ],
+ "broadway playhouse at water tower place|chicago": [
+  41.89819,
+  -87.622225
+ ],
+ "broadway theatre|new york": [
+  40.763259,
+  -73.983051
+ ],
+ "broome county forum theatre|binghamton": [
+  42.101431,
+  -75.912367
+ ],
+ "broward center for the perf. arts|fort lauderdale": [
+  26.119756,
+  -80.149577
+ ],
+ "bruce mason centre|takapuna beach": [
+  -36.784098,
+  174.772975
+ ],
+ "brunnsparken, ronneby|ronneby": [
+  56.19553,
+  15.286543
+ ],
+ "buckhead theatre|atlanta": [
+  33.840302,
+  -84.379665
+ ],
+ "budapesti operettszínház|budapest": [
+  47.503908,
+  19.060105
+ ],
+ "buell theatre|denver": [
+  39.744541,
+  -104.997696
+ ],
+ "burgberg|heinsberg": [
+  51.060156,
+  6.093399
+ ],
+ "bursa kültür park open air theatre|bursa": [
+  40.196763,
+  29.041519
+ ],
+ "bushnell/ belding theater|hartford": [
+  41.762675,
+  -72.680019
+ ],
+ "bushnell|hartford": [
+  41.762595,
+  -72.680897
+ ],
+ "cabaret du casino de montreal|montreal": [
+  45.504609,
+  -73.525995
+ ],
+ "cadillac palace theatre|chicago": [
+  41.884239,
+  -87.633058
+ ],
+ "cadillac palace|chicago": [
+  41.884239,
+  -87.633058
+ ],
+ "cadogan hall|london": [
+  51.493792,
+  -0.157232
+ ],
+ "california theatre of the performing arts|san bernardino": [
+  34.106814,
+  -117.295449
+ ],
+ "cambridge theatre|london": [
+  51.513665,
+  -0.126629
+ ],
+ "canberra theatre centre|canberra": [
+  -35.281702,
+  149.130507
+ ],
+ "cannata|melilli": [
+  37.180677,
+  15.124471
+ ],
+ "cape playhouse|dennis": [
+  41.740685,
+  -70.191788
+ ],
+ "capital theatre|london": [
+  51.479658,
+  0.015974
+ ],
+ "capitol center for the arts - nh|concord": [
+  43.201258,
+  -71.534745
+ ],
+ "capitol theater - overture center|madison": [
+  43.074219,
+  -89.388452
+ ],
+ "capitol theatre, sydney|haymarket": [
+  -33.879399,
+  151.206303
+ ],
+ "capitol theatre, sydney|sydney": [
+  -33.879399,
+  151.206303
+ ],
+ "capitole gent|ghent": [
+  51.04812,
+  3.732177
+ ],
+ "capitólio|lisboa": [
+  38.718876,
+  -9.146637
+ ],
+ "carlisle sands centre|carlisle": [
+  54.899775,
+  -2.934079
+ ],
+ "carolina civic center historic theater|lumberton": [
+  34.619236,
+  -79.007947
+ ],
+ "carolyn blount theatre festival stage|montgomery": [
+  32.349909,
+  -86.212917
+ ],
+ "cartiere carrara|firenze": [
+  43.766572,
+  11.296013
+ ],
+ "casa de cultura - tobarra|tobarra": [
+  38.590928,
+  -1.68825
+ ],
+ "casa de cultura maría zambrano|bargas": [
+  39.940473,
+  -4.018267
+ ],
+ "casa de la cultura francisco rabal|águilas": [
+  37.403035,
+  -1.580241
+ ],
+ "casa manana|fort worth": [
+  32.746028,
+  -97.362537
+ ],
+ "casa municipal de puerto de sagunto|puerto de sagunto": [
+  39.658539,
+  -0.219433
+ ],
+ "cascades theatrical co|bend": [
+  44.060212,
+  -121.309732
+ ],
+ "casino rama resort|rama": [
+  44.648697,
+  -79.344879
+ ],
+ "casino vancouver|coquitlam": [
+  49.227446,
+  -122.83746
+ ],
+ "centennial hall|tucson": [
+  32.231477,
+  -110.955463
+ ],
+ "center stage theater|atlanta": [
+  33.792215,
+  -84.387956
+ ],
+ "centerpoint legacy theatre|centerville": [
+  40.923195,
+  -111.886249
+ ],
+ "centre stage -sc|greenville": [
+  34.849363,
+  -82.402174
+ ],
+ "centro cultural malaposta|lisboa": [
+  38.787265,
+  -9.170165
+ ],
+ "centro cultural teatro i|méxico": [
+  19.424791,
+  -99.154315
+ ],
+ "centro cultural virgen del carmen|torrevieja": [
+  37.977358,
+  -0.675201
+ ],
+ "centro pumarin-gijón sur|gijón": [
+  43.524977,
+  -5.67737
+ ],
+ "cgv daegu hanil|daegu": [
+  35.870497,
+  128.595378
+ ],
+ "chandler center for the arts|chandler": [
+  33.307388,
+  -111.842392
+ ],
+ "chapman music hall at tulsa pac|tulsa": [
+  36.154174,
+  -95.989204
+ ],
+ "charing cross theatre|london": [
+  51.508026,
+  -0.124121
+ ],
+ "charline mccombs empire theatre|san antonio": [
+  29.42605,
+  -98.491253
+ ],
+ "charlotte theater|seoul": [
+  37.510708,
+  127.099849
+ ],
+ "chateau neuf,storsalen|oslo": [
+  59.932338,
+  10.712599
+ ],
+ "chester fritz performing arts center|grand forks": [
+  47.921624,
+  -97.078762
+ ],
+ "choruslife arena|bergamo": [
+  45.702883,
+  9.689995
+ ],
+ "chungmu arts center|seoul": [
+  37.565929,
+  127.014859
+ ],
+ "cibc theatre|chicago": [
+  41.880805,
+  -87.62851
+ ],
+ "cidade das artes (bibi ferreira)|rio de janeiro": [
+  -22.999156,
+  -43.365798
+ ],
+ "cilea|reggio calabria": [
+  38.108741,
+  15.644864
+ ],
+ "cinema teatro don bosco|padova": [
+  45.38267,
+  11.852352
+ ],
+ "circle in the square theatre & school|new york": [
+  40.762021,
+  -73.985072
+ ],
+ "circus visioni|pescara": [
+  42.466776,
+  14.208876
+ ],
+ "citizens opera house|boston": [
+  42.353987,
+  -71.062304
+ ],
+ "ciudad romana de cáparra|guijo de granadilla": [
+  40.164086,
+  -6.098943
+ ],
+ "civic center music hall|oklahoma city": [
+  35.469054,
+  -97.523563
+ ],
+ "civico|la spezia": [
+  44.103704,
+  9.821854
+ ],
+ "ckis – dom kultury oskard|konin": [
+  52.227952,
+  18.2545
+ ],
+ "ckl stage|seoul": [
+  37.568489,
+  126.981613
+ ],
+ "clowes memorial hall|indianapolis": [
+  39.840439,
+  -86.169985
+ ],
+ "club regent event centre|winnipeg": [
+  49.896964,
+  -97.045071
+ ],
+ "cmp arena|bassano del grappa": [
+  45.746994,
+  11.740583
+ ],
+ "coca-cola arena|dubai": [
+  25.20431,
+  55.265382
+ ],
+ "coex artium|seoul": [
+  37.510006,
+  127.061479
+ ],
+ "colorado springs, co|colorado springs": [
+  38.835314,
+  -104.821601
+ ],
+ "columbia county performing arts center|evans": [
+  33.543887,
+  -82.127735
+ ],
+ "comedy theatre|melbourne": [
+  -37.810291,
+  144.970024
+ ],
+ "comunale - dino buzzati|belluno": [
+  46.139513,
+  12.217627
+ ],
+ "comunale luigi russolo|portogruaro": [
+  45.777658,
+  12.839126
+ ],
+ "comunale|vicenza": [
+  45.548067,
+  11.534101
+ ],
+ "condominio vittorio gassman|gallarate": [
+  45.661343,
+  8.792573
+ ],
+ "congress theatre|eastbourne": [
+  50.762778,
+  0.283333
+ ],
+ "connor palace - cleveland|cleveland": [
+  41.501732,
+  -81.680458
+ ],
+ "connor palace|cleveland": [
+  41.501732,
+  -81.680458
+ ],
+ "costa de adeje|costa de adeje": [
+  28.076663,
+  -16.731999
+ ],
+ "crighton theatre|conroe": [
+  30.310879,
+  -95.456876
+ ],
+ "criterion theatre|london": [
+  51.509727,
+  -0.134269
+ ],
+ "cross insurance center|bangor": [
+  44.789706,
+  -68.778777
+ ],
+ "croswell opera house|adrian": [
+  41.898759,
+  -84.035365
+ ],
+ "crown theatre perth|burswood": [
+  -31.959777,
+  115.89513
+ ],
+ "crown theatre perth|perth": [
+  -31.959777,
+  115.89513
+ ],
+ "csajághy laura szabadtéri színpad|kápolnásnyék": [
+  47.231914,
+  18.677085
+ ],
+ "cubierta de leganes|leganés": [
+  40.326296,
+  -3.758278
+ ],
+ "curran theatre|san francisco": [
+  37.786854,
+  -122.410619
+ ],
+ "cygnet theatre|san deigo": [
+  32.738126,
+  -117.21498
+ ],
+ "cygnet theatre|san diego": [
+  32.738126,
+  -117.21498
+ ],
+ "daegu ayang art center|daegu": [
+  35.879784,
+  128.65196
+ ],
+ "daegu bongsan cultural center|daegu": [
+  35.863327,
+  128.596595
+ ],
+ "daegu culture & arts centre|daegu": [
+  35.844659,
+  128.558741
+ ],
+ "daejeon arts center|daejeon": [
+  36.366503,
+  127.383958
+ ],
+ "daryl roth theatre|new york": [
+  40.735408,
+  -73.98963
+ ],
+ "david a. straz center - carol morsani hall|tampa": [
+  27.951607,
+  -82.464191
+ ],
+ "davies symphony hall|san francisco": [
+  37.77751,
+  -122.420711
+ ],
+ "de montfort hall|leicester": [
+  52.625005,
+  -1.121988
+ ],
+ "debrecen főnix aréna|debrecen": [
+  47.545598,
+  21.642969
+ ],
+ "decc symphony hall|duluth": [
+  46.779961,
+  -92.09881
+ ],
+ "dei marsi|avezzano": [
+  42.045735,
+  13.407706
+ ],
+ "dell'aquila|fermo": [
+  43.160405,
+  13.717631
+ ],
+ "delle muse|ancona": [
+  43.619262,
+  13.509978
+ ],
+ "delmar hall|saint louis": [
+  38.655547,
+  -90.2972
+ ],
+ "des moines civic center|des moines": [
+  41.587309,
+  -93.620501
+ ],
+ "det norske teatret|oslo": [
+  59.915085,
+  10.738549
+ ],
+ "det ny teater|københavn v": [
+  55.673186,
+  12.555286
+ ],
+ "devos hall|grand rapids": [
+  42.968226,
+  -85.673072
+ ],
+ "di verdura|palermo": [
+  38.160634,
+  13.334463
+ ],
+ "diamond head theatre|honolulu": [
+  21.2708,
+  -157.803151
+ ],
+ "dis_play|brescia": [
+  45.528235,
+  10.175224
+ ],
+ "divadlo broadway|prague": [
+  50.086603,
+  14.426985
+ ],
+ "divadlo hybernia|prague": [
+  50.087403,
+  14.428806
+ ],
+ "divadlo jiřího myrona (ndm)|ostrava": [
+  49.836276,
+  18.288177
+ ],
+ "divadlo kalich|prague": [
+  50.080276,
+  14.421772
+ ],
+ "divadlo radka brzobohatého|prague": [
+  50.081539,
+  14.429499
+ ],
+ "dominion theatre|london": [
+  51.516681,
+  -0.12986
+ ],
+ "donizetti|bergamo": [
+  45.695267,
+  9.670892
+ ],
+ "dorfman theatre|london": [
+  51.507043,
+  -0.113328
+ ],
+ "dr. phillips center for the performing arts: walt disney  theater|orlando": [
+  28.537459,
+  -81.376959
+ ],
+ "dr. phillips performing arts center|orlando": [
+  28.537825,
+  -81.377381
+ ],
+ "dream hall (大邱 대덕문화전당)|daegu": [
+  35.831315,
+  128.577002
+ ],
+ "dream hall|daegu": [
+  35.831315,
+  128.577002
+ ],
+ "dream hall|seoul": [
+  37.550333,
+  126.915793
+ ],
+ "dream live at american dream|east rutherford": [
+  40.809129,
+  -74.068567
+ ],
+ "drury lane theatre oakbrook terrace|villa park": [
+  41.859528,
+  -87.952947
+ ],
+ "duke of york's theatre|london": [
+  51.510237,
+  -0.127074
+ ],
+ "dunakeszi nyári színház|dunakeszi": [
+  47.645366,
+  19.133115
+ ],
+ "dundee caird hall|dundee": [
+  56.459938,
+  -2.968609
+ ],
+ "durham performing arts center|durham": [
+  35.993248,
+  -78.902192
+ ],
+ "e.j. thomas hall - the university of akron|akron": [
+  41.078244,
+  -81.514698
+ ],
+ "eccles theater - salt lake city|salt lake city": [
+  40.766363,
+  -111.890583
+ ],
+ "eccles theater|salt lake city": [
+  40.766363,
+  -111.890583
+ ],
+ "edinburgh playhouse|edinburgh": [
+  55.956898,
+  -3.185397
+ ],
+ "effingham performance center|effingham": [
+  39.137246,
+  -88.575118
+ ],
+ "egri vár|eger": [
+  47.90451,
+  20.379905
+ ],
+ "el cantoral|mexico": [
+  19.361982,
+  -99.166296
+ ],
+ "embassy theatre|fort wayne": [
+  41.075737,
+  -85.139762
+ ],
+ "emerson colonial theatre|boston": [
+  42.352339,
+  -71.065438
+ ],
+ "empress museum|london": [
+  51.488006,
+  -0.198684
+ ],
+ "erkel színház|budapest": [
+  47.496919,
+  19.076806
+ ],
+ "escenario gnp seguros|monterrey": [
+  25.666174,
+  -100.316342
+ ],
+ "espacio alma|madrid": [
+  40.417335,
+  -3.703097
+ ],
+ "espacio broadway (madrid)|madrid": [
+  40.426053,
+  -3.707854
+ ],
+ "espacio escénico adolfo suárez|viator": [
+  36.88949,
+  -2.423816
+ ],
+ "espai texas|barcelona": [
+  41.402039,
+  2.163679
+ ],
+ "esplanade theatre|singapore": [
+  1.289793,
+  103.855817
+ ],
+ "etihad arena|abu dhabi": [
+  24.460342,
+  54.604356
+ ],
+ "eugene o'neill theatre|new york": [
+  40.761133,
+  -73.985659
+ ],
+ "europahalle|trier": [
+  49.752092,
+  6.63669
+ ],
+ "europauditorium|bologna": [
+  44.51208,
+  11.362572
+ ],
+ "evans, ga|evans": [
+  33.533746,
+  -82.130675
+ ],
+ "eventim apollo|london": [
+  51.490993,
+  -0.22461
+ ],
+ "falconersalen|frederiksberg": [
+  55.679713,
+  12.532895
+ ],
+ "feinstein's at the nikko|san francisco": [
+  37.786008,
+  -122.409296
+ ],
+ "ferrara summer festival - piazza ariostea|ferrara": [
+  44.841685,
+  11.62515
+ ],
+ "festival theatre|adelaide": [
+  -34.919813,
+  138.598372
+ ],
+ "festspiel- und kongresshaus|bregenz": [
+  47.50464,
+  9.737331
+ ],
+ "first interstate center for the arts|spokane": [
+  47.660556,
+  -117.417222
+ ],
+ "firstontario concert hall|hamilton": [
+  43.256371,
+  -79.871727
+ ],
+ "fisher theatre|detroit": [
+  42.369513,
+  -83.076734
+ ],
+ "five flags center|dubuque": [
+  42.497686,
+  -90.66574
+ ],
+ "flat rock playhouse|flat rock": [
+  35.273777,
+  -82.443285
+ ],
+ "folketeateret|oslo": [
+  59.914329,
+  10.750466
+ ],
+ "ford's theatre|washington": [
+  38.896676,
+  -77.025591
+ ],
+ "forrest theatre|philadelphia": [
+  39.948539,
+  -75.159557
+ ],
+ "fortune theatre|london": [
+  51.513287,
+  -0.120693
+ ],
+ "foundry theatre|pyrmont": [
+  -33.868321,
+  151.196234
+ ],
+ "foundry theatre|sydney": [
+  -33.868321,
+  151.196234
+ ],
+ "fox cities pac|appleton": [
+  44.262354,
+  -88.411558
+ ],
+ "fox cities performing arts center|appleton": [
+  44.262354,
+  -88.411558
+ ],
+ "fox theatre - atlanta|atlanta": [
+  33.772614,
+  -84.38534
+ ],
+ "fox theatre|atlanta": [
+  33.772614,
+  -84.38534
+ ],
+ "fox theatre|st. louis": [
+  38.638903,
+  -90.231845
+ ],
+ "fraschini|pavia": [
+  45.188506,
+  9.156173
+ ],
+ "fred kavli theatre- b of a performing arts center,thousand oaks|thousand oaks": [
+  34.174491,
+  -118.848929
+ ],
+ "freeman arts pavilion|selbyville": [
+  38.466017,
+  -75.112054
+ ],
+ "fulton county southwest arts center|atlanta": [
+  33.729722,
+  -84.541667
+ ],
+ "fulton opera house|lancaster": [
+  40.038054,
+  -76.308231
+ ],
+ "gaiety theatre|dublin": [
+  53.340461,
+  -6.261575
+ ],
+ "garrick theatre|london": [
+  51.510074,
+  -0.127911
+ ],
+ "gerald schoenfeld theatre|new york": [
+  40.758614,
+  -73.987311
+ ],
+ "gershwin theatre|new york": [
+  40.762547,
+  -73.98497
+ ],
+ "gielgud theatre|london": [
+  51.511789,
+  -0.132825
+ ],
+ "giovan battista pergolesi|jesi": [
+  43.520484,
+  13.240631
+ ],
+ "gleneagle arena|co. kerry": [
+  52.044466,
+  -9.502486
+ ],
+ "gloria|montichiari": [
+  45.413399,
+  10.390947
+ ],
+ "golden|palermo": [
+  38.129741,
+  13.344788
+ ],
+ "goldoni|livorno": [
+  43.54721,
+  10.313497
+ ],
+ "gran teatre del liceu|barcelona": [
+  41.380197,
+  2.173295
+ ],
+ "gran teatro caixabank príncipe pío|madrid": [
+  40.420887,
+  -3.718805
+ ],
+ "gran teatro geox|padova": [
+  45.417396,
+  11.855976
+ ],
+ "gran teatro pavón|madrid": [
+  40.410031,
+  -3.706155
+ ],
+ "gran teatro puccini|viareggio": [
+  43.834357,
+  10.306986
+ ],
+ "grand opera house york|york": [
+  53.957241,
+  -1.08202
+ ],
+ "grande valdocco|torino": [
+  45.0822,
+  7.677023
+ ],
+ "grey eagle event centre|calgary": [
+  51.007495,
+  -114.147247
+ ],
+ "gulfshore playhouse|naples": [
+  26.146347,
+  -81.791338
+ ],
+ "guthrie theater - mcguire proscenium stage|minneapolis": [
+  44.97817,
+  -93.255866
+ ],
+ "gyulai várszínház|gyula": [
+  46.645937,
+  21.285727
+ ],
+ "győr audi aréna|győr": [
+  47.698293,
+  17.666476
+ ],
+ "győri nemzeti színház|győr": [
+  47.686581,
+  17.635384
+ ],
+ "gödöllői királyi kastély|gödöllő": [
+  47.596009,
+  19.347578
+ ],
+ "hackensack meridian health theatre at the count basie center|red bank": [
+  40.349145,
+  -74.07012
+ ],
+ "hackney empire|london": [
+  51.545556,
+  -0.055556
+ ],
+ "hala globus|lublin": [
+  51.238696,
+  22.532277
+ ],
+ "hala stulecia|wrocław": [
+  51.106953,
+  17.077329
+ ],
+ "hale center theatre at mountain america|sandy": [
+  40.571681,
+  -111.898212
+ ],
+ "hale centre theatre - arizona|gilbert": [
+  33.355223,
+  -111.790642
+ ],
+ "hampstead theatre|london": [
+  51.543817,
+  -0.173679
+ ],
+ "hanover theatre|worcester": [
+  42.26075,
+  -71.803117
+ ],
+ "harbiye cemil topuzlu açıkhava tiyatrosu|i̇stanbul": [
+  41.046061,
+  28.99003
+ ],
+ "hard rock cafe - nyc|new york": [
+  40.757035,
+  -73.986611
+ ],
+ "hard rock cafe|new york": [
+  40.757035,
+  -73.986611
+ ],
+ "harevutai|tokyo": [
+  35.731953,
+  139.715591
+ ],
+ "harrah's cabaret at harrah's las vegas|las vegas": [
+  36.119599,
+  -115.172051
+ ],
+ "harris center for the arts|folsom": [
+  38.662499,
+  -121.129432
+ ],
+ "harrison opera house|norfolk": [
+  36.858039,
+  -76.290483
+ ],
+ "hawth theatre|crawley": [
+  51.111467,
+  -0.174699
+ ],
+ "hayes hall|naples": [
+  26.216016,
+  -81.803822
+ ],
+ "helen devitt jones theater at the buddy holly hall|lubbock": [
+  33.590746,
+  -101.849288
+ ],
+ "herald theatre, aotea centre|auckland": [
+  -36.851685,
+  174.762127
+ ],
+ "here at outernet|london": [
+  51.515689,
+  -0.129875
+ ],
+ "hershey theatre|hershey": [
+  40.285216,
+  -76.648512
+ ],
+ "hershey, pa|hershey": [
+  40.285924,
+  -76.650247
+ ],
+ "hippodrome theatre|baltimore": [
+  39.289869,
+  -76.62166
+ ],
+ "his majesty’s theatre|london": [
+  51.508243,
+  -0.131863
+ ],
+ "hobby center for the perf. arts|houston": [
+  29.761667,
+  -95.369722
+ ],
+ "hollywood pantages theatre|los angeles": [
+  34.101843,
+  -118.325609
+ ],
+ "hongdae nanta theater|seoul": [
+  37.553087,
+  126.921119
+ ],
+ "hongik daehangno art center|seoul": [
+  37.576664,
+  127.001851
+ ],
+ "hotel kilmore|co.cavan": [
+  53.986571,
+  -7.322304
+ ],
+ "house of blues las vegas|las vegas": [
+  36.093044,
+  -115.175564
+ ],
+ "howard l. schrott center for the arts|indianapolis": [
+  39.840055,
+  -86.16945
+ ],
+ "howard theatre|washington": [
+  38.915374,
+  -77.021089
+ ],
+ "hudební divadlo karlín|prague": [
+  50.090156,
+  14.441942
+ ],
+ "hull city hall|hull": [
+  53.743781,
+  -0.339818
+ ],
+ "hull new theatre|hull": [
+  53.747489,
+  -0.33736
+ ],
+ "hult center for the performing arts|eugene": [
+  44.052743,
+  -123.093179
+ ],
+ "hírös agóra|kecskemét": [
+  46.90706,
+  19.689587
+ ],
+ "höga kusten friluftsteater|lövvik": [
+  62.801636,
+  18.06864
+ ],
+ "i 4 mori|livorno": [
+  43.549529,
+  10.304753
+ ],
+ "i'm a show|tokyo": [
+  35.673596,
+  139.763452
+ ],
+ "il sistina chapiteau - milano|sesto san giovanni": [
+  45.526434,
+  9.246771
+ ],
+ "il sistina|roma": [
+  41.904255,
+  12.486967
+ ],
+ "imperial theatre - ny|new york": [
+  40.758991,
+  -73.987377
+ ],
+ "imperial theatre|new york": [
+  40.758991,
+  -73.987377
+ ],
+ "inalpi arena (ex pala alpitour)|torino": [
+  45.041528,
+  7.652191
+ ],
+ "indiana university auditorium|bloomington": [
+  39.168484,
+  -86.51816
+ ],
+ "ing剧场·一台好戏星空间131号|shanghai": [
+  31.233864,
+  121.47809
+ ],
+ "ing剧场·一台好戏星空间1739号|shanghai": [
+  31.233864,
+  121.47809
+ ],
+ "intiman|stockholm": [
+  59.342071,
+  18.048466
+ ],
+ "ipswich regent theatre|ipswich": [
+  52.057441,
+  1.160287
+ ],
+ "i̇zmir kültürpark open air theatre|i̇zmir": [
+  38.428481,
+  27.145345
+ ],
+ "jacksonville center for the performing arts: moran theatre|jacksonville": [
+  30.324873,
+  -81.662749
+ ],
+ "james m. nederlander theatre|chicago": [
+  41.884664,
+  -87.628712
+ ],
+ "jefferson perf arts center|metairie": [
+  29.976377,
+  -90.203646
+ ],
+ "jewel box at hale centre theatre sandy|sandy": [
+  40.571217,
+  -111.897959
+ ],
+ "jiří myron theatre (ndm, repertory)|ostrava": [
+  49.836276,
+  18.288177
+ ],
+ "john golden theatre|new york": [
+  40.758828,
+  -73.987899
+ ],
+ "john w engeman theater|northport": [
+  40.900697,
+  -73.346626
+ ],
+ "jr東日本四季劇場[春] (竹芝)|tokyo": [
+  35.656881,
+  139.761854
+ ],
+ "jr東日本四季劇場[秋] (竹芝)|tokyo": [
+  35.656881,
+  139.761854
+ ],
+ "jtn art hall (大學路)|seoul": [
+  37.576758,
+  127.003912
+ ],
+ "julie rogers theatre|beaumont": [
+  30.081818,
+  -94.09601
+ ],
+ "kaat 神奈川芸術劇場|yokohama": [
+  35.445429,
+  139.646049
+ ],
+ "kaat 神奈川芸術劇場〈ホール〉|kanagawa": [
+  35.445429,
+  139.646049
+ ],
+ "kadıköy belediyesi selamiçeşme|i̇stanbul": [
+  40.975851,
+  29.050754
+ ],
+ "kanadevia hall|tokyo": [
+  35.703364,
+  139.754219
+ ],
+ "keller auditorium|portland": [
+  45.512499,
+  -122.678246
+ ],
+ "kentucky center for the perf. arts|louisville": [
+  38.257089,
+  -85.758791
+ ],
+ "keybank state theatre-playhouse square center|cleveland": [
+  41.501184,
+  -81.680768
+ ],
+ "keybank state theatre|cleveland": [
+  41.501184,
+  -81.680768
+ ],
+ "kinepolis full (splau)|cornellà de llobregat": [
+  41.347441,
+  2.078822
+ ],
+ "king's theatre, glasgow|glasgow": [
+  55.864993,
+  -4.268655
+ ],
+ "king's theatre|glasgow": [
+  55.864993,
+  -4.268655
+ ],
+ "kings theatre edinburgh|edinburgh": [
+  55.941988,
+  -3.203102
+ ],
+ "kinépolis alicante|alicante": [
+  38.354463,
+  -0.471938
+ ],
+ "kinépolis mataró parc|mataró": [
+  41.554974,
+  2.433538
+ ],
+ "kiri te kanawa theatre|auckland": [
+  -36.851926,
+  174.762085
+ ],
+ "kisfaludy várkert|sümeg": [
+  46.979043,
+  17.280983
+ ],
+ "klub momenty|wrocław": [
+  51.107965,
+  17.034359
+ ],
+ "kozerki sport & business|kozerki": [
+  52.077789,
+  20.580708
+ ],
+ "kravis center for the performing arts|west palm beach": [
+  26.70658,
+  -80.059363
+ ],
+ "kultkikötő - balatonszárszó|balatonszárszó": [
+  46.832863,
+  17.831329
+ ],
+ "kvártélyház|zalaegerszeg": [
+  46.84425,
+  16.845674
+ ],
+ "kwanglim arts center|seoul": [
+  37.524217,
+  127.026563
+ ],
+ "kyounghyang art hill (貞洞)|seoul": [
+  37.56817,
+  126.969992
+ ],
+ "kálmán imre szabadtéri színpad|siófok": [
+  46.908934,
+  18.051116
+ ],
+ "la casa dels contes|barcelona": [
+  41.402903,
+  2.158896
+ ],
+ "la maraka|méxico": [
+  19.38455,
+  -99.150427
+ ],
+ "la mirada theatre for the performing arts|la mirada": [
+  33.896777,
+  -118.009556
+ ],
+ "la off barcelona|barcelona": [
+  41.403874,
+  2.167898
+ ],
+ "landmark theatre|syracuse": [
+  43.047373,
+  -76.152576
+ ],
+ "larum|łódź": [
+  51.76512,
+  19.458404
+ ],
+ "ldlc arena|lyon-décines": [
+  45.769271,
+  4.979854
+ ],
+ "le galaxie|amnéville": [
+  49.245578,
+  6.128039
+ ],
+ "le palais des congrès de paris|paris": [
+  48.879384,
+  2.283644
+ ],
+ "le petit theatre|new orleans": [
+  29.957515,
+  -90.064205
+ ],
+ "leeds grand theatre|leeds": [
+  53.8,
+  -1.541111
+ ],
+ "lena horne theatre|new york": [
+  40.759937,
+  -73.9869
+ ],
+ "lewis family playhouse|rancho cucamonga": [
+  34.112922,
+  -117.532576
+ ],
+ "lexington opera house|lexington": [
+  38.049844,
+  -84.499167
+ ],
+ "lexington, ky|lexington": [
+  38.038909,
+  -84.515266
+ ],
+ "lg arts center seoul|seoul": [
+  37.565087,
+  126.829593
+ ],
+ "lied center for performing arts|lincoln": [
+  40.816393,
+  -96.704725
+ ],
+ "lincoln center for the performing arts|new york": [
+  40.772464,
+  -73.983489
+ ],
+ "liverpool empire theatre|liverpool": [
+  53.408873,
+  -2.978285
+ ],
+ "liverpool empire|liverpool": [
+  53.408873,
+  -2.978285
+ ],
+ "liverpool philharmonic hall|liverpool": [
+  53.401334,
+  -2.970268
+ ],
+ "london coliseum|london": [
+  51.509869,
+  -0.126656
+ ],
+ "london palladium|london": [
+  51.51457,
+  -0.140452
+ ],
+ "longacre theatre|new york": [
+  40.760446,
+  -73.985883
+ ],
+ "lorensbergsteatern|göteborg": [
+  57.698333,
+  11.979862
+ ],
+ "lunt-fontanne theatre|new york": [
+  40.759221,
+  -73.986037
+ ],
+ "lyceum theatre|london": [
+  51.51154,
+  -0.120081
+ ],
+ "lyric theatre of oklahoma|oklahoma city": [
+  35.486339,
+  -97.539799
+ ],
+ "lyric theatre, qpac|brisbane": [
+  -27.474241,
+  153.019486
+ ],
+ "lyric theatre|london": [
+  51.51122,
+  -0.133782
+ ],
+ "lyrick|assisi": [
+  43.055968,
+  12.589562
+ ],
+ "m&s bank arena liverpool|london": [
+  53.397479,
+  -2.991593
+ ],
+ "maag halle|zürich": [
+  47.38689,
+  8.51685
+ ],
+ "madách színház|budapest": [
+  47.501177,
+  19.068345
+ ],
+ "magyar színház|budapest": [
+  47.503361,
+  19.072744
+ ],
+ "magyarock dalszínház színházi egyesület|komárom": [
+  47.741867,
+  18.122564
+ ],
+ "maihaugsalen|lillehammer": [
+  61.112644,
+  10.477742
+ ],
+ "majestic theatre|san antonio": [
+  29.426173,
+  -98.490606
+ ],
+ "manzoni|cassino": [
+  41.490745,
+  13.829204
+ ],
+ "margitszigeti szabadtéri színpad|budapest": [
+  47.530012,
+  19.050065
+ ],
+ "margot and bill winspear opera house|dallas": [
+  32.791102,
+  -96.797471
+ ],
+ "marlowe theatre|canterbury": [
+  51.281034,
+  1.078564
+ ],
+ "marriott theater - lincolnshire il|lincolnshire": [
+  42.19575,
+  -87.925205
+ ],
+ "masquerade nyc|new york": [
+  40.765724,
+  -73.981206
+ ],
+ "masquerade — 218 w 57th st (immersive)|new york": [
+  40.765724,
+  -73.981206
+ ],
+ "massimo|pescara": [
+  42.463804,
+  14.212807
+ ],
+ "mayflower theatre|southampton": [
+  50.908614,
+  -1.41019
+ ],
+ "mccallum theatre for the perf. arts|palm desert": [
+  33.729917,
+  -116.389105
+ ],
+ "mckelligon canyon theatre|el paso": [
+  31.837528,
+  -106.484694
+ ],
+ "meadowvale theatre|mississauga": [
+  43.585339,
+  -79.747088
+ ],
+ "mehr! theater am großmarkt|hambug": [
+  53.54294,
+  10.016439
+ ],
+ "metronom theater|oberhausen": [
+  51.4913,
+  6.885566
+ ],
+ "metropol theater bremen|bremen": [
+  53.078346,
+  8.814134
+ ],
+ "metropolitan|catania": [
+  37.50998,
+  15.08465
+ ],
+ "mexico city|mexico city": [
+  19.432608,
+  -99.133208
+ ],
+ "milford theater|milford": [
+  41.322819,
+  -74.800101
+ ],
+ "milton keynes theatre|milton keynes": [
+  52.044081,
+  -0.748787
+ ],
+ "milton theatre|milton": [
+  38.778233,
+  -75.310919
+ ],
+ "minskoff theatre|new york": [
+  40.757908,
+  -73.986077
+ ],
+ "moderno|grosseto": [
+  42.764015,
+  11.115185
+ ],
+ "morris performing arts center|south bend": [
+  41.678141,
+  -86.250905
+ ],
+ "morrison center for the perf. arts|boise": [
+  43.606816,
+  -116.207057
+ ],
+ "morrison center for the performing arts|boise": [
+  43.606816,
+  -116.207057
+ ],
+ "mount errigal hotel|co. donegal": [
+  54.95023,
+  -7.713776
+ ],
+ "movistar arena (palacio de deportes)|madrid": [
+  40.423879,
+  -3.671751
+ ],
+ "movistar arena de madrid (antiguo wizink center)|madrid": [
+  40.423879,
+  -3.671751
+ ],
+ "mtg名古屋四季劇場|nagoya": [
+  35.128961,
+  136.912139
+ ],
+ "municipal auditorium music hall|kansas city": [
+  39.098508,
+  -94.58666
+ ],
+ "murat centre|indianapolis": [
+  39.774377,
+  -86.151116
+ ],
+ "music box at the borgata|atlantic city": [
+  39.376581,
+  -74.436343
+ ],
+ "music hall at fair park|dallas": [
+  32.780371,
+  -96.765915
+ ],
+ "musical dome|cologne": [
+  50.94285,
+  6.961592
+ ],
+ "myeongdong nanta theater|seoul": [
+  37.563575,
+  126.983619
+ ],
+ "myeongnyun art hall|seoul": [
+  37.576758,
+  127.003912
+ ],
+ "myungbo art hall|seoul": [
+  37.564687,
+  126.993231
+ ],
+ "móricz zsigmond színház|nyíregyháza": [
+  47.954445,
+  21.711515
+ ],
+ "national arts centre: southam hall|ottawa": [
+  45.423189,
+  -75.693948
+ ],
+ "national theatre|washington": [
+  38.896339,
+  -77.030517
+ ],
+ "neal s blaisdell concert hall|honolulu": [
+  21.300228,
+  -157.851236
+ ],
+ "nederlander theatre|new york": [
+  40.7555,
+  -73.988283
+ ],
+ "neil simon theatre|new york": [
+  40.763178,
+  -73.984539
+ ],
+ "nelson mandela forum|firenze": [
+  43.776905,
+  11.283612
+ ],
+ "neptune theatre|seattle": [
+  47.661172,
+  -122.313981
+ ],
+ "new amsterdam theatre|new york": [
+  40.756091,
+  -73.987788
+ ],
+ "new brunswick, nj|new brunswick": [
+  40.496657,
+  -74.44428
+ ],
+ "new theatre cardiff|cardiff": [
+  51.483616,
+  -3.175445
+ ],
+ "new theatre oxford|oxford": [
+  51.753971,
+  -1.259897
+ ],
+ "new theatre peterborough|peterborough": [
+  52.577003,
+  -0.240727
+ ],
+ "new wimbledon theatre|london": [
+  51.419216,
+  -0.201481
+ ],
+ "new wimbledon theatre|wimbledon": [
+  51.419216,
+  -0.201481
+ ],
+ "new world stages|new york": [
+  40.762797,
+  -73.987647
+ ],
+ "nol uniplex (大學路)|seoul": [
+  37.581133,
+  127.0037
+ ],
+ "northern alberta jubilee auditorium|edmonton": [
+  53.521796,
+  -113.528737
+ ],
+ "novello theatre|london": [
+  51.512291,
+  -0.119187
+ ],
+ "noël coward theatre|london": [
+  51.511145,
+  -0.127226
+ ],
+ "nuevo recinto de fiestas de los alcázares|murcia": [
+  37.740739,
+  -0.858144
+ ],
+ "nuevo teatro alcalá - sala 2|madrid": [
+  40.423397,
+  -3.678246
+ ],
+ "nuevo teatro alcalá|madrid": [
+  40.423397,
+  -3.678246
+ ],
+ "nuovo  giovanni da udine|udine": [
+  46.065793,
+  13.244476
+ ],
+ "nuovo san michele|verona": [
+  45.4356,
+  11.041063
+ ],
+ "nuovo teatro orione|roma": [
+  41.879544,
+  12.515263
+ ],
+ "nuovo teatro verdi|brindisi": [
+  40.638874,
+  17.944646
+ ],
+ "nuovo|verona": [
+  45.442222,
+  10.998889
+ ],
+ "nyári szabadtéri esték|vecsés": [
+  47.40634,
+  19.26393
+ ],
+ "o2 apollo manchester|manchester": [
+  53.469567,
+  -2.222142
+ ],
+ "o2 city hall newcastle|newcastle upon tyne": [
+  54.977173,
+  -1.609948
+ ],
+ "off latina|madrid": [
+  40.412046,
+  -3.711973
+ ],
+ "ohio theatre|columbus": [
+  39.960177,
+  -82.999069
+ ],
+ "olbia arena|olbia": [
+  40.934267,
+  9.510689
+ ],
+ "old national centre|indianapolis": [
+  39.774377,
+  -86.151116
+ ],
+ "old national events plaza|evansville": [
+  37.972789,
+  -87.565664
+ ],
+ "opera house manchester|manchester": [
+  53.478841,
+  -2.251327
+ ],
+ "opera house, manchester|manchester": [
+  53.478841,
+  -2.251327
+ ],
+ "opera house|boston": [
+  42.353987,
+  -71.062304
+ ],
+ "operaen, holmen|københavn k": [
+  55.682176,
+  12.600093
+ ],
+ "oran mor|glasgow": [
+  55.877563,
+  -4.28976
+ ],
+ "ordway center for the perf. arts|st. paul": [
+  44.944511,
+  -93.097855
+ ],
+ "ordway theatre|saint paul": [
+  44.944511,
+  -93.097855
+ ],
+ "orix theater|osaka": [
+  34.678551,
+  135.495387
+ ],
+ "orpheum theater - omaha|omaha": [
+  41.256127,
+  -95.936855
+ ],
+ "orpheum theater sioux falls - sd|sioux falls": [
+  43.550493,
+  -96.727008
+ ],
+ "orpheum theater|omaha": [
+  41.256127,
+  -95.936855
+ ],
+ "orpheum theatre - memphis|memphis": [
+  35.140187,
+  -90.055483
+ ],
+ "orpheum theatre-san francisco|san francisco": [
+  37.779179,
+  -122.414538
+ ],
+ "orpheum theatre|minneapolis": [
+  44.976302,
+  -93.277463
+ ],
+ "orpheum theatre|san francisco": [
+  37.779179,
+  -122.414538
+ ],
+ "oscarsteatern|stockholm": [
+  59.333472,
+  18.055964
+ ],
+ "overture center for the arts|madison": [
+  43.074105,
+  -89.388285
+ ],
+ "overture center|madison": [
+  43.074105,
+  -89.388285
+ ],
+ "pabellón wah show en ifema madrid|madrid": [
+  40.467597,
+  -3.619408
+ ],
+ "pala rescifina|messina": [
+  38.156458,
+  15.52543
+ ],
+ "palace theatre manchester|manchester": [
+  53.474995,
+  -2.240978
+ ],
+ "palace theatre|new york": [
+  40.758836,
+  -73.984042
+ ],
+ "palacio de congresos de badajoz|badajoz": [
+  38.874992,
+  -6.969451
+ ],
+ "palacio de congresos de mérida|mérida": [
+  38.917599,
+  -6.358287
+ ],
+ "palacio de congresos de plasencia|plasencia": [
+  40.037789,
+  -6.095236
+ ],
+ "palaflorio|bari": [
+  41.101555,
+  16.906693
+ ],
+ "palais nikaïa|nice": [
+  43.678674,
+  7.199481
+ ],
+ "palapartenope|napoli": [
+  40.820922,
+  14.17783
+ ],
+ "palaprometeo (ex-palarossini)|ancona": [
+  43.5665,
+  13.526669
+ ],
+ "palariviera|san benedetto del tronto": [
+  42.920587,
+  13.898268
+ ],
+ "palau sant jordi|barcelona": [
+  41.363959,
+  2.152041
+ ],
+ "palaunical teatro (ex grana padano theatre)|mantova": [
+  45.167069,
+  10.825202
+ ],
+ "palaunical|mantova": [
+  45.167069,
+  10.825202
+ ],
+ "palazzo del turismo|jesolo": [
+  45.502383,
+  12.63101
+ ],
+ "palazzo dello sport|roma": [
+  41.825253,
+  12.466541
+ ],
+ "pannon várszínház nonprofit kft.|veszprém": [
+  47.09311,
+  17.907723
+ ],
+ "pantages theatre|los angeles": [
+  34.101843,
+  -118.325609
+ ],
+ "paper mill playhouse|millburn": [
+  40.72815,
+  -74.309185
+ ],
+ "papp lászló budapest sportaréna|budapest": [
+  47.501869,
+  19.105707
+ ],
+ "paramount theatre - il|aurora": [
+  41.757722,
+  -88.314654
+ ],
+ "paramount theatre|seattle": [
+  47.613524,
+  -122.331513
+ ],
+ "parco ducale di parma|parma": [
+  44.806151,
+  10.319791
+ ],
+ "parco villa delle rose|lanciano": [
+  42.228017,
+  14.396958
+ ],
+ "parker arts culture and events center|parker": [
+  39.516892,
+  -104.757619
+ ],
+ "pavilion theatre glasgow|glasgow": [
+  55.865082,
+  -4.255724
+ ],
+ "peace center for the perf. arts|greenville": [
+  34.847562,
+  -82.401107
+ ],
+ "pensacola saenger theatre|pensacola": [
+  30.410688,
+  -87.21484
+ ],
+ "peoria civic center theatre|peoria": [
+  40.691694,
+  -89.593961
+ ],
+ "pequeño teatro gran vía|madrid": [
+  40.422317,
+  -3.70883
+ ],
+ "petruzzelli|bari": [
+  41.123567,
+  16.872837
+ ],
+ "phoenix theatre - hormel theatre|phoenix": [
+  33.467159,
+  -112.072348
+ ],
+ "phoenix theatre-az|phoenix": [
+  33.467159,
+  -112.072348
+ ],
+ "piazza garibaldi|senigallia": [
+  43.71406,
+  13.215656
+ ],
+ "piccadilly theatre|london": [
+  51.510951,
+  -0.135575
+ ],
+ "pioneer center|reno": [
+  39.524288,
+  -119.811446
+ ],
+ "place des arts|montreal": [
+  45.50832,
+  -73.566431
+ ],
+ "planet royale|northbridge": [
+  -31.948399,
+  115.856708
+ ],
+ "planet royale|perth": [
+  -31.948399,
+  115.856708
+ ],
+ "playground 南村劇場．青鳥．有.設計|taipei": [
+  25.030993,
+  121.561764
+ ],
+ "playground 南村劇場．青鳥．有.設計|臺北": [
+  25.030993,
+  121.561764
+ ],
+ "playhouse theatre|london": [
+  51.507005,
+  -0.123609
+ ],
+ "playhouse, qpac|brisbane": [
+  -27.475125,
+  153.02037
+ ],
+ "plymouth arena|plymouth": [
+  50.369443,
+  -4.149678
+ ],
+ "politeama genovese|genova": [
+  44.41131,
+  8.938503
+ ],
+ "politeama|catanzaro": [
+  38.905885,
+  16.594254
+ ],
+ "politeama|piacenza": [
+  45.049522,
+  9.690707
+ ],
+ "pomázi szabadtéri színpad-breier farm|pomáz": [
+  47.663682,
+  18.965707
+ ],
+ "popejoy hall|albuquerque": [
+  35.082309,
+  -106.619884
+ ],
+ "portland, me|portland": [
+  43.670822,
+  -70.284382
+ ],
+ "portsmouth guildhall|portsmouth": [
+  50.797583,
+  -1.09254
+ ],
+ "prealpi sanbiagio arena|conegliano": [
+  45.866254,
+  12.315308
+ ],
+ "president|piacenza": [
+  45.041638,
+  9.683994
+ ],
+ "prince edward theatre|london": [
+  51.513512,
+  -0.130742
+ ],
+ "prince of wales theatre|london": [
+  51.510234,
+  -0.132087
+ ],
+ "princess theatre - torquay|torquay": [
+  50.461291,
+  -3.529995
+ ],
+ "princess theatre, torquay|torquay": [
+  50.461291,
+  -3.529995
+ ],
+ "pro kultúra sopron nonprofit kft.|sopron": [
+  47.683437,
+  16.588745
+ ],
+ "proctor's theatre|schenectady": [
+  42.812368,
+  -73.941795
+ ],
+ "proctors|schenectady": [
+  42.812368,
+  -73.941795
+ ],
+ "providence performing arts center|providence": [
+  41.821356,
+  -71.412496
+ ],
+ "puccini|firenze": [
+  43.786214,
+  11.225368
+ ],
+ "punch l!ne club berlin|berlin": [
+  52.507322,
+  13.372329
+ ],
+ "queen elizabeth hall - southbank centre|london": [
+  51.5066,
+  -0.116517
+ ],
+ "queen elizabeth theatre|vancouver": [
+  49.28039,
+  -123.112655
+ ],
+ "radio city music hall|new york": [
+  40.759976,
+  -73.979977
+ ],
+ "raimund theater|vienna": [
+  48.19212,
+  16.339607
+ ],
+ "recinto de peñas de benicarló|benicarló": [
+  40.420103,
+  0.432855
+ ],
+ "red mountain theatre|birmingham": [
+  33.507676,
+  -86.808006
+ ],
+ "regent theatre, stoke-on-trent|stoke": [
+  53.024643,
+  -2.177048
+ ],
+ "regent theatre|stoke-on-trent": [
+  53.024643,
+  -2.177048
+ ],
+ "regent's park open air theatre|london": [
+  51.52843,
+  -0.154732
+ ],
+ "reggia di caserta|caserta": [
+  41.073178,
+  14.327119
+ ],
+ "reggies rock club|chicago": [
+  41.853918,
+  -87.626852
+ ],
+ "reims arena|reims": [
+  49.264153,
+  4.032024
+ ],
+ "remondini|bassano del grappa": [
+  45.753695,
+  11.732188
+ ],
+ "renaissance theatre - oh|mansfield": [
+  40.759101,
+  -82.520544
+ ],
+ "reynolds hall|las vegas": [
+  36.168998,
+  -115.151444
+ ],
+ "richard rodgers theatre|new york": [
+  40.759092,
+  -73.98654
+ ],
+ "richmond theatre|richmond": [
+  51.462199,
+  -0.303951
+ ],
+ "rivertown theaters for the performing arts|kenner": [
+  29.974366,
+  -90.247626
+ ],
+ "robinson center|little rock": [
+  34.749229,
+  -92.27446
+ ],
+ "robinson performance hall|little rock": [
+  34.749229,
+  -92.27446
+ ],
+ "ronacher|vienna": [
+  48.20521,
+  16.375067
+ ],
+ "rondo|göteborg": [
+  57.697187,
+  11.992509
+ ],
+ "roslyn packer theatre walsh bay|millers point": [
+  -33.857222,
+  151.205
+ ],
+ "roslyn packer theatre walsh bay|sydney": [
+  -33.857222,
+  151.205
+ ],
+ "rossini|civitanova marche": [
+  43.315657,
+  13.723644
+ ],
+ "rossini|pesaro": [
+  43.9077,
+  12.909227
+ ],
+ "royal alexandra theatre|toronto": [
+  43.647362,
+  -79.387589
+ ],
+ "royal and derngate|northampton": [
+  52.23639,
+  -0.894153
+ ],
+ "royal concert hall nottingham|nottingham": [
+  52.955239,
+  -1.151333
+ ],
+ "royal festival hall|london": [
+  51.505806,
+  -0.116629
+ ],
+ "rózsakert szabadtéri színpad|nyíregyháza": [
+  47.950468,
+  21.713381
+ ],
+ "saenger theater hattiesburg|hattiesburg": [
+  31.325869,
+  -89.29067
+ ],
+ "saenger theatre|new orleans": [
+  29.956527,
+  -90.072476
+ ],
+ "safe credit union performing arts center|sacramento": [
+  38.577313,
+  -121.489444
+ ],
+ "sala argentia|gorgonzola": [
+  45.532557,
+  9.403129
+ ],
+ "sala ars teatre|barcelona": [
+  41.38848,
+  2.17388
+ ],
+ "sala ars|barcelona": [
+  41.38848,
+  2.17388
+ ],
+ "sala azarte|madrid": [
+  40.421417,
+  -3.698352
+ ],
+ "sala beckett|barcelona": [
+  41.404705,
+  2.199426
+ ],
+ "sala borja|valladolid": [
+  41.652759,
+  -4.720446
+ ],
+ "sala galileo galilei|madrid": [
+  40.438462,
+  -3.709778
+ ],
+ "sala multifuncional de ciempozuelos|ciempozuelos": [
+  40.155317,
+  -3.628437
+ ],
+ "sala pangolí|barcelona": [
+  41.401547,
+  2.164676
+ ],
+ "san antonio, tx|san antonio": [
+  29.42519,
+  -98.494592
+ ],
+ "san bartolomé de tirajana|san bartolomé de tirajana": [
+  27.923929,
+  -15.573108
+ ],
+ "san diego civic theatre|san diego": [
+  32.717585,
+  -117.162218
+ ],
+ "san jose center for performing arts|san jose": [
+  37.329773,
+  -121.892506
+ ],
+ "san jose center for the perf. arts|san jose": [
+  37.329773,
+  -121.892506
+ ],
+ "san rocco|seregno": [
+  45.650031,
+  9.210554
+ ],
+ "sands theatre|singapore": [
+  1.285451,
+  103.859763
+ ],
+ "sara kulturhus stage 1|skellefteå": [
+  64.752049,
+  20.953974
+ ],
+ "sat! sant andreu teatre|barcelona": [
+  41.430537,
+  2.188882
+ ],
+ "savoy theatre|london": [
+  51.510205,
+  -0.120924
+ ],
+ "scranton cultural center|scranton": [
+  41.410846,
+  -75.660182
+ ],
+ "sec armadillo|glasgow": [
+  55.859456,
+  -4.286906
+ ],
+ "segerstrom center for the arts-segerstrom hall|costa mesa": [
+  33.692705,
+  -117.882142
+ ],
+ "segerstrom center for the arts|costa mesa": [
+  33.692705,
+  -117.882142
+ ],
+ "sejong center|seoul": [
+  37.572525,
+  126.975643
+ ],
+ "seoul arts center|seoul": [
+  37.47929,
+  127.012861
+ ],
+ "seoul forest galleria foret|seoul": [
+  37.545702,
+  127.042425
+ ],
+ "shaftesbury theatre|london": [
+  51.516072,
+  -0.12593
+ ],
+ "shea&#039;s performing arts center|buffalo": [
+  42.891744,
+  -78.873201
+ ],
+ "shea's 710 theatre|buffalo": [
+  42.893149,
+  -78.872184
+ ],
+ "shea's performing arts center|buffalo": [
+  42.891744,
+  -78.873201
+ ],
+ "shea's smith theatre|buffalo": [
+  42.891851,
+  -78.872684
+ ],
+ "sheffield city hall oval hall|sheffield": [
+  53.380578,
+  -1.472282
+ ],
+ "shibuya lovez|tokyo": [
+  35.663083,
+  139.696239
+ ],
+ "short north stage - garden theater|columbus": [
+  39.986572,
+  -83.005658
+ ],
+ "showcenter complex|monterrey": [
+  25.649006,
+  -100.335687
+ ],
+ "signature theatre|arlington": [
+  38.840802,
+  -77.090266
+ ],
+ "sir howard morrison centre|rotorua": [
+  -38.135303,
+  176.25419
+ ],
+ "sociale|como": [
+  45.812611,
+  9.083572
+ ],
+ "sociale|mantova": [
+  45.157799,
+  10.790455
+ ],
+ "sociale|valenza": [
+  45.013087,
+  8.6443494
+ ],
+ "soho place|london": [
+  51.515706,
+  -0.130608
+ ],
+ "soho theatre walthamstow|london": [
+  51.586054,
+  -0.020068
+ ],
+ "sohoplace|london": [
+  51.515706,
+  -0.130608
+ ],
+ "soldiers and sailors memorial auditorium|chattanooga": [
+  35.048098,
+  -85.305555
+ ],
+ "sondheim theatre|london": [
+  51.511869,
+  -0.132601
+ ],
+ "southend cliffs pavilion|southend-on-sea": [
+  51.535183,
+  0.697235
+ ],
+ "southern alberta jubilee auditorium|calgary": [
+  51.06259,
+  -114.092516
+ ],
+ "southwark playhouse borough|london": [
+  51.497662,
+  -0.098386
+ ],
+ "southwark playhouse elephant|london": [
+  51.492469,
+  -0.102435
+ ],
+ "spartanburg memorial auditorium|spartanburg": [
+  34.956561,
+  -81.936005
+ ],
+ "springfield, mo|springfield": [
+  37.208957,
+  -93.292299
+ ],
+ "st james theatre wellington|wellington": [
+  -41.293157,
+  174.779814
+ ],
+ "st. martin's theatre|london": [
+  51.512874,
+  -0.127576
+ ],
+ "stadsschouwburg antwerpen|antwerp": [
+  51.215499,
+  4.409893
+ ],
+ "stage apollo theater|stuttgart": [
+  48.722296,
+  9.162507
+ ],
+ "stage gran teatro musical|madrid": [
+  40.422317,
+  -3.70883
+ ],
+ "stage operettenhaus|hamburg": [
+  53.54928,
+  9.967008
+ ],
+ "stage palladium theater|stuttgart": [
+  48.723656,
+  9.162102
+ ],
+ "stage theater an der elbe|hamburg": [
+  53.539752,
+  9.974495
+ ],
+ "stage theater des westens|berlin": [
+  52.50569,
+  13.329062
+ ],
+ "stage theater im hafen|hamburg": [
+  53.539728,
+  9.973148
+ ],
+ "stage theater neue flora|hamburg": [
+  53.562671,
+  9.949664
+ ],
+ "stages - sterling stage|houston": [
+  29.75826,
+  -95.399248
+ ],
+ "starlight express theater|bochum": [
+  51.492651,
+  7.233717
+ ],
+ "starlight theatre|kansas city": [
+  39.007454,
+  -94.532822
+ ],
+ "stephen sondheim theatre|new york": [
+  40.755868,
+  -73.9849
+ ],
+ "steven tanger center for the performing arts|greensboro": [
+  36.075152,
+  -79.789753
+ ],
+ "stockton globe|stockton-on-tees": [
+  54.567111,
+  -1.313428
+ ],
+ "storchi|modena": [
+  44.65244,
+  10.916412
+ ],
+ "stranahan theater and great hall|toledo": [
+  41.592697,
+  -83.651812
+ ],
+ "straz center for the performing arts|tampa": [
+  27.95166,
+  -82.464062
+ ],
+ "studio 54|new york": [
+  40.764406,
+  -73.983719
+ ],
+ "sud de france arena|montpellier": [
+  43.573437,
+  3.95149
+ ],
+ "sunderland empire|sunderland": [
+  54.906352,
+  -1.388941
+ ],
+ "suseong artpia|daegu": [
+  35.829543,
+  128.628415
+ ],
+ "swansea building society arena|swansea": [
+  51.616051,
+  -3.942342
+ ],
+ "swansea grand theatre|swansea": [
+  51.618054,
+  -3.948001
+ ],
+ "swt arena|trier": [
+  49.771376,
+  6.66326
+ ],
+ "sydjysk sparekasse skansen|sønderborg": [
+  54.911347,
+  9.770136
+ ],
+ "sydney event centre|sydney": [
+  -33.868279,
+  151.194991
+ ],
+ "sydney lyric|pyrmont": [
+  -33.868333,
+  151.196104
+ ],
+ "sydney lyric|sydney": [
+  -33.868333,
+  151.196104
+ ],
+ "sydney opera house- joan sutherland theatre|sydney": [
+  -33.856908,
+  151.215504
+ ],
+ "symphony hall|birmingham": [
+  52.478564,
+  -1.910109
+ ],
+ "szeged városi sportcsarnok|szeged": [
+  46.244849,
+  20.162709
+ ],
+ "szegedi szabadtéri játékok|szeged": [
+  46.248844,
+  20.149186
+ ],
+ "szentendre fő tér|szentendre": [
+  47.667668,
+  19.075717
+ ],
+ "szolnoki szigligeti színház|szolnok": [
+  47.172458,
+  20.19641
+ ],
+ "sønderborg teater|sønderborg": [
+  54.905987,
+  9.787735
+ ],
+ "taproot theatre|seattle": [
+  47.6907,
+  -122.356316
+ ],
+ "tbs akasaka act theater|tokyo": [
+  35.672842,
+  139.735111
+ ],
+ "teatr studio buffo w warszawie|warszawa": [
+  52.227947,
+  21.026116
+ ],
+ "teatr syrena w warszawie|warszawa": [
+  52.21643,
+  21.022132
+ ],
+ "teatre apolo|barcelona": [
+  41.374717,
+  2.170461
+ ],
+ "teatre condal|barcelona": [
+  41.374794,
+  2.164637
+ ],
+ "teatre gaudí barcelona|barcelona": [
+  41.407216,
+  2.169777
+ ],
+ "teatre gaudí de barcelona (t.g.b.)|barcelona": [
+  41.407216,
+  2.169777
+ ],
+ "teatre goya|barcelona": [
+  41.384101,
+  2.164225
+ ],
+ "teatre grec|barcelona": [
+  41.369507,
+  2.159737
+ ],
+ "teatre la fàbrica|barcelona": [
+  41.403809,
+  2.148443
+ ],
+ "teatre lliure - gràcia|barcelona": [
+  41.402772,
+  2.156031
+ ],
+ "teatre poliorama|barcelona": [
+  41.384151,
+  2.170693
+ ],
+ "teatre tívoli|barcelona": [
+  41.388928,
+  2.170365
+ ],
+ "teatro - at the italian forum|leichhardt": [
+  -33.887009,
+  151.158291
+ ],
+ "teatro - at the italian forum|sydney": [
+  -33.887009,
+  151.158291
+ ],
+ "teatro albéniz umusic hotel|madrid": [
+  40.415345,
+  -3.704102
+ ],
+ "teatro alcázar|madrid": [
+  40.417741,
+  -3.699077
+ ],
+ "teatro aldama|méxico": [
+  19.438115,
+  -99.161705
+ ],
+ "teatro amaya|madrid": [
+  40.435138,
+  -3.697141
+ ],
+ "teatro apolo madrid|madrid": [
+  40.412189,
+  -3.703334
+ ],
+ "teatro apolo madrid|spain": [
+  40.412189,
+  -3.703334
+ ],
+ "teatro arlequín gran vía|madrid": [
+  40.421126,
+  -3.708278
+ ],
+ "teatro astral|buenos aires": [
+  -34.603935,
+  -58.389922
+ ],
+ "teatro at montecasino|johannesburg": [
+  -26.024336,
+  28.013336
+ ],
+ "teatro bellas artes|madrid": [
+  40.418243,
+  -3.696481
+ ],
+ "teatro broadway|buenos aires": [
+  -34.603659,
+  -58.383063
+ ],
+ "teatro calderón|madrid": [
+  40.414043,
+  -3.703511
+ ],
+ "teatro capitol gran vía|madrid": [
+  40.420446,
+  -3.706582
+ ],
+ "teatro carcano|milano": [
+  45.456541,
+  9.195285
+ ],
+ "teatro casablanca|arganda del rey": [
+  40.299245,
+  -3.438812
+ ],
+ "teatro clerici|brescia": [
+  45.513517,
+  10.213314
+ ],
+ "teatro de los insurgentes|méxico": [
+  19.364163,
+  -99.18247
+ ],
+ "teatro do sesi (centro cultural fiesp)|são paulo": [
+  -23.563503,
+  -46.654447
+ ],
+ "teatro duse|bologna": [
+  44.488541,
+  11.348225
+ ],
+ "teatro flumen|valencia": [
+  39.482948,
+  -0.385431
+ ],
+ "teatro fundación caixa rural|castellón": [
+  39.937407,
+  -0.100999
+ ],
+ "teatro fígaro|madrid": [
+  40.413471,
+  -3.703597
+ ],
+ "teatro galerías|zapopan": [
+  20.6458,
+  -103.404493
+ ],
+ "teatro gran vía|madrid": [
+  40.422317,
+  -3.70883
+ ],
+ "teatro gutiérrez de alba|alcalá de guadaíra": [
+  37.335144,
+  -5.847608
+ ],
+ "teatro hidalgo|méxico": [
+  19.436677,
+  -99.141874
+ ],
+ "teatro infanta isabel|madrid": [
+  40.422245,
+  -3.69553
+ ],
+ "teatro infinity 1|cremona": [
+  45.151269,
+  10.031861
+ ],
+ "teatro la latina|madrid": [
+  40.411433,
+  -3.708745
+ ],
+ "teatro lara - sala lola membrives|madrid": [
+  40.422109,
+  -3.704467
+ ],
+ "teatro lara|madrid": [
+  40.422109,
+  -3.704467
+ ],
+ "teatro las vegas ( villanueva de la serena)|villanueva de la serena": [
+  38.971806,
+  -5.799134
+ ],
+ "teatro las vegas|madrid": [
+  40.43664,
+  -3.636693
+ ],
+ "teatro liberdade|são paulo": [
+  -23.561697,
+  -46.637461
+ ],
+ "teatro lope de vega|madrid": [
+  40.421828,
+  -3.708712
+ ],
+ "teatro manuel españa (mijas)|mijas": [
+  36.545315,
+  -4.639933
+ ],
+ "teatro maravillas|madrid": [
+  40.428764,
+  -3.703071
+ ],
+ "teatro marquina|madrid": [
+  40.421966,
+  -3.693728
+ ],
+ "teatro miguel fleta de utebo|utebo": [
+  41.711342,
+  -0.996983
+ ],
+ "teatro milán|méxico": [
+  19.429999,
+  -99.156662
+ ],
+ "teatro municipal de cúllar vega|cullar": [
+  37.158017,
+  -3.676819
+ ],
+ "teatro nazionale italiana assicurazioni|milano": [
+  45.46676,
+  9.154212
+ ],
+ "teatro nuevo alcalá|madrid": [
+  40.423397,
+  -3.678246
+ ],
+ "teatro nuovo|ferrara": [
+  44.834879,
+  11.620652
+ ],
+ "teatro ocaso coliseum|madrid": [
+  40.423284,
+  -3.71034
+ ],
+ "teatro off|valencia": [
+  39.476592,
+  -0.385444
+ ],
+ "teatro olympia|valencia": [
+  39.470784,
+  -0.377889
+ ],
+ "teatro porto seguro|são paulo": [
+  -23.530238,
+  -46.645357
+ ],
+ "teatro remondini|bassano del grappa": [
+  45.768148,
+  11.722553
+ ],
+ "teatro renault|são paulo": [
+  -23.554294,
+  -46.638497
+ ],
+ "teatro rialto madrid|madrid": [
+  40.421345,
+  -3.707231
+ ],
+ "teatro rialto|madrid": [
+  40.421345,
+  -3.707231
+ ],
+ "teatro romano de medellín|medellin": [
+  38.966188,
+  -5.955968
+ ],
+ "teatro romano de mérida|mérida": [
+  38.915214,
+  -6.338521
+ ],
+ "teatro salesianos estrecho|madrid": [
+  40.455079,
+  -3.703969
+ ],
+ "teatro sanpol|madrid": [
+  40.423934,
+  -3.727008
+ ],
+ "teatro santander|são paulo": [
+  -23.592825,
+  -46.691715
+ ],
+ "teatro sofía|madrid": [
+  40.422895,
+  -3.709441
+ ],
+ "teatro soho madrid|madrid": [
+  40.42256,
+  -3.71184
+ ],
+ "teatro team|bari": [
+  41.099358,
+  16.903395
+ ],
+ "teatro telcel|mexico city": [
+  19.440968,
+  -99.203876
+ ],
+ "teatro telcel|méxico": [
+  19.440968,
+  -99.203876
+ ],
+ "teatro tepeyac|méxico": [
+  19.473365,
+  -99.121365
+ ],
+ "teatro triana|sevilla": [
+  37.380141,
+  -6.00746
+ ],
+ "teatro xola julio prieto|méxico": [
+  19.396024,
+  -99.161299
+ ],
+ "teatros del canal|madrid": [
+  40.438279,
+  -3.705184
+ ],
+ "teatros luchana|madrid": [
+  40.431872,
+  -3.698259
+ ],
+ "temple theatre|saginaw": [
+  43.434753,
+  -83.939028
+ ],
+ "tennessee performing arts center|nashville": [
+  36.164658,
+  -86.782552
+ ],
+ "tennessee theatre|knoxville": [
+  35.964137,
+  -83.917496
+ ],
+ "teseo teatro|madrid": [
+  40.408495,
+  -3.715887
+ ],
+ "the alexandra, birmingham|birmingham": [
+  52.47616,
+  -1.901186
+ ],
+ "the apollo's jonelle procope theater|new york": [
+  40.809927,
+  -73.950135
+ ],
+ "the arena at pickering casino resort|pickering": [
+  43.84309,
+  -79.05397
+ ],
+ "the argyle theatre at babylon village|babylon": [
+  40.696212,
+  -73.323712
+ ],
+ "the arts at marble arch powered by todaytix|london": [
+  51.51322,
+  -0.159169
+ ],
+ "the auditorium|chicago": [
+  41.87585,
+  -87.625241
+ ],
+ "the brighton centre|brighton": [
+  50.821232,
+  -0.146474
+ ],
+ "the castro theatre|san francisco": [
+  37.762033,
+  -122.434759
+ ],
+ "the civic, auckland|auckland": [
+  -36.850979,
+  174.764185
+ ],
+ "the danforth music hall|toronto": [
+  43.676244,
+  -79.357008
+ ],
+ "the embassy theatre|fort wayne": [
+  41.075737,
+  -85.139762
+ ],
+ "the glasshouse international centre for music|gateshead": [
+  54.967785,
+  -1.602003
+ ],
+ "the guild theatre - ca|menlo park": [
+  37.45242,
+  -122.181247
+ ],
+ "the hanover theatre and conservatory for the performing arts|worcester": [
+  42.26075,
+  -71.803117
+ ],
+ "the ingersoll|des moines": [
+  41.586467,
+  -93.667401
+ ],
+ "the mckithan hotel (舊大韓劇場, 忠武路)|seoul": [
+  37.561076,
+  126.99533
+ ],
+ "the minskoff theatre|new york": [
+  40.757908,
+  -73.986077
+ ],
+ "the national theater of korea|seoul": [
+  37.55286,
+  126.999813
+ ],
+ "the national theatre|washington": [
+  38.896339,
+  -77.030517
+ ],
+ "the nocturne theatre|glendale": [
+  34.150905,
+  -118.25609
+ ],
+ "the o2 belfast|belfast": [
+  54.603643,
+  -5.914228
+ ],
+ "the o2|london": [
+  51.503038,
+  0.003154
+ ],
+ "the other palace - main theatre|london": [
+  51.498864,
+  -0.142233
+ ],
+ "the parkway theater|minneapolis": [
+  44.91558,
+  -93.263038
+ ],
+ "the peabody daytona beach|daytona beach": [
+  29.227165,
+  -81.010617
+ ],
+ "the playhouse on rodney square|wilmington": [
+  39.745797,
+  -75.547852
+ ],
+ "the plaza theatre|el paso": [
+  31.758666,
+  -106.489356
+ ],
+ "the ruth and nathan hale theater|pleasant grove": [
+  40.359052,
+  -111.761341
+ ],
+ "the santander performing arts center|reading": [
+  40.33788,
+  -75.926
+ ],
+ "the smith center|las vegas": [
+  36.16911,
+  -115.152017
+ ],
+ "the sse arena, belfast|belfast": [
+  54.603643,
+  -5.914228
+ ],
+ "the stanley|utica": [
+  43.099207,
+  -75.235366
+ ],
+ "the theater at mount jordan|sandy": [
+  40.581215,
+  -111.883128
+ ],
+ "the tuacahn amphitheatre|ivins": [
+  37.191115,
+  -113.659035
+ ],
+ "the venetian theatre at the venetian resort|las vegas": [
+  36.121213,
+  -115.169365
+ ],
+ "the vogel at count basie center for the arts|red bank": [
+  40.348875,
+  -74.070148
+ ],
+ "theatre du casino du lac-leamy|gatineau": [
+  45.446409,
+  -75.724722
+ ],
+ "theatre royal brighton|brighton": [
+  50.823328,
+  -0.139707
+ ],
+ "theatre royal drury lane|london": [
+  51.512854,
+  -0.120371
+ ],
+ "theatre royal glasgow|glasgow": [
+  55.866351,
+  -4.256219
+ ],
+ "theatre royal haymarket|london": [
+  51.50853,
+  -0.131547
+ ],
+ "theatre royal nottingham|nottingham": [
+  52.955239,
+  -1.151333
+ ],
+ "theatre royal sydney|sydney": [
+  -33.868753,
+  151.208954
+ ],
+ "theatre three - ny|port jefferson": [
+  40.943691,
+  -73.067537
+ ],
+ "thebarton theatre|torrensville": [
+  -34.923615,
+  138.569034
+ ],
+ "thelma gaylord performing arts theatre|oklahoma city": [
+  35.4862,
+  -97.541605
+ ],
+ "thunder bay community auditorium|thunder bay": [
+  48.422123,
+  -89.241535
+ ],
+ "théâtre beanfield|montreal": [
+  45.482834,
+  -73.575073
+ ],
+ "théâtre capitole|quebec": [
+  46.812805,
+  -71.213904
+ ],
+ "théâtre manuvie|brossard": [
+  45.441416,
+  -73.440735
+ ],
+ "théâtre mogador|paris": [
+  48.875347,
+  2.331067
+ ],
+ "théâtre royal|mons": [
+  50.455416,
+  3.952304
+ ],
+ "tn performing arts center andrew jackson hall|nashville": [
+  36.164658,
+  -86.782552
+ ],
+ "toby's dinner theatre columbia|columbia": [
+  39.208978,
+  -76.858485
+ ],
+ "tokaj fesztiválkatlan|tokaj": [
+  48.132201,
+  21.403923
+ ],
+ "tokyu theatre orb (渋谷ヒカリエ)|tokyo": [
+  35.659076,
+  139.703047
+ ],
+ "toronto, on|toronto": [
+  43.654825,
+  -79.388447
+ ],
+ "town hall|new york": [
+  40.756053,
+  -73.98453
+ ],
+ "trixxo theater hasselt|hasselt": [
+  50.933674,
+  5.365292
+ ],
+ "tropicana showroom at tropicana atlantic city|atlantic city": [
+  39.352369,
+  -74.444562
+ ],
+ "troubadour wembley park theatre|london": [
+  51.560871,
+  -0.281283
+ ],
+ "tyrol|stockholm": [
+  59.324167,
+  18.096365
+ ],
+ "uihlein hall at marcus performing arts center|milwaukee": [
+  43.042907,
+  -87.911399
+ ],
+ "uihlein hall marcus center|milwaukee": [
+  43.042907,
+  -87.911399
+ ],
+ "underbelly boulevard|london": [
+  51.51274,
+  -0.13413
+ ],
+ "unipol arena|casalecchio di reno": [
+  44.486006,
+  11.248117
+ ],
+ "unitedhealth group stage-the childrens theatre|minneapolis": [
+  44.958138,
+  -93.273352
+ ],
+ "university of wolverhampton at the civic hall|wolverhampton": [
+  52.586698,
+  -2.130407
+ ],
+ "utep dinner theatre|el paso": [
+  31.77138,
+  -106.503999
+ ],
+ "utica, ny|utica": [
+  43.101095,
+  -75.235581
+ ],
+ "utilita arena cardiff|cardiff": [
+  51.478942,
+  -3.172433
+ ],
+ "utilita arena|birmingham": [
+  52.479699,
+  -1.914798
+ ],
+ "vaillant live, derby|derby": [
+  52.921441,
+  -1.479967
+ ],
+ "vaudeville theatre|london": [
+  51.510273,
+  -0.122382
+ ],
+ "vbc mark c smith concert hall|huntsville": [
+  34.72804,
+  -86.590214
+ ],
+ "ventidio basso|ascoli piceno": [
+  42.855677,
+  13.574813
+ ],
+ "verdi|montecatini-terme": [
+  43.885202,
+  10.772909
+ ],
+ "veszprémi petőfi színház|veszprém": [
+  47.09194,
+  17.906877
+ ],
+ "ves互动剧场|xi'an": [
+  34.202264,
+  108.891735
+ ],
+ "victoria palace theatre|london": [
+  51.496657,
+  -0.14258
+ ],
+ "victoria theatre|halifax": [
+  53.721111,
+  -1.861389
+ ],
+ "victoria, bc|victoria": [
+  48.428421,
+  -123.365644
+ ],
+ "virginia samford theatre|birmingham": [
+  33.503286,
+  -86.786986
+ ],
+ "vorst nationaal/forest national|forest (brussels)": [
+  50.810124,
+  4.326321
+ ],
+ "városmajori szabadtéri színpad|budapest": [
+  47.506971,
+  19.019245
+ ],
+ "vígszínház|budapest": [
+  47.512324,
+  19.051308
+ ],
+ "wales millennium centre|cardiff": [
+  51.464842,
+  -3.163183
+ ],
+ "walnut street theatre|philadelphia": [
+  39.948384,
+  -75.155359
+ ],
+ "walter kerr theatre|new york": [
+  40.760724,
+  -73.985667
+ ],
+ "walton arts center|fayetteville": [
+  36.066002,
+  -94.164853
+ ],
+ "wang theatre at the boch center|boston": [
+  42.350371,
+  -71.064804
+ ],
+ "warwick arts centre, coventry|coventry": [
+  52.380003,
+  -1.561488
+ ],
+ "washington pavilion|sioux falls": [
+  43.544014,
+  -96.728504
+ ],
+ "washington, dc|washington": [
+  38.907287,
+  -77.036927
+ ],
+ "waterfront hall auditorium|belfast": [
+  54.59748,
+  -5.920051
+ ],
+ "westside theatre|new york": [
+  40.759606,
+  -73.992542
+ ],
+ "wharton center for the performing arts|east lansing": [
+  42.723852,
+  -84.470701
+ ],
+ "whitby pavilion theatre|whitby": [
+  54.490911,
+  -0.620435
+ ],
+ "whitney hall|louisville": [
+  38.257089,
+  -85.758791
+ ],
+ "wiener stadthalle - halle f|vienna": [
+  48.202319,
+  16.332896
+ ],
+ "wilmington, nc|wilmington": [
+  34.210389,
+  -77.886812
+ ],
+ "wilshire ebell theatre|los angeles": [
+  34.060702,
+  -118.325149
+ ],
+ "wilson center-nc|wilmington": [
+  34.243594,
+  -77.947297
+ ],
+ "wilson theater at vogel hall|milwaukee": [
+  43.043023,
+  -87.912315
+ ],
+ "winsupply theatre|dayton": [
+  39.761183,
+  -84.193306
+ ],
+ "winter garden theatre|new york": [
+  40.761711,
+  -73.983725
+ ],
+ "winter gardens|blackpool": [
+  53.816654,
+  -3.051653
+ ],
+ "woking theatre|woking": [
+  51.320058,
+  -0.560601
+ ],
+ "wolf theatre at denver center for the performing|denver": [
+  39.744397,
+  -104.999306
+ ],
+ "wycombe swan theatre|high wycombe": [
+  51.627983,
+  -0.750144
+ ],
+ "yes24 art one (大學路)|seoul": [
+  37.580232,
+  127.004
+ ],
+ "york barbican|york": [
+  53.953639,
+  -1.07429
+ ],
+ "young vic (main house)|london": [
+  51.503161,
+  -0.107526
+ ],
+ "yucaipa performing arts center indoor theatre|yucaipa": [
+  34.034555,
+  -117.039034
+ ],
+ "zach theatre|austin": [
+  30.264184,
+  -97.758211
+ ],
+ "zenthe ferenc színház nonprofit kft.|salgótarján": [
+  48.104889,
+  19.809324
+ ],
+ "zepp divercity(tokyo)|tokyo": [
+  35.624748,
+  139.774591
+ ],
+ "zepp namba(osaka)|osaka": [
+  34.657366,
+  135.501283
+ ],
+ "zepp sapporo|sapporo": [
+  43.049534,
+  141.353324
+ ],
+ "ziff ballet opera house-adrienne arsht pac|miami": [
+  25.788007,
+  -80.190322
+ ],
+ "zénith de dijon|dijon": [
+  47.355276,
+  5.058178
+ ],
+ "ács károly művelődési központ|ráckeve": [
+  47.164071,
+  18.945425
+ ],
+ "【哈尔滨大剧院】|harbin": [
+  45.806496,
+  126.57767
+ ],
+ "こくみん共済 coop ホール／スペースゼロ|tokyo": [
+  35.686979,
+  139.69728
+ ],
+ "ぴあアリーナmm|kanagawa": [
+  35.455879,
+  139.628718
+ ],
+ "アイプラザ豊橋|aichi": [
+  34.732531,
+  137.381366
+ ],
+ "アクリエひめじ(姫路市文化コンベンションセンター)|hyogo": [
+  34.826712,
+  134.699598
+ ],
+ "サンケイホールブリーゼ|osaka": [
+  34.698734,
+  135.494029
+ ],
+ "サンパール荒川（荒川区民会館）|tokyo": [
+  35.735213,
+  139.785108
+ ],
+ "シアター1010|tokyo": [
+  35.750848,
+  139.804595
+ ],
+ "シアターh|tokyo": [
+  35.596284,
+  139.744086
+ ],
+ "シアタークリエ|tokyo": [
+  35.672583,
+  139.759659
+ ],
+ "シアターサンモール|tokyo": [
+  35.689761,
+  139.712893
+ ],
+ "シアターｈ|tokyo": [
+  35.596284,
+  139.744086
+ ],
+ "パルテノン多摩 大ホール|tokyo": [
+  35.621677,
+  139.42628
+ ],
+ "ヒューリックホール東京|tokyo": [
+  35.673653,
+  139.762373
+ ],
+ "一台好戏方寸剧场·去你的夏天|shanghai": [
+  31.235697,
+  121.490682
+ ],
+ "万象天地剧场|shenzhen": [
+  22.541818,
+  113.955705
+ ],
+ "上剧场|shanghai": [
+  31.19336,
+  121.43972
+ ],
+ "上海东方艺术中心|shanghai": [
+  31.222745,
+  121.541422
+ ],
+ "上海共舞台|shanghai": [
+  31.228826,
+  121.479242
+ ],
+ "上海大剧院-中剧场|shanghai": [
+  31.229638,
+  121.471245
+ ],
+ "上海大劇院 lyric theatre|shanghai": [
+  31.231561,
+  121.467276
+ ],
+ "上海文化广场 shanghai culture square|shanghai": [
+  31.212022,
+  121.462142
+ ],
+ "上海西岸大剧院-大剧场|shanghai": [
+  31.229624,
+  121.471805
+ ],
+ "上海话剧艺术中心 d6空间|shanghai": [
+  31.213582,
+  121.441107
+ ],
+ "上海话剧艺术中心-戏剧沙龙|shanghai": [
+  31.213541,
+  121.441111
+ ],
+ "世纪剧院|beijing": [
+  39.952005,
+  116.471927
+ ],
+ "东安湖大剧院·大剧场|chengdu": [
+  30.659075,
+  104.06824
+ ],
+ "东方艺术中心-歌剧厅|shanghai": [
+  31.222745,
+  121.541422
+ ],
+ "东莞玉兰大剧院|dongguan": [
+  23.014084,
+  113.747981
+ ],
+ "丝绸之路国际艺术交流中心-歌剧厅|langfang": [
+  39.56641,
+  116.72189
+ ],
+ "丝绸之路国际艺术交流中心|langfang": [
+  39.56641,
+  116.72189
+ ],
+ "中华剧院|tianjin": [
+  39.08467,
+  117.217095
+ ],
+ "中国大戏院|shanghai": [
+  31.237608,
+  121.476659
+ ],
+ "中演·成都大剧院-大剧场|chengdu": [
+  30.659075,
+  104.06824
+ ],
+ "二七剧场|beijing": [
+  39.910649,
+  116.345319
+ ],
+ "交通银行前滩31演艺中心 · 大剧场|shanghai": [
+  31.150877,
+  121.485216
+ ],
+ "京都劇場|kyoto": [
+  34.986028,
+  135.760657
+ ],
+ "人民大舞台|shanghai": [
+  31.234242,
+  121.477853
+ ],
+ "佛山琼花大剧院|foshan": [
+  23.032018,
+  113.111799
+ ],
+ "保利上海城市剧院|shanghai": [
+  31.10507,
+  121.38961
+ ],
+ "保利剧聚空间370号|shenzhen": [
+  22.51941,
+  113.93394
+ ],
+ "光明文化艺术中心 演艺中心·大剧场|shenzhen": [
+  22.77454,
+  113.90365
+ ],
+ "刈谷市総合文化センター アイリス 大ホール|aichi": [
+  34.989289,
+  137.006869
+ ],
+ "包河凤凰剧院|hefei": [
+  31.815974,
+  117.22487
+ ],
+ "北九州メッセ（旧西日本総合展示場新館）|fukuoka": [
+  33.889573,
+  130.885283
+ ],
+ "北京保利剧院|beijing": [
+  39.934391,
+  116.435416
+ ],
+ "北京喜剧院|beijing": [
+  39.93017,
+  116.43328
+ ],
+ "北京艺术中心-歌剧院|beijing": [
+  39.885282,
+  116.712456
+ ],
+ "北外滩友邦大剧院-大剧场|shanghai": [
+  31.229624,
+  121.471805
+ ],
+ "北外滩友邦大剧院|shanghai": [
+  31.229624,
+  121.471805
+ ],
+ "十二楼音乐剧之城 -1号剧场[小说编辑部]|shanghai": [
+  31.235118,
+  121.473677
+ ],
+ "十二楼音乐剧之城 -3号剧场[玛利亚布隆学院]|shanghai": [
+  31.235118,
+  121.473677
+ ],
+ "十二楼音乐剧之城 -6号剧场[b-103防空洞]|shanghai": [
+  31.235118,
+  121.473677
+ ],
+ "十二楼音乐剧之城 -9号剧场[圆形剧场]|shanghai": [
+  31.235118,
+  121.473677
+ ],
+ "南京保利大剧院|nanjing": [
+  31.991638,
+  118.708052
+ ],
+ "南宁剧场|nanning": [
+  22.80718,
+  108.31423
+ ],
+ "南山文体中心聚橙剧院 大剧院|shenzhen": [
+  22.535729,
+  113.924433
+ ],
+ "南昌保利大剧院|nanchang": [
+  28.582776,
+  115.791107
+ ],
+ "南通大剧院-歌剧厅|nantong": [
+  31.96501,
+  120.94267
+ ],
+ "台北生技園區多功能廳|taipei": [
+  25.051943,
+  121.609703
+ ],
+ "合肥大剧院|hefei": [
+  31.815974,
+  117.22487
+ ],
+ "启东保利大剧院-南通市|nantong": [
+  31.96501,
+  120.94267
+ ],
+ "启东保利大剧院|qidong": [
+  31.784447,
+  121.634254
+ ],
+ "呉信用金庫ホール|hiroshima": [
+  34.247108,
+  132.562375
+ ],
+ "周口双创园展演中心|zhoukou": [
+  33.645599,
+  114.650473
+ ],
+ "品川プリンスホテル ステラボール|tokyo": [
+  35.627614,
+  139.735465
+ ],
+ "嘉兴大剧院大剧场|jiaxing": [
+  30.738355,
+  120.760094
+ ],
+ "嘉義縣表演藝術中心演藝廳|chiayi": [
+  23.544112,
+  120.432058
+ ],
+ "四川大剧院·大剧场|chengdu": [
+  30.659075,
+  104.06824
+ ],
+ "国立代々木競技場 第一体育館|tokyo": [
+  35.667647,
+  139.700146
+ ],
+ "國家戲劇院|taipei": [
+  25.035305,
+  121.51816
+ ],
+ "國家音樂廳|taipei": [
+  25.037049,
+  121.519236
+ ],
+ "國立陽明交通大學光復校區大禮堂|hsinchu": [
+  24.78835,
+  120.99861
+ ],
+ "國立陽明交通大學光復校區大禮堂|新竹": [
+  24.78835,
+  120.99861
+ ],
+ "土岐市文化プラザ サンホール|gifu": [
+  35.352714,
+  137.184079
+ ],
+ "大上海新空间|shanghai": [
+  30.826955,
+  121.473811
+ ],
+ "大學路 art madang|seoul": [
+  37.522743,
+  127.035315
+ ],
+ "大學路|seoul": [
+  37.578276,
+  127.001601
+ ],
+ "大智无界空中小镇-无界剧场|wuhan": [
+  30.58987,
+  114.29485
+ ],
+ "大连开发区大剧院|dalian": [
+  39.047287,
+  121.789786
+ ],
+ "大阪四季劇場 (梅田)|osaka": [
+  34.699654,
+  135.494686
+ ],
+ "大零号湾文化艺术中心|shanghai": [
+  31.249362,
+  121.440185
+ ],
+ "天桥艺术中心-中剧场|beijing": [
+  39.883806,
+  116.397678
+ ],
+ "天桥艺术中心-多功能剧场|beijing": [
+  39.883806,
+  116.397678
+ ],
+ "天桥艺术中心-大剧场|beijing": [
+  39.883806,
+  116.397678
+ ],
+ "天桥艺术中心-小剧场|beijing": [
+  39.883806,
+  116.397678
+ ],
+ "天津大剧院|tianjin": [
+  39.087454,
+  117.215987
+ ],
+ "天王洲 銀河劇場|tokyo": [
+  35.623442,
+  139.751278
+ ],
+ "太原青年宫演艺中心|taiyuan": [
+  37.874149,
+  112.541851
+ ],
+ "好好有戏小剧场|guangzhou": [
+  23.115245,
+  113.321921
+ ],
+ "宁夏人民剧院大剧场|yinchuan": [
+  38.485516,
+  106.238202
+ ],
+ "宁波大剧院|ningbo": [
+  29.898831,
+  121.551053
+ ],
+ "宁波大剧院大剧场|ningbo": [
+  29.898831,
+  121.551053
+ ],
+ "宁波文化广场大剧院|ningbo": [
+  29.8588,
+  121.62
+ ],
+ "安托山公共文化中心-2f簕杜鹃厅|shenzhen": [
+  22.5512,
+  114.002
+ ],
+ "安托山公共文化中心-大剧场|shenzhen": [
+  22.29385,
+  114.170323
+ ],
+ "宛平剧院-小剧场|shanghai": [
+  31.185068,
+  121.451095
+ ],
+ "宝塚大劇場|takarazuka (兵庫)": [
+  34.807226,
+  135.346246
+ ],
+ "小柯剧场|beijing": [
+  39.984417,
+  116.49822
+ ],
+ "小馬廄|taipei": [
+  25.035638,
+  121.545527
+ ],
+ "屏東藝術館|pingtung": [
+  22.676996,
+  120.477178
+ ],
+ "山东省会大剧院|jinan": [
+  36.655116,
+  116.906266
+ ],
+ "山西大剧院|taiyuan": [
+  37.807658,
+  112.533232
+ ],
+ "山西大剧院大剧场|taiyuan": [
+  37.807658,
+  112.533232
+ ],
+ "常州大剧院|changzhou": [
+  31.808153,
+  119.975679
+ ],
+ "广东省友谊剧院|guangzhou": [
+  23.145122,
+  113.257635
+ ],
+ "广州大剧院歌剧厅|guangzhou": [
+  23.115245,
+  113.321921
+ ],
+ "广州正佳大剧院|guangzhou": [
+  23.115245,
+  113.321921
+ ],
+ "广州花都大剧院|guangzhou": [
+  23.115245,
+  113.321921
+ ],
+ "广西文化艺术中心|nanning": [
+  22.776593,
+  108.368732
+ ],
+ "延边工人文化艺术中心(延边工人文化宫)|yanbian": [
+  31.777118,
+  119.964058
+ ],
+ "开心麻花剧场(横琴文化艺术中心)|zhuhai": [
+  22.272166,
+  113.547816
+ ],
+ "张家港保利大剧院|zhangjiagang": [
+  31.871433,
+  120.571092
+ ],
+ "徐州淮海国际博览中心e3馆|xuzhou": [
+  34.254753,
+  117.25146
+ ],
+ "恆春文化中心劇場館表演廳|pingtung": [
+  22.00261,
+  120.748859
+ ],
+ "恆春文化中心劇場館表演廳|屏東": [
+  22.00261,
+  120.748859
+ ],
+ "成都城市音乐厅-歌剧厅|chengdu": [
+  30.63556,
+  104.0796
+ ],
+ "成都高新中演大剧院-大剧场|chengdu": [
+  30.659075,
+  104.06824
+ ],
+ "新北市藝文中心演藝廳|new taipei": [
+  25.02597,
+  121.471741
+ ],
+ "新国立劇場 中劇場|tokyo": [
+  35.682841,
+  139.68536
+ ],
+ "新竹市文化局演藝廳音樂廳|hsinchu": [
+  24.811367,
+  120.968174
+ ],
+ "新竹縣政府文化局演藝廳|hsinchu": [
+  24.829948,
+  121.012175
+ ],
+ "施光南大剧院|chongqing": [
+  29.53816,
+  106.58652
+ ],
+ "无锡大剧院|wuxi": [
+  31.513432,
+  120.280104
+ ],
+ "日本青年館ホール|tokyo": [
+  35.674275,
+  139.715409
+ ],
+ "日生劇場|tokyo": [
+  35.673227,
+  139.758451
+ ],
+ "时光剧场|shanghai": [
+  31.278053,
+  121.451741
+ ],
+ "昆山文化艺术中心|kunshan": [
+  31.381315,
+  120.905076
+ ],
+ "星空间1023号·涵金小剧场|shanghai": [
+  31.23488,
+  121.474773
+ ],
+ "星空间10号·moriginal box|shanghai": [
+  31.22833,
+  121.47928
+ ],
+ "星空间11号·moriginal box|shanghai": [
+  31.22833,
+  121.47928
+ ],
+ "星空间129号·夭蛾剧场|shanghai": [
+  31.2297,
+  121.4747
+ ],
+ "星空间12号·耶比剧场|shanghai": [
+  31.23762,
+  121.4708
+ ],
+ "星空间18号·谜剧场|shanghai": [
+  31.23488,
+  121.474773
+ ],
+ "星空间19号·剧魅剧场|shanghai": [
+  31.23588,
+  121.47355
+ ],
+ "星空间1号·一台好戏小剧场|shanghai": [
+  31.23385,
+  121.4781
+ ],
+ "星空间2047号·新贵剧场|shanghai": [
+  31.234358,
+  121.47559
+ ],
+ "星空间216号·果然有戏小剧场|shanghai": [
+  31.23762,
+  121.4708
+ ],
+ "星空间28号·好好有戏小剧场|shanghai": [
+  31.23385,
+  121.4781
+ ],
+ "星空间2号·好好有戏剧场|shanghai": [
+  31.23385,
+  121.4781
+ ],
+ "星空间322号 take one|shanghai": [
+  31.234358,
+  121.47559
+ ],
+ "星空间33号·鲸剧场|shanghai": [
+  31.23488,
+  121.474773
+ ],
+ "星空间420号·伸个懒腰剧场|shanghai": [
+  31.23762,
+  121.4708
+ ],
+ "星空间55号·五十五剧场|shanghai": [
+  31.23588,
+  121.47355
+ ],
+ "星空间6号·一台好戏小剧场|shanghai": [
+  31.23385,
+  121.4781
+ ],
+ "星空间8808号·涵金小剧场|shanghai": [
+  31.23488,
+  121.474773
+ ],
+ "星空间919号·风铃剧场|shanghai": [
+  31.23643,
+  121.47121
+ ],
+ "星空间9号·鲸剧场|shanghai": [
+  31.23385,
+  121.4781
+ ],
+ "星空间·星空穹顶剧场|shanghai": [
+  30.914488,
+  121.921499
+ ],
+ "春日井市民会館|aichi": [
+  35.246707,
+  136.972533
+ ],
+ "曌剧场|shanghai": [
+  31.217344,
+  121.44
+ ],
+ "有明四季劇場|tokyo": [
+  35.638904,
+  139.795029
+ ],
+ "有楽町朝日ホール|tokyo": [
+  35.673289,
+  139.763026
+ ],
+ "杭州东坡大剧院|hangzhou": [
+  30.253326,
+  120.16316
+ ],
+ "杭州临平大剧院|hangzhou": [
+  30.421008,
+  120.299839
+ ],
+ "杭州大剧院-歌剧院|hangzhou": [
+  30.244474,
+  120.215438
+ ],
+ "杭州西湖钱王祠阅礼堂|hangzhou": [
+  30.242691,
+  120.15806
+ ],
+ "杭州金沙湖大剧院-歌剧厅|hangzhou": [
+  30.162317,
+  120.24678
+ ],
+ "東京ドームシティ シアターgロッソ|tokyo": [
+  35.704536,
+  139.754142
+ ],
+ "東京宝塚劇場|tokyo (日比谷)": [
+  35.67273,
+  139.759216
+ ],
+ "東京建物 brillia hall 箕面 大ホール（箕面市立文化芸能劇場）|osaka": [
+  34.82178,
+  135.49146
+ ],
+ "東大阪市文化創造館 dream house 大ホール|osaka": [
+  34.665889,
+  135.589518
+ ],
+ "東急シアターオーブ|tokyo": [
+  35.659076,
+  139.703047
+ ],
+ "桂林漓江歌剧院·歌剧厅|guilin": [
+  25.272792,
+  110.298138
+ ],
+ "桑塔露琪亚·广州馆|guangzhou": [
+  23.142906,
+  113.280684
+ ],
+ "武汉琴台大剧院|wuhan": [
+  30.561032,
+  114.259481
+ ],
+ "水源劇場|taipei": [
+  25.013604,
+  121.5349
+ ],
+ "江苏大剧院-戏剧厅|nanjing": [
+  32.015102,
+  118.714821
+ ],
+ "江苏大剧院-歌剧厅|nanjing": [
+  32.015102,
+  118.714821
+ ],
+ "沈阳盛京大剧院|shenyang": [
+  41.752642,
+  123.444402
+ ],
+ "河南艺术中心|zhengzhou": [
+  34.771306,
+  113.723828
+ ],
+ "泰州大剧院|taizhou": [
+  32.449434,
+  119.920022
+ ],
+ "海口湾演艺中心|haikou": [
+  20.028061,
+  110.309418
+ ],
+ "海口演艺新空间|haikou": [
+  20.030146,
+  110.305095
+ ],
+ "海珠大戏院|guangzhou": [
+  23.111341,
+  113.259496
+ ],
+ "淄博大剧院|zibo": [
+  36.82584,
+  117.9887
+ ],
+ "淮安大剧院|huai'an": [
+  33.549785,
+  119.11098
+ ],
+ "深圳·鹭湖艺术中心 大剧场|shenzhen": [
+  22.547193,
+  114.092825
+ ],
+ "深圳保利剧院|shenzhen": [
+  22.564711,
+  114.052097
+ ],
+ "深圳南山文化馆剧院|shenzhen": [
+  22.524145,
+  113.910304
+ ],
+ "深圳坪山大剧院|shenzhen": [
+  22.704816,
+  114.346622
+ ],
+ "温州高新文化广场 大剧院|wenzhou": [
+  27.990662,
+  120.702713
+ ],
+ "湖北剧院|wuhan": [
+  30.540908,
+  114.304729
+ ],
+ "滨港商业中心·今潮8弄-ark live house|shanghai": [
+  31.25051,
+  121.48454
+ ],
+ "潍坊大剧院|weifang": [
+  36.70019,
+  119.16058
+ ],
+ "澎湖縣演藝廳|penghu": [
+  23.571209,
+  119.577952
+ ],
+ "澳门文化中心黑盒ii|macau": [
+  22.1891,
+  113.5552
+ ],
+ "澳门文化中心黑盒剧场-黑盒i|macau": [
+  22.1891,
+  113.5552
+ ],
+ "烟台大剧院|yantai": [
+  37.537982,
+  121.396263
+ ],
+ "珠影壹号新空间a馆|guangzhou": [
+  23.094885,
+  113.320716
+ ],
+ "珠海大剧院|zhuhai": [
+  22.281204,
+  113.589364
+ ],
+ "珠海金湾艺术中心·多功能厅(b馆)|zhuhai": [
+  22.11341,
+  113.36081
+ ],
+ "珠海金湾艺术中心·大剧院(a馆)|zhuhai": [
+  22.11341,
+  113.36081
+ ],
+ "相信有戏剧场(原开心麻花疯狂星有团)|hangzhou": [
+  30.275,
+  120.158
+ ],
+ "神戸ワールド記念ホール|hyogo": [
+  34.66386,
+  135.210569
+ ],
+ "福岡市民ホール 大ホール|fukuoka": [
+  33.596319,
+  130.398928
+ ],
+ "福州海峡文化艺术中心-歌剧厅|fuzhou": [
+  25.99574,
+  119.41734
+ ],
+ "福州海峡文化艺术中心|fuzhou": [
+  25.99574,
+  119.41734
+ ],
+ "空軍三重一村時藝劇場|new taipei": [
+  25.057865,
+  121.499048
+ ],
+ "童梦剧场|shanghai": [
+  31.196309,
+  121.494657
+ ],
+ "纯粹脱口秀club|guangzhou": [
+  23.131811,
+  113.285401
+ ],
+ "缪时客·月光下小剧场|shanghai": [
+  31.227027,
+  121.477828
+ ],
+ "缪时客小剧场|nanjing": [
+  32.0603,
+  118.7969
+ ],
+ "联创艺空间4号·梦境剧场|wuhan": [
+  30.57688,
+  114.36409
+ ],
+ "自由劇場 (浜松町)|tokyo": [
+  35.657484,
+  139.761244
+ ],
+ "臺中國家歌劇院|taichung": [
+  24.162649,
+  120.640303
+ ],
+ "臺中國家歌劇院中劇院|taichung": [
+  24.162649,
+  120.640303
+ ],
+ "臺中國家歌劇院中劇院|臺中": [
+  24.162649,
+  120.640303
+ ],
+ "臺中國家歌劇院大劇院|taichung": [
+  24.162649,
+  120.640303
+ ],
+ "臺中國家歌劇院大劇院|臺中": [
+  24.162649,
+  120.640303
+ ],
+ "臺中國家歌劇院小劇場|taichung": [
+  24.162649,
+  120.640303
+ ],
+ "臺中市中山堂|taichung": [
+  24.155279,
+  120.682782
+ ],
+ "臺中市中山堂|臺中": [
+  24.155279,
+  120.682782
+ ],
+ "臺中市屯區藝文中心實驗劇場|taichung": [
+  24.156861,
+  120.735018
+ ],
+ "臺中市葫蘆墩文化中心演奏廳|taichung": [
+  24.252697,
+  120.730232
+ ],
+ "臺北國家戲劇院|taipei": [
+  25.035305,
+  121.51816
+ ],
+ "臺北市客家音樂戲劇中心二樓劇場|taipei": [
+  25.019678,
+  121.52565
+ ],
+ "臺北市藝文推廣處城市舞台|taipei": [
+  25.048415,
+  121.551495
+ ],
+ "臺北表演藝術中心 大劇院|taipei": [
+  25.085124,
+  121.524369
+ ],
+ "臺北表演藝術中心 球劇場|taipei": [
+  25.085124,
+  121.524369
+ ],
+ "臺北表演藝術中心 藍盒子|taipei": [
+  25.085124,
+  121.524369
+ ],
+ "臺東縣政府文化處藝文中心演藝廳|taitung": [
+  22.756543,
+  121.144612
+ ],
+ "臺灣大學藝文中心遊心劇場|taipei": [
+  25.014518,
+  121.53792
+ ],
+ "臺灣戲曲中心多功能廳|taipei": [
+  25.102277,
+  121.519779
+ ],
+ "臺灣戲曲中心多功能廳|臺北": [
+  25.102277,
+  121.519779
+ ],
+ "舞浜アンフィシアター|maihama": [
+  35.632586,
+  139.889227
+ ],
+ "艺海剧院-大剧场|shanghai": [
+  31.234929,
+  121.452463
+ ],
+ "苏州保利大剧院|suzhou": [
+  31.269378,
+  120.627333
+ ],
+ "苏州开明大戏院-沁兰剧场|suzhou": [
+  31.309632,
+  120.624975
+ ],
+ "苏州湾大剧院-歌剧厅|suzhou": [
+  31.13223,
+  120.58587
+ ],
+ "苏州湾大剧院|suzhou": [
+  31.13223,
+  120.58587
+ ],
+ "苏州狮山大剧院-大剧场|suzhou": [
+  31.292191,
+  120.539999
+ ],
+ "苗北藝文中心實驗劇場|miaoli": [
+  24.690734,
+  120.885946
+ ],
+ "茉莉花剧场|shanghai": [
+  31.230243,
+  121.478407
+ ],
+ "蜂巢剧场|beijing": [
+  39.94033,
+  116.438871
+ ],
+ "蝴蝶剧场(小百花越剧场)|hangzhou": [
+  30.26543,
+  120.14192
+ ],
+ "衛武營國家藝術文化中心戲劇院|kaohsiung": [
+  22.623,
+  120.342441
+ ],
+ "衛武營國家藝術文化中心戲劇院|高雄": [
+  22.623,
+  120.342441
+ ],
+ "衛武營國家藝術文化中心歌劇院|kaohsiung": [
+  22.623,
+  120.342441
+ ],
+ "衛武營國家藝術文化中心表演廳|kaohsiung": [
+  22.623,
+  120.342441
+ ],
+ "衡阳保利大剧院|hengyang": [
+  26.90672,
+  112.600242
+ ],
+ "衢州保利大剧院|quzhou": [
+  28.972901,
+  118.852641
+ ],
+ "衢州保利大剧院大剧场|quzhou": [
+  28.972901,
+  118.852641
+ ],
+ "西安人民剧院|xi'an": [
+  34.266794,
+  108.947043
+ ],
+ "西安浐灞保利大剧院|xi'an": [
+  34.315366,
+  108.997398
+ ],
+ "西施大剧院|shaoxing": [
+  29.712033,
+  120.230278
+ ],
+ "西演space·西安广电大剧院|xi'an": [
+  34.205985,
+  108.974756
+ ],
+ "誠品表演廳|taipei": [
+  25.044561,
+  121.561351
+ ],
+ "诸暨西施大剧院|zhuji": [
+  29.71052,
+  120.236726
+ ],
+ "连云港大剧院|连云港": [
+  34.61983,
+  119.2134
+ ],
+ "遊牧計畫|taipei": [
+  25.023493,
+  121.522789
+ ],
+ "邦尼剧场|shanghai": [
+  31.283524,
+  121.457038
+ ],
+ "鄂尔多斯大剧院-歌剧厅|ordos": [
+  39.602121,
+  109.788321
+ ],
+ "鄂尔多斯大剧院|鄂尔多斯": [
+  39.602121,
+  109.788321
+ ],
+ "重庆大剧院|chongqing": [
+  29.569956,
+  106.581187
+ ],
+ "重庆大剧院中剧场|chongqing": [
+  29.606402,
+  106.574673
+ ],
+ "长江剧场-红匣子|shanghai": [
+  31.21907,
+  121.44978
+ ],
+ "长沙梅溪湖国际文化艺术中心大剧院|changsha": [
+  28.19552,
+  112.90712
+ ],
+ "阿波罗尼亚·广州馆|guangzhou": [
+  23.207961,
+  113.542764
+ ],
+ "陕西大剧院-歌剧厅|xi'an": [
+  34.209185,
+  108.961517
+ ],
+ "雲林表演廳|yunlin": [
+  23.695535,
+  120.524944
+ ],
+ "電通四季劇場[海] (汐留)|tokyo": [
+  35.664887,
+  139.762493
+ ],
+ "青岛大剧院|qingdao": [
+  36.09964,
+  120.473667
+ ],
+ "青海大剧院-音乐厅|xining": [
+  36.64547,
+  101.719116
+ ],
+ "顺义大剧院|beijing": [
+  39.904799,
+  116.389671
+ ],
+ "香山大剧院|zhongshan": [
+  29.706344,
+  118.289496
+ ],
+ "駁二正港小劇場|kaohsiung": [
+  22.620929,
+  120.278198
+ ],
+ "高雄市文化中心至德堂|kaohsiung": [
+  22.625257,
+  120.317944
+ ],
+ "高雄市文化中心至德堂|高雄": [
+  22.625257,
+  120.317944
+ ],
+ "黄浦剧场--中剧场|shanghai": [
+  31.23837,
+  121.475561
+ ],
+ "黄浦剧场-小剧场|shanghai": [
+  31.23837,
+  121.475561
+ ],
+ "鼓楼西剧场|beijing": [
+  39.94585,
+  116.387142
+ ],
+ "ｃｂｇｋシブゲキ!!|tokyo": [
+  35.659527,
+  139.698318
+ ],
+ "ｓｋｙシアターｍｂｓ|osaka": [
+  34.700629,
+  135.494151
+ ]
 }

@@ -7,6 +7,7 @@ Offline (no network) — pure bounding-box check over data/shows.json.
 """
 
 import json
+import re
 import sys
 import io
 from pathlib import Path
@@ -70,9 +71,65 @@ def main():
         print(f"  (no bbox for: {', '.join(sorted(x for x in no_bbox if x))})")
     print(f"OUT-OF-COUNTRY venues: {len(bad)}")
     for (v, c, co), (la, ln) in sorted(bad.items(), key=lambda x: x[0][2] or ""):
-        print(f"  ✗ {co:14} {c or '?':18} {v or '?':40} -> {la}, {ln}")
+        print(f"::warning::geo out-of-country: {co} {c or '?'} {v or '?'} -> {la}, {ln}")
     if not bad:
         print("  ✓ all located shows fall inside their country's bounding box")
+    audit_venue_coords()
+
+
+def audit_venue_coords():
+    """venue_coords.json(場館級座標修正表)自體體檢。
+
+    2026-07-10 實案:南昌/啟東/衡陽保利被批次貼上「上海保利(嘉定)」座標(錯 616-989km)、
+    蘇州/衢州保利貼成常熟保利——修正表本身錯會污染該場館所有戲,而國界框抓不到
+    (同在中國境內)。兩個偵測:
+    1. 不同城市鍵、不同場館名共用完全相同座標(複製貼上指紋);同館多廳/母城別名放行。
+    2. 與 cn_venues.json(Google 實測權威值)差 >20km 的中國場館。
+    """
+    vc_path = DATA / "venue_coords.json"
+    if not vc_path.exists():
+        return
+    v = {k: val for k, val in json.loads(vc_path.read_text(encoding="utf-8")).items()
+         if not k.startswith("_") and isinstance(val, list) and len(val) == 2}
+    warn = 0
+
+    by_coord = {}
+    for k, val in v.items():
+        by_coord.setdefault((round(val[0], 5), round(val[1], 5)), []).append(k)
+    for co, ks in by_coord.items():
+        if len(ks) < 2:
+            continue
+        cities = {k.split("|")[1] for k in ks}
+        if len(cities) < 2:
+            continue
+        # 同館多廳/兩種鍵寫法(「臺中國家歌劇院」vs「…大劇院」、「regent theatre」vs
+        # 「regent theatre, stoke」)→ 最短名是其他名的字首=同一館,放行
+        names = sorted({re.sub(r"^the\s+", "", re.sub(r"[,\s]+", " ", k.split("|")[0]).strip())
+                        for k in ks}, key=len)
+        if all(n.startswith(names[0][:max(6, len(names[0]) // 2)]) for n in names[1:]):
+            continue
+        warn += 1
+        print(f"::warning::venue_coords 跨城市同座標(疑複製貼上): {ks} -> {co}")
+
+    cn_path = DATA / "cn_venues.json"
+    if cn_path.exists():
+        import math
+        cn = json.loads(cn_path.read_text(encoding="utf-8"))
+        arr = cn if isinstance(cn, list) else cn.get("venues", [])
+        auth = {x["native"].lower(): (x["lat"], x["lng"]) for x in arr if x.get("lat")}
+        for k, val in v.items():
+            name = k.split("|")[0]
+            # 子字串比對:表鍵常帶廳名尾綴(「衢州保利大剧院大剧场」vs 權威「衢州保利大剧院」),
+            # 精確比對會漏(2026-07-10 Google 誤配保利連鎖實案就是這樣漏掉的)
+            a = auth.get(name) or next(
+                (co for an, co in auth.items() if len(an) >= 5 and (an in name or name in an)), None)
+            if a:
+                d = math.hypot((val[0] - a[0]) * 111,
+                               (val[1] - a[1]) * 111 * math.cos(math.radians(a[0])))
+                if d > 20:
+                    warn += 1
+                    print(f"::warning::venue_coords vs cn_venues 差 {round(d)}km: {k} 表={val} 權威={list(a)}")
+    print(f"venue_coords audit: {len(v)} 條,{'全過 ✓' if warn == 0 else f'{warn} 項告警'}")
 
 
 if __name__ == "__main__":

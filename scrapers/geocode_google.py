@@ -125,13 +125,40 @@ def main():
     have = {k for k in existing if not k.startswith("_")}
 
     shows = json.loads((DATA / "shows.json").read_text(encoding="utf-8"))["shows"]
+
+    # 中國大陸場館:Google 大陸資料=GCJ 偏移+同名連鎖(保利/聚橙)極易誤配——2026-07-10
+    # 實案:「衢州保利大剧院大剧场」被 Google 配到上海保利(嘉定)、name_ok 因同含「保利
+    # 大剧院」而放行,錯 57km。cn_venues.json(專用管線 Google+GCJ→WGS84)才是大陸權威;
+    # 有權威值(子字串比對)就直接採用,不問 Google。
+    cn_auth = {}
+    cn_path = DATA / "cn_venues.json"
+    if cn_path.exists():
+        _cn = json.loads(cn_path.read_text(encoding="utf-8"))
+        for x in (_cn if isinstance(_cn, list) else _cn.get("venues", [])):
+            if x.get("lat"):
+                cn_auth[x["native"]] = (x["lat"], x["lng"])
+
+    def cn_authority(venue):
+        for an, co in cn_auth.items():
+            if len(an) >= 5 and (an in venue or venue in an):
+                return co
+        return None
+
     venues = {}
+    pre_resolved = {}
     for s in shows:
         v, c, co = s.get("venue"), s.get("city"), s.get("country")
-        if v and (v, c) not in venues:
+        if v and (v, c) not in venues and (v, c) not in pre_resolved:
             if force or vkey(v, c) not in have:      # incremental: skip already-known venues
+                if co == "China":
+                    a = cn_authority(v)
+                    if a:
+                        pre_resolved[(v, c)] = a
+                        continue
                 venues[(v, c)] = (s.get("lat"), s.get("lng"), co)
-    if not venues:
+    if pre_resolved:
+        print(f"  {len(pre_resolved)} China venue(s) resolved from cn_venues authority (Google skipped)", flush=True)
+    if not venues and not pre_resolved:
         print("No new venues to geocode (all present in venue_coords.json). Use --all to force.", flush=True)
         return
 
@@ -178,6 +205,8 @@ def main():
     # merge: keep all previously-verified venues, add/refresh the ones we just did
     merged = {k: v for k, v in existing.items() if not k.startswith("_")}
     merged.update(coords)
+    for (v, c), (la, ln) in pre_resolved.items():   # 大陸權威值直入(見上)
+        merged[vkey(v, c)] = [la, ln]
     out = {"_comment": "Authoritative venue coords (Google, building-level ~<=30m), keyed by "
                        "'venue|city'. Applied in build_shows.py. Regenerate: scrapers/geocode_google.py "
                        "(incremental; --all to re-do every venue)."}

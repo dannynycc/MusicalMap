@@ -12,7 +12,7 @@ import re
 import sys
 import io
 import unicodedata
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 from pathlib import Path
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
@@ -198,6 +198,12 @@ def venue_key(venue, city):
     """Stable key for venue-level coordinate corrections (data/venue_coords.json).
     Matches on lowered venue name + city (state suffix stripped)."""
     return f"{(venue or '').strip().lower()}|{city_key(city)}"
+
+
+# 同一國多種寫法 → 前端統計/官網地區判斷會分裂(2026-07-10 盤點:UAE 1 筆 vs
+# United Arab Emirates 2 筆)。入庫前正名;新來源加國家時這裡跟著補。
+_COUNTRY_CANON = {"UAE": "United Arab Emirates", "Korea": "South Korea",
+                  "United States": "USA", "United Kingdom": "UK"}
 
 
 def country_norm(c):
@@ -1001,10 +1007,26 @@ def main():
 
     shows = list(by_id.values())
 
+    # 已完結的戲不進當前地圖:過去月份由 archive 層服務(js/app.js 滑桿入過去讀 archive),
+    # 大麥等人工來源不每日更新會殘留完結戲(2026-07-09 稽核:52 筆已過期仍在檔)。
+    # 寬限 3 天防時區邊界;rolling 長跑不看 end_date。
+    _cutoff = (datetime.now().date() - timedelta(days=3)).isoformat()
+    _before = len(shows)
+    shows = [s for s in shows
+             if s.get("end_rolling") or not s.get("end_date") or s["end_date"] >= _cutoff]
+    if _before != len(shows):
+        print(f"  dropped {_before - len(shows)} ended show(s) (end < {_cutoff}; 過去月份由 archive 服務)")
+
     # link kind + tradition tag + search aliases. s["group"] is already set (from the
     # original title) — do NOT recompute it here.
     for s in shows:
         s["link_kind"] = src_kind(s.get("source"))
+        # 國名正規化:同一國兩種寫法會在前端國家統計/地區判斷分裂(UAE vs United Arab Emirates)
+        s["country"] = _COUNTRY_CANON.get(s.get("country"), s.get("country"))
+        # broadway.org 巡演部分站沒場館名,scraper 拿 city 當 venue → 卡片場館列顯示重複的
+        # 城市名(2026-07-10 稽核 10 筆)。改存 None,前端條件渲染。
+        if s.get("venue") and s["venue"] == s.get("city"):
+            s["venue"] = None
         s["tag"] = classify_tag(s["group"], s.get("source"), s.get("country"), s.get("tag_hint"))
         # TM 常全大寫列名("THE ADDAMS FAMILY"):命中 registry 就用 canonical 正名;
         # 沒命中的(匈/捷原文慣例大寫)不動
