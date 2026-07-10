@@ -11,10 +11,11 @@
 --
 -- 這份把三欄一次補齊,取代所有舊定義。在 Supabase SQL editor 執行一次,idempotent。
 
--- 欄位存在性保險(可能已由舊 migration 建過)
-alter table public.sightings add column if not exists rating    smallint default 0;
-alter table public.sightings add column if not exists precision text;
-alter table public.sightings add column if not exists fav       boolean not null default false;
+-- 欄位存在性保險(可能已由舊 migration 建過)。precision 是 PostgreSQL 保留字,
+-- 當識別字(欄名/回傳欄)用一律加雙引號 "precision",否則 42601 syntax error。
+alter table public.sightings add column if not exists rating      smallint default 0;
+alter table public.sightings add column if not exists "precision" text;
+alter table public.sightings add column if not exists fav         boolean not null default false;
 
 drop function if exists public.public_sightings(text);
 create function public.public_sightings(p_handle text)
@@ -27,7 +28,7 @@ returns table (
   lat            double precision,
   lng            double precision,
   seen_date      date,
-  precision      text,
+  "precision"    text,
   seat           text,
   price          numeric,
   currency       text,
@@ -41,7 +42,7 @@ returns table (
 language sql security definer set search_path = public stable as $$
   select
     s.id, s.title, s.venue, s.city, s.country,
-    s.lat, s.lng, s.seen_date, s.precision,
+    s.lat, s.lng, s.seen_date, s."precision",
     case when p.show_seat  then s.seat     else null end,
     case when p.show_price then s.price    else null end,
     case when p.show_price then s.currency else null end,

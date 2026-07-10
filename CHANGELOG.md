@@ -11,6 +11,12 @@
 
 ---
 
+## [v2.24.1] - 2026-07-10 16:06
+### 套用 public_sightings RPC 修正(公開頁 0 星+捏造日期 HIGH bug 收尾)
+- 於 Supabase SQL editor 執行 add_public_sightings_full.sql(precision 保留字需加雙引號 "precision",首次執行 42601 已修正)。
+- 端對端驗證:正式站 /danny 的 public_sightings 現回傳 rating+precision+fav 三欄齊全 → 公開頁評分正確、只填年份的舊劇不再被捏造成 1/1。
+- repo migration 檔同步修正為加引號版本。
+
 ## [v2.24.0] - 2026-07-10 15:42
 ### 「我的音樂劇」第二輪深掃:5 路 agent + 自測,修 12 個真 bug(資料流/統計/表單/渲染/分享)
 換更深角度(前輪掃邏輯/i18n/XSS)。5 路 agent(資料一致性/統計計算/表單 flow/渲染記憶體/分享邊界)+ 我自己 node 反例測試。
