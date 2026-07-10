@@ -11,6 +11,27 @@
 
 ---
 
+## [v2.25.0] - 2026-07-10 16:22
+### 「我的音樂劇」第三輪深掃:4 路 agent+自測,修 16 個真 bug(settings/認證並發/a11y/RWD)
+換全新角度(前輪未掃 settings 頁/無障礙/多分頁/跨網域/行動版)。
+**Settings 頁(高/中)**
+- **刪帳號確認對「無 handle 帳號」形同虛設(HIGH)**:提示打「DELETE」但程式只在有 handle 時才驗證 → 按 OK 空字串直接執行不可逆刪帳號。改成兩種情形都比對(有 handle 比 handle,無則比 DELETE)。
+- **profile 讀取失敗吞掉→空表單覆蓋真值**:只解構 data 忽略 error,讀取失敗渲染成「私密/無 handle」預設,一動開關就 upsert 蓋掉伺服器真值 → 加 error 檢查+可重試錯誤畫面。
+- **改名成功但顯示名失敗→畫面停舊 handle**:partial save 早退不重繪 → 失敗也 renderId/renderLink。
+- **load 觸發兩遍**(onAuthStateChange+getSession)→ 加 uid 去重。
+**認證/多分頁(中,真資料遺失)**
+- **多分頁刪錯卡/最愛錯卡**:卡片按載入時位置索引定址,另一分頁改動後索引錯位 → 刪/最愛到別齣戲。加 storage 監聽:偵測 mm-log 變更即重載成最新狀態(登錄 modal 開著時跳過)。
+- **雙 GoTrueClient refresh 競爭假登出**:embed 子頁自建 client 與父頁同開 autoRefresh,token 過期時互相作廢 refresh token→假 SIGNED_OUT 清掉開著的表單 → 子 client 關 autoRefreshToken(refresh 交父頁)。
+- **postMessage 無來源驗證**:任意頁面可發 'mm-log-exit' 關 modal → 驗 e.source===iframe 且同源。
+**無障礙 a11y(高/中)**
+- **海報卡是 button 又內含 ♥/✎/✕ button(無效 HTML+鍵盤混亂)**→ 改 div role=button + Enter/Space。
+- 狀態訊息(handle 查重/OTP 閘門)加 role=status/aria-live;toast 加 aria-live;地圖+統計 canvas 加 role=img+aria-label;logModal 加 role=dialog/aria-modal+關閉歸還焦點。
+**行動版 RWD(中)**
+- 海報牆在 ≤430px 塌成單欄(海報超大一頁一張)→ 強制 2 欄。
+- 登入閘 header 導覽在窄螢幕被 overflow:hidden 裁掉且點不到 → 隱藏次要連結(頁尾已有)。
+- en/zh-hans 首屏閃繁中(FOUC)→ 非繁中先隱藏 body,apply() 後顯示+1500ms 失效保險。
+- 清 me.html 重複 media query。
+
 ## [v2.24.1] - 2026-07-10 16:06
 ### 套用 public_sightings RPC 修正(公開頁 0 星+捏造日期 HIGH bug 收尾)
 - 於 Supabase SQL editor 執行 add_public_sightings_full.sql(precision 保留字需加雙引號 "precision",首次執行 42601 已修正)。

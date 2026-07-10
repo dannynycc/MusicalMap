@@ -340,7 +340,7 @@ document.write('<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+
       }
       if(d!==DISPLAY){
         const {error}=await sb.from('profiles').upsert({id:UID,display_name:d||null});
-        if(error){saveMsg('bad',T('display_save_fail')+(error.message||error));return;}
+        if(error){renderId();renderLink();saveMsg('bad',T('display_save_fail')+(error.message||error));return;}   // rename 已提交:即使顯示名失敗也要重繪身分/連結,否則畫面停在舊 handle 與 DB 不符(2026-07-10)
         DISPLAY=d;
       }
       saveMsg('ok',renamed?T('saved_redirect'):T('saved_ok'));
@@ -386,7 +386,10 @@ document.write('<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+
     const h=(CUR.handle||'').trim();
     const typed=prompt(h?TN('del_confirm_prompt',{handle:h}):T('del_confirm_plain'));
     if(typed==null)return;
-    if(h&&typed.trim().toLowerCase()!==h.toLowerCase()){alert(T('del_confirm_mismatch'));return;}
+    // 無 handle 帳號:文案要求打「DELETE」,舊版卻只在 h 存在時才驗證 → 按 OK 空字串直接刪帳號
+    // (不可逆!2026-07-10)。改成兩種情形都必須比對:有 handle 比 handle,無則比 DELETE。
+    const expect=h?h.toLowerCase():'delete';
+    if(typed.trim().toLowerCase()!==expect){alert(T('del_confirm_mismatch'));return;}
     const btn=$('stDelete');btn.disabled=true;btn.textContent=T('del_deleting');
     try{
       const {error}=await sb.rpc('delete_my_account');
@@ -406,11 +409,16 @@ document.write('<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+
       if(AVATAR)avCookie(AVATAR);
     }catch(e){}
     try{
-      const {data}=await sb.from('profiles').select('handle,is_public,show_price,show_seat,display_name,created_at').eq('id',uid).maybeSingle();
+      const {data,error}=await sb.from('profiles').select('handle,is_public,show_price,show_seat,display_name,created_at').eq('id',uid).maybeSingle();
+      if(error)throw error;   // 讀取失敗別當「空 profile」:表單顯示全預設(私密/無 handle),使用者一動開關就 upsert 蓋掉真值(2026-07-10)
       CUR={handle:data?.handle||'',is_public:!!data?.is_public,show_price:!!data?.show_price,show_seat:!!data?.show_seat};
       DISPLAY=data?.display_name||'';CREATED=data?.created_at||'';
       if(CUR.handle)ownerCookie(CUR.handle);
-    }catch(e){console.warn('load profile',e);}
+    }catch(e){console.warn('load profile',e);
+      // 讀取失敗:不 hideGate、不渲染會誤導的空表單(否則一動開關就 upsert 蓋掉真值);顯示可重試錯誤
+      showGate((T('gate_load_fail')||'載入失敗'),false);
+      const rb=document.createElement('button');rb.textContent=(T('gate_retry')||'重試');rb.style.cssText='margin-top:14px;padding:9px 20px;border-radius:999px;border:1px solid var(--gold,#c9a85c);background:none;color:var(--gold,#c9a85c);font-weight:700;cursor:pointer;font-family:inherit';rb.onclick=()=>load(uid);gmsg.appendChild(document.createElement('br'));gmsg.appendChild(rb);
+      return;}
     $('stDisplay').value=DISPLAY;
     $('stHandle').value=CUR.handle;
     setSt(CUR.handle?'ok':'muted',CUR.handle?T('h_current'):T('h_input_hint'));
@@ -428,15 +436,16 @@ document.write('<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+
   }
 
   glogin.onclick=()=>sb.auth.signInWithOAuth({provider:'google',options:{redirectTo:location.origin+location.pathname}});
+  let _loadedFor=null;   // 去重:onAuthStateChange 與 getSession 各觸發一次同 uid → load 做兩遍(2026-07-10)
   sb.auth.onAuthStateChange((event,session)=>{
     if(SIGNOUT)return;
-    if(event==='SIGNED_OUT'){showGate(T('gate_signin'),true);return;}
-    if(session&&session.user)load(session.user.id);
+    if(event==='SIGNED_OUT'){_loadedFor=null;showGate(T('gate_signin'),true);return;}
+    if(session&&session.user&&_loadedFor!==session.user.id){_loadedFor=session.user.id;load(session.user.id);}
   });
   sb.auth.getSession().then(({data})=>{
     const s=data.session;
     if(SIGNOUT){doSignout();return;}   // 有無 session 都走:清 cookie/快取→回主站
-    if(s&&s.user)load(s.user.id);else showGate(T('gate_signin'),true);
+    if(s&&s.user){if(_loadedFor!==s.user.id){_loadedFor=s.user.id;load(s.user.id);}}else showGate(T('gate_signin'),true);
   }).catch(e=>{console.warn('getSession',e);if(SIGNOUT){doSignout();return;}showGate(T('gate_signin'),true);});
 })();
 </script>

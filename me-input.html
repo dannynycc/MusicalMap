@@ -368,7 +368,10 @@ function syncDayOptions(yEl,moEl,dEl,onchange){if(!dEl)return;const max=daysInMo
 function flag(c){return '';}   // 不顯示國旗 emoji（使用者要求）
 function curOf(c){return CUR[c]||'';}
 /* ===== P3c：Supabase 雲端寫入（與父頁 me.html 同 session，共用 localStorage 的登入態）===== */
-let MMSB=null;(function(){const cfg=window.MM_CONFIG;if(cfg&&cfg.READY&&typeof supabase!=='undefined'){try{MMSB=supabase.createClient(cfg.SUPABASE_URL,cfg.SUPABASE_ANON_KEY);}catch(e){}}})();
+// embed 子頁與父頁 me.html 同源、共用同一 auth 儲存鍵。兩個 client 都開 autoRefreshToken 會在
+// token 過期時同時 rotate、互相作廢對方 refresh token → 假 SIGNED_OUT 把開著的表單清掉(2026-07-10)。
+// 子 client 只關自動更新(refresh 交給父頁單一 client);persistSession 保留才讀得到共用 session 做認證寫入。
+let MMSB=null;(function(){const cfg=window.MM_CONFIG;if(cfg&&cfg.READY&&typeof supabase!=='undefined'){try{MMSB=supabase.createClient(cfg.SUPABASE_URL,cfg.SUPABASE_ANON_KEY,{auth:{autoRefreshToken:false,persistSession:true}});}catch(e){}}})();
 function _fullDate(date,prec){if(!date)return null;const d=String(date);if(prec==='year'||d.length===4)return d.slice(0,4)+'-01-01';if(prec==='month'||d.length===7)return d.slice(0,7)+'-01';return d;}
 // URL 欄位只收 http(s):javascript:/data: 存進去會在 openFull(window.open)/href 變攻擊面(2026-07-10 review)
 function _httpOnly(u){u=(u||'').trim();return /^https?:\/\//i.test(u)?u:null;}

@@ -194,6 +194,8 @@ header .wrap{max-width:none}  /* 對齊主頁 #topbar:全寬 padding 24px,頭像
 
 /* ===== POSTER WALL ===== */
 #wall-poster{display:grid;gap:18px;grid-template-columns:repeat(auto-fill,minmax(158px,1fr))}
+/* 窄手機(≤430px):158px min 在 360px 內容寬只塞得下 1 欄→海報變超大一頁一張。降 min 保 2 欄(2026-07-10) */
+@media(max-width:430px){#wall-poster{gap:12px;grid-template-columns:repeat(2,1fr)}}
 .card{position:relative;display:flex;flex-direction:column;cursor:pointer;text-align:left;font-family:inherit;
   border:1px solid color-mix(in srgb,var(--gold,#c9a85c) 22%,transparent);border-radius:12px;overflow:hidden;
   background:color-mix(in srgb,var(--gold,#c9a85c) 5%,var(--s1,#14110d));padding:0;

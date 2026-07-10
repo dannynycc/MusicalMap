@@ -36,7 +36,6 @@ html[lang="zh-Hans"] body{--ui:'Inter','Noto Sans SC',sans-serif}  /* 簡中改�
 .lang-switch .lang-opt[aria-current="true"]{color:var(--gold,#c9a85c);font-weight:700}
 .lang-tick{width:15px;height:15px;fill:none;stroke:var(--gold,#c9a85c);stroke-width:2.2;flex:none;opacity:0}
 .lang-switch .lang-opt[aria-current="true"] .lang-tick{opacity:1}
-@media(max-width:560px){.lang-cur{display:none}}
 @media(max-width:560px){.lang-cur{display:none}}   /* 觸控友善:手機語言 pill ≥24px 高 */
 /* ===== 登入閘 ===== */
 /* 閘門版面對齊 privacy 頁:無斜線紋理、平底色;58px topbar、內容置中、footer 走文件流(不覆蓋內容、不產生假捲軸) */
@@ -49,6 +48,9 @@ body{overflow:hidden}   /* 預設鎖 body 捲動(閘門蓋著時背後內容捲�
 .gt-brand .logo b{color:var(--gold,#a07a34)}
 .gt-tag{font-size:13px;color:var(--ink3,#8a8a8a);margin-left:6px}
 @media(max-width:760px){.gt-tag{display:none}}
+/* 窄螢幕:登入閘 body{overflow:hidden} 會把溢出的 nav 連結裁掉且點不到(360px 實測「怎麼使用」被切)。
+   頁尾已有同樣連結,行動版隱藏頂部次要連結,只留語言+CTA(2026-07-10) */
+@media(max-width:560px){.gate-top .gt-nav>a[data-i18n="nav_map"],.gate-top .gt-nav>a[data-i18n="nav_guide"]{display:none}}
 .gt-nav{display:flex;align-items:center;gap:14px}
 .gt-nav>a{color:var(--ink1,#222);text-decoration:none;font-size:14px;font-weight:600;white-space:nowrap}
 /* 「我的音樂劇」黑底 pill:規格照 style.css .nav-cta(登入前與全站一致;登入後閘門消失、儀表板 header 是頭像) */
@@ -96,6 +98,11 @@ if(!v&&window.MM_USE_LANG_PREF){var mv=localStorage.getItem('mm_variant');v=(mv=
 if(!v){var nl=(navigator.language||'').toLowerCase();v=nl.indexOf('zh')===0?((nl.indexOf('cn')>-1||nl.indexOf('hans')>-1||nl.indexOf('sg')>-1)?'zh-hans':'zh-hant'):(nl?'en':'zh-hant');}
 if(v==='zh-hans'){document.write('<scr'+'ipt src="/js/vendor/opencc-t2cn-1.3.1.js"><\/scr'+'ipt>');
 document.write('<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet" />');/* 簡體字 TC 字型沒有→混排忽粗忽細,補 SC */}
+// FOUC:markup 寫死繁中,en/zh-hans 使用者首屏會閃繁中再被 apply() 換掉(2026-07-10)。
+// 非繁中先隱藏 body,mm-strings apply() 完成後顯示;1500ms 失效保險一定顯示(絕不留白頁)。
+if(v&&v!=='zh-hant'){document.write('<style id="mm-fouc">body{visibility:hidden}</style>');
+  var _rv=function(){var s=document.getElementById('mm-fouc');if(s)s.remove();};
+  window.addEventListener('DOMContentLoaded',function(){setTimeout(_rv,0);});setTimeout(_rv,1500);}
 }catch(e){}})();</script>
 <script src="js/mm-strings.js?v=244"></script>
 <script src="js/mm-acct-menu.js?v=227"></script>
@@ -132,7 +139,7 @@ document.write('<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+S
       <input id="ge-code" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="6" placeholder="6 位數驗證碼" data-i18n-ph="gate_email_code_ph" />
       <button id="ge-verify" type="button" data-i18n="gate_email_verify">驗證並登入</button>
     </div>
-    <div class="ge-msg" id="ge-msg" hidden></div>
+    <div class="ge-msg" id="ge-msg" role="status" aria-live="polite" hidden></div>
   </div>
   </div>
   <footer class="gate-foot"><div class="sf-in">
@@ -219,7 +226,7 @@ document.write('<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+S
   <!-- MAP -->
   <div class="sec"><h2><span data-i18n="sec_map">我的音樂劇足跡</span><span class="zh">Cities</span></h2><span class="hint" data-i18n="sec_map_hint">點一座城市，只看那裡的收藏</span></div>
   <div class="maprow">
-    <div class="mapwrap reveal"><canvas id="mapcv"></canvas><div id="pins"></div>
+    <div class="mapwrap reveal"><canvas id="mapcv" role="img" aria-label="音樂劇足跡地圖 / Musicals visited map"></canvas><div id="pins"></div>
       <div class="mapzoom"><button id="mapZin" aria-label="放大" data-i18n-aria="aria_zoom_in">＋</button><button id="mapZout" aria-label="縮小" data-i18n-aria="aria_zoom_out">－</button><button id="mapZreset" aria-label="重置" title="重置" data-i18n-aria="aria_zoom_reset" data-i18n-title="aria_zoom_reset">⟲</button></div>
       <div class="maphint" data-i18n="map_hint">滾輪縮放 · 拖曳平移</div>
       <div class="legend"><div class="row"><span class="d" style="width:8px;height:8px"></span> <span data-i18n="legend_dot">圓點 = 看過音樂劇的城市</span></div>
@@ -235,9 +242,9 @@ document.write('<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+S
     <div class="statcard sc-b reveal"><h3 data-i18n="st_countries">最常去的國家</h3><div class="slist" id="sc-countries"></div></div>
     <div class="statcard sc-c reveal"><h3 data-i18n="st_cities">最常去的城市</h3><div class="slist" id="sc-cities"></div></div>
     <div class="statcard sc-d reveal"><h3 data-i18n="st_theatres">最常去的劇院</h3><div class="slist" id="sc-theatres"></div></div>
-    <div class="statcard sc-year reveal"><h3 data-i18n="st_year">各年</h3><div class="linechart"><canvas id="ch-year"></canvas></div></div>
-    <div class="statcard sc-month reveal"><h3 data-i18n="st_month">各月</h3><div class="linechart"><canvas id="ch-month"></canvas></div></div>
-    <div class="statcard sc-week reveal"><h3 data-i18n="st_week">各星期</h3><div class="linechart"><canvas id="ch-week"></canvas></div></div>
+    <div class="statcard sc-year reveal"><h3 data-i18n="st_year">各年</h3><div class="linechart"><canvas id="ch-year" role="img" aria-label="各年觀劇數 / Shows per year"></canvas></div></div>
+    <div class="statcard sc-month reveal"><h3 data-i18n="st_month">各月</h3><div class="linechart"><canvas id="ch-month" role="img" aria-label="各月觀劇數 / Shows per month"></canvas></div></div>
+    <div class="statcard sc-week reveal"><h3 data-i18n="st_week">各星期</h3><div class="linechart"><canvas id="ch-week" role="img" aria-label="各星期觀劇數 / Shows per weekday"></canvas></div></div>
   </div>
 
   <!-- PERSONA -->
@@ -380,7 +387,9 @@ function filtered(){
   return a;
 }
 function posterEl(s){
-  const c=document.createElement('button');c.className='card';c.style.setProperty('--accent',s.color);
+  // div role=button 而非 <button>:卡內含 ♥/✎/✕ 互動控件,原生 button 不允許互動性後代
+  // (無效 HTML+鍵盤焦點混亂,2026-07-10 a11y review)。手動補 role/tabindex/Enter-Space。
+  const c=document.createElement('div');c.className='card';c.setAttribute('role','button');c.tabIndex=0;c.style.setProperty('--accent',s.color);
   const fut=isFut(s.date);if(fut)c.classList.add('is-future');
   c.innerHTML=`<figure class="poster" style="margin:0${s.posterBg?';background:'+s.posterBg:''}">
       <div class="skel"></div>
@@ -401,6 +410,8 @@ function posterEl(s){
   img.src=s.poster||'';
   if(!s.poster)fig.classList.add('is-fallback');
   c.onclick=()=>openDetail(s);
+  c.setAttribute('aria-label',(s.title||'')+(s.zh?' '+s.zh:''));
+  c.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target===c){e.preventDefault();openDetail(s);}});  // 只在焦點落在卡本體時觸發,子按鈕自理
   // 卡片右上角 ♥最愛/編輯/刪除（只在真實登錄資料上）
   if(document.documentElement.dataset.live==='1' && s.logged){
     const li=s.id-9000;
@@ -792,7 +803,7 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
 .mm-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 .mm-toast button{background:none;border:none;color:var(--gold,#c9a85c);font-weight:800;cursor:pointer;font-size:14px}
 </style>
-<div class="logmodal" id="logModal" hidden>
+<div class="logmodal" id="logModal" role="dialog" aria-modal="true" aria-label="新增／編輯觀劇紀錄" hidden>
   <div class="logmodal-bd" id="logModalBd"></div>
   <div class="logmodal-card">
     <iframe id="logFrame" title="加入音樂劇" data-i18n-title="log_title" src="about:blank"></iframe>
@@ -854,7 +865,7 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
         <span class="handle-prefix">my.themusicalmap.com/</span>
         <input id="pubHandle" autocomplete="off" spellcheck="false" maxlength="30" />
       </div>
-      <span class="handle-status muted" id="handleStatus"></span>
+      <span class="handle-status muted" id="handleStatus" role="status" aria-live="polite"></span>
     </label>
 
     <div class="share-actions">
@@ -1332,8 +1343,10 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
   let before='';
   const snap=()=>{try{return localStorage.getItem('mm-log')||'';}catch(e){return '';}};
   const cb=()=>'&_='+Date.now();   // cache-bust：每次都載最新輸入頁（避免瀏覽器快取舊版）
-  function openLog(){before=snap();fr.src='me-input.html?embed=1'+cb();m.hidden=false;document.body.style.overflow='hidden';}
+  let _logTrigger=null;   // 開啟前的焦點元素,關閉後歸還(鍵盤使用者不會掉焦點到 body,2026-07-10 a11y)
+  function openLog(){_logTrigger=document.activeElement;before=snap();fr.src='me-input.html?embed=1'+cb();m.hidden=false;document.body.style.overflow='hidden';}
   function closeLog(){m.hidden=true;fr.src='about:blank';document.body.style.overflow='auto';  // 'auto' 不能設 '':會落回 CSS body{overflow:hidden}
+    try{if(_logTrigger&&_logTrigger.focus)_logTrigger.focus();}catch(_){}_logTrigger=null;
     if(snap()!==before)location.reload();}   // 有新登錄→即時長到牆/地圖/統計
   function openEdit(i){before=snap();fr.src='me-input.html?embed=1&edit='+i+cb();m.hidden=false;document.body.style.overflow='hidden';}
   window.mmEditShow=openEdit;
@@ -1354,11 +1367,22 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
   document.getElementById('fabLog').addEventListener('click',openLog);
   document.getElementById('logModalBd').addEventListener('click',closeLog);
   window.addEventListener('keydown',e=>{if(e.key==='Escape'&&!m.hidden)closeLog();});
-  // iframe 登錄端按 ✕／Esc 想離開 → 關掉整個 modal
-  window.addEventListener('message',e=>{if(e.data==='mm-log-exit'&&!m.hidden)closeLog();});
+  // iframe 登錄端按 ✕／Esc 想離開 → 關掉整個 modal。驗來源:只收自家 iframe(fr.contentWindow)
+  // 且同源,否則任意頁面/廣告 iframe 都能發 'mm-log-exit' 亂關 modal(2026-07-10)
+  window.addEventListener('message',e=>{
+    if(e.source!==fr.contentWindow)return;
+    if(e.origin!==location.origin)return;
+    if(e.data==='mm-log-exit'&&!m.hidden)closeLog();});
+  // 多分頁一致性:另一分頁改了 mm-log(新增/編輯/刪除/最愛)→ 本分頁的 DOM 是載入時快照,
+  // 卡片按位置索引定址會刪錯/最愛錯卡(2026-07-10)。偵測到變更就重載成最新狀態。
+  // 跳過:登錄 modal 開著(embed 同分頁寫入交給 closeLog 處理)。
+  window.addEventListener('storage',ev=>{
+    if(ev.key!=='mm-log')return;
+    if(!m.hidden)return;
+    location.reload();});
   // 卡片刪除後 reload → 顯示可復原 toast（top-level，不被任何 modal 蓋住）
   try{const u=sessionStorage.getItem('mm-undo');if(u){sessionStorage.removeItem('mm-undo');const o=JSON.parse(u);
-    const t=document.createElement('div');t.className='mm-toast';
+    const t=document.createElement('div');t.className='mm-toast';t.setAttribute('role','status');t.setAttribute('aria-live','polite');
     t.innerHTML=TN('deleted',{name:esc(o.name)})+'<button type="button">'+T('undo')+'</button>';
     document.body.appendChild(t);requestAnimationFrame(()=>t.classList.add('show'));
     const hide=()=>{t.classList.remove('show');setTimeout(()=>t.remove(),300);};
