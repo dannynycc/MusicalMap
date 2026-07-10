@@ -11,6 +11,26 @@
 
 ---
 
+## [v2.26.0] - 2026-07-10 19:41
+### 全站 AI 搜尋(AEO)+ SEO + CSS 視覺:3 路 agent+自測,修 16 個真問題
+使用者重視 AI 答案引擎(ChatGPT/Claude/Perplexity/Google AI Overview)引用正確性。
+**AI 搜尋 / AEO(高)**
+- **「40+ 國家」是誇大不實(實測 30 國)→ 全面改動態計算**:meta/og/twitter/Organization/WebApplication/WebSite + about 頁三語,build 時從 shows.json 算真值({NC}),永不誇大或過時。答案引擎照抄「40+」會散播錯誤事實。
+- **新增 FAQPage 結構化資料**(答案引擎最愛引用):5 題 Q&A(現在有多少音樂劇/百老匯在演什麼/西區在演什麼/免費嗎/多久更新),答案全用 build 時真實計數,三語。
+- **新增 dateModified 新鮮度訊號**:ItemList + sitemap lastmod=build 日期;每日重建=每日更新,答案引擎不再當資料過時。
+- **可引用統計句**(prerendered):爬蟲看不到 JS 填的 #count,補一句「MusicalMap tracks N productions across 30 countries and M cities…」真值。
+- **JSON-LD Event 國家輪詢**:舊版 slice(0,300) 依資料序(US/UK 在前)→中國/義大利等尾端國家幾乎不進結構化資料;改各國輪流取,30 國全數進 JSON-LD。
+- **WebSite SearchAction**(sitelinks searchbox)+ app.js 加 ?q= 深連結搜尋讓它真的能用。
+- H2「playing now」→「now and in the coming year」(未來檔期是強項不該藏);llms.txt 數字校準+sitemap 連結+範例公開頁。
+**SEO(高/中/低)**
+- **公開分享頁 H1 每頁都是「My Musicals」(爬蟲看到重複 H1)** → Worker 改寫成擁有者專屬 H1「<名字>'s Musicals」(需 wrangler 部署 worker)。
+- sitemap 全 URL 補 lastmod+changefreq;四靜態頁補完整 twitter card(title/description/image+summary_large_image)。
+**CSS 視覺(中)**
+- me-input 半透明+blur sticky header 回歸(彩色海報透染 header+捲動卡頓)→ 實心不透明(me-v2 早修過,me-input 漏補)。
+- cream 主題 --ink3 對比不足(#8a8069≈3.4:1,小字讀不清)→ 加深至 WCAG AA 4.5:1。
+- #timebar 在 681–860px 帶溢出圓角面板 → 加中間斷點加寬 insets。
+- me-input 海報寫死 rgba(0,0,0,.4) 深色暈染米黃頁 → 改主題 --shadow token;.controls sticky top 60→58px 消除 2px 縫。
+
 ## [v2.25.1] - 2026-07-10 16:26
 ### 公開頁 u.html a11y/FOUC parity(第三輪修正原只套 me.html,補公開頁)
 - 正式站驗證發現 canvas aria、FOUC 修正原只在 me.html(登入後自己頁),公開頁 u.html 沒跟上。

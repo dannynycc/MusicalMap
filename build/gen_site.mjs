@@ -12,13 +12,25 @@ import { genPages, PAGE_SLUGS } from "./gen_pages.mjs";
 const BASE = "/";
 const SITE = "https://themusicalmap.com";
 const VARIANTS = {
+  // {NC}=國家數,build 時由資料填入(勿寫死;實測 30,舊版寫死「40+」是誇大不實,答案引擎會照抄
+  // 錯誤事實。2026-07-10 改動態計算,永遠與資料一致)。
   "en":      { lang: "en",      hreflang: "en",      label: "MusicalMap — Live World Map of Musicals",
-               desc: "Musicals playing around the world right now — Broadway, West End, tours and original productions across 40+ countries." },
+               desc: "Musicals playing around the world right now — Broadway, West End, tours and original productions across {NC} countries, updated daily." },
   "zh-hans": { lang: "zh-Hans", hreflang: "zh-Hans", label: "MusicalMap — 全球音乐剧实时地图",
-               desc: "此刻全球正在上演的音乐剧实时地图：百老汇、西区、巡演与各国原创音乐剧，涵盖 40+ 国家，每日更新。" },
+               desc: "此刻全球正在上演的音乐剧实时地图：百老汇、西区、巡演与各国原创音乐剧，涵盖 {NC} 个国家，每日更新。" },
   "zh-hant": { lang: "zh-Hant", hreflang: "zh-Hant", label: "MusicalMap — 全球音樂劇即時地圖",
-               desc: "此刻全球正在上演的音樂劇即時地圖：百老匯、西區、巡演與各國原創音樂劇,涵蓋 40+ 國家,每日更新。" },
+               desc: "此刻全球正在上演的音樂劇即時地圖：百老匯、西區、巡演與各國原創音樂劇,涵蓋 {NC} 個國家,每日更新。" },
 };
+
+// build 時從資料算真實統計,填進所有對外文案/結構化資料(勿寫死數字→會過時/誇大)。
+function siteStats(shows) {
+  const countries = new Set(), cities = new Set(), titles = new Set();
+  for (const s of shows) { if (s.country) countries.add(s.country); if (s.city) cities.add(s.city); if (s.title) titles.add(s.title); }
+  return { nCountries: countries.size, nCities: cities.size, nTitles: titles.size, nShows: shows.length };
+}
+function fillDesc(desc, st) { return desc.replace(/\{NC\}/g, st.nCountries); }
+// build 日期(UTC,ISO):dateModified 用;CI 每日跑=每日更新,給答案引擎新鮮度訊號。
+const BUILD_DATE = new Date().toISOString().slice(0, 10);
 const esc = (s) => String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 const JSONLD_CAP = 300; // cap Event ItemList; full text list is unbounded (cheap)
 // cache-bust token for js/css so returning visitors never run a stale app.js (the bug
@@ -46,7 +58,16 @@ function jsonLd(variant, shows) {
   // Google Search Console 判為重大錯誤(功能無法進搜尋)。缺 start_date 的場次仍在地圖上,只是
   // 不進結構化資料。同時補上 Google 建議的欄位(eventStatus/image/description/offers),都用真資料;
   // performer(卡司)無來源資料故不填(不捏造)。
-  const items = shows.filter((s) => s.start_date).slice(0, JSONLD_CAP).map((s, i) => {
+  // 國家輪詢挑選:舊版 slice(0,300) 依資料順序(US/UK 在前)→ 中國(229)/義大利(161)等尾端國家
+  // 幾乎不進 Event 結構化資料。改成各國輪流取,確保 30 國都有代表進 JSON-LD(2026-07-10 AEO)。
+  const withStart = shows.filter((s) => s.start_date);
+  const byCountry = new Map();
+  for (const s of withStart) { const k = s.country || "?"; (byCountry.get(k) || byCountry.set(k, []).get(k)).push(s); }
+  const buckets = [...byCountry.values()];
+  const picked = [];
+  for (let r = 0; picked.length < JSONLD_CAP && buckets.some((b) => b.length > r); r++)
+    for (const b of buckets) { if (r < b.length && picked.length < JSONLD_CAP) picked.push(b[r]); }
+  const items = picked.map((s, i) => {
     const ticket = (s.ticket_links && s.ticket_links[0] && s.ticket_links[0].url) || s.ticket_url || undefined;
     const where = s.venue ? `${s.venue}${s.city ? ", " + s.city : ""}` : (s.city || "");
     const ev = {
@@ -67,15 +88,19 @@ function jsonLd(variant, shows) {
     };
     return { "@type": "ListItem", "position": i + 1, "item": ev };
   });
+  const st = siteStats(shows);
+  const desc = fillDesc(v.desc, st);
   const app = {
     "@context": "https://schema.org", "@type": "WebApplication", "name": "MusicalMap",
-    "alternateName": v.label, "url": `${SITE}/${variant}/`, "description": v.desc,
+    "alternateName": v.label, "url": `${SITE}/${variant}/`, "description": desc,
     "applicationCategory": "EntertainmentApplication", "operatingSystem": "Web",
     "inLanguage": v.hreflang, "isAccessibleForFree": true,
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
   };
   const list = { "@context": "https://schema.org", "@type": "ItemList",
-    "name": v.label, "numberOfItems": items.length, "itemListElement": items };
+    "name": v.label, "numberOfItems": items.length,
+    "dateModified": BUILD_DATE,   // 每日 build=每日更新,給答案引擎新鮮度訊號(2026-07-10)
+    "itemListElement": items };
   // Organization + WebSite entity signals. Google/AI 一度把品牌認成既有的 "Musicmap"
   // (musicmap.info,講音樂流派史的另一站);明確宣告 name/alternateName/url/logo 幫助
   // 知識圖譜把 MusicalMap 建成獨立實體。@id 用網域錨定,三語頁指向同一實體。
@@ -83,15 +108,59 @@ function jsonLd(variant, shows) {
     "@id": `${SITE}/#organization`, "name": "MusicalMap",
     "alternateName": ["The Musical Map", "themusicalmap"],
     "url": `${SITE}/`, "logo": `${SITE}/favicon-512.png`,
-    "description": "MusicalMap is a live, interactive world map of stage musicals currently playing — Broadway, West End, international tours and original productions across 40+ countries. Not affiliated with Musicmap." };
+    "description": `MusicalMap is a live, interactive world map of stage musicals currently playing — Broadway, West End, international tours and original productions across ${st.nCountries} countries. Not affiliated with Musicmap.` };
   const site = { "@context": "https://schema.org", "@type": "WebSite",
     "@id": `${SITE}/#website`, "name": "MusicalMap", "alternateName": v.label,
     "url": `${SITE}/`, "inLanguage": v.hreflang,
-    "publisher": { "@id": `${SITE}/#organization` }, "description": v.desc };
+    // 站內搜尋:答案引擎/Google sitelinks searchbox 用;?q= 由 app.js 讀取預填搜尋框(2026-07-10)
+    "potentialAction": { "@type": "SearchAction",
+      "target": { "@type": "EntryPoint", "urlTemplate": `${SITE}/${variant}/?q={search_term_string}` },
+      "query-input": "required name=search_term_string" },
+    "publisher": { "@id": `${SITE}/#organization` }, "description": desc };
+  // FAQPage:答案引擎(AI Overview/Perplexity)最愛引用的 Q&A 結構。答案全用 build 時真實資料算,
+  // 不寫死(2026-07-10)。只在 en 頁吐英文 FAQ,zh 頁吐中文,語言一致。
+  const faq = faqPage(variant, shows, st);
   return `<script type="application/ld+json">${JSON.stringify(org)}</script>\n  ` +
          `<script type="application/ld+json">${JSON.stringify(site)}</script>\n  ` +
          `<script type="application/ld+json">${JSON.stringify(app)}</script>\n  ` +
+         (faq ? `<script type="application/ld+json">${JSON.stringify(faq)}</script>\n  ` : "") +
          `<script type="application/ld+json">${JSON.stringify(list)}</script>`;
+}
+
+// 從真實資料算「現在某地在演幾齣」的 FAQ(答案永遠與資料一致,不捏造)。
+function faqPage(variant, shows, st) {
+  const today = BUILD_DATE;
+  const playingNow = (s) => (!s.start_date || s.start_date <= today) && (s.end_rolling || !s.end_date || s.end_date >= today);
+  const inCity = (kw) => shows.filter(s => playingNow(s) && (s.city || "").toLowerCase().includes(kw)).length;
+  const inCountry = (c) => shows.filter(s => playingNow(s) && s.country === c).length;
+  const nyc = inCity("new york"), lon = inCity("london");
+  const T = {
+    en: [
+      [`How many musicals are playing right now?`, `MusicalMap currently tracks ${st.nShows.toLocaleString()} musical productions across ${st.nCountries} countries and ${st.nCities.toLocaleString()} cities, updated daily from official sources.`],
+      [`What musicals are playing on Broadway right now?`, `About ${inCountry("USA") ? nyc : nyc} musicals are currently playing in New York, including long-running Broadway shows like The Lion King, Wicked, Hamilton and Aladdin. See the live list on MusicalMap.`],
+      [`What's playing in London's West End?`, `Around ${lon} musicals are currently playing in London, including long-runners such as The Lion King, Les Misérables, Phantom of the Opera and Wicked. MusicalMap shows exact venues, dates and official ticket links.`],
+      [`Is MusicalMap free?`, `Yes. MusicalMap is completely free, has no ads, and does not sell tickets — ticket links point to official box offices or primary ticketing platforms.`],
+      [`How often is the data updated?`, `The map is refreshed daily (as of ${today}) by scraping official sources: Broadway, West End, international tours, and original productions worldwide.`],
+    ],
+    "zh-hant": [
+      [`現在全球有多少音樂劇正在上演？`, `MusicalMap 目前收錄 ${st.nShows.toLocaleString()} 個音樂劇製作,橫跨 ${st.nCountries} 個國家、${st.nCities.toLocaleString()} 座城市,每日從官方來源更新。`],
+      [`現在紐約百老匯在演哪些音樂劇？`, `目前紐約約有 ${nyc} 齣音樂劇上演,包括獅子王、Wicked、漢密爾頓、阿拉丁等長跑名劇。可在 MusicalMap 看即時清單。`],
+      [`倫敦西區現在在演什麼？`, `倫敦目前約有 ${lon} 齣音樂劇上演,包括獅子王、悲慘世界、歌劇魅影、Wicked 等長跑劇。MusicalMap 提供確切劇院、檔期與官方售票連結。`],
+      [`MusicalMap 免費嗎？`, `是的,MusicalMap 完全免費、無廣告、不販售門票——售票連結指向官方售票處或主要票務平台。`],
+      [`資料多久更新一次？`, `地圖每日更新(截至 ${today}),從官方來源抓取:百老匯、西區、國際巡演與各國原創製作。`],
+    ],
+    "zh-hans": [
+      [`现在全球有多少音乐剧正在上演？`, `MusicalMap 目前收录 ${st.nShows.toLocaleString()} 个音乐剧制作，横跨 ${st.nCountries} 个国家、${st.nCities.toLocaleString()} 座城市，每日从官方来源更新。`],
+      [`现在纽约百老汇在演哪些音乐剧？`, `目前纽约约有 ${nyc} 出音乐剧上演，包括狮子王、Wicked、汉密尔顿、阿拉丁等长跑名剧。可在 MusicalMap 看实时列表。`],
+      [`伦敦西区现在在演什么？`, `伦敦目前约有 ${lon} 出音乐剧上演，包括狮子王、悲惨世界、歌剧魅影、Wicked 等长跑剧。MusicalMap 提供确切剧院、档期与官方售票链接。`],
+      [`MusicalMap 免费吗？`, `是的，MusicalMap 完全免费、无广告、不贩售门票——售票链接指向官方售票处或主要票务平台。`],
+      [`资料多久更新一次？`, `地图每日更新（截至 ${today}），从官方来源抓取：百老汇、西区、国际巡演与各国原创制作。`],
+    ],
+  };
+  const qa = T[variant]; if (!qa) return null;
+  return { "@context": "https://schema.org", "@type": "FAQPage",
+    "mainEntity": qa.map(([q, a]) => ({ "@type": "Question", "name": q,
+      "acceptedAnswer": { "@type": "Answer", "text": a } })) };
 }
 
 // Run-date label, matching the interactive app's fmtDates (js/app.js): open-ended →
@@ -112,6 +181,14 @@ function runLabel(s, variant) {
   return "";
 }
 // Prerendered, crawler-readable show list (the app re-renders #show-list for humans).
+// 一句可引用統計(答案引擎最愛的「headline number」)。build 時算真值,三語。
+function summaryLine(variant, st) {
+  const n = st.nShows.toLocaleString(), c = st.nCities.toLocaleString();
+  if (variant === "en") return `MusicalMap tracks ${n} musical productions currently playing or coming in the next year across ${st.nCountries} countries and ${c} cities — Broadway, West End, international tours and original productions. Updated daily (${BUILD_DATE}). Free, no ads, does not sell tickets.`;
+  if (variant === "zh-hans") return `MusicalMap 收录 ${n} 个正在上演或未来一年即将上演的音乐剧制作，横跨 ${st.nCountries} 个国家、${c} 座城市——百老汇、西区、国际巡演与各国原创。每日更新（${BUILD_DATE}）。免费、无广告、不贩售门票。`;
+  return `MusicalMap 收錄 ${n} 個正在上演或未來一年即將上演的音樂劇製作,橫跨 ${st.nCountries} 個國家、${c} 座城市——百老匯、西區、國際巡演與各國原創。每日更新(${BUILD_DATE})。免費、無廣告、不販售門票。`;
+}
+
 function prerenderList(variant, shows) {
   const sep = variant === "en" ? ", " : "、";
   const li = shows.map((s) => {
@@ -148,17 +225,19 @@ function langSwitch(active) {
 
 function page(variant, shows) {
   const v = VARIANTS[variant];
+  const st = siteStats(shows);
+  const desc = fillDesc(v.desc, st);   // {NC}→真實國家數(2026-07-10)
   const t = variant === "en"
     ? { tagline: "Musicals playing around the world right now", theatres: "All theatres", mine: "My Musicals", guide: "Guide",
         maphome: "Map home", search: "Search musicals, cities, theatres…", privacy: "Privacy", terms: "Terms",
-        h1: "MusicalMap — Live World Map of Musicals Playing Now", listhdr: "Musicals playing now", filterLabel: "Category" }
+        h1: "MusicalMap — Live World Map of Musicals Playing Now", listhdr: "Musicals playing now and in the coming year", filterLabel: "Category" }
     : variant === "zh-hans"
     ? { tagline: "此刻全球正在上演的音乐剧", theatres: "所有剧院", mine: "我的音乐剧", guide: "怎么使用",
         maphome: "地图首页", search: "搜寻音乐剧名、城市、剧院…", privacy: "隐私政策", terms: "使用条款",
-        h1: "MusicalMap — 全球此刻正在上演的音乐剧实时地图", listhdr: "正在上演的音乐剧", filterLabel: "分类" }
+        h1: "MusicalMap — 全球此刻正在上演的音乐剧实时地图", listhdr: "正在上演与未来一年的音乐剧", filterLabel: "分类" }
     : { tagline: "此刻全球正在上演的音樂劇", theatres: "所有劇院", mine: "我的音樂劇", guide: "怎麼使用",
         maphome: "地圖首頁", search: "搜尋音樂劇名、城市、劇院…", privacy: "隱私權政策", terms: "使用條款",
-        h1: "MusicalMap — 全球此刻正在上演的音樂劇即時地圖", listhdr: "正在上演的音樂劇", filterLabel: "分類" };
+        h1: "MusicalMap — 全球此刻正在上演的音樂劇即時地圖", listhdr: "正在上演與未來一年的音樂劇", filterLabel: "分類" };
   // zh-hans pages load OpenCC (small t2cn dict) so i18n can simplify the UI chrome strings.
   const openccTag = variant === "zh-hans"
     ? `\n  <script src="https://cdn.jsdelivr.net/npm/opencc-js@1.3.1/dist/umd/t2cn.js" integrity="sha384-P/OaFUnOIAgMkLxsXIAaP6WO3Wm09591cGX5bHbW4eCOeDxH9L8U3aWYf4cE4SYl" crossorigin="anonymous"></script>` : "";
@@ -170,13 +249,13 @@ function page(variant, shows) {
   <meta name="referrer" content="strict-origin-when-cross-origin" />
   <meta name='impact-site-verification' value='5862030b-2ad5-46e3-ba52-429cfcca041d'>
   <title>${esc(v.label)}</title>
-  <meta name="description" content="${esc(v.desc)}" />
+  <meta name="description" content="${esc(desc)}" />
   <link rel="canonical" href="${SITE}/${variant}/" />
   ${hreflangLinks()}
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="MusicalMap" />
   <meta property="og:title" content="${esc(v.label)}" />
-  <meta property="og:description" content="${esc(v.desc)}" />
+  <meta property="og:description" content="${esc(desc)}" />
   <meta property="og:url" content="${SITE}/${variant}/" />
   <meta property="og:image" content="${SITE}/og-image.png" />
   <meta property="og:image:width" content="1200" />
@@ -184,7 +263,7 @@ function page(variant, shows) {
   <meta property="og:image:alt" content="MusicalMap — Live World Map of Musicals" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="${esc(v.label)}" />
-  <meta name="twitter:description" content="${esc(v.desc)}" />
+  <meta name="twitter:description" content="${esc(desc)}" />
   <meta name="twitter:image" content="${SITE}/og-image.png" />
   <!-- favicon: Google 只收正方形且 ≥48px 的圖示;SVG 必須用 favicon.svg(2244×2244 方形置中版),logo.svg 是 1245×2244 直式會被拒→退回地球圖示 -->
   <link rel="icon" href="${BASE}favicon.ico?v=3" sizes="any" />
@@ -236,6 +315,8 @@ function page(variant, shows) {
       <!-- prerendered for crawlers (Google + AI bots that don't run JS); the app
            replaces this list on load for interactive users. -->
       <h2 class="sr-only">${esc(t.listhdr)}</h2>
+      <!-- 可引用統計句(JS-blind 爬蟲/答案引擎;#count 是 JS 填的,爬蟲看不到數字)。build 時算真值。 -->
+      <p class="sr-only" id="mm-summary">${esc(summaryLine(variant, st))}</p>
       <ul id="show-list">
       ${prerenderList(variant, shows)}
       </ul>
@@ -324,8 +405,9 @@ function rootRouter() {
 
 function sitemap() {
   // the three indexable language trees, cross-linked by hreflang…
+  // 三語地圖根頁每日重建(劇目進出)→ lastmod=build 日期,給 Google 每日重爬訊號(2026-07-10)。
   const variants = ["en", "zh-hans", "zh-hant"].map((v) =>
-    `  <url><loc>${SITE}/${v}/</loc>` +
+    `  <url><loc>${SITE}/${v}/</loc><lastmod>${BUILD_DATE}</lastmod><changefreq>daily</changefreq>` +
     `<xhtml:link rel="alternate" hreflang="en" href="${SITE}/en/"/>` +
     `<xhtml:link rel="alternate" hreflang="zh-Hans" href="${SITE}/zh-hans/"/>` +
     `<xhtml:link rel="alternate" hreflang="zh-Hant" href="${SITE}/zh-hant/"/>` +
@@ -336,7 +418,7 @@ function sitemap() {
   // 無副檔名 canonical:GH Pages 與 Cloudflare Pages 皆直達 200(CF 對 .html 形式會 308 到無副檔名)。
   // about/guide/privacy/terms 已拆三語靜態變體(gen_pages.mjs):列變體網址+hreflang 叢集,根網址=x-default 路由。
   const pageCluster = (p) => ["en", "zh-hans", "zh-hant"].map((v) =>
-    `  <url><loc>${SITE}/${v}/${p}</loc>` +
+    `  <url><loc>${SITE}/${v}/${p}</loc><lastmod>${BUILD_DATE}</lastmod>` +
     `<xhtml:link rel="alternate" hreflang="en" href="${SITE}/en/${p}"/>` +
     `<xhtml:link rel="alternate" hreflang="zh-Hans" href="${SITE}/zh-hans/${p}"/>` +
     `<xhtml:link rel="alternate" hreflang="zh-Hant" href="${SITE}/zh-hant/${p}"/>` +

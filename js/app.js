@@ -889,6 +889,9 @@ function recomputeRange() {
 
 els.search.addEventListener("input", render);
 els.search.addEventListener("keydown", (e) => { if (e.key === "Escape") { els.search.value = ""; render(); } });
+// ?q= 深連結搜尋:讓 WebSite SearchAction(sitelinks searchbox)真的能用,並支援分享搜尋結果連結。
+// 例 /en/?q=wicked → 開頁即以 wicked 篩選(2026-07-10)。
+try { const _q = new URLSearchParams(location.search).get("q"); if (_q) { els.search.value = _q; } } catch (e) {}
 
 // ---------- Time bar (month slider + month picker, kept in sync) ----------
 // Granularity is one MONTH: dragging selects a month, and any show whose run

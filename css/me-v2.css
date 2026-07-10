@@ -34,7 +34,7 @@
 /* cream = 對齊主站 style.css 的淡米黃 paper 主題(--bg #f4efe4 + 金 #a07a34);me/u 預設 */
 [data-theme="cream"]{
   --bg:#f4efe4; --s1:#fdfaf2; --s2:#fffdf7; --s3:#efe8d8;
-  --ink1:#221f18; --ink2:#6d6555; --ink3:#8a8069;
+  --ink1:#221f18; --ink2:#6d6555; --ink3:#6f6752;   /* ink3 由 #8a8069(~3.4:1)加深:11px 以下小字(cap-where/cap-date/count)在 #f4efe4 上達 WCAG AA 4.5:1(2026-07-10) */
   --hair:rgba(60,46,28,.14); --hair2:rgba(60,46,28,.22);
   --gold:#a07a34; --gold-soft:rgba(160,122,52,.14); --on-accent:#ffffff;
   --shadow-1:0 1px 0 #e6dcc6,0 10px 26px rgba(60,48,24,.10);
@@ -163,7 +163,7 @@ header .wrap{max-width:none}  /* 對齊主頁 #topbar:全寬 padding 24px,頭像
 .hero .newest b{color:var(--ink1)} .hero .newest .dot{width:7px;height:7px;border-radius:50%;background:var(--gold);box-shadow:var(--glow)}
 
 /* ===== control bar ===== */
-.controls{position:sticky;top:60px;z-index:1000;margin:20px 0 0;padding:12px 0;
+.controls{position:sticky;top:58px;z-index:1000;margin:20px 0 0;padding:12px 0;/* top=header 實高 58px(含 border):舊 60px 留 2px 縫,捲動時透出頁面內容(2026-07-10) */
   background:var(--bg-mesh),var(--bg)}  /* 不透明:同 header,避免捲過的彩色內容透上來染這條篩選列 */
 .ctl-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
 .seg{display:inline-flex;background:var(--s1);border:1px solid var(--hair);border-radius:999px;padding:4px;position:relative}

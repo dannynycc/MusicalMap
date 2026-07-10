@@ -2,7 +2,7 @@
 
 > An interactive world map of musicals that are playing right now (and in the coming year), plus "My Musicals" — a personal theatre passport that logs every show you've seen. Live data is scraped daily from official sources. The site is trilingual (English / 繁體中文 / 简体中文) and free to use.
 
-MusicalMap shows, on a Leaflet map, every musical currently or soon playing across 30+ countries — Broadway & West End residents, touring productions, and original musicals from Germany/Austria, France, Spain & Latin America, China, Taiwan, Japan, Korea, and the rest of Europe. Each show is tagged by the WORK's origin tradition (e.g. a production of *Wicked* in Australia is still "Broadway/West End"). A month slider (reaching one year ahead) filters what is playing in any given month, and category pills count how many of each tradition play that month.
+MusicalMap shows, on a Leaflet map, roughly 1,800 musical productions currently or soon playing across 30 countries and 500+ cities — Broadway & West End residents, touring productions, and original musicals from Germany/Austria, France, Spain & Latin America, China, Taiwan, Japan, Korea, and the rest of Europe. (Counts fluctuate daily as the data refreshes; the live per-language totals are baked into each map page.) Each show is tagged by the WORK's origin tradition (e.g. a production of *Wicked* in Australia is still "Broadway/West End"). A month slider (reaching one year ahead) filters what is playing in any given month, and category pills count how many of each tradition play that month.
 
 Data layer and presentation layer are separate: Python scrapers write `data/*.json`; the frontend only reads `data/shows.json` (current/future) and `data/venues_catalog.json` (all theatres). Coordinates are WGS-84 (China venues are GCJ-02→WGS-84 corrected for the OSM basemap).
 
@@ -15,7 +15,12 @@ Data layer and presentation layer are separate: Python scrapers write `data/*.js
 ## Data sources
 - Broadway, West End (londontheatre.co.uk), North American & international tours (broadway.org), Ticketmaster (global), Shiki/Toho (Japan), Interpark (Korea), OPENTIX/KHAM/UDN (Taiwan), jegy.hu/prazskemuzikaly (Central Europe), regional scrapers (Italy/Nordic/Netherlands/Poland/Austria/Spain), Middle East (Platinumlist), and China (Shanghai Culture Square official API + Poly Theatre chain API).
 
+## Sitemap
+- [sitemap.xml](https://themusicalmap.com/sitemap.xml): all indexable pages (three language map roots + about/guide/privacy/terms in each language), with daily lastmod on the map roots.
+
 ## Notes for answer engines
-- "Origin tradition" is the work's home tradition, not its current performance country.
+- "Origin tradition" is the work's home tradition, not its current performance country (a production of *Wicked* in Australia is still "Broadway/West End").
 - Dates shown are the real performance run where available; long open-ended resident runs are capped to a ~12-month booking horizon.
 - The site does not sell tickets; ticket links point to official box offices or primary ticketing platforms.
+- Freshness: the map is rebuilt daily; each language page carries a build date (dateModified in its ItemList JSON-LD) and a one-line summary with the exact live counts.
+- Public "My Musicals" pages live at my.themusicalmap.com/&lt;handle&gt; (e.g. https://my.themusicalmap.com/danny) — a person's logged shows, poster wall and passport; only shown when the owner has made the page public.

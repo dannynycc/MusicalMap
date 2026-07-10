@@ -68,7 +68,7 @@ input,button,textarea,select{font-family:inherit}
 .ygbtn{border:1px solid var(--hair2);background:var(--s2);color:var(--ink1);border-radius:8px;padding:9px 0;font-size:13px;cursor:pointer}
 .ygbtn:hover{border-color:var(--gold);background:var(--gold-soft)}
 .wrap{max-width:1100px;margin:0 auto;padding:0 22px}
-header{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--hair)}
+header{position:sticky;top:0;z-index:50;background:var(--bg);border-bottom:1px solid var(--hair)}/* 實心不透明+無 backdrop-filter:半透明會讓底下捲過的彩色海報透上來染 header、blur 造成捲動/打字卡頓(me-v2.css 早修過,me-input 自帶 header 漏補,2026-07-10) */
 .bar{height:60px;display:flex;align-items:center;justify-content:space-between}
 .brand{display:inline-flex;align-items:center;gap:9px;font-family:var(--fr);font-weight:900;font-size:21px;text-decoration:none}
 .brand img{width:26px;height:26px;object-fit:contain}.brand b{color:var(--gold)}
@@ -97,7 +97,7 @@ header{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 8
 #empty b{color:var(--ink2)}
 #wall{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:16px}
 .lcard{position:relative}
-.lcard .pos{aspect-ratio:2/3;border-radius:10px;overflow:hidden;background:var(--s3);box-shadow:inset 0 0 0 1px var(--hair),0 6px 18px rgba(0,0,0,.4);position:relative}
+.lcard .pos{aspect-ratio:2/3;border-radius:10px;overflow:hidden;background:var(--s3);box-shadow:inset 0 0 0 1px var(--hair),var(--shadow);position:relative}/* 用主題 --shadow(cream=淡棕),不寫死 rgba(0,0,0,.4) 深色暈染米黃頁(2026-07-10) */
 .lcard .pos img{width:100%;height:100%;object-fit:cover;display:block}
 .lcard .pos .stamp-badge{position:absolute;top:8px;right:8px;width:30px;height:30px;border-radius:50%;background:rgba(0,0,0,.4);display:grid;place-items:center;font-size:14px;backdrop-filter:blur(3px)}
 .lcard .pos .stamp-badge:empty{display:none}

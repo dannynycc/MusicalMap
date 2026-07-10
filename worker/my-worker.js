@@ -150,12 +150,21 @@ export default {
       })}</script>` : '',
     ].filter(Boolean).join('\n');
 
+    // 可見 H1:靜態 u.html 是寫死「My Musicals」,每個 profile 都一樣→爬蟲看到重複 H1、
+    // 無法為「<名字> musicals」收錄(SEO 2026-07-10)。有效公開頁改寫成擁有者專屬 H1。
+    const h1txt = display
+      ? (lang === 'en' ? `${display}’s Musicals`
+        : lang === 'zh-hans' ? `${display} 的音乐剧收藏`
+        : `${display} 的音樂劇收藏`)
+      : null;
+
     html = html
       .replace(/<html lang="[^"]*"/, `<html lang="${lang === 'en' ? 'en' : (lang === 'zh-hans' ? 'zh-Hans' : 'zh-Hant')}"`)
       .replace(/<title>[^<]*<\/title>/, `<title>${esc(title)}</title>\n<meta name="description" content="${esc(desc)}" />`)
       .replace(/(<meta property="og:title" content=")[^"]*(")/, `$1${esc(title)}$2`)
       .replace(/(<meta property="og:description" content=")[^"]*(")/, `$1${esc(desc)}$2`)
       .replace('</head>', `${inject}\n<meta property="og:url" content="${esc(canon)}" />\n</head>`);
+    if (h1txt) html = html.replace('<h1>My Musicals</h1>', `<h1>${esc(h1txt)}</h1>`);
 
     return new Response(withBeacon(html), {
       status: display ? 200 : 404,   // 查無 → 404(頁面本身會顯示 not-found 空狀態)
