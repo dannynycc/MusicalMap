@@ -32,9 +32,7 @@
    npx wrangler deploy
    ```
    `wrangler.toml` 已把 route 綁到 `my.themusicalmap.com/*`（zone: themusicalmap.com）。
-3. **DNS**:Cloudflare DNS 加一筆 `my` 的記錄讓 route 生效——
-   - Type `AAAA`、Name `my`、Content `100::`、**Proxy 開啟（橘雲）**
-   -（`100::` 是佔位 IP；流量到橘雲就被 Worker route 攔走，不會真的連那個 IP。這是 Cloudflare Workers 綁自訂網域的標準做法。）
+3. **DNS**:~~手動加 `AAAA my 100::` 橘雲~~ **已不需要**——`wrangler.toml` 現用 `custom_domain = true`,wrangler deploy 時自動建 DNS+憑證(見檔頭)。此步驟保留作歷史。
 4. **驗證**（部署後跑）:
    - `curl -s https://my.themusicalmap.com/danny | grep MM_HANDLE` → 應看到 `window.MM_HANDLE="danny"`
    - `curl -s https://my.themusicalmap.com/danny | grep '<title>'` → 應含顯示名稱
@@ -44,11 +42,11 @@
 
 ## 之後的收尾（主站遷移時一起）
 
-- [x] `GH_ORIGIN` 改成 `https://themusicalmap.com`（2026-07-06 主站遷移時完成）
+- [x] `GH_ORIGIN` 改指 Cloudflare Pages `https://musicalmap.pages.dev`（2026-07-06 主站遷移時完成;不指 themusicalmap.com 避免 Worker↔主域迴圈）
 - [x] 分享按鈕/複製連結改產 `my.themusicalmap.com/<handle>` 形式（2026-07-06,`me.html` `shareUrl()`+兩處 prefix 標籤）
 - [x] `u.html?u=` 舊形式加轉向到 `my.` 形式（2026-07-06,u.html head 早期 script;僅主網域觸發、帶 `?hl=`、localhost 不轉方便本機測試）
 - [ ] og:image 個人化（用該使用者第一張海報；需再打一次 `public_sightings`，目前用品牌 logo）
-- [ ] **Google 登入品牌化（OAuth callback 代理）**：用同一個 Cloudflare Worker 把 `auth.themusicalmap.com/auth/v1/callback` 反向代理到 Supabase 的 `gtuvrhdvwjlvneispcuq.supabase.co/auth/v1/callback`，並把 Supabase Auth 的 redirect / Google OAuth client 的 authorized redirect URI 改成 `auth.themusicalmap.com`。這樣 Google 同意畫面顯示的網域就變成自家網域，走品牌驗證時也沒有「無法驗證 supabase.co」的卡點。詳見 `SETUP_ACCOUNTS.md` 的「Google 登入品牌顯示」段。
+- [x] ~~Google 登入品牌化（OAuth callback 代理,方法 C）~~ **已不需要**——2026-07-09 Google 品牌驗證(方法 A)核准,同意畫面已顯示自家品牌,代理方案作廢。詳見 `SETUP_ACCOUNTS.md` 的「Google 登入品牌顯示」段。
 
 ## 資安備註
 

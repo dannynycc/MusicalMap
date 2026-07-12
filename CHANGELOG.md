@@ -11,6 +11,19 @@
 
 ---
 
+## [v2.28.2] - 2026-07-12 21:38
+### 文件總盤點:全部 13 個 MD 對碼查核,修 9 檔過時內容(3 路 agent 逐項對照 code)
+每個過時陳述都以 repo 實際 code/資料為 ground truth 驗證後才改;快照型文件(SECURITY_AUDIT/DESIGN_productions)只修「已完成卻標未完成」的誤導點,歷史敘述不動。
+- **README**:works 170→180、official_sites 208→231、shows ~1,700/31國→~1,800/30國(實測 1,827)、venues_catalog 5,300+→5,400+;「刪除帳號實機失敗待修」→已於 v2.6.0 查明為誤報(clearLocal 作用域 ReferenceError,刪除實際成功)。
+- **DESIGN_username_sharing**:頂層「待實作」→已全數上線;Worker「未部署」→2026-07-06 上線;DNS/主站遷移兩項 `[ ]`→`[x]`;回源「GitHub Pages」→Cloudflare Pages(與同文件 §Worker 自述一致);補 Email OTP 登入一句。
+- **DESIGN_affiliate**:§3 三種網絡→四種(補 `tmpl`/Sovrn=現況主力,partnerize/awin 標待升級);AFFILIATE_PRIORITY 補 atrapalo;§5 表 broadway-show-tickets ❌→✅ Sovrn 變現、補 Atrápalo 一列。
+- **AFFILIATE_SETUP**:`js/app.js` 的 AFFILIATE→`js/config.js`(兩處);檔頭補現況(五平台已 Sovrn 過渡變現);§2 ATG 補 interim 註記;§3 londontheatre Impact 方案標歷史(實走 Sovrn);§5 索取清單只剩 Partnerize camref。
+- **SETUP_MY_SUBDOMAIN**:GH_ORIGIN 勾選項改正為 `musicalmap.pages.dev`(原誤寫 themusicalmap.com,與 code 矛盾);手動 AAAA DNS 步驟標作廢(custom_domain=true 自動);OAuth callback 代理待辦→已由品牌驗證(方法 A,07-09)解決。
+- **SECURITY_AUDIT_2026-07-02 待辦清單**:Worker「未部署」→已上線;網域遷移→完成;Low 三合一項拆開——postMessage origin 驗證(07-10 完成)、內嵌 render esc(完成)各自勾掉,只留 meta CSP 未做。
+- **DAMAI_未定位場館待查**:8 個場館已全數定位入 `venue_coords.json`(逐 key 核對),整份標結案保留歷史;SOURCES.md 的交叉引用同步改。
+- **SOURCES/TOUR_SWEEP**:ATG 站數 205/201 不一致且皆過時→統一 ~39 條 ~220 站隨 CI 變動(實測 221)。
+- 無需修改:SETUP_ACCOUNTS(自我標記完整)、DESIGN_productions(檔頭 as-of 警語已涵蓋)、WORKFLOW 僅修 CI 頻率描述(每天一次→兩次+全套 scraper+提交範圍)。
+
 ## [v2.28.1] - 2026-07-12 21:16
 ### 資安/資料流修補:回收前次中止 session 的未提交修改,逐項驗證後入庫
 前次(07-12 凌晨)OAuth/PKCE 稽核 session 因安全事件中止,工作區留下兩檔未提交修改。本次逐符號驗證(hesc/esc/mmSb/cloudUpsert/save_cloud_fail 三語鍵)+真 Chrome 煙霧測試+jsonLd 單元驗證,確認全部為真實修補後提交。

@@ -21,7 +21,7 @@
 
 ## 資料更新
 - 改 scraper 或想刷新資料：`python scrapers/westend.py && python scrapers/broadway.py && python scrapers/build_shows.py`。
-- GitHub Actions 也會每天自動跑上面這串並提交 `data/*.json`（commit 訊息帶 `[skip ci]`）。
+- GitHub Actions **每天兩次**（台北 06:00 & 18:00,`update.yml`）自動跑**全套 ~30 支 scraper**（不只上面三支）並提交 `data/*.json` 與預渲染站點檔（`index.html`/`sitemap.xml`/三語變體;commit 訊息帶 `[skip ci]`）。
 - CI 自動提交後，下次本機動工前先 `git pull`。
 
 ## 版本對照

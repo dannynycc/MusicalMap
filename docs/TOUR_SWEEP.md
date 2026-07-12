@@ -36,7 +36,7 @@
 | 城市 | 覆蓋來源 | 狀態 |
 |---|---|---|
 | New York / London | broadway-show-tickets / londontheatre+ATG | ✅ 結構化 |
-| 英國地方城市(Manchester/Glasgow/Edinburgh…) | ATG hub 33 巡演 201 站 + TM GB | ✅ 結構化 |
+| 英國地方城市(Manchester/Glasgow/Edinburgh…) | ATG hub ~39 巡演 ~220 站(隨 CI 變動) + TM GB | ✅ 結構化 |
 | 東京/橫濱/舞濱/名古屋/大阪/福岡 | 四季 API + 宝塚 + TM JP(無)| ✅(四季/宝塚以外的在地製作:**待查**,如東寶/帝國劇場) |
 | 首爾/大邱 | Interpark API | ✅ 結構化(東豪/Charlotte 系已含) |
 | 漢堡/柏林/斯圖加特/波鴻/科隆 | Stage Entertainment + TM DE | ✅ 結構化 |

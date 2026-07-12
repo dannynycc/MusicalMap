@@ -1,13 +1,13 @@
 # 設計:帳號身份 username + 公開分享網址（my.themusicalmap.com/<handle>）
 
-> 狀態:**已定案、待實作**（2026-07-02 決策，含兩份 web 實證調查）。
+> 狀態:**已全數上線**（2026-07-02 決策定案，含兩份 web 實證調查;Worker+DNS 於 2026-07-06 部署,截至 v2.28.1 持續運行）。
 > 參考對標:`my.flightradar24.com/Chiang`。
 > 這份是實作依據——照這裡做，不要憑印象重新發明。
 
 ## 需求（使用者原話）
 
 把 `xxxxxx` 從「分享面板裡隨手可改的暱稱」升級成**帳號的固定身份（username）**：
-- 首次登入後建立一個個人帳號代號（走 Google OAuth，不用密碼）。
+- 首次登入後建立一個個人帳號代號（走 Google OAuth，不用密碼;v2.13 起另有 Email OTP 三語登入給收不到 Google 的環境,同 email 兩種登入自動合併）。
 - 之後分享用 `my.themusicalmap.com/xxxxxx`。
 - **不能**在「分享頁面」隨時改名（難管理）；要改是回「帳號設定」改，改完之後都有效。
 
@@ -115,7 +115,7 @@ DNS：`my.themusicalmap.com` → Cloudflare（已管 DNS）。主站 `themusical
 Worker 邏輯（`my.themusicalmap.com/<handle>`）：
 1. 取 path 的 `<handle>`，小寫正規化。
 2. 查 Supabase：先查 `profiles.handle`；查無再查 `handle_aliases.old_handle` → 命中則 **301 轉向** `my.themusicalmap.com/<現用handle>`。
-3. 命中現用 handle → 內部 `fetch` GitHub Pages 的 `u.html`，回傳前**注入該人專屬 `<title>`/`og:title`/`og:image`/一段 prerender 摘要**（劇數/名字），解決個人頁純前端 render 爬蟲看不到的 SEO/AI 空白。真人瀏覽器照常跑前端 app（app 讀 `?u=`/path 取 handle）。
+3. 命中現用 handle → 內部 `fetch` Cloudflare Pages（`musicalmap.pages.dev`）的 `u.html`，回傳前**注入該人專屬 `<title>`/`og:title`/`og:image`/一段 prerender 摘要**（劇數/名字），解決個人頁純前端 render 爬蟲看不到的 SEO/AI 空白。真人瀏覽器照常跑前端 app（app 讀 `?u=`/path 取 handle）。
 4. 查無 → 回 u.html 的 not-found 狀態（已存在 `#pub-empty`）。
 
 保留字 / 靜態資源（logo、css、js）要在 Worker 放行，不要當 handle 解析。
@@ -147,8 +147,8 @@ Worker 邏輯（`my.themusicalmap.com/<handle>`）：
 
 1. ✅ DB：`supabase/add_handle_aliases.sql` —— **2026-07-02 已套用＋全鏈路真人實測通過**：使用者實際改名 danny→danny_test→改回，(a) 舊網址 `?u=danny` 自動轉向新名 ✓ (b) 改回自己舊名合法 ✓ (c) alias `danny_test` 永久歸原主、`handle_available('danny_test')=false` 別人搶不走 ✓（線上 API 確認）。anon 面行為（保留字/查重/not_authenticated）亦全數線上驗證。**此機制無未實測環節。**
 2. ✅ 前端：帳號設定改名 + 分享面板唯讀 + onboarding chips + 強制設定（v1.10.0）。
-3. ✅ Cloudflare Worker **程式碼完成＋本機真測 14 項 PASS**（v1.11.0，`worker/my-worker.js`，打真 GH Pages＋真 Supabase：注入 MM_HANDLE/個人化 title/canonical/JSON-LD、不存在→404+noindex、靜態代理、保留字/尾斜線/robots）——**未部署**，步驟見 `docs/SETUP_MY_SUBDOMAIN.md`（需使用者 Cloudflare 帳號 wrangler login，約 10 分鐘）。alias→301 需等首次真實改名後才有資料可驗。
-4. [ ] DNS 切 `my.` 子網域（`AAAA my 100::` 橘雲）＋ wrangler deploy——使用者執行。
-5. [ ] 對照 [[project_musicalmap_domain_migration]]：themusicalmap.com 主站遷移一併規劃。
+3. ✅ Cloudflare Worker **程式碼完成＋本機真測 14 項 PASS**（v1.11.0，`worker/my-worker.js`，本機測試當時打 GH Pages＋真 Supabase：注入 MM_HANDLE/個人化 title/canonical/JSON-LD、不存在→404+noindex、靜態代理、保留字/尾斜線/robots）——**2026-07-06 已部署上線**（回源後改 Cloudflare Pages,見上節）,步驟見 `docs/SETUP_MY_SUBDOMAIN.md`。alias→301 已於真實改名(danny→danny_test→danny)全鏈路驗證。
+4. [x] DNS 切 `my.` 子網域（`AAAA my 100::` 橘雲）＋ wrangler deploy——2026-07-06 完成（v2.1.0,改用 custom_domain=true 由 wrangler 自建 DNS）。
+5. [x] themusicalmap.com 主站遷移——2026-07-06 完成（v2.0.0,Cloudflare Pages,舊網址全 301）,見 [[project_musicalmap_domain_migration]]。
 
 見 [[project_musicalmap_security]]（handle 唯一性/RLS 現況）、[[project_musicalmap_sharing]]。

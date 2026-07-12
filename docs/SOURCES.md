@@ -14,7 +14,7 @@
 | 劇団四季 | shiki.jp(中文版 shiki.jp/zh-tw/) | `shiki.py`(JSON API `api_stage_list`) | 日本 9 劇場 10 製作,精確檔期;全国ツアー無固定城市未收 | 2026-06-12 |
 | 宝塚歌劇団 | kageki.hankyu.co.jp(中文版 /tc/revue/) | `takarazuka.py`(解析各製作頁公演期間) | 6 製作 12 檔(宝塚大劇場→東京宝塚劇場接力),含寶塚版 Elisabeth | 2026-06-12 |
 | 韓國 Interpark | world.nol.com/zh-CN/ticket/genre/MUSICAL/products(開放 API `/api/ent-channel-out/v1/goods/list`) | `interpark.py` | 59 部、39 含座標(首爾 32/大邱 6/大田 1);**真實開演日**;海報用 `posterImageUrl`(large 路徑會 404);API size 參數被偷偷 cap 在 ~15、totalPages 不可信 | 2026-06-12 |
-| ATG Tickets(英國地方圈) | atgtickets.com/whats-on/uk/musicals/ | `atg.py` | **無公開 API**;SSR 卡片+分頁。單場館含日期收錄;**tour hub 已爬(phase 2 完成):33 條 UK 巡演 205 站**(站點 JSON 嵌在 hub RSC);無日期單館卡仍剔除 | 2026-06-12 |
+| ATG Tickets(英國地方圈) | atgtickets.com/whats-on/uk/musicals/ | `atg.py` | **無公開 API**;SSR 卡片+分頁。單場館含日期收錄;**tour hub 已爬(phase 2 完成):UK 巡演 ~39 條 ~220 站,隨每日 CI 變動**(站點 JSON 嵌在 hub RSC;2026-07-12 實測 221 站);無日期單館卡仍剔除 | 2026-06-12 |
 | Stage Entertainment(德國) | stage-entertainment.de | `stage_de.py` | **無公開 API**;SSR,slug 自帶城市;劇場用「頁面提及次數 ≥2」判定(nav 會提到所有劇場);自有劇場座標表;漢堡/柏林/斯圖加特 13 部駐演(TINA、Tanz der Vampire、Frozen、獅子王、MJ…) | 2026-06-12 |
 | OPENTIX 兩廳院售票(台灣) | search.opentix.life/search(JSON API) | `opentix.py` | 台灣當期音樂劇(category 戲劇-音樂劇);自帶 WGS-84 座標+海報+檔期;排除合唱/演唱會/工作坊 | 2026-06-12 |
 | utiki 售票引擎(台灣:寬宏 KHAM + udn售票 + MNA) | kham.com.tw(分類 80) / tickets.udnfunlife.com(搜尋 音樂劇) / ticket.mna.com.tw(分類 77 音樂,需 cookie);同一套 UTK ASP.NET 引擎 | `utiki.py` | KHAM 走 listing→場次頁 eventTABLE(`PLACE_NAME`+地址);UDN listing 卡片帶日期+場館(多場館巡演)+銷售狀態;MNA 卡片帶日期、場館取自詳情頁場次表(分類混雜故只留標題含「音樂劇」)。排除合唱/演唱會/工作坊/交響音樂會、已結束;座標交 Google geocode。萬世巨星/史瑞克/魔女宅急便 | 2026-06-13 |
@@ -53,7 +53,7 @@
 |---|---|---|
 | Wicked 官方巡演 | tour.wickedthemusical.com | 曾接 scraper,後被 broadway.org 彙總取代(資料一致且更全) |
 | Les Misérables 官方 | lesmis.com | 倫敦(westend)、US tour(tours)已涵蓋;Japan/Spain 站見 intl/手動;World Tour 待來源 |
-| **大麥 Damai**(✅ 已接,人工協助批次,2026-06-24) | damai.cn | 阿里系,**BaXia 風控**:web `search.htm`→x5sec 滑塊;mtop API 要 `x-sign`+`x-mini-wua`+`x-sgext`(安全 SDK 簽章,server/SDK 端),無人值守 CI 繞不過。**改走人工協助**:`china_damai.py launch`(真 Chrome 開遠端除錯埠)→人解滑塊→`probe`/`harvest`(用同 session 控速翻頁,pageSize 鎖 30、每頁 15~25s 隨機抖動、撞 x5sec 即停)。實測**慢速仍會頻繁 re-challenge,需真人全程顧著解(~15 次/全量)**。`harvest`→`china_damai_raw.json`(711 筆);`build`→濾真音樂劇(剔舞劇/芭蕾/歌劇/文旅秀/券包共 464)→劇名+城市去重→`china_damai.json`(**247 場次/52 城**,含**精準 `detail.damai.cn/item.htm?id={projectid}` 連結**,取代舊搜尋頁)。座標走 Google 國際 API(WGS-84,非 GCJ-02);上海星空间/十二楼等微劇場 geocode 困難,8 個未定位見 `docs/DAMAI_未定位場館待查.md`。**非 CI 自動,需手動跑** |
+| **大麥 Damai**(✅ 已接,人工協助批次,2026-06-24) | damai.cn | 阿里系,**BaXia 風控**:web `search.htm`→x5sec 滑塊;mtop API 要 `x-sign`+`x-mini-wua`+`x-sgext`(安全 SDK 簽章,server/SDK 端),無人值守 CI 繞不過。**改走人工協助**:`china_damai.py launch`(真 Chrome 開遠端除錯埠)→人解滑塊→`probe`/`harvest`(用同 session 控速翻頁,pageSize 鎖 30、每頁 15~25s 隨機抖動、撞 x5sec 即停)。實測**慢速仍會頻繁 re-challenge,需真人全程顧著解(~15 次/全量)**。`harvest`→`china_damai_raw.json`(711 筆);`build`→濾真音樂劇(剔舞劇/芭蕾/歌劇/文旅秀/券包共 464)→劇名+城市去重→`china_damai.json`(**247 場次/52 城**,含**精準 `detail.damai.cn/item.htm?id={projectid}` 連結**,取代舊搜尋頁)。座標走 Google 國際 API(WGS-84,非 GCJ-02);上海星空间/十二楼等微劇場一度 geocode 困難,8 個已於後續全數定位補入 `venue_coords.json`(歷程見 `docs/DAMAI_未定位場館待查.md`)。**非 CI 自動,需手動跑** |
 | **猫眼 Maoyan** | show.maoyan.com | 同大麥那套反爬(x5sec);大麥已用人工協助批次解,猫眼暫不另接(劇目高度重疊) |
 | **聚橙 juooo**(✅ 已接,見上表) | juooo.com | 一度誤判「geo 鎖深圳」,實為打錯端點;showSearch 不需簽章、city_id 可遍歷全國,已接 `china_juooo.py` |
 
