@@ -130,17 +130,27 @@ def main():
     # 實案:「衢州保利大剧院大剧场」被 Google 配到上海保利(嘉定)、name_ok 因同含「保利
     # 大剧院」而放行,錯 57km。cn_venues.json(專用管線 Google+GCJ→WGS84)才是大陸權威;
     # 有權威值(子字串比對)就直接採用,不問 Google。
+    # cn_venues 的 native 簡繁混雜(上海大劇院/合肥大剧院並存),來源資料(大麥等)是簡體——
+    # 子字串比對必須先把兩邊摺疊到同一字系,否則「上海大劇院」比不中「上海大剧院-大剧场」
+    # (2026-07-12 實測:44 個缺座標場館,原樣中 11、轉繁中另 11、兩批零重疊)。
+    # 統一摺疊成簡體(t2s 對簡體是恆等);無 opencc 時退回原樣比對(=舊行為)。
+    try:
+        from opencc import OpenCC
+        _fold = OpenCC("t2s").convert
+    except ImportError:
+        _fold = lambda s: s
     cn_auth = {}
     cn_path = DATA / "cn_venues.json"
     if cn_path.exists():
         _cn = json.loads(cn_path.read_text(encoding="utf-8"))
         for x in (_cn if isinstance(_cn, list) else _cn.get("venues", [])):
             if x.get("lat"):
-                cn_auth[x["native"]] = (x["lat"], x["lng"])
+                cn_auth[_fold(x["native"])] = (x["lat"], x["lng"])
 
     def cn_authority(venue):
+        v = _fold(venue)
         for an, co in cn_auth.items():
-            if len(an) >= 5 and (an in venue or venue in an):
+            if len(an) >= 5 and (an in v or v in an):
                 return co
         return None
 

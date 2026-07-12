@@ -198,6 +198,9 @@ CITY_EN = {
     "潍坊": "Weifang", "昆山": "Kunshan", "淄博": "Zibo", "烟台": "Yantai",
     "徐州": "Xuzhou", "西宁": "Xining", "鄂尔多斯": "Ordos", "中山": "Zhongshan",
     "延边": "Yanbian", "桂林": "Guilin", "淮安": "Huai'an", "周口": "Zhoukou",
+    # 2026-07-12 重抓新增
+    "丽水": "Lishui", "台州": "Taizhou", "大庆": "Daqing", "德州": "Dezhou",
+    "泉州": "Quanzhou", "潜江": "Qianjiang", "赣州": "Ganzhou",
 }
 
 # 名字含這些 = 確定音樂劇
@@ -252,17 +255,33 @@ def build():
                 and (r.get("venue") or "") not in ("大麦网", "大麥網", "")]
     dropped = len(mus) - len(keep_raw)
 
-    # 劇名+城市去重，取最早 start_date 的場次代表
+    # 劇名+城市去重。raw 是跨次 harvest 累積的,同劇同城可能同時有「已完結舊檔」與
+    # 「現行/未來新檔」——優先取**未完結**場次中最早的;全都完結才照舊取最早
+    # (反正下游 build_shows 會依 end_date 淡出)。否則舊快照會遮蔽新檔期,重抓白抓。
+    today_iso = time.strftime("%Y-%m-%d")
+
+    def _better(prev, cand):
+        """cand 是否應取代 prev 當代表。live(end>=今天或無 end)優先;同級比 start 早。"""
+        if prev is None:
+            return True
+        def live(g):
+            return g["_end"] is None or g["_end"] >= today_iso
+        if live(cand) != live(prev):
+            return live(cand)
+        if cand["_start"] and (prev["_start"] is None or cand["_start"] < prev["_start"]):
+            return True
+        return False
+
     groups = {}
     for r in keep_raw:
         title = _canon_title(r.get("nameNoHtml", ""))
         city_cn = r.get("venuecity") or ""
         start, end = _parse_dates(r.get("showtime"))
         key = (title, city_cn)
-        prev = groups.get(key)
-        if prev is None or (start and (prev["_start"] is None or start < prev["_start"])):
-            groups[key] = {"r": r, "title": title, "city_cn": city_cn,
-                           "_start": start, "_end": end}
+        cand = {"r": r, "title": title, "city_cn": city_cn,
+                "_start": start, "_end": end}
+        if _better(groups.get(key), cand):
+            groups[key] = cand
 
     shows = []
     for (title, city_cn), g in groups.items():
