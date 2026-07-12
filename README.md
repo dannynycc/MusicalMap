@@ -23,7 +23,7 @@ scrapers/  ──產出──>  data/*.json  ──merge──>  data/shows.json
 ```
 
 - **呈現層**（`index.html` / `css` / `js`）只讀 `data/shows.json`（現在/未來）+ `data/archive/`（拖時間軸到過去時 lazy-load），不在乎資料怎麼來。換來源不用動地圖。
-- **資料層**（`scrapers/`）每個來源各寫一支 scraper、各產一個 source 檔；`build_shows.py` 合併、套用人工修正、做同劇合併與海報繼承。re-scrape 單一來源不會蓋掉其他來源。
+- **資料層**（`scrapers/`）每個來源各寫一支 scraper、各產一個 source 檔；`build_shows.py` 合併、套用人工修正、做同劇合併與海報繼承（**地區感知**,v2.29.3:同國優先→同字系圈,絕不跨圈——避免美國場次掛日文海報）。re-scrape 單一來源不會蓋掉其他來源。
 - **歷史層**（`scrapers/archive.py`）獨立於純函式 build 之外:每天把當前快照**累積**進不可變歷史檔（`archive = 舊 ∪ 今天`）。**事實（劇名/劇院/日期）閉幕後凍結永不改;tag/group 每次重算**（改分類規則,歷史顯示自動更新,日期不動）。自動累積與人工策展（`curated_history.json`）同 schema,用 `provenance` 區分。**這層有狀態,刻意與「可重跑的純 build」隔開**。
 
 ### 檔案
@@ -79,7 +79,7 @@ scrapers/  ──產出──>  data/*.json  ──merge──>  data/shows.json
 | `scrapers/interpark.py` | **韓國 Interpark** scraper（NOL 開放 API；韓國場館座標表） |
 | `scrapers/audit_images.py` | 海報畫質稽核（實測像素，小於顯示尺寸即報告） |
 | `scrapers/ticketmaster.py` | **Ticketmaster** Discovery API（18 國掃描，需 `TICKETMASTER_API_KEY`） |
-| `scrapers/build_shows.py` | 合併所有 source、TM 補洞去重、套 overrides、同劇合併、海報繼承、**血統 tag 分類**（依 `works.json`）→ `shows.json`（純函式、可重跑） |
+| `scrapers/build_shows.py` | 合併所有 source、TM 補洞去重、套 overrides、同劇合併、海報繼承（地區感知,不跨字系圈）、**血統 tag 分類**（依 `works.json`,別名索引簡繁雙字系）→ `shows.json`（純函式、可重跑） |
 | `scrapers/archive.py` → `data/archive/<year>.json` | **歷史累積層**（每日 CI 在 build 後跑）：`archive = 舊 ∪ 今天 shows`。閉幕場次凍結（事實不可變）、tag/group 每次重算；按 start 年分檔 + `index.json`。前端拖時間軸到過去才 lazy-load 對應年檔 |
 | `scrapers/bootstrap_archive.py` | 一次性：挖 **git 歷史**裡每天 commit 的舊 `shows.json`，回溯灌入 archive（git 本身就是不可變每日快照）。`python scrapers/bootstrap_archive.py` |
 | `data/curated_history.json` | **人工策展深歷史**：archive 開始前就閉幕的重要檔期（Hamilton 2015-、Phantom NY 1988-2023…），售票 API 抓不到過去,改由 Wikipedia/Wikidata 查證。只記事實,tag 自動套 |

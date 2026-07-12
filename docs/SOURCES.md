@@ -28,7 +28,7 @@
 | **中國**(逆向官方 API) | 上海文廣 shcstheatre.com(`/webapi.ashx`) / 保利 weixin.polyt.cn(`/platform-backend`,header `Channel: theatre_wx`) / ypiao / 中演院線 zhongyan / **聚橙 juooo** | `china.py` `china_poly.py` `china_ypiao.py` `china_chinaticket.py` `china_juooo.py` | 全國 ~100 齣/40+ 城;GCJ-02→WGS-84 座標轉換;保利真實日期取自 `/good/shows/{id}` showInfoDetailList[].showTime;售票連結→大麥搜尋。**2026-07-13 全數體檢**:5 支本地實跑全通(保利 88/文廣 5/ypiao 7/中演 1/聚橙 4),與 CI 一致——文廣/中演檔案多日未動是上游檔期真沒變,非 scraper 壞;中演音樂劇庫存本就少 | 2026-07-13 |
 | **聚橙 juooo**(逆向官方 API,2026-06-23) | 城市清單 `api.juooo.com/city/city/getCityList`;節目 `gw.juooo.com/gw/show/showSearch`(POST form,body `cate_parent_id=79`(音樂劇)`+city_id+page`,**不需簽章**);座標 `gw/show/showDetail` → `result.show.venue.coordinate`(GCJ-02→WGS-84,自給自足不靠 cn_venues);售票 `m.juooo.com/ticket/{schedular_id}` | `china_juooo.py` | **逐城市遍歷全 253 城**(showSearch 分城市,故全掃任何城市有音樂劇都抓得到);目前僅 3 齣(全深圳安托山公共文化中心,聚橙自營庫存集中深圳,北京/上海在 juooo 上 0 場)。即便量少仍自動更新,庫存一變多即涵蓋 | 2026-06-23 |
 | 葡萄牙 | bol.pt(JSON-LD Event) | `portugal.py` | Evita @ Lisboa;JSON-LD 自帶座標+城市 | 2026-06-15 |
-| 全劇巡演自動掃 | Ticketmaster attraction 比對 | `tm_tours.py` | 對**全部** group 做 attraction 比對,新巡演站點自動入圖(每日 CI) | 2026-06-12 |
+| 全劇巡演自動掃 | Ticketmaster attraction 比對 | `tm_tours.py` | 對**全部** group 做 attraction 比對,新巡演站點自動入圖(每日 CI);**v2.29.4 起自帶 TM attraction 官方海報**(舊版寫死 None 依賴繼承→曾致美國站掛日文圖) | 2026-07-13 |
 
 ## 人工策展(manual.json)
 
@@ -45,7 +45,7 @@
 | **德國波鴻**(Starlight Express) | starlight-express.info、售票 atgtickets.de(德國 ATG,未接自動來源) | 星光快車 1988– 專用劇場 Starlight Express Theater 常設(open-end),全球最長跑之一;OSM 實查座標;哨兵劇目之一 | 2026-07-09 |
 | 各劇巡演段(雜) | 官網/票務 | Les Mis Arena(RAH/Radio City)、Miss Saigon(UK 巡演)、Beetlejuice(澳)、Chicago(東京/大阪/杜拜)、SIX(澳)、Heathers(坎培拉)、Les Mis Arena 等 | 2026-06-15 |
 
-> **海報**:反爬 CDN(Sympla 等)的海報 hotlink 會 403/破圖 → 下載 rehost 到 `posters/`(同源)。國際知名劇缺圖則借資料庫同劇現有海報。手填劇新鮮度由 `scrapers/audit_manual.py`(CI)守門。
+> **海報**:反爬 CDN(Sympla 等)的海報 hotlink 會 403/破圖 → 下載 rehost 到 `posters/`(同源)。國際知名劇缺圖則借資料庫同劇現有海報(**僅限同國/同字系圈**,v2.29.3 起絕不跨圈借)。手填劇新鮮度由 `scrapers/audit_manual.py`(CI)守門。
 
 ## 已評估/部分涵蓋
 
