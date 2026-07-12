@@ -1047,18 +1047,32 @@ def main():
         discover_unmapped(shows)
 
     # image inheritance: a record with no poster (e.g. a tour stop) borrows the
-    # artwork from another record of the same show that has one.
-    poster_by_group = {}
+    # artwork from another record of the same show that has one — but ONLY from a
+    # region-compatible sibling。舊版拿「組內第一個有圖的」(隨來源順序),四季排前面
+    # → 7 個美國 Frozen 場次全掛日文アナ雪海報(2026-07-13 使用者抓到)。各製作海報
+    # 語言/設計不同:同國優先,再同字系圈(日/韓/中/台各自成圈,其餘=west);絕不跨圈
+    # ——寧可留空走前端 ♪ 占位,不掛錯語言的海報。
+    def _poster_bucket(country):
+        return {"Japan": "jp", "South Korea": "kr", "China": "cn",
+                "Taiwan": "tw", "Hong Kong": "hk", "Macau": "cn"}.get(country, "west")
+    poster_by_gc, poster_by_gb = {}, {}
     for s in shows:
-        if s.get("image") and s["group"] not in poster_by_group:
-            poster_by_group[s["group"]] = s["image"]
-    filled = 0
+        if s.get("image"):
+            poster_by_gc.setdefault((s["group"], s.get("country")), s["image"])
+            poster_by_gb.setdefault((s["group"], _poster_bucket(s.get("country"))), s["image"])
+    filled = blocked = 0
     for s in shows:
-        if not s.get("image") and poster_by_group.get(s["group"]):
-            s["image"] = poster_by_group[s["group"]]
-            filled += 1
-    if filled:
-        print(f"  inherited {filled} poster(s) for tour/empty records")
+        if not s.get("image"):
+            img = (poster_by_gc.get((s["group"], s.get("country")))
+                   or poster_by_gb.get((s["group"], _poster_bucket(s.get("country")))))
+            if img:
+                s["image"] = img
+                filled += 1
+            elif any(g == s["group"] for g, _ in poster_by_gb):
+                blocked += 1     # 組內有海報但全在別的字系圈 → 不繼承
+    if filled or blocked:
+        print(f"  inherited {filled} poster(s) for tour/empty records"
+              + (f" ({blocked} left blank: only cross-region art available)" if blocked else ""))
 
     # tidy country names for display (USA / UK instead of the long source forms)
     COUNTRY_DISPLAY = {
