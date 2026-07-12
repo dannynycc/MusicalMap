@@ -113,7 +113,12 @@ def main():
                             "ticket_url": a.get("url") or (
                                 "https://www.ticketmaster.com/search?q=" + urllib.parse.quote(title)),
                             "attraction_url": a.get("url"),
-                            "image": None,  # inherit the show's poster at build
+                            # attraction 自帶官方圖,取最寬一張(與 ticketmaster.py 同法)。
+                            # 舊版寫死 None 依賴 build 繼承 → 繼承挑到別區海報(美國 Frozen
+                            # 掛日文アナ雪圖,2026-07-13 使用者抓到);event 沒圖再退回繼承。
+                            "image": (lambda im: im[0]["url"] if im else None)(
+                                sorted((a.get("images") or e.get("images") or []),
+                                       key=lambda i: -(i.get("width") or 0))),
                             "tour_name": None, "verified": True,
                             "onsale_only": True,
                             "source": "ticketmaster",
