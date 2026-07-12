@@ -348,7 +348,9 @@ footer{margin:48px 0 40px;color:var(--ink3);font-size:13px;text-align:center;lin
 <script src="me-catalog.js"></script>
 <script>
 /* ---------- helpers ---------- */
-const T=window.MM_T||(k=>k), TN=(k,v)=>{let s=T(k);for(const n in(v||{}))s=s.replace('{'+n+'}',v[n]);return s;};
+// split/join 而非 replace:(a) replace(str,val) 會把 val 裡的 $&/$1/$` 當回填指令 → 使用者輸入含 $ 時輸出錯亂;
+// (b) replace 只換第一個 {n},split/join 換全部,模板重複同一 placeholder 也正確。
+const T=window.MM_T||(k=>k), TN=(k,v)=>{let s=T(k);for(const n in(v||{}))s=s.split('{'+n+'}').join(v[n]);return s;};
 const EN_UI=(window.MM_HL||'zh-hant')==='en';
 const FLAG={};   // 不顯示國旗 emoji（使用者要求）
 const CUR={'United Kingdom':'GBP','UK':'GBP','United States':'USD','USA':'USD','US':'USD','Japan':'JPY','South Korea':'KRW','Korea':'KRW','Taiwan':'TWD','Germany':'EUR','France':'EUR','Spain':'EUR','Austria':'EUR','Australia':'AUD','China':'CNY','Canada':'CAD','Netherlands':'EUR'};
@@ -371,7 +373,14 @@ function curOf(c){return CUR[c]||'';}
 // embed 子頁與父頁 me.html 同源、共用同一 auth 儲存鍵。兩個 client 都開 autoRefreshToken 會在
 // token 過期時同時 rotate、互相作廢對方 refresh token → 假 SIGNED_OUT 把開著的表單清掉(2026-07-10)。
 // 子 client 只關自動更新(refresh 交給父頁單一 client);persistSession 保留才讀得到共用 session 做認證寫入。
-let MMSB=null;(function(){const cfg=window.MM_CONFIG;if(cfg&&cfg.READY&&typeof supabase!=='undefined'){try{MMSB=supabase.createClient(cfg.SUPABASE_URL,cfg.SUPABASE_ANON_KEY,{auth:{autoRefreshToken:false,persistSession:true}});}catch(e){}}})();
+let MMSB=null;(function(){const cfg=window.MM_CONFIG;if(cfg&&cfg.READY&&typeof supabase!=='undefined'){try{MMSB=supabase.createClient(cfg.SUPABASE_URL,cfg.SUPABASE_ANON_KEY,{auth:{autoRefreshToken:false,persistSession:true}});}catch(e){}}
+  // CDN(jsdelivr supabase-js)載入失敗 → supabase undefined → MMSB null → 存檔會靜默只寫本機還照樣蓋章,
+  // 下次父頁 syncFromCloud(雲端→本機)覆蓋 → 使用者以為存了的紀錄永久消失。此為同源 iframe,
+  // 直接借用父頁 me.html 已建立的 client 當 fallback,消除子頁 CDN 單點失敗(2026-07-10 review)。
+  if(!MMSB){try{if(window.parent&&window.parent!==window&&window.parent.mmSb)MMSB=window.parent.mmSb;}catch(e){}}})();
+// 是否有已登入 session(localStorage 內有 supabase auth token)。用來區分「已登入但雲端連線壞了(該擋下告警)」
+// 與「未登入的純本機使用」。MMSB 建不起來但有 session = 異常,存檔不可靜默只寫本機。
+function _hasAuthSession(){try{return Object.keys(localStorage).some(k=>/-auth-token$/.test(k)&&localStorage.getItem(k));}catch(_){return false;}}
 function _fullDate(date,prec){if(!date)return null;const d=String(date);if(prec==='year'||d.length===4)return d.slice(0,4)+'-01-01';if(prec==='month'||d.length===7)return d.slice(0,7)+'-01';return d;}
 // URL 欄位只收 http(s):javascript:/data: 存進去會在 openFull(window.open)/href 變攻擊面(2026-07-10 review)
 function _httpOnly(u){u=(u||'').trim();return /^https?:\/\//i.test(u)?u:null;}
@@ -439,7 +448,9 @@ function prodSummary(w){const cities=[...new Set(w.prods.map(p=>p.city).filter(B
 
 /* ---------- state ---------- */
 let LOG=[];try{LOG=JSON.parse(localStorage.getItem('mm-log')||'[]')||[];}catch(e){LOG=[];}  // persisted
-function persist(){try{localStorage.setItem('mm-log',JSON.stringify(LOG));}catch(e){}}
+// 空 catch 會吞掉 quota/序列化例外。存檔流程是「雲端成功後才 persist」,故雲端仍是 source of truth,
+// 本機失敗下次同步可修;但至少要留 log 供 debug,不完全靜默(2026-07-10 review)。
+function persist(){try{localStorage.setItem('mm-log',JSON.stringify(LOG));}catch(e){console.error('persist mm-log failed (localStorage quota?)',e);}}
 let draft=null;                // current entry being built
 let stickyYear=null;           // remember last-entered year for rapid backfill
 let lastMode='backfill';       // remember last mode
@@ -467,7 +478,7 @@ function startLog(){
   // 搜尋+渲染：首字色塊當底＋真海報蓋上（圖載好覆蓋，載失敗則留首字）；輕量 debounce
   function doSearch(){const v=q.value.trim();if(!v){res.innerHTML='';kbi=-1;lastHits=[];return;}
     const hits=search(v);lastHits=hits;
-    if(!hits.length){kbi=-1;res.innerHTML=`<div class="nores">${TN('mi_no_result',{v})}<br><button type="button" class="manualbtn" id="manualBtn">${T('mi_manual_add')}</button></div>`;
+    if(!hits.length){kbi=-1;res.innerHTML=`<div class="nores">${TN('mi_no_result',{v:hesc(v)})}<br><button type="button" class="manualbtn" id="manualBtn">${T('mi_manual_add')}</button></div>`;
       document.getElementById('manualBtn').onclick=()=>manualAdd(v);return;}
     res.innerHTML=hits.map((h,i)=>{
       const w=h.w;const re=new RegExp('('+esc(v)+')','i');
@@ -838,7 +849,13 @@ saveBtn.onclick=async()=>{
   if(draft.editIndex!=null){const idx=draft.editIndex;const old=LOG[idx];const e={...draft};delete e.editIndex;
     // 雲端更新:失敗必須讓使用者知道(否則下次 syncFromCloud 會把本機編輯蓋回舊值 → 靜默丟失編輯)
     let cloudOk=true;
-    if(MMSB&&e.sid!=null){try{const {error}=await cloudUpsert(entryToRec(e),e.sid);if(error)throw error;}catch(err){console.error('cloud update',err);cloudOk=false;}}
+    // e.sid==null 的本機-only 紀錄(如先前 CDN 失敗期間建的)被編輯時,舊版整段跳過 → 改動只留本機、
+    // 下次同步被雲端蓋回丟失。改成:MMSB 在就補 insert 取得 sid;有 sid 才 update。MMSB null 但有 session=擋下。
+    if(MMSB){try{
+      if(e.sid!=null){const {error}=await cloudUpsert(entryToRec(e),e.sid);if(error)throw error;}
+      else{const {data,error}=await cloudUpsert(entryToRec(e),null);if(error)throw error;if(data&&data[0])e.sid=data[0].id;else throw new Error('insert returned no row');}
+    }catch(err){console.error('cloud update',err);cloudOk=false;}}
+    else if(_hasAuthSession()){cloudOk=false;}
     if(!cloudOk){saveBtn.disabled=false;toast(T('save_cloud_fail'));return;}   // 雲端失敗→不碰本機(與 insert 分支一致):先寫本機再檢查會造成雲端舊值下次同步蓋回、編輯遺失(2026-07-10 review)
     LOG[idx]=e;persist();renderWall(false);
     const si=sessionAdded.indexOf(old);if(si>=0)sessionAdded[si]=e;
@@ -848,7 +865,10 @@ saveBtn.onclick=async()=>{
   const entry={...draft};
   // 雲端新增:失敗時 sid 會是 null → 只存在本機,下次 syncFromCloud 會清掉 → 靜默永久丟失。必須擋下並告知。
   let cloudOk=true;
-  if(MMSB){try{const {data,error}=await cloudUpsert(entryToRec(entry),null);if(error)throw error;if(data&&data[0])entry.sid=data[0].id;}catch(err){console.error('cloud insert',err);cloudOk=false;}}
+  // insert().select() 若成功但回空(RLS/回傳設定拿不到 row),error 為 null 但 sid 沒設 → 本機孤兒、雲端一份,
+  // 下次同步重複。空 data 一律當失敗擋下。MMSB null 但有 session=CDN 全掛,也不可靜默只寫本機。
+  if(MMSB){try{const {data,error}=await cloudUpsert(entryToRec(entry),null);if(error)throw error;if(data&&data[0])entry.sid=data[0].id;else throw new Error('insert returned no row');}catch(err){console.error('cloud insert',err);cloudOk=false;}}
+  else if(_hasAuthSession()){cloudOk=false;}
   if(!cloudOk){saveBtn.disabled=false;toast(T('save_cloud_fail'));return;}   // 未進雲端→不蓋章、不關窗,讓使用者重試(避免以為存了實則會丟)
   LOG.unshift(entry);sessionAdded.unshift(entry);persist();renderWall(true);
   if(new URLSearchParams(location.search).get('embed')==='1'){addedScreen();return;}

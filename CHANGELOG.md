@@ -11,6 +11,18 @@
 
 ---
 
+## [v2.28.1] - 2026-07-12 21:16
+### 資安/資料流修補:回收前次中止 session 的未提交修改,逐項驗證後入庫
+前次(07-12 凌晨)OAuth/PKCE 稽核 session 因安全事件中止,工作區留下兩檔未提交修改。本次逐符號驗證(hesc/esc/mmSb/cloudUpsert/save_cloud_fail 三語鍵)+真 Chrome 煙霧測試+jsonLd 單元驗證,確認全部為真實修補後提交。
+- **worker JSON-LD 儲存型 XSS**:`JSON.stringify` 不轉義 `</script>`,使用者自訂 display_name 含 `</script>` 可提前關閉腳本標籤注入 HTML→新增 `jsonLd()` 把 `<>&` 與 U+2028/2029 轉成 `\uXXXX`(JSON 語意不變,已驗 parse 還原無損)。
+- **worker meta 注入 `$` 序列展開**:`replace(str, val)` 的字串型第二參數會把 val 內 `$&`/`$1` 當回填指令,display_name 含 `$` 序列會破壞 title/og 標籤→全部改函式型替換。
+- **me-input TN() 同病**:模板替換改 `split/join`,值含 `$&` 不再被展開、重複 placeholder 全部替換(真 Chrome 實測 `x$&y` 保持字面)。
+- **me-input 搜尋無結果畫面 XSS**:查詢字串未轉義直接入 innerHTML→改 `hesc(v)`(實測 `<img onerror>` 輸出為 `&lt;img...&gt;`)。
+- **me-input CDN 失敗靜默丟資料**:supabase-js CDN 掛掉時 MMSB=null,存檔只寫本機還照樣蓋章,下次 syncFromCloud 蓋掉→(a)同源 iframe fallback 借用父頁 me.html 的 client;(b)新增 `_hasAuthSession()`:已登入但 client 建不起來=擋下存檔並告警,未登入純本機使用不受影響。
+- **me-input 編輯本機孤兒紀錄丟失**:`sid==null` 的紀錄(CDN 失敗期間建的)被編輯時整段跳過雲端→改為補 insert 取得 sid;insert 成功但回空 data(RLS 拿不到 row)一律當失敗擋下。
+- **persist() 空 catch**:localStorage 寫入失敗(quota)改留 console.error 不再完全靜默。
+- 驗證:worker ESM 語法檢查、me-input 5 個 inline script 區塊語法檢查、本機 serve+真 Chrome 載入零 console/page error、jsonLd 惡意輸入單元測試、`npx wrangler deploy` 後正式站抽驗。
+
 ## [v2.28.0] - 2026-07-10 22:07
 ### 視覺精品感打磨:真 Chrome(非 headless)逐頁截圖檢視,修 8 個視覺 bug
 使用者要求用真瀏覽器(claude-in-chrome,含登入 session)看真實渲染,不用 headless 自嗨。

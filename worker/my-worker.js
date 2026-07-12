@@ -21,6 +21,12 @@ const RESERVED = new Set(['u','me','index','admin','api','app','www','my','null'
   'assets','js','css','data','posters','logos','en','zh-hant','zh-hans','help','about','official','map','share','guide','me-input']);
 
 const esc = (s) => String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+// JSON-LD 內嵌 <script> 安全序列化:JSON.stringify 不會轉義 '</script>'(也不轉 < & U+2028/2029),
+// 使用者自訂 display_name 含 </script> 可提前關閉腳本標籤 → 儲存型 XSS。把 <>& 與行分隔符轉成 \uXXXX,
+// JSON parser 仍能正確解回,但 HTML parser 不會把它看成標籤邊界。
+const jsonLd = (obj) => JSON.stringify(obj)
+  .replace(/</g,'\\u003c').replace(/>/g,'\\u003e').replace(/&/g,'\\u0026')
+  .replace(/\u2028/g,'\\u2028').replace(/\u2029/g,'\\u2029');
 
 // Web Analytics:不在此注入統計碼。2026-07-06 API 實證——手動 snippet 上報在本帳號從未入帳,
 // 唯一有效機制=zone 的 RUM 自動注入(edge 對經過 Cloudflare 的 HTML 回應自動加 beacon,含本 Worker 的輸出,
@@ -143,7 +149,7 @@ export default {
       `<link rel="canonical" href="${esc(canon)}" />`,
       hreflang,
       display ? '' : `<meta name="robots" content="noindex" />`,
-      display ? `<script type="application/ld+json">${JSON.stringify({
+      display ? `<script type="application/ld+json">${jsonLd({
         '@context': 'https://schema.org', '@type': 'ProfilePage',
         mainEntity: { '@type': 'Person', name: display, url: canonBase },
         about: 'Musical theatre viewing history', isPartOf: { '@type': 'WebSite', name: 'MusicalMap', url: MAIN_SITE },
@@ -158,13 +164,16 @@ export default {
         : `${display} 的音樂劇收藏`)
       : null;
 
+    // 全部用「函式型替換」:第二參數是 function 時,回傳字串中的 $&/$1/$` 等序列不會被當回填指令。
+    // esc(display_name) 可能含 $2、$& 之類序列(display_name 是使用者自訂),字串型替換會把它們展開成
+    // 匹配片段 → 破壞 meta 標籤/屬性。函式型徹底規避。
     html = html
       .replace(/<html lang="[^"]*"/, `<html lang="${lang === 'en' ? 'en' : (lang === 'zh-hans' ? 'zh-Hans' : 'zh-Hant')}"`)
-      .replace(/<title>[^<]*<\/title>/, `<title>${esc(title)}</title>\n<meta name="description" content="${esc(desc)}" />`)
-      .replace(/(<meta property="og:title" content=")[^"]*(")/, `$1${esc(title)}$2`)
-      .replace(/(<meta property="og:description" content=")[^"]*(")/, `$1${esc(desc)}$2`)
-      .replace('</head>', `${inject}\n<meta property="og:url" content="${esc(canon)}" />\n</head>`);
-    if (h1txt) html = html.replace('<h1>My Musicals</h1>', `<h1>${esc(h1txt)}</h1>`);
+      .replace(/<title>[^<]*<\/title>/, () => `<title>${esc(title)}</title>\n<meta name="description" content="${esc(desc)}" />`)
+      .replace(/(<meta property="og:title" content=")[^"]*(")/, (m, p1, p2) => `${p1}${esc(title)}${p2}`)
+      .replace(/(<meta property="og:description" content=")[^"]*(")/, (m, p1, p2) => `${p1}${esc(desc)}${p2}`)
+      .replace('</head>', () => `${inject}\n<meta property="og:url" content="${esc(canon)}" />\n</head>`);
+    if (h1txt) html = html.replace('<h1>My Musicals</h1>', () => `<h1>${esc(h1txt)}</h1>`);
 
     return new Response(withBeacon(html), {
       status: display ? 200 : 404,   // 查無 → 404(頁面本身會顯示 not-found 空狀態)
