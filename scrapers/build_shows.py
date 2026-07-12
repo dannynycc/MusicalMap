@@ -103,7 +103,11 @@ def _load_works():
             variants.extend(_zh_both(name))
         aliases_by_cgroup[cgroup] = " ".join(dict.fromkeys(variants))
         for name in [w["canonical"], *w.get("aliases", [])]:
-            idx[_norm(name)] = entry           # alias/canonical → canonical work
+            # 別名索引也要收簡繁雙變體:aliases 多存繁體(長靴皇后),大麥等來源給簡體
+            # (长靴皇后)——只索引原字系會比不中→掉進「平台=分類」fallback 誤標中國原創
+            # (2026-07-12 实案)。搜尋文字(aliases_by_cgroup)早就雙字系,索引補齊一致。
+            for v in _zh_both(name):
+                idx[_norm(v)] = entry          # alias/canonical(簡繁雙字系) → canonical work
     return idx, trad_by_cgroup, aliases_by_cgroup
 
 
