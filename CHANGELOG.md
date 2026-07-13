@@ -11,6 +11,14 @@
 
 ---
 
+## [v2.30.6] - 2026-07-13 16:55
+### 修正 — 呈現方/團名蓋掉劇名(使用者抓到 Lexington「Lexington Theatre Co.」當大標)+ tour_name 稽核入 CI
+v2.30.5 修了「借錯名」,這次修「名字本身就不是製作名」:TM「XX presents YY」型 event 的 attraction 是呈現方(劇團/系列),ticketmaster 系 scraper 把 attraction 名當 tour_name → 卡片大標顯示「Lexington Theatre Co.」「The Encore Series」蓋掉劇名;寶塚另有 10 筆純團名「宝塚歌劇」同病。
+- **修法**:build_shows 清空「id 含 presents/presented-by」紀錄的 tour_name(場地冠名如 Roxian Theatre Presented By Citizens 排除——venue 名自含 presented by 不算);takarazuka.py 源頭改純團名為 None;`_PURE_COMPANY_TN` 兜舊資料檔。本波修 24 張卡(Lexington 1、Meadowvale Encore 5、宝塚 10、WordPlayers/Frozen 泛名等 8)。
+- **兩波合計實修 100 張卡**(全站 1,854 的 5.4%):v2.30.5 借名收緊 76 張(其中掛羊頭級 9 張:Arena Spectacular 4/Encore 2/WordPlayers 3;其餘為寧缺勿錯的保守化——North American Tour 正名在跨 attraction 無法安全證明時退回 (Touring) 或劇名)+ 本波 24 張。
+- **制度化**:新增 `audit_tournames.py` 入 CI(presenter 滲入/純團名/特定製作名跨 attraction 撞名 三規則)——首跑即抓到規則自身的場地冠名誤判並修正,已 PASS 0/0/0。
+- 註:掃描中確認 76 筆「tour_name 與劇名零重疊」多數是**合法在地語言製作名**(四季日文名/德文 Der König der Löwen/中文玛蒂尔达),是特性非 bug,未動。
+
 ## [v2.30.5] - 2026-07-13 16:30
 ### 修正(嚴重) — tour_name 跨製作污染:檀香山 Les Mis 掛「Arena Spectacular」名、實際 TM 連結是一般巡演(使用者抓到=掛羊頭)
 根因:`build_shows` 的 tour_name backfill 以「同 group 的美加巡演站」為借名單位+眾數挑名——錯誤假設同 group=同一巡演。Les Mis 同時有一般巡演(TM attraction 34216)、Arena Spectacular(Radio City,manual)與各地自製,Radio City 的正名被借給 Diamond Head(檀香山)等 4 個不相干站;Dirty Rotten Scoundrels 的 Biddeford 站同病借到別團「The Encore Series」。

@@ -991,6 +991,26 @@ def main():
         if n_lt:
             print(f"  set local production names on {n_lt} record(s)")
 
+    # TM「XX presents YY」型 event 的 attraction 是「呈現方」(劇團/系列),不是製作——
+    # attraction 名(Lexington Theatre Co. / The Encore Series)被當 tour_name 會在卡片
+    # 大標顯示團名蓋掉劇名(2026-07-13 使用者抓到 Lexington Les Mis 案)。event 名含
+    # presents 是可靠指紋(id slug 保留了 event 名),這種紀錄的 tour_name 一律清空,
+    # 也順帶讓它們不參與下面的同 attraction 借名(presenter attraction 名不可信)。
+    n_pres = 0
+    _PURE_COMPANY_TN = {"宝塚歌劇"}   # 純團名 tour_name(takarazuka.py 已源頭修,這裡兜舊資料檔)
+    for s in by_id.values():
+        sid = s.get("id") or ""
+        # 場地冠名(「Roxian Theatre Presented By Citizens」)的 presented-by 在 venue 段,
+        # 不是呈現方 event —— venue 名自己含 presented by 就不算(audit_tournames 同款排除)
+        _venue_pb = "presented by" in (s.get("venue") or "").lower()
+        if s.get("tour_name") and (
+            ((("-presents-" in sid) or ("-presented-by-" in sid)) and not _venue_pb)
+            or s["tour_name"] in _PURE_COMPANY_TN):
+            s["tour_name"] = None
+            n_pres += 1
+    if n_pres:
+        print(f"  cleared presenter/company tour_name on {n_pres} record(s)")
+
     # Backfill missing tour_name on US/Canada tour legs — but ONLY from a sibling stop of
     # the SAME Ticketmaster attraction (artist id in ticket/attraction URL). 借名單位曾是
     # 「同 group」,錯誤假設同 group=同一巡演:Les Mis 同時有一般巡演(34216)、Arena

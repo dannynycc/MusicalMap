@@ -147,7 +147,9 @@ def main():
                 "end_date": end,
                 "ticket_url": BASE + path,
                 "image": image,
-                "tour_name": f"宝塚歌劇『{title_jp}』" if title != title_jp else "宝塚歌劇",
+                # title==title_jp 舊值為純團名「宝塚歌劇」→ 卡片大標顯示團名蓋掉劇名
+                # (presenter 名同病,2026-07-13);純團名無資訊,寧缺勿錯 None
+                "tour_name": f"宝塚歌劇『{title_jp}』" if title != title_jp else None,
                 "verified": True,
                 "source": "kageki.hankyu.co.jp",
             }
