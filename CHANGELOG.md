@@ -11,6 +11,15 @@
 
 ---
 
+## [v2.31.8] - 2026-07-13 22:18
+### 非音樂劇混入全站盤點+genre 稽核制度化+稽核假 PASS 修正
+使用者問「除了 Carmen 還有其他非音樂劇混入嗎?有確實盤點過嗎?」——之前只場地級修了 Cincinnati 那筆,沒做全站盤點,這次補齊:
+- **全站盤點(1,955 檔)**:經典歌劇 60+ 劇目+芭蕾 14 劇目完全比對、opera/ballet/symphony/koncert/tribute/歌劇/芭蕾/話劇/音樂會 等 40+ 多語關鍵字兩輪掃描 → 候選 62 筆逐一人工判讀,**混入 0 筆**。誤中者皆正常:歌劇魅影 24 筆(標題含 opera)、FRIDA/Maradona「Opera Musical」(義大利行銷詞)、Tanz der Vampire(德文 Tanz)、Oliver!(場地名 Opera House)。
+- **Budapest Carmen 查證保留**:jegy.hu 官方分類 Musical、Frank Wildhorn 作曲(2026 匈牙利首演)——證明當初 Cincinnati 用 title×venue 場地級排除而非全域封殺標題是對的,否則會誤殺這部正牌音樂劇。Cincinnati 場地本身仍在目錄,未來音樂劇巡演到會正常上站。
+- **來源層確認**:jegy.hu 抓 musical 子分類頁、teatro.it 有 KEEP/DROP 濾網、damai 以「音乐剧」+正面詞過濾——唯一系統性漏洞是 TM 自家 classification 標錯(Cincinnati 案成因)。
+- **制度化**:`audit_sample_truth.py` 新增第 4 檢——比中場地的 event 若 genre 全是 Opera/Ballet/Classical/Dance(無任何 Musical)→ 警告;構造 7 案例(歌劇型/混場地/缺欄位/Dance+Musical subGenre)驗證判定式全過。每日抽樣輪替,TM 再標錯遲早撞到。
+- **修稽核假 PASS**:今日 TM 配額耗盡時 15 筆全 skip 卻印「PASS 零不符」——一筆未驗不准宣稱通過。改為 429 退避重試(3s×4)+誠實回報「實驗 X/Y、skip Z」;全滅時印 INCONCLUSIVE 並 exit 1 讓 CI 出警告。
+
 ## [v2.31.7] - 2026-07-13 21:46
 ### 制度化 — 海報守門稽核入 CI(回答「90 張換圖是一次性的,以後怎麼 gating」)
 一次性資料修復之外,已在管線永續生效的:easteurope 抓原圖(治本)、works 釘圖層每 build 自動替換庫存圖、庫存圖禁止外借、地區感知繼承。缺口補成 `audit_posters.py` 每日 CI 四檢:

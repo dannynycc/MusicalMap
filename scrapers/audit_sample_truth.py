@@ -6,6 +6,8 @@
   2. 卡片日期範圍與 API 在售日期零交集(過期殘留/日期錯)→ 警告
      (API 會丟棄已過場次,卡片 start 早於 API 最早日屬正常,只驗交集)
   3. 卡片標題與 attraction/event 名 token 零交集(掛羊頭)→ 警告
+  4. 該場地所有比中 event 的 genre 全是歌劇/芭蕾/古典/舞蹈(非音樂劇混入,
+     Cincinnati Carmen 案;TM 自家標錯 classificationName 才會漏進來)→ 警告
 抽樣種子=當天日期(可重現);量少但每天不同批,一個月滾過 ~450 筆。
 無論管線哪一層出了「沒想過的 bug」,只要結果偏離事實,抽樣遲早撞到。
 """
@@ -27,6 +29,17 @@ API = "https://app.ticketmaster.com/discovery/v2/events.json"
 SAMPLE = 15
 
 _STOP = {"the", "a", "an", "of", "and", "le", "les", "la", "de", "musical", "on", "in"}
+_BAD_GENRES = {"opera", "ballet", "classical", "dance", "symphony", "chamber music"}
+
+
+def _genres(e):
+    out = set()
+    for c in e.get("classifications") or []:
+        for k in ("segment", "genre", "subGenre"):
+            n = ((c.get(k) or {}).get("name") or "").lower()
+            if n:
+                out.add(n)
+    return out
 
 
 def toks(t):
@@ -46,6 +59,7 @@ def main():
     rng = random.Random(date.today().isoformat())   # 種子=日期:同日可重現、逐日輪替
     sample = rng.sample(pool, min(SAMPLE, len(pool)))
     bad = []
+    checked = skipped = 0
     for s in sample:
         # ⚠️ 不能用 attractionId:網站 /artist/{數字} 是 legacy id,Discovery API 的
         # attraction id 是 K 開頭字串,兩套不通(首跑 15/15 全滅的教訓)。
@@ -54,13 +68,26 @@ def main():
             "apikey": key, "keyword": s["title"], "size": 100,
             "city": (s.get("city") or "").split(",")[0],
         })
-        try:
-            with urllib.request.urlopen(f"{API}?{q}", timeout=30) as r:
-                data = json.load(r)
-        except Exception as e:  # noqa: BLE001 — 網路錯不算資料錯
-            print(f"  [skip] API error for {s['id']}: {e}")
+        data = None
+        for attempt in range(4):   # 429 退避重試:額度撞頂時別把整批 skip 掉
+            try:
+                with urllib.request.urlopen(f"{API}?{q}", timeout=30) as r:
+                    data = json.load(r)
+                break
+            except urllib.error.HTTPError as e:
+                if e.code == 429 and attempt < 3:
+                    time.sleep(3 * (attempt + 1))
+                    continue
+                print(f"  [skip] API error for {s['id']}: {e}")
+                break
+            except Exception as e:  # noqa: BLE001 — 網路錯不算資料錯
+                print(f"  [skip] API error for {s['id']}: {e}")
+                break
+        if data is None:
+            skipped += 1
             time.sleep(0.3)
             continue
+        checked += 1
         evs = (data.get("_embedded") or {}).get("events") or []
         vt = toks(s.get("venue"))
         here = [e for e in evs
@@ -78,13 +105,22 @@ def main():
             att_name = ((here[0].get("_embedded") or {}).get("attractions") or [{}])[0].get("name") or ""
             if not (toks(s["title"]) & (toks(names) | toks(att_name))):
                 bad.append(f"標題零交集: 卡片 {s['title']!r} vs API {names[:60]!r} ({s['id']})")
+            # 任一 event 是音樂劇/劇場類就算合格;全部都是歌劇/芭蕾/古典才警告
+            gsets = [g for g in map(_genres, here) if g]
+            if gsets and all(g & _BAD_GENRES and "musical" not in " ".join(g) for g in gsets):
+                bad.append(f"疑非音樂劇: {s['title']!r} @ {s.get('venue')} "
+                           f"genre={sorted(set().union(*gsets))} ({s['id']})")
         time.sleep(0.25)
     if bad:
-        print(f"抽樣對照 FAIL:{len(bad)}/{len(sample)} 筆與源頭不符")
+        print(f"抽樣對照 FAIL:{len(bad)}/{checked} 筆與源頭不符(另 skip {skipped})")
         for b in bad:
             print("  " + b)
         sys.exit(1)
-    print(f"抽樣對照 PASS({len(sample)} 筆卡片 vs Ticketmaster API,零不符)")
+    if checked == 0:   # 一筆都沒驗到不准宣稱 PASS(429 全滅曾產生假 PASS)
+        print(f"抽樣對照 INCONCLUSIVE:{skipped}/{len(sample)} 全數 API 失敗,本輪未驗證任何卡片")
+        sys.exit(1)
+    print(f"抽樣對照 PASS(實驗 {checked}/{len(sample)} 筆 vs Ticketmaster API 零不符"
+          + (f",skip {skipped}" if skipped else "") + ")")
 
 
 if __name__ == "__main__":
