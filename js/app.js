@@ -143,6 +143,11 @@ function overlapsMonth(show) {
   if (start && start > me) return false;   // run begins after this month
   if (end) {
     if (end < ms) return false;            // run ended before this month
+    // 演完隔天就撤(2026-07-13 使用者指示):看「當前月」時,已結束的場次不再顯示——
+    // 站的招牌是「此刻正在上演」,演完還掛著=名不符實(Lexington 7/12 場 7/13 仍在圖上)。
+    // 用「觀看者本地今天」比對:台北 7/13 看不到 7/12 結束的劇;美國觀眾當地 7/12(末場
+    // 開演前)仍看得到——時區各自正確。過去月份由 archive 服務,未來月不受影響。
+    if (isThisMonth() && end < TODAY0) return false;
   } else {
     const horizon = new Date(CUR_Y, CUR_M + OPEN_RUN_HORIZON + 1, 0, 23, 59, 59, 999);
     if (ms > horizon) return false;        // open-ended: don't claim a run past the booking horizon

@@ -82,6 +82,15 @@ def clean_title(t):
     t = (t or "").strip()
     if re.search(r"do not purchase|test event", t, re.I):
         return ""  # junk/test listings
+    # 一般「機構 presents 劇名」前綴(The Lexington Theatre Co. presents Matilda 等):
+    # presents 前面含機構詞才剝,避免誤傷劇名本身含 presents 的罕見情況(2026-07-13)。
+    # 必須在 disney 前綴規則之前跑:「Picayune Theatre Company Presents Disney's Frozen」
+    # 剝完機構後才輪得到 disney's 規則。
+    m = re.match(r"^(.{3,60}?)\s+presents?\s+(.+)$", t, flags=re.I)
+    if m and re.search(r"theat(?:re|er)|company|\bco\b|productions?|players|opera|society|"
+                       r"guild|stage|academy|arts|university|college|school|series",
+                       m.group(1), flags=re.I):
+        t = m.group(2).strip()
     # promoter prefixes
     t = re.sub(r"^(disney\s+presents\s+|disney'?s\s+|cameron\s+mackintosh'?s\s+)", "", t, flags=re.I)
     # region / version parenthetical anywhere, e.g. "(Australia)", "(UK)", "(Touring)"
@@ -93,8 +102,8 @@ def clean_title(t):
         "", t, flags=re.I)
     # trailing accessibility words without a dash
     t = re.sub(r"\s+(relaxed performance|captioned.*|audio desc.*)$", "", t, flags=re.I)
-    # bare trailing "the musical"
-    t = re.sub(r"\s*(?:[-–:]\s*)?the\s+musical$", "", t, flags=re.I)
+    # bare trailing "the musical" / "the broadway musical"(無 dash 型,2026-07-13)
+    t = re.sub(r"\s*(?:[-–:]\s*)?the\s+(?:broadway\s+)?musical$", "", t, flags=re.I)
     t = t.strip(" -–:")
     if len(t) > 4 and t.isupper():       # de-shout ALL-CAPS titles
         t = t.title()
@@ -136,28 +145,46 @@ def fetch(params):
 
 # Ticketmaster Discovery caps deep paging at 1000 items (page*size); requesting
 # beyond that returns HTTP 400. With size=100 the last valid page is 9. Big
-# markets (US/GB) hold >1000 musical events, so we ALSO sub-segment them by city
-# to reach past the 1000 ceiling.
+# TM caps deep paging at 1000 items per query. 舊法=全國掃前 1000 筆(date asc)+大城市
+# 清單補洞——但非大城的遠期場次永遠掉在窗外(2026-07-13 使用者抓到 Lexington 的
+# Matilda 7/30 場漏抓:US 單月 musical events 1,400~2,200 筆,7 月中掃到月底就爆窗)。
+# 治本=自適應時間分片:窗內量 >SPLIT_AT 就對半切,遞迴到每片 ≤SPLIT_AT 再整片抓,
+# 未來量怎麼長都扛得住;城市補丁清單退役。
 MAX_PAGE = 9
-BIG_MARKET_CITIES = {
-    "US": ["New York", "Chicago", "Los Angeles", "Las Vegas", "Boston", "Washington",
-           "San Francisco", "Philadelphia", "Atlanta", "Seattle", "Toronto"],
-    "GB": ["London", "Manchester", "Birmingham", "Glasgow", "Edinburgh", "Leeds",
-           "Liverpool", "Bristol", "Cardiff", "Nottingham"],
-}
+SPLIT_AT = 900          # ≤900 整片抓(100×10 頁上限內留 buffer)
+SWEEP_MONTHS = 13      # 掃描地平線:今天起 13 個月(涵蓋隔年同月)
+MIN_SLICE_DAYS = 2     # 分片下限,防病態遞迴
 
 
-def sweep_country(cc, city=None):
-    """Yield raw musical events for one country (optionally one city), paginating
-    up to TM's 1000-item ceiling. A 400 past the ceiling ends paging gracefully."""
+def _window_total(cc, start, end):
+    """One cheap probe: how many musical events in [start, end)?"""
+    data = fetch({
+        "apikey": KEY, "classificationName": "Musical", "segmentName": "Arts & Theatre",
+        "countryCode": cc, "size": 1,
+        "startDateTime": start.strftime("%Y-%m-%dT00:00:00Z"),
+        "endDateTime": end.strftime("%Y-%m-%dT00:00:00Z"),
+    })
+    return (data.get("page") or {}).get("totalElements") or 0
+
+
+def _sweep_window(cc, start, end):
+    """Yield every musical event in [start, end), splitting the window in half
+    whenever it holds more than SPLIT_AT events (adaptive bisection)."""
+    total = _window_total(cc, start, end)
+    time.sleep(0.2)
+    if total > SPLIT_AT and (end - start).days > MIN_SLICE_DAYS:
+        mid = start + (end - start) / 2
+        yield from _sweep_window(cc, start, mid)
+        yield from _sweep_window(cc, mid, end)
+        return
     page = 0
     while page <= MAX_PAGE:
         params = {
             "apikey": KEY, "classificationName": "Musical", "segmentName": "Arts & Theatre",
             "countryCode": cc, "size": 100, "page": page, "sort": "date,asc",
+            "startDateTime": start.strftime("%Y-%m-%dT00:00:00Z"),
+            "endDateTime": end.strftime("%Y-%m-%dT00:00:00Z"),
         }
-        if city:
-            params["city"] = city
         try:
             data = fetch(params)
         except urllib.error.HTTPError as e:
@@ -171,6 +198,14 @@ def sweep_country(cc, city=None):
         if page >= info.get("totalPages", 0):
             break
         time.sleep(0.2)
+
+
+def sweep_country(cc):
+    """Adaptive time-sliced sweep over the whole horizon (today → +SWEEP_MONTHS)."""
+    from datetime import datetime, timedelta
+    start = datetime.utcnow() - timedelta(days=1)   # 含今天(UTC 邊界緩衝)
+    end = start + timedelta(days=SWEEP_MONTHS * 31)
+    yield from _sweep_window(cc, start, end)
 
 
 def main():
@@ -208,7 +243,13 @@ def main():
         # keep its distinguishing descriptors; only set when it adds info beyond the
         # canonical title (e.g. "Anastasia - The Broadway Musical (Australia)").
         disp = display_name(att.get("name") or ev.get("name") or "")
-        tour = disp if disp and disp.lower() != title.lower() else None
+        # attraction 名與(尚未英文化的)劇名零 token 重疊=呈現方/劇團名(「Lexington
+        # Theatre Co.」對「Matilda」),不是製作名 → 不當 tour_name(2026-07-13:clean_title
+        # 剝 presents 後 id 失去指紋,build_shows 端抓不到,必須在源頭擋)。此階段 title
+        # 仍是事件原文,在地語言製作名(La Novicia Rebelde)與 title 同文必有交集,不誤傷。
+        _tok = lambda x: set(re.findall(r"[a-z0-9]+", (x or "").lower())) - {
+            "the", "a", "an", "of", "and", "le", "les", "la", "de", "musical", "on", "in"}
+        tour = disp if disp and disp.lower() != title.lower() and (_tok(disp) & _tok(title)) else None
         key = (title.lower(), venue.lower())
         rec = runs.get(key)
         if not rec:
@@ -239,11 +280,8 @@ def main():
 
     for cc in COUNTRIES:
         try:
-            for ev in sweep_country(cc):              # country-wide (first 1000 by date)
+            for ev in sweep_country(cc):   # adaptive time-sliced full sweep(舊城市補丁退役)
                 add_event(ev, cc)
-            for city in BIG_MARKET_CITIES.get(cc, []):  # big markets: dig past the ceiling per city
-                for ev in sweep_country(cc, city):
-                    add_event(ev, cc)
             print(f"  {cc}: {len(runs)} cumulative runs")
         except Exception as e:  # noqa: BLE001
             print(f"  [{cc}] failed: {e}")

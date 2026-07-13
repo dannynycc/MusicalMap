@@ -233,7 +233,8 @@ NOTICE_RE = re.compile(
 # 年齡建議/購票規定字眼,避免誤砍真副標(如 "Sweeney Todd - The Demon Barber")。
 DASH_NOTICE_RE = re.compile(
     r"\s*[-–—:]\s*[^-–—:]*(?:recommended ages?|regardless of age|require[s]? (?:a )?ticket|"
-    r"all guests|babes in arms|no children under|ages? \d+ (?:and|&) (?:up|over)|premium seats?|vip seats?|18\+|21\+)[^-–—]*$", re.I)
+    r"all guests|babes in arms|no children under|ages? \d+ (?:and|&) (?:up|over)|premium seats?|vip seats?|18\+|21\+|"
+    r"come join)[^-–—]*$", re.I)   # "- Come Join Our Sisterhood!" 行銷尾巴(2026-07-13)
 
 
 # Trailing location/tour qualifier some sources append to disambiguate, e.g.
@@ -241,17 +242,24 @@ DASH_NOTICE_RE = re.compile(
 # already-listed New York run). Strip ONLY short location/tour qualifiers, never a
 # real parenthetical like "Two Strangers (Carry a Cake Across New York)".
 LOC_QUALIFIER_RE = re.compile(
-    r"\s*\(\s*(?:[A-Za-z]{2}|N\.?Y\.?C?|NYC|U\.?K\.?|U\.?S\.?A?|"
+    r"\s*\(\s*(?:[A-Za-z]{2,3}|N\.?Y\.?C?|NYC|U\.?K\.?|U\.?S\.?A?|"   # {2,3}: "(CBT)" 型劇院縮寫也剝(2026-07-13)
     r"broadway|west\s*end|national(?:\s*tour)?|north\s*american(?:\s*tour)?|"
-    r"u\.?s\.?\s*tour|uk\s*tour|on\s*tour|touring|"
+    r"u\.?s\.?\s*tour|uk\s*tour|on\s*tour|touring|tour|"
     r"[A-Za-z][\w .'’&-]*,\s*[A-Za-z]{2})\s*\)\s*$", re.I)  # "(New York, NY)" / "(Cleveland, OH)"
 
 # Performance-TYPE suffix after a dash (accessibility / special perfs) — not a
 # different show. "Paddington The Musical - Relaxed Performance" → "Paddington…".
 PERF_TYPE_RE = re.compile(
-    r"\s*[-–—:]\s*(?:relaxed|captioned|audio[- ]?describ\w*|signed|bsl|nzsl|asl|ad\s*&\s*touch tour|(?:sign|nzsl|bsl|asl)[- ]?interpreted|"
+    r"\s*[-–—:]\s*(?:relaxed|captioned|(?:open|closed)[- ]captions?|audio[- ]?describ\w*|signed|bsl|nzsl|asl|ad\s*&\s*touch tour|(?:sign|nzsl|bsl|asl)[- ]?interpreted|"
     r"matinee|opening night|press night|gala night|previews?|sensory|autism[- ]?friendly|"
-    r"dementia[- ]?friendly|touch tour|sing[- ]?along|auslan)\b.*$", re.I)
+    r"dementia[- ]?friendly|touch tour|sing[- ]?along|auslan|community night|smart stage)\b.*$", re.I)
+
+# 場次變體尾綴(無 dash 或括號型):caption/年齡限制/夏令營標記——同一製作的特別場,
+# 清掉才會併回本尊 group(2026-07-13 自適應分片掃入 San Jose Open Caption 等變體後補)。
+PERF_SUFFIX_RE = re.compile(
+    r"\s*(?:\((?:open|closed)\s+captions?(?:\s+performance)?\)|(?:open|closed)\s+captions?\s+performance|"
+    r"\(18\+\s*event\)|18\+\s*event|asl[-\s]*interpreted\s+performance|"
+    r"[-–—:]?\s*for\s+ages\s+\d+\+?|\(ages\s+\d+\+?\))\s*$", re.I)
 
 
 def clean_title(t):
@@ -261,8 +269,19 @@ def clean_title(t):
     # ("Lyric Theatre of Oklahoma presents Annie", "Ford's Theatre presents: Come
     # From Away") and "{Company} production of {Show}" ("NYT production of …").
     t = re.sub(r"^.{0,70}?\b(?:presents|presenta|pr[eé]sente|präsentiert|production of)\b\s*[:;]?\s+", "", t, flags=re.I)
+    t = t.strip().strip('"“”').strip()   # 整題被引號包住('"The Con Musical"')→剝殼
     # 已知「主辦品牌: 劇名」前綴(冒號前綴不能通殺——SIX: The Musical 是真劇名,逐一列舉)
-    t = re.sub(r"^(?:Magatzem d['’]Ars)\s*:\s*", "", t, flags=re.I)
+    t = re.sub(r"^(?:Magatzem d['’]Ars|Musical)\s*:\s*", "", t, flags=re.I)
+    # 「機構: 劇名」/「機構- 劇名」通用前綴——冒號/破折號前段含機構詞才剝
+    # (Summer Stock Stage: Dear Evan Hansen / Music Theater Works: West Side Story /
+    #  Slow Burn Theatre Co: Come From Away / Broadway at the Tennessee: & Juliet /
+    #  Virginia Musical Theatre- Disney's Frozen)。真劇名冒號(SIX: The Musical、
+    # Ragtime: The Musical)前段無機構詞,不受影響。(2026-07-13 自適應分片掃入後補)
+    _org = re.match(r"^(.{3,50}?)\s*[:\-–]\s*(.{3,})$", t)   # dash 無空格也接(Virginia Musical Theatre-Million Dollar Quartet)
+    if _org and re.search(
+            r"theat(?:re|er)|company|\bco\b\.?|productions?|players\b|opera\s+house|society|"
+            r"guild|\bstage\b|\bworks\b|academy|\bbroadway\s+(?:at|in|live)\b", _org.group(1), re.I):
+        t = _org.group(2).strip()
     # 「{Show} Presented By {社區劇團}」尾綴(TM 常見)→ 取劇名本體
     t = re.sub(r"\s+Presented By\s+.{2,60}$", "", t, flags=re.I)
     # 「{作品名}, The {人物} Musical」逗號功能性副標(bio-jukebox 慣例):
@@ -283,6 +302,7 @@ def clean_title(t):
         t = DASH_NOTICE_RE.sub("", t).strip()
         t = LOC_QUALIFIER_RE.sub("", t).strip()
         t = PERF_TYPE_RE.sub("", t).strip()                     # "- Relaxed Performance" etc.
+        t = PERF_SUFFIX_RE.sub("", t).strip()                   # "(Open Caption)" / "18+ Event" / "For Ages 3+"
         t = re.sub(r"\s*\((?:19|20)\d{2}\)\s*$", "", t).strip()  # trailing year, e.g. "(1993)"
         t = re.sub(r"\s+(?:19|20)\d{2}[\s!.]*$", "", t).strip()   # trailing bare year, e.g. "… 2027"
     return re.sub(r"\s{2,}", " ", t).strip()
@@ -370,6 +390,11 @@ NOT_MUSICAL_RE = re.compile(
     r"\bthe (?:songs|music|hits) of\b|\bsongs of\b|"
     r"\bdrag (?:show|along|race|brunch|queen)\b|"
     r"\bnonstop\b|koncert|\bbluey\b|night (?:at|of) the musicals?|"  # medley/gala nights; Bluey's Big Play
+    # 季票包/系列販售頁、跟唱放映、電影版放映、拼盤 revue、劇場夏令營(2026-07-13 自適應分片掃入後補)
+    r"season\s+tickets?\b|ticket\s+packages?\b|\bbroadway\s+season\b|anniversary\s+season|"
+    r"\bsing[- ]?along\b|\bpicture\s+show\b|\brevue\b|theat(?:re|er)\s+camp|summer\s+camp|"
+    # 英式賀歲 panto、premium 票種列名、酒吧加購體驗、Rockettes 歌舞秀(2026-07-13 第二輪)
+    r"\bpantomimes?\b|premium\s+tickets?\b|bar\s+experience\b|\brockettes\b|"
     # Ticketmaster upsell listings (not a show): "… Official BJCC Ticket+ Hotel Packages",
     # VIP/suite/parking packages, meet & greet.
     r"ticket\s*\+|\b(?:hotel|vip|suite|premium|parking)\s+packages?\b|"

@@ -11,6 +11,16 @@
 
 ---
 
+## [v2.31.0] - 2026-07-13 18:57
+### 大改 — TM 掃描改自適應時間分片:修 Matilda 漏抓(使用者抓到)+ 淨增 121 檔;演完隔天撤
+使用者抓到 Lexington Opera House 的「The Lexington Theatre Co. presents Matilda」(7/30–8/2,TM 分類 Musical)不在站上。根因:TM 每查詢 1,000 筆分頁天花板,美國單月 musical events 1,400~2,200 筆,舊掃法「全國 date asc 前 1000+大城市清單補洞」對非大城的月底後場次必漏。
+- **掃描重寫**:自適應時間分片(視窗 >900 筆對半切遞迴),BIG_MARKET_CITIES 補丁退役;ticketmaster.json 373→840 筆(+125%)。
+- **標題清洗強化**(新資料暴露的髒型):機構 presents/冒號/破折號前綴(Summer Stock Stage: Dear Evan Hansen→本尊)、caption/ASL/18+/年齡場次變體併回本group、(CBT)/(Tour) 尾綴、引號包題、行銷尾巴;trailing "The Broadway Musical"。
+- **非戲類防線擴充**:NOT_MUSICAL_RE 加 season ticket 包/sing-along/picture show(電影放映)/revue/劇場夏令營/panto/premium tickets/bar experience/Rockettes;not_musical.json +22 條(tribute/拼盤/話劇逐一查驗)。
+- **tour_name 治本第三刀**:clean_title 剝 presents 後 id 失去指紋(修 A 引入 B),presenter 名復發於 Lexington Matilda——改在 ticketmaster.py 源頭擋(attraction 名與劇名零 token 重疊→不進 tour_name;該階段 title 未英文化,La Novicia Rebelde/El Rey León 等在地語言名實測不誤傷);audit 對「同 attraction 借回的可信 (Touring) 名」誤報同步收斂。
+- **演完隔天撤**(使用者指示):前端 overlapsMonth 對「當前月」加「觀看者本地今天 > end_date 即隱藏」——台北 7/13 看不到 7/12 結束的場次,美國觀眾當地末場日仍看得到(時區各自正確);過去月 archive 檢視不受影響。
+- 總量:1,854 → **1,975 檔**(新增 63 個劇目 group:The Wiz 14 站/Shucked 7 站巡演、**Love Never Dies 倫敦 Palladium 回歸**、Galileo 百老匯新劇、Parade/Newsies/Fun Home/School of Rock 等 regional);全部通過 audit_dups+audit_tournames 雙稽核與人工逐 group 抽驗。
+
 ## [v2.30.7] - 2026-07-13 16:58
 ### 修正 — 「列剋星敦」:OpenCC 簡轉繁把「列克星敦」的「克星」詞判成「剋星」
 正式站驗收 v2.30.6 時抓到。全 variant 掃「剋」僅此一處(諾克斯維爾等不受影響);cities_tw 加 "Lexington": "列克星敦" 覆蓋。

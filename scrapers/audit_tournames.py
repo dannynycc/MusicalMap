@@ -13,6 +13,7 @@
 import json
 import re
 import sys
+import unicodedata
 from collections import defaultdict
 from pathlib import Path
 
@@ -21,6 +22,12 @@ DATA = Path(__file__).resolve().parent.parent / "data"
 
 PURE_COMPANY = {"宝塚歌劇"}
 GENERIC_RE = re.compile(r"\((touring|non-equity)\)$", re.I)
+_STOP = {"the", "a", "an", "of", "and", "le", "les", "la", "de", "musical", "on", "in"}
+
+
+def _tokens(t):
+    t = unicodedata.normalize("NFKD", t or "").encode("ascii", "ignore").decode()
+    return set(re.findall(r"[a-z0-9]+", t.lower())) - _STOP
 
 
 def art_id(s):
@@ -36,7 +43,11 @@ def main():
         sid, tn = s.get("id") or "", s.get("tour_name")
         # 場地冠名(venue 名自含 presented by,如 Roxian Theatre Presented By Citizens)排除
         venue_pb = "presented by" in (s.get("venue") or "").lower()
-        if tn and ("-presents-" in sid or "-presented-by-" in sid) and not venue_pb:
+        # presents 型 id 的 tour_name 若與劇名有 token 重疊=同 attraction 借回的製作名
+        # (Broadway In Boise presents Mrs. Doubtfire → 'Mrs. Doubtfire (Touring)'),可信;
+        # 零重疊(團名/系列名)才是滲入。
+        if (tn and ("-presents-" in sid or "-presented-by-" in sid) and not venue_pb
+                and not (_tokens(s.get("title")) & _tokens(tn))):
             bad.append(f"presenter 滲入: {s.get('title')!r} tour_name={tn!r} @ {s.get('venue')} ({sid})")
         if tn and tn in PURE_COMPANY:
             bad.append(f"純團名: {s.get('title')!r} tour_name={tn!r} @ {s.get('venue')} ({sid})")
