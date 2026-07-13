@@ -11,6 +11,15 @@
 
 ---
 
+## [v2.31.2] - 2026-07-13 19:29
+### 全站標題健檢 — Love Never Dies 只是樣本,主動掃出並修 15+ 同類病;健檢入 CI
+使用者質問「還有多少同類問題」——不再等餵案例,三角度全站掃描(未歸組 token 超集/同劇分裂/髒指紋)逐筆人工判讀:
+- **修正**:Walnut Street Theatre's 冠名 ×2(機構 possessive 前綴規則)、Kokandy Productions 直連前綴、CATS: The Jellicle Ball→歸 Cats、Roald Dahl's Charlie→歸組(作者冠名走 alias 不通殺)、法語版 Ménopause→歸組、Jeff Wayne's 三種拼寫分裂→統一(新 work)、R&H Oklahoma!/Irving Berlin's White Christmas 冠名分裂→統一(新 works;冠名屬官方題名者不剝、以 works alias 歸組)、Chilled/BSL­CAP/Sensory-Inclusive 場次變體殘留、西語 presenter 尾綴(- Barceló Producciones)、dash+城市尾段(- La Ràpita,城市全名尾段比對)。
+- **「Los」慘案**:「Los 2000 - El Musical」被 trailing-year 規則切成單字「Los」——加防呆(剝完 <5 字元即還原);該劇與 los 80s/90s 系列同屬年代金曲拼盤,一併入非戲類 pattern。
+- **假陽性判讀**(確認為不同作品,未動):Masquerade(魅影 immersive 重製)、The Rocky Horror Show⊅Rocky、Bear Grease、韓國 OZ/WILD WILD、Million Dollar Quartet Christmas(獨立續作)、Oliver Twist(Ghent 另一改編)等 16 對——全部進 `audit_titles.py` 的 KNOWN_DISTINCT 白名單。
+- **制度化**:`audit_titles.py` 入 CI(白名單外新發現即警告);待查存疑 1 筆(Tina the rock show experience,疑 tribute)已標記白名單註記。
+- 總量 1,975→1,959(拼盤/變體合併與排除)。
+
 ## [v2.31.1] - 2026-07-13 19:09
 ### 修正 — 作曲家冠名不是劇名:「Andrew Lloyd Webber's LOVE NEVER DIES - The Phantom Returns」歸位
 使用者判定:ALW 冠名=行銷前綴非劇名。clean_title 加 ALW 冠名剝除(⚠️ Rodgers+Hammerstein's 不剝——R&H 冠名對 Cinderella 是官方劇名一部分,僅列舉確定純冠名者);works.json Love Never Dies 加副標別名兜歸組。結果:title=Love Never Dies(吃到中文名「愛無止盡」與 work 資料),完整製作名保留在 tour_name(卡片大標與 TM 頁一致)。

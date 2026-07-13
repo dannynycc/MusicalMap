@@ -252,13 +252,14 @@ LOC_QUALIFIER_RE = re.compile(
 PERF_TYPE_RE = re.compile(
     r"\s*[-–—:]\s*(?:relaxed|captioned|(?:open|closed)[- ]captions?|audio[- ]?describ\w*|signed|bsl|nzsl|asl|ad\s*&\s*touch tour|(?:sign|nzsl|bsl|asl)[- ]?interpreted|"
     r"matinee|opening night|press night|gala night|previews?|sensory|autism[- ]?friendly|"
-    r"dementia[- ]?friendly|touch tour|sing[- ]?along|auslan|community night|smart stage)\b.*$", re.I)
+    r"dementia[- ]?friendly|touch tour|sing[- ]?along|auslan|community night|smart stage|"
+    r"chilled(?:\s+performance)?|bsl/cap)\b.*$", re.I)   # Chilled/BSL/CAP 場次(2026-07-13 全站健檢)
 
 # 場次變體尾綴(無 dash 或括號型):caption/年齡限制/夏令營標記——同一製作的特別場,
 # 清掉才會併回本尊 group(2026-07-13 自適應分片掃入 San Jose Open Caption 等變體後補)。
 PERF_SUFFIX_RE = re.compile(
     r"\s*(?:\((?:open|closed)\s+captions?(?:\s+performance)?\)|(?:open|closed)\s+captions?\s+performance|"
-    r"\(18\+\s*event\)|18\+\s*event|asl[-\s]*interpreted\s+performance|"
+    r"\(18\+\s*event\)|18\+\s*event|asl[-\s]*interpreted\s+performance|bsl/cap\s+performance|"
     r"[-–—:]?\s*for\s+ages\s+\d+\+?|\(ages\s+\d+\+?\))\s*$", re.I)
 
 
@@ -274,6 +275,16 @@ def clean_title(t):
     # 判定:冠名是行銷不是劇名)。⚠️ Rodgers+Hammerstein's 不剝——R&H 冠名對 Cinderella
     # 是官方劇名的一部分,通殺會把真劇名剝壞;僅列舉確定為純冠名者。
     t = re.sub(r"^andrew\s+lloyd\s+webber['’]s\s+", "", t, flags=re.I)
+    # 劇院/製作公司 possessive 冠名:「Walnut Street Theatre's THE ADDAMS FAMILY」→本體
+    # (前段以機構詞結尾才剝,作者冠名 Roald Dahl's 不受影響——由 works alias 處理)
+    t = re.sub(r"^[A-Z][\w .&'’-]{2,40}?(?:Theatre|Theater|Company|Co\.|Productions?|Players)['’]s\s+",
+               "", t)
+    # 機構 Productions 直連劇名(無 's):「Kokandy Productions Jekyll & Hyde」→本體
+    t = re.sub(r"^[A-Z][\w .&'’-]{2,40}?\s+Productions\s+(?=[A-Z])", "", t)
+    # 「Sensory-Inclusive:」場次變體前綴
+    t = re.sub(r"^sensory[- ]inclusive\s*:\s*", "", t, flags=re.I)
+    # 西語 presenter 尾綴:「El Mago de Oz, el musical - Barceló Producciones」
+    t = re.sub(r"\s*[-–]\s*[\w .&'’-]{2,40}?Produccion(?:es)?\s*$", "", t, flags=re.I)
     # 已知「主辦品牌: 劇名」前綴(冒號前綴不能通殺——SIX: The Musical 是真劇名,逐一列舉)
     t = re.sub(r"^(?:Magatzem d['’]Ars|Musical)\s*:\s*", "", t, flags=re.I)
     # 「機構: 劇名」/「機構- 劇名」通用前綴——冒號/破折號前段含機構詞才剝
@@ -308,7 +319,11 @@ def clean_title(t):
         t = PERF_TYPE_RE.sub("", t).strip()                     # "- Relaxed Performance" etc.
         t = PERF_SUFFIX_RE.sub("", t).strip()                   # "(Open Caption)" / "18+ Event" / "For Ages 3+"
         t = re.sub(r"\s*\((?:19|20)\d{2}\)\s*$", "", t).strip()  # trailing year, e.g. "(1993)"
-        t = re.sub(r"\s+(?:19|20)\d{2}[\s!.]*$", "", t).strip()   # trailing bare year, e.g. "… 2027"
+        # trailing bare year——防呆:剝完若只剩 <5 字元(「Los 2000」→「Los」慘案,2026-07-13)
+        # 表示「年份」其實是劇名一部分,還原不剝
+        _t2 = re.sub(r"\s+(?:19|20)\d{2}[\s!.]*$", "", t).strip()
+        if len(_t2) >= 5:
+            t = _t2
     return re.sub(r"\s{2,}", " ", t).strip()
 
 
@@ -333,6 +348,14 @@ def strip_city_qualifier(title, city):
             t2 = re.sub(rf"\s*[-–—,]?\s+{re.escape(c)}\s*$", "", title, flags=re.I).strip()
             if len(t2) >= 6 and t2 != title:
                 title = t2
+        # 城市名「尾段」也比對(2026-07-13:「Princess Story - La Ràpita」的城市全名是
+        # Sant Carles de la Ràpita,完整比對接不到)——只在 dash/逗號分隔時剝(裸接太危險)
+        c_words = c.split()
+        if len(c_words) >= 3:
+            tail = " ".join(c_words[-2:])
+            t3 = re.sub(rf"\s*[-–—,]\s*(?:la\s+|el\s+)?{re.escape(tail)}\s*$", "", title, flags=re.I).strip()
+            if len(t3) >= 6 and t3 != title:
+                title = t3
     return title
 
 
@@ -399,6 +422,8 @@ NOT_MUSICAL_RE = re.compile(
     r"\bsing[- ]?along\b|\bpicture\s+show\b|\brevue\b|theat(?:re|er)\s+camp|summer\s+camp|"
     # 英式賀歲 panto、premium 票種列名、酒吧加購體驗、Rockettes 歌舞秀(2026-07-13 第二輪)
     r"\bpantomimes?\b|premium\s+tickets?\b|bar\s+experience\b|\brockettes\b|"
+    # 西語年代金曲拼盤秀(los 80s/90s/2000 系列,2026-07-13 全站健檢)
+    r"(?:musical\s+de|noche\s+de|regresa\s+a)\s+los\s+[\d\s]?0|los\s+2000\b|los\s+\d0s[\s-]|"
     # Ticketmaster upsell listings (not a show): "… Official BJCC Ticket+ Hotel Packages",
     # VIP/suite/parking packages, meet & greet.
     r"ticket\s*\+|\b(?:hotel|vip|suite|premium|parking)\s+packages?\b|"

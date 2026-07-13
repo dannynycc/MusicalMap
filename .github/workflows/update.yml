@@ -110,6 +110,8 @@ jobs:
           python scrapers/_run.py scrapers/audit_geo.py || echo "::warning::geo audit failed to run"
           # tour_name 體檢:presenter 名滲入/跨 attraction 撞名(2026-07-13 Lexington/Arena Spectacular 掛羊頭事件後入 CI)
           python scrapers/_run.py scrapers/audit_tournames.py || echo "::warning::tour_name audit flagged presenter/cross-attraction issues"
+          # 標題健檢:未歸組/同劇分裂/髒指紋(2026-07-13 Love Never Dies 未歸組事件後入 CI;誤報請補 KNOWN_DISTINCT)
+          python scrapers/_run.py scrapers/audit_titles.py || echo "::warning::title audit flagged ungrouped/split/dirty titles"
           # Accumulate today's snapshot into the immutable historical archive
           # (separate stateful layer; never deletes closed runs). Pure build above
           # stays stateless. See scrapers/archive.py.
