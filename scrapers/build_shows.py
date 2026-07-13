@@ -615,9 +615,14 @@ def main():
     # shows that title patterns can't catch (verified by research). Match on _norm.
     nmt_path = DATA / "not_musical.json"
     if nmt_path.exists():
-        excl = {_norm(t) for t in json.loads(nmt_path.read_text(encoding="utf-8")).get("titles", [])}
+        _nmt = json.loads(nmt_path.read_text(encoding="utf-8"))
+        excl = {_norm(t) for t in _nmt.get("titles", [])}
+        # 場地範圍排除(2026-07-13 Carmen 案:Cincinnati Music Hall 的 Carmen=歌劇要踢,
+        # 但布達佩斯輕歌劇院的 Carmen=Frank Wildhorn 音樂劇是正貨——同名不能全域殺)
+        excl_tv = {(_norm(t), v.lower()) for t, v in _nmt.get("title_venue", [])}
         drop = [i for i, s in by_id.items()
-                if _norm(s.get("title", "")) in excl or s.get("group") in excl]
+                if _norm(s.get("title", "")) in excl or s.get("group") in excl
+                or (_norm(s.get("title", "")), (s.get("venue") or "").lower()) in excl_tv]
         for i in drop:
             del by_id[i]
         if drop:

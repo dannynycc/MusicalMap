@@ -11,6 +11,13 @@
 
 ---
 
+## [v2.31.5] - 2026-07-13 21:23
+### 修正 — Carmen 歌劇踢出(場地級排除)+34 張匈牙利縮圖換原圖+BOOP!/WIR SIND AM LEBEN 官圖
+- **Carmen**(使用者抓到):Cincinnati Music Hall 場=歌劇(Cincinnati Opera 夏季)→踢;**布達佩斯輕歌劇院場查證為 Frank Wildhorn 音樂劇(2024 首演)=正貨保留**——同名跨型態不能全域殺,not_musical.json 新增 `title_venue` 場地級排除格式。歌劇名單全站掃描:僅此一筆混入。
+- **programinfo.hu 縮圖病**(使用者抓到 Rebecca 等糊圖):easteurope scraper 抓的 og:image 是 222×131 縮圖——URL 的 `-222-131-` 換 `-original-` 即原圖。scraper 治本+資料檔 36 處立即替換(Evita/Wicked Szeged/Pretty Woman/Cats Budapest 等 34 張卡受惠),抽 3 張 original 驗 200 image/webp。
+- **釘圖**:BOOP! The Musical(6 張庫存圖→官方 key art)、WIR SIND AM LEBEN(無圖→Stage Entertainment 官圖),連同使用者提供之 Made in Hungária/Valahol Európában(隨縮圖修復自動升原圖)。
+- 44 劇官圖批次補完中(agent 蒐集+逐張驗證)。總量 1,956→1,955。
+
 ## [v2.31.4] - 2026-07-13 21:01
 ### 修正+機制 — TM 分類庫存圖(/dam/c/)盤點與釘圖替換;A Little Night Music 換 MTI 官圖
 使用者指定 A Little Night Music 換 MTI 官方 key art(已驗 200/image/jpeg)。順勢建通用機制:TM 對無專屬圖 event 回 `/dam/c/` 分類 stock art(專屬圖=/dam/a/)——**works.json 釘圖(poster 非 auto)自動替換該組「無圖或庫存圖」的紀錄**,各地真專屬圖不動;庫存圖同時被排除於海報繼承來源(不擴散 fallback)。

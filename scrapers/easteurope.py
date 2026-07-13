@@ -139,6 +139,10 @@ def main():
     shows = []
     for s in rows:
         sid = "ee-" + hashlib.md5(f"{s['source']}|{s['title']}|{s['venue']}".encode()).hexdigest()[:8]
+        # programinfo.hu 的 og:image 是 222×131 縮圖(-222-131-);同路徑換 -original- 即原圖
+        # (2026-07-13 使用者抓到 Rebecca 等卡片糊圖,全站 34 張同病)
+        if s.get("image") and "programinfo.hu" in s["image"]:
+            s["image"] = re.sub(r"-\d+-\d+-(\d+\.webp)$", r"-original-\1", s["image"])
         shows.append({
             "id": sid, "title": s["title"], "title_en": "",
             "venue": s["venue"], "city": s["city"], "country": s["country"],
