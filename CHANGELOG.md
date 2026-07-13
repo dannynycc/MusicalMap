@@ -11,6 +11,10 @@
 
 ---
 
+## [v2.31.12] - 2026-07-14 01:36
+### Masquerade 場地名二修
+- v2.31.11 改「Masquerade NYC」改過頭——使用者要的是去掉「(immersive)」註解、保留地址。定為「Masquerade — 218 W 57th St」。
+
 ## [v2.31.11] - 2026-07-14 01:35
 ### Masquerade 場地名正名
 - 場地欄「Masquerade — 218 W 57th St (immersive)」是舊 override 塞的地址+註解(當時查無正式場館名)——場地欄只放場地名,改為 TM 註冊的正式場地名「Masquerade NYC」。地址與沉浸式屬性記在 overrides `_why`。
