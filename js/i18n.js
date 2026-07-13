@@ -44,7 +44,7 @@
       date_from: "{s} 起",
       official: "官網",
       tickets: "售票",
-      get_tickets: "購票",
+      get_tickets: "票務資訊",   // 2026-07-13 使用者指示:弱化購買意圖(站定位=資訊地圖非賣票仲介),原「購票」
       buy_official: "前往官網購票 →",
       buy_tickets: "前往售票頁 →",
       unverified_demo: "未驗證（示範資料）",
@@ -181,7 +181,7 @@
       date_from: "From {s}",
       official: "Official",
       tickets: "Tickets",
-      get_tickets: "Get Tickets",
+      get_tickets: "Tickets",   // 2026-07-13:弱化 CTA;英語圈慣例單字 "Tickets"(原 "Get Tickets")
       buy_official: "Official tickets →",
       buy_tickets: "Get tickets →",
       unverified_demo: "Unverified (sample data)",
@@ -302,6 +302,7 @@
       [/储存/g, "存储"], [/透过/g, "通过"],
       [/即时/g, "实时"], [/隐私权政策/g, "隐私政策"],
       [/示范资料/g, "示例数据"], [/范例/g, "示例"],
+      [/资讯/g, "信息"],   // 台「資訊」→陸「信息」(票務資訊→票务信息等)
     ];
     const cnFix = (s) => { for (const [re, to] of CN_FIX) s = s.replace(re, to); return s; };
     if (LANG === "zh-hans" && !DICT["zh-hans"]) {
