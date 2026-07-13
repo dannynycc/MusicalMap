@@ -28,6 +28,11 @@
   <link rel="alternate" hreflang="zh-Hans" href="https://themusicalmap.com/zh-hans/" />
   <link rel="alternate" hreflang="zh-Hant" href="https://themusicalmap.com/zh-hant/" />
   <link rel="alternate" hreflang="x-default" href="https://themusicalmap.com/" />
+  <!-- ⚠️ 正式站上這頁幾乎不會被看到:root 的語言分流已改在 Cloudflare Redirect Rules
+       (zone themusicalmap.com → Rules → root-lang-redirect-{zh-hant,zh-hans,en-default},
+       按 Accept-Language 302,2026-07-13 設定)。原因:這頁的 JS 變身讓 Googlebot 把
+       root 渲染成 /en/ 同內容 → /en/ 被判重複頁不收錄(GSC 實查)。下方 JS 僅作
+       CF 規則失效時的 fallback;動語言判斷邏輯時兩處要一起改。 -->
   <script>
     (function () {
       var v = localStorage.getItem("mm_variant");

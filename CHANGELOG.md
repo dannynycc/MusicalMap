@@ -11,6 +11,14 @@
 
 ---
 
+## [v2.30.1] - 2026-07-13 11:44
+### SEO 修根 — root canonical 衝突:/en/ 未被 Google 收錄(GSC 實查),root 改 CF 邊緣 302 分流
+使用者問「GSC 不是有做嗎」→ 實查 GSC 發現:驗證+sitemap 有做(7/9),但**沒人回來看結果**——`/en/` 被判「重複網頁;Google 選擇的標準網頁和使用者的選擇不同」**未收錄**(root 的 JS 語言偵測頁被 Googlebot 渲染成與 /en/ 相同內容);root、/zh-hant/、/zh-hans/ 則正常在索引中(各 300 個 Event 有效)。
+- **修法**:root 語言分流從「JS 原地變身」改為 **Cloudflare Redirect Rules 邊緣 302**(zone 層 3 條規則:zh-tw/hk/mo/hant→/zh-hant/、其餘 zh→/zh-hans/、兜底→/en/;302 因語言協商不可用 301 快取)。`index.html` 的 JS 偵測頁保留當 CF 失效 fallback,並加註解。
+- **過程抓到並修掉一個規則 bug**:CF `accepted_languages` 欄位解析不了三段式標籤(`zh-Hant-TW`→空陣列→掉到 /en/ 兜底),16 情境矩陣測出後改用原始 `accept-language` 標頭 `starts_with` 判斷,重測 16/16 全過(含 zh-Hant-TW/zh-Hans-CN/無標頭/ja/fr/ko;語言頁本身不受影響)。
+- GSC 已對 `/en/` 按「要求建立索引」(加入優先檢索佇列);/zh-hant/、/zh-hans/ 已在索引中無需動作。收錄結果需數天~數週,屆時回 GSC 驗收。
+- 附帶盤點:robots.txt 對 GPTBot/OAI/ClaudeBot 全開、sitemap 15 頁讀取成功——技術面無其他障礙;「Gemini 查無站」主因即 /en/ 未收錄+零 backlink。
+
 ## [v2.30.0] - 2026-07-13 10:43
 ### 重設計 — 分享頁「成就徽章」與「你是什麼樣的劇迷」(使用者批「為顯示而顯示」,4 個調查 agent 定案)
 使用者抓到三個病:①「≥4 國=環球旅人」——台日韓中同在亞洲也算環球;②滑桿只有 14%/86% 兩檔,3 國(差 1 國跨線)與 1 國都貼死「在地常客」極端;③徽章=統計數字換皮,兩枚永遠拿不到金、0 值照顯示。派 4 個 agent 調查(競品 persona/競品徽章/codebase 資料盤點/音樂劇地理門檻)後整案重寫:
