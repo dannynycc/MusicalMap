@@ -11,6 +11,10 @@
 
 ---
 
+## [v2.30.7] - 2026-07-13 16:58
+### 修正 — 「列剋星敦」:OpenCC 簡轉繁把「列克星敦」的「克星」詞判成「剋星」
+正式站驗收 v2.30.6 時抓到。全 variant 掃「剋」僅此一處(諾克斯維爾等不受影響);cities_tw 加 "Lexington": "列克星敦" 覆蓋。
+
 ## [v2.30.6] - 2026-07-13 16:55
 ### 修正 — 呈現方/團名蓋掉劇名(使用者抓到 Lexington「Lexington Theatre Co.」當大標)+ tour_name 稽核入 CI
 v2.30.5 修了「借錯名」,這次修「名字本身就不是製作名」:TM「XX presents YY」型 event 的 attraction 是呈現方(劇團/系列),ticketmaster 系 scraper 把 attraction 名當 tour_name → 卡片大標顯示「Lexington Theatre Co.」「The Encore Series」蓋掉劇名;寶塚另有 10 筆純團名「宝塚歌劇」同病。
