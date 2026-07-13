@@ -11,6 +11,14 @@
 
 ---
 
+## [v2.30.5] - 2026-07-13 16:30
+### 修正(嚴重) — tour_name 跨製作污染:檀香山 Les Mis 掛「Arena Spectacular」名、實際 TM 連結是一般巡演(使用者抓到=掛羊頭)
+根因:`build_shows` 的 tour_name backfill 以「同 group 的美加巡演站」為借名單位+眾數挑名——錯誤假設同 group=同一巡演。Les Mis 同時有一般巡演(TM attraction 34216)、Arena Spectacular(Radio City,manual)與各地自製,Radio City 的正名被借給 Diamond Head(檀香山)等 4 個不相干站;Dirty Rotten Scoundrels 的 Biddeford 站同病借到別團「The Encore Series」。
+- **修法:借名單位收緊為「同 TM attraction id」**(從 ticket/attraction URL 提取 /artist/{id};同 attraction=同一製作=與售票連結必然一致);無 id 或無同 id 有名站→寧缺勿錯不借(缺 tour_name 只是退回顯示劇名)。
+- 驗證:重跑 build_shows 後 Les Mis 各站——Radio City 保留 Arena Spectacular ✓、Diamond Head/Phoenix/La Mirada=「Les Miserables (Touring)」與 TM 頁標題一字不差 ✓、Jefferson(另一 attraction)=None 顯示劇名 ✓;全站回歸掃描「特定製作名橫跨多 attraction」殘留 0。backfill 數 128 筆(原 borrow-by-group 版更多,收緊後每筆都同 attraction 可證)。
+### 補充 — 城市中文對照補 40 城(使用者抓到檀香山缺翻)
+`i18n_maps.json` cities 補 Honolulu(檀香山)等 40 個常見城市(桑德蘭/米爾頓凱恩斯/瓦倫西亞/巴勒莫/波隆那/密西沙加/小石城…),cities_tw 補 7 個台灣異譯(波夕/德罕/威明頓/哈特福/布魯明頓/波隆那/奧斯特拉瓦)。附帶查證:先前掃到的「Boston, MA 未翻」是掃描腳本沒剝州後綴的誤報,gen_variants 的 place() 本來就會剝——真缺口只有表內沒有的裸城市名。
+
 ## [v2.30.4] - 2026-07-13 14:38
 ### 文案 — 地圖彈窗票務標題弱化購買意圖:「購票/Get Tickets」→「票務資訊/Tickets」
 使用者指示:站定位=資訊地圖非賣票仲介,CTA 意圖不要那麼強。`js/i18n.js` get_tickets 三語改字(繁「票務資訊」/英「Tickets」=英語圈慣例單字);兩份 CN_FIX(i18n.js+mm-strings.js)同步加「资讯→信息」——簡中得「票务信息」,附帶修正 terms/privacy 靜態頁 4 處「资讯」為大陸標準用語(gen_pages 吃同一詞彙表,重產生效)。

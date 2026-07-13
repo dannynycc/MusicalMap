@@ -991,23 +991,34 @@ def main():
         if n_lt:
             print(f"  set local production names on {n_lt} record(s)")
 
-    # Backfill missing tour_name on US/Canada tour legs from a sibling stop of the same
-    # group (same national tour, scraped from a source that didn't carry the name), so
-    # every leg shows the production's real name instead of the bare show title.
+    # Backfill missing tour_name on US/Canada tour legs — but ONLY from a sibling stop of
+    # the SAME Ticketmaster attraction (artist id in ticket/attraction URL). 借名單位曾是
+    # 「同 group」,錯誤假設同 group=同一巡演:Les Mis 同時有一般巡演(34216)、Arena
+    # Spectacular(Radio City,manual)與各地自製,眾數借名把「— The Arena Spectacular」
+    # 掛到 Diamond Head 等 4 個不相干站(2026-07-13 使用者抓到,popup 標題與 TM 連結賣的
+    # 製作不符=掛羊頭)。同 attraction id=同一製作,與售票連結必然一致才准借;無 id 或
+    # 無同 id 有名站→寧缺勿錯(缺 tour_name 只是不顯示副標)。
+    import re as _re
     from collections import Counter
-    grp_tn = {}
+
+    def _attr_id(s):
+        m = _re.search(r"/artist/(\d+)", s.get("attraction_url") or s.get("ticket_url") or "")
+        return m.group(1) if m else None
+    attr_tn = {}
     for s in by_id.values():
         if s.get("type") == "tour" and country_norm(s.get("country")) in ("us", "canada") and s.get("tour_name"):
-            grp_tn.setdefault(s["group"], Counter())[s["tour_name"]] += 1
+            aid = _attr_id(s)
+            if aid:
+                attr_tn.setdefault(aid, Counter())[s["tour_name"]] += 1
     n_bf = 0
     for s in by_id.values():
         if s.get("type") == "tour" and country_norm(s.get("country")) in ("us", "canada") and not s.get("tour_name"):
-            names = grp_tn.get(s["group"])
+            names = attr_tn.get(_attr_id(s))
             if names:
                 s["tour_name"] = names.most_common(1)[0][0]
                 n_bf += 1
     if n_bf:
-        print(f"  backfilled tour_name on {n_bf} record(s) from sibling tour stops")
+        print(f"  backfilled tour_name on {n_bf} record(s) from same-attraction tour stops")
 
     shows = list(by_id.values())
 
