@@ -98,6 +98,9 @@ window.MM = (function () {
   ];
   // fix one stray coord (Lion King NYC)
   shows[4].lat = 40.7588; shows[4].lng = -73.9855;
+  // demo 劇種傳統(tag):真實紀錄由 catalog 對映烤入;demo 手動補(全英美系,除了 Elisabeth=德奧)
+  shows.forEach(s => { if (s.tag == null) s.tag = 'Broadway/West End'; });
+  shows[10].tag = '德奧音樂劇';   // id:11 Elisabeth
 
   const WEEKDAYS = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
   const WEEKDAYS_ZH = ['日','一','二','三','四','五','六'];
@@ -164,51 +167,142 @@ window.MM = (function () {
     };
   }
 
-  // Spotify-Wrapped-style 4-letter "Theatregoer Personality"（只看已發生的場次）
+  // 國家→洲(劇迷類型的地理廣度軸)。音樂劇重鎮叢聚少數洲板塊,「環球」以跨洲數認定
+  // 而非國數(台日韓中 4 國同在亞洲≠環球,2026-07-13 調查定案)。鍵同時涵蓋 catalog
+  // 短名(UK/USA)與 normCountry 後的全名,me.html/u-view 兩邊餵進來的值都吃。
+  const CONT = {
+    'USA':'NA','United States':'NA','US':'NA','Canada':'NA','Mexico':'NA',
+    'Brazil':'SA','Argentina':'SA','Chile':'SA','Peru':'SA','Colombia':'SA',
+    'UK':'EU','United Kingdom':'EU','Ireland':'EU','France':'EU','Germany':'EU','Austria':'EU',
+    'Switzerland':'EU','Spain':'EU','Portugal':'EU','Italy':'EU','Netherlands':'EU','Belgium':'EU',
+    'Sweden':'EU','Norway':'EU','Denmark':'EU','Finland':'EU','Poland':'EU','Czech Republic':'EU',
+    'Hungary':'EU','Greece':'EU','Slovenia':'EU','Romania':'EU','Croatia':'EU','Slovakia':'EU',
+    'Estonia':'EU','Latvia':'EU','Lithuania':'EU','Bulgaria':'EU','Serbia':'EU','Russia':'EU',
+    'Ukraine':'EU','Jersey':'EU',
+    'Taiwan':'AS','Japan':'AS','South Korea':'AS','Korea':'AS','China':'AS','Hong Kong':'AS',
+    'Macau':'AS','Singapore':'AS','Malaysia':'AS','Thailand':'AS','Philippines':'AS',
+    'Indonesia':'AS','Vietnam':'AS','India':'AS','Israel':'AS','Turkey':'AS',
+    'United Arab Emirates':'AS','UAE':'AS',
+    'Australia':'OC','New Zealand':'OC',
+    'South Africa':'AF','Egypt':'AF',
+  };
+
+  // 「你是什麼樣的劇迷」— 三條真資料軸,連續光譜(只看已發生的場次)。
+  // 舊版問題(2026-07-13 重設計):era/scale 軸只有 demo 有資料=真人永遠看不到;
+  // 「≥4 國=環球旅人」同洲也算環球;滑桿只有 14/86 兩檔假裝連續。全部換掉。
   function personality(){
     const past = pick('past');
     const st = stats('past');
-    const repeatRatio = st.total ? st.unique/st.total : 1;   // <0.85 → loyalist
-    // era/scale 只有「劇庫範例」才有；使用者真實 mm-log 沒這欄 → 不假裝分析這兩軸
-    const hasEra = past.some(s=>s.era==='modern'||s.era==='classic');
-    const hasScale = past.some(s=>s.scale==='spectacle'||s.scale==='intimate');
-    const modern = past.filter(s=>s.era==='modern').length;
-    const classic = past.filter(s=>s.era==='classic').length;
-    const spectacle = past.filter(s=>s.scale==='spectacle').length;
-    const intimate = past.filter(s=>s.scale==='intimate').length;
-    // i18n:頁面有載 js/mm-strings.js(公開頁 u.html)就用其字典;沒載(me.html)沿用中文字面
+    // i18n:頁面有載 js/mm-strings.js 就用其字典;沒載沿用中文字面
     const L=(k,zh)=>{ if(window.MM_T){const v=window.MM_T(k); if(v&&v!==k)return v;} return zh; };
     const LN=(k,zh,vars)=>{ let s=L(k,zh); Object.entries(vars||{}).forEach(([n,v])=>{ s=s.replace('{'+n+'}',v); }); return s; };
-    // 資料不足門檻:少於 3 齣算不出有意義的類型(否則 0 齣會顯示「你在 0 個地方看過戲，幾乎每齣都嚐鮮」等無意義句)
+    // 資料不足門檻:少於 3 齣算不出有意義的類型
     if(past.length < 3){
       return { enough:false, code:'', nickname:'', axes:[],
         aura:(past[0]||shows[0]||{}).color||'#7c5cff', aura2:'#6A0DAD',
         blurb: LN('p_need','再記錄 {n} 齣，這裡就會浮現你的劇迷輪廓。',{n:3-past.length}) };
     }
-    const NAMES = {G:L('p_G','環球旅人'),L:L('p_L','在地常客'),Y:L('p_Y','念舊死忠'),X:L('p_X','嚐鮮探索'),M:L('p_M','當代派'),C:L('p_C','經典派'),S:L('p_S','大製作控'),I:L('p_I','小劇場魂')};
-    const globe = st.countries>=4, loyal = repeatRatio<0.85;
-    const axes = [
-      [NAMES.G,NAMES.L, globe, LN('p_n_countries',`{n} 國`,{n:st.countries})],
-      [NAMES.Y,NAMES.X, loyal, LN('p_repeat',`重看率 {n}%`,{n:Math.round((1-repeatRatio)*100)})],
-    ];
-    const nick = [NAMES[globe?'G':'L']];
-    const parts = [
-      globe ? LN('p_blurb_globe','你橫跨 {n} 國追劇',{n:st.countries})
-            : (st.countries>1 ? LN('p_blurb_local_country','你在 {n} 個國家看過戲',{n:st.countries})
-                              : LN('p_blurb_local_place','你在 {n} 個地方看過戲',{n:st.countries})),
-      loyal ? L('p_blurb_loyal','願意為愛的戲二刷三刷') : L('p_blurb_fresh','幾乎每齣都嚐鮮'),
-    ];
-    if(hasEra){axes.push([NAMES.M,NAMES.C, modern>=classic, LN('p_axis_era','{m} 現代 / {c} 經典',{m:modern,c:classic})]);nick.push(NAMES[modern>=classic?'M':'C']);parts.push(modern>=classic?L('p_blurb_modern','口味偏當代'):L('p_blurb_classic','鍾情經典'));}
-    if(hasScale){axes.push([NAMES.S,NAMES.I, spectacle>=intimate, LN('p_axis_scale','{s} 大 / {i} 小',{s:spectacle,i:intimate})]);nick.push(NAMES[spectacle>=intimate?'S':'I']);parts.push(spectacle>=intimate?L('p_blurb_spectacle','也擋不住大製作的聲光'):L('p_blurb_intimate','更愛小劇場的親密'));}
-    if(nick.length<2)nick.push(NAMES[loyal?'Y':'X']);   // 沒有 era/scale 時用「重看率」補第二段暱稱
-    const code = [globe?'G':'L', loyal?'Y':'X', hasEra?(modern>=classic?'M':'C'):'', hasScale?(spectacle>=intimate?'S':'I'):''].join('');
+    const clampPos = p => Math.max(6, Math.min(94, Math.round(p)));   // 圓點半徑內縮,貼邊不出血
+    const axes = [], nick = [], parts = [];
+
+    // ── 軸1 地理廣度:洲數為主、國數為輔,5 檔 ──
+    const ctry = new Set(past.map(s=>s.country).filter(Boolean));
+    const cont = new Set([...ctry].map(c=>CONT[c]||'').filter(Boolean));
+    const nC = ctry.size, nK = cont.size;
+    const geoT = nK>=3 ? 4 : nK===2 ? 3 : nC>=3 ? 2 : nC===2 ? 1 : 0;
+    const GEO = [L('p_geo0','在地扎根'),L('p_geo1','跨境嚐鮮'),L('p_geo2','區域旅人'),L('p_geo3','洲際旅人'),L('p_geo4','環球旅人')];
+    axes.push([GEO[0], GEO[4], clampPos([8,29,50,71,92][geoT]),
+      GEO[geoT]+' · '+LN('p_geo_ev','{n} 國 · {m} 洲',{n:nC,m:nK})]);
+    nick.push(GEO[geoT]);
+    parts.push([
+      L('p_geo_b0','足跡都在同一個國家'),
+      L('p_geo_b1','已經跨出國門看戲'),
+      LN('p_geo_b2','你在 {n} 個國家看過戲，把一整個區域當主場',{n:nC}),
+      LN('p_geo_b3','足跡橫跨 {m} 大洲',{m:nK}),
+      LN('p_geo_b4','足跡橫跨 {m} 大洲，名副其實看遍世界',{m:nK}),
+    ][geoT]);
+
+    // ── 軸2 重看習性:4 檔+最小樣本護欄(總場次<5 小樣本噪音大,不發此軸) ──
+    const rate = st.total ? 1 - st.unique/st.total : 0;
+    const maxRep = st.topShows.length ? st.topShows[0][1] : 0;
+    let repT = -1;
+    if(st.total >= 5){
+      repT = (rate>0.5 || maxRep>=5) ? 3 : rate>=0.3 ? 2 : rate>=0.1 ? 1 : 0;
+      const REP = [L('p_rep0','嚐鮮探索'),L('p_rep1','回頭客'),L('p_rep2','念舊死忠'),L('p_rep3','N 刷狂熱')];
+      let pos = clampPos(rate/0.6*88 + 6);                       // 重看率 0→6%、60%+→94%,連續定位
+      if(repT===3) pos = Math.max(pos, 85);                      // 單劇 ≥5 刷即狂熱,位置跟上檔位
+      const ev = (repT===3 && maxRep>=5)
+        ? LN('p_rep_ev_max','同一齣刷了 {x} 次',{x:maxRep})
+        : LN('p_repeat','重看率 {n}%',{n:Math.round(rate*100)});
+      axes.push([REP[0], REP[3], pos, REP[repT]+' · '+ev]);
+      nick.push(REP[repT]);
+      parts.push([
+        L('p_rep_b0','幾乎每齣都嚐鮮'),
+        L('p_rep_b1','偶爾為愛回鍋'),
+        L('p_rep_b2','願意為愛的戲二刷三刷'),
+        LN('p_rep_b3','同一齣可以刷上 {x} 次',{x:Math.max(maxRep,5)}),
+      ][repT]);
+    }
+
+    // ── 軸3 劇種口味:英美主流 vs 其他傳統(catalog tag 烤入;有 tag 的 ≥3 場才發) ──
+    const tagged = past.filter(s=>s.tag);
+    if(tagged.length >= 3){
+      const anglo = tagged.filter(s=>s.tag==='Broadway/West End').length;
+      const ratio = anglo/tagged.length;
+      const tradT = ratio>=0.7 ? 0 : ratio>0.3 ? 1 : 2;
+      const TRAD = [L('p_trad0','英美主流派'),L('p_trad1','跨界雜食'),L('p_trad2','多元劇種迷')];
+      axes.push([L('p_trad_l','英美主流'), L('p_trad_r','多元劇種'), clampPos((1-ratio)*100),
+        TRAD[tradT]+' · '+LN('p_trad_ev','英美 {a} / 其他 {b}',{a:anglo,b:tagged.length-anglo})]);
+      if(nick.length<2) nick.push(TRAD[tradT]);
+      parts.push([
+        L('p_trad_b0','口味以英美主流為本'),
+        L('p_trad_b1','英美與各國原創都吃'),
+        L('p_trad_b2','偏愛英美之外的各國劇種'),
+      ][tradT]);
+    }
+
     return {
       enough:true,
-      code, nickname: nick.join(' · '),   // 間隔號用「·」(「・」是日文中黑,台灣不用)
+      code:'', nickname: nick.join(' · '),   // 間隔號用「·」(「・」是日文中黑,台灣不用)
       aura: (past[0]||shows[0]||{}).color||'#7c5cff', aura2: '#6A0DAD',
-      axes,
+      axes,   // [左端, 右端, pos(6–94 連續), 檔名+實證數字]
       blurb: parts.join(L('p_sep','，')) + L('p_end','。'),
     };
+  }
+
+  // 成就徽章(me/u 共用計算;文案由頁面 i18n 渲染)。徽章=跨過門檻的事件,精確統計
+  // 數字留統計區;續級門檻讓高活躍用戶永遠有下一級(2026-07-13 重設計)。
+  // 回傳每族 {key, value, tier(-1=未解鎖), reached(已達門檻), next(下一門檻), extra}
+  function badges(){
+    const past = pick('past');
+    const st = stats('past');
+    const dayCount = {};
+    past.forEach(s=>{ if(s.date && s.date.length>=10) dayCount[s.date]=(dayCount[s.date]||0)+1; });
+    const doubleDays = Object.values(dayCount).filter(n=>n>=2).length;
+    const yrs = [...new Set(past.map(s=>s.date&&s.date.slice(0,4)).filter(Boolean))].map(Number).sort((a,b)=>a-b);
+    let run = yrs.length?1:0, bestRun = run;
+    for(let i=1;i<yrs.length;i++){ run = (yrs[i]===yrs[i-1]+1) ? run+1 : 1; bestRun = Math.max(bestRun, run); }
+    const maxRep = st.topShows.length ? st.topShows[0][1] : 0;
+    const topTitle = st.topShows.length ? st.topShows[0][0] : '';
+    const firstYear = st.firstDate ? st.firstDate.slice(0,4) : '';
+    const DEFS = [
+      { key:'first',     v: st.total>=1?1:0, tiers:[1],                  extra:firstYear },
+      { key:'shows',     v: st.total,        tiers:[5,10,25,50,100,200] },
+      { key:'countries', v: st.countries,    tiers:[2,3,5,8]            },
+      { key:'cities',    v: st.cities,       tiers:[3,8,15,25]          },
+      { key:'works',     v: st.unique,       tiers:[10,25,50,100]       },
+      { key:'devotee',   v: maxRep,          tiers:[3,5,10],            extra:topTitle },
+      { key:'double',    v: doubleDays,      tiers:[1,3,5]              },
+      { key:'streak',    v: bestRun,         tiers:[2,3,5]              },
+    ];
+    return DEFS.map(d=>{
+      let t = -1;
+      d.tiers.forEach((th,i)=>{ if(d.v>=th) t=i; });
+      return { key:d.key, value:d.v, tier:t,
+        reached: t>=0 ? d.tiers[t] : null,
+        next: (t+1<d.tiers.length) ? d.tiers[t+1] : null,
+        extra: d.extra||'' };
+    });
   }
 
   // recent feed (newest first)；pastOnly=true 只取已發生的（餵「最新一場」）
@@ -216,5 +310,5 @@ window.MM = (function () {
   // chronological route for the map polyline
   function route(){ return [...shows].sort((a,b)=>a.date.localeCompare(b.date)); }
 
-  return { shows, stats, personality, recent, route, isPast, isFuture, WEEKDAYS, WEEKDAYS_ZH, MONTHS, countBy };
+  return { shows, stats, personality, badges, recent, route, isPast, isFuture, WEEKDAYS, WEEKDAYS_ZH, MONTHS, countBy };
 })();

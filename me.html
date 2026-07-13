@@ -18,7 +18,7 @@ if(location.hostname==='themusicalmap.com'||location.hostname==='www.themusicalm
 <script>/* no-flash: apply saved theme before CSS paints;預設 cream(對齊主站淡米黃)。
    一次性遷移:舊版 applyTheme 會把預設 midnight 自動寫進 localStorage,使既有使用者卡在深色;
    mm-theme-mig 未設時清一次 mm-theme,讓大家重新落到 cream 預設(之後仍尊重使用者用 picker 的選擇)。 */(function(){try{if(!localStorage.getItem('mm-theme-mig')){localStorage.removeItem('mm-theme');localStorage.setItem('mm-theme-mig','1');}var t=localStorage.getItem('mm-theme')||'cream';if(t==='neon'||t==='deco'){t='midnight';localStorage.setItem('mm-theme',t);}if(t!=='midnight')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
-<link rel="stylesheet" href="css/me-v2.css?v=14" /><!-- CSS 也要 cache-bust:CF Pages 對 .css 出 max-age=14400,不掛 ?v 改版後最多 4hr 拿舊樣式 -->
+<link rel="stylesheet" href="css/me-v2.css?v=15" /><!-- CSS 也要 cache-bust:CF Pages 對 .css 出 max-age=14400,不掛 ?v 改版後最多 4hr 拿舊樣式 -->
 <style>
 html[lang="en"] .sec h2 .zh{display:none}   /* en 模式:section 標題旁的英文小字與主標重複 → 隱藏 */
 html[lang="zh-Hans"] body{--ui:'Inter','Noto Sans SC',sans-serif}  /* 簡中改用 SC 字型,避免混排忽粗忽細 */
@@ -320,7 +320,7 @@ function proxyImg(u){if(!u||!/^https?:\/\//i.test(u)||/(wsrv\.nl|weserv\.nl)/i.t
     venue:(window.MMFoldVenue||(x=>x))((((window.MM_HL||'zh-hant')==='en')&&e.p&&e.p.venueEn)?e.p.venueEn:((e.p&&e.p.venue)||'')),   // en 模式優先用 catalog 對出的官方英文名(不可用下方 EN_UI:此 IIFE 先於其宣告執行)
     city:(window.MMFoldCity||(x=>x))((e.p&&e.p.city)||''), country:normCountry(e.p&&e.p.country), cc:'',
     lat:e.p&&e.p.lat, lng:e.p&&e.p.lng, seat:e.seat||'', price:e.price||'', cur:e.cur||'',
-    rating:e.rating||0, fav:!!e.fav, note:e.note||'', url:e.url||'', era:null, scale:null, logged:true
+    rating:e.rating||0, fav:!!e.fav, note:e.note||'', url:e.url||'', tag:e.tag||'', logged:true   // era/scale 已除役(2026-07-13 劇迷類型重設計);tag=劇種傳統
   }));
   // 所有登錄的劇都進牆與統計；地圖之後只對「有座標」的放 pin（無座標≠丟掉、絕不退回範例冒充）
   if(mapped.length){MM.shows.length=0;MM.shows.push(...mapped);document.documentElement.dataset.live='1';}
@@ -679,13 +679,26 @@ let mt;addEventListener('resize',()=>{clearTimeout(mt);mt=setTimeout(()=>{render
 /* ---------- badges + toplist + persona ---------- */
 (function(){
   const b=document.getElementById('badges');
-  const tops=st.topShows[0];
-  // 劇院改由下方「最常去的劇院」榜呈現，徽章不再放被砍字的劇院名
-  // 徽章不放 emoji(裝飾性 emoji 全站移除,2026-07-03 指示)
-  const badges=[[TN('badge_shows',{n:st.total}),true],[TN('badge_countries',{n:st.countries}),st.countries>=3],[TN('badge_cities',{n:st.cities}),false],[TN('badge_unique',{n:st.unique}),false]];
-  if(tops&&tops[1]>1)badges.push([`${esc(tops[0])} ×${tops[1]}`,false]);   // tops[0]=劇名(使用者輸入),必跳脫
-  if(st.favCount>0)badges.push([TN('badge_fav',{n:st.favCount}),false]);
-  b.innerHTML=badges.map(([t,g])=>`<div class="badge ${g?'gold':''}">${t}</div>`).join('');
+  // 徽章=跨過門檻的事件(MM.badges 共用計算;與 js/u-view.js 同款,兩處必同步改)。
+  // owner 頁比公開頁多「下一級進度」灰章(最接近升級的 3 族);0 值/未解鎖族不渲染。
+  const metal=t=>t===0?'bronze':t===1?'silver':'gold';
+  const bTxt=bd=>{switch(bd.key){
+    case 'first':     return TN('bd_first',{y:esc(bd.extra)});
+    case 'shows':     return TN('bd_shows',{n:bd.reached});
+    case 'countries': return TN('bd_countries',{n:bd.reached});
+    case 'cities':    return TN('bd_cities',{n:bd.reached});
+    case 'works':     return TN('bd_works',{n:bd.reached});
+    case 'devotee':   return TN('bd_devotee',{t:esc(bd.extra),n:bd.value});   // 劇名=使用者輸入,必跳脫
+    case 'double':    return TN('bd_double',{n:bd.value});
+    case 'streak':    return TN('bd_streak',{n:bd.value});
+  }return '';};
+  const fam=MM.badges();
+  const unlocked=fam.filter(x=>x.tier>=0);
+  // 下一級進度:有 next 的族依完成度排序取前 3(goal-gradient:秀「伸手可及」,不排整牆灰章)
+  const nextName={shows:T('bd_n_shows'),countries:T('bd_n_countries'),cities:T('bd_n_cities'),works:T('bd_n_works'),devotee:T('bd_n_devotee'),double:T('bd_n_double'),streak:T('bd_n_streak')};
+  const nexts=fam.filter(x=>x.next!=null&&x.value>0).sort((a,b)=>b.value/b.next-a.value/a.next).slice(0,3);
+  b.innerHTML=unlocked.map(x=>`<div class="badge ${metal(x.tier)}">${bTxt(x)}</div>`).join('')
+    +nexts.map(x=>`<div class="badge next">${nextName[x.key]||x.key} ${x.value}/${x.next}</div>`).join('');
   // ===== 統計儀表板：把已算好的 MM.stats() 畫出來 =====
   function barList(id,items,fmt){const el=document.getElementById(id);if(!el)return;
     if(!items||!items.length){el.innerHTML='<div class="sl-empty">—</div>';return;}
@@ -726,8 +739,8 @@ let mt;addEventListener('resize',()=>{clearTimeout(mt);mt=setTimeout(()=>{render
     ? `<h3>${T('persona_title')}</h3><div class="pb">${p.blurb}</div>`   // 資料不足→只顯示鼓勵句,不硬算類型
     : `<h3>${T('persona_title')}</h3>
     <div class="pn">${p.nickname}</div><div class="pb">${p.blurb}</div>
-    <div class="axes">${p.axes.map(a=>{const left=a[2];const pos=left?14:86;
-      return `<div class="axis"><div class="r"><span class="${left?'on':''}">${a[0]}</span><span>${a[3]}</span><span class="${!left?'on':''}">${a[1]}</span></div><div class="track"><i style="left:calc(${pos}% - 6px)"></i></div></div>`;}).join('')}</div>`;
+    <div class="axes">${p.axes.map(a=>{const pos=a[2];   // 連續定位(6–94),與 u-view.js 同款
+      return `<div class="axis"><div class="r"><span class="${pos<=40?'on':''}">${a[0]}</span><span>${a[3]}</span><span class="${pos>=60?'on':''}">${a[1]}</span></div><div class="track"><i style="left:calc(${pos}% - 6px)"></i></div></div>`;}).join('')}</div>`;
 })();
 
 /* ---------- detail modal ---------- */
@@ -1160,13 +1173,13 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
   function partialDate(seen,prec){if(!seen)return null;
     if(prec==='year')return seen.slice(0,4);if(prec==='month')return seen.slice(0,7);return seen;}
   // 劇名→中文名/海報（render 時用，不存進雲端）
-  let ZH={},POS={},VENS=[];
+  let ZH={},POS={},TAGS={},VENS=[];
   async function loadCatalogMaps(){try{
     const ctrl=new AbortController();const to=setTimeout(()=>ctrl.abort(),9000);
     const cat=await fetch('data/venues_catalog.json',{signal:ctrl.signal}).then(r=>r.json());clearTimeout(to);
     VENS=cat.venues||[];
     (cat.titles||[]).forEach(t=>{if(!t.en)return;const k=t.en.toLowerCase(),g=t.group;
-      if(t.zh)ZH[k]=t.zh;if(cat.posters&&cat.posters[g])POS[k]=cat.posters[g];});}catch(e){console.warn('catalog maps',e);}}  // 逾時/失敗就略過 zh/poster，不擋同步
+      if(t.zh)ZH[k]=t.zh;if(cat.posters&&cat.posters[g])POS[k]=cat.posters[g];if(t.tag)TAGS[k]=t.tag;});}catch(e){console.warn('catalog maps',e);}}  // 逾時/失敗就略過 zh/poster/tag，不擋同步
   // 劇院官方英文名:存的字串抽 CJK 部分回 catalog 查(「上海大劇院 Lyric Theatre」→ Shanghai Grand Theatre;
   // catalog 也沒有英文名的(見 2026-07-03 盤點:227 館缺)先回退拉丁部分或原文,待資料層補名)
   const _cjkV=/[぀-ヿ㐀-鿿가-힯豈-﫿]/;
@@ -1181,7 +1194,7 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
     return latin;}
   function sightingToEntry(s){const k=(s.title||'').toLowerCase();const prec=s.precision||(s.seen_date?'day':'none');
     const ov=s.poster_override||'';
-    return {sid:s.id, w:{en:s.title||'',zh:ZH[k]||''},
+    return {sid:s.id, w:{en:s.title||'',zh:ZH[k]||''}, tag:TAGS[k]||'',   // 劇種傳統(劇迷類型的劇種軸;烤入快取,SYNC_VER 控版)
       p:{label:null,venue:s.venue||'',venueEn:venueEnOf(s.venue||''),city:s.city||'',country:s.country||'',lat:s.lat,lng:s.lng,img:(ov||POS[k]||''),cur:s.currency||''},
       posterOverride:ov,   // 自訂海報網址（method 2）：有就優先當圖
       url:s.url||'',       // 連結/售票網址（沿用既有 url 欄；保住不洗掉）
@@ -1202,7 +1215,7 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
   const sb=supabase.createClient(cfg.SUPABASE_URL,cfg.SUPABASE_ANON_KEY);
   window.mmSb=sb;
   showGate(T('gate_loading'),false);   // 立即用當前語言顯示 Loading(gate-msg 無 data-i18n,不會被 apply 蓋);getSession 回來再 showLogin/onSignedIn
-  const SYNC_VER='8';   // sightingToEntry 對映改版**或 catalog 顯示資料(zh/海報)更新**就 +1 → 強制所有 session 重新同步（v5=38 館英文名;v6=fav;v7=第二批 124 館英文名;v8=幣別 cur 移到 top-level）
+  const SYNC_VER='9';   // sightingToEntry 對映改版**或 catalog 顯示資料(zh/海報)更新**就 +1 → 強制所有 session 重新同步（v5=38 館英文名;v6=fav;v7=第二批 124 館英文名;v8=幣別 cur 移到 top-level;v9=劇種傳統 tag 烤入）
   const syncedKey=uid=>uid+'@'+SYNC_VER;
   let _syncing=false;
   // 同步失敗畫面:訊息 + 一顆「重試」按鈕(掛在 gate-msg 內);避免使用者只能重整或卡死

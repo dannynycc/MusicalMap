@@ -58,6 +58,7 @@
   let POSTER_BY_TITLE = {};   // title(lower) -> poster url
   let PRODUCTION_BY_KEY = {}; // production_key -> {poster,…}
   let ZH_BY_TITLE = {};       // en title(lower) -> zh name
+  let TAG_BY_TITLE = {};      // title(lower) -> 劇種傳統 tag(劇迷類型的劇種軸)
   function posterFor(t) { return POSTER_BY_TITLE[(t || '').toLowerCase()] || null; }
   // 自訂海報常是原始大圖 → 走免費即時縮圖代理 wsrv.nl(寬600+webp)加速；catalog 官方圖不動。
   function proxyImg(u) { if (!u || !/^https?:\/\//i.test(u) || /(wsrv\.nl|weserv\.nl)/i.test(u)) return u;
@@ -80,8 +81,8 @@
     Object.values(cat.productions || {}).forEach((arr) => arr.forEach((p) => { PRODUCTION_BY_KEY[p.key] = p; }));
     (cat.titles || []).forEach((t) => {
       const p = cat.posters ? cat.posters[t.group] : null;
-      if (t.en) { const k = t.en.toLowerCase(); if (p) POSTER_BY_TITLE[k] = p; if (t.zh) ZH_BY_TITLE[k] = t.zh; }
-      if (t.zh && p) POSTER_BY_TITLE[t.zh.toLowerCase()] = p;
+      if (t.en) { const k = t.en.toLowerCase(); if (p) POSTER_BY_TITLE[k] = p; if (t.zh) ZH_BY_TITLE[k] = t.zh; if (t.tag) TAG_BY_TITLE[k] = t.tag; }
+      if (t.zh) { const kz = t.zh.toLowerCase(); if (p) POSTER_BY_TITLE[kz] = p; if (t.tag) TAG_BY_TITLE[kz] = t.tag; }
     });
   }
 
@@ -437,12 +438,24 @@
     /* ---------- badges + toplist + persona ---------- */
     (function () {
       const b = document.getElementById('badges');
-      const tops = st.topShows[0];
-      // 徽章不放 emoji(裝飾性 emoji 全站移除,2026-07-03 指示;與 me.html 同步)
-      const badges = [[TN('badge_shows', { n: st.total }), true], [TN('badge_countries', { n: st.countries }), st.countries >= 3], [TN('badge_cities', { n: st.cities }), false], [TN('badge_unique', { n: st.unique }), false]];
-      if (tops && tops[1] > 1) badges.push([`${esc(tops[0])} ×${tops[1]}`, false]);   // 劇名=公開頁上他人輸入的資料,必跳脫
-      if (st.favCount > 0) badges.push([TN('badge_fav', { n: st.favCount }), false]);
-      b.innerHTML = badges.map(([t, g]) => `<div class="badge ${g ? 'gold' : ''}">${t}</div>`).join('');
+      // 徽章=跨過門檻的事件(MM.badges 共用計算),不再把統計數字包成徽章樣式;
+      // 公開頁只秀已解鎖(獎盃櫃),未解鎖/0 值一律不渲染。文字無 emoji(2026-07-03 指示)。
+      const metal = t => t === 0 ? 'bronze' : t === 1 ? 'silver' : 'gold';
+      const bTxt = bd => {
+        switch (bd.key) {
+          case 'first':     return TN('bd_first', { y: esc(bd.extra) });
+          case 'shows':     return TN('bd_shows', { n: bd.reached });
+          case 'countries': return TN('bd_countries', { n: bd.reached });
+          case 'cities':    return TN('bd_cities', { n: bd.reached });
+          case 'works':     return TN('bd_works', { n: bd.reached });
+          case 'devotee':   return TN('bd_devotee', { t: esc(bd.extra), n: bd.value });   // 劇名=他人輸入,必跳脫
+          case 'double':    return TN('bd_double', { n: bd.value });
+          case 'streak':    return TN('bd_streak', { n: bd.value });
+        }
+        return '';
+      };
+      const unlocked = MM.badges().filter(x => x.tier >= 0);
+      b.innerHTML = unlocked.map(x => `<div class="badge ${metal(x.tier)}">${bTxt(x)}</div>`).join('');
       function barList(id, items, fmt) { const el = document.getElementById(id); if (!el) return;
         if (!items || !items.length) { el.innerHTML = '<div class="sl-empty">—</div>'; return; }
         const mx = items[0][1] || 1;
@@ -479,8 +492,8 @@
         ? `<h3>${esc(T('persona_title'))}</h3><div class="pb">${esc(p.blurb)}</div>`
         : `<h3>${esc(T('persona_title'))}</h3>
         <div class="pn">${esc(p.nickname)}</div><div class="pb">${esc(p.blurb)}</div>
-        <div class="axes">${p.axes.map(a => { const left = a[2]; const pos = left ? 14 : 86;
-          return `<div class="axis"><div class="r"><span class="${left ? 'on' : ''}">${esc(a[0])}</span><span>${esc(a[3])}</span><span class="${!left ? 'on' : ''}">${esc(a[1])}</span></div><div class="track"><i style="left:calc(${pos}% - 6px)"></i></div></div>`; }).join('')}</div>`;
+        <div class="axes">${p.axes.map(a => { const pos = a[2];   // 連續定位(6–94),不再是 14/86 二元假光譜
+          return `<div class="axis"><div class="r"><span class="${pos <= 40 ? 'on' : ''}">${esc(a[0])}</span><span>${esc(a[3])}</span><span class="${pos >= 60 ? 'on' : ''}">${esc(a[1])}</span></div><div class="track"><i style="left:calc(${pos}% - 6px)"></i></div></div>`; }).join('')}</div>`;
     })();
 
     /* ---------- detail modal (read-only) ---------- */
@@ -602,6 +615,7 @@
         lat: row.lat, lng: row.lng, seat: row.seat || '',
         price: (row.price != null ? String(row.price) : ''), cur: row.currency || '',
         rating: row.rating || 0, fav: !!row.fav, note: '', url: row.url || '', logged: false,   // fav 由 public_sightings RPC 帶出(add_fav.sql)
+        tag: TAG_BY_TITLE[k] || '',   // 劇種傳統(catalog 對映;劇迷類型的劇種軸)
       };
     });
 

@@ -411,7 +411,12 @@ html[data-live] .demobanner{display:none}
 .badges{display:flex;flex-wrap:wrap;gap:10px}
 .badge{display:flex;align-items:center;gap:8px;background:var(--s2);border:1px solid var(--hair);border-radius:12px;padding:9px 13px;font-size:13px;font-weight:600}
 .badge .ic{width:26px;height:26px;border-radius:8px;display:grid;place-items:center;background:var(--gold-soft);font-size:14px}
+/* 徽章分級(2026-07-13 重設計):bronze/silver/gold 邊框色,gold 保留原光暈;
+   .next=下一級進度灰章(owner 頁限定),虛線+降透明表達「還沒拿到」 */
+.badge.bronze{border-color:rgba(176,124,84,.55)}
+.badge.silver{border-color:rgba(140,148,160,.65)}
 .badge.gold{border-color:rgba(201,168,92,.5);box-shadow:0 0 18px -6px rgba(201,168,92,.4)}
+.badge.next{border-style:dashed;opacity:.55;font-weight:500}
 .persona .code{font-family:var(--fr);font-weight:900;font-size:46px;letter-spacing:5px;background:linear-gradient(120deg,#fff,var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
 .persona .pn{font-size:26px;font-weight:900;margin:6px 0 12px;font-family:var(--fr,inherit)}
 .persona .pb{color:var(--ink2);font-size:13.5px;line-height:1.6}

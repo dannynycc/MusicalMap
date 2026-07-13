@@ -9,6 +9,7 @@ import json
 import math
 import re
 import unicodedata
+from collections import Counter
 from pathlib import Path
 
 # group_key + utf-8 stdout come from build_shows (importing it sets stdout; don't
@@ -491,8 +492,12 @@ def main():
         en = CANON.get(g, first_title)
         zh = _ZH_LOOKUP.get(_zh_key(g))
         w = WORKS.get(g) or {}
+        # 劇種傳統(tag):取該 group 場次的眾數 tag;沒在演的登錄作品退 works.json tradition。
+        # 個人足跡頁的「劇迷類型」劇種軸靠這欄,別的欄位推不出來。
+        tag_counts = Counter(s.get("tag") for s in group_shows.get(g, []) if s.get("tag"))
+        tag = tag_counts.most_common(1)[0][0] if tag_counts else (w.get("tradition") or None)
         # keep the bilingual/variant title + every works.json alias searchable
-        titles.append({"en": en, "zh": zh, "group": g,
+        titles.append({"en": en, "zh": zh, "group": g, "tag": tag,
                        "search": search_blob(en, first_title, zh or "", *w.get("aliases", []))})
 
     out = {
