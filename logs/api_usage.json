@@ -4041,6 +4041,20 @@
       },
       "updated_utc": "2026-07-12T23:16:40+00:00",
       "total_calls": 2813
+    },
+    {
+      "run": "local-2026-07-13T10",
+      "started_utc": "2026-07-13T10:06:26+00:00",
+      "hosts": {
+        "app.ticketmaster.com": {
+          "calls": 1203,
+          "quota": 5000,
+          "available": 1260,
+          "over": 0
+        }
+      },
+      "updated_utc": "2026-07-13T10:56:32+00:00",
+      "total_calls": 1203
     }
   ]
 }

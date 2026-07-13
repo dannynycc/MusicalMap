@@ -11,6 +11,16 @@
 
 ---
 
+## [v2.31.7] - 2026-07-13 21:46
+### 制度化 — 海報守門稽核入 CI(回答「90 張換圖是一次性的,以後怎麼 gating」)
+一次性資料修復之外,已在管線永續生效的:easteurope 抓原圖(治本)、works 釘圖層每 build 自動替換庫存圖、庫存圖禁止外借、地區感知繼承。缺口補成 `audit_posters.py` 每日 CI 四檢:
+1. **釘圖健康**:works.json 35 個 poster URL 逐一 HEAD(外站釘圖死鏈當天知道;repo 自託管 posters/ 驗檔案存在)。
+2. **新庫存圖警報**:/dam/c/ group 清單 vs `stock_art_baseline.json`(已審 10 個查無官圖的小眾劇)——**未來的 BOOP! 案自動浮出**,審過補 baseline。
+3. **縮圖迴歸哨兵**:programinfo `-NNN-NNN-` pattern 必須 0 張(scraper 治本的保險絲)。
+4. **抽樣尺寸檢**:每日隨機 12 張下載驗高度 ≥340px 與可解碼(種子=日期,月滾 ~360 張)——未知來源的糊圖/死圖靠輪替撞。
+首跑抓到 2 筆本地自託管海報誤判(posters/ 相對路徑),已支援。全量版 audit_images.py 維持手動(新增來源後跑)。
+- 部署驗收:正式站 1,955 檔,BOOP/DEH/A Little Night Music 官圖上線、Cincinnati Carmen 消失(v2.31.4–6 佇列完成)。
+
 ## [v2.31.6] - 2026-07-13 21:32
 ### 補圖 — 31 劇官方 key art 批次釘入,52 張卡換圖;TM 庫存圖 63→10 張
 agent 蒐集 MTI(20)/Concord(7)/官方授權商與劇官網(4)直連圖,**31 張全部下載拼格逐一目測驗證為本劇**後釘入 works.json(Dear Evan Hansen/Hairspray/Guys and Dolls/Oliver!/Come from Away/Peter Pan/Tarzan/Descendants/Parade/Oklahoma!/Sunday in the Park/The Producers/We Will Rock You 等)。品質註記:Murder for Two/Falsettos=授權商書封、Show Boat=1936 復古樂譜封面——識別正確、勝過分類庫存圖,先用。

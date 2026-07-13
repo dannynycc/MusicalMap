@@ -114,6 +114,8 @@ jobs:
           python scrapers/_run.py scrapers/audit_titles.py || echo "::warning::title audit flagged ungrouped/split/dirty titles"
           # 抽樣對照源頭:每日隨機 15 卡 vs TM API(不預設病型,守「沒想到的錯」;2026-07-13)
           python scrapers/_run.py scrapers/audit_sample_truth.py || echo "::warning::sample-truth audit found cards disagreeing with Ticketmaster"
+          # 海報守門:釘圖健康/新庫存圖 vs baseline/縮圖迴歸/抽樣尺寸(2026-07-13 「90 張換圖如何 gating」)
+          python scrapers/_run.py scrapers/audit_posters.py || echo "::warning::poster audit flagged dead pins / new stock art / thumbnails"
           # Accumulate today's snapshot into the immutable historical archive
           # (separate stateful layer; never deletes closed runs). Pure build above
           # stays stateless. See scrapers/archive.py.
