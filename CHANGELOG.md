@@ -11,6 +11,14 @@
 
 ---
 
+## [v2.30.2] - 2026-07-13 12:46
+### 修正 — CF Web Analytics 一直 0:「自動注入」在本 zone 從未生效,全站改掛手動 beacon
+使用者抓到 WA Page views 建站 7 天仍 0。debug:curl 三個正式頁 **HTML 完全沒有 beacon**——dashboard 模式選「Enable(自動注入)」但 CF 沒注入(CF Pages 站的社群已知問題);站點只有一個、無重複分流。
+- **修法**:dashboard 切「Enable with JS Snippet installation」,官方 snippet 手動掛進全站 23 個 HTML(gen_site.mjs 變體 index 模板 + build/pages 4 源檔 + me/me-input/settings/u;root 路由頁不掛=立即轉走)。
+- **坑**:beacon token=`5953964f…`(dashboard 的 Install JS Snippet 給的),**不是**管理網址裡那串 site id `f5debd92…`——拿錯顆資料全進黑洞。不加 SRI 同 gtag 理由(CF 滾動更新 beacon,釘 hash 會靜默斷統計)。
+- 附帶:root 路由頁的「CF Redirect Rules 轉址」註解(v2.30.1 手改 index.html)補進 gen_site.mjs rootRouter 模板——index.html 是 gen_site 產物,不進模板下次 CI 就被蓋掉。
+- 驗證:部署後真 Chrome 開正式站看 `/cdn-cgi/rum` 請求實際發射;WA dashboard 數字需幾分鐘~數小時後回看。
+
 ## [v2.30.1] - 2026-07-13 11:44
 ### SEO 修根 — root canonical 衝突:/en/ 未被 Google 收錄(GSC 實查),root 改 CF 邊緣 302 分流
 使用者問「GSC 不是有做嗎」→ 實查 GSC 發現:驗證+sitemap 有做(7/9),但**沒人回來看結果**——`/en/` 被判「重複網頁;Google 選擇的標準網頁和使用者的選擇不同」**未收錄**(root 的 JS 語言偵測頁被 Googlebot 渲染成與 /en/ 相同內容);root、/zh-hant/、/zh-hans/ 則正常在索引中(各 300 個 Event 有效)。

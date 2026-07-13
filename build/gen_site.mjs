@@ -294,6 +294,10 @@ function page(variant, shows) {
   <!-- Google Analytics(GA4 G-GC07MYC1MY;訪客來源/行為分析。root 路由頁不埋(立即轉走);隱私揭露見 privacy.html §1/§3) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-GC07MYC1MY"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-GC07MYC1MY');</script>
+  <!-- Cloudflare Web Analytics(手動 JS snippet,2026-07-13:WA「自動注入」在本 zone 從未生效
+       →Page views 一直 0;dashboard 已切「Enable with JS Snippet installation」。token=5953964f…
+       (WA 站的 beacon token,≠管理網址那串 site id f5debd92…,拿錯顆收不到資料) -->
+  <script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5953964f9c434c67bcc12dd3eaedf340"}'></script>
 </head>
 <body>
   <header id="topbar">
@@ -386,6 +390,11 @@ function rootRouter() {
   <script type="application/ld+json">${JSON.stringify({ "@context": "https://schema.org", "@type": "Organization", "@id": `${SITE}/#organization`, "name": "MusicalMap", "alternateName": ["The Musical Map", "themusicalmap"], "url": `${SITE}/`, "logo": `${SITE}/favicon-512.png` })}</script>
   <script type="application/ld+json">${JSON.stringify({ "@context": "https://schema.org", "@type": "WebSite", "@id": `${SITE}/#website`, "name": "MusicalMap", "alternateName": ["The Musical Map", "themusicalmap"], "url": `${SITE}/`, "publisher": { "@id": `${SITE}/#organization` } })}</script>
   ${hreflangLinks()}
+  <!-- ⚠️ 正式站上這頁幾乎不會被看到:root 的語言分流已改在 Cloudflare Redirect Rules
+       (zone themusicalmap.com → Rules → root-lang-redirect-{zh-hant,zh-hans,en-default},
+       按 Accept-Language 302,2026-07-13 設定)。原因:這頁的 JS 變身讓 Googlebot 把
+       root 渲染成 /en/ 同內容 → /en/ 被判重複頁不收錄(GSC 實查)。下方 JS 僅作
+       CF 規則失效時的 fallback;動語言判斷邏輯時兩處要一起改。 -->
   <script>
     (function () {
       var v = localStorage.getItem("mm_variant");
