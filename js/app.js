@@ -747,6 +747,17 @@ function locTrio(s) {
 }
 
 function showGroupItem(items, parity) {
+  // 組內排序(2026-07-13 使用者規格):長期上演(end_rolling)拉到最前,
+  // 順位=紐約 > 倫敦 > 其他長期上演 > 巡演/期間限定(後者維持原本的日期序;sort 穩定,同名次不動)。
+  // 城市比對用資料層英文名(顯示層才翻中文),含 new york 涵蓋 "New York"/"New York, NY" 等變體。
+  const _lrRank = (s) => {
+    if (!s.end_rolling) return 3;
+    const c = (s.city || "").toLowerCase();
+    if (c.includes("new york")) return 0;
+    if (c.includes("london")) return 1;
+    return 2;
+  };
+  items = [...items].sort((a, b) => _lrRank(a) - _lrRank(b));
   const title = displayTitle(items);
   const li = document.createElement("li");
   const multi = items.length > 1;
