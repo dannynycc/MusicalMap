@@ -77,7 +77,10 @@ def parse_event(html):
         "name": (d.get("name") or "").strip(),
         "start": (d.get("startDate") or "")[:10] or None,
         "end": (d.get("endDate") or "")[:10] or None,
-        "image": d.get("image") or None,
+        # JSON-LD 的 image 是 185×240 縮圖;同資產有 _grande 大圖(740×960)。
+        # 2026-07-14 海報守門抽樣抓到 Grease Lisboa 糊圖案。
+        "image": re.sub(r"(/cartaz\d+)(\.jpg)", r"\1_grande\2", d.get("image"))
+                 if d.get("image") else None,
         "venue": (loc.get("name") or "").strip().rstrip("."),
         "city": addr.get("addressLocality") or "Lisbon",
         "lat": lat, "lng": lng,

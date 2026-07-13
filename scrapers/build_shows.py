@@ -19,6 +19,12 @@ sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
 
 DATA = Path(__file__).resolve().parent.parent / "data"
 
+try:                                    # 簡繁同名判定用(tour_name 守門);缺套件時退化成恆等
+    from opencc import OpenCC
+    _t2s = OpenCC("t2s").convert
+except Exception:                       # noqa: BLE001
+    _t2s = lambda t: t
+
 
 def _norm(title):
     """Pure title normalisation (no registry): the canonical key so the same show
@@ -567,6 +573,14 @@ def main():
                 s.get("venue"))
             s["group"] = group_key(orig)
             s["title"] = canonical_title(orig)   # registered → canonical; else as-is
+            # 在地製作名保進 tour_name 給彈窗(列表=乾淨 canonical,彈窗=完整製作名,
+            # Love Never Dies 規則;2026-07-14 Honk ！你好鴨 被 canonical 蓋掉案)。
+            # 只在差異超出大小寫/標點時保留(避免 "Honk" vs "Honk!" 產生垃圾)。
+            if not s.get("tour_name") and s["title"] != orig:
+                _collapse = lambda t: re.sub(r"[\W_]+", "", (t or "").lower())
+                if _collapse(orig) != _collapse(s["title"]) \
+                        and _collapse(_t2s(orig)) != _collapse(_t2s(s["title"])):
+                    s["tour_name"] = orig
         for s in rows:
             by_id[s["id"]] = s
         sources.append({"file": name, "count": len(rows), "meta": blob.get("meta", {})})

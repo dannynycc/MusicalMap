@@ -46,13 +46,13 @@ CITY_MAP = {
 }
 
 
-def fetch():
-    """All 戲劇-音樂劇 programs. The API returns only 15 per page (hitsCount is the
-    real total) + a nextOffset cursor — page through it or far-future shows like
-    囍宴 (Sept) get dropped."""
+def _page(payload):
+    """POST /search with cursor paging. The API returns only 15 per page (hitsCount
+    is the real total) + a nextOffset cursor — page through it or far-future shows
+    like 囍宴 (Sept) get dropped."""
     items, offset, hits = [], 0, None
     while True:
-        body = json.dumps({"language": "zh-CHT", "categoryFilter": ["戲劇-音樂劇"],
+        body = json.dumps({**payload, "language": "zh-CHT",
                            "sortBy": "ABOUT_TO_BEGIN", "offset": offset}).encode("utf-8")
         req = urllib.request.Request(API, data=body, method="POST", headers={
             "Content-Type": "application/json", "Origin": "https://www.opentix.life",
@@ -67,6 +67,37 @@ def fetch():
             break
         offset = nxt
     return items
+
+
+# OPENTIX 分類是主辦方自填的:C MUSICAL 把韓國音樂劇(或許是美好結局/我的遺願清單)
+# 掛「戲劇-現代戲劇」,只抓 戲劇-音樂劇 子分類就整場漏掉(2026-07-14 使用者抓漏)。
+# 補一層 queryString 關鍵字掃描:標題自稱 音樂劇/歌舞劇(「音樂劇場」是另一種類型,
+# 用 (?!場) 排除)、且掛在戲劇/親子-戲劇類(排除管樂/國樂音樂會英文名 A Musical Journey
+# 之類誤中)。2026-07-14 量測:327 個關鍵字命中裡漏網 3 檔、誤中 16 檔全被此規則擋掉。
+_KW_TITLE = re.compile(r"音樂劇(?!場)|歌舞劇")
+
+
+def _kw_keep(s):
+    cats = s.get("categories") or []
+    if not _KW_TITLE.search(s.get("title") or ""):
+        return False
+    return any(c.startswith("戲劇-") or c == "親子-戲劇" for c in cats)
+
+
+def fetch():
+    items = _page({"categoryFilter": ["戲劇-音樂劇"]})
+    seen = {(f.get("source") or {}).get("id") for f in items}
+    extra = []
+    for kw in ("音樂劇", "歌舞劇"):
+        for f in _page({"queryString": kw}):
+            s = f.get("source") or {}
+            if s.get("id") and s["id"] not in seen and _kw_keep(s):
+                seen.add(s["id"])
+                extra.append(f)
+    if extra:
+        print(f"  keyword sweep rescued {len(extra)}: "
+              + " / ".join((f.get('source') or {}).get('title', '')[:30] for f in extra), flush=True)
+    return items + extra
 
 
 def ymd(ms):
