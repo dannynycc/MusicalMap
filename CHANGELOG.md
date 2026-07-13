@@ -11,6 +11,10 @@
 
 ---
 
+## [v2.31.1] - 2026-07-13 19:09
+### 修正 — 作曲家冠名不是劇名:「Andrew Lloyd Webber's LOVE NEVER DIES - The Phantom Returns」歸位
+使用者判定:ALW 冠名=行銷前綴非劇名。clean_title 加 ALW 冠名剝除(⚠️ Rodgers+Hammerstein's 不剝——R&H 冠名對 Cinderella 是官方劇名一部分,僅列舉確定純冠名者);works.json Love Never Dies 加副標別名兜歸組。結果:title=Love Never Dies(吃到中文名「愛無止盡」與 work 資料),完整製作名保留在 tour_name(卡片大標與 TM 頁一致)。
+
 ## [v2.31.0] - 2026-07-13 18:57
 ### 大改 — TM 掃描改自適應時間分片:修 Matilda 漏抓(使用者抓到)+ 淨增 121 檔;演完隔天撤
 使用者抓到 Lexington Opera House 的「The Lexington Theatre Co. presents Matilda」(7/30–8/2,TM 分類 Musical)不在站上。根因:TM 每查詢 1,000 筆分頁天花板,美國單月 musical events 1,400~2,200 筆,舊掃法「全國 date asc 前 1000+大城市清單補洞」對非大城的月底後場次必漏。

@@ -270,6 +270,10 @@ def clean_title(t):
     # From Away") and "{Company} production of {Show}" ("NYT production of …").
     t = re.sub(r"^.{0,70}?\b(?:presents|presenta|pr[eé]sente|präsentiert|production of)\b\s*[:;]?\s+", "", t, flags=re.I)
     t = t.strip().strip('"“”').strip()   # 整題被引號包住('"The Con Musical"')→剝殼
+    # 作曲家冠名前綴:「Andrew Lloyd Webber's LOVE NEVER DIES」→劇名本體(2026-07-13 使用者
+    # 判定:冠名是行銷不是劇名)。⚠️ Rodgers+Hammerstein's 不剝——R&H 冠名對 Cinderella
+    # 是官方劇名的一部分,通殺會把真劇名剝壞;僅列舉確定為純冠名者。
+    t = re.sub(r"^andrew\s+lloyd\s+webber['’]s\s+", "", t, flags=re.I)
     # 已知「主辦品牌: 劇名」前綴(冒號前綴不能通殺——SIX: The Musical 是真劇名,逐一列舉)
     t = re.sub(r"^(?:Magatzem d['’]Ars|Musical)\s*:\s*", "", t, flags=re.I)
     # 「機構: 劇名」/「機構- 劇名」通用前綴——冒號/破折號前段含機構詞才剝
