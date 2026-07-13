@@ -11,6 +11,12 @@
 
 ---
 
+## [v2.31.4] - 2026-07-13 21:01
+### 修正+機制 — TM 分類庫存圖(/dam/c/)盤點與釘圖替換;A Little Night Music 換 MTI 官圖
+使用者指定 A Little Night Music 換 MTI 官方 key art(已驗 200/image/jpeg)。順勢建通用機制:TM 對無專屬圖 event 回 `/dam/c/` 分類 stock art(專屬圖=/dam/a/)——**works.json 釘圖(poster 非 auto)自動替換該組「無圖或庫存圖」的紀錄**,各地真專屬圖不動;庫存圖同時被排除於海報繼承來源(不擴散 fallback)。
+- 全站盤點:63 張卡、44 個劇目用庫存圖(BOOP! 6 張、Dear Evan Hansen 4 張、Hairspray/Guys and Dolls/Oliver! 各 3 張…),已列清單;works 釘圖一個一個補上即自動替換(本次先補 A Little Night Music)。
+- 附帶抓到:`Guys & Dolls` 與 `Guys and Dolls` 因 & / and 分裂為兩組——`_norm` 加 &→and 正規化,合併。總量 1,959→1,956。
+
 ## [v2.31.3] - 2026-07-13 19:39
 ### 制度化 — 抽樣對照源頭稽核(回答「沒抓到的錯怎麼辦」)
 既有稽核只能守已知病類;新增 `audit_sample_truth.py`:每日隨機抽 15 張 TM 系卡片直接對 Ticketmaster API 比對(場地有無此事件/日期交集/標題 token 相容),**不預設病型,驗結果不驗規則**——任何未知 bug 只要讓卡片偏離事實,逐日輪替抽樣(月滾 ~450 筆)遲早撞到。種子=當天日期(可重現)。已入 CI。

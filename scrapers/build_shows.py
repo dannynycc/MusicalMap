@@ -31,6 +31,7 @@ def _norm(title):
     # would later become a word-break space ("you're"→"you re") while a curly ’ is
     # dropped by ascii-ignore ("you're"→"youre") — same word, divergent keys.
     t = re.sub(r"['’‘ʼ´`]", "", t)
+    t = re.sub(r"\s*&\s*", " and ", t)   # 'Guys & Dolls' == 'Guys and Dolls'(2026-07-13 分裂案)
     t = unicodedata.normalize("NFKD", t).encode("ascii", "ignore").decode()
     t = t.lower().strip()
     t = re.sub(r"^disneys?\s+(?:presents\s+)?", "", t)   # apostrophe already gone → "disneys"; strip BEFORE 'the' so
@@ -1137,12 +1138,32 @@ def main():
     # → 7 個美國 Frozen 場次全掛日文アナ雪海報(2026-07-13 使用者抓到)。各製作海報
     # 語言/設計不同:同國優先,再同字系圈(日/韓/中/台各自成圈,其餘=west);絕不跨圈
     # ——寧可留空走前端 ♪ 占位,不掛錯語言的海報。
+    # works.json 釘圖替換 TM 分類庫存圖(2026-07-13):s1.ticketm.net/dam/c/ 是 TM 對
+    # 無專屬圖 event 回的分類 stock art(專屬圖是 /dam/a/)——有 works 釘圖(poster 非
+    # auto)的組,其「無圖或庫存圖」紀錄改用釘圖;各地真專屬圖(/dam/a/、在地來源)不動。
+    _IS_STOCK = lambda u: bool(u) and "s1.ticketm.net/dam/c/" in u
+    _work_poster = {}
+    _works_path = DATA / "works.json"
+    if _works_path.exists():
+        for w in json.loads(_works_path.read_text(encoding="utf-8")).get("works", []):
+            pv = w.get("poster")
+            if pv and pv != "auto":
+                _work_poster[group_key(w["canonical"])] = pv
+    n_stock = 0
+    for s in shows:
+        wp = _work_poster.get(s.get("group"))
+        if wp and (not s.get("image") or _IS_STOCK(s["image"])):
+            s["image"] = wp
+            n_stock += 1
+    if n_stock:
+        print(f"  replaced {n_stock} stock/blank poster(s) with works.json pinned art")
+
     def _poster_bucket(country):
         return {"Japan": "jp", "South Korea": "kr", "China": "cn",
                 "Taiwan": "tw", "Hong Kong": "hk", "Macau": "cn"}.get(country, "west")
     poster_by_gc, poster_by_gb = {}, {}
     for s in shows:
-        if s.get("image"):
+        if s.get("image") and not _IS_STOCK(s["image"]):   # 庫存圖不外借(別擴散 fallback)
             poster_by_gc.setdefault((s["group"], s.get("country")), s["image"])
             poster_by_gb.setdefault((s["group"], _poster_bucket(s.get("country"))), s["image"])
     filled = blocked = 0
