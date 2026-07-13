@@ -69,8 +69,20 @@ for (const s of src.shows) {
 // holds every field rendered in ALL THREE forms — English + Traditional + Simplified —
 // so e.g. in 繁中 mode "taipei" / "台北" / "臺北" all find 臺北 shows. Same blob across
 // every variant file. Built from the original source values (before per-variant mutation).
+// Official Chinese display titles per group (show_titles=简 / show_titles_tw=繁;
+// 台陸譯名可不同:歌劇魅影 vs 剧院魅影)。只收有官方依據的名字,缺的照舊顯示英文。
+const ST_CN = maps.show_titles || {};
+const ST_TW = maps.show_titles_tw || {};
+function zhTitle(s, variant) {
+  if (variant === "zh-hant" && ST_TW[s.group]) return ST_TW[s.group];
+  if (variant === "zh-hans" && ST_CN[s.group]) return ST_CN[s.group];
+  return null;
+}
+
 function buildSearch(s) {
   const parts = new Set();
+  if (ST_TW[s.group]) parts.add(ST_TW[s.group]);
+  if (ST_CN[s.group]) parts.add(ST_CN[s.group]);
   for (const v of VARIANTS) {
     parts.add(place("cities", s.city, v));
     parts.add(place("countries", s.country, v));
@@ -88,7 +100,7 @@ for (const variant of VARIANTS) {
   out.shows.forEach((s, i) => {
     s.city = place("cities", s.city, variant);
     s.country = place("countries", s.country, variant);
-    s.title = cjk(s.title, variant);
+    s.title = zhTitle(s, variant) || cjk(s.title, variant);
     if (s.venue) s.venue = (variant === "en" && venuesEn[s.venue]) ? venuesEn[s.venue] : cjk(s.venue, variant);
     if (s.tour_name) s.tour_name = cjk(s.tour_name, variant);
     if (Array.isArray(s.ticket_links)) {

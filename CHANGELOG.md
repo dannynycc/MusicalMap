@@ -11,6 +11,12 @@
 
 ---
 
+## [v2.31.10] - 2026-07-14 01:27
+### 中文頁顯示官方中文劇名+Masquerade 假巡演卡修復+正名
+- **中文頁官方中文劇名**(使用者:「選了中文版,左側應該顯示魔女宅急便為主」):i18n_maps 新增 `show_titles`(簡)/`show_titles_tw`(繁)group 級字典,gen_variants 產 zh 變體時覆蓋標題(側欄/marker/彈窗全跟著走),台陸譯名可不同。只收有官方依據的 4 組起步:魔女宅急便、或許是美好結局(台版官方;陸版無官方名維持英文)、我的遺願清單/我的遗愿清单、歌劇魅影/剧院魅影(上海中文版官方名)。兩名皆入搜尋索引。
+- **Masquerade 假巡演卡**(使用者抓到「Phantom of the Opera (Touring) @ Masquerade NYC」):TM 把沉浸式 Masquerade 的 event 掛在「Phantom (Touring)」attraction 底下,整條照收就生出「魅影巡演在紐約」假卡+與真 Masquerade 卡重複。build_shows 新增 `_TM_RETITLE`(group×場地 → 正名)機制,正名後走一般去重合併、錯掛的 attraction 連結不 enrich。總數 1957→1956。
+- **Masquerade 正名**:官方劇名就是《Masquerade》,「- Phantom of the Opera Reimagined」是說明性副題——works 收 canonical,長名照 LND 規則自動保進彈窗 tour_name。
+
 ## [v2.31.9] - 2026-07-14 01:06
 ### OPENTIX 分類漏抓修復(Maybe Happy Ending 台灣站)+在地製作名進彈窗
 使用者抓漏:MHE 世巡台灣首站(新北藝文中心 7/31–8/9)與《我的遺願清單》(西門紅樓)都不在站上。

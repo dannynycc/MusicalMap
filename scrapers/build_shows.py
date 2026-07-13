@@ -592,6 +592,9 @@ def main():
     # A TM stop whose (group, city) already exists → its link is attached to the
     # existing record; otherwise it's added as a new marker.
     tm_enrich = {}
+    _TM_RETITLE = {
+        ("phantom of the opera", "masquerade nyc"): "Masquerade - Phantom of the Opera Reimagined",
+    }
     seen_show_city = {(s["group"], city_key(s.get("city")))
                       for s in by_id.values()}
     for tm_file in (TM_FILE, "tm_tours.json"):
@@ -602,12 +605,21 @@ def main():
         kept = 0
         for s in tm:
             orig = strip_city_qualifier(clean_title(s.get("title")), s.get("city"))
+            # TM event 掛錯 attraction 的正名:event 實體(場地)是 A 製作,attraction 卻是 B
+            # ——Masquerade NYC 的沉浸式魅影被掛在「Phantom (Touring)」attraction,產生
+            # 「魅影巡演在紐約」假卡+與真 Masquerade 卡重複(2026-07-14 使用者抓到)。
+            # key=(group_key(清洗後標題), 場地小寫);正名後走一般去重,錯掛的 attraction
+            # 連結不拿去 enrich。
+            _rt = _TM_RETITLE.get((group_key(orig), (s.get("venue") or "").lower()))
+            if _rt:
+                orig = _rt
+                s["tour_name"] = None            # 「…(Touring)」是錯掛 attraction 的名字
             s["group"] = gk = group_key(orig)
             s["title"] = canonical_title(orig)   # registered → canonical (Frost → Frozen)
             city = city_key(s.get("city"))
             if (gk, city) in seen_show_city:
                 u = s.get("attraction_url") or s.get("ticket_url")
-                if u:
+                if u and not _rt:
                     tm_enrich.setdefault((gk, city), u)
                 continue
             by_id[s["id"]] = s
