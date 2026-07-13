@@ -15,9 +15,12 @@
 7. **push**：`git push origin main --tags`。
 
 ## 稽核(每次加來源/大改後必跑)
-- `python scrapers/audit_images.py` — 海報實測像素,模糊/失效=0 才過
+- `python scrapers/audit_images.py` — 海報實測像素,模糊/失效=0 才過(全量版,手動)
 - `python scrapers/audit_links.py` — 購票連結全量實測,DEAD=0 才過(TM 401=bot block 非死連)
 - `python scrapers/audit_productions.py` — 版本層海報檢查,BROKEN=0 才過(列缺海報的版本/無縮圖的劇)
+
+### CI 每日自動稽核(update.yml,`|| ::warning` 模式;10 支)
+`audit_dups`(去重漏合併)/`audit_manual`(手填過期)/`audit_productions`(版本層海報)/`audit_sentinels`(哨兵劇目+來源低水位)/`audit_official`(官網體檢)/`audit_geo`(國界框+座標指紋)/`audit_tournames`(presenter 滲入)/`audit_titles`(未歸組/分裂)/`audit_sample_truth`(每日 15 卡對 TM API,含 genre 非音樂劇檢查;全 skip 時報 INCONCLUSIVE 不假 PASS)/`audit_posters`(釘圖健康/庫存圖 baseline/縮圖哨兵/抽樣尺寸)。
 
 ## 資料更新
 - 改 scraper 或想刷新資料：`python scrapers/westend.py && python scrapers/broadway.py && python scrapers/build_shows.py`。

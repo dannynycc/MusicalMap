@@ -11,6 +11,12 @@
 
 ---
 
+## [v2.31.14] - 2026-07-14 01:48
+### 文件 freshness 全面更新
+- README:總數 ~1,950(2026-07-14 實測 1,956)、works 205 筆、official_sites 229 筆;gen_variants 補官方中文劇名機制(show_titles/show_titles_tw);opentix 補關鍵字掃描層;tour_name 資料模型註解改「完整/在地製作名」;現況區新增「品質稽核五連發」(dups/tournames/titles/sample_truth/posters)與 `_TM_RETITLE` 機制。
+- docs/SOURCES.md:OPENTIX 補關鍵字掃描層與量測數據;葡萄牙 BOL 補 `_grande` 大圖與實際涵蓋。
+- docs/WORKFLOW.md:新增「CI 每日自動稽核」一節,清單逐一對照 update.yml 實況(10 支;初稿誤列 audit_dates、漏 audit_productions,已對碼修正)。
+
 ## [v2.31.13] - 2026-07-14 01:38
 ### Masquerade 場地欄定案
 - 使用者選定:「218 W 57th St」(街道地址;城市國家由卡片下一行顯示,不重複)。
