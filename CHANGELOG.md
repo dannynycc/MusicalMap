@@ -11,6 +11,11 @@
 
 ---
 
+## [v2.31.6] - 2026-07-13 21:32
+### 補圖 — 31 劇官方 key art 批次釘入,52 張卡換圖;TM 庫存圖 63→10 張
+agent 蒐集 MTI(20)/Concord(7)/官方授權商與劇官網(4)直連圖,**31 張全部下載拼格逐一目測驗證為本劇**後釘入 works.json(Dear Evan Hansen/Hairspray/Guys and Dolls/Oliver!/Come from Away/Peter Pan/Tarzan/Descendants/Parade/Oklahoma!/Sunday in the Park/The Producers/We Will Rock You 等)。品質註記:Murder for Two/Falsettos=授權商書封、Show Boat=1936 復古樂譜封面——識別正確、勝過分類庫存圖,先用。
+- 殘餘 10 張庫存圖=查無官方視覺的小眾/地方原創(Riley!/Rock Never Dies/Super Pickle/Bear Grease 等);Pirates! The Penzance Musical(2025 百老匯新版)應有官圖,列待補。
+
 ## [v2.31.5] - 2026-07-13 21:23
 ### 修正 — Carmen 歌劇踢出(場地級排除)+34 張匈牙利縮圖換原圖+BOOP!/WIR SIND AM LEBEN 官圖
 - **Carmen**(使用者抓到):Cincinnati Music Hall 場=歌劇(Cincinnati Opera 夏季)→踢;**布達佩斯輕歌劇院場查證為 Frank Wildhorn 音樂劇(2024 首演)=正貨保留**——同名跨型態不能全域殺,not_musical.json 新增 `title_venue` 場地級排除格式。歌劇名單全站掃描:僅此一筆混入。
