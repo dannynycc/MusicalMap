@@ -11,6 +11,12 @@
 
 ---
 
+## [v2.41.0] - 2026-07-15 00:53
+### me-input 場館選定依語言存單語名(使用者抓到「National Dr. Sun Yat-sen Memorial Hall 國父紀念館」整串)
+- catalog 雙語場館顯示名=「English 原文」併排字串,me-input 選定後整串存進紀錄——下拉維持雙語利辨識,但選定/存值改依站語言拆單語(繁中存「國父紀念館」,en 站存英文名),與海報牆 venueZh 呈現一致。
+- 順帶修隱藏 bug:MVENUE 座標索引 key=全串名,使用者**手打單語館名(「國家戲劇院」)一直反查不到座標**——拆分別名(zh/en)全部註冊進 MVENUE/MVENUE_CK,單語名也命中。
+- me 頁 proxyImg 加已知擋代理圖床直連清單(udnfunlife):首載即快,不必等 4 秒競速;公開頁維持代理+官方備援(隱私)。CF Worker 自建圖片代理(可過防盜鏈+快取+自控逾時)列為候選升級,待裁決。
+
 ## [v2.40.2] - 2026-07-14 22:44
 ### 自訂海報「等超級久才出現」修復(使用者抓到 Notre-Dame 空白卡)
 - 真 Chrome network 追蹤實錘:自訂海報走 wsrv.nl 縮圖代理,udn 等擋外部代理的圖床讓 wsrv 等 upstream 逾時才回 503(30 秒級),onerror fallback 直連才成功——空白skeleton要乾等半分鐘。

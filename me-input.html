@@ -514,12 +514,27 @@ function startLog(){
 
 // 從劇庫建城市/劇院資料庫，供手動新增自動補完＋帶出國家座標（手動劇也能上地圖）
 let MCITY=null, MVENUE=null, MVENUE_CK=null, MVENUE_LIST=null, NAME_AMBIG=null;
+// catalog 雙語場館顯示名=「English 原文」併排字串;存進紀錄與海報牆呈現應依站語言取單語
+// (繁中存「國父紀念館」不存整串,2026-07-15 使用者抓到),下拉仍顯示雙語利辨識。
+const _CJKRE=/[぀-ヿ㐀-鿿가-힯]/;
+function venueSplit(name){const parts=String(name||'').trim().split(/\s+/);
+  return {zh:parts.filter(x=>_CJKRE.test(x)).join(' '),en:parts.filter(x=>!_CJKRE.test(x)).join(' ')};}
+function venuePickName(name){const s=venueSplit(name);if(EN_UI)return s.en||name;return s.zh||name;}
 function buildManualDB(){
   if(MCITY)return;MCITY={};MVENUE={};MVENUE_CK={};MVENUE_LIST=[];const _nc={};
   (window.MM_VENUES||[]).forEach(v=>{   // 正式版 5300+ 劇院（含中文名/台↔臺變體、座標）
     if(!v.name)return;
-    if(!MVENUE[v.name])MVENUE[v.name]={city:v.city||'',country:v.country||'',lat:v.lat,lng:v.lng,cur:curOf(v.country),_s:v.search||'',former:v.former||''};   // _s=catalog search 欄(簡體/日文/別名);former=舊名場館的現名提示
+    const hit={city:v.city||'',country:v.country||'',lat:v.lat,lng:v.lng,cur:curOf(v.country),_s:v.search||'',former:v.former||''};
+    if(!MVENUE[v.name])MVENUE[v.name]=hit;   // _s=catalog search 欄(簡體/日文/別名);former=舊名場館的現名提示
     if(v.city){const kk=v.name+'|'+cnorm(v.city);if(!MVENUE_CK[kk])MVENUE_CK[kk]={country:v.country||'',lat:v.lat,lng:v.lng,cur:curOf(v.country),city:v.city};}  // 名字+城市精準查:同名多城市靠已選城市消歧
+    // 拆分別名也註冊:單語名(選定存的值/使用者手打「國父紀念館」)一樣反查得到座標
+    const sp=venueSplit(v.name);
+    for(const alias of [sp.zh,sp.en]){
+      if(alias&&alias!==v.name){
+        if(!MVENUE[alias])MVENUE[alias]=hit;
+        if(v.city){const ak=alias+'|'+cnorm(v.city);if(!MVENUE_CK[ak])MVENUE_CK[ak]=MVENUE_CK[v.name+'|'+cnorm(v.city)];}
+      }
+    }
     MVENUE_LIST.push({name:v.name,city:v.city||'',country:v.country||'',lat:v.lat,lng:v.lng,cur:curOf(v.country),_s:v.search||'',former:v.former||''});  // combo 用:全場館(同名多城市各自一筆,下拉標城市)
     (_nc[v.name]=_nc[v.name]||new Set()).add(cnorm(v.city||''));
     if(v.city&&!MCITY[v.city])MCITY[v.city]={country:v.country||'',lat:v.lat,lng:v.lng,cur:curOf(v.country)};  // 城市取該市第一個劇院的座標當代表
@@ -626,7 +641,7 @@ function manualAdd(title,seed,onBack){
   }
   // 城市/劇院自製下拉（黏輸入框下、邊打邊 filter、台↔臺正規化）
   setupCombo(document.getElementById('mCity'),document.getElementById('mCityPanel'),()=>Object.keys(MCITY),(v)=>{draft.p.city=v;applyGeo();});
-  setupCombo(document.getElementById('mVenue'),document.getElementById('mVenuePanel'),()=>MVENUE_LIST,(e)=>{draft.p.venue=e.name;const ci=document.getElementById('mCity');ci.value=e.city;draft.p.city=e.city;applyGeo();},{searchOf:e=>((e._s||'')+' '+(e.city||'')),fmt:venueFmt,toInput:e=>e.name});
+  setupCombo(document.getElementById('mVenue'),document.getElementById('mVenuePanel'),()=>MVENUE_LIST,(e)=>{draft.p.venue=venuePickName(e.name);const ci=document.getElementById('mCity');ci.value=e.city;draft.p.city=e.city;applyGeo();},{searchOf:e=>((e._s||'')+' '+(e.city||'')),fmt:venueFmt,toInput:e=>venuePickName(e.name)});
   // 日期：年（必）月日（選填）→ 精度 year/month/day，讓星期・月份統計能算
   function applyDate(){const y=document.getElementById('mYear').value.trim(),mo=document.getElementById('mMonth').value,da=document.getElementById('mDay').value;
     if(!/^\d{4}$/.test(y)){draft.date=null;draft.precision='none';return;}
@@ -813,7 +828,7 @@ function renderDetail(){
       const hit=(venue&&city&&MVENUE_CK&&MVENUE_CK[venue+'|'+cnorm(city)])||(venue&&MVENUE[venue]);
       if(hit){draft.p.country=hit.country;draft.p.lat=hit.lat;draft.p.lng=hit.lng;if(hit.city&&!city){draft.p.city=hit.city;cityEl.value=hit.city;}okMsg(hit);}else clearGeo();}   // 城市已填就不覆蓋(免把紐約蓋成 San Antonio)
     if(cityEl){setupCombo(cityEl,document.getElementById('mCityPanel'),()=>Object.keys(MCITY),(v)=>{cityEl.value=v;geoByCity();});cityEl.addEventListener('input',geoByCity);}
-    if(venueEl){setupCombo(venueEl,document.getElementById('mVenuePanel'),()=>MVENUE_LIST,(e)=>{venueEl.value=e.name;if(e.city){cityEl.value=e.city;draft.p.city=e.city;}geoByVenue();},{searchOf:e=>((e._s||'')+' '+(e.city||'')),fmt:venueFmt,toInput:e=>e.name});venueEl.addEventListener('input',geoByVenue);}
+    if(venueEl){setupCombo(venueEl,document.getElementById('mVenuePanel'),()=>MVENUE_LIST,(e)=>{venueEl.value=venuePickName(e.name);if(e.city){cityEl.value=e.city;draft.p.city=e.city;}geoByVenue();},{searchOf:e=>((e._s||'')+' '+(e.city||'')),fmt:venueFmt,toInput:e=>venuePickName(e.name)});venueEl.addEventListener('input',geoByVenue);}
   }
   const bk=document.getElementById('backToSearch');if(bk)bk.onclick=()=>{
     if(draft.editIndex==null&&w.prods&&w.prods.length>1)pickWork(w);   // 多製作→回版本清單（上一頁）
