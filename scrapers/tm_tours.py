@@ -91,6 +91,12 @@ def main():
                     if status in ("cancelled", "canceled", "postponed"):
                         n_cancel += 1
                         continue                          # dead listings (404 / "event canceled")
+                    # 季票/訂閱 event(「Broadway in Scranton Season Subscription: FRIDAY
+                    # EVENINGS」)把整季 6 劇掛同一 attraction 清單,localDate=季票起賣日,
+                    # 不是各劇演出日——Scranton/Little Rock/Lexington 13 筆假檔期全來自此
+                    # (2026-07-14 官方季程比對實錘)。有 subscription/season package 字樣一律跳過。
+                    if re.search(r"subscription|season\s+(ticket|package)", e.get("name") or "", re.I):
+                        continue
                     v = (e.get("_embedded", {}).get("venues") or [{}])[0]
                     loc = v.get("location") or {}
                     venue = (v.get("name") or "").strip()

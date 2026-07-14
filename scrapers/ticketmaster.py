@@ -227,6 +227,9 @@ def main():
         status = ((ev.get("dates", {}).get("status") or {}).get("code") or "").lower()
         if status in ("cancelled", "canceled", "postponed"):
             return
+        # 季票/訂閱 event 不是演出(date=起賣日;tm_tours 同款防禦,2026-07-14)
+        if re.search(r"subscription|season\s+(ticket|package)", ev.get("name") or "", re.I):
+            return
         v = (ev.get("_embedded", {}).get("venues") or [{}])[0]
         loc = v.get("location") or {}
         title = clean_title(ev.get("name") or "")

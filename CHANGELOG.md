@@ -11,6 +11,16 @@
 
 ---
 
+## [v2.36.0] - 2026-07-14 15:30
+### 資料品質深稽核第二輪:再五個重大 bug 全數修復
+- 🔧 **TM 季票假日期(最重)**:Scranton/Little Rock/Lexington 13 筆巡演站的檔期全是「Broadway Season Subscription」季票 event 的起賣日,不是演出日(官方季程比對:Scranton Beetlejuice 真檔 12/11-13 被標 10/23-25)。修:tm_tours/ticketmaster 兩 scraper 擋 subscription/season 字樣 event;現有 13 筆假資料清除(單劇 event 上架後 CI 自動回補);audit_dups 新增「同館同檔 ≥3 劇」指紋防線。
+- 🔧 **rolling 白名單蓋掉官宣閉幕**:Ragtime(Tony 後官宣 8/16 閉幕,庫內顯「長期上演」+過時 8/2)、Schmigadoon!(延至 2027-01-03,庫內 9/6+長期上演)——broadway-show-tickets 源一律 end_rolling 的假設對限定演出不成立。修:兩劇 override(官方查證);結構性風險記錄,同批其餘長跑劇(Wicked/Hamilton 等)為真 open-ended 不受影響。
+- 🔧 **cn_venues 權威表座標污染 8 條**:高新中演=四川大剧院座標(差 12.8km)、東安湖(19km)、中演成都(6km,查明為成华区另一座館)、杭州運河(11.9km)、施光南(3.6km)、上海西岸(7.2km)、正佳(2.2km)、花都(35km)——權威表本身是市中心 fallback 污染源。修:Nominatim/OSM 逐館查證(display_name 完整地址佐證),cn_venues+venue_coords 雙表同步;查無可信結果的 4 館(衡陽神農/海口灣/大明宮保利/北外滩友邦)不瞎改,留待人工。
+- 🔧 **teatro.it 檔期系統性砍尾**:JSON-LD 每站每年只披露一場代表場,多天檔被砍成單日(Carcano 官方 12/23~27 → 庫內 12/23)。修:Carcano 站 override(官方頁查證);結構限制記入 SOURCES.md,義大利單日檔期=「至少演出日」語意。
+- 🔧 **Death Note 倫敦場官網錯掛日本頁**:Barbican 世界首演(7/30~9/12)的官方網站連結指向 horipro-stage.jp 2025 日本場。修:official_sites 補 uk=deathnotethemusical.com(倫敦專屬官網)。
+- 過程更正:一度懷疑「獅子王/魅影中文搜尋缺」,查證後是稽核腳本自己用錯 group key,資料無恙——不充數。
+- audit_dups/audit_titles/audit_geo 全過;1971 shows。
+
 ## [v2.35.0] - 2026-07-14 15:00
 ### 同名異作區辨機制(v2.34.0 報告的 Bug4/5 治本)
 - 新增 `data/works_distinct.json`:同 title 不同作品的紀錄用 ticket_url 指紋改 group(拆劇群)+tag_hint(classify_tag 出正確傳統)+tour_name。build_shows 在來源載入後套用;audit_titles/audit_dups 各加白名單豁免刻意拆分。

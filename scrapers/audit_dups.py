@@ -62,7 +62,21 @@ def main():
     promo = sorted({s["title"] for s in shows if _PROMO.search(s["title"])})
     junk = sorted({s["title"] for s in shows if _JUNK.search(s["title"])})
 
+    # 季票假日期指紋(2026-07-14 Scranton/Little Rock/Lexington 案):同 venue+city、
+    # 完全相同 start~end、≥3 個不同 group = TM season-subscription event 的起賣日被當
+    # 演出日。scraper 已擋 subscription 字樣,這裡守「沒想到的變種」。
+    vd = defaultdict(set)
+    for s in shows:
+        if s.get("venue") and s.get("start_date"):
+            vd[(s["venue"], s.get("city"), s["start_date"], s.get("end_date"))].add(s["group"])
+    sub_susp = {k: gs for k, gs in vd.items() if len(gs) >= 3}
+
     problems = 0
+    if sub_susp:
+        problems += len(sub_susp)
+        print(f"✗ {len(sub_susp)} same-venue same-dates ≥3-show cluster(s) (season-subscription 假日期嫌疑):")
+        for (v, c, st, en), gs in sorted(sub_susp.items()):
+            print(f"    {v} @ {c} {st}~{en}: {sorted(gs)}")
     if misses:
         problems += len(misses)
         print(f"✗ {len(misses)} de-dup MISS (same show, split groups):")
