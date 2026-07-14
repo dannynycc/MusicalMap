@@ -11,6 +11,11 @@
 
 ---
 
+## [v2.39.3] - 2026-07-14 21:15
+### atrapalo 商品名框清洗+加那利場館定位(使用者抓到 NOMAD 案)
+- clean_title 加西語商品名規則:「Entrada(s) para el espectáculo X en la Sala Y」=「購買 X 門票」整串當劇名(3 筆全加那利 dinner show)——剝前綴+場館尾綴。NOMAD/History/Scandal 正名。
+- NOMAD @ Sala Scala:venue 欄補上+座標修正(原值=San Bartolomé 行政中心,偏 17km 山區;官方地址 C/ Las Retamas 3, San Agustín,OSM 地址級)+官網 salascala.com。History @ Pirámide de Arona 同修(OSM 建築級)。Scandal 場館查無可信座標,不瞎補。
+
 ## [v2.39.2] - 2026-07-14 21:09
 ### 馬尼拉檔補官網+票務 tile 正名(使用者三度抓到同劇缺件)
 - On Your Feet!(onyourfeetmusical.com)、The Notebook(notebookmusical.com)補 official_sites——v2.39.0 新增 works 條目時漏了同步補官網(URL 存活+title 正身已驗)。Charlie 原本就從既有條目拿到官網。

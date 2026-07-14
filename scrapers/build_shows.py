@@ -273,6 +273,11 @@ PERF_SUFFIX_RE = re.compile(
 def clean_title(t):
     t = (t or "").strip()
     t = re.sub(r"\s*\|.*$", "", t)          # drop promoter pipe-tails (… | Official … Packages)
+    # atrapalo 商品名框:「Entrada para el espectáculo NOMAD en la Sala Scala」=「購買 X 在
+    # Y 的門票」整串當劇名(2026-07-14 使用者抓到,3 筆全加那利 dinner show)。剝「Entrada(s)
+    # para/al/a …」前綴與「en la/el {場館}」尾綴(場館名由座標/venue 欄承載,不塞劇名)。
+    t = re.sub(r"^entradas?\s+(?:para\s+el\s+espect[aá]culo|al\s+espect[aá]culo|para|a)\s+", "", t, flags=re.I)
+    t = re.sub(r"\s+en\s+(?:la|el)\s+(?:sala|teatro|auditorio)\s+[\w .'’-]{2,40}$", "", t, flags=re.I)
     # promoter/venue prefix → "{Show}". Handles "{Company} presents [: ] {Show}"
     # ("Lyric Theatre of Oklahoma presents Annie", "Ford's Theatre presents: Come
     # From Away") and "{Company} production of {Show}" ("NYT production of …").
