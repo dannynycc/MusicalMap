@@ -195,10 +195,13 @@
           <div class="cap-date">${esc(s.date ? s.date.replace(/-/g, '/') : '')}</div></div>`;
       const img = c.querySelector('img'), fig = c.querySelector('.poster'), skel = c.querySelector('.skel');
       let _retried = false;
-      img.onload = () => { img.classList.add('ready'); skel.style.display = 'none'; };
-      img.onerror = () => { if (!_retried && s.posterFull && s.posterFull !== s.poster) { _retried = true; img.src = s.posterFull; return; }
+      const _fall = () => { if (!_retried && s.posterFull && s.posterFull !== s.poster) { _retried = true; img.src = s.posterFull; return; }
         if (s.posterAlt && img.src !== s.posterAlt) { img.src = s.posterAlt; return; }   // 自訂圖床死→退官方海報(alt 也死時 src 已相等,自然落到色塊,不迴圈)
         fig.classList.add('is-fallback'); };   // 代理失敗→原圖→官方備援→都失敗才色塊
+      // wsrv 代理對擋外部代理的圖床會等 upstream 逾時才回 503——4s 沒載入就搶先走備援(2026-07-14 me 頁同修)
+      const _t = (s.poster && s.posterFull && s.posterFull !== s.poster) ? setTimeout(() => { if (!img.complete || !img.naturalWidth) _fall(); }, 4000) : null;
+      img.onload = () => { if (_t) clearTimeout(_t); img.classList.add('ready'); skel.style.display = 'none'; };
+      img.onerror = () => { if (_t) clearTimeout(_t); _fall(); };
       img.src = s.poster || '';
       if (!s.poster) fig.classList.add('is-fallback');
       c.onclick = () => openDetail(s);
@@ -504,10 +507,12 @@
         img.style.objectFit = s.posterFit === 'contain' ? 'contain' : 'cover';
         if (img.getAttribute('src') !== s.poster) {
           img.classList.remove('ready'); let _dtr = false;
-          img.onload = () => img.classList.add('ready');
-          img.onerror = () => { if (!_dtr && s.posterFull && s.posterFull !== s.poster) { _dtr = true; img.src = s.posterFull; return; }
+          const _dfall = () => { if (!_dtr && s.posterFull && s.posterFull !== s.poster) { _dtr = true; img.src = s.posterFull; return; }
             if (s.posterAlt && img.src !== s.posterAlt) { img.src = s.posterAlt; return; }   // 自訂圖床死→退官方海報
             img.classList.add('ready'); };  // 代理失敗→原圖→官方備援
+          const _dt = (s.posterFull && s.posterFull !== s.poster) ? setTimeout(() => { if (!img.complete || !img.naturalWidth) _dfall(); }, 4000) : null;  // 代理 4s 沒回→搶先備援
+          img.onload = () => { if (_dt) clearTimeout(_dt); img.classList.add('ready'); };
+          img.onerror = () => { if (_dt) clearTimeout(_dt); _dfall(); };
           img.src = s.poster;
         } else img.classList.add('ready'); }
       else { dp.classList.add('is-fallback'); img.removeAttribute('src'); dp.style.setProperty('--dt-accent', s.color || '#7c5cff');

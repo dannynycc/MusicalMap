@@ -406,8 +406,12 @@ function posterEl(s){
       <div class="cap-date">${s.date?s.date.replace(/-/g,'/'):''}</div></div>`;
   const img=c.querySelector('img'),fig=c.querySelector('.poster'),skel=c.querySelector('.skel');
   let _retried=false;
-  img.onload=()=>{img.classList.add('ready');skel.style.display='none'};
-  img.onerror=()=>{if(!_retried&&s.posterFull&&s.posterFull!==s.poster){_retried=true;img.src=s.posterFull;return;}fig.classList.add('is-fallback');};   // 代理失敗→退回原圖→都失敗才色塊
+  const _fall=()=>{if(!_retried&&s.posterFull&&s.posterFull!==s.poster){_retried=true;img.src=s.posterFull;return;}fig.classList.add('is-fallback');};
+  // wsrv 代理對抓不到的來源(udn 等擋外部代理的圖床)會等 upstream 逾時才回 503,自訂海報
+  // 「等超級久才出現」(2026-07-14 使用者抓到)——4 秒沒載入就搶先切直連原圖,不乾等代理。
+  const _t=(s.poster&&s.posterFull&&s.posterFull!==s.poster)?setTimeout(()=>{if(!img.complete||!img.naturalWidth)_fall();},4000):null;
+  img.onload=()=>{if(_t)clearTimeout(_t);img.classList.add('ready');skel.style.display='none'};
+  img.onerror=()=>{if(_t)clearTimeout(_t);_fall();};   // 代理失敗→退回原圖→都失敗才色塊
   img.src=s.poster||'';
   if(!s.poster)fig.classList.add('is-fallback');
   c.onclick=()=>openDetail(s);
@@ -752,8 +756,10 @@ function openDetail(s){
     img.style.objectFit=s.posterFit==='contain'?'contain':'cover';
     if(img.getAttribute('src')!==s.poster){              // 換不同海報：先隱藏舊圖(opacity→0)，只靠 onload 才淡入新圖→不閃前一張
       img.classList.remove('ready');let _dtr=false;
-      img.onload=()=>img.classList.add('ready');
-      img.onerror=()=>{if(!_dtr&&s.posterFull&&s.posterFull!==s.poster){_dtr=true;img.src=s.posterFull;return;}img.classList.add('ready');};  // 代理失敗→退回原圖
+      const _dfall=()=>{if(!_dtr&&s.posterFull&&s.posterFull!==s.poster){_dtr=true;img.src=s.posterFull;return;}img.classList.add('ready');};
+      const _dt=(s.posterFull&&s.posterFull!==s.poster)?setTimeout(()=>{if(!img.complete||!img.naturalWidth)_dfall();},4000):null;  // 代理 4s 沒回→搶先直連(同海報牆,2026-07-14)
+      img.onload=()=>{if(_dt)clearTimeout(_dt);img.classList.add('ready');};
+      img.onerror=()=>{if(_dt)clearTimeout(_dt);_dfall();};  // 代理失敗→退回原圖
       img.src=s.poster;
     }else img.classList.add('ready');}                    // 同一張(重開)→直接顯示
   else{dp.classList.add('is-fallback');img.removeAttribute('src');dp.style.setProperty('--dt-accent',s.color||'#7c5cff');  // 無海報→文字 fallback，不破圖
