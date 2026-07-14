@@ -11,6 +11,12 @@
 
 ---
 
+## [v2.38.1] - 2026-07-14 20:15
+### Évangéline 正名+marker 壓時間軸修正(使用者抓到 Moncton 案)
+- 查證:Évangéline @ Moncton Avenir Centre 是真實演出(官方站 evangelinemusical.ca,Acadian 法語原創音樂劇)——「la plus grande histoire d'amour d'Amérique du Nord」是官方行銷副標語被 TM 當劇名整串帶入,非夾帶垃圾。works_distinct 加規則:title 正名「Évangéline」、tag 由 Canada fallback 的 Broadway/West End 改「法式音樂劇」。
+- 修 works_distinct 套用時機 bug:原本在 SOURCE_FILES 載入後就跑,但 TM/tm_tours 筆在後面的 merge 段才進庫——純 TM 演出(如 Évangéline)永遠匹配不到。移到 TM merge 之後(Peter Pan/BIT 兩規則迴歸無恙,18→19 筆)。
+- popup 舒適區校正把「卡片下方的海報 marker(72px)」納入內容高度——原本置中只算卡片,marker 被壓到時間軸 bar 上。e2e:兩案 marker 底距 bar 頂 >120px。
+
 ## [v2.38.0] - 2026-07-14 19:58
 ### 資料品質深稽核第三輪:十個重大 bug 全修(抓取/處理/呈現全域)
 - 🔧 **呈現|單日場日期冗餘**:423 筆「12/23 – 12/23」→ fmtDates 同日只顯一個日期。

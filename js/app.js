@@ -192,12 +192,17 @@ map.on("popupopen", (e) => {
     const r = el.getBoundingClientRect();
     const top = mapR.top + 24;
     const bot = barTop - 16;
+    // 內容整體=卡片+其下方的海報 marker(icon 高 72,錨在卡片正下方)——marker 不算進去
+    // 會被置中結果壓到時間軸 bar 上(2026-07-14 使用者抓到 Moncton 案)。
+    const MARKER_BELOW = 76;
+    const cTop = r.top;
+    const cBot = r.bottom + MARKER_BELOW;
     let dx = 0;
     let dy = 0;
-    if (r.top < top || r.bottom > bot) {
-      dy = (r.height > bot - top)
-        ? r.top - top                                // 卡比舒適區還高:保頂對齊,至少標題可見
-        : (r.top + r.bottom) / 2 - (top + bot) / 2;  // 垂直置中於舒適區
+    if (cTop < top || cBot > bot) {
+      dy = (cBot - cTop > bot - top)
+        ? cTop - top                                 // 內容比舒適區還高:保頂對齊,至少標題可見
+        : (cTop + cBot) / 2 - (top + bot) / 2;       // 卡片+marker 整體垂直置中於舒適區
     }
     if (r.left < mapR.left + 12) dx = r.left - (mapR.left + 12);
     else if (r.right > mapR.right - 12) dx = r.right - (mapR.right - 12);
