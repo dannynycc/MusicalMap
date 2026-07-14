@@ -100,7 +100,7 @@ scrapers/  ──產出──>  data/*.json  ──merge──>  data/shows.json
   "end_date": null,            // null = 無限期/常駐中
   "ticket_url": "https://…",
   "image": "https://…",        // 海報；巡演沿用該劇海報
-  "tour_name": null,           // 完整/在地製作名，例 "Wicked — North American Tour"、"魔女宅急便"（彈窗大標用；列表用乾淨 title，v2.31.9 起 canonical 正名時自動保留原題名）
+  "tour_name": null,           // 完整/在地製作名，例 "Wicked — North American Tour"、"魔女宅急便"（彈窗大標用；列表用乾淨 title，v2.31.9 起 canonical 正名時自動保留原題名；v2.32.0 起若保留的只是 canonical 英文變體，讓位給 local_titles.json 的人工在地名，如漢堡 Zurück in die Zukunft）
   "group": "wicked",           // build 產生的正規化合併鍵（同劇同 key）
   "verified": true,
   "source": "londontheatre.co.uk"

@@ -1067,11 +1067,20 @@ def main():
                     "spain": "es", "netherlands": "nl", "mexico": "mx", "austria": "at",
                     "switzerland": "ch", "china": "cn", "south korea": "kr"}.get(c, c)
         n_lt = 0
+        _collapse_lt = lambda t: re.sub(r"[\W_]+", "", (t or "").lower())
         for s in by_id.values():
-            if s.get("tour_name"):
-                continue
             name = (LT.get(s["group"]) or {}).get(_lt_region(s.get("country")))
-            if name:
+            if not name:
+                continue
+            tn = s.get("tour_name")
+            # tour_name 已有值時只在它是「canonical 英文變體」(含 canonical 本體,如
+            # 「Back to the Future: The Musical」)才讓位——那不是真在地名,只是上游
+            # scraper 把在地原名 canon 掉後的行銷後綴殘留(2026-07-14 漢堡 ZURÜCK IN
+            # DIE ZUKUNFT 案:local_titles 的德文名被英文變體卡位)。真在地製作名
+            # (日文/中文/德文源頭名,不含 canonical 字串)一律尊重源頭不覆蓋。
+            if tn and _collapse_lt(s["title"]) not in _collapse_lt(tn):
+                continue
+            if tn != name:
                 s["tour_name"] = name
                 n_lt += 1
         if n_lt:

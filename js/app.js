@@ -629,7 +629,7 @@ function render() {
       .bindPopup(popupHtml(s), {
         maxWidth: Math.min(720, window.innerWidth - 40),  // never wider than the screen
         className: "mm-popup",
-        closeOnClick: false,   // 點卡片/地圖不關閉,只用 × 關
+        closeOnClick: true,    // 點地圖空白處=關閉(真 click 才算;Leaflet 拖曳結束不觸發 click,drag 不會誤關)
         // autoPan 依裝置(2026-07-04「圖卡閃一下消失」修正):
         //  手機=false——小地圖上開 popup 時 autoPan 想把大卡平移進視野,那個地圖移動觸發 markercluster 重新聚合→
         //         marker 連 popup 被移除=閃退。手機改底部 sheet(見 style.css)不需 autoPan。

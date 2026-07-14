@@ -11,6 +11,18 @@
 
 ---
 
+## [v2.32.0] - 2026-07-14 12:33
+### popup 互動:點地圖空白處收起圖卡
+- `closeOnClick: false → true`(app.js):圖卡開著時真 click 地圖空白=關閉;drag 不觸發(Leaflet 拖曳結束不發 click)。playwright 真 Chrome e2e 4/4:點空白關、drag 不關、點卡片內不關、× 仍可關。
+
+### 在地製作名修正(popup 大標)
+- 漢堡《Back to the Future》大標顯示英文治本:stage_de scraper 把德文官網名 canon 成英文後,英文變體「Back to the Future: The Musical」卡住 tour_name,local_titles 的德文名填不進。build_shows 的 local_titles 迴圈改為「tour_name 是 canonical 英文變體時讓位給人工在地名」;真在地名(日文/德文源頭)不受影響。
+- local_titles:BTTF 德文名補全為官方全名「Zurück in die Zukunft – Das Musical」(官網 h1 驗證);`juliet` key 修正為 `and juliet`(group key 不符導致斯圖加特《& Julia》一直沒填上,本次起生效)。
+
+### 城市中文名
+- 補 7 城翻譯:大西洋城(Atlantic City,使用者回報)、沙加緬度、開普敦、約翰尼斯堡、阿布達比、熱那亞、Newcastle Upon Tyne→紐卡索(與既有 Newcastle 同城異寫)。
+- 產出城市譯名分級清單(A 保留/B 保留/C 建議回落英文,C 級 32 城)交使用者裁決,C 級刪除待確認後另版處理。
+
 ## [v2.31.14] - 2026-07-14 01:48
 ### 文件 freshness 全面更新
 - README:總數 ~1,950(2026-07-14 實測 1,956)、works 205 筆、official_sites 229 筆;gen_variants 補官方中文劇名機制(show_titles/show_titles_tw);opentix 補關鍵字掃描層;tour_name 資料模型註解改「完整/在地製作名」;現況區新增「品質稽核五連發」(dups/tournames/titles/sample_truth/posters)與 `_TM_RETITLE` 機制。
