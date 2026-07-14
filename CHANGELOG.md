@@ -11,6 +11,10 @@
 
 ---
 
+## [v2.40.1] - 2026-07-14 22:33
+### 場館目錄補國父紀念館(使用者抓到缺席)
+- venues_catalog 只從「站上出現過的演出」收集,國父紀念館大會堂近年整修無檔期就從沒進來——但 me 頁記錄歷史看劇需要名館。tw_venues.json 補「國父紀念館 National Dr. Sun Yat-sen Memorial Hall」(OSM 建築級,仁愛路四段505號),catalog 5459→5460;SYNC_VER→13。同類「歷史名館但近期無演出」若再發現照此補。
+
 ## [v2.40.0] - 2026-07-14 22:11
 ### broadway.org 巡演場館全補(使用者抓到:頁面明明寫得清清楚楚)
 - 病根:broadway_tours 的 ROW_RE 只捕 `<a>` 包裹的場館名,broadway.org 的場館其實在 `data-theatre` 屬性+純文字 div——凡沒連結的站全漏(venue=空→city 級座標)。改抓 data-theatre 結構化屬性,**250 個巡演站場館全數補齊**+geocode 自動命中建築級(Ed Mirvish/Princess of Wales/Stanley PAC/Royal Theatre/Hammons Hall/Centro Cultural Teatro…,與使用者人工比對四筆完全吻合)。
