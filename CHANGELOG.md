@@ -11,6 +11,11 @@
 
 ---
 
+## [v2.32.2] - 2026-07-14 13:21
+### 城市譯名二輪裁決:再回落 7 城+維洛納正名
+- 刪 7 城中文(使用者裁決「沒聽過」):Hartford/Providence/Torino/Palermo/Monterrey/Durham/Lexington → 回落英文(cities_tw 連動刪 4 條)。
+- Verona 繁中「維羅納」→「維洛納」(cities_tw 覆蓋;簡中維持「维罗纳」)。
+
 ## [v2.32.1] - 2026-07-14 13:13
 ### 城市譯名瘦身:29 個極陌生音譯回落英文(使用者裁決)
 - 依分級清單裁決,i18n_maps cities 刪 29 條(cities_tw 連動 4 條):英 Aylesbury/Woking/Milton Keynes/Stoke/Sunderland/Swansea;美 Boise/Costa Mesa/Fayetteville/Greenville/Knoxville/Scranton/Utica/Bloomington/Wilmington;義+西+德 Bari/Bergamo/Brescia/Ferrara/Padova/Pescara/Piacenza/Mataró/Trier;北歐+東歐 Aalborg/Aarhus/Hasselt/Ostrava/Szeged。頁面自動回落英文原名。
