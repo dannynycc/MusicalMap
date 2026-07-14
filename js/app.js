@@ -514,6 +514,7 @@ function platformIcon(host) {
 const PLATFORM_NAME = [
   ["damai", "大麥"], ["juooo", "聚橙"], ["maoyan", "貓眼"], ["opentix", "OPENTIX"],
   ["todaytix", "TodayTix"], ["ticketmaster", "Ticketmaster"], ["atgtickets", "ATG"],
+  ["ticketworld", "TicketWorld"],
   ["londontheatre", "London Theatre"], ["kham", "寬宏"], ["udnfunlife", "udn 售票"],
   ["interpark", "Interpark"], ["sistic", "SISTIC"], ["jegy", "jegy.hu"], ["polyt", "保利票務"],
   ["theatreinparis", "Theatre in Paris"], ["bol.pt", "BOL"], ["showtic", "Showtic"],

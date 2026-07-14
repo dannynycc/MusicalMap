@@ -11,6 +11,12 @@
 
 ---
 
+## [v2.39.2] - 2026-07-14 21:09
+### 馬尼拉檔補官網+票務 tile 正名(使用者三度抓到同劇缺件)
+- On Your Feet!(onyourfeetmusical.com)、The Notebook(notebookmusical.com)補 official_sites——v2.39.0 新增 works 條目時漏了同步補官網(URL 存活+title 正身已驗)。Charlie 原本就從既有條目拿到官網。
+- popup 票務 tile「premier.ticket…」截斷:PLATFORM_NAME 補 TicketWorld。
+- 流程教訓:新增 works 作品=works+official_sites+海報 三件一組,缺一都會被使用者抓到。
+
 ## [v2.39.1] - 2026-07-14 20:58
 ### 馬尼拉三檔補官方海報(使用者抓到 On Your Feet 無圖)
 - v2.39.0 的 image 留空想靠同劇群海報繼承,但 On Your Feet!/The Notebook 全球只有馬尼拉一筆=無圖可借。真瀏覽器自 TicketWorld 抓官方橫幅(CloudFront CDN),獨立驗證 content-type image/jpeg+無 referer 熱鏈可用(記憶教訓:抓到 URL≠能顯示)後入 manual。
