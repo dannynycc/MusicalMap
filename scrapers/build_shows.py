@@ -1367,6 +1367,25 @@ def main():
     if upgraded:
         print(f"  upgraded {upgraded} damai search-link(s) → precise detail link (via china_damai lookup)")
 
+    # 全卡購票連結 URL 保序去重:上面的 search→detail 就地替換會把同卡兩條 search
+    # 換成同一 detail(长安大国医雙大麥 tile,2026-07-14 使用者二度抓到同平台重複),
+    # 任何其他路徑產生的重複也一併在此兜底。
+    n_dedup = 0
+    for s in shows:
+        links = s.get("ticket_links") or []
+        seen_u, uniq = set(), []
+        for l in links:
+            u = l.get("url")
+            if u and u in seen_u:
+                continue
+            seen_u.add(u)
+            uniq.append(l)
+        if len(uniq) != len(links):
+            s["ticket_links"] = uniq
+            n_dedup += 1
+    if n_dedup:
+        print(f"  deduped ticket links on {n_dedup} record(s) (same URL listed twice)")
+
     # 中國售票連結 label 按目的地 host 統一(不同來源各自命名,如保利把大麥連結標「售票連結」、
     # 大麥 scraper 標「大麥」→ 同一齣劇不同城市標籤不一致)。依 host 正規化成品牌名,讓使用者一眼
     # 認得去哪買;ticket_url-only 的也補成 ticket_links 免得 fallback 顯示泛用字。

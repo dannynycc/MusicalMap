@@ -71,7 +71,17 @@ def main():
             vd[(s["venue"], s.get("city"), s["start_date"], s.get("end_date"))].add(s["group"])
     sub_susp = {k: gs for k, gs in vd.items() if len(gs) >= 3}
 
+    # 同卡重複購票 URL(2026-07-14 长安大国医雙大麥 tile;damai upgrade 就地替換後未去重)
+    dup_links = []
+    for s in shows:
+        urls = [l.get("url") for l in (s.get("ticket_links") or [])]
+        if len(urls) != len(set(urls)):
+            dup_links.append(f"{s.get('title')} @ {s.get('city')}")
+
     problems = 0
+    if dup_links:
+        problems += len(dup_links)
+        print(f"✗ {len(dup_links)} record(s) with duplicate ticket URL: {dup_links[:8]}")
     if sub_susp:
         problems += len(sub_susp)
         print(f"✗ {len(sub_susp)} same-venue same-dates ≥3-show cluster(s) (season-subscription 假日期嫌疑):")
