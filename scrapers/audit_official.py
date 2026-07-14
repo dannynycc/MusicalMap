@@ -49,6 +49,19 @@ def main():
            if not k.startswith("_")}
     warn = 0
 
+    # 0. key 有效性:official_sites 以 group 為 key,key 對不上任何現有 group=官網掛不上
+    #    (2026-07-14 使用者抓到 & Juliet:官網三條齊全,key 卻寫成舊制「juliet」,對不上
+    #    group「and juliet」——與 local_titles 同型。有「近似 group」的失效 key 最可疑=
+    #    多半是 group_key 演進後沒跟上;完全無近似的=下檔劇殘鍵,合法保留不吵)
+    groups = {s.get("group") for s in shows}
+    for k in OFF:
+        if k in groups:
+            continue
+        close = [g for g in groups if g and (k in g or g in k)]
+        if close:
+            warn += 1
+            print(f"::warning::official dead-key: {k!r} 對不上任何 group,近似 {close[:3]} — 官網掛不上,疑 key 過時")
+
     # 1. region-miss(resident 有條目但對不到 URL)
     seen = set()
     for s in shows:

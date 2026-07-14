@@ -11,6 +11,12 @@
 
 ---
 
+## [v2.39.0] - 2026-07-14 20:45
+### 菲律賓缺口補上(使用者發現)+official_sites key 全表稽核(& Juliet 官網案)
+- 🌏 **馬尼拉三檔上圖**:Charlie and the Chocolate Factory(The Theatre at Solaire 7/8~26)、On Your Feet!(The Proscenium 7/10~8/2)、The Notebook(Samsung PAT 9/3~20)——日期=TicketWorld 真瀏覽器眼見為憑,場館座標 OSM 查證,works registry 補 The Notebook/On Your Feet! 兩作品(歸組+tag 自動正確)。i18n 補馬尼拉/菲律賓。
+- 🧪 `philippines.py`(實驗性):TicketWorld(Ticketek 系)bot 牆對 headless 極嚴(urllib 403/curl_cffi 殼/headless Chrome HTTP2 錯)——scraper 掛 CI 實驗性(失敗保留舊檔),現行由 manual 維護;works registry 白名單只收西方劇。GMG Productions(gmg-productions.com)可直抓但只有月級日期,記錄為候選源。
+- 🔧 **official_sites key 失效 37 條全表稽核**(使用者抓到 & Juliet 沒官網):跟 local_titles 同型的 key 失配——**& Juliet 官網三條(global/巡演/德國)其實早就在表裡,key 卻寫舊制「juliet」對不上 group「and juliet」**。修 7 條 rename(& Juliet/Évangéline/Masquerade/Mermaids and Pirates/Bibi&Tina/Thelma & Louise/War of the Worlds)+3 條殘鍵刪(等價超集已存在);+29 筆演出重新掛回官網。audit_official 新增 dead-key 檢查入 CI(近似 group 提示;下檔劇殘鍵合法保留)。
+
 ## [v2.38.1] - 2026-07-14 20:15
 ### Évangéline 正名+marker 壓時間軸修正(使用者抓到 Moncton 案)
 - 查證:Évangéline @ Moncton Avenir Centre 是真實演出(官方站 evangelinemusical.ca,Acadian 法語原創音樂劇)——「la plus grande histoire d'amour d'Amérique du Nord」是官方行銷副標語被 TM 當劇名整串帶入,非夾帶垃圾。works_distinct 加規則:title 正名「Évangéline」、tag 由 Canada fallback 的 Broadway/West End 改「法式音樂劇」。

@@ -89,6 +89,9 @@ jobs:
           python scrapers/_run.py scrapers/atrapalo.py    || echo "::warning::atrapalo (Fastly challenge) scrape failed"
           python scrapers/_run.py scrapers/opentix.py     || echo "::warning::opentix scrape failed"
           python scrapers/_run.py scrapers/utiki.py       || echo "::warning::utiki (kham+udn) scrape failed"
+          # 實驗性:TicketWorld bot 牆對 headless 極嚴(本機 headless 全滅);失敗自動保留
+          # 既有 philippines.json / manual.json 的馬尼拉檔期(2026-07-14)
+          python scrapers/_run.py scrapers/philippines.py || echo "::warning::philippines (ticketworld) scrape failed"
           python scrapers/_run.py scrapers/tm_tours.py    || echo "::warning::tm_tours sweep failed"
           python scrapers/_run.py scrapers/ticketmaster.py || echo "::warning::ticketmaster scrape failed"
           python scrapers/_run.py scrapers/build_shows.py
