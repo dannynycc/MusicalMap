@@ -11,6 +11,12 @@
 
 ---
 
+## [v2.35.0] - 2026-07-14 15:00
+### 同名異作區辨機制(v2.34.0 報告的 Bug4/5 治本)
+- 新增 `data/works_distinct.json`:同 title 不同作品的紀錄用 ticket_url 指紋改 group(拆劇群)+tag_hint(classify_tag 出正確傳統)+tour_name。build_shows 在來源載入後套用;audit_titles/audit_dups 各加白名單豁免刻意拆分。
+- 首兩條規則:①義大利原創《Peter Pan - Il Musical》(Edoardo Bennato 詞曲)自英美 Peter Pan 劇群拆出,tag 改歐陸原創;②Compagnia BIT 原創《A Christmas Carol Musical》(Pellicano/Lori/Caselle,17 站)自聖誕頌歌劇群拆出,tag 改歐陸原創——dell'Alba 的 Menken/Ahrens 授權版(9 站)確認為英美作品義語版,留原群原 tag(兩製作身分經 WebSearch 官方資料交叉驗證)。
+- 626→628 groups;audit_dups/audit_titles 全過。
+
 ## [v2.34.0] - 2026-07-14 14:41
 ### 資料品質深稽核:六角度掃全庫 1,984 筆,五個重大 bug(修三、報二)
 - 🔧 **美國同名城錯州(en 站)**:Wilmington NC 六場全標「, DE」(相距 640km)、Bloomington IL 標 IN、Duluth GA 標 MN。病根:州碼回填以裸城名為 key,一城學到的碼套到全國同名城+靜態表 Duluth→MN。修:gen_variants 州碼學習帶座標,回填要求同名且座標 <0.7°;同名多城已證實時不冒充顯裸名;靜態表刪 Duluth。正常城(Boston, MA 等)不受影響。

@@ -1,0 +1,19 @@
+{
+ "_note": "同名異作區辨表(2026-07-14 深稽核 Bug4/5):同 title 但確認是不同作品的紀錄,用 ticket_url 指紋匹配(對 slug,最穩不受標題寫法影響),覆蓋 group(拆劇群)/tag_hint(classify_tag 的 hint 優先序在來源 fallback 之上、registry 之下;新 group 不在 registry 所以 hint 生效)/tour_name(popup 大標顯示製作全名)。新增規則後同步在 scrapers/audit_titles.py KNOWN_DISTINCT 加白名單配對。",
+ "rules": [
+  {
+   "why": "義大利原創 Peter Pan(Edoardo Bennato 詞曲),非英美 Peter Pan 作品;slug 即載明 edoardo-bennato。原本被吸進英美 peter pan group:tag 誤標 Broadway/West End+與美國巡演混同一劇群。",
+   "url_contains": "peter-pan-il-musical-edoardo-bennato",
+   "group": "peter pan il musical bennato",
+   "tag": "歐陸原創",
+   "tour_name": "Peter Pan - Il Musical di Edoardo Bennato"
+  },
+  {
+   "why": "Compagnia BIT 義大利原創聖誕頌歌音樂劇(Melina Pellicano 編導、Stefano Lori/Marco Caselle 作曲,2017 年起巡演),與 Compagnia dell'Alba 的 Menken/Ahrens 授權版(slug a-christmas-carol-il-musical,留在原 group)是兩齣不同的戲,原本 26 站混成一條巡演線。",
+   "url_contains": "spettacoli/a-christmas-carol-musical",
+   "group": "a christmas carol bit",
+   "tag": "歐陸原創",
+   "tour_name": "A Christmas Carol Musical (Compagnia BIT)"
+  }
+ ]
+}

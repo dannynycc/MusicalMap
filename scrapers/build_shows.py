@@ -586,6 +586,31 @@ def main():
         sources.append({"file": name, "count": len(rows), "meta": blob.get("meta", {})})
         print(f"  {name}: {len(rows)} shows")
 
+    # 同名異作區辨(data/works_distinct.json;2026-07-14 Peter Pan Bennato/雙聖誕頌歌案):
+    # group_key 假設「同名=同作品」,但同名的不同作品存在(義原創 Peter Pan vs 英美 Peter
+    # Pan)。用 ticket_url 指紋改 group(拆劇群)+tag_hint(讓 classify_tag 出正確傳統)。
+    wd_path = DATA / "works_distinct.json"
+    if wd_path.exists():
+        wd_rules = json.loads(wd_path.read_text(encoding="utf-8")).get("rules", [])
+        n_wd = 0
+        for s in by_id.values():
+            urls = " ".join([s.get("ticket_url") or ""] +
+                            [l.get("url") or "" for l in (s.get("ticket_links") or [])])
+            for r in wd_rules:
+                if r["url_contains"] in urls:
+                    if r.get("group"):
+                        s["group"] = r["group"]
+                    if r.get("tag"):
+                        s["tag_hint"] = r["tag"]
+                    if r.get("title"):
+                        s["title"] = r["title"]
+                    if r.get("tour_name") and not s.get("tour_name"):
+                        s["tour_name"] = r["tour_name"]
+                    n_wd += 1
+                    break
+        if n_wd:
+            print(f"  applied works_distinct to {n_wd} record(s) (same-name different works)")
+
     # Ticketmaster merge — dedup purely by (show, city), NEVER by country.
     # (Country-level "covered" was a bug: one manual AU record made the whole of
     # Australia count as covered and wiped every TM AU stop, e.g. Sydney.)

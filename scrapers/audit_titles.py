@@ -22,6 +22,9 @@ DATA = Path(__file__).resolve().parent.parent / "data"
 # 已人工確認「確實是不同作品/合法標題」的配對與 group(2026-07-13 全站首掃逐筆判讀)。
 # 格式:frozenset({較長標題的 group, 較短/作品名 的 group 或 canonical 小寫})
 KNOWN_DISTINCT = {
+    # works_distinct.json 拆出的同名異作(2026-07-14):義原創 vs 英美同名作品
+    frozenset({"peter pan il musical bennato", "peter pan"}),
+    frozenset({"a christmas carol bit", "a christmas carol"}),
     frozenset({"masquerade phantom of the opera reimagined", "the phantom of the opera"}),
     frozenset({"the rocky horror show", "rocky"}),
     frozenset({"weihnachten mit bibi tina das musical", "tina"}),

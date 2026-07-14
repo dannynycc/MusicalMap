@@ -43,8 +43,19 @@ def main():
     for s in shows:
         g2t[s["group"]].add(s["title"])
 
+    # works_distinct.json 拆出的「同名異作」group 是刻意分裂(義原創 Peter Pan vs
+    # 英美 Peter Pan,2026-07-14),不算 de-dup miss。
+    wd = DATA / "works_distinct.json"
+    distinct_groups = set()
+    if wd.exists():
+        for r in json.loads(wd.read_text(encoding="utf-8")).get("rules", []):
+            if r.get("group"):
+                distinct_groups.add(r["group"])
+
     loose2groups = defaultdict(set)
     for g, titles in g2t.items():
+        if g in distinct_groups:
+            continue
         loose2groups[loose_key(sorted(titles, key=len)[0])].add(g)
     misses = {lk: gs for lk, gs in loose2groups.items() if len(gs) > 1}
 
