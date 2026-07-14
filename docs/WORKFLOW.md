@@ -20,7 +20,7 @@
 - `python scrapers/audit_productions.py` — 版本層海報檢查,BROKEN=0 才過(列缺海報的版本/無縮圖的劇)
 
 ### CI 每日自動稽核(update.yml,`|| ::warning` 模式;10 支)
-`audit_dups`(去重漏合併)/`audit_manual`(手填過期)/`audit_productions`(版本層海報)/`audit_sentinels`(哨兵劇目+來源低水位)/`audit_official`(官網體檢)/`audit_geo`(國界框+座標指紋)/`audit_tournames`(presenter 滲入)/`audit_titles`(未歸組/分裂)/`audit_sample_truth`(每日 15 卡對 TM API,含 genre 非音樂劇檢查;全 skip 時報 INCONCLUSIVE 不假 PASS)/`audit_posters`(釘圖健康/庫存圖 baseline/縮圖哨兵/抽樣尺寸)。
+`audit_dups`(去重漏合併+**同劇同城重複售票 URL**+**季票套餐群聚**,works_distinct 拆分組豁免,v2.36–v2.41)/`audit_manual`(手填過期)/`audit_productions`(版本層海報)/`audit_sentinels`(哨兵劇目+來源低水位)/`audit_official`(官網體檢+**死 key 檢查**——official_sites key 對不上任何 group 即報,v2.41.0)/`audit_geo`(國界框+座標指紋)/`audit_tournames`(presenter 滲入)/`audit_titles`(未歸組/分裂,KNOWN_DISTINCT 白名單與 works_distinct 同步)/`audit_sample_truth`(每日 15 卡對 TM API,含 genre 非音樂劇檢查;全 skip 時報 INCONCLUSIVE 不假 PASS)/`audit_posters`(釘圖健康/庫存圖 baseline/縮圖哨兵/抽樣尺寸)。另 `philippines.py` 實驗性 scraper 同為 `\|\| ::warning` 模式(bot 牆,抓不到不擋 build)。
 
 ## 資料更新
 - 改 scraper 或想刷新資料：`python scrapers/westend.py && python scrapers/broadway.py && python scrapers/build_shows.py`。

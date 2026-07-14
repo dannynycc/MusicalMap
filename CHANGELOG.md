@@ -11,6 +11,15 @@
 
 ---
 
+## [v2.41.1] - 2026-07-15 02:01
+### 文件 freshness 全掃(使用者要求「100%掃過所有 md 並且全部都要 keep up to date」)
+- **README.md**:總量 1,973 筆/629 groups/31 國(菲律賓入列)、works 207/official_sites 228、tours 23 劇 250 站(data-theatre 修正)、新增 works_distinct.json 與 philippines.py 條目、gen_variants 補 CITY_STATE 座標比對/city_cn/venueEn/title_en、audit 段補 v2.36–v2.41 新防線(重複售票 URL/季票群聚/死 key/日期健全層/CJK 場館正規化合併)、archive 跨年 span、手機 sheet 段補桌面舒適區重構(v2.37–v2.38.1,超框待辦已修)。
+- **docs/WORKFLOW.md**:CI 稽核 10 支明細更新(audit_dups/audit_official/audit_titles 新職責+philippines.py ::warning 模式)。
+- **docs/TOUR_SWEEP.md**:馬尼拉改「已覆蓋」(manual 3 齣+查證日期);Tier 2 站數 297→250、tm_tours 補 subscription skip。
+- **docs/SOURCES.md**:broadway.org row 更新(250 站/data-theatre/查證日);中國 row 補 city_cn;tm_tours row 補 subscription skip。
+- 逐檔核對其餘 md:CHANGELOG/DAMAI 待查/DESIGN_productions/DESIGN_affiliate/DESIGN_username_sharing/AFFILIATE_SETUP/SECURITY_AUDIT/SETUP_ACCOUNTS/SETUP_MY_SUBDOMAIN 均與現況一致,不動。
+- 數字全部實測(count script 對 data/*.json 直數,非沿用舊值)。
+
 ## [v2.41.0] - 2026-07-15 00:53
 ### me-input 場館選定依語言存單語名(使用者抓到「National Dr. Sun Yat-sen Memorial Hall 國父紀念館」整串)
 - catalog 雙語場館顯示名=「English 原文」併排字串,me-input 選定後整串存進紀錄——下拉維持雙語利辨識,但選定/存值改依站語言拆單語(繁中存「國父紀念館」,en 站存英文名),與海報牆 venueZh 呈現一致。

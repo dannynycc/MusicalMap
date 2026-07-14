@@ -51,10 +51,10 @@
 | 開普敦/約堡(南非) | Ticketmaster.co.za + manual | ✅ Mamma Mia!(自動)+ Oliver!(manual) |
 | 聖保羅/里約/布宜諾斯艾利斯 | manual(反爬) | ✅ 巴西 6 / 阿根廷 2 |
 | 香港/台北 | 台北已由 OPENTIX/utiki 覆蓋;香港無來源 | 🟡 香港待查 |
-| 曼谷/馬尼拉 | 無 | ❌ 多為本土製作;國際巡演 2026 已落幕(待未來檔期) |
+| 曼谷/馬尼拉 | 馬尼拉:TicketWorld(Ticketek 系,bot 牆)→ manual.json 3 齣(Charlie 7/8–26、On Your Feet 7/10–8/2、Notebook 9/3–20,2026-07-14 查證)+ `philippines.py` 實驗性 playwright scraper;曼谷無來源 | ✅ 馬尼拉已覆蓋;🟡 曼谷待查 |
 
 ## Tier 2 — 區域劇目
-由結構來源自動覆蓋(broadway.org 297 站、ATG hub UK tours、TM 16+2 國、四季、宝塚、Interpark、Stage)。`tm_tours.py` 每日對**全部** group 做 attraction 比對,新增站點自動入圖。
+由結構來源自動覆蓋(broadway.org 250 站(v2.40.0 起 data-theatre 場館全有名)、ATG hub UK tours、TM 16+2 國、四季、宝塚、Interpark、Stage)。`tm_tours.py` 每日對**全部** group 做 attraction 比對,新增站點自動入圖;**v2.36.0 起 skip subscription/season 套票事件**(季票套餐掛在單劇 attraction 下會生出假站點)。
 
 ## 維護規則
 1. 每次 session 從「待查」挑最少 5 部 web 查證,更新本表(含日期)。

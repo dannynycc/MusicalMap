@@ -8,7 +8,7 @@
 |---|---|---|---|---|
 | Broadway 列表 | broadway-show-tickets.com/musicals/ | `broadway.py` | 紐約百老匯 28 部(含座標) | 2026-06-11 |
 | West End 列表 | londontheatre.co.uk/whats-on/musicals?categories=Musicals | `westend.py` | 倫敦西區 52 部 | 2026-06-11 |
-| 北美巡演彙總 | broadway.org/tours(含 /zh/tours) | `broadway_tours.py` | 28 劇 297 站,官方 The Broadway League | 2026-06-11 |
+| 北美巡演彙總 | broadway.org/tours(含 /zh/tours) | `broadway_tours.py` | 23 劇 250 站,官方 The Broadway League;v2.40.0 改抓 `data-theatre` 屬性,場館名 100% 覆蓋(舊 regex 只吃 `<a>` 包的場館,10 站漏) | 2026-07-14 |
 | 國際製作 | broadway.org/broadway-shows-international | `intl.py` | 巴黎/漢堡/科隆/墨西哥城/烏特勒支/馬德里(+東京,已被四季取代) | 2026-06-11 |
 | Ticketmaster | developer.ticketmaster.com(Discovery API);入口例 ticketmaster.com.au/browse/musicals… | `ticketmaster.py` | 16 國 gap 補洞(澳/紐/愛/加/北歐/義/星…);**日期=可購票窗非開演日** | 2026-06-11 |
 | 劇団四季 | shiki.jp(中文版 shiki.jp/zh-tw/) | `shiki.py`(JSON API `api_stage_list`) | 日本 9 劇場 10 製作,精確檔期;全国ツアー無固定城市未收 | 2026-06-12 |
@@ -25,11 +25,11 @@
 | **西班牙全境(主力)** | atrapalo.com/entradas/musicales | `atrapalo.py` | 全西班牙 39 城~138 齣;Playwright 過 Fastly 挑戰→curl_cffi 抓頁面 JSON-LD(劇名/場館/**經緯度**/檔期/價/海報);**Sovrn 分潤**(merchant 53900);重疊劇主源,EXTRA_PRODUCTS 補非-musicales 分類 | 2026-06-26 |
 | 東歐(匈牙利等) | jegy.hu 等 | `easteurope.py` | 匈牙利/捷克等地方場館,EE 區 | 2026-06-13 |
 | 義/瑞/荷/波/挪/奧/中東 | teatro.it / showtic(瑞典) / stage(荷蘭) / ebilet(波蘭) / 挪威 / VBW(奧地利) / platinumlist(中東) | `italy.py` `sweden.py` `netherlands.py` `poland.py` `norway.py` `austria.py` `middleeast.py` | 各國原創/巡演;德奧(VBW)→德奧 tag,其餘多→歐陸其他。**teatro.it 結構限制(2026-07-14)**:JSON-LD subEvent 每站每年只披露一場「代表場」,多天檔期會被砍成單日(Carcano 官方 12/23~27 只給 12/23)——重點站以官方頁 override 修正(先例 it-349cb901),其餘單日檔期視為「至少演出日」低估 | 2026-06-13 |
-| **中國**(逆向官方 API) | 上海文廣 shcstheatre.com(`/webapi.ashx`) / 保利 weixin.polyt.cn(`/platform-backend`,header `Channel: theatre_wx`) / ypiao / 中演院線 zhongyan / **聚橙 juooo** | `china.py` `china_poly.py` `china_ypiao.py` `china_chinaticket.py` `china_juooo.py` | 全國 ~100 齣/40+ 城;GCJ-02→WGS-84 座標轉換;保利真實日期取自 `/good/shows/{id}` showInfoDetailList[].showTime;售票連結→大麥搜尋。**2026-07-13 全數體檢**:5 支本地實跑全通(保利 88/文廣 5/ypiao 7/中演 1/聚橙 4),與 CI 一致——文廣/中演檔案多日未動是上游檔期真沒變,非 scraper 壞;中演音樂劇庫存本就少 | 2026-07-13 |
+| **中國**(逆向官方 API) | 上海文廣 shcstheatre.com(`/webapi.ashx`) / 保利 weixin.polyt.cn(`/platform-backend`,header `Channel: theatre_wx`) / ypiao / 中演院線 zhongyan / **聚橙 juooo** | `china.py` `china_poly.py` `china_ypiao.py` `china_chinaticket.py` `china_juooo.py` | 全國 ~100 齣/40+ 城;GCJ-02→WGS-84 座標轉換;**五支皆輸出 `city_cn` 中文城市名**(v2.38.1,三語變體中文頁直接用,免去英文轉寫再回翻的失真);保利真實日期取自 `/good/shows/{id}` showInfoDetailList[].showTime;售票連結→大麥搜尋。**2026-07-13 全數體檢**:5 支本地實跑全通(保利 88/文廣 5/ypiao 7/中演 1/聚橙 4),與 CI 一致——文廣/中演檔案多日未動是上游檔期真沒變,非 scraper 壞;中演音樂劇庫存本就少 | 2026-07-13 |
 | **聚橙 juooo**(逆向官方 API,2026-06-23) | 城市清單 `api.juooo.com/city/city/getCityList`;節目 `gw.juooo.com/gw/show/showSearch`(POST form,body `cate_parent_id=79`(音樂劇)`+city_id+page`,**不需簽章**);座標 `gw/show/showDetail` → `result.show.venue.coordinate`(GCJ-02→WGS-84,自給自足不靠 cn_venues);售票 `m.juooo.com/ticket/{schedular_id}` | `china_juooo.py` | **逐城市遍歷全 253 城**(showSearch 分城市,故全掃任何城市有音樂劇都抓得到);目前僅 3 齣(全深圳安托山公共文化中心,聚橙自營庫存集中深圳,北京/上海在 juooo 上 0 場)。即便量少仍自動更新,庫存一變多即涵蓋 | 2026-06-23 |
 | **菲律賓(馬尼拉)** | premier.ticketworld.com.ph(Ticketek 系,馬尼拉主票務) | `philippines.py`(**實驗性**)+`manual.json` | Broadway/West End 亞洲巡演馬尼拉站(Charlie/On Your Feet/The Notebook,2026-07-14 使用者發現缺口)。**bot 牆對 headless 極嚴**(urllib 403、curl_cffi 得殼、headless Chrome HTTP2_PROTOCOL_ERROR;真人瀏覽器可看)——scraper 掛 CI 實驗性(失敗保留舊檔),現行三檔由 manual.json 維護(場館座標 OSM 查證:Solaire 白努灣/Proscenium Rockwell/Samsung PAT Circuit Makati)。只收 works registry 已註冊西方劇,菲原創(OPM musical)不收 | 2026-07-14 |
 | 葡萄牙 | bol.pt(JSON-LD Event) | `portugal.py` | 里斯本等(Evita/Grease…);JSON-LD 自帶座標+城市;**海報取 `_grande` 大圖**(JSON-LD 給 185×240 縮圖,v2.31.9 海報守門抽樣抓到後源頭改抓 740×960) | 2026-06-15 |
-| 全劇巡演自動掃 | Ticketmaster attraction 比對 | `tm_tours.py` | 對**全部** group 做 attraction 比對,新巡演站點自動入圖(每日 CI);**v2.29.4 起自帶 TM attraction 官方海報**(舊版寫死 None 依賴繼承→曾致美國站掛日文圖) | 2026-07-13 |
+| 全劇巡演自動掃 | Ticketmaster attraction 比對 | `tm_tours.py` | 對**全部** group 做 attraction 比對,新巡演站點自動入圖(每日 CI);**v2.29.4 起自帶 TM attraction 官方海報**(舊版寫死 None 依賴繼承→曾致美國站掛日文圖);**v2.36.0 起 skip subscription/season 套票事件**(季票掛單劇 attraction 生假站點) | 2026-07-14 |
 
 ## 人工策展(manual.json)
 
