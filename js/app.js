@@ -473,6 +473,7 @@ function fmtDates(show) {
   // long but scattered date span — keeps its real "至 {end}".
   const longRun = show.end_rolling;
   if (longRun) return t("long_run");
+  if (s && e && s === e) return fmtD(s);          // 單日場:顯示一個日期,不要「12/23 – 12/23」(2026-07-14,全庫 423 筆)
   if (s && e) return `${fmtD(s)} – ${fmtD(e)}`;   // 期間限定且起迄皆知 → 顯示完整範圍(2026-07-09 使用者規格)
   if (e) return t("date_until", { e: fmtD(e) });
   if (s && new Date(s) > TODAY0) return t("date_from", { s: fmtD(s) });
@@ -941,11 +942,14 @@ function recomputeRange() {
   const d = new Date(CUR_Y, CUR_M + MAX_MONTHS, 1);
   els.tMonth.max = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}`;
 
-  // Extend the slider into the PAST as far as the archive goes (Jan of its earliest year).
+  // Extend into the PAST as far as the archive goes (Jan of its earliest year)。
+  // 滑桿只開最近 18 個月:earliest 直接當滑桿 min 會被深歷史撐爆(archive 含 Phantom
+  // 1988 起的長跑劇,曾連 1229 髒年都進來→滑桿近萬格,一格=0.01% 拖不動;2026-07-14
+  // 深稽核)。更早的月份用月曆 picker 鍵入(tMonth.min 仍=earliest,深歷史入口不關)。
   if (ARCH_INDEX && ARCH_INDEX.years && Object.keys(ARCH_INDEX.years).length) {
     const earliest = Math.min(...Object.keys(ARCH_INDEX.years).map(Number));
     MIN_MONTHS = (earliest - CUR_Y) * 12 - CUR_M;   // offset to that year's January
-    els.tRange.min = MIN_MONTHS;
+    els.tRange.min = Math.max(MIN_MONTHS, -18);
     els.tMonth.min = `${earliest}-01`;
   }
 }

@@ -128,9 +128,33 @@ def load_curated(archive, as_of):
 def save_archive(archive, today):
     ARCHIVE_DIR.mkdir(exist_ok=True)
     by_year = {}
+    today_y = int(today[:4])
+
+    def sane_year(v):
+        try:
+            y = int((v or "")[:4])
+            return y if 1980 <= y <= today_y + 5 else None
+        except ValueError:
+            return None
+
+    # 跨年展開(2026-07-14 深稽核):舊制「只放 start 年檔」讓 Phantom(1988~2023)
+    # 只躺在 1988.json——前端過去視圖只載「視圖年±1」,看 2020 年根本載不到它,
+    # 所有跨年長跑劇在過去視圖整批消失。改為 run 檔期覆蓋的每一年都放一份
+    # (仍在演的 end=null 展到今年);單筆記錄小,重複成本可忽略。
+    # 年份 sanity:teatromadrid 曾解析出 1229-02-23,把 index earliest 打到 1229、
+    # 時間軸滑桿撐到近萬格——出範圍的年不採計,回落 end 年/首見年。
     for rec in archive.values():
-        yr = (rec.get("start_date") or rec.get("first_seen") or today)[:4]
-        by_year.setdefault(yr, []).append(rec)
+        y0 = sane_year(rec.get("start_date"))
+        y1 = sane_year(rec.get("end_date"))
+        if y0 is None and y1 is None:
+            y0 = y1 = sane_year(rec.get("first_seen")) or today_y
+        elif y0 is None:
+            y0 = y1
+        elif y1 is None:
+            # end 缺:closed=資料殘缺只放 start 年;running/upcoming=演到現在
+            y1 = today_y if rec.get("status") in ("running", "upcoming") else y0
+        for yr in range(min(y0, y1), max(y0, y1) + 1):
+            by_year.setdefault(str(yr), []).append(rec)
     # rewrite every year file (cheap; keeps them sorted/clean)
     for f in ARCHIVE_DIR.glob("[0-9][0-9][0-9][0-9].json"):
         f.unlink()

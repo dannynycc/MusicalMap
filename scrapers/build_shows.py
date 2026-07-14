@@ -586,6 +586,20 @@ def main():
         sources.append({"file": name, "count": len(rows), "meta": blob.get("meta", {})})
         print(f"  {name}: {len(rows)} shows")
 
+    # 全域日期年份 sanity(2026-07-14 深稽核:teatromadrid 整頁掃日期撈到 1229-02-23,
+    # 流進 archive 凍結+把時間軸滑桿撐到近萬格)。歷史開演年最早允許 1980(Phantom 1988、
+    # Starlight Bochum 1988 等真實長跑);未來最遠 today+5 年。出範圍=解析錯,欄位清空。
+    n_baddate = 0
+    for s in by_id.values():
+        for k in ("start_date", "end_date"):
+            v = s.get(k) or ""
+            if v[:4].isdigit() and not (1980 <= int(v[:4]) <= 2031):
+                print(f"  ::warning:: insane {k}={v} on {s.get('title')!r} @ {s.get('city')} ({s.get('source')}) — cleared")
+                s[k] = None
+                n_baddate += 1
+    if n_baddate:
+        print(f"  cleared {n_baddate} insane date field(s) (year out of 1980..2031)")
+
     # 同名異作區辨(data/works_distinct.json;2026-07-14 Peter Pan Bennato/雙聖誕頌歌案):
     # group_key 假設「同名=同作品」,但同名的不同作品存在(義原創 Peter Pan vs 英美 Peter
     # Pan)。用 ticket_url 指紋改 group(拆劇群)+tag_hint(讓 classify_tag 出正確傳統)。
@@ -1222,6 +1236,20 @@ def main():
                 n_bf += 1
     if n_bf:
         print(f"  backfilled tour_name on {n_bf} record(s) from same-attraction tour stops")
+
+    # tour_name「(Touring)」尾綴清洗(2026-07-14 深稽核:211 筆 TM attraction 內部標記
+    # 上了 popup 大標)。放在 backfill 之後——借名也會借到帶尾綴的。地域註記如
+    # (Australia) 有區辨價值保留;清完與 title 同名則整個清空。
+    n_tn = 0
+    for s in by_id.values():
+        tn = s.get("tour_name")
+        if tn:
+            cleaned = re.sub(r"\s*\((?:Touring|National Tour|Tour)\)\s*$", "", tn, flags=re.I).strip()
+            if cleaned != tn:
+                s["tour_name"] = cleaned if cleaned.lower() != (s.get("title") or "").lower() else None
+                n_tn += 1
+    if n_tn:
+        print(f"  stripped '(Touring)' suffix from {n_tn} tour_name(s)")
 
     shows = list(by_id.values())
 

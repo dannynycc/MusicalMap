@@ -64,7 +64,13 @@ def canon(title_es):
 
 def iso(d):
     m = re.match(r"(\d{2})/(\d{2})/(\d{4})", d)
-    return f"{m.group(3)}-{m.group(2)}-{m.group(1)}" if m else None
+    if not m:
+        return None
+    # detail_dates 撈整頁 dd/mm/yyyy,頁面雜訊混入怪年(Peter Pan 曾拿到 1229-02-23,
+    # 進 archive 凍結還把時間軸滑桿撐到近萬格;2026-07-14 深稽核)——年份出合理範圍就丟。
+    if not (2000 <= int(m.group(3)) <= 2035):
+        return None
+    return f"{m.group(3)}-{m.group(2)}-{m.group(1)}"
 
 
 def detail_dates(url):

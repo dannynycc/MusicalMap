@@ -11,6 +11,21 @@
 
 ---
 
+## [v2.38.0] - 2026-07-14 19:58
+### 資料品質深稽核第三輪:十個重大 bug 全修(抓取/處理/呈現全域)
+- 🔧 **呈現|單日場日期冗餘**:423 筆「12/23 – 12/23」→ fmtDates 同日只顯一個日期。
+- 🔧 **呈現|tour_name「(Touring)」內部標記上大標**:212 筆 TM attraction 名帶 (Touring) 尾綴——build 清洗(放 backfill 借名之後,借名也會借到帶尾綴的);(Australia) 類地域註記保留。
+- 🔧 **呈現|en 站 CJK 場館名斷鏈**:89 館英文站直接顯中文——venueEn() fallback 鏈:venues_en → cn_venues 權威表官方英文名(繁簡摺疊+雙向 contains)→ 場館字串中英併寫抽英文段 → 沒把握保持原樣。89→76(殘=無權威條目小劇場,不亂造)。
+- 🔧 **呈現|title_en 斷鏈**:54 筆台灣劇官方英文名躺資料裡,en 站顯中文題名——enTitle() 接上+清洗(【藝穗節】前綴/引號框/機構冒號前綴;title_en 是中文=源髒視為無效;「The Wedding Banquet: A New Musical」類正常副標不誤切);search blob 補 title_en。
+- 🔧 **處理|city_cn 缺口 16 筆**:china(shcs)/juooo/ypiao/manual 回填+三支 scraper 源頭補 city_cn 輸出。
+- 🔧 **SEO|JSON-LD 過期 event**:閉幕場次標著 EventScheduled 殘留在結構化資料——選件排除 end<today(rolling 除外)。
+- 🔧 **SEO|JSON-LD 補 geo**:建築級座標本來就有,放進 location.geo(Rich Results 加分)。
+- 🔧 **抓取|1229 年髒日期**:teatromadrid 整頁掃日期撈到 1229-02-23,進 live+archive 凍結——madrid/barcelona iso() 年份 sanity(2000..2035)+build 全域防線(1980..2031,出範圍清空+警告)。
+- 🔧 **處理|archive 跨年展開**:舊制按開演年歸檔,Phantom(1988~2023)只躺 1988.json,過去視圖(載視圖年±1)看不到任何跨年長跑劇——改 run 檔期覆蓋的每一年都放;歸檔年 sanity(1229 案自動歸正,earliest 1229→1988);時間軸滑桿 min clamp -18(深歷史留給月曆 picker;SHOW_HISTORY 開啟時不再被近萬格撐爆)。註:過去瀏覽 UI 目前 SHOW_HISTORY=false 刻意關閉,本組修正=資料層正確性+開啟時的預防。
+- 🔧 **呈現|me/u 頁場館目錄舊座標**:venues_catalog 還躺著修正前的 11 館污染座標(AIA 在人民廣場、花都在市中心)——gen_catalog 重產同步+me.html SYNC_VER 9→10 強制快取重同步。
+- 過程更正(誠實記錄):海報/官網/damai 連結健康、archive 完整性、fold 搜尋摺疊、opentix 拆站、非音樂劇滲入、海報跨區混掛=逐一驗過無恙,不充數;勸世三姊妹「漏站」是稽核腳本切片截斷的誤判。
+- audit_dups/audit_titles/audit_geo 全過;e2e popup 定位迴歸 PASS。
+
 ## [v2.37.0] - 2026-07-14 18:22
 ### 開卡定位重構:搜尋後側欄點擊卡片超出地圖頂的卡死修復(使用者實操抓到)
 - 病根兩層:①搜尋後 marker 少、最小 zoom 已散開,側欄 focusShow 的 zoomToShowLayer 不縮放、原地開卡(未搜尋時被聚合泡泡包住必先 zoom in,所以兩種入口體驗不同——使用者精準觀察);②最小 zoom 世界圖上下貼邊,autoPan 無縱向空間,卡片頂超出地圖又拖不回。

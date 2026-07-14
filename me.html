@@ -1216,7 +1216,7 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
   const sb=supabase.createClient(cfg.SUPABASE_URL,cfg.SUPABASE_ANON_KEY);
   window.mmSb=sb;
   showGate(T('gate_loading'),false);   // 立即用當前語言顯示 Loading(gate-msg 無 data-i18n,不會被 apply 蓋);getSession 回來再 showLogin/onSignedIn
-  const SYNC_VER='9';   // sightingToEntry 對映改版**或 catalog 顯示資料(zh/海報)更新**就 +1 → 強制所有 session 重新同步（v5=38 館英文名;v6=fav;v7=第二批 124 館英文名;v8=幣別 cur 移到 top-level;v9=劇種傳統 tag 烤入）
+  const SYNC_VER='10';   // sightingToEntry 對映改版**或 catalog 顯示資料(zh/海報)更新**就 +1 → 強制所有 session 重新同步（v5=38 館英文名;v6=fav;v7=第二批 124 館英文名;v8=幣別 cur 移到 top-level;v9=劇種傳統 tag 烤入;v10=場館座標修正 11 館 2026-07-14）
   const syncedKey=uid=>uid+'@'+SYNC_VER;
   let _syncing=false;
   // 同步失敗畫面:訊息 + 一顆「重試」按鈕(掛在 gate-msg 內);避免使用者只能重整或卡死

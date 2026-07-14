@@ -13,6 +13,29 @@ const cn2tw = OpenCC.Converter({ from: "cn", to: "tw" }); // Simplified → Trad
 const tw2cn = OpenCC.Converter({ from: "tw", to: "cn" }); // Traditional → Simplified
 const maps = JSON.parse(fs.readFileSync("data/i18n_maps.json", "utf8"));
 const venuesEn = JSON.parse(fs.readFileSync("data/venues_en.json", "utf8")); // official English names for CN/JP/KR/TW theatres
+// en 站 CJK 場館名 fallback 鏈(2026-07-14 深稽核:89 個 CJK 場館在英文站直接顯中文):
+// venues_en 精確表 → cn_venues 權威表的官方英文名(繁簡摺疊 contains 比對,拿主館名,
+// 廳名綴不硬翻)→ 場館字串本身的中英併寫英文段(「上海文化广场 Shanghai Culture Square」)
+// → 都沒把握就保持原樣(不亂造)。
+const cnVenueEn = JSON.parse(fs.readFileSync("data/cn_venues.json", "utf8"))
+  .filter((x) => x.en && x.native)
+  .map((x) => ({ key: tw2cn(x.native), en: x.en }));
+const _CJK_RE = /[一-鿿ぁ-ヿ가-힯]/;
+function venueEn(v) {
+  if (!v) return v;
+  if (venuesEn[v]) return venuesEn[v];
+  if (!_CJK_RE.test(v)) return v;
+  const vs = tw2cn(v);
+  let best = null;
+  // 雙向 contains:場館字串帶廳名綴(權威表=主館)或反向(權威表帶綴、資料是主館名)都要中
+  for (const x of cnVenueEn) {
+    if ((vs.includes(x.key) || x.key.includes(vs)) && (!best || x.key.length > best.key.length)) best = x;
+  }
+  if (best) return best.en;
+  const lat = v.match(/[A-Za-z][A-Za-z0-9'&.,()\- ]{7,}/);
+  if (lat && lat[0].trim().split(/\s+/).length >= 2) return lat[0].trim();
+  return v;
+}
 const VARIANTS = ["en", "zh-hans", "zh-hant"];
 
 // City/country localization, language-specific (per user spec):
@@ -93,6 +116,22 @@ function zhTitle(s, variant) {
   if (variant === "zh-hans" && ST_CN[s.group]) return ST_CN[s.group];
   return null;
 }
+// en 站題名:OPENTIX 等源帶官方英文名(title_en),之前躺在資料裡沒接上——54 筆台灣劇
+// 在英文站顯示中文題名(2026-07-14 深稽核)。主辦方把機構/藝術節前綴、引號框寫進
+// title_en,抽核心名;title_en 本身是中文(源資料髒)則視為無效照舊顯示原題。
+function enTitle(s) {
+  let t = (s.title_en || "").trim();
+  if (!t) return null;
+  t = t.replace(/^【[^】]*】\s*/, "");                     // 藝穗節【2026TFF】類前綴
+  if (/[一-鿿ぁ-ヿ가-힯]/.test(t)) return null;            // 假英文名(源填了中文)
+  const q = t.match(/[“”"『《〈](.{3,}?)[“”"』》〉]/);      // 引號框住的核心名(開閉引號都寬鬆)
+  if (q) return q[1].trim();
+  const c = t.split(/[:：]/);                              // 冒號前是機構/藝術節才當前綴切
+  if (c.length > 1 && /company|festival|troupe|theatre|theater|production/i.test(c[0])) {
+    return c.slice(1).join(":").trim();
+  }
+  return t;
+}
 
 function buildSearch(s) {
   const parts = new Set();
@@ -102,7 +141,8 @@ function buildSearch(s) {
     parts.add(place("cities", s.city, v, s));
     parts.add(place("countries", s.country, v));
     parts.add(cjk(s.title, v));
-    if (s.venue) parts.add(v === "en" && venuesEn[s.venue] ? venuesEn[s.venue] : cjk(s.venue, v));
+    if (s.title_en) { parts.add(s.title_en); const et = enTitle(s); if (et) parts.add(et); }
+    if (s.venue) parts.add(v === "en" ? venueEn(s.venue) : cjk(s.venue, v));
     if (s.tour_name) parts.add(cjk(s.tour_name, v));
   }
   if (s.alt) parts.add(s.alt);
@@ -115,8 +155,8 @@ for (const variant of VARIANTS) {
   out.shows.forEach((s, i) => {
     s.city = place("cities", s.city, variant, s);
     s.country = place("countries", s.country, variant);
-    s.title = zhTitle(s, variant) || cjk(s.title, variant);
-    if (s.venue) s.venue = (variant === "en" && venuesEn[s.venue]) ? venuesEn[s.venue] : cjk(s.venue, variant);
+    s.title = (variant === "en" && enTitle(s)) || zhTitle(s, variant) || cjk(s.title, variant);
+    if (s.venue) s.venue = variant === "en" ? venueEn(s.venue) : cjk(s.venue, variant);
     if (s.tour_name) s.tour_name = cjk(s.tour_name, variant);
     if (Array.isArray(s.ticket_links)) {
       for (const l of s.ticket_links) if (l.label) l.label = label(l.label, variant);

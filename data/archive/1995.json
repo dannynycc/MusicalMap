@@ -1,0 +1,52 @@
+{
+  "year": "1995",
+  "count": 2,
+  "runs": [
+    {
+      "run_key": "run-03bcf22a4c14",
+      "provenance": "curated",
+      "frozen": true,
+      "first_seen": "2026-07-14",
+      "last_seen": "2026-07-14",
+      "onsale_only": false,
+      "title": "The Phantom of the Opera",
+      "venue": "Majestic Theatre",
+      "city": "New York",
+      "country": "USA",
+      "lat": 40.759,
+      "lng": -73.987,
+      "start_date": "1988-01-26",
+      "end_date": "2023-04-16",
+      "image": null,
+      "ticket_url": null,
+      "source": "curated:wikipedia",
+      "type": null,
+      "group": "phantom of the opera",
+      "tag": "Broadway/West End",
+      "status": "closed"
+    },
+    {
+      "run_key": "run-c9514b577413",
+      "title": "Starlight Express",
+      "venue": "Starlight Express Theater",
+      "city": "Bochum",
+      "country": "Germany",
+      "lat": 51.492651,
+      "lng": 7.233717,
+      "start_date": "1988-06-12",
+      "end_date": null,
+      "image": "https://res.cloudinary.com/dwzhqvxaz/image/upload/w_1280,q_auto,f_auto/v1778588085/Titles/Starlight%20Express/Tour%202027/SE_Tour_Generic_1920x1080.jpg",
+      "ticket_url": "https://www.atgtickets.de/musicals-shows/starlight-express/",
+      "source": "starlight-express.info (manual)",
+      "type": "resident",
+      "onsale_only": false,
+      "provenance": "auto",
+      "first_seen": "2026-07-09",
+      "last_seen": "2026-07-14",
+      "frozen": false,
+      "group": "starlight express",
+      "tag": "Broadway/West End",
+      "status": "running"
+    }
+  ]
+}

@@ -62,7 +62,10 @@ function jsonLd(variant, shows) {
   // performer(卡司)無來源資料故不填(不捏造)。
   // 國家輪詢挑選:舊版 slice(0,300) 依資料順序(US/UK 在前)→ 中國(229)/義大利(161)等尾端國家
   // 幾乎不進 Event 結構化資料。改成各國輪流取,確保 30 國都有代表進 JSON-LD(2026-07-10 AEO)。
-  const withStart = shows.filter((s) => s.start_date);
+  // 已閉幕的場次不進結構化資料:標著 EventScheduled 的過期 event 是 Google 眼中的
+  // 品質瑕疵(2026-07-14 深稽核:4 筆閉幕 ≤3 天寬限期的殘留在 JSON-LD)。rolling 長跑不看 end。
+  const _t = new Date().toISOString().slice(0, 10);
+  const withStart = shows.filter((s) => s.start_date && (s.end_rolling || !s.end_date || s.end_date >= _t));
   const byCountry = new Map();
   for (const s of withStart) { const k = s.country || "?"; (byCountry.get(k) || byCountry.set(k, []).get(k)).push(s); }
   const buckets = [...byCountry.values()];
@@ -78,7 +81,9 @@ function jsonLd(variant, shows) {
       "eventStatus": "https://schema.org/EventScheduled",
       "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
       "location": { "@type": "Place", "name": s.venue || s.city,
-        "address": { "@type": "PostalAddress", "addressLocality": s.city, "addressCountry": s.country } },
+        "address": { "@type": "PostalAddress", "addressLocality": s.city, "addressCountry": s.country },
+        // geo:資料本來就有建築級座標,放進去是 Rich Results 免費加分(2026-07-14)
+        ...(typeof s.lat === "number" ? { "geo": { "@type": "GeoCoordinates", "latitude": s.lat, "longitude": s.lng } } : {}) },
       "image": s.image || undefined,
       "description": where ? `${s.title} — live stage musical at ${where}.` : `${s.title} — live stage musical.`,
       // performer/organizer:Google Event 建議欄位(缺=Rich Results 警告)。資料層沒有製作公司,

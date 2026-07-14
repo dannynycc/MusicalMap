@@ -61,7 +61,12 @@ def canon(title_es):
 
 def iso(d):
     m = re.match(r"(\d{2})/(\d{2})/(\d{4})", d)
-    return f"{m.group(3)}-{m.group(2)}-{m.group(1)}" if m else None
+    if not m:
+        return None
+    # 年份 sanity(madrid.py 同款;整頁掃日期會撈到雜訊怪年,2026-07-14)
+    if not (2000 <= int(m.group(3)) <= 2035):
+        return None
+    return f"{m.group(3)}-{m.group(2)}-{m.group(1)}"
 
 
 def detail_dates(url):
