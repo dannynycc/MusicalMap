@@ -11,6 +11,12 @@
 
 ---
 
+## [v2.32.1] - 2026-07-14 13:13
+### 城市譯名瘦身:29 個極陌生音譯回落英文(使用者裁決)
+- 依分級清單裁決,i18n_maps cities 刪 29 條(cities_tw 連動 4 條):英 Aylesbury/Woking/Milton Keynes/Stoke/Sunderland/Swansea;美 Boise/Costa Mesa/Fayetteville/Greenville/Knoxville/Scranton/Utica/Bloomington/Wilmington;義+西+德 Bari/Bergamo/Brescia/Ferrara/Padova/Pescara/Piacenza/Mataró/Trier;北歐+東歐 Aalborg/Aarhus/Hasselt/Ostrava/Szeged。頁面自動回落英文原名。
+- 保留:大急流城(使用者指定)。
+- 待辦另開:Aichi(愛知)/Hyogo(兵庫)是日本縣名被當城市顯示(場館實際在名古屋/西宮),非翻譯問題,需改資料源城市欄,另案處理。
+
 ## [v2.32.0] - 2026-07-14 12:33
 ### popup 互動:點地圖空白處收起圖卡
 - `closeOnClick: false → true`(app.js):圖卡開著時真 click 地圖空白=關閉;drag 不觸發(Leaflet 拖曳結束不發 click)。playwright 真 Chrome e2e 4/4:點空白關、drag 不關、點卡片內不關、× 仍可關。
