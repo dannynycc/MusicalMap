@@ -11,6 +11,15 @@
 
 ---
 
+## [v2.34.0] - 2026-07-14 14:41
+### 資料品質深稽核:六角度掃全庫 1,984 筆,五個重大 bug(修三、報二)
+- 🔧 **美國同名城錯州(en 站)**:Wilmington NC 六場全標「, DE」(相距 640km)、Bloomington IL 標 IN、Duluth GA 標 MN。病根:州碼回填以裸城名為 key,一城學到的碼套到全國同名城+靜態表 Duluth→MN。修:gen_variants 州碼學習帶座標,回填要求同名且座標 <0.7°;同名多城已證實時不冒充顯裸名;靜態表刪 Duluth。正常城(Boston, MA 等)不受影響。
+- 🔧 **江蘇泰州顯示成「台州」**:兩個地級市拼音同為 Taizhou,中文顯示查拼音表撞名。修:place() 中文變體優先用源頭 city_cn(cn2tw 轉繁);china_poly scraper 保留 cityName 中文(88 筆過渡回填)。泰州大劇院→「泰州」、溫嶺大劇院→「台州」。
+- 🔧 **TM 分類佔位圖冒充海報**:12 個劇共用同一張 dam/c/ 分類 stock 圖。修:build 把 stock 圖視同無圖——可借同組真海報就借,借不到清空走無圖樣式(cleared 11、inherited +1)。
+- 📋 **報告待修 1(同名不同劇誤歸組)**:義大利 Edoardo Bennato 原創《Peter Pan - Il Musical》被 group 進英美 Peter Pan(tag 誤標 Broadway/West End+與美巡演同劇群)。需「同名異作」distinct 機制,涉及 works registry 設計,另案。
+- 📋 **報告待修 2(兩製作混一巡演群)**:義大利兩個不同《A Christmas Carol》製作(teatro.it 兩個 spettacoli 頁,9 站 vs 17 站兩條巡演線)group 相同,側欄混為一劇 26 城;且與美版 A Christmas Carol(Naples FL)同群。同上另案。
+- 稽核:audit_dups 0 miss、audit_titles PASS、audit_geo 全過。
+
 ## [v2.33.0] - 2026-07-14 14:12
 ### 同城多檔演出不再誤合併(布達佩斯 Wonderland、上海 Thrill Me 使用者回報)
 - 病根:merge 只看(劇名, 城市),把「同城不同檔期/不同版本」的真實演出合成一張卡,B 檔的購票連結掛上 A 檔(Wonderland 夏季露天場卡片掛秋季室內場 jegy.hu;上海 THRILL ME 英文版卡掛中文版《危险游戏》大麥+票務連結),且 B 檔演出從地圖消失。

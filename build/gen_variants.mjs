@@ -22,7 +22,7 @@ const VARIANTS = ["en", "zh-hans", "zh-hant"];
 //     "City, ST" where a code is known.
 //   • Chinese (zh-hant/zh-hans): NO state — just the city, translated for major world cities
 //     (data/i18n_maps.json); unmapped places (East Lansing…) stay in their Latin name.
-function place(kind, val, variant) {
+function place(kind, val, variant, rec) {
   if (kind !== "cities" || !val) {
     if (variant === "en") return val;
     const tw = maps[kind + "_tw"];               // Taiwan override (countries_tw) where it differs
@@ -33,9 +33,12 @@ function place(kind, val, variant) {
   const m = val.match(/^(.*?),\s*([A-Z]{2})$/);
   const bare = m ? m[1].trim() : val;
   if (variant === "en") {
-    const st = m ? m[2] : (CITY_STATE[bare] || maps.us_ca_state[bare]);
+    const st = m ? m[2] : stateFor(bare, rec);
     return st ? `${bare}, ${st}` : bare;
   }
+  // 中文變體:源頭中文城名(city_cn)最權威,優先於拼音對照表——拼音會撞城
+  // (江蘇泰州/浙江台州都是 Taizhou,查表把泰州演出標成「台州」;2026-07-14 深稽核)。
+  if (rec && rec.city_cn) return variant === "zh-hant" ? cn2tw(rec.city_cn) : rec.city_cn;
   if (variant === "zh-hant" && maps.cities_tw[bare]) return maps.cities_tw[bare];
   const hans = maps.cities[bare];
   return hans ? (variant === "zh-hant" ? cn2tw(hans) : hans) : bare;
@@ -59,10 +62,22 @@ fs.mkdirSync("data/variants", { recursive: true });
 
 // Learn each US/CA city's state/province code from the records that carry one, so English
 // can back-fill it onto bare-named duplicates ("Boston" → "Boston, MA").
-const CITY_STATE = {};
+// 座標感知(2026-07-14 深稽核):美國同名城會撞名——Wilmington NC 的 6 場曾因唯一帶碼筆
+// 是 Wilmington, DE 而全標成 DE(相距 640km);Bloomington IL 標成 IN 同病。所以:
+//  • 學到的州碼帶座標,回填時要求同名且座標相近(<0.7°)才用;
+//  • 同名帶碼筆存在但座標都遠 = 已證實同名多城 → 不冒充,顯示裸名(寧缺勿錯);
+//  • 完全無帶碼筆才 fallback 到人工靜態表 us_ca_state。
+const CITY_STATE = [];
 for (const s of src.shows) {
   const m = (s.city || "").match(/^(.*?),\s*([A-Z]{2})$/);
-  if (m) CITY_STATE[m[1].trim()] = m[2];
+  if (m && typeof s.lat === "number") CITY_STATE.push({ city: m[1].trim(), lat: s.lat, lng: s.lng, st: m[2] });
+}
+function stateFor(bare, rec) {
+  const cands = CITY_STATE.filter((c) => c.city === bare);
+  if (!cands.length) return maps.us_ca_state[bare] || null;
+  if (!rec || typeof rec.lat !== "number") return null;
+  const near = cands.find((c) => Math.abs(c.lat - rec.lat) < 0.7 && Math.abs(c.lng - rec.lng) < 0.7);
+  return near ? near.st : null;
 }
 
 // Search is LANGUAGE-AGNOSTIC (display variant is only for presentation): the blob
@@ -84,7 +99,7 @@ function buildSearch(s) {
   if (ST_TW[s.group]) parts.add(ST_TW[s.group]);
   if (ST_CN[s.group]) parts.add(ST_CN[s.group]);
   for (const v of VARIANTS) {
-    parts.add(place("cities", s.city, v));
+    parts.add(place("cities", s.city, v, s));
     parts.add(place("countries", s.country, v));
     parts.add(cjk(s.title, v));
     if (s.venue) parts.add(v === "en" && venuesEn[s.venue] ? venuesEn[s.venue] : cjk(s.venue, v));
@@ -98,7 +113,7 @@ const searchBlobs = src.shows.map(buildSearch);
 for (const variant of VARIANTS) {
   const out = JSON.parse(JSON.stringify(src));
   out.shows.forEach((s, i) => {
-    s.city = place("cities", s.city, variant);
+    s.city = place("cities", s.city, variant, s);
     s.country = place("countries", s.country, variant);
     s.title = zhTitle(s, variant) || cjk(s.title, variant);
     if (s.venue) s.venue = (variant === "en" && venuesEn[s.venue]) ? venuesEn[s.venue] : cjk(s.venue, variant);

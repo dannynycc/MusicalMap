@@ -1269,19 +1269,27 @@ def main():
         if s.get("image") and not _IS_STOCK(s["image"]):   # 庫存圖不外借(別擴散 fallback)
             poster_by_gc.setdefault((s["group"], s.get("country")), s["image"])
             poster_by_gb.setdefault((s["group"], _poster_bucket(s.get("country"))), s["image"])
-    filled = blocked = 0
+    filled = blocked = cleared = 0
     for s in shows:
-        if not s.get("image"):
+        # TM 分類庫存圖(dam/c/)視同無圖:12 個不同劇曾共用同一張 generic 分類圖
+        # (2026-07-14 深稽核)——能借同組真海報就借,借不到就清空走無圖樣式,
+        # 別讓佔位圖冒充劇照。
+        if not s.get("image") or _IS_STOCK(s.get("image")):
             img = (poster_by_gc.get((s["group"], s.get("country")))
                    or poster_by_gb.get((s["group"], _poster_bucket(s.get("country")))))
             if img:
                 s["image"] = img
                 filled += 1
-            elif any(g == s["group"] for g, _ in poster_by_gb):
-                blocked += 1     # 組內有海報但全在別的字系圈 → 不繼承
-    if filled or blocked:
+            else:
+                if _IS_STOCK(s.get("image")):
+                    s["image"] = None
+                    cleared += 1
+                if any(g == s["group"] for g, _ in poster_by_gb):
+                    blocked += 1     # 組內有海報但全在別的字系圈 → 不繼承
+    if filled or blocked or cleared:
         print(f"  inherited {filled} poster(s) for tour/empty records"
-              + (f" ({blocked} left blank: only cross-region art available)" if blocked else ""))
+              + (f" ({blocked} left blank: only cross-region art available)" if blocked else "")
+              + (f"; cleared {cleared} TM category stock poster(s)" if cleared else ""))
 
     # tidy country names for display (USA / UK instead of the long source forms)
     COUNTRY_DISPLAY = {

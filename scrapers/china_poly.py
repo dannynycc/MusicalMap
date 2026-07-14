@@ -198,7 +198,7 @@ def main():
         ticket = "https://search.damai.cn/search.htm?keyword=" + urllib.parse.quote(title)
         shows[sid] = {
             "id": sid, "title": title, "type": "limited",
-            "venue": venue, "city": CITY_EN.get(city_cn, city_cn), "country": "China",
+            "venue": venue, "city": CITY_EN.get(city_cn, city_cn), "city_cn": city_cn or None, "country": "China",
             "lat": lat, "lng": lng, "start_date": start, "end_date": end,
             "ticket_url": ticket,
             "image": r.get("verticalPictureUrl") or r.get("productImg") or None,
