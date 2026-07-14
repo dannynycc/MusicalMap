@@ -922,36 +922,99 @@ def main():
 
     # Merge duplicates: same show + same city listed by multiple ticket sources
     # → keep the most authoritative record, attach ALL purchase links to it.
+    # 檔期無交集=同城的兩檔「不同演出」(換場地重演,如布達佩斯 Wonderland 夏季
+    # Margitsziget 露天場 vs 秋季 Magyar Színház 室內場),合併會把 B 檔期的購票
+    # 連結掛上 A 檔期的卡(2026-07-14 使用者抓到兩顆 jegy.hu tile)——這種各自保留。
+    # 任一方缺日期則無法判斷,維持舊行為合併(寧可少一張卡,不做重複 marker)。
+    def _runs_overlap(a, b):
+        a0, b0 = a.get("start_date"), b.get("start_date")
+        if not (a0 and b0):
+            return True
+        a1 = a.get("end_date") or "9999"   # end 缺=長期上演(∞),與任何未來檔期視為重疊
+        b1 = b.get("end_date") or "9999"
+        return a0 <= b1 and b0 <= a1
+    # 同城同檔期但「中文場館名不同」=同城並演的兩個版本(上海 Thrill Me 英文版
+    # @大上海新空间 vs 中文版《危险游戏》@上海共舞台,2026-07-14 使用者抓到)。
+    # 但中文場館名跨平台寫法也會漂移(「上海文化广场 Shanghai Culture Square」vs
+    # 「上海文化广场主剧场」、「【哈尔滨大剧院】」vs「哈尔滨大剧院-歌剧厅」),
+    # 所以先正規化(去拉丁/數字/括號/廳名後綴)再比;正規化後互不包含、且檔期
+    # 又非完全相同(完全相同視為同場異寫,如 Ash亚斯 兩寫法同天期),才判不同演出。
+    # 西文場館不用名字判(His/Her Majesty's 類漂移),維持 city 合併。
+    _CJK = re.compile(r"[一-鿿]")
+    _HALL_SUFFIX = ("大剧场", "中剧场", "小剧场", "主剧场", "歌剧厅", "音乐厅",
+                    "戏剧厅", "实验剧场", "多功能厅", "大厅")
+    def _cn_norm(v):
+        v = re.sub(r"[A-Za-z0-9·•\s\-—–_()()【】\[\]]+", "", v)
+        for suf in _HALL_SUFFIX:
+            if v.endswith(suf) and len(v) > len(suf):
+                v = v[: -len(suf)]
+                break
+        return v
+    def _mergeable(a, b):
+        if not _runs_overlap(a, b):
+            return False
+        va, vb = (a.get("venue") or "").strip(), (b.get("venue") or "").strip()
+        if va and vb and _CJK.search(va) and _CJK.search(vb):
+            na, nb = _cn_norm(va), _cn_norm(vb)
+            if na and nb and na != nb and na not in nb and nb not in na:
+                same_dates = (a.get("start_date") and a.get("start_date") == b.get("start_date")
+                              and a.get("end_date") == b.get("end_date"))
+                if not same_dates:
+                    return False
+        return True
     from collections import defaultdict
     dup = defaultdict(list)
     for s in by_id.values():
         dup[(s["group"], city_key(s.get("city")))].append(s)
     merged = 0
+    split_kept = []
     for recs in dup.values():
         if len(recs) < 2:
             continue
         recs.sort(key=lambda s: (src_prio(s.get("source")),
                                  s.get("start_date") is None and s.get("end_date") is None))
-        primary, rest = recs[0], recs[1:]
-        links = primary.get("ticket_links") or []
-        if primary.get("ticket_url") and not links:
-            links = [{"label": src_label(primary.get("source")), "url": primary["ticket_url"],
-                      "kind": src_kind(primary.get("source"))}]
-        for r in rest:
-            u = r.get("ticket_url")
-            if u and all(l.get("url") != u for l in links):
-                links.append({"label": src_label(r.get("source")), "url": u,
-                              "kind": src_kind(r.get("source"))})
-            for l in (r.get("ticket_links") or []):
-                if all(x.get("url") != l.get("url") for x in links):
-                    links.append({"label": l.get("label") or l.get("country") or src_label(r.get("source")),
-                                  "url": l.get("url"), "kind": l.get("kind") or src_kind(r.get("source"))})
-            del by_id[r["id"]]
-            merged += 1
-        if len(links) > 1:
-            primary["ticket_links"] = links
+        # 先按 _mergeable 分群(貪心、以群首為錨):同群=同一場演出的多平台入口 → 合併;
+        # 不同群=同城並存的不同演出(不同檔期或不同中文場館)→ 各自保留獨立卡。
+        # 拆出的群彼此仍會正確互合(危险游戏 damai+ypiao 同館同檔 → 同一群)。
+        groups = []
+        for s in recs:
+            for g in groups:
+                if _mergeable(g[0], s):
+                    g.append(s)
+                    break
+            else:
+                groups.append([s])
+        if len(groups) > 1:
+            split_kept.append(" ‖ ".join(
+                f"{g[0].get('title')}@{g[0].get('venue')},{g[0].get('city')} {g[0].get('start_date')}~{g[0].get('end_date')}(×{len(g)})"
+                for g in groups))
+        for grp in groups:
+            primary, rest = grp[0], grp[1:]
+            if not rest:
+                continue
+            links = primary.get("ticket_links") or []
+            if primary.get("ticket_url") and not links:
+                links = [{"label": src_label(primary.get("source")), "url": primary["ticket_url"],
+                          "kind": src_kind(primary.get("source"))}]
+            for r in rest:
+                u = r.get("ticket_url")
+                if u and all(l.get("url") != u for l in links):
+                    links.append({"label": src_label(r.get("source")), "url": u,
+                                  "kind": src_kind(r.get("source"))})
+                for l in (r.get("ticket_links") or []):
+                    if all(x.get("url") != l.get("url") for x in links):
+                        links.append({"label": l.get("label") or l.get("country") or src_label(r.get("source")),
+                                      "url": l.get("url"), "kind": l.get("kind") or src_kind(r.get("source"))})
+                del by_id[r["id"]]
+                merged += 1
+            if len(links) > 1:
+                primary["ticket_links"] = links
     if merged:
         print(f"  merged {merged} duplicate show+city record(s); extra ticket links attached")
+    if split_kept:
+        print(f"  kept {len(split_kept)} same-city multi-run group(s) separate (different dates/CJK venue):")
+        for x in split_kept:
+            print(f"    · {x}")
 
     # attach Ticketmaster show-page links to covered records (大型售票平台並列)
     enriched = 0
