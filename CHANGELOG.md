@@ -11,6 +11,12 @@
 
 ---
 
+## [v2.40.0] - 2026-07-14 22:11
+### broadway.org 巡演場館全補(使用者抓到:頁面明明寫得清清楚楚)
+- 病根:broadway_tours 的 ROW_RE 只捕 `<a>` 包裹的場館名,broadway.org 的場館其實在 `data-theatre` 屬性+純文字 div——凡沒連結的站全漏(venue=空→city 級座標)。改抓 data-theatre 結構化屬性,**250 個巡演站場館全數補齊**+geocode 自動命中建築級(Ed Mirvish/Princess of Wales/Stanley PAC/Royal Theatre/Hammons Hall/Centro Cultural Teatro…,與使用者人工比對四筆完全吻合)。
+- 使用者提供地址定位:安托山公共文化中心=福田區安托山六路9號(22.5513,114.0040)、包河鳳凰劇院=包河區徽州大道1418號(31.7831,117.2808,徽州大道駱崗段道路級)——venue_coords+cn_venues 雙表更新,結束「與合肥大剧院共點」問題。
+- me.html SYNC_VER→12。
+
 ## [v2.39.5] - 2026-07-14 21:55
 ### 安托山大剧场座標=香港中環(!)
 - 列 event URL 清單時發現同館兩廳座標不一致:「-大剧场」條=22.294,114.170(香港中環),「-2F簕杜鹃厅」=22.551,114.002(深圳福田,合理)——大剧场條以同館值修正,兩檔演出(喜欢你/紅舞鞋)marker 從香港回到深圳。venue_coords+cn_venues 雙表同步。

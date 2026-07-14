@@ -33,9 +33,11 @@ MONTHS = {m: i for i, m in enumerate(
     ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"], 1)}
 
 ROW_RE = re.compile(
-    r'tour-date-loop[^>]*>\s*<div class="col col1">\s*'
-    r'<div class="l1">([^<]+)</div>\s*'
-    r'<div class="l2[^"]*">\s*(?:<a[^>]*>\s*([^<]+?)\s*</a>)?.*?'
+    # venue 首選 row 的 data-theatre 屬性(結構化、必有;純文字 l2 不帶 <a> 時舊 regex 的
+    # <a> 捕獲組是空的,10 站場館全漏成 venue=城市名——2026-07-14 使用者抓到,Ed Mirvish/
+    # Stanley PAC 明明在頁上寫得清清楚楚)。
+    r'<div[^>]*data-theatre="([^"]*)"[^>]*tour-date-loop[^>]*>\s*<div class="col col1">\s*'
+    r'<div class="l1">([^<]+)</div>.*?'
     r'<div class="col col2">\s*<div class="l1">\s*([^<]+?)\s*</div>',
     re.S,
 )
@@ -66,7 +68,7 @@ def show_image(html):
 def parse_stops(html):
     """Yield dicts with city, venue, start_date, end_date (chronological year inference)."""
     cur_year, prev_month = TODAY.year, None
-    for city, venue, drange in ROW_RE.findall(html):
+    for venue, city, drange in ROW_RE.findall(html):
         m = re.match(r"([A-Za-z]+)\s+(\d+)\s*[-–]\s*([A-Za-z]+)\s+(\d+)", drange.strip())
         if not m:  # single-day or odd format — skip
             continue
