@@ -175,6 +175,40 @@ function fillViewportHeight() {
 map.setMaxBounds([[-85, -Infinity], [85, Infinity]]);
 fillViewportHeight();
 map.on("resize", fillViewportHeight);
+// 桌面開卡「舒適區」定位校正(2026-07-14,取代 popup autoPan):卡片超出
+// 「地圖頂 +24px ~ 時間軸 bar 上緣 -16px」時,量實際卡高把卡片垂直置中於該區、
+// 橫向拉回可視範圍。所有開卡路徑(點 marker/側欄/低倍飛入)共用;
+// 手機是底部 sheet 不適用。搭配 focusShow 的「低倍先飛 zoom 12」,
+// 修掉最小 zoom 開卡時卡片超出地圖頂又無縱向空間可拖的卡死。
+map.on("popupopen", (e) => {
+  if (window.matchMedia("(max-width: 680px)").matches) return;
+  const el = e.popup.getElement();
+  if (!el) return;
+  const settle = () => {
+    if (!el.isConnected) return;   // 校正前卡片已被關掉
+    const mapR = document.getElementById("map").getBoundingClientRect();
+    const tb = document.getElementById("timebar");
+    const barTop = tb ? tb.getBoundingClientRect().top : mapR.bottom;
+    const r = el.getBoundingClientRect();
+    const top = mapR.top + 24;
+    const bot = barTop - 16;
+    let dx = 0;
+    let dy = 0;
+    if (r.top < top || r.bottom > bot) {
+      dy = (r.height > bot - top)
+        ? r.top - top                                // 卡比舒適區還高:保頂對齊,至少標題可見
+        : (r.top + r.bottom) / 2 - (top + bot) / 2;  // 垂直置中於舒適區
+    }
+    if (r.left < mapR.left + 12) dx = r.left - (mapR.left + 12);
+    else if (r.right > mapR.right - 12) dx = r.right - (mapR.right - 12);
+    if (dx || dy) map.panBy([dx, dy], { animate: true });
+  };
+  requestAnimationFrame(settle);
+  // 海報圖載入完成後卡高會長高,再校一次(仍超出舒適區才會動)
+  el.querySelectorAll("img").forEach((im) => {
+    if (!im.complete) im.addEventListener("load", () => requestAnimationFrame(settle), { once: true });
+  });
+});
 // Base layers: light street map (default) + satellite imagery, toggle top-right.
 // Mapbox Streets basemap (green land / blue water — the clean look). Token is public
 // (see js/config.js). @2x/512 tiles with zoomOffset -1 give crisp retina rendering.
@@ -630,11 +664,10 @@ function render() {
         maxWidth: Math.min(720, window.innerWidth - 40),  // never wider than the screen
         className: "mm-popup",
         closeOnClick: true,    // 點地圖空白處=關閉(真 click 才算;Leaflet 拖曳結束不觸發 click,drag 不會誤關)
-        // autoPan 依裝置(2026-07-04「圖卡閃一下消失」修正):
-        //  手機=false——小地圖上開 popup 時 autoPan 想把大卡平移進視野,那個地圖移動觸發 markercluster 重新聚合→
-        //         marker 連 popup 被移除=閃退。手機改底部 sheet(見 style.css)不需 autoPan。
-        //  桌面=true——維持原本「自動平移把靠邊的 popup 帶進視野」,避免桌面靠邊 marker 的 popup 被裁。
-        autoPan: !window.matchMedia("(max-width: 680px)").matches,
+        // autoPan 一律關(2026-07-14):桌面改由 map 級 popupopen「舒適區精準校正」接管
+        // (量實際卡高、垂直置中於地圖頂~時間軸上緣;autoPan 只求「進視野」且在最小 zoom
+        // 縱向無空間會卡死)。手機=底部 sheet 本就不需(2026-07-04 閃退案)。
+        autoPan: false,
       })
       .bindTooltip(tooltipHtml(s), { direction: "top", offset: [0, -68], className: "mm-tip", opacity: 1 });
     // small card never coexists with the big card
@@ -835,9 +868,19 @@ function focusShow(show) {
   const m = markerById[show.id];
   setActive(show.id);
   if (!m) return;
-  // zoomToShowLayer 縮放到 marker 從群集散開的層級,callback 內開 popup。真正的「閃一下消失」修在 bindPopup 的
-  // autoPan:false(見該處註解);此處只用 zoomToShowLayer 單一動畫,不再並用 map.setView(避免兩動畫打架)。
-  cluster.zoomToShowLayer(m, () => m.openPopup());
+  // 與 marker 點擊同款「低倍先飛」:搜尋後 marker 少、最小 zoom 就已散開,zoomToShowLayer
+  // 不會縮放而原地開卡——最小 zoom 世界圖上下貼邊,卡片超出地圖頂也無縱向空間可校正,
+  // 卡死在畫面外(2026-07-14 使用者抓到:搜 mamma → 側欄點倫敦 Novello)。
+  if (map.getZoom() < 9) {
+    map.closePopup();
+    map.once("moveend", () => {
+      if (m._icon) m.openPopup();
+      else cluster.zoomToShowLayer(m, () => m.openPopup());
+    });
+    map.flyTo(m.getLatLng(), 12, { animate: true, duration: 1.1 });
+  } else {
+    cluster.zoomToShowLayer(m, () => m.openPopup());
+  }
 }
 
 // ---------- Boot ----------
