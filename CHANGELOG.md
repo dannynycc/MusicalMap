@@ -11,6 +11,10 @@
 
 ---
 
+## [v2.39.1] - 2026-07-14 20:58
+### 馬尼拉三檔補官方海報(使用者抓到 On Your Feet 無圖)
+- v2.39.0 的 image 留空想靠同劇群海報繼承,但 On Your Feet!/The Notebook 全球只有馬尼拉一筆=無圖可借。真瀏覽器自 TicketWorld 抓官方橫幅(CloudFront CDN),獨立驗證 content-type image/jpeg+無 referer 熱鏈可用(記憶教訓:抓到 URL≠能顯示)後入 manual。
+
 ## [v2.39.0] - 2026-07-14 20:45
 ### 菲律賓缺口補上(使用者發現)+official_sites key 全表稽核(& Juliet 官網案)
 - 🌏 **馬尼拉三檔上圖**:Charlie and the Chocolate Factory(The Theatre at Solaire 7/8~26)、On Your Feet!(The Proscenium 7/10~8/2)、The Notebook(Samsung PAT 9/3~20)——日期=TicketWorld 真瀏覽器眼見為憑,場館座標 OSM 查證,works registry 補 The Notebook/On Your Feet! 兩作品(歸組+tag 自動正確)。i18n 補馬尼拉/菲律賓。
