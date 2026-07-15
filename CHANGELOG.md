@@ -11,6 +11,15 @@
 
 ---
 
+## [v2.42.6] - 2026-07-15 14:27
+
+### Shrek 正名「Shrek The Musical」(官方全名;使用者指出)
+
+- `works.json` canonical 改「Shrek The Musical」、舊名「Shrek」降為 alias;離線重跑 build_shows+gen_catalog 全量重產——**group 保持 `shrek` 不變**(既有收藏/海報鍵零影響),shows 5 筆與 catalog title/search 欄改用全名(search 同時含新舊名與各語別名)。
+- me.html `SYNC_VER` 13→14(catalog 顯示名變更,強制已同步 session 重取——此坑已踩兩次)。
+- 重產副產物:本次 build 同時執行每日管線例行清理(過期場次下架 53、庫存海報替換 52、damai 連結升級 78 等,與夜間 cron 同邏輯)。
+- 驗證:搜尋 e2e 11 案例 ALL PASS。
+
 ## [v2.42.5] - 2026-07-15 14:10
 
 ### 修輸入端搜尋:查詢比劇名長=永遠 0 結果(使用者搜「Shrek The Musical」抓包)
