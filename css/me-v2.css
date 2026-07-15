@@ -432,17 +432,22 @@ html[data-live] .demobanner{display:none}
 .grid2{display:grid;grid-template-columns:1.1fr .9fr;gap:18px}
 .panel{background:var(--s1);border:1px solid var(--hair);border-radius:18px;padding:22px;box-shadow:var(--shadow-1)}
 .panel h3{margin:0 0 16px;font-family:var(--fr);font-weight:700;font-size:18px}
-.badges{display:flex;flex-wrap:wrap;gap:10px}
-.badge{display:flex;align-items:center;gap:8px;background:var(--s2);border:1px solid var(--hair);border-radius:12px;padding:7px 13px 7px 9px;font-size:13px;font-weight:600}
-.badge .bico{flex:none;display:block}
-.badge .bico svg{width:26px;height:26px;display:block}/* 手繪風徽章圖示(2026-07-15) */
-.badge .ic{width:26px;height:26px;border-radius:8px;display:grid;place-items:center;background:var(--gold-soft);font-size:14px}
-/* 徽章分級(2026-07-13 重設計):bronze/silver/gold 邊框色,gold 保留原光暈;
-   .next=下一級進度灰章(owner 頁限定),虛線+降透明表達「還沒拿到」 */
-.badge.bronze{border-color:rgba(176,124,84,.55)}
-.badge.silver{border-color:rgba(140,148,160,.65)}
-.badge.gold{border-color:rgba(201,168,92,.5);box-shadow:0 0 18px -6px rgba(201,168,92,.4)}
-.badge.next{border-style:dashed;opacity:.55;font-weight:500}
+/* 護照印章式徽章(2026-07-15 重設計):手繪圖示放大置於圓形印記中、標題在下方,
+   告別「小圖貼在文字旁=emoji 感」——圖是主角,大方展示,像蓋護照章。 */
+.badges{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+.badge{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;text-align:center;gap:10px;background:var(--s2);border:1px solid var(--hair);border-radius:16px;padding:16px 11px 14px;font-size:12.5px;font-weight:600;line-height:1.36;min-height:124px}
+.badge .bico{width:66px;height:66px;flex:none;border-radius:50%;display:grid;place-items:center;background:var(--gold-soft);border:1.5px solid var(--hair)}
+.badge .bico svg{width:46px;height:46px;display:block}
+.badge .ic{width:66px;height:66px;border-radius:50%;display:grid;place-items:center;background:var(--gold-soft);font-size:28px}
+/* 徽章分級:bronze/silver/gold 印記環色 + 卡片邊框;.next=下一級進度(owner 頁限定),虛線環+降透明 */
+.badge.bronze{border-color:rgba(176,124,84,.4)}
+.badge.bronze .bico{border-color:rgba(176,124,84,.5);background:rgba(176,124,84,.12)}
+.badge.silver{border-color:rgba(140,148,160,.45)}
+.badge.silver .bico{border-color:rgba(140,148,160,.55);background:rgba(140,148,160,.12)}
+.badge.gold{border-color:rgba(201,168,92,.45);box-shadow:0 0 18px -6px rgba(201,168,92,.4)}
+.badge.gold .bico{border-color:rgba(201,168,92,.6);background:rgba(201,168,92,.16);box-shadow:0 0 14px -5px rgba(201,168,92,.45)}
+.badge.next{opacity:.5;font-weight:500}
+.badge.next .bico{border-style:dashed;background:transparent}
 .persona .code{font-family:var(--fr);font-weight:900;font-size:46px;letter-spacing:5px;background:linear-gradient(120deg,#fff,var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
 .persona .pn{font-size:26px;font-weight:900;margin:6px 0 12px;font-family:var(--fr,inherit)}
 .persona .pb{color:var(--ink2);font-size:13.5px;line-height:1.6}
