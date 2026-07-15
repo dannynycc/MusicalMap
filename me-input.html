@@ -446,15 +446,15 @@ function scoreWork(q,e){const nq=norm(q);if(!nq)return 0;
   const nq2=nq.replace(/(themusical|musical|音樂劇|音乐剧|ミュージカル)$/,'');
   const qs=(nq2&&nq2!==nq)?[nq,nq2]:[nq];
   let best=0;
-  for(const h of e.hay){
+  e.hay.forEach((h,hi)=>{
     for(const n of qs){
       if(h===n)best=Math.max(best,100);
       else if(h.startsWith(n))best=Math.max(best,80);
       else if(h.includes(n))best=Math.max(best,60);
     }
-    // 查詢比劇名長(整個劇名含在查詢裡)也算中;短 hay 擋掉避免誤命中,CJK 兩字即有意義
-    if(nq.length>h.length&&(h.length>=4||(h.length>=2&&/[぀-ヿ一-鿿]/.test(h)))&&nq.includes(h))best=Math.max(best,55);
-  }
+    // 查詢比劇名長(整個劇名含在查詢裡)也算中;只對主名(en/zh=hay[0..1])做,別名/縮寫做會讓長查詢撈進大量雜訊(2026-07-15 修)
+    if(hi<2&&nq.length>h.length&&(h.length>=4||(h.length>=2&&/[぀-ヿ一-鿿]/.test(h)))&&nq.includes(h))best=Math.max(best,55);
+  });
   return best;}
 function search(q){return INDEX.map(e=>({w:e.w,s:scoreWork(q,e)})).filter(x=>x.s>0).sort((a,b)=>b.s-a.s).slice(0,8);}
 function prodSummary(w){const cities=[...new Set(w.prods.map(p=>p.city).filter(Boolean))];return cities.slice(0,3).join(' · ')+(cities.length>3?` +${cities.length-3}`:'');}
@@ -989,7 +989,7 @@ function addedScreen(){
       <div class="rmeta"><div class="rt">${hesc(PN(d.w))}</div>
         <div class="rsub">${d.date?dateLabel(d):T('date_later')}${d.p.city?' · '+hesc(d.p.city):''}${d.rating?' · '+'★'.repeat(d.rating):''}</div>
         ${(d.seat||d.price)?`<div class="rsub2">${[d.seat?TN('seat_label',{v:hesc(d.seat)}):'',d.price?TN('price_label',{v:curSym(d.cur)+hesc(d.price)}):''].filter(Boolean).join('　·　')}</div>`:''}
-        ${d.note?`<div class="rnote">「${hesc(d.note).slice(0,30)}${d.note.length>30?'…':''}」</div>`:''}</div>
+        ${d.note?`<div class="rnote">「${hesc(d.note.slice(0,30))}${d.note.length>30?'…':''}」</div>`:''}</div><!-- 先截原文再跳脫:反過來會把 &amp;lt; 這類實體切一半(2026-07-15 修) -->
       <button class="rb wide" data-idx="${LOG.indexOf(d)}" aria-label="${T('edit')}">${T('edit_btn')}</button></div>`).join('')}</div>
     <button type="button" class="bd-more" id="addMore">${T('add_more')}</button>
     <button type="button" class="bd-done" id="batchDone">${T('batch_done')}</button></div>`;

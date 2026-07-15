@@ -161,8 +161,8 @@ window.MM = (function () {
       favCount: src.filter(s=>s.fav).length,
       avgRating: src.length ? (src.reduce((a,s)=>a+s.rating,0)/src.length) : 0,
       spend,
-      firstDate: src.map(s=>s.date).sort()[0],
-      lastDate: src.map(s=>s.date).sort().slice(-1)[0],
+      firstDate: src.map(s=>s.date).filter(Boolean).sort()[0],   // 空日期('')會排最前毒化「首演年」徽章(2026-07-15 修)
+      lastDate: src.map(s=>s.date).filter(Boolean).sort().slice(-1)[0],
       upcoming: shows.filter(s=>isFuture(s.date)).length,   // 即將 N 場
     };
   }
@@ -185,6 +185,15 @@ window.MM = (function () {
     'United Arab Emirates':'AS','UAE':'AS',
     'Australia':'OC','New Zealand':'OC',
     'South Africa':'AF','Egypt':'AF',
+    // 2026-07-15 補漏:缺席國家會「算國數不算洲數」,低估環球旅人 persona
+    'Iceland':'EU','Luxembourg':'EU','Malta':'EU','Cyprus':'EU','Monaco':'EU','Andorra':'EU',
+    'Bosnia and Herzegovina':'EU','North Macedonia':'EU','Albania':'EU','Montenegro':'EU','Belarus':'EU','Moldova':'EU',
+    'Qatar':'AS','Saudi Arabia':'AS','Kuwait':'AS','Bahrain':'AS','Oman':'AS','Jordan':'AS','Lebanon':'AS',
+    'Kazakhstan':'AS','Uzbekistan':'AS','Sri Lanka':'AS','Bangladesh':'AS','Pakistan':'AS','Nepal':'AS',
+    'Mongolia':'AS','Cambodia':'AS','Laos':'AS','Myanmar':'AS','Brunei':'AS',
+    'Costa Rica':'NA','Panama':'NA','Guatemala':'NA','Puerto Rico':'NA','Dominican Republic':'NA','Cuba':'NA','Jamaica':'NA',
+    'Uruguay':'SA','Paraguay':'SA','Bolivia':'SA','Ecuador':'SA','Venezuela':'SA',
+    'Morocco':'AF','Tunisia':'AF','Kenya':'AF','Nigeria':'AF','Ghana':'AF','Zimbabwe':'AF','Namibia':'AF',
   };
 
   // 「你是什麼樣的劇迷」— 三條真資料軸,連續光譜(只看已發生的場次)。

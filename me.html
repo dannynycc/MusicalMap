@@ -332,7 +332,7 @@ function proxyImg(u){if(!u||!/^https?:\/\//i.test(u)||/(wsrv\.nl|weserv\.nl)/i.t
     }
     return v; };
   // 票價顯示帶貨幣符號(60.75 GBP → £60.75);北歐/東歐幣別符號習慣放後面;沒對照的回退「金額 代碼」
-  window.MMFmtPrice=window.MMFmtPrice||function(p,c){ if(p==null||p==='') return '';
+  window.MMFmtPrice=window.MMFmtPrice||function(p,c){ if(p==null||String(p).trim()==='') return '';
     const SYM={TWD:'NT$',USD:'$',GBP:'£',EUR:'€',JPY:'¥',KRW:'₩',CNY:'¥',HKD:'HK$',AUD:'A$',CAD:'C$',SGD:'S$',NZD:'NZ$',MXN:'MX$',BRL:'R$',CHF:'CHF',SEK:'kr',NOK:'kr',DKK:'kr',CZK:'Kč',HUF:'Ft',PLN:'zł'};
     const SUF=new Set(['kr','Kč','Ft','zł','CHF']);
     const s=SYM[c]; if(!s) return c?`${p} ${c}`:String(p);
@@ -472,7 +472,8 @@ function posterEl(s){
       // 雲端失敗時 mmToggleFav 會呼叫 mmRevertFav[li](原值) → 就地還原,UI 不說謊。
       // 用「index→painter」註冊表而非單一全域:否則快點多張卡,後一張的 handler 會覆蓋前一張,
       // 前一張雲端失敗時回滾認錯卡、♥ 不還原(2026-07-10 review)。
-      (window.mmRevertFav||(window.mmRevertFav={}))[li]=orig=>paintFav(orig);
+      // 回滾時經 mmPaintFav 註冊表拿「最新」painter:牆重繪後直接呼叫本 closure 會畫到已卸載的舊卡(2026-07-15 修)
+      (window.mmRevertFav||(window.mmRevertFav={}))[li]=orig=>{(window.mmPaintFav&&window.mmPaintFav[li])?window.mmPaintFav[li](orig):paintFav(orig);};
     };
     eb.onclick=e=>{e.stopPropagation();window.mmEditShow&&window.mmEditShow(li);};
     db.onclick=e=>{e.stopPropagation();window.mmDeleteShow&&window.mmDeleteShow(li,s.title,s.zh);};
@@ -537,7 +538,7 @@ function renderPassport(){
   const order=Object.keys(byC).sort((a,b)=>byC[b].length-byC[a].length);
   let gi=0;
   order.forEach(co=>{
-    const arr=byC[co].sort((a,b)=>a.date.localeCompare(b.date));
+    const arr=byC[co].sort((a,b)=>(a.date||'9999').localeCompare(b.date||'9999'));   // 空日期排最後:FIRST 里程碑不被「不記得哪天」的紀錄搶走(2026-07-15 修)
     const cities=[...new Set(arr.map(s=>s.city))].map(x=>esc(cityName(x))).join(' · ');
     const stamped=arr.filter(s=>!isFut(s.date)).length;   // 只算已到場的戳章數
     const v=document.createElement('div');v.className='visa reveal';
@@ -784,7 +785,9 @@ let mt;addEventListener('resize',()=>{clearTimeout(mt);mt=setTimeout(()=>{render
 
 /* ---------- detail modal ---------- */
 const dlg=document.getElementById('detail');
+let _dtPrevTimer=null;   // 上一次 openDetail 的 4s 備援計時器:跨開啟必清,否則舊計時器到點會把舊卡的圖塞進新彈窗(2026-07-15 修)
 function openDetail(s){
+  if(_dtPrevTimer){clearTimeout(_dtPrevTimer);_dtPrevTimer=null;}
   const dp=document.getElementById('dt-poster'),img=document.getElementById('dt-img');
   if(s.poster){dp.classList.remove('is-fallback');
     img.style.objectFit=s.posterFit==='contain'?'contain':'cover';
@@ -792,8 +795,9 @@ function openDetail(s){
       img.classList.remove('ready');let _dtr=false;
       const _dfall=()=>{if(!_dtr&&s.posterFull&&s.posterFull!==s.poster){_dtr=true;img.src=s.posterFull;return;}img.classList.add('ready');};
       const _dt=(s.posterFull&&s.posterFull!==s.poster)?setTimeout(()=>{if(!img.complete||!img.naturalWidth)_dfall();},4000):null;  // 代理 4s 沒回→搶先直連(同海報牆,2026-07-14)
-      img.onload=()=>{if(_dt)clearTimeout(_dt);img.classList.add('ready');};
-      img.onerror=()=>{if(_dt)clearTimeout(_dt);_dfall();};  // 代理失敗→退回原圖
+      _dtPrevTimer=_dt;
+      img.onload=()=>{if(_dt)clearTimeout(_dt);if(_dtPrevTimer===_dt)_dtPrevTimer=null;img.classList.add('ready');};
+      img.onerror=()=>{if(_dt)clearTimeout(_dt);if(_dtPrevTimer===_dt)_dtPrevTimer=null;_dfall();};  // 代理失敗→退回原圖
       img.src=s.poster;
     }else img.classList.add('ready');}                    // 同一張(重開)→直接顯示
   else{dp.classList.add('is-fallback');img.removeAttribute('src');dp.style.setProperty('--dt-accent',s.color||'#7c5cff');  // 無海報→文字 fallback，不破圖
@@ -1261,7 +1265,7 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
   function sightingToEntry(s){const k=(s.title||'').toLowerCase();const prec=s.precision||(s.seen_date?'day':'none');
     const ov=s.poster_override||'';
     return {sid:s.id, w:{en:s.title||'',zh:ZH[k]||''}, tag:TAGS[k]||'',   // 劇種傳統(劇迷類型的劇種軸;烤入快取,SYNC_VER 控版)
-      p:{label:null,venue:(window.MMStripCitySuffix||(x=>x))(s.venue||'',s.city||''),venueEn:venueEnOf(s.venue||''),city:s.city||'',country:s.country||'',lat:s.lat,lng:s.lng,img:(ov||POS[k]||''),cur:s.currency||''},   // venue 剝城市後綴:編輯存檔時順帶把舊紀錄洗乾淨
+      p:{label:null,venue:s.venue||'',venueEn:venueEnOf(s.venue||''),city:s.city||'',country:s.country||'',lat:s.lat,lng:s.lng,img:(ov||POS[k]||''),cur:s.currency||''},   // venue 存原文:剝城市後綴只在顯示層(mapped/u-view)做——這裡剝了會在編輯存檔時寫回 DB,誤剝=官方名永久遺失(2026-07-15 修,忠實呈現原則)
       posterOverride:ov,   // 自訂海報網址（method 2）：有就優先當圖
       url:s.url||'',       // 連結/售票網址（沿用既有 url 欄；保住不洗掉）
       date:partialDate(s.seen_date,prec),precision:prec,

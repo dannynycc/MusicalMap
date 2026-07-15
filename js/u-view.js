@@ -37,7 +37,7 @@
     }
     return v; };
   // 票價帶貨幣符號(與 me.html 同對照)
-  window.MMFmtPrice = window.MMFmtPrice || function(p,c){ if(p==null||p==='') return '';
+  window.MMFmtPrice = window.MMFmtPrice || function(p,c){ if(p==null||String(p).trim()==='') return '';
     const SYM={TWD:'NT$',USD:'$',GBP:'£',EUR:'€',JPY:'¥',KRW:'₩',CNY:'¥',HKD:'HK$',AUD:'A$',CAD:'C$',SGD:'S$',NZD:'NZ$',MXN:'MX$',BRL:'R$',CHF:'CHF',SEK:'kr',NOK:'kr',DKK:'kr',CZK:'Kč',HUF:'Ft',PLN:'zł'};
     const SUF=new Set(['kr','Kč','Ft','zł','CHF']);
     const s=SYM[c]; if(!s) return c?`${p} ${c}`:String(p);
@@ -182,7 +182,7 @@
       const up = stAll.upcoming || 0;
       const upTxt = up > 0 ? ` <span class="nw" style="color:var(--gold)">${esc(TN('upcoming_dot_n', { n: up }))}</span>` : '';
       document.getElementById('newest').innerHTML = newest
-        ? `<span class="dot"></span><span class="nw">${esc(T('newest_label'))} <b>${esc(newest.title)}</b></span> <span class="nw">${esc(newest.city)}${newest.date ? ' · ' + fshort(newest.date) : ''}</span>${upTxt}`
+        ? `<span class="dot"></span><span class="nw">${esc(T('newest_label'))} <b>${esc(newest.title)}</b></span> <span class="nw">${esc(cityName(newest.city))}${newest.date ? ' · ' + fshort(newest.date) : ''}</span>${upTxt}`
         : (up > 0 ? `<span class="dot"></span><span class="nw">${esc(T('none_yet'))}</span><span class="nw" style="color:var(--gold)">${esc(TN('upcoming_n', { n: up }))}</span>` : '');
     })();
 
@@ -376,7 +376,7 @@
         const [px, py] = project(c.lat, c.lng); if (!isFinite(px) || !isFinite(py)) return;
         const sz = 15 + Math.sqrt(c.n) * 6.5;
         const el = document.createElement('button'); el.className = 'pin';
-        el.setAttribute('aria-label', TN('pin_aria', { city: c.city, n: c.n }));
+        el.setAttribute('aria-label', TN('pin_aria', { city: cityName(c.city), n: c.n }));   // 讀屏與可見標籤同語言(me.html 同款,2026-07-15 修)
         el.innerHTML = `<span class="glow" style="width:${sz * 2.4}px;height:${sz * 2.4}px"></span>
           <span class="ring"></span>
           <span class="core" style="width:${sz}px;height:${sz}px">${c.n}</span>
