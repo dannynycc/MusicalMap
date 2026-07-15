@@ -78,15 +78,15 @@ html[lang="zh-Hans"] .st-h1{font-family:"Fraunces","Noto Serif SC",Georgia,serif
 .mm-modal-err{display:block;min-height:16px;margin-top:6px;font-size:12px;font-weight:600;color:#b3261e}
 .mm-modal-btns{display:flex;gap:10px;justify-content:flex-end;margin-top:16px}
 /* 刪除成功後的頁內告別頁(取代原生 alert+跳轉;致敬 Hamilton 喬治三世〈You'll Be Back〉) */
-#farewell{position:fixed;inset:0;z-index:6500;overflow-y:auto;background:var(--paper,#faf6ec);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;text-align:center;padding:40px 24px}
+#farewell{position:fixed;inset:0;z-index:6500;overflow-y:auto;background:var(--paper,#faf6ec);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;text-align:center;padding:40px 24px}
 #farewell[hidden]{display:none}
-#farewell .fw-king{width:150px;height:auto}
-#farewell h2{font-family:"Fraunces","Noto Serif TC",Georgia,serif;font-weight:900;font-size:clamp(26px,4vw,36px);letter-spacing:-.01em;margin:0;color:var(--text)}
+#farewell .fw-king{width:min(210px,52vw);height:auto}
+#farewell h2{font-family:"Fraunces","Noto Serif TC",Georgia,serif;font-weight:900;font-size:clamp(32px,5vw,46px);letter-spacing:-.01em;margin:0;color:var(--text)}
 html[lang="zh-Hans"] #farewell h2{font-family:"Fraunces","Noto Serif SC",Georgia,serif}
-#farewell p{max-width:460px;font-size:14.5px;line-height:1.7;color:var(--muted);margin:0}
-#farewell .fw-lyric{font-family:"Fraunces",Georgia,serif;font-style:italic;font-size:17.5px;color:var(--text)}
-#farewell .fw-by{font-size:12px;color:var(--muted);margin-top:4px}
-#farewell .btn-gold{text-decoration:none;margin-top:12px;display:inline-block}
+#farewell p{max-width:560px;font-size:17px;line-height:1.7;color:var(--muted);margin:0}
+#farewell .fw-lyric{font-family:"Fraunces",Georgia,serif;font-style:italic;font-size:22px;color:var(--text)}
+#farewell .fw-by{font-size:13.5px;color:var(--muted);margin-top:5px}
+#farewell .btn-gold{text-decoration:none;margin-top:14px;display:inline-block;font-size:15.5px;padding:12px 30px}
 /* 登入閘:同頁淺色紙感(不再用深色,與主頁一致) */
 #stgate{position:fixed;inset:0;z-index:5000;overflow-y:auto;background:var(--paper,#faf6ec);color:var(--text,#221f18);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:16px;text-align:center;padding:74px 24px 40px}
 #gate-brand{position:absolute;top:0;left:0;right:0;height:56px;display:flex;align-items:center;gap:9px;padding:0 22px;font-family:"Fraunces",Georgia,serif;font-weight:900;font-size:19px;color:var(--text);text-decoration:none}
