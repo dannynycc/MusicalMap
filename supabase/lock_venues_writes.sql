@@ -1,0 +1,31 @@
+-- Lock down the crowdsourced `venues` table (2026-07-15).
+--
+-- Rationale: the frontend NEVER writes to `venues` (grep of all *.html/*.js finds
+-- no `.from('venues')` insert/update/delete and no venue RPC). The table is
+-- populated exclusively by the backend scraper, which authenticates as
+-- `service_role` and bypasses these grants entirely. So any write privilege held
+-- by `anon` / `authenticated` is pure unused attack surface — a door nobody
+-- legitimate walks through, but an attacker with the public anon key could use to
+-- inject junk venue rows. Close it.
+--
+-- Ground truth probed against production before/after (2026-07-15, public anon key):
+--   * anon was ALREADY blocked at the row level (INSERT -> 401 42501 RLS), and its
+--     SELECT returns [] — so the public/unauthenticated surface was never open.
+--   * `authenticated` (any logged-in user, e.g. via a crafted REST call — NOT the app
+--     UI, which only ever writes `sightings`) COULD insert venue rows and had no
+--     UPDATE/DELETE policy to remove them. That is exactly the "can inject unlimited
+--     junk / can't delete mistakes" concern. Revoking the grant closes it for good:
+--     with no table privilege, RLS is never even consulted — it's a hard deny.
+-- After this runs, both roles retain only REFERENCES/SELECT/TRIGGER/TRUNCATE (none of
+-- which PostgREST exposes for row writes). Verified sightings/wall untouched (28 rows).
+--
+-- SELECT is intentionally left in place (public read is harmless; the
+-- public_sightings RPC is SECURITY DEFINER and doesn't rely on these grants anyway).
+-- This does NOT touch `sightings` (the musical wall) in any way.
+
+revoke insert, update, delete on public.venues from anon, authenticated;
+
+-- Belt-and-suspenders: the leftover permissive venues_insert RLS policy is now moot
+-- (RLS is only consulted when the role also holds the table privilege, which it no
+-- longer does), so it is kept as defense-in-depth rather than dropped — if INSERT is
+-- ever re-granted deliberately, the created_by ownership check is still enforced.

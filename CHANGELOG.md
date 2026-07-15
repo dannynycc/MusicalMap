@@ -11,6 +11,16 @@
 
 ---
 
+## [v2.45.1] - 2026-07-15 21:27
+
+### 安全加固(供應鏈 + venues 眾包表)
+
+**CI 供應鏈釘選** — `.github/workflows/update.yml` 的 7 個 GitHub Action 全部由可移動的 `@vN` 標籤改釘到不可變 commit SHA(`actions/checkout`、`setup-python`、`setup-node`、`upload-pages-artifact`、`download-artifact`、`deploy-pages`,以及持有 Cloudflare API token 的第三方 `cloudflare/wrangler-action`)。防止「標籤被重新指向惡意 code → 下次 CI 外洩 secret」。行為完全不變(SHA 反查自各自現行 `@vN`)。同步把 pip 依賴釘版本(`opencc-python-reimplemented==0.1.7`、`curl_cffi==0.15.0`、`playwright==1.61.0`)——PyPI 版本不可變,阻擋未來惡意新版被自動抓取;釘的即當前最新版,今日行為不變。
+
+**venues 眾包表寫入鎖定** — `supabase/lock_venues_writes.sql`:`revoke insert, update, delete on public.venues from anon, authenticated`。實測背景:前端從不寫 `venues` 表(只寫 `sightings`),該表僅由後端 scraper 以 service_role 維護。anon 本就被 RLS 擋;但 `authenticated`(任何登入者用原始 REST 呼叫,非 app 介面)原可注入 venue 列且無 update/delete policy 可清除——即「可無限亂加、加錯刪不掉」的來源。移除 grant 後 RLS 連諮詢都免,硬拒。撤後兩角色僅剩 REFERENCES/SELECT/TRIGGER/TRUNCATE(PostgREST 均不暴露為寫入)。已驗:anon INSERT→401、音樂劇牆 sightings 完好(28 筆)。
+
+---
+
 ## [v2.45.0] - 2026-07-15 21:07
 
 ### 成就徽章擴充 8→17 族(使用者從 27 版選定 9 枚)
