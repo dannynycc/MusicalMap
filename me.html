@@ -830,9 +830,12 @@ function openDetail(s){
   // 資訊卡(照片/評分/路線),座標把地圖釘在正確那家,消除「Broadway Theatre」等通用名的同名歧義
   // (2026-07-16 使用者抓 Broadway Theatre 定位不準);無座標→退回文字查詢(名稱, 城市, 國家)。
   // 純座標查詢只給裸大頭針,使用者明確不要(2026-07-15)。日期補(星期幾)。
-  const _mapsHref=s.venue?((s.lat!=null&&s.lng!=null)
-    ?`https://www.google.com/maps/search/${encodeURIComponent(s.venue)}/@${s.lat},${s.lng},17z`
-    :('https://www.google.com/maps/search/?api=1&query='+encodeURIComponent([s.venue,s.city,s.country].filter(Boolean).join(', ')))):null;
+  const _pid=venuePidOf(s);   // 有 place_id→直接開單一資訊卡(最精準)
+  const _mapsHref=s.venue?(_pid
+    ?`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(s.venue)}&query_place_id=${encodeURIComponent(_pid)}`
+    :((s.lat!=null&&s.lng!=null)
+      ?`https://www.google.com/maps/search/${encodeURIComponent(s.venue)}/@${s.lat},${s.lng},17z`
+      :('https://www.google.com/maps/search/?api=1&query='+encodeURIComponent([s.venue,s.city,s.country].filter(Boolean).join(', '))))):null;
   const _wd=(s.date&&s.date.length>=10)?(()=>{const[y,m,d]=s.date.split('-').map(Number);const w=new Date(y,m-1,d).getDay();
     return ' ('+(EN_UI?['Sun','Mon','Tue','Wed','Thu','Fri','Sat'][w]:'日一二三四五六'[w])+')';})():'';
   document.getElementById('dt-dl').innerHTML=`
@@ -1263,10 +1266,21 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
   let ZH={},POS={},TAGS={},VENS=[];
   async function loadCatalogMaps(){try{
     const ctrl=new AbortController();const to=setTimeout(()=>ctrl.abort(),9000);
-    const cat=await fetch('data/venues_catalog.json',{signal:ctrl.signal}).then(r=>r.json());clearTimeout(to);
+    const cat=await fetch('data/venues_catalog.json?v=18',{signal:ctrl.signal}).then(r=>r.json());clearTimeout(to);  // ?v bump=catalog schema 變(v18=場館 place_id);CF .json 快取≤4hr,不 bump 新欄位會延遲生效
     VENS=cat.venues||[];
     (cat.titles||[]).forEach(t=>{if(!t.en)return;const k=t.en.toLowerCase(),g=t.group;
       if(t.zh)ZH[k]=t.zh;if(cat.posters&&cat.posters[g])POS[k]=cat.posters[g];if(t.tag)TAGS[k]=t.tag;});}catch(e){console.warn('catalog maps',e);}}  // 逾時/失敗就略過 zh/poster/tag，不擋同步
+  // 場館 Google place_id:找 catalog 中座標最接近本場次(<=45m)且有 pid 的場館→地圖連結直接開單一資訊卡
+  // (?query_place_id);catalog 未載入/查無→回傳空字串,openDetail 退回座標錨定搜尋。座標比對(非名稱)
+  // 才穩:場次座標取自 catalog 選館,45m 容忍座標微調漂移(同 u-view.js venue 升級邏輯)。
+  function venuePidOf(s){
+    if(s==null||s.lat==null||s.lng==null||!VENS.length)return '';
+    let best='',bd=45,rad=Math.cos(s.lat*Math.PI/180);
+    for(const v of VENS){ if(!v.pid||v.lat==null||v.lng==null)continue;
+      const dx=(v.lat-s.lat)*111000,dy=(v.lng-s.lng)*111000*rad,d=Math.hypot(dx,dy);
+      if(d<bd){bd=d;best=v.pid;} }
+    return best;
+  }
   // 劇院官方英文名:存的字串抽 CJK 部分回 catalog 查(「上海大劇院 Lyric Theatre」→ Shanghai Grand Theatre;
   // catalog 也沒有英文名的(見 2026-07-03 盤點:227 館缺)先回退拉丁部分或原文,待資料層補名)
   const _cjkV=/[぀-ヿ㐀-鿿가-힯豈-﫿]/;
@@ -1302,7 +1316,7 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
   const sb=supabase.createClient(cfg.SUPABASE_URL,cfg.SUPABASE_ANON_KEY);
   window.mmSb=sb;
   showGate(T('gate_loading'),false);   // 立即用當前語言顯示 Loading(gate-msg 無 data-i18n,不會被 apply 蓋);getSession 回來再 showLogin/onSignedIn
-  const SYNC_VER='17';   // sightingToEntry 對映改版**或 catalog 顯示資料(zh/海報)更新**就 +1 → 強制所有 session 重新同步（v5=38 館英文名;v6=fav;v7=第二批 124 館英文名;v8=幣別 cur;v9=劇種傳統 tag;v10=座標修正 11 館;v11=启东/大上海新空间;v12=巡演 250 站場館;v13=+國父紀念館 2026-07-14;v14=Shrek 正名;v15=ZH 字典補 16 部;v16=場館剝城市後綴+臺字正名;v17=+Q大道 2026-07-15）
+  const SYNC_VER='18';   // sightingToEntry 對映改版**或 catalog 顯示資料(zh/海報)更新**就 +1 → 強制所有 session 重新同步（v5=38 館英文名;v6=fav;v7=第二批 124 館英文名;v8=幣別 cur;v9=劇種傳統 tag;v10=座標修正 11 館;v11=启东/大上海新空间;v12=巡演 250 站場館;v13=+國父紀念館 2026-07-14;v14=Shrek 正名;v15=ZH 字典補 16 部;v16=場館剝城市後綴+臺字正名;v17=+Q大道 2026-07-15;v18=場館 place_id→地圖直接開單卡 2026-07-16）
   const syncedKey=uid=>uid+'@'+SYNC_VER;
   let _syncing=false;
   // 同步失敗畫面:訊息 + 一顆「重試」按鈕(掛在 gate-msg 內);避免使用者只能重整或卡死

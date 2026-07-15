@@ -206,7 +206,7 @@ if(v&&v!=='zh-hant'){document.write('<style id="mm-fouc">body{visibility:hidden}
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.110.0/dist/umd/supabase.js" integrity="sha384-3wY11tldQ5+yWqAvmTN4XtQvnjoTva0cV15O/O/O5NTtp0ivVopSzLOzsVXWZse9" crossorigin="anonymous"></script>
 <!-- 語言:js/mm-strings.js(head 載入)全權接管本頁 i18n(?hl= 驅動)。
      不可再載 js/i18n.js——它的 applyStatic 也吃 data-i18n 屬性,會用主站字典把本頁 key 蓋成字面值。 -->
-<script src="js/u-view.js?v=11"></script>
+<script src="js/u-view.js?v=12"></script>
 <script>/* 語言切換下拉開關(內聯:my. 子網域免外部檔部署) */
 (function(){function wire(root){var tr=root.querySelector('.lang-trigger'),pop=root.querySelector('.lang-pop');if(!tr||!pop||tr.dataset.w)return;tr.dataset.w=1;
 function opn(){pop.hidden=false;tr.setAttribute('aria-expanded','true');document.addEventListener('click',dc,true);document.addEventListener('keydown',ky,true);}

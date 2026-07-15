@@ -11,6 +11,19 @@
 
 ---
 
+## [v2.46.0] - 2026-07-16 02:17
+
+### 劇院連結升級:Google place_id → 直接開單一資訊卡(全目錄 enrich)
+
+v2.45.4 的座標錨定連結對通用名(Broadway Theatre)只能給「正確那家排第一的清單」,無法直接開單卡——經瀏覽器實測確認(先前誤稱已對準,已更正)。單卡只能靠地點 place_id。本版用 Google Places API (New) Text Search 替全目錄場館解析 place_id:
+
+- **`scrapers/enrich_place_ids.py`(新)**:Text Search + `locationBias`(場館座標 300m 圈)確保通用名也抓對那家;回傳點需在座標 120m 內否則拒(退回座標錨定)。**成本安全**:每館至多打 1 次、絕不重試;硬上限 `MAX_CALLS=5600`(最壞 5600×$0.032≈$179<$300,數學保證不超 $300 額度);結果存 `data/venue_place_ids.json`(獨立持久檔,非建置產物)。實跑:**5,396 次呼叫、解析 5,038 家(95%)、far 251、無結果 10**;品質:98.2% 落在 10m 內(中位 0.0m)。實際費用以 Cloud Billing console 為準(延遲數小時顯示;額度 NT$9,422 完整)。
+- **`gen_catalog.py`**:建 venues_catalog 時由 venue_place_ids.json 合併 pid(座標 key,6dp)→ **5,166/5,426 (95%) 帶 pid**。
+- **前端(me.html `venuePidOf` + u-view.js `s.pid`)**:詳情頁劇院連結 = 有 pid→`?query_place_id`(直開單卡)→ 無 pid→座標錨定 → 無座標→文字查詢。座標比對(<=45m)取 pid,穩健。SYNC_VER 17→18(強制重載新 catalog)+ catalog fetch ?v=18(CF .json 快取破除);u-view.js ?v 11→12。
+- 已驗:Broadway Theatre pid `ChIJEUd4ZVZYwokR9mtgzHTtv1s`,`?api=1&query=…&query_place_id=…` URL 瀏覽器實測直接開「百老匯劇院」單一資訊卡(與使用者提供的短連結同一地點)。
+
+---
+
 ## [v2.45.4] - 2026-07-16 01:13
 
 ### 劇院 Google Maps 連結:座標錨定,通用名(如 Broadway Theatre)定位到正確那家

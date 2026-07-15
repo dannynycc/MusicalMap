@@ -115,8 +115,13 @@
     const cv = (cat.venues || []).filter((v) => typeof v.lat === 'number');
     const current = new Set(cv.map((v) => v.name));
     rows.forEach((s) => {
-      if (!s.venue || typeof s.lat !== 'number') return;
-      if (current.has(s.venue)) return;
+      if (typeof s.lat !== 'number' || typeof s.lng !== 'number') return;
+      // place_id:座標最接近本場次(<=45m)且有 pid 的場館→地圖連結直接開單一資訊卡(2026-07-16)
+      let bp = '', bd = 45;
+      for (const v of cv) { if (v.pid && typeof v.lng === 'number') { const d = distM(s.lat, s.lng, v.lat, v.lng); if (d < bd) { bd = d; bp = v.pid; } } }
+      if (bp) s.pid = bp;
+      // 升級館名為 catalog 現名(行為不變)
+      if (!s.venue || current.has(s.venue)) return;
       const near = cv.filter((v) => distM(s.lat, s.lng, v.lat, v.lng) <= 40);
       if (near.length === 1) s.venue = near[0].name;
     });
@@ -564,11 +569,13 @@
       else { rt.textContent = ''; rt.style.display = 'none'; }
       // 唯讀：座位/票價只在有值時顯示（公開頁隱私由 RPC 決定回不回傳）
       // 場館→Google Maps:一律名稱查詢=解析成地標資訊卡(座標=裸針,使用者不要);與 me.html 同步(2026-07-15)
-      // 場館→Google Maps:有座標→名稱錨定精準座標(消除「Broadway Theatre」等通用名歧義,2026-07-16),
-      // 無座標→文字查詢(名稱, 城市, 國家)。與 me.html 同步。
-      const _mapsHref = s.venue ? ((s.lat != null && s.lng != null)
-        ? `https://www.google.com/maps/search/${encodeURIComponent(s.venue)}/@${s.lat},${s.lng},17z`
-        : ('https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent([s.venue, s.city, s.country].filter(Boolean).join(', ')))) : null;
+      // 場館→Google Maps:有 place_id→直接開單一資訊卡(最精準);否則有座標→名稱錨定座標(消除
+      // 「Broadway Theatre」等通用名歧義);再否則→文字查詢(名稱, 城市, 國家)。與 me.html 同步。
+      const _mapsHref = s.venue ? (s.pid
+        ? ('https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(s.venue) + '&query_place_id=' + encodeURIComponent(s.pid))
+        : ((s.lat != null && s.lng != null)
+          ? `https://www.google.com/maps/search/${encodeURIComponent(s.venue)}/@${s.lat},${s.lng},17z`
+          : ('https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent([s.venue, s.city, s.country].filter(Boolean).join(', '))))) : null;
       const _wd = (s.date && s.date.length >= 10) ? (() => { const [y, m, d] = s.date.split('-').map(Number); const w = new Date(y, m - 1, d).getDay();
         return ' (' + (EN_UI ? ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'][w] : '日一二三四五六'[w]) + ')'; })() : '';
       const rows = [
@@ -638,7 +645,7 @@
 
     // catalog (posters + zh names + venue upgrade); failure is non-fatal
     let cat = { titles: [], posters: {}, productions: {}, venues: [] };
-    try { cat = await fetch('data/venues_catalog.json').then(r => r.json()); } catch (e) { console.warn('catalog', e); }
+    try { cat = await fetch('data/venues_catalog.json?v=18').then(r => r.json()); } catch (e) { console.warn('catalog', e); }  // ?v18=場館 place_id 欄位(CF .json 快取≤4hr)
     buildCatalogMaps(cat);
 
     // read-only sightings via SECURITY DEFINER RPC (owner's price/seat privacy flags applied server-side)

@@ -534,6 +534,26 @@ def main():
         titles.append({"en": en, "zh": zh, "group": g, "tag": tag,
                        "search": search_blob(en, first_title, zh or "", *w.get("aliases", []))})
 
+    # Attach Google place_id (pid) so map links can open the venue's SINGLE place card
+    # directly (frontend: ?api=1&query=<name>&query_place_id=<pid>). Source of truth is
+    # data/venue_place_ids.json (scrapers/enrich_place_ids.py), keyed by "lat,lng" at 6dp.
+    # This catalog is a build artifact, so pids must live in that separate file and be
+    # merged on every build. Venues with no/rejected match get no pid → frontend falls
+    # back to the coordinate-anchored search.
+    pid_path = DATA / "venue_place_ids.json"
+    if pid_path.exists():
+        pstore = json.loads(pid_path.read_text(encoding="utf-8"))
+        npid = 0
+        for v in venues:
+            la, ln = v.get("lat"), v.get("lng")
+            if la is None or ln is None:
+                continue
+            hit = pstore.get(f"{round(float(la), 6)},{round(float(ln), 6)}")
+            if hit and hit.get("pid"):
+                v["pid"] = hit["pid"]
+                npid += 1
+        print(f"  merged place_id into {npid}/{len(venues)} venues")
+
     out = {
         "venues": sorted(venues, key=lambda v: v["name"]),
         "cities": [{"city": c, "country": k} for c, k in cities],
