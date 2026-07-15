@@ -482,7 +482,8 @@
         return '';
       };
       const unlocked = MM.badges().filter(x => x.tier >= 0);
-      b.innerHTML = unlocked.map(x => `<div class="badge ${metal(x.tier)}">${bTxt(x)}</div>`).join('');
+      const bIco = k => (window.MM_BADGE_ICON && window.MM_BADGE_ICON[k]) ? `<span class="bico">${window.MM_BADGE_ICON[k]}</span>` : '';   // 手繪風圖示(與 me.html 同步,2026-07-15)
+      b.innerHTML = unlocked.map(x => `<div class="badge ${metal(x.tier)}">${bIco(x.key)}${bTxt(x)}</div>`).join('');
       function barList(id, items, fmt) { const el = document.getElementById(id); if (!el) return;
         if (!items || !items.length) { el.innerHTML = '<div class="sl-empty">—</div>'; return; }
         const mx = items[0][1] || 1;

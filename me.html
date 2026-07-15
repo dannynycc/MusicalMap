@@ -18,7 +18,7 @@ if(location.hostname==='themusicalmap.com'||location.hostname==='www.themusicalm
 <script>/* no-flash: apply saved theme before CSS paints;預設 cream(對齊主站淡米黃)。
    一次性遷移:舊版 applyTheme 會把預設 midnight 自動寫進 localStorage,使既有使用者卡在深色;
    mm-theme-mig 未設時清一次 mm-theme,讓大家重新落到 cream 預設(之後仍尊重使用者用 picker 的選擇)。 */(function(){try{if(!localStorage.getItem('mm-theme-mig')){localStorage.removeItem('mm-theme');localStorage.setItem('mm-theme-mig','1');}var t=localStorage.getItem('mm-theme')||'cream';if(t==='neon'||t==='deco'){t='midnight';localStorage.setItem('mm-theme',t);}if(t!=='midnight')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
-<link rel="stylesheet" href="css/me-v2.css?v=18" /><!-- CSS 也要 cache-bust:CF Pages 對 .css 出 max-age=14400,不掛 ?v 改版後最多 4hr 拿舊樣式 -->
+<link rel="stylesheet" href="css/me-v2.css?v=19" /><!-- CSS 也要 cache-bust:CF Pages 對 .css 出 max-age=14400,不掛 ?v 改版後最多 4hr 拿舊樣式 -->
 <style>
 html[lang="en"] .sec h2 .zh{display:none}   /* en 模式:section 標題旁的英文小字與主標重複 → 隱藏 */
 html[lang="zh-Hans"] body{--ui:'Inter','Noto Sans SC',sans-serif}  /* 簡中改用 SC 字型,避免混排忽粗忽細 */
@@ -105,6 +105,7 @@ if(v&&v!=='zh-hant'){document.write('<style id="mm-fouc">body{visibility:hidden}
   window.addEventListener('DOMContentLoaded',function(){setTimeout(_rv,0);});setTimeout(_rv,1500);}
 }catch(e){}})();</script>
 <script src="js/mm-strings.js?v=247"></script>
+<script src="js/mm-badge-icons.js?v=1"></script>
 <script src="js/mm-acct-menu.js?v=227"></script>
 <!-- Google Analytics(GA4 G-GC07MYC1MY;訪客來源/行為分析,同一 ID 涵蓋主站與 my. 網域(報表以 hostname 區分);不加 SRI:gtag.js 由 Google 滾動更新,釘 hash 會靜默斷統計;隱私揭露見 privacy §1/§3) --><script async src="https://www.googletagmanager.com/gtag/js?id=G-GC07MYC1MY"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-GC07MYC1MY');</script>
 <!-- Cloudflare Web Analytics(手動 snippet:WA「自動注入」在本 zone 從未生效→曾一直 0,2026-07-13 切手動;token=WA beacon token(5953964f…),≠dashboard 網址的 site id(f5debd92…);不加 SRI 同 gtag 理由) --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5953964f9c434c67bcc12dd3eaedf340"}'></script>
@@ -734,8 +735,9 @@ let mt;addEventListener('resize',()=>{clearTimeout(mt);mt=setTimeout(()=>{render
   // 下一級進度:有 next 的族依完成度排序取前 3(goal-gradient:秀「伸手可及」,不排整牆灰章)
   const nextName={shows:T('bd_n_shows'),countries:T('bd_n_countries'),cities:T('bd_n_cities'),works:T('bd_n_works'),devotee:T('bd_n_devotee'),double:T('bd_n_double'),streak:T('bd_n_streak')};
   const nexts=fam.filter(x=>x.next!=null&&x.value>0).sort((a,b)=>b.value/b.next-a.value/a.next).slice(0,3);
-  b.innerHTML=unlocked.map(x=>`<div class="badge ${metal(x.tier)}">${bTxt(x)}</div>`).join('')
-    +nexts.map(x=>`<div class="badge next">${nextName[x.key]||x.key} ${x.value}/${x.next}</div>`).join('');
+  const bIco=k=>(window.MM_BADGE_ICON&&window.MM_BADGE_ICON[k])?`<span class="bico">${window.MM_BADGE_ICON[k]}</span>`:'';   // 手繪風圖示(js/mm-badge-icons.js,2026-07-15)
+  b.innerHTML=unlocked.map(x=>`<div class="badge ${metal(x.tier)}">${bIco(x.key)}${bTxt(x)}</div>`).join('')
+    +nexts.map(x=>`<div class="badge next">${bIco(x.key)}${nextName[x.key]||x.key} ${x.value}/${x.next}</div>`).join('');
   // ===== 統計儀表板：把已算好的 MM.stats() 畫出來 =====
   function barList(id,items,fmt){const el=document.getElementById(id);if(!el)return;
     if(!items||!items.length){el.innerHTML='<div class="sl-empty">—</div>';return;}

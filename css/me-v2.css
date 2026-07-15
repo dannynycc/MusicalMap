@@ -418,9 +418,9 @@ html[data-live] .demobanner{display:none}
 .slist::-webkit-scrollbar-track{background:transparent}
 .slist::-webkit-scrollbar-thumb{background:transparent;border-radius:100px;border:2px solid transparent;background-clip:content-box}
 .slist:hover::-webkit-scrollbar-thumb{background:rgba(255,255,255,.28);border:2px solid transparent;background-clip:content-box}
-.sl-row{display:grid;grid-template-columns:minmax(72px,42%) 1fr 44px;align-items:center;column-gap:14px;height:36px;flex:none;font-size:13px}
+.sl-row{display:grid;grid-template-columns:minmax(72px,48%) 1fr 44px;align-items:center;column-gap:14px;height:36px;flex:none;font-size:13px}/* 名稱欄 42→48%:bar 右移(2026-07-15 使用者) */
 .sl-k{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:600;color:rgba(255,255,255,.92)}
-.sl-bar{height:8px;background:rgba(255,255,255,.10);border-radius:4px;overflow:hidden}
+.sl-bar{height:8px;background:rgba(255,255,255,.10);border-radius:4px;overflow:hidden;margin-right:10px}/* 與數字再拉開 10px(2026-07-15 使用者) */
 .sl-bar i{display:block;height:100%;min-width:4px;background:rgba(255,255,255,.85);border-radius:4px}
 .sl-v{font-weight:700;font-variant-numeric:lining-nums tabular-nums;font-feature-settings:"tnum" 1;text-align:right;color:rgba(255,255,255,.75)}
 .sl-empty{opacity:.7;font-size:13px}
@@ -433,7 +433,9 @@ html[data-live] .demobanner{display:none}
 .panel{background:var(--s1);border:1px solid var(--hair);border-radius:18px;padding:22px;box-shadow:var(--shadow-1)}
 .panel h3{margin:0 0 16px;font-family:var(--fr);font-weight:700;font-size:18px}
 .badges{display:flex;flex-wrap:wrap;gap:10px}
-.badge{display:flex;align-items:center;gap:8px;background:var(--s2);border:1px solid var(--hair);border-radius:12px;padding:9px 13px;font-size:13px;font-weight:600}
+.badge{display:flex;align-items:center;gap:8px;background:var(--s2);border:1px solid var(--hair);border-radius:12px;padding:7px 13px 7px 9px;font-size:13px;font-weight:600}
+.badge .bico{flex:none;display:block}
+.badge .bico svg{width:26px;height:26px;display:block}/* 手繪風徽章圖示(2026-07-15) */
 .badge .ic{width:26px;height:26px;border-radius:8px;display:grid;place-items:center;background:var(--gold-soft);font-size:14px}
 /* 徽章分級(2026-07-13 重設計):bronze/silver/gold 邊框色,gold 保留原光暈;
    .next=下一級進度灰章(owner 頁限定),虛線+降透明表達「還沒拿到」 */
