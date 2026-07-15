@@ -23,7 +23,8 @@
 - **教訓**:v2.44.3 我自以為修好,二審才發現孿生路徑——單一修補要問「同 policy 的其他動作(INSERT/DELETE)是否也需堵」。
 
 **【高危,已修】Worker clickjacking**:實測 my. 子網域 `X-Frame-Options=None`——Cloudflare Pages 的 `_headers` 對「Worker 自組的 Response」無效,而 my. 全路徑經 Worker,根路徑 `/`(每天用的入口 me.html)與 mm_owner 編輯版都裸奔 → 公開開關/改名可被外站 iframe 疊層點擊劫持。
-- 修法:Worker 加 `secHeaders()`,4 個回 HTML 的 Response 全補(me/settings→DENY+frame-ancestors none、me-input→SAMEORIGIN、公開頁→nosniff)。**需手動部署 Worker(CI 只部署 Pages 不部署 Worker)**。
+- 修法:Worker 加 `secHeaders()`,4 個回 HTML 的 Response 全補(me/settings→DENY+frame-ancestors none、me-input→SAMEORIGIN、公開頁→nosniff)。
+- **已用本機 wrangler deploy 部署**(Version 6136f33f)+正式站驗證:根/me.html/settings=DENY、me-input=SAMEORIGIN、公開頁 200 正常含收藏(未搞掛 my. 子網域)。CI 只部署 Pages 不含 Worker,故 Worker 改動日後需 `cd worker && npx wrangler deploy`。
 
 **實測查核為安全(供對照)**:public_sightings 對 show_price/seat=false 遮罩正確(seat/price/note 全 null)、其他表(ratings/loves/shows 不存在)、handle_aliases anon 讀 0 列、Unicode 同形字被 ASCII-only 格式擋、無金鑰洩漏、釘版 CDN 都有 SRI、無 pull_request_target、無開放重導、無 SSRF、CORS 無過鬆、delete_my_account 只刪本人。
 
