@@ -553,10 +553,14 @@
       if (s.rating > 0) { rt.textContent = stars(s.rating) + `  ${s.rating}/5`; rt.style.display = ''; }
       else { rt.textContent = ''; rt.style.display = 'none'; }
       // 唯讀：座位/票價只在有值時顯示（公開頁隱私由 RPC 決定回不回傳）
+      // 場館→Google Maps 連結+日期(星期幾),與 me.html 同步(2026-07-15)
+      const _mapsHref = s.venue ? ('https://www.google.com/maps/search/?api=1&query=' + ((s.lat != null && s.lng != null && isFinite(s.lat) && isFinite(s.lng)) ? (s.lat + ',' + s.lng) : encodeURIComponent([s.venue, s.city].filter(Boolean).join(' ')))) : null;
+      const _wd = (s.date && s.date.length >= 10) ? (() => { const [y, m, d] = s.date.split('-').map(Number); const w = new Date(y, m - 1, d).getDay();
+        return ' (' + (EN_UI ? ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'][w] : '日一二三四五六'[w]) + ')'; })() : '';
       const rows = [
-        `<dt>${esc(T('dt_venue'))}</dt><dd>${esc(venueZh(s.venue) || '—')}</dd>`,
+        `<dt>${esc(T('dt_venue'))}</dt><dd>${_mapsHref ? `<a href="${esc(_mapsHref)}" target="_blank" rel="noopener noreferrer" style="color:#e3b23c;text-decoration:none;border-bottom:1px solid currentColor">${esc(venueZh(s.venue))} ↗</a>` : esc(venueZh(s.venue) || '—')}</dd>`,
         `<dt>${esc(T('dt_city'))}</dt><dd>${esc(cityCountry(s, ', ') || '—')} ${FLAG[s.country] || ''}</dd>`,
-        `<dt>${esc(T('dt_date'))}</dt><dd>${esc(s.date ? s.date.replace(/-/g, '/') : '—')}</dd>`,
+        `<dt>${esc(T('dt_date'))}</dt><dd>${esc(s.date ? s.date.replace(/-/g, '/') + _wd : '—')}</dd>`,
       ];
       if (s.time) rows.push(`<dt>${esc(T('dt_time'))}</dt><dd>${esc(s.time)}</dd>`);
       if (s.seat) rows.push(`<dt>${esc(T('dt_seat'))}</dt><dd>${esc(s.seat)}</dd>`);

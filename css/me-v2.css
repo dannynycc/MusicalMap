@@ -182,6 +182,15 @@ header .wrap{max-width:none}  /* 對齊主頁 #topbar:全寬 padding 24px,頭像
 .chip:hover{color:var(--ink1)} .chip[aria-pressed=true]{background:var(--gold);border-color:var(--gold);color:var(--on-accent)}
 .count{font-size:13px;color:var(--ink3);font-weight:600;white-space:nowrap}
 .ctl-sub{display:flex;justify-content:flex-end;margin-top:6px}/* 件數移到工具列下一行右對齊(2026-07-15) */
+/* 詳情操作列:帶文字 pill(與右上✕圓鈕區隔);刪除=垃圾桶紅 hover(2026-07-15) */
+.dt-actions{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap}
+.dt-actions[hidden]{display:none}
+.dta{display:inline-flex;align-items:center;gap:7px;background:none;border:1px solid var(--hair2);color:var(--ink2);font-family:inherit;font-size:13px;font-weight:600;padding:8px 15px;border-radius:999px;cursor:pointer}
+.dta:hover{border-color:var(--gold);color:var(--gold)}
+.dta.on{border-color:var(--gold);color:var(--gold)}
+.dta.dta-del:hover{border-color:#c0392b;color:#c0392b}
+.dta svg{width:13px;height:13px}
+.cardacts .ca-btn svg{display:block}
 
 /* ===== section heads ===== */
 .sec{margin:48px 0 18px;display:flex;align-items:baseline;justify-content:space-between;gap:16px}

@@ -18,7 +18,7 @@ if(location.hostname==='themusicalmap.com'||location.hostname==='www.themusicalm
 <script>/* no-flash: apply saved theme before CSS paints;預設 cream(對齊主站淡米黃)。
    一次性遷移:舊版 applyTheme 會把預設 midnight 自動寫進 localStorage,使既有使用者卡在深色;
    mm-theme-mig 未設時清一次 mm-theme,讓大家重新落到 cream 預設(之後仍尊重使用者用 picker 的選擇)。 */(function(){try{if(!localStorage.getItem('mm-theme-mig')){localStorage.removeItem('mm-theme');localStorage.setItem('mm-theme-mig','1');}var t=localStorage.getItem('mm-theme')||'cream';if(t==='neon'||t==='deco'){t='midnight';localStorage.setItem('mm-theme',t);}if(t!=='midnight')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
-<link rel="stylesheet" href="css/me-v2.css?v=17" /><!-- CSS 也要 cache-bust:CF Pages 對 .css 出 max-age=14400,不掛 ?v 改版後最多 4hr 拿舊樣式 -->
+<link rel="stylesheet" href="css/me-v2.css?v=18" /><!-- CSS 也要 cache-bust:CF Pages 對 .css 出 max-age=14400,不掛 ?v 改版後最多 4hr 拿舊樣式 -->
 <style>
 html[lang="en"] .sec h2 .zh{display:none}   /* en 模式:section 標題旁的英文小字與主標重複 → 隱藏 */
 html[lang="zh-Hans"] body{--ui:'Inter','Noto Sans SC',sans-serif}  /* 簡中改用 SC 字型,避免混排忽粗忽細 */
@@ -279,6 +279,8 @@ if(v&&v!=='zh-hant'){document.write('<style id="mm-fouc">body{visibility:hidden}
       <div class="rate" id="dt-rate"></div>
       <dl class="dl" id="dt-dl"></dl>
       <div class="dt-note" id="dt-note"></div>
+      <!-- 詳情操作列:帶文字標籤的三顆 pill(與右上✕關閉鈕明確區隔;只在自己的紀錄顯示) -->
+      <div class="dt-actions" id="dtActs" hidden></div>
     </div>
   </div>
 </dialog>
@@ -409,6 +411,8 @@ function filtered(){
   if(sortBy==='title')a.sort((x,y)=>x.title.localeCompare(y.title));
   return a;
 }
+// 垃圾桶 icon(取代✕:語意更明確,2026-07-15 使用者指定);卡片與詳情操作列共用
+window.MM_TRASH_SVG='<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M9.5 7V4.5h5V7M6.5 7l1 13.5h9l1-13.5M10 11v6.5M14 11v6.5"/></svg>';
 function posterEl(s){
   // div role=button 而非 <button>:卡內含 ♥/✎/✕ 互動控件,原生 button 不允許互動性後代
   // (無效 HTML+鍵盤焦點混亂,2026-07-10 a11y review)。手動補 role/tabindex/Enter-Space。
@@ -448,7 +452,7 @@ function posterEl(s){
   if(document.documentElement.dataset.live==='1' && s.logged){
     const li=s.id-9000;
     const acts=document.createElement('div');acts.className='cardacts';
-    acts.innerHTML=`<span class="ca-btn ca-fav${s.fav?' on':''}" role="button" tabindex="0" aria-label="${T(s.fav?'unfav_this':'fav_this')}" title="${T(s.fav?'unfav_this':'fav_this')}">♥</span><span class="ca-btn" role="button" tabindex="0" aria-label="${T('edit_this')}" title="${T('edit')}">✎</span><span class="ca-btn" role="button" tabindex="0" aria-label="${T('delete_this')}" title="${T('delete')}">✕</span>`;
+    acts.innerHTML=`<span class="ca-btn ca-fav${s.fav?' on':''}" role="button" tabindex="0" aria-label="${T(s.fav?'unfav_this':'fav_this')}" title="${T(s.fav?'unfav_this':'fav_this')}">♥</span><span class="ca-btn" role="button" tabindex="0" aria-label="${T('edit_this')}" title="${T('edit')}">✎</span><span class="ca-btn" role="button" tabindex="0" aria-label="${T('delete_this')}" title="${T('delete')}">${window.MM_TRASH_SVG}</span>`;
     const fb=acts.children[0], eb=acts.children[1], db=acts.children[2];
     const paintFav=(on)=>{
       s.fav=on;
@@ -458,6 +462,7 @@ function posterEl(s){
       if(on&&!fv&&fig){fv=document.createElement('span');fv.className='fav';fv.textContent='♥';fig.appendChild(fv);}
       else if(!on&&fv)fv.remove();
     };
+    (window.mmPaintFav=window.mmPaintFav||{})[li]=paintFav;   // 詳情操作列切最愛時同步重繪這張卡(2026-07-15)
     fb.onclick=e=>{e.stopPropagation();
       if(!window.mmToggleFav)return;
       const nf=window.mmToggleFav(li);            // 就地切換,不重刷
@@ -803,10 +808,14 @@ function openDetail(s){
   const rt=document.getElementById('dt-rate');
   if(s.rating>0){rt.textContent=stars(s.rating)+`  ${s.rating}/5`;rt.style.display='';}
   else{rt.textContent='';rt.style.display='none';}   // 未評分→隱藏，不再顯示 0/5
+  // 場館→Google Maps 超連結(有座標用座標最準,否則場館名+城市查詢);日期補(星期幾)(2026-07-15 使用者指定)
+  const _mapsHref=s.venue?('https://www.google.com/maps/search/?api=1&query='+((s.lat!=null&&s.lng!=null&&isFinite(s.lat)&&isFinite(s.lng))?(s.lat+','+s.lng):encodeURIComponent([s.venue,s.city].filter(Boolean).join(' ')))):null;
+  const _wd=(s.date&&s.date.length>=10)?(()=>{const[y,m,d]=s.date.split('-').map(Number);const w=new Date(y,m-1,d).getDay();
+    return ' ('+(EN_UI?['Sun','Mon','Tue','Wed','Thu','Fri','Sat'][w]:'日一二三四五六'[w])+')';})():'';
   document.getElementById('dt-dl').innerHTML=`
-    <dt>${T('dt_venue')}</dt><dd>${esc(venueZh(s.venue)||'—')}</dd>
+    <dt>${T('dt_venue')}</dt><dd>${_mapsHref?`<a href="${esc(_mapsHref)}" target="_blank" rel="noopener noreferrer" style="color:#e3b23c;text-decoration:none;border-bottom:1px solid currentColor">${esc(venueZh(s.venue))} ↗</a>`:esc(venueZh(s.venue)||'—')}</dd>
     <dt>${T('dt_city')}</dt><dd>${esc(cityCountry(s,', ')||'—')} ${FLAG[s.country]||''}</dd>
-    <dt>${T('dt_date')}</dt><dd>${s.date?esc(s.date.replace(/-/g,'/')):'—'}</dd>
+    <dt>${T('dt_date')}</dt><dd>${s.date?esc(s.date.replace(/-/g,'/'))+esc(_wd):'—'}</dd>
     ${s.time?`<dt>${T('dt_time')}</dt><dd>${esc(s.time)}</dd>`:''}
     <dt>${T('dt_seat')}</dt><dd>${esc(s.seat||'—')}</dd>
     <dt>${T('dt_price')}</dt><dd>${s.price?esc(window.MMFmtPrice?window.MMFmtPrice(s.price,s.cur):`${s.price} ${s.cur||''}`):'—'}</dd>
@@ -814,6 +823,26 @@ function openDetail(s){
   // 引號依語言:中文頁用「」,en 頁用彎引號(英文筆記包中文引號很怪,2026-07-10)
   document.getElementById('dt-note').textContent=s.note?((window.MM_HL==='en'?'“'+s.note+'”':'「'+s.note+'」')):'';
   document.getElementById('dt-note').style.display=s.note?'block':'none';
+  // 詳情操作列(♥最愛/✎編輯/垃圾桶刪除):帶文字標籤 pill,放右欄底部——與右上✕(純icon圓鈕)視覺明確區隔
+  const acts=document.getElementById('dtActs');
+  if(document.documentElement.dataset.live==='1'&&s.logged){
+    const li=s.id-9000;
+    acts.hidden=false;
+    acts.innerHTML=`
+      <button type="button" class="dta${s.fav?' on':''}" id="dtaFav">♥ <span>${T(s.fav?'unfav_this':'fav_this')}</span></button>
+      <button type="button" class="dta" id="dtaEdit">✎ <span>${T('edit')}</span></button>
+      <button type="button" class="dta dta-del" id="dtaDel">${window.MM_TRASH_SVG} <span>${T('delete')}</span></button>`;
+    document.getElementById('dtaFav').onclick=()=>{
+      if(!window.mmToggleFav)return;
+      const nf=window.mmToggleFav(li);if(nf===null)return;
+      s.fav=nf;
+      const b=document.getElementById('dtaFav');b.classList.toggle('on',nf);b.querySelector('span').textContent=T(nf?'unfav_this':'fav_this');
+      if(window.mmPaintFav&&window.mmPaintFav[li])window.mmPaintFav[li](nf);           // 同步牆上那張卡
+      (window.mmRevertFav||(window.mmRevertFav={}))[li]=orig=>{s.fav=orig;b.classList.toggle('on',orig);b.querySelector('span').textContent=T(orig?'unfav_this':'fav_this');if(window.mmPaintFav&&window.mmPaintFav[li])window.mmPaintFav[li](orig);};
+    };
+    document.getElementById('dtaEdit').onclick=()=>{dlg.close();window.mmEditShow&&window.mmEditShow(li);};
+    document.getElementById('dtaDel').onclick=()=>{dlg.close();window.mmDeleteShow&&window.mmDeleteShow(li,s.title,s.zh);};
+  }else{acts.hidden=true;acts.innerHTML='';}
   if(dlg.showModal)dlg.showModal();
 }
 document.getElementById('dtclose').onclick=()=>dlg.close();
