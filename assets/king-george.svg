@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 210 284" fill="none" stroke="#3a2d1a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+<!-- 手繪風喬治三世(Hamilton〈You'll Be Back〉致敬;原創插畫,對照劇照構圖:
+     聖愛德華式皇冠壓假髮、三捲側髮、白貂披肩+單層金鍊、紅金軍裝上下連身、白蝶結+蕾絲領巾、金權杖(頂飾順桿軸) -->
+  <!-- 音符 -->
+  <g stroke="#a07a34" stroke-width="2.6">
+    <path d="M24 100 q1 -14 3 -20 q6 3 10 -1"/>
+    <ellipse cx="21" cy="101" rx="4.5" ry="3.4" fill="#a07a34" transform="rotate(-15 21 101)"/>
+    <path d="M184 78 q1 -12 2.5 -17 q5 2.5 8.5 -1"/>
+    <ellipse cx="181.5" cy="79" rx="4" ry="3" fill="#a07a34" transform="rotate(-15 181.5 79)"/>
+  </g>
+  <!-- 假髮捲(每側三捲) -->
+  <g fill="#fdfaf2">
+    <circle cx="64" cy="100" r="11"/><circle cx="59" cy="121" r="11.5"/><circle cx="62" cy="141" r="10.5"/>
+    <circle cx="146" cy="100" r="11"/><circle cx="151" cy="121" r="11.5"/><circle cx="148" cy="141" r="10.5"/>
+  </g>
+  <!-- 紅軍裝下身(整片寬幅,墊在披肩後面、從下擺露出) -->
+  <path d="M50 206 L46 264 Q105 277 164 264 L160 206 Z" fill="#b23b34" stroke="#7e2a25"/>
+  <!-- 白貂大披肩(寬肩鐘形) -->
+  <path d="M105 148 Q50 153 31 178 L24 218 Q62 238 105 238 Q148 238 186 218 L179 178 Q160 153 105 148 Z" fill="#fdfaf2"/>
+  <!-- 紅金軍裝胸前:中央開口一路連到下身(同一件衣服,蓋過披風下擺=無斷層) -->
+  <path d="M92 197 L88 252 Q105 258 122 252 L118 197 Q105 203 92 197 Z" fill="#b23b34" stroke="none"/>
+  <path d="M92 197 L88 252 M118 197 L122 252 M92 197 Q105 203 118 197" stroke="#7e2a25"/>
+  <path d="M92 199 L88.5 250 M118 199 L121.5 250" stroke="#dfb45c" stroke-width="2.2"/>
+  <circle cx="105" cy="214" r="2" fill="#dfb45c" stroke="none"/>
+  <circle cx="105" cy="230" r="2" fill="#dfb45c" stroke="none"/>
+  <circle cx="105" cy="246" r="2" fill="#dfb45c" stroke="none"/>
+  <!-- 黑貂尾斑(散佈披肩) -->
+  <g stroke-width="2.4">
+    <path d="M38 196 q2 3.5 0 7"/><path d="M54 184 q2 3.5 0 7"/><path d="M72 200 q2 3.5 0 7"/><path d="M48 212 q2 3.5 0 7"/><path d="M78 218 q2 3.5 0 7"/><path d="M62 226 q2 3.5 0 7"/>
+    <path d="M172 196 q-2 3.5 0 7"/><path d="M156 184 q-2 3.5 0 7"/><path d="M138 200 q-2 3.5 0 7"/><path d="M162 212 q-2 3.5 0 7"/><path d="M132 218 q-2 3.5 0 7"/><path d="M148 226 q-2 3.5 0 7"/>
+  </g>
+  <!-- 金鍊肩章(單層垂墜V+寶石;鍊以上全白) -->
+  <path d="M46 170 Q78 195 105 200 Q132 195 164 170" stroke="#dfb45c" stroke-width="4.2"/>
+  <circle cx="60" cy="182" r="2.8" fill="#b23b34" stroke="#8a6526" stroke-width="1.6"/>
+  <circle cx="82" cy="193" r="2.8" fill="#b23b34" stroke="#8a6526" stroke-width="1.6"/>
+  <circle cx="105" cy="199" r="2.8" fill="#b23b34" stroke="#8a6526" stroke-width="1.6"/>
+  <circle cx="128" cy="193" r="2.8" fill="#b23b34" stroke="#8a6526" stroke-width="1.6"/>
+  <circle cx="150" cy="182" r="2.8" fill="#b23b34" stroke="#8a6526" stroke-width="1.6"/>
+  <!-- 臉(直接壓在披肩上,下巴以下淨空) -->
+  <ellipse cx="105" cy="120" rx="34" ry="36" fill="#fbeed8"/>
+  <!-- 表情:得意挑眉 -->
+  <path d="M89 105 q6 -6 13 -2"/>
+  <path d="M112 100 q7 -5 13 1"/>
+  <circle cx="96" cy="115" r="2.8" fill="#3a2d1a" stroke="none"/>
+  <circle cx="118" cy="115" r="2.8" fill="#3a2d1a" stroke="none"/>
+  <path d="M104 122 q4 5 0 8" stroke-width="2.4"/>
+  <path d="M94 137 q10 9 24 -2"/>
+  <!-- 蕾絲領巾(下巴下方留空隙,不擋下巴) -->
+  <g stroke-width="2.4">
+    <ellipse cx="105" cy="167" rx="10" ry="6" fill="#fdfaf2"/>
+    <ellipse cx="105" cy="178" rx="8" ry="5.5" fill="#fdfaf2"/>
+    <ellipse cx="105" cy="188" rx="6.5" ry="4.5" fill="#fdfaf2"/>
+  </g>
+  <!-- 白色大蝶結(領巾上緣) -->
+  <path d="M101 174 Q89 166 82 170 Q77 176 83 181 Q92 185 101 178 Z" fill="#fdfaf2"/>
+  <path d="M109 174 Q121 166 128 170 Q133 176 127 181 Q118 185 109 178 Z" fill="#fdfaf2"/>
+  <circle cx="105" cy="176" r="4.4" fill="#fdfaf2"/>
+  <!-- 聖愛德華式皇冠(壓在假髮上) -->
+  <path d="M72 62 Q72 32 105 27 Q138 32 138 62 Z" fill="#a8322e" stroke="#7e2a25"/>
+  <path d="M77 60 Q81 32 105 28" stroke="#c9962e" stroke-width="5.5"/>
+  <path d="M133 60 Q129 32 105 28" stroke="#c9962e" stroke-width="5.5"/>
+  <path d="M105 60 L105 27" stroke="#c9962e" stroke-width="5.5"/>
+  <g fill="#fdfaf2" stroke="none">
+    <circle cx="84" cy="46" r="1.7"/><circle cx="92" cy="34" r="1.7"/>
+    <circle cx="126" cy="46" r="1.7"/><circle cx="118" cy="34" r="1.7"/>
+    <circle cx="105" cy="52" r="1.7"/><circle cx="105" cy="42" r="1.7"/><circle cx="105" cy="33" r="1.7"/>
+  </g>
+  <circle cx="105" cy="24" r="4" fill="#dfb45c" stroke="#8a6526" stroke-width="2.4"/>
+  <path d="M105 17 v-8 M100 13 h10" stroke="#8a6526" stroke-width="3"/>
+  <rect x="66" y="60" width="78" height="13" rx="4" fill="#dfb45c" stroke="#8a6526"/>
+  <circle cx="80" cy="66.5" r="2.6" fill="#b23b34" stroke="none"/>
+  <circle cx="105" cy="66.5" r="2.6" fill="#3f5a8a" stroke="none"/>
+  <circle cx="130" cy="66.5" r="2.6" fill="#b23b34" stroke="none"/>
+  <rect x="56" y="72" width="98" height="20" rx="10" fill="#fdfaf2"/>
+  <g stroke-width="2.2" opacity=".9">
+    <path d="M70 77 q1.5 3.5 0 7"/><path d="M88 80 q1.5 3.5 0 7"/><path d="M106 76 q1.5 3.5 0 7"/><path d="M124 80 q1.5 3.5 0 7"/><path d="M138 76 q1.5 3.5 0 7"/>
+  </g>
+  <!-- 權杖:尾端對齊紅衣下緣,頂飾順桿軸傾角旋轉 -->
+  <g stroke="#8a6526">
+    <path d="M151 266 L182 134" stroke-width="4"/>
+    <g transform="rotate(13 183 128)">
+      <circle cx="183" cy="128" r="5.5" fill="#dfb45c"/>
+      <path d="M183 119 v-6 M179.5 122 l7 -6 M186.5 122 l-7 -6" stroke-width="2.4"/>
+      <circle cx="183" cy="111" r="2" fill="#dfb45c" stroke="none"/>
+    </g>
+  </g>
+  <circle cx="158" cy="242" r="8.5" fill="#fbeed8"/>
+</svg>
