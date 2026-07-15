@@ -11,6 +11,16 @@
 
 ---
 
+## [v2.45.2] - 2026-07-15 22:18
+
+### 登入/OTP 深度審計 + handle INSERT 深度防禦(DB)
+
+**登入/OTP 深度審計(唯一未審核心路徑,結論乾淨)** — 動態實測:token verification 速率限制=30 次/5 分/IP,同 IP 第 31 次起 429;決定性測試證實限流綁「真實連線 IP」,client 送的 X-Forwarded-For 騙不過(即「IP forwarding=ON」在瀏覽器直連架構下不構成單機繞過)。OTP 6 位/600 秒(破一碼需約 8000 真實 IP,業界標準;使用者選擇維持 6 位)。email 模板 `.Data.hl` 只用於 `{{ if eq .Data.hl "en" }}` 條件比較、從不 raw 輸出→非注入。設定:匿名登入 off、Confirm email on、manual linking off、secure email/password change on。客戶端(agent+複核):session/登出清理/OAuth redirect/postMessage 驗 origin/mm_owner cookie 只影響 UI→無 High/Critical。
+
+**handle INSERT 深度防禦** — `supabase/add_handle_insert_guard.sql`:新增 `profiles_handle_guard` BEFORE INSERT OR UPDATE OF handle trigger,重用既有 `handle_reserved(text)`(IMMUTABLE)在資料庫層拒絕保留字 handle。原本「直接 INSERT profiles 搶保留字」僅靠 handle_new_user 先建列+PK 衝突+DELETE 已撤 三重不變式擋住;此 trigger 讓保留字防護不再依賴該不變式。實測背景:handle 可為空、新用戶 handle_new_user 不設 handle(NULL,onboarding 才經 rename_handle 設定)。正式站實測三案:INSERT 'admin'→擋(reserved);INSERT null→PK 錯(非 reserved,註冊安全);INSERT 非保留字→PK 錯(非 reserved,改名安全);三者零寫入。格式類規則刻意不複製(避免與 rename_handle 正則不一致誤擋)。
+
+---
+
 ## [v2.45.1] - 2026-07-15 21:27
 
 ### 安全加固(供應鏈 + venues 眾包表)
