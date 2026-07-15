@@ -104,8 +104,8 @@ if(v&&v!=='zh-hant'){document.write('<style id="mm-fouc">body{visibility:hidden}
   var _rv=function(){var s=document.getElementById('mm-fouc');if(s)s.remove();};
   window.addEventListener('DOMContentLoaded',function(){setTimeout(_rv,0);});setTimeout(_rv,1500);}
 }catch(e){}})();</script>
-<script src="js/mm-strings.js?v=247"></script>
-<script src="js/mm-badge-icons.js?v=1"></script>
+<script src="js/mm-strings.js?v=248"></script>
+<script src="js/mm-badge-icons.js?v=2"></script>
 <script src="js/mm-acct-menu.js?v=227"></script>
 <!-- Google Analytics(GA4 G-GC07MYC1MY;訪客來源/行為分析,同一 ID 涵蓋主站與 my. 網域(報表以 hostname 區分);不加 SRI:gtag.js 由 Google 滾動更新,釘 hash 會靜默斷統計;隱私揭露見 privacy §1/§3) --><script async src="https://www.googletagmanager.com/gtag/js?id=G-GC07MYC1MY"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-GC07MYC1MY');</script>
 <!-- Cloudflare Web Analytics(手動 snippet:WA「自動注入」在本 zone 從未生效→曾一直 0,2026-07-13 切手動;token=WA beacon token(5953964f…),≠dashboard 網址的 site id(f5debd92…);不加 SRI 同 gtag 理由) --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5953964f9c434c67bcc12dd3eaedf340"}'></script>
@@ -733,11 +733,20 @@ let mt;addEventListener('resize',()=>{clearTimeout(mt);mt=setTimeout(()=>{render
     case 'devotee':   return TN('bd_devotee',{t:esc(bd.extra),n:bd.value});   // 劇名=使用者輸入,必跳脫
     case 'double':    return TN('bd_double',{n:bd.value});
     case 'streak':    return TN('bd_streak',{n:bd.value});
+    case 'fivestar':  return TN('bd_fivestar',{n:bd.value});
+    case 'reviews':   return TN('bd_reviews',{n:bd.value});
+    case 'faves':     return TN('bd_faves',{n:bd.value});
+    case 'traditions':return TN('bd_traditions',{n:bd.value});
+    case 'regular':   return TN('bd_regular',{n:bd.value});
+    case 'marathon':  return TN('bd_marathon',{n:bd.value});
+    case 'veteran':   return TN('bd_veteran',{n:bd.value});
+    case 'crosscity': return TN('bd_crosscity',{n:bd.value});
+    case 'watchlist': return TN('bd_watchlist',{n:bd.value});
   }return '';};
   const fam=MM.badges();
   const unlocked=fam.filter(x=>x.tier>=0);
   // 下一級進度:有 next 的族依完成度排序取前 3(goal-gradient:秀「伸手可及」,不排整牆灰章)
-  const nextName={shows:T('bd_n_shows'),countries:T('bd_n_countries'),cities:T('bd_n_cities'),works:T('bd_n_works'),devotee:T('bd_n_devotee'),double:T('bd_n_double'),streak:T('bd_n_streak')};
+  const nextName={shows:T('bd_n_shows'),countries:T('bd_n_countries'),cities:T('bd_n_cities'),works:T('bd_n_works'),devotee:T('bd_n_devotee'),double:T('bd_n_double'),streak:T('bd_n_streak'),fivestar:T('bd_n_fivestar'),reviews:T('bd_n_reviews'),faves:T('bd_n_faves'),traditions:T('bd_n_traditions'),regular:T('bd_n_regular'),marathon:T('bd_n_marathon'),veteran:T('bd_n_veteran'),crosscity:T('bd_n_crosscity'),watchlist:T('bd_n_watchlist')};
   const nexts=fam.filter(x=>x.next!=null&&x.value>0).sort((a,b)=>b.value/b.next-a.value/a.next).slice(0,3);
   const bIco=k=>(window.MM_BADGE_ICON&&window.MM_BADGE_ICON[k])?`<span class="bico">${window.MM_BADGE_ICON[k]}</span>`:'';   // 手繪風圖示(js/mm-badge-icons.js,2026-07-15)
   b.innerHTML=unlocked.map(x=>`<div class="badge ${metal(x.tier)}">${bIco(x.key)}${bTxt(x)}</div>`).join('')

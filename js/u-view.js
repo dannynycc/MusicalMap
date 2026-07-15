@@ -478,6 +478,15 @@
           case 'devotee':   return TN('bd_devotee', { t: esc(bd.extra), n: bd.value });   // 劇名=他人輸入,必跳脫
           case 'double':    return TN('bd_double', { n: bd.value });
           case 'streak':    return TN('bd_streak', { n: bd.value });
+          case 'fivestar':  return TN('bd_fivestar', { n: bd.value });
+          case 'reviews':   return TN('bd_reviews', { n: bd.value });
+          case 'faves':     return TN('bd_faves', { n: bd.value });
+          case 'traditions':return TN('bd_traditions', { n: bd.value });
+          case 'regular':   return TN('bd_regular', { n: bd.value });
+          case 'marathon':  return TN('bd_marathon', { n: bd.value });
+          case 'veteran':   return TN('bd_veteran', { n: bd.value });
+          case 'crosscity': return TN('bd_crosscity', { n: bd.value });
+          case 'watchlist': return TN('bd_watchlist', { n: bd.value });
         }
         return '';
       };

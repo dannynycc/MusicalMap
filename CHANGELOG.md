@@ -11,6 +11,16 @@
 
 ---
 
+## [v2.45.0] - 2026-07-15 21:07
+
+### 成就徽章擴充 8→17 族(使用者從 27 版選定 9 枚)
+
+新增 9 族成就(皆從既有欄位算,無需新資料):五星鑑賞家(給 5 星 N 齣)/劇評人(寫 N 篇心得)/心頭好(♥ N 齣)/劇種雜食(N 種劇種傳統)/劇院常客(同館 N 場)/馬拉松月(單月 N 場)/資深劇迷(劇齡橫跨 N 年)/追劇跨城(一劇 N 城)/口袋名單(待看 N 場)。
+- 圖示:使用者選 N1-C/N2-B/N3-B/N4-B/N5-A/N6-A/N7-C/N8-B/N9-B,手繪風 SVG 進 `mm-badge-icons.js`。
+- 計算:data.js badges() 加 9 族 DEFS(fivestar/reviews/faves/traditions/regular/marathon/veteran/crosscity/watchlist)+門檻分級。
+- 文案:mm-strings 繁英各 18 鍵(bd_*+bd_n_*),簡中 OpenCC;me.html/u-view bTxt+nextName 同步。
+- e2e 11 案例 PASS(9 族計算值精確+16/16 圖示渲染+繁英文案);mm-strings v248、mm-badge-icons v2。
+
 ## [v2.44.4] - 2026-07-15 20:23
 
 ### 地毯式安全審計(三 agent 新角度+本人實測):補齊 v2.44.3 未堵的孿生漏洞+Worker clickjacking

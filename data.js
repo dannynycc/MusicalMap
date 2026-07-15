@@ -294,6 +294,19 @@ window.MM = (function () {
     const maxRep = st.topShows.length ? st.topShows[0][1] : 0;
     const topTitle = st.topShows.length ? st.topShows[0][0] : '';
     const firstYear = st.firstDate ? st.firstDate.slice(0,4) : '';
+    // ── 9 族新成就(2026-07-15;皆從既有欄位算,無需新資料)──
+    const fiveStar = past.filter(s=>s.rating===5).length;                          // N1 五星鑑賞家
+    const reviews  = past.filter(s=>s.note && String(s.note).trim()).length;       // N2 劇評人
+    const faves    = past.filter(s=>s.fav).length;                                 // N3 心頭好
+    const traditions = new Set(past.map(s=>s.tag).filter(Boolean)).size;           // N4 劇種雜食(不同劇種傳統)
+    const _vc={}; past.forEach(s=>{ if(s.venue) _vc[s.venue]=(_vc[s.venue]||0)+1; });
+    const regular  = Object.values(_vc).length ? Math.max(...Object.values(_vc)) : 0;  // N5 劇院常客(同館最多場)
+    const _ym={};  past.forEach(s=>{ if(s.date&&s.date.length>=7) _ym[s.date.slice(0,7)]=(_ym[s.date.slice(0,7)]||0)+1; });
+    const marathon = Object.values(_ym).length ? Math.max(...Object.values(_ym)) : 0;  // N6 馬拉松月(單月最多場)
+    const veteran  = yrs.length ? (yrs[yrs.length-1]-yrs[0]+1) : 0;                 // N7 資深劇迷(年跨度)
+    const _tc={};  past.forEach(s=>{ if(s.title&&s.city){ (_tc[s.title]=_tc[s.title]||new Set()).add(s.city); } });
+    const crossCity = Object.values(_tc).length ? Math.max(...Object.values(_tc).map(x=>x.size)) : 0;  // N8 追劇跨城
+    const watchlist = st.upcoming || 0;                                            // N9 口袋名單(未來場次)
     const DEFS = [
       { key:'first',     v: st.total>=1?1:0, tiers:[1],                  extra:firstYear },
       { key:'shows',     v: st.total,        tiers:[5,10,25,50,100,200] },
@@ -303,6 +316,15 @@ window.MM = (function () {
       { key:'devotee',   v: maxRep,          tiers:[3,5,10],            extra:topTitle },
       { key:'double',    v: doubleDays,      tiers:[1,3,5]              },
       { key:'streak',    v: bestRun,         tiers:[2,3,5]              },
+      { key:'fivestar',  v: fiveStar,        tiers:[3,10,25]            },
+      { key:'reviews',   v: reviews,         tiers:[3,10,25]            },
+      { key:'faves',     v: faves,           tiers:[3,10,20]            },
+      { key:'traditions',v: traditions,      tiers:[2,3,4]              },
+      { key:'regular',   v: regular,         tiers:[3,5,10]             },
+      { key:'marathon',  v: marathon,        tiers:[3,5,8]              },
+      { key:'veteran',   v: veteran,         tiers:[5,10,15]            },
+      { key:'crosscity', v: crossCity,       tiers:[2,3]                },
+      { key:'watchlist', v: watchlist,       tiers:[1,3,5]              },
     ];
     return DEFS.map(d=>{
       let t = -1;
