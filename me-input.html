@@ -400,9 +400,11 @@ function posterFieldHTML(){return `<div class="fld"><span class="fl">${T('fld_po
   <input id="url" inputmode="url" autocapitalize="off" placeholder="${T('ph_link')}"/></div>`;}
 // 接線（兩個表單呼叫）：oninput→draft.posterOverride + 即時換圖 + 預覽
 function wirePosterField(){const pu=document.getElementById('posterOverride');if(!pu)return;
-  if(draft._baseImg==null)draft._baseImg=systemPosterFor(draft.w&&draft.w.en)||(draft.p&&draft.p.img)||'';
+  // _baseImg=系統海報;手動劇(不在 catalog)不可退回 p.img——p.img 可能就是本次自訂圖,清空欄位會「清不掉」(2026-07-15 修)
+  if(draft._baseImg==null){const sys=systemPosterFor(draft.w&&draft.w.en)||'';
+    draft._baseImg=sys||((draft.p&&draft.p.img&&draft.p.img!==draft.posterOverride)?draft.p.img:'');}
   const pv=document.getElementById('posterPrev'),wrap=document.getElementById('posterPrevWrap');
-  function upd(){const u=(pu.value||'').trim();draft.posterOverride=u;
+  function upd(){const u=_httpOnly((pu.value||'').trim())||'';draft.posterOverride=u;   // 進 draft 就淨化非 http(s):本機 mm-log 不該存 javascript:/data:(2026-07-15 修,防禦縱深)
     const shown=u||draft._baseImg;if(draft.p)draft.p.img=shown;
     if(pv&&wrap){if(shown){pv.src=shown;wrap.hidden=false;pv.onerror=()=>{wrap.hidden=true;};}else wrap.hidden=true;}}
   pu.oninput=upd;pu.value=draft.posterOverride||'';upd();}
@@ -420,7 +422,9 @@ function hesc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,
 function sanitizePrice(v){let s=String(v==null?'':v).replace(/[^\d.]/g,'');const i=s.indexOf('.');if(i>=0)s=s.slice(0,i+1)+s.slice(i+1).replace(/\./g,'');if(s==='.')s='';return s.slice(0,12);}   // 純「.」→+price 得 NaN,清掉(2026-07-10)
 // 通用欄位綁定:price 走淨化(即時回寫 input,使用者看到被擋掉的字元);其餘原樣
 function bindField(id){const el=document.getElementById(id);if(!el)return;
-  el.oninput=id==='price'?()=>{const c=sanitizePrice(el.value);if(c!==el.value)el.value=c;draft.price=c;}:()=>{draft[id]=el.value;};}
+  el.oninput=id==='price'?()=>{const c=sanitizePrice(el.value);if(c!==el.value)el.value=c;draft.price=c;}
+    :id==='url'?()=>{draft.url=_httpOnly(el.value)||'';}   // 連結進 draft 就淨化非 http(s)(2026-07-15,同 posterOverride)
+    :()=>{draft[id]=el.value;};}
 
 /* ---------- 劇庫：從正式版 venues_catalog.json + shows.json 組裝（取代舊 catalog.js） ---------- */
 let CATALOG=[], INDEX=[], MM_READY=false;
@@ -601,7 +605,7 @@ function setupCombo(input,panel,getItems,onpick,opts){
     if(e.key==='ArrowDown'){e.preventDefault();active=Math.min(shown.length-1,active+1);upd();}
     else if(e.key==='ArrowUp'){e.preventDefault();active=Math.max(0,active-1);upd();}
     else if(e.key==='Enter'&&active>=0){e.preventDefault();choose(active);}
-    else if(e.key==='Escape'){panel.hidden=true;}});
+    else if(e.key==='Escape'){e.preventDefault();e.stopPropagation();panel.hidden=true;}});   // 只收下拉,別讓 Esc 冒泡關掉整個 dialog 害輸入全失(2026-07-15 修;panel 已關時走上面 early-return,Esc 仍可關表單)
 }
 function manualAdd(title,seed,onBack){
   buildManualDB();
@@ -652,8 +656,9 @@ function manualAdd(title,seed,onBack){
       if(g)g.textContent=T('mgeo_hint');}
   }
   // 城市/劇院自製下拉（黏輸入框下、邊打邊 filter、台↔臺正規化）
-  setupCombo(document.getElementById('mCity'),document.getElementById('mCityPanel'),()=>Object.keys(MCITY),(v)=>{draft.p.city=v;applyGeo();});
-  setupCombo(document.getElementById('mVenue'),document.getElementById('mVenuePanel'),()=>MVENUE_LIST,(e)=>{draft.p.venue=venuePickName(e.name);const ci=document.getElementById('mCity');ci.value=e.city;draft.p.city=e.city;applyGeo();},{searchOf:e=>((e._s||'')+' '+(e.city||'')),fmt:venueFmt,toInput:e=>venuePickName(e.name)});
+  // onType:手打不點下拉也要進 draft——原本只有 onpick 會寫入,純打字直接按「加入」會靜默丟失場館/城市(2026-07-15 修)
+  setupCombo(document.getElementById('mCity'),document.getElementById('mCityPanel'),()=>Object.keys(MCITY),(v)=>{draft.p.city=v;applyGeo();},{onType:v=>{draft.p.city=v;applyGeo();}});
+  setupCombo(document.getElementById('mVenue'),document.getElementById('mVenuePanel'),()=>MVENUE_LIST,(e)=>{draft.p.venue=venuePickName(e.name);const ci=document.getElementById('mCity');ci.value=e.city;draft.p.city=e.city;applyGeo();},{searchOf:e=>((e._s||'')+' '+(e.city||'')),fmt:venueFmt,toInput:e=>venuePickName(e.name),onType:v=>{draft.p.venue=v;applyGeo();}});
   // 日期：年（必）月日（選填）→ 精度 year/month/day，讓星期・月份統計能算
   function applyDate(){const y=document.getElementById('mYear').value.trim(),mo=document.getElementById('mMonth').value,da=document.getElementById('mDay').value;
     if(!/^\d{4}$/.test(y)){draft.date=null;draft.precision='none';return;}
@@ -802,7 +807,7 @@ function renderDetail(){
   const dY=document.getElementById('dYear'),dM=document.getElementById('dMonth'),dD=document.getElementById('dDay');
   // 編輯既有紀錄:只用它自己的日期——不可 fallback 上演年份,否則「刻意留白日期」的紀錄
   // 在編輯任何其他欄位存檔時會被靜默補上年份(applyDateD 於下方立即執行)。新增才預填最近年份。
-  (function(){const seed=draft.date || (draft.editIndex==null&&years.length?String(years[0]):'');
+  (function(){const seed=draft.date || (draft.editIndex==null?(years.length?String(years[0]):(stickyYear?String(stickyYear):'')):'');   // stickyYear:連續補登沿用上次年份(原本只寫不讀=死功能,2026-07-15 修)
     if(seed){const[sy,sm,sd]=String(seed).split('-');dY.value=sy||'';if(sm)dM.value=String(+sm);syncDayOptions(dY,dM,dD);if(sd)dD.value=String(+sd);}})();
   function applyDateD(){const y=dY.value.trim(),mo=dM.value,da=dD.value;
     if(!/^\d{4}$/.test(y)){draft.date=null;draft.precision='none';}

@@ -223,7 +223,7 @@
         // 比例智慧切換(與 me.html 同步 2026-07-15):偏離 2:3 逾 8% → contain+黑底
         if (s.posterFit !== 'contain' && img.naturalWidth && img.naturalHeight) {
           const dev = Math.abs(img.naturalWidth / img.naturalHeight - 2 / 3) / (2 / 3);
-          if (dev > 0.08) { img.style.objectFit = 'contain'; img.style.objectPosition = 'center'; fig.style.background = '#0c0b10'; }
+          if (dev > 0.08) { img.style.objectFit = 'contain'; img.style.objectPosition = 'center'; fig.style.background = 'var(--bg)'; }   // 隨主題(2026-07-15 修)
         } };
       img.onerror = () => { if (_t) clearTimeout(_t); _fall(); };
       img.src = s.poster || '';
@@ -559,7 +559,7 @@
       const _wd = (s.date && s.date.length >= 10) ? (() => { const [y, m, d] = s.date.split('-').map(Number); const w = new Date(y, m - 1, d).getDay();
         return ' (' + (EN_UI ? ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'][w] : '日一二三四五六'[w]) + ')'; })() : '';
       const rows = [
-        `<dt>${esc(T('dt_venue'))}</dt><dd>${_mapsHref ? `<a href="${esc(_mapsHref)}" target="_blank" rel="noopener noreferrer" style="color:#e3b23c;text-decoration:none;border-bottom:1px solid currentColor">${esc(venueZh(s.venue))} ↗</a>` : esc(venueZh(s.venue) || '—')}</dd>`,
+        `<dt>${esc(T('dt_venue'))}</dt><dd>${_mapsHref ? `<a href="${esc(_mapsHref)}" target="_blank" rel="noopener noreferrer" style="color:var(--gold);text-decoration:none;border-bottom:1px solid currentColor">${esc(venueZh(s.venue))} ↗</a>` : esc(venueZh(s.venue) || '—')}</dd>`,
         `<dt>${esc(T('dt_city'))}</dt><dd>${esc(cityCountry(s, ', ') || '—')} ${FLAG[s.country] || ''}</dd>`,
         `<dt>${esc(T('dt_date'))}</dt><dd>${esc(s.date ? s.date.replace(/-/g, '/') + _wd : '—')}</dd>`,
       ];
@@ -567,7 +567,7 @@
       if (s.seat) rows.push(`<dt>${esc(T('dt_seat'))}</dt><dd>${esc(s.seat)}</dd>`);
       if (s.price) rows.push(`<dt>${esc(T('dt_price'))}</dt><dd>${esc(window.MMFmtPrice ? window.MMFmtPrice(s.price, s.cur) : `${s.price} ${s.cur || ''}`)}</dd>`);
       const durl = s.url && safeUrl(s.url);
-      if (durl) rows.push(`<dt>${esc(T('dt_link'))}</dt><dd><a href="${esc(durl)}" target="_blank" rel="noopener noreferrer" style="color:#e3b23c;text-decoration:none;border-bottom:1px solid currentColor">${esc((durl.match(/^https?:\/\/([^\/]+)/) || [])[1] || T('dt_open_link'))} ↗</a></dd>`);
+      if (durl) rows.push(`<dt>${esc(T('dt_link'))}</dt><dd><a href="${esc(durl)}" target="_blank" rel="noopener noreferrer" style="color:var(--gold);text-decoration:none;border-bottom:1px solid currentColor">${esc((durl.match(/^https?:\/\/([^\/]+)/) || [])[1] || T('dt_open_link'))} ↗</a></dd>`);
       document.getElementById('dt-dl').innerHTML = rows.join('');
       document.getElementById('dt-note').textContent = '';
       document.getElementById('dt-note').style.display = 'none';

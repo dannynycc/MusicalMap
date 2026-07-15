@@ -18,7 +18,7 @@ if(location.hostname==='themusicalmap.com'||location.hostname==='www.themusicalm
 <script>/* no-flash: apply saved theme before CSS paints;預設 cream(對齊主站淡米黃)。
    一次性遷移:舊版 applyTheme 會把預設 midnight 自動寫進 localStorage,使既有使用者卡在深色;
    mm-theme-mig 未設時清一次 mm-theme,讓大家重新落到 cream 預設(之後仍尊重使用者用 picker 的選擇)。 */(function(){try{if(!localStorage.getItem('mm-theme-mig')){localStorage.removeItem('mm-theme');localStorage.setItem('mm-theme-mig','1');}var t=localStorage.getItem('mm-theme')||'cream';if(t==='neon'||t==='deco'){t='midnight';localStorage.setItem('mm-theme',t);}if(t!=='midnight')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
-<link rel="stylesheet" href="css/me-v2.css?v=19" /><!-- CSS 也要 cache-bust:CF Pages 對 .css 出 max-age=14400,不掛 ?v 改版後最多 4hr 拿舊樣式 -->
+<link rel="stylesheet" href="css/me-v2.css?v=20" /><!-- CSS 也要 cache-bust:CF Pages 對 .css 出 max-age=14400,不掛 ?v 改版後最多 4hr 拿舊樣式 -->
 <style>
 html[lang="en"] .sec h2 .zh{display:none}   /* en 模式:section 標題旁的英文小字與主標重複 → 隱藏 */
 html[lang="zh-Hans"] body{--ui:'Inter','Noto Sans SC',sans-serif}  /* 簡中改用 SC 字型,避免混排忽粗忽細 */
@@ -414,6 +414,7 @@ function filtered(){
 }
 // 垃圾桶 icon(取代✕:語意更明確,2026-07-15 使用者指定);卡片與詳情操作列共用
 window.MM_TRASH_SVG='<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M9.5 7V4.5h5V7M6.5 7l1 13.5h9l1-13.5M10 11v6.5M14 11v6.5"/></svg>';
+const _wallTimers=[];   // 牆卡 4s 備援計時器登記表:重渲染要全清,否則孤兒計時器對已卸載的卡發無謂直連請求(2026-07-15 修)
 function posterEl(s){
   // div role=button 而非 <button>:卡內含 ♥/✎/✕ 互動控件,原生 button 不允許互動性後代
   // (無效 HTML+鍵盤焦點混亂,2026-07-10 a11y review)。手動補 role/tabindex/Enter-Space。
@@ -437,11 +438,12 @@ function posterEl(s){
   // wsrv 代理對抓不到的來源(udn 等擋外部代理的圖床)會等 upstream 逾時才回 503,自訂海報
   // 「等超級久才出現」(2026-07-14 使用者抓到)——4 秒沒載入就搶先切直連原圖,不乾等代理。
   const _t=(s.poster&&s.posterFull&&s.posterFull!==s.poster)?setTimeout(()=>{if(!img.complete||!img.naturalWidth)_fall();},4000):null;
+  if(_t)_wallTimers.push(_t);
   img.onload=()=>{if(_t)clearTimeout(_t);img.classList.add('ready');skel.style.display='none';
     // 比例智慧切換(2026-07-15 使用者核可):圖偏離 2:3 逾 8% → contain+黑底(不硬裁內容);接近 2:3 照舊 cover 滿版
     if(s.posterFit!=='contain'&&img.naturalWidth&&img.naturalHeight){
       const dev=Math.abs(img.naturalWidth/img.naturalHeight-2/3)/(2/3);
-      if(dev>0.08){img.style.objectFit='contain';img.style.objectPosition='center';fig.style.background='#0c0b10';}
+      if(dev>0.08){img.style.objectFit='contain';img.style.objectPosition='center';fig.style.background='var(--bg)';}   // 隨主題:cream 淺底寫死近黑會變黑框(2026-07-15 修,比照 .dt-poster)
     }};
   img.onerror=()=>{if(_t)clearTimeout(_t);_fall();};   // 代理失敗→退回原圖→都失敗才色塊
   img.src=s.poster||'';
@@ -483,6 +485,7 @@ function posterEl(s){
   return c;
 }
 function renderPoster(){
+  _wallTimers.forEach(clearTimeout);_wallTimers.length=0;   // 清孤兒計時器(2026-07-15 修)
   const w=document.getElementById('wall-poster');w.innerHTML='';
   const list=filtered();
   list.forEach((s,i)=>{const el=posterEl(s);el.classList.add('reveal');el.style.setProperty('--i',i%12);w.appendChild(el);io.observe(el);});
@@ -820,13 +823,13 @@ function openDetail(s){
   const _wd=(s.date&&s.date.length>=10)?(()=>{const[y,m,d]=s.date.split('-').map(Number);const w=new Date(y,m-1,d).getDay();
     return ' ('+(EN_UI?['Sun','Mon','Tue','Wed','Thu','Fri','Sat'][w]:'日一二三四五六'[w])+')';})():'';
   document.getElementById('dt-dl').innerHTML=`
-    <dt>${T('dt_venue')}</dt><dd>${_mapsHref?`<a href="${esc(_mapsHref)}" target="_blank" rel="noopener noreferrer" style="color:#e3b23c;text-decoration:none;border-bottom:1px solid currentColor">${esc(venueZh(s.venue))} ↗</a>`:esc(venueZh(s.venue)||'—')}</dd>
+    <dt>${T('dt_venue')}</dt><dd>${_mapsHref?`<a href="${esc(_mapsHref)}" target="_blank" rel="noopener noreferrer" style="color:var(--gold);text-decoration:none;border-bottom:1px solid currentColor">${esc(venueZh(s.venue))} ↗</a>`:esc(venueZh(s.venue)||'—')}</dd>
     <dt>${T('dt_city')}</dt><dd>${esc(cityCountry(s,', ')||'—')} ${FLAG[s.country]||''}</dd>
     <dt>${T('dt_date')}</dt><dd>${s.date?esc(s.date.replace(/-/g,'/'))+esc(_wd):'—'}</dd>
     ${s.time?`<dt>${T('dt_time')}</dt><dd>${esc(s.time)}</dd>`:''}
     <dt>${T('dt_seat')}</dt><dd>${esc(s.seat||'—')}</dd>
     <dt>${T('dt_price')}</dt><dd>${s.price?esc(window.MMFmtPrice?window.MMFmtPrice(s.price,s.cur):`${s.price} ${s.cur||''}`):'—'}</dd>
-    <dt>${T('dt_link')}</dt><dd>${(s.url&&/^https?:\/\//i.test(String(s.url).trim()))?`<a href="${esc(String(s.url).trim())}" target="_blank" rel="noopener noreferrer" style="color:#e3b23c;text-decoration:none;border-bottom:1px solid currentColor">${esc((String(s.url).match(/^https?:\/\/([^\/]+)/i)||[])[1]||T('dt_open_link'))} ↗</a>`:'—'}</dd>`;/* 只放行 http(s)(擋 javascript:)+host 走 esc,比照 u-view.js safeUrl 防線 */
+    <dt>${T('dt_link')}</dt><dd>${(s.url&&/^https?:\/\//i.test(String(s.url).trim()))?`<a href="${esc(String(s.url).trim())}" target="_blank" rel="noopener noreferrer" style="color:var(--gold);text-decoration:none;border-bottom:1px solid currentColor">${esc((String(s.url).match(/^https?:\/\/([^\/]+)/i)||[])[1]||T('dt_open_link'))} ↗</a>`:'—'}</dd>`;/* 只放行 http(s)(擋 javascript:)+host 走 esc,比照 u-view.js safeUrl 防線 */
   // 引號依語言:中文頁用「」,en 頁用彎引號(英文筆記包中文引號很怪,2026-07-10)
   document.getElementById('dt-note').textContent=s.note?((window.MM_HL==='en'?'“'+s.note+'”':'「'+s.note+'」')):'';
   document.getElementById('dt-note').style.display=s.note?'block':'none';
@@ -1094,6 +1097,7 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
       DISPLAY=data?.display_name||'';
       CREATED=data?.created_at||'';
       if(CUR.handle){ownerCookie(CUR.handle);canonPath(CUR.handle);}   // 種本人標記+網址列改 my./<handle>
+      else ownerCookie('');   // 新用戶(尚無 handle):清掉可能殘留的前一位使用者 mm_owner,否則取名前全站 nav 指向別人的 /handle(2026-07-15 修)
     }catch(e){console.warn('loadSettings',e);}
   }
 
@@ -1398,7 +1402,7 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
     mail.addEventListener('keydown',e=>{if(e.key==='Enter'&&!send.disabled)doSend();});
     code.addEventListener('keydown',e=>{if(e.key==='Enter')doVerify();});
   })();
-  window.mmLogout=()=>{window.mmOwnerCookie&&window.mmOwnerCookie('');sb.auth.signOut().then(()=>{clearLocal();location.reload();});};
+  window.mmLogout=()=>{window.mmOwnerCookie&&window.mmOwnerCookie('');sb.auth.signOut().then(()=>{clearLocal();location.replace('https://themusicalmap.com/');});};   // reload 會停在 /<handle>:私密帳號登出後看到自己的 404「找不到公開頁」——改導回主站(同 settings,2026-07-15 修)
   // ♥ 最愛切換:本機快取即改+雲端背景更新,回傳新狀態給卡片就地更新(不重刷;統計/徽章下次載入時跟上)
   window.mmToggleFav=function(i){
     try{
@@ -1413,7 +1417,7 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
     }catch(e){console.warn('fav',e);return null;}
   };
   sb.auth.onAuthStateChange((event,session)=>{
-    if(event==='SIGNED_OUT'){_signedInFor=null;clearLocal();showLogin();return;}   // 登出重置去重旗標,換帳號可重跑
+    if(event==='SIGNED_OUT'){_signedInFor=null;clearLocal();if(window.mmOwnerCookie)window.mmOwnerCookie('');showLogin();return;}   // 登出重置去重旗標;被動登出(token 過期/他頁登出)也要清 mm_owner/mm_av cookie,否則全站 nav 殘留前一人頭像(2026-07-15 修)
     if(session&&session.user){onSignedIn(session.user);}   // 忽略非 SIGNED_OUT 的 null session（OAuth 處理中的暫態），不清旗標
   });
   // getSession 加 .catch:reject(極少見,如儲存損毀)時不留 unhandled、直接回登入頁,不卡「載入中」
@@ -1493,6 +1497,6 @@ tr.addEventListener('click',function(e){e.preventDefault();if(pop.hidden){opn();
 pop.addEventListener('click',function(){cls(false);});}
 function init(){document.querySelectorAll('.lang-switch').forEach(wire);}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();window.MM_WIRE_LANG=init;})();</script>
-<script src="js/mm-xlang.js?v=1" defer></script>
+<script src="js/mm-xlang.js?v=2" defer></script>
 </body>
 </html>

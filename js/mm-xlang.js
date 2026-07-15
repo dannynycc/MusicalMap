@@ -31,6 +31,8 @@
         if (a.hasAttribute("data-hl-link")) continue;         // 語言切換選單本身不動
         if (u.hostname === "themusicalmap.com" && (u.pathname === "/" || u.pathname === "")) {
           u.pathname = v === "zh-hans" ? "/zh-hans/" : v === "en" ? "/en/" : "/zh-hant/";
+        } else if (/^\/(zh-hant|zh-hans|en)(\/|$)/.test(u.pathname)) {
+          /* 已是語言路徑(前次 rewrite 產物):不再補 ?hl,否則第二次點擊變 /zh-hant/?hl=zh-hant 冗餘雙標(2026-07-15 修) */
         } else if (!u.searchParams.get("hl")) {
           u.searchParams.set("hl", v);
         }

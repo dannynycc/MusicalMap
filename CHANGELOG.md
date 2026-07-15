@@ -11,6 +11,38 @@
 
 ---
 
+## [v2.44.2] - 2026-07-15 19:20
+
+### Bug 掃蕩第二輪:四新視角 agent+逐一驗證,修 15(使用者再次指示「用力找 10 個」)
+
+視角:輸入端全鏈/事件生命週期/主題RWD/帳號閘門(與第一輪不重疊)。
+
+**資料遺失級(高)**
+1. **手打劇院/城市不點下拉→存檔靜默丟失**(combo 只有 onpick 寫 draft,純打字沒監聽)→ 加 onType,打字即進 draft。
+2. **combo 按 Esc 把整張表單 dialog 關掉、輸入全失**(原生 dialog 的 Esc 冒泡)→ preventDefault+stopPropagation,只收下拉。
+
+**主題破色(高,兩個是本人今天寫的)**
+3. **海報 contain letterbox 底寫死 #0c0b10**→ cream 淺色主題變黑框 → var(--bg)隨主題(me+u)。
+4. **詳情場館/售票連結色寫死 #e3b23c**→ cream 下對比僅 1.9:1 幾乎看不見 → var(--gold)(cream 得達標金,me+u 共 4 處)。
+5. **城市榜捲軸 thumb 寫死棕**→ 深色主題隱形 → color-mix 隨主題。
+
+**帳號殘影(中高)**
+6. **被動登出(token 過期/他頁登出)不清 mm_owner/mm_av cookie**→ 全站 nav 殘留前一人頭像、共用電腦洩漏頭像 → SIGNED_OUT 分支補 ownerCookie('')(me+settings)。
+7. **me.html 登出用 reload→私密帳號停在自己的 404「找不到公開頁」**→ 改 location.replace 導主站(同 settings)。
+8. **新用戶取名前殘留前一人 owner cookie**→ 全站 nav 指向別人的 /handle → loadSettings 無 handle 時清 cookie。
+
+**功能失效/其他**
+9. **stickyYear 只寫不讀=死功能**(連續補登不沿用上次年份)→ 接進日期 seed。
+10. **手動劇清空自訂海報網址清不掉**(_baseImg 誤退回 p.img=本次自訂圖)→ 只在確為系統海報時用。
+11. **本機 posterOverride/url 未淨化**(只雲端路徑過 _httpOnly,localStorage 存 javascript:/data:)→ 進 draft 即淨化。
+12. **mm-xlang 重複改寫→ /zh-hant/?hl=zh-hant 冗餘雙標**→ 已是語言路徑則不補 ?hl。
+13. **海報牆 4s 孤兒計時器**(重渲染後對已卸載卡發無謂直連請求)→ 登記表,renderPoster 開頭全清。
+14. **城市榜長名不截斷**(超長館名折行撐高列)→ ellipsis(與站內一致)。
+15. **Worker 舊名 301 未 encodeURIComponent**→ 補(防禦一致性)。
+
+版號:me-v2.css v20、u-view.js v10、mm-xlang.js v2。驗證:新增 test_r2(手打進 draft/Esc 不關表單/contain 主題底/連結色隨主題)+七套回歸 e2e 全 PASS。
+評估後不修:.reveal observer 滯留(瀏覽器自回收)、setMode 快速連點(瀏覽器跳過前一過場)、Tokyo(日比谷)變體分裂(需城市正規化設計,另案)、reduced-motion 未來卡過場(已補進 media query)。
+
 ## [v2.44.1] - 2026-07-15 18:39
 
 ### Bug 掃蕩:四視角 agent 掃描+逐一驗證,修 12(使用者指示「用力找 10 個」)

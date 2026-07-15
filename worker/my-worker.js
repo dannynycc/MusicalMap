@@ -107,7 +107,7 @@ export default {
     // 2) 查無 → 舊名?301 到現用名(alias 永久有效)
     if (!prof || !prof.is_public) {
       const nh = await sbRpc('resolve_handle', { p_handle: handle });
-      if (nh && nh !== handle) return Response.redirect(url.origin + '/' + nh, 301);
+      if (nh && nh !== handle) return Response.redirect(url.origin + '/' + encodeURIComponent(nh), 301);   // 與前端 u-view 一致編碼(handle 格式驗證下目前無實害,防禦一致性;2026-07-15)
     }
 
     // 3) 取 u.html,注入 handle + 語言 + 該使用者專屬 meta
