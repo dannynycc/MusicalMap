@@ -18,7 +18,7 @@ if(location.hostname==='themusicalmap.com'||location.hostname==='www.themusicalm
 <script>/* no-flash: apply saved theme before CSS paints;預設 cream(對齊主站淡米黃)。
    一次性遷移:舊版 applyTheme 會把預設 midnight 自動寫進 localStorage,使既有使用者卡在深色;
    mm-theme-mig 未設時清一次 mm-theme,讓大家重新落到 cream 預設(之後仍尊重使用者用 picker 的選擇)。 */(function(){try{if(!localStorage.getItem('mm-theme-mig')){localStorage.removeItem('mm-theme');localStorage.setItem('mm-theme-mig','1');}var t=localStorage.getItem('mm-theme')||'cream';if(t==='neon'||t==='deco'){t='midnight';localStorage.setItem('mm-theme',t);}if(t!=='midnight')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
-<link rel="stylesheet" href="css/me-v2.css?v=16" /><!-- CSS 也要 cache-bust:CF Pages 對 .css 出 max-age=14400,不掛 ?v 改版後最多 4hr 拿舊樣式 -->
+<link rel="stylesheet" href="css/me-v2.css?v=17" /><!-- CSS 也要 cache-bust:CF Pages 對 .css 出 max-age=14400,不掛 ?v 改版後最多 4hr 拿舊樣式 -->
 <style>
 html[lang="en"] .sec h2 .zh{display:none}   /* en 模式:section 標題旁的英文小字與主標重複 → 隱藏 */
 html[lang="zh-Hans"] body{--ui:'Inter','Noto Sans SC',sans-serif}  /* 簡中改用 SC 字型,避免混排忽粗忽細 */
@@ -104,7 +104,7 @@ if(v&&v!=='zh-hant'){document.write('<style id="mm-fouc">body{visibility:hidden}
   var _rv=function(){var s=document.getElementById('mm-fouc');if(s)s.remove();};
   window.addEventListener('DOMContentLoaded',function(){setTimeout(_rv,0);});setTimeout(_rv,1500);}
 }catch(e){}})();</script>
-<script src="js/mm-strings.js?v=246"></script>
+<script src="js/mm-strings.js?v=247"></script>
 <script src="js/mm-acct-menu.js?v=227"></script>
 <!-- Google Analytics(GA4 G-GC07MYC1MY;訪客來源/行為分析,同一 ID 涵蓋主站與 my. 網域(報表以 hostname 區分);不加 SRI:gtag.js 由 Google 滾動更新,釘 hash 會靜默斷統計;隱私揭露見 privacy §1/§3) --><script async src="https://www.googletagmanager.com/gtag/js?id=G-GC07MYC1MY"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-GC07MYC1MY');</script>
 <!-- Cloudflare Web Analytics(手動 snippet:WA「自動注入」在本 zone 從未生效→曾一直 0,2026-07-13 切手動;token=WA beacon token(5953964f…),≠dashboard 網址的 site id(f5debd92…);不加 SRI 同 gtag 理由) --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5953964f9c434c67bcc12dd3eaedf340"}'></script>
@@ -210,14 +210,14 @@ if(v&&v!=='zh-hant'){document.write('<style id="mm-fouc">body{visibility:hidden}
     </div>
     <div class="chips" id="chips"></div>
     <span class="spacer"></span>
-    <span class="count" id="count"></span>
     <select class="sortsel" id="sort" aria-label="排序" data-i18n-aria="aria_sort">
       <option value="date" data-i18n="sort_date">最近觀看</option>
       <option value="rating" data-i18n="sort_rating">評分</option>
       <option value="count" data-i18n="sort_count">次數</option>
       <option value="title" data-i18n="sort_title">劇名</option>
     </select>
-  </div></div>
+  </div>
+  <div class="ctl-sub"><span class="count" id="count"></span></div></div><!-- 排序固定同排最右;件數自成一行(2026-07-15 使用者指定) -->
 
   <!-- WALL (three views, same data) -->
   <div id="wall-poster"></div>
@@ -432,7 +432,12 @@ function posterEl(s){
   // wsrv 代理對抓不到的來源(udn 等擋外部代理的圖床)會等 upstream 逾時才回 503,自訂海報
   // 「等超級久才出現」(2026-07-14 使用者抓到)——4 秒沒載入就搶先切直連原圖,不乾等代理。
   const _t=(s.poster&&s.posterFull&&s.posterFull!==s.poster)?setTimeout(()=>{if(!img.complete||!img.naturalWidth)_fall();},4000):null;
-  img.onload=()=>{if(_t)clearTimeout(_t);img.classList.add('ready');skel.style.display='none'};
+  img.onload=()=>{if(_t)clearTimeout(_t);img.classList.add('ready');skel.style.display='none';
+    // 比例智慧切換(2026-07-15 使用者核可):圖偏離 2:3 逾 8% → contain+黑底(不硬裁內容);接近 2:3 照舊 cover 滿版
+    if(s.posterFit!=='contain'&&img.naturalWidth&&img.naturalHeight){
+      const dev=Math.abs(img.naturalWidth/img.naturalHeight-2/3)/(2/3);
+      if(dev>0.08){img.style.objectFit='contain';img.style.objectPosition='center';fig.style.background='#0c0b10';}
+    }};
   img.onerror=()=>{if(_t)clearTimeout(_t);_fall();};   // 代理失敗→退回原圖→都失敗才色塊
   img.src=s.poster||'';
   if(!s.poster)fig.classList.add('is-fallback');
@@ -674,7 +679,7 @@ function buildCityList(){
   const el=document.getElementById('citylist');
   const byCity={};S.forEach(s=>{if(!s.city||isFut(s.date))return;(byCity[s.city]=byCity[s.city]||{...s,n:0}).n++;});   // 地圖/城市榜只算已到場
   const arr=Object.values(byCity).sort((a,b)=>b.n-a.n);
-  el.innerHTML=`<h4>${T('citylist_title')}</h4><div class="sh">${TN('citylist_sub',{c:arr.length,k:st.countries,t:st.total})}</div>`+
+  el.innerHTML=`<div class="cl-head"><h4>${T('citylist_title')}</h4><div class="sh">${TN('citylist_sub',{c:arr.length,k:st.countries,t:st.total})}</div></div>`+
     arr.map(c=>{const d=9+Math.sqrt(c.n)*4.2;return `<button class="cl-row" data-city="${esc(c.city)}">
       <span class="d" style="width:${d}px;height:${d}px"></span>
       <span class="nm"><b>${esc(cityName(c.city))}</b><span>${esc(countryZh(c.country))}</span></span>
@@ -835,7 +840,7 @@ renderPoster();buildCityList();drawMap();placePins();moveThumb();
 applyTheme((function(){try{return localStorage.getItem('mm-theme')||'cream';}catch(e){return 'cream';}})());
 window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
 </script>
-<button type="button" id="fabLog" aria-label="加入一齣音樂劇" data-i18n="fab_add" data-i18n-aria="fab_add" style="position:fixed;right:22px;bottom:22px;z-index:1200;background:var(--s1);color:var(--gold);border:1.5px solid var(--gold);font-weight:800;padding:13px 20px;border-radius:999px;cursor:pointer;box-shadow:var(--shadow,0 6px 18px rgba(60,48,24,.18));display:inline-flex;align-items:center;gap:8px;font-size:15px">＋ 加入音樂劇</button>
+<button type="button" id="fabLog" aria-label="加入一齣音樂劇" data-i18n="fab_add" data-i18n-aria="fab_add" style="position:fixed;right:22px;bottom:22px;z-index:1200;background:var(--gold);color:var(--on-accent,#fff);border:1.5px solid var(--gold);font-weight:800;padding:13px 20px;border-radius:999px;cursor:pointer;box-shadow:var(--shadow,0 6px 18px rgba(60,48,24,.18));display:inline-flex;align-items:center;gap:8px;font-size:15px">＋ 加入音樂劇</button><!-- 實心金底(與 hero 加入鈕一致,2026-07-15 使用者指定) -->
 <style>
 .logmodal[hidden]{display:none}
 .logmodal{position:fixed;inset:0;z-index:2000;display:flex;align-items:center;justify-content:center}

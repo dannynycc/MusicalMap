@@ -219,7 +219,12 @@
         fig.classList.add('is-fallback'); };   // 代理失敗→原圖→官方備援→都失敗才色塊
       // wsrv 代理對擋外部代理的圖床會等 upstream 逾時才回 503——4s 沒載入就搶先走備援(2026-07-14 me 頁同修)
       const _t = (s.poster && s.posterFull && s.posterFull !== s.poster) ? setTimeout(() => { if (!img.complete || !img.naturalWidth) _fall(); }, 4000) : null;
-      img.onload = () => { if (_t) clearTimeout(_t); img.classList.add('ready'); skel.style.display = 'none'; };
+      img.onload = () => { if (_t) clearTimeout(_t); img.classList.add('ready'); skel.style.display = 'none';
+        // 比例智慧切換(與 me.html 同步 2026-07-15):偏離 2:3 逾 8% → contain+黑底
+        if (s.posterFit !== 'contain' && img.naturalWidth && img.naturalHeight) {
+          const dev = Math.abs(img.naturalWidth / img.naturalHeight - 2 / 3) / (2 / 3);
+          if (dev > 0.08) { img.style.objectFit = 'contain'; img.style.objectPosition = 'center'; fig.style.background = '#0c0b10'; }
+        } };
       img.onerror = () => { if (_t) clearTimeout(_t); _fall(); };
       img.src = s.poster || '';
       if (!s.poster) fig.classList.add('is-fallback');
@@ -429,7 +434,7 @@
       const el = document.getElementById('citylist');
       const byCity = {}; S.forEach(s => { if (!s.city || isFut(s.date)) return; (byCity[s.city] = byCity[s.city] || { ...s, n: 0 }).n++; });   // 地圖/城市榜只算已到場
       const arr = Object.values(byCity).sort((a, b) => b.n - a.n);
-      el.innerHTML = `<h4>${esc(T('citylist_title'))}</h4><div class="sh">${esc(TN('citylist_sub', { c: arr.length, k: st.countries, t: st.total }))}</div>` +
+      el.innerHTML = `<div class="cl-head"><h4>${esc(T('citylist_title'))}</h4><div class="sh">${esc(TN('citylist_sub', { c: arr.length, k: st.countries, t: st.total }))}</div></div>` +
         arr.map(c => { const d = 9 + Math.sqrt(c.n) * 4.2; return `<button class="cl-row" data-city="${esc(c.city)}">
           <span class="d" style="width:${d}px;height:${d}px"></span>
           <span class="nm"><b>${esc(cityName(c.city))}</b><span>${esc(countryZh(c.country))}</span></span>

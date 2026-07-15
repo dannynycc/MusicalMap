@@ -19,7 +19,7 @@
       aria_zoom_in: '放大', aria_zoom_out: '縮小', aria_zoom_reset: '重置',
       map_hint: '滾輪縮放 · 拖曳平移',
       legend_dot: '圓點 = 看過音樂劇的城市', legend_size: '圓大小 = 看的場數',
-      sec_stats: '觀劇統計',
+      sec_stats: '音樂劇統計',
       st_shows: '最常看的音樂劇', st_countries: '最常去的國家', st_cities: '最常去的城市', st_theatres: '最常去的劇院',
       st_year: '各年', st_month: '各月', st_week: '各星期',
       sec_you: '關於這位劇迷', sec_you_me: '關於你', badges_title: '成就徽章',
@@ -51,7 +51,7 @@
       h1_suffix: '{name} 的音樂劇收藏',
       // ---- data.js personality(me/u 共用;2026-07-13 三軸重設計) ----
       p_geo0: '在地扎根', p_geo1: '跨境嚐鮮', p_geo2: '區域旅人', p_geo3: '洲際旅人', p_geo4: '環球旅人',
-      p_geo_ev: '{n} 國 · {m} 洲',
+      p_geo_ev: '{n} 國 · {m} 大洲',
       p_geo_b0: '足跡都在同一個國家', p_geo_b1: '已經跨出國門看戲',
       p_geo_b2: '你在 {n} 個國家看過戲，把一整個區域當主場',
       p_geo_b3: '足跡橫跨 {m} 大洲', p_geo_b4: '足跡橫跨 {m} 大洲，名副其實看遍世界',
