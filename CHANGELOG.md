@@ -11,6 +11,14 @@
 
 ---
 
+## [v2.46.1] - 2026-07-16 02:25
+
+### 修 v2.46.0 熱修:`venuePidOf is not defined`(跨 closure)
+
+v2.46.0 上線後正式站實測開 Shrek 詳情報 `ReferenceError: venuePidOf is not defined`——`venuePidOf`/`VENS` 定義在載入 catalog 的 `<script>` block,但 openDetail 在**前一個** `<script>` block,函式宣告不跨 closure hoist。改為 `loadCatalogMaps` 用 `window.MM_VPID` 暴露「有 pid 的場館清單」,openDetail 內聯查詢(window 橋接)。移除死函式。SYNC_VER 18→19 強制已同步 session 重載(否則跳過 loadCatalogMaps→MM_VPID 未設)。node --check 語法驗證 me.html+u-view.js 通過。
+
+---
+
 ## [v2.46.0] - 2026-07-16 02:17
 
 ### 劇院連結升級:Google place_id → 直接開單一資訊卡(全目錄 enrich)
