@@ -564,7 +564,11 @@
       else { rt.textContent = ''; rt.style.display = 'none'; }
       // 唯讀：座位/票價只在有值時顯示（公開頁隱私由 RPC 決定回不回傳）
       // 場館→Google Maps:一律名稱查詢=解析成地標資訊卡(座標=裸針,使用者不要);與 me.html 同步(2026-07-15)
-      const _mapsHref = s.venue ? ('https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent([s.venue, s.city].filter(Boolean).join(' '))) : null;
+      // 場館→Google Maps:有座標→名稱錨定精準座標(消除「Broadway Theatre」等通用名歧義,2026-07-16),
+      // 無座標→文字查詢(名稱, 城市, 國家)。與 me.html 同步。
+      const _mapsHref = s.venue ? ((s.lat != null && s.lng != null)
+        ? `https://www.google.com/maps/search/${encodeURIComponent(s.venue)}/@${s.lat},${s.lng},17z`
+        : ('https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent([s.venue, s.city, s.country].filter(Boolean).join(', ')))) : null;
       const _wd = (s.date && s.date.length >= 10) ? (() => { const [y, m, d] = s.date.split('-').map(Number); const w = new Date(y, m - 1, d).getDay();
         return ' (' + (EN_UI ? ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'][w] : '日一二三四五六'[w]) + ')'; })() : '';
       const rows = [
