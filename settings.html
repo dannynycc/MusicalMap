@@ -69,6 +69,24 @@ html[lang="zh-Hans"] .st-h1{font-family:"Fraunces","Noto Serif SC",Georgia,serif
 .st-adv summary::after{content:'▸';font-size:11px;color:var(--muted);transition:transform .15s}
 .st-adv[open] summary::after{transform:rotate(90deg)}
 .st-adv-body{margin-top:12px}
+/* 刪帳號二次確認:頁內小彈窗(不用瀏覽器原生 prompt/alert;紙感與本頁一致) */
+.mm-modal{position:fixed;inset:0;z-index:6000;display:flex;align-items:center;justify-content:center;padding:24px;background:rgba(34,31,24,.45)}
+.mm-modal[hidden]{display:none}
+.mm-modal-card{background:var(--paper,#faf6ec);border:1px solid rgba(60,46,28,.18);border-radius:16px;padding:22px 24px 20px;max-width:420px;width:100%;box-shadow:0 18px 50px rgba(34,31,24,.35)}
+.mm-modal-card p{margin:0 0 14px;font-size:14.5px;line-height:1.6;color:var(--text)}
+.mm-modal-card .handle-row input{font-family:ui-monospace,Consolas,monospace}
+.mm-modal-err{display:block;min-height:16px;margin-top:6px;font-size:12px;font-weight:600;color:#b3261e}
+.mm-modal-btns{display:flex;gap:10px;justify-content:flex-end;margin-top:16px}
+/* 刪除成功後的頁內告別頁(取代原生 alert+跳轉;致敬 Hamilton 喬治三世〈You'll Be Back〉) */
+#farewell{position:fixed;inset:0;z-index:6500;overflow-y:auto;background:var(--paper,#faf6ec);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;text-align:center;padding:40px 24px}
+#farewell[hidden]{display:none}
+#farewell .fw-crown{width:74px;height:auto;color:var(--gold)}
+#farewell h2{font-family:"Fraunces","Noto Serif TC",Georgia,serif;font-weight:900;font-size:clamp(26px,4vw,36px);letter-spacing:-.01em;margin:0;color:var(--text)}
+html[lang="zh-Hans"] #farewell h2{font-family:"Fraunces","Noto Serif SC",Georgia,serif}
+#farewell p{max-width:460px;font-size:14.5px;line-height:1.7;color:var(--muted);margin:0}
+#farewell .fw-lyric{font-family:"Fraunces",Georgia,serif;font-style:italic;font-size:17.5px;color:var(--text)}
+#farewell .fw-by{font-size:12px;color:var(--muted);margin-top:4px}
+#farewell .btn-gold{text-decoration:none;margin-top:12px;display:inline-block}
 /* 登入閘:同頁淺色紙感(不再用深色,與主頁一致) */
 #stgate{position:fixed;inset:0;z-index:5000;overflow-y:auto;background:var(--paper,#faf6ec);color:var(--text,#221f18);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:16px;text-align:center;padding:74px 24px 40px}
 #gate-brand{position:absolute;top:0;left:0;right:0;height:56px;display:flex;align-items:center;gap:9px;padding:0 22px;font-family:"Fraunces",Georgia,serif;font-weight:900;font-size:19px;color:var(--text);text-decoration:none}
@@ -87,7 +105,7 @@ if(!v){var nl=(navigator.language||'').toLowerCase();v=nl.indexOf('zh')===0?((nl
 if(v==='zh-hans'){document.write('<scr'+'ipt src="/js/vendor/opencc-t2cn-1.3.1.js"><\/scr'+'ipt>');
 document.write('<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&display=swap" rel="stylesheet" />');}
 }catch(e){}})();</script>
-<script src="js/mm-strings.js?v=244"></script>
+<script src="js/mm-strings.js?v=245"></script>
   <script src="js/mm-lang.js?v=230" defer></script>
 <script src="js/mm-acct-menu.js?v=227" defer></script><!-- nav 頭像:autoMount 讀 mm_owner/mm_av cookie 自動換,與全站一致 -->
 <!-- GA4(同站統計;隱私揭露見 privacy §1/§3) --><script async src="https://www.googletagmanager.com/gtag/js?id=G-GC07MYC1MY"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-GC07MYC1MY');</script>
@@ -193,6 +211,35 @@ document.write('<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+
     </details>
   </section>
 </main>
+
+<!-- 刪除成功告別頁(全版面;金冠+〈You'll Be Back〉致敬,不用原生 alert 也不自動跳轉) -->
+<div id="farewell" role="status" hidden>
+  <svg class="fw-crown" viewBox="0 0 64 46" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round" aria-hidden="true">
+    <path d="M9 36 L12 15 L23 24 L32 9 L41 24 L52 15 L55 36 Z" fill="rgba(160,122,52,.12)"/>
+    <circle cx="12" cy="11" r="2.6"/><circle cx="32" cy="5.5" r="2.6"/><circle cx="52" cy="11" r="2.6"/>
+    <path d="M11 41 h42" stroke-linecap="round"/>
+  </svg>
+  <h2 data-i18n="del_bye_title">帳號已刪除</h2>
+  <p data-i18n="del_bye_body">你的觀劇紀錄、公開頁與網址名稱都已永久移除。謝謝你曾與 MusicalMap 一起看戲——舞台燈會一直為你留著。</p>
+  <div>
+    <div class="fw-lyric" data-i18n="del_bye_lyric">“You’ll be back, soon you’ll see…”</div>
+    <div class="fw-by" data-i18n="del_bye_lyric_by">— 喬治三世國王，《Hamilton》</div>
+  </div>
+  <a class="btn-gold" href="https://themusicalmap.com/" data-i18n="how_footer_link">回到地圖</a>
+</div>
+
+<!-- 刪帳號二次確認彈窗(取代原生 prompt/alert;文案沿用 del_* i18n key) -->
+<div id="delModal" class="mm-modal" role="dialog" aria-modal="true" aria-labelledby="delModalMsg" hidden>
+  <div class="mm-modal-card">
+    <p id="delModalMsg"></p>
+    <div class="handle-row"><input id="delModalInput" autocomplete="off" spellcheck="false" maxlength="30" /></div>
+    <span class="mm-modal-err" id="delModalErr"></span>
+    <div class="mm-modal-btns">
+      <button type="button" class="btn-ghostout" id="delModalCancel"></button>
+      <button type="button" class="btn-danger" id="delModalOk"></button>
+    </div>
+  </div>
+</div>
 
 <footer class="site-foot"><div class="sf-in">
   <span data-i18n="how_footer">MusicalMap — 全球音樂劇即時地圖，與你的音樂劇護照。</span>
@@ -382,15 +429,29 @@ document.write('<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+
     location.href='https://themusicalmap.com/';
   });
 
-  // 刪除帳號(輸入 username 二次確認;RPC delete_my_account)
-  $('stDelete').addEventListener('click',async()=>{
+  // 刪除帳號(輸入 username 二次確認;RPC delete_my_account)。
+  // 二次確認改頁內小彈窗,不用瀏覽器原生 prompt/alert;名稱不符時彈窗留著讓使用者重打。
+  const dm=$('delModal'), dmIn=$('delModalInput'), dmErr=$('delModalErr'), dmOk=$('delModalOk'), dmCancel=$('delModalCancel');
+  let dmBusy=false;   // 刪除進行中鎖住關閉(Esc/點遮罩/取消),避免 RPC 途中畫面消失像沒刪
+  function dmClose(){if(dmBusy)return;dm.hidden=true;dmIn.value='';dmErr.textContent='';}
+  $('stDelete').addEventListener('click',()=>{
     const h=(CUR.handle||'').trim();
-    const typed=prompt(h?TN('del_confirm_prompt',{handle:h}):T('del_confirm_plain'));
-    if(typed==null)return;
+    $('delModalMsg').textContent=h?TN('del_confirm_prompt',{handle:h}):T('del_confirm_plain');
+    dmOk.textContent=T('del_account');dmCancel.textContent=T('cancel');
+    dmOk.disabled=false;dmIn.disabled=false;dmIn.value='';dmErr.textContent='';
+    dm.hidden=false;dmIn.focus();
+  });
+  dmCancel.addEventListener('click',dmClose);
+  dm.addEventListener('click',e=>{if(e.target===dm)dmClose();});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!dm.hidden)dmClose();});
+  dmIn.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();dmOk.click();}});
+  dmOk.addEventListener('click',async()=>{
+    const h=(CUR.handle||'').trim();
     // 無 handle 帳號:文案要求打「DELETE」,舊版卻只在 h 存在時才驗證 → 按 OK 空字串直接刪帳號
-    // (不可逆!2026-07-10)。改成兩種情形都必須比對:有 handle 比 handle,無則比 DELETE。
+    // (不可逆!2026-07-10)。兩種情形都必須比對:有 handle 比 handle,無則比 DELETE。
     const expect=h?h.toLowerCase():'delete';
-    if(typed.trim().toLowerCase()!==expect){alert(T('del_confirm_mismatch'));return;}
+    if(dmIn.value.trim().toLowerCase()!==expect){dmErr.textContent=T('del_confirm_mismatch');dmIn.focus();return;}
+    dmBusy=true;dmOk.disabled=true;dmIn.disabled=true;dmOk.textContent=T('del_deleting');dmErr.textContent='';
     const btn=$('stDelete');btn.disabled=true;btn.textContent=T('del_deleting');
     try{
       const {error}=await sb.rpc('delete_my_account');
@@ -398,9 +459,13 @@ document.write('<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+
       ownerCookie('');
       try{await sb.auth.signOut();}catch(e){}
       clearLocalAll();
-      alert(T('del_done'));
-      location.href='https://themusicalmap.com/';
-    }catch(e){console.error('delete account',e);btn.disabled=false;btn.textContent=T('del_account');alert(T('del_fail')+'\n'+((e&&e.message)||e));}
+      dmBusy=false;dmClose();
+      document.getElementById('farewell').hidden=false;   // 全版面告別頁,不自動跳轉(讓使用者自己按「回到地圖」)
+    }catch(e){console.error('delete account',e);
+      dmBusy=false;btn.disabled=false;btn.textContent=T('del_account');
+      dmOk.disabled=false;dmIn.disabled=false;dmOk.textContent=T('del_account');
+      dmErr.textContent=T('del_fail')+' '+((e&&e.message)||e);
+    }
   });
 
   async function load(uid){

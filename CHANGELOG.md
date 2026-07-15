@@ -11,6 +11,19 @@
 
 ---
 
+## [v2.42.0] - 2026-07-15 09:37
+
+### 刪帳號流程告別瀏覽器原生對話框(settings.html;使用者兩度抓包)
+
+使用者反映:二次確認是 Chrome 頂部原生 prompt、刪除完成又跳原生 alert——「一般人家網頁是怎麼handle的」。派 agent 實查業界慣例(Strava `/account_deleted` 專頁、Spotify 頁內成功頁+7天寬限信、NN/g 確認對話框指引):共識=頁內承載、中性+溫暖歡迎回來語氣、誠實講永久性、給回首頁入口。
+
+- **二次確認改頁內小彈窗**(`#delModal`,紙感卡片+遮罩,沿本頁 tokens):輸入 handle(無 handle 打 DELETE)、Enter=確認、Esc/遮罩/取消=關閉、名稱不符 inline 紅字**彈窗留著重打**(原生版是整個取消重來)、RPC 失敗也 inline 顯示;刪除進行中鎖住關閉避免像沒在刪。無 handle 必須比對 DELETE 的防呆(2026-07-10)原樣保留。
+- **刪除成功改全版面告別頁**(`#farewell`,不自動跳轉):金冠 SVG+「帳號已刪除」+永久移除說明+**致敬《Hamilton》喬治三世〈You'll Be Back〉歌詞**("You'll be back, soon you'll see…"——使用者點的梗,原話說亨利八世,實為喬治三世;亨利八世是《SIX》)+「回到地圖」(mm-xlang 自動帶語言)。
+- **文案精簡**(使用者指定):繁「請輸入你的網址名稱「{handle}」」→「請輸入「{handle}」」;英同步去 "your username";mismatch 拿掉「已取消」(彈窗已不關)。新增 `del_bye_*` 4 鍵(繁英,簡中 OpenCC;驗出「账号已删除」)。
+- settings.html 已**零** `alert()/prompt()/confirm()`。
+- 快取:`mm-strings.js?v=245` 全站 bump(me/me-input/settings/u+`build/pages/` 4 源檔,gen_pages/gen_site 重產 12 語言變體頁;index/sitemap 隨當日資料重產)。
+- 驗證:`node --check` PASS;playwright 真 Chrome 本機 e2e **22 項全 PASS**(開啟/自動聚焦/不符重打/Enter/Esc/遮罩/取消清空/RPC失敗 inline+按鈕復原/**原生對話框哨兵零觸發**/告別頁三語渲染/回地圖連結)。
+
 ## [v2.41.1] - 2026-07-15 02:01
 ### 文件 freshness 全掃(使用者要求「100%掃過所有 md 並且全部都要 keep up to date」)
 - **README.md**:總量 1,973 筆/629 groups/31 國(菲律賓入列)、works 207/official_sites 228、tours 23 劇 250 站(data-theatre 修正)、新增 works_distinct.json 與 philippines.py 條目、gen_variants 補 CITY_STATE 座標比對/city_cn/venueEn/title_en、audit 段補 v2.36–v2.41 新防線(重複售票 URL/季票群聚/死 key/日期健全層/CJK 場館正規化合併)、archive 跨年 span、手機 sheet 段補桌面舒適區重構(v2.37–v2.38.1,超框待辦已修)。
