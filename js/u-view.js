@@ -481,7 +481,7 @@
       function barList(id, items, fmt) { const el = document.getElementById(id); if (!el) return;
         if (!items || !items.length) { el.innerHTML = '<div class="sl-empty">—</div>'; return; }
         const mx = items[0][1] || 1;
-        el.innerHTML = items.slice(0, 6).map(([k, v]) => `<div class="sl-row"><span class="sl-k" title="${esc(k)}">${esc(fmt ? fmt(k) : k)}</span><span class="sl-bar"><i style="width:${Math.max(6, v / mx * 100)}%"></i></span><span class="sl-v">${v}</span></div>`).join(''); }
+        el.innerHTML = items.map(([k, v]) => `<div class="sl-row"><span class="sl-k" title="${esc(k)}">${esc(fmt ? fmt(k) : k)}</span><span class="sl-bar"><i style="width:${Math.max(6, v / mx * 100)}%"></i></span><span class="sl-v">${v}</span></div>`).join(''); }   // 全列出+CSS 捲動(與 me.html 同步,2026-07-15)
       barList('sc-shows', st.topShows);
       barList('sc-countries', st.topCountries, countryZh);
       barList('sc-cities', st.topCities, k => `${cityName(k)}`);

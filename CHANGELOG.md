@@ -11,6 +11,14 @@
 
 ---
 
+## [v2.42.15] - 2026-07-15 16:52
+
+### 城市榜鎖地圖同高+統計卡全列出各自捲動(使用者指定)
+
+- **造訪城市榜**:grid `align-items:stretch`+`.citylist{height:0;min-height:100%}` → 高度精準=左側地圖(e2e 實測 594=594),超出捲動;≤820px 直式排版改 `max-height:340px`。
+- **觀劇統計四卡**:render 原本 `slice(0,6)` 只畫前 6 名(後面的根本看不到)——改全列出,`.slist{max-height:218px;overflow:auto}` 各自捲動;me.html+u-view.js 同步,細捲軸配色兩主題各一套。
+- `me-v2.css?v=16`(me/u 兩處 bump)。e2e 4 案例 ALL PASS(20 城/20 列極端資料)。
+
 ## [v2.42.14] - 2026-07-15 16:40
 
 ### 修 wsrv 代理毀純黑+魅影 Majestic 海報資產(使用者抓「底色不夠純黑」)
