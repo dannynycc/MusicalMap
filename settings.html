@@ -80,7 +80,7 @@ html[lang="zh-Hans"] .st-h1{font-family:"Fraunces","Noto Serif SC",Georgia,serif
 /* 刪除成功後的頁內告別頁(取代原生 alert+跳轉;致敬 Hamilton 喬治三世〈You'll Be Back〉) */
 #farewell{position:fixed;inset:0;z-index:6500;overflow-y:auto;background:var(--paper,#faf6ec);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;text-align:center;padding:40px 24px}
 #farewell[hidden]{display:none}
-#farewell .fw-crown{width:74px;height:auto;color:var(--gold)}
+#farewell .fw-king{width:150px;height:auto}
 #farewell h2{font-family:"Fraunces","Noto Serif TC",Georgia,serif;font-weight:900;font-size:clamp(26px,4vw,36px);letter-spacing:-.01em;margin:0;color:var(--text)}
 html[lang="zh-Hans"] #farewell h2{font-family:"Fraunces","Noto Serif SC",Georgia,serif}
 #farewell p{max-width:460px;font-size:14.5px;line-height:1.7;color:var(--muted);margin:0}
@@ -105,7 +105,7 @@ if(!v){var nl=(navigator.language||'').toLowerCase();v=nl.indexOf('zh')===0?((nl
 if(v==='zh-hans'){document.write('<scr'+'ipt src="/js/vendor/opencc-t2cn-1.3.1.js"><\/scr'+'ipt>');
 document.write('<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&display=swap" rel="stylesheet" />');}
 }catch(e){}})();</script>
-<script src="js/mm-strings.js?v=245"></script>
+<script src="js/mm-strings.js?v=246"></script>
   <script src="js/mm-lang.js?v=230" defer></script>
 <script src="js/mm-acct-menu.js?v=227" defer></script><!-- nav 頭像:autoMount 讀 mm_owner/mm_av cookie 自動換,與全站一致 -->
 <!-- GA4(同站統計;隱私揭露見 privacy §1/§3) --><script async src="https://www.googletagmanager.com/gtag/js?id=G-GC07MYC1MY"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-GC07MYC1MY');</script>
@@ -214,13 +214,49 @@ document.write('<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+
 
 <!-- 刪除成功告別頁(全版面;金冠+〈You'll Be Back〉致敬,不用原生 alert 也不自動跳轉) -->
 <div id="farewell" role="status" hidden>
-  <svg class="fw-crown" viewBox="0 0 64 46" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round" aria-hidden="true">
-    <path d="M9 36 L12 15 L23 24 L32 9 L41 24 L52 15 L55 36 Z" fill="rgba(160,122,52,.12)"/>
-    <circle cx="12" cy="11" r="2.6"/><circle cx="32" cy="5.5" r="2.6"/><circle cx="52" cy="11" r="2.6"/>
-    <path d="M11 41 h42" stroke-linecap="round"/>
+  <!-- 手繪風喬治三世(原創插畫:歷史人物+通用王權元素,非臨摹劇照/劇服) -->
+  <svg class="fw-king" viewBox="0 0 200 250" fill="none" stroke="#3a2d1a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <g stroke="#a07a34" stroke-width="2.6">
+      <path d="M28 78 q1 -14 3 -20 q6 3 10 -1" fill="none"/>
+      <ellipse cx="25" cy="79" rx="4.5" ry="3.4" fill="#a07a34" transform="rotate(-15 25 79)"/>
+      <path d="M172 60 q1 -12 2.5 -17 q5 2.5 8.5 -1" fill="none"/>
+      <ellipse cx="169.5" cy="61" rx="4" ry="3" fill="#a07a34" transform="rotate(-15 169.5 61)"/>
+    </g>
+    <g stroke="#a07a34" transform="translate(0,10)">
+      <path d="M66 62 L69 34 L83 48 L93 26 L100 44 L107 26 L117 48 L131 34 L134 62 Q100 55 66 62 Z" fill="rgba(160,122,52,.22)"/>
+      <circle cx="69" cy="29" r="3.2" fill="#a07a34"/>
+      <circle cx="93" cy="21" r="3.2" fill="#a07a34"/>
+      <circle cx="107" cy="21" r="3.2" fill="#a07a34"/>
+      <circle cx="131" cy="29" r="3.2" fill="#a07a34"/>
+      <path d="M64 66 Q100 58 136 66" fill="none" stroke-width="5"/>
+    </g>
+    <g fill="#fdfaf2">
+      <circle cx="60" cy="92" r="12"/><circle cx="55" cy="112" r="11"/><circle cx="58" cy="131" r="10"/>
+      <circle cx="140" cy="92" r="12"/><circle cx="145" cy="112" r="11"/><circle cx="142" cy="131" r="10"/>
+    </g>
+    <ellipse cx="100" cy="105" rx="33" ry="36" fill="#fdfaf2"/>
+    <path d="M82 92 q6 -6 13 -2" fill="none"/>
+    <path d="M106 88 q7 -5 13 1" fill="none"/>
+    <circle cx="89" cy="101" r="2.6" fill="#3a2d1a" stroke="none"/>
+    <circle cx="112" cy="101" r="2.6" fill="#3a2d1a" stroke="none"/>
+    <path d="M97 108 q4 5 0 8" fill="none" stroke-width="2.4"/>
+    <path d="M88 122 q10 9 24 -2" fill="none"/>
+    <path d="M58 160 Q100 142 142 160 L156 232 Q100 244 44 232 Z" fill="rgba(160,122,52,.18)" stroke="#a07a34"/>
+    <path d="M70 156 Q100 142 130 156 L138 230 Q100 240 62 230 Z" fill="#fdfaf2"/>
+    <g stroke-width="2.4">
+      <path d="M84 172 q3 5 0 9"/><path d="M100 176 q3 5 0 9"/><path d="M116 172 q3 5 0 9"/>
+      <path d="M84 200 q3 5 0 9"/><path d="M100 204 q3 5 0 9"/><path d="M116 200 q3 5 0 9"/>
+    </g>
+    <g stroke="#a07a34">
+      <path d="M141 202 L160 148" stroke-width="4"/>
+      <circle cx="162" cy="141" r="7" fill="rgba(160,122,52,.25)"/>
+      <path d="M162 130 v-8 M158 126 h8" stroke-width="2.6"/>
+    </g>
+    <circle cx="142" cy="200" r="8.5" fill="#fdfaf2"/>
   </svg>
   <h2 data-i18n="del_bye_title">帳號已刪除</h2>
-  <p data-i18n="del_bye_body">你的觀劇紀錄、公開頁與網址名稱都已永久移除。謝謝你曾與 MusicalMap 一起看戲——舞台燈會一直為你留著。</p>
+  <p data-i18n="del_bye_body">你的音樂劇紀錄、帳號與公開頁都已永久移除。</p>
+  <p data-i18n="del_bye_body2">謝謝你曾與 MusicalMap 一起看戲——舞台燈會一直為你留著。</p>
   <div>
     <div class="fw-lyric" data-i18n="del_bye_lyric">“You’ll be back, soon you’ll see…”</div>
     <div class="fw-by" data-i18n="del_bye_lyric_by">— 喬治三世國王，《Hamilton》</div>
