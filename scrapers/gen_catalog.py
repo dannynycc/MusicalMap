@@ -219,6 +219,7 @@ ZH = {
     "billy elliot": "舞動人生", "hercules": "大力士", "romeo et juliette": "羅密歐與茱麗葉",
     "the book of mormon": "摩門經", "sunset boulevard": "日落大道",
     "love never dies": "愛無止盡",
+    "avenue q": "Q大道",
     # 2026-07-15 使用者抓漏(Shrek/NDdP/Jersey Boys 顯示無中文)後補一批有把握的
     "shrek the musical": "史瑞克", "shrek": "史瑞克",
     "notre dame de paris": "鐘樓怪人",   # 法語原版台灣巡演即以「鐘樓怪人」宣傳(2005/2015 台北)

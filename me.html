@@ -1243,7 +1243,7 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
   const sb=supabase.createClient(cfg.SUPABASE_URL,cfg.SUPABASE_ANON_KEY);
   window.mmSb=sb;
   showGate(T('gate_loading'),false);   // 立即用當前語言顯示 Loading(gate-msg 無 data-i18n,不會被 apply 蓋);getSession 回來再 showLogin/onSignedIn
-  const SYNC_VER='16';   // sightingToEntry 對映改版**或 catalog 顯示資料(zh/海報)更新**就 +1 → 強制所有 session 重新同步（v5=38 館英文名;v6=fav;v7=第二批 124 館英文名;v8=幣別 cur;v9=劇種傳統 tag;v10=座標修正 11 館;v11=启东/大上海新空间;v12=巡演 250 站場館;v13=+國父紀念館 2026-07-14;v14=Shrek 正名;v15=ZH 字典補 16 部;v16=場館剝城市後綴+臺字正名 2026-07-15）
+  const SYNC_VER='17';   // sightingToEntry 對映改版**或 catalog 顯示資料(zh/海報)更新**就 +1 → 強制所有 session 重新同步（v5=38 館英文名;v6=fav;v7=第二批 124 館英文名;v8=幣別 cur;v9=劇種傳統 tag;v10=座標修正 11 館;v11=启东/大上海新空间;v12=巡演 250 站場館;v13=+國父紀念館 2026-07-14;v14=Shrek 正名;v15=ZH 字典補 16 部;v16=場館剝城市後綴+臺字正名;v17=+Q大道 2026-07-15）
   const syncedKey=uid=>uid+'@'+SYNC_VER;
   let _syncing=false;
   // 同步失敗畫面:訊息 + 一顆「重試」按鈕(掛在 gate-msg 內);避免使用者只能重整或卡死
