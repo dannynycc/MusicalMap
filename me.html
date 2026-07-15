@@ -299,6 +299,7 @@ function normCountry(c){return CCNORM[c]||c||'';}   // 別名正規化：UK→Un
 function proxyImg(u){if(!u||!/^https?:\/\//i.test(u)||/(wsrv\.nl|weserv\.nl)/i.test(u))return u;
   if(/[?&]w=\d/i.test(u)||/\bi\d?\.wp\.com\b/i.test(u))return u;   // 已是縮圖 CDN(wp.com)或含寬度參數→已優化,不代理(且 wsrv 對這種 query 會 400)
   if(/(udnfunlife\.com)/i.test(u))return u;   // 已知擋外部代理的圖床(wsrv 會等上游逾時才 503):me 頁自己看,直連最快(2026-07-15)
+  if(/^https?:\/\/(my\.|www\.)?themusicalmap\.com\//i.test(u))return u;   // 自家站海報不代理:wsrv webp 會把純黑抬成(36,31,33)灰(2026-07-15 實測),且同源本就快
   return 'https://wsrv.nl/?url='+encodeURIComponent(u)+'&w=600&output=webp&q=82';}
 (function(){try{
   const log=JSON.parse(localStorage.getItem('mm-log')||'[]');

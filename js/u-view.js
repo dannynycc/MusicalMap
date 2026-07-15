@@ -81,6 +81,7 @@
   // 自訂海報常是原始大圖 → 走免費即時縮圖代理 wsrv.nl(寬600+webp)加速；catalog 官方圖不動。
   function proxyImg(u) { if (!u || !/^https?:\/\//i.test(u) || /(wsrv\.nl|weserv\.nl)/i.test(u)) return u;
     if (/[?&]w=\d/i.test(u) || /\bi\d?\.wp\.com\b/i.test(u)) return u;   // 已是縮圖 CDN/含寬度參數 → 不代理
+    if (/^https?:\/\/(my\.|www\.)?themusicalmap\.com\//i.test(u)) return u;   // 自家站海報不代理:wsrv webp 把純黑抬成灰(2026-07-15 實測)
     return 'https://wsrv.nl/?url=' + encodeURIComponent(u) + '&w=600&output=webp&q=82'; }
   function resolvePoster(s) {
     if (s.poster_override && safeUrl(s.poster_override)) return proxyImg(s.poster_override);
