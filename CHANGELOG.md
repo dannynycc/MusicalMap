@@ -11,6 +11,14 @@
 
 ---
 
+## [v2.42.5] - 2026-07-15 14:10
+
+### 修輸入端搜尋:查詢比劇名長=永遠 0 結果(使用者搜「Shrek The Musical」抓包)
+
+- **根因**:`scoreWork` 只查「劇名 hay 包含查詢字」——查詢帶後綴(Shrek **The Musical**/史瑞克**音樂劇**)比劇名長就必 0 分。資料本身沒缺:shrek 07-12 起就在 catalog(title+search 欄+utiki 海報),台北場次(udn P1AEBJG5,2026-11-20~29)也在地圖上。
+- **修法**(me-input.html):①查詢剝常見後綴(the musical/musical/音樂劇/音乐剧/ミュージカル)再比對;②反向包含——整個劇名含在查詢裡也算中(55 分,hay≥4 字或 CJK≥2 字才計,防短字誤命中)。
+- 驗證:真頁面 e2e 11 案例 PASS(Shrek The Musical/shrek musical/史瑞克音樂劇 3 新案例+歌劇魅影/女巫前傳/Les Misérables/西貢 等 8 回歸);泛詞「音樂劇」結果 4 筆無爆量。
+
 ## [v2.42.4] - 2026-07-15 13:09
 
 ### 告別頁 sweet spot:尺寸改 vh 縮放,任何視窗高度零卷軸(使用者抓包 v2.42.3 放大後溢出)

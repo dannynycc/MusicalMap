@@ -441,8 +441,20 @@ function buildCatalog(){
   window.MM_VENUES=vc.venues||[]; window.MM_CITIES=vc.cities||[];
   MM_READY=true;
 }
-function scoreWork(q,e){const nq=norm(q);if(!nq)return 0;let best=0;
-  for(const h of e.hay){if(h===nq)best=Math.max(best,100);else if(h.startsWith(nq))best=Math.max(best,80);else if(h.includes(nq))best=Math.max(best,60);}
+function scoreWork(q,e){const nq=norm(q);if(!nq)return 0;
+  // 剝常見後綴:搜「Shrek The Musical」「史瑞克音樂劇」也要命中(2026-07-15 使用者搜全名 0 結果)
+  const nq2=nq.replace(/(themusical|musical|音樂劇|音乐剧|ミュージカル)$/,'');
+  const qs=(nq2&&nq2!==nq)?[nq,nq2]:[nq];
+  let best=0;
+  for(const h of e.hay){
+    for(const n of qs){
+      if(h===n)best=Math.max(best,100);
+      else if(h.startsWith(n))best=Math.max(best,80);
+      else if(h.includes(n))best=Math.max(best,60);
+    }
+    // 查詢比劇名長(整個劇名含在查詢裡)也算中;短 hay 擋掉避免誤命中,CJK 兩字即有意義
+    if(nq.length>h.length&&(h.length>=4||(h.length>=2&&/[぀-ヿ一-鿿]/.test(h)))&&nq.includes(h))best=Math.max(best,55);
+  }
   return best;}
 function search(q){return INDEX.map(e=>({w:e.w,s:scoreWork(q,e)})).filter(x=>x.s>0).sort((a,b)=>b.s-a.s).slice(0,8);}
 function prodSummary(w){const cities=[...new Set(w.prods.map(p=>p.city).filter(Boolean))];return cities.slice(0,3).join(' · ')+(cities.length>3?` +${cities.length-3}`:'');}
