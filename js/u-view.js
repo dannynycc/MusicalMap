@@ -24,6 +24,24 @@
     if(/^(kaohsiung|高雄)/i.test(c)) return '高雄';
     return c; }
   window.MMFoldCity = foldCity;
+  // 場館名尾端帶「, 城市」「- NY」等冗餘後綴→顯示層剝除;與 me.html/pipeline 同規則(2026-07-15)
+  // 官方名本身含城市的(Royal Opera House, Mumbai)白名單保留=忠實呈現
+  window.MMStripCitySuffix = window.MMStripCitySuffix || function(v, city){ if(!v||!city) return v;
+    if(/^(the )?royal opera house, mumbai$/i.test(String(v).trim())) return v;
+    const ABBR={NY:'New York',NYC:'New York',LA:'Los Angeles',SF:'San Francisco',DC:'Washington'};
+    const m=String(v).match(/\s*[,\-–—]\s*([A-Za-z .']+)$/); if(!m) return v;
+    const suf=m[1].trim();
+    if(suf.toLowerCase()===String(city).toLowerCase()||ABBR[suf.toUpperCase()]===city){
+      const out=String(v).slice(0,m.index).replace(/[\s,\-–—]+$/,'');
+      return out||v;
+    }
+    return v; };
+  // 票價帶貨幣符號(與 me.html 同對照)
+  window.MMFmtPrice = window.MMFmtPrice || function(p,c){ if(p==null||p==='') return '';
+    const SYM={TWD:'NT$',USD:'$',GBP:'£',EUR:'€',JPY:'¥',KRW:'₩',CNY:'¥',HKD:'HK$',AUD:'A$',CAD:'C$',SGD:'S$',NZD:'NZ$',MXN:'MX$',BRL:'R$',CHF:'CHF',SEK:'kr',NOK:'kr',DKK:'kr',CZK:'Kč',HUF:'Ft',PLN:'zł'};
+    const SUF=new Set(['kr','Kč','Ft','zł','CHF']);
+    const s=SYM[c]; if(!s) return c?`${p} ${c}`:String(p);
+    return SUF.has(s)?`${p} ${s}`:`${s}${p}`; };
   function normCountry(c) { return CCNORM[c] || c || ''; }
 
   function safeUrl(u) {
@@ -52,7 +70,7 @@
   const _HALL = new Set(['大劇院', '中劇院', '小劇院', '大劇場', '中劇場', '小劇場', '音樂廳', '演奏廳', '戲劇廳', '歌劇廳', '演藝廳', '表演廳', '實驗劇場', '排練場', '大廳', '小廳']);
   const venueZh = (v) => { if (!v) return v || '';
     if (EN_UI) { const en = String(v).split(/\s+/).filter((x) => !_cjk.test(x)).join(' ').trim(); return en || String(v); }   // en 模式抽英文部分;純中日韓館名無英文名→保留原文
-    const t = String(v).split(/\s+/).filter((x) => _cjk.test(x)); if (!t.length) return MS(v); const core = t.filter((x) => !_HALL.has(x)); return MS((core.length ? core : t).join(' ').replace(/臺/g, '台')); };
+    const t = String(v).split(/\s+/).filter((x) => _cjk.test(x)); if (!t.length) return MS(v); const core = t.filter((x) => !_HALL.has(x)); return MS((core.length ? core : t).join(' ').replace(/^台(?=[北中南東灣])/, '臺')); };   // 正字統一「臺」(官方名);只動台北/中/南/東/灣開頭,不動煙台等中國地名
 
   /* ---- catalog-driven poster + zh-name resolution (mirrors js/u.js) ---- */
   let POSTER_BY_TITLE = {};   // title(lower) -> poster url
@@ -312,7 +330,7 @@
     document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
     /* ---------- MAP ---------- */
-    const CITYZH = {"Aarhus": "奧胡斯", "Adelaide": "阿得雷德", "Aichi": "愛知", "Albuquerque": "阿布奎基", "Amsterdam": "阿姆斯特丹", "Antwerp": "安特衛普", "Atlanta": "亞特蘭大", "Auckland": "奧克蘭", "Austin": "奧斯汀", "Baltimore": "巴爾的摩", "Barcelona": "巴塞隆納", "Beijing": "北京", "Belfast": "貝爾法斯特", "Berlin": "柏林", "Birmingham": "伯明罕", "Boston": "波士頓", "Brighton": "布萊頓", "Brisbane": "布里斯本", "Bristol": "布里斯托", "Brussels": "布魯塞爾", "Budapest": "布達佩斯", "Buenos Aires": "布宜諾斯艾利斯", "Buffalo": "水牛城", "Calgary": "卡加利", "Cambridge": "劍橋", "Cardiff": "卡地夫", "Changsha": "長沙", "Changzhou": "常州", "Charlotte": "夏洛特", "Chengdu": "成都", "Chiayi": "嘉義", "Chicago": "芝加哥", "Chongqing": "重慶", "Cincinnati": "辛辛那提", "Cleveland": "克里夫蘭", "Cologne": "科隆", "Columbus": "哥倫布", "Copenhagen": "哥本哈根", "Daegu": "大邱", "Dallas": "達拉斯", "Denver": "丹佛", "Detroit": "底特律", "Dongguan": "東莞", "Dubai": "杜拜", "Dublin": "都柏林", "Edinburgh": "愛丁堡", "Edmonton": "愛德蒙頓", "Firenze": "佛羅倫斯", "Fort Lauderdale": "羅德岱堡", "Fort Worth": "沃斯堡", "Frankfurt": "法蘭克福", "Fukuoka": "福岡", "Fuzhou": "福州", "Ghent": "根特", "Gifu": "岐阜", "Glasgow": "格拉斯哥", "Gothenburg": "哥德堡", "Grand Rapids": "大急流城", "Guangzhou": "廣州", "Göteborg": "哥德堡", "Haikou": "海口", "Hamburg": "漢堡", "Hangzhou": "杭州", "Harbin": "哈爾濱", "Hefei": "合肥", "Helsinki": "赫爾辛基", "Hengyang": "衡陽", "Hiroshima": "廣島", "Houston": "休士頓", "Hsinchu": "新竹", "Hyogo": "兵庫", "Jiaxing": "嘉興", "Jinan": "濟南", "Kanagawa": "神奈川", "Kansas City": "堪薩斯城", "Kaohsiung": "高雄", "Kunshan": "崑山", "Köln": "科隆", "København": "哥本哈根", "København V": "哥本哈根", "Langfang": "廊坊", "Las Vegas": "拉斯維加斯", "Leeds": "里茲", "Liverpool": "利物浦", "London": "倫敦", "Los Angeles": "洛杉磯", "Louisville": "路易斯維爾", "Lyon": "里昂", "Madison": "麥迪遜", "Madrid": "馬德里", "Maihama": "舞濱", "Manchester": "曼徹斯特", "Melbourne": "墨爾本", "Memphis": "曼菲斯", "Mexico City": "墨西哥市", "Miami": "邁阿密", "Milano": "米蘭", "Milwaukee": "密爾瓦基", "Minneapolis": "明尼阿波利斯", "Monterrey": "蒙特雷", "Montreal": "蒙特婁", "Munich": "慕尼黑", "México": "墨西哥市", "München": "慕尼黑", "Nagoya": "名古屋", "Nanchang": "南昌", "Nanjing": "南京", "Nanning": "南寧", "Nantong": "南通", "Napoli": "拿坡里", "Nashville": "納許維爾", "New Orleans": "紐奧良", "New Taipei": "新北", "New York": "紐約", "Newcastle": "紐卡索", "Ningbo": "寧波", "Nottingham": "諾丁罕", "Oklahoma City": "奧克拉荷馬市", "Omaha": "奧馬哈", "Orlando": "奧蘭多", "Osaka": "大阪", "Oslo": "奧斯陸", "Ottawa": "渥太華", "Oxford": "牛津", "Padova": "帕多瓦", "Paris": "巴黎", "Penghu": "澎湖", "Perth": "伯斯", "Philadelphia": "費城", "Phoenix": "鳳凰城", "Pingtung": "屏東", "Pittsburgh": "匹茲堡", "Portland": "波特蘭", "Prague": "布拉格", "Praha": "布拉格", "Providence": "普羅維登斯", "Qidong": "啓東", "Qingdao": "青島", "Quzhou": "衢州", "Richmond": "里奇蒙", "Rio de Janeiro": "里約熱內盧", "Roma": "羅馬", "Rotterdam": "鹿特丹", "Salt Lake City": "鹽湖城", "San Antonio": "聖安東尼奧", "San Diego": "聖地牙哥", "San Francisco": "舊金山", "San Jose": "聖荷西", "Sapporo": "札幌", "Seattle": "西雅圖", "Seoul": "首爾", "Shanghai": "上海", "Sheffield": "雪菲爾", "Shenyang": "瀋陽", "Shenzhen": "深圳", "Singapore": "新加坡", "St. Louis": "聖路易", "Stockholm": "斯德哥爾摩", "Stuttgart": "斯圖加特", "Suzhou": "蘇州", "Swansea": "斯旺西", "Sydney": "雪梨", "São Paulo": "聖保羅", "Taichung": "台中", "Taipei": "台北", "Taitung": "台東", "Taiyuan": "太原", "Taizhou": "台州", "Takarazuka (兵庫)": "寶塚", "Tampa": "坦帕", "Tianjin": "天津", "Tokyo": "東京", "Tokyo (日比谷)": "東京", "Torino": "杜林", "Toronto": "多倫多", "Utrecht": "烏特勒支", "Vancouver": "溫哥華", "Vienna": "維也納", "Warsaw": "華沙", "Warszawa": "華沙", "Washington": "華盛頓", "Weifang": "濰坊", "Wellington": "威靈頓", "Wien": "維也納", "Wimbledon": "溫布頓", "Wuhan": "武漢", "Wuxi": "無錫", "Xi'an": "西安", "Yantai": "煙台", "Yinchuan": "銀川", "Yokohama": "橫濱", "York": "約克", "Yunlin": "雲林", "Zhengzhou": "鄭州", "Zhuhai": "珠海", "Zhuji": "諸暨", "Zibo": "淄博", "Zurich": "蘇黎世", "Zürich": "蘇黎世", "连云港": "連雲港"};
+    const CITYZH = {"Aarhus": "奧胡斯", "Adelaide": "阿得雷德", "Aichi": "愛知", "Albuquerque": "阿布奎基", "Amsterdam": "阿姆斯特丹", "Antwerp": "安特衛普", "Atlanta": "亞特蘭大", "Auckland": "奧克蘭", "Austin": "奧斯汀", "Baltimore": "巴爾的摩", "Barcelona": "巴塞隆納", "Beijing": "北京", "Belfast": "貝爾法斯特", "Berlin": "柏林", "Birmingham": "伯明罕", "Boston": "波士頓", "Brighton": "布萊頓", "Brisbane": "布里斯本", "Bristol": "布里斯托", "Brussels": "布魯塞爾", "Budapest": "布達佩斯", "Buenos Aires": "布宜諾斯艾利斯", "Buffalo": "水牛城", "Calgary": "卡加利", "Cambridge": "劍橋", "Cardiff": "卡地夫", "Changsha": "長沙", "Changzhou": "常州", "Charlotte": "夏洛特", "Chengdu": "成都", "Chiayi": "嘉義", "Chicago": "芝加哥", "Chongqing": "重慶", "Cincinnati": "辛辛那提", "Cleveland": "克里夫蘭", "Cologne": "科隆", "Columbus": "哥倫布", "Copenhagen": "哥本哈根", "Daegu": "大邱", "Dallas": "達拉斯", "Denver": "丹佛", "Detroit": "底特律", "Dongguan": "東莞", "Dubai": "杜拜", "Dublin": "都柏林", "Edinburgh": "愛丁堡", "Edmonton": "愛德蒙頓", "Firenze": "佛羅倫斯", "Fort Lauderdale": "羅德岱堡", "Fort Worth": "沃斯堡", "Frankfurt": "法蘭克福", "Fukuoka": "福岡", "Fuzhou": "福州", "Ghent": "根特", "Gifu": "岐阜", "Glasgow": "格拉斯哥", "Gothenburg": "哥德堡", "Grand Rapids": "大急流城", "Guangzhou": "廣州", "Göteborg": "哥德堡", "Haikou": "海口", "Hamburg": "漢堡", "Hangzhou": "杭州", "Harbin": "哈爾濱", "Hefei": "合肥", "Helsinki": "赫爾辛基", "Hengyang": "衡陽", "Hiroshima": "廣島", "Houston": "休士頓", "Hsinchu": "新竹", "Hyogo": "兵庫", "Jiaxing": "嘉興", "Jinan": "濟南", "Kanagawa": "神奈川", "Kansas City": "堪薩斯城", "Kaohsiung": "高雄", "Kunshan": "崑山", "Köln": "科隆", "København": "哥本哈根", "København V": "哥本哈根", "Langfang": "廊坊", "Las Vegas": "拉斯維加斯", "Leeds": "里茲", "Liverpool": "利物浦", "London": "倫敦", "Los Angeles": "洛杉磯", "Louisville": "路易斯維爾", "Lyon": "里昂", "Madison": "麥迪遜", "Madrid": "馬德里", "Maihama": "舞濱", "Manchester": "曼徹斯特", "Melbourne": "墨爾本", "Memphis": "曼菲斯", "Mexico City": "墨西哥市", "Miami": "邁阿密", "Milano": "米蘭", "Milwaukee": "密爾瓦基", "Minneapolis": "明尼阿波利斯", "Monterrey": "蒙特雷", "Montreal": "蒙特婁", "Munich": "慕尼黑", "México": "墨西哥市", "München": "慕尼黑", "Nagoya": "名古屋", "Nanchang": "南昌", "Nanjing": "南京", "Nanning": "南寧", "Nantong": "南通", "Napoli": "拿坡里", "Nashville": "納許維爾", "New Orleans": "紐奧良", "New Taipei": "新北", "New York": "紐約", "Newcastle": "紐卡索", "Ningbo": "寧波", "Nottingham": "諾丁罕", "Oklahoma City": "奧克拉荷馬市", "Omaha": "奧馬哈", "Orlando": "奧蘭多", "Osaka": "大阪", "Oslo": "奧斯陸", "Ottawa": "渥太華", "Oxford": "牛津", "Padova": "帕多瓦", "Paris": "巴黎", "Penghu": "澎湖", "Perth": "伯斯", "Philadelphia": "費城", "Phoenix": "鳳凰城", "Pingtung": "屏東", "Pittsburgh": "匹茲堡", "Portland": "波特蘭", "Prague": "布拉格", "Praha": "布拉格", "Providence": "普羅維登斯", "Qidong": "啓東", "Qingdao": "青島", "Quzhou": "衢州", "Richmond": "里奇蒙", "Rio de Janeiro": "里約熱內盧", "Roma": "羅馬", "Rotterdam": "鹿特丹", "Salt Lake City": "鹽湖城", "San Antonio": "聖安東尼奧", "San Diego": "聖地牙哥", "San Francisco": "舊金山", "San Jose": "聖荷西", "Sapporo": "札幌", "Seattle": "西雅圖", "Seoul": "首爾", "Shanghai": "上海", "Sheffield": "雪菲爾", "Shenyang": "瀋陽", "Shenzhen": "深圳", "Singapore": "新加坡", "St. Louis": "聖路易", "Stockholm": "斯德哥爾摩", "Stuttgart": "斯圖加特", "Suzhou": "蘇州", "Swansea": "斯旺西", "Sydney": "雪梨", "São Paulo": "聖保羅", "Taichung": "臺中", "Taipei": "臺北", "Taitung": "臺東", "Taiyuan": "太原", "Taizhou": "台州", "Takarazuka (兵庫)": "寶塚", "Tampa": "坦帕", "Tianjin": "天津", "Tokyo": "東京", "Tokyo (日比谷)": "東京", "Torino": "杜林", "Toronto": "多倫多", "Utrecht": "烏特勒支", "Vancouver": "溫哥華", "Vienna": "維也納", "Warsaw": "華沙", "Warszawa": "華沙", "Washington": "華盛頓", "Weifang": "濰坊", "Wellington": "威靈頓", "Wien": "維也納", "Wimbledon": "溫布頓", "Wuhan": "武漢", "Wuxi": "無錫", "Xi'an": "西安", "Yantai": "煙台", "Yinchuan": "銀川", "Yokohama": "橫濱", "York": "約克", "Yunlin": "雲林", "Zhengzhou": "鄭州", "Zhuhai": "珠海", "Zhuji": "諸暨", "Zibo": "淄博", "Zurich": "蘇黎世", "Zürich": "蘇黎世", "连云港": "連雲港"};
     function cityName(c) { if (EN_UI || !c) return c || ''; const base = String(c).replace(/,\s*[A-Za-z.]{2,}$/, '').trim(); return MS(CITYZH[c] || CITYZH[base] || c); }
     function cityHasZh(c) { return cityName(c) !== c; }
     // 城邦 city===country(翻譯後)只顯示一次,避免「新加坡 · 新加坡」
@@ -536,7 +554,7 @@
       ];
       if (s.time) rows.push(`<dt>${esc(T('dt_time'))}</dt><dd>${esc(s.time)}</dd>`);
       if (s.seat) rows.push(`<dt>${esc(T('dt_seat'))}</dt><dd>${esc(s.seat)}</dd>`);
-      if (s.price) rows.push(`<dt>${esc(T('dt_price'))}</dt><dd>${esc(s.price)} ${esc(s.cur || '')}</dd>`);
+      if (s.price) rows.push(`<dt>${esc(T('dt_price'))}</dt><dd>${esc(window.MMFmtPrice ? window.MMFmtPrice(s.price, s.cur) : `${s.price} ${s.cur || ''}`)}</dd>`);
       const durl = s.url && safeUrl(s.url);
       if (durl) rows.push(`<dt>${esc(T('dt_link'))}</dt><dd><a href="${esc(durl)}" target="_blank" rel="noopener noreferrer" style="color:#e3b23c;text-decoration:none;border-bottom:1px solid currentColor">${esc((durl.match(/^https?:\/\/([^\/]+)/) || [])[1] || T('dt_open_link'))} ↗</a></dd>`);
       document.getElementById('dt-dl').innerHTML = rows.join('');
@@ -616,7 +634,7 @@
         // → 洩漏訪客 IP/Referer,可被拿來當追蹤信標(牴觸本站不追蹤立場)。owner 自己的 me.html 不受此限。
         poster: resolvePoster(row), posterFull: resolvePoster(row), posterAlt: altPoster(row), posterFit: 'cover', posterBg: null,
         date: partialDate(row.seen_date, prec), precision: prec, time: '',
-        venue: foldVenue(row.venue || ''), city: foldCity(row.city || ''), country: normCountry(row.country),
+        venue: window.MMStripCitySuffix(foldVenue(row.venue || ''), row.city || ''), city: foldCity(row.city || ''), country: normCountry(row.country),
         lat: row.lat, lng: row.lng, seat: row.seat || '',
         price: (row.price != null ? String(row.price) : ''), cur: row.currency || '',
         rating: row.rating || 0, fav: !!row.fav, note: '', url: row.url || '', logged: false,   // fav 由 public_sightings RPC 帶出(add_fav.sql)

@@ -11,6 +11,15 @@
 
 ---
 
+## [v2.42.8] - 2026-07-15 15:15
+
+### 三修:場館剝城市後綴(含官方名白名單)/臺字正名/票價貨幣符號(使用者連抓三漏)
+
+- **場館城市後綴**:「Capitol Theatre, Sydney」「Imperial Theatre - NY」等場館名自帶城市(ATG/TM 慣例,city 另有欄位)——pipeline(build_shows+gen_catalog 含 discovered 檔)與顯示層(me.html/u-view)四處同規則剝除;縮寫對照 NY/NYC/LA/SF/DC。全庫 29 館+57 筆演出清掉。**官方名本身含城市的白名單保留**(Royal Opera House, Mumbai;使用者指示忠實呈現)。顯示層同步剝既有紀錄,編輯存檔時順帶洗乾淨雲端舊值。
+- **臺字正名**:venueZh 原本把「臺」全轉「台」(與城市摺疊的「臺中」打架=同卡臺/台混用)。改為只把台北/中/南/東/灣開頭正名為「臺」(不動煙台等中國地名);CITYZH 字典 台中/台北/台東→臺字(me.html+u-view 兩份)。
+- **票價貨幣符號**:60.75 GBP→£60.75(MMFmtPrice,21 幣別對照同 me-input 的 CUR_INFO;北歐/東歐幣別符號後置;未知幣別回退「金額 代碼」)。me.html 詳情+u-view 公開頁兩處。
+- me.html `SYNC_VER` 16。顯示層 e2e 13 案例+搜尋回歸 11 案例全 PASS。
+
 ## [v2.42.7] - 2026-07-15 14:41
 
 ### 修編輯卡重複 tag+ZH 譯名字典補 16 部(使用者連抓兩漏)

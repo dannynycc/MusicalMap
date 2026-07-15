@@ -69,6 +69,28 @@ def _norm(title):
     return t
 
 
+# 場館名尾端城市後綴剝除(與 gen_catalog.py/前端顯示層同規則)
+_VENUE_CITY_ABBR = {"NY": "New York", "NYC": "New York", "LA": "Los Angeles", "SF": "San Francisco", "DC": "Washington"}
+# 官方名稱本身就含城市的場館(忠實呈現,不剝;使用者指示 2026-07-15)
+_CITY_SUFFIX_OFFICIAL = {"the royal opera house, mumbai", "royal opera house, mumbai"}
+
+
+def _strip_city_suffix(venue, city):
+    """'Capitol Theatre, Sydney'(city=Sydney)→'Capitol Theatre';官方名含城市的(白名單)保留。"""
+    if not venue or not city:
+        return venue
+    if venue.strip().lower() in _CITY_SUFFIX_OFFICIAL:
+        return venue
+    m = re.search(r"\s*[,\-–—]\s*([A-Za-z .']+)$", venue)
+    if not m:
+        return venue
+    suf = m.group(1).strip()
+    if suf.lower() == city.lower() or _VENUE_CITY_ABBR.get(suf.upper()) == city:
+        out = venue[: m.start()].rstrip(" ,-–—")
+        return out or venue
+    return venue
+
+
 # ─── Canonical works registry (data/works.json) ────────────────────────────────
 # ONE source of truth for tradition tag + cross-language de-dup + bilingual display.
 # Every alias/canonical is indexed by _norm() so any title a work appears under
@@ -1280,6 +1302,10 @@ def main():
         # 城市名(2026-07-10 稽核 10 筆)。改存 None,前端條件渲染。
         if s.get("venue") and s["venue"] == s.get("city"):
             s["venue"] = None
+        # 場館名尾端帶「, 城市」「- NY」等冗餘後綴(ATG/TM 慣例;city 另有欄位)→剝除
+        # (2026-07-15 使用者抓包 Capitol Theatre, Sydney / Imperial Theatre - NY;全庫 57 筆)
+        if s.get("venue") and s.get("city"):
+            s["venue"] = _strip_city_suffix(s["venue"], s["city"])
         s["tag"] = classify_tag(s["group"], s.get("source"), s.get("country"), s.get("tag_hint"))
         # TM 常全大寫列名("THE ADDAMS FAMILY"):命中 registry 就用 canonical 正名;
         # 沒命中的(匈/捷原文慣例大寫)不動

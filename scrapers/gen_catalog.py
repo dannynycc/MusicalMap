@@ -179,6 +179,27 @@ CURATED = [
     ("Dewan Sri Pinang (檳城大會堂)", "George Town", "Malaysia", 5.421764, 100.340649),
 ]
 
+# 場館名尾端城市後綴剝除(與 build_shows.py/前端顯示層同規則;2026-07-15 使用者抓包 29 館)
+_VENUE_CITY_ABBR = {"NY": "New York", "NYC": "New York", "LA": "Los Angeles", "SF": "San Francisco", "DC": "Washington"}
+# 官方名稱本身就含城市的場館(忠實呈現,不剝;使用者指示 2026-07-15)
+_CITY_SUFFIX_OFFICIAL = {"the royal opera house, mumbai", "royal opera house, mumbai"}
+
+
+def _strip_city_suffix(venue, city):
+    if not venue or not city:
+        return venue
+    if venue.strip().lower() in _CITY_SUFFIX_OFFICIAL:
+        return venue
+    m = re.search(r"\s*[,\-–—]\s*([A-Za-z .']+)$", venue)
+    if not m:
+        return venue
+    suf = m.group(1).strip()
+    if suf.lower() == city.lower() or _VENUE_CITY_ABBR.get(suf.upper()) == city:
+        out = venue[: m.start()].rstrip(" ,-–—")
+        return out or venue
+    return venue
+
+
 # Confident, standard Chinese names (searchable alongside English). Only well-
 # established translations — uncertain ones are intentionally omitted, not guessed.
 ZH = {
@@ -264,6 +285,7 @@ def main():
         if not name or lat is None:
             return
         name = re.sub(r"\s{2,}", " ", htmllib.unescape(name)).strip()  # fix &#039; / &amp;
+        name = _strip_city_suffix(name, city or "")  # 「, Sydney」「- NY」等冗餘城市後綴(2026-07-15)
         city = (city or "").strip()
         nk = norm_venue(name, city)
         if not nk:
@@ -389,6 +411,7 @@ def main():
                 dup["search"] = (dup["search"] + " " + blob).strip()
                 continue
             display = f"{en} {native}".strip() if (en and native) else (en or native)
+            display = _strip_city_suffix(display, city)  # discovered 檔也剝城市後綴(2026-07-15)
             rec = {"name": re.sub(r"\s{2,}", " ", display).strip(), "city": city,
                    "country": country, "lat": v["lat"], "lng": v["lng"], "search": blob}
             venues.append(rec); idx.setdefault(ckey(city), []).append(rec); dn += 1
