@@ -33,6 +33,21 @@ const jsonLd = (obj) => JSON.stringify(obj)
 // 早上 10:15-12:15 的 my./主站事件皆由它入帳)。手工再埋反而有雙重注入風險。統計設定=WA 站點選「Enable(自動注入)」。
 const withBeacon = (html) => html;   // 保留掛點:若日後要 Worker 端注入,改這裡一處即可
 
+// 安全 header:my. 子網域全部路徑經本 Worker 自組 Response,Cloudflare Pages 的 _headers
+// 對這些回應無效(2026-07-15 實測 my. 的 X-Frame-Options=None)→ 必須在此補齊,否則
+// me/settings 的即時公開開關/改名按鈕可被外站 iframe 疊層點擊劫持(frame-ancestors 無法用 <meta>,只能靠 HTTP header)。
+function secHeaders(path) {
+  const p = (path || '').toLowerCase();
+  const base = { 'X-Content-Type-Options': 'nosniff', 'Referrer-Policy': 'no-referrer' };
+  if (p === '/' || p === '' || /\/(me|settings)\.html$/.test(p)) {
+    return { ...base, 'X-Frame-Options': 'DENY', 'Content-Security-Policy': "frame-ancestors 'none'" };
+  }
+  if (/\/me-input\.html$/.test(p)) {   // 需被 me.html 同源 iframe 嵌入
+    return { ...base, 'X-Frame-Options': 'SAMEORIGIN', 'Content-Security-Policy': "frame-ancestors 'self'" };
+  }
+  return base;   // 公開頁/資源:nosniff+referrer,不限制 iframe(公開頁本就可被嵌)
+}
+
 async function sbGet(path) {
   const r = await fetch(SUPABASE_URL + path, { headers: { apikey: ANON_KEY } });
   return r.ok ? r.json() : null;
@@ -60,7 +75,7 @@ export default {
     if (path === '/' || path === '') {
       const shell = await fetch(GH_ORIGIN + '/me.html');
       return new Response(withBeacon(await shell.text()), {
-        headers: { 'content-type': 'text/html; charset=utf-8', 'cache-control': 'private, no-store' },
+        headers: { 'content-type': 'text/html; charset=utf-8', 'cache-control': 'private, no-store', ...secHeaders('/me.html') },   // 根=me.html app,補 clickjacking 防護
       });
     }
 
@@ -72,6 +87,7 @@ export default {
       const r = await fetch(GH_ORIGIN + path + url.search);
       const h = new Headers(r.headers);
       h.set('cache-control', 'public, max-age=600');
+      for (const [k, v] of Object.entries(secHeaders(path))) h.set(k, v);   // settings.html→DENY、me-input.html→SAMEORIGIN、資源→nosniff(2026-07-15)
       // .html 頁(如 iframe 的 me-input.html)也注入統計碼;其他資源原樣串流
       if (/\.html$/.test(path)) {
         return new Response(withBeacon(await r.text()), { status: r.status, headers: h });
@@ -96,7 +112,7 @@ export default {
       const owner = await fetch(GH_ORIGIN + '/me.html');
       return new Response(withBeacon(await owner.text()), {
         status: 200,
-        headers: { 'content-type': 'text/html; charset=utf-8', 'cache-control': 'private, no-store' },
+        headers: { 'content-type': 'text/html; charset=utf-8', 'cache-control': 'private, no-store', ...secHeaders('/me.html') },   // 編輯版=me.html,強制 DENY(2026-07-15)
       });
     }
 
@@ -179,7 +195,7 @@ export default {
       status: display ? 200 : 404,   // 查無 → 404(頁面本身會顯示 not-found 空狀態)
       // Vary: Cookie:同網址依 mm_owner 出不同版面,瀏覽器快取必須跟著 cookie 區分,
       // 否則本人登入後可能拿到快取的公開版(反之亦然)。
-      headers: { 'content-type': 'text/html; charset=utf-8', 'cache-control': 'public, max-age=300', 'vary': 'Cookie' },
+      headers: { 'content-type': 'text/html; charset=utf-8', 'cache-control': 'public, max-age=300', 'vary': 'Cookie', ...secHeaders(path) },   // 公開頁:nosniff+referrer(不 DENY,公開頁可被嵌)
     });
   },
 };

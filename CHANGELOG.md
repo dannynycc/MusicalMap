@@ -11,6 +11,27 @@
 
 ---
 
+## [v2.44.4] - 2026-07-15 20:23
+
+### 地毯式安全審計(三 agent 新角度+本人實測):補齊 v2.44.3 未堵的孿生漏洞+Worker clickjacking
+
+使用者要求警察式地毯搜索。三 agent(供應鏈CDN-SRI+CI / Supabase全表RLS+OTP+Unicode / Worker-CORS-header-重導)+本人對正式 DB/站台實測。
+
+**【高危,已修+實測】v2.44.3 handle 鎖寫有孿生漏洞**:二審 agent 抓到我只 revoke UPDATE 不夠——攻擊者可「DELETE 自己 profile 列 + INSERT 新列帶 handle='admin'」繞過(RLS 只驗 id=auth.uid() 不驗 handle 內容)。**實測確認**:danny 有 profile DELETE 權(0 列探測)→ 孿生路徑成立。
+- 修法:`revoke delete on profiles`(已對正式 DB 執行)。堵「先刪自己」步驟;INSERT 保留(upsert 需要)但 id 恆存在→衝突→走已擋的 update(handle);delete_my_account 是 DEFINER 不受影響。
+- 三向實測驗證:delete permission denied + insert duplicate key(繞過已堵)+ 公開開關/改名/牆 28 筆全正常。
+- **教訓**:v2.44.3 我自以為修好,二審才發現孿生路徑——單一修補要問「同 policy 的其他動作(INSERT/DELETE)是否也需堵」。
+
+**【高危,已修】Worker clickjacking**:實測 my. 子網域 `X-Frame-Options=None`——Cloudflare Pages 的 `_headers` 對「Worker 自組的 Response」無效,而 my. 全路徑經 Worker,根路徑 `/`(每天用的入口 me.html)與 mm_owner 編輯版都裸奔 → 公開開關/改名可被外站 iframe 疊層點擊劫持。
+- 修法:Worker 加 `secHeaders()`,4 個回 HTML 的 Response 全補(me/settings→DENY+frame-ancestors none、me-input→SAMEORIGIN、公開頁→nosniff)。**需手動部署 Worker(CI 只部署 Pages 不部署 Worker)**。
+
+**實測查核為安全(供對照)**:public_sightings 對 show_price/seat=false 遮罩正確(seat/price/note 全 null)、其他表(ratings/loves/shows 不存在)、handle_aliases anon 讀 0 列、Unicode 同形字被 ASCII-only 格式擋、無金鑰洩漏、釘版 CDN 都有 SRI、無 pull_request_target、無開放重導、無 SSRF、CORS 無過鬆、delete_my_account 只刪本人。
+
+**評估後列為待辦(需產品決策或改 CI,不擅自動)**:
+- 供應鏈:CI `wrangler-action@v3` 浮動 tag(持 CF token)建議釘 SHA;`pip install` 未釘版本建議加 requirements+hash(改 CI 有弄壞每日 cron 風險,建議另批謹慎處理)。
+- profiles 匿名可全表枚舉公開 handle/display_name(產品立場:公開=可抓;敏感欄已遮罩,純無節流)。
+- venues created_by 可為 null 灌無歸屬列+無 UPDATE/DELETE policy(眾包表只進不出,需清理 RPC 設計)。
+
 ## [v2.44.3] - 2026-07-15 20:04
 
 ### 安全深挖:實測確認並修補「handle 直寫繞過」高危漏洞 + clickjacking 防護

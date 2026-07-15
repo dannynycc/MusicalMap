@@ -15,6 +15,11 @@
 revoke update on public.profiles from authenticated, anon;
 grant update(is_public, show_price, show_seat, display_name) on public.profiles to authenticated;
 -- handle / id / created_at 不在授權清單 → 只能走 rename_handle RPC,不可直寫竄改。
+-- 孿生路徑(2026-07-15 二審實測確認):只 revoke update 不夠——可「DELETE 自己 profile + INSERT 新列帶 handle='admin'」
+-- 繞過(RLS 只驗 id=auth.uid() 不驗 handle 內容)。收 DELETE 權堵住「先刪自己」步驟;
+-- INSERT 保留(前端 upsert 對既有列走 on-conflict-UPDATE 需要它,且 id 恆存在→insert 恆衝突→走 update(handle) 已被擋);
+-- delete_my_account 是 SECURITY DEFINER,刪帳號不受此 revoke 影響。
+revoke delete on public.profiles from authenticated, anon;
 
 -- ── 2) venues 歸屬 ──────────────────────────────────────────────────
 drop policy if exists venues_insert on public.venues;
