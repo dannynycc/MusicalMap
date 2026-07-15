@@ -1,0 +1,25 @@
+# Cloudflare Pages 安全標頭(2026-07-15;見 CHANGELOG v2.44.3)
+# clickjacking:me/settings 有即時寫入(公開開關/改名),絕不可被外站 iframe 疊層誘點。
+
+/me.html
+  X-Frame-Options: DENY
+  Content-Security-Policy: frame-ancestors 'none'
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: no-referrer
+
+/settings.html
+  X-Frame-Options: DENY
+  Content-Security-Policy: frame-ancestors 'none'
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: no-referrer
+
+# me-input 需被 me.html 同源 iframe 嵌入 → SAMEORIGIN(不可 DENY)
+/me-input.html
+  X-Frame-Options: SAMEORIGIN
+  Content-Security-Policy: frame-ancestors 'self'
+  X-Content-Type-Options: nosniff
+
+# 全站基本防線
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: no-referrer

@@ -11,6 +11,24 @@
 
 ---
 
+## [v2.44.3] - 2026-07-15 20:04
+
+### 安全深挖:實測確認並修補「handle 直寫繞過」高危漏洞 + clickjacking 防護
+
+兩個 agent 審 SQL/前端 + 本人對正式 Supabase 用 anon key 跑真實越權探測(ground truth,非讀碼推論)。
+
+**核心資料隔離經實測=紮實**(供對照):anon 直讀 sightings 回空、INSERT 偽造被 401 RLS 擋、UPDATE 全表改 0 列(danny 28 筆 note 完好)、danny 越權讀他人 sightings 回 0 列、filter injection 無效、其他表 404。email 不外洩(profiles 無 email 欄)。所有 SECURITY DEFINER 函式參數化+鎖 search_path,無 SQL injection。
+
+**【高危,已修】profiles.handle 直寫繞過**:profiles_write policy 只驗 `id=auth.uid()`,未收欄位級權限 → 任何登入者可 `PATCH profiles.handle` 繞過 rename_handle RPC 的保留字/舊名 alias 查重/嚴格格式三道檢查。**實測確認**:danny 直寫 `handle='admin'` 成功(立即還原)→ 可註冊 admin 等保留名冒充、劫持他人退役 handle 的分享連結(流量劫持)。
+- 修法(`supabase/lock_handle_and_venue_writes.sql`,已對正式 DB 執行):`revoke update on profiles` + `grant update(is_public,show_price,show_seat,display_name)`——handle/id/created_at 不授,只能走 rename_handle(SECURITY DEFINER 不受限)。
+- **教訓**:第一版用 column-level `revoke update(handle)` **無效**(對已持 table-level UPDATE 的角色收不回單欄)——**執行後立即實測才抓到漏洞還開著**,改 revoke 整表+精確 grant 才真堵。若沒驗就交卷會誤報「已修」。
+- 三向驗證(正式 DB):繞過已堵(permission denied)+ rename RPC 正常 + 公開開關直寫正常 + 音樂劇牆 28 筆完好。
+- **venues created_by 偽造**(with check(true)→驗 auth.uid())一併修。
+
+**【中,已修】clickjacking**:全站無安全標頭 → settings/me 的即時寫入開關可被外站 iframe 疊層誘點。新增 `_headers`:me/settings `frame-ancestors 'none'`、me-input `'self'`(需被同源嵌)、全站 nosniff+no-referrer。
+
+評估後不修:anon 可枚舉公開 profiles(handle/display_name 本就是公開資料,設計上公開頁需要);migration 順序脆弱(運維面,建議另收斂為單一 source,非攻擊面)。
+
 ## [v2.44.2] - 2026-07-15 19:20
 
 ### Bug 掃蕩第二輪:四新視角 agent+逐一驗證,修 15(使用者再次指示「用力找 10 個」)
