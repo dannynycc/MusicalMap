@@ -198,6 +198,16 @@ ZH = {
     "billy elliot": "舞動人生", "hercules": "大力士", "romeo et juliette": "羅密歐與茱麗葉",
     "the book of mormon": "摩門經", "sunset boulevard": "日落大道",
     "love never dies": "愛無止盡",
+    # 2026-07-15 使用者抓漏(Shrek/NDdP/Jersey Boys 顯示無中文)後補一批有把握的
+    "shrek the musical": "史瑞克", "shrek": "史瑞克",
+    "notre dame de paris": "鐘樓怪人",   # 法語原版台灣巡演即以「鐘樓怪人」宣傳(2005/2015 台北)
+    "jersey boys": "澤西男孩", "hamilton": "漢密爾頓",
+    "west side story": "西城故事", "kinky boots": "長靴皇后",
+    "school of rock": "搖滾教室", "the wizard of oz": "綠野仙蹤",
+    "starlight express": "星光列車", "dear evan hansen": "致艾文漢森",
+    "come from away": "來自遠方", "my fair lady": "窈窕淑女",
+    "the king and i": "國王與我", "spirited away": "神隱少女",
+    "my neighbor totoro": "龍貓",
 }
 
 # 分組常去掉開頭冠詞（"The Lion King" → group "lion king"），但 ZH 的 key 可能帶

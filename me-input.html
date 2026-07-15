@@ -704,7 +704,7 @@ function pickWork(w){
       const run=ys?(ye&&ye!==ys?`${ys}–${ye}`:(p.end?`${ys}`:`${ys}–now`)):'';
       return `<button class="pcard" data-g="${gi}"><span class="fl">${flag(p.country)}</span>
         <span class="pm"><span class="pn">${p.label||p.city||p.country}</span>
-          <span class="pv">${[p.venue,p.city].filter(Boolean).join(' · ')}</span><span class="pr">${run}</span></span>
+          <span class="pv">${[p.venue,p.city].filter(Boolean).filter(x=>x!==(p.label||p.city||p.country)).join(' · ')}</span><span class="pr">${run}</span></span>
         <span class="chev">›</span></button>`;}
     const cities=[...new Set(g.items.map(x=>x.city).filter(Boolean))];
     const yrs=g.items.map(x=>yearOf(x.start)).filter(Boolean);
@@ -761,9 +761,7 @@ function renderDetail(){
     <div class="confirm">
       <img src="${String(p.img||'').replace(/"/g,'&quot;')}" referrerpolicy="no-referrer" alt="" onerror="this.style.visibility='hidden'"/>
       <div class="ci"><div class="en">${hesc(w.en)}</div>${w.zh?`<div class="zh">${hesc(w.zh)}</div>`:''}
-        <div class="chips"><span class="chip"><b>${hesc(p.label||p.city)}</b></span>
-          ${p.venue?`<span class="chip"><b>${hesc(p.venue)}</b></span>`:''}
-          <span class="chip"><b>${hesc(p.city)}</b></span></div></div>
+        <div class="chips">${[...new Set([p.label,p.venue,p.city].filter(Boolean))].map(x=>`<span class="chip"><b>${hesc(x)}</b></span>`).join('')}</div></div>
     </div>
     ${draft.editIndex!=null?`<div class="step" id="editLoc">
       <div class="lbl">${T('venue_city')}<span class="opt">${T('edit_can_change')}</span></div>
