@@ -71,7 +71,7 @@ a{color:inherit} ::selection{background:rgba(201,168,92,.32);color:#fff}
 *{scrollbar-width:thin;scrollbar-color:#2a2a34 transparent}
 ::-webkit-scrollbar{width:10px;height:10px}::-webkit-scrollbar-thumb{background:#2a2a34;border-radius:8px;border:2px solid var(--bg)}
 :where(a,button,[tabindex]):focus-visible{outline:2px solid var(--gold,#c9a85c);outline-offset:2px;box-shadow:0 0 0 4px color-mix(in srgb,var(--gold,#c9a85c) 35%,transparent);border-radius:4px}
-.wrap{max-width:1320px;margin:0 auto;padding:0 24px;position:relative;z-index:1}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px;position:relative;z-index:1}/* 1320→1180:寬螢幕內容不再貼滿兩側、置中留白更舒服(2026-07-16 使用者);header 仍全寬(下方 override)*/
 .tnum{font-variant-numeric:tabular-nums}
 
 /* header */
