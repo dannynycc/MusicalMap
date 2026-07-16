@@ -277,11 +277,13 @@ window.MM = (function () {
     const _wRatio = _tagged.length ? _nAnglo/_tagged.length : 0;
     const _pyrs = [...new Set(past.map(s=>s.date&&s.date.slice(0,4)).filter(Boolean))].map(Number);
     const _span = _pyrs.length ? Math.max(..._pyrs)-Math.min(..._pyrs)+1 : 0;
-    const _vExplore = Math.round(100*Math.sqrt(Math.min(1, st.unique/60)));                          // 探索者:不重複劇目廣度
-    const _vGenre   = Math.min(100, Math.round(_dTags*26 + _wRatio*22));                             // 世界劇種通:劇種多樣×世界性
-    const _vGlobal  = Math.min(100, Math.round(nC*11 + nK*16));                                      // 環球玩家:國數×洲數
-    const _vLoyal   = Math.min(100, Math.round(rate*120 + Math.min(maxRep,8)*6));                    // 忠誠鐵粉:重看率×最高刷數
-    const _vVet     = Math.min(100, Math.round(Math.min(_span,15)/15*68 + Math.min(st.total,120)/120*32)); // 資深老手:年跨度×總量
+    // 前段快、後段慢(對數前載):第 1 部就有感(~19%),每多一部遞增量遞減——不用線性(2026-07-16 使用者)
+    const _fl = (x, cap) => x<=0 ? 0 : Math.min(100, 100*Math.log(1+x)/Math.log(1+cap));
+    const _vExplore = Math.round(_fl(st.unique, 40));                                                // 探索者:不重複劇目(1→19% 2→30% 3→37%)
+    const _vGenre   = Math.min(100, Math.round(_fl(_dTags, 5)*0.82 + _wRatio*18));                   // 世界劇種通:劇種多樣(前載)+世界性
+    const _vGlobal  = Math.min(100, Math.round(_fl(nC + Math.max(0,nK-1)*2, 12)));                   // 環球玩家:國數+跨洲加權(前載)
+    const _vLoyal   = Math.min(100, Math.round(_fl(rate*10 + Math.max(0,maxRep-1)*1.5, 12)));        // 忠誠鐵粉:重看強度(沒重看=0,前載)
+    const _vVet     = Math.min(100, Math.round(_fl(_span,13)*0.62 + _fl(Math.min(st.total,120),50)*0.38)); // 資深老手:年跨度(前載)+總量
     // 每軸:名稱 nm、這軸在算什麼 ds、你的實績 ev、分數 v(0–100);供雷達圖 + 解釋清單共用
     const radar = { items: [
       { nm:L('pr_explorer','探索者'),   ds:L('pr_explorer_d','看過多少不同作品'),     ev:LN('pr_ev_explorer','{n} 部不同作品',{n:st.unique}),        v:_vExplore },
