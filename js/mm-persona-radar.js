@@ -12,7 +12,7 @@
       stroke:"#a9781f",sw:2.6,grid:"#d3bf8e",gridO:"#a9781f",band:"rgba(180,140,40,.09)",
       label:"#5a4415",val:"#8a6a28",glowStd:2.2,sparkle:"#fff2c0",dot:"#7a5c18",
       frame:"conic-gradient(from 140deg,#e9c977,#fff6da 12%,#c99a3a 30%,#f6e4a8 55%,#b9812a 74%,#f3dc98 90%,#e9c977)",
-      barTrack:"#e3d6b8", cols:["#c0392b","#b8860b","#2e7d5b","#7a4fb0","#c07a1c"]
+      barTrack:"#e3d6b8", cols:["#c0392b","#b8860b","#2e7d5b","#2b6ca3","#7a4fb0","#c07a1c"]
     },
     dark:{
       svgBg:"radial-gradient(circle at 50% 26%,#26356e,#141f42 62%,#0b1230)",
@@ -20,7 +20,7 @@
       stroke:"#e3ebff",sw:2.4,grid:"#2e3d70",gridO:"#54689f",band:"rgba(120,150,255,.08)",
       label:"#c6d2f5",val:"#c3d0f5",dark:1,glowStd:3.4,sparkle:"#ffffff",dot:"#eef2ff",
       frame:"conic-gradient(from 140deg,#3d5296,#c3d0f5 12%,#26386f 30%,#8fa4dd 55%,#1a2c5c 74%,#aebde8 90%,#3d5296)",
-      barTrack:"#26305a", cols:["#ff6f61","#ffcf5c","#4fd6a6","#a98bff","#ffb25e"]
+      barTrack:"#26305a", cols:["#ff6f61","#ffcf5c","#4fd6a6","#5ab0ff","#a98bff","#ffb25e"]
     }
   };
   var _seq=0;

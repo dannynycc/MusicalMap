@@ -270,34 +270,34 @@ window.MM = (function () {
       ][tradT]);
     }
 
-    // ── 五邊形戰力圖(2026-07-16):5 軸各取不同資料維度,盡量不重疊;值 0–100 ──
+    // ── 六邊形戰力圖(2026-07-16 使用者訂死規則):6 軸,全對數前載,cap 對齊真實分布;值 0–100 ──
     const _tagged = past.filter(s=>s.tag);
     const _dTags = new Set(_tagged.map(s=>s.tag)).size;
-    const _nAnglo = _tagged.filter(s=>s.tag!=='Broadway/West End').length;
-    const _wRatio = _tagged.length ? _nAnglo/_tagged.length : 0;
     const _pyrs = [...new Set(past.map(s=>s.date&&s.date.slice(0,4)).filter(Boolean))].map(Number);
     const _span = _pyrs.length ? Math.max(..._pyrs)-Math.min(..._pyrs)+1 : 0;
-    // 前段快、後段慢(對數前載):第 1 部就有感(~19%),每多一部遞增量遞減——不用線性(2026-07-16 使用者)
+    // 對數前載曲線 fl(x,cap):第 1 個就有感、之後遞增量遞減(不用線性);x=cap 時=100
     const _fl = (x, cap) => x<=0 ? 0 : Math.min(100, 100*Math.log(1+x)/Math.log(1+cap));
-    const _vExplore = Math.round(_fl(st.unique, 40));                                                // 探索者:不重複劇目(1→19% 2→30% 3→37%)
-    const _vGenre   = Math.min(100, Math.round(_fl(_dTags, 5)*0.82 + _wRatio*18));                   // 世界劇種通:劇種多樣(前載)+世界性
-    const _vGlobal  = Math.min(100, Math.round(_fl(nC + Math.max(0,nK-1)*2, 12)));                   // 環球玩家:國數+跨洲加權(前載)
-    const _vLoyal   = Math.min(100, Math.round(_fl(rate*10 + Math.max(0,maxRep-1)*1.5, 12)));        // 忠誠鐵粉:重看強度(沒重看=0,前載)
-    const _vVet     = Math.min(100, Math.round(_fl(_span,13)*0.62 + _fl(Math.min(st.total,120),50)*0.38)); // 資深老手:年跨度(前載)+總量
+    const _vVolume  = Math.round(_fl(st.total, 40));                                    // 觀劇量:總場次(40 場滿=PR99)
+    const _vExplore = Math.round(_fl(st.unique, 30));                                   // 探索者:不重複作品(30 部滿)
+    const _vGenre   = Math.round(_fl(_dTags, 5));                                       // 世界劇種通:不同劇種分類(5 種滿)
+    const _vGlobal  = Math.min(100, Math.round(_fl(nK,5)*0.4 + _fl(nC,10)*0.6));        // 環球玩家:洲(5滿×40)+國(10滿×60);非洲幾乎沒戲→5 洲即滿
+    const _vLoyal   = Math.round(_fl(Math.max(0,maxRep-1), 6));                         // 忠誠鐵粉:同一齣最高刷數(7 刷滿)
+    const _vAge     = Math.round(_fl(_span, 30));                                       // 音樂劇齡:年跨度(30 年滿)
     // 每軸:名稱 nm、這軸在算什麼 ds、你的實績 ev、分數 v(0–100);供雷達圖 + 解釋清單共用
     const radar = { items: [
-      { nm:L('pr_explorer','探索者'),   ds:L('pr_explorer_d','看過多少不同作品'),     ev:LN('pr_ev_explorer','{n} 部不同作品',{n:st.unique}),        v:_vExplore },
-      { nm:L('pr_genre','世界劇種通'),  ds:L('pr_genre_d','涉獵多少不同劇種傳統'),     ev:(_dTags?LN('pr_ev_genre','{n} 種劇種',{n:_dTags}):L('pr_ev_genre0','尚無劇種標記')), v:_vGenre },
-      { nm:L('pr_global','環球玩家'),   ds:L('pr_global_d','足跡跨越多少國家與大洲'),  ev:LN('pr_ev_global','{n} 國 · {m} 洲',{n:nC,m:nK}),          v:_vGlobal },
-      { nm:L('pr_loyal','忠誠鐵粉'),    ds:L('pr_loyal_d','為愛的戲重看的程度'),       ev:(maxRep>=2?LN('pr_ev_loyal','最多 {n} 刷',{n:maxRep}):L('pr_ev_loyal0','尚未重看')), v:_vLoyal },
-      { nm:L('pr_veteran','資深老手'),  ds:L('pr_veteran_d','看戲資歷有多深'),         ev:LN('pr_ev_veteran','橫跨 {n} 年',{n:_span}),               v:_vVet },
+      { nm:L('pr_volume','觀劇量'),     ds:L('pr_volume_d','總共進劇院幾次'),       ev:LN('pr_ev_volume','{n} 場',{n:st.total}),            v:_vVolume },
+      { nm:L('pr_explorer','探索者'),   ds:L('pr_explorer_d','看過多少不同作品'),   ev:LN('pr_ev_explorer','{n} 部不同作品',{n:st.unique}),  v:_vExplore },
+      { nm:L('pr_genre','世界劇種通'),  ds:L('pr_genre_d','涉獵多少不同劇種'),      ev:(_dTags?LN('pr_ev_genre','{n} 種劇種',{n:_dTags}):L('pr_ev_genre0','尚無劇種標記')), v:_vGenre },
+      { nm:L('pr_global','環球玩家'),   ds:L('pr_global_d','足跡跨越多少國家與大洲'), ev:LN('pr_ev_global','{n} 國 · {m} 洲',{n:nC,m:nK}),    v:_vGlobal },
+      { nm:L('pr_loyal','忠誠鐵粉'),    ds:L('pr_loyal_d','同一齣最多刷幾次'),      ev:(maxRep>=2?LN('pr_ev_loyal','最多 {n} 刷',{n:maxRep}):L('pr_ev_loyal0','尚未重看')), v:_vLoyal },
+      { nm:L('pr_age','音樂劇齡'),      ds:L('pr_age_d','看戲資歷多少年'),          ev:LN('pr_ev_veteran','橫跨 {n} 年',{n:_span}),         v:_vAge },
     ] };
     return {
       enough:true,
       code:'', nickname: nick.join(' · '),   // 間隔號用「·」(「・」是日文中黑,台灣不用)
       aura: (past[0]||shows[0]||{}).color||'#7c5cff', aura2: '#6A0DAD',
       axes,   // [左端, 右端, pos(6–94 連續), 檔名+實證數字]
-      radar,  // 五邊形戰力圖 {items:[{nm,ds,ev,v}×5]}
+      radar,  // 六邊形戰力圖 {items:[{nm,ds,ev,v}×6]}
       blurb: parts.join(L('p_sep','，')) + L('p_end','。'),
       // 剛起步(<5 場)給鼓勵句,五邊形還小是正常的,鼓勵繼續收集(2026-07-16)
       encourage: (st.total < 5) ? L('p_grow','才剛起步——每多看一部、去一個新城市、重刷一次愛劇，五邊形就會再長大一塊。慢慢養出只屬於你的形狀吧！') : '',
