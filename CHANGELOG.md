@@ -11,6 +11,18 @@
 
 ---
 
+## [v2.48.3] - 2026-07-16 17:13
+
+### 🚨 修:公開分享頁對登出訪客整個掛掉(CITYZH TDZ)
+
+使用者無痕實測抓到:訪客開 `my.themusicalmap.com/<handle>` 看到空頁 + 底部「找不到這個公開頁」。Console:`Uncaught ReferenceError: Cannot access 'CITYZH' before initialization at cityName (u-view.js:345) ← render(192) ← boot(686)`。
+
+- 根因:`const CITYZH`(城市中文表)宣告在 render() 第 344 行,但 render 在**更早的第 190 行「最新一場」區塊**就呼叫 `cityName()` 用到它 → const 尚在 TDZ → ReferenceError → render 中斷 → 訪客頁整個壞。**任何有收藏(有 newest 場次)的公開帳號都必中**;空帳號 newest=null 不觸發所以看似正常。長期潛伏 bug(早於 v2.47/v2.48,非本輪設計改動引入)。
+- 修:把 `const CITYZH` 宣告移到 render() 最前(任何 cityName 呼叫之前)。u-view.js ?v17。
+- 教訓:先前用「登入的擁有者視角」驗 /handle 走的是 me.html、非 u-view 訪客路徑,才一直漏掉;登出訪客路徑必須實測。
+
+---
+
 ## [v2.48.2] - 2026-07-16 13:51
 
 ### 海報牆再收緊(gap 12→8)
