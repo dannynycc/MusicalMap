@@ -434,8 +434,8 @@ html[data-live] .demobanner{display:none}
 .panel h3{margin:0 0 16px;font-family:var(--fr);font-weight:700;font-size:18px}
 /* 護照印章式徽章(2026-07-15 重設計):手繪圖示放大置於圓形印記中、標題在下方,
    告別「小圖貼在文字旁=emoji 感」——圖是主角,大方展示,像蓋護照章。 */
-.badges{display:grid;grid-template-columns:repeat(auto-fill,minmax(136px,1fr));gap:10px}
-.badge{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;text-align:center;gap:6px;background:var(--s2);border:1px solid var(--hair);border-radius:14px;padding:10px 8px 11px;font-size:12.5px;font-weight:600;line-height:1.34;min-height:102px}
+.badges{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:8px}
+.badge{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;text-align:center;gap:6px;background:var(--s2);border:1px solid var(--hair);border-radius:13px;padding:9px 5px 10px;font-size:11.5px;font-weight:600;line-height:1.32;min-height:96px}
 /* 圓形印記縮小、圖示不縮(反而 48)→ 環貼近圖示、整體更緊湊、圖更大方(2026-07-16 使用者:緊湊度+鮮豔) */
 .badge .bico{width:56px;height:56px;flex:none;border-radius:50%;display:grid;place-items:center;background:var(--gold-soft);border:1.5px solid var(--hair)}
 .badge .bico svg{width:48px;height:48px;display:block}
