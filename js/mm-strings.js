@@ -55,6 +55,8 @@
       persona_title: '你是什麼樣的劇迷？',
       dt_venue: '劇院', dt_city: '城市', dt_date: '日期', dt_time: '時間', dt_seat: '座位', dt_price: '票價', dt_link: '連結', dt_open_link: '開啟連結',
       h1_suffix: '{name} 的音樂劇收藏',
+      // ---- 五邊形戰力圖 5 軸(2026-07-16) ----
+      pr_explorer: '探索者', pr_genre: '世界劇種通', pr_global: '環球玩家', pr_loyal: '忠誠鐵粉', pr_veteran: '資深老手',
       // ---- data.js personality(me/u 共用;2026-07-13 三軸重設計) ----
       p_geo0: '在地扎根', p_geo1: '跨境嚐鮮', p_geo2: '區域旅人', p_geo3: '洲際旅人', p_geo4: '環球旅人',
       p_geo_ev: '{n} 國 · {m} 大洲',
@@ -299,6 +301,7 @@
       persona_title: 'What kind of theatregoer are you?',
       dt_venue: 'Theatre', dt_city: 'City', dt_date: 'Date', dt_time: 'Time', dt_seat: 'Seat', dt_price: 'Price', dt_link: 'Link', dt_open_link: 'Open link',
       h1_suffix: '{name}’s Musicals',
+      pr_explorer: 'Explorer', pr_genre: 'Genre Buff', pr_global: 'Globetrotter', pr_loyal: 'Devoted Fan', pr_veteran: 'Veteran',
       p_geo0: 'Homegrown', p_geo1: 'Border hopper', p_geo2: 'Regional traveller', p_geo3: 'Continental voyager', p_geo4: 'Globetrotter',
       p_geo_ev: '{n} countries · {m} continents',
       p_geo_b0: 'Your theatre-going stays close to home', p_geo_b1: 'You’ve crossed a border for a show',

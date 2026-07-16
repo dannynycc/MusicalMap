@@ -530,12 +530,15 @@
       lineChart('ch-month', (st.perMonth || []).map((x, i) => _zhAxis ? String(i + 1) + '月' : x[0]), (st.perMonth || []).map(x => x[1]));
       lineChart('ch-week', (st.perWeekday || []).map((x, i) => _zhAxis ? MM.WEEKDAYS_ZH[i] : x[0]), (st.perWeekday || []).map(x => x[1]));
       const p = MM.personality();
-      document.getElementById('persona').innerHTML = (p.enough === false)
-        ? `<h3>${esc(T('persona_title'))}</h3><div class="pb">${esc(p.blurb)}</div>`
-        : `<h3>${esc(T('persona_title'))}</h3>
+      if (p.enough === false) {
+        document.getElementById('persona').innerHTML = `<h3>${esc(T('persona_title'))}</h3><div class="pb">${esc(p.blurb)}</div>`;
+      } else {
+        document.getElementById('persona').innerHTML = `<h3>${esc(T('persona_title'))}</h3>
         <div class="pn">${esc(p.nickname)}</div><div class="pb">${esc(p.blurb)}</div>
-        <div class="axes">${p.axes.map(a => { const pos = a[2];   // 連續定位(6–94),不再是 14/86 二元假光譜
-          return `<div class="axis"><div class="r"><span class="${pos <= 40 ? 'on' : ''}">${esc(a[0])}</span><span>${esc(a[3])}</span><span class="${pos >= 60 ? 'on' : ''}">${esc(a[1])}</span></div><div class="track"><i style="left:calc(${pos}% - 6px)"></i></div></div>`; }).join('')}</div>`;
+        <div class="pradar" id="pradar" style="margin-top:14px"></div>`;
+        window._mmRadar = p.radar;   // 供切主題重繪
+        if (p.radar && window.mmRenderPersona) window.mmRenderPersona('#pradar', p.radar.axes, p.radar.values);
+      }
     })();
 
     /* ---------- detail modal (read-only) ---------- */

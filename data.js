@@ -270,11 +270,30 @@ window.MM = (function () {
       ][tradT]);
     }
 
+    // ── 五邊形戰力圖(2026-07-16):5 軸各取不同資料維度,盡量不重疊;值 0–100 ──
+    const _tagged = past.filter(s=>s.tag);
+    const _dTags = new Set(_tagged.map(s=>s.tag)).size;
+    const _nAnglo = _tagged.filter(s=>s.tag!=='Broadway/West End').length;
+    const _wRatio = _tagged.length ? _nAnglo/_tagged.length : 0;
+    const _pyrs = [...new Set(past.map(s=>s.date&&s.date.slice(0,4)).filter(Boolean))].map(Number);
+    const _span = _pyrs.length ? Math.max(..._pyrs)-Math.min(..._pyrs)+1 : 0;
+    const radar = {
+      axes: [ L('pr_explorer','探索者'), L('pr_genre','世界劇種通'), L('pr_global','環球玩家'),
+              L('pr_loyal','忠誠鐵粉'), L('pr_veteran','資深老手') ],
+      values: [
+        Math.round(100*Math.sqrt(Math.min(1, st.unique/60))),                        // 探索者:不重複劇目廣度
+        Math.min(100, Math.round(_dTags*26 + _wRatio*22)),                           // 世界劇種通:劇種傳統多樣×世界性
+        Math.min(100, Math.round(nC*11 + nK*16)),                                    // 環球玩家:國數×洲數
+        Math.min(100, Math.round(rate*120 + Math.min(maxRep,8)*6)),                  // 忠誠鐵粉:重看率×最高刷數
+        Math.min(100, Math.round(Math.min(_span,15)/15*68 + Math.min(st.total,120)/120*32)), // 資深老手:年跨度×總量
+      ],
+    };
     return {
       enough:true,
       code:'', nickname: nick.join(' · '),   // 間隔號用「·」(「・」是日文中黑,台灣不用)
       aura: (past[0]||shows[0]||{}).color||'#7c5cff', aura2: '#6A0DAD',
       axes,   // [左端, 右端, pos(6–94 連續), 檔名+實證數字]
+      radar,  // 五邊形戰力圖 {axes:[5], values:[5]}
       blurb: parts.join(L('p_sep','，')) + L('p_end','。'),
     };
   }
