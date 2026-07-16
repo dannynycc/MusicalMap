@@ -444,7 +444,7 @@ html[data-live] .demobanner{display:none}
 .badge .bico{width:56px;height:56px;flex:none;border-radius:50%;position:relative;isolation:isolate;display:grid;place-items:center;background:radial-gradient(circle at 36% 26%,#fffdf5,var(--gold-soft) 80%)}
 .badge .bico::before{content:'';position:absolute;inset:-3px;border-radius:50%;z-index:-1;background:conic-gradient(from 220deg,#f6df9e,#c99a34,#fff3cf,#a9741f,#f6df9e,#c99a34,#f6df9e);box-shadow:0 2px 6px -1px rgba(120,80,20,.42)}
 .badge .bico::after{content:'';position:absolute;inset:0;border-radius:50%;pointer-events:none;background:linear-gradient(150deg,rgba(255,255,255,.78),rgba(255,255,255,0) 46%)}
-.badge .bico svg{width:48px;height:48px;display:block;position:relative;z-index:1;filter:drop-shadow(0 1px 1px rgba(120,80,20,.2))}
+.badge .bico svg{width:54px;height:54px;display:block;position:relative;z-index:1;filter:drop-shadow(0 1px 1px rgba(120,80,20,.2))}/* 48→54:圓盤內圖示放大更飽滿(2026-07-16 使用者) */
 .badge .ic{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;background:var(--gold-soft);font-size:26px}
 /* 分級外框金屬色 + 卡片光暈 */
 .badge.bronze .bico::before{background:conic-gradient(from 220deg,#e6c39a,#a9713f,#f2d8bb,#824f22,#e6c39a,#a9713f,#e6c39a)}
