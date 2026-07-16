@@ -18,7 +18,7 @@ if(location.hostname==='themusicalmap.com'||location.hostname==='www.themusicalm
 <script>/* no-flash: apply saved theme before CSS paints;預設 cream(對齊主站淡米黃)。
    一次性遷移:舊版 applyTheme 會把預設 midnight 自動寫進 localStorage,使既有使用者卡在深色;
    mm-theme-mig 未設時清一次 mm-theme,讓大家重新落到 cream 預設(之後仍尊重使用者用 picker 的選擇)。 */(function(){try{if(!localStorage.getItem('mm-theme-mig')){localStorage.removeItem('mm-theme');localStorage.setItem('mm-theme-mig','1');}var t=localStorage.getItem('mm-theme')||'cream';if(t==='neon'||t==='deco'){t='midnight';localStorage.setItem('mm-theme',t);}if(t!=='midnight')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
-<link rel="stylesheet" href="css/me-v2.css?v=27" /><!-- CSS 也要 cache-bust:CF Pages 對 .css 出 max-age=14400,不掛 ?v 改版後最多 4hr 拿舊樣式 -->
+<link rel="stylesheet" href="css/me-v2.css?v=28" /><!-- CSS 也要 cache-bust:CF Pages 對 .css 出 max-age=14400,不掛 ?v 改版後最多 4hr 拿舊樣式 -->
 <style>
 html[lang="en"] .sec h2 .zh{display:none}   /* en 模式:section 標題旁的英文小字與主標重複 → 隱藏 */
 html[lang="zh-Hans"] body{--ui:'Inter','Noto Sans SC',sans-serif}  /* 簡中改用 SC 字型,避免混排忽粗忽細 */
@@ -104,9 +104,9 @@ if(v&&v!=='zh-hant'){document.write('<style id="mm-fouc">body{visibility:hidden}
   var _rv=function(){var s=document.getElementById('mm-fouc');if(s)s.remove();};
   window.addEventListener('DOMContentLoaded',function(){setTimeout(_rv,0);});setTimeout(_rv,1500);}
 }catch(e){}})();</script>
-<script src="js/mm-strings.js?v=250"></script>
+<script src="js/mm-strings.js?v=251"></script>
 <script src="js/mm-badge-icons.js?v=5"></script>
-<script src="js/mm-persona-radar.js?v=1"></script>
+<script src="js/mm-persona-radar.js?v=2"></script>
 <script src="js/mm-acct-menu.js?v=227"></script>
 <!-- Google Analytics(GA4 G-GC07MYC1MY;訪客來源/行為分析,同一 ID 涵蓋主站與 my. 網域(報表以 hostname 區分);不加 SRI:gtag.js 由 Google 滾動更新,釘 hash 會靜默斷統計;隱私揭露見 privacy §1/§3) --><script async src="https://www.googletagmanager.com/gtag/js?id=G-GC07MYC1MY"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-GC07MYC1MY');</script>
 <!-- Cloudflare Web Analytics(手動 snippet:WA「自動注入」在本 zone 從未生效→曾一直 0,2026-07-13 切手動;token=WA beacon token(5953964f…),≠dashboard 網址的 site id(f5debd92…);不加 SRI 同 gtag 理由) --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5953964f9c434c67bcc12dd3eaedf340"}'></script>
@@ -289,7 +289,7 @@ if(v&&v!=='zh-hant'){document.write('<style id="mm-fouc">body{visibility:hidden}
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.110.0/dist/umd/supabase.js" integrity="sha384-3wY11tldQ5+yWqAvmTN4XtQvnjoTva0cV15O/O/O5NTtp0ivVopSzLOzsVXWZse9" crossorigin="anonymous"></script>
 <script src="js/config.js"></script>
-<script src="data.js?v=3"></script>
+<script src="data.js?v=4"></script>
 <script src="data2.js"></script>
 <script src="worldmap.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js" integrity="sha384-jb8JQMbMoBUzgWatfe6COACi2ljcDdZQ2OxczGA3bGNeWe+6DChMTBJemed7ZnvJ" crossorigin="anonymous"></script>
@@ -793,9 +793,9 @@ let mt;addEventListener('resize',()=>{clearTimeout(mt);mt=setTimeout(()=>{render
   }else{
     document.getElementById('persona').innerHTML=`<h3>${T('persona_title')}</h3>
     <div class="pn">${p.nickname}</div><div class="pb">${p.blurb}</div>
-    <div class="pradar" id="pradar" style="margin-top:14px"></div>`;
+    <div class="pradar" id="pradar"></div>`;
     window._mmRadar=p.radar;   // 供 applyTheme 切主題時重繪
-    if(p.radar&&window.mmRenderPersona) window.mmRenderPersona('#pradar',p.radar.axes,p.radar.values);
+    if(p.radar&&window.mmRenderPersona) window.mmRenderPersona('#pradar',p.radar);
   }
 })();
 
@@ -891,7 +891,7 @@ function applyTheme(t){
   try{localStorage.setItem('mm-theme',t);}catch(e){}
   document.querySelectorAll('#themePick button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.th===t));
   drawMap();
-  if(window._mmRadar&&window.mmRenderPersona&&document.getElementById('pradar')) window.mmRenderPersona('#pradar',window._mmRadar.axes,window._mmRadar.values);   // 戰力圖依主題重新上色(亮=香檳金箔/暗=靛藍月光)
+  if(window._mmRadar&&window.mmRenderPersona&&document.getElementById('pradar')) window.mmRenderPersona('#pradar',window._mmRadar);   // 戰力圖依主題重新上色(亮=香檳金箔/暗=靛藍月光)
 }
 document.getElementById('themePick').addEventListener('click',e=>{const b=e.target.closest('button');if(b)applyTheme(b.dataset.th);});
 

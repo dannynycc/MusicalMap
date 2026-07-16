@@ -277,23 +277,25 @@ window.MM = (function () {
     const _wRatio = _tagged.length ? _nAnglo/_tagged.length : 0;
     const _pyrs = [...new Set(past.map(s=>s.date&&s.date.slice(0,4)).filter(Boolean))].map(Number);
     const _span = _pyrs.length ? Math.max(..._pyrs)-Math.min(..._pyrs)+1 : 0;
-    const radar = {
-      axes: [ L('pr_explorer','探索者'), L('pr_genre','世界劇種通'), L('pr_global','環球玩家'),
-              L('pr_loyal','忠誠鐵粉'), L('pr_veteran','資深老手') ],
-      values: [
-        Math.round(100*Math.sqrt(Math.min(1, st.unique/60))),                        // 探索者:不重複劇目廣度
-        Math.min(100, Math.round(_dTags*26 + _wRatio*22)),                           // 世界劇種通:劇種傳統多樣×世界性
-        Math.min(100, Math.round(nC*11 + nK*16)),                                    // 環球玩家:國數×洲數
-        Math.min(100, Math.round(rate*120 + Math.min(maxRep,8)*6)),                  // 忠誠鐵粉:重看率×最高刷數
-        Math.min(100, Math.round(Math.min(_span,15)/15*68 + Math.min(st.total,120)/120*32)), // 資深老手:年跨度×總量
-      ],
-    };
+    const _vExplore = Math.round(100*Math.sqrt(Math.min(1, st.unique/60)));                          // 探索者:不重複劇目廣度
+    const _vGenre   = Math.min(100, Math.round(_dTags*26 + _wRatio*22));                             // 世界劇種通:劇種多樣×世界性
+    const _vGlobal  = Math.min(100, Math.round(nC*11 + nK*16));                                      // 環球玩家:國數×洲數
+    const _vLoyal   = Math.min(100, Math.round(rate*120 + Math.min(maxRep,8)*6));                    // 忠誠鐵粉:重看率×最高刷數
+    const _vVet     = Math.min(100, Math.round(Math.min(_span,15)/15*68 + Math.min(st.total,120)/120*32)); // 資深老手:年跨度×總量
+    // 每軸:名稱 nm、這軸在算什麼 ds、你的實績 ev、分數 v(0–100);供雷達圖 + 解釋清單共用
+    const radar = { items: [
+      { nm:L('pr_explorer','探索者'),   ds:L('pr_explorer_d','看過多少不同作品'),     ev:LN('pr_ev_explorer','{n} 部不同作品',{n:st.unique}),        v:_vExplore },
+      { nm:L('pr_genre','世界劇種通'),  ds:L('pr_genre_d','涉獵多少不同劇種傳統'),     ev:(_dTags?LN('pr_ev_genre','{n} 種劇種',{n:_dTags}):L('pr_ev_genre0','尚無劇種標記')), v:_vGenre },
+      { nm:L('pr_global','環球玩家'),   ds:L('pr_global_d','足跡跨越多少國家與大洲'),  ev:LN('pr_ev_global','{n} 國 · {m} 洲',{n:nC,m:nK}),          v:_vGlobal },
+      { nm:L('pr_loyal','忠誠鐵粉'),    ds:L('pr_loyal_d','為愛的戲重看的程度'),       ev:(maxRep>=2?LN('pr_ev_loyal','最多 {n} 刷',{n:maxRep}):L('pr_ev_loyal0','尚未重看')), v:_vLoyal },
+      { nm:L('pr_veteran','資深老手'),  ds:L('pr_veteran_d','看戲資歷有多深'),         ev:LN('pr_ev_veteran','橫跨 {n} 年',{n:_span}),               v:_vVet },
+    ] };
     return {
       enough:true,
       code:'', nickname: nick.join(' · '),   // 間隔號用「·」(「・」是日文中黑,台灣不用)
       aura: (past[0]||shows[0]||{}).color||'#7c5cff', aura2: '#6A0DAD',
       axes,   // [左端, 右端, pos(6–94 連續), 檔名+實證數字]
-      radar,  // 五邊形戰力圖 {axes:[5], values:[5]}
+      radar,  // 五邊形戰力圖 {items:[{nm,ds,ev,v}×5]}
       blurb: parts.join(L('p_sep','，')) + L('p_end','。'),
     };
   }

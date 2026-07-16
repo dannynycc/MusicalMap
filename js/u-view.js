@@ -535,9 +535,9 @@
       } else {
         document.getElementById('persona').innerHTML = `<h3>${esc(T('persona_title'))}</h3>
         <div class="pn">${esc(p.nickname)}</div><div class="pb">${esc(p.blurb)}</div>
-        <div class="pradar" id="pradar" style="margin-top:14px"></div>`;
+        <div class="pradar" id="pradar"></div>`;
         window._mmRadar = p.radar;   // 供切主題重繪
-        if (p.radar && window.mmRenderPersona) window.mmRenderPersona('#pradar', p.radar.axes, p.radar.values);
+        if (p.radar && window.mmRenderPersona) window.mmRenderPersona('#pradar', p.radar);
       }
     })();
 
