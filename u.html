@@ -171,7 +171,7 @@ if(v&&v!=='zh-hant'){document.write('<style id="mm-fouc">body{visibility:hidden}
 </div>
 
 <!-- NOT-FOUND / EMPTY -->
-<section id="pub-empty" hidden style="min-height:70vh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;text-align:center;padding:40px 24px">
+<section id="pub-empty" hidden style="min-height:70vh;display:none;flex-direction:column;align-items:center;justify-content:center;gap:18px;text-align:center;padding:40px 24px"><!-- 預設 display:none(原 flex 會蓋過 hidden→這塊永遠顯示,收藏正常時底部也冒「找不到」,2026-07-16 修);showEmpty() 才 style.display=flex -->
   <div data-i18n="empty_title" style="font-size:23px;font-weight:900;font-family:var(--ui,system-ui,sans-serif);color:var(--ink1)">找不到這個公開頁</div>
   <div data-i18n="empty_sub" style="font-size:15px;color:var(--ink2);max-width:420px;line-height:1.6">這個收藏頁不存在，或擁有者尚未公開。</div>
   <a href="https://my.themusicalmap.com/" data-i18n="empty_cta" style="background:var(--gold,#c9a85c);color:#1a1407;border-radius:999px;padding:12px 22px;font-size:15px;font-weight:800;text-decoration:none">＋ 建立你自己的 My Musicals</a>
@@ -207,7 +207,7 @@ if(v&&v!=='zh-hant'){document.write('<style id="mm-fouc">body{visibility:hidden}
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.110.0/dist/umd/supabase.js" integrity="sha384-3wY11tldQ5+yWqAvmTN4XtQvnjoTva0cV15O/O/O5NTtp0ivVopSzLOzsVXWZse9" crossorigin="anonymous"></script>
 <!-- 語言:js/mm-strings.js(head 載入)全權接管本頁 i18n(?hl= 驅動)。
      不可再載 js/i18n.js——它的 applyStatic 也吃 data-i18n 屬性,會用主站字典把本頁 key 蓋成字面值。 -->
-<script src="js/u-view.js?v=17"></script>
+<script src="js/u-view.js?v=18"></script>
 <script>/* 語言切換下拉開關(內聯:my. 子網域免外部檔部署) */
 (function(){function wire(root){var tr=root.querySelector('.lang-trigger'),pop=root.querySelector('.lang-pop');if(!tr||!pop||tr.dataset.w)return;tr.dataset.w=1;
 function opn(){pop.hidden=false;tr.setAttribute('aria-expanded','true');document.addEventListener('click',dc,true);document.addEventListener('keydown',ky,true);}

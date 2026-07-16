@@ -147,7 +147,7 @@
   /* ---- empty / not-found ---- */
   function showEmpty(mode) {
     const w = document.getElementById('pub-wrap'); if (w) w.style.display = 'none';
-    const e = document.getElementById('pub-empty'); if (e) e.hidden = false;
+    const e = document.getElementById('pub-empty'); if (e) { e.hidden = false; e.style.display = 'flex'; }   // 用 style.display 真正顯示(HTML 預設 display:none,見 u.html 註解)
     // 'none'=帳號存在且公開但 0 筆(≠不存在):換成「還沒有紀錄」文案,別誤導成頁面不存在(2026-07-10)
     if (mode === 'none') {
       const ti = document.querySelector('#pub-empty [data-i18n="empty_title"]');

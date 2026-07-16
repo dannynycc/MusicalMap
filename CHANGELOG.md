@@ -11,6 +11,18 @@
 
 ---
 
+## [v2.48.4] - 2026-07-16 18:10
+
+### 修:公開頁底部永遠多出一塊「找不到這個公開頁」
+
+v2.48.3 修好訪客頁能顯示收藏後,使用者發現正常頁**最底部仍多冒**一整塊「找不到這個公開頁 / 建立你自己的音樂劇收藏」+ 第二個頁尾。
+
+- 根因:`#pub-empty` 有 `hidden` 屬性,但 inline 又寫 `display:flex`——inline 樣式優先級高過 `[hidden]{display:none}`,所以這塊**其實一直顯示**,`hidden` 完全沒作用。之前 CITYZH crash 讓整頁掛掉才沒被發現;render 修好後就露餡。
+- 修:`#pub-empty` 預設 inline 改 `display:none`;`showEmpty()` 由 `e.hidden=false` 改成 `e.style.display='flex'` 真正控制顯示。收藏正常→這塊維持隱藏;查無/未公開才顯示。
+- u.html + u-view.js ?v18。
+
+---
+
 ## [v2.48.3] - 2026-07-16 17:13
 
 ### 🚨 修:公開分享頁對登出訪客整個掛掉(CITYZH TDZ)
