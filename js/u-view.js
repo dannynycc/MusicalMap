@@ -645,7 +645,7 @@
 
     // catalog (posters + zh names + venue upgrade); failure is non-fatal
     let cat = { titles: [], posters: {}, productions: {}, venues: [] };
-    try { cat = await fetch('data/venues_catalog.json?v=18').then(r => r.json()); } catch (e) { console.warn('catalog', e); }  // ?v18=場館 place_id 欄位(CF .json 快取≤4hr)
+    try { cat = await fetch('data/venues_catalog.json?v=20').then(r => r.json()); } catch (e) { console.warn('catalog', e); }  // ?v18=場館 place_id 欄位(CF .json 快取≤4hr)
     buildCatalogMaps(cat);
 
     // read-only sightings via SECURITY DEFINER RPC (owner's price/seat privacy flags applied server-side)

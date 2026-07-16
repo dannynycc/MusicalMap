@@ -11,6 +11,14 @@
 
 ---
 
+## [v2.46.2] - 2026-07-16 09:11
+
+### 修 place_id 驗證(Arena Zagreb 類):多結果 + 名稱驗證,救回 152 家
+
+使用者實測抓到 Arena Zagreb 明明 Google 有(0m)卻退回清單。根因:v2.46.0 enrichment **只取 Google 第一個結果 + 只看距離**——Arena Zagreb 的正確場館是 Google 的**第二個結果**(第一個是同名購物中心 Arena Center 300m),被 120m 距離檢查誤拒。修正 `enrich_place_ids.py`:**取 5 個結果**,選擇邏輯改為「最近(≤60m)座標一致優先 → 否則取名稱匹配(distinctive 拉丁詞 or CJK 子字串)的最近者(≤2km,容座標/GCJ-02 落差)→ 否則不給連結」。這救回 Arena Zagreb(0m 正確 place_id)、正確剔除上海 AIA Grand Theatre(Google 只回人民廣場劇院 3.7km 不匹配)。`--refine` 重跑 null+距離>10m 共 360 家,**新救回 152 家**;catalog **5,313/5,426 (97%) 帶 pid**(v2.46.0 為 5,166)。前端未改;SYNC_VER 19→20 + catalog ?v→20 + u-view ?v→13 讓新 pid 生效。實際成本以 Cloud Billing 為準(360 次 ≈ NT$40;首輪 5.4k 次 ~NT$617,額度 NT$9,422 仍充足)。
+
+---
+
 ## [v2.46.1] - 2026-07-16 02:25
 
 ### 修 v2.46.0 熱修:`venuePidOf is not defined`(跨 closure)

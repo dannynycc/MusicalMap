@@ -1271,7 +1271,7 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
   let ZH={},POS={},TAGS={},VENS=[];
   async function loadCatalogMaps(){try{
     const ctrl=new AbortController();const to=setTimeout(()=>ctrl.abort(),9000);
-    const cat=await fetch('data/venues_catalog.json?v=18',{signal:ctrl.signal}).then(r=>r.json());clearTimeout(to);  // ?v bump=catalog schema 變(v18=場館 place_id);CF .json 快取≤4hr,不 bump 新欄位會延遲生效
+    const cat=await fetch('data/venues_catalog.json?v=20',{signal:ctrl.signal}).then(r=>r.json());clearTimeout(to);  // ?v bump=catalog schema 變(v18=場館 place_id);CF .json 快取≤4hr,不 bump 新欄位會延遲生效
     VENS=cat.venues||[];
     window.MM_VPID=VENS.filter(v=>v.pid&&v.lat!=null&&v.lng!=null);   // 有 place_id 的場館清單→openDetail 內聯查 pid(跨 <script> closure 用 window 橋接)
     (cat.titles||[]).forEach(t=>{if(!t.en)return;const k=t.en.toLowerCase(),g=t.group;
@@ -1311,7 +1311,7 @@ window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
   const sb=supabase.createClient(cfg.SUPABASE_URL,cfg.SUPABASE_ANON_KEY);
   window.mmSb=sb;
   showGate(T('gate_loading'),false);   // 立即用當前語言顯示 Loading(gate-msg 無 data-i18n,不會被 apply 蓋);getSession 回來再 showLogin/onSignedIn
-  const SYNC_VER='19';   // sightingToEntry 對映改版**或 catalog 顯示資料(zh/海報)更新**就 +1 → 強制所有 session 重新同步（v5=38 館英文名;v6=fav;v7=第二批 124 館英文名;v8=幣別 cur;v9=劇種傳統 tag;v10=座標修正 11 館;v11=启东/大上海新空间;v12=巡演 250 站場館;v13=+國父紀念館 2026-07-14;v14=Shrek 正名;v15=ZH 字典補 16 部;v16=場館剝城市後綴+臺字正名;v17=+Q大道 2026-07-15;v18=場館 place_id→地圖直接開單卡 2026-07-16;v19=同 v18 修 venuePidOf 跨 closure→改 window.MM_VPID 橋接）
+  const SYNC_VER='20';   // sightingToEntry 對映改版**或 catalog 顯示資料(zh/海報)更新**就 +1 → 強制所有 session 重新同步（v5=38 館英文名;v6=fav;v7=第二批 124 館英文名;v8=幣別 cur;v9=劇種傳統 tag;v10=座標修正 11 館;v11=启东/大上海新空间;v12=巡演 250 站場館;v13=+國父紀念館 2026-07-14;v14=Shrek 正名;v15=ZH 字典補 16 部;v16=場館剝城市後綴+臺字正名;v17=+Q大道 2026-07-15;v18=場館 place_id→地圖直接開單卡 2026-07-16;v19=同 v18 修 venuePidOf 跨 closure→改 window.MM_VPID 橋接;v20=place_id 名稱驗證修正+救回 152 家 2026-07-16）
   const syncedKey=uid=>uid+'@'+SYNC_VER;
   let _syncing=false;
   // 同步失敗畫面:訊息 + 一顆「重試」按鈕(掛在 gate-msg 內);避免使用者只能重整或卡死
