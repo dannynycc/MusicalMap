@@ -56,9 +56,9 @@
       dt_venue: '劇院', dt_city: '城市', dt_date: '日期', dt_time: '時間', dt_seat: '座位', dt_price: '票價', dt_link: '連結', dt_open_link: '開啟連結',
       h1_suffix: '{name} 的音樂劇收藏',
       // ---- 五邊形戰力圖 5 軸(2026-07-16) ----
-      pr_volume: '觀劇量', pr_explorer: '探索者', pr_genre: '世界劇種通', pr_global: '環球玩家', pr_loyal: '忠誠鐵粉', pr_age: '音樂劇齡', pr_veteran: '資深老手',
-      pr_volume_d: '總共進劇院幾次', pr_explorer_d: '看過多少不同作品', pr_genre_d: '涉獵多少不同劇種', pr_global_d: '足跡跨越多少國家與洲', pr_loyal_d: '同一齣最多刷幾次', pr_age_d: '看戲資歷多少年',
-      pr_ev_volume: '{n} 次', pr_ev_explorer: '{n} 部不同作品', pr_ev_genre: '{n} 種劇種', pr_ev_genre0: '尚無劇種標記', pr_ev_global: '{n} 國 · {m} 洲', pr_ev_loyal: '最多 {n} 刷', pr_ev_loyal0: '尚未重看', pr_ev_veteran: '橫跨 {n} 年',
+      pr_volume: '劇院常客', pr_explorer: '嘗鮮作品', pr_genre: '劇種涉獵', pr_global: '環球足跡', pr_loyal: '狂粉劇迷', pr_age: '劇齡', pr_veteran: '資深老手',
+      pr_volume_d: '總共進劇院幾次', pr_explorer_d: '看過多少不同作品', pr_genre_d: '涉獵多少不同劇種', pr_global_d: '足跡跨越多少國家與洲', pr_loyal_d: '同一齣最多刷幾次', pr_age_d: '從第一次看音樂劇到現在',
+      pr_ev_volume: '{n} 次', pr_ev_explorer: '{n} 部不同作品', pr_ev_genre: '{n} 種', pr_ev_genre0: '尚無劇種標記', pr_ev_global: '{n} 國 · {m} 洲', pr_ev_loyal: '最多 {n} 刷', pr_ev_loyal0: '尚未重看', pr_ev_veteran: '橫跨 {n} 年',
       // ---- data.js personality(me/u 共用;2026-07-13 三軸重設計) ----
       p_geo0: '在地扎根', p_geo1: '跨境嚐鮮', p_geo2: '區域旅人', p_geo3: '洲際旅人', p_geo4: '環球旅人',
       p_geo_ev: '{n} 國 · {m} 大洲',
@@ -306,7 +306,7 @@
       dt_venue: 'Theatre', dt_city: 'City', dt_date: 'Date', dt_time: 'Time', dt_seat: 'Seat', dt_price: 'Price', dt_link: 'Link', dt_open_link: 'Open link',
       h1_suffix: '{name}’s Musicals',
       pr_volume: 'Shows Seen', pr_explorer: 'Explorer', pr_genre: 'Genre Buff', pr_global: 'Globetrotter', pr_loyal: 'Devoted Fan', pr_age: 'Theatre Age', pr_veteran: 'Veteran',
-      pr_volume_d: 'Total visits to the theatre', pr_explorer_d: 'How many different shows', pr_genre_d: 'How many genres you’ve sampled', pr_global_d: 'Countries and continents reached', pr_loyal_d: 'Most times you’ve seen one show', pr_age_d: 'Years you’ve been going',
+      pr_volume_d: 'Total visits to the theatre', pr_explorer_d: 'How many different shows', pr_genre_d: 'How many genres you’ve sampled', pr_global_d: 'Countries and continents reached', pr_loyal_d: 'Most times you’ve seen one show', pr_age_d: 'Since your first musical',
       pr_ev_volume: '{n} visits', pr_ev_explorer: '{n} different shows', pr_ev_genre: '{n} genres', pr_ev_genre0: 'no genre tags yet', pr_ev_global: '{n} countries · {m} continents', pr_ev_loyal: 'up to {n}×', pr_ev_loyal0: 'no repeats yet', pr_ev_veteran: '{n}-year span',
       p_geo0: 'Homegrown', p_geo1: 'Border hopper', p_geo2: 'Regional traveller', p_geo3: 'Continental voyager', p_geo4: 'Globetrotter',
       p_geo_ev: '{n} countries · {m} continents',

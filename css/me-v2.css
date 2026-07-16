@@ -279,9 +279,9 @@ html[lang="en"] #dt-fb-zh{display:none}
 /* ===== 即將上演（未來場次，尚未發生）=====
    靜止態：海報去飽和+壓暗+一層面紗，左上「即將上演」金緞帶、底部日期。
    hover：恢復原本色彩亮度（緞帶保留、面紗淡出），露出完整海報。 */
-.card.is-future .poster img{filter:grayscale(.5) brightness(.7) contrast(.96);transition:filter .35s var(--ease-out,ease)}
+.card.is-future .poster img{filter:grayscale(.35) brightness(1.06) contrast(.88);transition:filter .35s var(--ease-out,ease)}/* 未來場次:去飽和+提亮=薄紗偏白,不壓暗(2026-07-16 使用者) */
 .card.is-future .up-veil{position:absolute;inset:0;z-index:2;pointer-events:none;border-radius:inherit;
-  background:linear-gradient(180deg,rgba(12,13,16,.30),rgba(12,13,16,.72));transition:opacity .35s}
+  background:linear-gradient(180deg,rgba(255,255,255,.40),rgba(255,255,255,.62));transition:opacity .35s}/* 白色薄紗(原深色面紗) */
 .card.is-future:hover .poster img{filter:none}
 .card.is-future:hover .up-veil{opacity:0}
 .up-ribbon{position:absolute;top:12px;left:-33px;z-index:4;transform:rotate(-45deg);
