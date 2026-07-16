@@ -472,11 +472,12 @@ html[data-live] .demobanner{display:none}
 .axis .track{height:6px;border-radius:3px;background:var(--gold-soft,rgba(160,122,52,.16));border:1px solid var(--hair2,rgba(128,128,128,.18));position:relative}  /* 舊值 rgba(255,255,255,.1)=深色主題遺留,米黃底上隱形→金點像懸空(使用者抓到) */
 .axis .track i{position:absolute;top:-3px;width:12px;height:12px;border-radius:50%;background:var(--gold);box-shadow:0 0 10px var(--gold)}
 /* ── 五邊形戰力圖 + 解釋清單(2026-07-16;比照徽章的金屬框/光澤,配色由 mm-persona-radar.js 依主題內聯)── */
-.pradar{margin-top:16px}
-.radar-frame{position:relative;width:min(340px,100%);margin:0 auto 20px;border-radius:20px;padding:8px;box-shadow:0 8px 24px rgba(0,0,0,.18),inset 0 1px 2px rgba(255,255,255,.4)}
+.pradar{margin-top:16px;display:flex;gap:18px;align-items:center}/* 圖表左、說明清單右並排(省直向空間、可與左側徽章平視);窄螢幕下方改回上下(2026-07-16 使用者) */
+.radar-frame{position:relative;flex:0 0 auto;width:clamp(210px,46%,300px);margin:0;border-radius:20px;padding:8px;box-shadow:0 8px 24px rgba(0,0,0,.18),inset 0 1px 2px rgba(255,255,255,.4)}
+@media(max-width:640px){.pradar{flex-direction:column}.radar-frame{width:min(340px,100%);margin:0 auto}.plegend{width:100%}}
 .radar-frame::after{content:"";position:absolute;inset:0;border-radius:20px;background:linear-gradient(150deg,rgba(255,255,255,.5),transparent 42%);pointer-events:none}
 .radar-frame .rf-in{position:relative;border-radius:13px;overflow:hidden}
-.plegend{display:flex;flex-direction:column;gap:11px}
+.plegend{display:flex;flex-direction:column;gap:11px;flex:1 1 0;min-width:0}
 .plegend .lg{display:grid;grid-template-columns:30px 1fr auto;gap:11px;align-items:center}
 .plegend .ix{width:30px;height:30px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:14px;color:#fff;box-shadow:0 2px 5px rgba(0,0,0,.2)}
 .plegend .nm{font-weight:800;font-size:15px;line-height:1.2;color:var(--ink1)}

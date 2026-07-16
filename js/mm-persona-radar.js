@@ -48,7 +48,7 @@
     for(var r=1;r<=3;r++)svg.appendChild(mk("polygon",{points:ring(r/4),fill:"none",stroke:_ov,"stroke-width":.9,"stroke-dasharray":"2 3","stroke-linejoin":"round"}));
     for(var i=0;i<N;i++){var a=ang(i),lx=cx+Math.cos(a)*(R+30),ly=cy+Math.sin(a)*(R+30),cv=Math.cos(a),sv=Math.sin(a);
       var anc=Math.abs(cv)<.3?"middle":(cv>0?"start":"end"),dy=sv<-.6?-4:(sv>.6?14:3);
-      var t=mk("text",{x:lx.toFixed(1),y:(ly+dy).toFixed(1),"text-anchor":anc,fill:st.label,"font-size":15,"font-weight":"800"});t.textContent=items[i].nm;svg.appendChild(t);
+      var t=mk("text",{x:lx.toFixed(1),y:(ly+dy).toFixed(1),"text-anchor":anc,fill:(st.cols&&st.cols[i])||st.label,"font-size":15,"font-weight":"800"});t.textContent=items[i].nm;svg.appendChild(t);   // 軸標籤=對應清單的顏色,方便一眼對照(2026-07-16 使用者)
       var s2=mk("text",{x:lx.toFixed(1),y:(ly+dy+16).toFixed(1),"text-anchor":anc,fill:st.val,"font-size":13,"font-weight":"900"});s2.textContent=Math.round(items[i].v);svg.appendChild(s2);}
     for(var i=0;i<N;i++){var q=pt(i,posf(items[i].v));svg.appendChild(mk("circle",{cx:q[0].toFixed(1),cy:q[1].toFixed(1),r:3.4,fill:st.dot,stroke:st.dark?"#0006":"#fff","stroke-width":1.5}));}
     var mx=0;for(var i=1;i<N;i++)if(items[i].v>items[mx].v)mx=i;var mp=pt(mx,posf(items[mx].v));
