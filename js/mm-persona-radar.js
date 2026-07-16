@@ -42,6 +42,10 @@
     var FLOOR=0.12; function posf(v){return Math.max(FLOOR, Math.max(0,Math.min(100,v))/100);}
     var dp=[];for(var i=0;i<N;i++){var q=pt(i,posf(items[i].v));dp.push(q[0].toFixed(1)+","+q[1].toFixed(1));}
     svg.appendChild(mk("polygon",{points:dp.join(" "),fill:"url(#"+gid+")",stroke:st.stroke,"stroke-width":st.sw,"stroke-linejoin":"round",filter:"url(#"+glid+")"}));
+    // 級距輔助線:填色上方再描同心環(25/50/75)+輻線,淡虛線、不搶眼,讓填色內仍看得出分數落在哪一級(2026-07-16 使用者)
+    var _ov = st.dark ? 'rgba(233,240,255,.34)' : 'rgba(78,54,14,.30)';
+    for(var i=0;i<N;i++){var o2=pt(i,1);svg.appendChild(mk("line",{x1:cx,y1:cy,x2:o2[0].toFixed(1),y2:o2[1].toFixed(1),stroke:_ov,"stroke-opacity":.5,"stroke-width":.6,"stroke-dasharray":"1.5 3"}));}
+    for(var r=1;r<=3;r++)svg.appendChild(mk("polygon",{points:ring(r/4),fill:"none",stroke:_ov,"stroke-width":.9,"stroke-dasharray":"2 3","stroke-linejoin":"round"}));
     for(var i=0;i<N;i++){var a=ang(i),lx=cx+Math.cos(a)*(R+30),ly=cy+Math.sin(a)*(R+30),cv=Math.cos(a),sv=Math.sin(a);
       var anc=Math.abs(cv)<.3?"middle":(cv>0?"start":"end"),dy=sv<-.6?-4:(sv>.6?14:3);
       var t=mk("text",{x:lx.toFixed(1),y:(ly+dy).toFixed(1),"text-anchor":anc,fill:st.label,"font-size":15,"font-weight":"800"});t.textContent=items[i].nm;svg.appendChild(t);
