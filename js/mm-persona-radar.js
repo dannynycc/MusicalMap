@@ -50,7 +50,7 @@
       var anc=Math.abs(cv)<.3?"middle":(cv>0?"start":"end"),dy=sv<-.6?-4:(sv>.6?14:3);
       var t=mk("text",{x:lx.toFixed(1),y:(ly+dy).toFixed(1),"text-anchor":anc,fill:(st.cols&&st.cols[i])||st.label,"font-size":15,"font-weight":"800"});t.textContent=items[i].nm;svg.appendChild(t);   // 軸標籤=對應清單的顏色,方便一眼對照(2026-07-16 使用者)
       var s2=mk("text",{x:lx.toFixed(1),y:(ly+dy+16).toFixed(1),"text-anchor":anc,fill:st.val,"font-size":13,"font-weight":"900"});s2.textContent=Math.round(items[i].v);svg.appendChild(s2);}
-    for(var i=0;i<N;i++){var q=pt(i,posf(items[i].v));svg.appendChild(mk("circle",{cx:q[0].toFixed(1),cy:q[1].toFixed(1),r:3.4,fill:st.dot,stroke:st.dark?"#0006":"#fff","stroke-width":1.5}));}
+    for(var i=0;i<N;i++){var q=pt(i,posf(items[i].v));svg.appendChild(mk("circle",{cx:q[0].toFixed(1),cy:q[1].toFixed(1),r:3.8,fill:(st.cols&&st.cols[i])||st.dot,stroke:st.dark?"#0008":"#fff","stroke-width":1.6}));}   // 頂點圓點=對應軸顏色,更明顯(2026-07-16 使用者)
     var mx=0;for(var i=1;i<N;i++)if(items[i].v>items[mx].v)mx=i;var mp=pt(mx,posf(items[mx].v));
     var sp=mk("text",{x:mp[0].toFixed(1),y:(mp[1]-8).toFixed(1),"text-anchor":"middle","font-size":16,fill:st.sparkle});sp.textContent="✦";svg.appendChild(sp);
     return svg;
@@ -64,7 +64,7 @@
       +'<div class="plegend">'+items.map(function(it,i){
         var c=st.cols[i], v=Math.max(0,Math.min(100,Math.round(it.v)));
         return '<div class="lg"><div class="ix" style="background:'+c+'">'+(i+1)+'</div>'
-          +'<div class="lg-t"><div class="nm">'+esc(it.nm)+'</div><div class="ds" style="color:'+(st.dark?'#9aa6c6':'#6b5836')+'">'+esc(it.ds)+' · '+esc(it.ev)+'</div></div>'
+          +'<div class="lg-t"><div class="nm" style="color:'+c+'">'+esc(it.nm)+'</div><div class="ds" style="color:'+(st.dark?'#9aa6c6':'#6b5836')+'">'+esc(it.ds)+' &gt;&gt; '+esc(it.ev)+'</div></div>'
           +'<div class="sc"><span class="val" style="color:'+st.val+'">'+v+'</span>'
           +'<div class="bar" style="background:'+st.barTrack+'"><i style="width:'+v+'%;background:'+c+'"></i></div></div></div>';
       }).join('')+'</div>';
