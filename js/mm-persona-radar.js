@@ -12,7 +12,7 @@
       stroke:"#a9781f",sw:2.6,grid:"#d3bf8e",gridO:"#a9781f",band:"rgba(180,140,40,.09)",
       label:"#5a4415",val:"#8a6a28",glowStd:2.2,sparkle:"#fff2c0",dot:"#7a5c18",
       frame:"conic-gradient(from 140deg,#e9c977,#fff6da 12%,#c99a3a 30%,#f6e4a8 55%,#b9812a 74%,#f3dc98 90%,#e9c977)",
-      barTrack:"#e3d6b8", cols:["#c0392b","#d35400","#2e7d5b","#2b6ca3","#7a4fb0","#b83280"]  /* 探索者/音樂劇齡原金/褐撞香檳金箔底色→改橘/洋紅高對比(2026-07-16 使用者) */
+      barTrack:"#e3d6b8", cols:["#c0392b","#0d8a8a","#5a9e2a","#2456a8","#7a4fb0","#b83280"]  /* 六色整組重配:兩兩夠開、皆不撞香檳金箔底(紅/青綠/草綠/深藍/紫/洋紅)(2026-07-16 使用者:別只做局部優化) */
     },
     dark:{
       svgBg:"radial-gradient(circle at 50% 26%,#26356e,#141f42 62%,#0b1230)",
