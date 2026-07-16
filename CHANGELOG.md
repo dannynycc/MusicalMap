@@ -11,6 +11,18 @@
 
 ---
 
+## [v2.46.5] - 2026-07-16 10:54
+
+### 成就徽章升級成「閃亮獎章」+ 長劇名縮短
+
+使用者:徽章要更醒目艷麗、有 bling、有成就感,別只是躺著的印章。
+- **金屬獎章印記**(me-v2.css ?v24):圓形印記改 `conic-gradient` 金屬漸層外框(分級染色 bronze 銅/silver 銀/gold 金)+ 左上高光光澤(`::after`)+ 放射漸層底 + 圖示 drop-shadow。金級加 **雙星芒 ✦**(右上大+左下小,交錯 twinkle 動畫)+ 更強金色光暈。看起來像閃亮獎牌。
+- **圖示顏色再提亮**(mm-badge-icons.js ?v4):紅 #d23a2b→#e53c26、金 #efb130→#f8ba1c、中金/綠同步。
+- **長劇名縮短**:新增共用 `MM_SHORT_TITLE`(The Phantom of the Opera→Phantom、Les Misérables→Les Mis…+ 去 leading "The"),devotee 徽章用短名 →《Phantom》5 刷(不再爆行)。me.html + u-view.js(?v14)同步。
+- 緞帶因 6-per-row 窄卡與文字衝突暫略(待與使用者討論是否犧牲密度)。headless 放大驗證金/銀/銅獎章 + 雙星芒 + 短名。
+
+---
+
 ## [v2.46.4] - 2026-07-16 09:42
 
 ### 成就徽章:每行 4→6 個(卡片更窄、左右留白更少)

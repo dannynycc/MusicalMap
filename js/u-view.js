@@ -480,7 +480,7 @@
           case 'countries': return TN('bd_countries', { n: bd.reached });
           case 'cities':    return TN('bd_cities', { n: bd.reached });
           case 'works':     return TN('bd_works', { n: bd.reached });
-          case 'devotee':   return TN('bd_devotee', { t: esc(bd.extra), n: bd.value });   // 劇名=他人輸入,必跳脫
+          case 'devotee':   return TN('bd_devotee', { t: esc(window.MM_SHORT_TITLE ? window.MM_SHORT_TITLE(bd.extra) : bd.extra), n: bd.value });   // 劇名=他人輸入,必跳脫
           case 'double':    return TN('bd_double', { n: bd.value });
           case 'streak':    return TN('bd_streak', { n: bd.value });
           case 'fivestar':  return TN('bd_fivestar', { n: bd.value });

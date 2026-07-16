@@ -30,7 +30,7 @@ var hl=q.get('hl');location.replace('https://my.themusicalmap.com/'+encodeURICom
 /* mig=2:v2.12.15 前 u-view fallback bug 會把 midnight 寫進訪客 localStorage(u.html 無 picker,訪客身上的 midnight 幾乎必是 bug 產物)→一次性清掉,讓卡深色的訪客回到 cream。副作用:曾在 me.html 手選 midnight 的登入者訪自己公開頁會被重設一次(可再選回)。 */
 if(localStorage.getItem('mm-theme-mig')!=='2'){if(localStorage.getItem('mm-theme')==='midnight')localStorage.removeItem('mm-theme');localStorage.setItem('mm-theme-mig','2');}
 var t=localStorage.getItem('mm-theme')||'cream';if(t==='neon'||t==='deco'){t='midnight';localStorage.setItem('mm-theme',t);}if(t!=='midnight')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
-<link rel="stylesheet" href="css/me-v2.css?v=23" /><!-- CSS cache-bust:與 me.html 同步,CF Pages .css max-age=14400 -->
+<link rel="stylesheet" href="css/me-v2.css?v=24" /><!-- CSS cache-bust:與 me.html 同步,CF Pages .css max-age=14400 -->
 <style>
 /* i18n:en 模式時 section 標題旁的英文小字(原本是中文標題的英文對照)會與主標重複 → 隱藏 */
 html[lang="en"] .sec h2 .zh{display:none}
@@ -63,7 +63,7 @@ if(v&&v!=='zh-hant'){document.write('<style id="mm-fouc">body{visibility:hidden}
   window.addEventListener('DOMContentLoaded',function(){setTimeout(_rv,0);});setTimeout(_rv,1500);}
 }catch(e){}})();</script>
 <script src="js/mm-strings.js?v=249"></script>
-<script src="js/mm-badge-icons.js?v=3"></script>
+<script src="js/mm-badge-icons.js?v=4"></script>
 <script src="js/mm-acct-menu.js?v=227" defer></script>
 <!-- Google Analytics(GA4 G-GC07MYC1MY;訪客來源/行為分析,同一 ID 涵蓋主站與 my. 網域(報表以 hostname 區分);不加 SRI:gtag.js 由 Google 滾動更新,釘 hash 會靜默斷統計;隱私揭露見 privacy §1/§3) --><script async src="https://www.googletagmanager.com/gtag/js?id=G-GC07MYC1MY"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-GC07MYC1MY');</script>
 <!-- Cloudflare Web Analytics(手動 snippet:WA「自動注入」在本 zone 從未生效→曾一直 0,2026-07-13 切手動;token=WA beacon token(5953964f…),≠dashboard 網址的 site id(f5debd92…);不加 SRI 同 gtag 理由) --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5953964f9c434c67bcc12dd3eaedf340"}'></script>
@@ -206,7 +206,7 @@ if(v&&v!=='zh-hant'){document.write('<style id="mm-fouc">body{visibility:hidden}
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.110.0/dist/umd/supabase.js" integrity="sha384-3wY11tldQ5+yWqAvmTN4XtQvnjoTva0cV15O/O/O5NTtp0ivVopSzLOzsVXWZse9" crossorigin="anonymous"></script>
 <!-- 語言:js/mm-strings.js(head 載入)全權接管本頁 i18n(?hl= 驅動)。
      不可再載 js/i18n.js——它的 applyStatic 也吃 data-i18n 屬性,會用主站字典把本頁 key 蓋成字面值。 -->
-<script src="js/u-view.js?v=13"></script>
+<script src="js/u-view.js?v=14"></script>
 <script>/* 語言切換下拉開關(內聯:my. 子網域免外部檔部署) */
 (function(){function wire(root){var tr=root.querySelector('.lang-trigger'),pop=root.querySelector('.lang-pop');if(!tr||!pop||tr.dataset.w)return;tr.dataset.w=1;
 function opn(){pop.hidden=false;tr.setAttribute('aria-expanded','true');document.addEventListener('click',dc,true);document.addEventListener('keydown',ky,true);}
