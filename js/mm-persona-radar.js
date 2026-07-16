@@ -38,14 +38,16 @@
     svg.appendChild(defs);
     for(var r=1;r<=4;r++)svg.appendChild(mk("polygon",{points:ring(r/4),fill:(r%2)?st.band:"none",stroke:r===4?st.gridO:st.grid,"stroke-opacity":r===4?.6:.34,"stroke-width":r===4?1.5:1,"stroke-linejoin":"round"}));
     for(var i=0;i<N;i++){var o=pt(i,1);svg.appendChild(mk("line",{x1:cx,y1:cy,x2:o[0].toFixed(1),y2:o[1].toFixed(1),stroke:st.grid,"stroke-opacity":.4,"stroke-width":1}));}
-    var dp=[];for(var i=0;i<N;i++){var v=Math.max(0,Math.min(100,items[i].v))/100,q=pt(i,v);dp.push(q[0].toFixed(1)+","+q[1].toFixed(1));}
+    // 頂點半徑最低邊界:新手數值很小(如 5)也畫到 ~12%,五邊形不塌成中心一坨;標籤分數與清單仍顯示真實值(2026-07-16)
+    var FLOOR=0.12; function posf(v){return Math.max(FLOOR, Math.max(0,Math.min(100,v))/100);}
+    var dp=[];for(var i=0;i<N;i++){var q=pt(i,posf(items[i].v));dp.push(q[0].toFixed(1)+","+q[1].toFixed(1));}
     svg.appendChild(mk("polygon",{points:dp.join(" "),fill:"url(#"+gid+")",stroke:st.stroke,"stroke-width":st.sw,"stroke-linejoin":"round",filter:"url(#"+glid+")"}));
     for(var i=0;i<N;i++){var a=ang(i),lx=cx+Math.cos(a)*(R+30),ly=cy+Math.sin(a)*(R+30),cv=Math.cos(a),sv=Math.sin(a);
       var anc=Math.abs(cv)<.3?"middle":(cv>0?"start":"end"),dy=sv<-.6?-4:(sv>.6?14:3);
       var t=mk("text",{x:lx.toFixed(1),y:(ly+dy).toFixed(1),"text-anchor":anc,fill:st.label,"font-size":15,"font-weight":"800"});t.textContent=items[i].nm;svg.appendChild(t);
       var s2=mk("text",{x:lx.toFixed(1),y:(ly+dy+16).toFixed(1),"text-anchor":anc,fill:st.val,"font-size":13,"font-weight":"900"});s2.textContent=Math.round(items[i].v);svg.appendChild(s2);}
-    for(var i=0;i<N;i++){var v=Math.max(0,Math.min(100,items[i].v))/100,q=pt(i,v);svg.appendChild(mk("circle",{cx:q[0].toFixed(1),cy:q[1].toFixed(1),r:3.4,fill:st.dot,stroke:st.dark?"#0006":"#fff","stroke-width":1.5}));}
-    var mx=0;for(var i=1;i<N;i++)if(items[i].v>items[mx].v)mx=i;var mp=pt(mx,Math.max(0,Math.min(100,items[mx].v))/100);
+    for(var i=0;i<N;i++){var q=pt(i,posf(items[i].v));svg.appendChild(mk("circle",{cx:q[0].toFixed(1),cy:q[1].toFixed(1),r:3.4,fill:st.dot,stroke:st.dark?"#0006":"#fff","stroke-width":1.5}));}
+    var mx=0;for(var i=1;i<N;i++)if(items[i].v>items[mx].v)mx=i;var mp=pt(mx,posf(items[mx].v));
     var sp=mk("text",{x:mp[0].toFixed(1),y:(mp[1]-8).toFixed(1),"text-anchor":"middle","font-size":16,fill:st.sparkle});sp.textContent="✦";svg.appendChild(sp);
     return svg;
   }

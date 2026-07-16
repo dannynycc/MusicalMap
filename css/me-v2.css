@@ -485,6 +485,9 @@ html[data-live] .demobanner{display:none}
 .plegend .val{font-weight:900;font-size:14px}
 .plegend .bar{height:8px;border-radius:5px;overflow:hidden;margin-top:5px}
 .plegend .bar>i{display:block;height:100%;border-radius:5px}
+/* 新手鼓勵句(<5 場):五邊形下方一行暖色小卡(2026-07-16) */
+.pgrow{margin-top:14px;padding:11px 14px;border-radius:12px;font-size:13px;line-height:1.6;text-align:center;
+  color:var(--ink2);background:var(--gold-soft,rgba(160,122,52,.10));border:1px solid var(--hair2,rgba(160,122,52,.20))}
 .toplist{display:flex;flex-direction:column;gap:10px}
 .tl{display:flex;align-items:center;gap:10px;font-size:13px}
 .tl .k{width:44%;color:var(--ink2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}

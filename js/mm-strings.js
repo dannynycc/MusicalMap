@@ -74,6 +74,8 @@
       p_trad_b0: '口味以英美主流為本', p_trad_b1: '英美與各國原創都吃', p_trad_b2: '偏愛英美之外的各國劇種',
       p_sep: '，', p_end: '。',
       p_need: '再記錄 {n} 齣，這裡就會浮現你的劇迷輪廓。',
+      p_none: '看完你的第一部音樂劇，這裡就會浮現屬於你的劇迷五邊形！',
+      p_grow: '才剛起步——每多看一部、去一個新城市、重刷一次愛劇，五邊形就會再長大一塊。慢慢養出只屬於你的形狀吧！',
       // ---- me.html 專屬(登入頁,localStorage 記語言) ----
       gate_loading: '載入中…', gate_login: '使用 Google 登入',
       gate_signin: '<b style="font-size:26px">我的音樂劇</b><br><span style="opacity:.72;font-size:14.5px;font-weight:500">記下你看過的每一齣音樂劇，收成海報牆、護照與足跡地圖——存在你的帳號，跨裝置同步。</span>',
@@ -320,6 +322,8 @@
       p_trad_b0: 'with tastes rooted in the Anglo mainstream', p_trad_b1: 'equally at home in Anglo and world traditions', p_trad_b2: 'drawn to traditions beyond Broadway and the West End',
       p_sep: ', ', p_end: '.',
       p_need: 'Log a few more shows and your theatre-fan profile will take shape here.',
+      p_none: 'Log your first musical and your own theatre-fan pentagon will appear here!',
+      p_grow: 'Just getting started — every new show, new city, or rewatch grows another slice of your pentagon. Keep going and shape one that’s truly yours!',
       gate_loading: 'Loading…', gate_login: 'Sign in with Google',
       gate_signin: '<b style="font-size:26px">My Musicals</b><br><span style="opacity:.72;font-size:14.5px;font-weight:500">Log the musicals you’ve seen and turn them into your poster wall, passport and map — saved to your account, synced across devices.</span>',
       gate_secure: 'Secure sign-in with your Google account. We only read your name, email and avatar — we never post anything on your behalf.',

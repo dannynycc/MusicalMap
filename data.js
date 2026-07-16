@@ -205,11 +205,11 @@ window.MM = (function () {
     // i18n:頁面有載 js/mm-strings.js 就用其字典;沒載沿用中文字面
     const L=(k,zh)=>{ if(window.MM_T){const v=window.MM_T(k); if(v&&v!==k)return v;} return zh; };
     const LN=(k,zh,vars)=>{ let s=L(k,zh); Object.entries(vars||{}).forEach(([n,v])=>{ s=s.replace('{'+n+'}',v); }); return s; };
-    // 資料不足門檻:少於 3 齣算不出有意義的類型
-    if(past.length < 3){
+    // 完全沒有「看過」的紀錄才擋(0 場沒東西可畫)→ 鼓勵句;1 場起就畫五邊形(2026-07-16 使用者:低端也要有形狀+鼓勵)
+    if(past.length === 0){
       return { enough:false, code:'', nickname:'', axes:[],
         aura:(past[0]||shows[0]||{}).color||'#7c5cff', aura2:'#6A0DAD',
-        blurb: LN('p_need','再記錄 {n} 齣，這裡就會浮現你的劇迷輪廓。',{n:3-past.length}) };
+        blurb: L('p_none','看完你的第一部音樂劇，這裡就會浮現屬於你的劇迷五邊形！') };
     }
     const clampPos = p => Math.max(6, Math.min(94, Math.round(p)));   // 圓點半徑內縮,貼邊不出血
     const axes = [], nick = [], parts = [];
@@ -297,6 +297,8 @@ window.MM = (function () {
       axes,   // [左端, 右端, pos(6–94 連續), 檔名+實證數字]
       radar,  // 五邊形戰力圖 {items:[{nm,ds,ev,v}×5]}
       blurb: parts.join(L('p_sep','，')) + L('p_end','。'),
+      // 剛起步(<5 場)給鼓勵句,五邊形還小是正常的,鼓勵繼續收集(2026-07-16)
+      encourage: (st.total < 5) ? L('p_grow','才剛起步——每多看一部、去一個新城市、重刷一次愛劇，五邊形就會再長大一塊。慢慢養出只屬於你的形狀吧！') : '',
     };
   }
 
