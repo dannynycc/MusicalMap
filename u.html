@@ -30,7 +30,7 @@ var hl=q.get('hl');location.replace('https://my.themusicalmap.com/'+encodeURICom
 /* mig=2:v2.12.15 前 u-view fallback bug 會把 midnight 寫進訪客 localStorage(u.html 無 picker,訪客身上的 midnight 幾乎必是 bug 產物)→一次性清掉,讓卡深色的訪客回到 cream。副作用:曾在 me.html 手選 midnight 的登入者訪自己公開頁會被重設一次(可再選回)。 */
 if(localStorage.getItem('mm-theme-mig')!=='2'){if(localStorage.getItem('mm-theme')==='midnight')localStorage.removeItem('mm-theme');localStorage.setItem('mm-theme-mig','2');}
 var t=localStorage.getItem('mm-theme')||'cream';if(t==='neon'||t==='deco'){t='midnight';localStorage.setItem('mm-theme',t);}if(t!=='midnight')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
-<link rel="stylesheet" href="css/me-v2.css?v=25" /><!-- CSS cache-bust:與 me.html 同步,CF Pages .css max-age=14400 -->
+<link rel="stylesheet" href="css/me-v2.css?v=26" /><!-- CSS cache-bust:與 me.html 同步,CF Pages .css max-age=14400 -->
 <style>
 /* i18n:en 模式時 section 標題旁的英文小字(原本是中文標題的英文對照)會與主標重複 → 隱藏 */
 html[lang="en"] .sec h2 .zh{display:none}

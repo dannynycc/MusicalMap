@@ -412,7 +412,7 @@ html[data-live] .demobanner{display:none}
 .sc-e{background:linear-gradient(150deg,#177a70,#115852)}
 /* 榜單:名稱/條/數字三欄;條高≈列高25%全圓端;track 8%白+fill 85%白(Material 深色疊加區間);
    數字欄固定寬+tabular右對齊與條拉開;捲軸藏箭頭+hover 才顯示(2026-07-15 設計研究後重寫) */
-.slist{display:flex;flex-direction:column;max-height:216px;overflow-y:auto;padding-right:13px;margin-right:-7px;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.28) transparent}/* 捲軸移到數字與卡片邊框正中(原 4px 貼數字、右側 18px 空;padding 拉開數字+負 margin 伸進卡片留白,捲軸置中)(2026-07-16 使用者) */
+.slist{display:flex;flex-direction:column;max-height:216px;overflow-y:auto;padding-right:11px;margin-right:-7px;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.28) transparent}/* 捲軸置中於數字與卡片邊框(左右各 11px);padding 11+負 margin 7 讓數字/進度條完全回原位不縮短、只把捲軸伸進卡片留白置中(2026-07-16 使用者:別動 bar)*/
 .slist::-webkit-scrollbar{width:8px}
 .slist::-webkit-scrollbar-button{display:none}
 .slist::-webkit-scrollbar-track{background:transparent}
