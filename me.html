@@ -104,7 +104,7 @@ if(v&&v!=='zh-hant'){document.write('<style id="mm-fouc">body{visibility:hidden}
   var _rv=function(){var s=document.getElementById('mm-fouc');if(s)s.remove();};
   window.addEventListener('DOMContentLoaded',function(){setTimeout(_rv,0);});setTimeout(_rv,1500);}
 }catch(e){}})();</script>
-<script src="js/mm-strings.js?v=256"></script>
+<script src="js/mm-strings.js?v=257"></script>
 <script src="js/mm-badge-icons.js?v=6"></script>
 <script src="js/mm-persona-radar.js?v=11"></script>
 <script src="js/mm-acct-menu.js?v=227"></script>
@@ -438,7 +438,7 @@ function posterEl(s){
   const _fall=()=>{if(!_retried&&s.posterFull&&s.posterFull!==s.poster){_retried=true;img.src=s.posterFull;return;}fig.classList.add('is-fallback');};
   // wsrv 代理對抓不到的來源(udn 等擋外部代理的圖床)會等 upstream 逾時才回 503,自訂海報
   // 「等超級久才出現」(2026-07-14 使用者抓到)——4 秒沒載入就搶先切直連原圖,不乾等代理。
-  const _t=(s.poster&&s.posterFull&&s.posterFull!==s.poster)?setTimeout(()=>{if(!img.complete||!img.naturalWidth)_fall();},4000):null;
+  const _t=(s.poster&&s.posterFull&&s.posterFull!==s.poster)?setTimeout(()=>{if(!img.complete||!img.naturalWidth)_fall();},7000):null;
   if(_t)_wallTimers.push(_t);
   img.onload=()=>{if(_t)clearTimeout(_t);img.classList.add('ready');skel.style.display='none';
     // 比例智慧切換(2026-07-15 使用者核可):圖偏離 2:3 逾 8% → contain+黑底(不硬裁內容);接近 2:3 照舊 cover 滿版
@@ -811,7 +811,7 @@ function openDetail(s){
     if(img.getAttribute('src')!==s.poster){              // 換不同海報：先隱藏舊圖(opacity→0)，只靠 onload 才淡入新圖→不閃前一張
       img.classList.remove('ready');let _dtr=false;
       const _dfall=()=>{if(!_dtr&&s.posterFull&&s.posterFull!==s.poster){_dtr=true;img.src=s.posterFull;return;}img.classList.add('ready');};
-      const _dt=(s.posterFull&&s.posterFull!==s.poster)?setTimeout(()=>{if(!img.complete||!img.naturalWidth)_dfall();},4000):null;  // 代理 4s 沒回→搶先直連(同海報牆,2026-07-14)
+      const _dt=(s.posterFull&&s.posterFull!==s.poster)?setTimeout(()=>{if(!img.complete||!img.naturalWidth)_dfall();},7000):null;  // 代理 4s 沒回→搶先直連(同海報牆,2026-07-14)
       _dtPrevTimer=_dt;
       img.onload=()=>{if(_dt)clearTimeout(_dt);if(_dtPrevTimer===_dt)_dtPrevTimer=null;img.classList.add('ready');};
       img.onerror=()=>{if(_dt)clearTimeout(_dt);if(_dtPrevTimer===_dt)_dtPrevTimer=null;_dfall();};  // 代理失敗→退回原圖
