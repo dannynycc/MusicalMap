@@ -1,9 +1,9 @@
 {
   "meta": {
     "source": "atgtickets.com",
-    "count": 223,
+    "count": 220,
     "tour_hubs": 34,
-    "tour_stops": 218
+    "tour_stops": 215
   },
   "shows": [
     {
@@ -2786,7 +2786,7 @@
       "country": "UK",
       "lat": 51.510997,
       "lng": -0.135395,
-      "start_date": null,
+      "start_date": "2026-07-18",
       "end_date": "2027-01-09",
       "ticket_url": "https://www.atgtickets.com/shows/moulin-rouge-the-musical/piccadilly-theatre/",
       "image": "https://res.cloudinary.com/dwzhqvxaz/image/upload/w_1280,q_auto,f_auto/v1715242401/Titles/Moulin%20Rouge/Tour/MoulinRouge_Title_1920x1080.jpg",
@@ -2803,7 +2803,7 @@
       "country": "UK",
       "lat": 53.393341,
       "lng": -2.916639,
-      "start_date": null,
+      "start_date": "2026-07-18",
       "end_date": "2026-08-08",
       "ticket_url": "https://www.atgtickets.com/shows/moulin-rouge-the-musical/liverpool-empire/",
       "image": "https://res.cloudinary.com/dwzhqvxaz/image/upload/w_1280,q_auto,f_auto/v1715242401/Titles/Moulin%20Rouge/Tour/MoulinRouge_Title_1920x1080.jpg",
@@ -2871,7 +2871,7 @@
       "country": "UK",
       "lat": 51.513331,
       "lng": -0.120896,
-      "start_date": null,
+      "start_date": "2026-07-18",
       "end_date": "2027-02-20",
       "ticket_url": "https://www.atgtickets.com/shows/operation-mincemeat-a-new-musical/fortune-theatre/",
       "image": "https://res.cloudinary.com/dwzhqvxaz/image/upload/w_1280,q_auto,f_auto/v1721642563/Titles/Operation%20Mincemeat/OM_Title_1920x1080.jpg",
@@ -3458,23 +3458,6 @@
       "source": "atgtickets.com"
     },
     {
-      "id": "atg-tour-the-choir-of-man-the-alexandra-theatre-birmingham",
-      "title": "The Choir of Man",
-      "type": "tour",
-      "venue": "The Alexandra, Birmingham",
-      "city": "Birmingham",
-      "country": "UK",
-      "lat": 52.494899,
-      "lng": -1.851844,
-      "start_date": null,
-      "end_date": "2026-07-18",
-      "ticket_url": "https://www.atgtickets.com/shows/the-choir-of-man/the-alexandra-theatre-birmingham/",
-      "image": "https://res.cloudinary.com/dwzhqvxaz/image/upload/w_1280,q_auto,f_auto/v1759232698/Titles/The%20Choir%20of%20Man/ChoirOfMan_Title_1920x1080.jpg",
-      "tour_name": "The Choir of Man — UK Tour",
-      "verified": true,
-      "source": "atgtickets.com"
-    },
-    {
       "id": "atg-tour-the-choir-of-man-richmond-theatre",
       "title": "The Choir of Man",
       "type": "tour",
@@ -3509,23 +3492,6 @@
       "source": "atgtickets.com"
     },
     {
-      "id": "atg-tour-the-karate-kid-the-musical-sunderland-empire",
-      "title": "The Karate Kid The Musical",
-      "type": "tour",
-      "venue": "Sunderland Empire",
-      "city": "Sunderland",
-      "country": "UK",
-      "lat": 54.906595,
-      "lng": -1.389423,
-      "start_date": null,
-      "end_date": "2026-07-18",
-      "ticket_url": "https://www.atgtickets.com/shows/the-karate-kid-the-musical/sunderland-empire/",
-      "image": "https://res.cloudinary.com/dwzhqvxaz/image/upload/w_1280,q_auto,f_auto/v1781258844/Titles/The%20Karate%20Kid%20The%20Musical/KK26129_Stars_Social_1920x1080.jpg",
-      "tour_name": "The Karate Kid The Musical — UK Tour",
-      "verified": true,
-      "source": "atgtickets.com"
-    },
-    {
       "id": "atg-tour-the-karate-kid-the-musical-the-alexandra-theatre-birmingham",
       "title": "The Karate Kid The Musical",
       "type": "tour",
@@ -3539,23 +3505,6 @@
       "ticket_url": "https://www.atgtickets.com/shows/the-karate-kid-the-musical/the-alexandra-theatre-birmingham/",
       "image": "https://res.cloudinary.com/dwzhqvxaz/image/upload/w_1280,q_auto,f_auto/v1781258844/Titles/The%20Karate%20Kid%20The%20Musical/KK26129_Stars_Social_1920x1080.jpg",
       "tour_name": "The Karate Kid The Musical — UK Tour",
-      "verified": true,
-      "source": "atgtickets.com"
-    },
-    {
-      "id": "atg-tour-the-rocky-horror-show-bristol-hippodrome",
-      "title": "The Rocky Horror Show",
-      "type": "tour",
-      "venue": "Bristol Hippodrome",
-      "city": "Bristol",
-      "country": "UK",
-      "lat": 51.453802,
-      "lng": -2.597298,
-      "start_date": null,
-      "end_date": "2026-07-18",
-      "ticket_url": "https://www.atgtickets.com/shows/the-rocky-horror-show/bristol-hippodrome/",
-      "image": "https://res.cloudinary.com/dwzhqvxaz/image/upload/w_1280,q_auto,f_auto/v1767630741/Titles/The%20Rocky%20Horror%20Show/ROCKY_2026_SOCIAL_1920x1080px.jpg",
-      "tour_name": "The Rocky Horror Show — UK Tour",
       "verified": true,
       "source": "atgtickets.com"
     },
