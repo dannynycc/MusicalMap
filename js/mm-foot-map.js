@@ -36,7 +36,7 @@ function mount(opts){
   const token=(window.MM_CONFIG&&window.MM_CONFIG.MAPBOX_TOKEN)||'';
   // minZoom:1=圖磚下限。512px 圖磚+zoomOffset:-1 → 圖磚 z=地圖 z-1;手機窄容器 fitBounds
   // 會把地圖壓到 z0 → 要抓 z=-1 圖磚(不存在)→ 整片空白(2026-07-17 手機回報)。z1 起跳圖磚 z0 存在。
-  const map=L.map(el,{worldCopyJump:true,zoomControl:true,attributionControl:true,minZoom:1,zoomSnap:0.5});   // zoomSnap .5:fitBounds 能貼半格,初始視角不會因整數格差一大截
+  const map=L.map(el,{worldCopyJump:true,zoomControl:true,attributionControl:true,minZoom:1});   // 整數縮放:zoomSnap 0.5 的半格級距(z1.5/2.5)在部分瀏覽器會讓縮放後的圖磚無法呈現(2026-07-17 手機回報「放大一點空白、再放大又好」),每格都要有真實圖磚
   // 窄容器(手機)卡片縮小,免得一手牌蓋滿整張地圖
   const SC=el.clientWidth<520?0.72:1;
   map.getContainer().setAttribute('aria-label',t('map_aria'));
