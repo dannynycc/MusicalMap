@@ -11,6 +11,14 @@
 
 ---
 
+## [v2.53.4] - 2026-07-17 16:02
+
+### 手機版足跡地圖:直式大版面+滿版出血+初始縮放貼合(使用者紅框需求)
+
+- 手機(≤820px)`.mapwrap` 改 `height:min(64vh,600px)`+`width:100vw` 滿版出血(iPhone 390px 寬在 z1 恰好容納使用者 273° 經度跨幅,聖荷西→雪梨整排不裁);explicit height 同時避開 WebKit ratio 循環。
+- `zoomSnap:0.5`+窄容器 fitBounds padding 26px:初始視角貼合卡片。雪梨在初始 z1 會併進亞洲疊(cluster 半徑語意),拉近自動分開。
+- WebKit iPhone 13 驗證:地圖 390×425、三疊牌沿寬度攤開。css v40 / mm-foot-map v4。
+
 ## [v2.53.3] - 2026-07-17 15:44
 
 ### 修 iPhone(Safari/WebKit)足跡地圖整個塌陷成 3×2px——真正的手機病根

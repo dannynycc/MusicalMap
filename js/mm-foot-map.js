@@ -36,7 +36,7 @@ function mount(opts){
   const token=(window.MM_CONFIG&&window.MM_CONFIG.MAPBOX_TOKEN)||'';
   // minZoom:1=圖磚下限。512px 圖磚+zoomOffset:-1 → 圖磚 z=地圖 z-1;手機窄容器 fitBounds
   // 會把地圖壓到 z0 → 要抓 z=-1 圖磚(不存在)→ 整片空白(2026-07-17 手機回報)。z1 起跳圖磚 z0 存在。
-  const map=L.map(el,{worldCopyJump:true,zoomControl:true,attributionControl:true,minZoom:1});
+  const map=L.map(el,{worldCopyJump:true,zoomControl:true,attributionControl:true,minZoom:1,zoomSnap:0.5});   // zoomSnap .5:fitBounds 能貼半格,初始視角不會因整數格差一大截
   // 窄容器(手機)卡片縮小,免得一手牌蓋滿整張地圖
   const SC=el.clientWidth<520?0.72:1;
   map.getContainer().setAttribute('aria-label',t('map_aria'));
@@ -108,7 +108,7 @@ function mount(opts){
     const b=e.popup.getElement().querySelector('.ftbtn');
     if(b)b.onclick=()=>{map.closePopup();onCityFilter&&onCityFilter(b.dataset.city);};
   });
-  const fit=()=>map.fitBounds(bounds,{padding:[46,46],maxZoom:11});
+  const fit=()=>map.fitBounds(bounds,{padding:SC<1?[26,26]:[46,46],maxZoom:11});   // 窄容器 padding 縮小,初始 zoom 更貼卡片
   fit();
   // 掛載常發生在 async 資料載完之後:容器當下可能還是 0 高(字體/版面未定),
   // 之後長高若不 invalidateSize,圖磚範圍=0 → 一片空白+標記貼頂(2026-07-17 手機實測)。

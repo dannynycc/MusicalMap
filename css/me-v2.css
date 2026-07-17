@@ -429,7 +429,7 @@ html[lang="en"] #dt-fb-zh{display:none}
 .cl-row .ct{font-weight:800;font-size:15px;color:var(--gold);flex:none}
 .cl-row:hover .nm b{color:var(--gold)}
 @media(prefers-reduced-motion:reduce){.pin .ring{animation:none;display:none}.card.is-future .poster img,.up-veil{transition:none}}/* 減少動態:未來卡過場一併關(2026-07-15) */
-@media(max-width:820px){.maprow{grid-template-columns:1fr}.citylist{height:auto;min-height:0;max-height:340px}}/* 直式排版:高度歸自動+上限捲動 */
+@media(max-width:820px){.maprow{grid-template-columns:1fr}.citylist{height:auto;min-height:0;max-height:340px}.mapwrap{aspect-ratio:auto;height:min(64vh,600px);width:100vw;margin-left:calc(50% - 50vw);border-radius:0;border-left:0;border-right:0}}/* 手機:地圖直式大版面+滿版出血(2026-07-17 使用者紅框需求)——390px 寬在 z1 恰可容納使用者 273° 經度跨幅;explicit height 也避開 WebKit ratio 循環 *//* 直式排版:高度歸自動+上限捲動 */
 
 /* ===== stats & milestones ===== */
 /* demo / empty-state banner */
