@@ -11,6 +11,14 @@
 
 ---
 
+## [v2.52.0] - 2026-07-17 09:46
+
+### 票務平台 logo 補齊(6 家)+ 搜尋「&」修復(& Juliet 搜不到)
+
+- **搜尋 bug(使用者抓到)**:me 頁「加入音樂劇」輸入「&」查無結果,要打到「& J」才出 & Juliet——`norm()` 把非字母數字全剝,「&」正規化成空字串。修法:三處正規化(`me-input.html` 的 `norm`/`cnorm`、`js/app.js` 主地圖 `fold`)一律先把 `&` → `and`(兩側對稱),「&」→ & Juliet(80 分置頂)、「Beauty & the Beast」⇄「beauty and the beast」互通;既有查詢(juliet/and juliet/全名)以正式 catalog 回歸驗證無退化。
+- **logo 盤點(使用者問「還有多少沒有 logo」)**:全 1,978 筆 shows 的 ticketing tile 實測 Google favicon——**完全沒 logo 6 家/78 tile**(prazskemuzikaly 34、broadway-show-tickets 26、東宝 7、tixfun 5、上海文化廣場 4、牛耳 2),**有但低清(16px 放大)10 家/88 tile**(jegy.hu 35、teatrebarcelona 15、teatromadrid 13、showtic 8、ypiao 6、theatre-orb 4、platinumlist 3、musicalvienna 2、chinaticket 1、plateanet 1)。
+- **本版補上 6 家全缺的**:`logos/` +tixfun(使用者提供字標,512 白底方版)、mna 牛耳藝術(使用者提供 app icon 512)、prazskemuzikaly(官網 og:image 字標裁方)、headout=broadway-show-tickets(官方 favicon 48,原生≈tile 52px)、toho 東宝(apple-touch-icon 180)、shcstheatre 上海文化廣場(官方 icon 48 白底方版);`js/app.js` LOGO_MAP +6 條,PLATFORM_NAME +tixFun/牛耳藝術,LABEL_EN +牛耳藝術→MNA。低清 10 家待後續(官網只有 16px 源,需另尋品牌資產)。
+
 ## [v2.51.1] - 2026-07-17 09:23
 
 ### 更正:tixFun 是双融藝(Ambi Arts),不是 udn售票網新品牌

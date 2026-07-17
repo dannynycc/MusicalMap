@@ -414,7 +414,8 @@ async function cloudUpsert(rec,sid){
   let res=await run(rec);
   if(res.error&&/poster_override/.test(res.error.message||'')){const c={...rec};delete c.poster_override;res=await run(c);}
   return res;}
-function norm(s){return (s||'').toLowerCase().normalize('NFKD').replace(/[̀-ͯ]/g,'').replace(/[^\p{L}\p{N}]/gu,'');}
+// & → and(兩側對稱):否則「&」被 punctuation 剝除變空字串,搜「&」找不到 & Juliet(2026-07-17 使用者抓到)
+function norm(s){return (s||'').toLowerCase().replace(/&/g,'and').normalize('NFKD').replace(/[̀-ͯ]/g,'').replace(/[^\p{L}\p{N}]/gu,'');}
 function yearOf(d){return d?parseInt(d.slice(0,4),10):null;}
 function esc(s){return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');}
 function hesc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}  // HTML 轉義（座位/心得是使用者輸入）
@@ -569,7 +570,7 @@ const CUR_EN={TWD:'New Taiwan Dollar',USD:'US Dollar',GBP:'British Pound',EUR:'E
 const CUR_SC={TWD:'新台币',GBP:'英镑',JPY:'日元',KRW:'韩元',CNY:'人民币',HKD:'港币',DKK:'丹麦克朗',PLN:'波兰兹罗提'};   // 與繁中不同的簡中名(其餘同繁中)
 function curName(c){if(EN_UI)return CUR_EN[c]||c;if(window.MM_HL==='zh-hans')return CUR_SC[c]||(CUR_INFO[c]&&CUR_INFO[c].name)||c;return (CUR_INFO[c]&&CUR_INFO[c].name)||c;}
 // 正規化：小寫、去重音、臺→台、只留字母數字與 CJK（讓「台中歌劇院」對得上「臺中國家歌劇院大劇院」）
-function cnorm(s){return (s||'').toLowerCase().normalize('NFKD').replace(/[̀-ͯ]/g,'').replace(/臺/g,'台').replace(/灣/g,'湾').replace(/[^\p{L}\p{N}]/gu,'');}
+function cnorm(s){return (s||'').toLowerCase().replace(/&/g,'and').normalize('NFKD').replace(/[̀-ͯ]/g,'').replace(/臺/g,'台').replace(/灣/g,'湾').replace(/[^\p{L}\p{N}]/gu,'');}
 // 比對分數：完全相同3、包含2、字元為子序列1、不中0（子序列讓少打中間字也找得到）
 function comboMatch(q,item){const nq=cnorm(q);if(!nq)return 1;const ni=cnorm(item);if(ni===nq)return 3;if(ni.includes(nq))return 2;
   let i=0;for(const ch of nq){i=ni.indexOf(ch,i);if(i<0)return 0;i++;}return 1;}

@@ -33,6 +33,7 @@ function esc(v) {
 // CJK/Hangul/Kana are preserved so 悲慘世界 still matches.
 const fold = (s) => (s || "").toLowerCase().normalize("NFKD")
   .replace(/[̀-ͯ]/g, "")                 // strip combining accents
+  .replace(/&/g, " and ")                 // & → and:「&」原被當標點丟掉,搜「&」找不到 & Juliet (2026-07-17)
   .replace(/['’ʼ]/g, "")                  // drop apostrophes (kiki's → kikis)
   .replace(/臺/g, "台")                    // 異體字: 臺北/臺灣 ⇄ 台北/台灣 (search both forms)
   .replace(/[・･]/g, "")                    // 日文中黑點:レ・ミゼラブル ⇄ レミゼラブル 都搜得到 (2026-07-10)
@@ -502,7 +503,7 @@ function tooltipHtml(show) {
 // Platform icon for a ticket host. Google's favicon service returns a generic globe
 // for Chinese sites (damai/juooo…), so curated brand logos override it; everything
 // else falls back to the live favicon (works for todaytix/ticketmaster/atg/…).
-const LOGO_MAP = { "damai": "logos/damai.png", "juooo": "logos/juooo.png", "ticketmaster": "logos/ticketmaster.png", "opentix": "logos/opentix.png" };   // host-substring → rehosted logo (favicon too low-res / wrong for these)
+const LOGO_MAP = { "damai": "logos/damai.png", "juooo": "logos/juooo.png", "ticketmaster": "logos/ticketmaster.png", "opentix": "logos/opentix.png", "tixfun": "logos/tixfun.png", "mna.com": "logos/mna.png", "prazskemuzikaly": "logos/prazskemuzikaly.png", "broadway-show-tickets": "logos/headout.png", "toho.co": "logos/toho.png", "shcstheatre": "logos/shcstheatre.png" };   // host-substring → rehosted logo (favicon too low-res / wrong for these)
 function platformIcon(host) {
   // LOGO_MAP paths are repo-root-relative; prefix MM_BASE so they resolve from the
   // variant pages (/MusicalMap/zh-hant/…) instead of 404-ing. Favicon URLs are absolute.
@@ -516,6 +517,7 @@ const PLATFORM_NAME = [
   ["todaytix", "TodayTix"], ["ticketmaster", "Ticketmaster"], ["atgtickets", "ATG"],
   ["ticketworld", "TicketWorld"],
   ["londontheatre", "London Theatre"], ["kham", "寬宏"], ["udnfunlife", "udn 售票"],
+  ["tixfun", "tixFun"], ["mna.com", "牛耳藝術"],
   ["interpark", "Interpark"], ["sistic", "SISTIC"], ["jegy", "jegy.hu"], ["polyt", "保利票務"],
   ["theatreinparis", "Theatre in Paris"], ["bol.pt", "BOL"], ["showtic", "Showtic"],
 ];
@@ -529,7 +531,7 @@ function platformName(host, fallback) {
 const LABEL_EN = { "Broadway票務": "Broadway.com", "大麥": "Damai", "聚橙": "Juooo", "保利票務": "Poly Theatre",
   "票務": "Tickets", "官方售票": "Official tickets", "官方網站": "Official site", "售票連結": "Tickets",
   "四季官網": "Shiki Official", "宝塚官網": "Takarazuka Official", "Stage官網": "Stage Entertainment",
-  "寬宏": "KHAM", "udn 售票": "udn tickets" };
+  "寬宏": "KHAM", "udn 售票": "udn tickets", "牛耳藝術": "MNA" };
 function localizedLabel(raw, host, country) {
   if (document.documentElement.lang !== "en" || !raw) return raw;
   if (LABEL_EN[raw]) return LABEL_EN[raw];
