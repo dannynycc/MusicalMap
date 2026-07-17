@@ -40,7 +40,14 @@ function mount(opts){
   // 窄容器(手機)卡片縮小,免得一手牌蓋滿整張地圖
   const SC=el.clientWidth<520?0.72:1;
   map.getContainer().setAttribute('aria-label',t('map_aria'));
-  L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/streets-v12/tiles/512/{z}/{x}/{y}@2x?access_token='+token,{
+  // me/u 頁是 <meta referrer=no-referrer>(隱私:外部海報 URL 不洩來源),但 Mapbox token 綁網域
+  // 靠 referer 驗證——無 referer 的圖磚請求落在 Mapbox 風控灰區,時而 200 時而 403(2026-07-17 手機
+  // 「初始畫面時有時無」實錘;主站用 strict-origin 從不發生)。逐張圖磚改送 origin-level referer:
+  // 只送網域不含路徑,頁面其他資源維持 no-referrer 不動。
+  const MBLayer=L.TileLayer.extend({createTile:function(coords,done){
+    const img=L.TileLayer.prototype.createTile.call(this,coords,done);
+    img.referrerPolicy='strict-origin-when-cross-origin';return img;}});
+  new MBLayer('https://api.mapbox.com/styles/v1/mapbox/streets-v12/tiles/512/{z}/{x}/{y}@2x?access_token='+token,{
     attribution:'&copy; <a href="https://www.mapbox.com/about/maps/">Mapbox</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
     tileSize:512,zoomOffset:-1,maxZoom:19}).addTo(map);
 

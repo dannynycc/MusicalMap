@@ -11,6 +11,13 @@
 
 ---
 
+## [v2.53.7] - 2026-07-17 17:45
+
+### 修「初始畫面時有時無底圖」——圖磚 referer 玄學實錘並根治
+
+- 使用者 iPhone:同裝置同縮放,4:50 有底圖、5:41 全空。實錘根因:me/u 頁有 `<meta referrer=no-referrer>`(隱私:外部海報 URL 不洩來源),圖磚請求不帶 referer;Mapbox token 綁網域靠 referer 驗證 → **無 referer 落在 Mapbox 風控灰區,時而 200 時而 403**。主站用 `strict-origin-when-cross-origin` 從不發生。這同時解釋了 playwright 全滅、桌面時好時壞的所有觀察。
+- 修:自訂 TileLayer 對每張圖磚 `<img>` 設 `referrerPolicy='strict-origin-when-cross-origin'`(只送網域不含路徑),頁面其他資源維持 no-referrer 不動。從此 referer 決定一切:正式站網域=穩定 200(curl 驗證),localhost=正確 403。mm-foot-map v6。
+
 ## [v2.53.6] - 2026-07-17 17:37
 
 ### 修「放大一點地圖空白、再放大又好」——移除半格縮放
