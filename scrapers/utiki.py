@@ -13,7 +13,9 @@ UDN  session page  UTK02/UTK0203_.aspx    -> a yd_orderShow block:
 tixFun detail page /UTK0201_?PRODUCT_ID=… -> inline `__dataP = [...]` JSON, one entry
     per session with PLACE_NAME / ADDRESS / START_DATETIME (the only structured venue
     source on that skin — the marketing body cross-sells other shows' venues).
-    tixFun is udn售票網's rebrand; new programs list only there, so both skins stay.
+    tixFun is run by 双融藝 Ambi Arts Inc. (per site footer) — a FOURTH independent
+    operator on the shared engine, NOT related to udn; it carries programs (e.g.
+    AM創意) that the other three skins don't, so all four are scanned.
 
 A program may tour several venues -> we emit one show per distinct venue with that
 venue's own date range. Coordinates are left to Google geocoding (geocode_google.py

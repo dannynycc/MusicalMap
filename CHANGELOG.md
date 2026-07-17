@@ -11,11 +11,18 @@
 
 ---
 
+## [v2.51.1] - 2026-07-17 09:23
+
+### 更正:tixFun 是双融藝(Ambi Arts),不是 udn售票網新品牌
+
+- v2.51.0 文件把 tixfun.com 寫成「udn售票網的新品牌」——**錯**,那是從「同用 utiki UTK 引擎」腦補的因果,未經查證(使用者質疑後查 tixfun 首頁頁尾:`Copyright © by 双融藝股份有限公司 Ambi Arts Inc.`,客服信箱 @ambiarts.com.tw)。KHAM/MNA/udn 本就是不同公司共用同一引擎,tixFun 是**第四家獨立業者**。
+- 更正處:`scrapers/utiki.py` docstring、README(utiki 來源列)、docs/SOURCES.md、本檔 v2.51.0 標題註記。程式碼行為無誤(站台本來就當獨立第四站掃),純文件更正。
+
 ## [v2.51.0] - 2026-07-17 09:11
 
-### 新資料來源:tixFun(udn售票網新品牌)——補回《綠野仙蹤》中文版等台灣檔期
+### 新資料來源:tixFun——補回《綠野仙蹤》中文版等台灣檔期(標題原誤稱「udn售票網新品牌」,v2.51.1 更正:實為双融藝 Ambi Arts)
 
-- **起因**:使用者指出 AM創意2026《綠野仙蹤》中文版音樂劇(RSC 授權,台北國家戲劇院 9/5-6、臺中國家歌劇院大劇院 10/10-11)不在地圖上。追查:該檔只上 **tixfun.com**(udn售票網的新品牌皮),舊域名 tickets.udnfunlife.com 的「音樂劇」搜尋已看不到新檔期,而 scraper 只掃舊域名。
+- **起因**:使用者指出 AM創意2026《綠野仙蹤》中文版音樂劇(RSC 授權,台北國家戲劇院 9/5-6、臺中國家歌劇院大劇院 10/10-11)不在地圖上。追查:該檔只上 **tixfun.com**,不在既掃的三站(kham/udn/mna)任何一站,而 scraper 沒掃這站。
 - **`scrapers/utiki.py`**:新增第四站 `tixfun`(同 UTK 引擎、扁平路由 `/UTK0102_?TYPE=1&CATEGORY=80`)。卡片(hero 輪播+格狀,以 PRODUCT_ID 去重)取 entity 編碼標題+總日期;**場館/逐場日期解析詳情頁內嵌 `__dataP` JSON**(每場次 `PLACE_NAME`+`ADDRESS`+`START_DATETIME`)——詳情頁行銷內文會交叉宣傳他劇場館(恐龍復活了等),不可刮文字,JSON 才是唯一可信源。城市取自場館地址。
 - **`scrapers/build_shows.py`**:`TAG_LOCAL_SRC` 台灣來源組補 `tixfun`——否則未註冊的台灣原創(轟吧!全壘打、德拉拉牙科診所)掉進最後 fallback 誤標 Broadway/West End。
 - **`data/venue_coords.json`**:+兒童新樂園 DDBox(臺北,25.0963/121.5147;Nominatim 以官方地址+場館名雙查收斂)。
