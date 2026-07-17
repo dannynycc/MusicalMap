@@ -108,7 +108,16 @@ function mount(opts){
     const b=e.popup.getElement().querySelector('.ftbtn');
     if(b)b.onclick=()=>{map.closePopup();onCityFilter&&onCityFilter(b.dataset.city);};
   });
-  map.fitBounds(bounds,{padding:[46,46],maxZoom:11});
+  const fit=()=>map.fitBounds(bounds,{padding:[46,46],maxZoom:11});
+  fit();
+  // 掛載常發生在 async 資料載完之後:容器當下可能還是 0 高(字體/版面未定),
+  // 之後長高若不 invalidateSize,圖磚範圍=0 → 一片空白+標記貼頂(2026-07-17 手機實測)。
+  // ResizeObserver 盯容器尺寸;首度從 0 → 有效尺寸時重新 fitBounds 一次。
+  let fitted=el.clientHeight>0;
+  const ro=new ResizeObserver(()=>{map.invalidateSize();
+    if(!fitted&&el.clientHeight>0){fitted=true;fit();}});
+  ro.observe(el);
+  requestAnimationFrame(()=>{map.invalidateSize();if(!fitted&&el.clientHeight>0){fitted=true;fit();}});
   return map;
 }
 window.MMFootMap={mount};
