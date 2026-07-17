@@ -11,6 +11,14 @@
 
 ---
 
+## [v2.53.3] - 2026-07-17 15:44
+
+### 修 iPhone(Safari/WebKit)足跡地圖整個塌陷成 3×2px——真正的手機病根
+
+- 使用者 iPhone 無痕實機回報「完全沒有地圖」(截圖:足跡標題直接接造訪城市)。v2.53.1/2 修的是 Chromium 下的次要問題;**真兇是 WebKit 排版**:`.maprow` grid `align-items:stretch` + `.mapwrap` 靠 `aspect-ratio:16/10` 撐高=兩軸 stretch+ratio 的循環定義,Chromium 先解寬再推高,WebKit 解不開→塌成內容尺寸(3×2px,playwright webkit+iPhone 13 對正式站重現)。舊版沒塌是因為 mapwrap 內有 in-flow 的 legend 撐著,足跡地圖 v2 拆掉 legend 後 WebKit 歸零。
+- 修:`.mapwrap{align-self:start;min-height:180px}`——只 stretch 寬軸,高度由 aspect-ratio 從定寬推得;Chromium 行為不變。WebKit iPhone 13 驗證:311×194、3 手牌、卡 40px。me-v2.css v38。
+- 反省記錄:過程中一度往「使用者瀏覽器/快取」方向猜(使用者已用無痕排除),實際是自己的 CSS 相容性 regression;另 playwright(Chromium/WebKit 皆同)對 Mapbox 圖磚一律 403=bot 偵測假訊號,真瀏覽器 200,已記入長期記憶避免再誤判。
+
 ## [v2.53.2] - 2026-07-17 15:20
 
 ### 手機版足跡地圖再修:掛載時容器 0 高 → 圖磚零請求+疊卡貼頂被裁

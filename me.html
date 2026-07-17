@@ -18,7 +18,7 @@ if(location.hostname==='themusicalmap.com'||location.hostname==='www.themusicalm
 <script>/* no-flash: apply saved theme before CSS paints;預設 cream(對齊主站淡米黃)。
    一次性遷移:舊版 applyTheme 會把預設 midnight 自動寫進 localStorage,使既有使用者卡在深色;
    mm-theme-mig 未設時清一次 mm-theme,讓大家重新落到 cream 預設(之後仍尊重使用者用 picker 的選擇)。 */(function(){try{if(!localStorage.getItem('mm-theme-mig')){localStorage.removeItem('mm-theme');localStorage.setItem('mm-theme-mig','1');}var t=localStorage.getItem('mm-theme')||'cream';if(t==='neon'||t==='deco'){t='midnight';localStorage.setItem('mm-theme',t);}if(t!=='midnight')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
-<link rel="stylesheet" href="css/me-v2.css?v=37" /><!-- CSS 也要 cache-bust:CF Pages 對 .css 出 max-age=14400,不掛 ?v 改版後最多 4hr 拿舊樣式 -->
+<link rel="stylesheet" href="css/me-v2.css?v=38" /><!-- CSS 也要 cache-bust:CF Pages 對 .css 出 max-age=14400,不掛 ?v 改版後最多 4hr 拿舊樣式 -->
 <!-- 足跡地圖 v2:主站同款 Leaflet(SRI 同主站 index.html) -->
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha384-sHL9NAb7lN7rfvG5lfHpm643Xkcjzp4jFvuavGOndn6pjVqS6ny56CAt3nsEVT4H" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" integrity="sha384-pmjIAcz2bAn0xukfxADbZIb3t8oRT9Sv0rvO+BR5Csr6Dhqq+nZs59P0pPKQJkEV" crossorigin="anonymous" />

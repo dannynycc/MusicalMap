@@ -341,7 +341,10 @@ html[lang="en"] #dt-fb-zh{display:none}
 
 /* ===== MAP ===== */
 .maprow{display:grid;grid-template-columns:minmax(0,1fr) 264px;gap:18px;align-items:stretch}/* stretch+citylist height:0 → 城市榜高度鎖定=地圖高,過長改捲動(2026-07-15) */
-.mapwrap{position:relative;min-width:0;border-radius:18px;overflow:hidden;border:1px solid var(--hair);box-shadow:var(--shadow-1);background:var(--ocean);aspect-ratio:16/10}
+/* align-self:start=解 WebKit 循環:grid 兩軸 stretch+aspect-ratio 在 Safari 會塌成內容尺寸(3×2px,
+   iPhone 實機回報 2026-07-17)——只 stretch 寬軸,高度由 aspect-ratio 從定寬推得;Chromium 行為不變。
+   舊版沒塌是 in-flow 的 legend 撐著,足跡地圖 v2 拆掉後 WebKit 歸零。min-height=最後保底。 */
+.mapwrap{position:relative;min-width:0;border-radius:18px;overflow:hidden;border:1px solid var(--hair);box-shadow:var(--shadow-1);background:var(--ocean);aspect-ratio:16/10;align-self:start;min-height:180px}
 #mapcv{position:absolute;inset:0;width:100%;height:100%}
 /* ===== 足跡地圖 v2:Leaflet 扇形疊卡(mm-foot-map.js;取代自繪點陣) ===== */
 #mapfoot{position:absolute;inset:0;width:100%;height:100%;background:var(--ocean);cursor:grab}
