@@ -11,6 +11,14 @@
 
 ---
 
+## [v2.53.10] - 2026-07-17 21:38
+
+### v2.53.9 兩處收尾失敗的補修(使用者三度回報,截圖屬實)
+
+- **肥進度條沒修好**:v2.53.9 只覆蓋 `.plegend .bar` 的 height,但通用 `.bar`(hero 統計列)≤560px 規則設 `min-height:56px;padding:8px`,同名撞衫把 6px 細條撐成 56px 肥塊——我當時只驗座標數字沒看截圖,錯放行。補 `min-height:0;padding:0;flex-wrap:nowrap`。
+- **徽章戳出面板**:≤520px 的 `repeat(4,1fr)` 格子拒縮(grid 預設 min-width:auto),卡片戳破面板圓角。改 `repeat(3,minmax(0,1fr))`+`.badge{min-width:0}`,3 個/排寬鬆整齊。
+- **驗證流程修正**:本輪起手機版一律「真捲動觸發 reveal → 分區截圖目視」,不再只量 getBoundingClientRect(reveal 未觸發時量得到座標但畫面空白/被裁,前兩輪誤判來源)。WebKit iPhone 目視:徽章 3 排等大全在框內、六邊形+標籤完整、六向度=名稱下 6px 細條。css v43。
+
 ## [v2.53.9] - 2026-07-17 21:25
 
 ### 手機版「關於你」區四項爆框修正(iPhone 實機回報)
