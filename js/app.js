@@ -503,7 +503,7 @@ function tooltipHtml(show) {
 // Platform icon for a ticket host. Google's favicon service returns a generic globe
 // for Chinese sites (damai/juooo…), so curated brand logos override it; everything
 // else falls back to the live favicon (works for todaytix/ticketmaster/atg/…).
-const LOGO_MAP = { "damai": "logos/damai.png", "juooo": "logos/juooo.png", "ticketmaster": "logos/ticketmaster.png", "opentix": "logos/opentix.png", "tixfun": "logos/tixfun.png", "mna.com": "logos/mna.png", "prazskemuzikaly": "logos/prazskemuzikaly.png", "broadway-show-tickets": "logos/headout.png", "toho.co": "logos/toho.png", "shcstheatre": "logos/shcstheatre.png" };   // host-substring → rehosted logo (favicon too low-res / wrong for these)
+const LOGO_MAP = { "damai": "logos/damai.png", "juooo": "logos/juooo.png", "ticketmaster": "logos/ticketmaster.png", "opentix": "logos/opentix.png", "tixfun": "logos/tixfun.png", "mna.com": "logos/mna.png", "prazskemuzikaly": "logos/prazskemuzikaly.png", "broadway-show-tickets": "logos/headout.png", "toho.co": "logos/toho.png", "shcstheatre": "logos/shcstheatre.png", "theatre-orb": "logos/theatreorb.png", "teatrebarcelona": "logos/teatrebarcelona.png", "jegy.hu": "logos/jegyhu.png", "teatromadrid": "logos/teatromadrid.png", "platinumlist": "logos/platinumlist.png" };   // host-substring → rehosted logo (favicon too low-res / wrong for these)
 function platformIcon(host) {
   // LOGO_MAP paths are repo-root-relative; prefix MM_BASE so they resolve from the
   // variant pages (/MusicalMap/zh-hant/…) instead of 404-ing. Favicon URLs are absolute.

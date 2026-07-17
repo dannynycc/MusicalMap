@@ -11,6 +11,13 @@
 
 ---
 
+## [v2.52.1] - 2026-07-17 09:58
+
+### 低清 logo 組再補 5 家(使用者提供來源)
+
+- `logos/` +theatreorb(TOKYU THEATRE Orb)、teatrebarcelona、jegyhu、teatromadrid、platinumlist——皆逐張目視驗明品牌後,裁白邊置中 512 白底方版;`LOGO_MAP` +5 條。低清組剩 5 家(showtic 8、ypiao 6、musicalvienna 2、chinaticket 1、plateanet 1)。
+- v2.52.0 正式站驗證完成:主地圖與 me 頁「加入音樂劇」輸入「&」均置頂 & Juliet(登入帳號實測,未動收藏);綠野仙蹤卡片 tile 顯示 TixFun 紫色 logo+名稱 tixFun。
+
 ## [v2.52.0] - 2026-07-17 09:46
 
 ### 票務平台 logo 補齊(6 家)+ 搜尋「&」修復(& Juliet 搜不到)
