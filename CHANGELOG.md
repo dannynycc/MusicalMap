@@ -11,6 +11,13 @@
 
 ---
 
+## [v2.53.8] - 2026-07-17 19:39
+
+### v2.53.7 修法無效的真正補丁:referrerPolicy 必須用 Leaflet 圖層選項
+
+- 使用者回報 v2.53.7 後症狀不變。WebKit 實抓圖磚請求標頭:**referer 仍缺席** —— v2.53.7 在 createTile 之後才補 `img.referrerPolicy`,但 Leaflet 在 createTile 內部設 src 當下請求已送出,補了等於沒補(我的實作錯誤)。
+- 改用 Leaflet 1.9 官方 `referrerPolicy` 圖層選項(在設 src 前套用)。WebKit 驗證:referer 確實送出,**圖磚 200 —— 且連 localhost referer 都 200**,證明 Mapbox 行為=「無 referer 走風控擲骰(時 200 時 403),有任何 referer 穩定放行」,與 token 綁網域無關(先前推論更正)。本機開發從此也看得到底圖。mm-foot-map v7。
+
 ## [v2.53.7] - 2026-07-17 17:45
 
 ### 修「初始畫面時有時無底圖」——圖磚 referer 玄學實錘並根治
