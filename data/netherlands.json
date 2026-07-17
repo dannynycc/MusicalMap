@@ -1,7 +1,7 @@
 {
   "meta": {
     "source": "stage-entertainment.nl",
-    "count": 2
+    "count": 3
   },
   "shows": [
     {
@@ -17,6 +17,23 @@
       "end_date": null,
       "image": "https://mediaportal.stage-entertainment.com/transform/43bd73f2-4059-480e-a3bd-556343c8fd87/-Juliet_LeadGen_Social_1080x1080px_Wt---2",
       "ticket_url": "https://www.stage-entertainment.nl/shows/musical/andjuliet",
+      "type": "resident",
+      "verified": true,
+      "source": "stage-entertainment.nl"
+    },
+    {
+      "id": "nl-1cee3db7",
+      "title": "MJ - De Michael Jackson Musical",
+      "title_en": "",
+      "venue": "AFAS Circustheater",
+      "city": "Scheveningen",
+      "country": "Netherlands",
+      "lat": 52.1083,
+      "lng": 4.2769,
+      "start_date": null,
+      "end_date": null,
+      "image": null,
+      "ticket_url": "https://www.stage-entertainment.nl/shows/musical/mjdemusical",
       "type": "resident",
       "verified": true,
       "source": "stage-entertainment.nl"
