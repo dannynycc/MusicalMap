@@ -18,7 +18,10 @@ if(location.hostname==='themusicalmap.com'||location.hostname==='www.themusicalm
 <script>/* no-flash: apply saved theme before CSS paints;預設 cream(對齊主站淡米黃)。
    一次性遷移:舊版 applyTheme 會把預設 midnight 自動寫進 localStorage,使既有使用者卡在深色;
    mm-theme-mig 未設時清一次 mm-theme,讓大家重新落到 cream 預設(之後仍尊重使用者用 picker 的選擇)。 */(function(){try{if(!localStorage.getItem('mm-theme-mig')){localStorage.removeItem('mm-theme');localStorage.setItem('mm-theme-mig','1');}var t=localStorage.getItem('mm-theme')||'cream';if(t==='neon'||t==='deco'){t='midnight';localStorage.setItem('mm-theme',t);}if(t!=='midnight')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
-<link rel="stylesheet" href="css/me-v2.css?v=36" /><!-- CSS 也要 cache-bust:CF Pages 對 .css 出 max-age=14400,不掛 ?v 改版後最多 4hr 拿舊樣式 -->
+<link rel="stylesheet" href="css/me-v2.css?v=37" /><!-- CSS 也要 cache-bust:CF Pages 對 .css 出 max-age=14400,不掛 ?v 改版後最多 4hr 拿舊樣式 -->
+<!-- 足跡地圖 v2:主站同款 Leaflet(SRI 同主站 index.html) -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha384-sHL9NAb7lN7rfvG5lfHpm643Xkcjzp4jFvuavGOndn6pjVqS6ny56CAt3nsEVT4H" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" integrity="sha384-pmjIAcz2bAn0xukfxADbZIb3t8oRT9Sv0rvO+BR5Csr6Dhqq+nZs59P0pPKQJkEV" crossorigin="anonymous" />
 <style>
 html[lang="en"] .sec h2 .zh{display:none}   /* en 模式:section 標題旁的英文小字與主標重複 → 隱藏 */
 html[lang="zh-Hans"] body{--ui:'Inter','Noto Sans SC',sans-serif}  /* 簡中改用 SC 字型,避免混排忽粗忽細 */
@@ -104,7 +107,7 @@ if(v&&v!=='zh-hant'){document.write('<style id="mm-fouc">body{visibility:hidden}
   var _rv=function(){var s=document.getElementById('mm-fouc');if(s)s.remove();};
   window.addEventListener('DOMContentLoaded',function(){setTimeout(_rv,0);});setTimeout(_rv,1500);}
 }catch(e){}})();</script>
-<script src="js/mm-strings.js?v=257"></script>
+<script src="js/mm-strings.js?v=258"></script>
 <script src="js/mm-badge-icons.js?v=6"></script>
 <script src="js/mm-persona-radar.js?v=11"></script>
 <script src="js/mm-acct-menu.js?v=227"></script>
@@ -229,12 +232,7 @@ if(v&&v!=='zh-hant'){document.write('<style id="mm-fouc">body{visibility:hidden}
   <!-- MAP -->
   <div class="sec"><h2><span data-i18n="sec_map">我的音樂劇足跡</span><span class="zh">Cities</span></h2><span class="hint" data-i18n="sec_map_hint">點一座城市，只看那裡的收藏</span></div>
   <div class="maprow">
-    <div class="mapwrap reveal"><canvas id="mapcv" role="img" aria-label="音樂劇足跡地圖 / Musicals visited map"></canvas><div id="pins"></div>
-      <div class="mapzoom"><button id="mapZin" aria-label="放大" data-i18n-aria="aria_zoom_in">＋</button><button id="mapZout" aria-label="縮小" data-i18n-aria="aria_zoom_out">－</button><button id="mapZreset" aria-label="重置" title="重置" data-i18n-aria="aria_zoom_reset" data-i18n-title="aria_zoom_reset">⟲</button></div>
-      <div class="maphint" data-i18n="map_hint">滾輪縮放 · 拖曳平移</div>
-      <div class="legend"><div class="row"><span class="d" style="width:8px;height:8px"></span> <span data-i18n="legend_dot">圓點 = 看過音樂劇的城市</span></div>
-        <div class="row"><span class="d" style="width:7px;height:7px"></span><span class="d" style="width:11px;height:11px"></span><span class="d" style="width:15px;height:15px"></span> <span data-i18n="legend_size">圓大小 = 看的場數</span></div></div>
-    </div>
+    <div class="mapwrap reveal"><div id="mapfoot" role="application"></div></div>
     <div class="citylist reveal" id="citylist"></div>
   </div>
 
@@ -289,9 +287,11 @@ if(v&&v!=='zh-hant'){document.write('<style id="mm-fouc">body{visibility:hidden}
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.110.0/dist/umd/supabase.js" integrity="sha384-3wY11tldQ5+yWqAvmTN4XtQvnjoTva0cV15O/O/O5NTtp0ivVopSzLOzsVXWZse9" crossorigin="anonymous"></script>
 <script src="js/config.js"></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha384-cxOPjt7s7Iz04uaHJceBmS+qpjv2JkIHNVcuOrM+YHwZOmJGBXI00mdUXEq65HTH" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js" integrity="sha384-eXVCORTRlv4FUUgS/xmOyr66XBVraen8ATNLMESp92FKXLAMiKkerixTiBvXriZr" crossorigin="anonymous"></script>
+<script src="js/mm-foot-map.js?v=1"></script>
 <script src="data.js?v=7"></script>
 <script src="data2.js"></script>
-<script src="worldmap.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js" integrity="sha384-jb8JQMbMoBUzgWatfe6COACi2ljcDdZQ2OxczGA3bGNeWe+6DChMTBJemed7ZnvJ" crossorigin="anonymous"></script>
 <script>
 /* ===== 整合：讀使用者在輸入端登錄的 mm-log，讓海報牆/地圖/統計都長出真實紀錄 =====
@@ -595,97 +595,10 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 /* ---------- MAP : dotted world (two-tone, no lines) + always-on labels + ranked list ---------- */
 /* CITYZH / cityName 已上移到 hero IIFE 之前(避免 TDZ);此處僅留衍生 helper */
 function cityHasZh(c){return cityName(c)!==c;}
-function project(lat,lng){return[(lng+180)/360,(90-lat)/180];}
-// ===== 地圖縮放/平移：view = 可視窗左上角(x,y, base 0-1) + 縮放 z =====
-let mapV={z:1,x:0,y:0};
-function clampV(){if(mapV.z<1)mapV.z=1;const m=1-1/mapV.z;mapV.x=Math.max(0,Math.min(m,mapV.x));mapV.y=Math.max(0,Math.min(m,mapV.y));if(mapV.z<=1){mapV.x=0;mapV.y=0;}}
-function tf(fx,fy){return[(fx-mapV.x)*mapV.z,(fy-mapV.y)*mapV.z];}   // base fraction → 螢幕 fraction
-function renderMap(){drawMap();positionPins();}
 function filterToCity(city){activeCity=activeCity===city?null:city;activeYear='全部';
   document.querySelectorAll('#chips .chip').forEach((x,i)=>x.setAttribute('aria-pressed',i===0&&!activeCity));
   if(mode!=='poster')setMode('poster');else renderPoster();
   document.getElementById('wall-poster').scrollIntoView({behavior:'smooth',block:'start'});}
-function drawMap(){
-  const cv=document.getElementById('mapcv');const wrap=cv.parentElement;
-  const w=wrap.clientWidth,h=wrap.clientHeight,dpr=Math.min(2,window.devicePixelRatio||1);
-  if(!w||!h)return;
-  cv.width=w*dpr;cv.height=h*dpr;const ctx=cv.getContext('2d');ctx.scale(dpr,dpr);ctx.clearRect(0,0,w,h);
-  const cs=getComputedStyle(document.documentElement);
-  const fill=cs.getPropertyValue('--land-fill').trim()||'#1b2747';
-  const dot=cs.getPropertyValue('--land-dot').trim()||'rgba(132,151,184,.85)';
-  const pts=WORLD_DOTS.split(' ');
-  const k=Math.min(2.4,0.72+mapV.z*0.16);   // 縮放時點略放大，維持陸地可讀
-  // pass 1 — solid land silhouette (big, semi-transparent) so continents read as shapes
-  ctx.globalAlpha=.6;ctx.fillStyle=fill;
-  for(const p of pts){const i=p.indexOf(',');const[sx,sy]=tf(+p.slice(0,i)/1000,+p.slice(i+1)/500);
-    if(sx<-.03||sx>1.03||sy<-.03||sy>1.03)continue;ctx.beginPath();ctx.arc(sx*w,sy*h,3.1*k,0,7);ctx.fill();}
-  // pass 2 — crisp high-contrast dots on top (the halftone)
-  ctx.globalAlpha=1;ctx.fillStyle=dot;
-  for(const p of pts){const i=p.indexOf(',');const[sx,sy]=tf(+p.slice(0,i)/1000,+p.slice(i+1)/500);
-    if(sx<-.03||sx>1.03||sy<-.03||sy>1.03)continue;ctx.beginPath();ctx.arc(sx*w,sy*h,1.5*k,0,7);ctx.fill();}
-}
-let PINS=[];
-function placePins(){
-  const pins=document.getElementById('pins');pins.innerHTML='';PINS=[];
-  const byCity={};S.forEach(s=>{if(!s.city||isFut(s.date))return;(byCity[s.city]=byCity[s.city]||{...s,n:0}).n++;});   // 地圖/城市榜只算已到場
-  Object.values(byCity).forEach(c=>{
-    if(c.lat==null||c.lng==null)return;            // 無座標城市不放 pin（仍在城市清單/統計，絕不消失）
-    const[px,py]=project(c.lat,c.lng);if(!isFinite(px)||!isFinite(py))return;
-    const sz=15+Math.sqrt(c.n)*6.5;
-    const el=document.createElement('button');el.className='pin';
-    el.setAttribute('aria-label',TN('pin_aria',{city:cityName(c.city),n:c.n}));
-    el.innerHTML=`<span class="glow" style="width:${sz*2.4}px;height:${sz*2.4}px"></span>
-      <span class="ring"></span>
-      <span class="core" style="width:${sz}px;height:${sz}px">${c.n}</span>
-      <span class="lbl">${esc(cityName(c.city))}</span>`;
-    el.onclick=()=>filterToCity(c.city);
-    pins.appendChild(el);PINS.push({el,px,py,n:c.n});
-  });
-  positionPins();
-}
-// 地圖 pin:重疊的城市併成一個 cluster(圈圈+總場次,標籤「N 城市」),點擊放大展開;放大分開後自動變回個別城市(比照主頁 Leaflet cluster 的體驗,但此圖自繪故自實作)。
-let CLUSTER_POOL=[];
-function positionPins(){
-  const host=document.getElementById('pins');if(!host)return;
-  const W=host.clientWidth||600,H=host.clientHeight||375;
-  const vis=[];
-  PINS.forEach(p=>{const[sx,sy]=tf(p.px,p.py);
-    if(sx<-0.02||sx>1.02||sy<-0.02||sy>1.02){p.el.style.display='none';}
-    else{p._sx=sx;p._sy=sy;vis.push(p);}});
-  vis.sort((a,b)=>b.n-a.n);                          // 場次多者當 cluster 錨點
-  const R=mapV.z>=11.5?0:(mapV.z>=6?22:44),used=new Set(),clusters=[];   // 螢幕距離 <R px 併群;R 隨 zoom 縮小、zoom 封頂時不併群——否則相近城市(台北/台中)點到 max zoom 也展不開=死胡同
-  vis.forEach(a=>{if(used.has(a))return;used.add(a);const mem=[a];
-    vis.forEach(b=>{if(used.has(b))return;const dx=(a._sx-b._sx)*W,dy=(a._sy-b._sy)*H;
-      if(dx*dx+dy*dy<R*R){used.add(b);mem.push(b);}});
-    clusters.push(mem);});
-  CLUSTER_POOL.forEach(e=>e.style.display='none');
-  const singles=[];let ci=0;
-  clusters.forEach(mem=>{
-    if(mem.length===1){const p=mem[0];p.el.style.display='';p.el.classList.remove('lbl-off');
-      p.el.style.left=p._sx*100+'%';p.el.style.top=p._sy*100+'%';singles.push(p);return;}
-    mem.forEach(p=>p.el.style.display='none');
-    let cx=0,cy=0,bx=0,by=0,sum=0;mem.forEach(p=>{cx+=p._sx;cy+=p._sy;bx+=p.px;by+=p.py;sum+=p.n;});
-    const k=mem.length;cx/=k;cy/=k;bx/=k;by/=k;
-    let el=CLUSTER_POOL[ci];
-    if(!el||!el.isConnected){el=document.createElement('button');el.className='pin pin-cluster';host.appendChild(el);CLUSTER_POOL[ci]=el;}   // placePins 清空 #pins 會卸離 cluster 元素→重用前檢查 isConnected,卸離就重建
-
-    el.style.display='';el.style.left=cx*100+'%';el.style.top=cy*100+'%';
-    const sz=18+Math.sqrt(sum)*5.2, word=document.documentElement.lang==='en'?(k+' cities'):(k+' 城市');
-    el.innerHTML=`<span class="glow" style="width:${sz*2.2}px;height:${sz*2.2}px"></span><span class="core" style="width:${sz}px;height:${sz}px">${sum}</span><span class="lbl">${word}</span>`;
-    el.setAttribute('aria-label',document.documentElement.lang==='en'?(word+', '+sum+' shows, click to zoom in'):MS(word+'，共 '+sum+' 場，點擊放大'));   // en 別唸中文;zh-hans 過 MS 轉簡(讀屏繁體殘留,2026-07-10)
-    el.onclick=()=>{const nz=Math.min(12,Math.max(mapV.z*2.4,2.6));mapV.z=nz;mapV.x=bx-0.5/nz;mapV.y=by-0.5/nz;clampV();renderMap();};
-    ci++;
-  });
-  try{declutterSingleLabels(singles,host);}catch(e){}   // 剩下的單一城市若標籤仍互撞,收尾隱藏被遮者(marker+hover 名)
-}
-function declutterSingleLabels(singles,host){
-  singles.sort((a,b)=>b.n-a.n);
-  const base=host.getBoundingClientRect(),kept=[];
-  singles.forEach(p=>{const lbl=p.el.querySelector('.lbl');if(!lbl)return;
-    const r=lbl.getBoundingClientRect();const box={x:r.left-base.left,y:r.top-base.top,w:r.width,h:r.height};
-    const hit=kept.some(b=>box.x<b.x+b.w+2&&box.x+box.w+2>b.x&&box.y<b.y+b.h+2&&box.y+box.h+2>b.y);
-    if(hit)p.el.classList.add('lbl-off');else kept.push(box);});
-}
 function buildCityList(){
   const el=document.getElementById('citylist');
   const byCity={};S.forEach(s=>{if(!s.city||isFut(s.date))return;(byCity[s.city]=byCity[s.city]||{...s,n:0}).n++;});   // 地圖/城市榜只算已到場
@@ -697,27 +610,15 @@ function buildCityList(){
       <span class="ct">${c.n}</span></button>`;}).join('');
   el.querySelectorAll('.cl-row').forEach(r=>r.onclick=()=>filterToCity(r.dataset.city));
 }
-let mt;addEventListener('resize',()=>{clearTimeout(mt);mt=setTimeout(()=>{renderMap();},150);});
-// ===== 地圖縮放/平移互動 =====
-(function(){
-  const wrap=document.querySelector('.mapwrap');if(!wrap)return;
-  function zoomAt(cx,cy,factor){const bx=mapV.x+cx/mapV.z,by=mapV.y+cy/mapV.z;
-    mapV.z=Math.max(1,Math.min(12,mapV.z*factor));mapV.x=bx-cx/mapV.z;mapV.y=by-cy/mapV.z;clampV();renderMap();}
-  wrap.addEventListener('wheel',e=>{e.preventDefault();const r=wrap.getBoundingClientRect();
-    zoomAt((e.clientX-r.left)/r.width,(e.clientY-r.top)/r.height,e.deltaY<0?1.2:1/1.2);},{passive:false});
-  let drag=null,_rafP=false;
-  const renderMapRAF=()=>{if(_rafP)return;_rafP=true;requestAnimationFrame(()=>{_rafP=false;renderMap();});};  // 合併每 frame 一次:pointermove 每次同步重繪 2685 點+群集會卡(2026-07-10)
-  wrap.addEventListener('pointerdown',e=>{if(e.target.closest('.pin')||e.target.closest('.mapzoom'))return;
-    drag={x:e.clientX,y:e.clientY};try{wrap.setPointerCapture(e.pointerId);}catch(_){}wrap.classList.add('grabbing');});
-  wrap.addEventListener('pointermove',e=>{if(!drag)return;const r=wrap.getBoundingClientRect();
-    mapV.x-=(e.clientX-drag.x)/(r.width*mapV.z);mapV.y-=(e.clientY-drag.y)/(r.height*mapV.z);drag={x:e.clientX,y:e.clientY};clampV();renderMapRAF();});
-  const end=()=>{drag=null;wrap.classList.remove('grabbing');};
-  wrap.addEventListener('pointerup',end);wrap.addEventListener('pointercancel',end);wrap.addEventListener('pointerleave',end);
-  const zin=document.getElementById('mapZin'),zout=document.getElementById('mapZout'),zr=document.getElementById('mapZreset');
-  if(zin)zin.onclick=()=>zoomAt(.5,.5,1.6);
-  if(zout)zout.onclick=()=>zoomAt(.5,.5,1/1.6);
-  if(zr)zr.onclick=()=>{mapV={z:1,x:0,y:0};renderMap();};
-})();
+// ===== 足跡地圖 v2:主站同款 Leaflet 扇形疊卡(js/mm-foot-map.js;場館級 pin) =====
+let FOOTMAP=null;
+function mountFootMap(){
+  if(FOOTMAP||!window.MMFootMap)return;
+  FOOTMAP=MMFootMap.mount({el:document.getElementById('mapfoot'),records:S,
+    T,TN,esc,cityName,countryZh,venueZh,isPast:d=>MM.isPast(d),
+    onCityFilter:filterToCity});
+}
+window.addEventListener('load',()=>{FOOTMAP&&FOOTMAP.invalidateSize();});
 
 /* ---------- badges + toplist + persona ---------- */
 (function(){
@@ -891,12 +792,12 @@ function applyTheme(t){
   else document.documentElement.setAttribute('data-theme',t);
   try{localStorage.setItem('mm-theme',t);}catch(e){}
   document.querySelectorAll('#themePick button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.th===t));
-  drawMap();
+  /* 足跡地圖 v2:popup/疊卡顏色走 CSS 變數,主題切換免重繪(原自繪 canvas 才需要 drawMap) */
   if(window._mmRadar&&window.mmRenderPersona&&document.getElementById('pradar')) window.mmRenderPersona('#pradar',window._mmRadar);   // 戰力圖依主題重新上色(亮=香檳金箔/暗=靛藍月光)
 }
 document.getElementById('themePick').addEventListener('click',e=>{const b=e.target.closest('button');if(b)applyTheme(b.dataset.th);});
 
-renderPoster();buildCityList();drawMap();placePins();moveThumb();
+renderPoster();buildCityList();mountFootMap();moveThumb();
 // 空狀態：banner CTA 開登錄；非 live 時 hero 副標改成「範例預覽」
 (function(){
   const cta=document.getElementById('demoBannerCta');
@@ -904,7 +805,7 @@ renderPoster();buildCityList();drawMap();placePins();moveThumb();
   if(document.documentElement.dataset.live!=='1'){const sub=document.querySelector('.hero .sub');if(sub)sub.textContent=T('demo_sub');}
 })();
 applyTheme((function(){try{return localStorage.getItem('mm-theme')||'cream';}catch(e){return 'cream';}})());
-window.addEventListener('load',()=>{drawMap();placePins();moveThumb();});
+window.addEventListener('load',()=>{moveThumb();});
 </script>
 <button type="button" id="fabLog" aria-label="加入一齣音樂劇" data-i18n="fab_add" data-i18n-aria="fab_add" style="position:fixed;right:22px;bottom:22px;z-index:1200;background:var(--gold);color:var(--on-accent,#fff);border:1.5px solid var(--gold);font-weight:800;padding:13px 20px;border-radius:999px;cursor:pointer;box-shadow:var(--shadow,0 6px 18px rgba(60,48,24,.18));display:inline-flex;align-items:center;gap:8px;font-size:15px">＋ 加入音樂劇</button><!-- 實心金底(與 hero 加入鈕一致,2026-07-15 使用者指定) -->
 <style>

@@ -11,6 +11,17 @@
 
 ---
 
+## [v2.53.0] - 2026-07-17 14:29
+
+### 足跡地圖 v2:主站同款 Leaflet+扇形疊卡,pin 在實際看戲的劇院(me/u 兩頁)
+
+- **重設計(使用者經 7 版提案迭代定案)**:自繪 canvas 點陣地圖(WORLD_DOTS+金球 pin+自製 cluster)整組退役,換成主站首頁同一套 Leaflet+markercluster+Mapbox streets-v12(token 涵蓋 my. 子網域,curl 帶 referer 驗證 200)。
+- **標記=扇形疊卡,無任何數字圓圈**:每一「場」=一張首頁同款海報圖卡(白框圓角);同一間劇院攤成一手牌(舊→新,最新疊最上),張數即數量;拉遠時 cluster 把附近的牌合成更大一手,點疊牌自動 zoom 攤開。**pin 在場館級座標**(記錄輸入時選的 venues_catalog 場館)——拉近紐約,五張卡各自站在 Imperial/Minskoff/Broadway/Majestic/Winter Garden 門口。未來場次=虛線降飽和卡。
+- **劇院字卡**:點牌開 popup(模糊海報頭圖+劇院名+城市/國家+場次 chip+逐場清單:海報縮圖/中英劇名/日期,未來場標「即將」),底部「只看這座城市」沿用 filterToCity;顏色全走主題變數,三主題自適應,主題切換免重繪。
+- **架構**:新共用模組 `js/mm-foot-map.js`(me.html 與 u-view.js 同一份,收斂「兩處必同步改」舊坑);無座標記錄不放 pin(城市清單/統計照算)。`worldmap.js`(60KB 點陣資料)無人引用,移除。
+- 三語:mm-strings +5 keys(map_card_shows/up/up_n/only_city/map_aria;簡中走 OpenCC);cache-bust:me-v2.css v37、mm-strings v258、u-view v20。
+- e2e(本機真 Chrome):me.html 掛載 3 手牌零錯誤(互動被登入閘擋=預期);u.html?u=danny 真資料 5 手牌/28 卡(27 場+即將上海),點 Capitol Theatre 開卡、「只看這座城市」過濾海報牆均過。localhost 底圖 403=token 綁網域(預期),正式站部署後另驗。
+
 ## [v2.52.1] - 2026-07-17 09:58
 
 ### 低清 logo 組再補 5 家(使用者提供來源)

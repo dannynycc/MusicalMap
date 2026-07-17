@@ -347,95 +347,10 @@
     function cityHasZh(c) { return cityName(c) !== c; }
     // 城邦 city===country(翻譯後)只顯示一次,避免「新加坡 · 新加坡」
     function cityCountry(s, sep) { const cw = cityName(s.city), co = countryZh(s.country); sep = sep || ' · '; return (co && co !== cw) ? [cw, co].filter(Boolean).join(sep) : (cw || co || ''); }
-    function project(lat, lng) { return [(lng + 180) / 360, (90 - lat) / 180]; }
-    let mapV = { z: 1, x: 0, y: 0 };
-    function clampV() { if (mapV.z < 1) mapV.z = 1; const m = 1 - 1 / mapV.z; mapV.x = Math.max(0, Math.min(m, mapV.x)); mapV.y = Math.max(0, Math.min(m, mapV.y)); if (mapV.z <= 1) { mapV.x = 0; mapV.y = 0; } }
-    function tf(fx, fy) { return [(fx - mapV.x) * mapV.z, (fy - mapV.y) * mapV.z]; }
-    function renderMap() { drawMap(); positionPins(); }
     function filterToCity(city) { activeCity = activeCity === city ? null : city; activeYear = '全部';
       document.querySelectorAll('#chips .chip').forEach((x, i) => x.setAttribute('aria-pressed', i === 0 && !activeCity));
       if (mode !== 'poster') setMode('poster'); else renderPoster();
       document.getElementById('wall-poster').scrollIntoView({ behavior: 'smooth', block: 'start' }); }
-    function drawMap() {
-      const cv = document.getElementById('mapcv'); const wrap = cv.parentElement;
-      const w = wrap.clientWidth, h = wrap.clientHeight, dpr = Math.min(2, window.devicePixelRatio || 1);
-      if (!w || !h) return;
-      cv.width = w * dpr; cv.height = h * dpr; const ctx = cv.getContext('2d'); ctx.scale(dpr, dpr); ctx.clearRect(0, 0, w, h);
-      const cs = getComputedStyle(document.documentElement);
-      const fill = cs.getPropertyValue('--land-fill').trim() || '#1b2747';
-      const dot = cs.getPropertyValue('--land-dot').trim() || 'rgba(132,151,184,.85)';
-      const pts = WORLD_DOTS.split(' ');
-      const k = Math.min(2.4, 0.72 + mapV.z * 0.16);
-      ctx.globalAlpha = .6; ctx.fillStyle = fill;
-      for (const p of pts) { const i = p.indexOf(','); const [sx, sy] = tf(+p.slice(0, i) / 1000, +p.slice(i + 1) / 500);
-        if (sx < -.03 || sx > 1.03 || sy < -.03 || sy > 1.03) continue; ctx.beginPath(); ctx.arc(sx * w, sy * h, 3.1 * k, 0, 7); ctx.fill(); }
-      ctx.globalAlpha = 1; ctx.fillStyle = dot;
-      for (const p of pts) { const i = p.indexOf(','); const [sx, sy] = tf(+p.slice(0, i) / 1000, +p.slice(i + 1) / 500);
-        if (sx < -.03 || sx > 1.03 || sy < -.03 || sy > 1.03) continue; ctx.beginPath(); ctx.arc(sx * w, sy * h, 1.5 * k, 0, 7); ctx.fill(); }
-    }
-    let PINS = [];
-    function placePins() {
-      const pins = document.getElementById('pins'); pins.innerHTML = ''; PINS = [];
-      const byCity = {}; S.forEach(s => { if (!s.city || isFut(s.date)) return; (byCity[s.city] = byCity[s.city] || { ...s, n: 0 }).n++; });   // 地圖/城市榜只算已到場
-      Object.values(byCity).forEach(c => {
-        if (c.lat == null || c.lng == null) return;
-        const [px, py] = project(c.lat, c.lng); if (!isFinite(px) || !isFinite(py)) return;
-        const sz = 15 + Math.sqrt(c.n) * 6.5;
-        const el = document.createElement('button'); el.className = 'pin';
-        el.setAttribute('aria-label', TN('pin_aria', { city: cityName(c.city), n: c.n }));   // 讀屏與可見標籤同語言(me.html 同款,2026-07-15 修)
-        el.innerHTML = `<span class="glow" style="width:${sz * 2.4}px;height:${sz * 2.4}px"></span>
-          <span class="ring"></span>
-          <span class="core" style="width:${sz}px;height:${sz}px">${c.n}</span>
-          <span class="lbl">${esc(cityName(c.city))}</span>`;
-        el.onclick = () => filterToCity(c.city);
-        pins.appendChild(el); PINS.push({ el, px, py, n: c.n });
-      });
-      positionPins();
-    }
-    // 重疊城市併成 cluster(圈圈=總場次+「N 城市」,點擊放大展開)——與 me.html 同步移植;
-    // 公開分享頁沒做會讓訪客看到擠成一團的 marker(姊妹頁同 bug)。CSS 共用 me-v2.css 的 .pin-cluster。
-    let CLUSTER_POOL = [];
-    function positionPins() {
-      const host = document.getElementById('pins'); if (!host) return;
-      const W = host.clientWidth || 600, H = host.clientHeight || 375;
-      const vis = [];
-      PINS.forEach(p => { const [sx, sy] = tf(p.px, p.py);
-        if (sx < -0.02 || sx > 1.02 || sy < -0.02 || sy > 1.02) { p.el.style.display = 'none'; }
-        else { p._sx = sx; p._sy = sy; vis.push(p); } });
-      vis.sort((a, b) => b.n - a.n);                       // 場次多者當 cluster 錨點
-      // R 隨 zoom 縮小;zoom 封頂(12)時不再併群(R=0),否則相近城市(台北/台中 ~22px)點到 max zoom 也永不展開=死胡同
-      const R = mapV.z >= 11.5 ? 0 : (mapV.z >= 6 ? 22 : 44), used = new Set(), clusters = [];
-      vis.forEach(a => { if (used.has(a)) return; used.add(a); const mem = [a];
-        vis.forEach(b => { if (used.has(b)) return; const dx = (a._sx - b._sx) * W, dy = (a._sy - b._sy) * H;
-          if (dx * dx + dy * dy < R * R) { used.add(b); mem.push(b); } });
-        clusters.push(mem); });
-      CLUSTER_POOL.forEach(e => e.style.display = 'none');
-      const singles = []; let ci = 0;
-      clusters.forEach(mem => {
-        if (mem.length === 1) { const p = mem[0]; p.el.style.display = ''; p.el.classList.remove('lbl-off');
-          p.el.style.left = p._sx * 100 + '%'; p.el.style.top = p._sy * 100 + '%'; singles.push(p); return; }
-        mem.forEach(p => p.el.style.display = 'none');
-        let cx = 0, cy = 0, bx = 0, by = 0, sum = 0; mem.forEach(p => { cx += p._sx; cy += p._sy; bx += p.px; by += p.py; sum += p.n; });
-        const k = mem.length; cx /= k; cy /= k; bx /= k; by /= k;
-        let el = CLUSTER_POOL[ci];
-        if (!el || !el.isConnected) { el = document.createElement('button'); el.className = 'pin pin-cluster'; host.appendChild(el); CLUSTER_POOL[ci] = el; }   // placePins 清空 #pins 會卸離 cluster 元素→重用前檢查 isConnected
-        el.style.display = ''; el.style.left = cx * 100 + '%'; el.style.top = cy * 100 + '%';
-        const sz = 18 + Math.sqrt(sum) * 5.2, word = document.documentElement.lang === 'en' ? (k + ' cities') : (k + ' 城市');
-        el.innerHTML = `<span class="glow" style="width:${sz * 2.2}px;height:${sz * 2.2}px"></span><span class="core" style="width:${sz}px;height:${sz}px">${sum}</span><span class="lbl">${word}</span>`;
-        el.setAttribute('aria-label', document.documentElement.lang === 'en' ? (word + ', ' + sum + ' shows, click to zoom in') : (word + '，共 ' + sum + ' 場，點擊放大'));   // en 模式別唸中文(螢幕閱讀器)
-        el.onclick = () => { const nz = Math.min(12, Math.max(mapV.z * 2.4, 2.6)); mapV.z = nz; mapV.x = bx - 0.5 / nz; mapV.y = by - 0.5 / nz; clampV(); renderMap(); };
-        ci++;
-      });
-      try { declutterSingleLabels(singles, host); } catch (e) {}
-    }
-    function declutterSingleLabels(singles, host) {
-      singles.sort((a, b) => b.n - a.n);
-      const base = host.getBoundingClientRect(), kept = [];
-      singles.forEach(p => { const lbl = p.el.querySelector('.lbl'); if (!lbl) return;
-        const r = lbl.getBoundingClientRect(); const box = { x: r.left - base.left, y: r.top - base.top, w: r.width, h: r.height };
-        const hit = kept.some(b => box.x < b.x + b.w + 2 && box.x + box.w + 2 > b.x && box.y < b.y + b.h + 2 && box.y + box.h + 2 > b.y);
-        if (hit) p.el.classList.add('lbl-off'); else kept.push(box); });
-    }
     function buildCityList() {
       const el = document.getElementById('citylist');
       const byCity = {}; S.forEach(s => { if (!s.city || isFut(s.date)) return; (byCity[s.city] = byCity[s.city] || { ...s, n: 0 }).n++; });   // 地圖/城市榜只算已到場
@@ -447,26 +362,15 @@
           <span class="ct">${c.n}</span></button>`; }).join('');
       el.querySelectorAll('.cl-row').forEach(r => r.onclick = () => filterToCity(r.dataset.city));
     }
-    let mt; addEventListener('resize', () => { clearTimeout(mt); mt = setTimeout(() => { renderMap(); }, 150); });
-    (function () {
-      const wrap = document.querySelector('.mapwrap'); if (!wrap) return;
-      function zoomAt(cx, cy, factor) { const bx = mapV.x + cx / mapV.z, by = mapV.y + cy / mapV.z;
-        mapV.z = Math.max(1, Math.min(12, mapV.z * factor)); mapV.x = bx - cx / mapV.z; mapV.y = by - cy / mapV.z; clampV(); renderMap(); }
-      wrap.addEventListener('wheel', e => { e.preventDefault(); const r = wrap.getBoundingClientRect();
-        zoomAt((e.clientX - r.left) / r.width, (e.clientY - r.top) / r.height, e.deltaY < 0 ? 1.2 : 1 / 1.2); }, { passive: false });
-      let drag = null, _rafP = false;
-      const renderMapRAF = () => { if (_rafP) return; _rafP = true; requestAnimationFrame(() => { _rafP = false; renderMap(); }); };  // 合併每 frame 一次(2026-07-10)
-      wrap.addEventListener('pointerdown', e => { if (e.target.closest('.pin') || e.target.closest('.mapzoom')) return;
-        drag = { x: e.clientX, y: e.clientY }; try { wrap.setPointerCapture(e.pointerId); } catch (_) {} wrap.classList.add('grabbing'); });
-      wrap.addEventListener('pointermove', e => { if (!drag) return; const r = wrap.getBoundingClientRect();
-        mapV.x -= (e.clientX - drag.x) / (r.width * mapV.z); mapV.y -= (e.clientY - drag.y) / (r.height * mapV.z); drag = { x: e.clientX, y: e.clientY }; clampV(); renderMapRAF(); });
-      const end = () => { drag = null; wrap.classList.remove('grabbing'); };
-      wrap.addEventListener('pointerup', end); wrap.addEventListener('pointercancel', end); wrap.addEventListener('pointerleave', end);
-      const zin = document.getElementById('mapZin'), zout = document.getElementById('mapZout'), zr = document.getElementById('mapZreset');
-      if (zin) zin.onclick = () => zoomAt(.5, .5, 1.6);
-      if (zout) zout.onclick = () => zoomAt(.5, .5, 1 / 1.6);
-      if (zr) zr.onclick = () => { mapV = { z: 1, x: 0, y: 0 }; renderMap(); };
-    })();
+    // ===== 足跡地圖 v2:主站同款 Leaflet 扇形疊卡(js/mm-foot-map.js;場館級 pin) =====
+    let FOOTMAP=null;
+    function mountFootMap(){
+      if(FOOTMAP||!window.MMFootMap)return;
+      FOOTMAP=MMFootMap.mount({el:document.getElementById('mapfoot'),records:S,
+        T,TN,esc,cityName,countryZh,venueZh,isPast:d=>!isFut(d),
+        onCityFilter:filterToCity});
+      window.addEventListener('load',()=>{FOOTMAP&&FOOTMAP.invalidateSize();});
+    }
 
     /* ---------- badges + toplist + persona ---------- */
     (function () {
@@ -607,16 +511,16 @@
       else document.documentElement.setAttribute('data-theme', t);
       try { localStorage.setItem('mm-theme', t); } catch (e) {}
       document.querySelectorAll('#themePick button').forEach(b => b.setAttribute('aria-pressed', b.dataset.th === t));
-      drawMap();
+      /* 足跡地圖 v2:popup/疊卡顏色走 CSS 變數,主題切換免重繪 */
     }
     const tp = document.getElementById('themePick');
     if (tp) tp.addEventListener('click', e => { const b = e.target.closest('button'); if (b) applyTheme(b.dataset.th); });
 
     /* init */
-    renderPoster(); buildCityList(); drawMap(); placePins(); moveThumb();
+    renderPoster(); buildCityList(); mountFootMap(); moveThumb();
     applyTheme((function () { try { return localStorage.getItem('mm-theme') || 'cream'; } catch (e) { return 'cream'; } })());   // 預設 cream:fallback 若是 midnight 會蓋掉 no-flash 的 cream 且寫進 localStorage,讓「只看公開頁的新訪客」永久卡深色(自家瀏覽器因逛過 me.html 已存 cream 而看不出來)
-    window.addEventListener('load', () => { drawMap(); placePins(); moveThumb(); });
-    requestAnimationFrame(() => { drawMap(); placePins(); moveThumb(); });
+    window.addEventListener('load', () => { moveThumb(); });
+    requestAnimationFrame(() => { moveThumb(); });
   }
 
   /* ============================================================================

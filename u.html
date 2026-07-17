@@ -30,7 +30,9 @@ var hl=q.get('hl');location.replace('https://my.themusicalmap.com/'+encodeURICom
 /* mig=2:v2.12.15 前 u-view fallback bug 會把 midnight 寫進訪客 localStorage(u.html 無 picker,訪客身上的 midnight 幾乎必是 bug 產物)→一次性清掉,讓卡深色的訪客回到 cream。副作用:曾在 me.html 手選 midnight 的登入者訪自己公開頁會被重設一次(可再選回)。 */
 if(localStorage.getItem('mm-theme-mig')!=='2'){if(localStorage.getItem('mm-theme')==='midnight')localStorage.removeItem('mm-theme');localStorage.setItem('mm-theme-mig','2');}
 var t=localStorage.getItem('mm-theme')||'cream';if(t==='neon'||t==='deco'){t='midnight';localStorage.setItem('mm-theme',t);}if(t!=='midnight')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
-<link rel="stylesheet" href="css/me-v2.css?v=36" /><!-- CSS cache-bust:與 me.html 同步,CF Pages .css max-age=14400 -->
+<link rel="stylesheet" href="css/me-v2.css?v=37" /><!-- CSS cache-bust:與 me.html 同步,CF Pages .css max-age=14400 -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha384-sHL9NAb7lN7rfvG5lfHpm643Xkcjzp4jFvuavGOndn6pjVqS6ny56CAt3nsEVT4H" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" integrity="sha384-pmjIAcz2bAn0xukfxADbZIb3t8oRT9Sv0rvO+BR5Csr6Dhqq+nZs59P0pPKQJkEV" crossorigin="anonymous" />
 <style>
 /* i18n:en 模式時 section 標題旁的英文小字(原本是中文標題的英文對照)會與主標重複 → 隱藏 */
 html[lang="en"] .sec h2 .zh{display:none}
@@ -62,7 +64,7 @@ if(v&&v!=='zh-hant'){document.write('<style id="mm-fouc">body{visibility:hidden}
   var _rv=function(){var s=document.getElementById('mm-fouc');if(s)s.remove();};
   window.addEventListener('DOMContentLoaded',function(){setTimeout(_rv,0);});setTimeout(_rv,1500);}
 }catch(e){}})();</script>
-<script src="js/mm-strings.js?v=257"></script>
+<script src="js/mm-strings.js?v=258"></script>
 <script src="js/mm-badge-icons.js?v=6"></script>
 <script src="js/mm-persona-radar.js?v=11"></script>
 <script src="js/mm-acct-menu.js?v=227" defer></script>
@@ -127,12 +129,7 @@ if(v&&v!=='zh-hant'){document.write('<style id="mm-fouc">body{visibility:hidden}
   <!-- MAP -->
   <div class="sec"><h2><span data-i18n="sec_map">我的音樂劇足跡</span><span class="zh">Cities</span></h2><span class="hint" data-i18n="sec_map_hint">點一座城市，只看那裡的收藏</span></div>
   <div class="maprow">
-    <div class="mapwrap reveal"><canvas id="mapcv" role="img" aria-label="音樂劇足跡地圖 / Musicals visited map"></canvas><div id="pins"></div>
-      <div class="mapzoom"><button id="mapZin" aria-label="放大" data-i18n-aria="aria_zoom_in">＋</button><button id="mapZout" aria-label="縮小" data-i18n-aria="aria_zoom_out">－</button><button id="mapZreset" aria-label="重置" title="重置" data-i18n-aria="aria_zoom_reset" data-i18n-title="aria_zoom_reset">⟲</button></div>
-      <div class="maphint" data-i18n="map_hint">滾輪縮放 · 拖曳平移</div>
-      <div class="legend"><div class="row"><span class="d" style="width:8px;height:8px"></span> <span data-i18n="legend_dot">圓點 = 看過音樂劇的城市</span></div>
-        <div class="row"><span class="d" style="width:7px;height:7px"></span><span class="d" style="width:11px;height:11px"></span><span class="d" style="width:15px;height:15px"></span> <span data-i18n="legend_size">圓大小 = 看的場數</span></div></div>
-    </div>
+    <div class="mapwrap reveal"><div id="mapfoot" role="application"></div></div>
     <div class="citylist reveal" id="citylist"></div>
   </div>
 
@@ -200,13 +197,15 @@ if(v&&v!=='zh-hant'){document.write('<style id="mm-fouc">body{visibility:hidden}
 
 <script src="data.js?v=7"></script>
 <script src="data2.js"></script>
-<script src="worldmap.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js" integrity="sha384-jb8JQMbMoBUzgWatfe6COACi2ljcDdZQ2OxczGA3bGNeWe+6DChMTBJemed7ZnvJ" crossorigin="anonymous"></script>
 <script src="js/config.js"></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha384-cxOPjt7s7Iz04uaHJceBmS+qpjv2JkIHNVcuOrM+YHwZOmJGBXI00mdUXEq65HTH" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js" integrity="sha384-eXVCORTRlv4FUUgS/xmOyr66XBVraen8ATNLMESp92FKXLAMiKkerixTiBvXriZr" crossorigin="anonymous"></script>
+<script src="js/mm-foot-map.js?v=1"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.110.0/dist/umd/supabase.js" integrity="sha384-3wY11tldQ5+yWqAvmTN4XtQvnjoTva0cV15O/O/O5NTtp0ivVopSzLOzsVXWZse9" crossorigin="anonymous"></script>
 <!-- 語言:js/mm-strings.js(head 載入)全權接管本頁 i18n(?hl= 驅動)。
      不可再載 js/i18n.js——它的 applyStatic 也吃 data-i18n 屬性,會用主站字典把本頁 key 蓋成字面值。 -->
-<script src="js/u-view.js?v=19"></script>
+<script src="js/u-view.js?v=20"></script>
 <script>/* 語言切換下拉開關(內聯:my. 子網域免外部檔部署) */
 (function(){function wire(root){var tr=root.querySelector('.lang-trigger'),pop=root.querySelector('.lang-pop');if(!tr||!pop||tr.dataset.w)return;tr.dataset.w=1;
 function opn(){pop.hidden=false;tr.setAttribute('aria-expanded','true');document.addEventListener('click',dc,true);document.addEventListener('keydown',ky,true);}
