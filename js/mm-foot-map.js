@@ -34,7 +34,11 @@ function mount(opts){
   if(!groups.size)return null;
 
   const token=(window.MM_CONFIG&&window.MM_CONFIG.MAPBOX_TOKEN)||'';
-  const map=L.map(el,{worldCopyJump:true,zoomControl:true,attributionControl:true});
+  // minZoom:1=圖磚下限。512px 圖磚+zoomOffset:-1 → 圖磚 z=地圖 z-1;手機窄容器 fitBounds
+  // 會把地圖壓到 z0 → 要抓 z=-1 圖磚(不存在)→ 整片空白(2026-07-17 手機回報)。z1 起跳圖磚 z0 存在。
+  const map=L.map(el,{worldCopyJump:true,zoomControl:true,attributionControl:true,minZoom:1});
+  // 窄容器(手機)卡片縮小,免得一手牌蓋滿整張地圖
+  const SC=el.clientWidth<520?0.72:1;
   map.getContainer().setAttribute('aria-label',t('map_aria'));
   L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/streets-v12/tiles/512/{z}/{x}/{y}@2x?access_token='+token,{
     attribution:'&copy; <a href="https://www.mapbox.com/about/maps/">Mapbox</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
@@ -43,13 +47,14 @@ function mount(opts){
   // ---- 扇形疊卡 icon:cards=[{poster,fut}],舊→新(最新一張疊最上) ----
   function fanIcon(cards){
     const n=cards.length;
-    const spread=n>1?Math.min(15,150/(n-1)):0;
+    const spread=n>1?Math.min(15,150/(n-1))*SC:0;
     const rot=n>1?Math.min(7,44/(n-1)):0;
-    const width=64+(n-1)*spread,height=92,mid=(n-1)/2;
+    const cw=Math.round(52*SC),ch=Math.round(72*SC);
+    const width=(cw+12)+(n-1)*spread,height=ch+20,mid=(n-1)/2;
     const html=cards.map((c,i)=>{
       const dx=(i-mid)*spread,dg=(i-mid)*rot;
-      const bg=c.poster?'background-image:url(\''+c.poster.replace(/'/g,'%27')+'\')':'';
-      return '<span class="fcard'+(c.fut?' fup':'')+'" style="transform:translateX(calc(-50% + '+dx+'px)) rotate('+dg+'deg);z-index:'+i+';'+bg+'">'+(c.poster?'':'♪')+'</span>';
+      const bg=c.poster?'background-image:url(\''+c.poster.replace(/'/g,'%27')+'\');':'';
+      return '<span class="fcard'+(c.fut?' fup':'')+'" style="width:'+cw+'px;height:'+ch+'px;transform:translateX(calc(-50% + '+dx+'px)) rotate('+dg+'deg);z-index:'+i+';'+bg+'">'+(c.poster?'':'♪')+'</span>';
     }).join('');
     return L.divIcon({className:'mm-fan-icon',
       html:'<div class="fan">'+html+'</div>',
