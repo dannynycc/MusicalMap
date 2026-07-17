@@ -17,7 +17,7 @@
 | ATG Tickets(英國地方圈) | atgtickets.com/whats-on/uk/musicals/ | `atg.py` | **無公開 API**;SSR 卡片+分頁。單場館含日期收錄;**tour hub 已爬(phase 2 完成):UK 巡演 ~39 條 ~220 站,隨每日 CI 變動**(站點 JSON 嵌在 hub RSC;2026-07-12 實測 221 站);無日期單館卡仍剔除 | 2026-06-12 |
 | Stage Entertainment(德國) | stage-entertainment.de | `stage_de.py` | **無公開 API**;SSR,slug 自帶城市;劇場用「頁面提及次數 ≥2」判定(nav 會提到所有劇場);自有劇場座標表;漢堡/柏林/斯圖加特 13 部駐演(TINA、Tanz der Vampire、Frozen、獅子王、MJ…) | 2026-06-12 |
 | OPENTIX 兩廳院售票(台灣) | search.opentix.life/search(JSON API) | `opentix.py` | 台灣當期音樂劇(category 戲劇-音樂劇 **+ queryString 關鍵字掃描層**,v2.31.9:分類是主辦方自填,C MUSICAL 把 MHE/我的遺願清單掛「現代戲劇」整場漏掉——標題自稱 音樂劇(?!場)/歌舞劇 且掛戲劇類即救回,量測 327 命中/漏網 3/誤中 0);自帶 WGS-84 座標+海報+檔期;排除合唱/演唱會/工作坊 | 2026-06-12 |
-| utiki 售票引擎(台灣:寬宏 KHAM + udn售票 + MNA) | kham.com.tw(分類 80) / tickets.udnfunlife.com(搜尋 音樂劇) / ticket.mna.com.tw(分類 77 音樂,需 cookie);同一套 UTK ASP.NET 引擎 | `utiki.py` | KHAM 走 listing→場次頁 eventTABLE(`PLACE_NAME`+地址);UDN listing 卡片帶日期+場館(多場館巡演)+銷售狀態;MNA 卡片帶日期、場館取自詳情頁場次表(分類混雜故只留標題含「音樂劇」)。排除合唱/演唱會/工作坊/交響音樂會、已結束;座標交 Google geocode。萬世巨星/史瑞克/魔女宅急便 | 2026-06-13 |
+| utiki 售票引擎(台灣:寬宏 KHAM + udn售票 + MNA + tixFun) | kham.com.tw(分類 80) / tickets.udnfunlife.com(搜尋 音樂劇) / ticket.mna.com.tw(分類 77 音樂,需 cookie) / tixfun.com(分類 80,扁平路由);同一套 UTK ASP.NET 引擎 | `utiki.py` | KHAM 走 listing→場次頁 eventTABLE(`PLACE_NAME`+地址);UDN listing 卡片帶日期+場館(多場館巡演)+銷售狀態;MNA 卡片帶日期、場館取自詳情頁場次表(分類混雜故只留標題含「音樂劇」);tixFun(udn售票網新品牌,新檔期只上這裡)卡片帶標題+總日期,場館/逐場日期解析詳情頁內嵌 `__dataP` JSON(`PLACE_NAME`+`ADDRESS`+`START_DATETIME`;行銷內文交叉宣傳他劇場館不可刮)。排除合唱/演唱會/工作坊/交響音樂會、已結束;座標交 Google geocode。萬世巨星/史瑞克/魔女宅急便/綠野仙蹤中文版 | 2026-07-17 |
 
 | 日本(東宝+2.5次元+東急シアターオーブ) | toho.co.jp/stage/lineup / j25musical.jp(日本2.5次元ミュージカル協会) / theatre-orb.com | `japan.py`(scrape_toho/scrape_j25/scrape_orb;與 shiki/takarazuka 並存) | **東宝**:card-lineup 取『』劇名+日期+場館,只留ミュージカル前綴。**2.5次元**:逐檔解析「【城市公演】日期 場館」多城巡演。**東急シアターオーブ**(音樂劇專用館):lineup 各檔 detail 取 og:title+「公演日程」。日文大 IP 中英並列+去重(シカゴ→Chicago…);TM 誤分類非音樂劇全域過濾(movie tour 等);Google 建築級座標。北海道下半年稀少=結構性(四季撤札幌/hitaru 非音樂劇)。**WIP:梅田芸術劇場(類型混雜待解)** | 2026-06-14 |
 | 西班牙(馬德里) | teatromadrid.com | `madrid.py` | 馬德里音樂劇(西語 tag);**無分潤**,保留作涵蓋 | 2026-06-13 |
@@ -67,7 +67,7 @@
 | musicalsontour.co.uk(UK 聚合) | Cloudflare 連 headless 都擋,無法接;UK 已由 ATG hub 覆蓋 |
 | ATG 無日期單館卡(約 10 筆,細節頁日期 JS-only) | 已剔除不誤顯;待接其 availability 端點 |
 | 四季全国ツアー | API 無固定城市 |
-| 台灣 | 已由 OPENTIX(兩廳院)+ utiki(寬宏/udn)覆蓋當期音樂劇;其他在地售票(年代 ticket.com.tw 等)待評估 |
+| 台灣 | 已由 OPENTIX(兩廳院)+ utiki(寬宏/udn/MNA/tixFun)覆蓋當期音樂劇;其他在地售票(年代 ticket.com.tw 等)待評估 |
 | 南美 / 新加坡 | ✅ 已涵蓋(manual):巴西/阿根廷/新加坡。SISTIC 有官方 API 但需授權(用戶無法取得)→ 維持手填 |
 | 曼谷(泰) | 多為泰國本土製作(Scenario 歷年引進國際巡演但 2026 無確認檔期);Solaire(馬尼拉)座標已備,待未來檔期 |
 | 港 / 馬來 / 印尼 / 越南 | 未有來源(港/星巡演多走 SISTIC/Base Entertainment) |

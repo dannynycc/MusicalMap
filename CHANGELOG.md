@@ -11,6 +11,18 @@
 
 ---
 
+## [v2.51.0] - 2026-07-17 09:11
+
+### 新資料來源:tixFun(udn售票網新品牌)——補回《綠野仙蹤》中文版等台灣檔期
+
+- **起因**:使用者指出 AM創意2026《綠野仙蹤》中文版音樂劇(RSC 授權,台北國家戲劇院 9/5-6、臺中國家歌劇院大劇院 10/10-11)不在地圖上。追查:該檔只上 **tixfun.com**(udn售票網的新品牌皮),舊域名 tickets.udnfunlife.com 的「音樂劇」搜尋已看不到新檔期,而 scraper 只掃舊域名。
+- **`scrapers/utiki.py`**:新增第四站 `tixfun`(同 UTK 引擎、扁平路由 `/UTK0102_?TYPE=1&CATEGORY=80`)。卡片(hero 輪播+格狀,以 PRODUCT_ID 去重)取 entity 編碼標題+總日期;**場館/逐場日期解析詳情頁內嵌 `__dataP` JSON**(每場次 `PLACE_NAME`+`ADDRESS`+`START_DATETIME`)——詳情頁行銷內文會交叉宣傳他劇場館(恐龍復活了等),不可刮文字,JSON 才是唯一可信源。城市取自場館地址。
+- **`scrapers/build_shows.py`**:`TAG_LOCAL_SRC` 台灣來源組補 `tixfun`——否則未註冊的台灣原創(轟吧!全壘打、德拉拉牙科診所)掉進最後 fallback 誤標 Broadway/West End。
+- **`data/venue_coords.json`**:+兒童新樂園 DDBox(臺北,25.0963/121.5147;Nominatim 以官方地址+場館名雙查收斂)。
+- **成果**:+5 筆台灣場次(綠野仙蹤×2 併入 wizard of oz 系列群組、轟吧!全壘打×2、德拉拉牙科診所×1,tag/座標/日期均對 tixfun `__dataP` 逐場核實;綠野仙蹤日期與 AM創意官方公告一致)。kham 0 筆為分類頁「即將上檔 COMING SOON」真空檔非故障。
+- **既有問題註記(非本版引入,HEAD 已存在)**:audit_dups 報 2 個美國季票假日期群集(Lexington Opera House 8/1、Robinson Center 10/30 各 4 劇同日)——TM 最新抓檔的新實例,待另案處理。
+- 文件同步:README(utiki 來源列)、docs/SOURCES.md(tixFun 解析方式+台灣覆蓋註記)。
+
 ## [v2.50.2] - 2026-07-17 02:12
 
 ### 新增 docs/PERSONA_RULES.md(戰力圖+徽章權威規則書)+ README 補死連結

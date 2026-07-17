@@ -1,14 +1,19 @@
-"""Taiwan musicals from the utiki ticketing engine (寬宏售票 KHAM + udn售票 UDN).
+"""Taiwan musicals from the utiki ticketing engine (寬宏售票 KHAM + udn售票 UDN + tixFun).
 
-Both sites run the same ASP.NET "UTK" engine on different skins:
-  - listing page lists product ids + titles (KHAM: category 音樂劇=80; UDN: name search 音樂劇)
+The sites run the same ASP.NET "UTK" engine on different skins:
+  - listing page lists product ids + titles (KHAM: category 音樂劇=80; UDN: name search 音樂劇;
+    tixFun: category 音樂劇=80, flat routes without the /application/UTK02 prefix)
   - a per-product session page carries the real run dates + venue (the marketing
-    detail page is polluted with refund boilerplate / cross-sell, so we ignore it)
+    detail page body is polluted with refund boilerplate / cross-sell, so we ignore it)
 
 KHAM session page  UTK02/UTK0201_00.aspx  -> an eventTABLE, one <tr> per session:
     <td>2026/06/18(四)14:30</td> <td>…<span id="PLACE_NAME">國家戲劇院</span>… q=<address></td>
 UDN  session page  UTK02/UTK0203_.aspx    -> a yd_orderShow block:
     演出日期：2026/11/20 ~ 2026/11/29   演出地點：臺北表演藝術中心 大劇院
+tixFun detail page /UTK0201_?PRODUCT_ID=… -> inline `__dataP = [...]` JSON, one entry
+    per session with PLACE_NAME / ADDRESS / START_DATETIME (the only structured venue
+    source on that skin — the marketing body cross-sells other shows' venues).
+    tixFun is udn售票網's rebrand; new programs list only there, so both skins stay.
 
 A program may tour several venues -> we emit one show per distinct venue with that
 venue's own date range. Coordinates are left to Google geocoding (geocode_google.py
@@ -74,6 +79,13 @@ SITES = [
         "listing": "/UTK0102_?TYPE=1&CATEGORY=77",                    # 77 = 音樂 (musicals live here)
         "detail": "https://ticket.mna.com.tw/UTK0201_?PRODUCT_ID={pid}",
         "session": None, "parse_list": "mna_cards", "venue_from": "detail",  # venue from schedule
+    },
+    {
+        "name": "tixfun", "source": "tixfun.com",
+        "base": "https://tixfun.com", "seed": None, "keep_musical": False,
+        "listing": "/UTK0102_?TYPE=1&CATEGORY=80",                    # 80 = 音樂劇 (same as KHAM)
+        "detail": "https://tixfun.com/UTK0201_?PRODUCT_ID={pid}",
+        "session": None, "parse_list": "tixfun_cards", "venue_from": "dataP",
     },
 ]
 
@@ -184,6 +196,53 @@ def list_mna_cards(h):
     return out
 
 
+def list_tixfun_cards(h):
+    """tixFun: cards (hero slides + grid) carry entity-encoded title + overall date
+    range; venue/per-venue dates come from the detail page's __dataP JSON. A product
+    can appear both as a slide and a grid card -> dedupe by pid."""
+    out, seen = [], set()
+    for m in re.finditer(
+            r'href="/UTK0201_\?PRODUCT_ID=([A-Za-z0-9]+)"[^>]*class="[^"]*card[^"]*"(.*?)</a>',
+            h, re.S):
+        pid, body = m.group(1), html.unescape(m.group(2))
+        if pid in seen:
+            continue
+        t = re.search(r"<h4>(.*?)</h4>", body, re.S)
+        if not t:
+            continue
+        seen.add(pid)
+        out.append({"pid": pid, "title": re.sub(r"<[^>]+>", "", t.group(1)).strip(),
+                    "dates": re.findall(r"\d{4}/\d{1,2}/\d{1,2}", body),
+                    "venues": [], "ended": False})
+    return out
+
+
+def sess_dataP(detail_html):
+    """tixFun detail page embeds `__dataP = [...]` — one JSON entry per session with
+    PLACE_NAME / ADDRESS / START_DATETIME. Group sessions by venue, city from the
+    venue's street address (the marketing body is NOT safe: it cross-sells other
+    programs' venues, so this JSON is the only venue source we trust on this skin)."""
+    m = re.search(r"__dataP\s*=\s*(\[.*?\]);", detail_html, re.S)
+    if not m:
+        return []
+    try:
+        sessions = json.loads(m.group(1))
+    except ValueError:
+        return []
+    by_venue = {}
+    for s in sessions:
+        venue = (s.get("PLACE_NAME") or "").strip()
+        start = (s.get("START_DATETIME") or "")[:10]        # 2026-09-05T14:00:00
+        if not venue or not re.match(r"\d{4}-\d{2}-\d{2}$", start):
+            continue
+        rec = by_venue.setdefault(venue, {"venue": venue, "addr": "", "dates": []})
+        rec["dates"].append(start)
+        if not rec["addr"]:
+            rec["addr"] = s.get("ADDRESS") or ""
+    return [{"venue": r["venue"], "city": city_of(r["addr"], r["venue"]),
+             "dates": sorted(set(r["dates"])), "en": ""} for r in by_venue.values()]
+
+
 def mna_venue(detail_html):
     """MNA detail page lists each session as 'date (day) HH:MM 場館'; take the venue
     that appears most across the schedule. The schedule rows give the base venue
@@ -218,7 +277,8 @@ def find_image(listing_html, pid):
     return best.split("?")[0]
 
 
-PARSERS_LIST = {"span_title": list_span_title, "udn_cards": list_udn_cards, "mna_cards": list_mna_cards}
+PARSERS_LIST = {"span_title": list_span_title, "udn_cards": list_udn_cards,
+                "mna_cards": list_mna_cards, "tixfun_cards": list_tixfun_cards}
 PARSERS_SESS = {"kham_table": sess_kham_table}
 
 
@@ -236,6 +296,13 @@ def resolve_venues(site, p):
         except Exception:
             return []
         return PARSERS_SESS["kham_table"](sess)
+    if vf == "dataP":                                # tixFun: per-session JSON on detail page
+        try:
+            detail = get(site["detail"].format(pid=p["pid"]),
+                         referer=site["base"] + site["listing"])
+        except Exception:
+            return []
+        return sess_dataP(detail)
     if vf == "detail":                               # MNA: dates on card, venue on detail page
         if not p["dates"]:
             return []
@@ -291,7 +358,7 @@ def main():
                     "ticket_url": site["detail"].format(pid=p["pid"]),
                     "type": "tour", "verified": True, "source": site["source"],
                 })
-    out = {"meta": {"source": "utiki (kham+udn)", "count": len(shows)}, "shows": shows}
+    out = {"meta": {"source": "utiki (kham+udn+mna+tixfun)", "count": len(shows)}, "shows": shows}
     (DATA / "utiki.json").write_text(json.dumps(out, ensure_ascii=False, indent=2), encoding="utf-8")
     print(f"Wrote {len(shows)} -> data/utiki.json", flush=True)
     for s in shows:

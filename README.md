@@ -56,7 +56,7 @@ scrapers/  ──產出──>  data/*.json  ──merge──>  data/shows.json
 | `data/takarazuka.json` | 宝塚歌劇団輸出（kageki.hankyu.co.jp，宝塚/東京兩館接力檔期） |
 | `data/interpark.json` | 韓國 Interpark 輸出（world.nol.com 開放 API，真實開演日） |
 | `data/opentix.json` | 台灣 OPENTIX 兩廳院售票輸出（search.opentix.life JSON API，戲劇-音樂劇分類＋**關鍵字掃描層**——主辦方掛錯分類的音樂劇（如 C MUSICAL 的 MHE/我的遺願清單掛「現代戲劇」）靠標題自稱音樂劇(?!場)/歌舞劇＋戲劇類分類救回，v2.31.9；自帶座標+海報） |
-| `data/utiki.json` | 台灣 utiki 售票引擎輸出（寬宏 KHAM 分類 80 + udn售票 搜尋音樂劇 + MNA 分類 77；同套 UTK 引擎，座標交 Google geocode） |
+| `data/utiki.json` | 台灣 utiki 售票引擎輸出（寬宏 KHAM 分類 80 + udn售票 搜尋音樂劇 + MNA 分類 77 + **tixFun 分類 80**（udn售票網新品牌，新檔期只上這裡；場次解析詳情頁內嵌 `__dataP` JSON，v2.51.0）；同套 UTK 引擎，座標交 Google geocode） |
 | `data/manual.json` | **人工策展**：自有售票系統的劇（上海大劇院、Live Nation FR、捷克 NDM…），隨發現隨補 |
 | `data/works.json` | **正典作品主檔**（單一真相來源，207 筆）：每齣作品一筆，記 `tradition`（血統 tag）+ 跨語言 `aliases` + 選填 `poster`／`productions`（版本層，見 `docs/DESIGN_productions.md`）。build 時供①血統分類②跨語言去重③雙語顯示三用——任何別名（`Macskák`/`キャッツ`/`Cats`）都收斂到同一作品。`build_shows.py --discover` 會把「疑似未對照的進口劇」寫到 `data/_works_discover.json` 供審核 |
 | `data/official_sites.json` | **作品官網主檔**（228 筆，key = `build_shows.group_key`，如 `wicked`/`avenue q`；v2.41.0 key 有效性稽核入 `audit_official.py`——7 個死 key 正名、3 個過期刪除,防「有官網但 key 對不上 group=前端永遠不顯示」的 & Juliet 型漏洞）：每作品的官方製作網站，value 為分區 map（`global` fallback ＋ `us`/`uk`/`au`/`de`/`jp`… 對應場次 `country`）。`build_shows` 依每場次國家挑對應官網，掛成 `kind:"official"` 連結；`app.js` 把它做成**劇名標題的超連結**（不單獨給圖卡，官網不分潤、不搶售票平台點擊）。多 agent 研究，~1,000 場次有官網 |

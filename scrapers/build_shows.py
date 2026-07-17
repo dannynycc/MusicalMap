@@ -475,7 +475,7 @@ NOT_MUSICAL_RE = re.compile(
 # Local-origin scrapers → the show is a HOME-GROWN work (it wasn't a registered
 # import, or it'd have an explicit tradition). source substring → origin tag.
 TAG_LOCAL_SRC = [
-    (("opentix", "kham", "udn", "mna", "ntch"), "台灣原創"),
+    (("opentix", "kham", "udn", "mna", "ntch", "tixfun"), "台灣原創"),
     (("shiki", "kageki", "toho", "j25", "theatre-orb", "japan"), "日本原創"),
     (("interpark",), "韓國原創"),
     (("jegy", "prazske", "ndm"), "歐陸原創"),
