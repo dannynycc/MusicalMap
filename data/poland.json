@@ -1,7 +1,7 @@
 {
   "meta": {
     "source": "ebilet.pl",
-    "count": 9
+    "count": 11
   },
   "shows": [
     {
@@ -153,6 +153,40 @@
       "end_date": "2027-01-31",
       "image": "https://www.ebilet.pl/media/cms/media/vq1cnd23/ntn_grafiki-02-55658b60-3876-1592-29df-a864daf85e32.webp",
       "ticket_url": "https://www.ebilet.pl/teatr/musicale/next-to-normal",
+      "type": "tour",
+      "verified": true,
+      "source": "ebilet.pl"
+    },
+    {
+      "id": "pl-55a9ad38",
+      "title": "Metro",
+      "title_en": "",
+      "venue": "Teatr Studio Buffo w Warszawie",
+      "city": "Warszawa",
+      "country": "Poland",
+      "lat": 52.227,
+      "lng": 21.026,
+      "start_date": "2026-08-27",
+      "end_date": "2026-12-13",
+      "image": "https://www.ebilet.pl/media/cms/media/y34dgv44/metro35_1080x1080.webp",
+      "ticket_url": "https://www.ebilet.pl/teatr/musicale/metro-w-buffo",
+      "type": "tour",
+      "verified": true,
+      "source": "ebilet.pl"
+    },
+    {
+      "id": "pl-b3e910f3",
+      "title": "Beetlejuice",
+      "title_en": "",
+      "venue": "Teatr Syrena w Warszawie",
+      "city": "Warszawa",
+      "country": "Poland",
+      "lat": 52.2196,
+      "lng": 21.019,
+      "start_date": "2026-09-24",
+      "end_date": "2026-11-29",
+      "image": "https://www.ebilet.pl/media/cms/media/wyrp2f2b/beetlejuice-3-e3551655-2c5a-4a8a-94f0-ff0d5d34283a.webp",
+      "ticket_url": "https://www.ebilet.pl/teatr/musicale/beetlejuice",
       "type": "tour",
       "verified": true,
       "source": "ebilet.pl"
