@@ -149,9 +149,12 @@ jobs:
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+          # 根目錄的 index/about/guide/privacy/terms.html = 英文版產物(v2.54.0 起 en 住根,
+          # 舊的 `en` 目錄已刪 → 再列它會 fatal: pathspec 'en' did not match any files)。
           git add data/*.json data/archive/*.json data/variants/*.json \
                   logs/api_usage.json \
-                  index.html sitemap.xml robots.txt en zh-hans zh-hant
+                  index.html about.html guide.html privacy.html terms.html \
+                  sitemap.xml robots.txt zh-hans zh-hant
           if git diff --cached --quiet; then
             echo "No data changes."; exit 0
           fi

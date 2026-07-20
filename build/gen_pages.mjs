@@ -1,4 +1,4 @@
-// gen_pages.mjs — 把 about/guide/privacy/terms 預先烘成三語靜態頁(同首頁的 /en/ /zh-hans/ /zh-hant/ 結構)。
+// gen_pages.mjs — 把 about/guide/privacy/terms 預先烘成三語靜態頁(同首頁的 / (en) /zh-hans/ /zh-hant/ 結構)。
 // 動機:單一網址靠 client-side 換字,Googlebot 用英文環境渲染 → 中文搜尋出現英文標題+「翻譯這個網頁」。
 // 來源模板在 build/pages/*.html(繁中為底+data-i18n 標記);字典取自 js/mm-strings.js(Node vm 執行,
 // zh-hans 用 node_modules 的 opencc-js 重現瀏覽器端 CDN t2cn 的轉換+CN_FIX+HANS_OVERRIDE)。

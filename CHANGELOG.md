@@ -11,6 +11,14 @@
 
 ---
 
+## [v2.54.1] - 2026-07-20 21:51
+
+### 修 CI 每日排程失敗:workflow 的 git add 還列著已刪除的 `en` 目錄
+
+- 症狀:v2.54.0 後首次排程 run 於「Commit refreshed data」步驟 exit 128 —— `fatal: pathspec 'en' did not match any files`(GitHub 寄出 Run failed 通知)。抓資料/建站步驟全部成功,**只有 commit 步驟掛掉,不影響線上內容**(Pages 部署用的是同 run 的產物;且該步驟為排程專用,push 觸發不跑,所以 v2.54.0 自己那次 push run 是綠的)。
+- 根因:v2.54.0 把 `en/` 整棵樹刪了(en 住根),但 `.github/workflows/update.yml` 的 `git add` 清單沒同步。
+- 修:移除 `en`,補上根目錄的英文靜態頁產物 `about.html guide.html privacy.html terms.html`(v2.54.0 起這四個是 en 版本,每日 build 會重生,漏 add 會讓它們的更新永遠 commit 不進 repo)。gen_pages 檔頭註解一併同步。
+
 ## [v2.54.0] - 2026-07-20 09:31
 
 ### SEO 架構:root = 英文完整內容,/en/ 樹 301 收斂(修 GSC「/en/ 被判重複網頁」)
