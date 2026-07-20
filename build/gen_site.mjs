@@ -1,5 +1,5 @@
-// Build-time generator of the tri-URL site: /en/, /zh-hans/, /zh-hant/ (+ root router,
-// sitemap, robots). Run from repo root AFTER gen_variants.mjs: `node build/gen_site.mjs`.
+// Build-time generator of the tri-URL site: / (en, x-default), /zh-hans/, /zh-hant/
+// (+ sitemap, robots). /en/ 樹已 301 收斂到根(v2.54.0,見 _redirects)。 Run from repo root AFTER gen_variants.mjs: `node build/gen_site.mjs`.
 //
 // Each variant page is PRERENDERED: the show list + JSON-LD are baked into static HTML so
 // Google and (JS-blind) AI crawlers see real content. The Leaflet app then hydrates on top
@@ -11,6 +11,13 @@ import { genPages, PAGE_SLUGS } from "./gen_pages.mjs";
 
 const BASE = "/";
 const SITE = "https://themusicalmap.com";
+// root=英文完整內容(x-default=en 慣例;2026-07-20 v2.54.0):/en/ 樹 301 收斂到根。
+// 歷史:root 先是 JS router(Googlebot 渲染成英文→/en/ 判重複),2026-07-13 改 CF 302 分流
+// 仍沒救(GSC 2026-07-19 實查:Google 選 root 當 /en/ 的標準,/en/ 不收錄)。302/JS 都不轉移
+// canonical——唯一穩定解=root 直接 200 出英文內容+canonical 自指;中文瀏覽器的分流由
+// CF Redirect Rules 的 zh 兩條(Accept-Language 302)繼續服務,Googlebot(en)不受影響。
+const VPATH = (v) => (v === "en" ? "" : v + "/");   // en 住根,其餘住 /{variant}/
+const VURL = (v) => `${SITE}/${VPATH(v)}`;
 const VARIANTS = {
   // {NC}=國家數,build 時由資料填入(勿寫死;實測 30,舊版寫死「40+」是誇大不實,答案引擎會照抄
   // 錯誤事實。2026-07-10 改動態計算,永遠與資料一致)。
@@ -31,8 +38,6 @@ function siteStats(shows) {
 function fillDesc(desc, st) { return desc.replace(/\{NC\}/g, st.nCountries); }
 // build 日期(UTC,ISO):dateModified 用;CI 每日跑=每日更新,給答案引擎新鮮度訊號。
 const BUILD_DATE = new Date().toISOString().slice(0, 10);
-// root router(無 shows 資料)的國家數:run loop 算好真值填入,不寫死「40+」(2026-07-10)。
-let ROOT_NC = 30;
 const esc = (s) => String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 const JSONLD_CAP = 300; // cap Event ItemList; full text list is unbounded (cheap)
 // cache-bust token for js/css so returning visitors never run a stale app.js (the bug
@@ -47,7 +52,7 @@ const VER = (() => {
 
 function hreflangLinks() {
   return [
-    `<link rel="alternate" hreflang="en" href="${SITE}/en/" />`,
+    `<link rel="alternate" hreflang="en" href="${SITE}/" />`,
     `<link rel="alternate" hreflang="zh-Hans" href="${SITE}/zh-hans/" />`,
     `<link rel="alternate" hreflang="zh-Hant" href="${SITE}/zh-hant/" />`,
     `<link rel="alternate" hreflang="x-default" href="${SITE}/" />`,
@@ -99,7 +104,7 @@ function jsonLd(variant, shows) {
   const desc = fillDesc(v.desc, st);
   const app = {
     "@context": "https://schema.org", "@type": "WebApplication", "name": "MusicalMap",
-    "alternateName": v.label, "url": `${SITE}/${variant}/`, "description": desc,
+    "alternateName": v.label, "url": VURL(variant), "description": desc,
     "applicationCategory": "EntertainmentApplication", "operatingSystem": "Web",
     "inLanguage": v.hreflang, "isAccessibleForFree": true,
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
@@ -121,7 +126,7 @@ function jsonLd(variant, shows) {
     "url": `${SITE}/`, "inLanguage": v.hreflang,
     // 站內搜尋:答案引擎/Google sitelinks searchbox 用;?q= 由 app.js 讀取預填搜尋框(2026-07-10)
     "potentialAction": { "@type": "SearchAction",
-      "target": { "@type": "EntryPoint", "urlTemplate": `${SITE}/${variant}/?q={search_term_string}` },
+      "target": { "@type": "EntryPoint", "urlTemplate": `${VURL(variant)}?q={search_term_string}` },
       "query-input": "required name=search_term_string" },
     "publisher": { "@id": `${SITE}/#organization` }, "description": desc };
   // FAQPage:答案引擎(AI Overview/Perplexity)最愛引用的 Q&A 結構。答案全用 build 時真實資料算,
@@ -219,7 +224,7 @@ const LANG_NAME = { "zh-hant": "繁體中文", "zh-hans": "简体中文", "en": 
 const LANG_TAG = { "zh-hant": "zh-Hant", "zh-hans": "zh-Hans", "en": "en" };
 function langSwitch(active) {
   const opt = (v) =>
-    `<a class="lang-opt${v === active ? " active" : ""}" role="menuitem" href="${BASE}${v}/" lang="${LANG_TAG[v]}" hreflang="${LANG_TAG[v]}"${v === active ? ' aria-current="true"' : ""}><span>${LANG_NAME[v]}</span>${LANG_TICK}</a>`;
+    `<a class="lang-opt${v === active ? " active" : ""}" role="menuitem" href="${BASE}${VPATH(v)}" lang="${LANG_TAG[v]}" hreflang="${LANG_TAG[v]}"${v === active ? ' aria-current="true"' : ""}><span>${LANG_NAME[v]}</span>${LANG_TICK}</a>`;
   return `<div id="lang-switch" role="group" aria-label="Language / 語言">
         <button type="button" class="lang-trigger" aria-haspopup="true" aria-expanded="false" aria-label="選擇語言 / Select language">${LANG_GLOBE}<span class="lang-cur">${LANG_CODE[active]}</span>${LANG_CHEV}</button>
         <div class="lang-pop" role="menu" hidden>
@@ -257,13 +262,13 @@ function page(variant, shows) {
   <meta name='impact-site-verification' value='5862030b-2ad5-46e3-ba52-429cfcca041d'>
   <title>${esc(v.label)}</title>
   <meta name="description" content="${esc(desc)}" />
-  <link rel="canonical" href="${SITE}/${variant}/" />
+  <link rel="canonical" href="${VURL(variant)}" />
   ${hreflangLinks()}
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="MusicalMap" />
   <meta property="og:title" content="${esc(v.label)}" />
   <meta property="og:description" content="${esc(desc)}" />
-  <meta property="og:url" content="${SITE}/${variant}/" />
+  <meta property="og:url" content="${VURL(variant)}" />
   <meta property="og:image" content="${SITE}/og-image.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
@@ -293,7 +298,7 @@ function page(variant, shows) {
   <link rel="stylesheet" href="${BASE}css/style.css?v=${VER}" />
   <script>window.MM_VARIANT="${variant}";window.MM_BASE="${BASE}";window.MM_DATA_VER="${VER}";</script>${openccTag}
   <script src="${BASE}js/mm-acct-menu.js?v=${VER}" defer></script>
-  <script src="${BASE}js/mm-xlang.js?v=1" defer></script><!-- 跨網域語言傳遞 --><!-- 登入過(mm_owner cookie)→「我的音樂劇」CTA 自動換成大頭照選單;未登入照常顯示 CTA -->
+  <script src="${BASE}js/mm-xlang.js?v=3" defer></script><!-- 跨網域語言傳遞 --><!-- 登入過(mm_owner cookie)→「我的音樂劇」CTA 自動換成大頭照選單;未登入照常顯示 CTA -->
   <script src="${BASE}js/mm-lang.js?v=${VER}" defer></script><!-- 語言切換下拉(globe→繁中/简中/English)開關行為 -->
 
   <!-- Google Analytics(GA4 G-GC07MYC1MY;訪客來源/行為分析。root 路由頁不埋(立即轉走);隱私揭露見 privacy.html §1/§3) -->
@@ -306,15 +311,15 @@ function page(variant, shows) {
 </head>
 <body>
   <header id="topbar">
-    <a id="brand" href="${BASE}${variant}/">
+    <a id="brand" href="${BASE}${VPATH(variant)}">
       <img class="brand-logo" src="${BASE}logo.svg" alt="" />
       <span class="logo">Musical<span class="logo-em">Map</span></span>
       <span class="tagline">${esc(t.tagline)}</span>
     </a>
     <nav id="topnav">
       ${langSwitch(variant)}
-      <a class="nav-link" href="${BASE}${variant}/">${esc(t.maphome)}</a>
-      <a class="nav-link" href="${BASE}${variant}/guide">${esc(t.guide)}</a><!-- 直連同語言靜態變體(v2.15.0 起),不繞 ?hl= 路由;theatres 已撤站(v2.18.0) -->
+      <a class="nav-link" href="${BASE}${VPATH(variant)}">${esc(t.maphome)}</a>
+      <a class="nav-link" href="${BASE}${VPATH(variant)}guide">${esc(t.guide)}</a><!-- 直連同語言靜態變體(v2.15.0 起),不繞 ?hl= 路由;theatres 已撤站(v2.18.0) -->
       <!-- 隱私/條款移到地圖右下 attribution 列(Google Maps 慣例,見 app.js addAttribution) -->
       <a id="mine-link" class="nav-cta" href="https://my.themusicalmap.com/?hl=${variant}">${esc(t.mine)}</a>
     </nav>
@@ -365,71 +370,12 @@ function page(variant, shows) {
 `;
 }
 
-// Root: a tiny language router (redirect by saved/browser pref) + x-default SEO with
-// links to all three variants so crawlers reach them and there's a no-JS fallback.
-function rootRouter() {
-  return `<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MusicalMap — Live World Map of Musicals 全球音樂劇即時地圖</title>
-  <meta name="description" content="An interactive map of musicals playing around the world right now — Broadway, West End, tours and original productions. 全球正在上演的音樂劇即時地圖。" />
-  <link rel="canonical" href="${SITE}/" />
-  <link rel="icon" href="${BASE}favicon.ico?v=3" sizes="any" />
-  <link rel="icon" type="image/svg+xml" href="${BASE}favicon.svg" />
-  <link rel="icon" type="image/png" sizes="96x96" href="${BASE}favicon-96.png?v=3" />
-  <link rel="apple-touch-icon" href="${BASE}apple-touch-icon.png?v=3" />
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="MusicalMap" />
-  <meta property="og:title" content="MusicalMap — Live World Map of Musicals" />
-  <meta property="og:description" content="Musicals playing around the world right now — Broadway, West End, tours and original productions across ${ROOT_NC} countries." />
-  <meta property="og:url" content="${SITE}/" />
-  <meta property="og:image" content="${SITE}/og-image.png" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:image" content="${SITE}/og-image.png" />
-  <!-- Google「網站名稱」(搜尋結果顯示 MusicalMap 而非網址)要求首頁(root)有 WebSite 結構化資料
-       +og:site_name;先前只有 /en/ 等變體頁有、root 沒有 → Google 退回顯示網域。 -->
-  <script type="application/ld+json">${JSON.stringify({ "@context": "https://schema.org", "@type": "Organization", "@id": `${SITE}/#organization`, "name": "MusicalMap", "alternateName": ["The Musical Map", "themusicalmap"], "url": `${SITE}/`, "logo": `${SITE}/favicon-512.png` })}</script>
-  <script type="application/ld+json">${JSON.stringify({ "@context": "https://schema.org", "@type": "WebSite", "@id": `${SITE}/#website`, "name": "MusicalMap", "alternateName": ["The Musical Map", "themusicalmap"], "url": `${SITE}/`, "publisher": { "@id": `${SITE}/#organization` } })}</script>
-  ${hreflangLinks()}
-  <!-- ⚠️ 正式站上這頁幾乎不會被看到:root 的語言分流已改在 Cloudflare Redirect Rules
-       (zone themusicalmap.com → Rules → root-lang-redirect-{zh-hant,zh-hans,en-default},
-       按 Accept-Language 302,2026-07-13 設定)。原因:這頁的 JS 變身讓 Googlebot 把
-       root 渲染成 /en/ 同內容 → /en/ 被判重複頁不收錄(GSC 實查)。下方 JS 僅作
-       CF 規則失效時的 fallback;動語言判斷邏輯時兩處要一起改。 -->
-  <script>
-    (function () {
-      var v = localStorage.getItem("mm_variant");
-      if (v !== "en" && v !== "zh-hans" && v !== "zh-hant") {
-        var l = (navigator.language || "en").toLowerCase();
-        v = l.indexOf("zh") === 0
-          ? (l.indexOf("cn") > -1 || l.indexOf("hans") > -1 || l.indexOf("sg") > -1 ? "zh-hans" : "zh-hant")
-          : "en";
-      }
-      location.replace("${BASE}" + v + "/");
-    })();
-  </script>
-</head>
-<body>
-  <p>MusicalMap — choose your language / 選擇語言:
-    <a href="${BASE}zh-hant/">繁體中文</a> ·
-    <a href="${BASE}zh-hans/">简体中文</a> ·
-    <a href="${BASE}en/">English</a>
-  </p>
-</body>
-</html>
-`;
-}
-
 function sitemap() {
   // the three indexable language trees, cross-linked by hreflang…
   // 三語地圖根頁每日重建(劇目進出)→ lastmod=build 日期,給 Google 每日重爬訊號(2026-07-10)。
   const variants = ["en", "zh-hans", "zh-hant"].map((v) =>
-    `  <url><loc>${SITE}/${v}/</loc><lastmod>${BUILD_DATE}</lastmod><changefreq>daily</changefreq>` +
-    `<xhtml:link rel="alternate" hreflang="en" href="${SITE}/en/"/>` +
+    `  <url><loc>${VURL(v)}</loc><lastmod>${BUILD_DATE}</lastmod><changefreq>daily</changefreq>` +
+    `<xhtml:link rel="alternate" hreflang="en" href="${SITE}/"/>` +
     `<xhtml:link rel="alternate" hreflang="zh-Hans" href="${SITE}/zh-hans/"/>` +
     `<xhtml:link rel="alternate" hreflang="zh-Hant" href="${SITE}/zh-hant/"/>` +
     `<xhtml:link rel="alternate" hreflang="x-default" href="${SITE}/"/></url>`);
@@ -439,8 +385,8 @@ function sitemap() {
   // 無副檔名 canonical:GH Pages 與 Cloudflare Pages 皆直達 200(CF 對 .html 形式會 308 到無副檔名)。
   // about/guide/privacy/terms 已拆三語靜態變體(gen_pages.mjs):列變體網址+hreflang 叢集,根網址=x-default 路由。
   const pageCluster = (p) => ["en", "zh-hans", "zh-hant"].map((v) =>
-    `  <url><loc>${SITE}/${v}/${p}</loc><lastmod>${BUILD_DATE}</lastmod>` +
-    `<xhtml:link rel="alternate" hreflang="en" href="${SITE}/en/${p}"/>` +
+    `  <url><loc>${SITE}/${VPATH(v)}${p}</loc><lastmod>${BUILD_DATE}</lastmod>` +
+    `<xhtml:link rel="alternate" hreflang="en" href="${SITE}/${p}"/>` +
     `<xhtml:link rel="alternate" hreflang="zh-Hans" href="${SITE}/zh-hans/${p}"/>` +
     `<xhtml:link rel="alternate" hreflang="zh-Hant" href="${SITE}/zh-hant/${p}"/>` +
     `<xhtml:link rel="alternate" hreflang="x-default" href="${SITE}/${p}"/></url>`);
@@ -470,13 +416,12 @@ function robots() {
 // ---- run ----
 for (const variant of Object.keys(VARIANTS)) {
   const shows = JSON.parse(fs.readFileSync(`data/variants/shows.${variant}.json`, "utf8")).shows;
-  ROOT_NC = siteStats(shows).nCountries;   // 真實國家數,給 rootRouter og 用(勿寫死 40+)
-  fs.mkdirSync(variant, { recursive: true });
-  fs.writeFileSync(`${variant}/index.html`, page(variant, shows));
-  console.log(`${variant.padEnd(8)} → ${variant}/index.html (${shows.length} shows, ${Math.min(shows.length, JSONLD_CAP)} in JSON-LD)`);
+  const out = variant === "en" ? "index.html" : `${variant}/index.html`;   // en 住根(v2.54.0)
+  if (variant !== "en") fs.mkdirSync(variant, { recursive: true });
+  fs.writeFileSync(out, page(variant, shows));
+  console.log(`${variant.padEnd(8)} → ${out} (${shows.length} shows, ${Math.min(shows.length, JSONLD_CAP)} in JSON-LD)`);
 }
-fs.writeFileSync("index.html", rootRouter());
 genPages();
 fs.writeFileSync("sitemap.xml", sitemap());
 fs.writeFileSync("robots.txt", robots());
-console.log("root index.html (router) + sitemap.xml + robots.txt written");
+console.log("root=en + sitemap.xml + robots.txt written");

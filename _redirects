@@ -1,0 +1,4 @@
+# Cloudflare Pages redirects — /en/ 樹 301 收斂到根(v2.54.0:root=英文完整內容)。
+# 舊 /en/ 連結與外部引用不斷鏈;splat 蓋 /en/about 等靜態頁。
+/en/ / 301
+/en/* /:splat 301

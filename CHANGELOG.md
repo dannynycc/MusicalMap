@@ -11,6 +11,17 @@
 
 ---
 
+## [v2.54.0] - 2026-07-20 09:31
+
+### SEO 架構:root = 英文完整內容,/en/ 樹 301 收斂(修 GSC「/en/ 被判重複網頁」)
+
+- **起因**:Search Console 兩封 7/18 通知(Sitemap 中網頁+一般網頁無法索引)。逐項查證 6 組原因:noindex 6 頁=my. 個人頁刻意設定、重新導向 4 頁=www/http 正規化、替代頁面 3 頁=canonical 正確、已檢索/已找到 5 頁=排隊中——**5 組良性,唯一真問題是 `/en/`**:使用者宣告 canonical 自指,但 Google 選 root 當標準 → /en/ 不收錄(網址檢查實查)。
+- **根因**:root 原本是「JS 語言路由頁」(2026-07-13 又疊了 CF Accept-Language 302)。Googlebot 以英文環境渲染 root → 內容等同 /en/ → 判重複,且 302/JS 都不轉移 canonical。
+- **修法(x-default=en 業界慣例)**:`gen_site.mjs`/`gen_pages.mjs` 加 `VPATH()`/`LPATH()`——**en 直接住根**(`/`、`/about`…),zh 兩語維持 `/{lang}/`;root 現為 200 的英文完整預渲染頁、canonical 自指、hreflang en+x-default 皆指根。JS router 與 4 個靜態路由頁一併除役(元凶),`/en/` 整棵樹刪除。
+- **不斷鏈**:新增 `_redirects`(`/en/*` → `/:splat` 301);`mm-xlang.js` 跨網域語言傳遞的 en 目標改根(v3);sitemap 全面改根版(0 個 /en/ 殘留)。
+- **Cloudflare**:停用 `root-lang-redirect-en-default`(root 302→/en/ 的規則,與新架構直接衝突);zh-hant/zh-hans 兩條 Accept-Language 302 保留(中文瀏覽器仍自動分流,Googlebot=en 不受影響)。
+- 本機驗證:root 200/lang=en/246 筆預渲染清單/地圖互動正常/語言選單 en→`/`;about.html=英文版 canonical `/about`。
+
 ## [v2.53.11] - 2026-07-19 20:47
 
 ### 向度進度條再調細(6→4px)+手機版全頁同類 bug 主動掃描
