@@ -126,20 +126,6 @@
         "name": "The Lion King"
       }
     ],
-    "wicked": [
-      {
-        "loc": "nyc",
-        "city": "New York",
-        "url": "https://www.todaytix.com/nyc/shows/1-wicked",
-        "name": "Wicked on Broadway"
-      },
-      {
-        "loc": "london",
-        "city": "London",
-        "url": "https://www.todaytix.com/london/shows/313-wicked",
-        "name": "Wicked"
-      }
-    ],
     "operation mincemeat": [
       {
         "loc": "nyc",
@@ -152,6 +138,14 @@
         "city": "Chicago",
         "url": "https://www.todaytix.com/chicago/shows/46644-operation-mincemeat-chi",
         "name": "Operation Mincemeat"
+      }
+    ],
+    "schmigadoon": [
+      {
+        "loc": "nyc",
+        "city": "New York",
+        "url": "https://www.todaytix.com/nyc/shows/45429-schmigadoon-on-broadway",
+        "name": "Schmigadoon! on Broadway"
       }
     ],
     "maybe happy ending": [
@@ -174,20 +168,18 @@
         "name": "Maybe Happy Ending"
       }
     ],
-    "schmigadoon": [
+    "wicked": [
       {
         "loc": "nyc",
         "city": "New York",
-        "url": "https://www.todaytix.com/nyc/shows/45429-schmigadoon-on-broadway",
-        "name": "Schmigadoon! on Broadway"
-      }
-    ],
-    "just in time": [
+        "url": "https://www.todaytix.com/nyc/shows/1-wicked",
+        "name": "Wicked on Broadway"
+      },
       {
-        "loc": "nyc",
-        "city": "New York",
-        "url": "https://www.todaytix.com/nyc/shows/42905-just-in-time-on-broadway",
-        "name": "Just in Time on Broadway"
+        "loc": "london",
+        "city": "London",
+        "url": "https://www.todaytix.com/london/shows/313-wicked",
+        "name": "Wicked"
       }
     ],
     "book of mormon": [
@@ -208,6 +200,14 @@
         "city": "Chicago",
         "url": "https://www.todaytix.com/chicago/shows/46957-the-book-of-mormon",
         "name": "THE BOOK OF MORMON"
+      }
+    ],
+    "just in time": [
+      {
+        "loc": "nyc",
+        "city": "New York",
+        "url": "https://www.todaytix.com/nyc/shows/42905-just-in-time-on-broadway",
+        "name": "Just in Time on Broadway"
       }
     ],
     "two strangers carry a cake across new york": [
@@ -240,14 +240,6 @@
         "name": "Ragtime on Broadway"
       }
     ],
-    "chicago": [
-      {
-        "loc": "nyc",
-        "city": "New York",
-        "url": "https://www.todaytix.com/nyc/shows/22-chicago",
-        "name": "Chicago on Broadway"
-      }
-    ],
     "hamilton": [
       {
         "loc": "nyc",
@@ -266,6 +258,14 @@
         "city": "Washington",
         "url": "https://www.todaytix.com/washington-dc/shows/46573-hamilton-national-theatre",
         "name": "Hamilton"
+      }
+    ],
+    "chicago": [
+      {
+        "loc": "nyc",
+        "city": "New York",
+        "url": "https://www.todaytix.com/nyc/shows/22-chicago",
+        "name": "Chicago on Broadway"
       }
     ],
     "mj": [
@@ -378,6 +378,20 @@
         "name": "Cabaret"
       }
     ],
+    "mamma mia": [
+      {
+        "loc": "london",
+        "city": "London",
+        "url": "https://www.todaytix.com/london/shows/304-mamma-mia",
+        "name": "Mamma Mia!"
+      },
+      {
+        "loc": "washington-dc",
+        "city": "Washington",
+        "url": "https://www.todaytix.com/washington-dc/shows/46944-mamma-mia",
+        "name": "Mamma Mia"
+      }
+    ],
     "heathers": [
       {
         "loc": "london",
@@ -394,18 +408,12 @@
         "name": "Matilda The Musical"
       }
     ],
-    "mamma mia": [
+    "phantom of the opera": [
       {
         "loc": "london",
         "city": "London",
-        "url": "https://www.todaytix.com/london/shows/304-mamma-mia",
-        "name": "Mamma Mia!"
-      },
-      {
-        "loc": "washington-dc",
-        "city": "Washington",
-        "url": "https://www.todaytix.com/washington-dc/shows/46944-mamma-mia",
-        "name": "Mamma Mia"
+        "url": "https://www.todaytix.com/london/shows/308-the-phantom-of-the-opera",
+        "name": "The Phantom of the Opera"
       }
     ],
     "im every woman": [
@@ -416,20 +424,12 @@
         "name": "I'm Every Woman - The Chaka Khan Musical"
       }
     ],
-    "phantom of the opera": [
+    "trainspotting": [
       {
         "loc": "london",
         "city": "London",
-        "url": "https://www.todaytix.com/london/shows/308-the-phantom-of-the-opera",
-        "name": "The Phantom of the Opera"
-      }
-    ],
-    "death note": [
-      {
-        "loc": "london",
-        "city": "London",
-        "url": "https://www.todaytix.com/london/shows/46365-death-note-the-musical",
-        "name": "Death Note: The Musical"
+        "url": "https://www.todaytix.com/london/shows/46540-trainspotting-the-musical",
+        "name": "Trainspotting the Musical"
       }
     ],
     "producers": [
@@ -438,14 +438,6 @@
         "city": "London",
         "url": "https://www.todaytix.com/london/shows/43861-the-producers",
         "name": "The Producers"
-      }
-    ],
-    "trainspotting": [
-      {
-        "loc": "london",
-        "city": "London",
-        "url": "https://www.todaytix.com/london/shows/46540-trainspotting-the-musical",
-        "name": "Trainspotting the Musical"
       }
     ],
     "ride the cyclone": [
@@ -462,6 +454,14 @@
         "city": "London",
         "url": "https://www.todaytix.com/london/shows/46142-sinatra-the-musical",
         "name": "Sinatra The Musical"
+      }
+    ],
+    "death note": [
+      {
+        "loc": "london",
+        "city": "London",
+        "url": "https://www.todaytix.com/london/shows/46365-death-note-the-musical",
+        "name": "Death Note: The Musical"
       }
     ],
     "paddington": [
@@ -504,12 +504,28 @@
         "name": "The Jonathan Larson Project"
       }
     ],
+    "malory towers": [
+      {
+        "loc": "london",
+        "city": "London",
+        "url": "https://www.todaytix.com/london/shows/46552-malory-towers",
+        "name": "Malory Towers"
+      }
+    ],
     "into the woods": [
       {
         "loc": "london",
         "city": "London",
         "url": "https://www.todaytix.com/london/shows/47065-into-the-woods",
         "name": "Into The Woods"
+      }
+    ],
+    "one day": [
+      {
+        "loc": "london",
+        "city": "London",
+        "url": "https://www.todaytix.com/london/shows/47226-one-day-the-musical",
+        "name": "One Day – The Musical "
       }
     ],
     "high school musical": [
@@ -520,20 +536,12 @@
         "name": "High School Musical"
       }
     ],
-    "malory towers": [
+    "pride": [
       {
         "loc": "london",
         "city": "London",
-        "url": "https://www.todaytix.com/london/shows/46552-malory-towers",
-        "name": "Malory Towers"
-      }
-    ],
-    "one day": [
-      {
-        "loc": "london",
-        "city": "London",
-        "url": "https://www.todaytix.com/london/shows/47226-one-day-the-musical",
-        "name": "One Day – The Musical "
+        "url": "https://www.todaytix.com/london/shows/45755-pride",
+        "name": "Pride"
       }
     ],
     "dark of the moon": [
@@ -560,22 +568,6 @@
         "name": "Showstopper! The Improvised Musical"
       }
     ],
-    "pride": [
-      {
-        "loc": "london",
-        "city": "London",
-        "url": "https://www.todaytix.com/london/shows/45755-pride",
-        "name": "Pride"
-      }
-    ],
-    "dog man": [
-      {
-        "loc": "london",
-        "city": "London",
-        "url": "https://www.todaytix.com/london/shows/46117-dog-man-the-musical",
-        "name": "Dog Man - The Musical"
-      }
-    ],
     "mermaids and pirates": [
       {
         "loc": "london",
@@ -592,20 +584,12 @@
         "name": "Kimberly Akimbo"
       }
     ],
-    "burlesque": [
+    "dog man": [
       {
         "loc": "london",
         "city": "London",
-        "url": "https://www.todaytix.com/london/shows/46320-burlesque",
-        "name": "Burlesque"
-      }
-    ],
-    "last ship": [
-      {
-        "loc": "london",
-        "city": "London",
-        "url": "https://www.todaytix.com/london/shows/47207-the-last-ship",
-        "name": "The Last Ship"
+        "url": "https://www.todaytix.com/london/shows/46117-dog-man-the-musical",
+        "name": "Dog Man - The Musical"
       }
     ],
     "billy elliot": [
@@ -614,6 +598,14 @@
         "city": "London",
         "url": "https://www.todaytix.com/london/shows/46308-billy-elliot-the-musical",
         "name": "Billy Elliot the Musical"
+      }
+    ],
+    "last ship": [
+      {
+        "loc": "london",
+        "city": "London",
+        "url": "https://www.todaytix.com/london/shows/47207-the-last-ship",
+        "name": "The Last Ship"
       }
     ],
     "theatre royalty drury lane": [
@@ -662,6 +654,14 @@
         "city": "London",
         "url": "https://www.todaytix.com/london/shows/47438-franz-and-marie",
         "name": "Franz & Marie"
+      }
+    ],
+    "burlesque": [
+      {
+        "loc": "london",
+        "city": "London",
+        "url": "https://www.todaytix.com/london/shows/46320-burlesque",
+        "name": "Burlesque"
       }
     ],
     "jekyll and hyde": [

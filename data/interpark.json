@@ -1,7 +1,7 @@
 {
   "meta": {
     "source": "world.nol.com (Interpark)",
-    "count": 27,
+    "count": 28,
     "dropped_no_coords": [
       "SEXY MEN STANDING @ Red Rouge Theater",
       "WIDERSTAND @ LINK ARTS CENTER DREAM 1 Hall",
@@ -27,6 +27,23 @@
     ]
   },
   "shows": [
+    {
+      "id": "ip-26009314",
+      "title": "ELISABETH",
+      "type": "tour",
+      "venue": "BLUE SQUARE",
+      "city": "Seoul",
+      "country": "South Korea",
+      "lat": 37.5409,
+      "lng": 127.0028,
+      "start_date": "2026-08-16",
+      "end_date": "2026-11-15",
+      "ticket_url": "https://world.nol.com/en/ticket/places/26000011/products/26009314",
+      "image": "https://ticketimage.interpark.com/Play/image/large/26/26009314_p.gif",
+      "tour_name": null,
+      "verified": true,
+      "source": "world.nol.com (Interpark)"
+    },
     {
       "id": "ip-26008698",
       "title": "Portrait of a boy",
@@ -326,7 +343,7 @@
       "lat": 37.5447,
       "lng": 127.0436,
       "start_date": "2025-11-05",
-      "end_date": "2026-08-31",
+      "end_date": "2026-09-30",
       "ticket_url": "https://world.nol.com/en/ticket/places/25001260/products/25014107",
       "image": "https://ticketimage.interpark.com/Play/image/large/25/25014107_p.gif",
       "tour_name": null,
