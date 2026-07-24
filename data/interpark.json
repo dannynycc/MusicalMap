@@ -1,8 +1,10 @@
 {
   "meta": {
     "source": "world.nol.com (Interpark)",
-    "count": 28,
+    "count": 29,
     "dropped_no_coords": [
+      "The Days  - DAEGU @ KEIMYUNG ART CENTER",
+      "Gwanghwamun Love Song @ D-CUBE LINK ARTS CENTER",
       "SEXY MEN STANDING @ Red Rouge Theater",
       "WIDERSTAND @ LINK ARTS CENTER DREAM 1 Hall",
       "Club  Seolhwa @ Theater ON",
@@ -27,6 +29,23 @@
     ]
   },
   "shows": [
+    {
+      "id": "ip-26009480",
+      "title": "Stravinsky",
+      "type": "tour",
+      "venue": "YES24 ART ONE (大學路)",
+      "city": "Seoul",
+      "country": "South Korea",
+      "lat": 37.5817,
+      "lng": 127.0034,
+      "start_date": "2026-06-30",
+      "end_date": "2026-09-13",
+      "ticket_url": "https://world.nol.com/en/ticket/places/25001000/products/26009480",
+      "image": "https://ticketimage.interpark.com/Play/image/large/26/26009480_p.gif",
+      "tour_name": null,
+      "verified": true,
+      "source": "world.nol.com (Interpark)"
+    },
     {
       "id": "ip-26009314",
       "title": "ELISABETH",
@@ -377,7 +396,7 @@
       "lat": 37.5654,
       "lng": 126.9936,
       "start_date": "2025-06-13",
-      "end_date": "2026-08-31",
+      "end_date": "2026-10-31",
       "ticket_url": "https://world.nol.com/en/ticket/places/22000962/products/25006677",
       "image": "https://ticketimage.interpark.com/Play/image/large/25/25006677_p.gif",
       "tour_name": null,
