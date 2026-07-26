@@ -1,26 +1,9 @@
 {
   "meta": {
     "source": "teatro.it",
-    "count": 169
+    "count": 168
   },
   "shows": [
-    {
-      "id": "it-8af8062e",
-      "title": "Notre Dame de Paris",
-      "title_en": "",
-      "venue": "Ferrara Summer Festival - Piazza Ariostea",
-      "city": "Ferrara",
-      "country": "Italy",
-      "lat": 44.766764,
-      "lng": 11.827939,
-      "start_date": "2026-07-26",
-      "end_date": "2026-07-26",
-      "image": "https://www.teatro.it/images/spettacoli/34998/main-image/teatro.it-notre-dame-de-paris-2026-date-biglietti.jpg",
-      "ticket_url": "https://www.teatro.it/spettacoli/notre-dame-de-paris-riccardo-cocciante",
-      "type": "tour",
-      "verified": true,
-      "source": "teatro.it"
-    },
     {
       "id": "it-ae080c05",
       "title": "Notre Dame de Paris",
@@ -357,23 +340,6 @@
       "end_date": "2027-02-23",
       "image": "https://www.teatro.it/images/spettacoli/42197/main-image/teatro.it-tootsie-paolo-conticini-date-biglietti.jpg",
       "ticket_url": "https://www.teatro.it/spettacoli/enzo-iacchetti-paolo-conticini-tootsie",
-      "type": "tour",
-      "verified": true,
-      "source": "teatro.it"
-    },
-    {
-      "id": "it-86ca9879",
-      "title": "Moulin Rouge! Il Musical",
-      "title_en": "",
-      "venue": "Il Sistina Chapiteau - Milano",
-      "city": "Sesto San Giovanni",
-      "country": "Italy",
-      "lat": 45.534793,
-      "lng": 9.237176,
-      "start_date": "2026-11-18",
-      "end_date": "2026-11-18",
-      "image": "https://www.teatro.it/images/2026/03/spettacoli/43315/main-image/teatro.it-moulin-rouge-musical-milano-date-biglietti.jpg",
-      "ticket_url": "https://www.teatro.it/spettacoli/moulin-rouge-il-musical",
       "type": "tour",
       "verified": true,
       "source": "teatro.it"
@@ -1496,6 +1462,23 @@
       "end_date": "2026-11-01",
       "image": "https://www.teatro.it/images/2026/04/spettacoli/41934/main-image/teatro.it-Pinocchio-musical-compagnia-BIT-date.jpg",
       "ticket_url": "https://www.teatro.it/spettacoli/le-avventure-di-pinocchio-musical",
+      "type": "tour",
+      "verified": true,
+      "source": "teatro.it"
+    },
+    {
+      "id": "it-86ca9879",
+      "title": "Moulin Rouge! Il Musical",
+      "title_en": "",
+      "venue": "Il Sistina Chapiteau - Milano",
+      "city": "Sesto San Giovanni",
+      "country": "Italy",
+      "lat": 45.534793,
+      "lng": 9.237176,
+      "start_date": "2026-11-18",
+      "end_date": "2026-11-18",
+      "image": "https://www.teatro.it/images/2026/03/spettacoli/43315/main-image/teatro.it-moulin-rouge-musical-milano-date-biglietti.jpg",
+      "ticket_url": "https://www.teatro.it/spettacoli/moulin-rouge-il-musical",
       "type": "tour",
       "verified": true,
       "source": "teatro.it"
