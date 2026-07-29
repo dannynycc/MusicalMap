@@ -1,7 +1,7 @@
 {
  "meta": {
   "source": "atrapalo.com",
-  "count": 128
+  "count": 131
  },
  "shows": [
   {
@@ -113,25 +113,6 @@
    "ticket_url": "https://www.atrapalo.com/entradas/princess-story-alicante_e4951699/",
    "image": "https://cdn.atrapalo.com/o/event/4951699/1818277.jpg",
    "tour_name": "Princess Story - Alicante",
-   "verified": true,
-   "source": "atrapalo.com",
-   "price_from": "19.95",
-   "currency": "EUR"
-  },
-  {
-   "id": "atr-princess-story-madrid-4951741",
-   "title": "PRINCESS STORY - Madrid",
-   "type": "tour",
-   "venue": "Teatro Casablanca",
-   "city": "Arganda del Rey",
-   "country": "Spain",
-   "lat": 40.29919,
-   "lng": -3.4387,
-   "start_date": "2026-11-22",
-   "end_date": "2026-11-22",
-   "ticket_url": "https://www.atrapalo.com/entradas/princess-story-madrid_e4951741/",
-   "image": "https://cdn.atrapalo.com/o/event/4951741/1818213.jpg",
-   "tour_name": "PRINCESS STORY - Madrid",
    "verified": true,
    "source": "atrapalo.com",
    "price_from": "19.95",
@@ -799,7 +780,7 @@
    "tour_name": "A Todo Ritmo",
    "verified": true,
    "source": "atrapalo.com",
-   "price_from": "12.82",
+   "price_from": "6.41",
    "currency": "EUR"
   },
   {
@@ -971,6 +952,25 @@
    "verified": true,
    "source": "atrapalo.com",
    "price_from": "49.00",
+   "currency": "EUR"
+  },
+  {
+   "id": "atr-el-gran-espectaculo-4951719",
+   "title": "El Gran Espectáculo",
+   "type": "tour",
+   "venue": "Teatro Las Vegas",
+   "city": "Madrid",
+   "country": "Spain",
+   "lat": 40.43652,
+   "lng": -3.63666,
+   "start_date": "2026-10-22",
+   "end_date": "2026-10-22",
+   "ticket_url": "https://www.atrapalo.com/entradas/el-gran-espectaculo_e4951719/",
+   "image": "https://cdn.atrapalo.com/o/event/4951719/1818355.jpg",
+   "tour_name": "El Gran Espectáculo",
+   "verified": true,
+   "source": "atrapalo.com",
+   "price_from": "15.00",
    "currency": "EUR"
   },
   {
@@ -1297,6 +1297,25 @@
    "currency": "EUR"
   },
   {
+   "id": "atr-las-vegas-experience-4951715",
+   "title": "Las Vegas Experience",
+   "type": "tour",
+   "venue": "Teatro Las Vegas",
+   "city": "Madrid",
+   "country": "Spain",
+   "lat": 40.43652,
+   "lng": -3.63666,
+   "start_date": "2026-09-12",
+   "end_date": "2026-11-28",
+   "ticket_url": "https://www.atrapalo.com/entradas/las-vegas-experience_e4951715/",
+   "image": "https://cdn.atrapalo.com/o/event/4951715/1818343.jpg",
+   "tour_name": "Las Vegas Experience",
+   "verified": true,
+   "source": "atrapalo.com",
+   "price_from": "15.00",
+   "currency": "EUR"
+  },
+  {
    "id": "atr-los-miserables-4924141",
    "title": "Les Misérables",
    "type": "tour",
@@ -1325,7 +1344,7 @@
    "lat": 40.43512,
    "lng": -3.69724,
    "start_date": "2026-07-29",
-   "end_date": "2026-08-16",
+   "end_date": "2026-09-12",
    "ticket_url": "https://www.atrapalo.com/entradas/libre-el-musical-de-nino-bravo_e4945107/",
    "image": "https://cdn.atrapalo.com/o/event/4945107/1781461.jpg",
    "tour_name": "Libre, el musical de Nino Bravo",
@@ -1468,6 +1487,25 @@
    "currency": "EUR"
   },
   {
+   "id": "atr-princess-story-madrid-4951741",
+   "title": "Princess Story - Madrid",
+   "type": "tour",
+   "venue": "Teatro Salesianos Estrecho",
+   "city": "Madrid",
+   "country": "Spain",
+   "lat": 40.45532,
+   "lng": -3.70428,
+   "start_date": "2026-11-22",
+   "end_date": "2026-11-22",
+   "ticket_url": "https://www.atrapalo.com/entradas/princess-story-madrid_e4951741/",
+   "image": "https://cdn.atrapalo.com/o/event/4951741/1818432.jpg",
+   "tour_name": "Princess Story - Madrid",
+   "verified": true,
+   "source": "atrapalo.com",
+   "price_from": "19.95",
+   "currency": "EUR"
+  },
+  {
    "id": "atr-querido-evan-hansen-4943992",
    "title": "Querido Evan Hansen",
    "type": "tour",
@@ -1544,6 +1582,25 @@
    "currency": "EUR"
   },
   {
+   "id": "atr-the-golden-disco-4951717",
+   "title": "The Golden Disco",
+   "type": "tour",
+   "venue": "Teatro Las Vegas",
+   "city": "Madrid",
+   "country": "Spain",
+   "lat": 40.43652,
+   "lng": -3.63666,
+   "start_date": "2026-09-19",
+   "end_date": "2026-11-21",
+   "ticket_url": "https://www.atrapalo.com/entradas/the-golden-disco_e4951717/",
+   "image": "https://cdn.atrapalo.com/o/event/4951717/1818351.jpg",
+   "tour_name": "The Golden Disco",
+   "verified": true,
+   "source": "atrapalo.com",
+   "price_from": "15.00",
+   "currency": "EUR"
+  },
+  {
    "id": "atr-el-rey-leon-4937514",
    "title": "The Lion King",
    "type": "tour",
@@ -1616,7 +1673,7 @@
    "tour_name": "Un paseo por Madrid",
    "verified": true,
    "source": "atrapalo.com",
-   "price_from": "12.82",
+   "price_from": "6.41",
    "currency": "EUR"
   },
   {
@@ -2001,18 +2058,18 @@
   },
   {
    "id": "atr-princess-story-rubi-4951740",
-   "title": "PRINCESS STORY - Rubí",
+   "title": "Princess Story - Rubí",
    "type": "tour",
-   "venue": "Auditori Sixto Mir",
-   "city": "Sant Carles de la Ràpita",
+   "venue": "Casal Popular de Rubí",
+   "city": "Rubí",
    "country": "Spain",
-   "lat": 40.61267,
-   "lng": 0.58428,
+   "lat": 41.49029,
+   "lng": 2.03087,
    "start_date": "2026-11-07",
    "end_date": "2026-11-07",
    "ticket_url": "https://www.atrapalo.com/entradas/princess-story-rubi_e4951740/",
-   "image": "https://cdn.atrapalo.com/o/event/4951740/1818208.jpg",
-   "tour_name": "PRINCESS STORY - Rubí",
+   "image": "https://cdn.atrapalo.com/o/event/4951740/1818429.jpg",
+   "tour_name": "Princess Story - Rubí",
    "verified": true,
    "source": "atrapalo.com",
    "price_from": "19.95",
