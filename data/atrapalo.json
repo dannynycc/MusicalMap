@@ -1,7 +1,7 @@
 {
  "meta": {
   "source": "atrapalo.com",
-  "count": 132
+  "count": 137
  },
  "shows": [
   {
@@ -147,7 +147,7 @@
    "lat": 28.09803,
    "lng": -16.68343,
    "start_date": "2026-08-01",
-   "end_date": "2027-01-23",
+   "end_date": "2027-01-30",
    "ticket_url": "https://www.atrapalo.com/entradas/entradas-al-espectaculo-history-la-evolucion-de-la-musica_e4935032/",
    "image": "https://cdn.atrapalo.com/o/event/4935032/1725381.jpg",
    "tour_name": "Entradas al espectáculo History, la evolución de la música",
@@ -423,6 +423,44 @@
    "currency": "EUR"
   },
   {
+   "id": "atr-tu-jo-i-vosaltres-i-les-cancons-4951842",
+   "title": "Tu, jo... i vosaltres... i les cançons",
+   "type": "tour",
+   "venue": "Sala Versus Glòries",
+   "city": "Barcelona",
+   "country": "Spain",
+   "lat": 41.40209,
+   "lng": 2.18412,
+   "start_date": "2026-12-17",
+   "end_date": "2027-01-10",
+   "ticket_url": "https://www.atrapalo.com/entradas/tu-jo-i-vosaltres-i-les-cancons_e4951842/",
+   "image": "https://cdn.atrapalo.com/o/event/4951842/1818768.jpg",
+   "tour_name": "Tu, jo... i vosaltres... i les cançons",
+   "verified": true,
+   "source": "atrapalo.com",
+   "price_from": "24.00",
+   "currency": "EUR"
+  },
+  {
+   "id": "atr-un-refugi-al-sol-4951840",
+   "title": "Un refugi al sol",
+   "type": "tour",
+   "venue": "Sala Versus Glòries",
+   "city": "Barcelona",
+   "country": "Spain",
+   "lat": 41.40209,
+   "lng": 2.18412,
+   "start_date": "2026-09-30",
+   "end_date": "2026-11-01",
+   "ticket_url": "https://www.atrapalo.com/entradas/un-refugi-al-sol_e4951840/",
+   "image": "https://cdn.atrapalo.com/o/event/4951840/1818764.jpg",
+   "tour_name": "Un refugi al sol",
+   "verified": true,
+   "source": "atrapalo.com",
+   "price_from": "18.00",
+   "currency": "EUR"
+  },
+  {
    "id": "atr-salta-el-musical-de-la-radio-formula-bargas-4949726",
    "title": "¡Salta!",
    "type": "tour",
@@ -436,6 +474,25 @@
    "ticket_url": "https://www.atrapalo.com/entradas/salta-el-musical-de-la-radio-formula-bargas_e4949726/",
    "image": "https://cdn.atrapalo.com/o/event/4949726/1807921.jpg",
    "tour_name": "¡Salta! El musical de la radio fórmula - Bargas",
+   "verified": true,
+   "source": "atrapalo.com",
+   "price_from": "14.95",
+   "currency": "EUR"
+  },
+  {
+   "id": "atr-salta-la-radio-formula-el-casar-4951792",
+   "title": "¡¡Salta!! La Radio Fórmula - El Casar",
+   "type": "tour",
+   "venue": "Casa de Cultura María Zambrano",
+   "city": "Bargas",
+   "country": "Spain",
+   "lat": 39.93998,
+   "lng": -4.01479,
+   "start_date": "2026-11-28",
+   "end_date": "2026-11-28",
+   "ticket_url": "https://www.atrapalo.com/entradas/salta-la-radio-formula-el-casar_e4951792/",
+   "image": "https://cdn.atrapalo.com/o/event/4951792/1818759.jpg",
+   "tour_name": "¡¡Salta!! La Radio Fórmula - El Casar",
    "verified": true,
    "source": "atrapalo.com",
    "price_from": "14.95",
@@ -470,7 +527,7 @@
    "lat": 28.08784,
    "lng": -16.73824,
    "start_date": "2026-08-01",
-   "end_date": "2027-01-23",
+   "end_date": "2027-01-30",
    "ticket_url": "https://www.atrapalo.com/entradas/entrada-a-scandal-dinner-show_e4935079/",
    "image": "https://cdn.atrapalo.com/o/event/4935079/1817379.jpg",
    "tour_name": "Entrada a Scandal Dinner Show",
@@ -1107,6 +1164,25 @@
    "currency": "EUR"
   },
   {
+   "id": "atr-el-ladron-de-arabia-tributo-a-aladdin-4947311",
+   "title": "El ladrón de Arabia - Tributo a Aladdín",
+   "type": "tour",
+   "venue": "Teatro Marquina",
+   "city": "Madrid",
+   "country": "Spain",
+   "lat": 40.42189,
+   "lng": -3.69365,
+   "start_date": "2026-08-20",
+   "end_date": "2026-08-20",
+   "ticket_url": "https://www.atrapalo.com/entradas/el-ladron-de-arabia-tributo-a-aladdin_e4947311/",
+   "image": "https://cdn.atrapalo.com/o/event/4947311/1793707.jpg",
+   "tour_name": "El ladrón de Arabia - Tributo a Aladdín",
+   "verified": true,
+   "source": "atrapalo.com",
+   "price_from": "15.00",
+   "currency": "EUR"
+  },
+  {
    "id": "atr-el-otro-lado-de-la-cama-4936845",
    "title": "El otro lado de la cama",
    "type": "tour",
@@ -1164,6 +1240,25 @@
    "currency": "EUR"
   },
   {
+   "id": "atr-hola-raffaella-4920904",
+   "title": "Hola Raffaella",
+   "type": "tour",
+   "venue": "Teatro Arlequín Gran Vía",
+   "city": "Madrid",
+   "country": "Spain",
+   "lat": 40.42104,
+   "lng": -3.70844,
+   "start_date": "2026-07-25",
+   "end_date": "2026-07-25",
+   "ticket_url": "https://www.atrapalo.com/entradas/hola-raffaella_e4920904/",
+   "image": "https://cdn.atrapalo.com/o/event/4920904/1634422.jpg",
+   "tour_name": "Hola Raffaella",
+   "verified": true,
+   "source": "atrapalo.com",
+   "price_from": "15.00",
+   "currency": "EUR"
+  },
+  {
    "id": "atr-jon-anton-live-experience-4944353",
    "title": "Jon Antón, Live experience",
    "type": "tour",
@@ -1198,7 +1293,7 @@
    "tour_name": "Juanita la Fantástica",
    "verified": true,
    "source": "atrapalo.com",
-   "price_from": "12.82",
+   "price_from": "12.00",
    "currency": "EUR"
   },
   {
@@ -1236,7 +1331,7 @@
    "tour_name": "La cena de los idiotas - El musical",
    "verified": true,
    "source": "atrapalo.com",
-   "price_from": "29.60",
+   "price_from": "37.00",
    "currency": "EUR"
   },
   {
@@ -1692,7 +1787,7 @@
    "tour_name": "Un paseo por Madrid",
    "verified": true,
    "source": "atrapalo.com",
-   "price_from": "12.82",
+   "price_from": "7.50",
    "currency": "EUR"
   },
   {
