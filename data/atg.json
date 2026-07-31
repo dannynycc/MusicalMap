@@ -1,9 +1,9 @@
 {
   "meta": {
     "source": "atgtickets.com",
-    "count": 217,
+    "count": 215,
     "tour_hubs": 32,
-    "tour_stops": 211
+    "tour_stops": 210
   },
   "shows": [
     {
@@ -53,23 +53,6 @@
       "end_date": "2027-05-16",
       "ticket_url": "https://www.atgtickets.com/shows/disneys-the-lion-king/lyceum-theatre/",
       "image": "https://res.cloudinary.com/dwzhqvxaz/image/upload/w_1280,q_auto,f_auto/v1766165028/Titles/The%20Lion%20King%20(Lyceum)/1920_x_1080.jpg",
-      "tour_name": null,
-      "verified": true,
-      "source": "atgtickets.com"
-    },
-    {
-      "id": "atg-shows-the-ballad-of-johnny-and-june-grand-opera-house-york",
-      "title": "The Ballad of Johnny and June",
-      "type": "tour",
-      "venue": "Grand Opera House York",
-      "city": "York",
-      "country": "UK",
-      "lat": 53.957135,
-      "lng": -1.082282,
-      "start_date": null,
-      "end_date": "2026-08-01",
-      "ticket_url": "https://www.atgtickets.com/shows/the-ballad-of-johnny-and-june/grand-opera-house-york/",
-      "image": "https://res.cloudinary.com/dwzhqvxaz/image/upload/w_1280,q_auto,f_auto/v1779374658/Titles/the%20ballad%20of%20Johnny%20and%20June/TBOJAJ_YORK_VENUE_ASSETS_MAY26_1920x1080px.jpg",
       "tour_name": null,
       "verified": true,
       "source": "atgtickets.com"
@@ -2744,23 +2727,6 @@
       "source": "atgtickets.com"
     },
     {
-      "id": "atg-tour-miss-saigon-bristol-hippodrome",
-      "title": "Miss Saigon",
-      "type": "tour",
-      "venue": "Bristol Hippodrome",
-      "city": "Bristol",
-      "country": "UK",
-      "lat": 51.453802,
-      "lng": -2.597298,
-      "start_date": null,
-      "end_date": "2026-08-01",
-      "ticket_url": "https://www.atgtickets.com/shows/miss-saigon/bristol-hippodrome/",
-      "image": "https://res.cloudinary.com/dwzhqvxaz/image/upload/w_1280,q_auto,f_auto/v1730983060/Titles/Miss%20Saigon/MissSaigon_Title_1920x1080.jpg",
-      "tour_name": "Miss Saigon — UK Tour",
-      "verified": true,
-      "source": "atgtickets.com"
-    },
-    {
       "id": "atg-tour-miss-saigon-palace-theatre-manchester",
       "title": "Miss Saigon",
       "type": "tour",
@@ -2786,7 +2752,7 @@
       "country": "UK",
       "lat": 51.510997,
       "lng": -0.135395,
-      "start_date": null,
+      "start_date": "2026-08-01",
       "end_date": "2027-01-23",
       "ticket_url": "https://www.atgtickets.com/shows/moulin-rouge-the-musical/piccadilly-theatre/",
       "image": "https://res.cloudinary.com/dwzhqvxaz/image/upload/w_1280,q_auto,f_auto/v1715242401/Titles/Moulin%20Rouge/Tour/MoulinRouge_Title_1920x1080.jpg",
@@ -2803,7 +2769,7 @@
       "country": "UK",
       "lat": 53.393341,
       "lng": -2.916639,
-      "start_date": null,
+      "start_date": "2026-08-01",
       "end_date": "2026-08-08",
       "ticket_url": "https://www.atgtickets.com/shows/moulin-rouge-the-musical/liverpool-empire/",
       "image": "https://res.cloudinary.com/dwzhqvxaz/image/upload/w_1280,q_auto,f_auto/v1715242401/Titles/Moulin%20Rouge/Tour/MoulinRouge_Title_1920x1080.jpg",
@@ -2871,7 +2837,7 @@
       "country": "UK",
       "lat": 51.513331,
       "lng": -0.120896,
-      "start_date": null,
+      "start_date": "2026-08-01",
       "end_date": "2027-02-20",
       "ticket_url": "https://www.atgtickets.com/shows/operation-mincemeat-a-new-musical/fortune-theatre/",
       "image": "https://res.cloudinary.com/dwzhqvxaz/image/upload/w_1280,q_auto,f_auto/v1721642563/Titles/Operation%20Mincemeat/OM_Title_1920x1080.jpg",
