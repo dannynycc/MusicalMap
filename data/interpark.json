@@ -1,8 +1,9 @@
 {
   "meta": {
     "source": "world.nol.com (Interpark)",
-    "count": 29,
+    "count": 30,
     "dropped_no_coords": [
+      "Fan Letter - Jinju @ 경상남도문화예술회관 대공연장",
       "The Days  - DAEGU @ KEIMYUNG ART CENTER",
       "Gwanghwamun Love Song @ D-CUBE LINK ARTS CENTER",
       "SEXY MEN STANDING @ Red Rouge Theater",
@@ -27,6 +28,23 @@
     ]
   },
   "shows": [
+    {
+      "id": "ip-26010167",
+      "title": "2026  Midnight : Actor Musician  - THE CHOICE",
+      "type": "tour",
+      "venue": "NOL Uniplex (大學路)",
+      "city": "Seoul",
+      "country": "South Korea",
+      "lat": 37.5821,
+      "lng": 127.0019,
+      "start_date": "2026-08-11",
+      "end_date": "2026-11-29",
+      "ticket_url": "https://world.nol.com/en/ticket/places/26000814/products/26010167",
+      "image": "https://ticketimage.interpark.com/Play/image/large/26/26010167_p.gif",
+      "tour_name": null,
+      "verified": true,
+      "source": "world.nol.com (Interpark)"
+    },
     {
       "id": "ip-26009831",
       "title": "The Days  - DAEJEON",
