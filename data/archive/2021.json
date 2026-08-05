@@ -1,6 +1,6 @@
 {
   "year": "2021",
-  "count": 23,
+  "count": 24,
   "runs": [
     {
       "run_key": "run-03bcf22a4c14",
@@ -295,6 +295,29 @@
       "onsale_only": false,
       "provenance": "auto",
       "first_seen": "2026-06-14",
+      "last_seen": "2026-08-05",
+      "frozen": false,
+      "group": "phantom of the opera",
+      "tag": "Broadway/West End",
+      "status": "running"
+    },
+    {
+      "run_key": "run-bbf24cb52dc2",
+      "title": "The Phantom of the Opera",
+      "venue": "His Majesty's Theatre",
+      "city": "London",
+      "country": "UK",
+      "lat": 51.508119,
+      "lng": -0.132013,
+      "start_date": "2021-07-27",
+      "end_date": "2027-03-13",
+      "image": "https://images.ctfassets.net/6pezt69ih962/spO4dvQ2d27GnxYWBxnBF/8c5b5f11521a16004fc4c9f8b6a2ec9f/480x720.jpg",
+      "ticket_url": "https://www.londontheatre.co.uk/show/308-the-phantom-of-the-opera-tickets",
+      "source": "londontheatre.co.uk",
+      "type": "resident",
+      "onsale_only": false,
+      "provenance": "auto",
+      "first_seen": "2026-08-05",
       "last_seen": "2026-08-05",
       "frozen": false,
       "group": "phantom of the opera",
