@@ -1,34 +1,9 @@
 {
   "meta": {
     "source": "ticketmaster",
-    "count": 1020
+    "count": 1027
   },
   "shows": [
-    {
-      "id": "tm-hamilton-majestic-theatre-san-antonio",
-      "title": "Hamilton",
-      "type": "tour",
-      "venue": "Majestic Theatre San Antonio",
-      "city": "San Antonio",
-      "country": "United States Of America",
-      "lat": 29.424801,
-      "lng": -98.488503,
-      "start_date": "2026-08-07",
-      "end_date": "2026-08-09",
-      "ticket_url": "https://www.ticketmaster.com/hamilton-touring-tickets/artist/2336213",
-      "attraction_url": "https://www.ticketmaster.com/hamilton-touring-tickets/artist/2336213",
-      "ticket_links": [
-        {
-          "country": "US",
-          "url": "https://www.ticketmaster.com/hamilton-touring-tickets/artist/2336213"
-        }
-      ],
-      "image": "https://s1.ticketm.net/dam/a/d7a/6ffed4d3-61d3-44c3-8e63-cc776582fd7a_SOURCE",
-      "tour_name": "Hamilton (Touring)",
-      "verified": true,
-      "source": "ticketmaster",
-      "onsale_only": true
-    },
     {
       "id": "tm-toby-s-dinner-theatre-presents-mean-girls-toby-s-dinner-theatre-columbia",
       "title": "Toby's Dinner Theatre Presents: Mean Girls",
@@ -50,56 +25,6 @@
       ],
       "image": "https://s1.ticketm.net/dam/a/44e/c8fcd9f3-8db9-4a77-9f31-54ddc0a5844e_SOURCE",
       "tour_name": null,
-      "verified": true,
-      "source": "ticketmaster",
-      "onsale_only": true
-    },
-    {
-      "id": "tm-joseph-and-the-amazing-technicolor-dreamcoat-hale-center-theatre-at-mountain-america",
-      "title": "Joseph and the Amazing Technicolor Dreamcoat",
-      "type": "tour",
-      "venue": "Hale Center Theatre at Mountain America",
-      "city": "Sandy",
-      "country": "United States Of America",
-      "lat": 40.5769,
-      "lng": -111.888397,
-      "start_date": "2026-08-07",
-      "end_date": "2026-10-07",
-      "ticket_url": "https://www.ticketmaster.com/joseph-and-the-amazing-technicolor-dreamcoat-tickets/artist/803932",
-      "attraction_url": "https://www.ticketmaster.com/joseph-and-the-amazing-technicolor-dreamcoat-tickets/artist/803932",
-      "ticket_links": [
-        {
-          "country": "US",
-          "url": "https://www.ticketmaster.com/joseph-and-the-amazing-technicolor-dreamcoat-tickets/artist/803932"
-        }
-      ],
-      "image": "https://s1.ticketm.net/dam/a/9a5/0382d888-c534-4dcb-9aac-927f59a749a5_SOURCE",
-      "tour_name": null,
-      "verified": true,
-      "source": "ticketmaster",
-      "onsale_only": true
-    },
-    {
-      "id": "tm-joseph-and-the-amazing-technicolor-dreamcoat-young-living-centre-stage-at-hale-centre-theatre",
-      "title": "Joseph and the Amazing Technicolor Dreamcoat",
-      "type": "tour",
-      "venue": "Young Living Centre Stage at Hale Centre Theatre",
-      "city": "Sandy",
-      "country": "United States Of America",
-      "lat": 40.5769,
-      "lng": -111.888397,
-      "start_date": "2026-08-07",
-      "end_date": "2026-10-24",
-      "ticket_url": "https://www.ticketmaster.com/joseph-and-the-amazing-technicolor-dreamcoat-tickets/artist/1953746",
-      "attraction_url": "https://www.ticketmaster.com/joseph-and-the-amazing-technicolor-dreamcoat-tickets/artist/1953746",
-      "ticket_links": [
-        {
-          "country": "US",
-          "url": "https://www.ticketmaster.com/joseph-and-the-amazing-technicolor-dreamcoat-tickets/artist/1953746"
-        }
-      ],
-      "image": "https://s1.ticketm.net/dam/a/9e7/c654641f-0b46-4e6c-b2c9-000343c099e7_SOURCE",
-      "tour_name": "Joseph and the Amazing Technicolor Dreamcoat (Touring)",
       "verified": true,
       "source": "ticketmaster",
       "onsale_only": true
@@ -1230,6 +1155,31 @@
       "onsale_only": true
     },
     {
+      "id": "tm-hamilton-majestic-theatre-san-antonio",
+      "title": "Hamilton",
+      "type": "tour",
+      "venue": "Majestic Theatre San Antonio",
+      "city": "San Antonio",
+      "country": "United States Of America",
+      "lat": 29.424801,
+      "lng": -98.488503,
+      "start_date": "2026-08-07",
+      "end_date": "2026-08-09",
+      "ticket_url": "https://www.ticketmaster.com/hamilton-touring-tickets/artist/2336213",
+      "attraction_url": "https://www.ticketmaster.com/hamilton-touring-tickets/artist/2336213",
+      "ticket_links": [
+        {
+          "country": "US",
+          "url": "https://www.ticketmaster.com/hamilton-touring-tickets/artist/2336213"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/d7a/6ffed4d3-61d3-44c3-8e63-cc776582fd7a_SOURCE",
+      "tour_name": "Hamilton (Touring)",
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
       "id": "tm-come-from-away-guthrie-theater-mcguire-proscenium-stage",
       "title": "Come from Away",
       "type": "tour",
@@ -1350,6 +1300,56 @@
       ],
       "image": "https://s1.ticketm.net/dam/a/f3a/0881ccb5-67a5-447c-9fa2-1fa34f713f3a_SOURCE",
       "tour_name": "Beetlejuice (Touring)",
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
+      "id": "tm-joseph-and-the-amazing-technicolor-dreamcoat-hale-center-theatre-at-mountain-america",
+      "title": "Joseph and the Amazing Technicolor Dreamcoat",
+      "type": "tour",
+      "venue": "Hale Center Theatre at Mountain America",
+      "city": "Sandy",
+      "country": "United States Of America",
+      "lat": 40.5769,
+      "lng": -111.888397,
+      "start_date": "2026-08-07",
+      "end_date": "2026-10-07",
+      "ticket_url": "https://www.ticketmaster.com/joseph-and-the-amazing-technicolor-dreamcoat-tickets/artist/803932",
+      "attraction_url": "https://www.ticketmaster.com/joseph-and-the-amazing-technicolor-dreamcoat-tickets/artist/803932",
+      "ticket_links": [
+        {
+          "country": "US",
+          "url": "https://www.ticketmaster.com/joseph-and-the-amazing-technicolor-dreamcoat-tickets/artist/803932"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/9a5/0382d888-c534-4dcb-9aac-927f59a749a5_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
+      "id": "tm-joseph-and-the-amazing-technicolor-dreamcoat-young-living-centre-stage-at-hale-centre-theatre",
+      "title": "Joseph and the Amazing Technicolor Dreamcoat",
+      "type": "tour",
+      "venue": "Young Living Centre Stage at Hale Centre Theatre",
+      "city": "Sandy",
+      "country": "United States Of America",
+      "lat": 40.5769,
+      "lng": -111.888397,
+      "start_date": "2026-08-07",
+      "end_date": "2026-10-24",
+      "ticket_url": "https://www.ticketmaster.com/joseph-and-the-amazing-technicolor-dreamcoat-tickets/artist/1953746",
+      "attraction_url": "https://www.ticketmaster.com/joseph-and-the-amazing-technicolor-dreamcoat-tickets/artist/1953746",
+      "ticket_links": [
+        {
+          "country": "US",
+          "url": "https://www.ticketmaster.com/joseph-and-the-amazing-technicolor-dreamcoat-tickets/artist/1953746"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/9e7/c654641f-0b46-4e6c-b2c9-000343c099e7_SOURCE",
+      "tour_name": "Joseph and the Amazing Technicolor Dreamcoat (Touring)",
       "verified": true,
       "source": "ticketmaster",
       "onsale_only": true
@@ -5555,6 +5555,31 @@
       "onsale_only": true
     },
     {
+      "id": "tm-jaane-pehchane-anjane-anupam-kher-and-swaroop-sampat-live-the-theater-at-mgm-national-harbor",
+      "title": "Jaane Pehchane Anjane: Anupam Kher and Swaroop Sampat Live",
+      "type": "tour",
+      "venue": "The Theater at MGM National Harbor",
+      "city": "National Harbor",
+      "country": "United States Of America",
+      "lat": 38.791707,
+      "lng": -77.003002,
+      "start_date": "2026-10-07",
+      "end_date": "2026-10-07",
+      "ticket_url": "https://www.ticketmaster.com/jaane-pehchaane-anjane-tickets/artist/4607256",
+      "attraction_url": "https://www.ticketmaster.com/jaane-pehchaane-anjane-tickets/artist/4607256",
+      "ticket_links": [
+        {
+          "country": "US",
+          "url": "https://www.ticketmaster.com/jaane-pehchaane-anjane-tickets/artist/4607256"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/e/d00/fd7f0405-35c6-407e-8d3d-5037968dbd00_TABLET_LANDSCAPE_LARGE_16_9.jpg",
+      "tour_name": "Jaane Pehchaane Anjane",
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
       "id": "tm-the-phantom-of-the-opera-closed-caption-performance-san-jose-center-for-the-performing-arts",
       "title": "The Phantom of the Opera - Closed Caption Performance",
       "type": "tour",
@@ -6349,6 +6374,31 @@
         }
       ],
       "image": "https://s1.ticketm.net/dam/a/3be/212f89d8-0f4f-4737-bc00-78964a7df3be_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
+      "id": "tm-into-the-woods-constans-theatre",
+      "title": "Into the Woods",
+      "type": "tour",
+      "venue": "Constans Theatre",
+      "city": "Gainesville",
+      "country": "United States Of America",
+      "lat": 29.644925,
+      "lng": -82.351669,
+      "start_date": "2026-10-16",
+      "end_date": "2026-10-25",
+      "ticket_url": "https://www.ticketmaster.com/into-the-woods-tickets/artist/708548",
+      "attraction_url": "https://www.ticketmaster.com/into-the-woods-tickets/artist/708548",
+      "ticket_links": [
+        {
+          "country": "US",
+          "url": "https://www.ticketmaster.com/into-the-woods-tickets/artist/708548"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/06d/ac15e5c6-e9c0-4287-9e67-4cd29fe9e06d_SOURCE",
       "tour_name": null,
       "verified": true,
       "source": "ticketmaster",
@@ -9005,6 +9055,31 @@
       "onsale_only": true
     },
     {
+      "id": "tm-mrs-doubtfire-clowes-memorial-hall",
+      "title": "Mrs. Doubtfire",
+      "type": "tour",
+      "venue": "Clowes Memorial Hall",
+      "city": "Indianapolis",
+      "country": "United States Of America",
+      "lat": 39.838628,
+      "lng": -86.171994,
+      "start_date": "2026-11-17",
+      "end_date": "2026-11-22",
+      "ticket_url": "https://www.ticketmaster.com/mrs-doubtfire-touring-tickets/artist/3007777",
+      "attraction_url": "https://www.ticketmaster.com/mrs-doubtfire-touring-tickets/artist/3007777",
+      "ticket_links": [
+        {
+          "country": "US",
+          "url": "https://www.ticketmaster.com/mrs-doubtfire-touring-tickets/artist/3007777"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/d05/6e2c8f9c-2ec2-4fc2-a2b2-9ec8c2971d05_SOURCE",
+      "tour_name": "Mrs. Doubtfire (Touring)",
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
       "id": "tm-the-sound-of-music-boch-center-wang-theatre",
       "title": "The Sound of Music",
       "type": "tour",
@@ -10000,6 +10075,31 @@
       ],
       "image": "https://s1.ticketm.net/dam/a/ee9/68bffb18-e2ba-49c2-bb45-954639b05ee9_SOURCE",
       "tour_name": "The Outsiders (Touring)",
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
+      "id": "tm-a-christmas-story-altria-theater",
+      "title": "A Christmas Story",
+      "type": "tour",
+      "venue": "Altria Theater",
+      "city": "Richmond",
+      "country": "United States Of America",
+      "lat": 37.549801,
+      "lng": -77.459801,
+      "start_date": "2026-11-28",
+      "end_date": "2026-11-28",
+      "ticket_url": "https://www.ticketmaster.com/a-christmas-story-the-musical-touring-tickets/artist/1604015",
+      "attraction_url": "https://www.ticketmaster.com/a-christmas-story-the-musical-touring-tickets/artist/1604015",
+      "ticket_links": [
+        {
+          "country": "US",
+          "url": "https://www.ticketmaster.com/a-christmas-story-the-musical-touring-tickets/artist/1604015"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/912/10f7a2ee-92bb-45eb-9f75-b1156ce0c912_SOURCE",
+      "tour_name": "A Christmas Story: The Musical (Touring)",
       "verified": true,
       "source": "ticketmaster",
       "onsale_only": true
@@ -11125,6 +11225,31 @@
       ],
       "image": "https://s1.ticketm.net/dam/a/a45/c25f8976-1d3d-4880-98b6-694bc833da45_SOURCE",
       "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
+      "id": "tm-hadestown-fred-kavli-theatre-b-of-a-performing-arts-center-thousand-oaks",
+      "title": "Hadestown",
+      "type": "tour",
+      "venue": "Fred Kavli Theatre- B of A Performing Arts Center,Thousand Oaks",
+      "city": "Thousand Oaks",
+      "country": "United States Of America",
+      "lat": 34.175071,
+      "lng": -118.849491,
+      "start_date": "2026-12-11",
+      "end_date": "2026-12-13",
+      "ticket_url": "https://www.ticketmaster.com/hadestown-touring-tickets/artist/2737495",
+      "attraction_url": "https://www.ticketmaster.com/hadestown-touring-tickets/artist/2737495",
+      "ticket_links": [
+        {
+          "country": "US",
+          "url": "https://www.ticketmaster.com/hadestown-touring-tickets/artist/2737495"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/61e/742b6e05-ae36-426c-a21f-91727d67e61e_SOURCE",
+      "tour_name": "Hadestown (Touring)",
       "verified": true,
       "source": "ticketmaster",
       "onsale_only": true
@@ -13275,6 +13400,31 @@
       ],
       "image": "https://s1.ticketm.net/dam/e/fe5/44aeaccd-ee63-4a0f-8bab-1a38cef97fe5_SOURCE",
       "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
+      "id": "tm-waitress-dpac",
+      "title": "Waitress",
+      "type": "tour",
+      "venue": "DPAC",
+      "city": "Durham",
+      "country": "United States Of America",
+      "lat": 35.993306,
+      "lng": -78.902225,
+      "start_date": "2027-02-05",
+      "end_date": "2027-02-07",
+      "ticket_url": "https://www.ticketmaster.com/waitress-touring-tickets/artist/2336217",
+      "attraction_url": "https://www.ticketmaster.com/waitress-touring-tickets/artist/2336217",
+      "ticket_links": [
+        {
+          "country": "US",
+          "url": "https://www.ticketmaster.com/waitress-touring-tickets/artist/2336217"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/949/790418d7-1517-4339-997c-26a62eff6949_SOURCE",
+      "tour_name": "Waitress (Touring)",
       "verified": true,
       "source": "ticketmaster",
       "onsale_only": true
@@ -17380,6 +17530,31 @@
       "onsale_only": true
     },
     {
+      "id": "tm-the-lion-king-chicago-cadillac-palace",
+      "title": "The Lion King (Chicago)",
+      "type": "tour",
+      "venue": "Cadillac Palace",
+      "city": "Chicago",
+      "country": "United States Of America",
+      "lat": 41.884378,
+      "lng": -87.632877,
+      "start_date": "2027-06-03",
+      "end_date": "2027-07-31",
+      "ticket_url": "https://www.ticketmaster.com/disney-presents-the-lion-king-chicago-tickets/artist/2093805",
+      "attraction_url": "https://www.ticketmaster.com/disney-presents-the-lion-king-chicago-tickets/artist/2093805",
+      "ticket_links": [
+        {
+          "country": "US",
+          "url": "https://www.ticketmaster.com/disney-presents-the-lion-king-chicago-tickets/artist/2093805"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/7c0/3b50b3ec-1592-4bf0-95ea-2f95652c57c0_TABLET_LANDSCAPE_LARGE_16_9.jpg",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
       "id": "tm-mean-girls-ny-shea-s-710-theatre",
       "title": "Mean Girls (NY)",
       "type": "tour",
@@ -17980,31 +18155,6 @@
       "onsale_only": true
     },
     {
-      "id": "tm-buena-vista-social-club-altria-theater",
-      "title": "Buena Vista Social Club",
-      "type": "tour",
-      "venue": "Altria Theater",
-      "city": "Richmond",
-      "country": "United States Of America",
-      "lat": 37.549801,
-      "lng": -77.459801,
-      "start_date": "2027-07-20",
-      "end_date": "2027-07-25",
-      "ticket_url": "https://www.ticketmaster.com/buena-vista-social-club-touring-tickets/artist/4248999",
-      "attraction_url": "https://www.ticketmaster.com/buena-vista-social-club-touring-tickets/artist/4248999",
-      "ticket_links": [
-        {
-          "country": "US",
-          "url": "https://www.ticketmaster.com/buena-vista-social-club-touring-tickets/artist/4248999"
-        }
-      ],
-      "image": "https://s1.ticketm.net/dam/a/8cf/25c443a0-c9bf-4043-8975-7a74db6578cf_SOURCE",
-      "tour_name": "Buena Vista Social Club (Touring)",
-      "verified": true,
-      "source": "ticketmaster",
-      "onsale_only": true
-    },
-    {
       "id": "tm-the-great-gatsby-age-recommendation-ages-10-and-over-first-interstate-center-for-the-arts",
       "title": "The Great Gatsby - Age Recommendation: Ages 10 and Over",
       "type": "tour",
@@ -18025,6 +18175,31 @@
       ],
       "image": "https://s1.ticketm.net/dam/a/aab/7a0484aa-3480-450b-8f2f-8180d5ad0aab_SOURCE",
       "tour_name": "The Great Gatsby (Touring)",
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
+      "id": "tm-buena-vista-social-club-altria-theater",
+      "title": "Buena Vista Social Club",
+      "type": "tour",
+      "venue": "Altria Theater",
+      "city": "Richmond",
+      "country": "United States Of America",
+      "lat": 37.549801,
+      "lng": -77.459801,
+      "start_date": "2027-07-21",
+      "end_date": "2027-07-25",
+      "ticket_url": "https://www.ticketmaster.com/buena-vista-social-club-touring-tickets/artist/4248999",
+      "attraction_url": "https://www.ticketmaster.com/buena-vista-social-club-touring-tickets/artist/4248999",
+      "ticket_links": [
+        {
+          "country": "US",
+          "url": "https://www.ticketmaster.com/buena-vista-social-club-touring-tickets/artist/4248999"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/8cf/25c443a0-c9bf-4043-8975-7a74db6578cf_SOURCE",
+      "tour_name": "Buena Vista Social Club (Touring)",
       "verified": true,
       "source": "ticketmaster",
       "onsale_only": true
@@ -20013,7 +20188,7 @@
       "country": "Australia",
       "lat": -34.923168,
       "lng": 138.568989,
-      "start_date": "2026-08-07",
+      "start_date": "2026-08-08",
       "end_date": "2026-08-09",
       "ticket_url": "https://www.ticketmaster.com/scotch-college-hadestown-teen-edition-tickets/artist/4477599",
       "attraction_url": "https://www.ticketmaster.com/scotch-college-hadestown-teen-edition-tickets/artist/4477599",
@@ -20038,7 +20213,7 @@
       "country": "Australia",
       "lat": -33.87962,
       "lng": 151.206329,
-      "start_date": "2026-08-07",
+      "start_date": "2026-08-08",
       "end_date": "2026-11-01",
       "ticket_url": "https://www.ticketmaster.com/disney-presents-the-lion-king-australia-tickets/artist/21441",
       "attraction_url": "https://www.ticketmaster.com/disney-presents-the-lion-king-australia-tickets/artist/21441",
@@ -22105,8 +22280,8 @@
       "onsale_only": true
     },
     {
-      "id": "tm-jeff-wayne-s-the-war-of-the-worlds-sec-armadillo",
-      "title": "Jeff Wayne's the War of the Worlds",
+      "id": "tm-jeff-wayne-s-musical-version-of-the-war-of-the-worlds-sec-armadillo",
+      "title": "Jeff Wayne's Musical Version of The War of The Worlds",
       "type": "tour",
       "venue": "SEC Armadillo",
       "city": "Glasgow",
@@ -22124,7 +22299,7 @@
         }
       ],
       "image": "https://s1.ticketm.net/dam/a/a77/91119429-781f-4147-91cb-ce83206c1a77_SOURCE",
-      "tour_name": null,
+      "tour_name": "Jeff Wayne's the War of the Worlds",
       "verified": true,
       "source": "ticketmaster",
       "onsale_only": true
@@ -22380,8 +22555,8 @@
       "onsale_only": true
     },
     {
-      "id": "tm-andrew-lloyd-webber-s-love-never-dies-the-phantom-returns-the-london-palladium",
-      "title": "Andrew Lloyd Webber's LOVE NEVER DIES - The Phantom Returns",
+      "id": "tm-love-never-dies-the-london-palladium",
+      "title": "Love Never Dies",
       "type": "tour",
       "venue": "The London Palladium",
       "city": "London",
