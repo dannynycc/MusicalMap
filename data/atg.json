@@ -2,8 +2,8 @@
   "meta": {
     "source": "atgtickets.com",
     "count": 203,
-    "tour_hubs": 30,
-    "tour_stops": 199
+    "tour_hubs": 29,
+    "tour_stops": 198
   },
   "shows": [
     {
@@ -53,6 +53,23 @@
       "end_date": "2027-05-30",
       "ticket_url": "https://www.atgtickets.com/shows/wicked/apollo-victoria-theatre/",
       "image": "https://res.cloudinary.com/dwzhqvxaz/image/upload/w_1280,q_auto,f_auto/v1724228109/Titles/Wicked/Tour/Wicked_Tour_Title_1920x1080.jpg",
+      "tour_name": null,
+      "verified": true,
+      "source": "atgtickets.com"
+    },
+    {
+      "id": "atg-shows-moulin-rouge-the-musical-piccadilly-theatre",
+      "title": "Moulin Rouge! The Musical",
+      "type": "tour",
+      "venue": "Piccadilly Theatre",
+      "city": "London",
+      "country": "UK",
+      "lat": 51.510997,
+      "lng": -0.135395,
+      "start_date": null,
+      "end_date": "2027-01-30",
+      "ticket_url": "https://www.atgtickets.com/shows/moulin-rouge-the-musical/piccadilly-theatre/",
+      "image": "https://res.cloudinary.com/dwzhqvxaz/image/upload/w_1280,q_auto,f_auto/v1774270910/Titles/Moulin%20Rouge/7ce89f57-a784-4c92-a2e7-9434fb4575ab.jpg",
       "tour_name": null,
       "verified": true,
       "source": "atgtickets.com"
@@ -2710,23 +2727,6 @@
       "source": "atgtickets.com"
     },
     {
-      "id": "atg-tour-moulin-rouge-the-musical-piccadilly-theatre",
-      "title": "Moulin Rouge! The Musical",
-      "type": "tour",
-      "venue": "Piccadilly Theatre",
-      "city": "London",
-      "country": "UK",
-      "lat": 51.510997,
-      "lng": -0.135395,
-      "start_date": null,
-      "end_date": "2027-01-30",
-      "ticket_url": "https://www.atgtickets.com/shows/moulin-rouge-the-musical/piccadilly-theatre/",
-      "image": "https://res.cloudinary.com/dwzhqvxaz/image/upload/w_1280,q_auto,f_auto/v1715242401/Titles/Moulin%20Rouge/Tour/MoulinRouge_Title_1920x1080.jpg",
-      "tour_name": "Moulin Rouge! The Musical — UK Tour",
-      "verified": true,
-      "source": "atgtickets.com"
-    },
-    {
       "id": "atg-tour-mrs-doubtfire-the-musical-kings-theatre-glasgow",
       "title": "Mrs. Doubtfire The Musical",
       "type": "tour",
@@ -2786,7 +2786,7 @@
       "country": "UK",
       "lat": 51.513331,
       "lng": -0.120896,
-      "start_date": null,
+      "start_date": "2026-08-10",
       "end_date": "2027-02-20",
       "ticket_url": "https://www.atgtickets.com/shows/operation-mincemeat-a-new-musical/fortune-theatre/",
       "image": "https://res.cloudinary.com/dwzhqvxaz/image/upload/w_1280,q_auto,f_auto/v1721642563/Titles/Operation%20Mincemeat/OM_Title_1920x1080.jpg",
