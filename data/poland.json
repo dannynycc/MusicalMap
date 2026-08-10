@@ -1,7 +1,7 @@
 {
   "meta": {
     "source": "ebilet.pl",
-    "count": 7
+    "count": 9
   },
   "shows": [
     {
@@ -119,6 +119,40 @@
       "end_date": "2027-06-05",
       "image": "https://www.ebilet.pl/media/cms/media/tmdlsq3e/metro35_1080x1080.webp",
       "ticket_url": "https://www.ebilet.pl/teatr/musicale/metro-jubileusz",
+      "type": "tour",
+      "verified": true,
+      "source": "ebilet.pl"
+    },
+    {
+      "id": "pl-a68a42d5",
+      "title": "My Fair Lady",
+      "title_en": "",
+      "venue": "CKiS – Dom Kultury OSKARD",
+      "city": "Konin",
+      "country": "Poland",
+      "lat": null,
+      "lng": null,
+      "start_date": "2026-11-08",
+      "end_date": "2026-12-10",
+      "image": "https://www.ebilet.pl/media/cms/media/unphyh30/1080x1080-ebilet-88fa9a29-8f38-4258-bc2a-62739214fe76.webp",
+      "ticket_url": "https://www.ebilet.pl/teatr/musicale/my-fair-lady",
+      "type": "tour",
+      "verified": true,
+      "source": "ebilet.pl"
+    },
+    {
+      "id": "pl-3e2f092b",
+      "title": "Next to Normal",
+      "title_en": "",
+      "venue": "Teatr Syrena w Warszawie",
+      "city": "Warszawa",
+      "country": "Poland",
+      "lat": 52.2196,
+      "lng": 21.019,
+      "start_date": "2027-01-28",
+      "end_date": "2027-01-31",
+      "image": "https://www.ebilet.pl/media/cms/media/vq1cnd23/ntn_grafiki-02-55658b60-3876-1592-29df-a864daf85e32.webp",
+      "ticket_url": "https://www.ebilet.pl/teatr/musicale/next-to-normal",
       "type": "tour",
       "verified": true,
       "source": "ebilet.pl"
