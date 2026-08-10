@@ -1,7 +1,7 @@
 {
   "meta": {
     "source": "ticketmaster",
-    "count": 997
+    "count": 1016
   },
   "shows": [
     {
@@ -589,7 +589,7 @@
       "lat": 40.762173,
       "lng": -73.985349,
       "start_date": "2026-08-11",
-      "end_date": "2026-10-18",
+      "end_date": "2027-02-07",
       "ticket_url": "https://www.ticketmaster.com/just-in-time-ny-tickets/artist/3357794",
       "attraction_url": "https://www.ticketmaster.com/just-in-time-ny-tickets/artist/3357794",
       "ticket_links": [
@@ -924,6 +924,31 @@
         }
       ],
       "image": "https://s1.ticketm.net/dam/a/f00/8ccb45fb-b42d-4b30-ad1f-cc80c4200f00_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
+      "id": "tm-the-dust-bowl-radio-hour-john-h-williams-theatre",
+      "title": "The Dust Bowl Radio Hour",
+      "type": "tour",
+      "venue": "John H. Williams Theatre",
+      "city": "Tulsa",
+      "country": "United States Of America",
+      "lat": 36.1548,
+      "lng": -95.98927,
+      "start_date": "2026-08-11",
+      "end_date": "2026-08-11",
+      "ticket_url": "https://www.ticketmaster.com/oklahoma-tickets/artist/844426",
+      "attraction_url": "https://www.ticketmaster.com/oklahoma-tickets/artist/844426",
+      "ticket_links": [
+        {
+          "country": "US",
+          "url": "https://www.ticketmaster.com/oklahoma-tickets/artist/844426"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/c/07d/fda8c807-42eb-4b81-9f16-f3a8367e107d_106371_TABLET_LANDSCAPE_LARGE_16_9.jpg",
       "tour_name": null,
       "verified": true,
       "source": "ticketmaster",
@@ -4280,6 +4305,31 @@
       "onsale_only": true
     },
     {
+      "id": "tm-jersey-boys-thalia-mara-hall",
+      "title": "Jersey Boys",
+      "type": "tour",
+      "venue": "Thalia Mara Hall",
+      "city": "Jackson",
+      "country": "United States Of America",
+      "lat": 32.29772,
+      "lng": -90.185425,
+      "start_date": "2026-09-30",
+      "end_date": "2026-09-30",
+      "ticket_url": "https://www.ticketmaster.com/jersey-boys-tickets/artist/2260794",
+      "attraction_url": "https://www.ticketmaster.com/jersey-boys-tickets/artist/2260794",
+      "ticket_links": [
+        {
+          "country": "US",
+          "url": "https://www.ticketmaster.com/jersey-boys-tickets/artist/2260794"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/e/de0/0e9f1b3f-aab7-4b9d-bb04-ff2382848de0_TABLET_LANDSCAPE_LARGE_16_9.jpg",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
       "id": "tm-menopause-the-musical-fred-kavli-theatre-b-of-a-performing-arts-center-thousand-oaks",
       "title": "Menopause The Musical®",
       "type": "tour",
@@ -4375,6 +4425,31 @@
       ],
       "image": "https://s1.ticketm.net/dam/a/890/ba987058-54c4-443a-b1f3-261c51477890_TABLET_LANDSCAPE_LARGE_16_9.jpg",
       "tour_name": "John Cameron Mitchell",
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
+      "id": "tm-bat-boy-shea-s-smith-theatre",
+      "title": "Bat Boy",
+      "type": "tour",
+      "venue": "Shea's Smith Theatre",
+      "city": "Buffalo",
+      "country": "United States Of America",
+      "lat": 42.883628,
+      "lng": -78.875058,
+      "start_date": "2026-10-01",
+      "end_date": "2026-10-18",
+      "ticket_url": "https://www.ticketmaster.com/bat-boy-the-musical-tickets/artist/850475",
+      "attraction_url": "https://www.ticketmaster.com/bat-boy-the-musical-tickets/artist/850475",
+      "ticket_links": [
+        {
+          "country": "US",
+          "url": "https://www.ticketmaster.com/bat-boy-the-musical-tickets/artist/850475"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/e/357/ba02cfb3-7956-49b5-874b-842a5adab357_SOURCE",
+      "tour_name": "Bat Boy the Musical",
       "verified": true,
       "source": "ticketmaster",
       "onsale_only": true
@@ -5075,6 +5150,31 @@
       ],
       "image": "https://s1.ticketm.net/dam/a/879/eb0656ac-c826-4a4a-944e-7ba18cf9f879_SOURCE",
       "tour_name": "The Rocky Horror Picture Show",
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
+      "id": "tm-singalong-broadway-bloomington-center-for-the-performing-arts",
+      "title": "Singalong Broadway!",
+      "type": "tour",
+      "venue": "Bloomington Center for the Performing Arts",
+      "city": "Bloomington",
+      "country": "United States Of America",
+      "lat": 40.484138,
+      "lng": -88.992789,
+      "start_date": "2026-10-08",
+      "end_date": "2026-10-08",
+      "ticket_url": "https://www.ticketmaster.com/singalong-broadway-tickets/artist/4586772",
+      "attraction_url": "https://www.ticketmaster.com/singalong-broadway-tickets/artist/4586772",
+      "ticket_links": [
+        {
+          "country": "US",
+          "url": "https://www.ticketmaster.com/singalong-broadway-tickets/artist/4586772"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/c/07d/fda8c807-42eb-4b81-9f16-f3a8367e107d_106371_TABLET_LANDSCAPE_LARGE_16_9.jpg",
+      "tour_name": null,
       "verified": true,
       "source": "ticketmaster",
       "onsale_only": true
@@ -5900,6 +6000,31 @@
       ],
       "image": "https://s1.ticketm.net/dam/a/dad/979f4562-38ac-4324-a7a4-86647d367dad_SOURCE",
       "tour_name": "The Who's Tommy (Touring)",
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
+      "id": "tm-26-27-broadway-in-savannah-season-savannah-civic-center-johnny-mercer-theatre",
+      "title": "26-27 Broadway in Savannah Season",
+      "type": "tour",
+      "venue": "Savannah Civic Center - Johnny Mercer Theatre",
+      "city": "Savannah",
+      "country": "United States Of America",
+      "lat": 32.078485,
+      "lng": -81.097794,
+      "start_date": "2026-10-16",
+      "end_date": "2026-10-16",
+      "ticket_url": "https://www.ticketmaster.com/the-wiz-touring-tickets/artist/3007845",
+      "attraction_url": "https://www.ticketmaster.com/the-wiz-touring-tickets/artist/3007845",
+      "ticket_links": [
+        {
+          "country": "US",
+          "url": "https://www.ticketmaster.com/the-wiz-touring-tickets/artist/3007845"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/f3c/cccfecb4-60ce-4467-b89f-74db91da1f3c_SOURCE",
+      "tour_name": null,
       "verified": true,
       "source": "ticketmaster",
       "onsale_only": true
@@ -7555,6 +7680,31 @@
       "onsale_only": true
     },
     {
+      "id": "tm-the-sound-of-music-fox-cities-pac",
+      "title": "The Sound of Music",
+      "type": "tour",
+      "venue": "Fox Cities PAC",
+      "city": "Appleton",
+      "country": "United States Of America",
+      "lat": 44.262557,
+      "lng": -88.411785,
+      "start_date": "2026-11-03",
+      "end_date": "2026-11-08",
+      "ticket_url": "https://www.ticketmaster.com/the-sound-of-music-touring-tickets/artist/209813",
+      "attraction_url": "https://www.ticketmaster.com/the-sound-of-music-touring-tickets/artist/209813",
+      "ticket_links": [
+        {
+          "country": "US",
+          "url": "https://www.ticketmaster.com/the-sound-of-music-touring-tickets/artist/209813"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/e78/7f5c2e16-5e31-48d2-bd85-df2314ceae78_SOURCE",
+      "tour_name": "The Sound of Music (Touring)",
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
       "id": "tm-buena-vista-social-club-music-hall-at-fair-park",
       "title": "Buena Vista Social Club",
       "type": "tour",
@@ -8600,6 +8750,56 @@
       ],
       "image": "https://s1.ticketm.net/dam/a/fe4/9af886fd-ab56-4bda-8401-17e3bc66ffe4_SOURCE",
       "tour_name": "Walnut Street Theatre's Disney's FROZEN The Broadway Musical",
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
+      "id": "tm-mamma-mia-bjcc-concert-hall",
+      "title": "Mamma Mia!",
+      "type": "tour",
+      "venue": "BJCC Concert Hall",
+      "city": "Birmingham",
+      "country": "United States Of America",
+      "lat": 33.523727,
+      "lng": -86.81011,
+      "start_date": "2026-11-17",
+      "end_date": "2026-11-22",
+      "ticket_url": "https://www.ticketmaster.com/mamma-mia-touring-tickets/artist/1120969",
+      "attraction_url": "https://www.ticketmaster.com/mamma-mia-touring-tickets/artist/1120969",
+      "ticket_links": [
+        {
+          "country": "US",
+          "url": "https://www.ticketmaster.com/mamma-mia-touring-tickets/artist/1120969"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/a7e/49752c7d-133d-4ff5-a477-ae98b5e43a7e_SOURCE",
+      "tour_name": "Mamma Mia! (Touring)",
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
+      "id": "tm-buena-vista-social-club-hobby-center",
+      "title": "Buena Vista Social Club",
+      "type": "tour",
+      "venue": "Hobby Center",
+      "city": "Houston",
+      "country": "United States Of America",
+      "lat": 29.761764,
+      "lng": -95.368798,
+      "start_date": "2026-11-17",
+      "end_date": "2026-11-22",
+      "ticket_url": "https://www.ticketmaster.com/buena-vista-social-club-touring-tickets/artist/4248999",
+      "attraction_url": "https://www.ticketmaster.com/buena-vista-social-club-touring-tickets/artist/4248999",
+      "ticket_links": [
+        {
+          "country": "US",
+          "url": "https://www.ticketmaster.com/buena-vista-social-club-touring-tickets/artist/4248999"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/8cf/25c443a0-c9bf-4043-8975-7a74db6578cf_SOURCE",
+      "tour_name": "Buena Vista Social Club (Touring)",
       "verified": true,
       "source": "ticketmaster",
       "onsale_only": true
@@ -9999,6 +10199,31 @@
         }
       ],
       "image": "https://s1.ticketm.net/dam/e/276/3967b05e-4d76-4eaf-bf29-223951c2b276_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
+      "id": "tm-a-christmas-carol-the-maryland-theatre",
+      "title": "A Christmas Carol",
+      "type": "tour",
+      "venue": "The Maryland Theatre",
+      "city": "Hagerstown",
+      "country": "United States Of America",
+      "lat": 39.641428,
+      "lng": -77.72091,
+      "start_date": "2026-12-04",
+      "end_date": "2026-12-06",
+      "ticket_url": "https://www.ticketmaster.com/a-christmas-carol-tickets/artist/803392",
+      "attraction_url": "https://www.ticketmaster.com/a-christmas-carol-tickets/artist/803392",
+      "ticket_links": [
+        {
+          "country": "US",
+          "url": "https://www.ticketmaster.com/a-christmas-carol-tickets/artist/803392"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/e/12e/46749ac3-3212-492b-808e-c145aad0412e_SOURCE",
       "tour_name": null,
       "verified": true,
       "source": "ticketmaster",
@@ -12455,6 +12680,31 @@
       "onsale_only": true
     },
     {
+      "id": "tm-the-wiz-lexington-opera-house",
+      "title": "The Wiz",
+      "type": "tour",
+      "venue": "Lexington Opera House",
+      "city": "Lexington",
+      "country": "United States Of America",
+      "lat": 38.049502,
+      "lng": -84.499149,
+      "start_date": "2027-01-29",
+      "end_date": "2027-01-31",
+      "ticket_url": "https://www.ticketmaster.com/the-wiz-touring-tickets/artist/3007845",
+      "attraction_url": "https://www.ticketmaster.com/the-wiz-touring-tickets/artist/3007845",
+      "ticket_links": [
+        {
+          "country": "US",
+          "url": "https://www.ticketmaster.com/the-wiz-touring-tickets/artist/3007845"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/f3c/cccfecb4-60ce-4467-b89f-74db91da1f3c_SOURCE",
+      "tour_name": "The Wiz (Touring)",
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
       "id": "tm-ruthless-renaissance-theatre-oh",
       "title": "Ruthless",
       "type": "tour",
@@ -13325,6 +13575,31 @@
       ],
       "image": "https://s1.ticketm.net/dam/c/07d/fda8c807-42eb-4b81-9f16-f3a8367e107d_106371_TABLET_LANDSCAPE_LARGE_16_9.jpg",
       "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
+      "id": "tm-shucked-lexington-opera-house",
+      "title": "Shucked",
+      "type": "tour",
+      "venue": "Lexington Opera House",
+      "city": "Lexington",
+      "country": "United States Of America",
+      "lat": 38.049502,
+      "lng": -84.499149,
+      "start_date": "2027-02-12",
+      "end_date": "2027-02-14",
+      "ticket_url": "https://www.ticketmaster.com/shucked-touring-tickets/artist/3184561",
+      "attraction_url": "https://www.ticketmaster.com/shucked-touring-tickets/artist/3184561",
+      "ticket_links": [
+        {
+          "country": "US",
+          "url": "https://www.ticketmaster.com/shucked-touring-tickets/artist/3184561"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/eb2/b8211459-5777-4f4d-bf51-6dee1bafbeb2_SOURCE",
+      "tour_name": "Shucked (Touring)",
       "verified": true,
       "source": "ticketmaster",
       "onsale_only": true
@@ -14980,6 +15255,31 @@
       "onsale_only": true
     },
     {
+      "id": "tm-mystic-pizza-capital-one-hall",
+      "title": "Mystic Pizza",
+      "type": "tour",
+      "venue": "Capital One Hall",
+      "city": "Tysons",
+      "country": "United States Of America",
+      "lat": 38.925348,
+      "lng": -77.212058,
+      "start_date": "2027-04-02",
+      "end_date": "2027-04-04",
+      "ticket_url": "https://www.ticketmaster.com/mystic-pizza-tickets/artist/4448234",
+      "attraction_url": "https://www.ticketmaster.com/mystic-pizza-tickets/artist/4448234",
+      "ticket_links": [
+        {
+          "country": "US",
+          "url": "https://www.ticketmaster.com/mystic-pizza-tickets/artist/4448234"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/e/76a/86dbd824-7029-4446-b4a4-cc9c06ec276a_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
       "id": "tm-beetlejuice-the-playhouse-on-rodney-square",
       "title": "Beetlejuice",
       "type": "tour",
@@ -15580,6 +15880,31 @@
       "onsale_only": true
     },
     {
+      "id": "tm-menopause-the-musical-fox-cities-pac",
+      "title": "Menopause The Musical®",
+      "type": "tour",
+      "venue": "Fox Cities PAC",
+      "city": "Appleton",
+      "country": "United States Of America",
+      "lat": 44.262557,
+      "lng": -88.411785,
+      "start_date": "2027-04-16",
+      "end_date": "2027-04-16",
+      "ticket_url": "https://www.ticketmaster.com/menopause-the-musical-tickets/artist/874566",
+      "attraction_url": "https://www.ticketmaster.com/menopause-the-musical-tickets/artist/874566",
+      "ticket_links": [
+        {
+          "country": "US",
+          "url": "https://www.ticketmaster.com/menopause-the-musical-tickets/artist/874566"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/c0a/17a4606e-3bcd-4871-8c31-655376467c0a_SOURCE",
+      "tour_name": "Menopause The Musical",
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
       "id": "tm-mean-girls-california-theatre-of-the-performing-arts",
       "title": "Mean Girls",
       "type": "tour",
@@ -15825,6 +16150,31 @@
       ],
       "image": "https://s1.ticketm.net/dam/a/eb2/b8211459-5777-4f4d-bf51-6dee1bafbeb2_SOURCE",
       "tour_name": "Shucked (Touring)",
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
+      "id": "tm-hadestown-tennessee-theatre",
+      "title": "Hadestown",
+      "type": "tour",
+      "venue": "Tennessee Theatre",
+      "city": "Knoxville",
+      "country": "United States Of America",
+      "lat": 35.964436,
+      "lng": -83.917071,
+      "start_date": "2027-04-24",
+      "end_date": "2027-04-25",
+      "ticket_url": "https://www.ticketmaster.com/hadestown-touring-tickets/artist/2737495",
+      "attraction_url": "https://www.ticketmaster.com/hadestown-touring-tickets/artist/2737495",
+      "ticket_links": [
+        {
+          "country": "US",
+          "url": "https://www.ticketmaster.com/hadestown-touring-tickets/artist/2737495"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/61e/742b6e05-ae36-426c-a21f-91727d67e61e_SOURCE",
+      "tour_name": "Hadestown (Touring)",
       "verified": true,
       "source": "ticketmaster",
       "onsale_only": true
@@ -16300,6 +16650,31 @@
       ],
       "image": "https://s1.ticketm.net/dam/a/5cf/57d5e1ab-fa4f-451c-980f-574584a785cf_SOURCE",
       "tour_name": "The Notebook (Touring)",
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
+      "id": "tm-legally-blonde-lexington-opera-house",
+      "title": "Legally Blonde",
+      "type": "tour",
+      "venue": "Lexington Opera House",
+      "city": "Lexington",
+      "country": "United States Of America",
+      "lat": 38.049502,
+      "lng": -84.499149,
+      "start_date": "2027-05-07",
+      "end_date": "2027-05-09",
+      "ticket_url": "https://www.ticketmaster.com/legally-blonde-touring-tickets/artist/1572130",
+      "attraction_url": "https://www.ticketmaster.com/legally-blonde-touring-tickets/artist/1572130",
+      "ticket_links": [
+        {
+          "country": "US",
+          "url": "https://www.ticketmaster.com/legally-blonde-touring-tickets/artist/1572130"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/325/7927ff4e-56c6-42e0-b5e2-eee6ff017325_SOURCE",
+      "tour_name": "Legally Blonde (Touring)",
       "verified": true,
       "source": "ticketmaster",
       "onsale_only": true
@@ -16850,6 +17225,31 @@
       ],
       "image": "https://s1.ticketm.net/dam/a/aab/7a0484aa-3480-450b-8f2f-8180d5ad0aab_SOURCE",
       "tour_name": "The Great Gatsby (Touring)",
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
+      "id": "tm-legally-blonde-capital-one-hall",
+      "title": "Legally Blonde",
+      "type": "tour",
+      "venue": "Capital One Hall",
+      "city": "Tysons",
+      "country": "United States Of America",
+      "lat": 38.925348,
+      "lng": -77.212058,
+      "start_date": "2027-05-21",
+      "end_date": "2027-05-22",
+      "ticket_url": "https://www.ticketmaster.com/legally-blonde-touring-tickets/artist/1572130",
+      "attraction_url": "https://www.ticketmaster.com/legally-blonde-touring-tickets/artist/1572130",
+      "ticket_links": [
+        {
+          "country": "US",
+          "url": "https://www.ticketmaster.com/legally-blonde-touring-tickets/artist/1572130"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/325/7927ff4e-56c6-42e0-b5e2-eee6ff017325_SOURCE",
+      "tour_name": "Legally Blonde (Touring)",
       "verified": true,
       "source": "ticketmaster",
       "onsale_only": true
@@ -17425,6 +17825,56 @@
       ],
       "image": "https://s1.ticketm.net/dam/a/70c/f8408501-c120-4b57-a857-a1711722970c_SOURCE",
       "tour_name": "The Book of Mormon (Touring)",
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
+      "id": "tm-six-lexington-opera-house",
+      "title": "SIX",
+      "type": "tour",
+      "venue": "Lexington Opera House",
+      "city": "Lexington",
+      "country": "United States Of America",
+      "lat": 38.049502,
+      "lng": -84.499149,
+      "start_date": "2027-06-25",
+      "end_date": "2027-06-27",
+      "ticket_url": "https://www.ticketmaster.com/six-touring-tickets/artist/2725025",
+      "attraction_url": "https://www.ticketmaster.com/six-touring-tickets/artist/2725025",
+      "ticket_links": [
+        {
+          "country": "US",
+          "url": "https://www.ticketmaster.com/six-touring-tickets/artist/2725025"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/39e/091ca72a-c37d-42bb-868a-43de90d0f39e_SOURCE",
+      "tour_name": "SIX (Touring)",
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
+      "id": "tm-the-wiz-capital-one-hall",
+      "title": "The Wiz",
+      "type": "tour",
+      "venue": "Capital One Hall",
+      "city": "Tysons",
+      "country": "United States Of America",
+      "lat": 38.925348,
+      "lng": -77.212058,
+      "start_date": "2027-06-25",
+      "end_date": "2027-06-27",
+      "ticket_url": "https://www.ticketmaster.com/the-wiz-touring-tickets/artist/3007845",
+      "attraction_url": "https://www.ticketmaster.com/the-wiz-touring-tickets/artist/3007845",
+      "ticket_links": [
+        {
+          "country": "US",
+          "url": "https://www.ticketmaster.com/the-wiz-touring-tickets/artist/3007845"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/f3c/cccfecb4-60ce-4467-b89f-74db91da1f3c_SOURCE",
+      "tour_name": "The Wiz (Touring)",
       "verified": true,
       "source": "ticketmaster",
       "onsale_only": true
@@ -18500,6 +18950,31 @@
       ],
       "image": "https://s1.ticketm.net/dam/a/4d7/ac249cad-10a4-4155-bcc2-625e5fa9f4d7_SOURCE",
       "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
+      "id": "tm-mrs-doubtfire-canada-life-place",
+      "title": "Mrs. Doubtfire",
+      "type": "tour",
+      "venue": "Canada Life Place",
+      "city": "London",
+      "country": "Canada",
+      "lat": 42.982341,
+      "lng": -81.251879,
+      "start_date": "2026-11-05",
+      "end_date": "2026-11-05",
+      "ticket_url": "https://www.ticketmaster.com/mrs-doubtfire-touring-tickets/artist/3007777",
+      "attraction_url": "https://www.ticketmaster.com/mrs-doubtfire-touring-tickets/artist/3007777",
+      "ticket_links": [
+        {
+          "country": "CA",
+          "url": "https://www.ticketmaster.com/mrs-doubtfire-touring-tickets/artist/3007777"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/e/0dd/00800250-7817-47b6-a22e-f0bb54d7f0dd_TABLET_LANDSCAPE_LARGE_16_9.jpg",
+      "tour_name": "Mrs. Doubtfire (Touring)",
       "verified": true,
       "source": "ticketmaster",
       "onsale_only": true
@@ -21530,8 +22005,8 @@
       "onsale_only": true
     },
     {
-      "id": "tm-jeff-wayne-s-the-war-of-the-worlds-sec-armadillo",
-      "title": "Jeff Wayne's the War of the Worlds",
+      "id": "tm-jeff-wayne-s-musical-version-of-the-war-of-the-worlds-sec-armadillo",
+      "title": "Jeff Wayne's Musical Version of The War of The Worlds",
       "type": "tour",
       "venue": "SEC Armadillo",
       "city": "Glasgow",
@@ -21549,7 +22024,7 @@
         }
       ],
       "image": "https://s1.ticketm.net/dam/a/a77/91119429-781f-4147-91cb-ce83206c1a77_SOURCE",
-      "tour_name": null,
+      "tour_name": "Jeff Wayne's the War of the Worlds",
       "verified": true,
       "source": "ticketmaster",
       "onsale_only": true
@@ -21805,8 +22280,8 @@
       "onsale_only": true
     },
     {
-      "id": "tm-andrew-lloyd-webber-s-love-never-dies-the-phantom-returns-the-london-palladium",
-      "title": "Andrew Lloyd Webber's LOVE NEVER DIES - The Phantom Returns",
+      "id": "tm-love-never-dies-the-london-palladium",
+      "title": "Love Never Dies",
       "type": "tour",
       "venue": "The London Palladium",
       "city": "London",
