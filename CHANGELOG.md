@@ -35,12 +35,19 @@
    等。→ 後備條件改為「ASCII 殘存物一個英文字母都沒有、而原標題有 CJK/假名/諺文」。
    實跑:10 筆 group 修正、純數字 group 歸零、7 項回歸(SIX/Mamma Mia/Les Mis…)全過。
 
-**3. `_headers` 宣告的點擊劫持防護在主站沒生效**
+**3. 🚨 `_headers` 宣告的點擊劫持防護在主站沒生效 —— 已確認,但【尚未修好】**
    實測 `themusicalmap.com/me.html`、`/settings.html`、`/me-input.html`
-   **完全沒有 X-Frame-Options 或 CSP frame-ancestors**,只吃到檔尾 `/*` 的
-   nosniff+referrer —— 亦即後面的規則把前面的整組蓋掉。這兩頁有即時寫入(公開開關/改名),
-   正是 v2.44.3 當初要防的。→ `/*` 移到檔案最前面,具體路徑放後面覆寫。
-   (my. 子網域不受影響,那邊的標頭由 Worker 的 `secHeaders()` 自組。)
+   **完全沒有 X-Frame-Options 或 CSP frame-ancestors**,只吃到 `/*` 的 nosniff+referrer。
+   這兩頁有即時寫入(公開開關/改名),正是 v2.44.3 當初要防的。
+   我先假設是「後面的規則蓋掉前面的」,把 `/*` 移到最前面 → **部署後實測仍然沒有**,
+   假設不成立,已還原成原本的寫法。已排除的可能:
+   ①不是 CDN 那層拿掉 —— pages.dev 原始站同樣沒有;
+   ②不是設定檔沒被消化 —— `/_headers`、`/_redirects` 都回 404(已被 Pages 吃掉),
+     且 `_redirects` 的 `/en/`→301 在 pages.dev 確實有效;
+   ③不是規則順序。
+   **根因未明,主站的 me/settings 目前仍可被外站 iframe 疊層。**
+   my. 子網域不受影響(標頭由 Worker 的 `secHeaders()` 自組,實測 DENY 有效)。
+   下一步:查 Pages 專案設定是否有覆蓋,或改用 Worker / Transform Rule 供應標頭。
 
 **4. handle 大小寫產生三個互相重複的網址**
    `/danny`、`/DANNY`、`/Danny` 都回 200,而注入的 canonical **各自指向自己**。
