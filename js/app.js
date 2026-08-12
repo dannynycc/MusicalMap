@@ -149,6 +149,13 @@ function overlapsMonth(show) {
     // 用「觀看者本地今天」比對:台北 7/13 看不到 7/12 結束的劇;美國觀眾當地 7/12(末場
     // 開演前)仍看得到——時區各自正確。過去月份由 archive 服務,未來月不受影響。
     if (isThisMonth() && end < TODAY0) return false;
+  } else if (!start) {
+    // 起迄日期一個都沒有(來源只說「有在賣」)。落到下面的 horizon 判斷會等於宣稱
+    // 「未來一整年每個月都在演」——2026-08-12 線上實測:4 筆(Lion King 馬德里、
+    // MJ 斯海弗寧恩、El Alma al aire、博物馆奇遇记)在時間軸 13 個月全部出現,
+    // 日期欄還是空白。既然無從得知未來檔期,就只在「當前月」出現:
+    // 來源列著在售 → 現在有演是合理推論;未來月份不知道 → 不聲稱。
+    return isThisMonth();
   } else {
     const horizon = new Date(CUR_Y, CUR_M + OPEN_RUN_HORIZON + 1, 0, 23, 59, 59, 999);
     if (ms > horizon) return false;        // open-ended: don't claim a run past the booking horizon
@@ -483,6 +490,9 @@ function fmtDates(show) {
   if (s && e) return `${fmtD(s)} – ${fmtD(e)}`;   // 期間限定且起迄皆知 → 顯示完整範圍(2026-07-09 使用者規格)
   if (e) return t("date_until", { e: fmtD(e) });
   if (s && new Date(s) > TODAY0) return t("date_from", { s: fmtD(s) });
+  // 起迄皆不明:來源只說「有在賣」,一個日期都沒給。以前回空字串 → 卡片日期欄整個空白,
+  // 使用者看不出是「沒有這筆資料」還是「壞掉了」(2026-08-12 線上實測 4 筆全是空白)。
+  if (!s && !e) return t("date_tbd");
   return "";
 }
 
