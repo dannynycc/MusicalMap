@@ -143,7 +143,8 @@ python scrapers/build_shows.py        # 合併成 data/shows.json
 
 ## 現況 / 待辦
 
-- ✅ **共 ~1,970 筆、31 國**（隨每日 CI 變動；2026-07-14 實測 1,973 筆/629 groups——2026-07-13 TM 自適應時間分片掃描 +125% 後的量級；第 31 國=菲律賓,馬尼拉 3 齣 Broadway 巡演手工策展），含座標與海報。自動 scraper：Broadway、West End、北美巡演（broadway.org 297 站）、國際製作、劇団四季、宝塚、東宝/2.5次元/東急（`japan.py`）、韓國 Interpark、ATG 英國巡演、Stage DE、Madrid、台灣 OPENTIX/utiki、東歐（jegy.hu）、義/瑞/荷/波/挪/奧/中東、**中國**（Poly/上海文廣/ypiao/中演/聚橙 juooo，逆向官方 API；**大麥 296 場次/60 城（2026-07-12 重抓），人工協助批次解 x5sec、非 CI**）、Portugal（BOL）、Ticketmaster 全球補洞。
+- ✅ **共 ~2,170 筆、32 國、597 城**（隨每日 CI 變動；2026-08-12 實測 2,166 筆/707 groups）,含座標與海報。中國 271 筆為全站第三大市場（次於美 843、英 293）。自動 scraper：Broadway、West End、北美巡演（broadway.org 297 站）、國際製作、劇団四季、宝塚、東宝/2.5次元/東急（`japan.py`）、韓國 Interpark、ATG 英國巡演、Stage DE、Madrid、台灣 OPENTIX/utiki、東歐（jegy.hu）、義/瑞/荷/波/挪/奧/中東、**中國**（Poly/上海文廣/ypiao/中演/聚橙 juooo，逆向官方 API；**大麥 389 場次/66 城（2026-08-12 重抓），人工協助批次解 x5sec、非 CI，約每月一次**）、Portugal（BOL）、Ticketmaster 全球補洞。
+  - ⚠️ **`china.py`／`china_ypiao.py`／`china_juooo.py` 自 2026-07-14（commit 7045a39）起因檔案編碼損毀無法執行**，CI 每班 `::warning` 但不擋 build；三來源資料凍結中，待修復。
 - ✅ **人工策展（`manual.json`，反爬市場）**：巴西（6）、阿根廷（2）、南非（4）、新加坡（4，到 2027）、葡萄牙、上海、**波鴻星光快車**（1988– 常設專用劇場，ATG.de 售票，任何來源都不覆蓋）、**菲律賓馬尼拉**（3，Charlie/On Your Feet/Notebook@TicketWorld——bot 牆擋自動抓，`scrapers/philippines.py` 為實驗性 playwright 版掛 CI `::warning` 不擋 build）、各劇巡演段（Les Mis Arena/Miss Saigon/Beetlejuice/Chicago/SIX/Heathers/Roméo et Juliette…）。反爬來源（Sympla/Plateanet/MBS Akamai/SISTIC 需授權）無法自動抓，逐齣查證後手填。
 - 🆕 **`scrapers/audit_manual.py`**（CI 每次跑）：抓 manual.json 中已落幕（end_date 過期）或逾期未查證（_checked >120 天）的手填劇，避免硬填資料默默過期。
 - 🆕 **`scrapers/audit_geo.py`**（CI 每次跑，2026-07-10）：國界框檢查＋venue_coords.json 自體檢（跨城市同座標複製貼上指紋、對 cn_venues 權威表 >20km）——保利連鎖座標污染事件（南昌/衡陽錯 616-989km）後入 CI。中國場館座標鐵則：cn_venues.json 為權威，geocode_google 遇中國場館先查權威表（Google 大陸資料 GCJ 偏移＋同名連鎖誤配）。
