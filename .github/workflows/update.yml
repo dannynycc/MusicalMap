@@ -135,7 +135,10 @@ jobs:
           # 哨兵體檢:常設鐵桿劇目+來源低標(2026-07-09;維也納/broadway 靜默壞抓事件後制度化)
           gate "哨兵體檢 (audit_sentinels)"     python scrapers/_run.py scrapers/audit_sentinels.py
           # 官網體檢:地區沒對上/授權頁污染/無條目數(2026-07-09 星光快車官網漏洞後制度化)
-          gate "官網體檢 (audit_official)"      python scrapers/_run.py scrapers/audit_official.py
+          # --check-live:連線驗每一條官網還活著(2026-08-12 加;那次掃到 363 條裡 9 條爛掉——
+          # hairspraythemusical.co.uk 變足球俱樂部、waitressthemusical.com.au 變健身房、
+          # 兩條 GoDaddy 停放頁、三條 NXDOMAIN。劇目官網的域名會隨製作結束過期被買走,會持續復發)
+          gate "官網體檢 (audit_official)"      python scrapers/_run.py scrapers/audit_official.py --check-live
           # 地理體檢:國界框+venue_coords 修正表自體檢(2026-07-10 保利座標污染事件後入 CI)
           gate "地理體檢 (audit_geo)"           python scrapers/_run.py scrapers/audit_geo.py
           # tour_name 體檢:presenter 名滲入/跨 attraction 撞名(2026-07-13 Lexington/Arena Spectacular 掛羊頭事件後入 CI)

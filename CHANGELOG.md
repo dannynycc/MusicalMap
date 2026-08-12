@@ -11,6 +11,47 @@
 
 ---
 
+## [v2.61.3] - 2026-08-12 20:17
+
+### 9 條官網連結已經死了,其中兩條變成足球俱樂部和健身房
+
+`official_sites.json` 的 363 條官網逐條連線檢查,9 條失效。劇目官網的域名會隨製作結束
+過期、被別人買走,而既有的 `audit_official.py` 只驗**結構**(key 對不對、地區有沒有漏),
+從不驗「這個網址是不是還活著」——所以爛掉多久都沒人知道。
+
+| 劇 [地區] | 現況 |
+|---|---|
+| hairspray [global] | `hairspraythemusical.co.uk` 已轉手 → **droylsdenfc.com(足球俱樂部)** |
+| waitress [au] | `waitressthemusical.com.au` 已轉手 → **oasisgym.com.au(健身房)** |
+| ghost [global] | `ghostthemusical.com` = GoDaddy 停放頁 |
+| fiddler on the roof [global] | `fiddlermusical.com` = GoDaddy 停放頁 |
+| beetlejuice [au] | NXDOMAIN(權威 DNS 確認) |
+| rock of ages [global] | NXDOMAIN(搜尋引擎仍標為官方,索引是舊的) |
+| robin des bois [global] | 無 A 記錄 |
+| fifty shades [global] | 解析到 `127.0.0.1` |
+| great british bake off [uk] | curl 與真瀏覽器都連不上 |
+
+**目前正在顯示死連結的卡片:18 筆**(hairspray 16 + rock of ages 1 + fiddler 1)。
+`global` 是所有沒有地區專屬站的卡片的退路,所以 global 壞掉波及面最大。
+其餘 5 條是潛伏的 —— 該地區目前剛好沒有演出,一旦有就會冒出來。
+
+處置:8 條移除,hairspray 補上經查證的官方 UK/Ireland 巡演站
+`hairspraymusicaltour.com`(19 個城市檔期與我們的 11 筆完全吻合)。
+
+**`audit_official.py --check-live` 進 CI**,每日連線掃一次。判準只收高信心訊號:
+DNS 查不到、解析到 127.0.0.1、停放商跳板、以及「跨網域 **且** 整頁無本劇名 **且**
+整頁無任何劇場詞彙」三重成立。**403 與逾時一律不判死** —— 這輪 15 個可疑裡有 5 個
+是 Cloudflare 機器人牆(charlie/don juan/thelma&louise/tina/ride the cyclone),
+對 curl 和真 headless Chrome 都回 403,網站其實活著;
+另有 4 個是製作方/場館營運商的正常整併轉址(如 lion king es → stage.es)。
+最終在 9 條已知死連結上抓到 7 條、355 條全量與 9 個對照組零誤報。
+
+（開發過程自打臉一次:偵測器初版把活著的 `www.umegei.com` 判成 NXDOMAIN,
+ 原因是同一個正規化函式被兩種用途共用 —— 網域比對需要剝掉 `www.`,
+ 但 DNS 查詢必須用原始主機名,裸網域常常沒有 A 記錄。已拆成 `_host()` / `_site()`。）
+
+---
+
 ## [v2.61.2] - 2026-08-12 19:52
 
 ### 點擊劫持防護查明根因並真正修好(v2.61.1 記為「未解」的那一條)
