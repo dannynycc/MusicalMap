@@ -11,6 +11,33 @@
 
 ---
 
+## [v2.65.0] - 2026-08-13 00:19
+
+### Daniel In The Lions' Den 移除,並把「同製作多標題變體」變成一條規則
+
+使用者指示拿掉 Daniel In The Lions' Den(The Originals Live 製作的北美巡演聖經題材音樂劇)。
+
+逐一列標題會漏:光是這一檔巡演,TM 就給了 **6 種寫法** ——
+`…Den` / `…Den Tour` / `…Den featuring Queen Esther` /
+`…Den - Featuring Queen Esther` / `…Den and Esther: The Bravest Queen` /
+`…Den Featuring The Story Of Esther`。先列了 4 種,結果只刪掉 13 筆、還剩 14 筆。
+
+所以給 `not_musical.json` 加上 **`title_prefix`**(前綴排除),一條 `Daniel In The Lions`
+收乾淨全部變體。護欄:前綴正規化後**必須 ≥12 字元**,太短的一律忽略並印警告 ——
+短前綴會誤殺(`cat` 會打中 `Catch Me If You Can`)。
+
+驗證:2098 → 2071 筆,消失的 **27 筆全部是 Daniel 的四種標題變體,零誤殺**
+(`cat` 13 筆、`carousel` 1 筆都完好),新增 0 筆。五支稽核全過。
+
+（過程中我自作主張把 `Esther: The Bravest Queen` 也加進名單 —— 使用者沒要求,
+ 而且站上並沒有獨立的 Esther 演出,加了也沒作用。已移除該條。）
+
+**Broadway/West End 標籤未動**:使用者選擇只拿掉 Daniel。該標籤底下有 1333 筆(全站 63%),
+其中大量是美國地方製作、社區劇院、英國巡演——它實際語意是「英語系音樂劇傳統」而非
+「在百老匯演過」。要不要改名是待決事項,不在本次範圍。
+
+---
+
 ## [v2.64.1] - 2026-08-13 00:22
 
 ### Car Stars 也移除(使用者指示)

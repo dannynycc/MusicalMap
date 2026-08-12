@@ -783,9 +783,21 @@ def main():
         # 場地範圍排除(2026-07-13 Carmen 案:Cincinnati Music Hall 的 Carmen=歌劇要踢,
         # 但布達佩斯輕歌劇院的 Carmen=Frank Wildhorn 音樂劇是正貨——同名不能全域殺)
         excl_tv = {(_norm(t), v.lower()) for t, v in _nmt.get("title_venue", [])}
+        # 前綴排除(2026-08-13):TM 對同一個製作會發明一堆標題變體,逐一列是打地鼠。
+        # 「Daniel In The Lions' Den」光是一檔巡演就有 6 種寫法:
+        #   …Den / …Den Tour / …Den featuring Queen Esther /
+        #   …Den - Featuring Queen Esther / …Den and Esther: The Bravest Queen /
+        #   …Den Featuring The Story Of Esther
+        # ⚠️ 前綴一定要夠長夠specific:短前綴會誤殺(「cat」會打中「Catch Me If You Can」)。
+        excl_pre = tuple(p for p in (_norm(t) for t in _nmt.get("title_prefix", [])) if len(p) >= 12)
+        _bad_pre = [t for t in _nmt.get("title_prefix", []) if len(_norm(t)) < 12]
+        if _bad_pre:
+            print(f"::warning::not_musical title_prefix 太短已忽略(<12 字元,易誤殺): {_bad_pre}")
         drop = [i for i, s in by_id.items()
                 if _norm(s.get("title", "")) in excl or s.get("group") in excl
-                or (_norm(s.get("title", "")), (s.get("venue") or "").lower()) in excl_tv]
+                or (_norm(s.get("title", "")), (s.get("venue") or "").lower()) in excl_tv
+                or (excl_pre and (_norm(s.get("title", "")).startswith(excl_pre)
+                                  or (s.get("group") or "").startswith(excl_pre)))]
         for i in drop:
             del by_id[i]
         if drop:
