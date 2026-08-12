@@ -25,6 +25,9 @@ from pathlib import Path
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from _guard import guard_shrink  # noqa: E402  (抓取結果暴跌就不覆蓋舊檔)
+
 DATA = Path(__file__).resolve().parent.parent / "data"
 API = "https://app.ticketmaster.com/discovery/v2/events.json"
 _KEYFILE = Path(__file__).resolve().parent / ".tm_key"   # gitignored local key
@@ -315,6 +318,9 @@ def main():
 
     shows = list(runs.values())
     out = {"meta": {"source": "ticketmaster", "count": len(shows)}, "shows": shows}
+    # 第二層:上面看的是「原因」(幾個國家掛掉),這裡看「結果」(筆數有沒有暴跌)。
+    # 只有四成國家失敗時上面不會擋,但結果照樣會少一大塊——兩層都要。見 _guard.py。
+    guard_shrink(DATA / "ticketmaster.json", len(shows), label="ticketmaster")
     (DATA / "ticketmaster.json").write_text(
         json.dumps(out, ensure_ascii=False, indent=2), encoding="utf-8")
     print(f"\nWrote {len(shows)} runs -> data/ticketmaster.json")

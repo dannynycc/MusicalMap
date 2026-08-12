@@ -24,6 +24,9 @@ from pathlib import Path
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from _guard import guard_shrink  # noqa: E402  (抓取結果暴跌就不覆蓋舊檔)
+
 DATA = Path(__file__).resolve().parent.parent / "data"
 _KEYFILE = Path(__file__).resolve().parent / ".tm_key"   # gitignored local key
 KEY = os.environ.get("TICKETMASTER_API_KEY") or (
@@ -150,6 +153,9 @@ def main():
                     "shows_swept": len(groups), "shows_matched": matched,
                     "stops": len(runs)},
            "shows": list(runs.values())}
+    # 與 ticketmaster.py 共用同一份 TM API 每日配額:配額用盡時這支同樣會安靜地少抓一大批
+    # (2026-08-12 事故:tm_tours.json 一次少了 9107 行)。暴跌就不覆蓋舊檔,見 _guard.py。
+    guard_shrink(DATA / "tm_tours.json", len(runs), label="tm_tours")
     (DATA / "tm_tours.json").write_text(json.dumps(out, ensure_ascii=False, indent=2),
                                         encoding="utf-8")
     print(f"matched {matched} shows on TM; wrote {len(runs)} venue-stops -> data/tm_tours.json")
