@@ -2,7 +2,7 @@
  "meta": {
   "source": "manual-curated",
   "note": "Hand-curated shows from regional venues/promoters no scraper covers yet (China venues, Live Nation FR, …). Each entry verified against the official ticketing page on the date in _checked. Add here whenever a gap is found; build merges automatically. Images: ALWAYS the original full-size official URL — no compression, no self-hosting (user preference: quality over speed).",
-  "count": 39
+  "count": 27
  },
  "shows": [
   {
@@ -44,78 +44,6 @@
    "_note": "Repertory production (selected dates only, premiered 2024-12-12, schedule runs into Jun 2027). NDM sells via own system — not on Ticketmaster CZ."
   },
   {
-   "id": "manual-miss-saigon-glasgow",
-   "title": "Miss Saigon",
-   "type": "tour",
-   "venue": "King's Theatre",
-   "city": "Glasgow",
-   "country": "UK",
-   "lat": 55.865001,
-   "lng": -4.268689,
-   "start_date": "2026-06-09",
-   "end_date": "2026-06-20",
-   "ticket_url": "https://www.atgtickets.com/shows/miss-saigon/",
-   "image": "https://res.cloudinary.com/dwzhqvxaz/image/upload/v1730983060/Titles/Miss%20Saigon/MissSaigon_Title_1920x1080.jpg",
-   "tour_name": "Miss Saigon — UK & Ireland Tour",
-   "verified": true,
-   "source": "atgtickets/官方巡演公告 (manual)",
-   "_checked": "2026-06-12"
-  },
-  {
-   "id": "manual-miss-saigon-blackpool",
-   "title": "Miss Saigon",
-   "type": "tour",
-   "venue": "Winter Gardens",
-   "city": "Blackpool",
-   "country": "UK",
-   "lat": 53.81706,
-   "lng": -3.050964,
-   "start_date": "2026-06-30",
-   "end_date": "2026-07-04",
-   "ticket_url": "https://www.atgtickets.com/shows/miss-saigon/",
-   "image": "https://res.cloudinary.com/dwzhqvxaz/image/upload/v1730983060/Titles/Miss%20Saigon/MissSaigon_Title_1920x1080.jpg",
-   "tour_name": "Miss Saigon — UK & Ireland Tour",
-   "verified": true,
-   "source": "atgtickets/官方巡演公告 (manual)",
-   "_checked": "2026-06-12"
-  },
-  {
-   "id": "manual-miss-saigon-canterbury",
-   "title": "Miss Saigon",
-   "type": "tour",
-   "venue": "Marlowe Theatre",
-   "city": "Canterbury",
-   "country": "UK",
-   "lat": 51.281097,
-   "lng": 1.078605,
-   "start_date": "2026-07-07",
-   "end_date": "2026-07-18",
-   "ticket_url": "https://www.atgtickets.com/shows/miss-saigon/",
-   "image": "https://res.cloudinary.com/dwzhqvxaz/image/upload/v1730983060/Titles/Miss%20Saigon/MissSaigon_Title_1920x1080.jpg",
-   "tour_name": "Miss Saigon — UK & Ireland Tour",
-   "verified": true,
-   "source": "atgtickets/官方巡演公告 (manual)",
-   "_checked": "2026-06-12"
-  },
-  {
-   "id": "manual-miss-saigon-bristol",
-   "title": "Miss Saigon",
-   "type": "tour",
-   "venue": "Bristol Hippodrome",
-   "city": "Bristol",
-   "country": "UK",
-   "lat": 51.453236,
-   "lng": -2.598943,
-   "start_date": "2026-07-21",
-   "end_date": "2026-08-01",
-   "ticket_url": "https://www.atgtickets.com/shows/miss-saigon/",
-   "image": "https://res.cloudinary.com/dwzhqvxaz/image/upload/v1730983060/Titles/Miss%20Saigon/MissSaigon_Title_1920x1080.jpg",
-   "tour_name": "Miss Saigon — UK & Ireland Tour",
-   "verified": true,
-   "source": "atgtickets/官方巡演公告 (manual)",
-   "_checked": "2026-06-12"
-  },
-  {
    "id": "manual-romeo-juliette-paris",
    "title": "Roméo et Juliette",
    "type": "tour",
@@ -131,7 +59,7 @@
    "tour_name": "Roméo et Juliette — Tournée 2027-28",
    "verified": true,
    "source": "livenation.fr (manual)",
-   "_checked": "2026-06-12"
+   "_checked": "2026-08-12"
   },
   {
    "id": "manual-romeo-juliette-reims",
@@ -149,7 +77,7 @@
    "tour_name": "Roméo et Juliette — Tournée 2027-28",
    "verified": true,
    "source": "livenation.fr (manual)",
-   "_checked": "2026-06-12"
+   "_checked": "2026-08-12"
   },
   {
    "id": "manual-romeo-juliette-dijon",
@@ -167,7 +95,7 @@
    "tour_name": "Roméo et Juliette — Tournée 2027-28",
    "verified": true,
    "source": "livenation.fr (manual)",
-   "_checked": "2026-06-12"
+   "_checked": "2026-08-12"
   },
   {
    "id": "manual-romeo-juliette-amneville",
@@ -185,7 +113,7 @@
    "tour_name": "Roméo et Juliette — Tournée 2027-28",
    "verified": true,
    "source": "livenation.fr (manual)",
-   "_checked": "2026-06-12"
+   "_checked": "2026-08-12"
   },
   {
    "id": "manual-romeo-juliette-montpellier",
@@ -203,7 +131,7 @@
    "tour_name": "Roméo et Juliette — Tournée 2027-28",
    "verified": true,
    "source": "livenation.fr (manual)",
-   "_checked": "2026-06-12"
+   "_checked": "2026-08-12"
   },
   {
    "id": "manual-romeo-juliette-nice",
@@ -221,7 +149,7 @@
    "tour_name": "Roméo et Juliette — Tournée 2027-28",
    "verified": true,
    "source": "livenation.fr (manual)",
-   "_checked": "2026-06-12"
+   "_checked": "2026-08-12"
   },
   {
    "id": "manual-romeo-juliette-lyon",
@@ -239,7 +167,7 @@
    "tour_name": "Roméo et Juliette — Tournée 2027-28",
    "verified": true,
    "source": "livenation.fr (manual)",
-   "_checked": "2026-06-12"
+   "_checked": "2026-08-12"
   },
   {
    "id": "manual-romeo-juliette-aix",
@@ -257,80 +185,7 @@
    "tour_name": "Roméo et Juliette — Tournée 2027-28",
    "verified": true,
    "source": "livenation.fr (manual)",
-   "_checked": "2026-06-12"
-  },
-  {
-   "id": "manual-beetlejuice-brisbane",
-   "title": "Beetlejuice",
-   "type": "tour",
-   "venue": "Lyric Theatre, QPAC",
-   "city": "Brisbane",
-   "country": "Australia",
-   "lat": -27.474638,
-   "lng": 153.019492,
-   "start_date": "2026-06-07",
-   "end_date": "2026-08-02",
-   "ticket_url": "https://beetlejuicethemusical.com.au/",
-   "image": "https://images.ctfassets.net/6pezt69ih962/4zvwwGxyZE8AQZjtTuukOC/f0fc4bdac31b93b3c16c145add358a25/Beetle-2026-05-BBs-ItsShowtime-TTG-PrimaryPortrait-480x720.jpg",
-   "tour_name": "Beetlejuice — Australia Tour",
-   "verified": true,
-   "source": "官方巡演公告 (manual)",
-   "_checked": "2026-06-12",
-   "_note": "QPAC 自家 qtix 售票,TM 看不到(用戶抓到的盲區)"
-  },
-  {
-   "id": "manual-beetlejuice-adelaide",
-   "title": "Beetlejuice",
-   "type": "tour",
-   "venue": "Festival Theatre",
-   "city": "Adelaide",
-   "country": "Australia",
-   "lat": -34.91959,
-   "lng": 138.598077,
-   "start_date": "2026-10-10",
-   "end_date": "2026-10-25",
-   "ticket_url": "https://beetlejuicethemusical.com.au/",
-   "image": "https://images.ctfassets.net/6pezt69ih962/4zvwwGxyZE8AQZjtTuukOC/f0fc4bdac31b93b3c16c145add358a25/Beetle-2026-05-BBs-ItsShowtime-TTG-PrimaryPortrait-480x720.jpg",
-   "tour_name": "Beetlejuice — Australia Tour",
-   "verified": true,
-   "source": "官方巡演公告 (manual)",
-   "_checked": "2026-06-12"
-  },
-  {
-   "id": "manual-lesmis-arena-rah",
-   "title": "Les Misérables",
-   "type": "tour",
-   "venue": "Royal Albert Hall",
-   "city": "London",
-   "country": "UK",
-   "lat": 51.501007,
-   "lng": -0.177406,
-   "start_date": "2026-06-18",
-   "end_date": "2026-06-21",
-   "ticket_url": "https://www.lesmis.com/",
-   "image": "https://images.ctfassets.net/6pezt69ih962/47DmmERqPjWVTLnJFvHdU8/2a237f6cef4165a6c73c35d7ae5d68ab/MIS_Updated-Ticket-Agent_480x720_AW.jpg",
-   "tour_name": "Les Misérables — The Arena Spectacular",
-   "verified": true,
-   "source": "官方/媒體公告 (manual)",
-   "_checked": "2026-06-12"
-  },
-  {
-   "id": "manual-lesmis-arena-radiocity",
-   "title": "Les Misérables",
-   "type": "tour",
-   "venue": "Radio City Music Hall",
-   "city": "New York",
-   "country": "USA",
-   "lat": 40.759812,
-   "lng": -73.979279,
-   "start_date": "2026-07-23",
-   "end_date": "2026-08-02",
-   "ticket_url": "https://nyc.lesmis.com/",
-   "image": "https://images.ctfassets.net/6pezt69ih962/47DmmERqPjWVTLnJFvHdU8/2a237f6cef4165a6c73c35d7ae5d68ab/MIS_Updated-Ticket-Agent_480x720_AW.jpg",
-   "tour_name": "Les Misérables — The Arena Spectacular",
-   "verified": true,
-   "source": "官方/媒體公告 (manual)",
-   "_checked": "2026-06-12"
+   "_checked": "2026-08-12"
   },
   {
    "id": "manual-chicago-tokyo",
@@ -348,7 +203,7 @@
    "tour_name": "Chicago — International Tour",
    "verified": true,
    "source": "chicagothemusical.com/international (manual)",
-   "_checked": "2026-06-12"
+   "_checked": "2026-08-12"
   },
   {
    "id": "manual-chicago-osaka",
@@ -366,7 +221,7 @@
    "tour_name": "Chicago — International Tour",
    "verified": true,
    "source": "chicagothemusical.com/international (manual)",
-   "_checked": "2026-06-12"
+   "_checked": "2026-08-12"
   },
   {
    "id": "manual-chicago-dubai",
@@ -384,7 +239,7 @@
    "tour_name": "Chicago — International Tour",
    "verified": true,
    "source": "chicagothemusical.com/international (manual)",
-   "_checked": "2026-06-12"
+   "_checked": "2026-08-12"
   },
   {
    "id": "manual-six-melbourne",
@@ -456,25 +311,7 @@
    "tour_name": "Heathers The Musical — Australia",
    "verified": true,
    "source": "canberra ticketing (manual)",
-   "_checked": "2026-06-14"
-  },
-  {
-   "id": "manual-tina-saopaulo-2026",
-   "title": "TINA - The Tina Turner Musical",
-   "type": "tour",
-   "venue": "Teatro Santander",
-   "city": "São Paulo",
-   "country": "Brazil",
-   "lat": -23.592634,
-   "lng": -46.691638,
-   "start_date": "2026-02-26",
-   "end_date": "2026-07-12",
-   "ticket_url": "https://bileto.sympla.com.br/event/113220",
-   "image": "https://s1.ticketm.net/dam/a/f30/1ea6e7a2-a519-434c-85e1-f0afd4e1df30_SOURCE",
-   "tour_name": "Tina Turner – o musical (produção brasileira)",
-   "verified": true,
-   "source": "teatrosantander.com.br (manual)",
-   "_checked": "2026-06-15"
+   "_checked": "2026-08-12"
   },
   {
    "id": "manual-ritalee-saopaulo-2026",
@@ -492,78 +329,6 @@
    "tour_name": null,
    "verified": true,
    "source": "sympla.com.br (manual)",
-   "_checked": "2026-06-15"
-  },
-  {
-   "id": "manual-estreladalva-saopaulo-2026",
-   "title": "Minha Estrela Dalva",
-   "type": "resident",
-   "venue": "Teatro do SESI (Centro Cultural FIESP)",
-   "city": "São Paulo",
-   "country": "Brazil",
-   "lat": -23.563487,
-   "lng": -46.654394,
-   "start_date": "2026-03-28",
-   "end_date": "2026-07-12",
-   "ticket_url": "https://www.sesisp.org.br/evento/40559cd6-767d-44b3-9cb7-43fcf4b6f4eb/minha-estrela-dalva",
-   "image": "posters/minha-estrela-dalva-saopaulo-2026.png",
-   "tour_name": null,
-   "verified": true,
-   "source": "sesisp.org.br (manual)",
-   "_checked": "2026-06-15"
-  },
-  {
-   "id": "manual-diana-saopaulo-2026",
-   "title": "Diana, a Princesa do Povo",
-   "type": "resident",
-   "venue": "Teatro Liberdade",
-   "city": "São Paulo",
-   "country": "Brazil",
-   "lat": -23.561677,
-   "lng": -46.637407,
-   "start_date": "2026-05-15",
-   "end_date": "2026-07-05",
-   "ticket_url": "https://bileto.sympla.com.br/event/114505",
-   "image": "posters/diana-saopaulo-2026.jpg",
-   "tour_name": null,
-   "verified": true,
-   "source": "sympla.com.br (manual)",
-   "_checked": "2026-06-15"
-  },
-  {
-   "id": "manual-wicked-rio-2026",
-   "title": "Wicked",
-   "type": "tour",
-   "venue": "Cidade das Artes (Bibi Ferreira)",
-   "city": "Rio de Janeiro",
-   "country": "Brazil",
-   "lat": -22.999076,
-   "lng": -43.365829,
-   "start_date": "2026-07-15",
-   "end_date": "2026-08-09",
-   "ticket_url": "https://bileto.sympla.com.br/event/114663/d/356563",
-   "image": "https://cdn-imgix.headout.com/media/images/79059f2bed566c8f56467f3ef7389605-512.png",
-   "tour_name": "Wicked Brasil — versão brasileira (réplica oficial)",
-   "verified": true,
-   "source": "cidadedasartes.rj / sympla (manual)",
-   "_checked": "2026-06-15"
-  },
-  {
-   "id": "manual-shrek-saopaulo-2026",
-   "title": "Shrek the Musical",
-   "type": "tour",
-   "venue": "Teatro Renault",
-   "city": "São Paulo",
-   "country": "Brazil",
-   "lat": -23.554223,
-   "lng": -46.638248,
-   "start_date": "2026-04-15",
-   "end_date": "2026-07-05",
-   "ticket_url": "https://sales.ticketsforfun.com.br/#/event/shrek-o-musical-12763",
-   "image": "https://imgs2.utiki.com.tw/Data/UTIKI_UDN//Images/UTK2401/P1AEBJG5_Product.JPG",
-   "tour_name": "Shrek - O Musical (versão brasileira, prorrogado até 05/07)",
-   "verified": true,
-   "source": "shrekomusicalbrasil.com / ticketsforfun (manual)",
    "_checked": "2026-06-15"
   },
   {
@@ -638,7 +403,7 @@
    "tour_name": "Oliver! — Cameron Mackintosh / Pieter Toerien (約堡站)",
    "verified": true,
    "source": "broadwayworld / webtickets (manual)",
-   "_checked": "2026-06-15"
+   "_checked": "2026-08-12"
   },
   {
    "id": "manual-cats-singapore-2026",
@@ -674,25 +439,7 @@
    "tour_name": "Jesus Christ Superstar — UK/London production tour (Sands Theatre, SISTIC)",
    "verified": true,
    "source": "broadwayworld / sassymama (manual)",
-   "_checked": "2026-06-15"
-  },
-  {
-   "id": "manual-legallyblonde-singapore-2026",
-   "title": "Legally Blonde",
-   "type": "sit-down",
-   "venue": "Esplanade Theatre",
-   "city": "Singapore",
-   "country": "Singapore",
-   "lat": 1.29009,
-   "lng": 103.855579,
-   "start_date": "2026-07-29",
-   "end_date": "2026-08-09",
-   "ticket_url": "https://www.srt.com.sg/show/legally-blonde/",
-   "image": "https://res.cloudinary.com/dwzhqvxaz/image/upload/w_1280,q_auto,f_auto/v1746701080/Titles/Legally%20Blonde/LegallyBlonde_1920x1080_Title-Shot.jpg",
-   "tour_name": "Legally Blonde — Singapore Repertory Theatre (Esplanade)",
-   "verified": true,
-   "source": "srt.com.sg / esplanade / sassymama (manual)",
-   "_checked": "2026-06-15"
+   "_checked": "2026-08-12"
   },
   {
    "id": "manual-moulinrouge-singapore-2027",
@@ -729,40 +476,6 @@
    "verified": true,
    "source": "starlight-express.info (manual)",
    "_note": "2026-07-09 哨兵體檢補漏:全年無休 open-end(官網+ATG.de 售票);ATG 德國站(.de)是未開發來源"
-  },
-  {
-   "id": "manual-charlie-chocolate-manila-2026",
-   "title": "Charlie and the Chocolate Factory",
-   "type": "tour",
-   "venue": "The Theatre at Solaire",
-   "city": "Manila",
-   "country": "Philippines",
-   "lat": 14.5224533,
-   "lng": 120.9822613,
-   "start_date": "2026-07-08",
-   "end_date": "2026-07-26",
-   "ticket_url": "https://premier.ticketworld.com.ph/shows/show.aspx?sh=PHEVENTS22",
-   "image": "https://dizdnz518lz9v.cloudfront.net/dbimages/sfx8891.jpg",
-   "tour_name": null,
-   "verified": true,
-   "source": "ticketworld.com.ph (manual)"
-  },
-  {
-   "id": "manual-on-your-feet-manila-2026",
-   "title": "On Your Feet!",
-   "type": "tour",
-   "venue": "The Proscenium Theater",
-   "city": "Manila",
-   "country": "Philippines",
-   "lat": 14.565729,
-   "lng": 121.03875,
-   "start_date": "2026-07-10",
-   "end_date": "2026-08-02",
-   "ticket_url": "https://premier.ticketworld.com.ph/shows/show.aspx?sh=PHEVENTS22",
-   "image": "https://dizdnz518lz9v.cloudfront.net/dbimages/sfx9305.jpg",
-   "tour_name": "On Your Feet! The Story of Emilio & Gloria Estefan",
-   "verified": true,
-   "source": "ticketworld.com.ph (manual)"
   },
   {
    "id": "manual-notebook-manila-2026",

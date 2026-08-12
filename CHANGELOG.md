@@ -11,6 +11,32 @@
 
 ---
 
+## [v2.57.0] - 2026-08-12 14:53
+
+### 1. manual.json 全面體檢:43 → 27 筆,並補上「還在演但日期已變」的偵測
+
+- **清理**:移除 15 筆已落幕(最舊的 6/20 就結束)+ 1 筆**已取消** —— Beetlejuice 阿德萊德季(2026-10-10~10-25)。取消的證據有二:Adelaide Festival Centre 該檔頁面現為 404(「might have ended」),且製作方 Michael Cassel Group 公告該季不進行、已自動退票。這張卡在修掉之前一直掛在站上。
+- **逐筆查證**:14 筆比對官方頁後確認**日期正確、無需更動**——Roméo et Juliette 法國巡演 8 站(livenation.fr 全數在售)、Heathers 坎培拉(`14 – 23 August 2026`)、Chicago 東京/大阪/杜拜(eplus 場次表顯示東京 8/19–8/30、大阪 9/3–9/6;杜拜 `16-20 DEC 2026`)、JCS 新加坡、Oliver! 約堡。
+- **`audit_manual.py` 補強**:原本只有「已落幕」與「_checked > 120 天」兩類,**抓不到上海《劇院魅影》那型**——檔期被延長(11-29 → 12-13)、條目仍在檔期內、`_checked` 才 61 天,120 天的門檻等於放行了兩個月的錯誤日期。現在:門檻收緊到 **45 天**,並新增 **URGENT** 分類(現正上演或 90 天內開演 + 查核逾期),`_checked` 缺漏視為「從未查證」而非「不用查」。實測抓出 9 筆 URGENT。
+- 只有「end_date 已過」會擋 CI(資料確定錯了);URGENT/UNCHECKED 是待查提醒,擋下來只會讓 CI 長期紅燈。清乾淨後 `audit_manual` 已從 `warn` **升級為 `gate`**。
+
+### 2. TM 註記被當劇名:20 組同場館同日期的重複卡歸零
+
+同一場演出在站上裂成兩張卡,因為 Ticketmaster 把非劇名的註記塞進 event name。修法分兩層,**都先做過全站影響測試才套用**(730 個相異標題):
+
+- **無條件剝除**(這些字串永遠不會是劇名的一部分):`- Suite Rental`(場地租借)、`- Age Recommendation`(年齡分級)、`- Recommended for ages 10+…`(年齡建議長句)。命中 8 個標題,無誤殺。
+- **條件式收攏**(可能是劇名一部分,只有剝完能對上站上**已存在的 group** 才併):`… Tour`、`… featuring X`、`… and X: Y` 副標、`X's …` 冠名前綴。這道條件是必要的——`Bat Out of Hell 50th Anniversary Tour` 與 `Whitney Houston Hologram Tour` 剝掉 `Tour` 後對不到任何劇,無條件套用會把好資料弄髒。
+- 實際收攏 33 筆 / 9 種寫法:《Daniel In The Lions' Den》光掛名變體就有 6 種(Tour／featuring Queen Esther／and Esther: The Bravest Queen…)在 12 個城市各裂一張;另有 `Dr. Seuss' How the Grinch…`(所有格不帶 s,規則需 `s?` 才吃得到)、`Meredith Willson's The Music Man`、`The Who's Tommy`、`Gilbert and Sullivan's Pirates of Penzance`。
+- 完整掛名保進 `tour_name` 給彈窗(同 Love Never Dies 慣例),但**冠名前綴不留** —— 那只是品牌,留著會讓同 group 的不同 TM attraction 撞上同一個 tour_name、被 `audit_tournames` 判為掛羊頭(這是本輪自己踩到又修掉的)。
+
+### 驗證
+
+- 同場館同日期重複卡:**20 組 → 0 組**。
+- `audit_titles` 違規 **40 → 20 筆**(收攏修掉一半的「同劇分裂嫌疑」)。
+- `audit_tournames` 改動前 2 筆 → 中途一度變 3 筆(我引入的 `tommy`)→ 修正後回到 **2 筆,淨引入 0**。
+- 逐筆差集:消失 48 / 新增 22,全部可解釋(絕大多數是收攏後的改名,同一場演出以新標題出現);真正移除的只有已落幕的 Wicked、Legally Blonde 與已取消的 Beetlejuice 阿德萊德。
+- 全站 2,158 → 2,132 筆。
+
 ## [v2.56.0] - 2026-08-12 13:37
 
 ### 三件大事:死掉 29 天的 scraper、錯誤的演出日期、以及讓兩者無人察覺的「假綠燈 CI」

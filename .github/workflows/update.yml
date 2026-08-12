@@ -126,8 +126,9 @@ jobs:
           # warn = 目前仍有既有積欠,清乾淨後要改成 gate(不先降級的話 CI 會永遠紅,
           #        跟永遠綠一樣沒人看)
           gate "去重/垃圾卡稽核 (audit_dups)"   python scrapers/_run.py scrapers/audit_dups.py
-          # manual.json 目前有 15 筆已落幕 + 25 筆 _checked 逾期未複查 → 待清理
-          warn "manual.json 過期稽核(積欠 15 筆)" python scrapers/_run.py scrapers/audit_manual.py
+          # 2026-08-12 已清乾淨(43→27 筆,移除 15 筆已落幕 + 1 筆已取消)→ 升級為 gate。
+          # 只有「end_date 已過」會擋 CI;URGENT/UNCHECKED 是待查提醒,印出來但不擋。
+          gate "manual.json 過期稽核 (audit_manual)" python scrapers/_run.py scrapers/audit_manual.py
           python scrapers/_run.py scrapers/gen_catalog.py
           gate "製作/海報稽核 (audit_productions)" python scrapers/_run.py scrapers/audit_productions.py
           # 哨兵體檢:常設鐵桿劇目+來源低標(2026-07-09;維也納/broadway 靜默壞抓事件後制度化)

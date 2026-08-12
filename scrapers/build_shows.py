@@ -291,6 +291,15 @@ PERF_SUFFIX_RE = re.compile(
     r"\(18\+\s*event\)|18\+\s*event|asl[-\s]*interpreted\s+performance|bsl/cap\s+performance|"
     r"[-–—:]?\s*for\s+ages\s+\d+\+?|\(ages\s+\d+\+?\))\s*$", re.I)
 
+# TM 售票系統的「非劇名註記」尾綴(2026-08-12)。這些字串永遠不會是劇名的一部分,
+# 但 TM 把它們塞進 event name,於是同一場演出在站上裂成兩張卡(同場館、同日期):
+#   「Mrs. Doubtfire - Suite Rental」   ／「Mrs. Doubtfire」        (場地租借公告)
+#   「Six - Age Recommendation」        ／「SIX」                   (年齡分級公告)
+#   「Shucked - Recommended for ages 10+. SHUCKED contains adult themes…」／「Shucked」
+# 全站 730 個相異標題實測:命中 8 個,剝完全部對回既有標題或變成更乾淨的劇名,無誤殺。
+ANNOT_SUFFIX_RE = re.compile(
+    r"\s*[-–—]\s*(?:suite\s+rental|age\s+recommendation|recommended\s+for\s+ages\b.*)\s*$", re.I)
+
 
 def clean_title(t):
     t = (t or "").strip()
@@ -352,6 +361,7 @@ def clean_title(t):
         t = LOC_QUALIFIER_RE.sub("", t).strip()
         t = PERF_TYPE_RE.sub("", t).strip()                     # "- Relaxed Performance" etc.
         t = PERF_SUFFIX_RE.sub("", t).strip()                   # "(Open Caption)" / "18+ Event" / "For Ages 3+"
+        t = ANNOT_SUFFIX_RE.sub("", t).strip()                  # "- Suite Rental" / "- Age Recommendation"
         t = re.sub(r"\s*\((?:19|20)\d{2}\)\s*$", "", t).strip()  # trailing year, e.g. "(1993)"
         # trailing bare year——防呆:剝完若只剩 <5 字元(「Los 2000」→「Los」慘案,2026-07-13)
         # 表示「年份」其實是劇名一部分,還原不剝
@@ -694,6 +704,50 @@ def main():
             del by_id[i]
         if drop:
             print(f"  dropped {len(drop)} non-musical(s) from not_musical.json exclusion list")
+
+    # 條件式變體收攏(2026-08-12)。有些尾綴/冠名「可能」真的是劇名的一部分,不能無條件剝:
+    #   「Bat Out of Hell 50th Anniversary Tour」剝掉 Tour 後對不到任何劇 → 剝了只是弄髒資料
+    #   「Daniel In The Lions' Den Tour」剝掉後正好是站上已有的劇 → 同一齣的掛名變體
+    # 規則:**只有剝完的 group 已經存在於本次資料中才收攏**,否則原封不動。
+    # 症狀:TM 把巡演掛名/副標當 event name,同一場演出裂成兩張卡(同場館、同日期)——
+    # 《Daniel In The Lions' Den》光是掛名變體就在 12 個城市各裂一張。
+    # 完整掛名保進 tour_name(同 Love Never Dies 慣例:列表用乾淨劇名,彈窗給完整製作名)。
+    # 第三欄 = 收攏後是否把原標題留進 tour_name。掛名/副標是「這一檔製作的實際掛法」,
+    # 留著給彈窗有意義;但**冠名前綴只是品牌**(「The Who's Tommy」),留進 tour_name 會讓
+    # 同一 group 的不同 TM attraction 撞上同一個 tour_name,被 audit_tournames 判為掛羊頭。
+    VARIANT_STRIPS = [
+        (r"\s+tour\s*$", re.I, True),                        # 「… Tour」
+        (r"\s*[-–—]?\s*\bfeaturing\b\s+.+$", re.I, True),    # 「… featuring Queen Esther」
+        (r"\s+and\s+[A-Z][\w' ]+:\s+.+$", 0, True),          # 「… and Esther: The Bravest Queen」
+        # 冠名前綴「Meredith Willson's …」。`s?` 是為了 s 結尾姓氏的所有格不帶 s 的寫法
+        # (「Dr. Seuss' How the Grinch Stole Christmas!」)——沒有它就漏掉這一型。
+        (r"^[A-Z][\w.' ]{2,30}['’]s?\s+", 0, False),
+    ]
+    known_groups = {s.get("group") for s in by_id.values() if s.get("group")}
+    collapsed = []
+    for s in by_id.values():
+        t = s.get("title") or ""
+        for pat, flags, keep_as_tour in VARIANT_STRIPS:
+            cand = re.sub(pat, "", t, flags=flags).strip()
+            if not cand or cand == t or len(cand) < 3:
+                continue
+            g = group_key(cand)
+            if g in known_groups and g != s.get("group"):
+                collapsed.append((t, cand))
+                if keep_as_tour:
+                    if not s.get("tour_name"):
+                        s["tour_name"] = t
+                else:
+                    # 冠名收攏:原標題只是品牌前綴,留著會讓同 group 的不同 attraction
+                    # 撞上同一個 tour_name(audit_tournames 判掛羊頭)。一律清掉。
+                    s["tour_name"] = None
+                s["group"], s["title"] = g, cand
+                break
+    if collapsed:
+        print(f"  collapsed {len(collapsed)} title variant(s) into an existing group "
+              f"(掛名/副標/冠名裂卡):")
+        for a, b in sorted(set(collapsed)):
+            print(f"    · {a!r} → {b!r}")
 
     # Ticketmaster files Australian venues under the SUBURB, not the metro
     # ("Pyrmont"/"Haymarket" → Sydney, "Burswood" → Perth) — normalise so the card
