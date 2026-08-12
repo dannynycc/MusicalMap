@@ -502,6 +502,15 @@ NOT_MUSICAL_RE = re.compile(
     # concierto', 'en Acústico', 'holograma', Turkish 'Gazinosu' (cabaret/concert).
     r"\btributo\b|\bconcierto\b|ac[uú]stico|\bholograma\b|\bgazinosu\b", re.I)
 
+# 上面規則裡「只是在說這筆 listing 是加價方案」的那幾條。這類字樣描述的是**售票方案**,
+# 完全沒有說這齣不是音樂劇 ——「Menopause The Musical | Official Caesars Ticket + Hotel
+# Packages」講的還是真的音樂劇。所以判斷「要不要整組連坐刪」時,要先把這些字剝掉再重測,
+# 否則會把整齣真戲陪葬(2026-08-12 模擬:誤刪 Daniel In The Lions' Den 全部 27 筆)。
+LISTING_ONLY_RE = re.compile(
+    r"ticket\s*\+|\b(?:hotel|vip|suite|premium|parking)\s+packages?\b|"
+    r"\bofficial\b[^|]*\bpackages?\b|meet (?:and|&) greet|"
+    r"premium\s+tickets?\b|ticket\s+packages?\b|bar\s+experience\b", re.I)
+
 # ─── Tradition tags ──────────────────────────────────────────────────────────
 # A show's tag is the WORK's ORIGIN tradition, not where it plays (Wicked in Seoul
 # is still Broadway/West End; Elisabeth in Tokyo is still 德奧). Registered works
@@ -631,6 +640,10 @@ def main():
         blob = json.loads(path.read_text(encoding="utf-8"))
         rows = blob.get("shows", [])
         for s in rows:
+            # 來源給的原始標題留一份:下面的正規化會把「…Movie Tour」「…: 副標」這類
+            # 尾綴整段拿掉,而 NOT_MUSICAL_RE 正是靠那些字判斷這不是音樂劇。
+            # 不留原始文字的話,那條規則等到執行時已經無從比對(見 NOT_MUSICAL_RE 套用處)。
+            s["_src_title"] = s.get("title") or ""
             orig = strip_venue_qualifier(
                 strip_city_qualifier(clean_title(s.get("title")), s.get("city")),
                 s.get("venue"))
@@ -670,6 +683,7 @@ def main():
     # A TM stop whose (group, city) already exists → its link is attached to the
     # existing record; otherwise it's added as a new marker.
     tm_enrich = {}
+    tm_nm_groups = set()   # 入口就被判定為非音樂劇的 group(傳給下面的整組連坐)
     _TM_RETITLE = {
         ("phantom of the opera", "masquerade nyc"): "Masquerade - Phantom of the Opera Reimagined",
     }
@@ -682,7 +696,26 @@ def main():
         tm = json.loads(tm_path.read_text(encoding="utf-8")).get("shows", [])
         kept = 0
         for s in tm:
+            s["_src_title"] = s.get("title") or ""   # 同上:保留原始標題給 NOT_MUSICAL_RE
+            # 非音樂劇要在**去重之前**濾掉,不能等到下面那一輪。
+            # TM 常常同一場演出上兩筆:正常那筆 +「| Official … Ticket + Hotel Packages」加價那筆。
+            # 兩筆同 (group, city),先進來的勝出——結果套裝那筆佔位、正常那筆被擋掉,
+            # 而套裝那筆的標題清洗後長得跟正常的一模一樣,事後再刪就會連整個場次一起弄丟
+            #(2026-08-12 實測:Menopause 在大西洋城、Daniel 在 BJCC 都是這樣)。
+            # 在這裡先濾掉,正常那筆就會遞補上來。實測 TM 兩檔命中的 72 筆原始標題裡,
+            # 只有 1 筆(Ben Portsmouth: This Is Elvis,貓王模仿秀)沒有正常 listing 可遞補,
+            # 而那筆本來就不該留。
             orig = strip_city_qualifier(clean_title(s.get("title")), s.get("city"))
+            if NOT_MUSICAL_RE.search(s["_src_title"]):
+                # ⚠️ 在這裡跳過的同時**一定要把 group 記下來**傳給後面那一輪。
+                # 否則入口濾掉「…Movie Tour」那批之後,後面的整組連坐就再也看不到證據,
+                # 而 tm_tours.json 那批(標題只有乾淨人名「John Cameron Mitchell」)
+                # 照樣活著——兩個修正互相抵銷。2026-08-12 實測踩過:15 筆一筆都沒少。
+                if not NOT_MUSICAL_RE.search(LISTING_ONLY_RE.sub(" ", s["_src_title"])):
+                    pass                      # 純售票方案:只丟這一筆,不牽連整組
+                elif not resolve_work(orig):
+                    tm_nm_groups.add(group_key(orig))
+                continue
             # TM event 掛錯 attraction 的正名:event 實體(場地)是 A 製作,attraction 卻是 B
             # ——Masquerade NYC 的沉浸式魅影被掛在「Phantom (Touring)」attraction,產生
             # 「魅影巡演在紐約」假卡+與真 Masquerade 卡重複(2026-07-14 使用者抓到)。
@@ -709,7 +742,33 @@ def main():
     # Drop non-musical events that slip in (mostly Ticketmaster filing film/concert/
     # comedy tours under "Musical"), e.g. "Hedwig 25th Anniversary Movie Tour" —
     # title-matched so the real "Hedwig and the Angry Inch" stays.
-    nm = [i for i, s in by_id.items() if NOT_MUSICAL_RE.search(s.get("title", ""))]
+    # 🚨 兩件事一起修(2026-08-12 使用者抓到「John Cameron Mitchell」在站上):
+    #
+    # (1) 一定要比對 _src_title(來源原始標題),不能只比 title。
+    #     TM 的「John Cameron Mitchell: Hedwig 25th Anniversary Movie Tour (18+)」就是上面
+    #     註解舉的招牌案例,卻在站上活了至少 11 天。原因是這條規則跑在標題正規化**之後**
+    #     ——「X: Y Tour」被拆成 title="John Cameron Mitchell",tour_name 也在後續步驟被
+    #     覆蓋成同一個字串,"Movie Tour" 三個字從每個欄位都消失,規則再正確也無從比對。
+    #     (與同日發現的「清洗跑在 TM 合併之前」是同一類順序錯誤。)
+    #
+    # (2) 未註冊作品要**整組**刪,否則一筆漏網會自我增殖成一整輪巡演。
+    #     tm_tours.py 讀的是 shows.json 本身:它拿站上已有的 group 去搜同名 TM attraction。
+    #     「John Cameron Mitchell」一旦漏進來,下一輪 tm_tours 就搜到本人這個 attraction,
+    #     把他 17 場巡演全抓回來——而且標題是乾淨的人名,關鍵字已經無從比對,
+    #     然後又寫回 shows.json 餵給下一輪。一筆種子長成 15 張卡就是這樣來的。
+    #     護欄:只有 resolve_work() 認不得的**未註冊**作品才整組刪;已註冊作品
+    #     (悲慘世界、真的 Hedwig and the Angry Inch)只刪命中的那一筆,
+    #     免得「Les Misérables 電影放映」把真的悲慘世界一起殺掉。
+    nm_ids, nm_groups = set(), set(tm_nm_groups)
+    for i, s in by_id.items():
+        hay = " | ".join(filter(None, (s.get("_src_title"), s.get("title"), s.get("tour_name"))))
+        if NOT_MUSICAL_RE.search(hay):
+            nm_ids.add(i)
+            # 整組連坐前先剝掉「加價方案」字樣再重測:剝完還是像非音樂劇,才是在講這齣戲本身。
+            if NOT_MUSICAL_RE.search(LISTING_ONLY_RE.sub(" ", hay)) \
+                    and not resolve_work(s.get("title") or ""):
+                nm_groups.add(s.get("group"))
+    nm = [i for i, s in by_id.items() if i in nm_ids or s.get("group") in nm_groups]
     for i in nm:
         del by_id[i]
     if nm:
@@ -1741,6 +1800,10 @@ def main():
                     break
     if relabeled:
         print(f"  relabeled {relabeled} China ticket link(s) by destination host")
+
+    # 內部欄位不進輸出(_src_title 只是給 NOT_MUSICAL_RE 比對用的來源原始標題)
+    for s in shows:
+        s.pop("_src_title", None)
 
     verified = sum(1 for s in shows if s.get("verified"))
     out = {

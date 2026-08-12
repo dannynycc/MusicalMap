@@ -11,6 +11,70 @@
 
 ---
 
+## [v2.64.0] - 2026-08-13 00:10
+
+### 非音樂劇混進站上:一筆漏網會自我增殖成一整輪演唱會巡演
+
+使用者抓到六筆不是音樂劇的東西掛在八月的地圖上。查下來不是「TM 分類不準」這麼籠統,
+而是三個具體、可驗證的缺陷。
+
+**gating 的實況(先講清楚)**:只有兩層 —— `ticketmaster.py` 完全採信 TM 自己的分類
+(`segment=Arts & Theatre` 且 genre 含 "musical"),然後 `build_shows.py` 減掉一份
+人工黑名單 `not_musical.json`。第一層等於把「什麼算音樂劇」外包給 TM 的行銷分類。
+
+**缺陷一:關鍵字規則跑在標題正規化之後,對自己的招牌案例是死碼**
+
+`NOT_MUSICAL_RE` 的註解白紙黑字寫著它就是為了擋
+「`Hedwig 25th Anniversary Movie Tour`」而寫的。但它在第 712 行才執行,那時
+「`John Cameron Mitchell: Hedwig 25th Anniversary Movie Tour (18+)`」早已被
+「`X: Y Tour` → 主標題 + 巡演名」的正規化拆成 `title="John Cameron Mitchell"`,
+`tour_name` 也在後續步驟被覆蓋成同一字串 —— **"Movie Tour" 三個字從每個欄位都消失了**,
+規則再正確也無從比對。修法:在來源匯入時把原始標題留一份 `_src_title`,拿它比對。
+(與同日發現的「欄位清洗跑在 TM 合併之前」是同一類順序錯誤。)
+
+**缺陷二:一筆種子會長成一整輪巡演**
+
+`tm_tours.py` 讀的是 `shows.json` **本身** —— 它拿站上已有的 group 去搜同名 TM
+attraction。「John Cameron Mitchell」一旦漏進來,下一輪就搜到本人這個 attraction,
+把他 **17 場演唱會巡演全抓回來**,而且標題是乾淨的人名、關鍵字無從比對,
+再寫回 `shows.json` 餵給下一輪。站上那 15 張卡就是這樣長出來的。
+修法:命中關鍵字時,若 `resolve_work()` 認不得(未註冊作品)就**整組刪**,切斷迴圈。
+護欄:已註冊作品只刪命中的那一筆 —— 否則「Les Misérables 電影放映」會把真的
+悲慘世界一起殺掉。實測 **Hedwig and the Angry Inch 8 筆完好、Les Misérables 11 筆完好**。
+
+**缺陷三:加價套裝 listing 佔位,把真場次擠掉**
+
+TM 常對同一場演出上兩筆:正常那筆 +「| Official … Ticket + Hotel Packages」。
+兩筆同 (group, city),先進來的勝出 —— 結果套裝那筆佔位、正常那筆被擋掉,
+而套裝那筆清洗後標題長得一模一樣。事後再刪就會**連整個場次一起弄丟**
+(實測 Menopause 在大西洋城、Daniel 在 BJCC 都是)。修法:在去重之前就濾掉,
+讓正常那筆遞補。實測 TM 兩檔命中的 72 筆原始標題裡,只有 1 筆
+(Ben Portsmouth: This Is Elvis,貓王模仿秀)沒有正常 listing 可遞補,而那筆本來就不該留。
+
+**開發過程自打臉一次**:缺陷一與缺陷二的修法一開始互相抵銷 —— 入口濾掉「Movie Tour」
+那批之後,後面的整組連坐就再也看不到證據,tm_tours 那 15 筆照樣活著(實測 15 → 15,
+一筆都沒少)。改成入口跳過時同時把 group 記下來傳給後面那一輪才生效。
+
+**人工名單新增 5 筆**(原始標題裡完全沒有關鍵字,規則抓不到,只能走名單):
+`A Midsummer Night's Dream`(莎劇;站上 6 筆全在莎翁劇院/歌劇院/芭蕾場,含直撇號變體)、
+`Rock Never Dies`(Hard Rock Cafe 沉浸式晚宴秀)、`The Velvet Hour: An Evening with
+Little Miss and the Boom`(復古歌舞秀)、`A Night with the Stars`(旅館綜藝之夜)。
+
+`Car Stars` **不刪** —— 使用者自己指出它是密西根在地劇作家的原創音樂劇,
+只是不是百老匯製作。站上本來就收各地原創(中日西韓皆有),問題在它的 `tag` 是
+`Broadway/West End`。那個 tag 是「劇種/傳統」分類不是「上過百老匯」的宣稱,
+要不要改分類法是設計決定,留給使用者判斷,不擅自更動。
+
+**主動掃同型漏網**:用「未註冊作品 + 出現在 tm_tours + 每站單日 + ≥3 場館」這個
+高精度指紋掃全庫,只有 3 組符合,而且**沒有新的非音樂劇** ——
+`Forza Venite Gente`(義大利聖方濟各題材音樂劇,真的)、`The Music Man`
+(經典音樂劇,`resolve_work` 認不得代表 works.json 註冊表有缺口)、
+`Daniel In The Lions' Den`(自稱 A Live Musical Experience 的巡演製作,待人工判斷)。
+
+結果:2130 → 2099 筆(-1.5%,在日常波動內)。五支稽核全部通過。
+
+---
+
 ## [v2.63.2] - 2026-08-12 22:14
 
 ### 暴跌守門接完剩下的來源(共 14 支)
