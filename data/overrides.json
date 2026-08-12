@@ -1,362 +1,337 @@
 {
-  "_note": "Manual corrections applied by build_shows.py AFTER merge, keyed by show id. Use when a source returns wrong or missing coordinates (e.g. it matched a same-named venue in another city). Any field here overrides the scraped value. Keys starting with _ are ignored.",
-  "ip-26007357": {
-    "city": "Daegu",
-    "lat": 35.8331,
-    "lng": 128.5835,
-    "_why": "Again, Romeo & Jeliet = 大邱本土原創小劇場;NOL/interpark 把未知場館預設 Seoul,實為 DREAM HALL @ 478 Apsansunhwan-ro, Nam-gu, Daegu (대덕문화전당), block-level geocode"
-  },
-  "bway-39821": {
-    "lat": 40.7589,
-    "lng": -73.9846,
-    "_why": "Source returned Palace Theatre, Manchester UK; corrected to NYC Palace Theatre (1564 Broadway)"
-  },
-  "bway-42103": {
-    "venue": "218 W 57th St",
-    "lat": 40.765673,
-    "lng": -73.981256,
-    "_why": "沉浸式專用場館無正式館名,場地欄=街道地址(2026-07-14 使用者選定;城市國家由卡片下一行顯示不重複)。座標 OSM 驗證"
-  },
-  "_tm_note": "Ticketmaster start dates = earliest AVAILABLE ticket (expired perfs vanish), not true opening. True run dates below researched from official sites/press 2026-06-12; onsale_only cleared once verified.",
-  "tm-anastasia-sydney-lyric": {
-    "start_date": "2026-04-07",
-    "end_date": "2026-07-19",
-    "onsale_only": false,
-    "_why": "Official/press: opened 7 Apr 2026, season through 19 Jul 2026 (TM only sells to 7/18)"
-  },
-  "tm-the-lion-king-capitol-theatre-sydney": {
-    "start_date": "2026-04-18",
-    "onsale_only": false,
-    "_why": "Disney/Variety: Sydney season opened 18 Apr 2026 at Capitol Theatre; end kept as TM last scheduled (extended beyond initial 9 Aug)"
-  },
-  "tm-hair-the-tribal-love-rock-musical-theatre-royal-sydney": {
-    "start_date": "2026-06-06",
-    "end_date": "2026-07-11",
-    "onsale_only": false,
-    "_why": "Theatre Royal Sydney official: 6 Jun – 11 Jul 2026"
-  },
-  "tm-mj-the-michael-jackson-musical-crown-theatre-perth": {
-    "start_date": "2026-06-06",
-    "onsale_only": false,
-    "_why": "mjthemusical.com.au: Perth from 6 Jun 2026, until 19 Jul (TM end matches)"
-  },
-  "tm-monty-python-s-spamalot-planet-royale": {
-    "start_date": "2026-05-20",
-    "onsale_only": false,
-    "_why": "BWW/press: Planet Royale Perth from 20 May 2026; end kept as TM last scheduled 13 Jun (extended past announced 7 Jun)"
-  },
-  "tm-tootsie-teatro-at-the-italian-forum": {
-    "start_date": "2026-05-26",
-    "onsale_only": false,
-    "_why": "Teatro Italian Forum: previews 26 May, opening night 29 May, season to 21 Jun 2026 (TM end matches)"
-  },
-  "tm-are-ya-dancin-a-showband-story-gaiety-theatre": {
-    "start_date": "2026-06-09",
-    "onsale_only": false,
-    "_why": "Gaiety Dublin: 9–13 Jun 2026 summer run"
-  },
-  "tm-priscilla-queen-of-the-desert-bord-gais-energy-theatre": {
-    "start_date": "2026-06-08",
-    "onsale_only": false,
-    "_why": "Bord Gáis Energy Theatre: 8–13 Jun 2026 (30th anniversary tour)"
-  },
-  "tm-heathers-the-civic-auckland": {
-    "start_date": "2026-06-10",
-    "onsale_only": false,
-    "_why": "Auckland Live: The Civic 10–14 Jun 2026"
-  },
-  "tm-tera-te-auahi-sir-howard-morrison-centre": {
-    "start_date": "2026-06-10",
-    "onsale_only": false,
-    "_why": "Press/BWW: premieres Sir Howard Morrison Centre from 10 Jun 2026"
-  },
-  "tm-mamma-mia-das-hit-musical-auf-schweizerdeutsch-maag-halle": {
-    "start_date": "2026-05-06",
-    "venue": "MAAG Halle",
-    "onsale_only": false,
-    "_why": "mamma-mia-musical.ch official: MAAG Halle Zürich 06.05.–14.06.2026 (Swiss German production)"
-  },
-  "_stage_note": "Stage Entertainment DE/NL source returns NO run dates → every show read as 'no end' = wrongly long-running. True dates researched 2026-06-25 (per-venue; a theatre runs ONE open-ended show at a time). Open runs keep end_date absent (→ 長期上演); limited runs get end_date (→ 至 X); not-yet-premiered get a future start (→ X 起, hidden until their month).",
-  "stage-disneys-der-koenig-der-loewen-hamburg": {
-    "start_date": "2001-12-02",
-    "_why": "Theater im Hafen since Dec 2001, open-ended (25th-anniv 2026, no end planned)"
-  },
-  "stage-mj-das-michael-jackson-musical-hamburg": {
-    "start_date": "2024-12-01",
-    "_why": "Theater an der Elbe since Dec 2024, open-ended"
-  },
-  "stage-wir-sind-am-leben-berlin": {
-    "start_date": "2026-03-21",
-    "_why": "Theater des Westens main open run from 21 Mar 2026, no announced end"
-  },
-  "stage-die-eiskoenigin-stuttgart": {
-    "start_date": "2021-11-01",
-    "end_date": "2027-01-31",
-    "_why": "Apollo Theater since Nov 2021; press (Stuttgarter Ztg): runs until Jan 2027, successor Tanz der Vampire premieres ~20 Mar 2027 at same theatre → effective end ~Jan 2027 (exact final day not yet published, using end of Jan)"
-  },
-  "stage-die-amme-berlin": {
-    "start_date": "2026-05-22",
-    "end_date": "2026-07-31",
-    "_why": "Theater des Westens Friday-slot limited run, 22 May–31 Jul 2026"
-  },
-  "stage-zurueck-in-die-zukunft-hamburg": {
-    "start_date": "2026-03-22",
-    "end_date": "2026-12-20",
-    "_why": "Operettenhaus German premiere, defined run 22 Mar–20 Dec 2026"
-  },
-  "stage-disneys-tarzan-hamburg": {
-    "start_date": "2025-11-20",
-    "end_date": "2026-10-25",
-    "_why": "Neue Flora, closes 25 Oct 2026 (replaced by Devil Wears Prada)"
-  },
-  "stage-we-will-rock-you-stuttgart": {
-    "start_date": "2025-10-17",
-    "end_date": "2026-09-30",
-    "_why": "Palladium one-season run until ~30 Sep 2026 (replaced by & Juliet)"
-  },
-  "stage-bibi-tina-weihnachten-berlin": {
-    "start_date": "2026-11-22",
-    "end_date": "2026-12-30",
-    "_why": "Theater des Westens seasonal Christmas show, Nov–Dec 2026 only"
-  },
-  "stage-salon-rosie-berlin": {
-    "start_date": "2026-10-30",
-    "_why": "Theater des Westens world premiere 30 Oct 2026 (upcoming as of Jun 2026)"
-  },
-  "stage-der-teufel-traegt-prada-hamburg": {
-    "start_date": "2026-12-01",
-    "_why": "Neue Flora German premiere Dec 2026, replacing Tarzan (upcoming)"
-  },
-  "stage-und-julia-stuttgart": {
-    "start_date": "2026-10-08",
-    "_why": "Palladium premiere 8 Oct 2026, replacing We Will Rock You (upcoming)"
-  },
-  "stage-tanz-der-vampire-stuttgart": {
-    "start_date": "2027-03-20",
-    "_why": "Apollo new production premiere 20 Mar 2027, succeeding Frozen (upcoming)"
-  },
-  "nl-801cc2fc": {
-    "start_date": "2026-09-01",
-    "_why": "Beatrix Theater Utrecht Dutch production from autumn 2026, after Moulin Rouge (upcoming; exact date TBA)"
-  },
-  "tm-i-grieve-different-written-by-and-starring-harper-jones-the-women-s-museum": {
-    "title": "I Grieve Different",
-    "group": "i grieve different",
-    "_why": "TM listing 名稱是整句行銷文案('I GRIEVE DIFFERENT' written by and starring Harper Jones);正式劇名=I Grieve Different(Harper Jones 自編自演獨角戲)。clean_title 已加通用規則,此為保險。",
-    "tour_name": null
-  },
-  "tour-beauty-and-the-beast-30th-anniversary-san-francisco-ca-2026-07-14": {
-    "venue": "Orpheum Theatre",
-    "lat": 37.779,
-    "lng": -122.4136,
-    "_why": "broadway.org 把 SF 站標成 Curran;官方 BroadwaySF/ATG=Orpheum Theatre(1192 Market St),7/14-8/9。"
-  },
-  "tm-beauty-and-the-beast-recommended-ages-6-and-up-all-guests-require-ticket-regardless-of-age-orpheum-theatre-san-francisco": {
-    "title": "Beauty and the Beast",
-    "group": "beauty and the beast",
-    "_why": "TM 列名帶『- Recommended ages…』購票須知尾巴;DASH_NOTICE_RE 已加通用規則,此為保險。與 broadway.org SF 站同檔期,合併後由 (group,city) 去重。"
-  },
-  "stage-bibi-tina-weihnachten-berlin-hamburg": {
-    "start_date": "2026-11-21",
-    "end_date": "2027-01-03",
-    "end_rolling": false,
-    "_why": "聖誕限定檔被標長期上演(來源無日期+舊邏輯無日期預設 open run,已改);官方 stage-entertainment.de:2026-11-21~2027-01-03 @Operettenhaus。"
-  },
-  "tm-h-r-the-musical-edinburgh-fringe-fundraiser-season-herald-theatre-aotea-centre": {
-    "title": "H.R. The Musical",
-    "group": "h r the musical",
-    "_why": "『- Edinburgh Fringe fundraiser season』是檔期描述非劇名。"
-  },
-  "atr-libre-melomans-homenaje-nino-bravo-4943414": {
-    "title": "Libre",
-    "group": "libre",
-    "_why": "『- Melomans - Homenaje Nino Bravo』=團名+副題;與 Madrid 的 Libre 同作品(Nino Bravo 致敬音樂劇),取正式名合併。"
-  },
-  "ee-bc75c59d": {
-    "title": "A Padlás",
-    "_why": "匈牙利慣例「作者群: 劇名 – 劇團」→正式劇名 A Padlás(Presser/Sztevanovity/Horváth 經典)。",
-    "group": "a padlas",
-    "lat": 46.9772,
-    "lng": 17.2806
-  },
-  "ee-67fd2d19": {
-    "title": "A Padlás",
-    "_why": "同上,Szeged 站。",
-    "group": "a padlas",
-    "lat": 46.24884,
-    "lng": 20.14919
-  },
-  "ee-1d96fb7d": {
-    "title": "A dzsungel könyve",
-    "_why": "「Ráckevei nyár 26 / Dés-Geszti-Békés: 」=夏季藝術節+作者前綴;正式劇名 A dzsungel könyve(森林王子)。",
-    "group": "a dzsungel konyve",
-    "lat": 47.1608,
-    "lng": 18.9456
-  },
-  "ee-471497f3": {
-    "title": "A Pál utcai fiúk",
-    "_why": "「II. Velencei-tavi…Fesztivál / Molnár Ferenc: 」=藝術節+原著作者前綴;正式劇名 A Pál utcai fiúk。",
-    "group": "a pal utcai fiuk"
-  },
-  "atr-bienvenidos-un-musical-con-exitos-de-los-80-y-90-alcala-de-henares-4947205": {
-    "title": "¡Bienvenidos! Un musical con éxitos de los 80's y 90's",
-    "_why": "同一巡演各鎮列名不一,統一正式名以合併。",
-    "group": "bienvenidos un musical con exitos de los 80s y 90s"
-  },
-  "atr-bienvenidos-musical-con-exitos-de-los-80-y-90-la-puebla-de-montalban-4947490": {
-    "title": "¡Bienvenidos! Un musical con éxitos de los 80's y 90's",
-    "_why": "同上。",
-    "group": "bienvenidos un musical con exitos de los 80s y 90s"
-  },
-  "atr-bienvenidos-musical-de-los-80-s-y-los-90-s-villanueva-de-la-serena-4948452": {
-    "title": "¡Bienvenidos! Un musical con éxitos de los 80's y 90's",
-    "_why": "同上。",
-    "group": "bienvenidos un musical con exitos de los 80s y 90s"
-  },
-  "atr-bienvenidos-un-musical-con-los-exitos-de-los-80-s-y-90-s-aguilas-4948744": {
-    "title": "¡Bienvenidos! Un musical con éxitos de los 80's y 90's",
-    "_why": "同上。",
-    "group": "bienvenidos un musical con exitos de los 80s y 90s"
-  },
-  "tm-titanique-la-parodie-musicale-avec-des-chansons-de-c-line-dion-theatre-du-casino-du-lac-leamy": {
-    "title": "Titanique",
-    "_why": "「, la parodie musicale avec des chansons de Céline Dion」=行銷副標;正式劇名 Titanique。",
-    "group": "titanique"
-  },
-  "bcn-la-mofeta-presumida-una-aventura-musical-per-a-tota-la-familia": {
-    "title": "La Mofeta Presumida",
-    "_why": "「: una aventura musical per a tota la família」=行銷副標。",
-    "group": "la mofeta presumida"
-  },
-  "jp-6df5d0b8": {
-    "lat": 35.66107,
-    "lng": 139.73521,
-    "_why": "無座標→不出現在地圖;以同城平均/城市中心點補(城市層級精度)。"
-  },
-  "ee-6f6f123a": {
-    "lat": 47.6426,
-    "lng": 19.0223,
-    "_why": "無座標→不出現在地圖;以同城平均/城市中心點補(城市層級精度)。"
-  },
-  "it-e7f5d259": {
-    "lat": 43.7139,
-    "lng": 13.2172,
-    "_why": "無座標→不出現在地圖;以同城平均/城市中心點補(城市層級精度)。"
-  },
-  "it-f2210ca3": {
-    "lat": 45.4384,
-    "lng": 10.9916,
-    "_why": "無座標→不出現在地圖;以同城平均/城市中心點補(城市層級精度)。"
-  },
-  "it-72294df8": {
-    "lat": 45.7758,
-    "lng": 12.8395,
-    "_why": "無座標→不出現在地圖;以同城平均/城市中心點補(城市層級精度)。"
-  },
-  "pl-834d6722": {
-    "lat": 52.0983,
-    "lng": 20.5855,
-    "_why": "無座標→不出現在地圖;以同城平均/城市中心點補(城市層級精度)。"
-  },
-  "pl-429215fc": {
-    "lat": 52.22027,
-    "lng": 21.02346,
-    "_why": "無座標→不出現在地圖;以同城平均/城市中心點補(城市層級精度)。"
-  },
-  "damai-1050128063212": {
-    "lat": 39.90858,
-    "lng": 116.41294,
-    "_why": "無座標→不出現在地圖;以同城平均/城市中心點補(城市層級精度)。"
-  },
-  "damai-1050390496513": {
-    "lat": 39.90858,
-    "lng": 116.41294,
-    "_why": "無座標→不出現在地圖;以同城平均/城市中心點補(城市層級精度)。"
-  },
-  "damai-1054719956189": {
-    "lat": 26.0745,
-    "lng": 119.2965,
-    "_why": "無座標→不出現在地圖;以同城平均/城市中心點補(城市層級精度)。"
-  },
-  "damai-1053577138693": {
-    "lat": 26.0745,
-    "lng": 119.2965,
-    "_why": "無座標→不出現在地圖;以同城平均/城市中心點補(城市層級精度)。"
-  },
-  "damai-1058613177448": {
-    "lat": 20.02806,
-    "lng": 110.30942,
-    "_why": "無座標→不出現在地圖;以同城平均/城市中心點補(城市層級精度)。"
-  },
-  "damai-1047276718273": {
-    "lat": 36.6683,
-    "lng": 116.99743,
-    "_why": "無座標→不出現在地圖;以同城平均/城市中心點補(城市層級精度)。"
-  },
-  "damai-1044990055975": {
-    "lat": 36.09964,
-    "lng": 120.47367,
-    "_why": "無座標→不出現在地圖;以同城平均/城市中心點補(城市層級精度)。"
-  },
-  "damai-1037244885542": {
-    "lat": 28.972901,
-    "lng": 118.852641,
-    "_why": "衢州保利大剧院(大剧场)——原「城市平均」補值誤用常熟座標(2026-07-10 座標污染清理);改衢州保利權威值"
-  },
-  "damai-1055727223091": {
-    "lat": 31.21327,
-    "lng": 121.47529,
-    "_why": "無座標→不出現在地圖;以同城平均/城市中心點補(城市層級精度)。"
-  },
-  "it-0fb1317c": {
-    "end_date": "2026-12-31",
-    "_why": "teatro.it JSON-LD 只列首演夜 12/17 一場;真檔期 12/17→12/31 共 11 場,依 ilsistina.it 官網查證(2026-07-09 日期 ground-truth 抽驗 MISMATCH 修正)"
-  },
-  "it-349cb901": {
-    "end_date": "2026-12-27",
-    "_why": "BIT 聖誕頌歌 @ Teatro Carcano 官方 2026-27 頁載 12/23~12/27(teatrocarcano.com,2026-07-14 查證);teatro.it 的 JSON-LD 每站每年只披露一場代表場,end 被砍成單日——上游結構限制,重點站以官方修正"
-  },
-  "bway-6839": {
-    "end_date": "2026-08-16",
-    "end_rolling": false,
-    "_why": "Ragtime(Lincoln Center)Tony 獲獎後最終延長至 2026-08-16 閉幕(deadline/TheaterMania/lct.org,2026-07-14 查證);broadway-show-tickets 源一律 rolling 把已宣閉幕蓋成長期上演,且庫內 8/2 是舊票塊尾日"
-  },
-  "bway-39500": {
-    "end_date": "2027-01-03",
-    "end_rolling": false,
-    "_why": "Schmigadoon! 百老匯 12 項 Tony 提名後延長至 2027-01-03 閉幕(deadline/playbill,2026-07-14 查證);原 9/6 是延長前的舊閉幕日,rolling 白名單又蓋成長期上演"
-  },
-  "bway-32609": {
-    "end_date": "2027-02-14",
-    "end_rolling": false,
-    "_why": "Operation Mincemeat 百老匯已公告閉幕 2027-02-14(第九次延長,DKC O&M/broadway.com,2026-07-09 查證);來源 closingDate 空著被 rolling 白名單蓋過,補公告閉幕日"
-  },
-  "tour-the-sound-of-music-2025-mexico-city-2026-08-11": {
-    "country": "Mexico",
-    "_why": "broadway.org 巡演 country 硬編碼 USA(2026-07-09 座標交叉驗證抓到);broadway_tours.py 已修,此為現役資料即時修正,下次全抓後可刪"
-  },
-  "bway-27108": {
-    "start_date": "2022-11-20",
-    "_why": "Titanique 起演日:2022-11-20 Daryl Roth Theatre 首場(Playbill/BWW;Asylum 舊檔 2022-06-23~11-13);來源 reopeningDate 空(2026-07-10 缺起演日稽核)"
-  },
-  "atg-shows-something-rotten-opera-house-manchester": {
-    "start_date": "2026-06-16",
-    "_why": "UK 首演檔 previews 2026-06-16 起(Ents24/WhatsOnStage;press night 06-26);ATG 頁缺起日"
-  },
-  "nl-d379b0b7": {
-    "start_date": "2024-09-07",
-    "_why": "荷蘭版 previews 2024-09-07 起(theater.nl;première 09-19);stage-entertainment.nl 缺起日"
-  },
-  "atr-entrada-para-el-espectaculo-nomad-en-la-sala-scala-4935007": {
-    "venue": "Sala Scala",
-    "lat": 27.7703859,
-    "lng": -15.542844,
-    "_why": "atrapalo 商品名無場館欄+座標=San Bartolomé 行政中心偏 17km(2026-07-14 使用者抓到);官方地址 C/ Las Retamas 3, San Agustín(salascala.com),OSM 地址級定位"
-  },
-  "atr-entradas-al-espectaculo-history-la-evolucion-de-la-musica-4935032": {
-    "venue": "Pirámide de Arona",
-    "lat": 28.054541,
-    "lng": -16.731235,
-    "_why": "atrapalo 無場館欄;History 秀常駐 Pirámide de Arona(OSM 建築級,2026-07-14)"
-  }
+ "_note": "Manual corrections applied by build_shows.py AFTER merge, keyed by show id. Use when a source returns wrong or missing coordinates (e.g. it matched a same-named venue in another city). Any field here overrides the scraped value. Keys starting with _ are ignored.",
+ "ip-26007357": {
+  "city": "Daegu",
+  "lat": 35.8331,
+  "lng": 128.5835,
+  "_why": "Again, Romeo & Jeliet = 大邱本土原創小劇場;NOL/interpark 把未知場館預設 Seoul,實為 DREAM HALL @ 478 Apsansunhwan-ro, Nam-gu, Daegu (대덕문화전당), block-level geocode"
+ },
+ "bway-39821": {
+  "lat": 40.7589,
+  "lng": -73.9846,
+  "_why": "Source returned Palace Theatre, Manchester UK; corrected to NYC Palace Theatre (1564 Broadway)"
+ },
+ "bway-42103": {
+  "venue": "218 W 57th St",
+  "lat": 40.765673,
+  "lng": -73.981256,
+  "_why": "沉浸式專用場館無正式館名,場地欄=街道地址(2026-07-14 使用者選定;城市國家由卡片下一行顯示不重複)。座標 OSM 驗證"
+ },
+ "_tm_note": "Ticketmaster start dates = earliest AVAILABLE ticket (expired perfs vanish), not true opening. True run dates below researched from official sites/press 2026-06-12; onsale_only cleared once verified.",
+ "tm-anastasia-sydney-lyric": {
+  "start_date": "2026-04-07",
+  "end_date": "2026-07-19",
+  "onsale_only": false,
+  "_why": "Official/press: opened 7 Apr 2026, season through 19 Jul 2026 (TM only sells to 7/18)"
+ },
+ "tm-the-lion-king-capitol-theatre-sydney": {
+  "start_date": "2026-04-18",
+  "onsale_only": false,
+  "_why": "Disney/Variety: Sydney season opened 18 Apr 2026 at Capitol Theatre; end kept as TM last scheduled (extended beyond initial 9 Aug)"
+ },
+ "tm-hair-the-tribal-love-rock-musical-theatre-royal-sydney": {
+  "start_date": "2026-06-06",
+  "end_date": "2026-07-11",
+  "onsale_only": false,
+  "_why": "Theatre Royal Sydney official: 6 Jun – 11 Jul 2026"
+ },
+ "tm-mj-the-michael-jackson-musical-crown-theatre-perth": {
+  "start_date": "2026-06-06",
+  "onsale_only": false,
+  "_why": "mjthemusical.com.au: Perth from 6 Jun 2026, until 19 Jul (TM end matches)"
+ },
+ "tm-monty-python-s-spamalot-planet-royale": {
+  "start_date": "2026-05-20",
+  "onsale_only": false,
+  "_why": "BWW/press: Planet Royale Perth from 20 May 2026; end kept as TM last scheduled 13 Jun (extended past announced 7 Jun)"
+ },
+ "tm-tootsie-teatro-at-the-italian-forum": {
+  "start_date": "2026-05-26",
+  "onsale_only": false,
+  "_why": "Teatro Italian Forum: previews 26 May, opening night 29 May, season to 21 Jun 2026 (TM end matches)"
+ },
+ "tm-are-ya-dancin-a-showband-story-gaiety-theatre": {
+  "start_date": "2026-06-09",
+  "onsale_only": false,
+  "_why": "Gaiety Dublin: 9–13 Jun 2026 summer run"
+ },
+ "tm-priscilla-queen-of-the-desert-bord-gais-energy-theatre": {
+  "start_date": "2026-06-08",
+  "onsale_only": false,
+  "_why": "Bord Gáis Energy Theatre: 8–13 Jun 2026 (30th anniversary tour)"
+ },
+ "tm-heathers-the-civic-auckland": {
+  "start_date": "2026-06-10",
+  "onsale_only": false,
+  "_why": "Auckland Live: The Civic 10–14 Jun 2026"
+ },
+ "tm-tera-te-auahi-sir-howard-morrison-centre": {
+  "start_date": "2026-06-10",
+  "onsale_only": false,
+  "_why": "Press/BWW: premieres Sir Howard Morrison Centre from 10 Jun 2026"
+ },
+ "tm-mamma-mia-das-hit-musical-auf-schweizerdeutsch-maag-halle": {
+  "start_date": "2026-05-06",
+  "venue": "MAAG Halle",
+  "onsale_only": false,
+  "_why": "mamma-mia-musical.ch official: MAAG Halle Zürich 06.05.–14.06.2026 (Swiss German production)"
+ },
+ "_stage_note": "Stage Entertainment DE/NL source returns NO run dates → every show read as 'no end' = wrongly long-running. True dates researched 2026-06-25 (per-venue; a theatre runs ONE open-ended show at a time). Open runs keep end_date absent (→ 長期上演); limited runs get end_date (→ 至 X); not-yet-premiered get a future start (→ X 起, hidden until their month).",
+ "stage-disneys-der-koenig-der-loewen-hamburg": {
+  "start_date": "2001-12-02",
+  "_why": "Theater im Hafen since Dec 2001, open-ended (25th-anniv 2026, no end planned)"
+ },
+ "stage-mj-das-michael-jackson-musical-hamburg": {
+  "start_date": "2024-12-01",
+  "_why": "Theater an der Elbe since Dec 2024, open-ended"
+ },
+ "stage-wir-sind-am-leben-berlin": {
+  "start_date": "2026-03-21",
+  "_why": "Theater des Westens main open run from 21 Mar 2026, no announced end"
+ },
+ "stage-die-eiskoenigin-stuttgart": {
+  "start_date": "2021-11-01",
+  "end_date": "2027-01-31",
+  "_why": "Apollo Theater since Nov 2021; press (Stuttgarter Ztg): runs until Jan 2027, successor Tanz der Vampire premieres ~20 Mar 2027 at same theatre → effective end ~Jan 2027 (exact final day not yet published, using end of Jan)"
+ },
+ "stage-die-amme-berlin": {
+  "start_date": "2026-05-22",
+  "end_date": "2026-07-31",
+  "_why": "Theater des Westens Friday-slot limited run, 22 May–31 Jul 2026"
+ },
+ "stage-zurueck-in-die-zukunft-hamburg": {
+  "start_date": "2026-03-22",
+  "end_date": "2026-12-20",
+  "_why": "Operettenhaus German premiere, defined run 22 Mar–20 Dec 2026"
+ },
+ "stage-disneys-tarzan-hamburg": {
+  "start_date": "2025-11-20",
+  "end_date": "2026-10-25",
+  "_why": "Neue Flora, closes 25 Oct 2026 (replaced by Devil Wears Prada)"
+ },
+ "stage-we-will-rock-you-stuttgart": {
+  "start_date": "2025-10-17",
+  "end_date": "2026-09-30",
+  "_why": "Palladium one-season run until ~30 Sep 2026 (replaced by & Juliet)"
+ },
+ "stage-bibi-tina-weihnachten-berlin": {
+  "start_date": "2026-11-22",
+  "end_date": "2026-12-30",
+  "_why": "Theater des Westens seasonal Christmas show, Nov–Dec 2026 only"
+ },
+ "stage-salon-rosie-berlin": {
+  "start_date": "2026-10-30",
+  "_why": "Theater des Westens world premiere 30 Oct 2026 (upcoming as of Jun 2026)"
+ },
+ "stage-der-teufel-traegt-prada-hamburg": {
+  "start_date": "2026-12-01",
+  "_why": "Neue Flora German premiere Dec 2026, replacing Tarzan (upcoming)"
+ },
+ "stage-und-julia-stuttgart": {
+  "start_date": "2026-10-08",
+  "_why": "Palladium premiere 8 Oct 2026, replacing We Will Rock You (upcoming)"
+ },
+ "stage-tanz-der-vampire-stuttgart": {
+  "start_date": "2027-03-20",
+  "_why": "Apollo new production premiere 20 Mar 2027, succeeding Frozen (upcoming)"
+ },
+ "nl-801cc2fc": {
+  "start_date": "2026-09-01",
+  "_why": "Beatrix Theater Utrecht Dutch production from autumn 2026, after Moulin Rouge (upcoming; exact date TBA)"
+ },
+ "tm-i-grieve-different-written-by-and-starring-harper-jones-the-women-s-museum": {
+  "title": "I Grieve Different",
+  "group": "i grieve different",
+  "_why": "TM listing 名稱是整句行銷文案('I GRIEVE DIFFERENT' written by and starring Harper Jones);正式劇名=I Grieve Different(Harper Jones 自編自演獨角戲)。clean_title 已加通用規則,此為保險。",
+  "tour_name": null
+ },
+ "tour-beauty-and-the-beast-30th-anniversary-san-francisco-ca-2026-07-14": {
+  "venue": "Orpheum Theatre",
+  "lat": 37.779,
+  "lng": -122.4136,
+  "_why": "broadway.org 把 SF 站標成 Curran;官方 BroadwaySF/ATG=Orpheum Theatre(1192 Market St),7/14-8/9。"
+ },
+ "tm-beauty-and-the-beast-recommended-ages-6-and-up-all-guests-require-ticket-regardless-of-age-orpheum-theatre-san-francisco": {
+  "title": "Beauty and the Beast",
+  "group": "beauty and the beast",
+  "_why": "TM 列名帶『- Recommended ages…』購票須知尾巴;DASH_NOTICE_RE 已加通用規則,此為保險。與 broadway.org SF 站同檔期,合併後由 (group,city) 去重。"
+ },
+ "stage-bibi-tina-weihnachten-berlin-hamburg": {
+  "start_date": "2026-11-21",
+  "end_date": "2027-01-03",
+  "end_rolling": false,
+  "_why": "聖誕限定檔被標長期上演(來源無日期+舊邏輯無日期預設 open run,已改);官方 stage-entertainment.de:2026-11-21~2027-01-03 @Operettenhaus。"
+ },
+ "tm-h-r-the-musical-edinburgh-fringe-fundraiser-season-herald-theatre-aotea-centre": {
+  "title": "H.R. The Musical",
+  "group": "h r the musical",
+  "_why": "『- Edinburgh Fringe fundraiser season』是檔期描述非劇名。"
+ },
+ "atr-libre-melomans-homenaje-nino-bravo-4943414": {
+  "title": "Libre",
+  "group": "libre",
+  "_why": "『- Melomans - Homenaje Nino Bravo』=團名+副題;與 Madrid 的 Libre 同作品(Nino Bravo 致敬音樂劇),取正式名合併。"
+ },
+ "ee-bc75c59d": {
+  "title": "A Padlás",
+  "_why": "匈牙利慣例「作者群: 劇名 – 劇團」→正式劇名 A Padlás(Presser/Sztevanovity/Horváth 經典)。",
+  "group": "a padlas",
+  "lat": 46.9772,
+  "lng": 17.2806
+ },
+ "ee-67fd2d19": {
+  "title": "A Padlás",
+  "_why": "同上,Szeged 站。",
+  "group": "a padlas",
+  "lat": 46.24884,
+  "lng": 20.14919
+ },
+ "ee-1d96fb7d": {
+  "title": "A dzsungel könyve",
+  "_why": "「Ráckevei nyár 26 / Dés-Geszti-Békés: 」=夏季藝術節+作者前綴;正式劇名 A dzsungel könyve(森林王子)。",
+  "group": "a dzsungel konyve",
+  "lat": 47.1608,
+  "lng": 18.9456
+ },
+ "ee-471497f3": {
+  "title": "A Pál utcai fiúk",
+  "_why": "「II. Velencei-tavi…Fesztivál / Molnár Ferenc: 」=藝術節+原著作者前綴;正式劇名 A Pál utcai fiúk。",
+  "group": "a pal utcai fiuk"
+ },
+ "atr-bienvenidos-un-musical-con-exitos-de-los-80-y-90-alcala-de-henares-4947205": {
+  "title": "¡Bienvenidos! Un musical con éxitos de los 80's y 90's",
+  "_why": "同一巡演各鎮列名不一,統一正式名以合併。",
+  "group": "bienvenidos un musical con exitos de los 80s y 90s"
+ },
+ "atr-bienvenidos-musical-con-exitos-de-los-80-y-90-la-puebla-de-montalban-4947490": {
+  "title": "¡Bienvenidos! Un musical con éxitos de los 80's y 90's",
+  "_why": "同上。",
+  "group": "bienvenidos un musical con exitos de los 80s y 90s"
+ },
+ "atr-bienvenidos-musical-de-los-80-s-y-los-90-s-villanueva-de-la-serena-4948452": {
+  "title": "¡Bienvenidos! Un musical con éxitos de los 80's y 90's",
+  "_why": "同上。",
+  "group": "bienvenidos un musical con exitos de los 80s y 90s"
+ },
+ "atr-bienvenidos-un-musical-con-los-exitos-de-los-80-s-y-90-s-aguilas-4948744": {
+  "title": "¡Bienvenidos! Un musical con éxitos de los 80's y 90's",
+  "_why": "同上。",
+  "group": "bienvenidos un musical con exitos de los 80s y 90s"
+ },
+ "tm-titanique-la-parodie-musicale-avec-des-chansons-de-c-line-dion-theatre-du-casino-du-lac-leamy": {
+  "title": "Titanique",
+  "_why": "「, la parodie musicale avec des chansons de Céline Dion」=行銷副標;正式劇名 Titanique。",
+  "group": "titanique"
+ },
+ "bcn-la-mofeta-presumida-una-aventura-musical-per-a-tota-la-familia": {
+  "title": "La Mofeta Presumida",
+  "_why": "「: una aventura musical per a tota la família」=行銷副標。",
+  "group": "la mofeta presumida"
+ },
+ "it-e7f5d259": {
+  "lat": 43.7139,
+  "lng": 13.2172,
+  "_why": "無座標→不出現在地圖;以同城平均/城市中心點補(城市層級精度)。"
+ },
+ "pl-429215fc": {
+  "lat": 52.22027,
+  "lng": 21.02346,
+  "_why": "無座標→不出現在地圖;以同城平均/城市中心點補(城市層級精度)。"
+ },
+ "damai-1050128063212": {
+  "lat": 39.90858,
+  "lng": 116.41294,
+  "_why": "無座標→不出現在地圖;以同城平均/城市中心點補(城市層級精度)。"
+ },
+ "damai-1050390496513": {
+  "lat": 39.90858,
+  "lng": 116.41294,
+  "_why": "無座標→不出現在地圖;以同城平均/城市中心點補(城市層級精度)。"
+ },
+ "damai-1054719956189": {
+  "lat": 26.0745,
+  "lng": 119.2965,
+  "_why": "無座標→不出現在地圖;以同城平均/城市中心點補(城市層級精度)。"
+ },
+ "damai-1053577138693": {
+  "lat": 26.0745,
+  "lng": 119.2965,
+  "_why": "無座標→不出現在地圖;以同城平均/城市中心點補(城市層級精度)。"
+ },
+ "damai-1058613177448": {
+  "lat": 20.02806,
+  "lng": 110.30942,
+  "_why": "無座標→不出現在地圖;以同城平均/城市中心點補(城市層級精度)。"
+ },
+ "damai-1047276718273": {
+  "lat": 36.6683,
+  "lng": 116.99743,
+  "_why": "無座標→不出現在地圖;以同城平均/城市中心點補(城市層級精度)。"
+ },
+ "damai-1044990055975": {
+  "lat": 36.09964,
+  "lng": 120.47367,
+  "_why": "無座標→不出現在地圖;以同城平均/城市中心點補(城市層級精度)。"
+ },
+ "damai-1037244885542": {
+  "lat": 28.972901,
+  "lng": 118.852641,
+  "_why": "衢州保利大剧院(大剧场)——原「城市平均」補值誤用常熟座標(2026-07-10 座標污染清理);改衢州保利權威值"
+ },
+ "damai-1055727223091": {
+  "lat": 31.21327,
+  "lng": 121.47529,
+  "_why": "無座標→不出現在地圖;以同城平均/城市中心點補(城市層級精度)。"
+ },
+ "it-0fb1317c": {
+  "end_date": "2026-12-31",
+  "_why": "teatro.it JSON-LD 只列首演夜 12/17 一場;真檔期 12/17→12/31 共 11 場,依 ilsistina.it 官網查證(2026-07-09 日期 ground-truth 抽驗 MISMATCH 修正)"
+ },
+ "it-349cb901": {
+  "end_date": "2026-12-27",
+  "_why": "BIT 聖誕頌歌 @ Teatro Carcano 官方 2026-27 頁載 12/23~12/27(teatrocarcano.com,2026-07-14 查證);teatro.it 的 JSON-LD 每站每年只披露一場代表場,end 被砍成單日——上游結構限制,重點站以官方修正"
+ },
+ "bway-6839": {
+  "end_date": "2026-08-16",
+  "end_rolling": false,
+  "_why": "Ragtime(Lincoln Center)Tony 獲獎後最終延長至 2026-08-16 閉幕(deadline/TheaterMania/lct.org,2026-07-14 查證);broadway-show-tickets 源一律 rolling 把已宣閉幕蓋成長期上演,且庫內 8/2 是舊票塊尾日"
+ },
+ "bway-39500": {
+  "end_date": "2027-01-03",
+  "end_rolling": false,
+  "_why": "Schmigadoon! 百老匯 12 項 Tony 提名後延長至 2027-01-03 閉幕(deadline/playbill,2026-07-14 查證);原 9/6 是延長前的舊閉幕日,rolling 白名單又蓋成長期上演"
+ },
+ "bway-32609": {
+  "end_date": "2027-02-14",
+  "end_rolling": false,
+  "_why": "Operation Mincemeat 百老匯已公告閉幕 2027-02-14(第九次延長,DKC O&M/broadway.com,2026-07-09 查證);來源 closingDate 空著被 rolling 白名單蓋過,補公告閉幕日"
+ },
+ "tour-the-sound-of-music-2025-mexico-city-2026-08-11": {
+  "country": "Mexico",
+  "_why": "broadway.org 巡演 country 硬編碼 USA(2026-07-09 座標交叉驗證抓到);broadway_tours.py 已修,此為現役資料即時修正,下次全抓後可刪"
+ },
+ "bway-27108": {
+  "start_date": "2022-11-20",
+  "_why": "Titanique 起演日:2022-11-20 Daryl Roth Theatre 首場(Playbill/BWW;Asylum 舊檔 2022-06-23~11-13);來源 reopeningDate 空(2026-07-10 缺起演日稽核)"
+ },
+ "atg-shows-something-rotten-opera-house-manchester": {
+  "start_date": "2026-06-16",
+  "_why": "UK 首演檔 previews 2026-06-16 起(Ents24/WhatsOnStage;press night 06-26);ATG 頁缺起日"
+ },
+ "nl-d379b0b7": {
+  "start_date": "2024-09-07",
+  "_why": "荷蘭版 previews 2024-09-07 起(theater.nl;première 09-19);stage-entertainment.nl 缺起日"
+ },
+ "atr-entrada-para-el-espectaculo-nomad-en-la-sala-scala-4935007": {
+  "venue": "Sala Scala",
+  "lat": 27.7703859,
+  "lng": -15.542844,
+  "_why": "atrapalo 商品名無場館欄+座標=San Bartolomé 行政中心偏 17km(2026-07-14 使用者抓到);官方地址 C/ Las Retamas 3, San Agustín(salascala.com),OSM 地址級定位"
+ },
+ "atr-entradas-al-espectaculo-history-la-evolucion-de-la-musica-4935032": {
+  "venue": "Pirámide de Arona",
+  "lat": 28.054541,
+  "lng": -16.731235,
+  "_why": "atrapalo 無場館欄;History 秀常駐 Pirámide de Arona(OSM 建築級,2026-07-14)"
+ }
 }

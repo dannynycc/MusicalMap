@@ -20,10 +20,12 @@ import sys
 import io
 import urllib.request
 from pathlib import Path
+from urllib.parse import urljoin
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
 
 DATA = Path(__file__).resolve().parent.parent / "data"
+SITE = "https://www.shiki.jp/"
 API = "https://www.shiki.jp/api_stage_list"
 UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) MusicalMap/0.1"
 
@@ -97,8 +99,12 @@ def main():
                 "lng": lng,
                 "start_date": start,
                 "end_date": end,
-                "ticket_url": "https://www.shiki.jp" + (st.get("applause_url") or "/"),
-                "image": ("https://www.shiki.jp" + img) if img else None,
+                # ⚠️ 一律用 urljoin,不要字串相加:applause_url 有時本身就是**絕對網址**
+                # (外部主辦單位,如浅利演出事務所),直接相加會黏成
+                # `https://www.shiki.jphttps://asarioffice.jp/…` 這種 DNS 直接解不出來的死鏈
+                # (2026-08-12 全站連結存活掃描抓到)。urljoin 遇絕對網址會原樣保留。
+                "ticket_url": urljoin(SITE, st.get("applause_url") or "/"),
+                "image": urljoin(SITE, img) if img else None,
                 "tour_name": None,
                 "verified": True,
                 "source": "shiki.jp",

@@ -1,0 +1,4 @@
+{
+ "_comment": "上游已 404 的海報 URL 黑名單。build_shows 會把命中的 image 清成 null,卡片改用同組(works.json/同劇其他站)的海報或音符佔位圖——破圖比沒圖更醜。來源多為反爬站(atrapalo 等)無法重抓,只能人工列管。格式:URL → 記錄當時的查證日期與原因。",
+ "https://cdn.atrapalo.com/o/event/4947278/1804833.jpg": "2026-08-12 全站海報存活掃描:HTTP 404(El flautista de Hamelin @ Madrid)"
+}

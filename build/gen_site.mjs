@@ -82,7 +82,12 @@ function jsonLd(variant, shows) {
     const where = s.venue ? `${s.venue}${s.city ? ", " + s.city : ""}` : (s.city || "");
     const ev = {
       "@type": "Event", "name": s.title,
-      "startDate": s.start_date, "endDate": s.end_date || undefined,
+      // end_rolling(開放式長跑)**不可**輸出 endDate:它的 end_date 只是
+      // booking_horizon 補的「最後可訂票日」,不是閉幕日。站上卡片顯示「長期上演」,
+      // 結構化資料卻告訴 Google「Wicked 2026-08-22 閉幕」——自己打自己臉,而且 Google
+      // 會在該日後把 Event 判為過期(2026-08-12 掃到 77 筆矛盾)。
+      // 這條規則前端 2026-07-09 就修了(app.js 忽略 rolling 的 end_date),但當時漏了 JSON-LD。
+      "startDate": s.start_date, "endDate": (s.end_rolling ? undefined : s.end_date) || undefined,
       "eventStatus": "https://schema.org/EventScheduled",
       "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
       "location": { "@type": "Place", "name": s.venue || s.city,

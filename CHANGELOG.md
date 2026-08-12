@@ -11,6 +11,83 @@
 
 ---
 
+## [v2.59.0] - 2026-08-12 16:11
+
+### 全面除錯:11 個問題,每一個都先有證據才動手
+
+多角度掃描(資料不變量／產物正確性／連結存活/真瀏覽器 runtime／座標內部矛盾),
+**排除 4 個誤報**後確認並修掉 11 個真問題。
+
+**1. 座標 (0,0) Null Island —— 4 筆**
+   來源給不出座標時填 0 而不是留空,卡片被釘在幾內亞灣外海(Footloose @ Garden
+   Theatre - FL、& Juliet @ Royal Alexandra、Come from Away/A Midsummer @ Allen
+   Elizabethan)。改成當「沒有座標」處理;3 筆隨即被 venue_coords 補回正確值,
+   Garden Theatre 則以 OSM/Nominatim 查證(28.5650238, -81.5873813)新增進權威表。
+
+**2. 城市標籤兩種寫法 —— 282 筆改寫,城市數 588 → 524**
+   「Chicago」vs「Chicago, IL」、「Boston」vs「Boston, MA」…全站 70 組。後果:城市清單
+   同一城出現兩次、該城演出被拆到兩處、站上宣稱的城市數灌水。修法是**座標分群**
+   (80km)後在群內統一標籤、優先採用帶州別的寫法——不能單純按名字併,
+   Bloomington(IN/IL)、Duluth(MN/GA)、Rochester(NY/MN)是不同城市。修完剩 5 組
+   同名異地,正是應該保持分開的那些。
+
+**3. HTML 實體殘留 —— 9 筆**
+   `Shea&#039;s Performing Arts Center`／`Aronoff Center: Procter &amp; Gamble Hall`／
+   `Princess story - L&#39;Hospitalet` 原樣印在卡片上。`clean_title` 只作用於 title,
+   場館/城市/巡演名完全沒經過它。
+
+**4. JSON-LD 給長期上演的劇假閉幕日 —— 77 筆**
+   站上顯示「長期上演」,結構化資料卻告訴 Google「Wicked 2026-08-22 閉幕」(10 天後)。
+   那個 end_date 只是 booking_horizon 補的**最後可訂票日**。前端 2026-07-09 就修了這條
+   規則,但當時漏了 JSON-LD。
+
+**5. `shiki.py` URL 字串相加 → 死鏈**
+   `"https://www.shiki.jp" + applause_url`,遇到外部主辦的**絕對網址**就黏成
+   `https://www.shiki.jphttps://asarioffice.jp/…`(DNS 直接解不出來)。改用 `urljoin`。
+
+**6. 票務搜尋連結卡著髒標題 —— 16 筆**
+   點下去是搜尋「Ford's Theatre presents:」「Rodgers + Hammerstein's…」。scraper 用自己
+   那版 clean_title 產連結,build 之後又清一次標題,連結沒跟著更新。改用最終標題重建 q。
+
+**7. 上游 404 的海報**
+   新增 `data/dead_images.json` 列管(反爬來源無法重抓),命中就清成 null 讓同組海報接手
+   ——破圖比沒圖更醜。首筆:El flautista de Hamelin @ Madrid。
+
+**8. 全大寫城市/場館名 —— 54 筆**
+   卡片印出「COSTA DE ADEJE」。第一版只修了 city,產物比對才發現**場館欄還有 53 個**。
+
+**9. 過時的「城市中心近似」座標 override 蓋掉查證值 —— 5 筆**
+   pipeline 順序是 venue_coords → overrides,所以當初「無座標,以城市中心補」的近似值
+   反而壓過後來查證的精確座標。最嚴重偏 4.8km(Nikola Tesla @ Pomázi);
+   Shibuya LOVEZ 偏 3.5km(釘到六本木,OSM 三次查詢確認正解在渋谷)。
+
+**10. `venue == city` 判斷沒折大小寫**
+   規則本身存在(避免卡片印「城市, 城市」),但用精確比對,`COSTA DE ADEJE` 對
+   `Costa De Adeje` 就漏掉。
+
+**11. Garden Theatre - FL 缺座標** → OSM 查證後補進 `venue_coords.json`(1251 → 1252 條)。
+
+### 排除的誤報(先驗證才動手,避免製造新問題)
+
+- 地圖只渲染 9 個標記 → 其中 7 個是 `mm-cluster-wrap` 叢集圖示,412 個地點在世界視角
+  折成 7 叢是**正確行為**。
+- JSON-LD「0 個 Event」→ 事件在 `ListItem → item` 底下,是我的 parser 沒往下走;實際 300 個。
+- 無副檔名網址(`/guide`)→ Cloudflare Pages 自動對應,實測全部 200。
+- 大麥 165 筆「雙前綴」圖片 URL → 實測 HTTP 200 且回傳真 JPEG,那是阿里 CDN 自己的格式。
+
+### 過程中自己踩到又修掉的
+
+第一版把三個清理步驟放在 **Ticketmaster 合併之前**,等於整批 TM 資料完全繞過清理
+(Footloose 的 0,0、Shea's 的實體都沒被吃到);城市正規化第一版把尚未正規化的 country
+(USA/US/United States 混用)併進分群鍵,結果 70 組只修到 4 組。兩者都靠「修完再跑一次
+原始掃描」才發現——**改完不重跑掃描,就等於沒修**。
+
+### 驗證
+
+全站 2,132 筆不變(逐筆差集 285 進 285 出,全為實體解碼與城市標籤改寫);
+`lat==0` 0 筆、HTML 實體 0 筆、全大寫城市 0 筆、`venue==city` 0 筆、JSON-LD 真矛盾 0 筆;
+9 支稽核 7 綠 2 warn(與修改前基準相同,**零新增違規**)。
+
 ## [v2.58.0] - 2026-08-12 15:25
 
 ### 攻 bot 牆:philippines.py 不用瀏覽器就抓得到了,待查條目 12 → 8

@@ -7,11 +7,14 @@ re-scrape of one source never clobbers the others.
 Run:  python scrapers/build_shows.py
 """
 
+import collections
+import html as html_mod
 import json
 import re
 import sys
 import io
 import unicodedata
+import urllib.parse
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
 
@@ -301,8 +304,22 @@ ANNOT_SUFFIX_RE = re.compile(
     r"\s*[-–—]\s*(?:suite\s+rental|age\s+recommendation|recommended\s+for\s+ages\b.*)\s*$", re.I)
 
 
+def unescape_entities(t):
+    """來源 HTML 的實體沒解碼就進了欄位,站上會**原樣顯示** `Shea&#039;s Performing Arts
+    Center`／`Procter &amp; Gamble Hall`／`L&#39;Hospitalet`(2026-08-12 全站掃到 9 筆)。
+    重複解一次以吃掉 `&amp;#39;` 這種雙重編碼,但最多兩輪——無限展開會把劇名裡真正的
+    「&amp;」字面值也吃掉。"""
+    s = str(t or "")
+    for _ in range(2):
+        n = html_mod.unescape(s)
+        if n == s:
+            break
+        s = n
+    return s
+
+
 def clean_title(t):
-    t = (t or "").strip()
+    t = unescape_entities(t).strip()
     t = re.sub(r"\s*\|.*$", "", t)          # drop promoter pipe-tails (… | Official … Packages)
     # atrapalo 商品名框:「Entrada para el espectáculo NOMAD en la Sala Scala」=「購買 X 在
     # Y 的門票」整串當劇名(2026-07-14 使用者抓到,3 筆全加那利 dinner show)。剝「Entrada(s)
@@ -637,6 +654,7 @@ def main():
     if n_baddate:
         print(f"  cleared {n_baddate} insane date field(s) (year out of 1980..2031)")
 
+
     # Ticketmaster merge — dedup purely by (show, city), NEVER by country.
     # (Country-level "covered" was a bug: one manual AU record made the whole of
     # Australia count as covered and wiped every TM AU stop, e.g. Sydney.)
@@ -856,6 +874,84 @@ def main():
                 nfix += 1
         print(f"  fixed {nfix} show country label(s) from venue_country.json")
 
+    # 上游已 404 的海報:清成 None,讓下游的「同組海報繼承」接手。破圖比沒圖更醜,
+    # 而反爬來源(atrapalo 等)沒辦法重抓,只能靠 data/dead_images.json 人工列管。
+    di_path = DATA / "dead_images.json"
+    if di_path.exists():
+        dead = {k for k in json.loads(di_path.read_text(encoding="utf-8")) if not k.startswith("_")}
+        n_dead = 0
+        for s in by_id.values():
+            if s.get("image") in dead:
+                s["image"] = None
+                n_dead += 1
+        if n_dead:
+            print(f"  cleared {n_dead} known-dead poster URL(s) (data/dead_images.json)")
+
+    # 票務「搜尋頁」連結的查詢字串:scraper 端是用它自己那一版 clean_title 產的,
+    # build 這邊之後還會再清一次(promoter 前綴、季票字樣、變體收攏),於是連結裡卡著
+    # 髒標題——實際點下去是搜尋「Ford's Theatre presents:」「Rodgers + Hammerstein's…」,
+    # 使用者得自己再找一次(2026-08-12 掃到 49 筆搜尋頁連結,其中數筆查詢字串是髒的)。
+    # 用最終標題重建 q,連結型態(搜尋頁)不動——沒有場次頁時它仍是最穩的落點。
+    n_q = 0
+    for s in by_id.values():
+        for holder, key in [(s, "ticket_url")] + [(l, "url") for l in (s.get("ticket_links") or [])]:
+            u = holder.get(key) or ""
+            m = re.match(r"^(https?://[^/]*ticketmaster\.[^/]+/search\?q=)(.*)$", u, re.I)
+            if not m:
+                continue
+            want = urllib.parse.quote(s.get("title") or "")
+            if m.group(2) != want and s.get("title"):
+                holder[key] = m.group(1) + want
+                n_q += 1
+    if n_q:
+        print(f"  rebuilt {n_q} ticketmaster search link(s) from the cleaned title")
+
+    # ── 欄位衛生(2026-08-12)──────────────────────────────────────────────────
+    # ⚠️ 這三段必須放在 **Ticketmaster 合併之後**:TM 的紀錄是後面才併進 by_id 的,
+    # 放在前面等於整批 TM 資料完全繞過清理(第一版就是這樣,Footloose 的 0,0 與
+    # Shea&#039;s 的實體都沒被吃到)。
+    #
+    # (a) HTML 實體殘留:clean_title 只作用在 title,場館/城市/巡演名沒經過它,於是
+    #     「Shea&#039;s Performing Arts Center」「Procter &amp; Gamble Hall」原樣顯示在卡片上。
+    n_ent = 0
+    for s in by_id.values():
+        for k in ("venue", "city", "country", "tour_name", "title"):
+            v = s.get(k)
+            if v and isinstance(v, str) and "&" in v:
+                nv = unescape_entities(v)
+                if nv != v:
+                    s[k] = nv
+                    n_ent += 1
+    if n_ent:
+        print(f"  decoded {n_ent} HTML entity leak(s) in text field(s)")
+
+    # (b) 座標 (0,0) = Null Island(幾內亞灣外海)。來源給不出座標時填 0 而非留空,
+    #     卡片就被釘在大西洋上(Footloose @ Garden Theatre - FL)。當成「沒有座標」:
+    #     寧可不上地圖,也不要釘在錯的地方。
+    n_null = 0
+    for s in by_id.values():
+        if s.get("lat") is not None and abs(s["lat"]) < 0.01 and abs(s.get("lng") or 0) < 0.01:
+            print(f"  ::warning:: null-island coord on {s.get('title')!r} @ {s.get('venue')} "
+                  f"({s.get('city')}, {s.get('source')}) — cleared")
+            s["lat"] = s["lng"] = None
+            n_null += 1
+    if n_null:
+        print(f"  cleared {n_null} null-island (0,0) coord(s)")
+
+    # (c) 全大寫城市/場館名(卡片顯示「COSTA DE ADEJE」)。只處理純大寫且長度 >3,
+    #     避免動到 NYC/LA/QPAC/BAM 這類正當縮寫。場館也要做——第一版只修 city,
+    #     結果同一張卡的場館欄仍然大寫(2026-08-12 產物比對抓到)。
+    n_caps = 0
+    for s in by_id.values():
+        for k in ("city", "venue"):
+            c = s.get(k)
+            if c and isinstance(c, str) and len(c) > 3 and c.isupper() \
+                    and not c.replace(" ", "").isdigit():
+                s[k] = " ".join(w.capitalize() for w in c.split())
+                n_caps += 1
+    if n_caps:
+        print(f"  title-cased {n_caps} ALL-CAPS city/venue name(s)")
+
     # Venue-level coordinate corrections (one fix → every show at that venue).
     # Sources (Ticketmaster, geocoders) sometimes pin a venue to a same-named
     # landmark or null-island (0,0); data/venue_coords.json holds verified coords
@@ -871,6 +967,64 @@ def main():
                 s["lat"], s["lng"] = v[0], v[1]
                 fixed += 1
         print(f"  fixed {fixed} show coord(s) from venue_coords.json ({len(vcoords)} venue fixes)")
+
+    # ── 城市標籤正規化(2026-08-12)────────────────────────────────────────────
+    # 不同來源對同一座城市寫法不一:「Chicago」vs「Chicago, IL」、「Boston」vs「Boston, MA」
+    # ——全站實測 70 組。後果:城市清單同一城出現兩次、該城的演出被拆到兩個項目、
+    # 站上宣稱的城市數被灌水 70。
+    # 但**不能單純按名字合併**:Bloomington(IN/IL)、Duluth(MN/GA)、Charleston(SC/WV)
+    # 是不同城市。所以先用座標分群(同群 = 同一個都會區),只在群內統一標籤,
+    # 並優先採用帶州別的寫法(資訊較多、也是卡片既有的顯示慣例)。
+    def _cluster(pts, radius_km=80):
+        """單鏈接分群:座標距離 < radius 視為同一都會區。"""
+        groups = []
+        for i, p in enumerate(pts):
+            hit = next((g for g in groups if any(_km(p, pts[j]) < radius_km for j in g)), None)
+            if hit is None:
+                hit = []
+                groups.append(hit)
+            hit.append(i)
+        return groups
+
+    def _km(a, b):
+        import math
+        (la1, lo1), (la2, lo2) = a, b
+        p1, p2 = math.radians(la1), math.radians(la2)
+        dp, dl = math.radians(la2 - la1), math.radians(lo2 - lo1)
+        h = math.sin(dp / 2) ** 2 + math.cos(p1) * math.cos(p2) * math.sin(dl / 2) ** 2
+        return 2 * 6371.0 * math.asin(min(1, math.sqrt(h)))
+
+    # ⚠️ 只用「城市基名」當鍵,**不要**把 country 併進去 —— 這個階段 country 還沒經過
+    # _COUNTRY_CANON 正規化(USA / US / United States 混用),把它放進鍵會讓同一城的
+    # 兩種寫法落到不同群、整個判斷失效(2026-08-12 第一版就是這樣只修到 4 筆)。
+    # 跨國同名城市由下面的 80km 座標分群隔開,不需要靠 country。
+    by_base = {}
+    for s in by_id.values():
+        c = (s.get("city") or "").strip()
+        if not c or s.get("lat") is None:
+            continue
+        by_base.setdefault(c.split(",")[0].strip().lower(), []).append(s)
+
+    n_city = 0
+    for base, recs in by_base.items():
+        labels = {(r.get("city") or "").strip() for r in recs}
+        if len(labels) < 2:
+            continue
+        pts = [(r["lat"], r["lng"]) for r in recs]
+        for grp in _cluster(pts):
+            members = [recs[i] for i in grp]
+            forms = collections.Counter((m.get("city") or "").strip() for m in members)
+            if len(forms) < 2:
+                continue
+            # 帶州別(含逗號)的優先;同類再比出現次數,最後比字母序求穩定
+            canon = sorted(forms, key=lambda f: (0 if "," in f else 1, -forms[f], f))[0]
+            for m in members:
+                if (m.get("city") or "").strip() != canon:
+                    m["city"] = canon
+                    n_city += 1
+    if n_city:
+        print(f"  unified {n_city} record(s) to a canonical city label "
+              f"(同城兩種寫法 → 一種;跨州同名城市以座標分群不誤併)")
 
     # Same-place dedup. The (group, city, venue) pass above misses the same engagement
     # listed by two sources under DIFFERENT city labels for one venue — e.g. New Wimbledon
@@ -1384,7 +1538,11 @@ def main():
         s["country"] = _COUNTRY_CANON.get(s.get("country"), s.get("country"))
         # broadway.org 巡演部分站沒場館名,scraper 拿 city 當 venue → 卡片場館列顯示重複的
         # 城市名(2026-07-10 稽核 10 筆)。改存 None,前端條件渲染。
-        if s.get("venue") and s["venue"] == s.get("city"):
+        # ⚠️ 大小寫/前後空白要一起折:原本用精確比對,遇到 venue="COSTA DE ADEJE" 對
+        # city="Costa De Adeje" 就漏掉,卡片仍然印出「COSTA DE ADEJE, Costa De Adeje, Spain」
+        # (2026-08-12 產物比對抓到)。
+        if s.get("venue") and s.get("city") \
+                and s["venue"].strip().casefold() == s["city"].strip().casefold():
             s["venue"] = None
         # 場館名尾端帶「, 城市」「- NY」等冗餘後綴(ATG/TM 慣例;city 另有欄位)→剝除
         # (2026-07-15 使用者抓包 Capitol Theatre, Sydney / Imperial Theatre - NY;全庫 57 筆)
