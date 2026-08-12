@@ -1,20 +1,28 @@
 # Cloudflare Pages 安全標頭(2026-07-15;見 CHANGELOG v2.44.3)
 # clickjacking:me/settings 有即時寫入(公開開關/改名),絕不可被外站 iframe 疊層誘點。
 #
-# 🚨 未解問題(2026-08-12 實測,v2.61.0):**下面這些具體路徑的規則沒有生效**。
-#    正式站與 pages.dev 原始站的 /me.html /settings.html /me-input.html 都只拿到
-#    最後那條 /* 的 nosniff+Referrer-Policy,X-Frame-Options 與 CSP 完全不出現。
-#    已排除的可能:
-#      · 不是 CDN 那層拿掉的 —— pages.dev 原始站同樣沒有
-#      · 不是設定檔沒被消化 —— /_headers 與 /_redirects 都回 404(已被 Pages 吃掉),
-#        且 _redirects 的 /en/ → 301 在 pages.dev 確實有效
-#      · 不是規則順序 —— 把 /* 移到最前面實測仍然沒有 XFO(已還原成本來的寫法)
-#    影響:主站的 me/settings 目前可被外站 iframe 疊層(my. 子網域不受影響,
-#    那邊每個回應都是 Worker 自組、標頭由 my-worker.js 的 secHeaders() 補上)。
-#    下一步待查:Pages 專案設定是否有覆蓋、或改用 Worker/Transform Rule 供應標頭。
+# ⚠️ 路徑一定要寫「無副檔名」那個形式(2026-08-12 v2.61.2 查明根因)
+#    Cloudflare Pages 的 html_handling 預設會把 /me.html 用 308 導到 /me,
+#    而 _headers 是拿「該次回應的請求路徑」比對 —— 所以只寫 /me.html 時,
+#    規則其實有生效,只是生效在那個沒人停留的 308 回應上;使用者最後停在 /me,
+#    只吃得到最後那條 /* 。站內連結全寫 /me.html,等於防護 100% 落空。
+#    (先前誤判成「具體路徑規則不生效」,是因為輪詢工具預設跟隨轉址,
+#     看到的是最終 /me 的標頭。用 curl 不跟隨轉址就能看到 308 上有 XFO。)
+#    → .html 與無副檔名兩種都列,直接打 /me.html 的請求也照樣受保護。
+
+/me
+  X-Frame-Options: DENY
+  Content-Security-Policy: frame-ancestors 'none'
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: no-referrer
 
 /me.html
-  X-MM-Rule: specific-me
+  X-Frame-Options: DENY
+  Content-Security-Policy: frame-ancestors 'none'
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: no-referrer
+
+/settings
   X-Frame-Options: DENY
   Content-Security-Policy: frame-ancestors 'none'
   X-Content-Type-Options: nosniff
@@ -27,6 +35,11 @@
   Referrer-Policy: no-referrer
 
 # me-input 需被 me.html 同源 iframe 嵌入 → SAMEORIGIN(不可 DENY)
+/me-input
+  X-Frame-Options: SAMEORIGIN
+  Content-Security-Policy: frame-ancestors 'self'
+  X-Content-Type-Options: nosniff
+
 /me-input.html
   X-Frame-Options: SAMEORIGIN
   Content-Security-Policy: frame-ancestors 'self'
@@ -34,6 +47,5 @@
 
 # 全站基本防線
 /*
-  X-MM-Rule: global
   X-Content-Type-Options: nosniff
   Referrer-Policy: no-referrer

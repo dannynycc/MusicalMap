@@ -171,6 +171,25 @@ function genNotFound() {
        .replace(/(<meta name="viewport"[^>]*>)/,
                 '$1\n  <meta name="robots" content="noindex, follow" />');
 
+  // og:/twitter: 也是從 about.html 抄來的,不處理的話貼一個打錯的網址到
+  // Slack/Discord/X,預覽卡會標「About — MusicalMap」配關於頁的圖 —— 內容說找不到頁面、
+  // 卡片卻說關於我們。noindex 擋不住這個(預覽爬蟲不執行 JS 也不看 robots meta),
+  // 所以描述類標籤要一起改掉;og:image / og:site_name 保留(品牌識別仍正確)。
+  const NF_TITLE = "Page not found — MusicalMap";
+  const NF_DESC = "This address doesn’t exist, or the page has moved.";
+  h = h.replace(/<meta property="og:url"[^>]*>/,
+                '<meta property="og:url" content="https://themusicalmap.com/" />')
+       .replace(/<meta property="og:title"[^>]*>/,
+                `<meta property="og:title" content="${NF_TITLE}" />`)
+       .replace(/<meta property="og:description"[^>]*>/,
+                `<meta property="og:description" content="${NF_DESC}" />`)
+       .replace(/<meta name="twitter:title"[^>]*>/,
+                `<meta name="twitter:title" content="${NF_TITLE}" />`)
+       .replace(/<meta name="twitter:description"[^>]*>/,
+                `<meta name="twitter:description" content="${NF_DESC}" />`)
+       .replace(/<meta name="description"[^>]*>/,
+                `<meta name="description" content="${NF_DESC}" />`);
+
   fs.writeFileSync("404.html", h);
   console.log("404.html written (soft-404 修正:未匹配路徑改回真正的 404)");
 }
