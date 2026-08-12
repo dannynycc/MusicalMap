@@ -14,6 +14,7 @@
 #    下一步待查:Pages 專案設定是否有覆蓋、或改用 Worker/Transform Rule 供應標頭。
 
 /me.html
+  X-MM-Rule: specific-me
   X-Frame-Options: DENY
   Content-Security-Policy: frame-ancestors 'none'
   X-Content-Type-Options: nosniff
@@ -33,5 +34,6 @@
 
 # 全站基本防線
 /*
+  X-MM-Rule: global
   X-Content-Type-Options: nosniff
   Referrer-Policy: no-referrer
