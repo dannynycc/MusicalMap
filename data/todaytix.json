@@ -1,39 +1,17 @@
 {
   "meta": {
     "source": "todaytix.com",
-    "tt_musicals_seen": 251,
-    "matched_links": 104,
-    "matched_works": 82
+    "tt_musicals_seen": 252,
+    "matched_links": 88,
+    "matched_works": 72
   },
   "map": {
-    "rocky horror show": [
-      {
-        "loc": "nyc",
-        "city": "New York",
-        "url": "https://www.todaytix.com/nyc/shows/43905-the-rocky-horror-show-on-broadway",
-        "name": "The Rocky Horror Show on Broadway"
-      }
-    ],
     "lost boys": [
       {
         "loc": "nyc",
         "city": "New York",
         "url": "https://www.todaytix.com/nyc/shows/43812-the-lost-boys-on-broadway",
         "name": "The Lost Boys on Broadway"
-      }
-    ],
-    "moulin rouge": [
-      {
-        "loc": "nyc",
-        "city": "New York",
-        "url": "https://www.todaytix.com/nyc/shows/15911-moulin-rouge-the-musical",
-        "name": "Moulin Rouge! The Musical on Broadway"
-      },
-      {
-        "loc": "london",
-        "city": "London",
-        "url": "https://www.todaytix.com/london/shows/23350-moulin-rouge-the-musical",
-        "name": "Moulin Rouge! The Musical"
       }
     ],
     "chicago": [
@@ -52,26 +30,20 @@
         "name": "Schmigadoon! on Broadway"
       }
     ],
-    "great gatsby": [
-      {
-        "loc": "nyc",
-        "city": "New York",
-        "url": "https://www.todaytix.com/nyc/shows/38749-the-great-gatsby-on-broadway",
-        "name": "The Great Gatsby on Broadway"
-      }
-    ],
     "titanique": [
       {
         "loc": "nyc",
         "city": "New York",
         "url": "https://www.todaytix.com/nyc/shows/25241-titanique",
         "name": "Titanique on Broadway"
-      },
+      }
+    ],
+    "great gatsby": [
       {
-        "loc": "london",
-        "city": "London",
-        "url": "https://www.todaytix.com/london/shows/40903-titanique",
-        "name": "Titanique"
+        "loc": "nyc",
+        "city": "New York",
+        "url": "https://www.todaytix.com/nyc/shows/38749-the-great-gatsby-on-broadway",
+        "name": "The Great Gatsby on Broadway"
       }
     ],
     "and juliet": [
@@ -124,12 +96,6 @@
         "city": "London",
         "url": "https://www.todaytix.com/london/shows/24465-hadestown",
         "name": "Hadestown"
-      },
-      {
-        "loc": "sf-bay-area",
-        "city": "San Francisco",
-        "url": "https://www.todaytix.com/sf-bay-area/shows/46269-hadestown-sfo",
-        "name": "Hadestown"
       }
     ],
     "operation mincemeat": [
@@ -176,12 +142,6 @@
         "name": "Maybe Happy Ending on Broadway"
       },
       {
-        "loc": "chicago",
-        "city": "Chicago",
-        "url": "https://www.todaytix.com/chicago/shows/46636-maybe-happy-ending",
-        "name": "Maybe Happy Ending"
-      },
-      {
         "loc": "washington-dc",
         "city": "Washington",
         "url": "https://www.todaytix.com/washington-dc/shows/46561-maybe-happy-ending",
@@ -200,12 +160,6 @@
         "city": "London",
         "url": "https://www.todaytix.com/london/shows/287-the-book-of-mormon",
         "name": "The Book of Mormon"
-      },
-      {
-        "loc": "chicago",
-        "city": "Chicago",
-        "url": "https://www.todaytix.com/chicago/shows/46957-the-book-of-mormon",
-        "name": "THE BOOK OF MORMON"
       }
     ],
     "hamilton": [
@@ -330,14 +284,6 @@
         "name": "Masquerade"
       }
     ],
-    "galileo": [
-      {
-        "loc": "nyc",
-        "city": "New York",
-        "url": "https://www.todaytix.com/nyc/shows/46289-galileo-on-broadway",
-        "name": "Galileo on Broadway"
-      }
-    ],
     "beetlejuice": [
       {
         "loc": "london",
@@ -362,12 +308,12 @@
         "name": "Disney's Hercules"
       }
     ],
-    "les miserables": [
+    "moulin rouge": [
       {
         "loc": "london",
         "city": "London",
-        "url": "https://www.todaytix.com/london/shows/300-les-miserables",
-        "name": "Les Misérables"
+        "url": "https://www.todaytix.com/london/shows/23350-moulin-rouge-the-musical",
+        "name": "Moulin Rouge! The Musical"
       }
     ],
     "oliver": [
@@ -376,6 +322,14 @@
         "city": "London",
         "url": "https://www.todaytix.com/london/shows/40713-oliver",
         "name": "Oliver!"
+      }
+    ],
+    "les miserables": [
+      {
+        "loc": "london",
+        "city": "London",
+        "url": "https://www.todaytix.com/london/shows/300-les-miserables",
+        "name": "Les Misérables"
       }
     ],
     "phantom of the opera": [
@@ -448,20 +402,20 @@
         "name": "Into The Woods"
       }
     ],
-    "im every woman": [
-      {
-        "loc": "london",
-        "city": "London",
-        "url": "https://www.todaytix.com/london/shows/46845-im-every-woman",
-        "name": "I'm Every Woman - The Chaka Khan Musical"
-      }
-    ],
     "sinatra": [
       {
         "loc": "london",
         "city": "London",
         "url": "https://www.todaytix.com/london/shows/46142-sinatra-the-musical",
         "name": "Sinatra The Musical"
+      }
+    ],
+    "im every woman": [
+      {
+        "loc": "london",
+        "city": "London",
+        "url": "https://www.todaytix.com/london/shows/46845-im-every-woman",
+        "name": "I'm Every Woman - The Chaka Khan Musical"
       }
     ],
     "paddington": [
@@ -480,14 +434,6 @@
         "name": "High School Musical"
       }
     ],
-    "trainspotting": [
-      {
-        "loc": "london",
-        "city": "London",
-        "url": "https://www.todaytix.com/london/shows/46540-trainspotting-the-musical",
-        "name": "Trainspotting the Musical"
-      }
-    ],
     "rent": [
       {
         "loc": "london",
@@ -502,14 +448,6 @@
         "city": "London",
         "url": "https://www.todaytix.com/london/shows/47121-ride-the-cyclone",
         "name": "Ride The Cyclone"
-      }
-    ],
-    "million dollar quartet": [
-      {
-        "loc": "london",
-        "city": "London",
-        "url": "https://www.todaytix.com/london/shows/47555-million-dollar-quartet",
-        "name": "Million Dollar Quartet"
       }
     ],
     "hot mess": [
@@ -528,20 +466,20 @@
         "name": "Thelma & Louise: A New Musical"
       }
     ],
-    "jonathan larson project": [
-      {
-        "loc": "london",
-        "city": "London",
-        "url": "https://www.todaytix.com/london/shows/47298-the-jonathan-larson-project",
-        "name": "The Jonathan Larson Project"
-      }
-    ],
     "dog man": [
       {
         "loc": "london",
         "city": "London",
         "url": "https://www.todaytix.com/london/shows/46117-dog-man-the-musical",
         "name": "Dog Man - The Musical"
+      }
+    ],
+    "jonathan larson project": [
+      {
+        "loc": "london",
+        "city": "London",
+        "url": "https://www.todaytix.com/london/shows/47298-the-jonathan-larson-project",
+        "name": "The Jonathan Larson Project"
       }
     ],
     "last ship": [
@@ -680,22 +618,6 @@
         "name": "Jack and The Beanstalk"
       }
     ],
-    "vape the grease parody": [
-      {
-        "loc": "chicago",
-        "city": "Chicago",
-        "url": "https://www.todaytix.com/chicago/shows/47533-vape-the-grease-parody",
-        "name": "Vape! The Grease Parody"
-      }
-    ],
-    "jekyll and hyde": [
-      {
-        "loc": "chicago",
-        "city": "Chicago",
-        "url": "https://www.todaytix.com/chicago/shows/44958-jekyll-and-hyde",
-        "name": "Jekyll & Hyde"
-      }
-    ],
     "notebook": [
       {
         "loc": "chicago",
@@ -708,14 +630,6 @@
         "city": "Washington",
         "url": "https://www.todaytix.com/washington-dc/shows/44615-the-notebook",
         "name": "The Notebook"
-      }
-    ],
-    "jersey boys": [
-      {
-        "loc": "chicago",
-        "city": "Chicago",
-        "url": "https://www.todaytix.com/chicago/shows/46643-jersey-boys-chi",
-        "name": "Jersey Boys"
       }
     ],
     "dirty dancing": [
@@ -732,34 +646,12 @@
         "name": "Dirty Dancing"
       }
     ],
-    "waitress": [
-      {
-        "loc": "chicago",
-        "city": "Chicago",
-        "url": "https://www.todaytix.com/chicago/shows/46953-waitress",
-        "name": "Waitress"
-      },
-      {
-        "loc": "washington-dc",
-        "city": "Washington",
-        "url": "https://www.todaytix.com/washington-dc/shows/46951-waitress-dc",
-        "name": "Waitress"
-      }
-    ],
     "beauty and the beast": [
       {
         "loc": "los-angeles",
         "city": "Los Angeles",
         "url": "https://www.todaytix.com/los-angeles/shows/46372-disneys-beauty-and-the-beast",
         "name": "Disney's Beauty and the Beast"
-      }
-    ],
-    "water for elephants": [
-      {
-        "loc": "los-angeles",
-        "city": "Los Angeles",
-        "url": "https://www.todaytix.com/los-angeles/shows/46375-water-for-elephants",
-        "name": "Water for Elephants"
       }
     ],
     "come from away": [
@@ -776,14 +668,6 @@
         "city": "Washington",
         "url": "https://www.todaytix.com/washington-dc/shows/46562-hells-kitchen",
         "name": "Hell’s Kitchen"
-      }
-    ],
-    "whispering jack": [
-      {
-        "loc": "sydney",
-        "city": "Sydney",
-        "url": "https://www.todaytix.com/sydney/shows/45309-whispering-jack-the-john-farnham-musical",
-        "name": "Whispering Jack: The John Farnham Musical at Sydney Theatre Company"
       }
     ],
     "a beautiful noise": [
