@@ -554,6 +554,29 @@ def main():
                 npid += 1
         print(f"  merged place_id into {npid}/{len(venues)} venues")
 
+    # 最終去重(2026-08-12):上面各來源的合併是用「本地語名稱」比對(match(city, zh, native)),
+    # 拉丁字母、沒有中文別名的場館比不中 → 同一個場館被重複塞進清單。實測 12 組
+    # (Coca-Cola Arena@Dubai、Gran Teatre del Liceu@Barcelona…),而且座標完全相同,
+    # 使用者在 My Musicals 的自動帶入清單會看到一模一樣的兩筆、不知道要選哪個。
+    # 這裡以 (顯示名去空白小寫, 城市) 為鍵做最後一道:保留第一筆,把其餘的 search 併進去
+    # (別丟掉別名,否則用另一種寫法就搜不到了)。
+    _seen, _uniq, _merged_dup = {}, [], 0
+    for v in venues:
+        k = (re.sub(r"\s+", " ", (v.get("name") or "")).strip().lower(),
+             (v.get("city") or "").strip().lower())
+        if k in _seen:
+            prev = _seen[k]
+            extra = (v.get("search") or "").strip()
+            if extra and extra not in prev.get("search", ""):
+                prev["search"] = (prev.get("search", "") + " " + extra).strip()
+            _merged_dup += 1
+            continue
+        _seen[k] = v
+        _uniq.append(v)
+    if _merged_dup:
+        print(f"  merged {_merged_dup} duplicate venue entr(ies) (同名同城,自動帶入會重複出現)")
+    venues = _uniq
+
     out = {
         "venues": sorted(venues, key=lambda v: v["name"]),
         "cities": [{"city": c, "country": k} for c, k in cities],

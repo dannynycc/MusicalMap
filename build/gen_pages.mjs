@@ -132,7 +132,45 @@ export function genPages() {
       fs.writeFileSync(out, bake(src, slug, lang, T));
     }
   }
+  genNotFound();
   const miss = [...new Set(missing)];
   console.log(`static pages: ${PAGE_SLUGS.length} slugs × ${LANGS.length} langs written (en at root)` +
     (miss.length ? `(缺譯退回繁中 ${miss.length}: ${miss.slice(0, 8).join(", ")}${miss.length > 8 ? "…" : ""})` : ""));
+}
+
+// 404 頁(v2.61.0)。Cloudflare Pages 在專案沒有 404.html 時,會對**任何**找不到的路徑
+// 回 index.html + HTTP 200 —— 實測 /data/xxx.json、/js/xxx.js、/亂打的網址 全都拿到
+// 721KB 的首頁 HTML 且狀態 200。那是 Google 明文點名的 soft 404:每個打錯的網址都變成
+// 一個「200 的重複首頁」,而且缺檔案時前端拿到 HTML 而非 404,錯誤訊息也會很難懂。
+//
+// 外殼直接沿用剛烘好的英文版 about.html(頁首/頁尾/底色/字型/i18n 載入器完全同一份),
+// 只換 <main> 內容與 <title>,並加 noindex(錯誤頁不該進索引)、拿掉 canonical/hreflang
+// (它們指向 /about,留著會把 404 頁誤導成 about 的替代版本)。
+function genNotFound() {
+  let h = fs.readFileSync("about.html", "utf8");
+
+  h = h.replace(/<main\b[^>]*>[\s\S]*?<\/main>/,
+    '<main class="legal">\n' +
+    '  <h1 class="about-h1" data-i18n="nf_h1">Page not found</h1>\n' +
+    '  <p class="about-lede" data-i18n="nf_lede">This address doesn’t exist, or the page has moved. ' +
+    'Head back to the map to see what’s playing right now.</p>\n' +
+    '  <p><a href="/" data-i18n="nf_home">Back to the map</a> · ' +
+    '<a href="/guide" data-i18n="nf_guide">Read the guide</a></p>\n' +
+    '</main>');
+
+  h = h.replace(/<title[^>]*>[\s\S]*?<\/title>/,
+    '<title data-i18n="nf_title">Page not found — MusicalMap</title>');
+
+  // 語言切換:外殼是從 about.html 來的,選單連結都指向 /about、/zh-hant/about。
+  // 在 404 頁切語言應該回該語言的首頁,不是跳到「關於」頁。
+  h = h.replace(/(<a\b[^>]*data-hl-link="([^"]+)"[^>]*)href="[^"]*"/g,
+    (_m, head, target) => `${head}href="${target === "en" ? "/" : "/" + target + "/"}"`);
+  // 錯誤頁不進索引;canonical/hreflang 指向 /about 會誤導,一併移除
+  h = h.replace(/\s*<link rel="canonical"[^>]*>/g, "")
+       .replace(/\s*<link rel="alternate" hreflang="[^"]*"[^>]*>/g, "")
+       .replace(/(<meta name="viewport"[^>]*>)/,
+                '$1\n  <meta name="robots" content="noindex, follow" />');
+
+  fs.writeFileSync("404.html", h);
+  console.log("404.html written (soft-404 修正:未匹配路徑改回真正的 404)");
 }

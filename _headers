@@ -1,5 +1,15 @@
 # Cloudflare Pages 安全標頭(2026-07-15;見 CHANGELOG v2.44.3)
 # clickjacking:me/settings 有即時寫入(公開開關/改名),絕不可被外站 iframe 疊層誘點。
+#
+# ⚠️ 順序很重要(2026-08-12 修):原本 /* 放在檔案最後,實測主站 /me.html 只拿到 /* 的
+# nosniff+referrer,X-Frame-Options 與 CSP 完全沒出現 —— 亦即後面的規則把前面的整組蓋掉。
+# 把全站基本防線移到最前面,具體路徑放後面覆寫,才拿得到 DENY/SAMEORIGIN。
+# (my. 子網域不受影響:那邊每個回應都是 Worker 自組,標頭在 my-worker.js 的 secHeaders() 補。)
+
+# 全站基本防線(放最前面,讓下面的具體規則能覆寫)
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: no-referrer
 
 /me.html
   X-Frame-Options: DENY
@@ -17,9 +27,5 @@
 /me-input.html
   X-Frame-Options: SAMEORIGIN
   Content-Security-Policy: frame-ancestors 'self'
-  X-Content-Type-Options: nosniff
-
-# 全站基本防線
-/*
   X-Content-Type-Options: nosniff
   Referrer-Policy: no-referrer

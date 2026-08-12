@@ -101,6 +101,14 @@ export default {
     // 尾斜線正規化(相對路徑解析需要 /danny 而非 /danny/)
     if (path.endsWith('/')) return Response.redirect(url.origin + '/' + seg, 301);
 
+    // 大小寫正規化(2026-08-12)。查詢一律用小寫,所以 /DANNY /Danny /danny 都查得到同一人
+    // 並各自回 200,而注入的 canonical 是照原網址自指 → Google 看到三個內容一樣、又都宣稱
+    // 自己是正規版的網址(重複內容)。DB 端的 handle 大小寫碰撞早就修過,但網址層沒有;
+    // 這裡比照尾斜線,一律 301 收斂到小寫。
+    if (seg !== seg.toLowerCase()) {
+      return Response.redirect(url.origin + '/' + seg.toLowerCase() + url.search, 301);
+    }
+
     const handle = seg.toLowerCase();
 
     // 0) FR24 式同網址:本人(mm_owner cookie 相符)→ 同網址出「編輯版」me.html。

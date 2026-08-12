@@ -11,6 +11,93 @@
 
 ---
 
+## [v2.61.0] - 2026-08-12 18:00
+
+### 第二輪全面除錯:再抓 10 個問題(排除 6 個誤報)
+
+第一輪掃的是資料;這輪換沒碰過的區域 —— 產物設定、Worker、i18n、archive、
+以及**把 README/CHANGELOG 當規格書逐條回打線上行為**(使用者建議的角度,很有效)。
+
+**1. soft 404:任何打錯的網址都回 HTTP 200 + 完整首頁**
+   `/data/xxx.json`、`/js/xxx.js`、`/亂打的路徑` 全都拿到 721KB 的首頁 HTML、狀態 200。
+   Cloudflare Pages 在專案沒有 `404.html` 時就是這個行為。後果:Google 明文點名的
+   soft 404(每個錯字網址都是一個「200 的重複首頁」),而且缺檔案時前端拿到 HTML 而非
+   404,錯誤訊息難以判讀。→ `gen_pages.mjs` 新增 `genNotFound()`,**直接沿用剛烘好的
+   about.html 外殼**(頁首/頁尾/底色/字型/i18n 載入器逐字相同),只換 `<main>` 與 `<title>`,
+   加 `noindex`、移除指向 /about 的 canonical/hreflang、語言切換改指各語言首頁。
+   ⚠️ 同步把 `404.html` 加進 workflow 的 `git add` 清單(v2.54.1 就是漏 add 讓產物永遠上不了線)。
+
+**2. 中文標題含數字 → group 只剩那串數字**
+   `_norm` 的 ASCII 濾網會清掉所有中日韓文,後備只在「結果完全空」時才觸發;
+   標題裡有阿拉伯數字時數字會存活 → 後備不觸發。實際後果:
+   **【2026臺北藝穗節】的 5 齣不同作品全部變成 `group='2026'`**,站上搜尋「藝穗」
+   只出 1 張卡。另有「生命最美好的5分鍾」→`5`、「6點下班」→`6`、「環遊世界80+1天」→`80 1`
+   等。→ 後備條件改為「ASCII 殘存物一個英文字母都沒有、而原標題有 CJK/假名/諺文」。
+   實跑:10 筆 group 修正、純數字 group 歸零、7 項回歸(SIX/Mamma Mia/Les Mis…)全過。
+
+**3. `_headers` 宣告的點擊劫持防護在主站沒生效**
+   實測 `themusicalmap.com/me.html`、`/settings.html`、`/me-input.html`
+   **完全沒有 X-Frame-Options 或 CSP frame-ancestors**,只吃到檔尾 `/*` 的
+   nosniff+referrer —— 亦即後面的規則把前面的整組蓋掉。這兩頁有即時寫入(公開開關/改名),
+   正是 v2.44.3 當初要防的。→ `/*` 移到檔案最前面,具體路徑放後面覆寫。
+   (my. 子網域不受影響,那邊的標頭由 Worker 的 `secHeaders()` 自組。)
+
+**4. handle 大小寫產生三個互相重複的網址**
+   `/danny`、`/DANNY`、`/Danny` 都回 200,而注入的 canonical **各自指向自己**。
+   DB 端的大小寫碰撞早就修過,但網址層沒有。→ Worker 比照尾斜線,一律 301 收斂到小寫。
+   ⚠️ **Worker 不在 CI 部署範圍**(CI 的 wrangler 只跑 `pages deploy`),此項需手動
+   `cd worker && npx wrangler deploy` 才會生效。
+
+**5. `my.themusicalmap.com/danny/extra` 回 200 且內容是主站首頁**
+   多層路徑被代理到 Pages,Pages 回首頁 200 → my. 子網域繼承了同一個 soft 404。
+   Worker 是 `status: r.status` 原樣轉發,所以第 1 項的 `404.html` 上線後這條自動修好。
+
+**6. robots.txt 只擋 `/build/`,沒擋其他開發檔案**
+   Pages artifact 是 `path: .`,**整個 repo 都上線**:實測 `/scrapers/build_shows.py`、
+   `/build/gen_site.mjs`、`/CHANGELOG.md`(578KB)全都取得到。公開 repo 本來就看得到原始碼,
+   不是洩密;但讓爬蟲索引程式碼與變更紀錄只會稀釋主題、浪費 crawl budget。
+   → Disallow 補上 `/scrapers/ /logs/ /supabase/ /worker/ /docs/ /.github/`
+   與 CHANGELOG.md、README.md、package*.json。(金鑰檔實測**取不到** ✓,gitignore 讓它們
+   根本不在 CI 檢出裡。)
+
+**7. 同一張卡出現兩顆文字一模一樣的購票鈕**
+   Paddington 有兩顆「ATG」(第二顆是 relaxed performance)、《阿卡的兒歌大冒險》有
+   **三顆一模一樣的「售票連結」**,使用者無從分辨。既有的去重只比 URL,看不到這一型。
+   → 新增同標籤去重(保留第一顆,來源優先序已排過),11 筆修正。
+
+**8. `venues_catalog` 同名同城重複 12 組**
+   合併是用「本地語名稱」比對,拉丁字母、沒有中文別名的場館(Coca-Cola Arena@Dubai、
+   Gran Teatre del Liceu@Barcelona…)比不中 → My Musicals 的自動帶入清單出現一模一樣的兩筆。
+   → 輸出前加最終去重(併 search 別名不丟失),5535 → 5523。
+
+**9. `official_sites` 兩個死鍵讓 3 齣戲拿不到官網連結**
+   `bat out of hell 50th anniversary`(站上 group 帶 ` tour`)、`tiger bunny`
+   (`_norm` 會把 `&` 轉成 ` and`,所以是 `tiger and bunny`)。→ 鍵改名對齊現行 group。
+
+**10. `audit_geo` 有 9 個國家從來沒被驗證過**
+   稽核每天印「(no bbox for: Argentina, Brazil, Hungary, Philippines, Poland,
+   Portugal, South Africa, Turkey, UAE)」卻沒人補 —— 這些市場多半靠人工策展或反爬來源,
+   更需要守門。→ 補上 9 國國界框。現在檢查 **2,124 筆 / 35 個框**(原 2,068 / 26),
+   0 違規:資料本來就是對的,但**過去沒有任何機制保證**。
+
+### 排除的誤報(6 個,每個都實際驗證過才排除)
+
+- 分享頁的 `ERR_BLOCKED_BY_ORB` 海報 → 備援鏈(代理→原圖→官方圖)本來就設計好了,
+  實測 **28 張海報全部載入、0 破圖**;那個錯誤只是第一次嘗試的雜訊。
+- i18n「zh-hant 缺 18 個鍵」→ 我的正則抓到字串**值**裡的 `deletion:`、`Contact:`;
+  字典完整,程式用到的鍵一個不缺。
+- archive「42 個檔案全部結構異常」→ 結構是 `{year, count, runs}`,是我的 parser 假設錯;
+  實際 41 年檔 / 3,930 runs / index 計數全對。
+- 中文搜尋失效 → 我的選擇器寫錯;實測「藝穗」「紅蓮/红莲」(簡繁互通)全都找得到。
+- `tour_name` 與 title 重複 169 筆 → `tourLine` 早就寫死空字串,根本不顯示。
+- `type=resident` 卻只演幾天 65 筆 → 前端完全沒用到 `show.type`。
+
+### 驗證
+
+全站 2,132 筆不變;重複標籤 0、catalog 重複 0、純數字 group 0;
+9 支稽核 7 綠 2 warn(與修改前基準相同,零新增違規);
+17 項純函式單元測試 + 互動測試(搜尋/標籤/卡片,含重音與簡繁)全過。
+
 ## [v2.60.0] - 2026-08-12 17:13
 
 ### 補齊缺座標場館:59 筆 → 8 筆(地圖上看不到的演出少了 86%)

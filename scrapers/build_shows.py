@@ -64,10 +64,19 @@ def _norm(title):
     # — no article before 'musical' — is left intact).
     t = re.sub(r"\s+(?:il|el|le|la|las|los|das|der|die|de|het|den)\s+musical\W*$", "", t)
     t = re.sub(r"[^a-z0-9]+", " ", t).strip()
-    if not t:  # ASCII-strip emptied it (CJK-only title, or a title that IS just
-        # "…Musical"). Fall back to Unicode word chars so CJK titles keep a stable,
-        # DISTINCT key — otherwise every Chinese-only show in a city collapses to ""
-        # and gets merged into one (e.g. 萬世巨星 vs 史瑞克 both -> "").
+    # ASCII-strip 把中日韓標題清空了(或標題本身就只是「…Musical」)→ 退回 Unicode
+    # 字元,讓 CJK 標題保有穩定且**可區分**的 key,否則同城的中文劇會全部塌成 "" 併成一齣
+    # (例:萬世巨星 vs 史瑞克 都變成 "")。
+    #
+    # ⚠️ 條件不能只看「空字串」:CJK 標題裡只要含阿拉伯數字,那些數字會通過 ASCII 濾網
+    # 存活下來,t 就不是空的、後備不觸發,group 只剩那串數字 ——
+    #   【2026臺北藝穗節】二一六 / 為我辦一場告別式 / 不識周郎 …  全部 → group "2026"
+    #   五齣不同的作品被併成同一齣(2026-08-12 實查:搜尋「藝穗」只出 1 張卡)。
+    # 所以再加一條:ASCII 殘存物**一個英文字母都沒有**、而原標題有 CJK/假名/諺文時,
+    # 同樣視為「被清空」。
+    _cjk = re.search(r"[㐀-䶿一-鿿豈-﫿"
+                     r"぀-ヿ가-힯]", title or "")
+    if not t or (not re.search(r"[a-z]", t) and _cjk):
         t = re.sub(r"[^\w]+", " ", title or "", flags=re.UNICODE).lower().strip()
     return t
 
@@ -1688,6 +1697,27 @@ def main():
             n_dedup += 1
     if n_dedup:
         print(f"  deduped ticket links on {n_dedup} record(s) (same URL listed twice)")
+
+    # 同一張卡出現**兩個文字一模一樣**的購票鈕(URL 不同但標籤相同)——使用者看到兩顆
+    # 「ATG」、三顆「售票連結」,完全無從分辨該點哪一個(2026-08-12 掃到 4 張卡 9 顆鈕:
+    # Paddington 的第二顆 ATG 是 relaxed performance 場次、阿卡的兒歌大冒險 有三顆同名)。
+    # 上面的去重只看 URL,看不到這一型。同標籤保留第一顆(來源優先序已排過,第一顆最權威)。
+    n_lbl = 0
+    for s in shows:
+        links = s.get("ticket_links") or []
+        seen_l, uniq = set(), []
+        for l in links:
+            key = (l.get("label") or "").strip().lower()
+            if key and key in seen_l:
+                continue
+            if key:
+                seen_l.add(key)
+            uniq.append(l)
+        if len(uniq) != len(links):
+            s["ticket_links"] = uniq
+            n_lbl += 1
+    if n_lbl:
+        print(f"  deduped ticket links on {n_lbl} record(s) (兩顆鈕文字相同、使用者分不出來)")
 
     # 中國售票連結 label 按目的地 host 統一(不同來源各自命名,如保利把大麥連結標「售票連結」、
     # 大麥 scraper 標「大麥」→ 同一齣劇不同城市標籤不一致)。依 host 正規化成品牌名,讓使用者一眼

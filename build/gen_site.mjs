@@ -410,11 +410,19 @@ function robots() {
   const bots = ["Googlebot", "Bingbot", "GPTBot", "OAI-SearchBot", "ChatGPT-User",
                 "ClaudeBot", "Claude-Web", "Claude-SearchBot", "PerplexityBot",
                 "Google-Extended", "Applebot-Extended"];
-  // /build/ = 頁面 source 模板(build/pages/*.html),部署會帶出去但不該被收錄(與變體頁重複內容)。
+  // Pages 的 artifact 是 `path: .`,**整個 repo 都會被部署上線** —— 實測
+  // /scrapers/build_shows.py、/build/gen_site.mjs、/CHANGELOG.md(578KB)全都取得到。
+  // 公開 repo 本來就看得到原始碼,不是洩密;但讓爬蟲去索引程式碼與變更紀錄,只會稀釋
+  // 站台主題、浪費 crawl budget(這站正在處理 GSC 收錄問題)。所以把開發用目錄與文件
+  // 一併排除。/data/ 不排除:那是站台本體的資料,也歡迎 AI 引用。
   // 每個 UA 群組都要各自 Disallow:爬蟲匹配到具名群組後會忽略 * 群組的規則。
+  const deny = ["/build/", "/scrapers/", "/logs/", "/supabase/", "/worker/", "/docs/",
+                "/.github/", "/CHANGELOG.md", "/README.md", "/package.json",
+                "/package-lock.json"];
+  const block = deny.map((d) => `Disallow: ${d}`).join("\n");
   return "# MusicalMap — open to all crawlers, including AI/answer engines.\n" +
-         "User-agent: *\nAllow: /\nDisallow: /build/\n\n" +
-         bots.map((b) => `User-agent: ${b}\nAllow: /\nDisallow: /build/`).join("\n\n") +
+         `User-agent: *\nAllow: /\n${block}\n\n` +
+         bots.map((b) => `User-agent: ${b}\nAllow: /\n${block}`).join("\n\n") +
          `\n\nSitemap: ${SITE}/sitemap.xml\n`;
 }
 

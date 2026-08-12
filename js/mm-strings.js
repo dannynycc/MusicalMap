@@ -200,6 +200,13 @@
       how_footer: 'MusicalMap — 全球音樂劇即時地圖，與你的音樂劇護照。', how_footer_link: '回到地圖',
       how_final_about: '這個網站由一位音樂劇迷獨立打造——背後的故事 →',
       // ---- about.html(關於頁) ----
+      // 404 頁(v2.61.0):在此之前找不到的網址一律回首頁 HTML + HTTP 200,
+      // Google 判為 soft 404、任何打錯的網址都變成一個重複的首頁。
+      nf_title: '找不到這個頁面 — MusicalMap',
+      nf_h1: '找不到這個頁面',
+      nf_lede: '這個網址不存在,或內容已經移動了。回到地圖看看現在正在上演什麼吧。',
+      nf_home: '回到地圖首頁',
+      nf_guide: '看看使用說明',
       about_title: '關於本站 — MusicalMap',
       about_meta: 'MusicalMap 是一個由劇迷個人打造的網站：一張顯示全球上演中音樂劇的即時地圖，加上一本屬於你自己的音樂劇護照。',
       about_h1: '關於 MusicalMap',
@@ -445,6 +452,12 @@
       how_final_h: 'Start anywhere', how_final_p: 'Let’s start at the very beginning — browse the map, or log the first show you ever saw.', how_final_cta: 'Build your passport', how_final_cta2: 'Explore the map first',
       how_footer: 'MusicalMap — a live world map of musicals, and your theatre passport.', how_footer_link: 'Back to the map',
       how_final_about: 'Built by one theatre fan who loves maps — the story →',
+      // ---- 404.html (v2.61.0) ----
+      nf_title: 'Page not found — MusicalMap',
+      nf_h1: 'Page not found',
+      nf_lede: 'This address doesn’t exist, or the page has moved. Head back to the map to see what’s playing right now.',
+      nf_home: 'Back to the map',
+      nf_guide: 'Read the guide',
       // ---- about.html ----
       about_title: 'About — MusicalMap',
       about_meta: 'MusicalMap is built by one theatre fan: a live world map of musicals playing right now, plus a theatre passport of your own.',
