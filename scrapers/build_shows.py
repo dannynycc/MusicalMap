@@ -1292,6 +1292,36 @@ def main():
     if _before != len(shows):
         print(f"  dropped {_before - len(shows)} ended show(s) (end < {_cutoff}; 過去月份由 archive 服務)")
 
+    # 季票佔位日期 —— 最後防線(2026-08-12)。
+    # 指紋:同一場館 + 同一「單日」(start == end) 擠了 ≥3 個不同 group。真實情況下一間
+    # 劇院不可能同一天上演三齣不同音樂劇;這是 TM 季票 event 的開季/起賣日被當成每齣戲
+    # 的演出日。tm_tours.py 已在來源端擋 subscription/season 字樣的 event,這裡守「沒想到
+    # 的變種」——2026-08-12 就漏了「…Broadway in Savannah Season」「…Celebrity Attractions'
+    # Broadway Season」兩種結尾寫法。
+    # 官方季程實錘(Celebrity Attractions 26-27, Little Rock):同掛 2026-10-30 的 4 齣裡
+    # 3 齣日期是錯的(The Wiz 實為 2027-01-08、Beauty and the Beast 2027-05-19、
+    # A Beautiful Noise 2027-07-30),只有開季的 Beetlejuice 對。無法逐齣判斷誰對,而
+    # 錯的檔期比沒有檔期更傷(使用者可能白跑一趟)→ 整組不出。
+    # 只認 start == end:劇目輪演的常備劇院(如 NDM Ostrava 整季區間)會有 ≥3 齣共用同一
+    # 段「多日」檔期,那是正常的,不可誤殺。
+    _single = {}
+    for s in shows:
+        if s.get("venue") and s.get("start_date") and s["start_date"] == s.get("end_date"):
+            _single.setdefault((s["venue"], s.get("city"), s["start_date"]), set()).add(s.get("group"))
+    _placeholder = {k for k, groups in _single.items() if len(groups) >= 3}
+    if _placeholder:
+        def _is_placeholder(s):
+            return (s.get("start_date") == s.get("end_date")
+                    and (s.get("venue"), s.get("city"), s.get("start_date")) in _placeholder)
+        _dropped = [s for s in shows if _is_placeholder(s)]
+        shows = [s for s in shows if not _is_placeholder(s)]
+        print(f"  dropped {len(_dropped)} season-placeholder date record(s) "
+              f"({len(_placeholder)} venue-day cluster(s); 季票起賣日≠演出日):")
+        for (v, c, d) in sorted(_placeholder):
+            names = sorted(s.get("title", "") for s in _dropped
+                           if s.get("venue") == v and s.get("city") == c and s.get("start_date") == d)
+            print(f"    · {v} @ {c} {d}: {names}")
+
     # link kind + tradition tag + search aliases. s["group"] is already set (from the
     # original title) — do NOT recompute it here.
     for s in shows:

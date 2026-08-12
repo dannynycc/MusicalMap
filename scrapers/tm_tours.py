@@ -95,7 +95,16 @@ def main():
                     # EVENINGS」)把整季 6 劇掛同一 attraction 清單,localDate=季票起賣日,
                     # 不是各劇演出日——Scranton/Little Rock/Lexington 13 筆假檔期全來自此
                     # (2026-07-14 官方季程比對實錘)。有 subscription/season package 字樣一律跳過。
-                    if re.search(r"subscription|season\s+(ticket|package)", e.get("name") or "", re.I):
+                    #
+                    # 2026-08-12 再擴:漏掉「名稱結尾就是 Season」的變種——
+                    #   「26-27 Broadway in Savannah Season」(Savannah,4 劇全掛 10-16)
+                    #   「2026-2027 Celebrity Attractions' Broadway Season」(Little Rock,4 劇全掛 10-30)
+                    # 官方季程實證:Little Rock 那組 4 筆有 3 筆日期是錯的(The Wiz 實際
+                    # 2027-01-08、Beauty and the Beast 2027-05-19、A Beautiful Noise 2027-07-30),
+                    # 10-30 其實只是開季的 Beetlejuice。結尾 Season 一律視為季票包。
+                    # (`\bseason\s*$` 不會誤中複數「Seasons」或劇名中段的 season。)
+                    if re.search(r"subscription|season\s+(ticket|package)|\bseason\s*$",
+                                 e.get("name") or "", re.I):
                         continue
                     v = (e.get("_embedded", {}).get("venues") or [{}])[0]
                     loc = v.get("location") or {}

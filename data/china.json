@@ -1,51 +1,16 @@
 {
   "meta": {
     "source": "shcstheatre.com",
-    "count": 5
+    "count": 6
   },
   "shows": [
-    {
-      "id": "shcs-41911",
-      "title": "基督山伯爵",
-      "type": "limited",
-      "venue": "上海文化广场 Shanghai Culture Square",
-      "city": "Shanghai",
-      "country": "China",
-      "lat": 31.212666,
-      "lng": 121.458089,
-      "start_date": "2026-07-08",
-      "end_date": "2026-07-11",
-      "ticket_url": "https://www.shcstheatre.com/Program/ProgramDetails.aspx?program_id=41911",
-      "image": "https://pic.shcstheatre.com/upload/program/1920x696/134230542546752864_70.jpg",
-      "tour_name": null,
-      "verified": true,
-      "source": "shcstheatre.com",
-      "city_cn": "上海"
-    },
-    {
-      "id": "shcs-41809",
-      "title": "粉丝来信",
-      "type": "limited",
-      "venue": "上海文化广场 Shanghai Culture Square",
-      "city": "Shanghai",
-      "country": "China",
-      "lat": 31.212666,
-      "lng": 121.458089,
-      "start_date": "2026-07-30",
-      "end_date": "2026-08-01",
-      "ticket_url": "https://www.shcstheatre.com/Program/ProgramDetails.aspx?program_id=41809",
-      "image": "https://pic.shcstheatre.com/upload/program/1920x696/134200301141730884_70.jpg",
-      "tour_name": null,
-      "verified": true,
-      "source": "shcstheatre.com",
-      "city_cn": "上海"
-    },
     {
       "id": "shcs-41885",
       "title": "大状王",
       "type": "limited",
       "venue": "上海文化广场 Shanghai Culture Square",
       "city": "Shanghai",
+      "city_cn": "上海",
       "country": "China",
       "lat": 31.212666,
       "lng": 121.458089,
@@ -55,8 +20,43 @@
       "image": "https://pic.shcstheatre.com/upload/program/1920x696/134226197673499555_70.jpg",
       "tour_name": null,
       "verified": true,
-      "source": "shcstheatre.com",
-      "city_cn": "上海"
+      "source": "shcstheatre.com"
+    },
+    {
+      "id": "shcs-41809",
+      "title": "粉丝来信",
+      "type": "limited",
+      "venue": "上海文化广场 Shanghai Culture Square",
+      "city": "Shanghai",
+      "city_cn": "上海",
+      "country": "China",
+      "lat": 31.212666,
+      "lng": 121.458089,
+      "start_date": "2026-07-30",
+      "end_date": "2026-08-01",
+      "ticket_url": "https://www.shcstheatre.com/Program/ProgramDetails.aspx?program_id=41809",
+      "image": "https://pic.shcstheatre.com/upload/program/1920x696/134200301141730884_70.jpg",
+      "tour_name": null,
+      "verified": true,
+      "source": "shcstheatre.com"
+    },
+    {
+      "id": "shcs-42043",
+      "title": "宝玉",
+      "type": "limited",
+      "venue": "上海文化广场 Shanghai Culture Square",
+      "city": "Shanghai",
+      "city_cn": "上海",
+      "country": "China",
+      "lat": 31.212666,
+      "lng": 121.458089,
+      "start_date": "2026-09-30",
+      "end_date": "2026-10-01",
+      "ticket_url": "https://www.shcstheatre.com/Program/ProgramDetails.aspx?program_id=42043",
+      "image": "https://pic.shcstheatre.com/upload/program/1920x696/134299613259145379_70.jpg",
+      "tour_name": null,
+      "verified": true,
+      "source": "shcstheatre.com"
     },
     {
       "id": "shcs-41938",
@@ -64,6 +64,7 @@
       "type": "limited",
       "venue": "上海文化广场 Shanghai Culture Square",
       "city": "Shanghai",
+      "city_cn": "上海",
       "country": "China",
       "lat": 31.212666,
       "lng": 121.458089,
@@ -73,8 +74,7 @@
       "image": "https://pic.shcstheatre.com/upload/program/1920x696/134242651449621250_70.jpg",
       "tour_name": null,
       "verified": true,
-      "source": "shcstheatre.com",
-      "city_cn": "上海"
+      "source": "shcstheatre.com"
     },
     {
       "id": "shcs-41918",
@@ -82,6 +82,7 @@
       "type": "limited",
       "venue": "上海文化广场 Shanghai Culture Square",
       "city": "Shanghai",
+      "city_cn": "上海",
       "country": "China",
       "lat": 31.212666,
       "lng": 121.458089,
@@ -91,8 +92,25 @@
       "image": "https://pic.shcstheatre.com/upload/program/1920x696/134235665050080648_70.jpg",
       "tour_name": null,
       "verified": true,
-      "source": "shcstheatre.com",
-      "city_cn": "上海"
+      "source": "shcstheatre.com"
+    },
+    {
+      "id": "shcs-42032",
+      "title": "爱因斯坦：时间相对论",
+      "type": "limited",
+      "venue": "上海文化广场 Shanghai Culture Square",
+      "city": "Shanghai",
+      "city_cn": "上海",
+      "country": "China",
+      "lat": 31.212666,
+      "lng": 121.458089,
+      "start_date": "2026-12-12",
+      "end_date": "2026-12-20",
+      "ticket_url": "https://www.shcstheatre.com/Program/ProgramDetails.aspx?program_id=42032",
+      "image": "https://pic.shcstheatre.com/upload/program/1920x696/134297098718770897_70.jpg",
+      "tour_name": null,
+      "verified": true,
+      "source": "shcstheatre.com"
     }
   ]
 }

@@ -25,6 +25,9 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    outputs:
+      # gate 失敗清單(空=全過)。由最後的 health job 判定整個 run 紅不紅。
+      failures: ${{ steps.gatecheck.outputs.failures }}
     steps:
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5  # v4
         with:
@@ -64,74 +67,106 @@ jobs:
       - name: Scrape sources & rebuild shows.json
         if: github.event_name != 'push'
         run: |
-          # Don't fail the whole run if one source is temporarily down;
-          # build_shows.py still merges whatever source files exist.
-          python scrapers/_run.py scrapers/westend.py     || echo "::warning::West End scrape failed"
-          python scrapers/_run.py scrapers/broadway.py    || echo "::warning::Broadway scrape failed"
-          python scrapers/_run.py scrapers/broadway_tours.py || echo "::warning::tours scrape failed"
-          python scrapers/_run.py scrapers/intl.py        || echo "::warning::international scrape failed"
-          python scrapers/_run.py scrapers/shiki.py       || echo "::warning::shiki scrape failed"
-          python scrapers/_run.py scrapers/takarazuka.py  || echo "::warning::takarazuka scrape failed"
-          python scrapers/_run.py scrapers/japan.py       || echo "::warning::japan (toho+) scrape failed"
-          python scrapers/_run.py scrapers/easteurope.py  || echo "::warning::easteurope (jegy.hu+) scrape failed"
-          python scrapers/_run.py scrapers/italy.py       || echo "::warning::italy (teatro.it) scrape failed"
-          python scrapers/_run.py scrapers/sweden.py      || echo "::warning::sweden (showtic) scrape failed"
-          python scrapers/_run.py scrapers/netherlands.py || echo "::warning::netherlands (stage) scrape failed"
-          python scrapers/_run.py scrapers/poland.py      || echo "::warning::poland (ebilet) scrape failed"
-          python scrapers/_run.py scrapers/norway.py      || echo "::warning::norway scrape failed"
-          python scrapers/_run.py scrapers/austria.py     || echo "::warning::austria (VBW) scrape failed"
-          python scrapers/_run.py scrapers/middleeast.py  || echo "::warning::middleeast (platinumlist) scrape failed"
-          python scrapers/_run.py scrapers/portugal.py    || echo "::warning::portugal (bol.pt) scrape failed"
-          python scrapers/_run.py scrapers/china.py       || echo "::warning::china (shcstheatre) scrape failed"
-          python scrapers/_run.py scrapers/china_poly.py  || echo "::warning::china_poly (polyt.cn) scrape failed"
-          python scrapers/_run.py scrapers/china_ypiao.py || echo "::warning::china_ypiao (ypiao) scrape failed"
-          python scrapers/_run.py scrapers/china_chinaticket.py || echo "::warning::china_chinaticket (zhongyan) scrape failed"
-          python scrapers/_run.py scrapers/china_juooo.py || echo "::warning::china_juooo (juooo.com) scrape failed"
-          python scrapers/_run.py scrapers/interpark.py   || echo "::warning::interpark scrape failed"
-          python scrapers/_run.py scrapers/atg.py         || echo "::warning::atg scrape failed"
-          python scrapers/_run.py scrapers/stage_de.py    || echo "::warning::stage scrape failed"
-          python scrapers/_run.py scrapers/madrid.py      || echo "::warning::madrid scrape failed"
-          python scrapers/_run.py scrapers/atrapalo.py    || echo "::warning::atrapalo (Fastly challenge) scrape failed"
-          python scrapers/_run.py scrapers/opentix.py     || echo "::warning::opentix scrape failed"
-          python scrapers/_run.py scrapers/utiki.py       || echo "::warning::utiki (kham+udn) scrape failed"
+          # ── CI 體檢閘門(2026-08-12 導入)────────────────────────────────────
+          # 之前每一支 scraper/稽核失敗都只印 ::warning::,workflow 永遠是綠的。
+          # 三支中國 scraper(china/ypiao/juooo)因 commit 7045a39 編碼損毀,整整 29 天
+          # 每一班都失敗、每一班都是綠燈,沒有任何人發現——「假綠燈」本身就是最大的 bug。
+          #
+          # 現在:失敗一律記進 FAILLOG。資料照常 build / commit / deploy(絕不因為單一
+          # 來源掛掉就停止更新線上內容),最後由獨立的 health job 讀 FAILLOG 決定整個
+          # run 紅不紅 → 使用者會收到 GitHub 的失敗通知。
+          #   gate = 失敗就該紅(真的壞了)
+          #   warn = 已知積欠或實驗性來源,只提醒;積欠清乾淨後要升級成 gate
+          FAILLOG="${RUNNER_TEMP}/ci_failures.txt"; : > "$FAILLOG"
+          gate() { label="$1"; shift; "$@" || { echo "::error::${label} 失敗"; echo "- ${label}" >> "$FAILLOG"; }; }
+          warn() { label="$1"; shift; "$@" || echo "::warning::${label} 失敗(已知待處理,不擋 CI)"; }
+
+          gate "West End (londontheatre)"      python scrapers/_run.py scrapers/westend.py
+          gate "Broadway"                      python scrapers/_run.py scrapers/broadway.py
+          gate "北美巡演 (broadway.org)"        python scrapers/_run.py scrapers/broadway_tours.py
+          gate "international"                 python scrapers/_run.py scrapers/intl.py
+          gate "劇団四季 (shiki)"               python scrapers/_run.py scrapers/shiki.py
+          gate "宝塚 (takarazuka)"              python scrapers/_run.py scrapers/takarazuka.py
+          gate "japan (toho+)"                 python scrapers/_run.py scrapers/japan.py
+          gate "easteurope (jegy.hu+)"         python scrapers/_run.py scrapers/easteurope.py
+          gate "italy (teatro.it)"             python scrapers/_run.py scrapers/italy.py
+          gate "sweden (showtic)"              python scrapers/_run.py scrapers/sweden.py
+          gate "netherlands (stage)"           python scrapers/_run.py scrapers/netherlands.py
+          gate "poland (ebilet)"               python scrapers/_run.py scrapers/poland.py
+          gate "norway"                        python scrapers/_run.py scrapers/norway.py
+          gate "austria (VBW)"                 python scrapers/_run.py scrapers/austria.py
+          gate "middleeast (platinumlist)"     python scrapers/_run.py scrapers/middleeast.py
+          gate "portugal (bol.pt)"             python scrapers/_run.py scrapers/portugal.py
+          gate "china (shcstheatre)"           python scrapers/_run.py scrapers/china.py
+          gate "china_poly (polyt.cn)"         python scrapers/_run.py scrapers/china_poly.py
+          gate "china_ypiao (ypiao)"           python scrapers/_run.py scrapers/china_ypiao.py
+          gate "china_chinaticket (zhongyan)"  python scrapers/_run.py scrapers/china_chinaticket.py
+          gate "china_juooo (juooo.com)"       python scrapers/_run.py scrapers/china_juooo.py
+          gate "interpark"                     python scrapers/_run.py scrapers/interpark.py
+          gate "atg"                           python scrapers/_run.py scrapers/atg.py
+          gate "stage_de"                      python scrapers/_run.py scrapers/stage_de.py
+          gate "madrid"                        python scrapers/_run.py scrapers/madrid.py
+          gate "atrapalo (Fastly challenge)"   python scrapers/_run.py scrapers/atrapalo.py
+          gate "opentix"                       python scrapers/_run.py scrapers/opentix.py
+          gate "utiki (kham+udn)"              python scrapers/_run.py scrapers/utiki.py
           # 實驗性:TicketWorld bot 牆對 headless 極嚴(本機 headless 全滅);失敗自動保留
-          # 既有 philippines.json / manual.json 的馬尼拉檔期(2026-07-14)
-          python scrapers/_run.py scrapers/philippines.py || echo "::warning::philippines (ticketworld) scrape failed"
-          python scrapers/_run.py scrapers/tm_tours.py    || echo "::warning::tm_tours sweep failed"
-          python scrapers/_run.py scrapers/ticketmaster.py || echo "::warning::ticketmaster scrape failed"
+          # 既有 philippines.json / manual.json 的馬尼拉檔期(2026-07-14)→ 刻意只警告
+          warn "philippines (ticketworld,實驗性)" python scrapers/_run.py scrapers/philippines.py
+          gate "tm_tours sweep"                python scrapers/_run.py scrapers/tm_tours.py
+          gate "ticketmaster"                  python scrapers/_run.py scrapers/ticketmaster.py
           python scrapers/_run.py scrapers/build_shows.py
           # TodayTix deep-link matcher (needs shows.json from the build above; the next
           # build_shows attaches its links). Affiliate re-point — see docs/DESIGN_affiliate.md.
-          python scrapers/_run.py scrapers/todaytix.py    || echo "::warning::todaytix matcher failed"
+          gate "todaytix matcher"              python scrapers/_run.py scrapers/todaytix.py
           # open-ended long-runners: fill end_date from TM's last on-sale date, then rebuild
-          python scrapers/_run.py scrapers/booking_horizon.py || echo "::warning::booking_horizon failed"
+          gate "booking_horizon"               python scrapers/_run.py scrapers/booking_horizon.py
           python scrapers/_run.py scrapers/build_shows.py
-          python scrapers/_run.py scrapers/audit_dups.py  || echo "::warning::dedup/junk audit flagged issues"
-          python scrapers/_run.py scrapers/audit_manual.py || echo "::warning::manual.json has stale/ended shows — review data/manual.json"
+          # ── 稽核 ───────────────────────────────────────────────────────────
+          # gate = 2026-08-12 實測為綠燈,之後變紅就是真的有新問題
+          # warn = 目前仍有既有積欠,清乾淨後要改成 gate(不先降級的話 CI 會永遠紅,
+          #        跟永遠綠一樣沒人看)
+          gate "去重/垃圾卡稽核 (audit_dups)"   python scrapers/_run.py scrapers/audit_dups.py
+          # manual.json 目前有 15 筆已落幕 + 25 筆 _checked 逾期未複查 → 待清理
+          warn "manual.json 過期稽核(積欠 15 筆)" python scrapers/_run.py scrapers/audit_manual.py
           python scrapers/_run.py scrapers/gen_catalog.py
-          python scrapers/_run.py scrapers/audit_productions.py || echo "::warning::production audit flagged broken posters — review works.json"
+          gate "製作/海報稽核 (audit_productions)" python scrapers/_run.py scrapers/audit_productions.py
           # 哨兵體檢:常設鐵桿劇目+來源低標(2026-07-09;維也納/broadway 靜默壞抓事件後制度化)
-          python scrapers/_run.py scrapers/audit_sentinels.py || echo "::warning::sentinel audit failed to run"
+          gate "哨兵體檢 (audit_sentinels)"     python scrapers/_run.py scrapers/audit_sentinels.py
           # 官網體檢:地區沒對上/授權頁污染/無條目數(2026-07-09 星光快車官網漏洞後制度化)
-          python scrapers/_run.py scrapers/audit_official.py || echo "::warning::official audit failed to run"
+          gate "官網體檢 (audit_official)"      python scrapers/_run.py scrapers/audit_official.py
           # 地理體檢:國界框+venue_coords 修正表自體檢(2026-07-10 保利座標污染事件後入 CI)
-          python scrapers/_run.py scrapers/audit_geo.py || echo "::warning::geo audit failed to run"
+          gate "地理體檢 (audit_geo)"           python scrapers/_run.py scrapers/audit_geo.py
           # tour_name 體檢:presenter 名滲入/跨 attraction 撞名(2026-07-13 Lexington/Arena Spectacular 掛羊頭事件後入 CI)
-          python scrapers/_run.py scrapers/audit_tournames.py || echo "::warning::tour_name audit flagged presenter/cross-attraction issues"
+          warn "tour_name 體檢(既有積欠)"       python scrapers/_run.py scrapers/audit_tournames.py
           # 標題健檢:未歸組/同劇分裂/髒指紋(2026-07-13 Love Never Dies 未歸組事件後入 CI;誤報請補 KNOWN_DISTINCT)
-          python scrapers/_run.py scrapers/audit_titles.py || echo "::warning::title audit flagged ungrouped/split/dirty titles"
+          warn "標題健檢(既有積欠 42 筆)"       python scrapers/_run.py scrapers/audit_titles.py
           # 抽樣對照源頭:每日隨機 15 卡 vs TM API(不預設病型,守「沒想到的錯」;2026-07-13)
-          python scrapers/_run.py scrapers/audit_sample_truth.py || echo "::warning::sample-truth audit found cards disagreeing with Ticketmaster"
+          # 隨機抽樣 + 依賴 TM API,偶發性高 → 只警告
+          warn "抽樣對照源頭 (audit_sample_truth)" python scrapers/_run.py scrapers/audit_sample_truth.py
           # 海報守門:釘圖健康/新庫存圖 vs baseline/縮圖迴歸/抽樣尺寸(2026-07-13 「90 張換圖如何 gating」)
-          python scrapers/_run.py scrapers/audit_posters.py || echo "::warning::poster audit flagged dead pins / new stock art / thumbnails"
+          gate "海報守門 (audit_posters)"       python scrapers/_run.py scrapers/audit_posters.py
           # Accumulate today's snapshot into the immutable historical archive
           # (separate stateful layer; never deletes closed runs). Pure build above
           # stays stateless. See scrapers/archive.py.
-          python scrapers/_run.py scrapers/archive.py     || echo "::warning::archive accumulate failed"
+          gate "archive accumulate"            python scrapers/_run.py scrapers/archive.py
         env:
           # set this repo secret to enable Ticketmaster refresh in CI; if unset
           # the scraper no-ops and the committed ticketmaster.json is kept.
           TICKETMASTER_API_KEY: ${{ secrets.TICKETMASTER_API_KEY }}
+
+      # 把 gate 失敗清單交給最後的 health job。刻意用 job output 而非 artifact:
+      # 不必多引一個 action,也不會把失敗紀錄混進 Pages 產物(path: .)。
+      # push 事件不跑抓取步驟 → 檔案不存在 → 輸出為空 → health 直接通過。
+      - name: Collect health-gate failures
+        id: gatecheck
+        if: always()
+        run: |
+          f="${RUNNER_TEMP}/ci_failures.txt"
+          {
+            echo "failures<<GATE_EOF"
+            [ -f "$f" ] && cat "$f" || true
+            echo "GATE_EOF"
+          } >> "$GITHUB_OUTPUT"
 
       # Regenerate the language variants + prerendered tri-URL site from the freshly
       # built shows.json (OpenCC 簡⇄繁 + place/platform localization, prerendered HTML
@@ -215,3 +250,25 @@ jobs:
       - id: deployment-retry
         if: steps.deployment.outcome == 'failure'
         uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e  # v4
+
+  # ── 體檢閘門(2026-08-12 導入)──────────────────────────────────────────────
+  # 刻意排在兩個部署 job「之後」:單一來源掛掉不該阻止線上資料更新,但整個 run 必須
+  # 變紅,GitHub 才會寄失敗通知。過去 scraper 失敗只印 ::warning::,run 永遠是綠的,
+  # 導致三支中國 scraper 壞了 29 天沒人察覺(commit 7045a39 編碼損毀)。
+  health:
+    needs: [build, deploy, deploy-cloudflare]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fail the run when a gated scraper/audit failed
+        env:
+          # 用環境變數注入,不直接把多行內容插進 shell(避免引號/注入問題)
+          FAILURES: ${{ needs.build.outputs.failures }}
+        run: |
+          if [ -z "$(printf '%s' "$FAILURES" | tr -d '[:space:]')" ]; then
+            echo "✅ 所有 gate 項目通過(scraper + 稽核)"
+            exit 0
+          fi
+          echo "::error::以下項目失敗——資料已照常更新並部署,但這些需要處理:"
+          printf '%s\n' "$FAILURES"
+          exit 1

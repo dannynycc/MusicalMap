@@ -1,6 +1,7 @@
 {
  "_comment": "Explicit non-musical exclusion list — titles that source platforms file under theatre/musical but are NOT staged book/jukebox musicals: straight plays, stand-up, tribute-band concerts, vocal recitals, magic/clown/variety shows, immersive dining experiences, unlicensed knock-offs, and 2.5次元 舞台/STAGE spoken plays (the 2.5D world has both ミュージカル musicals AND 舞台 plays; only musicals belong here). Verified by web research (2026-06-14 audit). build_shows.py drops any show whose normalised title (or group) matches. Title-pattern rules live in NOT_MUSICAL_RE; this file is for one-off titles patterns can't catch. Add the exact title as it appears in the source.",
  "titles": [
+  "Rent (The Movie)",
   "Beatles & Rolling Stones, con los grupos Morsa y Kamelot",
   "Dimensión vocal: Con la boca abierta",
   "Drácula, una comedia terrorífica",

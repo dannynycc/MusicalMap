@@ -1,23 +1,23 @@
-﻿"""China nationwide musicals ????蝵?(Juooo, juooo.com).
+"""China nationwide musicals — 聚橙网 (Juooo, juooo.com).
 
 Juooo is a major Mainland musical producer/ticketer. Its H5 backend exposes OPEN
-JSON APIs (no captcha, no signature on the show-list path ??unlike Damai/Maoyan
+JSON APIs (no captcha, no signature on the show-list path — unlike Damai/Maoyan
 which are BaXia-walled). Reverse-engineered from the m.juooo.com bundle:
 
   city list : POST https://api.juooo.com/city/city/getCityList        -> all cities
   show list : POST https://gw.juooo.com/gw/show/showSearch            (form-urlencoded)
               body {cate_parent_id:79, city_id, page, pageSize}  ->  result.list[]
-              (cate_parent_id 79 = ?喃??? city_id from the city list ??the list is
+              (cate_parent_id 79 = 音乐剧; city_id from the city list — the list is
               per-city, so we sweep EVERY city so any city's musicals get picked up)
   coords    : POST https://gw.juooo.com/gw/show/showDetail {show_id}
               -> result.show.venue.coordinate "lng,lat" (GCJ-02) -> WGS-84 here
 
 All endpoints carry ?version=...&referer=1 and header JUOOO-SESSIONID (may be empty).
 Coordinates come straight from Juooo (GCJ-02) and are converted to WGS-84 for the
-OSM basemap ??so this scraper is self-geocoding (no cn_venues.json dependency). A
+OSM basemap — so this scraper is self-geocoding (no cn_venues.json dependency). A
 show whose detail yields no coordinate is skipped (never placed at a guess).
 
-Work-origin tagging is decided in build_shows.py (registry ??else China=銝剖??).
+Work-origin tagging is decided in build_shows.py (registry → else China=中國原創).
 
 Output: data/china_juooo.json   Run: python scrapers/china_juooo.py
 """
@@ -41,7 +41,7 @@ UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
 HDR = {"User-Agent": UA, "Referer": "https://m.juooo.com/", "Origin": "https://m.juooo.com",
        "JUOOO-SESSIONID": "", "Content-Type": "application/x-www-form-urlencoded"}
 QS = "?version=6.3.25&referer=1"
-MUSICAL_CATE_ID = 79          # ?喃???(cate_parent_id), confirmed via /gw/show/showCategory
+MUSICAL_CATE_ID = 79          # 音乐剧 (cate_parent_id), confirmed via /gw/show/showCategory
 
 # ---- GCJ-02 -> WGS-84 (Juooo, like all Chinese apps, serves GCJ-02 coords) ----
 _A, _EE = 6378245.0, 0.00669342162296594323
@@ -70,17 +70,9 @@ def gcj02_to_wgs84(lat, lng):
     return lat - dlat, lng - dlng
 
 # English names for the cities Juooo serves (fallback: keep the Chinese name).
-CITY_EN = {
-    "?漪": "Beijing", "銝絲": "Shanghai", "撟踹?": "Guangzhou", "瘛勗": "Shenzhen",
-    "憭拇揖": "Tianjin", "??": "Chongqing", "甇行?": "Wuhan", "?漪": "Nanjing",
-    "?剖?": "Hangzhou", "??": "Suzhou", "?": "Chengdu", "镼踹?": "Xi'an",
-    "瘝": "Shenyang", "??皛?: "Harbin", "??": "Qingdao", "瘚?": "Jinan",
-    "??": "Zhengzhou", "?踵?": "Changsha", "??": "Nanchang", "?": "Hefei",
-    "蝳?": "Fuzhou", "?阡": "Xiamen", "憭芸?": "Taiyuan", "瘚瑕": "Haikou",
-    "??": "Nanning", "?嗅?": "Yinchuan", "?": "Wuxi", "摰郭": "Ningbo",
-    "撣詨?": "Changzhou", "銝?": "Dongguan", "?絲": "Zhuhai", "雿控": "Foshan",
-    "??": "Kunming", "韐菟": "Guiyang", "憭扯?": "Dalian", "?踵": "Changchun",
-}
+# 共用權威表,見 _cn_cities.py。原本這裡只有 36 城,晋城/临沂 等大麥已收錄的城市
+# 在此仍回退成中文名 → 英文站顯示中文城市(2026-08-12 實案)。
+from _cn_cities import CITY_EN  # noqa: E402
 
 
 def _post(host, path, body):
@@ -109,12 +101,12 @@ def city_list():
 
 
 def clean_title(name):
-    """'瘜祗???喃??扼滯???? / '?臬?撘???銵銋?函??箄??? -> the ?艾?core,
-    else strip a leading 'X?喃??? genre prefix; drop trailing 銝剜???撌⊥?/-??蝡?"""
-    m = re.search(r"??[^?+)??, name or "")
-    t = m.group(1) if m else re.sub(r"^.*??訥銋?]??, "", name or "")
-    t = re.sub(r"[嚗?][^嚗?)嚗*[)嚗", "", t)
-    t = re.sub(r"(銝剜??銝剜?|撌⊥???|-\s*\w+?蝡憭批??*|??撘?*)$", "", t).strip()
+    """'法语原版音乐剧《红舞鞋》' / '环境式原创流行音乐剧《怨种闺蜜》' -> the 《…》 core,
+    else strip a leading 'X音乐剧' genre prefix; drop trailing 中文版/巡演/-城市站."""
+    m = re.search(r"《([^》]+)》", name or "")
+    t = m.group(1) if m else re.sub(r"^.*?音[乐樂]剧", "", name or "")
+    t = re.sub(r"[（(][^（()）]*[)）]", "", t)
+    t = re.sub(r"(中文版|中文|巡演版?|-\s*\w+?站|大剧场.*|镜框式.*)$", "", t).strip()
     return t or (name or "").strip()
 
 
@@ -129,9 +121,9 @@ def iso(ts):
 
 
 def show_detail(show_id):
-    """showDetail -> (wgs_lat, wgs_lng, venue_name, schedular_id) or (None, ??.
+    """showDetail -> (wgs_lat, wgs_lng, venue_name, schedular_id) or (None, …).
     Coordinate is GCJ-02 'lng,lat'; schedular_id (first session) builds the ticket URL
-    m.juooo.com/ticket/{schedular_id} ??the show_id alone is NOT the page id."""
+    m.juooo.com/ticket/{schedular_id} — the show_id alone is NOT the page id."""
     try:
         resp = _post("gw.juooo.com", "/gw/show/showDetail", {"show_id": show_id})
         v = (resp.get("data", {}).get("result", {}) or {}).get("show", {}).get("venue", {}) or {}
@@ -142,13 +134,13 @@ def show_detail(show_id):
         wlat, wlng = gcj02_to_wgs84(lat, lng)
         m = re.search(r'"schedular_id"\s*:\s*(\d+)', json.dumps(resp, ensure_ascii=False))
         return round(wlat, 6), round(wlng, 6), v.get("venue_name"), (m.group(1) if m else None)
-    except Exception:  # noqa: BLE001 ??one bad detail must not kill the sweep
+    except Exception:  # noqa: BLE001 — one bad detail must not kill the sweep
         return None, None, None, None
 
 
 def main():
     cities = city_list()
-    print(f"{len(cities)} cities to sweep for ?喃???)
+    print(f"{len(cities)} cities to sweep for 音乐剧")
     found = {}            # show_id -> showSearch record (de-duped across cities)
     for cid, _cn in cities:
         page = 1
@@ -159,7 +151,7 @@ def main():
                              "page": page, "pageSize": 50}).get("data", {}).get("result", {})
             except Exception:  # noqa: BLE001
                 break
-            if not isinstance(res, dict):   # some cities return result:[] (no musicals) ??skip
+            if not isinstance(res, dict):   # some cities return result:[] (no musicals) → skip
                 break
             lst = res.get("list") or []
             for s in lst:
@@ -186,7 +178,7 @@ def main():
         ticket = (f"https://m.juooo.com/ticket/{sched}" if sched
                   else f"https://m.juooo.com/next/project/detail/{sid}")
         # Offer BOTH the Juooo page (works in browser) and a Damai search (China's main
-        # ticketing site ??many buyers prefer it). 憭折漸 by title, same as the Poly source.
+        # ticketing site — many buyers prefer it). 大麥 by title, same as the Poly source.
         damai = "https://search.damai.cn/search.htm?keyword=" + urllib.parse.quote(title)
         shows[f"juooo-{sid}"] = {
             "id": f"juooo-{sid}", "title": title, "type": "limited",
@@ -195,8 +187,8 @@ def main():
             "start_date": iso(s.get("show_start_time")), "end_date": iso(s.get("show_end_time")),
             "ticket_url": ticket,
             "ticket_links": [
-                {"label": "??", "url": ticket, "kind": "ticketing"},
-                {"label": "憭折漸", "url": damai, "kind": "ticketing"},
+                {"label": "聚橙", "url": ticket, "kind": "ticketing"},
+                {"label": "大麥", "url": damai, "kind": "ticketing"},
             ],
             "image": s.get("pic") or None,
             "tour_name": None, "verified": True, "source": "juooo.com",

@@ -47,22 +47,8 @@ UA = ("Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.
 HDR = {"User-Agent": UA, "Accept-Encoding": "gzip", "Channel": "theatre_wx",
        "City-Code": "", "Content-Type": "application/json"}
 # English names for the cities Poly serves (fallback: keep the Chinese name).
-CITY_EN = {
-    "北京": "Beijing", "上海": "Shanghai", "广州": "Guangzhou", "深圳": "Shenzhen",
-    "天津": "Tianjin", "重庆": "Chongqing", "武汉": "Wuhan", "南京": "Nanjing",
-    "杭州": "Hangzhou", "苏州": "Suzhou", "成都": "Chengdu", "西安": "Xi'an",
-    "沈阳": "Shenyang", "哈尔滨": "Harbin", "青岛": "Qingdao", "济南": "Jinan",
-    "郑州": "Zhengzhou", "长沙": "Changsha", "南昌": "Nanchang", "合肥": "Hefei",
-    "福州": "Fuzhou", "厦门": "Xiamen", "太原": "Taiyuan", "海口": "Haikou",
-    "南宁": "Nanning", "银川": "Yinchuan", "无锡": "Wuxi", "宁波": "Ningbo",
-    "常州": "Changzhou", "淄博": "Zibo", "潍坊": "Weifang", "烟台": "Yantai",
-    "珠海": "Zhuhai", "东莞": "Dongguan", "廊坊": "Langfang", "马鞍山": "Ma'anshan",
-    "黄冈": "Huanggang", "慈溪": "Cixi", "诸暨": "Zhuji", "衢州": "Quzhou",
-    "昆山": "Kunshan", "张家港": "Zhangjiagang", "启东": "Qidong", "衡阳": "Hengyang",
-    "泰州": "Taizhou", "南通": "Nantong", "延边": "Yanbian", "延吉": "Yanji",
-    "长春": "Changchun", "大连": "Dalian", "贵阳": "Guiyang", "昆明": "Kunming",
-    "南充": "Nanchong", "临平": "Linping",
-}
+# 共用權威表,見 _cn_cities.py。
+from _cn_cities import CITY_EN  # noqa: E402
 MUSICAL_CAT = "音乐剧"
 
 

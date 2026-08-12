@@ -11,6 +11,44 @@
 
 ---
 
+## [v2.56.0] - 2026-08-12 13:37
+
+### 三件大事:死掉 29 天的 scraper、錯誤的演出日期、以及讓兩者無人察覺的「假綠燈 CI」
+
+#### 1. 三支中國 scraper 編碼損毀,已死 29 天
+
+- **症狀**:`china.py`／`china_ypiao.py`／`china_juooo.py` 自 2026-07-14 起每一班 CI 都失敗,`SyntaxError: invalid non-printable character U+E608`。三個資料檔凍結在 7/14。
+- **根因**:commit `7045a39`(v2.38.0)把這三個檔案以錯誤編碼重存 —— UTF-8 位元組被當 cp950 解讀後再存回,並加上 BOM。中文全毀,部分字元落入 Big5 私用區,Python 直接拒絕解析。**檔案仍是合法 UTF-8**(所以「能不能解碼」驗不出來),要看有沒有 U+E000–U+F8FF 私用區字元。
+- **全庫掃描**:排除 node_modules 後掃過所有文字檔,受害僅此 3 個檔。
+- **修法**:比對 `7045a39^` 與 HEAD 的 **ASCII 骨架**(抹掉所有非 ASCII 後比對)以區分「編碼損毀」與「真實邏輯修改」——結果三檔的真實修改**只有 `city_cn` 一處**。故整檔還原自 `7045a39^` 再補回 `city_cn`。
+- **驗證**:三支都實跑成功(shcstheatre 6 筆／ypiao 4 筆／juooo 3 筆),且**直接執行與 CI 的 `_run.py` 兩種路徑都測過**。
+- **附帶收穫**:復活的官方場館來源接手了 6 筆原本由大麥提供的紀錄,並修正一筆日期(《爱因斯坦:时间相对论》大麥 12-17 → 上海文化广场官方 **12-20**),場館名也更精確。
+
+#### 2. 季票套組的佔位日期被當成演出日
+
+- **實錘**(Celebrity Attractions 官方 26-27 季目表):Robinson Center 同掛 `2026-10-30` 的 4 齣裡 **3 齣日期是錯的** —— The Wiz 實為 2027-01-08、Beauty and the Beast 2027-05-19、A Beautiful Noise 2027-07-30;10-30 其實只是開季的 Beetlejuice。Savannah 同型(官方 The Wiz 為 10/27,站上寫 10/16)。
+- **根因**:TM 把整季劇目掛在同一個季票 event 上,`localDate` 是開季/起賣日。來源端本來就有防禦,但只擋 `subscription`／`season ticket`／`season package`,**漏掉「名稱結尾就是 Season」的變種**(「26-27 Broadway in Savannah Season」「2026-2027 Celebrity Attractions' Broadway Season」)。
+- **修法(兩層)**:
+  - 來源端 `tm_tours.py` + `ticketmaster.py` 的 regex 補 `\bseason\s*$`。新舊規則對照測過:兩個變種都擋到、**誤殺 0**(`Seasons of Love`／`Four Seasons`／`A Season in the Sun` 皆不中),掃過全站 2,166 筆只命中那張季票卡。
+  - build 端 `build_shows.py` 加最後防線:同場館 + 同一「單日」(start == end)擠了 ≥3 個不同 group = 佔位日期,整組不出並列印被丟掉的清單。**只認單日**,以免誤殺劇目輪演常備劇院(如 NDM Ostrava)共用同一段多日檔期的正常情形。
+- 一併移除混入的非劇目卡:季票套組本身,以及《Rent (The Movie)》(電影放映場,與同場館同日的舞台版《Rent》重複)。
+
+#### 3. CI 假綠燈 —— 上面兩件事爛了 29 天沒人知道的真正原因
+
+- **病根**:每一支 scraper 與稽核都寫成 `|| echo "::warning::…"`,失敗只印警告,**workflow 永遠是綠的**。40 班裡 39 班顯示 success,但每一班都帶著 13 條警告沒人看。
+- **修法**:導入 `gate`／`warn` 兩層,失敗記入 `FAILLOG`;新增獨立的 **`health` job**,`needs: [build, deploy, deploy-cloudflare]` + `if: always()`,**刻意排在兩個部署之後** —— 單一來源掛掉不該阻止線上資料更新,但整個 run 必須變紅,GitHub 才會寄失敗通知。
+- **分層依據是實測的,不是猜的**:先跑過全部 9 支稽核記錄 exit code,把當下為綠的 6 支(dups／productions／sentinels／official／geo／posters)設為 `gate`;仍有既有積欠的 3 支(manual 15 筆過期、tournames、titles 42 筆)維持 `warn`,清乾淨後再升級。**先降級是刻意的**:直接全設 gate 會讓 CI 永遠紅,跟永遠綠一樣沒人看。
+- **shell 語意實測**:以 GitHub 預設的 `bash -eo pipefail` 驗過四種情境 —— 全過→綠、gate 失敗→紅且後續 scraper 照跑不中斷、只有 warn 失敗→綠、push 事件跳過抓取步驟→輸出為空且 exit 0。
+
+### 其他
+
+- **中國城市中英對照表合一**:damai／juooo／ypiao／poly 原本各帶一份,已漂移成 68／36／12／n 個,同一座城市在不同來源一個出英文一個出中文(juooo 的「晋城」實案)。合成 `scrapers/_cn_cities.py` 單一權威表(78 城,合併時零譯名衝突)。注意 `china_ypiao.py` 的 `CITY_EN` 是**網址 slug** 對照、與中文表用途不同,故以別名 import 避免撞名。
+
+### 已知待辦(本輪未處理)
+
+- **20 組同場館同日期的重複卡**:TM 把「場地租借／年齡分級／巡演註記」當成劇名 —— `Mrs. Doubtfire - Suite Rental`／`Six - Age Recommendation`／`Daniel In The Lions' Den Tour`(12 個城市)／`Meredith Willson's The Music Man`。屬於既有問題,不在本輪範圍。
+- 41 張 damai 卡無座標(地圖不顯示);`manual.json` 25 筆 `_checked` 逾期未複查。
+
 ## [v2.55.0] - 2026-08-12 12:53
 
 ### 大麥人工協助重抓(距上次 31 天):中國 181 → 271 筆,躍升全站第三大市場

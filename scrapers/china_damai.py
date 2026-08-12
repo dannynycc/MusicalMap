@@ -181,30 +181,9 @@ def harvest(max_pages=10, start_page=1, delay_min=15.0, delay_max=25.0):
 # ---------------------------------------------------------------------------
 OUT_SHOWS = os.path.join(os.path.dirname(__file__), "..", "data", "china_damai.json")
 
-# 城市中→英（juooo CITY_EN + 大麥多出來的 20 城）
-CITY_EN = {
-    "北京": "Beijing", "上海": "Shanghai", "广州": "Guangzhou", "深圳": "Shenzhen",
-    "天津": "Tianjin", "重庆": "Chongqing", "武汉": "Wuhan", "南京": "Nanjing",
-    "杭州": "Hangzhou", "苏州": "Suzhou", "成都": "Chengdu", "西安": "Xi'an",
-    "沈阳": "Shenyang", "哈尔滨": "Harbin", "青岛": "Qingdao", "济南": "Jinan",
-    "郑州": "Zhengzhou", "长沙": "Changsha", "南昌": "Nanchang", "合肥": "Hefei",
-    "福州": "Fuzhou", "厦门": "Xiamen", "太原": "Taiyuan", "海口": "Haikou",
-    "南宁": "Nanning", "银川": "Yinchuan", "无锡": "Wuxi", "宁波": "Ningbo",
-    "常州": "Changzhou", "东莞": "Dongguan", "珠海": "Zhuhai", "佛山": "Foshan",
-    "昆明": "Kunming", "贵阳": "Guiyang", "大连": "Dalian", "长春": "Changchun",
-    # 大麥多出來的
-    "南通": "Nantong", "嘉兴": "Jiaxing", "衢州": "Quzhou", "廊坊": "Langfang",
-    "绍兴": "Shaoxing", "中国澳门": "Macau", "温州": "Wenzhou", "衡阳": "Hengyang",
-    "潍坊": "Weifang", "昆山": "Kunshan", "淄博": "Zibo", "烟台": "Yantai",
-    "徐州": "Xuzhou", "西宁": "Xining", "鄂尔多斯": "Ordos", "中山": "Zhongshan",
-    "延边": "Yanbian", "桂林": "Guilin", "淮安": "Huai'an", "周口": "Zhoukou",
-    # 2026-07-12 重抓新增
-    "丽水": "Lishui", "台州": "Taizhou", "大庆": "Daqing", "德州": "Dezhou",
-    "泉州": "Quanzhou", "潜江": "Qianjiang", "赣州": "Ganzhou",
-    # 2026-08-12 重抓新增
-    "临沂": "Linyi", "常熟": "Changshu", "晋城": "Jincheng", "柳州": "Liuzhou",
-    "金华": "Jinhua",
-}
+# 城市中→英:共用權威表(2026-08-12 起集中到 _cn_cities.py,原本四支各帶一份、
+# 內容漂移到 68/36/12 個不等,同一城在不同來源會一個出英文一個出中文)。
+from _cn_cities import CITY_EN  # noqa: E402  — 檔頭 docstring 之後才 import 是本檔既有風格
 
 # 名字含這些 = 確定音樂劇
 _POS = ["音乐剧", "音乐喜剧", "音乐戏剧", "音乐舞台", "musical", "Musical", "MUSICAL"]

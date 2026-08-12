@@ -144,9 +144,10 @@ python scrapers/build_shows.py        # 合併成 data/shows.json
 ## 現況 / 待辦
 
 - ✅ **共 ~2,170 筆、32 國、597 城**（隨每日 CI 變動；2026-08-12 實測 2,166 筆/707 groups）,含座標與海報。中國 271 筆為全站第三大市場（次於美 843、英 293）。自動 scraper：Broadway、West End、北美巡演（broadway.org 297 站）、國際製作、劇団四季、宝塚、東宝/2.5次元/東急（`japan.py`）、韓國 Interpark、ATG 英國巡演、Stage DE、Madrid、台灣 OPENTIX/utiki、東歐（jegy.hu）、義/瑞/荷/波/挪/奧/中東、**中國**（Poly/上海文廣/ypiao/中演/聚橙 juooo，逆向官方 API；**大麥 389 場次/66 城（2026-08-12 重抓），人工協助批次解 x5sec、非 CI，約每月一次**）、Portugal（BOL）、Ticketmaster 全球補洞。
-  - ⚠️ **`china.py`／`china_ypiao.py`／`china_juooo.py` 自 2026-07-14（commit 7045a39）起因檔案編碼損毀無法執行**，CI 每班 `::warning` 但不擋 build；三來源資料凍結中，待修復。
+  - ✅ `china.py`／`china_ypiao.py`／`china_juooo.py` 曾因 commit `7045a39`（2026-07-14）檔案編碼損毀而停擺 29 天，**v2.56.0 已修復**（整檔還原 + 補回 `city_cn`）。中國城市中英對照表已合一到 `scrapers/_cn_cities.py`。
 - ✅ **人工策展（`manual.json`，反爬市場）**：巴西（6）、阿根廷（2）、南非（4）、新加坡（4，到 2027）、葡萄牙、上海、**波鴻星光快車**（1988– 常設專用劇場，ATG.de 售票，任何來源都不覆蓋）、**菲律賓馬尼拉**（3，Charlie/On Your Feet/Notebook@TicketWorld——bot 牆擋自動抓，`scrapers/philippines.py` 為實驗性 playwright 版掛 CI `::warning` 不擋 build）、各劇巡演段（Les Mis Arena/Miss Saigon/Beetlejuice/Chicago/SIX/Heathers/Roméo et Juliette…）。反爬來源（Sympla/Plateanet/MBS Akamai/SISTIC 需授權）無法自動抓，逐齣查證後手填。
-- 🆕 **`scrapers/audit_manual.py`**（CI 每次跑）：抓 manual.json 中已落幕（end_date 過期）或逾期未查證（_checked >120 天）的手填劇，避免硬填資料默默過期。
+- 🚨 **CI 體檢閘門（v2.56.0，2026-08-12）**：在此之前每支 scraper/稽核失敗都只印 `::warning::`，**workflow 永遠是綠的**——三支中國 scraper 因此壞了 29 天沒人發現。現在分兩層：`gate`（失敗要紅）與 `warn`（已知積欠/實驗性來源，只提醒）。失敗記入 FAILLOG，由獨立的 `health` job 判定；該 job **刻意排在兩個部署 job 之後**，所以單一來源掛掉不會阻止線上資料更新，但整個 run 會變紅、GitHub 才會寄通知。目前 `warn` 層＝`audit_manual`／`audit_tournames`／`audit_titles`／`audit_sample_truth`／`philippines`，積欠清乾淨後應逐一升級成 `gate`。
+- 🆕 **`scrapers/audit_manual.py`**（CI 每次跑，目前為 `warn` 層）：抓 manual.json 中已落幕（end_date 過期）或逾期未查證（_checked >120 天）的手填劇，避免硬填資料默默過期。
 - 🆕 **`scrapers/audit_geo.py`**（CI 每次跑，2026-07-10）：國界框檢查＋venue_coords.json 自體檢（跨城市同座標複製貼上指紋、對 cn_venues 權威表 >20km）——保利連鎖座標污染事件（南昌/衡陽錯 616-989km）後入 CI。中國場館座標鐵則：cn_venues.json 為權威，geocode_google 遇中國場館先查權威表（Google 大陸資料 GCJ 偏移＋同名連鎖誤配）。
 - 🆕 **`scrapers/audit_official.py`**（CI 每次跑，2026-07-09）：官網體檢——resident 劇「有條目但地區對不到」（星光快車型漏洞：條目只有 uk 鍵、波鴻 de 區整個沒官網）、授權商目錄頁污染（Concord/MTI≠官網）、非中國 resident 無條目數量基線。中國劇經 8/8 抽查證實無獨立官網生態（微信/微博宣發），無條目=正常。
 - 🆕 **`scrapers/audit_sentinels.py`**（CI 每次跑，2026-07-09）：哨兵體檢——12 個「不可能不在」的常設鐵桿劇（獅子王五城/西區三老/波鴻星光快車…）＋7 個來源最低筆數線，缺=::warning。與 build_shows 的來源驟降守門互補：守門抓「突然壞」，哨兵抓「一直漏」（維也納 VBW 歸零、broadway 28→16 靜默壞抓事件後制度化）。
