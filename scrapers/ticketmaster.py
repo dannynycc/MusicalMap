@@ -284,13 +284,26 @@ def main():
             if link and not any(l["country"] == cc for l in rec["ticket_links"]):
                 rec["ticket_links"].append({"country": cc, "url": link})
 
+    failed = []
     for cc in COUNTRIES:
         try:
             for ev in sweep_country(cc):   # adaptive time-sliced full sweep(舊城市補丁退役)
                 add_event(ev, cc)
             print(f"  {cc}: {len(runs)} cumulative runs")
         except Exception as e:  # noqa: BLE001
+            failed.append(cc)
             print(f"  [{cc}] failed: {e}")
+
+    # 大批國家掛掉 = 整批抓失敗(2026-08-12:當日 API 配額用完,每個國家都回 HTTP 429),
+    # 而不是某一國剛好沒資料。原本這裡把每個失敗都吞掉、照樣覆蓋 ticketmaster.json、
+    # 正常結束 → CI 全綠而 shows.json 掉了 27%。改成:寧可不更新,也不要用殘缺資料
+    # 覆蓋上一份好資料(舊檔留著 → build 仍拿得到完整 TM 資料),並以非零退出碼讓 CI 變紅。
+    if len(failed) > len(COUNTRIES) // 2:
+        print(f"\n::error::Ticketmaster {len(failed)}/{len(COUNTRIES)} 個國家抓取失敗"
+              f"({', '.join(failed[:10])}{'…' if len(failed) > 10 else ''})——"
+              f"整批失敗(多半是 API 配額用盡回 429)。不覆蓋 data/ticketmaster.json,"
+              f"保留上一份完整資料。")
+        sys.exit(1)
 
     # NOTE: start_date is the earliest *available* performance (the API drops
     # expired dates), end_date the last scheduled performance. We keep them as-is

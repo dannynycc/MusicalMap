@@ -176,6 +176,16 @@ jobs:
             echo "GATE_EOF"
           } >> "$GITHUB_OUTPUT"
 
+      # 資料量回歸守門(2026-08-12 Ticketmaster 429 事件後補)。**故意不用 gate**:
+      # gate 只會把 run 標紅,殘缺資料照樣 commit 並部署。這一步是硬擋——失敗就停在這裡,
+      # 下面的建站與提交都不會執行,線上維持前一版良好資料。
+      # 那次事件:TM 對每個國家都回 429,scraper 吞掉錯誤正常結束(exit 0)→ 所有既有
+      # 守門都看不到,shows.json 2130→1552(-27%)還是全綠上線。既有稽核檢查的是
+      # 「留下來的資料對不對」,沒有一項在看「有沒有整批消失」。
+      - name: 資料量回歸守門 (audit_counts)
+        if: github.event_name != 'push'
+        run: python scrapers/_run.py scrapers/audit_counts.py
+
       # Regenerate the language variants + prerendered tri-URL site from the freshly
       # built shows.json (OpenCC 簡⇄繁 + place/platform localization, prerendered HTML
       # with JSON-LD so Google + JS-blind AI crawlers see content). See build/*.mjs.

@@ -35,6 +35,7 @@ from datetime import date
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+from _guard import guard_shrink  # noqa: E402  (抓取結果暴跌就不覆蓋舊檔)
 from madrid import canon  # noqa: E402  (also sets UTF-8 stdout; shared ES→canonical table)
 from geocode import geocode  # noqa: E402  (Nominatim + persistent cache, shared)
 
@@ -344,6 +345,9 @@ def main():
     shows.sort(key=lambda s: (s.get("city") or "", s.get("title") or ""))
     out = {"meta": {"source": "atrapalo.com", "count": len(shows)}, "shows": shows}
     path = DATA / "atrapalo.json"
+    # 這支 11 天內掉了 4 次(116 → 32 筆,約 82 齣西班牙演出消失半天再自己回來):
+    # 分頁抓取撞上挑戰驗證時,上面的迴圈吞掉失敗、照樣把殘缺結果覆蓋上去。見 _guard.py。
+    guard_shrink(path, len(shows), label="atrapalo")
     path.write_text(json.dumps(out, ensure_ascii=False, indent=1), encoding="utf-8")
     cities = sorted({s["city"] for s in shows if s.get("city")})
     print(f"[atrapalo] wrote {len(shows)} shows across {len(cities)} cities → {path.name}")
