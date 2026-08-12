@@ -109,9 +109,10 @@ jobs:
           gate "atrapalo (Fastly challenge)"   python scrapers/_run.py scrapers/atrapalo.py
           gate "opentix"                       python scrapers/_run.py scrapers/opentix.py
           gate "utiki (kham+udn)"              python scrapers/_run.py scrapers/utiki.py
-          # 實驗性:TicketWorld bot 牆對 headless 極嚴(本機 headless 全滅);失敗自動保留
-          # 既有 philippines.json / manual.json 的馬尼拉檔期(2026-07-14)→ 刻意只警告
-          warn "philippines (ticketworld,實驗性)" python scrapers/_run.py scrapers/philippines.py
+          # TicketWorld:2026-08-12 改成純 HTTP(curl_cffi chrome124 指紋 + Accept-Language)
+          # 後,本機不用瀏覽器就能抓到完整頁面並正確篩出 The Notebook。但**本機通不等於
+          # CI 通**(機房 IP 常被另外對待),先維持 warn;等排程實跑成功幾班再升級成 gate。
+          warn "philippines (ticketworld,待 CI 實測後升級)" python scrapers/_run.py scrapers/philippines.py
           gate "tm_tours sweep"                python scrapers/_run.py scrapers/tm_tours.py
           gate "ticketmaster"                  python scrapers/_run.py scrapers/ticketmaster.py
           python scrapers/_run.py scrapers/build_shows.py

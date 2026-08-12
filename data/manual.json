@@ -2,7 +2,7 @@
  "meta": {
   "source": "manual-curated",
   "note": "Hand-curated shows from regional venues/promoters no scraper covers yet (China venues, Live Nation FR, …). Each entry verified against the official ticketing page on the date in _checked. Add here whenever a gap is found; build merges automatically. Images: ALWAYS the original full-size official URL — no compression, no self-hosting (user preference: quality over speed).",
-  "count": 27
+  "count": 26
  },
  "shows": [
   {
@@ -257,7 +257,8 @@
    "tour_name": "SIX the Musical — Australia 2026 (Ticketek)",
    "verified": true,
    "source": "ticketek (manual)",
-   "_checked": "2026-06-14"
+   "_checked": "2026-08-12",
+   "_note": "sixthemusical.com.au + 官方公告:Comedy Theatre 2026-07-24 起,演至 10/4"
   },
   {
    "id": "manual-six-sydney",
@@ -329,7 +330,8 @@
    "tour_name": null,
    "verified": true,
    "source": "sympla.com.br (manual)",
-   "_checked": "2026-06-15"
+   "_checked": "2026-08-12",
+   "_note": "Teatro Porto Seguro/媒體:temporada até 30/08/2026"
   },
   {
    "id": "manual-annie-buenosaires-2026",
@@ -385,7 +387,8 @@
    "tour_name": "Oliver! — Cameron Mackintosh / Pieter Toerien & Cape Town Opera",
    "verified": true,
    "source": "broadwayworld / timeout / webtickets (manual)",
-   "_checked": "2026-06-15"
+   "_checked": "2026-08-12",
+   "_note": "Artscape/Pieter Toerien 公告:11 Dec 2026 – 17 Jan 2027"
   },
   {
    "id": "manual-oliver-joburg-2027",
@@ -476,23 +479,6 @@
    "verified": true,
    "source": "starlight-express.info (manual)",
    "_note": "2026-07-09 哨兵體檢補漏:全年無休 open-end(官網+ATG.de 售票);ATG 德國站(.de)是未開發來源"
-  },
-  {
-   "id": "manual-notebook-manila-2026",
-   "title": "The Notebook",
-   "type": "tour",
-   "venue": "Samsung Performing Arts Theater",
-   "city": "Manila",
-   "country": "Philippines",
-   "lat": 14.572325,
-   "lng": 121.018776,
-   "start_date": "2026-09-03",
-   "end_date": "2026-09-20",
-   "ticket_url": "https://premier.ticketworld.com.ph/shows/show.aspx?sh=PHEVENTS22",
-   "image": "https://dizdnz518lz9v.cloudfront.net/dbimages/sfx9290.jpg",
-   "tour_name": null,
-   "verified": true,
-   "source": "ticketworld.com.ph (manual)"
   }
  ]
 }

@@ -15,12 +15,14 @@ curl_cffi 拿到 2.6KB 殼——真瀏覽器(Playwright Chromium)可過,同 atra
 
 場館座標:Nominatim/OSM 查證(2026-07-14);表裡沒有的場館跳過並列印(先驗座標再收)。
 """
+import html
 import io
 import json
 import re
 import sys
 from datetime import datetime
 from pathlib import Path
+from urllib.parse import urljoin
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
 DATA = Path(__file__).resolve().parent.parent / "data"
@@ -90,7 +92,61 @@ def known_works():
     return keys
 
 
+def _fetch_cards_http():
+    """純 HTTP 抓取(curl_cffi 瀏覽器 TLS 指紋)。
+
+    2026-08-12 實測:帶 `impersonate="chrome124"` + `Accept-Language` 可拿到完整的
+    73KB server-rendered 頁面。檔頭原本記「curl_cffi 只拿到 2.6KB 殼」已不成立——
+    要嘛站方改了、要嘛當初少了這兩個條件。頁面結構(非 SPA):
+
+        <div class="event-item">
+          <div class="event-text">
+            <h6>劇名</h6>
+            <div class="event-venue-dates"><p>日期</p><p>場館</p></div>
+          <div class="event-buttons"><a href="Show.aspx?sh=…">Find tickets</a>
+
+    回傳與 playwright 版**完全相同**的 [{href, text}] 形狀(text 首行為劇名),
+    下游解析不必改。CI 因此不再需要 Chrome,也不會再每天 ::warning::。
+    """
+    from curl_cffi import requests as creq
+    r = creq.get(URL, impersonate="chrome124", timeout=45,
+                 headers={"Accept-Language": "en-US,en;q=0.9"})
+    body = r.text or ""
+    # 太短 = 又被擋回殼頁,讓呼叫端退回瀏覽器,別把空結果當成「今天沒有演出」
+    if r.status_code != 200 or len(body) < 20000:
+        raise RuntimeError(f"bot wall? HTTP {r.status_code}, {len(body)} bytes")
+    cards = []
+    for blk in body.split('<div class="event-item">')[1:]:
+        h6 = re.search(r"<h6[^>]*>(.*?)</h6>", blk, re.S)
+        if not h6:
+            continue
+        title = html.unescape(re.sub(r"<[^>]+>", "", h6.group(1))).strip()
+        lines = []
+        vd = re.search(r'class="event-venue-dates"(.*?)</div>', blk, re.S)
+        if vd:
+            for p in re.findall(r"<p[^>]*>(.*?)</p>", vd.group(1), re.S):
+                t = html.unescape(re.sub(r"<[^>]+>", " ", p))
+                t = re.sub(r"\s+", " ", t).strip()
+                if t:
+                    lines.append(t)
+        href = re.search(r'href="(Show\.aspx\?sh=[^"]+)"', blk, re.I)
+        cards.append({
+            "href": urljoin(URL, href.group(1)) if href else URL,
+            "text": "\n".join([title] + lines),
+        })
+    if not cards:
+        raise RuntimeError("HTML 解析不到任何 event-item(版型可能改了)")
+    return cards
+
+
 def fetch_text():
+    """先走純 HTTP;失敗才退回真瀏覽器(較慢、CI 未必有 Chrome)。"""
+    try:
+        cards = _fetch_cards_http()
+        print(f"  fetched via curl_cffi (no browser): {len(cards)} event card(s)")
+        return cards
+    except Exception as e:  # noqa: BLE001
+        print(f"  curl_cffi 取頁失敗({e}),退回 Playwright")
     from playwright.sync_api import sync_playwright
     with sync_playwright() as p:
         # bot 牆對 bundled Chromium 回 HTTP2_PROTOCOL_ERROR;真 Chrome(channel)可過。

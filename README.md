@@ -79,7 +79,7 @@ scrapers/  ──產出──>  data/*.json  ──merge──>  data/shows.json
 | `scrapers/shiki.py` | **劇団四季** scraper（api_stage_list；日文劇名→英文正名以便全球合併） |
 | `scrapers/takarazuka.py` | **宝塚歌劇団** scraper（各製作頁公演期間，按位置切段解析） |
 | `scrapers/interpark.py` | **韓國 Interpark** scraper（NOL 開放 API；韓國場館座標表） |
-| `scrapers/philippines.py` → `data/philippines.json` | **菲律賓 TicketWorld**（實驗性,v2.39.0）:playwright 真 Chrome 繞 Ticketek bot 牆（urllib 403/curl_cffi/headless 皆被擋）,works 主檔白名單只收 Broadway/West End 劇,馬尼拉主要場館座標表。CI 掛 `\|\| ::warning` 不擋 build;抓不到期間馬尼拉檔期由 manual.json 人工維護 |
+| `scrapers/philippines.py` → `data/philippines.json` | **菲律賓 TicketWorld**（v2.58.0 起改**純 HTTP**:`curl_cffi impersonate="chrome124"` + `Accept-Language` 即可拿到完整 server-rendered 頁,不必開瀏覽器;Playwright 保留為後備）。works 主檔白名單只收 Broadway/West End 劇,馬尼拉主要場館座標表。CI 暫仍為 `warn` 層——本機通不等於機房 IP 通,待排程實跑幾班再升級為 `gate` |
 | `scrapers/audit_images.py` | 海報畫質稽核（實測像素，小於顯示尺寸即報告） |
 | `scrapers/ticketmaster.py` | **Ticketmaster** Discovery API（18 國掃描，需 `TICKETMASTER_API_KEY`） |
 | `scrapers/build_shows.py` | 合併所有 source、TM 補洞去重、套 overrides、同劇合併、海報繼承（地區感知,不跨字系圈）、**血統 tag 分類**（依 `works.json`,別名索引簡繁雙字系）→ `shows.json`（純函式、可重跑） |

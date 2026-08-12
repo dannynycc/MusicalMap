@@ -11,6 +11,41 @@
 
 ---
 
+## [v2.58.0] - 2026-08-12 15:25
+
+### 攻 bot 牆:philippines.py 不用瀏覽器就抓得到了,待查條目 12 → 8
+
+v2.57.0 留下 12 筆「被 bot 牆擋住、查不到」的 manual 條目。這輪逐層escalate,分三招:
+
+**1. `curl_cffi` 瀏覽器 TLS 指紋(成本最低)** —— 攻下 TicketWorld(馬尼拉)。
+   檔頭原本記「curl_cffi 只拿到 2.6KB 殼、真瀏覽器才過」,但 2026-08-12 實測
+   `impersonate="chrome124"` + `Accept-Language` 拿到完整 **73KB** server-rendered 頁面。
+   → **`philippines.py` 改為純 HTTP 抓取**,保留 Playwright 為後備。實跑:37 張卡、
+   正確篩出 The Notebook(2026-09-03~09-20)。CI 不必再裝 Chrome。
+   人工條目 `manual-notebook-manila-2026` 因此退役,馬尼拉那張卡改由 scraper 供應。
+   ⚠️ 仍維持 `warn` 層:**本機通不等於 CI 通**(機房 IP 常被另外對待),待排程實跑幾班再升級。
+
+**2. 官方場館/製作方頁面(繞開售票系統)** —— 確認 3 筆日期正確:
+   - SIX 墨爾本:sixthemusical.com.au + 官方公告,Comedy Theatre 7/24 起演至 **10/4** ✓
+   - Rita Lee 聖保羅:Teatro Porto Seguro,temporada **até 30/08/2026** ✓
+   - Oliver! 開普敦:Artscape/Pieter Toerien,**11 Dec 2026 – 17 Jan 2027** ✓
+   查證來源寫進條目的 `_note`,日後回頭看才知道當初憑什麼判定。
+
+**3. 真 Chrome 執行檔(channel='chrome')** —— 對 Ticketek / Marina Bay Sands 仍無效
+   (Akamai 等級),誠實記錄:這兩家目前三招都打不穿。
+
+### 沒有做的判斷(避免踩自己的坑)
+
+QPAC 官方頁顯示 SIX 布里斯本場次只到 **2027-01-31**,而我們記的是 03-15。**沒有改** ——
+官方頁只寫「From 2 Jan 2027」、沒公布閉幕日,那 1/31 是**售票視窗(booking horizon)
+而非閉幕日**。拿最後一個可訂場次當閉幕日正是這個專案踩過的老坑。
+
+### 現況
+
+- manual.json 27 → **26 筆**;待查 12 → **8 筆**(URGENT 9 → 6)
+- 仍打不穿:Ticketek(SIX 雪梨/布里斯本閉幕日)、Marina Bay Sands(Cats 新加坡確切日期)、
+  sympla / plateanet(阿根廷兩檔);另 Elisabeth(常備劇目)、Starlight Bochum(1988 長跑)屬低風險
+
 ## [v2.57.0] - 2026-08-12 14:53
 
 ### 1. manual.json 全面體檢:43 → 27 筆,並補上「還在演但日期已變」的偵測
