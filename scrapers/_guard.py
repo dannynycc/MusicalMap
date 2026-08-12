@@ -16,11 +16,26 @@
 用法(放在 write_text 之前):
 
     from _guard import guard_shrink
-    guard_shrink(path, len(shows), label="atrapalo")
+    guard_shrink(path, len(shows), label="atrapalo")            # 全自動來源:暴跌就擋
+    guard_shrink(OUT, len(shows), label="x", block=False)       # 跑一半合法的來源:只警告
 
-尚未採用的 scraper(2026-08-12 掃描結果,都有同樣的吞錯寫法):
-austria, booking_horizon, china_damai, easteurope, eu_discover, gb_discover, italy,
-japan, middleeast, na_discover, norway, poland, stage_de, sweden, utiki
+已採用(2026-08-12):ticketmaster、tm_tours、atrapalo、broadway_tours、atg、italy、
+japan、china_poly、easteurope、opentix、westend、na_discover、gb_discover 皆為硬擋;
+china_damai 為 block=False(人工逐頁解驗證碼,刻意只跑部分頁面是合法操作)。
+
+門檻校準(git 歷史 26 次資料提交的實測單日最大跌幅):
+    broadway.org -3% / atgtickets -1% / teatro.it -1% / opentix -2% /
+    londontheatre -2% / polyt.cn -3% / jegy.hu -3% / damai -9%
+全部離 -40% 很遠 → 這些來源不會誤報。歷史上唯二超過 -40% 的是 atrapalo(-72%)
+與 ticketmaster(-77%),而那兩次正是本模組要抓的真故障,不是誤報。
+
+**沒有加守門的地方,以及為什麼:**
+· `build_shows.py` → shows.json:已由 `audit_counts.py` 在管線的正確位置用更嚴的
+  -10% 門檻硬擋(門檻同樣取自歷史實測:日常 -4.4% ~ +4.3%)。再塞一個 -40% 的
+  重複守門只會多一個失敗點,不會多擋到任何東西。
+· 輸出少於 FLOOR(50)筆的小來源(austria 2、poland 4、middleeast 4、sweden 7、
+  norway 8、utiki 8、stage_de 12…):守門在這個量級只會空轉,±幾筆就是大百分比。
+  這些來源將來長大到 50 筆以上時再加即可。
 """
 
 import json
@@ -48,10 +63,14 @@ def previous_count(path):
     return len(d) if isinstance(d, list) else None
 
 
-def guard_shrink(path, new_count, label=None, floor=FLOOR, max_drop=MAX_DROP):
-    """新結果比舊檔少太多就印 ::error:: 並 sys.exit(1),**不覆蓋舊檔**。
+def guard_shrink(path, new_count, label=None, floor=FLOOR, max_drop=MAX_DROP, block=True):
+    """新結果比舊檔少太多就示警。正常情況直接返回,呼叫端照舊寫檔。
 
-    正常情況直接返回,呼叫端照舊寫檔。
+    block=True(預設):印 ::error:: 並 sys.exit(1),**不覆蓋舊檔**。用於全自動來源——
+        跑一半沒有正當理由,少一大塊一定是故障。
+    block=False:只印 ::warning:: 就返回,照樣寫檔。用於「跑一半是合法的」來源,
+        例如 china_damai 要人工逐頁解驗證碼,刻意只跑前幾頁是正常操作;
+        這種硬擋會把使用者一小時的工作丟掉,比病本身還糟。
     """
     label = label or Path(path).stem
     prev = previous_count(path)
@@ -60,8 +79,12 @@ def guard_shrink(path, new_count, label=None, floor=FLOOR, max_drop=MAX_DROP):
     if new_count >= prev * (1 - max_drop):
         return
     drop = 100.0 * (prev - new_count) / prev
-    print(f"\n::error::[{label}] 抓到的資料暴跌 {drop:.0f}%({prev} → {new_count} 筆),"
-          f"超過 {int(max_drop * 100)}% 門檻 — 多半是整批抓失敗(限流/bot 牆/版面改版),"
-          f"不是真的少了這麼多演出。不覆蓋 {Path(path).name},保留上一份完整資料;"
-          f"下次抓取正常就會自己恢復。")
-    sys.exit(1)
+    if block:
+        print(f"\n::error::[{label}] 抓到的資料暴跌 {drop:.0f}%({prev} → {new_count} 筆),"
+              f"超過 {int(max_drop * 100)}% 門檻 — 多半是整批抓失敗(限流/bot 牆/版面改版),"
+              f"不是真的少了這麼多演出。不覆蓋 {Path(path).name},保留上一份完整資料;"
+              f"下次抓取正常就會自己恢復。")
+        sys.exit(1)
+    print(f"\n::warning::[{label}] 抓到的資料比上一份少 {drop:.0f}%({prev} → {new_count} 筆)。"
+          f"若這次是刻意只跑部分頁面就沒問題;否則多半是整批抓失敗,"
+          f"請確認後再決定要不要保留這份輸出。")

@@ -21,6 +21,8 @@ from datetime import datetime, timezone, timedelta
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
 from pathlib import Path
+from _guard import guard_shrink  # noqa: E402  (抓取結果暴跌就不覆蓋舊檔)
+
 DATA = Path(__file__).resolve().parent.parent / "data"
 API = "https://search.opentix.life/search"
 
@@ -189,6 +191,8 @@ def main():
         if not kept_any:
             dropped.append(zh_title + " (無未來場次/座標)")
     out = {"meta": {"source": "opentix.life", "count": len(shows)}, "shows": shows}
+    # 抓失敗就不要用殘缺資料覆蓋好資料(OPENTIX 兩廳院,全自動)。見 _guard.py。
+    guard_shrink(DATA / "opentix.json", len(shows), label="opentix")
     (DATA / "opentix.json").write_text(json.dumps(out, ensure_ascii=False, indent=2), encoding="utf-8")
     print(f"  kept {len(shows)}, dropped {len(dropped)}", flush=True)
     for d in dropped:

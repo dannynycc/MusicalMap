@@ -22,6 +22,8 @@ sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")  # Windows: f
 sys.path.insert(0, str(Path(__file__).resolve().parent))  # run from any cwd
 from geocode import geocode  # noqa: E402
 
+from _guard import guard_shrink  # noqa: E402  (抓取結果暴跌就不覆蓋舊檔)
+
 DATA = Path(__file__).resolve().parent.parent / "data"
 LISTING_URL = "https://www.londontheatre.co.uk/whats-on/musicals?categories=Musicals"
 SHOW_URL = "https://www.londontheatre.co.uk/show/{slug}"
@@ -147,6 +149,8 @@ def main():
         },
         "shows": shows,
     }
+    # 抓失敗就不要用殘缺資料覆蓋好資料(倫敦西區,全自動)。見 _guard.py。
+    guard_shrink(DATA / "westend.json", len(shows), label="westend")
     (DATA / "westend.json").write_text(
         json.dumps(out, ensure_ascii=False, indent=2), encoding="utf-8"
     )

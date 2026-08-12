@@ -22,6 +22,8 @@ from datetime import datetime, timezone, timedelta
 from pathlib import Path
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
+from _guard import guard_shrink  # noqa: E402  (抓取結果暴跌就不覆蓋舊檔)
+
 DATA = Path(__file__).resolve().parent.parent / "data"
 CET = timezone(timedelta(hours=1))
 UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/124.0",
@@ -151,6 +153,8 @@ def main():
             "type": "tour", "verified": True, "source": s["source"],
         })
     out = {"meta": {"source": "easteurope (jegy.hu+)", "count": len(shows)}, "shows": shows}
+    # 抓失敗就不要用殘缺資料覆蓋好資料(jegy.hu 等,全自動)。見 _guard.py。
+    guard_shrink(DATA / "easteurope.json", len(shows), label="easteurope")
     (DATA / "easteurope.json").write_text(json.dumps(out, ensure_ascii=False, indent=2), encoding="utf-8")
     print(f"Wrote {len(shows)} -> data/easteurope.json", flush=True)
     for s in shows:

@@ -11,6 +11,46 @@
 
 ---
 
+## [v2.63.2] - 2026-08-12 22:14
+
+### 暴跌守門接完剩下的來源(共 14 支)
+
+接續 v2.63.0/1。原本記在待辦裡的是「15 支有吞錯寫法的 scraper」,實際盤點後
+**篩選條件本身就選錯了** —— 該問的不是「哪支吞掉例外」,而是
+**「哪個輸出檔大到一旦悄悄縮水就會傷到使用者」**。改用後者重新盤點,結果是:
+
+* 原清單裡多數其實是小來源(austria 2 筆、poland 4、middleeast 4、sweden 7、
+  norway 8、utiki 8、stage_de 12…),守門的 50 筆底線對它們只會空轉;
+* 而原清單**漏掉了幾個大來源**,因為它們的寫法沒被那個 regex 命中 ——
+  broadway.org(214)、atgtickets(203)、teatro.it(166)、OPENTIX(68)、
+  londontheatre(58)。這些一旦縮水才是真的有感。
+
+本次新接 11 支(硬擋 10 + 只警告 1):
+`broadway_tours` `atg` `italy` `japan` `china_poly` `easteurope` `opentix` `westend`
+`na_discover` `gb_discover`,以及 **`china_damai` 用 `block=False` 只警告** ——
+它要人工逐頁解驗證碼,刻意只跑部分頁面是合法操作,硬擋會把使用者一小時的工作丟掉,
+比病本身還糟。為此 `guard_shrink` 新增 `block` 參數。
+
+加上 v2.63.0/1 的 `ticketmaster` `tm_tours` `atrapalo`,共 14 支有守門。
+
+**門檻校準**(git 歷史 26 次資料提交的實測單日最大跌幅):
+broadway.org -3%、atgtickets -1%、teatro.it -1%、opentix -2%、londontheatre -2%、
+polyt.cn -3%、jegy.hu -3%、damai -9% —— 全部離 -40% 很遠,不會誤報。
+歷史上唯二超過 -40% 的是 atrapalo(-72%)與 ticketmaster(-77%),
+而那兩次正是守門要抓的真故障。
+
+**刻意不加的地方也寫進 `_guard.py`:**
+* `build_shows.py` → `shows.json`:已由 `audit_counts.py` 在管線正確位置用更嚴的
+  -10% 門檻硬擋,再塞一個 -40% 的重複守門只會多一個失敗點。
+* 少於 50 筆的小來源:守門在那個量級只會空轉,長大了再加。
+
+驗證:11 支逐一在**獨立行程**實測可正常匯入(同一行程連續匯入會因為這些模組各自
+替換 stdout 而假性失敗);對每個實際輸出檔做矩陣測試 —— 現況筆數靜默放行、
+砍到三成時 10 支回傳退出碼 1 並印 `::error::`、china_damai 回 0 並印 `::warning::`;
+五支稽核全部重跑通過。
+
+---
+
 ## [v2.63.1] - 2026-08-12 21:49
 
 ### 把守門補到同一份 API 配額的另一支上

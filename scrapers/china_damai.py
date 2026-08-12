@@ -21,6 +21,8 @@ CHROME = r"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"
 DEBUG_PORT = 9222
 PROFILE_DIR = os.path.join(os.environ.get("TEMP", r"C:\Temp"), "damai_cdp_profile")
 SEARCH_URL = "https://search.damai.cn/search.htm?keyword=%E9%9F%B3%E4%B9%90%E5%89%A7"
+from _guard import guard_shrink  # noqa: E402  (抓取結果暴跌就不覆蓋舊檔)
+
 OUT_RAW = os.path.join(os.path.dirname(__file__), "..", "data", "china_damai_raw.json")
 
 
@@ -294,6 +296,8 @@ def build():
     out = {"meta": {"source": "damai.cn", "count": len(shows),
                     "note": "人工協助抓取(x5sec 需真人解);劇名+城市去重;含精準 detail 連結"},
            "shows": shows}
+    # 抓失敗就不要用殘缺資料覆蓋好資料(人工逐頁解驗證碼,刻意只跑部分頁面是合法操作)。見 _guard.py。
+    guard_shrink(OUT_SHOWS, len(shows), label="china_damai", block=False)
     json.dump(out, open(OUT_SHOWS, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
     print(f"[build] 音乐剧 raw {len(mus)} → 濾真音樂劇 {len(keep_raw)} (剔除非音樂劇 {dropped}) "
           f"→ 劇名+城市去重 {len(shows)} 場次 → {OUT_SHOWS}", flush=True)

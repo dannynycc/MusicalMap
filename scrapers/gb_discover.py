@@ -12,6 +12,8 @@ import urllib.request
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
+from _guard import guard_shrink  # noqa: E402  (抓取結果暴跌就不覆蓋舊檔)
+
 DATA = ROOT / "data"
 import importlib.util
 _spec = importlib.util.spec_from_file_location("gg", ROOT / "scrapers" / "geocode_google.py")
@@ -68,6 +70,8 @@ def main():
             print(f"  …{ci}/{len(cities)} cities, {len(found)} venues so far", flush=True)
 
     recs = [r for r in found.values() if r["en"]]
+    # 抓失敗就不要用殘缺資料覆蓋好資料(英國場館探索,全自動全掃)。見 _guard.py。
+    guard_shrink(DATA / "gb_discovered.json", len(recs), label="gb_discover")
     (DATA / "gb_discovered.json").write_text(json.dumps(recs, ensure_ascii=False, indent=1), encoding="utf-8")
     print(f"\nDONE: {len(recs)} venues -> data/gb_discovered.json", flush=True)
 

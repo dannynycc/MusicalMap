@@ -25,6 +25,8 @@ sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from geocode import geocode  # noqa: E402
 
+from _guard import guard_shrink  # noqa: E402  (抓取結果暴跌就不覆蓋舊檔)
+
 DATA = Path(__file__).resolve().parent.parent / "data"
 BASE = "https://www.broadway.org"
 UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) MusicalMap/0.1"
@@ -140,6 +142,8 @@ def main():
 
     out = {"meta": {"source": "broadway.org", "shows_count": len(slugs), "stops": len(shows)},
            "shows": shows}
+    # 抓失敗就不要用殘缺資料覆蓋好資料(北美巡演,全自動)。見 _guard.py。
+    guard_shrink(DATA / "tours.json", len(shows), label="broadway_tours")
     (DATA / "tours.json").write_text(json.dumps(out, ensure_ascii=False, indent=2), encoding="utf-8")
     print(f"\nWrote {len(shows)} tour stops ({len(slugs)} shows) -> data/tours.json")
 

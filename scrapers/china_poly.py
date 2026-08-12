@@ -40,6 +40,8 @@ except Exception:  # noqa: BLE001
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
 
+from _guard import guard_shrink  # noqa: E402  (抓取結果暴跌就不覆蓋舊檔)
+
 DATA = Path(__file__).resolve().parent.parent / "data"
 BASE = "https://weixin.polyt.cn/platform-backend"
 UA = ("Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 "
@@ -198,6 +200,8 @@ def main():
             print(f"    - [{c}] {t} @ {v}")
 
     out = {"meta": {"source": "polyt.cn", "count": len(shows)}, "shows": list(shows.values())}
+    # 抓失敗就不要用殘缺資料覆蓋好資料(保利院線,全自動)。見 _guard.py。
+    guard_shrink(DATA / "china_poly.json", len(shows), label="china_poly")
     (DATA / "china_poly.json").write_text(json.dumps(out, ensure_ascii=False, indent=2), encoding="utf-8")
     print(f"\nWrote {len(shows)} shows -> data/china_poly.json")
 

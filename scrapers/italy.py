@@ -38,6 +38,8 @@ from pathlib import Path
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from geocode import geocode  # noqa: E402  (Nominatim + persistent cache, shared)
+from _guard import guard_shrink  # noqa: E402  (抓取結果暴跌就不覆蓋舊檔)
+
 DATA = Path(__file__).resolve().parent.parent / "data"
 CET = timezone(timedelta(hours=1))
 UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/124.0",
@@ -306,6 +308,8 @@ def main():
         })
 
     out = {"meta": {"source": "teatro.it", "count": len(shows)}, "shows": shows}
+    # 抓失敗就不要用殘缺資料覆蓋好資料(teatro.it,全自動)。見 _guard.py。
+    guard_shrink(DATA / "italy.json", len(shows), label="italy")
     (DATA / "italy.json").write_text(
         json.dumps(out, ensure_ascii=False, indent=2), encoding="utf-8")
 
