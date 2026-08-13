@@ -1,95 +1,75 @@
 # MusicalMap
 
-一張地圖，呈現**此刻全球正在上演的音樂劇** —— 常駐型（Broadway / West End）與巡演型（tour，顯示目前在哪座城市）。
+一張地圖，呈現**此刻全球正在上演的音樂劇** —— 常駐型（Broadway / West End）與巡演型（顯示目前巡到哪座城市）。
 
-頂部 header bar（Fraunces 金字品牌 ＋ 此刻劇目/地點**即時計數** ＋ **地球圖示語言切換**（v2.12.0：點開下拉顯示母語寫法 繁體中文/简体中文/English、當前項金色打勾、**無國旗**——收合時只顯示「地球＋當前短碼 繁中/简中/EN」，手機僅地球；取代舊的並排 pills）＋ 地圖首頁/Privacy/Terms/使用說明 ＋「我的音樂劇」墨色入口——**全站每頁 nav 同排版同順序**，v1.17.0–v1.18.0 與 guide 統一畫風）、暖米白地圖鋪滿畫面、海報縮圖當 marker + cluster、hover 預覽卡、點擊跳 popup。**側欄只放搜尋 ＋ 劇目列表**（一劇一列、同劇自動合併、依血統分類排序、多城市可展開看各地點；各站帶「圓點＋豎線脊柱」＋各自海報——不同城市/製作海報不同）。**類型篩選移到地圖上方的橫條 filter bar**（依血統 tag：Broadway/West End（百老匯/西區）、德奧、法語、西語、葡語、中／台／日／韓、歐陸其他；點 pill 多選，勾「Broadway/West End」連在澳洲巡演的 Wicked 也一起出現；分類太多塞不下時整條可橫向捲動）。**時間軸**（**月份**滑桿＋月份選擇器同步，選哪個月就顯示「演出期間跨過該月」的劇；▶ 播放每月推進可看巡演在城市間移動；**可往回拖到過去月份看歷史檔期**，資料來自每日累積的歷史檔）。（footer 已移除，Privacy/Terms 改置頂部 nav。）
+**線上版：https://themusicalmap.com/**
 
-> **日期語意（列表副標題統一「城市 · 日期」）**：有結束日→「**至 M/D**」、開放式長演→「**長期上演**」、本月才首演→「**M/D 起**」、缺日期留白；跨年才補年份。「長期上演」**只給開放式 sit-down 劇院**（百老匯／西區／Stage Entertainment 漢堡·斯圖加特），由 `build_shows` 標 `end_rolling`（Broadway 的 end 是滾動售票期；West End／德國認「**無閉幕日且已開演**」，有閉幕日的限定檔仍顯示「至 X」）；其餘地區（日／韓／巡演／2.5 次元短檔）一律真實「至 X」。Stage Entertainment 來源缺日期，正確檔期人工補在 `overrides.json`。**官網做成「劇名標題」的超連結**（官網不分潤，不單獨給圖卡免得稀釋售票平台點擊）；「購票」圖卡區只放**售票平台**（多平台並列，圖卡寬度依數量自適應、單一來源也填滿不留白）。
+---
 
-線上版：https://themusicalmap.com/
+## 這個站有什麼
 
-**My Musicals（個人音樂劇足跡，v2 繁中改版）**：登入(**Google 或 Email 驗證碼**,v2.13——Email OTP 走 Supabase+Zoho SMTP 寄 6 位數碼,給收不到 Google 的使用者如中國網路環境;同 email 兩種登入自動合併為同一帳號)後記錄看過的音樂劇(可編輯/刪除),以**海報牆/護照/清單三檢視 + 統計儀表板(音樂劇/作品/城市/國家數、最新一場、最常看的劇/國家/城市/劇院榜、各年/各月/各星期觀劇分布折線圖) + 點陣世界地圖(重疊城市自動併群顯示總場次、點擊放大展開,v2.12.4/12)**呈現;排序可依最近/評分/次數/劇名。**卡片為金框海報 + 下方常駐劇院/城市·國家/日期(中文頁只顯示中文:國家繁中、劇院取中文名去廳別);點卡開詳情、點詳情海報開新分頁看原圖**。**可預先輸入未來場次**——海報牆標「即將上演」+面紗、不蓋章、且**不計入「看過」統計**(統計/最新一場只算已發生)。新增為彈出式輸入端,**搜尋/選製作/手動新增自動帶入劇院/城市/幣別**(劇庫吃正式版 `venues_catalog`5,400+ 劇院含中文名、歷史舊名場館(如 Queen's Theatre — 現 Sondheim)與同名多城市下拉標城市消歧(Majestic Theatre · New York) + `shows` 當期座標,打「台中歌劇院」「Miss」「西貢」皆命中)、年/月/日選填日期＋時間、評分/座位/票價/心得、**每筆可自訂海報網址(填圖片 URL 覆蓋系統海報、即時預覽、清空還原、各筆獨立;貼大圖會自動經 wsrv.nl 縮圖加速、失敗退回原圖)、連結/售票網址(詳情頁可點開)**。後端 Supabase(Postgres+Auth,RLS;`sightings` 表存收藏,localStorage 當快取),前端仍純靜態。**三語(繁中/簡中/英文,v1.13.0–v1.15.0,涵蓋 me.html 主頁 + me-input.html 輸入表單 + u.html 公開頁)**:UI 走 `js/mm-strings.js` 字典,`?hl=` 或 nav 的**地球下拉語言切換**(v2.12.0,繁體中文/简体中文/English)切換,語言記在 `mm_variant`(與主站精確共用,含簡繁;輸入端 iframe 亦跟隨)。**v2.12.0 起 me.html/u.html 預設主題改為 cream 淡米黃(對齊主站 `style.css` 的 `#f4efe4`+金 `#a07a34`+135° 斜線紋理),含一次性 `mm-theme-mig` 遷移把既有 midnight 使用者翻成 cream(主題 picker 仍可選回深色);v2.13.4–v2.14.8 登入閘門與 me/u 頁首頁尾全面對齊主站規格(58px topbar+tagline+黑底 CTA、.site-foot 同構 footer、無斜紋 header、品牌字 20px/34px logo),跨網域語言傳遞 `js/mm-xlang.js`(主域↔my. 互跳帶當前語言),場館/城市顯示統整(國家戲劇院/臺中國家歌劇院/臺字城市,顯示層折疊不動資料)**;英文模式國家/城市/劇院顯示資料原文;簡中(zh-hans)用 OpenCC(繁→簡)runtime 轉換(只簡中使用者下載 OpenCC),UI+地名+劇名譯名皆轉簡。(舊 FlightRadar 風版本 `me_ori.html`+`js/me.js` 已於 v1.10.2 移除——死 code,git 歷史可找回。)設定見 `docs/SETUP_ACCOUNTS.md`。
-> **近期(v2.49–v2.50)**:me/u 統計頁「你是什麼樣的劇迷?」大改版——**六邊形戰力圖**(`js/mm-persona-radar.js`)六軸=**劇院常客(總場次,40次滿分)／嘗鮮作品(不同作品,30部滿分)／劇種涉獵(劇種傳統,5種滿分)／跨國足跡(洲×40%+國×60%,5洲+10國滿分)／狂粉劇迷(最高刷數,7次滿分)／音樂劇齡(資歷年跨,30年滿分)**,各軸 0–100 分且**全用對數前載** `fl(x,cap)=100·ln(1+x)/ln(1+cap)`(頭幾部就有感、越後越難;絕不用線性),0 場給鼓勵句、<5 場加成長提示、頂點半徑設 floor 防塌陷但標籤/清單仍顯示真實值;配色六軸各異(紅/青綠/草綠/深藍/紫/洋紅,避開品牌金)、級距線(25/50/75)格線疊層看得出分數級距、頂點圓點與軸標籤與清單編號同色對應。**成就徽章 17 族**(`data.js` badges(),各族多級續階門檻讓高活躍者永遠有下一級:場次/國家/城市/作品/N 刷/雙刷日/連年/五星/劇評/心頭好/劇種/常客劇院/馬拉松月/資深/跨城/口袋名單),圖示為手繪 SVG(`js/mm-badge-icons.js`,布幕舞台/票券/望遠鏡等),金屬框+光澤+頂點星芒設計,銀銅金三級自動晉級。未來場次卡改**薄紗白**(不再壓黑)。規則使用者訂死(見 `docs/PERSONA_RULES.md`)、隨時可能調整。
-> **近期(v2.7.0)**:帳號介面定稿——**全站 nav 大頭照選單**(登入過的使用者,各頁右上「我的音樂劇」CTA 自動換成 monogram 頭像,展開=我的音樂劇/帳號設定/登出;未登入照常顯示 CTA 當誘因;元件=`js/mm-acct-menu.js` 全自包)+**專屬設定頁 `settings.html`**(顯示名稱/username 改名/公開與票價座位隱私(開關即時生效)/登出/刪除帳號;`?signout=1`=全站登出入口)+me.html hero 整合帳號列(公開狀態 pill+專屬網址複製+加入音樂劇);分享 modal 只留首次登入 onboarding。
-> **近期(v1.26–v1.33)**:海報卡 ♥**標最愛**(`add_fav.sql`)；**刪除帳號**(帳號設定→進階操作,GDPR,`add_delete_account.sql`;v1.33.2 回報的「實機失敗」已於 v2.6.0 查明為誤報——刪除實際成功,只是 `clearLocal()` 作用域 ReferenceError 誤顯示失敗,已修)；搜尋併入 catalog `search` 欄,簡體劇名/劇院名(女巫前传/爱知县艺术剧场)也搜得到；貨幣/persona/城邦地名等 i18n 與邊界修正；星級評分/詳情海報**鍵盤可及**；**手機地圖圖卡改「底部彈出 sheet」**(貼底、可上下捲、觸碰不消失——修 autoPan 觸發 markercluster re-cluster 導致「閃一下消失」)。**桌面開卡定位 v2.37–v2.38.1 重構**:側欄點擊與 marker 點擊統一「低倍先飛 zoom 12」,autoPan 廢除改 map 級 popupopen「舒適區校正」(量實際卡高+其下 marker,垂直置中於地圖頂~時間軸上緣;最小 zoom 卡片超框卡死已修)。詳見 CHANGELOG。
+**世界地圖**：暖米白底圖鋪滿畫面，海報縮圖當 marker、相鄰的自動聚成群，hover 出預覽卡、點擊開詳情。
 
-**公開分享頁(v1.4.0；v1.6.0 全面改版)**：每個帳號可設一個唯一 `handle`,產生公開頁 `u.html?u=<handle>`(像 FlightRadar24 的個人頁),把看過的音樂劇分享出去(推廣飛輪)。v1.6.0 起 **u.html 視覺與版面完全比照 me.html**(護照風 hero、海報牆/護照/清單三檢視、世界地圖+城市榜、統計折線圖、persona)——唯讀、資料吃 `public_sightings`;me.html 與 u.html **共用 `css/me-v2.css`** 避免再分岔;render 對使用者欄位做 XSS 跳脫(公開頁 render 別人資料)。**v1.12.0 起公開頁三語化 P1**:繁中/英文雙語 UI(`js/mm-strings.js` 字典),**語言進網址** `?hl=en`(Google 指引+Strava/X 實務;Worker 依語言出 meta+hreflang);en 模式國家/城市/劇院顯示原文。**handle＝帳號固定身份(v1.10.0)**:首次登入**必須取名**(欄位空白不預填、給「預驗可用」的建議 chips,種子＝email 前綴;唯一出口是登出)——公開網址顯示在 me.html **hero 帳號列**(唯讀+複製),改名走**專屬設定頁 `settings.html`**(`rename_handle` RPC;公開開關/票價/座位隱私同頁管理,開關即時生效,v2.7.0);**改名後舊網址自動轉到新網址**(`handle_aliases` 永久保留舊名給原主+`resolve_handle` 解析,Medium 模式,杜絕張冠李戴)。設計依據與實證見 `docs/DESIGN_username_sharing.md`。分享採**全域欄位隱私開關**——使用者自己決定公開頁要不要顯示**票價 / 座位**(預設都關),**筆記永遠不出現在公開頁**。關鍵:敏感欄位在**資料庫層**遮罩(公開讀取只走 `public_sightings()` SECURITY DEFINER 函式,anon 已無法直接讀他人 `sightings`),不是前端隱藏。
+**側欄劇目列表**：一劇一列，同一齣在不同城市的場次自動合併，可展開看各地點。依血統分類排序。
+
+**篩選列**：依作品血統分類（百老匯／西區、德奧、法語、西語、葡語、中／台／日／韓、歐陸其他），可多選。
+
+**時間軸**：月份滑桿 + 月份選擇器。選哪個月就顯示「檔期跨過該月」的劇；按播放可看巡演在城市間移動。**可往回拖到過去月份**看歷史檔期，資料來自每日累積的歷史檔。
+
+**三語**：繁體中文／简体中文／English，各有獨立網址（`/zh-hant/`、`/zh-hans/`、`/en/`）與預渲染 HTML。
+
+### 日期怎麼顯示
+
+| 情況 | 顯示 |
+|---|---|
+| 有結束日 | 至 M/D |
+| 開放式長演 | 長期上演 |
+| 本月才首演 | M/D 起 |
+| 缺日期 | 留白 |
+
+「長期上演」**只給開放式 sit-down 劇院**（百老匯／西區／Stage Entertainment 漢堡·斯圖加特），由 `build_shows.py` 標 `end_rolling`。其餘地區（日／韓／巡演／2.5 次元短檔）一律顯示真實的「至 X」。
+
+作品官網做成**劇名標題的超連結**；「購票」區只放售票平台的方形 logo tile。官網不分潤，所以不單獨給圖卡，免得稀釋售票平台的點擊。
+
+---
+
+## My Musicals — 個人音樂劇足跡
+
+登入後記錄自己看過的音樂劇。
+
+**登入方式**：Google，或 Email 驗證碼（6 位數，給收不到 Google 的環境如中國網路）。同一個 email 兩種登入會自動合併成同一帳號。
+
+**三種檢視**：海報牆／護照／清單，加上統計儀表板（場次數、最常看的劇／國家／城市／劇院榜、各年月週的觀劇分布）與點陣世界地圖。
+
+**輸入**：搜尋劇名自動帶入劇院、城市、幣別（劇庫含近 5,500 座劇院的中英文名、歷史舊名、同名多城市消歧）。可填日期時間、評分、座位、票價、心得，每筆可自訂海報網址。
+
+**可預先輸入未來場次** —— 海報牆標「即將上演」，不計入「看過」的統計。
+
+**戰力圖與徽章**：六邊形戰力圖（劇院常客／嘗鮮作品／劇種涉獵／跨國足跡／狂粉劇迷／音樂劇齡），六軸皆為對數前載計分；17 族成就徽章，銀銅金三級。規則見 `docs/PERSONA_RULES.md`。
+
+**公開分享頁**：每個帳號可設一個唯一 handle，產生公開頁 `my.themusicalmap.com/<handle>`。唯讀，資料走資料庫層的 `public_sightings()` 遮罩函式——**票價／座位由使用者決定是否公開（預設關），筆記永遠不出現在公開頁**。改名後舊網址自動轉到新網址。
+
+後端 Supabase（Postgres + Auth + RLS），前端仍是純靜態。設定見 `docs/SETUP_ACCOUNTS.md`。
 
 ---
 
 ## 架構：資料層與呈現層分離
 
 ```
-scrapers/  ──產出──>  data/*.json  ──merge──>  data/shows.json  ──讀取──>  前端 (index.html)
+scrapers/  ──產出──>  data/*.json  ──merge──>  data/shows.json  ──讀取──>  前端
 ```
 
-- **呈現層**（`index.html` / `css` / `js`）只讀 `data/shows.json`（現在/未來）+ `data/archive/`（拖時間軸到過去時 lazy-load），不在乎資料怎麼來。換來源不用動地圖。
-- **資料層**（`scrapers/`）每個來源各寫一支 scraper、各產一個 source 檔；`build_shows.py` 合併、套用人工修正、做同劇合併與海報繼承（**地區感知**,v2.29.3:同國優先→同字系圈,絕不跨圈——避免美國場次掛日文海報）。re-scrape 單一來源不會蓋掉其他來源。
-- **歷史層**（`scrapers/archive.py`）獨立於純函式 build 之外:每天把當前快照**累積**進不可變歷史檔（`archive = 舊 ∪ 今天`）。**事實（劇名/劇院/日期）閉幕後凍結永不改;tag/group 每次重算**（改分類規則,歷史顯示自動更新,日期不動）。自動累積與人工策展（`curated_history.json`）同 schema,用 `provenance` 區分。**這層有狀態,刻意與「可重跑的純 build」隔開**。
+**呈現層**（`index.html` / `css` / `js`）只讀 `data/shows.json`（現在與未來）與 `data/archive/`（拖到過去月份時才 lazy-load），不管資料怎麼來。換來源不用動地圖。
 
-### 檔案
+**資料層**（`scrapers/`）每個來源各一支 scraper、各產一個 source 檔；`build_shows.py` 負責合併、套人工修正、同劇合併、海報繼承。重抓單一來源不會蓋掉其他來源。**這一層是純函式、可重複執行。**
 
-| 路徑 | 作用 |
-|---|---|
-| `index.html` | **根目錄語言路由頁**(依 localStorage/瀏覽器轉址到 `/zh-hant//zh-hans//en/`,附 x-default 連結;由 `build/gen_site.mjs` 產生) |
-| `build/gen_variants.mjs` → `data/variants/shows.{en,zh-hans,zh-hant}.json` | **三語資料變體**（OpenCC 簡⇄繁 + `data/i18n_maps.json`）。**地名分語言**：中文版城市／國家翻中文（含**兩岸差異**——雪梨↔悉尼、義大利↔意大利…由 `cities_tw`／`countries_tw` 覆寫，OpenCC 只轉字不轉慣例）、小鎮留英文；英文版城市顯示「City, ST」（`us_ca_state` 權威表補州）。**官方中文劇名**（v2.31.10）：`show_titles`（簡）/`show_titles_tw`（繁）group 級字典，中文頁側欄/marker/彈窗直接顯示中文劇名（魔女宅急便、歌劇魅影/剧院魅影台陸可不同），只收有官方依據的。**v2.38–v2.39 補**:CITY_STATE 改帶座標比對（<0.7° 才配對,防同名異城冒名頂替）;中文變體城市優先吃 scraper 給的 `city_cn`（中國五個 scraper 皆輸出）;`venueEn()` 給英文版把 CJK 場館名轉英文（venues_en→cn_venues 雙向包含→拉丁字段萃取,轉不出保留原樣不硬編）;`title_en` 供英文版搜尋/顯示（去【】前綴、引號萃取、機構冒號切分但保護 "The Wedding Banquet: A New Musical" 型正題名）。需 Node + `opencc-js` |
-| `build/gen_site.mjs` → `/en//zh-hans//zh-hant/index.html` + `sitemap.xml` + `robots.txt` | **三語獨立網址 + 預渲染**(劇目清單 + JSON-LD 寫進靜態 HTML → Google 與不跑 JS 的 AI 爬蟲都讀得到)+ hreflang。每日 CI 重生成 |
-| `js/app.js` | 地圖、海報 marker、側欄、搜尋/篩選、popup、同劇合併與多地點 overview;變體頁載 `data/variants/`,中文判斷用 `isZh()`(繁簡皆是);含 `overlapsMonth` 與 XSS 跳脫 |
-| `me.html`(+`me-input.html`/`me-catalog.js`) | **My Musicals v2**(自含繁中頁:海報牆/護照/清單三檢視 + 統計儀表板 + 點陣地圖;輸入端為 iframe,搜尋/選製作/手動新增自動帶入,劇庫吃 `venues_catalog`+`shows`;Supabase Google 登入 + 雲端 `sightings`,localStorage 當快取雙寫) |
-| `me_ori.html`(+`css/me.css`/`js/me.js`) | 舊版 My Musicals(FlightRadar 風/折線圖);v2 上線後改名備份保留 |
-| ~~theatres.html~~ | **已撤站(2026-07-09,v2.18.0 使用者指示)**:原所有劇院地圖頁;檔案已刪(git 歷史可復原),`venues_catalog` 資料仍供自動帶入/統計使用;`theatres` 留在 handle 保留字 |
-| `u.html` / `js/u-view.js` | 公開唯讀 profile 分享頁(`?u=<handle>` 或 Worker 注入 `MM_HANDLE`,免登入,推廣用);視覺共用 `css/me-v2.css`、比照 me.html |
-| `build/pages/{about,guide,privacy,terms}.html` + `build/gen_pages.mjs` → `/{en,zh-hans,zh-hant}/{slug}.html` + 根路由頁 | **內容頁三語靜態變體**(v2.15.0):source 模板(繁中為底+data-i18n)由 gen_pages 烘成 12 個變體頁(翻譯+canonical/hreflang+釘選 `MM_HL`)+4 個根語言路由頁(honor `?hl=` 舊連結)。**改這 4 頁請改 `build/pages/` 再跑 `node build/gen_site.mjs`,根目錄的同名檔是產物**。guide=editorial 藝文風,截圖素材在 `assets/guide/{lang}/` |
-| `worker/` | Cloudflare Worker:`my.themusicalmap.com/<handle>` 乾淨網址 + 舊名 301 + 爬蟲 meta 注入 + 根路徑出 me.html(FR24 模式)(**2026-07-06 已上線**,回源 Cloudflare Pages,見 `docs/SETUP_MY_SUBDOMAIN.md`) |
-| `css/me-v2.css` | me.html 與 u.html **共用**的 v2 護照風樣式(從 me.html 內嵌 CSS 抽出,避免兩頁分岔) |
-| `scrapers/gen_catalog.py` → `data/venues_catalog.json` | 自動帶入字典(場館去重(含 ALIAS_MERGES 同館異名合併) / 中英劇名 / 幣別 / 海報) |
-| `scrapers/audit_catalog.py` | **全庫髒資料掃描器**(11 類:行銷尾巴/引號劇名/主辦前綴/城市尾綴/非音樂劇/同館近似重複/超長/全大寫/tour_name 不含劇名/無日期/無座標;唯讀、人工判讀) |
-| `js/mm-xlang.js` | **跨網域語言傳遞**(主域↔my. 互跳連結帶當前語言;全站掛載) |
-| `css/style.css` | 暖米白 ivory UI（與 guide.html 同 `--paper` 色系；teal 留給地圖元件、金色給品牌字，v1.17.0 全站統一畫風） |
-| `data/shows.json` | **前端唯一讀的檔**，由 build 產生 |
-| `data/broadway.json` | Broadway scraper 輸出（broadway-show-tickets.com） |
-| `data/westend.json` | West End scraper 輸出（londontheatre.co.uk） |
-| `data/tours.json` | 北美巡演彙總 scraper 輸出（broadway.org，23 劇 250 站；v2.40.0 改抓 `data-theatre` 屬性,250 站全數有場館名+建築級座標——舊 regex 只吃 `<a>` 包裹的場館,10 站漏抓） |
-| `data/intl.json` | 國際製作 scraper 輸出（broadway.org/international，全球駐演） |
-| `data/ticketmaster.json` | Ticketmaster Discovery API 輸出（全球補洞，需 API key） |
-| `data/shiki.json` | 劇団四季輸出（shiki.jp JSON API，日本 9 劇場，精確檔期） |
-| `data/takarazuka.json` | 宝塚歌劇団輸出（kageki.hankyu.co.jp，宝塚/東京兩館接力檔期） |
-| `data/interpark.json` | 韓國 Interpark 輸出（world.nol.com 開放 API，真實開演日） |
-| `data/opentix.json` | 台灣 OPENTIX 兩廳院售票輸出（search.opentix.life JSON API，戲劇-音樂劇分類＋**關鍵字掃描層**——主辦方掛錯分類的音樂劇（如 C MUSICAL 的 MHE/我的遺願清單掛「現代戲劇」）靠標題自稱音樂劇(?!場)/歌舞劇＋戲劇類分類救回，v2.31.9；自帶座標+海報） |
-| `data/utiki.json` | 台灣 utiki 售票引擎輸出（寬宏 KHAM 分類 80 + udn售票 搜尋音樂劇 + MNA 分類 77 + **tixFun 分類 80**（双融藝 Ambi Arts 經營的第四家獨立業者，AM創意等檔期只上這裡；場次解析詳情頁內嵌 `__dataP` JSON，v2.51.0）；同套 UTK 引擎，座標交 Google geocode） |
-| `data/manual.json` | **人工策展**：自有售票系統的劇（上海大劇院、Live Nation FR、捷克 NDM…），隨發現隨補 |
-| `data/works.json` | **正典作品主檔**（單一真相來源，207 筆）：每齣作品一筆，記 `tradition`（血統 tag）+ 跨語言 `aliases` + 選填 `poster`／`productions`（版本層，見 `docs/DESIGN_productions.md`）。build 時供①血統分類②跨語言去重③雙語顯示三用——任何別名（`Macskák`/`キャッツ`/`Cats`）都收斂到同一作品。`build_shows.py --discover` 會把「疑似未對照的進口劇」寫到 `data/_works_discover.json` 供審核 |
-| `data/official_sites.json` | **作品官網主檔**（228 筆，key = `build_shows.group_key`，如 `wicked`/`avenue q`；v2.41.0 key 有效性稽核入 `audit_official.py`——7 個死 key 正名、3 個過期刪除,防「有官網但 key 對不上 group=前端永遠不顯示」的 & Juliet 型漏洞）：每作品的官方製作網站，value 為分區 map（`global` fallback ＋ `us`/`uk`/`au`/`de`/`jp`… 對應場次 `country`）。`build_shows` 依每場次國家挑對應官網，掛成 `kind:"official"` 連結；`app.js` 把它做成**劇名標題的超連結**（不單獨給圖卡，官網不分潤、不搶售票平台點擊）。多 agent 研究，~1,000 場次有官網 |
-| `data/works_distinct.json` | **同名異作拆分規則**（v2.39.0）：劇名撞名但實為不同作品的（Peter Pan vs Bennato 義大利原創、A Christmas Carol vs BIT Pellicano 原創、Évangéline 法語原創）依 ticket URL 指紋拆成獨立 group,可覆寫 title/tag。**必須在 TM 合併之後套用**（純 TM 記錄先前套不到）;`audit_dups` 對拆分組豁免 |
-| `data/not_musical.json` | **非音樂劇排除清單**：來源平台把話劇/演唱會/致敬樂團/魔術秀/2.5次元舞台劇/餐飲體驗等標成 musical，title pattern（`NOT_MUSICAL_RE`）抓不到的逐筆列此（web 查證）。build 時依正規化標題剔除 |
-| `data/overrides.json` | 人工座標/欄位修正（依 show id；修來源錯誤，build 時套用） |
-| `data/booking_horizon.json` | 開放式長壽劇的**最後售票日**（依 show id；`booking_horizon.py` 用 Ticketmaster `sort=date,desc` 抓，build 時填入無 end_date 的劇，避免時間軸把它們一路顯示到數年後） |
-| `data/venue_coords.json` | **場館級權威座標**（`venue\|city`→[lat,lng]，建築級 ≤~30m，由 Google 產生；build 時套用到該場館所有場次） |
-| `data/venues.json` | venue→座標 geocode 快取（手動可編） |
-| `scrapers/geocode_google.py` | **Google Places (New) 權威 geocode**（建築級 ≤30m，增量回填 venue_coords.json；金鑰走 .gitignore 不入庫） |
-| `scrapers/audit_geo.py` | 離線國家邊界框健全檢查（抓標到別國/null-island） |
-| `scrapers/{tw,jp,kr,cn}_venues.py` → `data/*_venues.json` | 台/日/韓/中**完整在地音樂劇場館清單**（雙語名+Google 座標；供 My Musicals autocomplete，無當前檔期不上世界地圖） |
-| `scrapers/venue_names.py` → `data/venue_names.json` | 亞洲場館英文+原文雙名（Google `languageCode`） |
-| `data/venues_catalog.json` 的 `search` 欄位 | 英文+原文+簡體+繁體+臺/台 折疊（OpenCC），中英任一寫法皆可搜 |
-| `scrapers/geocode.py` | Nominatim geocoding + 永久快取 |
-| `scrapers/broadway.py` | Broadway scraper（解析 `__NEXT_DATA__`，含 NYC 座標檢查） |
-| `scrapers/westend.py` | West End scraper（解析 `__NEXT_DATA__` + geocode） |
-| `scrapers/broadway_tours.py` | **全美巡演彙總** scraper（broadway.org/tours，一次抓所有巡演劇） |
-| `scrapers/intl.py` | **國際製作** scraper（broadway.org/international，含著名劇院手動座標表） |
-| `scrapers/shiki.py` | **劇団四季** scraper（api_stage_list；日文劇名→英文正名以便全球合併） |
-| `scrapers/takarazuka.py` | **宝塚歌劇団** scraper（各製作頁公演期間，按位置切段解析） |
-| `scrapers/interpark.py` | **韓國 Interpark** scraper（NOL 開放 API；韓國場館座標表） |
-| `scrapers/philippines.py` → `data/philippines.json` | **菲律賓 TicketWorld**（v2.58.0 起改**純 HTTP**:`curl_cffi impersonate="chrome124"` + `Accept-Language` 即可拿到完整 server-rendered 頁,不必開瀏覽器;Playwright 保留為後備）。works 主檔白名單只收 Broadway/West End 劇,馬尼拉主要場館座標表。CI 暫仍為 `warn` 層——本機通不等於機房 IP 通,待排程實跑幾班再升級為 `gate` |
-| `scrapers/audit_images.py` | 海報畫質稽核（實測像素，小於顯示尺寸即報告） |
-| `scrapers/ticketmaster.py` | **Ticketmaster** Discovery API（18 國掃描，需 `TICKETMASTER_API_KEY`） |
-| `scrapers/build_shows.py` | 合併所有 source、TM 補洞去重、套 overrides、同劇合併、海報繼承（地區感知,不跨字系圈）、**血統 tag 分類**（依 `works.json`,別名索引簡繁雙字系）→ `shows.json`（純函式、可重跑） |
-| `scrapers/archive.py` → `data/archive/<year>.json` | **歷史累積層**（每日 CI 在 build 後跑）：`archive = 舊 ∪ 今天 shows`。閉幕場次凍結（事實不可變）、tag/group 每次重算；**跨年檔期寫入 [start_year..end_year] 每一年檔**（v2.39.0 前只寫 start 年,查 2026 檔看不到 2025 開演跨年劇;年份 sane 範圍 1980..今年+5,進行中/end=null 以今天封頂）；按 start 年分檔 + `index.json`。前端拖時間軸到過去才 lazy-load 對應年檔 |
-| `scrapers/bootstrap_archive.py` | 一次性：挖 **git 歷史**裡每天 commit 的舊 `shows.json`，回溯灌入 archive（git 本身就是不可變每日快照）。`python scrapers/bootstrap_archive.py` |
-| `data/curated_history.json` | **人工策展深歷史**：archive 開始前就閉幕的重要檔期（Hamilton 2015-、Phantom NY 1988-2023…），售票 API 抓不到過去,改由 Wikipedia/Wikidata 查證。只記事實,tag 自動套 |
+**歷史層**（`scrapers/archive.py`）刻意獨立在純函式 build 之外，因為它**有狀態**：每天把當前快照累積進不可變的歷史檔（`archive = 舊 ∪ 今天`）。閉幕場次的事實（劇名／劇院／日期）永久凍結，但 tag 與 group 每次重算——所以改分類規則時，歷史顯示會自動跟著更新，日期不動。
 
 ---
 
-## 資料模型（每筆 show / tour stop）
+## 資料模型
+
+每一筆是一個「演出檔期」。巡演的每一站都是獨立一筆。
 
 ```json
 {
@@ -103,63 +83,207 @@ scrapers/  ──產出──>  data/*.json  ──merge──>  data/shows.json
   "end_date": null,            // null = 無限期/常駐中
   "ticket_url": "https://…",
   "image": "https://…",        // 海報；巡演沿用該劇海報
-  "tour_name": null,           // 完整/在地製作名，例 "Wicked — North American Tour"、"魔女宅急便"（彈窗大標用；列表用乾淨 title，v2.31.9 起 canonical 正名時自動保留原題名；v2.32.0 起若保留的只是 canonical 英文變體，讓位給 local_titles.json 的人工在地名，如漢堡 Zurück in die Zukunft）
-  "group": "wicked",           // build 產生的正規化合併鍵（同劇同 key）
+  "tour_name": null,           // 在地製作名，彈窗大標用；列表用乾淨的 title
+  "group": "wicked",           // 正規化合併鍵，同劇同 key
   "verified": true,
   "source": "londontheatre.co.uk"
 }
 ```
 
-- 巡演的每一「站」是一筆獨立紀錄，用 `[start_date, end_date]` 表示在該城市的檔期。
-  **「目前在哪座城市」** = 今天落在哪一站的日期區間（見 `app.js` 的 `isPlayingNow`）。
-- `group` 由 `build_shows.py` 的標題正規化產生，讓不同來源命名（`SIX` / `SIX: The Musical`）歸為同一齣。
+- 「**目前巡到哪座城市**」＝今天落在哪一站的日期區間（見 `js/app.js` 的 `isPlayingNow`）。
+- `group` 由標題正規化產生，讓不同來源的命名（`SIX` / `SIX: The Musical`）歸為同一齣。
+
+---
+
+## 資料來源
+
+**自動抓取（34 支 scraper，每日兩次 CI）**
+
+| 地區 | 來源 |
+|---|---|
+| 英美 | Broadway、West End、北美巡演（broadway.org）、國際製作、ATG 英國巡演 |
+| 日本 | 劇団四季、宝塚歌劇団、東宝／2.5 次元／東急 |
+| 韓國 | Interpark（NOL 開放 API） |
+| 中國 | 保利、上海文廣、ypiao、中演、聚橙 |
+| 台灣 | OPENTIX 兩廳院、utiki（寬宏／udn／MNA／tixFun） |
+| 歐洲 | Stage DE、Madrid、Barcelona、義／瑞典／荷／波蘭／挪威／奧地利／葡萄牙／東歐 |
+| 其他 | 中東、菲律賓、Ticketmaster（全球補洞，18 國） |
+
+**半自動**：大麥（damai.cn）需人工協助批次解反機器人驗證，不在 CI，約每月跑一次。
+
+**人工策展**（`data/manual.json`）：反爬市場（巴西、阿根廷、南非、新加坡…）與自有售票系統的劇，逐齣查證後手填。
+
+來源登記表在 **`docs/SOURCES.md`**，用戶提供的網址一律登記在此。
+
+---
+
+## 檔案結構
+
+### 前端
+
+| 路徑 | 作用 |
+|---|---|
+| `index.html` | 根目錄語言路由頁（依瀏覽器語言轉址到三語變體） |
+| `js/app.js` | 地圖、marker、側欄、搜尋篩選、popup、同劇合併 |
+| `css/style.css` | 暖米白 ivory 主題 |
+| `me.html` + `me-input.html` | My Musicals 主頁與輸入端（iframe） |
+| `u.html` + `js/u-view.js` | 公開唯讀分享頁 |
+| `settings.html` | 帳號設定（改名／隱私開關／刪除帳號） |
+| `css/me-v2.css` | me.html 與 u.html **共用**的護照風樣式（避免兩頁分岔） |
+| `js/mm-strings.js` | me／u／settings 的三語字典 |
+| `js/i18n.js` | 主地圖的三語字典 |
+| `worker/` | Cloudflare Worker：`my.themusicalmap.com/<handle>` 乾淨網址、舊名 301、爬蟲 meta 注入 |
+
+### 建置
+
+| 路徑 | 作用 |
+|---|---|
+| `build/gen_variants.mjs` | 產三語資料變體（OpenCC 簡繁 + 地名／劇名字典） |
+| `build/gen_site.mjs` | 產三語獨立網址 + 預渲染 HTML + JSON-LD + sitemap／robots |
+| `build/gen_pages.mjs` + `build/pages/` | 內容頁（about／guide／privacy／terms）三語變體與 404 頁 |
+
+> ⚠️ 改 about／guide／privacy／terms 要改 **`build/pages/`** 的 source，再跑 `node build/gen_site.mjs`。根目錄的同名檔是產物，會被 CI 覆蓋。
+
+### 資料主檔
+
+| 路徑 | 作用 |
+|---|---|
+| `data/shows.json` | **前端唯一讀的檔**，由 build 產生 |
+| `data/works.json` | **正典作品主檔**（207 筆，單一真相來源）：每齣作品的血統 tag、跨語言別名、選填海報與版本層。任何別名（`Macskák`／`キャッツ`／`Cats`）都收斂到同一作品 |
+| `data/official_sites.json` | 作品官網（224 部劇／355 條網址），依場次國家挑對應地區的官網 |
+| `data/venues_catalog.json` | 自動帶入字典（5,497 場館去重、中英劇名、幣別、海報） |
+| `data/venue_coords.json` | 場館級權威座標（建築級 ≤30m） |
+| `data/archive/<year>.json` | 歷史累積層，按年分檔 + `index.json` |
+
+### 人工修正檔
+
+| 路徑 | 作用 |
+|---|---|
+| `data/manual.json` | 人工策展的演出（反爬市場、自有售票系統） |
+| `data/overrides.json` | 依 show id 修正座標與欄位 |
+| `data/not_musical.json` | 非音樂劇排除清單，支援 `titles`／`title_venue`／`title_prefix` |
+| `data/works_distinct.json` | 同名異作拆分規則（Peter Pan vs Bennato 義大利原創…） |
+| `data/local_titles.json` | 各地在地製作名 |
+| `data/booking_horizon.json` | 開放式長壽劇的最後售票日，避免時間軸把它們顯示到數年後 |
+| `data/curated_history.json` | 人工策展深歷史（archive 開始前就閉幕的重要檔期） |
 
 ---
 
 ## 怎麼跑
 
 ```bash
-# 1) 起本機 server（前端用 fetch 讀 JSON，必須走 http，不能直接開檔）
-cd D:/ClaudeCode/MusicalMap
-python -m http.server 8753            # 瀏覽器開 http://localhost:8753/
+# 起本機 server（前端用 fetch 讀 JSON，必須走 http，不能直接開檔）
+python -m http.server 8753            # 開 http://localhost:8753/
 
-# 2) 重新抓資料
-python scrapers/westend.py            # West End（首次 geocode ~50s，之後走快取）
-python scrapers/broadway.py           # Broadway（進 28 個細節頁拿 venue+座標）
-python scrapers/broadway_tours.py     # 全美巡演（broadway.org，23 劇 250 站）
-python scrapers/intl.py               # 國際製作（broadway.org/international）
-python scrapers/shiki.py              # 劇団四季（日本）
-python scrapers/takarazuka.py         # 宝塚歌劇団（日本）
-python scrapers/interpark.py          # 韓國 Interpark（world.nol.com API）
-python scrapers/atg.py                # ATG 英國地方圈
-python scrapers/stage_de.py           # Stage Entertainment 德國
-TICKETMASTER_API_KEY=xxx python scrapers/ticketmaster.py  # 全球補洞（需免費 key）
-python scrapers/build_shows.py        # 合併成 data/shows.json
+# 重新抓單一來源
+python scrapers/westend.py
+python scrapers/broadway.py
+python scrapers/broadway_tours.py
+python scrapers/shiki.py
+TICKETMASTER_API_KEY=xxx python scrapers/ticketmaster.py
+
+# 合併成 data/shows.json
+python scrapers/build_shows.py
+
+# 重建網站產物（改了 js/css 也要跑，版號是內容雜湊）
+python scrapers/gen_catalog.py
+node build/gen_variants.mjs
+node build/gen_site.mjs
 ```
 
-提交流程（CHANGELOG / 版號 / tag）見 **`docs/WORKFLOW.md`**；自動更新與部署見 `.github/workflows/update.yml`（**一日兩次**：台北 06:00 & 18:00）。
+提交流程（CHANGELOG／版號／tag）見 **`docs/WORKFLOW.md`**。
 
 ---
 
-## 現況 / 待辦
+## 自動更新與品質守門
 
-- ✅ **共 ~2,170 筆、32 國、597 城**（隨每日 CI 變動；2026-08-12 實測 2,166 筆/707 groups）,含座標與海報。中國 271 筆為全站第三大市場（次於美 843、英 293）。自動 scraper：Broadway、West End、北美巡演（broadway.org 297 站）、國際製作、劇団四季、宝塚、東宝/2.5次元/東急（`japan.py`）、韓國 Interpark、ATG 英國巡演、Stage DE、Madrid、台灣 OPENTIX/utiki、東歐（jegy.hu）、義/瑞/荷/波/挪/奧/中東、**中國**（Poly/上海文廣/ypiao/中演/聚橙 juooo，逆向官方 API；**大麥 389 場次/66 城（2026-08-12 重抓），人工協助批次解 x5sec、非 CI，約每月一次**）、Portugal（BOL）、Ticketmaster 全球補洞。
-  - ✅ `china.py`／`china_ypiao.py`／`china_juooo.py` 曾因 commit `7045a39`（2026-07-14）檔案編碼損毀而停擺 29 天，**v2.56.0 已修復**（整檔還原 + 補回 `city_cn`）。中國城市中英對照表已合一到 `scrapers/_cn_cities.py`。
-- ✅ **人工策展（`manual.json`，反爬市場）**：巴西（6）、阿根廷（2）、南非（4）、新加坡（4，到 2027）、葡萄牙、上海、**波鴻星光快車**（1988– 常設專用劇場，ATG.de 售票，任何來源都不覆蓋）、**菲律賓馬尼拉**（3，Charlie/On Your Feet/Notebook@TicketWorld——bot 牆擋自動抓，`scrapers/philippines.py` 為實驗性 playwright 版掛 CI `::warning` 不擋 build）、各劇巡演段（Les Mis Arena/Miss Saigon/Beetlejuice/Chicago/SIX/Heathers/Roméo et Juliette…）。反爬來源（Sympla/Plateanet/MBS Akamai/SISTIC 需授權）無法自動抓，逐齣查證後手填。
-- 📍 **場館座標補齊（v2.60.0）**：缺座標演出 59 → 8 筆。手法＝**三個獨立來源互相印證**（本地權威表 → Google Places → OSM Nominatim），單一來源需通過「地址城市＋識別字」雙重驗證才採用。⚠️ 中國大陸 Google 回的是 **GCJ-02 偏移座標**，必須用 `scrapers/cn_venues.py` 的 `gcj02_to_wgs84` 轉換。中文場館名共用「大/剧/院/中心」等字，**名稱重疊率不可作為判準**（會把常熟大剧院配到常州大剧院）。每筆決策的證據存於 `logs/geocode_2026-08-12.json`。
-- 🛡️ **產物與網址層守則（v2.61.0）**：`404.html`（Cloudflare Pages 沒有它時，**任何找不到的路徑都回 index.html + HTTP 200**＝Google 判的 soft 404；由 `gen_pages.mjs` 沿用 about.html 外殼自動生成，且**必須列進 workflow 的 `git add`**）。`_headers` 的 `/*` 一定要放**最前面**——放最後會把具體路徑的 X-Frame-Options/CSP 整組蓋掉（實測 me/settings 完全沒有防護）。my. 的 handle 一律 301 收斂到小寫（否則 `/danny` `/DANNY` 各自 self-canonical＝重複內容）；⚠️ **Worker 不在 CI 部署範圍**，改完要手動 `cd worker && npx wrangler deploy`。
-- 🧹 **欄位衛生 pipeline（v2.59.0）**：`build_shows.py` 在 **Ticketmaster 合併之後**統一做——HTML 實體解碼（場館/城市/巡演名，`clean_title` 只顧 title）、(0,0) Null Island 座標清空、全大寫城市/場館名轉標題式、票務搜尋連結用最終標題重建 `q`、`data/dead_images.json` 死圖列管、`venue==city` 折大小寫後清空。⚠️ 順序關鍵：放在 TM 合併**前**等於整批 TM 資料繞過清理。另有**城市標籤正規化**（座標 80km 分群後群內統一，優先採帶州別的寫法；不可單純按名字併——Bloomington IN/IL、Duluth MN/GA、Rochester NY/MN 是不同城市）。
-- 🚨 **CI 體檢閘門（v2.56.0，2026-08-12）**：在此之前每支 scraper/稽核失敗都只印 `::warning::`，**workflow 永遠是綠的**——三支中國 scraper 因此壞了 29 天沒人發現。現在分兩層：`gate`（失敗要紅）與 `warn`（已知積欠/實驗性來源，只提醒）。失敗記入 FAILLOG，由獨立的 `health` job 判定；該 job **刻意排在兩個部署 job 之後**，所以單一來源掛掉不會阻止線上資料更新，但整個 run 會變紅、GitHub 才會寄通知。目前 `warn` 層＝`audit_manual`／`audit_tournames`／`audit_titles`／`audit_sample_truth`／`philippines`，積欠清乾淨後應逐一升級成 `gate`。
-- 🆕 **`scrapers/audit_manual.py`**（CI 每次跑，v2.57.0 起為 `gate` 層）：三類——**STALE**（end_date 已過，擋 CI）、**URGENT**（現正上演或 90 天內開演且 `_checked` 逾 45 天，最可能已被延長/改期/取消）、**UNCHECKED**（遠期檔期逾期未查證）。URGENT 是 v2.57.0 補的：上海《劇院魅影》檔期延長時條目仍在檔期內、`_checked` 才 61 天，舊的 120 天門檻完全抓不到。
-- 🆕 **`scrapers/audit_geo.py`**（CI 每次跑，2026-07-10）：國界框檢查＋venue_coords.json 自體檢（跨城市同座標複製貼上指紋、對 cn_venues 權威表 >20km）——保利連鎖座標污染事件（南昌/衡陽錯 616-989km）後入 CI。中國場館座標鐵則：cn_venues.json 為權威，geocode_google 遇中國場館先查權威表（Google 大陸資料 GCJ 偏移＋同名連鎖誤配）。
-- 🆕 **`scrapers/audit_official.py`**（CI 每次跑，2026-07-09）：官網體檢——resident 劇「有條目但地區對不到」（星光快車型漏洞：條目只有 uk 鍵、波鴻 de 區整個沒官網）、授權商目錄頁污染（Concord/MTI≠官網）、非中國 resident 無條目數量基線。中國劇經 8/8 抽查證實無獨立官網生態（微信/微博宣發），無條目=正常。
-- 🆕 **`scrapers/audit_sentinels.py`**（CI 每次跑，2026-07-09）：哨兵體檢——12 個「不可能不在」的常設鐵桿劇（獅子王五城/西區三老/波鴻星光快車…）＋7 個來源最低筆數線，缺=::warning。與 build_shows 的來源驟降守門互補：守門抓「突然壞」，哨兵抓「一直漏」（維也納 VBW 歸零、broadway 28→16 靜默壞抓事件後制度化）。
-- 🆕 **品質稽核五連發（CI 每次跑，2026-07-13/14）**：`audit_dups.py`（去重漏合併/promoter/套票垃圾）、`audit_tournames.py`（presenter 滲入/純團名/跨 attraction 撞名）、`audit_titles.py`（未歸組超集/分裂 group/髒指紋，KNOWN_DISTINCT 白名單 16 對）、`audit_sample_truth.py`（**每日隨機 15 卡直接對 Ticketmaster API** 比場地/日期/標題/genre——不預設病型守「沒想到的錯」；429 全滅時誠實回報 INCONCLUSIVE 不假 PASS）、`audit_posters.py`（釘圖健康 HEAD/新庫存圖 vs baseline/縮圖迴歸哨兵/每日 12 圖抽樣尺寸）。另 build 層有 `_TM_RETITLE`（TM event 掛錯 attraction 的正名，Masquerade 假巡演卡案）。**2026-07-14 v2.36–v2.41 再補**:`audit_dups` 加「同劇同城重複售票 URL」檢查（Wonderland 布達佩斯/长安大国医同連結給兩次事件,build 尾端 ticket_links 保序去 URL 重複）＋「季票套餐群聚」檢查（同場館同日期 ≥3 劇=訂閱套票污染,TM/tm_tours 抓取層直接 skip subscription/season 事件）;`audit_official` 加死 key 檢查;`audit_titles` KNOWN_DISTINCT 配合 works_distinct;build 加全域日期健全層（1980..2031 外清空,teatro.it 1229-02-23 案）＋ CJK 場館正規化合併（去廳別後雙向包含,同 group 同城日期重疊即併）。
-- 🆕 **反爬 CDN 海報** rehost 到 `posters/`（同源，避開防盜連 403；如 Diana 的 Sympla 圖）。
-- 🔄 自動更新：**一日兩次**（台北 06:00 & 18:00），見 `.github/workflows/update.yml`。
-- 📒 **來源登記表：`docs/SOURCES.md`**（用戶提供的網址一律登記在此，含狀態）。
-- ✅ **Production／版本層（v0.57.0，見 `docs/DESIGN_productions.md`）**：足跡記錄可選「版本／製作」（如歌劇魅影：倫敦/北美/日本四季…各國 live 版本 + 台灣巡演/25 週年 RAH 等 archival 版本），各帶正確海報；未收錄的版本可貼「自訂海報網址」。沒在演的劇（如 Love Never Dies／愛無止盡）也進自動完成並有縮圖。海報解析序 `自訂→版本→作品→♪`。`gen_catalog.py` 自動依國家分群產生 live 版本；`scrapers/audit_productions.py`（CI）守海報。
-- ✅ 座標修正機制：NYC 範圍檢查、lat/lng 對調偵測、城市中心點 fallback、著名劇院手動座標表、`overrides.json`、geocode 快取。
-- ✅ 同劇合併（標題正規化）＋**同座標去重**（一場館被兩來源標不同 city／拼法也合併成一個點，售票連結合併）、正式劇名覆蓋、巡演各自海報、cluster 依數量 √n 縮放、地圖／衛星切換、多地點 overview、popup 完整海報、多地區售票連結(「**購票**」標頭下各平台以**方形 logo tile**並排、含右箭頭;logo 用 favicon 自動取得,favicon 太糊/不對的(大麥/聚橙/Ticketmaster/OPENTIX)改 rehost 官方高清 logo 到 `logos/`,見 `js/app.js` LOGO_MAP)。
-- ✅ **多平台分潤框架（`MM_CONFIG.AFFILIATE` + `affiliateUrl()`，見 `docs/DESIGN_affiliate.md`）**：render 時把外連售票 URL 依 host 包成分潤連結（資料層只存乾淨 URL，換 ID = 改 config 一行）。支援 Impact／Partnerize／Awin／tmpl(Sovrn 等)多網絡;每個程式 dormant，填碼即生效。**直接計畫**:**Ticketmaster**（Impact,~600 齣,較高佣金,獨立於 Sovrn)。**Sovrn Commerce / VigLink catch-all**(一把 key 變現所有 in-network 售票站):涵蓋 **TodayTix(101)+ londontheatre(45)+ broadway-show-tickets(27)+ ATG(219)** ≈ 390 條外連,1-2% CPA+CPC。⚠️ **Sovrn 端需人工審網站(~3-5 天,Settings→Pending)後才開始計佣**。ATG/Broadway Direct 之後可升級為**直接計畫**(Partnerize/Awin,較高)取代 Sovrn。各平台 2026-06-23 逐一查證,詳見 `docs/DESIGN_affiliate.md`;TodayTix 改導用 `scrapers/todaytix.py`。
-- 🟡 West End 少數冷門場館 geocode 為近似位置（可編 `data/venues.json` 校正）。
+GitHub Actions **每天兩次**（台北 06:00 & 18:00，`.github/workflows/update.yml`）跑全套 scraper、重建網站、提交資料並部署。
+
+### 三層守門
+
+| 層級 | 行為 | 用途 |
+|---|---|---|
+| **硬擋** | 失敗就**停在該步**，不建站、不提交，線上維持前一版 | 資料整批消失 |
+| **`gate`** | 記入失敗清單，run 變紅，但照常部署 | 單一來源壞掉 |
+| **`warn`** | 只提醒 | 已知積欠、實驗性來源 |
+
+**為什麼需要硬擋**：`gate` 只會把 run 標紅，殘缺資料照樣提交部署。當某個來源被限流、整批抓失敗而 scraper 又把錯誤吞掉正常結束時，所有稽核都會通過——因為它們檢查的都是「留下來的資料對不對」，**沒有一項在看「有沒有整批消失」**。
+
+- `scrapers/audit_counts.py`（硬擋）：總筆數比上一版跌超過 10% 就停。門檻取自歷史實測，日常波動在 -4.4% ~ +4.3%。
+- `scrapers/_guard.py`（scraper 端）：抓到的資料比舊檔少超過 40% 就**不覆蓋舊檔**，並以非零退出碼讓 CI 變紅。**寧可不更新，也不要用殘缺資料蓋掉好資料**——舊檔留著，下游仍拿得到完整資料，下次抓正常就自己恢復。14 支 scraper 已採用。
+
+### 稽核（CI 每次跑）
+
+| 稽核 | 守什麼 |
+|---|---|
+| `audit_dates` | 日期結構：格式、閉幕早於開演、已閉幕仍在檔、無開演日、檔期逾 400 天未標長演 |
+| `audit_geo` | 國界框 + 座標表自體檢（跨城市同座標的複製貼上指紋） |
+| `audit_official` | 官網體檢；`--check-live` 另外連線驗每條官網是否還活著 |
+| `audit_sentinels` | 12 個「不可能不在」的鐵桿劇 + 7 個來源最低筆數線 |
+| `audit_manual` | 人工策展條目過期／久未查證 |
+| `audit_dups` | 去重漏合併、同劇同城重複售票 URL、季票套餐群聚 |
+| `audit_titles` / `audit_tournames` | 未歸組、分裂 group、presenter 名滲入 |
+| `audit_sample_truth` | 每日隨機 15 卡直接對 Ticketmaster API 比場地／日期／標題／類型 |
+| `audit_posters` / `audit_productions` | 海報健康與版本層海報 |
+| `audit_catalog` | 全庫髒資料掃描（11 類，唯讀人工判讀） |
+
+`audit_sentinels` 與資料量守門互補：**守門抓「突然壞」，哨兵抓「一直漏」**。
+
+---
+
+## 開發須知（踩過的坑）
+
+**順序很重要**
+- `build_shows.py` 的欄位衛生（HTML 實體解碼、座標清空、全大寫轉標題式）必須放在 **Ticketmaster 合併之後**，放前面等於整批 TM 資料繞過清理。
+- 非音樂劇的關鍵字過濾必須比對**來源原始標題**。標題正規化會把「Movie Tour」這類證據從欄位裡刪掉，規則寫得再對也比不到。
+- 加價套裝 listing（`… Ticket + Hotel Packages`）要在**去重之前**濾掉，否則它佔位、把正常 listing 擠掉，事後再刪會連整個場次一起弄丟。
+
+**回饋迴圈**
+- `tm_tours.py` 讀的是 `shows.json` **自己的輸出**，拿站上已有的 group 去搜同名 attraction。一筆混進來的髒資料（例如把演唱會當成劇名）下一輪就會長成一整輪巡演。所以非音樂劇命中且不是 `works.json` 註冊作品時要**整組刪**，切斷迴圈；已註冊作品只刪命中那一筆，免得「Les Misérables 電影放映」把真的悲慘世界殺掉。
+
+**外部 API 配額**
+- 不要為了讓某個修正提早生效而手動觸發完整重建，那會再吃一次所有外部 API 的當日配額。通常等下一次排程就好。
+
+**座標**
+- 中國大陸的 Google 座標是 **GCJ-02 偏移**，必須用 `scrapers/cn_venues.py` 的 `gcj02_to_wgs84` 轉換。
+- 中文場館名共用「大／剧／院／中心」等字，**名稱重疊率不可作為判準**（會把常熟大剧院配到常州大剧院）。補座標要三個獨立來源互相印證。
+- 城市標籤正規化按座標分群（80km）後群內統一，**不可單純按名字併**——Bloomington IN/IL、Duluth MN/GA、Rochester NY/MN 是不同城市。
+
+**部署與網址**
+- `_headers` 的具體路徑要寫**無副檔名**形式（`/me`，不是 `/me.html`）。Cloudflare Pages 會把 `/me.html` 用 308 導到 `/me`，而 `_headers` 比對的是該次回應的請求路徑——只寫 `.html` 版時，規則會生效在那個沒人停留的 308 上。兩種都列最保險。
+- `404.html` 必須列進 workflow 的 `git add`。Pages 沒有它時，任何找不到的路徑都回 index.html + HTTP 200，那是 Google 判定的 soft 404。
+- **Worker 不在 CI 部署範圍**，改完要手動 `cd worker && npx wrangler deploy`。
+- my. 的 handle 一律 301 收斂到小寫，否則 `/danny` 與 `/DANNY` 各自 self-canonical ＝ 重複內容。
+
+**海報**
+- 海報繼承是**地區感知**的：同國優先 → 同字系圈，絕不跨圈，避免美國場次掛上日文海報。
+- 反爬 CDN 的海報 rehost 到 `posters/`（同源，避開防盜連 403）。
+
+---
+
+## 現況
+
+**約 2,090 筆演出、32 國、513 城**（隨每日 CI 變動）。最大三個市場：美國 764、英國 294、中國 273。
+
+**待辦與已知限制**
+- 英國巡演只吃 ATG + Ticketmaster 兩個來源，非這兩家的場館（Cardiff WMC、Leicester Curve…）會漏。
+- `works.json` 註冊表仍有缺口（例如 The Music Man 這種經典未收錄），會影響 canonical 標題與血統分類。
+- West End 少數冷門場館的 geocode 是近似位置，可編 `data/venues.json` 校正。
+- 分潤框架已就位（`docs/DESIGN_affiliate.md`），Ticketmaster 走 Impact，其餘走 Sovrn catch-all。
+
+---
+
+## 文件索引
+
+| 文件 | 內容 |
+|---|---|
+| `CHANGELOG.md` | 完整版本史與每次變動的來龍去脈 |
+| `docs/WORKFLOW.md` | 提交流程（每次 commit 必照做） |
+| `docs/SOURCES.md` | 資料來源登記表 |
+| `docs/SETUP_ACCOUNTS.md` | Supabase 帳號系統設定 |
+| `docs/SETUP_MY_SUBDOMAIN.md` | my. 子網域與 Worker 設定 |
+| `docs/DESIGN_username_sharing.md` | handle／公開分享頁的設計依據 |
+| `docs/DESIGN_productions.md` | 版本層（同一齣的各國製作）設計 |
+| `docs/DESIGN_affiliate.md` | 分潤框架設計 |
+| `docs/PERSONA_RULES.md` | 戰力圖六軸計分規則 |
+| `docs/TOUR_SWEEP.md` | 巡演掃描機制 |
