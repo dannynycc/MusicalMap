@@ -663,7 +663,7 @@ function manualAdd(title,seed,onBack){
   sheetTitle.textContent=T('mi_manual_title');saveBtn.disabled=!title.trim();
   sbody.innerHTML=`
     <button type="button" class="backbtn" id="backToSearch2">${onBack?T('mi_back'):T('mi_back_search')}</button>
-    <div class="step"><div class="lbl">${T('mi_manual_input_lbl')}</div>
+    <div class="step">${seed?'':`<div class="lbl">${T('mi_manual_input_lbl')}</div>`}
     <div class="fld"><span class="fl">${T('fld_title_req')}</span><input id="mTitle" value="${title.replace(/"/g,'&quot;')}" placeholder="${T('ph_title')}"/></div>
     <div class="row2">
       <div class="fld"><span class="fl">${T('fld_venue_opt')}</span><div class="combo"><input id="mVenue" autocomplete="off" placeholder="${T('ph_venue')}"/><div class="combo-panel" id="mVenuePanel" hidden></div></div></div>
@@ -789,7 +789,7 @@ function pickWork(w){
         <span class="pv">${TN('prod_cities',{n:cities.length,list:cities.slice(0,3).join('／')+(cities.length>3?'…':'')})}</span><span class="pr">${yr}</span></span>
       <span class="chev">›</span></button>`;}).join('');
   pc.insertAdjacentHTML('beforeend',`<button class="pcard escape" id="otherProd"><span class="fl">✎</span>
-    <span class="pm"><span class="pn">${T('pick_none')}</span><span class="pv">${T('pick_none_sub')}</span></span></button>`);
+    <span class="pm"><span class="pn">${T('pick_none')}</span></span></button>`);
   [...pc.querySelectorAll('.pcard[data-g]')].forEach(b=>b.onclick=()=>{const g=groups[+b.dataset.g];
     if(g.items.length===1)pickProd(w,g.items[0]);else pickTourCity(w,g);});
   document.getElementById('otherProd').onclick=()=>manualAdd(w.en,w,()=>pickWork(w));
