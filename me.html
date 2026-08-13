@@ -423,7 +423,7 @@ function posterEl(s){
   const fut=isFut(s.date);if(fut)c.classList.add('is-future');
   c.innerHTML=`<figure class="poster" style="margin:0${s.posterBg?';background:'+s.posterBg:''}">
       <div class="skel"></div>
-      <img alt="${esc(s.title)} poster" loading="lazy" decoding="async" ${s.posterFit==='contain'?'style="object-fit:contain;object-position:center"':''}/>
+      <img alt="${esc(s.title)} poster" loading="eager" decoding="async" ${s.posterFit==='contain'?'style="object-fit:contain;object-position:center"':''}/>
       <figcaption class="fallback"><span class="kick">A Musical</span><span class="ft">${esc(s.title)}</span><span class="fzh">${esc(s.zh)}</span><span class="rule"></span></figcaption>
       <div class="topfx"></div>
       ${fut?`<div class="up-veil"></div><div class="up-ribbon">${T('ribbon_upcoming')}</div>`:''}
@@ -489,7 +489,12 @@ function renderPoster(){
   _wallTimers.forEach(clearTimeout);_wallTimers.length=0;   // 清孤兒計時器(2026-07-15 修)
   const w=document.getElementById('wall-poster');w.innerHTML='';
   const list=filtered();
-  list.forEach((s,i)=>{const el=posterEl(s);el.classList.add('reveal');el.style.setProperty('--i',i%12);w.appendChild(el);io.observe(el);});
+  // 海報牆不等捲動揭示(2026-08-13;與 u-view.js 同修)。實測圖一開始就全載完了,
+  // 卡住的是 .reveal 的 opacity:0 在等 IntersectionObserver ——「沒渲染」其實是「沒揭示」。
+  // 一次全揭 + --i 40ms 階梯做由上而下的順序感;--i 改用真實索引並封頂 30(最後一張 1.2s),
+  // 原本的 i%12 在一次全揭時會讓第 13 張跟第 1 張同時出現。
+  list.forEach((s,i)=>{const el=posterEl(s);el.classList.add('reveal');el.style.setProperty('--i',Math.min(i,30));w.appendChild(el);});
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{w.querySelectorAll('.card.reveal').forEach(el=>el.classList.add('in'));}));
   document.getElementById('count').textContent=TN('n_musicals',{n:list.length});
 }
 /* ---------- LOG LIST VIEW（對標正式版 Log 分頁） ---------- */

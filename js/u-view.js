@@ -209,7 +209,7 @@
       const fut = isFut(s.date); if (fut) c.classList.add('is-future');
       c.innerHTML = `<figure class="poster" style="margin:0${s.posterBg ? ';background:' + s.posterBg : ''}">
           <div class="skel"></div>
-          <img alt="${esc(s.title)} poster" loading="lazy" decoding="async" referrerpolicy="no-referrer" ${s.posterFit === 'contain' ? 'style="object-fit:contain;object-position:center"' : ''}/>
+          <img alt="${esc(s.title)} poster" loading="eager" decoding="async" referrerpolicy="no-referrer" ${s.posterFit === 'contain' ? 'style="object-fit:contain;object-position:center"' : ''}/>
           <figcaption class="fallback"><span class="kick">A Musical</span><span class="ft">${esc(s.title)}</span><span class="fzh">${esc(s.zh)}</span><span class="rule"></span></figcaption>
           <div class="topfx"></div>
           ${fut ? `<div class="up-veil"></div><div class="up-ribbon">${esc(T('ribbon_upcoming'))}</div>` : ''}
@@ -241,7 +241,17 @@
     function renderPoster() {
       const w = document.getElementById('wall-poster'); w.innerHTML = '';
       const list = filtered();
-      list.forEach((s, i) => { const el = posterEl(s); el.classList.add('reveal'); el.style.setProperty('--i', i % 12); w.appendChild(el); io.observe(el); });
+      // 海報牆不做捲動揭示(2026-08-13 使用者回報:第二、三排要往下拉才出現)。
+      // 實測:圖其實一開始就全部載完了(28/28 naturalWidth>0),卡住的是 .reveal 的
+      // opacity:0 在等 IntersectionObserver 加 .in ——「還沒渲染」其實是「還沒揭示」。
+      // 改成整面牆一次全部揭示,靠 --i 的 40ms 階梯做**由上而下**的順序感(不是隨機)。
+      // --i 原本是 i%12(每 12 張循環),對「一次全揭」會讓第 13 張和第 1 張同時出現;
+      // 改用真實索引並封頂,長牆才不會拖太久(封頂 30 → 最後一張 1.2s)。
+      list.forEach((s, i) => { const el = posterEl(s); el.classList.add('reveal'); el.style.setProperty('--i', Math.min(i, 30)); w.appendChild(el); });
+      // 先讓瀏覽器把 opacity:0 畫出來,下一幀再加 .in,transition 才會真的跑(直接加會被合併掉)
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        w.querySelectorAll('.card.reveal').forEach(el => el.classList.add('in'));
+      }));
       document.getElementById('count').textContent = TN('n_musicals', { n: list.length });
     }
     /* ---------- LOG LIST VIEW ---------- */
