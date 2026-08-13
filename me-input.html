@@ -743,13 +743,19 @@ function groupProds(prods){
   return groups;
 }
 function pickWork(w){
-  if(w.prods.length===1){pickProd(w,w.prods[0]);return;}
   const groups=groupProds(w.prods);
-  if(groups.length===1){ // 全是同一個巡演 → 直接進城市子選單（或單筆直接 detail）
-    if(groups[0].items.length===1)pickProd(w,groups[0].items[0]);else pickTourCity(w,groups[0]);return;}
+  // 🚨 只有一個製作時也一定要讓使用者選(2026-08-13 使用者回報)。
+  // 這裡以前是 prods.length===1 就直接跳進表單,場館/城市被鎖死在「現正上演」那一檔,
+  // 而「以上都不是 — 我看的是別的城市／年份」那張出口卡只有 ≥2 個製作時才出現。
+  // 但站上資料庫只收**現在與未來**的檔期,使用者要記的多半是好幾年前、在別的城市看的那場
+  // ——「只有一個製作」反而是最常見的情況,偏偏它是唯一沒有出口的路徑。
+  // (實例:搜 Fiddler on the Roof 只找得到 2027 年 Chandler 那檔,五年前在別處看過的人
+  //  會被直接帶進 Chandler,且新增畫面的場館/城市是唯讀標籤,改都改不了。)
+  // 同一個巡演有多站時維持原本行為:進城市子選單,那裡本來就有「不確定是哪個城市」的出口。
+  if(groups.length===1&&groups[0].items.length>1){pickTourCity(w,groups[0]);return;}
   sheetTitle.textContent=w.en;
   sbody.innerHTML=`<div class="step"><button type="button" class="backbtn" id="backToSearch3">${T('mi_back_search')}</button>
-    <div class="lbl">${T('pick_prod')}<span class="opt">${TN('prod_versions',{n:groups.length})}</span></div>
+    <div class="lbl">${T('pick_prod')}${groups.length>1?`<span class="opt">${TN('prod_versions',{n:groups.length})}</span>`:''}</div>
     <div class="prodcards" id="pc"></div></div>`;
   const pc=document.getElementById('pc');
   pc.innerHTML=groups.map((g,gi)=>{
@@ -816,14 +822,14 @@ function renderDetail(){
       <div class="ci"><div class="en">${hesc(w.en)}</div>${w.zh?`<div class="zh">${hesc(w.zh)}</div>`:''}
         <div class="chips">${[...new Set([p.label,p.venue,p.city].filter(Boolean))].map(x=>`<span class="chip"><b>${hesc(x)}</b></span>`).join('')}</div></div>
     </div>
-    ${draft.editIndex!=null?`<div class="step" id="editLoc">
-      <div class="lbl">${T('venue_city')}<span class="opt">${T('edit_can_change')}</span></div>
+    ${`<div class="step" id="editLoc">
+      <div class="lbl">${T('venue_city')}${draft.editIndex!=null?`<span class="opt">${T('edit_can_change')}</span>`:''}</div>
       <div class="row2">
         <div class="fld"><span class="fl">${T('fld_venue')}</span><div class="combo"><input id="mVenue" autocomplete="off" value="${(p.venue||'').replace(/"/g,'&quot;')}" placeholder="${T('ph_venue')}"/><div class="combo-panel" id="mVenuePanel" hidden></div></div></div>
         <div class="fld"><span class="fl">${T('fld_city')}</span><div class="combo"><input id="mCity" autocomplete="off" value="${(p.city||'').replace(/"/g,'&quot;')}" placeholder="${T('ph_city')}"/><div class="combo-panel" id="mCityPanel" hidden></div></div></div>
       </div>
       <p class="mgeo" id="mGeo">${T('geo_rematch')}</p>
-    </div>`:''}
+    </div>`}
 
     <div class="step" id="dateStep">
       <div class="lbl">${T('when_seen')}<span class="opt">${T('not_required')}</span></div>
@@ -878,18 +884,33 @@ function renderDetail(){
   ['seat','price','note','url'].forEach(bindField);
   wirePosterField();   // method 2：自訂海報網址
   {const tm=document.getElementById('seenTime');if(tm){tm.value=(draft.time||'').slice(0,5);tm.onchange=()=>{draft.time=tm.value||'';};}}  // 時間
-  if(draft.editIndex!=null){buildManualDB();   // 編輯：城市/劇院可改（重用手動表單的地理對映）
+  // 條件改成「欄位存在就接上」——不能綁在 editIndex(2026-08-13)。
+  // 場館/城市欄位現在**新增時也會顯示**(使用者要能改掉預填的「現正上演」那一檔),
+  // 若這裡仍只在編輯模式綁事件,新增時欄位看得到、打字卻完全沒作用,
+  // 連 draft.p.venue 都不會更新——比原本的唯讀標籤更糟。
+  if(document.getElementById('mVenue')){buildManualDB();   // 城市/劇院可改(重用手動表單的地理對映)
     const cityEl=document.getElementById('mCity'),venueEl=document.getElementById('mVenue'),g=document.getElementById('mGeo');
     const okMsg=h=>{if(g)g.innerHTML=(h.lat!=null)?TN('geo_matched_map',{c:'<b>'+h.country+'</b>'}):TN('geo_matched',{c:'<b>'+h.country+'</b>'});};
     const noMsg=()=>{if(g)g.textContent=T('geo_no_coord');};
     // 查無座標必清舊 lat/lng/country(比照新增 applyGeo):否則把城市改成拼錯值時,
     // 保留原城市的舊座標→存出「城市 A + 座標 B」釘錯點(2026-07-10)
     function clearGeo(){draft.p.country='';draft.p.lat=undefined;draft.p.lng=undefined;noMsg();}
-    function geoByCity(){const city=(cityEl.value||'').trim();draft.p.city=city;const hit=city&&MCITY[city];  // 改城市→用城市定位（不被舊劇院蓋掉）
+    // ⚠️ 與新增用的 applyGeo 保持同一套規則:別名回查 + 城市中心點。
+    // 這兩支以前只查正式名、查不到就退到 MCITY[城市]=「該市第一家劇院的建築座標」,
+    // 等於把別人的建築座標安到使用者的紀錄上(見 applyGeo 上方的完整說明)。
+    function geoByCity(){const city=(cityEl.value||'').trim();draft.p.city=city;const hit=city&&cityCentre(city);  // 改城市→用城市中心點(不落在任何一家劇院上)
       if(hit){draft.p.country=hit.country;draft.p.lat=hit.lat;draft.p.lng=hit.lng;okMsg(hit);}else clearGeo();}
     function geoByVenue(){const venue=(venueEl.value||'').trim();draft.p.venue=venue;const city=(cityEl.value||'').trim();  // 改劇院→定位;同名多城市時優先用已填城市消歧
-      const hit=(venue&&city&&MVENUE_CK&&MVENUE_CK[venue+'|'+cnorm(city)])||(venue&&MVENUE[venue]);
-      if(hit){draft.p.country=hit.country;draft.p.lat=hit.lat;draft.p.lng=hit.lng;if(hit.city&&!city){draft.p.city=hit.city;cityEl.value=hit.city;}okMsg(hit);}else clearGeo();}   // 城市已填就不覆蓋(免把紐約蓋成 San Antonio)
+      const hit=(venue&&city&&MVENUE_CK&&MVENUE_CK[venue+'|'+cnorm(city)])||(venue&&MVENUE[venue])
+                ||(venue&&venueByAlias(venue,city))||(city&&!venue&&cityCentre(city));
+      if(hit){draft.p.country=hit.country;draft.p.lat=hit.lat;draft.p.lng=hit.lng;
+        // 城市同步規則:原本是「城市已填就不覆蓋」(免把紐約蓋成 San Antonio),但新增流程會
+        // 預填「現正上演」那一檔的城市,使用者只改劇院時就留下矛盾組合
+        // (實測:改成「國家戲劇院」後城市還停在 Chandler → 存出台灣的劇院配美國的城市)。
+        // 改成:該「劇院+城市」是已知組合就不動(Majestic·San Antonio 受保護),
+        // 不是已知組合才視為過期、同步成該劇院所在城市。
+        if(hit.city&&hit.city!==city&&!(city&&MVENUE_CK&&MVENUE_CK[venue+'|'+cnorm(city)])){draft.p.city=hit.city;cityEl.value=hit.city;}
+        okMsg(hit);}else clearGeo();}
     if(cityEl){setupCombo(cityEl,document.getElementById('mCityPanel'),()=>Object.keys(MCITY),(v)=>{cityEl.value=v;geoByCity();});cityEl.addEventListener('input',geoByCity);}
     if(venueEl){setupCombo(venueEl,document.getElementById('mVenuePanel'),()=>MVENUE_LIST,(e)=>{venueEl.value=venuePickName(e.name);if(e.city){cityEl.value=e.city;draft.p.city=e.city;}geoByVenue();},{searchOf:e=>((e._s||'')+' '+(e.city||'')),fmt:venueFmt,toInput:e=>venuePickName(e.name)});venueEl.addEventListener('input',geoByVenue);}
   }
