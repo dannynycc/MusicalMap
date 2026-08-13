@@ -572,6 +572,39 @@ function curName(c){if(EN_UI)return CUR_EN[c]||c;if(window.MM_HL==='zh-hans')ret
 // 正規化：小寫、去重音、臺→台、只留字母數字與 CJK（讓「台中歌劇院」對得上「臺中國家歌劇院大劇院」）
 function cnorm(s){return (s||'').toLowerCase().replace(/&/g,'and').normalize('NFKD').replace(/[̀-ͯ]/g,'').replace(/臺/g,'台').replace(/灣/g,'湾').replace(/[^\p{L}\p{N}]/gu,'');}
 // 比對分數：完全相同3、包含2、字元為子序列1、不中0（子序列讓少打中間字也找得到）
+// 別名回查:場館「正式名」對不上時,拿 catalog 的別名欄(search)找回正確的那一家。
+// 站上同一座劇院有兩種寫法——演出資料寫「上海大劇院 Lyric Theatre」、場館清單寫
+// 「Shanghai Grand Theatre 上海大劇院」;後者的別名欄裡其實就有前者,只是以前沒查。
+// ⚠️ 只做「整串包含」,不做模糊/子序列:中文館名極易互撞(常熟大剧院↔常州大剧院、
+//    上海大劇院↔上海保利大劇院),模糊比對會配到隔壁縣市的另一家。同城優先。
+function venueByAlias(venue,city){
+  if(!MVENUE_LIST||!venue)return null;
+  const q=cnorm(venue); if(q.length<4)return null;
+  const ck=city?cnorm(city):''; let best=null;
+  for(const e of MVENUE_LIST){
+    if(typeof e.lat!=='number')continue;
+    if(cnorm((e._s||'')+' '+(e.name||'')).indexOf(q)<0)continue;
+    const hit={country:e.country,lat:e.lat,lng:e.lng,cur:e.cur,city:e.city};
+    if(ck&&cnorm(e.city||'')===ck)return hit;
+    if(!best)best=hit;
+  }
+  return best;
+}
+// 城市中心點=該市所有場館座標的平均。查不到場館時用它:針落在城市裡,
+// 但不會正好壓在某一家劇院上——壓上去公開頁就會依座標把館名改成那一家(本次事故成因)。
+// 該市只有一家場館時**回 null 不給座標**:那等於又把別人的建築座標安給你,
+// 錯的位置比沒有位置更傷(與 build_shows 的季票佔位判斷同一原則)。
+function cityCentre(city){
+  if(!MVENUE_LIST||!city)return null;
+  const ck=cnorm(city); let n=0,la=0,ln=0,co='',cu='';
+  for(const e of MVENUE_LIST){
+    if(cnorm(e.city||'')!==ck)continue;
+    if(typeof e.lat!=='number'||typeof e.lng!=='number')continue;
+    la+=e.lat;ln+=e.lng;n++;co=co||e.country;cu=cu||e.cur;
+  }
+  if(n<2)return null;
+  return {country:co,lat:+(la/n).toFixed(6),lng:+(ln/n).toFixed(6),cur:cu,city:city};
+}
 function comboMatch(q,item){const nq=cnorm(q);if(!nq)return 1;const ni=cnorm(item);if(ni===nq)return 3;if(ni.includes(nq))return 2;
   let i=0;for(const ch of nq){i=ni.indexOf(ch,i);if(i<0)return 0;i++;}return 1;}
 // 劇院下拉顯示:舊名場館附「— 現名」提示讓人認得(僅選單顯示);toInput/onpick 仍是乾淨名字,存的與海報牆呈現不含提示(忠於原味)
@@ -647,7 +680,17 @@ function manualAdd(title,seed,onBack){
   t.oninput=e=>{draft.w.en=e.target.value;saveBtn.disabled=!e.target.value.trim();};
   function applyGeo(){
     const city=document.getElementById('mCity').value.trim(), venue=document.getElementById('mVenue').value.trim();
-    let hit = (venue&&city&&MVENUE_CK&&MVENUE_CK[venue+'|'+cnorm(city)]) || (venue&&MVENUE[venue]) || (city&&MCITY[city]) || null;   // 已選城市時,同名劇院優先用該城市的座標(Majestic 紐約 vs San Antonio)
+    // 🚨 查不到場館時**絕不可以**拿「某一家劇院」的座標充數(2026-08-13 實案)。
+    // 同一座劇院在站上有兩種寫法:演出資料寫「上海大劇院 Lyric Theatre」、
+    // 場館清單寫「Shanghai Grand Theatre 上海大劇院」——正式名對不起來就查不到,
+    // 舊版接著退到 MCITY[城市]=「該市第一家劇院的建築座標」,那時上海排第一的是保利,
+    // 於是一筆名叫「上海大劇院」的紀錄被安上 26 公里外保利的座標;公開頁再依座標
+    // (40m 內)把館名「升級」成保利,使用者打的名字就被換掉了。
+    // 兩層修法:①先用別名欄(catalog search,裡面就有「上海大劇院 lyric theatre」)撈回正確場館;
+    //          ②真的找不到才退到城市,而且用**城市中心點**,不是某家劇院的建築座標。
+    let hit = (venue&&city&&MVENUE_CK&&MVENUE_CK[venue+'|'+cnorm(city)]) || (venue&&MVENUE[venue]) || null;   // 已選城市時,同名劇院優先用該城市的座標(Majestic 紐約 vs San Antonio)
+    if(!hit&&venue)hit=venueByAlias(venue,city);          // ① 別名欄回查
+    if(!hit&&city)hit=cityCentre(city);                   // ② 城市中心點(不落在任何一家劇院上)
     const g=document.getElementById('mGeo');
     if(hit){draft.p.country=hit.country;draft.p.lat=hit.lat;draft.p.lng=hit.lng;
       if(venue&&MVENUE[venue]&&MVENUE[venue].city&&!city){draft.p.city=MVENUE[venue].city;document.getElementById('mCity').value=MVENUE[venue].city;}
