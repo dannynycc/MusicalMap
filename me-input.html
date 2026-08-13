@@ -138,7 +138,9 @@ dialog::backdrop{background:rgba(0,0,0,.66);backdrop-filter:blur(6px)}
 .searchbox input{width:100%;font-size:16px;background:var(--s2);border:1px solid var(--hair2);border-radius:12px;padding:14px 14px 14px 42px;color:var(--ink1)}
 .searchbox input:focus{outline:none;border-color:var(--gold)}
 .searchbox .mag{position:absolute;left:14px;top:50%;transform:translateY(-50%);opacity:.5}
-.results{margin-top:10px;display:flex;flex-direction:column;max-height:330px;overflow-y:auto;border-radius:12px}
+/* 清單高度跟著視窗走:原本寫死 330px,在滿版的嵌入視窗下方會空一大片(2026-08-13 使用者回報)。
+   仍設上限,免得在超高螢幕上一次列出過多結果。嵌入模式另有 flex 規則精準填滿(見下方 embed CSS)。 */
+.results{margin-top:10px;display:flex;flex-direction:column;max-height:min(60vh,620px);overflow-y:auto;border-radius:12px}
 .rrow{display:flex;align-items:center;gap:12px;padding:9px 10px;border-radius:10px;cursor:pointer;text-align:left;background:none;border:none;width:100%;color:var(--ink1)}
 .rrow:hover,.rrow.active{background:var(--gold-soft)}
 .rrow.active{box-shadow:inset 3px 0 0 var(--gold)}
@@ -461,7 +463,9 @@ function scoreWork(q,e){const nq=norm(q);if(!nq)return 0;
     if(hi<2&&nq.length>h.length&&(h.length>=4||(h.length>=2&&/[぀-ヿ一-鿿]/.test(h)))&&nq.includes(h))best=Math.max(best,55);
   });
   return best;}
-function search(q){return INDEX.map(e=>({w:e.w,s:scoreWork(q,e)})).filter(x=>x.s>0).sort((a,b)=>b.s-a.s).slice(0,8);}
+// 上限 8 → 20:清單改成撐滿視窗高度後,8 筆只填得到一半、下面一大片空白
+// (2026-08-13 使用者回報)。20 筆會超過一屏 → 清單可捲動,想找的多半也在前幾筆。
+function search(q){return INDEX.map(e=>({w:e.w,s:scoreWork(q,e)})).filter(x=>x.s>0).sort((a,b)=>b.s-a.s).slice(0,20);}
 function prodSummary(w){const cities=[...new Set(w.prods.map(p=>p.city).filter(Boolean))];return cities.slice(0,3).join(' · ')+(cities.length>3?` +${cities.length-3}`:'');}
 
 /* ---------- state ---------- */
@@ -1076,7 +1080,15 @@ if(EMBED){
     +'html.embed dialog#logDlg{position:fixed;inset:0;width:100%;height:100%;max-width:none;max-height:none;margin:0}'
     +'html.embed dialog#logDlg::backdrop{background:transparent;backdrop-filter:none;-webkit-backdrop-filter:none}'  /* 關掉 embed 下無意義卻吃 GPU 的 backdrop blur（打字卡頓主因） */
     +'html.embed dialog#logDlg .sheet{width:100%;height:100%;max-width:none;max-height:none;border-radius:0;display:flex;flex-direction:column}'
-    +'html.embed dialog#logDlg .sbody{flex:1 1 auto}';
+    +'html.embed dialog#logDlg .sbody{flex:1 1 auto}'
+    /* 搜尋那一步:讓結果清單吃掉搜尋框底下的全部剩餘高度,不要留一大片空白。
+       用 :has(#results) 精準只挑「有結果清單」的那一步——填表單那一步的 .sbody
+       維持原本的區塊排版不動(改成 flex 會讓 margin 不再合併,間距整個跑掉)。
+       min-height:0 是必要的:flex 子項預設 min-height:auto,不加就撐破容器而不是內部捲動。 */
+    +'html.embed dialog#logDlg .sbody:has(#results){display:flex;flex-direction:column;min-height:0}'
+    /* #results 外面還包一層 .step(block),不一起改成可伸展的 flex,裡面的 flex:1 會被它擋住 */
+    +'html.embed dialog#logDlg .sbody .step:has(#results){flex:1 1 auto;display:flex;flex-direction:column;min-height:0}'
+    +'html.embed dialog#logDlg .step:has(#results) #results{flex:1 1 auto;max-height:none;min-height:0}';
   document.head.appendChild(es);
   const exitParent=()=>{try{parent.postMessage('mm-log-exit','*');}catch(e){}};
   // 任何關閉（存檔/✕/背景/Esc）都結束：通知父層關掉 modal；父層偵測 mm-log 有變更就 reload→主頁即時更新
