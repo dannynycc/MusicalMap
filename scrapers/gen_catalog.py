@@ -565,6 +565,27 @@ def main():
     #    (2026-08-13 使用者回報;實測全庫有 3 組:上海大劇院、武漢琴台大劇院、煙台大劇院)。
     #    這個檔案上面的註解本來就拿「上海大劇院 = 上海大剧院」當例子、也早就有 _t2s,
     #    只是這道最後的去重沒用上。
+    # 合併同一場館時要保留「權威表」那一筆的座標。中國場館以 cn_venues.json 為準
+    # (Google 大陸資料有 GCJ 偏移 + 同名連鎖誤配,見 audit_geo.py)。
+    # 2026-08-13 實例:上海大劇院的兩筆裡,先到的那筆座標其實來自「上海大剧院-中剧场」,
+    # 先到先留就會挑到偏 434m 的那個;使用者的足跡因此插在錯的位置。
+    _auth = set()
+    _cnp = DATA / "cn_venues.json"
+    if _cnp.exists():
+        try:
+            _cnd = json.loads(_cnp.read_text(encoding="utf-8"))
+            for _x in (_cnd if isinstance(_cnd, list) else _cnd.get("venues", [])):
+                if isinstance(_x, dict) and _x.get("lat") is not None:
+                    _auth.add((round(float(_x["lat"]), 4), round(float(_x["lng"]), 4)))
+        except Exception:  # noqa: BLE001 — 權威表壞掉不擋 build,只是失去偏好
+            _auth = set()
+
+    def _is_auth(v):
+        try:
+            return (round(float(v["lat"]), 4), round(float(v["lng"]), 4)) in _auth
+        except (TypeError, ValueError, KeyError):
+            return False
+
     _seen, _uniq, _merged_dup, _coord_warn = {}, [], 0, 0
     for v in venues:
         k = (_t2s(re.sub(r"\s+", " ", (v.get("name") or "")).strip()).lower(),
@@ -574,6 +595,11 @@ def main():
             extra = (v.get("search") or "").strip()
             if extra and extra not in prev.get("search", ""):
                 prev["search"] = (prev.get("search", "") + " " + extra).strip()
+            # 後到的這筆若在權威表裡、先到的不在 → 把座標(與 place_id)換成權威的那組
+            if _is_auth(v) and not _is_auth(prev):
+                prev["lat"], prev["lng"] = v["lat"], v["lng"]
+                if v.get("pid"):
+                    prev["pid"] = v["pid"]
             # 合併時保留先到的那筆座標。兩筆差太遠代表其中一筆是錯的(或指到同棟不同廳),
             # 不能默默挑一個當沒事——印出來讓人去查權威表(中國場館以 cn_venues.json 為準)。
             try:
