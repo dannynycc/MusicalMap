@@ -22,6 +22,14 @@ concurrency:
   group: musicalmap
   cancel-in-progress: false
 
+# 🚨 runner 預設是 UTC,而全站的日期語意是台北時間。早上那班排在 22:00 UTC,
+# 換算台北是「隔天 06:00」——runner 上 datetime.now().date() 會拿到**前一天**,
+# 於是所有依日期的邏輯在早班全部差一天:過期演出的丟棄門檻早一天(演完的劇多掛一天)、
+# archive 歸檔日、booking_horizon、日期健全檢查皆然。
+# 2026-08-13 由 audit_dates 抓到(6 筆 08-09 結束的演出在 08-13 還在檔,寬限只有 3 天)。
+env:
+  TZ: Asia/Taipei
+
 jobs:
   build:
     runs-on: ubuntu-latest

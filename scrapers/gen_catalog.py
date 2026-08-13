@@ -560,21 +560,41 @@ def main():
     # 使用者在 My Musicals 的自動帶入清單會看到一模一樣的兩筆、不知道要選哪個。
     # 這裡以 (顯示名去空白小寫, 城市) 為鍵做最後一道:保留第一筆,把其餘的 search 併進去
     # (別丟掉別名,否則用另一種寫法就搜不到了)。
-    _seen, _uniq, _merged_dup = {}, [], 0
+    # 🚨 鍵要過 _t2s 折疊簡繁,否則「上海大剧院」與「上海大劇院」被當成兩個場館,
+    #    在自動帶入清單裡各出現一次、座標還差幾百公尺,使用者不知道該選哪個
+    #    (2026-08-13 使用者回報;實測全庫有 3 組:上海大劇院、武漢琴台大劇院、煙台大劇院)。
+    #    這個檔案上面的註解本來就拿「上海大劇院 = 上海大剧院」當例子、也早就有 _t2s,
+    #    只是這道最後的去重沒用上。
+    _seen, _uniq, _merged_dup, _coord_warn = {}, [], 0, 0
     for v in venues:
-        k = (re.sub(r"\s+", " ", (v.get("name") or "")).strip().lower(),
-             (v.get("city") or "").strip().lower())
+        k = (_t2s(re.sub(r"\s+", " ", (v.get("name") or "")).strip()).lower(),
+             _t2s((v.get("city") or "").strip()).lower())
         if k in _seen:
             prev = _seen[k]
             extra = (v.get("search") or "").strip()
             if extra and extra not in prev.get("search", ""):
                 prev["search"] = (prev.get("search", "") + " " + extra).strip()
+            # 合併時保留先到的那筆座標。兩筆差太遠代表其中一筆是錯的(或指到同棟不同廳),
+            # 不能默默挑一個當沒事——印出來讓人去查權威表(中國場館以 cn_venues.json 為準)。
+            try:
+                dy = (float(prev["lat"]) - float(v["lat"])) * 111.0
+                dx = ((float(prev["lng"]) - float(v["lng"])) * 111.0
+                      * math.cos(math.radians(float(prev["lat"]))))
+                d_m = (dx * dx + dy * dy) ** 0.5 * 1000
+                if d_m > 150:
+                    _coord_warn += 1
+                    print(f"::warning::venue dup-coord: {prev.get('name')!r} 與 {v.get('name')!r} "
+                          f"@ {v.get('city')} 視為同一場館合併,但座標差 {d_m:.0f} m — "
+                          f"保留 ({prev.get('lat')}, {prev.get('lng')});請對權威表查證哪個對")
+            except (TypeError, ValueError, KeyError):
+                pass
             _merged_dup += 1
             continue
         _seen[k] = v
         _uniq.append(v)
     if _merged_dup:
-        print(f"  merged {_merged_dup} duplicate venue entr(ies) (同名同城,自動帶入會重複出現)")
+        print(f"  merged {_merged_dup} duplicate venue entr(ies) (同名同城,自動帶入會重複出現)"
+              + (f";其中 {_coord_warn} 組座標差 >150m" if _coord_warn else ""))
     venues = _uniq
 
     out = {
