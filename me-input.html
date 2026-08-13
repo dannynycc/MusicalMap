@@ -200,6 +200,17 @@ dialog::backdrop{background:rgba(0,0,0,.66);backdrop-filter:blur(6px)}
 .pcard.sel{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold),var(--glow)}
 .pcard .fl{font-size:24px;flex:none}
 .pcard .fl:empty{display:none}
+/* 海報縮圖:與搜尋列 .rrow .th 同規格,讓「搜尋 → 選製作」兩頁視覺連續(2026-08-13) */
+.pcard .th{position:relative;width:40px;height:56px;border-radius:5px;flex:none;display:grid;place-items:center;overflow:hidden;background:linear-gradient(160deg,var(--s2),var(--s3));box-shadow:inset 0 0 0 1px var(--hair)}
+.pcard .th img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.pcard .th b{font-family:var(--fr);font-weight:900;font-size:18px;color:var(--ink3);line-height:1}
+/* 出口卡刻意做輕:虛線＋較窄，視覺上不跟真正的選項搶 */
+.pcard.escape{padding:11px 14px}
+.pcard.escape .fl{font-size:17px;width:40px;text-align:center;color:var(--ink3)}
+.pcard.escape .pn{font-size:13.5px}
+.pcard.escape .pv{font-size:12px}
+/* 卡片別無限拉寬:滿版視窗下一張卡橫跨 1100px 只放三行字，看起來很空 */
+.prodcards{max-width:520px}
 .pcard .pm{flex:1;min-width:0}
 .pcard .pm>span{display:block}
 .pcard .pm .pn{font-weight:700;font-size:14.5px;color:var(--ink1)}
@@ -759,17 +770,22 @@ function pickWork(w){
     <div class="prodcards" id="pc"></div></div>`;
   const pc=document.getElementById('pc');
   pc.innerHTML=groups.map((g,gi)=>{
+    // 卡片視覺與搜尋列(.rrow)一致:海報縮圖 + 標題 + 副標。標題用**劇院**不是城市——
+    // 城市當大標時「Chandler / Chandler Center for the Arts」讀起來像重複兩次(2026-08-13)。
     if(g.items.length===1){const p=g.items[0];const ys=yearOf(p.start),ye=yearOf(p.end);
       const run=ys?(ye&&ye!==ys?`${ys}–${ye}`:(p.end?`${ys}`:`${ys}–now`)):'';
-      return `<button class="pcard" data-g="${gi}"><span class="fl">${flag(p.country)}</span>
-        <span class="pm"><span class="pn">${p.label||p.city||p.country}</span>
-          <span class="pv">${[p.venue,p.city].filter(Boolean).filter(x=>x!==(p.label||p.city||p.country)).join(' · ')}</span><span class="pr">${run}</span></span>
+      const head=p.venue||p.label||p.city||p.country;
+      const sub=[flag(p.country),[p.city,p.label&&p.label!==p.city?p.label:''].filter(Boolean).join(' · ')].filter(Boolean).join(' ');
+      return `<button class="pcard" data-g="${gi}"><span class="th">${p.img?`<img src="${String(p.img).replace(/"/g,'&quot;')}" referrerpolicy="no-referrer" alt="" onerror="this.remove()"/>`:'<b>♪</b>'}</span>
+        <span class="pm"><span class="pn">${head}</span>
+          <span class="pv">${sub}</span>${run?`<span class="pr">${run}</span>`:''}</span>
         <span class="chev">›</span></button>`;}
     const cities=[...new Set(g.items.map(x=>x.city).filter(Boolean))];
     const yrs=g.items.map(x=>yearOf(x.start)).filter(Boolean);
     const yr=yrs.length?`${Math.min(...yrs)}–${Math.max(...yrs)}`:T('prod_tour');
-    return `<button class="pcard" data-g="${gi}"><span class="fl">${flag(g.country)}</span>
-      <span class="pm"><span class="pn">${g.label}</span>
+    const gimg=(g.items.find(x=>x.img)||{}).img||'';
+    return `<button class="pcard" data-g="${gi}"><span class="th">${gimg?`<img src="${String(gimg).replace(/"/g,'&quot;')}" referrerpolicy="no-referrer" alt="" onerror="this.remove()"/>`:'<b>♪</b>'}</span>
+      <span class="pm"><span class="pn">${flag(g.country)} ${g.label}</span>
         <span class="pv">${TN('prod_cities',{n:cities.length,list:cities.slice(0,3).join('／')+(cities.length>3?'…':'')})}</span><span class="pr">${yr}</span></span>
       <span class="chev">›</span></button>`;}).join('');
   pc.insertAdjacentHTML('beforeend',`<button class="pcard escape" id="otherProd"><span class="fl">✎</span>
@@ -816,7 +832,7 @@ function renderDetail(){
   if(ys){const top=Math.min(ye||NOW_Y,NOW_Y);for(let y=top;y>=ys;y--)years.push(y);}
   const runTxt = ys ? (p.end ? TN('run_playing',{city:p.city||'',range:'<b>'+ys+(ye&&ye!==ys?'–'+ye:'')+'</b>'}) : TN('run_recent',{city:'<b>'+(p.city||'')+'</b>'})) : '';
   sbody.innerHTML=`
-    <button type="button" class="backbtn" id="backToSearch">${(draft.editIndex==null&&w.prods&&w.prods.length>1)?T('mi_back_pick_prod'):T('mi_back_search')}</button>
+    <button type="button" class="backbtn" id="backToSearch">${(draft.editIndex==null&&w.prods&&w.prods.length>=1)?T('mi_back_pick_prod'):T('mi_back_search')}</button>
     <div class="confirm">
       <img src="${String(p.img||'').replace(/"/g,'&quot;')}" referrerpolicy="no-referrer" alt="" onerror="this.style.visibility='hidden'"/>
       <div class="ci"><div class="en">${hesc(w.en)}</div>${w.zh?`<div class="zh">${hesc(w.zh)}</div>`:''}
@@ -915,7 +931,9 @@ function renderDetail(){
     if(venueEl){setupCombo(venueEl,document.getElementById('mVenuePanel'),()=>MVENUE_LIST,(e)=>{venueEl.value=venuePickName(e.name);if(e.city){cityEl.value=e.city;draft.p.city=e.city;}geoByVenue();},{searchOf:e=>((e._s||'')+' '+(e.city||'')),fmt:venueFmt,toInput:e=>venuePickName(e.name)});venueEl.addEventListener('input',geoByVenue);}
   }
   const bk=document.getElementById('backToSearch');if(bk)bk.onclick=()=>{
-    if(draft.editIndex==null&&w.prods&&w.prods.length>1)pickWork(w);   // 多製作→回版本清單（上一頁）
+    // >=1 而非 >1(2026-08-13):pickWork 現在對「只有一個製作」也會顯示選擇頁,
+    // 返回卻還是直接跳回搜尋 → 使用者想改選「以上都不是」得從頭搜一次。
+    if(draft.editIndex==null&&w.prods&&w.prods.length>=1)pickWork(w);   // 回製作選擇（上一頁）
     else startLog();};
 }
 
