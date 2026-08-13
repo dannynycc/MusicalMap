@@ -17,7 +17,13 @@ const FALLBACK={
   map_card_only_city:'只看這座城市', map_aria:'音樂劇足跡地圖 / Musicals visited map',
 };
 function mount(opts){
-  const {el,records,T,TN,esc,cityName,countryZh,venueZh,isPast,onCityFilter}=opts;
+  // includeFuture 預設 false:這是「足跡」地圖——足跡是「去過的地方」,還沒看的場次不算。
+  // 站上其他地方本來就一致這樣算(統計 MM.stats('past')、城市榜、護照蓋章都排除未來),
+  // 只有這張地圖漏掉,連旁邊 buildCityList 的註解都寫著「地圖/城市榜只算已到場」
+  // 卻沒真的實作在地圖上(2026-08-13 使用者回報)。未來場次仍在海報牆以「即將上演」
+  // 標籤+面紗呈現,資訊沒有消失。下面的 fut/.fup 分支保留給 includeFuture:true 用。
+  const {el,records,T,TN,esc,cityName,countryZh,venueZh,isPast,onCityFilter,
+         includeFuture=false}=opts;
   if(!el||!window.L)return null;
   const t=k=>{const v=T?T(k):null;return (v&&v!==k)?v:FALLBACK[k]||k;};
   const tn=(k,vars)=>{let s=t(k);for(const n in(vars||{}))s=s.replace('{'+n+'}',vars[n]);return s;};
@@ -25,6 +31,7 @@ function mount(opts){
   // ---- 場館分組(venue+座標;座標四捨五入避免浮點分裂) ----
   const groups=new Map();
   records.forEach(s=>{
+    if(!includeFuture&&!isPast(s.date))return;   // 尚未觀賞的不進足跡地圖(見上方說明)
     if(!s.venue||s.lat==null||s.lng==null)return;
     const key=venueZh(s.venue)+'|'+(+s.lat).toFixed(4)+','+(+s.lng).toFixed(4);
     let g=groups.get(key);

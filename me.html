@@ -289,7 +289,7 @@ if(v&&v!=='zh-hant'){document.write('<style id="mm-fouc">body{visibility:hidden}
 <script src="js/config.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha384-cxOPjt7s7Iz04uaHJceBmS+qpjv2JkIHNVcuOrM+YHwZOmJGBXI00mdUXEq65HTH" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js" integrity="sha384-eXVCORTRlv4FUUgS/xmOyr66XBVraen8ATNLMESp92FKXLAMiKkerixTiBvXriZr" crossorigin="anonymous"></script>
-<script src="js/mm-foot-map.js?v=8"></script>
+<script src="js/mm-foot-map.js?v=9"></script>
 <script src="data.js?v=7"></script>
 <script src="data2.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js" integrity="sha384-jb8JQMbMoBUzgWatfe6COACi2ljcDdZQ2OxczGA3bGNeWe+6DChMTBJemed7ZnvJ" crossorigin="anonymous"></script>
@@ -619,9 +619,16 @@ function buildCityList(){
 let FOOTMAP=null;
 function mountFootMap(){
   if(FOOTMAP||!window.MMFootMap)return;
-  FOOTMAP=MMFootMap.mount({el:document.getElementById('mapfoot'),records:S,
+  const _el=document.getElementById('mapfoot');
+  FOOTMAP=MMFootMap.mount({el:_el,records:S,
     T,TN,esc,cityName,countryZh,venueZh,isPast:d=>MM.isPast(d),
     onCityFilter:filterToCity});
+  // 地圖只收已觀賞的場次 → 只登記未來場次的使用者沒有點可畫,mount 回 null。
+  // 不處理就會留下空白地圖框(旁邊城市榜同樣是空的)。
+  if(!FOOTMAP){const row=_el.closest('.maprow');
+    if(row){row.style.display='none';
+      const sec=row.previousElementSibling;
+      if(sec&&sec.classList.contains('sec'))sec.style.display='none';}}
 }
 window.addEventListener('load',()=>{FOOTMAP&&FOOTMAP.invalidateSize();});
 

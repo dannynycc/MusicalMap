@@ -376,9 +376,16 @@
     let FOOTMAP=null;
     function mountFootMap(){
       if(FOOTMAP||!window.MMFootMap)return;
-      FOOTMAP=MMFootMap.mount({el:document.getElementById('mapfoot'),records:S,
+      const _el=document.getElementById('mapfoot');
+      FOOTMAP=MMFootMap.mount({el:_el,records:S,
         T,TN,esc,cityName,countryZh,venueZh,isPast:d=>!isFut(d),
         onCityFilter:filterToCity});
+      // 地圖只收已觀賞的場次,所以「只登記了未來場次」的使用者會沒有任何點可畫。
+      // mount 這時回 null,若不處理就會留下一個空白地圖框(旁邊城市榜同樣也是空的)。
+      if(!FOOTMAP){const row=_el.closest('.maprow');
+        if(row){row.style.display='none';
+          const sec=row.previousElementSibling;
+          if(sec&&sec.classList.contains('sec'))sec.style.display='none';}}
       window.addEventListener('load',()=>{FOOTMAP&&FOOTMAP.invalidateSize();});
     }
 
