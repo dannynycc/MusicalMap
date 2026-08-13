@@ -36,7 +36,26 @@ function mount(opts){
   const token=(window.MM_CONFIG&&window.MM_CONFIG.MAPBOX_TOKEN)||'';
   // minZoom:1=圖磚下限。512px 圖磚+zoomOffset:-1 → 圖磚 z=地圖 z-1;手機窄容器 fitBounds
   // 會把地圖壓到 z0 → 要抓 z=-1 圖磚(不存在)→ 整片空白(2026-07-17 手機回報)。z1 起跳圖磚 z0 存在。
-  const map=L.map(el,{worldCopyJump:true,zoomControl:true,attributionControl:true,minZoom:1});   // 整數縮放:zoomSnap 0.5 的半格級距(z1.5/2.5)在部分瀏覽器會讓縮放後的圖磚無法呈現(2026-07-17 手機回報「放大一點空白、再放大又好」),每格都要有真實圖磚
+  const map=L.map(el,{worldCopyJump:true,zoomControl:true,attributionControl:true,minZoom:1,
+    maxBoundsViscosity:1.0});   // 垂直硬邊界,拖不出世界外(見下方 fillHeight)
+  // 整數縮放:zoomSnap 0.5 的半格級距(z1.5/2.5)在部分瀏覽器會讓縮放後的圖磚無法呈現
+  // (2026-07-17 手機回報「放大一點空白、再放大又好」),每格都要有真實圖磚。
+
+  // 世界永遠鋪滿容器高度,拖到南北極外不會露出底色(2026-08-13;主站 js/app.js 同款作法)。
+  // (1) maxBounds 只夾緯度,經度留 ±Infinity——橫向要能無限捲/繞圈(worldCopyJump)。
+  // (2) minZoom 動態抬高:世界在 zoom z 的高度=256·2^z CSS px(這個值只看 CRS,
+  //     跟圖磚是 512px+zoomOffset:-1 無關),要 ≥ 容器高才不會有上下留白。
+  // ⚠️ 下限必須鎖 1:512px 圖磚 + zoomOffset:-1 → 圖磚 z = 地圖 z-1,壓到 z0 就要抓
+  //     z=-1 的圖磚(不存在)→ 整片空白。所以是 max(1, 算出來的值),不能照抄主站。
+  map.setMaxBounds([[-85,-Infinity],[85,Infinity]]);
+  function fillHeight(){
+    const h=map.getSize().y;
+    if(!h)return;
+    const minZ=Math.max(1,Math.ceil(Math.log2(h/256)));
+    if(map.getMinZoom()!==minZ)map.setMinZoom(minZ);
+    if(map.getZoom()<minZ)map.setZoom(minZ);
+  }
+  map.on('resize',fillHeight);
   // 窄容器(手機)卡片縮小,免得一手牌蓋滿整張地圖
   const SC=el.clientWidth<520?0.72:1;
   map.getContainer().setAttribute('aria-label',t('map_aria'));
@@ -114,7 +133,9 @@ function mount(opts){
     const b=e.popup.getElement().querySelector('.ftbtn');
     if(b)b.onclick=()=>{map.closePopup();onCityFilter&&onCityFilter(b.dataset.city);};
   });
-  const fit=()=>map.fitBounds(bounds,{padding:SC<1?[26,26]:[46,46],maxZoom:11});   // 窄容器 padding 縮小,初始 zoom 更貼卡片
+  // fillHeight 要在 fit 之前:先把 minZoom 定好,fitBounds 才會受它約束
+  //(否則 fitBounds 會先算出一個低於下限的 zoom,再被夾回去,中間那一幀會露出底色)
+  const fit=()=>{fillHeight();map.fitBounds(bounds,{padding:SC<1?[26,26]:[46,46],maxZoom:11});};   // 窄容器 padding 縮小,初始 zoom 更貼卡片
   fit();
   // 掛載常發生在 async 資料載完之後:容器當下可能還是 0 高(字體/版面未定),
   // 之後長高若不 invalidateSize,圖磚範圍=0 → 一片空白+標記貼頂(2026-07-17 手機實測)。
