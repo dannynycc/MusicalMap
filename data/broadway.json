@@ -1,7 +1,7 @@
 {
   "meta": {
     "source": "broadway-show-tickets.com",
-    "count": 23,
+    "count": 24,
     "missing_coords": []
   },
   "shows": [
@@ -392,6 +392,23 @@
       "end_date": "2027-01-17",
       "ticket_url": "https://www.broadway-show-tickets.com/musicals/chicago-tickets/",
       "image": "https://cdn-imgix.headout.com/media/images/66e07f1dce2f156d5206918e3e662ee1-519.png",
+      "tour_name": null,
+      "verified": true,
+      "source": "broadway-show-tickets.com"
+    },
+    {
+      "id": "bway-49997",
+      "title": "The Outsiders",
+      "type": "resident",
+      "venue": "Bernard B Jacobs Theatre",
+      "city": "New York",
+      "country": "USA",
+      "lat": 40.75877,
+      "lng": -73.987709,
+      "start_date": "2024-03-16",
+      "end_date": "2027-01-02",
+      "ticket_url": "https://www.broadway-show-tickets.com/musicals/the-outsiders-tickets/",
+      "image": "https://cdn-imgix.headout.com/media/images/cad3abfd-3369-4f1f-ba22-4e06b39d205c-1783944624253-439023.png",
       "tour_name": null,
       "verified": true,
       "source": "broadway-show-tickets.com"
