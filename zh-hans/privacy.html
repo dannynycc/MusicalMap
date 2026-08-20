@@ -37,7 +37,7 @@
   if(!v){var nl=(navigator.language||'').toLowerCase();v=nl.indexOf('zh')===0?((nl.indexOf('cn')>-1||nl.indexOf('hans')>-1||nl.indexOf('sg')>-1)?'zh-hans':'zh-hant'):(nl?'en':'zh-hant');}
   if(v==='zh-hans')document.write('<scr'+'ipt src="https://cdn.jsdelivr.net/npm/opencc-js@1.3.1/dist/umd/t2cn.js" integrity="sha384-P/OaFUnOIAgMkLxsXIAaP6WO3Wm09591cGX5bHbW4eCOeDxH9L8U3aWYf4cE4SYl" crossorigin="anonymous"><\/scr'+'ipt>');
   }catch(e){}})();</script>
-  <script src="/js/mm-strings.js?v=253"></script>
+  <script src="/js/mm-strings.js?v=254"></script>
   <script src="/js/mm-lang.js?v=230" defer></script>
   <script src="/js/mm-acct-menu.js?v=227" defer></script>
 <!-- Google Analytics(GA4 G-GC07MYC1MY;訪客來源/行為分析,同一 ID 涵蓋主站與 my. 網域(報表以 hostname 區分);不加 SRI:gtag.js 由 Google 滾動更新,釘 hash 會靜默斷統計;隱私揭露見 privacy §1/§3) --><script async src="https://www.googletagmanager.com/gtag/js?id=G-GC07MYC1MY"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-GC07MYC1MY');</script>
@@ -79,7 +79,7 @@
     <h2 data-i18n="pp_s2_h">2. 「我的音乐剧」（选择性登录）</h2>
     <p data-i18n-html="pp_s2_p">若你使用「我的音乐剧（My Musicals）」功能，需以 <strong>Google 账号</strong>登录。此时我们会搜集与保存：</p>
     <ul>
-      <li data-i18n-html="pp_s2_li1">你的 Google 账号基本资料——<strong>电子邮件、显示名称与头像</strong>（通过 Google OAuth 取得，用于辨识你的账号）。<strong>头像只显示给你本人</strong>（登录后的导览选单与账号设定页），不会出现在你的公开页或任何别人看得到的地方；</li>
+      <li data-i18n-html="pp_s2_li1">你的 Google 账号基本资料——<strong>电子邮件、显示名称与头像</strong>（通过 Google OAuth 取得，用于辨识你的账号）。<strong>头像只显示给你本人</strong>（登录后的导览菜单与账号设定页），不会出现在你的公开页或任何别人看得到的地方；</li>
       <li data-i18n-html="pp_s2_li2">你<strong>自行新增的观剧纪录</strong>（剧名、剧院、日期、评分/笔记等你输入的内容）。</li>
     </ul>
     <p data-i18n-html="pp_s2_p2">这些资料存储于 <strong>Supabase</strong>（Postgres 数据库），并以列级安全（Row-Level Security）保护，<strong>仅你本人能存取自己的纪录</strong>。我们不会贩售或交换你的个人资料。</p>

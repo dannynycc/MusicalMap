@@ -70,6 +70,16 @@ function bake(html, slug, lang, T) {
   if (out.split(hook).length !== 2) throw new Error(`gen_pages: ${slug} loader hook 非唯一`);
   out = out.replace(hook, "?h:null;if(!v&&window.MM_HL)v=window.MM_HL;");
 
+  // 3.5) data-lang-only="xx":只有該語言留下這一塊,其餘語言整個元素移除。
+  //      用於只在某語言成立的內容(guide 的橋接句是英文歌詞彩蛋,中文版不要)。
+  //      非貪婪到第一個同名結束標籤 → 內部不可再有同名巢狀元素,故先擋下來。
+  out = out.replace(/<(\w+)\b[^>]*\bdata-lang-only="([^"]+)"[^>]*>[\s\S]*?<\/\1>\s*/g,
+    (block, tag, only) => {
+      if (new RegExp(`<${tag}\\b`, "g").test(block.slice(1).replace(new RegExp(`^[^>]*>`), "")))
+        throw new Error(`gen_pages: data-lang-only 區塊內有巢狀 <${tag}>,無法安全移除`);
+      return only === lang ? block : "";
+    });
+
   // 4) 烘入翻譯 — 內文(data-i18n=textContent、data-i18n-html=innerHTML)
   out = out.replace(
     /(<([a-zA-Z][\w-]*)\b[^>]*?\bdata-i18n="([^"]+)"[^>]*>)([\s\S]*?)(<\/\2\s*>)/g,
