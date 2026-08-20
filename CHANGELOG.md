@@ -11,6 +11,38 @@
 
 ---
 
+## [v2.69.7] - 2026-08-20 11:51
+
+### 關於頁的分頁標題,對齊它自己的連結文字
+
+v2.69.3 把連結文字統一成「關於 MusicalMap」時,漏了同一頁的 `<title>`——連結叫
+「關於 MusicalMap」、分頁標題卻還是「關於本站 — MusicalMap」、頁面 h1 又是
+「關於 MusicalMap」,同一頁三個地方兩種叫法。
+
+```
+之前  <title>關於本站 — MusicalMap</title>   ← 跟導覽列/頁尾/h1 都不一樣
+現在  <title>關於 MusicalMap</title>
+英文  About — MusicalMap  →  About MusicalMap
+简中  关于本站 — MusicalMap  →  关于 MusicalMap
+```
+
+**不補「— MusicalMap」後綴**:品牌名已經在標題裡了,補了會變成
+「關於 MusicalMap — MusicalMap」。其他頁(使用指南／隱私權政策／使用條款)
+維持「X — MusicalMap」的格式不變,因為它們的標題本身不含品牌名。
+
+`og:title` 與 `twitter:title` 吃同一個 key,一併跟著改(分享到社群時顯示的標題)。
+
+### 改動
+- `js/mm-strings.js`:`about_title` 繁中與英文各一處
+- `build/pages/about.html`:模板寫死的 `<title>` 與 `og:title`
+- `mm-strings.js` 快取版號 v=250→251(四個主站靜態頁)
+- 重跑 `gen_site`
+
+### 驗證
+全 repo 掃「關於本站／关于本站」殘留 = 0;headless 實載 11 頁確認繁中 about 的
+`document.title` 已是「關於 MusicalMap」,其餘頁面標題與導覽列不受影響;
+三語 `og:title`／`twitter:title` 逐一比對正確。
+
 ## [v2.69.6] - 2026-08-20 11:44
 
 ### 中文的「怎麼使用」改叫「使用指南」

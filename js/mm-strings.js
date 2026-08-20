@@ -207,7 +207,7 @@
       nf_lede: '這個網址不存在,或內容已經移動了。回到地圖看看現在正在上演什麼吧。',
       nf_home: '回到地圖首頁',
       nf_guide: '看看使用說明',
-      about_title: '關於本站 — MusicalMap',
+      about_title: '關於 MusicalMap',
       about_meta: 'MusicalMap 是一個由劇迷個人打造的網站：一張顯示全球上演中音樂劇的即時地圖，加上一本屬於你自己的音樂劇護照。',
       about_h1: '關於 MusicalMap',
       about_lede: 'MusicalMap 是一個由劇迷個人打造的網站：一張顯示全球上演中音樂劇的即時地圖，加上一本屬於你自己的音樂劇護照。',
@@ -459,7 +459,7 @@
       nf_home: 'Back to the map',
       nf_guide: 'Read the guide',
       // ---- about.html ----
-      about_title: 'About — MusicalMap',
+      about_title: 'About MusicalMap',
       about_meta: 'MusicalMap is built by one theatre fan: a live world map of musicals playing right now, plus a theatre passport of your own.',
       about_h1: 'About MusicalMap',
       about_lede: 'MusicalMap is built by one theatre fan: a live world map of musicals playing right now, plus a theatre passport of your own.',
