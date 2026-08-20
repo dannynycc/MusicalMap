@@ -17,11 +17,24 @@ const venuesEn = JSON.parse(fs.readFileSync("data/venues_en.json", "utf8")); // 
 // venues_en 精確表 → cn_venues 權威表的官方英文名(繁簡摺疊 contains 比對,拿主館名,
 // 廳名綴不硬翻)→ 場館字串本身的中英併寫英文段(「上海文化广场 Shanghai Culture Square」)
 // → 都沒把握就保持原樣(不亂造)。
+const _CJK_RE = /[一-鿿ぁ-ヿ가-힯]/;
+// venues_catalog.json:全站場館目錄(5491 家,name 多為「English 中文 廳名」併寫 + 座標)。
+// 2026-08-20 接進來的原因:上面兩張表(venues_en/cn_venues)漏掉的 CJK 館名,目錄裡其實
+// 已經有官方英文名(實測 261 種純 CJK 館名中,名稱證據可救 132 種、座標可再救 29 種)。
+const catalogVenues = JSON.parse(fs.readFileSync("data/venues_catalog.json", "utf8")).venues || [];
+const catalogGeo = catalogVenues.filter((v) => typeof v.lat === "number" && typeof v.lng === "number");
+const _latinOf = (v) => String(v || "").split(/\s+/).filter((x) => !_CJK_RE.test(x)).join(" ")
+  .replace(/[\s/,\-–—]+$/, "").replace(/\s{2,}/g, " ").trim();
+const _mainEn = (v) => _latinOf(v).replace(/\s*\([^)]*\)\s*$/, "").trim().toLowerCase();
+function _distM(a, b, c, d) {
+  const R = 6371008.8, p = Math.PI / 180;
+  const h = 0.5 - Math.cos((c - a) * p) / 2 + Math.cos(a * p) * Math.cos(c * p) * (1 - Math.cos((d - b) * p)) / 2;
+  return 2 * R * Math.asin(Math.sqrt(h));
+}
 const cnVenueEn = JSON.parse(fs.readFileSync("data/cn_venues.json", "utf8"))
   .filter((x) => x.en && x.native)
   .map((x) => ({ key: tw2cn(x.native), en: x.en }));
-const _CJK_RE = /[一-鿿ぁ-ヿ가-힯]/;
-function venueEn(v) {
+function venueEn(v, rec) {
   if (!v) return v;
   if (venuesEn[v]) return venuesEn[v];
   if (!_CJK_RE.test(v)) return v;
@@ -32,6 +45,26 @@ function venueEn(v) {
     if ((vs.includes(x.key) || x.key.includes(vs)) && (!best || x.key.length > best.key.length)) best = x;
   }
   if (best) return best.en;
+  // 目錄第一步:名稱證據(目錄的 search/name 含這個中文名)——最可靠,先走這條。
+  const zh = String(v).split(/\s+/).filter((x) => _CJK_RE.test(x)).join(" ").trim();
+  if (zh) {
+    const hit = catalogVenues.find((c) => c.search && String(c.search).includes(zh))
+      || catalogVenues.find((c) => c.name && String(c.name).includes(zh));
+    const en = hit ? _latinOf(hit.name) : "";
+    if (en) return en;
+  }
+  // 目錄第二步:座標,而且**只在不含糊時採用**。同一棟的不同廳座標相同,
+  // 直接取最近的會把「國家戲劇院」標成「…(Experimental Theater)」——那是錯的。
+  // 40 m 內所有目錄場館的英文主名(去括號廳別)必須完全一致才算數。
+  if (rec && typeof rec.lat === "number" && typeof rec.lng === "number") {
+    const near = catalogGeo.filter((c) => _distM(rec.lat, rec.lng, c.lat, c.lng) <= 40);
+    const names = new Set(near.map((c) => _mainEn(c.name)).filter(Boolean));
+    if (names.size === 1) {
+      const cand = near.find((c) => _mainEn(c.name) === [...names][0]);
+      const en = _latinOf(cand.name).replace(/\s*\([^)]*\)\s*$/, "").trim();
+      if (en) return en;
+    }
+  }
   const lat = v.match(/[A-Za-z][A-Za-z0-9'&.,()\- ]{7,}/);
   if (lat && lat[0].trim().split(/\s+/).length >= 2) return lat[0].trim();
   return v;
@@ -68,9 +101,13 @@ function place(kind, val, variant, rec) {
 }
 // Free Chinese text (titles, venues, tour names): convert in both directions so a
 // mixed source (Simplified from CN sources, Traditional from TW) lands consistently.
+// OpenCC 簡→繁 對專有名詞會做 1:多 的猜測而改壞字(深圳「安托山」被改成「安託山」)。
+// 這種錯偵測不出來——反向轉回去是穩定的,round-trip 測不到——只能列出實際抓到的逐一校正。
+// 抓到新的就往這裡加。(同類前例:v2.30.7「列克星敦」被轉成「列剋星敦」)
+const TW_OVERCONV = [[/安託山/g, "安托山"]];
 function cjk(val, variant) {
   if (!val) return val;
-  if (variant === "zh-hant") return cn2tw(val);
+  if (variant === "zh-hant") { let s = cn2tw(val); for (const [re, to] of TW_OVERCONV) s = s.replace(re, to); return s; }
   if (variant === "zh-hans") return tw2cn(val);
   return val; // en: leave as-is
 }
@@ -142,7 +179,7 @@ function buildSearch(s) {
     parts.add(place("countries", s.country, v));
     parts.add(cjk(s.title, v));
     if (s.title_en) { parts.add(s.title_en); const et = enTitle(s); if (et) parts.add(et); }
-    if (s.venue) parts.add(v === "en" ? venueEn(s.venue) : cjk(s.venue, v));
+    if (s.venue) parts.add(v === "en" ? venueEn(s.venue, s) : cjk(s.venue, v));
     if (s.tour_name) parts.add(cjk(s.tour_name, v));
   }
   if (s.alt) parts.add(s.alt);
@@ -156,7 +193,7 @@ for (const variant of VARIANTS) {
     s.city = place("cities", s.city, variant, s);
     s.country = place("countries", s.country, variant);
     s.title = (variant === "en" && enTitle(s)) || zhTitle(s, variant) || cjk(s.title, variant);
-    if (s.venue) s.venue = variant === "en" ? venueEn(s.venue) : cjk(s.venue, variant);
+    if (s.venue) s.venue = variant === "en" ? venueEn(s.venue, s) : cjk(s.venue, variant);
     if (s.tour_name) s.tour_name = cjk(s.tour_name, variant);
     if (Array.isArray(s.ticket_links)) {
       for (const l of s.ticket_links) if (l.label) l.label = label(l.label, variant);
