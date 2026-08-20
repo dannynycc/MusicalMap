@@ -11,6 +11,52 @@
 
 ---
 
+## [v2.69.1] - 2026-08-20 10:06
+
+### 修 atrapalo:被西班牙票務網站的機器人牆擋住就整批放棄
+
+10 天內排程紅了 4 次(8/14、8/16、8/17、8/18),每次都是同一支 `atrapalo`。
+翻 CI log 找到現場:
+
+```
+[atrapalo] page 1 via browser: 40 events | clearance cookie=NO
+[atrapalo] p-2: challenged — cookie expired/blocked, stop
+[atrapalo] 抓到的資料暴跌 74%(148 → 39 筆)…不覆蓋 atrapalo.json
+```
+
+原本的設計是「瀏覽器開第 1 頁解掉 Fastly 的 JS 挑戰、把通行 cookie
+(`_fs_ch_cp_*`)搬給 curl_cffi,後面幾頁用輕量 GET 快速抓完」。問題是
+**Fastly 不保證第一個請求會發通行 cookie**——它常常放行第 1 個請求、從第 2 個
+才開始擋。那一班就沒有 cookie 可搬,第 2 頁起全部被擋,而舊 code 遇到挑戰只
+`break`,整批只剩第 1 頁的 40 筆。暴跌守門正確地拒絕覆蓋(線上資料沒壞),但
+gate 判定失敗 → 整個 run 紅燈。
+
+**修法:被擋不再是終點,而是換一條路。** 新增 `Fetcher`,快車道仍是 curl_cffi,
+但任何一次回應只要是挑戰頁、連線失敗、或通不過呼叫端給的 `need()` 合理性檢查
+(例如「這頁應該要有 JSON-LD」),就自動改用還開著的 Playwright 分頁重抓該網址,
+並把新拿到的 cookie 回填給 curl_cffi——下一個網址又回到快車道。
+偵測用 `is_challenge()`(`Client Challenge` / `_fs-ch-` 兩個標記,2026-08-20 實測
+正常頁兩個都沒有、挑戰頁兩個都有)。細節頁抓取也一併吃到這個退路,順帶修好
+CI log 裡「no venue on detail page for El Rey León — skip」——那不是版面改版,
+就是細節頁同樣被擋。
+
+實測三種情境(皆對真站):
+| 情境 | 結果 |
+|---|---|
+| 正常(有通行 cookie) | 147 齣 / 39 城,退回瀏覽器 1 次(只有探測最後一頁) |
+| 模擬 CI 失敗(拿不到通行 cookie) | 147 齣,PASS |
+| 最壞情況(快車道全程被擋) | 147 齣,全部走瀏覽器 8 次,PASS |
+
+代價是被擋時每頁多一次瀏覽器導覽(約 3 秒),全站頁數只有 4~5 頁,可以接受。
+退回次數會印在 log 最後一行(`browser fallback used Nx`),之後若每頁都要退回,
+就是 cookie 搬移整個失效的信號。
+
+### 改動
+- `scrapers/atrapalo.py`:新增 `is_challenge()`、`Fetcher`(快車道 + 瀏覽器退路),
+  `fetch_pages()` 改用 `Fetcher`,`backfill_coords()` / `fetch_detail_event()`
+  改吃 `Fetcher` 而非裸 session
+- `docs/SOURCES.md`:atrapalo 那列補上退路機制、齣數與日期
+
 ## [v2.69.0] - 2026-08-13 14:25
 
 ### 手動填寫表單的欄位標籤全面統一

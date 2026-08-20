@@ -15,7 +15,16 @@ use a HYBRID model proven fastest:
      challenge, and we harvest the `_fs_ch_cp_*` cookie + page-1 JSON-LD.
   2. curl_cffi (Chrome TLS impersonation) reuses that cookie + the same UA to
      plain-GET the remaining pages fast — no browser per page.
+  3. Any GET that comes back challenged (or empty) is re-fetched in the real
+     browser, which re-mints the clearance and hands it back to curl_cffi.
 The browser is just a ~3-second "lock-pick"; 99% of the fetch is light GET.
+
+Step 3 exists because step 2 is not guaranteed: Fastly sometimes lets the very
+first request through *without* issuing a clearance cookie (it only challenges
+from request #2 on), so there was nothing to transplant and every later GET was
+challenged. The old code just `break`-ed there — 148 shows collapsed to 39, the
+shrink guard refused the write and CI went red 4 times in 10 days (last:
+2026-08-18). Now a challenge costs one browser navigation, not the whole crawl.
 
 Spanish marketing titles are canonicalised via madrid.py's table so they merge
 with the same show worldwide (Wicked, Les Misérables, Mamma Mia! …); local
@@ -44,6 +53,15 @@ BASE = "https://www.atrapalo.com/entradas/musicales/"
 UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
       "(KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36")
 MAX_PAGES = 12  # safety bound; we stop as soon as a page yields nothing new
+
+
+def is_challenge(html):
+    """True when Fastly served its JS interstitial instead of the real page.
+
+    Verified 2026-08-20 against both a live listing page and a cold curl GET:
+    the real page carries neither marker; the interstitial (a ~3 KB stub with no
+    JSON-LD at all) carries both."""
+    return "Client Challenge" in html or "_fs-ch-" in html
 
 # Shows that atrapalo SELLS but files OUTSIDE the /entradas/musicales/ category
 # (so the listing crawl misses them) — yet teatromadrid/teatrebarcelona list them,
@@ -78,12 +96,76 @@ def parse_ld_events(html):
     return events
 
 
+class Fetcher:
+    """Fetch atrapalo pages, escalating to the real browser only when blocked.
+
+    Fast lane is curl_cffi carrying the browser's cookies; whenever a response
+    is the challenge interstitial, dies, or fails the caller's `need()` sanity
+    check, we navigate the live Playwright page instead and re-harvest cookies,
+    so the fast lane is unblocked again for the next URL. Every escalation is
+    printed — a run that quietly needs the browser for every page is telling us
+    the cookie transplant has stopped working."""
+
+    def __init__(self, ctx, page):
+        from curl_cffi import requests as creq
+        self.ctx, self.page = ctx, page
+        self.sess = creq.Session(impersonate="chrome")
+        self.headers = {"User-Agent": UA, "Accept-Language": "es-ES,es;q=0.9",
+                        "Referer": BASE}
+        self.escalations = 0
+        self.sync_cookies()
+
+    def sync_cookies(self):
+        """Copy the browser's cookie jar into the curl_cffi session."""
+        for c in self.ctx.cookies():
+            n, v = c.get("name"), c.get("value")
+            if n and v:
+                self.sess.cookies.set(n, v, domain=".atrapalo.com")
+
+    def has_clearance(self):
+        return any(k.startswith("_fs_ch_cp_") for k in self.sess.cookies.keys())
+
+    def browser_get(self, url, wait_for=None):
+        self.page.goto(url, wait_until="domcontentloaded", timeout=45000)
+        if wait_for:
+            try:
+                self.page.wait_for_selector(wait_for, timeout=30000)
+            except Exception:
+                pass           # an empty last page has no cards — not an error
+        time.sleep(1.0)        # let the challenge JS settle / cookies land
+        html = self.page.content()
+        self.sync_cookies()
+        return html
+
+    def get(self, url, need=None, wait_for=None):
+        """GET `url`, falling back to the browser when the cheap path fails.
+
+        `need(html)` is an optional caller check ("does this look like the page
+        I asked for?") — failing it is treated exactly like a challenge, which
+        is what catches soft blocks that return HTTP 200 with an empty shell."""
+        try:
+            html = self.sess.get(url, headers=self.headers, timeout=30).text
+        except Exception as exc:
+            print(f"[atrapalo]   GET failed ({exc}) — retrying in browser")
+            html = None
+        if html is not None and not is_challenge(html) and (need is None or need(html)):
+            return html
+        why = "challenged" if html is None or is_challenge(html) else "empty/unexpected"
+        self.escalations += 1
+        print(f"[atrapalo]   {why} -> browser: {url}")
+        return self.browser_get(url, wait_for=wait_for)
+
+
+def _has_events(html):
+    return bool(parse_ld_events(html))
+
+
 def fetch_pages():
-    """Hybrid fetch: Playwright unlocks page 1, curl_cffi GETs the rest.
+    """Crawl the listing (plus the off-category extras) into raw TheaterEvents.
 
     Returns a de-duplicated list of raw TheaterEvent dicts (keyed by url)."""
     from playwright.sync_api import sync_playwright
-    from curl_cffi import requests as creq
+    import curl_cffi  # noqa: F401  (fail fast and clearly if the dep is missing)
 
     by_url = {}
     with sync_playwright() as pw:
@@ -94,54 +176,41 @@ def fetch_pages():
             locale="es-ES", user_agent=UA, viewport={"width": 1366, "height": 900}
         )
         page = ctx.new_page()
-        page.goto(_page_url(1), wait_until="domcontentloaded", timeout=45000)
-        page.wait_for_selector('a[href*="_e"]', timeout=30000)  # past the reload
-        time.sleep(1.0)
-        for ev in parse_ld_events(page.content()):
+        # page 1 always via the browser: it is what mints the clearance cookie
+        f = Fetcher(ctx, page)
+        html = f.browser_get(_page_url(1), wait_for='a[href*="_e"]')
+        for ev in parse_ld_events(html):
             by_url.setdefault(ev.get("url"), ev)
-        cookies = {}
-        for c in ctx.cookies():
-            n, v = c.get("name"), c.get("value")
-            if n and v:
-                cookies[n] = v
+        print(f"[atrapalo] page 1 via browser: {len(by_url)} events | clearance "
+              f"cookie={'yes' if f.has_clearance() else 'NO (browser fallback will carry it)'}")
+
+        for n in range(2, MAX_PAGES + 1):
+            html = f.get(_page_url(n), need=_has_events, wait_for='a[href*="_e"]')
+            new = 0
+            for ev in parse_ld_events(html):
+                u = ev.get("url")
+                if u and u not in by_url:
+                    by_url[u] = ev
+                    new += 1
+            print(f"[atrapalo] p-{n}: +{new} (total {len(by_url)})")
+            if new == 0:
+                break          # genuinely past the last page (browser confirmed it)
+            time.sleep(1.0)    # be gentle
+
+        # supplemental shows that live outside the /musicales/ category (detail page)
+        for url in EXTRA_PRODUCTS:
+            if url in by_url:
+                continue
+            ev = fetch_detail_event(url, f)
+            if ev:
+                by_url[url] = ev
+                print(f"[atrapalo]   + extra: {ev['name']}")
+            time.sleep(0.8)
+
+        backfill_coords(list(by_url.values()), f)
+        if f.escalations:
+            print(f"[atrapalo] browser fallback used {f.escalations}x")
         browser.close()
-
-    have_clearance = any(k.startswith("_fs_ch_cp_") for k in cookies)
-    print(f"[atrapalo] page 1 via browser: {len(by_url)} events | "
-          f"clearance cookie={'yes' if have_clearance else 'NO'}")
-
-    sess = creq.Session(impersonate="chrome")
-    for k, v in cookies.items():
-        sess.cookies.set(k, v, domain=".atrapalo.com")
-    headers = {"User-Agent": UA, "Accept-Language": "es-ES,es;q=0.9",
-               "Referer": BASE}
-    for n in range(2, MAX_PAGES + 1):
-        r = sess.get(_page_url(n), headers=headers, timeout=30)
-        if "Client Challenge" in r.text:
-            print(f"[atrapalo] p-{n}: challenged — cookie expired/blocked, stop")
-            break
-        new = 0
-        for ev in parse_ld_events(r.text):
-            u = ev.get("url")
-            if u and u not in by_url:
-                by_url[u] = ev
-                new += 1
-        print(f"[atrapalo] p-{n} via GET: +{new} (total {len(by_url)})")
-        if new == 0:
-            break
-        time.sleep(1.0)  # be gentle
-
-    # supplemental shows that live outside the /musicales/ category (detail page)
-    for url in EXTRA_PRODUCTS:
-        if url in by_url:
-            continue
-        ev = fetch_detail_event(url, sess, headers)
-        if ev:
-            by_url[url] = ev
-            print(f"[atrapalo]   + extra: {ev['name']}")
-        time.sleep(0.8)
-
-    backfill_coords(list(by_url.values()), sess, headers)
     return list(by_url.values())
 
 
@@ -173,7 +242,7 @@ def _parse_venue_blob(html):
             float(lng) if lng else None)
 
 
-def backfill_coords(events, sess, headers):
+def backfill_coords(events, f):
     missing = [e for e in events
                if not ((e.get("location") or {}).get("geo") or {}).get("latitude")]
     if not missing:
@@ -184,7 +253,7 @@ def backfill_coords(events, sess, headers):
         eid_m = re.search(r'_e(\d+)', url)
         eid = eid_m.group(1) if eid_m else url
         try:
-            html = sess.get(url, headers=headers, timeout=30).text
+            html = f.get(url, need=lambda h: '"venue"' in h)
         except Exception as exc:
             print(f"[atrapalo]   detail fetch failed for {e.get('name')}: {exc}")
             continue
@@ -217,17 +286,17 @@ def _date_span(html, keys):
     return (min(found), max(found)) if found else (None, None)
 
 
-def fetch_detail_event(url, sess, headers):
+def fetch_detail_event(url, f):
     """Build a TheaterEvent-shaped dict from a product *detail* page, for shows
     atrapalo sells outside the /musicales/ listing (see EXTRA_PRODUCTS). Returns
     None if unparseable, challenged, or the run has already ended."""
     try:
-        html = sess.get(url, headers=headers, timeout=30).text
+        html = f.get(url, need=lambda h: "og:title" in h)
     except Exception as exc:
         print(f"[atrapalo]   extra fetch failed {url}: {exc}")
         return None
-    if "Client Challenge" in html:
-        print(f"[atrapalo]   extra challenged (cookie expired?) {url}")
+    if is_challenge(html):
+        print(f"[atrapalo]   extra still challenged even after the browser retry: {url}")
         return None
     venue, city, lat, lng = _parse_venue_blob(html)
     nm = re.search(r'<meta property="og:title" content="([^"]+)"', html)
