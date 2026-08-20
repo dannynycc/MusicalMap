@@ -123,8 +123,16 @@ _ZH_T2S, _ZH_S2T = _opencc("t2s"), _opencc("s2t")
 
 
 def _zh_both(text):
-    """All script variants of a string: original + Traditional + Simplified."""
-    return {text, _ZH_T2S(text), _ZH_S2T(text)}
+    """All script variants of a string: original + Traditional + Simplified.
+
+    回傳 list 而非 set:set 的迭代順序每次執行都不同,alt 搜尋字串跟著洗牌,
+    每天 cron 都會寫出 500+ 筆「只有順序不同」的假差異,真的改動反而被淹掉
+    (2026-08-20:一次無關的重建就多出 562 筆這種雜訊)。"""
+    out = []
+    for v in (text, _ZH_T2S(text), _ZH_S2T(text)):
+        if v not in out:
+            out.append(v)
+    return out
 
 
 def _load_works():
