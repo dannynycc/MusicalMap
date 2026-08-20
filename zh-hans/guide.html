@@ -36,7 +36,7 @@ if(!v){var nl=(navigator.language||'').toLowerCase();v=nl.indexOf('zh')===0?((nl
 if(v==='zh-hans'){document.write('<scr'+'ipt src="https://cdn.jsdelivr.net/npm/opencc-js@1.3.1/dist/umd/t2cn.js" integrity="sha384-P/OaFUnOIAgMkLxsXIAaP6WO3Wm09591cGX5bHbW4eCOeDxH9L8U3aWYf4cE4SYl" crossorigin="anonymous"><\/scr'+'ipt>');
 document.write('<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@600;700;900&display=swap" rel="stylesheet" />');/* 簡體字 TC 字型沒有→會混排系統字忽粗忽細,補 SC 字型 */}
 }catch(e){}})();</script>
-<script src="/js/mm-strings.js?v=254"></script>
+<script src="/js/mm-strings.js?v=255"></script>
   <script src="/js/mm-acct-menu.js?v=227" defer></script>
   <script src="/js/mm-lang.js?v=230" defer></script><!-- 語言切換下拉開關 -->
 <style>
@@ -187,7 +187,7 @@ footer .sp{margin-left:auto}
   <section class="hero">
     <div class="eyebrow" data-i18n="how_eyebrow">使用指南</div>
     <h1 data-i18n-html="how_hero">全世界正在上演的<em>音乐剧</em>，<br>都在这张地图上。</h1>
-    <p class="lede" data-i18n="how_lede">不用注册就能看。现在全世界有哪些音乐剧在演，百老汇、伦敦西区、各地巡演，都在上面。登录之后，你看过的那些会变成一本自己的音乐剧护照，想给别人看也可以。</p>
+    <p class="lede" data-i18n="how_lede">不用注册就能看。百老汇、伦敦西区、各地巡演，现在有哪些音乐剧在演都在上面。登录之后，你看过的那些会变成一本自己的音乐剧护照，欢迎分享给其他人看。</p>
     <div class="cta-row">
       <a class="btn btn-primary" href="/zh-hans/" data-i18n="how_cta_map">打开地图</a>
       <a class="btn btn-ghost" href="https://my.themusicalmap.com/" data-i18n="how_cta_me">做一本自己的护照</a>
@@ -198,15 +198,15 @@ footer .sp{margin-left:auto}
 
   <!-- PART 1: MAP -->
   <div class="part"><span class="pno serif">01</span><h2 data-i18n="how_p1_h">不用注册就能逛</h2></div>
-  <p class="part-lede" data-i18n="how_p1_lede">地图打开就能用。拖一拖、放大，看看现在哪个城市有戏在演。</p>
+  <p class="part-lede" data-i18n="how_p1_lede">拖一拖、放大，看看现在哪个城市有戏。</p>
 
   <div class="row">
     <div class="fig"><img src="/assets/guide/zh-hans/map.webp" data-shot="map" width="1600" height="1336" alt="MusicalMap 主地圖：各音樂劇海報散布在地圖上，相鄰的聚成數字圓圈，底部有月份時間軸" loading="lazy" decoding="async" /></div>
     <div class="copy">
       <div class="n serif" data-i18n="how_a1_n">在地图上</div>
       <h3 data-i18n="how_a1_h">地图上看到的海报就是现在在演的戏</h3>
-      <p data-i18n="how_a1_p">标记用的是每出戏自己的海报。靠得近的会并成一个数字圈，数字是那一带正在演的场数。点下去就看得到档期、剧院和售票链接。资料每天自动更新，所以上面是现在真的还在演的。</p>
-      <p data-i18n="how_a1_p2">底下那条月份轴可以往后拉，看下个月、下下个月有什么。按 ▶ 会一个月一个月自己跑，巡演在城市之间移动的样子就出来了。</p>
+      <p data-i18n="how_a1_p">靠得近的海报会并成一个数字圈。点下去有档期、剧院和售票链接。资料每天自动更新。</p>
+      <p data-i18n="how_a1_p2">底下那条月份轴往后拉，就是下个月、下下个月的戏。按 ▶ 会自己一个月一个月跑。</p>
     </div>
   </div>
 
@@ -215,7 +215,7 @@ footer .sp{margin-left:auto}
     <div class="copy">
       <div class="n serif" data-i18n="how_a15_n">找特定一部</div>
       <h3 data-i18n="how_a15_h">想找某一部？打剧名就好</h3>
-      <p data-i18n="how_a15_p">左上角那个搜索框，剧名、城市、剧院都吃。中文剧名也查得到。同一部在世界各地的档期会一起列出来，点哪一场，地图就飞过去。</p>
+      <p data-i18n="how_a15_p">剧名、城市、剧院都能搜，中文也可以。同一部在各地的档期会一起列出来。</p>
     </div>
   </div>
 
@@ -224,7 +224,7 @@ footer .sp{margin-left:auto}
     <div class="copy">
       <div class="n serif" data-i18n="how_a2_n">买票</div>
       <h3 data-i18n="how_a2_h">每出戏都附售票链接</h3>
-      <p data-i18n="how_a2_p">大部分还会附官方网站。这个站不卖票，只负责把你带到该去的地方。</p>
+      <p data-i18n="how_a2_p">大部分还有官方网站。这个站不卖票。</p>
     </div>
   </div>
 
@@ -233,14 +233,14 @@ footer .sp{margin-left:auto}
 
   <!-- PART 2: MY MUSICALS -->
   <div class="part"><span class="pno serif">02</span><h2 data-i18n="how_p2_h">把看过的记下来</h2></div>
-  <p class="part-lede" data-i18n="how_p2_lede">登录之后，你看过的戏会变成一面海报墙、一本盖章护照、一张足迹地图，还有一堆统计和一张剧迷战力图。这些都是自动生出来的，不用自己整理。</p>
+  <p class="part-lede" data-i18n="how_p2_lede">海报墙、盖章护照、足迹地图、观剧统计、剧迷战力图，都会自己长出来。</p>
 
   <div class="row">
     <div class="fig"><img src="/assets/guide/zh-hans/wall.webp" data-shot="wall" width="1272" height="800" alt="海報牆：看過的音樂劇海報一張張掛成一面牆" loading="lazy" decoding="async" /></div>
     <div class="copy">
       <div class="n serif" data-i18n="how_b0_n">你的海报墙</div>
       <h3 data-i18n="how_b0_h">看过的戏会变成一整面海报墙</h3>
-      <p data-i18n="how_b0_p">每加一部就多一张海报。卡片上有个 ♥，特别喜欢的可以标起来。海报墙、护照、清单是同一批收藏的三种看法，随时切换。</p>
+      <p data-i18n="how_b0_p">每加一部就多一张海报。喜欢的按 ♥。海报墙、护照、清单三种看法随时切。</p>
     </div>
   </div>
 
@@ -249,8 +249,8 @@ footer .sp{margin-left:auto}
     <div class="copy">
       <div class="n serif" data-i18n="how_b1_n">加入一部</div>
       <h3 data-i18n="how_b1_h">大部分项目不用你自己打</h3>
-      <p data-i18n="how_b1_p">打剧名就好，中文英文都查得到，剧院、城市、海报会自己填上。剩下的日期、评分、座位、心得看你想写多少，只记得年份也没关系。</p>
-      <p data-i18n="how_b1_p2">不限现在正在上演的戏。十年前看的、早就下档的，一样记得进去，剧院、城市、日期都可以自己改。真的查不到就手动填。</p>
+      <p data-i18n="how_b1_p">打剧名，剧院、城市、海报就自己填上。日期、评分、座位、心得看你想写多少，只记得年份也行。</p>
+      <p data-i18n="how_b1_p2">十年前看的、早就下档的一样记得进去。查不到就手动填。</p>
     </div>
   </div>
 
@@ -259,7 +259,7 @@ footer .sp{margin-left:auto}
     <div class="copy">
       <div class="n serif" data-i18n="how_b15_n">自定义</div>
       <h3 data-i18n="how_b15_h">海报想换成别版的也可以</h3>
-      <p data-i18n="how_b15_p">贴一个图片网址就换掉了，贴完马上看得到。也可以顺便附一条链接，当年的节目页、售票页，之后点详情就找得回来。</p>
+      <p data-i18n="how_b15_p">贴一个图片网址就换掉了。也能附一条链接，当年的节目页之后点详情就找得回来。</p>
     </div>
   </div>
 
@@ -268,7 +268,7 @@ footer .sp{margin-left:auto}
     <div class="copy">
       <div class="n serif" data-i18n="how_b17_n">你的足迹地图</div>
       <h3 data-i18n="how_b17_h">钉的是你真的走进去的那家剧院</h3>
-      <p data-i18n="how_b17_p">看过的戏会长在世界地图上。位置不是城市中心，是那家剧院。同一个城市看过好几部，海报会叠成一叠摊开来。点某个城市，就只看那里的。</p>
+      <p data-i18n="how_b17_p">不是钉在城市中心。同一个城市看过好几部，海报会摊成一叠。点城市只看那里的。</p>
     </div>
   </div>
 
@@ -277,7 +277,7 @@ footer .sp{margin-left:auto}
     <div class="copy">
       <div class="n serif" data-i18n="how_b2_n">你的观剧统计</div>
       <h3 data-i18n="how_b2_h">你到底看了多少，这里算给你看</h3>
-      <p data-i18n="how_b2_p">哪几部看最多次、去过哪些国家和城市、哪一年哪个月看得最凶，都帮你算好了。</p>
+      <p data-i18n="how_b2_p">哪几部看最多次、去过哪些国家和城市、哪一年哪个月看得最凶。</p>
     </div>
   </div>
 
@@ -286,20 +286,25 @@ footer .sp{margin-left:auto}
     <div class="copy">
       <div class="n serif" data-i18n="how_b18_n">你是什么样的剧迷</div>
       <h3 data-i18n="how_b18_h">你是哪一种剧迷？</h3>
-      <p data-i18n="how_b18_p">剧院常客、尝鲜作品、剧种涉猎、跨国足迹、狂粉剧迷、音乐剧龄，六个面向各自打分，画成一张六角图。旁边是徽章：第一场、跨过几个国家、同一部刷了几次，达成了就自己亮起来，每一枚后面还有下一级。</p>
+      <p data-i18n="how_b18_p">六个面向各自打分，画成一张六角图。旁边的徽章达成就会亮，每一枚后面还有下一级。</p>
     </div>
   </div>
 
   <div class="row">
+    <div class="fig"><img src="/assets/guide/zh-hans/share.webp" data-shot="share" width="1440" height="620" alt="公開分享頁:別人打開你的網址看到的樣子,上面是收藏總數與最新一場,下面是海報牆" loading="lazy" decoding="async" /></div>
     <div class="copy">
       <div class="n serif" data-i18n="how_b3_n">分享出去</div>
       <h3 data-i18n="how_b3_h">你的收藏有自己的网址</h3>
-      <p data-i18n="how_b3_p">登录时取的名字就是网址。到「分享」把它打开，这一页就能传给别人。票价跟座位要不要给人看你自己决定，心得那栏永远只有你看得到。</p>
+      <p data-i18n="how_b3_p">登录时取的名字就是网址，打开「分享」就能传给别人。票价跟座位要不要公开你自己决定，心得只有你看得到。</p>
     </div>
-    <div class="copy divided">
+  </div>
+
+  <div class="row flip">
+    <div class="fig"><img src="/assets/guide/zh-hans/signin.webp" data-shot="signin" width="808" height="472" alt="登入畫面:一個「使用 Google 登入」按鈕,底下另有用 Email 收驗證碼登入" loading="lazy" decoding="async" /></div>
+    <div class="copy">
       <div class="n serif" data-i18n="how_b4_n">登录很单纯</div>
       <h3 data-i18n="how_b4_h">跨设备同步</h3>
-      <p data-i18n="how_b4_p">用 Google 一键登录，或者留 Email 收一组 6 位数验证码，连不到 Google 的地方也进得来。我们只读你的名称、Email 和头像（头像只有你自己登录后的菜单看得到，不会出现在公开页），不会用你的账号发任何东西。收藏存在账号里，换手机换电脑都还在。</p>
+      <p data-i18n="how_b4_p">Google 或 Email 验证码都能登录。我们只读你的名称、Email 和头像，不会用你的账号发任何东西。收藏存在账号里，换手机换电脑都还在。</p>
     </div>
   </div>
 
