@@ -51,7 +51,7 @@ body{overflow:hidden}   /* 預設鎖 body 捲動(閘門蓋著時背後內容捲�
 .gt-brand .logo b{color:var(--gold,#a07a34)}
 .gt-tag{font-size:13px;color:var(--ink3,#8a8a8a);margin-left:6px}
 @media(max-width:760px){.gt-tag{display:none}}
-/* 窄螢幕:登入閘 body{overflow:hidden} 會把溢出的 nav 連結裁掉且點不到(360px 實測「怎麼使用」被切)。
+/* 窄螢幕:登入閘 body{overflow:hidden} 會把溢出的 nav 連結裁掉且點不到(360px 實測「使用指南」被切)。
    頁尾已有同樣連結,行動版隱藏頂部次要連結,只留語言+CTA(2026-07-10) */
 @media(max-width:560px){.gate-top .gt-nav>a[data-i18n="nav_map"],.gate-top .gt-nav>a[data-i18n="nav_guide"]{display:none}}
 .gt-nav{display:flex;align-items:center;gap:14px}
@@ -107,7 +107,7 @@ if(v&&v!=='zh-hant'){document.write('<style id="mm-fouc">body{visibility:hidden}
   var _rv=function(){var s=document.getElementById('mm-fouc');if(s)s.remove();};
   window.addEventListener('DOMContentLoaded',function(){setTimeout(_rv,0);});setTimeout(_rv,1500);}
 }catch(e){}})();</script>
-<script src="js/mm-strings.js?v=261"></script>
+<script src="js/mm-strings.js?v=262"></script>
 <script src="js/mm-badge-icons.js?v=6"></script>
 <script src="js/mm-persona-radar.js?v=11"></script>
 <script src="js/mm-acct-menu.js?v=227"></script>
@@ -117,10 +117,10 @@ if(v&&v!=='zh-hant'){document.write('<style id="mm-fouc">body{visibility:hidden}
 <body>
 <!-- 登入閘：預設蓋住，等 Supabase 驗證後 JS 決定顯示登入/同步中/隱藏 -->
 <div id="mev2gate">
-  <!-- 閘門 topbar:規格照 privacy #topbar(品牌+tagline 左、語言/地圖首頁/怎麼使用 右) -->
+  <!-- 閘門 topbar:規格照 privacy #topbar(品牌+tagline 左、語言/地圖首頁/使用指南 右) -->
   <div class="gate-top">
     <a class="gt-brand" href="https://themusicalmap.com/"><img src="logo.svg" alt="" /><span class="logo">Musical<b>Map</b></span><span class="gt-tag" data-i18n="legal_tagline">此刻全球正在上演的音樂劇</span></a>
-    <nav class="gt-nav"><div class="lang-switch" role="group" aria-label="Language / 語言"><button type="button" class="lang-trigger" aria-haspopup="true" aria-expanded="false" aria-label="選擇語言 / Select language"><svg class="lang-globe" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 2.5 15 0 18M12 3c-2.5 2.5-2.5 15 0 18M4.5 7.5c4.5 2.5 10.5 2.5 15 0M4.5 16.5c4.5-2.5 10.5-2.5 15 0"/></svg><span class="lang-cur">繁中</span><svg class="lang-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8l7 7 7-7"/></svg></button><div class="lang-pop" role="menu" hidden><a class="lang-opt" role="menuitem" data-hl-link="zh-hant" href="?" lang="zh-Hant" hreflang="zh-Hant"><span>繁體中文</span><svg class="lang-tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12l5 5L20 6"/></svg></a><a class="lang-opt" role="menuitem" data-hl-link="zh-hans" href="?hl=zh-hans" lang="zh-Hans" hreflang="zh-Hans"><span>简体中文</span><svg class="lang-tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12l5 5L20 6"/></svg></a><a class="lang-opt" role="menuitem" data-hl-link="en" href="?hl=en" lang="en" hreflang="en"><span>English</span><svg class="lang-tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12l5 5L20 6"/></svg></a></div></div><a href="https://themusicalmap.com/" data-i18n="nav_map">地圖首頁</a><a href="https://themusicalmap.com/guide" data-i18n="nav_guide">怎麼使用</a><a class="gt-cta" href="https://my.themusicalmap.com/" data-i18n="how_nav_start">我的音樂劇</a></nav>
+    <nav class="gt-nav"><div class="lang-switch" role="group" aria-label="Language / 語言"><button type="button" class="lang-trigger" aria-haspopup="true" aria-expanded="false" aria-label="選擇語言 / Select language"><svg class="lang-globe" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 2.5 15 0 18M12 3c-2.5 2.5-2.5 15 0 18M4.5 7.5c4.5 2.5 10.5 2.5 15 0M4.5 16.5c4.5-2.5 10.5-2.5 15 0"/></svg><span class="lang-cur">繁中</span><svg class="lang-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8l7 7 7-7"/></svg></button><div class="lang-pop" role="menu" hidden><a class="lang-opt" role="menuitem" data-hl-link="zh-hant" href="?" lang="zh-Hant" hreflang="zh-Hant"><span>繁體中文</span><svg class="lang-tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12l5 5L20 6"/></svg></a><a class="lang-opt" role="menuitem" data-hl-link="zh-hans" href="?hl=zh-hans" lang="zh-Hans" hreflang="zh-Hans"><span>简体中文</span><svg class="lang-tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12l5 5L20 6"/></svg></a><a class="lang-opt" role="menuitem" data-hl-link="en" href="?hl=en" lang="en" hreflang="en"><span>English</span><svg class="lang-tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12l5 5L20 6"/></svg></a></div></div><a href="https://themusicalmap.com/" data-i18n="nav_map">地圖首頁</a><a href="https://themusicalmap.com/guide" data-i18n="nav_guide">使用指南</a><a class="gt-cta" href="https://my.themusicalmap.com/" data-i18n="how_nav_start">我的音樂劇</a></nav>
   </div>
   <div class="gate-main">
   <img id="gate-logo" src="logo.svg" alt="MusicalMap" />
@@ -167,7 +167,7 @@ if(v&&v!=='zh-hant'){document.write('<style id="mm-fouc">body{visibility:hidden}
 
 
     <a href="https://themusicalmap.com/" data-i18n="nav_map">地圖首頁</a>
-    <a href="https://themusicalmap.com/guide" data-i18n="nav_guide">怎麼使用</a>
+    <a href="https://themusicalmap.com/guide" data-i18n="nav_guide">使用指南</a>
     <div class="theme-pick" id="themePick" role="group" aria-label="主題底色" data-i18n-aria="aria_theme">
       <button data-th="midnight" title="午夜（暗）" data-i18n-title="th_midnight" style="--sw:#13182f"></button>
       <button data-th="gallery" title="畫廊白（亮）" data-i18n-title="th_gallery" style="--sw:#f4f2ec"></button>

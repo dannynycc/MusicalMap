@@ -7,7 +7,7 @@
   var STR = {
     'zh-hant': {
       // ---- u.html 靜態 ----
-      nav_map: '地圖首頁', nav_guide: '怎麼使用', nav_create: '＋ 建立你自己的',
+      nav_map: '地圖首頁', nav_guide: '使用指南', nav_create: '＋ 建立你自己的',
       nav_mine: '我的音樂劇',   // theatres 相關 key 已隨頁面撤站移除(v2.18.0)
       nav_privacy: '隱私權政策', nav_terms: '使用條款', nav_about: '關於 MusicalMap',
       th_midnight: '午夜（暗）', th_gallery: '畫廊白（亮）', th_cream: '節目單奶油（亮）', th_neon: '霓虹（暗）', th_deco: '裝飾金（暗）',
@@ -98,7 +98,7 @@
       del_bye_body2: '謝謝你曾與 MusicalMap 一起看戲——舞台燈會一直為你留著。',
       del_bye_lyric: '“You’ll be back, soon you’ll see…”', del_bye_lyric_by: '— 喬治三世國王，《Hamilton》',
       gate_preview: '登入後長這樣——你的海報牆、音樂劇護照與觀劇統計，全部自動生成：',
-      gate_browse_map: '先逛演出地圖 →', gate_see_guide: '看看怎麼使用 →',
+      gate_browse_map: '先逛演出地圖 →', gate_see_guide: '看看使用指南 →',
       nav_logout: '登出', me_hero_title: '我的音樂劇收藏', doc_title_me: '我的音樂劇 — MusicalMap', doc_title_suffix: '我的音樂劇', log_modal_label: '新增／編輯觀劇紀錄',
       demo_banner_b: '這是範例收藏', demo_banner_rest: ' —— 先讓你看看蓋滿章後的樣子。按右邊加入你第一齣看過的劇，整頁就換成你自己的。',
       demo_cta: '＋ 加入第一齣音樂劇', demo_sub: '範例預覽 · 加入後就換成你的',
@@ -178,9 +178,9 @@
       mi_hint: '試試：打「歌劇魅影」或「phantom」或「les mis」。資料來自 MusicalMap 的音樂劇資料庫。',
       mi_stamp_here: '蓋章<br>處', mi_empty_passport: '你的音樂劇護照還是空白的。<br><b>按上面「＋ 記錄一齣音樂劇」</b>蓋下第一個印章。',
       // ---- how.html 使用說明頁 ----
-      how_title: '怎麼使用 — MusicalMap',
+      how_title: '使用指南 — MusicalMap',
       how_meta: 'MusicalMap 怎麼用：一張地圖看全世界正在上演的音樂劇，把你看過的每一齣記成一本音樂劇護照，分享出去。',
-      how_nav_start: '我的音樂劇', how_eyebrow: '怎麼使用',
+      how_nav_start: '我的音樂劇', how_eyebrow: '使用指南',
       how_hero: '一張地圖，<br>看見全世界正在上演的<em>音樂劇</em>。',
       how_lede: '免登入就能探索此刻全球正在上演的音樂劇——百老匯、倫敦西區、各國巡演。登入之後，把你看過的都記成一本音樂劇護照，分享出去。',
       how_cta_map: '探索演出地圖', how_cta_me: '建立我的音樂劇護照',
