@@ -11,8 +11,11 @@
   const CCNORM = { 'UK': 'United Kingdom', 'USA': 'United States', 'US': 'United States', 'Korea': 'South Korea', 'U.S.': 'United States', 'U.K.': 'United Kingdom' };
   // 同館別名折疊(顯示層,不動資料):兩廳院戲劇院各種列名→國家戲劇院;臺中歌劇院含廳名→臺中國家歌劇院
   function foldVenue(v){ if(!v) return v;
-    if(/國家戲劇院|国家戏剧院/.test(v)) return '國家戲劇院';
-    if(/[臺台]中國家歌劇院|台中国家歌剧院|National Taichung Theater/i.test(v)) return '臺中國家歌劇院';
+    // 語言感知:英文頁折成官方英文名。原本兩行不分語言一律折回中文,
+    // 把 upgradeVenueNames 剛查到的英文名又蓋掉→英文頁露出「臺中國家歌劇院」(2026-08-20 修)
+    var _en = (window.MM_HL || 'zh-hant') === 'en';
+    if(/國家戲劇院|国家戏剧院/.test(v)) return _en ? 'National Theater' : '國家戲劇院';
+    if(/[臺台]中國家歌劇院|台中国家歌剧院|National Taichung Theater/i.test(v)) return _en ? 'National Taichung Theater' : '臺中國家歌劇院';
     return v; }
   window.MMFoldVenue = foldVenue;
   // 城市顯示統整(zh 介面):Taipei/台北→臺北 等官方「臺」字;en 介面保留英文
