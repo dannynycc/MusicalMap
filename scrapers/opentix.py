@@ -34,6 +34,21 @@ API = "https://search.opentix.life/search"
 EXCLUDE = ["演唱會", "音樂會", "工作坊", "舞台劇", "擊樂秀", "漫才",
            "老闆", "陽春麵", "一粒萬倍", "H&G2",
            "怪美妖仙傳", "一個彥達", "最後五秒", "築夢之橋", "天堂客棧"]
+# 「戲劇-音樂劇」是主辦方自填的,只信它會混進非音樂劇。以下兩道 gate 依 2026-08-20
+# 對 64 筆實際回傳逐一檢視後訂;刻意保守——**標題自稱音樂劇就一律保留**,
+# 所以合唱音樂劇《市場女人心》(共掛 音樂-室內樂)、Honk!(共掛 親子-活動)都留得住。
+#
+# (1) 臺北藝穗節:公開徵件、主辦方把 8 檔全掛成音樂劇(2026 年這批含《二一六》
+#     《不識周郎》《醒醒吧！彌賽亞》等),實際是各類型的小型製作。
+FRINGE_RE = re.compile(r"藝穗節|艺穗节|Fringe\s*Festival", re.I)
+# (2) 共掛「明確不是音樂劇」的類型:原住民樂舞團(舞蹈-民族舞/音樂-世界民族)、
+#     掌中戲/偶戲(義興閣掌中劇團 3 檔)、管絃樂團的百老匯選粹(Hot咖百老匯)、
+#     沉浸式舞蹈小歌劇(再見卡門)。刻意不含「音樂-音樂劇場」——那一類 8 檔裡
+#     混著真音樂劇(《太空阿嬤》《漂浪半島》),擋了會誤殺。
+NON_MUSICAL_CATS = {"音樂-合唱", "舞蹈-民族舞", "音樂-世界/民族", "音樂-管絃樂團",
+                    "戲劇-布袋戲", "戲劇-偶戲", "親子-舞蹈"}
+_SELF_MUSICAL = re.compile(r"音樂劇(?!場)|歌舞劇")
+
 TW_TZ = timezone(timedelta(hours=8))
 
 # OPENTIX returns Chinese city names; map to English so they align with the curated
@@ -151,8 +166,12 @@ def main():
         zh_title = (s.get("title") or "").strip()    # OPENTIX display title (Taiwanese audiences know it by this)
         en_title = (s.get("englishTitle") or "").strip()
         cats = s.get("categories") or []
-        if "音樂-合唱" in cats:                      # choir gala, not a musical
-            dropped.append(zh_title + " (合唱)"); continue
+        selfsaid = bool(_SELF_MUSICAL.search(zh_title))
+        if FRINGE_RE.search(zh_title):               # 公開徵件的藝穗節,主辦方統一掛類
+            dropped.append(zh_title + " (藝穗節)"); continue
+        bad = [c for c in cats if c in NON_MUSICAL_CATS]
+        if bad and not selfsaid:                     # 共掛明確不是音樂劇的類型
+            dropped.append(zh_title + f" ({bad[0]})"); continue
         if any(x in zh_title for x in EXCLUDE):
             dropped.append(zh_title + " (排除)"); continue
         pid = s.get("id")
