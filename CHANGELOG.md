@@ -11,6 +11,51 @@
 
 ---
 
+## [v2.69.4] - 2026-08-20 10:38
+
+### Cloudflare 把剛上線的信箱改寫成 `[email protected]` —— 關掉 Email Address Obfuscation
+
+v2.69.2 推上去之後輪詢正式站,撞到一個**內部矛盾**:
+
+```
+https://themusicalmap.com/js/app.js      mailto 標記 = True
+https://themusicalmap.com/zh-hant/about  mailto 標記 = False   ← 同一次部署,結果不一致
+```
+
+`cf-cache-status: DYNAMIC`、`Cache-Control: max-age=0, must-revalidate`、沒有 `Age` 標頭
+→ 不是快取。把線上 HTML 抓下來跟本機產物逐段比對,footer 那行變成:
+
+```html
+<!-- 本機產物 -->
+<a href="mailto:contact@themusicalmap.com">contact@themusicalmap.com</a>
+<!-- 正式站實際吐出來的 -->
+<a href="/cdn-cgi/l/email-protection#64070b0a...">
+  <span class="__cf_email__" data-cfemail="52313d3c...">[email&#160;protected]</span></a>
+```
+
+元凶是 Cloudflare Scrape Shield 的 **Email Address Obfuscation**(該 zone 預設開啟):它會在
+邊緣改寫 **HTML** 裡的信箱,真值塞進 `data-cfemail` 由 CF 的 JS 在瀏覽器端還原。
+`js/app.js` 沒被動到,是因為它只改 HTML 不改 JS 檔 —— 這正好解釋了上面那組矛盾數據。
+
+**為什麼要關掉**:這個功能與本次需求直接衝突。信箱放上來的目的就是讓
+**不執行 JS** 的一方(廣告/合作洽談方的掃描工具、Googlebot、AI 爬蟲)抓得到;
+開著等於「真人看得到、機器看不到」,四張靜態頁的信箱在原始碼裡全部是 `[email protected]`。
+
+**處置**:Cloudflare → themusicalmap.com → Security → Settings → Email Address Obfuscation → **Off**
+(zone 層級設定,不在 repo 內;`CLOUDFLARE_API_TOKEN` 只有 Pages Edit 權限動不了,由站長登入後於後台切換)。
+
+**代價(已知並接受)**:撿信箱的垃圾信機器人也看得到 `contact@themusicalmap.com`,
+垃圾信量預期上升。Zoho 端有垃圾信過濾;要是之後真的失控,可考慮改用表單或加回混淆。
+
+**關閉後複驗(正式站,非 localhost)**
+
+- 原始 HTML(python + UA,`?cb=` 破快取):`/zh-hant/about`、`/about`、`/zh-hant/guide`、
+  `/terms`、`/privacy`、`/zh-hans/about` 六條網址 —— `mailto:contact@themusicalmap.com` **全部命中**,
+  `__cf_email__` **全部 0 次**。
+- 渲染後(playwright + 真 Chrome,1440×900 / 390×844):地圖首頁繁中版與英文版
+  attribution 列的 mailto 連結都在畫面內可見;`my.themusicalmap.com` 頁尾同樣正常,
+  `.__cf_email__` 計數 0。
+
 ## [v2.69.3] - 2026-08-20 10:30
 
 ### 頁尾「關於」那個連結,全站統一叫「關於 MusicalMap」
