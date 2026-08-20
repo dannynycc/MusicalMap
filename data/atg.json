@@ -1,9 +1,9 @@
 {
   "meta": {
     "source": "atgtickets.com",
-    "count": 203,
+    "count": 204,
     "tour_hubs": 29,
-    "tour_stops": 198
+    "tour_stops": 199
   },
   "shows": [
     {
@@ -100,7 +100,7 @@
       "country": "UK",
       "lat": 51.453802,
       "lng": -2.597298,
-      "start_date": "2026-08-20",
+      "start_date": null,
       "end_date": "2026-08-23",
       "ticket_url": "https://www.atgtickets.com/shows/annie/bristol-hippodrome/",
       "image": "https://res.cloudinary.com/dwzhqvxaz/image/upload/w_1280,q_auto,f_auto/v1774364071/Titles/Annie/ANNIE-2025-11-ClaireSweeney-Generic-1920x1080-B_Bs-56959SA.jpg",
@@ -1885,7 +1885,7 @@
       "country": "UK",
       "lat": 52.494899,
       "lng": -1.851844,
-      "start_date": "2026-08-20",
+      "start_date": null,
       "end_date": "2026-08-22",
       "ticket_url": "https://www.atgtickets.com/shows/high-society/the-alexandra-theatre-birmingham/",
       "image": "https://res.cloudinary.com/dwzhqvxaz/image/upload/w_1280,q_auto,f_auto/v1786724656/Titles/High%20Society%20(Tour)/HS_ATG_1920x1080_AUG26_AW_1920x1080.jpg",
@@ -2024,6 +2024,23 @@
       "start_date": "2027-02-16",
       "end_date": "2027-02-27",
       "ticket_url": "https://www.atgtickets.com/shows/jersey-boys/kings-theatre-glasgow/",
+      "image": "https://res.cloudinary.com/dwzhqvxaz/image/upload/w_1280,q_auto,f_auto/v1762345453/Titles/Jersey%20Boys/JB_ATG_ON_SALE_SHOW_PAGE_ASSETS_SEP25_1920x1080_TITLE_TREATMENT.jpg",
+      "tour_name": "Jersey Boys — UK Tour",
+      "verified": true,
+      "source": "atgtickets.com"
+    },
+    {
+      "id": "atg-tour-jersey-boys-swansea-arena",
+      "title": "Jersey Boys",
+      "type": "tour",
+      "venue": "Swansea Building Society Arena",
+      "city": "Swansea",
+      "country": "UK",
+      "lat": 51.619596,
+      "lng": -3.945925,
+      "start_date": "2027-03-09",
+      "end_date": "2027-03-13",
+      "ticket_url": "https://www.atgtickets.com/shows/jersey-boys/swansea-arena/",
       "image": "https://res.cloudinary.com/dwzhqvxaz/image/upload/w_1280,q_auto,f_auto/v1762345453/Titles/Jersey%20Boys/JB_ATG_ON_SALE_SHOW_PAGE_ASSETS_SEP25_1920x1080_TITLE_TREATMENT.jpg",
       "tour_name": "Jersey Boys — UK Tour",
       "verified": true,
@@ -2548,7 +2565,7 @@
       "country": "UK",
       "lat": 55.861155,
       "lng": -4.250169,
-      "start_date": "2026-08-20",
+      "start_date": null,
       "end_date": "2026-08-29",
       "ticket_url": "https://www.atgtickets.com/shows/mamma-mia/kings-theatre-glasgow/",
       "image": "https://res.cloudinary.com/dwzhqvxaz/image/upload/w_1280,q_auto,f_auto/v1783606985/Titles/Mamma%20Mia/MM_ON_SALE_ASSETS_SOCIAL_1920x1080_b.jpg",
@@ -2786,7 +2803,7 @@
       "country": "UK",
       "lat": 51.513331,
       "lng": -0.120896,
-      "start_date": "2026-08-20",
+      "start_date": null,
       "end_date": "2027-02-20",
       "ticket_url": "https://www.atgtickets.com/shows/operation-mincemeat-a-new-musical/fortune-theatre/",
       "image": "https://res.cloudinary.com/dwzhqvxaz/image/upload/w_1280,q_auto,f_auto/v1721642563/Titles/Operation%20Mincemeat/OM_Title_1920x1080.jpg",
