@@ -247,14 +247,14 @@ function page(variant, shows) {
   const t = variant === "en"
     ? { tagline: "Musicals playing around the world right now", theatres: "All theatres", mine: "My Musicals", guide: "Guide",
         maphome: "Map home", search: "Search musicals, cities, theatres…", privacy: "Privacy", terms: "Terms",
-        h1: "MusicalMap — Live World Map of Musicals Playing Now", listhdr: "Musicals playing now and in the coming year", filterLabel: "Category" }
+        h1: "MusicalMap — Live World Map of Musicals Playing Now", listhdr: "Musicals playing now and in the coming year", filterLabel: "Origin" }
     : variant === "zh-hans"
     ? { tagline: "此刻全球正在上演的音乐剧", theatres: "所有剧院", mine: "我的音乐剧", guide: "使用指南",
         maphome: "地图首页", search: "搜寻音乐剧名、城市、剧院…", privacy: "隐私政策", terms: "使用条款",
-        h1: "MusicalMap — 全球此刻正在上演的音乐剧实时地图", listhdr: "正在上演与未来一年的音乐剧", filterLabel: "分类" }
+        h1: "MusicalMap — 全球此刻正在上演的音乐剧实时地图", listhdr: "正在上演与未来一年的音乐剧", filterLabel: "原创分类" }
     : { tagline: "此刻全球正在上演的音樂劇", theatres: "所有劇院", mine: "我的音樂劇", guide: "使用指南",
         maphome: "地圖首頁", search: "搜尋音樂劇名、城市、劇院…", privacy: "隱私權政策", terms: "使用條款",
-        h1: "MusicalMap — 全球此刻正在上演的音樂劇即時地圖", listhdr: "正在上演與未來一年的音樂劇", filterLabel: "分類" };
+        h1: "MusicalMap — 全球此刻正在上演的音樂劇即時地圖", listhdr: "正在上演與未來一年的音樂劇", filterLabel: "原創分類" };
   // zh-hans pages load OpenCC (small t2cn dict) so i18n can simplify the UI chrome strings.
   const openccTag = variant === "zh-hans"
     ? `\n  <script src="https://cdn.jsdelivr.net/npm/opencc-js@1.3.1/dist/umd/t2cn.js" integrity="sha384-P/OaFUnOIAgMkLxsXIAaP6WO3Wm09591cGX5bHbW4eCOeDxH9L8U3aWYf4cE4SYl" crossorigin="anonymous"></script>` : "";
