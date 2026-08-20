@@ -9,7 +9,7 @@
       // ---- u.html 靜態 ----
       nav_map: '地圖首頁', nav_guide: '怎麼使用', nav_create: '＋ 建立你自己的',
       nav_mine: '我的音樂劇',   // theatres 相關 key 已隨頁面撤站移除(v2.18.0)
-      nav_privacy: '隱私權政策', nav_terms: '使用條款', nav_about: '關於本站',
+      nav_privacy: '隱私權政策', nav_terms: '使用條款', nav_about: '關於 MusicalMap',
       th_midnight: '午夜（暗）', th_gallery: '畫廊白（亮）', th_cream: '節目單奶油（亮）', th_neon: '霓虹（暗）', th_deco: '裝飾金（暗）',
       aria_theme: '主題底色', aria_seg: '檢視模式', aria_sort: '排序', aria_close: '關閉',
       hero_sub: '每看一場，蓋一個章',
@@ -270,7 +270,7 @@
     'en': {
       nav_map: 'Map home', nav_guide: 'Guide', nav_create: '＋ Create your own',
       nav_mine: 'My Musicals',
-      nav_privacy: 'Privacy', nav_terms: 'Terms', nav_about: 'About',
+      nav_privacy: 'Privacy', nav_terms: 'Terms', nav_about: 'About MusicalMap',
       th_midnight: 'Midnight (dark)', th_gallery: 'Gallery white (light)', th_cream: 'Playbill cream (light)', th_neon: 'Neon (dark)', th_deco: 'Deco gold (dark)',
       aria_theme: 'Theme', aria_seg: 'View mode', aria_sort: 'Sort', aria_close: 'Close',
       hero_sub: 'One stamp for every show you see',
