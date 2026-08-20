@@ -221,7 +221,7 @@
       about_s3_h: '資料哪裡來',
       about_s3_p: '資料每日自動彙整自各官方售票平台與劇院官方來源（Broadway、West End、Ticketmaster、劇団四季／東宝、Interpark、OPENTIX 等）。免責與分潤揭露詳見使用條款。',
       about_s4_h: '聯絡',
-      about_s4_p: '錯誤回報、合作，或任何想說的話：contact@themusicalmap.com。',
+      about_s4_p: '錯誤回報、合作，或任何想說的話：<a href="mailto:contact@themusicalmap.com">contact@themusicalmap.com</a>。',
       // ---- privacy.html / terms.html(法務頁;繁中為底,zh-hans 由 OpenCC 轉,en 用下方字典) ----
       legal_tagline: '此刻全球正在上演的音樂劇', legal_contact: '聯絡',
       pp_title: '隱私權政策 — MusicalMap', pp_h1: '隱私權政策', pp_updated: '最後更新：2026-07-07',
@@ -473,7 +473,7 @@
       about_s3_h: 'Where the data comes from',
       about_s3_p: 'Listings are aggregated daily from official ticketing platforms and theatre sources (Broadway, West End, Ticketmaster, Shiki/Toho, Interpark, OPENTIX and more). See the Terms for disclaimers and affiliate disclosure.',
       about_s4_h: 'Contact',
-      about_s4_p: 'Corrections, ideas, or anything else: contact@themusicalmap.com.',
+      about_s4_p: 'Corrections, ideas, or anything else: <a href="mailto:contact@themusicalmap.com">contact@themusicalmap.com</a>.',
       // ---- privacy.html / terms.html ----
       legal_tagline: 'Musicals playing around the world right now', legal_contact: 'Contact',
       pp_title: 'Privacy Policy — MusicalMap', pp_h1: 'Privacy Policy', pp_updated: 'Last updated: 2026-07-07',

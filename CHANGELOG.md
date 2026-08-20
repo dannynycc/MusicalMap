@@ -11,6 +11,40 @@
 
 ---
 
+## [v2.69.2] - 2026-08-20 10:17
+
+### 站上直接印出聯絡信箱全文(廣告/合作洽談入口)
+
+站長的判斷:想接廣告或談合作的人,通常直接掃頁面上有沒有可用的聯絡方式,沒有就跳過。
+本站原本的狀況:
+
+- `contact@themusicalmap.com` **只**出現在關於／隱私／條款三頁的內文裡。
+- 關於頁那句是**純文字,點不了**(`data-i18n` 走 textContent,連結會被吃掉)。
+- 首頁是全螢幕地圖、沒有頁尾,聯絡入口等於零。
+
+改法(信箱一律印**全文**而非寫成「聯絡」二字 —— 洽談方與媒體採購常直接抓頁面上的 `@` 字串或
+`mailto:` href,只給 label 連結等於沒露出):
+
+| 位置 | 變更 |
+|---|---|
+| 首頁地圖右下 attribution 列 | `© 2026 MusicalMap · 關於 · 隱私權 · 條款` 後面接上 `contact@themusicalmap.com`(`js/app.js`) |
+| about / guide / privacy / terms 頁尾 | 加同一串 mailto 連結(`build/pages/*.html`,三語變體由 `gen_pages` 產出) |
+| 404 頁尾 | 同上(共用靜態頁尾模板) |
+| `me.html`(未登入 gate + 主頁尾)、`u.html` | 加同一串 mailto 連結 |
+| 關於頁「聯絡」段 | `data-i18n` → `data-i18n-html`,信箱變成可點的 mailto(`js/mm-strings.js` 繁中+英文字典同步) |
+
+信箱是語言中性字串,不進字典、三語共用同一串;Latin 文字不受 OpenCC 轉換影響。
+
+**版面驗證(playwright + 真 Chrome,桌機 1440×900／手機 390×844,本機 gen_site 產物)**
+
+- 首頁 attribution:桌機仍**單行**(高 17px)、手機仍**兩行**(高 34px),加了信箱沒有多撐一行;
+  mailto 連結在兩種尺寸都完整落在畫面內(手機 l=86→r=244,視窗寬 390)。
+- 四張靜態頁 ×(桌機/手機):所有 mailto 連結可見、`scrollWidth - clientWidth = 0`(無橫向溢出)。
+
+**順帶更正一則先前的誤判**:動工前憑縮圖判斷「手機版 attribution 那排會被切掉、關於/隱私權/條款
+看不到」——實測打臉,該列 `white-space: normal`,在 390px 下會自動折成兩行,三個連結原本就都看得到
+(`getBoundingClientRect` 量到 `關於` 在 l=78, t=811)。因此**沒有**動任何 CSS。
+
 ## [v2.69.1] - 2026-08-20 10:06
 
 ### 修 atrapalo:被西班牙票務網站的機器人牆擋住就整批放棄
