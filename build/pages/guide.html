@@ -35,7 +35,7 @@ if(!v){var nl=(navigator.language||'').toLowerCase();v=nl.indexOf('zh')===0?((nl
 if(v==='zh-hans'){document.write('<scr'+'ipt src="https://cdn.jsdelivr.net/npm/opencc-js@1.3.1/dist/umd/t2cn.js" integrity="sha384-P/OaFUnOIAgMkLxsXIAaP6WO3Wm09591cGX5bHbW4eCOeDxH9L8U3aWYf4cE4SYl" crossorigin="anonymous"><\/scr'+'ipt>');
 document.write('<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@600;700;900&display=swap" rel="stylesheet" />');/* 簡體字 TC 字型沒有→會混排系統字忽粗忽細,補 SC 字型 */}
 }catch(e){}})();</script>
-<script src="js/mm-strings.js?v=251"></script>
+<script src="js/mm-strings.js?v=252"></script>
   <script src="js/mm-acct-menu.js?v=227" defer></script>
   <script src="js/mm-lang.js?v=230" defer></script><!-- 語言切換下拉開關 -->
 <style>
@@ -210,6 +210,15 @@ footer .sp{margin-left:auto}
   </div>
 
   <div class="row flip">
+    <div class="fig"><img src="assets/guide/zh-hant/search.webp" data-shot="search" width="1120" height="560" alt="主地圖搜尋:輸入「歌劇魅影」,側欄列出這齣戲在倫敦、名古屋、武漢等城市的檔期" loading="lazy" decoding="async" /></div>
+    <div class="copy">
+      <div class="n serif" data-i18n="how_a15_n">找特定一齣</div>
+      <h3 data-i18n="how_a15_h">打劇名、城市或劇院，地圖就飛過去</h3>
+      <p data-i18n="how_a15_p">左上角的搜尋框吃三種東西：音樂劇名、城市、劇院。中文劇名也搜得到；同一齣在世界各地的檔期會一次列出來，點哪一場，地圖就帶你過去。</p>
+    </div>
+  </div>
+
+  <div class="row">
     <div class="fig"><img src="assets/guide/zh-hant/popup.webp" data-shot="popup" width="1328" height="764" alt="劇目視窗：Wicked 在 Gershwin Theatre 長期上演，附購票連結，標題連到官方網站" loading="lazy" decoding="async" /></div>
     <div class="copy">
       <div class="n serif" data-i18n="how_a2_n">一鍵訂票</div>
@@ -225,7 +234,7 @@ footer .sp{margin-left:auto}
 
   <!-- PART 2: MY MUSICALS -->
   <div class="part"><span class="pno serif">02</span><h2 data-i18n="how_p2_h">記下你看過的每一齣</h2></div>
-  <p class="part-lede" data-i18n="how_p2_lede">登入之後，你看過的劇會長成一面海報牆、一本蓋章護照，還有你的觀劇統計。全部自動生成。</p>
+  <p class="part-lede" data-i18n="how_p2_lede">登入之後，你看過的劇會長成一面海報牆、一本蓋章護照、一張足跡地圖，還有你的觀劇統計與劇迷戰力圖。全部自動生成。</p>
 
   <div class="row">
     <div class="fig"><img src="assets/guide/zh-hant/wall.webp" data-shot="wall" width="1272" height="800" alt="海報牆：看過的音樂劇海報一張張掛成一面牆" loading="lazy" decoding="async" /></div>
@@ -242,6 +251,7 @@ footer .sp{margin-left:auto}
       <div class="n serif" data-i18n="how_b1_n">加入一齣</div>
       <h3 data-i18n="how_b1_h">搜音樂劇名，其餘自動帶入</h3>
       <p data-i18n="how_b1_p">中英文搜尋都行，劇院、城市、海報自動補上。填看劇的日期、評分、座位、心得——只記得年份也沒關係。每看一場，護照上就多一個章。</p>
+      <p data-i18n="how_b1_p2">不限現在正在上演的劇——十年前看的、早就下檔的，一樣記得進去；劇院、城市、日期都可以自己改。真的查不到，手動填也行。</p>
     </div>
   </div>
 
@@ -255,11 +265,29 @@ footer .sp{margin-left:auto}
   </div>
 
   <div class="row flip">
+    <div class="fig"><img src="assets/guide/zh-hant/footmap.webp" data-shot="footmap" width="994" height="480" alt="足跡地圖:看過的音樂劇海報釘在實際看戲的劇院上,同城多齣攤成扇形" loading="lazy" decoding="async" /></div>
+    <div class="copy">
+      <div class="n serif" data-i18n="how_b17_n">你的足跡地圖</div>
+      <h3 data-i18n="how_b17_h">每一齣，都釘在你真正走進去的那家劇院</h3>
+      <p data-i18n="how_b17_p">看過的劇會在世界地圖上長出來——釘的不是城市中心，是你當晚實際走進去的那家劇院。同一座城市看過好幾齣，海報就攤成一疊扇形。點一座城市，只看那裡的收藏。</p>
+    </div>
+  </div>
+
+  <div class="row">
     <div class="fig"><img src="assets/guide/zh-hant/stats.webp" data-shot="stats" width="1252" height="518" alt="觀劇統計：最常看的音樂劇、最常去的國家城市與劇院、各年各月各星期的觀劇分布" loading="lazy" decoding="async" /></div>
     <div class="copy">
       <div class="n serif" data-i18n="how_b2_n">你的觀劇統計</div>
       <h3 data-i18n="how_b2_h">看久了，會浮現一個輪廓</h3>
       <p data-i18n="how_b2_p">最常看的音樂劇、去過的城市與國家、各年各月的觀劇分布——都幫你統計好了，一眼看出你是什麼樣的劇迷。</p>
+    </div>
+  </div>
+
+  <div class="row flip">
+    <div class="fig"><img src="assets/guide/zh-hant/persona.webp" data-shot="persona" width="1276" height="457" alt="成就徽章與六角戰力圖:左邊是各級徽章,右邊是劇院常客、嘗鮮作品等六軸評分" loading="lazy" decoding="async" /></div>
+    <div class="copy">
+      <div class="n serif" data-i18n="how_b18_n">你是什麼樣的劇迷</div>
+      <h3 data-i18n="how_b18_h">六個面向，一張圖說完</h3>
+      <p data-i18n="how_b18_p">劇院常客、嘗鮮作品、劇種涉獵、跨國足跡、狂粉劇迷、音樂劇齡——六個面向各自打分，畫成一張六角圖。旁邊是成就徽章：從第一場、跨過幾個國家，到同一齣刷了幾次，達成就自動亮起來，而且每一枚都還有下一級可以追。</p>
     </div>
   </div>
 
@@ -271,8 +299,8 @@ footer .sp{margin-left:auto}
     </div>
     <div class="copy divided">
       <div class="n serif" data-i18n="how_b4_n">登入很單純</div>
-      <h3 data-i18n="how_b4_h">用 Google 登入，跨裝置同步</h3>
-      <p data-i18n="how_b4_p">我們只讀你的名稱、email 與頭像（頭像只顯示在你自己登入後的選單，不會出現在公開頁），不會代你張貼任何內容。你的收藏存在帳號裡，換手機、換電腦都在。</p>
+      <h3 data-i18n="how_b4_h">Google 或 Email 都能登入，跨裝置同步</h3>
+      <p data-i18n="how_b4_p">用 Google 一鍵登入，或留下 Email 收一組 6 位數驗證碼——連不到 Google 的地方也進得來。我們只讀你的名稱、email 與頭像（頭像只顯示在你自己登入後的選單，不會出現在公開頁），不會代你張貼任何內容。你的收藏存在帳號裡，換手機、換電腦都在。</p>
     </div>
   </div>
 

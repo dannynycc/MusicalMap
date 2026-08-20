@@ -36,7 +36,7 @@ if(!v){var nl=(navigator.language||'').toLowerCase();v=nl.indexOf('zh')===0?((nl
 if(v==='zh-hans'){document.write('<scr'+'ipt src="https://cdn.jsdelivr.net/npm/opencc-js@1.3.1/dist/umd/t2cn.js" integrity="sha384-P/OaFUnOIAgMkLxsXIAaP6WO3Wm09591cGX5bHbW4eCOeDxH9L8U3aWYf4cE4SYl" crossorigin="anonymous"><\/scr'+'ipt>');
 document.write('<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@600;700;900&display=swap" rel="stylesheet" />');/* 簡體字 TC 字型沒有→會混排系統字忽粗忽細,補 SC 字型 */}
 }catch(e){}})();</script>
-<script src="/js/mm-strings.js?v=251"></script>
+<script src="/js/mm-strings.js?v=252"></script>
   <script src="/js/mm-acct-menu.js?v=227" defer></script>
   <script src="/js/mm-lang.js?v=230" defer></script><!-- 語言切換下拉開關 -->
 <style>
@@ -211,6 +211,15 @@ footer .sp{margin-left:auto}
   </div>
 
   <div class="row flip">
+    <div class="fig"><img src="/assets/guide/en/search.webp" data-shot="search" width="1120" height="560" alt="主地圖搜尋:輸入「歌劇魅影」,側欄列出這齣戲在倫敦、名古屋、武漢等城市的檔期" loading="lazy" decoding="async" /></div>
+    <div class="copy">
+      <div class="n serif" data-i18n="how_a15_n">Find one show</div>
+      <h3 data-i18n="how_a15_h">Type a title, a city or a theatre — the map flies there</h3>
+      <p data-i18n="how_a15_p">The search box top-left takes three things: musical titles, cities and theatres. Chinese titles work too. Every run of the same show worldwide comes back in one list — tap any of them and the map takes you straight there.</p>
+    </div>
+  </div>
+
+  <div class="row">
     <div class="fig"><img src="/assets/guide/en/popup.webp" data-shot="popup" width="1328" height="764" alt="劇目視窗：Wicked 在 Gershwin Theatre 長期上演，附購票連結，標題連到官方網站" loading="lazy" decoding="async" /></div>
     <div class="copy">
       <div class="n serif" data-i18n="how_a2_n">One tap to tickets</div>
@@ -226,7 +235,7 @@ footer .sp{margin-left:auto}
 
   <!-- PART 2: MY MUSICALS -->
   <div class="part"><span class="pno serif">02</span><h2 data-i18n="how_p2_h">Keep every show you’ve seen</h2></div>
-  <p class="part-lede" data-i18n="how_p2_lede">Once you sign in, your shows grow into a poster wall, a stamped passport and your own viewing stats. All automatic.</p>
+  <p class="part-lede" data-i18n="how_p2_lede">Once you sign in, your shows grow into a poster wall, a stamped passport, a footprint map, your own viewing stats and a theatregoer profile. All automatic.</p>
 
   <div class="row">
     <div class="fig"><img src="/assets/guide/en/wall.webp" data-shot="wall" width="1272" height="800" alt="海報牆：看過的音樂劇海報一張張掛成一面牆" loading="lazy" decoding="async" /></div>
@@ -243,6 +252,7 @@ footer .sp{margin-left:auto}
       <div class="n serif" data-i18n="how_b1_n">Add a musical</div>
       <h3 data-i18n="how_b1_h">Search the title, the rest fills itself in</h3>
       <p data-i18n="how_b1_p">Search in English or Chinese; theatre, city and poster fill in automatically. Add the date, rating, seat and notes — just the year is fine. Every show you log adds a stamp to your passport.</p>
+      <p data-i18n="how_b1_p2">Not only what’s playing now — a show you saw ten years ago, or one that closed long before, goes in just the same, and the theatre, city and date are all yours to edit. If it really isn’t in the catalogue, type it in by hand.</p>
     </div>
   </div>
 
@@ -256,11 +266,29 @@ footer .sp{margin-left:auto}
   </div>
 
   <div class="row flip">
+    <div class="fig"><img src="/assets/guide/en/footmap.webp" data-shot="footmap" width="994" height="480" alt="足跡地圖:看過的音樂劇海報釘在實際看戲的劇院上,同城多齣攤成扇形" loading="lazy" decoding="async" /></div>
+    <div class="copy">
+      <div class="n serif" data-i18n="how_b17_n">Your footprint map</div>
+      <h3 data-i18n="how_b17_h">Every show, pinned to the theatre you walked into</h3>
+      <p data-i18n="how_b17_p">Your shows grow onto a world map — pinned not at the middle of the city but at the theatre you walked into that night. See several shows in one city and the posters fan out into a stack. Tap a city to see only what you saw there.</p>
+    </div>
+  </div>
+
+  <div class="row">
     <div class="fig"><img src="/assets/guide/en/stats.webp" data-shot="stats" width="1252" height="518" alt="觀劇統計：最常看的音樂劇、最常去的國家城市與劇院、各年各月各星期的觀劇分布" loading="lazy" decoding="async" /></div>
     <div class="copy">
       <div class="n serif" data-i18n="how_b2_n">Your theatregoing stats</div>
       <h3 data-i18n="how_b2_h">How do you measure a year? In shows, cities and stamps</h3>
       <p data-i18n="how_b2_p">Most-seen musicals, cities and countries visited, how your theatregoing spreads across years and months — all tallied for you, showing at a glance what kind of theatregoer you are.</p>
+    </div>
+  </div>
+
+  <div class="row flip">
+    <div class="fig"><img src="/assets/guide/en/persona.webp" data-shot="persona" width="1276" height="457" alt="成就徽章與六角戰力圖:左邊是各級徽章,右邊是劇院常客、嘗鮮作品等六軸評分" loading="lazy" decoding="async" /></div>
+    <div class="copy">
+      <div class="n serif" data-i18n="how_b18_n">What kind of theatregoer</div>
+      <h3 data-i18n="how_b18_h">Who am I? Six axes say it in one shape</h3>
+      <p data-i18n="how_b18_p">Shows Seen, Explorer, Genre Buff, Globetrotter, Devoted Fan, Theatre Age — six axes, each scored, drawn as a single hexagon. Beside it sit your badges: your first show, the countries you’ve crossed, the times you’ve gone back to the same musical. They light up on their own, and every one has a next tier to chase.</p>
     </div>
   </div>
 
@@ -272,8 +300,8 @@ footer .sp{margin-left:auto}
     </div>
     <div class="copy divided">
       <div class="n serif" data-i18n="how_b4_n">Signing in is simple</div>
-      <h3 data-i18n="how_b4_h">Sign in with Google, synced everywhere</h3>
-      <p data-i18n="how_b4_p">We only read your name, email and avatar (the avatar appears only in your own signed-in menu, never on public pages) — we never post anything on your behalf. Your collection lives in your account, on every phone and laptop.</p>
+      <h3 data-i18n="how_b4_h">Google or email — synced everywhere</h3>
+      <p data-i18n="how_b4_p">One tap with Google, or leave your email and we send a 6-digit code — so you can get in from places Google can’t reach. We only read your name, email and avatar (the avatar appears only in your own signed-in menu, never on public pages) — we never post anything on your behalf. Your collection lives in your account, on every phone and laptop.</p>
     </div>
   </div>
 
