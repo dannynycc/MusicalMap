@@ -1,7 +1,7 @@
 {
   "meta": {
     "source": "world.nol.com (Interpark)",
-    "count": 36,
+    "count": 37,
     "dropped_no_coords": [
       "M. Butterfly @ Yes 24 Stage 1",
       "The Days  - INCHEON @ Incheon Culture n Arts Center",
@@ -34,6 +34,23 @@
     ]
   },
   "shows": [
+    {
+      "id": "ip-26011520",
+      "title": "Gone Tomorrow",
+      "type": "tour",
+      "venue": "Hongik Daehangno Art Center",
+      "city": "Seoul",
+      "country": "South Korea",
+      "lat": 37.5797,
+      "lng": 127.0035,
+      "start_date": "2026-09-15",
+      "end_date": "2026-11-29",
+      "ticket_url": "https://world.nol.com/en/ticket/places/23000860/products/26011520",
+      "image": "https://ticketimage.interpark.com/Play/image/large/26/26011520_p.gif",
+      "tour_name": null,
+      "verified": true,
+      "source": "world.nol.com (Interpark)"
+    },
     {
       "id": "ip-26011346",
       "title": "THE DAYS - BUSAN",
@@ -503,7 +520,7 @@
       "lat": 37.5613,
       "lng": 126.9947,
       "start_date": "2025-07-24",
-      "end_date": "2026-09-27",
+      "end_date": "2026-11-15",
       "ticket_url": "https://world.nol.com/en/ticket/places/25000677/products/25008376",
       "image": "https://ticketimage.interpark.com/Play/image/large/25/25008376_p.gif",
       "tour_name": null,
