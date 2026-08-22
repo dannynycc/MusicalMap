@@ -1,9 +1,9 @@
 {
   "meta": {
     "source": "atgtickets.com",
-    "count": 202,
+    "count": 203,
     "tour_hubs": 29,
-    "tour_stops": 197
+    "tour_stops": 198
   },
   "shows": [
     {
@@ -100,7 +100,7 @@
       "country": "UK",
       "lat": 51.453802,
       "lng": -2.597298,
-      "start_date": "2026-08-22",
+      "start_date": null,
       "end_date": "2026-08-23",
       "ticket_url": "https://www.atgtickets.com/shows/annie/bristol-hippodrome/",
       "image": "https://res.cloudinary.com/dwzhqvxaz/image/upload/w_1280,q_auto,f_auto/v1774364071/Titles/Annie/ANNIE-2025-11-ClaireSweeney-Generic-1920x1080-B_Bs-56959SA.jpg",
@@ -1769,7 +1769,7 @@
       "start_date": "2027-04-27",
       "end_date": "2027-05-01",
       "ticket_url": "https://www.atgtickets.com/shows/heathers-the-musical/princess-theatre-torquay/",
-      "image": "https://res.cloudinary.com/dwzhqvxaz/image/upload/w_1280,q_auto,f_auto/v1709544285/Titles/Heathers%20The%20Musical/Heathers_2024_ATG_Web_1920x1080_2.jpg",
+      "image": "https://res.cloudinary.com/dwzhqvxaz/image/upload/w_1280,q_auto,f_auto/v1776083360/Titles/Heathers%20The%20Musical/Heathers_1920x1080_1.jpg",
       "tour_name": "Heathers the Musical — UK Tour",
       "verified": true,
       "source": "atgtickets.com"
@@ -1786,7 +1786,7 @@
       "start_date": "2026-11-24",
       "end_date": "2026-11-28",
       "ticket_url": "https://www.atgtickets.com/shows/heathers-the-musical/new-theatre-oxford/",
-      "image": "https://res.cloudinary.com/dwzhqvxaz/image/upload/w_1280,q_auto,f_auto/v1709544285/Titles/Heathers%20The%20Musical/Heathers_2024_ATG_Web_1920x1080_2.jpg",
+      "image": "https://res.cloudinary.com/dwzhqvxaz/image/upload/w_1280,q_auto,f_auto/v1776083360/Titles/Heathers%20The%20Musical/Heathers_1920x1080_1.jpg",
       "tour_name": "Heathers the Musical — UK Tour",
       "verified": true,
       "source": "atgtickets.com"
@@ -1803,7 +1803,7 @@
       "start_date": "2027-02-23",
       "end_date": "2027-02-27",
       "ticket_url": "https://www.atgtickets.com/shows/heathers-the-musical/liverpool-empire/",
-      "image": "https://res.cloudinary.com/dwzhqvxaz/image/upload/w_1280,q_auto,f_auto/v1709544285/Titles/Heathers%20The%20Musical/Heathers_2024_ATG_Web_1920x1080_2.jpg",
+      "image": "https://res.cloudinary.com/dwzhqvxaz/image/upload/w_1280,q_auto,f_auto/v1776083360/Titles/Heathers%20The%20Musical/Heathers_1920x1080_1.jpg",
       "tour_name": "Heathers the Musical — UK Tour",
       "verified": true,
       "source": "atgtickets.com"
@@ -1820,7 +1820,7 @@
       "start_date": "2027-03-09",
       "end_date": "2027-03-13",
       "ticket_url": "https://www.atgtickets.com/shows/heathers-the-musical/grand-opera-house-york/",
-      "image": "https://res.cloudinary.com/dwzhqvxaz/image/upload/w_1280,q_auto,f_auto/v1709544285/Titles/Heathers%20The%20Musical/Heathers_2024_ATG_Web_1920x1080_2.jpg",
+      "image": "https://res.cloudinary.com/dwzhqvxaz/image/upload/w_1280,q_auto,f_auto/v1776083360/Titles/Heathers%20The%20Musical/Heathers_1920x1080_1.jpg",
       "tour_name": "Heathers the Musical — UK Tour",
       "verified": true,
       "source": "atgtickets.com"
@@ -1837,7 +1837,7 @@
       "start_date": "2027-03-16",
       "end_date": "2027-03-20",
       "ticket_url": "https://www.atgtickets.com/shows/heathers-the-musical/the-alexandra-theatre-birmingham/",
-      "image": "https://res.cloudinary.com/dwzhqvxaz/image/upload/w_1280,q_auto,f_auto/v1709544285/Titles/Heathers%20The%20Musical/Heathers_2024_ATG_Web_1920x1080_2.jpg",
+      "image": "https://res.cloudinary.com/dwzhqvxaz/image/upload/w_1280,q_auto,f_auto/v1776083360/Titles/Heathers%20The%20Musical/Heathers_1920x1080_1.jpg",
       "tour_name": "Heathers the Musical — UK Tour",
       "verified": true,
       "source": "atgtickets.com"
@@ -1854,7 +1854,24 @@
       "start_date": "2027-03-30",
       "end_date": "2027-04-03",
       "ticket_url": "https://www.atgtickets.com/shows/heathers-the-musical/kings-theatre-glasgow/",
-      "image": "https://res.cloudinary.com/dwzhqvxaz/image/upload/w_1280,q_auto,f_auto/v1709544285/Titles/Heathers%20The%20Musical/Heathers_2024_ATG_Web_1920x1080_2.jpg",
+      "image": "https://res.cloudinary.com/dwzhqvxaz/image/upload/w_1280,q_auto,f_auto/v1776083360/Titles/Heathers%20The%20Musical/Heathers_1920x1080_1.jpg",
+      "tour_name": "Heathers the Musical — UK Tour",
+      "verified": true,
+      "source": "atgtickets.com"
+    },
+    {
+      "id": "atg-tour-heathers-the-musical-palace-theatre-manchester",
+      "title": "Heathers the Musical",
+      "type": "tour",
+      "venue": "Palace Theatre Manchester",
+      "city": "Manchester",
+      "country": "UK",
+      "lat": 53.475022,
+      "lng": -2.240906,
+      "start_date": "2027-03-02",
+      "end_date": "2027-03-06",
+      "ticket_url": "https://www.atgtickets.com/shows/heathers-the-musical/palace-theatre-manchester/",
+      "image": "https://res.cloudinary.com/dwzhqvxaz/image/upload/w_1280,q_auto,f_auto/v1776083360/Titles/Heathers%20The%20Musical/Heathers_1920x1080_1.jpg",
       "tour_name": "Heathers the Musical — UK Tour",
       "verified": true,
       "source": "atgtickets.com"
@@ -2531,7 +2548,7 @@
       "country": "UK",
       "lat": 55.861155,
       "lng": -4.250169,
-      "start_date": "2026-08-22",
+      "start_date": null,
       "end_date": "2026-08-29",
       "ticket_url": "https://www.atgtickets.com/shows/mamma-mia/kings-theatre-glasgow/",
       "image": "https://res.cloudinary.com/dwzhqvxaz/image/upload/w_1280,q_auto,f_auto/v1783606985/Titles/Mamma%20Mia/MM_ON_SALE_ASSETS_SOCIAL_1920x1080_b.jpg",
@@ -2769,7 +2786,7 @@
       "country": "UK",
       "lat": 51.513331,
       "lng": -0.120896,
-      "start_date": "2026-08-22",
+      "start_date": null,
       "end_date": "2027-02-20",
       "ticket_url": "https://www.atgtickets.com/shows/operation-mincemeat-a-new-musical/fortune-theatre/",
       "image": "https://res.cloudinary.com/dwzhqvxaz/image/upload/w_1280,q_auto,f_auto/v1721642563/Titles/Operation%20Mincemeat/OM_Title_1920x1080.jpg",
