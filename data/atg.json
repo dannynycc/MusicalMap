@@ -1,9 +1,9 @@
 {
   "meta": {
     "source": "atgtickets.com",
-    "count": 203,
+    "count": 202,
     "tour_hubs": 29,
-    "tour_stops": 198
+    "tour_stops": 197
   },
   "shows": [
     {
@@ -41,23 +41,6 @@
       "source": "atgtickets.com"
     },
     {
-      "id": "atg-shows-moulin-rouge-the-musical-piccadilly-theatre",
-      "title": "Moulin Rouge! The Musical",
-      "type": "tour",
-      "venue": "Piccadilly Theatre",
-      "city": "London",
-      "country": "UK",
-      "lat": 51.510997,
-      "lng": -0.135395,
-      "start_date": null,
-      "end_date": "2027-02-14",
-      "ticket_url": "https://www.atgtickets.com/shows/moulin-rouge-the-musical/piccadilly-theatre/",
-      "image": "https://res.cloudinary.com/dwzhqvxaz/image/upload/w_1280,q_auto,f_auto/v1774270910/Titles/Moulin%20Rouge/7ce89f57-a784-4c92-a2e7-9434fb4575ab.jpg",
-      "tour_name": null,
-      "verified": true,
-      "source": "atgtickets.com"
-    },
-    {
       "id": "atg-shows-wicked-apollo-victoria-theatre",
       "title": "Wicked",
       "type": "tour",
@@ -70,6 +53,23 @@
       "end_date": "2027-05-30",
       "ticket_url": "https://www.atgtickets.com/shows/wicked/apollo-victoria-theatre/",
       "image": "https://res.cloudinary.com/dwzhqvxaz/image/upload/w_1280,q_auto,f_auto/v1724228109/Titles/Wicked/Tour/Wicked_Tour_Title_1920x1080.jpg",
+      "tour_name": null,
+      "verified": true,
+      "source": "atgtickets.com"
+    },
+    {
+      "id": "atg-shows-moulin-rouge-the-musical-piccadilly-theatre",
+      "title": "Moulin Rouge! The Musical",
+      "type": "tour",
+      "venue": "Piccadilly Theatre",
+      "city": "London",
+      "country": "UK",
+      "lat": 51.510997,
+      "lng": -0.135395,
+      "start_date": null,
+      "end_date": "2027-02-14",
+      "ticket_url": "https://www.atgtickets.com/shows/moulin-rouge-the-musical/piccadilly-theatre/",
+      "image": "https://res.cloudinary.com/dwzhqvxaz/image/upload/w_1280,q_auto,f_auto/v1774270910/Titles/Moulin%20Rouge/7ce89f57-a784-4c92-a2e7-9434fb4575ab.jpg",
       "tour_name": null,
       "verified": true,
       "source": "atgtickets.com"
@@ -88,23 +88,6 @@
       "ticket_url": "https://www.atgtickets.com/shows/paddington-the-musical-relaxed-performance/savoy-theatre/",
       "image": "https://res.cloudinary.com/dwzhqvxaz/image/upload/w_1280,q_auto,f_auto/v1783343983/Titles/Paddington%20The%20Musical/ATG_1920x1080.jpg",
       "tour_name": null,
-      "verified": true,
-      "source": "atgtickets.com"
-    },
-    {
-      "id": "atg-tour-annie-bristol-hippodrome",
-      "title": "Annie",
-      "type": "tour",
-      "venue": "Bristol Hippodrome",
-      "city": "Bristol",
-      "country": "UK",
-      "lat": 51.453802,
-      "lng": -2.597298,
-      "start_date": null,
-      "end_date": "2026-08-23",
-      "ticket_url": "https://www.atgtickets.com/shows/annie/bristol-hippodrome/",
-      "image": "https://res.cloudinary.com/dwzhqvxaz/image/upload/w_1280,q_auto,f_auto/v1774364071/Titles/Annie/ANNIE-2025-11-ClaireSweeney-Generic-1920x1080-B_Bs-56959SA.jpg",
-      "tour_name": "Annie — UK Tour",
       "verified": true,
       "source": "atgtickets.com"
     },
@@ -2548,7 +2531,7 @@
       "country": "UK",
       "lat": 55.861155,
       "lng": -4.250169,
-      "start_date": null,
+      "start_date": "2026-08-23",
       "end_date": "2026-08-29",
       "ticket_url": "https://www.atgtickets.com/shows/mamma-mia/kings-theatre-glasgow/",
       "image": "https://res.cloudinary.com/dwzhqvxaz/image/upload/w_1280,q_auto,f_auto/v1783606985/Titles/Mamma%20Mia/MM_ON_SALE_ASSETS_SOCIAL_1920x1080_b.jpg",
@@ -2786,7 +2769,7 @@
       "country": "UK",
       "lat": 51.513331,
       "lng": -0.120896,
-      "start_date": null,
+      "start_date": "2026-08-24",
       "end_date": "2027-02-20",
       "ticket_url": "https://www.atgtickets.com/shows/operation-mincemeat-a-new-musical/fortune-theatre/",
       "image": "https://res.cloudinary.com/dwzhqvxaz/image/upload/w_1280,q_auto,f_auto/v1721642563/Titles/Operation%20Mincemeat/OM_Title_1920x1080.jpg",
