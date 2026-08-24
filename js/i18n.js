@@ -303,36 +303,39 @@
   // Variant pages (/en//zh-hans//zh-hant/) set window.MM_VARIANT — language is fixed by
   // the URL and the switch navigates between trees. Legacy pages (theatres/me/…) fall back
   // to the older ?lang= behaviour. DICT keys: en, zh (=Traditional), zh-hans (=Simplified).
+  // Build the Simplified UI dict from the Traditional one. OpenCC (t2cn, ~65KB) is loaded
+  // only on zh-hans pages; if absent, degrade to Traditional strings rather than break.
+  // OpenCC 只轉「字」不轉「詞」——台灣用語再過一層詞彙表(與 js/mm-strings.js 的 CN_FIX 同步維護)。
+  const CN_FIX = [
+    [/登入/g, "登录"], [/登出/g, "退出登录"],
+    [/连结/g, "链接"], [/建立/g, "创建"],
+    [/装置/g, "设备"], [/帐号/g, "账号"], [/帐户/g, "账户"],
+    [/储存/g, "存储"], [/透过/g, "通过"],
+    [/即时/g, "实时"], [/隐私权政策/g, "隐私政策"],
+    [/示范资料/g, "示例数据"], [/范例/g, "示例"],
+    [/资讯/g, "信息"],   // 台「資訊」→陸「信息」(票務資訊→票务信息等)
+    [/「/g, "“"], [/」/g, "”"],
+    [/纪录/g, "记录"], [/存取/g, "访问"], [/贩售/g, "出售"], [/设定/g, "设置"], [/单笔/g, "单条"],
+    [/搜寻/g, "搜索"], [/栏位/g, "项目"], [/自订/g, "自定义"], [/选单/g, "菜单"],
+    [/一出(?!戏|来)/g, "一部"], [/几出(?!戏|来)/g, "几部"],
+  ];
+  const cnFix = (s) => { for (const [re, to] of CN_FIX) s = s.replace(re, to); return s; };
+  function ensureHansDict() {
+    if (DICT["zh-hans"]) return;
+    try {
+      const conv = window.OpenCC && OpenCC.Converter({ from: "tw", to: "cn" });
+      const out = {};
+      for (const k in DICT.zh) out[k] = conv ? cnFix(conv(DICT.zh[k])) : DICT.zh[k];
+      DICT["zh-hans"] = out;
+    } catch (e) { DICT["zh-hans"] = DICT.zh; }
+  }
+
   const MV = window.MM_VARIANT;
   let LANG, VARIANT;
   if (MV === "en" || MV === "zh-hans" || MV === "zh-hant") {
     VARIANT = MV;
     LANG = MV === "en" ? "en" : MV === "zh-hans" ? "zh-hans" : "zh";
-    // Build the Simplified UI dict from the Traditional one. OpenCC (t2cn, ~65KB) is loaded
-    // only on zh-hans pages; if absent, degrade to Traditional strings rather than break.
-    // OpenCC 只轉「字」不轉「詞」——台灣用語再過一層詞彙表(與 js/mm-strings.js 的 CN_FIX 同步維護)。
-    const CN_FIX = [
-      [/登入/g, "登录"], [/登出/g, "退出登录"],
-      [/连结/g, "链接"], [/建立/g, "创建"],
-      [/装置/g, "设备"], [/帐号/g, "账号"], [/帐户/g, "账户"],
-      [/储存/g, "存储"], [/透过/g, "通过"],
-      [/即时/g, "实时"], [/隐私权政策/g, "隐私政策"],
-      [/示范资料/g, "示例数据"], [/范例/g, "示例"],
-      [/资讯/g, "信息"],   // 台「資訊」→陸「信息」(票務資訊→票务信息等)
-      [/「/g, "“"], [/」/g, "”"],
-      [/纪录/g, "记录"], [/存取/g, "访问"], [/贩售/g, "出售"], [/设定/g, "设置"], [/单笔/g, "单条"],
-      [/搜寻/g, "搜索"], [/栏位/g, "项目"], [/自订/g, "自定义"], [/选单/g, "菜单"],
-      [/一出(?!戏|来)/g, "一部"], [/几出(?!戏|来)/g, "几部"],
-    ];
-    const cnFix = (s) => { for (const [re, to] of CN_FIX) s = s.replace(re, to); return s; };
-    if (LANG === "zh-hans" && !DICT["zh-hans"]) {
-      try {
-        const conv = window.OpenCC && OpenCC.Converter({ from: "tw", to: "cn" });
-        const out = {};
-        for (const k in DICT.zh) out[k] = conv ? cnFix(conv(DICT.zh[k])) : DICT.zh[k];
-        DICT["zh-hans"] = out;
-      } catch (e) { DICT["zh-hans"] = DICT.zh; }
-    }
+    if (LANG === "zh-hans") ensureHansDict();
     // remember choice for the root router + keep legacy pages (theatres/me) in step
     try {
       localStorage.setItem("mm_variant", VARIANT);
@@ -397,8 +400,40 @@
     window.dispatchEvent(new Event("mm-langchange"));
   }
 
+  // 執行時「就地切換語言」(不重載整頁)。變體頁(/en//zh-hans//zh-hant/)用:切 LANG/VARIANT、
+  // 換 UI 字串、pushState 換網址(不觸發載入)、發 mm-langchange 讓 app.js 換資料重繪並保留畫面。
+  function switchTo(v) {
+    if (v !== "en" && v !== "zh-hans" && v !== "zh-hant") return;
+    if (v === VARIANT) return;
+    VARIANT = v;
+    window.MM_VARIANT = v;   // 讓其他讀 window.MM_VARIANT 的程式同步
+    LANG = v === "en" ? "en" : v === "zh-hans" ? "zh-hans" : "zh";
+    if (LANG === "zh-hans") ensureHansDict();
+    try {
+      localStorage.setItem("mm_variant", VARIANT);
+      localStorage.setItem("mm_lang", LANG === "en" ? "en" : "zh");
+    } catch (e) { /* */ }
+    // 網址反映語言(可分享/重載正確;en 帶 ?hl=en 通過 CF Accept-Language 例外)
+    try {
+      const base = window.MM_BASE || "/";
+      const path = v === "en" ? base + "?hl=en" : base + v + "/";
+      history.pushState({ v }, "", path);
+    } catch (e) { /* */ }
+    applyStatic();
+    window.dispatchEvent(new Event("mm-langchange"));
+  }
+
+  // 上一頁/下一頁:URL 變了就把語言切回對應語言(pushState 導覽的一致性;只在變體頁 app 生效)
+  if (MV === "en" || MV === "zh-hans" || MV === "zh-hant") {
+    window.addEventListener("popstate", function () {
+      var p = location.pathname;
+      var v = /\/zh-hant\//.test(p) ? "zh-hant" : /\/zh-hans\//.test(p) ? "zh-hans" : "en";
+      if (v !== VARIANT) switchTo(v);
+    });
+  }
+
   // expose
-  window.I18N = { t, fmtYM, applyStatic, setLang, get lang() { return LANG; }, get isZh() { return isZh(); }, get variant() { return VARIANT; } };
+  window.I18N = { t, fmtYM, applyStatic, setLang, switchTo, get lang() { return LANG; }, get isZh() { return isZh(); }, get variant() { return VARIANT; } };
   window.t = t;
 
   document.addEventListener("DOMContentLoaded", () => {

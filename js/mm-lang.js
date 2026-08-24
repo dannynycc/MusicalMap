@@ -38,8 +38,25 @@
       if (pop.hidden) { open(); var cur = pop.querySelector(".lang-opt.active") || pop.querySelector(".lang-opt"); if (cur) cur.focus(); }
       else close(false);
     });
-    // clicking an option navigates (real <a>); just let it close first
-    pop.addEventListener("click", function () { close(false); });
+    // 選項點擊:變體頁(地圖 app)且 I18N.switchTo 存在 → 攔截,就地切語言(不重載,保留畫面);
+    // 其餘(legacy 頁/無 app)→ 讓 <a> 照常導航。
+    pop.addEventListener("click", function (e) {
+      var a = e.target.closest && e.target.closest(".lang-opt");
+      if (a && window.MM_VARIANT && window.I18N && typeof window.I18N.switchTo === "function") {
+        var v = a.getAttribute("data-v");
+        if (v) {
+          e.preventDefault();
+          window.I18N.switchTo(v);
+          // 更新下拉內的 active 標示
+          pop.querySelectorAll(".lang-opt").forEach(function (o) {
+            var on = o.getAttribute("data-v") === v;
+            o.classList.toggle("active", on);
+            if (on) o.setAttribute("aria-current", "true"); else o.removeAttribute("aria-current");
+          });
+        }
+      }
+      close(false);
+    });
   }
   function init() { document.querySelectorAll("#lang-switch").forEach(wire); }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);

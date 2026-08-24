@@ -390,12 +390,8 @@ function renderDataNote() {
   els.note.textContent = t("sources", { u });
 }
 
-// Re-render everything when the language toggle fires (i18n.js dispatches this).
-window.addEventListener("mm-langchange", () => {
-  buildTagFilters();   // relabel tradition pills (state in ACTIVE_TAGS persists)
-  render();            // markers / list / count all read t()
-  renderDataNote();
-});
+// 語言切換的重繪統一由檔尾單一 mm-langchange listener 處理(需先捕捉開啟中的卡再重建,
+// 兩個 listener 會互相搶跑導致卡被 clearLayers 關掉,故此處不再單獨掛)。
 
 const els = {
   list: document.getElementById("show-list"),
@@ -789,7 +785,7 @@ function render() {
       })
       .bindTooltip(tooltipHtml(s), { direction: "top", offset: [0, -68], className: "mm-tip", opacity: 1 });
     // small card never coexists with the big card
-    m.on("popupopen", () => m.closeTooltip());
+    m.on("popupopen", () => { m.closeTooltip(); });
     m.on("tooltipopen", () => { if (m.isPopupOpen()) m.closeTooltip(); });
     // at low zoom: suppress the instantly-opened popup, fly in with ONE animation,
     // then show the card at a sensible scale. (zoomToShowLayer alone won't zoom
@@ -1034,23 +1030,31 @@ const MM_BASE = window.MM_BASE || "";
 // ?v= 內容雜湊版號(每日 build 換)→ 可長快取+回訪走 304/快取,不必每次全下載 1.9MB。
 // 與 <head> 的 preload 同 URL 才會被重用(2026-07-10 效能)。
 const _dv = window.MM_DATA_VER ? `?v=${window.MM_DATA_VER}` : "";
-const SHOWS_URL = window.MM_VARIANT
-  ? `${MM_BASE}data/variants/shows.${window.MM_VARIANT}.json${_dv}`
-  : "data/shows.json";
+function showsUrl(v) {
+  return v ? `${MM_BASE}data/variants/shows.${v}.json${_dv}` : "data/shows.json";
+}
+function synUrl(v) { return `${MM_BASE}data/synopses/${v || "zh-hant"}.json${_dv}`; }
+const SHOWS_URL = showsUrl(window.MM_VARIANT);
+// 語言資料快取:切語言/preload 用,同語言不重抓。{shows, generated, syn}
+const LANG_CACHE = {};
+async function loadLangData(v) {
+  if (LANG_CACHE[v]) return LANG_CACHE[v];
+  const [sd, syd] = await Promise.all([
+    fetch(showsUrl(v)).then((r) => r.json()).catch(() => ({ shows: [] })),
+    fetch(synUrl(v)).then((r) => (r.ok ? r.json() : { syn: {} })).catch(() => ({ syn: {} })),
+  ]);
+  LANG_CACHE[v] = { shows: sd.shows || [], generated: (sd.meta && sd.meta.generated_at) || "", syn: syd.syn || {} };
+  return LANG_CACHE[v];
+}
 async function boot() {
   try {
-    const res = await fetch(SHOWS_URL);   // 移除 cache:no-store:版號已保證新鮮,回訪可走快取/304
-    const data = await res.json();
-    ALL = data.shows || [];
-    DATA_UPDATED = data.meta?.generated_at || "";
+    const data = await loadLangData(window.MM_VARIANT || "zh-hant");
+    ALL = data.shows;
+    DATA_UPDATED = data.generated;
     renderDataNote();
-    // 劇情簡介(獨立檔,只有繁中有):載入失敗不影響地圖,單純不顯示「劇情」分頁
-    // en/zh-hans 尚無簡介檔 → fetch 404 → SYN 保持空 → 卡片維持原樣(只有票務)
-    try {
-      const sv = window.MM_VARIANT || "zh-hant";
-      const sr = await fetch(`${MM_BASE}data/synopses/${sv}.json${_dv}`);
-      if (sr.ok) Object.assign(SYN, (await sr.json()).syn || {});
-    } catch (e) { /* 無簡介檔:靜默,卡片照舊 */ }
+    // 劇情簡介:各語系自己的檔(en/zh-hant/zh-hans);無檔則 SYN 空、卡片只有票務分頁
+    for (const k in SYN) delete SYN[k];
+    Object.assign(SYN, data.syn);
   } catch (e) {
     // 舊實作把錯誤寫進已不存在的 #data-note(黑洞),然後照常渲染出「0 部音樂劇/試試清除搜尋」
     // 的誤導空狀態 — 改設旗標,render 的空狀態分支顯示真正的錯誤訊息
@@ -1069,7 +1073,47 @@ async function boot() {
   // Reveal the interactive UI now that the real sidebar/map are rendered, so the
   // crawler-only prerendered list never flashes during load / language switch.
   document.body.classList.add("ready");
+  // 背景 preload 另外兩種語言的資料 → 之後切語言瞬間完成(使用者需求:立馬切、畫面不動)
+  const _idle = window.requestIdleCallback || function (f) { return setTimeout(f, 1500); };
+  _idle(function () {
+    ["en", "zh-hant", "zh-hans"].forEach(function (v) {
+      if (v !== (window.MM_VARIANT || "zh-hant")) loadLangData(v).catch(function () {});
+    });
+  });
 }
+
+
+// 就地切換語言(i18n.switchTo 觸發):換該語言的資料+簡介、重繪,並保留畫面狀態——
+// 搜尋字(input 值不動)、地圖中心/縮放(map 物件不動)、月份(monthOffset 不動)、開著的劇卡(用 id 重開)。
+window.addEventListener("mm-langchange", async function () {
+  // 捕捉「當前開著的卡」必須在任何 render/clearLayers 之前(否則卡已被關掉,撈不到)。
+  let keepOpen = null;
+  for (const id in markerById) {
+    const mm = markerById[id];
+    if (mm && mm.isPopupOpen && mm.isPopupOpen()) { keepOpen = id; break; }
+  }
+  const v = (window.MM_VARIANT) || (window.I18N && window.I18N.variant);
+  // 變體頁(地圖 app)→ 就地換該語言的資料+簡介;非變體/無 loadLangData → 只重繪(沿用舊行為)。
+  if (v && typeof loadLangData === "function") {
+    let data;
+    try { data = await loadLangData(v); } catch (e) { data = null; }
+    if (data && data.shows.length) {
+      ALL = data.shows;
+      DATA_UPDATED = data.generated;
+      for (const k in SYN) delete SYN[k];
+      Object.assign(SYN, data.syn);
+    }
+  }
+  buildTagFilters();   // 重貼傳統別 pill 文字(ACTIVE_TAGS 篩選狀態保留)
+  renderDataNote();
+  render();            // 依新語言重建側欄+marker;搜尋/地圖視野/月份自動沿用
+  if (keepOpen && markerById[keepOpen]) {
+    const m = markerById[keepOpen];
+    if (m._icon) m.openPopup();
+    else if (cluster.zoomToShowLayer) cluster.zoomToShowLayer(m, function () { m.openPopup(); });
+    else m.openPopup();
+  }
+});
 
 // Trim the slider to where the data actually goes — the latest show start month
 // (+1 month buffer). No point dragging to 2029 when nothing plays past 2028.

@@ -231,7 +231,7 @@ function langSwitch(active) {
   // en 選項連 /?hl=en:根頁(英文)對中文瀏覽器有 CF Accept-Language 302(→/zh-hant/或/zh-hans/);
   // CF 規則已加例外「query 含 hl=en 就不轉」(2026-08-24),所以帶這個記號才切得過去、留得住英文。
   const opt = (v) =>
-    `<a class="lang-opt${v === active ? " active" : ""}" role="menuitem" href="${BASE}${VPATH(v)}${v === "en" ? "?hl=en" : ""}" lang="${LANG_TAG[v]}" hreflang="${LANG_TAG[v]}"${v === active ? ' aria-current="true"' : ""}><span>${LANG_NAME[v]}</span>${LANG_TICK}</a>`;
+    `<a class="lang-opt${v === active ? " active" : ""}" role="menuitem" data-v="${v}" href="${BASE}${VPATH(v)}${v === "en" ? "?hl=en" : ""}" lang="${LANG_TAG[v]}" hreflang="${LANG_TAG[v]}"${v === active ? ' aria-current="true"' : ""}><span>${LANG_NAME[v]}</span>${LANG_TICK}</a>`;
   return `<div id="lang-switch" role="group" aria-label="Language / 語言">
         <button type="button" class="lang-trigger" aria-haspopup="true" aria-expanded="false" aria-label="選擇語言 / Select language">${LANG_GLOBE}<span class="lang-cur">${LANG_CODE[active]}</span>${LANG_CHEV}</button>
         <div class="lang-pop" role="menu" hidden>
@@ -257,9 +257,9 @@ function page(variant, shows) {
     : { tagline: "此刻全球正在上演的音樂劇", theatres: "所有劇院", mine: "我的音樂劇", guide: "使用指南", about: "關於",
         maphome: "地圖首頁", search: "搜尋音樂劇名、城市、劇院…", privacy: "隱私權政策", terms: "使用條款",
         h1: "MusicalMap — 全球此刻正在上演的音樂劇即時地圖", listhdr: "正在上演與未來一年的音樂劇", filterLabel: "原創分類" };
-  // zh-hans pages load OpenCC (small t2cn dict) so i18n can simplify the UI chrome strings.
-  const openccTag = variant === "zh-hans"
-    ? `\n  <script src="https://cdn.jsdelivr.net/npm/opencc-js@1.3.1/dist/umd/t2cn.js" integrity="sha384-P/OaFUnOIAgMkLxsXIAaP6WO3Wm09591cGX5bHbW4eCOeDxH9L8U3aWYf4cE4SYl" crossorigin="anonymous"></script>` : "";
+  // 所有變體頁都載入 OpenCC(小 t2cn 字典):就地切換語言時 en/繁中→簡中也要能即時把 i18n UI 字串轉簡體
+  // (window.OpenCC 必須已在);非 defer 置於 head,確保晚於它執行的 body 尾 i18n.js 用得到。
+  const openccTag = `\n  <script src="https://cdn.jsdelivr.net/npm/opencc-js@1.3.1/dist/umd/t2cn.js" integrity="sha384-P/OaFUnOIAgMkLxsXIAaP6WO3Wm09591cGX5bHbW4eCOeDxH9L8U3aWYf4cE4SYl" crossorigin="anonymous"></script>`;
   return `<!DOCTYPE html>
 <html lang="${v.lang}">
 <head>
