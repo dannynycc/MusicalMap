@@ -11,6 +11,52 @@
 
 ---
 
+## [v2.77.1] - 2026-08-24 09:00
+
+### CI 擋下的 9 筆手填檔期逐筆對官方查完:6 筆日期不對、2 齣已下檔
+
+今早 06:14 的排程 run 紅了(`audit_manual` gate)。9 筆 `_checked` 逾期(70~73 天)的
+手填劇目逐一對**官方頁**查完,錯的比預期多——而且錯的方向都是「還在演、但日期已經被改」,
+不是「已經演完」:
+
+| 劇目 | 原本 | 實際(官方) | 來源 |
+|---|---|---|---|
+| **Cats** 新加坡 | ~11-15 | **~11-22**(加演一週) | marinabaysands.com「10 月 29 日至 **11 月 22 日**」,優惠條款另列「11/17–22」加場週 |
+| **Moulin Rouge!** 新加坡 | ~2027-04-04 | **~2027-03-14** | marinabaysands.com「2027 年 2 月 16 日至 **3 月 14 日**」 |
+| **SIX** 布里斯本 | ~2027-03-15 | **~2027-02-14**(差整整一個月) | qpac.com.au「2 Jan - **14 Feb** 2027」 |
+| **SIX** 雪梨 | ~12-21 | **~12-20** | theatreroyalsydney.com「9 OCTOBER - **20 DECEMBER**」 |
+| **Elisabeth** 俄斯特拉發 | ~2027-06-30(估的) | **~2027-06-06** | ndm.cz 排程表最後一場 2027-06-06 |
+| **Anastasia** 布宜諾斯艾利斯 | 開放式(`end_rolling`) | **~08-30** 有限檔期 | alternativateatral「**Hasta el 30/08/2026**」 |
+
+**Cats 那筆最值得記**:`audit_manual` 2026-08-12 補的第 2 類(現正上演/90 天內開演 +
+`_checked` 逾期)就是為了抓這型——條目還在檔期內、看起來完全正常,但官方早就加演了一週。
+只驗「有沒有演完」的舊規則永遠抓不到。
+
+**兩齣下檔的處理**
+
+- **Heathers 坎培拉**(08-23 落幕)→ 不是刪掉了事:官方 tour dates 頁上這檔巡演還有三站,
+  補進來 `Coliseum Theatre`(雪梨,08-26~08-29)/`Roslyn Packer Theatre`(雪梨,09-01~09-19)/
+  `The Regal Theatre`(伯斯,09-30~10-11),售票連結取自官方頁的 BOOK NOW。
+  Coliseum 是新場館,座標**三來源印證**:場館官網頁尾「33 Railway Street, Rooty Hill NSW 2766」
+  + Nominatim 兩筆獨立查詢(West HQ / 該地址)都落在 -33.7703, 150.8338。
+  另兩座場館 `venues_catalog` 本來就有 place_id 級座標,直接沿用。
+- **Annie 布宜諾斯艾利斯** → 移除。判斷依據是**同站台的結構差異**:
+  alternativateatral 上 Anastasia 有 `ENTRADAS` 鈕 + 「Hasta el 30/08/2026」,
+  Annie 只剩「Histórico de funciones」;QueHayBA 的事件頁也已 404(「el evento ya haya pasado」)。
+  plateanet 全站 Incapsula 擋、無法複驗——**確切閉幕日不明,這點沒有假裝知道**。
+
+**順手複驗(沒逾期但同源、同型)**:SIX 墨爾本 ~10-04 ✓、Jesus Christ Superstar 新加坡
+08-19~09-06 ✓(MBS 官方頁)、Starlight Express 波鴻仍在演(官網已 308 轉址到 atgtickets.de)。
+
+### 變更
+
+- `data/manual.json` 26 → 27 筆(-2 下檔、+3 Heathers 巡演站)
+- 本機補跑 `build_shows` / `gen_catalog` / `gen_variants` / `gen_site`(push 事件的 CI 不重建網站)
+- `audit_manual` / `audit_dates` / `audit_geo` / `audit_dups` 四支全綠
+- `README.md` 數字對齊現況:2,090→約 2,070 筆、513→511 城、官網 355→478 條、場館 5,497→5,486
+
+---
+
 ## [v2.77.0] - 2026-08-20 17:27
 
 ### 隱私權政策通篇校對:三處過時、一處不實、一個重要缺漏

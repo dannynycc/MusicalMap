@@ -1,7 +1,7 @@
 {
   "meta": {
     "source": "merged",
-    "generated_at": "2026-08-23 23:34 UTC",
+    "generated_at": "2026-08-24 01:02 UTC",
     "total": 2067,
     "verified": 2067,
     "unverified": 0,
@@ -295,11 +295,11 @@
       },
       {
         "file": "manual.json",
-        "count": 26,
+        "count": 27,
         "meta": {
           "source": "manual-curated",
           "note": "Hand-curated shows from regional venues/promoters no scraper covers yet (China venues, Live Nation FR, …). Each entry verified against the official ticketing page on the date in _checked. Add here whenever a gap is found; build merges automatically. Images: ALWAYS the original full-size official URL — no compression, no self-hosting (user preference: quality over speed).",
-          "count": 26
+          "count": 27
         }
       },
       {
@@ -40450,13 +40450,13 @@
       "lat": 49.836276,
       "lng": 18.288177,
       "start_date": "2024-12-12",
-      "end_date": "2027-06-30",
+      "end_date": "2027-06-06",
       "ticket_url": "https://www.ndm.cz/en/operetta-musical/inscenation/6392-elisabeth/",
       "image": "https://www.ndm.cz/userfiles/archiv_priloh/clanky/letaky-plakaty/2024-2025/nahled-elisabeth-1stcast-a1-1731505664.jpg",
       "tour_name": null,
       "verified": true,
       "source": "ndm.cz (manual)",
-      "_checked": "2026-06-12",
+      "_checked": "2026-08-24",
       "_note": "Repertory production (selected dates only, premiered 2024-12-12, schedule runs into Jun 2027). NDM sells via own system — not on Ticketmaster CZ.",
       "group": "elisabeth",
       "ticket_links": [
@@ -40869,13 +40869,13 @@
       "lat": -33.868753,
       "lng": 151.208954,
       "start_date": "2026-10-09",
-      "end_date": "2026-12-21",
+      "end_date": "2026-12-20",
       "ticket_url": "https://premier.ticketek.com.au/Shows/Show.aspx?sh=SIXMUS26",
       "image": "https://cdn-imgix.headout.com/media/images/ee361875-e48c-4ed3-9b11-854ddb98f748-1775027715542-250505_SIX_ConcertBanners_480x720_RG3.jpg",
       "tour_name": "SIX the Musical — Australia 2026 (Ticketek)",
       "verified": true,
       "source": "ticketek (manual)",
-      "_checked": "2026-06-14",
+      "_checked": "2026-08-24",
       "group": "six",
       "ticket_links": [
         {
@@ -40903,13 +40903,13 @@
       "lat": -27.475125,
       "lng": 153.02037,
       "start_date": "2027-01-02",
-      "end_date": "2027-03-15",
+      "end_date": "2027-02-14",
       "ticket_url": "https://premier.ticketek.com.au/Shows/Show.aspx?sh=SIXMUS26",
       "image": "https://cdn-imgix.headout.com/media/images/ee361875-e48c-4ed3-9b11-854ddb98f748-1775027715542-250505_SIX_ConcertBanners_480x720_RG3.jpg",
       "tour_name": "SIX the Musical — Australia 2026 (Ticketek)",
       "verified": true,
       "source": "ticketek (manual)",
-      "_checked": "2026-06-14",
+      "_checked": "2026-08-24",
       "group": "six",
       "ticket_links": [
         {
@@ -40928,22 +40928,23 @@
       "alt": "SIX 六個皇后 六个皇后 六位皇后"
     },
     {
-      "id": "manual-heathers-canberra",
+      "id": "manual-heathers-sydney-coliseum",
       "title": "Heathers",
       "type": "tour",
-      "venue": "Canberra Theatre Centre",
-      "city": "Canberra",
+      "venue": "Coliseum Theatre",
+      "city": "Sydney",
       "country": "Australia",
-      "lat": -35.281702,
-      "lng": 149.130507,
-      "start_date": "2026-08-14",
-      "end_date": "2026-08-23",
-      "ticket_url": "https://canberratheatrecentre.com.au/show/heathers-the-musical-2026/",
+      "lat": -33.7703,
+      "lng": 150.8338,
+      "start_date": "2026-08-26",
+      "end_date": "2026-08-29",
+      "ticket_url": "https://premier.ticketek.com.au/shows/Show.aspx?sh=HEATHERS26",
       "image": "https://cdn-imgix.headout.com/media/images/50c70643-24e9-48f4-9127-aa760fa99749-1752582584182-292457.png",
       "tour_name": "Heathers The Musical — Australia",
       "verified": true,
-      "source": "canberra ticketing (manual)",
-      "_checked": "2026-08-12",
+      "source": "heathersthemusical.com / ticketek (manual)",
+      "_checked": "2026-08-24",
+      "_note": "座標三來源印證:場館官網頁尾 33 Railway Street, Rooty Hill NSW 2766 + Nominatim 兩筆(West HQ / 該地址)。",
       "group": "heathers",
       "ticket_links": [
         {
@@ -40953,7 +40954,79 @@
         },
         {
           "label": "官方售票",
-          "url": "https://canberratheatrecentre.com.au/show/heathers-the-musical-2026/",
+          "url": "https://premier.ticketek.com.au/shows/Show.aspx?sh=HEATHERS26",
+          "kind": "ticketing"
+        }
+      ],
+      "link_kind": "ticketing",
+      "tag": "Broadway/West End",
+      "alt": "Heathers Heathers the Musical 希德姊妹幫 希德姊妹帮 希德姐妹幫 希德姐妹帮"
+    },
+    {
+      "id": "manual-heathers-sydney-roslyn",
+      "title": "Heathers",
+      "type": "tour",
+      "venue": "Roslyn Packer Theatre",
+      "city": "Sydney",
+      "country": "Australia",
+      "lat": -33.857222,
+      "lng": 151.205,
+      "start_date": "2026-09-01",
+      "end_date": "2026-09-19",
+      "ticket_url": "https://www.roslynpackertheatre.com.au/whats-on/productions/2026/heathers-the-musical",
+      "image": "https://cdn-imgix.headout.com/media/images/50c70643-24e9-48f4-9127-aa760fa99749-1752582584182-292457.png",
+      "tour_name": "Heathers The Musical — Australia",
+      "verified": true,
+      "source": "heathersthemusical.com / roslynpackertheatre (manual)",
+      "_checked": "2026-08-24",
+      "group": "heathers",
+      "ticket_links": [
+        {
+          "label": "官方網站",
+          "url": "https://heathersthemusical.com/australia/",
+          "kind": "official"
+        },
+        {
+          "label": "官方售票",
+          "url": "https://www.roslynpackertheatre.com.au/whats-on/productions/2026/heathers-the-musical",
+          "kind": "ticketing"
+        },
+        {
+          "country": "AU",
+          "url": "https://www.ticketmaster.com/heathers-the-musical-tickets/artist/2075066"
+        }
+      ],
+      "link_kind": "ticketing",
+      "tag": "Broadway/West End",
+      "alt": "Heathers Heathers the Musical 希德姊妹幫 希德姊妹帮 希德姐妹幫 希德姐妹帮"
+    },
+    {
+      "id": "manual-heathers-perth",
+      "title": "Heathers",
+      "type": "tour",
+      "venue": "The Regal Theatre",
+      "city": "Perth",
+      "country": "Australia",
+      "lat": -31.946909,
+      "lng": 115.823878,
+      "start_date": "2026-09-30",
+      "end_date": "2026-10-11",
+      "ticket_url": "https://premier.ticketek.com.au/shows/show.aspx?sh=HEATHPER26",
+      "image": "https://cdn-imgix.headout.com/media/images/50c70643-24e9-48f4-9127-aa760fa99749-1752582584182-292457.png",
+      "tour_name": "Heathers The Musical — Australia",
+      "verified": true,
+      "source": "heathersthemusical.com / ticketek (manual)",
+      "_checked": "2026-08-24",
+      "group": "heathers",
+      "ticket_links": [
+        {
+          "label": "官方網站",
+          "url": "https://heathersthemusical.com/australia/",
+          "kind": "official"
+        },
+        {
+          "label": "官方售票",
+          "url": "https://premier.ticketek.com.au/shows/show.aspx?sh=HEATHPER26",
           "kind": "ticketing"
         }
       ],
@@ -40996,41 +41069,6 @@
       "tag": "西葡音樂劇"
     },
     {
-      "id": "manual-annie-buenosaires-2026",
-      "title": "Annie",
-      "type": "sit-down",
-      "venue": "Teatro Broadway",
-      "city": "Buenos Aires",
-      "country": "Argentina",
-      "lat": -34.603659,
-      "lng": -58.383063,
-      "start_date": "2026-03-19",
-      "end_date": null,
-      "ticket_url": "https://www.plateanet.com/obra/33501?obra=ANNIE",
-      "image": "https://res.cloudinary.com/dwzhqvxaz/image/upload/w_1280,q_auto,f_auto/v1757504616/Titles/Annie/2026/Annie_Title_1920x1080.jpg",
-      "tour_name": "Annie — producción argentina (versión en español)",
-      "verified": true,
-      "source": "lanacion / plateanet (manual)",
-      "_checked": "2026-06-15",
-      "end_rolling": true,
-      "group": "annie",
-      "ticket_links": [
-        {
-          "label": "官方網站",
-          "url": "https://www.rgbentertainment.com/site/ficha.php?idp=106",
-          "kind": "official"
-        },
-        {
-          "label": "官方售票",
-          "url": "https://www.plateanet.com/obra/33501?obra=ANNIE",
-          "kind": "ticketing"
-        }
-      ],
-      "link_kind": "ticketing",
-      "tag": "Broadway/West End",
-      "alt": "Annie 安妮 アニー 小安妮 Annie julen"
-    },
-    {
       "id": "manual-anastasia-buenosaires-2026",
       "title": "Anastasia",
       "type": "sit-down",
@@ -41040,14 +41078,14 @@
       "lat": -34.603935,
       "lng": -58.389922,
       "start_date": "2026-05-05",
-      "end_date": null,
+      "end_date": "2026-08-30",
       "ticket_url": "https://www.atrapalo.com.ar/entradas/anastasia-el-musical_e4945100/",
       "image": "https://s1.ticketm.net/dam/a/186/914bfec0-450f-48a2-a15f-411e53c0b186_SOURCE",
       "tour_name": "Anastasia, el musical — producción argentina (versión en español)",
       "verified": true,
       "source": "cadena3 / atrapalo (manual)",
-      "_checked": "2026-06-15",
-      "end_rolling": true,
+      "_checked": "2026-08-24",
+      "_note": "2026-08-24 官方售票 listing 標明 Hasta el 30/08/2026(週六日 20:00),改為有限檔期。",
       "group": "anastasia",
       "ticket_links": [
         {
@@ -41144,13 +41182,13 @@
       "lat": 1.285451,
       "lng": 103.859763,
       "start_date": "2026-10-29",
-      "end_date": "2026-11-15",
+      "end_date": "2026-11-22",
       "ticket_url": "https://www.marinabaysands.com/entertainment/shows/cats-the-musical.html",
       "image": "https://res.cloudinary.com/dwzhqvxaz/image/upload/w_1280,q_auto,f_auto/v1761656789/Titles/Cats/2026%20Tour/8500_02_Cats_Glasgow_1920x1080_v1.jpg",
       "tour_name": "CATS — Asia tour 2026 (Sands Theatre, SISTIC)",
       "verified": true,
       "source": "marinabaysands / sassymama / smartlocal (manual)",
-      "_checked": "2026-06-15",
+      "_checked": "2026-08-24",
       "group": "cats",
       "ticket_links": [
         {
@@ -41212,13 +41250,13 @@
       "lat": 1.285451,
       "lng": 103.859763,
       "start_date": "2027-02-16",
-      "end_date": "2027-04-04",
+      "end_date": "2027-03-14",
       "ticket_url": "https://www.sistic.com.sg/events/moulin0427",
       "image": "https://cdn-imgix.headout.com/media/images/2a538059-1d74-4a3f-b05f-510603e2e0d1-1775027874101-large-MR_065_Banner_Resizing_2022_heart-portal_v01_480x720.jpg",
       "tour_name": "Moulin Rouge! — first world tour, SEA debut (Sands Theatre, SISTIC)",
       "verified": true,
       "source": "timeout / sistic (manual)",
-      "_checked": "2026-06-15",
+      "_checked": "2026-08-24",
       "group": "moulin rouge",
       "ticket_links": [
         {
@@ -41252,7 +41290,8 @@
       "image": "https://res.cloudinary.com/dwzhqvxaz/image/upload/w_1280,q_auto,f_auto/v1778588085/Titles/Starlight%20Express/Tour%202027/SE_Tour_Generic_1920x1080.jpg",
       "verified": true,
       "source": "starlight-express.info (manual)",
-      "_note": "2026-07-09 哨兵體檢補漏:全年無休 open-end(官網+ATG.de 售票);ATG 德國站(.de)是未開發來源",
+      "_note": "2026-07-09 哨兵體檢補漏:全年無休 open-end(官網+ATG.de 售票);ATG 德國站(.de)是未開發來源。2026-08-24 複查:starlight-express.de 已 308 轉址到 atgtickets.de,演出照常。",
+      "_checked": "2026-08-24",
       "group": "starlight express",
       "ticket_links": [
         {
@@ -59450,40 +59489,6 @@
       "link_kind": "ticketing",
       "tag": "Broadway/West End",
       "alt": "The Lion King 獅子王 狮子王 ライオンキング Az oroszlánkirály El Rey León Le Roi Lion"
-    },
-    {
-      "id": "tm-heathers-roslyn-packer-theatre-walsh-bay",
-      "title": "Heathers",
-      "type": "tour",
-      "venue": "Roslyn Packer Theatre Walsh Bay",
-      "city": "Sydney",
-      "country": "Australia",
-      "lat": -33.857222,
-      "lng": 151.205,
-      "start_date": "2026-09-01",
-      "end_date": "2026-09-19",
-      "ticket_url": "https://www.ticketmaster.com/heathers-the-musical-tickets/artist/2075066",
-      "attraction_url": "https://www.ticketmaster.com/heathers-the-musical-tickets/artist/2075066",
-      "ticket_links": [
-        {
-          "label": "官方網站",
-          "url": "https://heathersthemusical.com/australia/",
-          "kind": "official"
-        },
-        {
-          "country": "AU",
-          "url": "https://www.ticketmaster.com/heathers-the-musical-tickets/artist/2075066"
-        }
-      ],
-      "image": "https://s1.ticketm.net/dam/a/091/8e15d46e-dc4f-4f22-9259-f657e431e091_SOURCE",
-      "tour_name": "Heathers the Musical",
-      "verified": true,
-      "source": "ticketmaster",
-      "onsale_only": true,
-      "group": "heathers",
-      "link_kind": "ticketing",
-      "tag": "Broadway/West End",
-      "alt": "Heathers Heathers the Musical 希德姊妹幫 希德姊妹帮 希德姐妹幫 希德姐妹帮"
     },
     {
       "id": "tm-menopause-athenaeum-theatre-one",
