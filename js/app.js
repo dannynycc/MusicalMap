@@ -236,6 +236,68 @@ const satellite = L.tileLayer(
     attribution: "Tiles &copy; Esri, Maxar, Earthstar Geographics", maxZoom: 19,
   });
 L.control.layers({ [t("map")]: streets, [t("satellite")]: satellite }, null, { position: "topright" }).addTo(map);
+
+// ── 定位「附近的音樂劇」(2026-08-24 使用者需求:根據我所在位置顯示附近有什麼)──
+// 點定位鈕→取瀏覽器 GPS→標「你的位置」+飛過去(zoom 9,附近 marker 可見)+側欄改成「依距離排序」。
+// 距離用 haversine(球面);再點「清除定位」回到正常分類清單。權限拒絕/無 GPS→非阻斷式提示。
+var USER_POS = null, NEARBY = false, userMarker = null;
+function haversineKm(a, b) {
+  const R = 6371, r = Math.PI / 180;
+  const dLat = (b.lat - a.lat) * r, dLng = (b.lng - a.lng) * r;
+  const h = Math.sin(dLat / 2) ** 2 +
+    Math.cos(a.lat * r) * Math.cos(b.lat * r) * Math.sin(dLng / 2) ** 2;
+  return 2 * R * Math.asin(Math.sqrt(h));
+}
+function locateToast(msg) {
+  let el = document.getElementById("mm-toast");
+  if (!el) { el = document.createElement("div"); el.id = "mm-toast"; document.body.appendChild(el); }
+  el.textContent = msg; el.classList.add("show");
+  clearTimeout(locateToast._t);
+  locateToast._t = setTimeout(() => el.classList.remove("show"), 4200);
+}
+function clearNearby() {
+  NEARBY = false;
+  if (userMarker) { map.removeLayer(userMarker); userMarker = null; }
+  render();
+}
+function doLocate() {
+  const btn = document.querySelector(".mm-locate");
+  if (!navigator.geolocation) { locateToast(t("locate_denied")); return; }
+  if (btn) btn.classList.add("loading");
+  navigator.geolocation.getCurrentPosition(
+    (pos) => {
+      if (btn) btn.classList.remove("loading");
+      USER_POS = { lat: pos.coords.latitude, lng: pos.coords.longitude };
+      NEARBY = true;
+      if (userMarker) map.removeLayer(userMarker);
+      userMarker = L.circleMarker([USER_POS.lat, USER_POS.lng],
+        { radius: 8, weight: 3, color: "#fff", fillColor: "#1f7a8c", fillOpacity: 1, className: "mm-userpin" })
+        .addTo(map).bindTooltip(t("you_are_here"), { direction: "top" });
+      map.flyTo([USER_POS.lat, USER_POS.lng], 9, { animate: true, duration: 1.2 });
+      render();
+      if (els && els.list) els.list.scrollTop = 0;
+    },
+    () => { if (btn) btn.classList.remove("loading"); locateToast(t("locate_denied")); },
+    { enableHighAccuracy: false, timeout: 10000, maximumAge: 300000 });
+}
+const LocateControl = L.Control.extend({
+  options: { position: "bottomleft" },
+  onAdd() {
+    const b = L.DomUtil.create("button", "mm-locate");
+    b.type = "button"; b.title = t("locate"); b.setAttribute("aria-label", t("locate"));
+    // 準星圖示(定位慣用符號)
+    b.innerHTML = '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">'
+      + '<circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/>'
+      + '<line x1="12" y1="1" x2="12" y2="5" stroke="currentColor" stroke-width="2"/>'
+      + '<line x1="12" y1="19" x2="12" y2="23" stroke="currentColor" stroke-width="2"/>'
+      + '<line x1="1" y1="12" x2="5" y2="12" stroke="currentColor" stroke-width="2"/>'
+      + '<line x1="19" y1="12" x2="23" y2="12" stroke="currentColor" stroke-width="2"/></svg>';
+    L.DomEvent.disableClickPropagation(b);
+    L.DomEvent.on(b, "click", (e) => { L.DomEvent.stop(e); doLocate(); });
+    return b;
+  },
+});
+map.addControl(new LocateControl());
 // 法務連結放 attribution 列(Google Maps 慣例:全螢幕地圖 app 無頁尾,隱私/條款跟圖資出處同列);
 // 頂部 nav 留給功能項,手機版也因此看得到法務連結(nav-link 在手機被藏)
 // 法務連結包一層 .attr-legal:手機用 CSS 隱藏(改由 header 的 ≡ 選單提供,因 attribution
@@ -753,7 +815,33 @@ function render() {
   const closedKeys = new Set(
     [...els.list.querySelectorAll(".show-group.multi:not(.open)")].map((el) => el.dataset.gkey));
   els.list.innerHTML = "";
-  if (!shows.length) {
+  if (NEARBY && USER_POS) {
+    // 「附近」模式:平面清單,依距離由近到遠,最多 40 筆,每列加距離徽章。
+    const near = shows
+      .filter((s) => typeof s.lat === "number" && typeof s.lng === "number")
+      .map((s) => ({ s, d: haversineKm(USER_POS, { lat: s.lat, lng: s.lng }) }))
+      .sort((a, b) => a.d - b.d)
+      .slice(0, 40);
+    const hdr = document.createElement("li");
+    hdr.className = "nearby-head";
+    hdr.innerHTML = `<span>${esc(t("nearby_title"))}</span><button type="button" class="nearby-clear">${esc(t("nearby_clear"))}</button>`;
+    hdr.querySelector(".nearby-clear").addEventListener("click", clearNearby);
+    els.list.appendChild(hdr);
+    if (!near.length) {
+      const li = document.createElement("li"); li.className = "empty";
+      li.textContent = t("locate_none"); els.list.appendChild(li);
+    } else {
+      let par = 0;
+      near.forEach(({ s, d }) => {
+        const li = showGroupItem([s], par++ % 2 ? "B" : "A");
+        const loc = li.querySelector(".loc");
+        const dist = d < 10 ? d.toFixed(1) : String(Math.round(d));
+        if (loc) loc.insertAdjacentHTML("afterbegin", `<span class="dist">${dist} km</span>`);
+        els.list.appendChild(li);
+      });
+      observeLazyThumbs(els.list);
+    }
+  } else if (!shows.length) {
     els.list.innerHTML = LOAD_FAILED
       ? `<li class="empty">${esc(t("load_error"))}<br><span>${esc(t("load_error_sub"))}</span></li>`
       : `<li class="empty">${esc(t("empty_title"))}<br><span>${esc(t("empty_sub"))}</span></li>`;

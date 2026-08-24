@@ -47,6 +47,12 @@
       tickets: "售票",
       get_tickets: "票務資訊",   // 2026-07-13 使用者指示:弱化購買意圖(站定位=資訊地圖非賣票仲介),原「購票」
       story_tab: "劇情",         // 卡片「票務資訊 ⇄ 劇情」分頁;使用者指示只用兩字
+      locate: "定位我的位置",      // 定位鈕 aria/title
+      nearby_title: "你附近的音樂劇",
+      nearby_clear: "清除定位",
+      you_are_here: "你的位置",
+      locate_denied: "無法取得定位（請確認已允許瀏覽器定位權限）",
+      locate_none: "附近一年內沒有找到上演的音樂劇",
       buy_official: "前往官網購票 →",
       buy_tickets: "前往售票頁 →",
       unverified_demo: "未驗證（示範資料）",
@@ -186,6 +192,12 @@
       tickets: "Tickets",
       get_tickets: "Tickets",   // 2026-07-13:弱化 CTA;英語圈慣例單字 "Tickets"(原 "Get Tickets")
       story_tab: "Story",       // card tab beside Tickets(en 尚無簡介資料,分頁暫不出現)
+      locate: "Find musicals near me",
+      nearby_title: "Musicals near you",
+      nearby_clear: "Clear location",
+      you_are_here: "Your location",
+      locate_denied: "Couldn't get your location (allow location access in your browser)",
+      locate_none: "No musicals found near you in the coming year",
       buy_official: "Official tickets →",
       buy_tickets: "Get tickets →",
       unverified_demo: "Unverified (sample data)",

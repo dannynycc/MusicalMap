@@ -281,6 +281,44 @@ body:not(.ready) #count { display: none; }
 /* ---------- Map ---------- */
 #map { flex: 1; height: 100%; background: #dfe6ec; position: relative; }
 
+/* ---------- 定位「附近的音樂劇」(2026-08-24) ---------- */
+.mm-locate {
+  width: 40px; height: 40px; border-radius: 10px; cursor: pointer;
+  background: var(--panel); border: 1px solid var(--border); color: var(--text);
+  display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow);
+  transition: color .15s, border-color .15s;
+}
+.mm-locate:hover { color: var(--accent); border-color: var(--accent); }
+.mm-locate.loading { color: var(--accent); animation: mm-loc-pulse 1s ease-in-out infinite; }
+@keyframes mm-loc-pulse { 0%,100% { opacity: 1; } 50% { opacity: .45; } }
+/* 「你的位置」marker 脈動光暈 */
+.mm-userpin { filter: drop-shadow(0 0 0 rgba(31,122,140,.5)); animation: mm-userpin 1.8s ease-out infinite; }
+@keyframes mm-userpin { 0% { filter: drop-shadow(0 0 0 rgba(31,122,140,.55)); } 70% { filter: drop-shadow(0 0 10px rgba(31,122,140,0)); } 100% { filter: drop-shadow(0 0 0 rgba(31,122,140,0)); } }
+/* 附近清單標頭(sticky) + 距離徽章 */
+.nearby-head {
+  position: sticky; top: 0; z-index: 2; display: flex; align-items: center; justify-content: space-between;
+  gap: 10px; padding: 10px 14px; background: var(--panel); border-bottom: 1px solid var(--border);
+  font-weight: 800; font-size: 14px; color: var(--text);
+}
+.nearby-clear {
+  flex: none; border: 1px solid var(--border); background: var(--panel-2); color: var(--muted);
+  border-radius: 8px; padding: 5px 10px; font-size: 12px; font-weight: 600; cursor: pointer;
+}
+.nearby-clear:hover { color: var(--accent); border-color: var(--accent); }
+.dist {
+  display: inline-block; margin-right: 7px; padding: 1px 7px; border-radius: 999px;
+  background: var(--accent); color: #fff; font-size: 11px; font-weight: 700; vertical-align: middle;
+}
+/* 非阻斷式提示(定位失敗) */
+#mm-toast {
+  position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%) translateY(12px);
+  max-width: 88%; z-index: 2000; padding: 11px 16px; border-radius: 12px;
+  background: rgba(20,18,14,.92); color: #fff; font-size: 13.5px; line-height: 1.5;
+  box-shadow: 0 10px 30px rgba(0,0,0,.3); opacity: 0; pointer-events: none;
+  transition: opacity .2s, transform .2s;
+}
+#mm-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
 /* ---------- Time bar (date slider + calendar) ---------- */
 #timebar {
   position: absolute; z-index: 1000; left: 23.5%; right: 23.5%; bottom: 22px;
