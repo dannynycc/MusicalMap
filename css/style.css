@@ -404,7 +404,7 @@ body:not(.ready) #count { display: none; }
   overscroll-behavior: contain;
 }
 .pop-story p { margin: 0 0 9px; }
-.pop-story p:last-child { margin-bottom: 0; color: var(--muted, #555); }
+.pop-story p:last-child { margin-bottom: 0; }
 .pop-story::-webkit-scrollbar { width: 7px; }
 .pop-story::-webkit-scrollbar-thumb { background: var(--border, #d8cfb8); border-radius: 4px; }
 /* tiles keep a fixed 110px (3 fit a full-width body); the BODY shrinks to fit when there
