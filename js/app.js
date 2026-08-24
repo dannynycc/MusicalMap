@@ -760,14 +760,33 @@ function visibleShows() {
 }
 
 // ---------- Render ----------
-function render() {
+// 就地換既有 marker 的文字(語言切換用):不 clearLayers,故 marker 不會整批消失重建→不閃。
+// 開著的 popup 用 setPopupContent 即時換內容,也不會關閉重開。
+function relabelMarkers(shows) {
+  const byId = {};
+  shows.forEach((s) => { byId[s.id] = s; });
+  for (const id in markerById) {
+    const m = markerById[id], s = byId[id];
+    if (!s) continue;
+    m.setPopupContent(popupHtml(s));
+    m.setTooltipContent(tooltipHtml(s));
+    const ttl = [displayTitle([s]), s.city, s.country].filter(Boolean).join(" · ");
+    m.options.title = m.options.alt = ttl;
+    if (m._icon) { m._icon.title = ttl; m._icon.setAttribute("aria-label", ttl); }
+  }
+}
+function render(inPlace) {
+  inPlace = inPlace === true;   // 防呆:render 常被當 callback(search input/Promise.then)傳入 event/array;只有明確 true 才就地更新
   const shows = visibleShows();
   updateTagCounts();   // pill numbers reflect the selected month + search
 
   // markers
+  const latlngs = [];
+  if (inPlace) {
+    relabelMarkers(shows);   // 顯示集合不變(通常是切語言)→ 就地換文字,避免整批 marker 閃爍
+  } else {
   cluster.clearLayers();
   markerById = {};
-  const latlngs = [];
   spreadSame(shows);   // fan same-venue shows into a tiny ring so they don't stack
   shows.forEach((s) => {
     if (typeof s.lat !== "number" || typeof s.lng !== "number") return;
@@ -804,6 +823,7 @@ function render() {
     markerById[s.id] = m;
     latlngs.push([s.dlat, s.dlng]);
   });
+  }
 
   // sidebar — one row per show; a show playing in multiple cities (e.g. Wicked
   // in London + New York) is a single entry you can expand to see each location.
@@ -879,7 +899,7 @@ function render() {
   els.count.textContent = LOAD_FAILED ? "" : t("count", { label, groups, n: shows.length });   // 載入失敗不顯示「0 部」假計數
 
   // fit to all markers once, on first load
-  if (!didFitBounds && latlngs.length) {
+  if (!inPlace && !didFitBounds && latlngs.length) {
     map.fitBounds(latlngs, { padding: [60, 60], maxZoom: 6 });
     didFitBounds = true;
   }
@@ -1112,20 +1132,31 @@ window.addEventListener("mm-langchange", async function () {
   }
   buildTagFilters();   // 重貼傳統別 pill 文字(ACTIVE_TAGS 篩選狀態保留)
   renderDataNote();
-  render();            // 依新語言重建側欄+marker;搜尋/地圖視野/月份自動沿用
-  if (keepOpen && markerById[keepOpen]) {
-    const m = markerById[keepOpen];
-    const doOpen = function () {
-      m.openPopup();
-      if (keepTab === "story") {   // 還原切換前開著的 tab(劇情),否則重建的卡預設落在票務
-        const el = m.getPopup && m.getPopup() && m.getPopup().getElement();
-        const story = el && el.querySelector('.pop-tab[onclick*="story"]');
-        if (story) window.mmTab(story, "story");
-      }
-    };
-    if (m._icon) doOpen();
-    else if (cluster.zoomToShowLayer) cluster.zoomToShowLayer(m, doOpen);
-    else doOpen();
+
+  const restoreTab = function (m) {   // 還原切換前開著的 tab(劇情),否則卡會落回票務
+    if (keepTab !== "story" || !m || !m.getPopup || !m.getPopup()) return;
+    const el = m.getPopup().getElement();
+    const story = el && el.querySelector('.pop-tab[onclick*="story"]');
+    if (story) window.mmTab(story, "story");
+  };
+
+  // 顯示集合是否不變?(搜尋/月份/篩選沿用,通常只是換語言→集合一樣)。一樣就「就地換文字」不閃;
+  // 少數情況(如用某語言才有的字搜尋)集合會變→走完整 render() 重建。
+  const nextIds = visibleShows().map((s) => s.id);
+  const sameSet = nextIds.length === Object.keys(markerById).length && nextIds.every((id) => markerById[id]);
+
+  if (sameSet) {
+    render(true);                 // 就地:marker 不消失、開著的卡用 setPopupContent 即時換內容不關閉
+    if (keepOpen && markerById[keepOpen]) restoreTab(markerById[keepOpen]);
+  } else {
+    render(false);                // 集合變了→完整重建,再把原本開著的卡在新語言重開
+    if (keepOpen && markerById[keepOpen]) {
+      const m = markerById[keepOpen];
+      const doOpen = function () { m.openPopup(); restoreTab(m); };
+      if (m._icon) doOpen();
+      else if (cluster.zoomToShowLayer) cluster.zoomToShowLayer(m, doOpen);
+      else doOpen();
+    }
   }
 });
 
@@ -1162,7 +1193,7 @@ function recomputeRange() {
   }
 }
 
-els.search.addEventListener("input", render);
+els.search.addEventListener("input", () => render());
 els.search.addEventListener("keydown", (e) => { if (e.key === "Escape") { els.search.value = ""; render(); } });
 // ?q= 深連結搜尋:讓 WebSite SearchAction(sitelinks searchbox)真的能用,並支援分享搜尋結果連結。
 // 例 /en/?q=wicked → 開頁即以 wicked 篩選(2026-07-10)。
@@ -1181,7 +1212,7 @@ function setMonth(offset, { fromSlider = false, fromPicker = false } = {}) {
     els.tRange.setAttribute("aria-valuetext", ym); }   // 螢幕閱讀器念出「幾月」而非 0-36 數字
   els.tToday.style.visibility = monthOffset === 0 ? "hidden" : "visible";
   // past months read the archive (lazy-loaded) — wait for it, then render
-  ensureArchiveForView().then(render);
+  ensureArchiveForView().then(() => render());
 }
 
 els.tRange.max = MAX_MONTHS;

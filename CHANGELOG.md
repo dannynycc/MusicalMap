@@ -11,6 +11,26 @@
 
 ---
 
+## [v2.81.2] - 2026-08-25 00:31
+
+### 切換語言不再「一閃而過」(marker 就地換文字,不整批重建)
+
+使用者回報切語言瞬間畫面會閃一下。根因:重繪靠 `render()` 每次 `cluster.clearLayers()` 把所有 marker
+拆掉重建、popup 也關閉重開——地圖上的點整批消失又出現就是那一閃。
+
+修法:`render(inPlace)` 新增就地模式。切語言時先算新的可見集合,若**集合不變**(通常如此,只是文字換語言)
+→ 走 `relabelMarkers()`:只對既有 marker `setPopupContent`/`setTooltipContent` 換文字,**不 clearLayers**;
+開著的卡用 `setPopupContent` 即時換內容、不關閉。marker DOM 節點與 popup 全程保留 → 不閃。
+少數情況集合會變(如用某語言才有的字搜尋)→ 自動退回完整 `render()` 重建再重開卡。
+
+**同時修掉一個潛在 bug**:`render` 一直被當 callback 傳(`addEventListener("input", render)`、
+`ensureArchiveForView().then(render)`),新加的 `inPlace` 參數會收到 event/陣列等 truthy 值而誤觸就地模式
+(症狀:搜尋打字後 marker 沒被過濾掉)。已在 `render` 頂端把 `inPlace` 收斂成嚴格 `=== true`,並把這兩處
+callback 包成 `() => render()`。
+
+驗證(webkit):搜尋正確過濾(1 marker);切 en↔繁↔簡三向,marker DOM 節點(data-flashtag)全程存活=
+就地更新無重建,卡片不關、tab 保留、內容/計數在地化正確。
+
 ## [v2.81.1] - 2026-08-25 00:12
 
 ### 修:停在「劇情」tab 切換語言會跳回「票務資訊」
