@@ -49,6 +49,17 @@ const VER = (() => {
   for (const p of ASSETS) h.update(fs.readFileSync(p));
   return h.digest("hex").slice(0, 10);
 })();
+// 資料版本(與程式碼 VER 分離):app 用 fetch 抓的 JSON 之快取破除參數。改資料(synopses/shows)
+// →DATA_VER 變→回訪者重抓;不動到 js/css 的 VER(程式碼快取不必跟著失效)。每日 cron 更新資料亦生效。
+const DATA_FILES = [
+  "data/synopses/en.json", "data/synopses/zh-hant.json", "data/synopses/zh-hans.json",
+  "data/variants/shows.en.json", "data/variants/shows.zh-hant.json", "data/variants/shows.zh-hans.json",
+];
+const DATA_VER = (() => {
+  const h = crypto.createHash("md5");
+  for (const p of DATA_FILES) { try { h.update(fs.readFileSync(p)); } catch (e) { /* 檔缺就略過 */ } }
+  return h.digest("hex").slice(0, 10);
+})();
 
 function hreflangLinks() {
   return [
@@ -303,7 +314,7 @@ function page(variant, shows) {
   <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" integrity="sha384-pmjIAcz2bAn0xukfxADbZIb3t8oRT9Sv0rvO+BR5Csr6Dhqq+nZs59P0pPKQJkEV" crossorigin="anonymous" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" integrity="sha384-wgw+aLYNQ7dlhK47ZPK7FRACiq7ROZwgFNg0m04avm4CaXS+Z9Y7nMu8yNjBKYC+" crossorigin="anonymous" />
   <link rel="stylesheet" href="${BASE}css/style.css?v=${VER}" />
-  <script>window.MM_VARIANT="${variant}";window.MM_BASE="${BASE}";window.MM_DATA_VER="${VER}";</script>${openccTag}
+  <script>window.MM_VARIANT="${variant}";window.MM_BASE="${BASE}";window.MM_DATA_VER="${DATA_VER}";</script>${openccTag}
   <script src="${BASE}js/mm-acct-menu.js?v=${VER}" defer></script>
   <script src="${BASE}js/mm-xlang.js?v=3" defer></script><!-- 跨網域語言傳遞 --><!-- 登入過(mm_owner cookie)→「我的音樂劇」CTA 自動換成大頭照選單;未登入照常顯示 CTA -->
   <script src="${BASE}js/mm-lang.js?v=${VER}" defer></script><!-- 語言切換下拉(globe→繁中/简中/English)開關行為 -->

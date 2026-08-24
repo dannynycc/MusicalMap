@@ -11,6 +11,19 @@
 
 ---
 
+## [v2.81.6] - 2026-08-25 01:23
+
+### 英文 Back to the Future 補總結 + my bucket list 繁中清殘留 + 資料快取獨立版本
+
+- **英文 BTF 缺總結**:使用者發現英文版末段停在劇情、無主題總結。重跑(強制總結 prompt)補上
+  「Ultimately, Back to the Future: The Musical explores how courage, self-belief, love…」。
+  過程抓到清理器漏洞:時間戳正則只涵蓋 上午/中午/下午,漏「凌晨/晚上」(1am 跑才踩到「凌晨1:18」漏字)
+  →已補全 凌晨/早上/上午/中午/下午/晚上/傍晚/深夜。
+- **my bucket list 繁中殘留**:清掉「已完成 2 個步驟」與夾在段落間的售票來源「opentix」「+1」。
+- **資料快取獨立版本(DATA_VER)**:原本 MM_DATA_VER=程式碼 VER,只 hash js/css→改 synopses/shows
+  資料不會破除快取,回訪者(與每日 cron 更新)可能拿到舊檔。改為獨立 DATA_VER(hash 6 個資料檔),
+  資料變才破資料快取、不動程式碼快取。
+
 ## [v2.81.5] - 2026-08-25 01:10
 
 ### 修:有簡介但無售票連結的劇(自營劇場)劇情不顯示
