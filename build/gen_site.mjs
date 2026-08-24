@@ -228,8 +228,10 @@ const LANG_CODE = { "zh-hant": "繁中", "zh-hans": "简中", "en": "EN" };
 const LANG_NAME = { "zh-hant": "繁體中文", "zh-hans": "简体中文", "en": "English" };
 const LANG_TAG = { "zh-hant": "zh-Hant", "zh-hans": "zh-Hans", "en": "en" };
 function langSwitch(active) {
+  // en 選項連 /?hl=en:根頁(英文)對中文瀏覽器有 CF Accept-Language 302(→/zh-hant/或/zh-hans/);
+  // CF 規則已加例外「query 含 hl=en 就不轉」(2026-08-24),所以帶這個記號才切得過去、留得住英文。
   const opt = (v) =>
-    `<a class="lang-opt${v === active ? " active" : ""}" role="menuitem" href="${BASE}${VPATH(v)}" lang="${LANG_TAG[v]}" hreflang="${LANG_TAG[v]}"${v === active ? ' aria-current="true"' : ""}><span>${LANG_NAME[v]}</span>${LANG_TICK}</a>`;
+    `<a class="lang-opt${v === active ? " active" : ""}" role="menuitem" href="${BASE}${VPATH(v)}${v === "en" ? "?hl=en" : ""}" lang="${LANG_TAG[v]}" hreflang="${LANG_TAG[v]}"${v === active ? ' aria-current="true"' : ""}><span>${LANG_NAME[v]}</span>${LANG_TICK}</a>`;
   return `<div id="lang-switch" role="group" aria-label="Language / 語言">
         <button type="button" class="lang-trigger" aria-haspopup="true" aria-expanded="false" aria-label="選擇語言 / Select language">${LANG_GLOBE}<span class="lang-cur">${LANG_CODE[active]}</span>${LANG_CHEV}</button>
         <div class="lang-pop" role="menu" hidden>
