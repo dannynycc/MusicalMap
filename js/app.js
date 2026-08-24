@@ -674,7 +674,10 @@ function popupHtml(show) {
   // 劇情簡介(依作品 group 查;只有繁中有 → 其他語系 SYN 空,退回原本純票務卡)。
   // 有簡介時:票務與劇情做「左右兩個分頁」,內容在同一塊區域切換;劇情用固定高度捲軸,
   // 卡片不因此變大(使用者規格:fit 原卡、劇情上下拖動、別大改字卡)。
-  const syn = (show.group && SYN[show.group] && SYN[show.group].zh) || "";
+  // 各語系有自己的 synopses 檔(en.json/zh-hant.json/zh-hans.json),記錄內只有一個語言鍵
+  // ({zh:…}/{en:…}/{"zh-hans":…})。這裡語言無關地取出該筆簡介文字。
+  const _synRec = show.group ? SYN[show.group] : null;
+  const syn = _synRec ? (_synRec.zh || _synRec.en || _synRec["zh-hans"] || "") : "";
   let ticket = "";
   if (ordered.length && syn) {
     const story = syn.split(/\n{2,}/).map((p) => `<p>${esc(p)}</p>`).join("");
