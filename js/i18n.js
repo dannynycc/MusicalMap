@@ -371,6 +371,18 @@
     document.documentElement.lang = VARIANT
       ? (VARIANT === "en" ? "en" : VARIANT === "zh-hans" ? "zh-Hans" : "zh-Hant")
       : (LANG === "zh" ? "zh-Hant" : "en");
+    // 變體頁:就地切換不重載,build 時烤死的切換器 UI 會過時→這裡同步「觸發鈕短碼 + 下拉勾選」。
+    // 涵蓋所有路徑(初載/點選/popstate 上一頁下一頁),避免顯示與實際語言不符。
+    if (VARIANT) {
+      const CODE = { "zh-hant": "繁中", "zh-hans": "简中", "en": "EN" };
+      const cur = document.querySelector("#lang-switch .lang-cur");
+      if (cur && CODE[VARIANT]) cur.textContent = CODE[VARIANT];
+      document.querySelectorAll("#lang-switch .lang-opt").forEach((a) => {
+        const on = a.getAttribute("data-v") === VARIANT;
+        a.classList.toggle("active", on);
+        if (on) a.setAttribute("aria-current", "true"); else a.removeAttribute("aria-current");
+      });
+    }
     // legacy segmented switch (buttons with data-lang); on variant pages the switch is
     // <a> links whose .active is baked at build time, so skip the JS highlight there.
     if (!VARIANT) {
