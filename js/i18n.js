@@ -46,6 +46,7 @@
       official: "官網",
       tickets: "售票",
       get_tickets: "票務資訊",   // 2026-07-13 使用者指示:弱化購買意圖(站定位=資訊地圖非賣票仲介),原「購票」
+      story_tab: "劇情",         // 卡片「票務資訊 ⇄ 劇情」分頁;使用者指示只用兩字
       buy_official: "前往官網購票 →",
       buy_tickets: "前往售票頁 →",
       unverified_demo: "未驗證（示範資料）",
@@ -184,6 +185,7 @@
       official: "Official",
       tickets: "Tickets",
       get_tickets: "Tickets",   // 2026-07-13:弱化 CTA;英語圈慣例單字 "Tickets"(原 "Get Tickets")
+      story_tab: "Story",       // card tab beside Tickets(en 尚無簡介資料,分頁暫不出現)
       buy_official: "Official tickets →",
       buy_tickets: "Get tickets →",
       unverified_demo: "Unverified (sample data)",

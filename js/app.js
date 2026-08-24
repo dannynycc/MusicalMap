@@ -310,6 +310,7 @@ function spreadSame(list) {
 
 // ---------- State ----------
 let ALL = [];                                 // live snapshot (current + future) from shows.json
+const SYN = {};                               // group → 劇情簡介(繁中);runtime 載入,見 boot()
 let LOAD_FAILED = false;                      // shows.json 載入失敗 → 空狀態顯示錯誤而非「0 部音樂劇」
 let ARCH = {};                                // year -> historical runs (lazy-loaded from data/archive/<year>.json)
 let ARCH_INDEX = null;                        // data/archive/index.json (which years exist)
@@ -555,6 +556,15 @@ function localizedLabel(raw, host, country) {
   return raw;
 }
 
+// 卡片「票務資訊 ⇄ 劇情」分頁切換。inline onclick 呼叫(popup 是動態字串,用全域函式最單純);
+// 只在同一張卡(.pop-tabbed)內切換,不影響其他開著的卡。
+window.mmTab = function (btn, which) {
+  const box = btn.closest(".pop-tabbed");
+  if (!box) return;
+  box.querySelectorAll(".pop-tab").forEach((b) => b.setAttribute("aria-selected", String(b === btn)));
+  box.querySelectorAll(".pop-pane").forEach((p) => { p.hidden = p.dataset.pane !== which; });
+};
+
 function popupHtml(show) {
   const poster = posterFull(show.image, 400);
   // 海報包一層 wrap:置中原比例完整海報+同圖模糊底(見 style.css .pop-poster-wrap 註解)
@@ -582,7 +592,7 @@ function popupHtml(show) {
   };
   const ordered = links.filter((l) => l.kind !== "official");
   const hasRevenue = ordered.some((l) => isRevenue(l.url));
-  const ticket = ordered.length ? `<div class="pop-tix"><div class="pop-tix-h">${esc(t("get_tickets"))}</div><div class="pop-tiles">${ordered.map((l) => {
+  const tilesHtml = ordered.map((l) => {
     const u = safeUrl(l.url); if (!u) return "";
     let host = ""; try { host = new URL(u).hostname; } catch { /* */ }
     const lab = esc(localizedLabel(l.label, host, l.country) || platformName(host, l.country));
@@ -595,7 +605,25 @@ function popupHtml(show) {
       <span class="pop-tile-ico">${ico ? `<img src="${esc(ico)}" alt="" loading="lazy" onerror="this.style.display='none'">` : ""}</span>
       <span class="pop-tile-label">${lab}</span>
       <span class="pop-tile-arr">→</span></a>`;
-  }).join("")}</div></div>` : "";
+  }).join("");
+  // 劇情簡介(依作品 group 查;只有繁中有 → 其他語系 SYN 空,退回原本純票務卡)。
+  // 有簡介時:票務與劇情做「左右兩個分頁」,內容在同一塊區域切換;劇情用固定高度捲軸,
+  // 卡片不因此變大(使用者規格:fit 原卡、劇情上下拖動、別大改字卡)。
+  const syn = (show.group && SYN[show.group] && SYN[show.group].zh) || "";
+  let ticket = "";
+  if (ordered.length && syn) {
+    const story = syn.split(/\n{2,}/).map((p) => `<p>${esc(p)}</p>`).join("");
+    ticket = `<div class="pop-tix pop-tabbed">
+      <div class="pop-tabs" role="tablist">
+        <button class="pop-tab" role="tab" aria-selected="true"  onclick="mmTab(this,'tix')">${esc(t("get_tickets"))}</button>
+        <button class="pop-tab" role="tab" aria-selected="false" onclick="mmTab(this,'story')">${esc(t("story_tab"))}</button>
+      </div>
+      <div class="pop-pane" data-pane="tix"><div class="pop-tiles">${tilesHtml}</div></div>
+      <div class="pop-pane" data-pane="story" hidden><div class="pop-story">${story}</div></div>
+    </div>`;
+  } else if (ordered.length) {
+    ticket = `<div class="pop-tix"><div class="pop-tix-h">${esc(t("get_tickets"))}</div><div class="pop-tiles">${tilesHtml}</div></div>`;
+  }
   // tour_name 通常是在地化/巡演製作名(「& Julia」「アラジン」「…North American Tour」),照用;
   // 但 TM 的 attraction 有時是「人名」(獨角戲演員,如 Harper Jones)——2~3 個首字大寫單字、
   // 無數字/標點、不含 musical/tour 等字眼 → 視為人名,回落正式劇名,別讓人名蓋掉劇名。
@@ -922,6 +950,13 @@ async function boot() {
     ALL = data.shows || [];
     DATA_UPDATED = data.meta?.generated_at || "";
     renderDataNote();
+    // 劇情簡介(獨立檔,只有繁中有):載入失敗不影響地圖,單純不顯示「劇情」分頁
+    // en/zh-hans 尚無簡介檔 → fetch 404 → SYN 保持空 → 卡片維持原樣(只有票務)
+    try {
+      const sv = window.MM_VARIANT || "zh-hant";
+      const sr = await fetch(`${MM_BASE}data/synopses/${sv}.json${_dv}`);
+      if (sr.ok) Object.assign(SYN, (await sr.json()).syn || {});
+    } catch (e) { /* 無簡介檔:靜默,卡片照舊 */ }
   } catch (e) {
     // 舊實作把錯誤寫進已不存在的 #data-note(黑洞),然後照常渲染出「0 部音樂劇/試試清除搜尋」
     // 的誤導空狀態 — 改設旗標,render 的空狀態分支顯示真正的錯誤訊息
