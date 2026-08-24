@@ -42,18 +42,18 @@
        多付一次 DNS+TCP+TLS 握手(~100-300ms)。preload 資料檔=與腳本並行下載,省 LCP。 -->
   <link rel="preconnect" href="https://unpkg.com" crossorigin />
   <link rel="preconnect" href="https://api.mapbox.com" crossorigin />
-  <link rel="preload" as="fetch" type="application/json" crossorigin href="/data/variants/shows.en.json?v=cf387e097f" />
+  <link rel="preload" as="fetch" type="application/json" crossorigin href="/data/variants/shows.en.json?v=aa579f5d7f" />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha384-sHL9NAb7lN7rfvG5lfHpm643Xkcjzp4jFvuavGOndn6pjVqS6ny56CAt3nsEVT4H" crossorigin="anonymous" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" integrity="sha384-pmjIAcz2bAn0xukfxADbZIb3t8oRT9Sv0rvO+BR5Csr6Dhqq+nZs59P0pPKQJkEV" crossorigin="anonymous" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" integrity="sha384-wgw+aLYNQ7dlhK47ZPK7FRACiq7ROZwgFNg0m04avm4CaXS+Z9Y7nMu8yNjBKYC+" crossorigin="anonymous" />
-  <link rel="stylesheet" href="/css/style.css?v=cf387e097f" />
-  <script>window.MM_VARIANT="en";window.MM_BASE="/";window.MM_DATA_VER="cf387e097f";</script>
+  <link rel="stylesheet" href="/css/style.css?v=aa579f5d7f" />
+  <script>window.MM_VARIANT="en";window.MM_BASE="/";window.MM_DATA_VER="aa579f5d7f";</script>
   <script src="https://cdn.jsdelivr.net/npm/opencc-js@1.3.1/dist/umd/t2cn.js" integrity="sha384-P/OaFUnOIAgMkLxsXIAaP6WO3Wm09591cGX5bHbW4eCOeDxH9L8U3aWYf4cE4SYl" crossorigin="anonymous"></script>
-  <script src="/js/mm-acct-menu.js?v=cf387e097f" defer></script>
+  <script src="/js/mm-acct-menu.js?v=aa579f5d7f" defer></script>
   <script src="/js/mm-xlang.js?v=3" defer></script><!-- 跨網域語言傳遞 --><!-- 登入過(mm_owner cookie)→「我的音樂劇」CTA 自動換成大頭照選單;未登入照常顯示 CTA -->
-  <script src="/js/mm-lang.js?v=cf387e097f" defer></script><!-- 語言切換下拉(globe→繁中/简中/English)開關行為 -->
-  <script src="/js/mm-more-menu.js?v=cf387e097f" defer></script><!-- ≡ 選單(手機:指南/法務連結)開關 -->
+  <script src="/js/mm-lang.js?v=aa579f5d7f" defer></script><!-- 語言切換下拉(globe→繁中/简中/English)開關行為 -->
+  <script src="/js/mm-more-menu.js?v=aa579f5d7f" defer></script><!-- ≡ 選單(手機:指南/法務連結)開關 -->
 
   <!-- Google Analytics(GA4 G-GC07MYC1MY;訪客來源/行為分析。root 路由頁不埋(立即轉走);隱私揭露見 privacy.html §1/§3) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-GC07MYC1MY"></script>
@@ -65,10 +65,10 @@
 </head>
 <body>
   <header id="topbar">
-    <a id="brand" href="/">
+    <a id="brand" href="/" data-vhref="">
       <img class="brand-logo" src="/logo.svg" alt="" />
       <span class="logo">Musical<span class="logo-em">Map</span></span>
-      <span class="tagline">Musicals playing around the world right now</span>
+      <span class="tagline" data-i18n="tagline">Musicals playing around the world right now</span>
     </a>
     <nav id="topnav">
       <div id="lang-switch" role="group" aria-label="Language / 語言">
@@ -79,20 +79,20 @@
           <a class="lang-opt active" role="menuitem" data-v="en" href="/?hl=en" lang="en" hreflang="en" aria-current="true"><span>English</span><svg class="lang-tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12l5 5L20 6"/></svg></a>
         </div>
       </div>
-      <a class="nav-link" href="/">Map home</a>
-      <a class="nav-link" href="/guide">Guide</a><!-- 直連同語言靜態變體(v2.15.0 起),不繞 ?hl= 路由;theatres 已撤站(v2.18.0) -->
+      <a class="nav-link" href="/" data-vhref="" data-i18n="nav_map">Map home</a>
+      <a class="nav-link" href="/guide" data-vhref="guide" data-i18n="nav_guide">Guide</a><!-- 直連同語言靜態變體(v2.15.0 起),不繞 ?hl= 路由;theatres 已撤站(v2.18.0) -->
       <!-- 隱私/條款桌面在地圖右下 attribution 列;手機 attribution 被 Safari 底bar 蓋住→改用下面的 ≡ 選單(v2.79) -->
       <div id="more-menu" class="more-menu">
         <button class="more-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Guide / About">≡</button>
         <div class="more-pop" role="menu" hidden>
-          <a class="more-opt" role="menuitem" href="/guide">Guide</a>
-          <a class="more-opt" role="menuitem" href="/about">About</a>
-          <a class="more-opt" role="menuitem" href="/privacy">Privacy</a>
-          <a class="more-opt" role="menuitem" href="/terms">Terms</a>
+          <a class="more-opt" role="menuitem" href="/guide" data-vhref="guide" data-i18n="nav_guide">Guide</a>
+          <a class="more-opt" role="menuitem" href="/about" data-vhref="about" data-i18n="about_short">About</a>
+          <a class="more-opt" role="menuitem" href="/privacy" data-vhref="privacy" data-i18n="privacy">Privacy</a>
+          <a class="more-opt" role="menuitem" href="/terms" data-vhref="terms" data-i18n="terms">Terms</a>
           <a class="more-opt" role="menuitem" href="mailto:contact@themusicalmap.com">contact@themusicalmap.com</a>
         </div>
       </div>
-      <a id="mine-link" class="nav-cta" href="https://my.themusicalmap.com/?hl=en">My Musicals</a>
+      <a id="mine-link" class="nav-cta" href="https://my.themusicalmap.com/?hl=en" data-hlhref="https://my.themusicalmap.com/" data-i18n="nav_mine">My Musicals</a>
     </nav>
   </header>
 
@@ -101,7 +101,7 @@
   <div id="app">
     <aside id="sidebar">
       <div id="controls">
-        <input id="search" type="search" placeholder="Search musicals, cities, theatres…" autocomplete="off" />
+        <input id="search" type="search" placeholder="Search musicals, cities, theatres…" data-i18n-ph="search_ph" autocomplete="off" />
         <div id="count"></div><!-- 本月上演即時計數(app.js 填字);位置=搜尋欄下、#controls 底線上 -->
       </div>
       <!-- prerendered for crawlers (Google + AI bots that don't run JS); the app
@@ -2191,13 +2191,13 @@
     </aside>
     <div id="mapcol">
       <div id="filterbar">
-        <span class="fb-lbl">Origin</span>
+        <span class="fb-lbl" data-i18n="filter_origin">Origin</span>
         <div id="tag-filters" role="group" aria-label="filter"></div>
       </div>
       <main id="map">
         <div id="timebar">
           <button id="time-play" class="tb-btn" title="play">▶</button>
-          <button id="time-today" class="tb-btn tb-now" title="today">This month</button>
+          <button id="time-today" class="tb-btn tb-now" title="today" data-i18n="today">This month</button>
           <input id="time-range" type="range" min="0" max="36" value="0" step="1" aria-label="Month timeline" />
           <!-- 原生 month input 的顯示格式跟「瀏覽器語言」走、不理頁面 lang(中文瀏覽器上英文頁會顯示 2026年07月)
                → 蓋一層自己用頁面語言格式化的 label,原生 input 透明墊底只負責點開月曆 -->
@@ -2209,8 +2209,8 @@
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha384-cxOPjt7s7Iz04uaHJceBmS+qpjv2JkIHNVcuOrM+YHwZOmJGBXI00mdUXEq65HTH" crossorigin="anonymous"></script>
   <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js" integrity="sha384-eXVCORTRlv4FUUgS/xmOyr66XBVraen8ATNLMESp92FKXLAMiKkerixTiBvXriZr" crossorigin="anonymous"></script>
-  <script src="/js/config.js?v=cf387e097f"></script>
-  <script src="/js/i18n.js?v=cf387e097f"></script>
-  <script src="/js/app.js?v=cf387e097f"></script>
+  <script src="/js/config.js?v=aa579f5d7f"></script>
+  <script src="/js/i18n.js?v=aa579f5d7f"></script>
+  <script src="/js/app.js?v=aa579f5d7f"></script>
 </body>
 </html>

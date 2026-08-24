@@ -20,6 +20,7 @@
       privacy_short: "隱私權",
       terms_short: "條款",
       about_short: "關於",
+      filter_origin: "原創分類",
       lang_toggle: "EN",            // label shows the OTHER language you can switch to
       map: "地圖",
       satellite: "衛星",
@@ -165,6 +166,7 @@
       privacy_short: "Privacy",
       terms_short: "Terms",
       about_short: "About",
+      filter_origin: "Origin",
       lang_toggle: "中",
       map: "Map",
       satellite: "Satellite",
@@ -374,6 +376,15 @@
     // 變體頁:就地切換不重載,build 時烤死的切換器 UI 會過時→這裡同步「觸發鈕短碼 + 下拉勾選」。
     // 涵蓋所有路徑(初載/點選/popstate 上一頁下一頁),避免顯示與實際語言不符。
     if (VARIANT) {
+      // 就地切換:更新 chrome 連結 href(build 時烤死變體路徑,切換後會指向舊語言頁)
+      const _base = window.MM_BASE || "/";
+      const _vp = VARIANT === "en" ? "" : VARIANT + "/";
+      document.querySelectorAll("[data-vhref]").forEach((a) => {
+        a.setAttribute("href", _base + _vp + a.getAttribute("data-vhref"));
+      });
+      document.querySelectorAll("[data-hlhref]").forEach((a) => {
+        a.setAttribute("href", a.getAttribute("data-hlhref") + "?hl=" + VARIANT);
+      });
       const CODE = { "zh-hant": "繁中", "zh-hans": "简中", "en": "EN" };
       const cur = document.querySelector("#lang-switch .lang-cur");
       if (cur && CODE[VARIANT]) cur.textContent = CODE[VARIANT];

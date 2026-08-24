@@ -319,27 +319,27 @@ function page(variant, shows) {
 </head>
 <body>
   <header id="topbar">
-    <a id="brand" href="${BASE}${VPATH(variant)}">
+    <a id="brand" href="${BASE}${VPATH(variant)}" data-vhref="">
       <img class="brand-logo" src="${BASE}logo.svg" alt="" />
       <span class="logo">Musical<span class="logo-em">Map</span></span>
-      <span class="tagline">${esc(t.tagline)}</span>
+      <span class="tagline" data-i18n="tagline">${esc(t.tagline)}</span>
     </a>
     <nav id="topnav">
       ${langSwitch(variant)}
-      <a class="nav-link" href="${BASE}${VPATH(variant)}">${esc(t.maphome)}</a>
-      <a class="nav-link" href="${BASE}${VPATH(variant)}guide">${esc(t.guide)}</a><!-- 直連同語言靜態變體(v2.15.0 起),不繞 ?hl= 路由;theatres 已撤站(v2.18.0) -->
+      <a class="nav-link" href="${BASE}${VPATH(variant)}" data-vhref="" data-i18n="nav_map">${esc(t.maphome)}</a>
+      <a class="nav-link" href="${BASE}${VPATH(variant)}guide" data-vhref="guide" data-i18n="nav_guide">${esc(t.guide)}</a><!-- 直連同語言靜態變體(v2.15.0 起),不繞 ?hl= 路由;theatres 已撤站(v2.18.0) -->
       <!-- 隱私/條款桌面在地圖右下 attribution 列;手機 attribution 被 Safari 底bar 蓋住→改用下面的 ≡ 選單(v2.79) -->
       <div id="more-menu" class="more-menu">
         <button class="more-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="${esc(t.guide)} / ${esc(t.about)}">≡</button>
         <div class="more-pop" role="menu" hidden>
-          <a class="more-opt" role="menuitem" href="${BASE}${VPATH(variant)}guide">${esc(t.guide)}</a>
-          <a class="more-opt" role="menuitem" href="${BASE}${VPATH(variant)}about">${esc(t.about)}</a>
-          <a class="more-opt" role="menuitem" href="${BASE}${VPATH(variant)}privacy">${esc(t.privacy)}</a>
-          <a class="more-opt" role="menuitem" href="${BASE}${VPATH(variant)}terms">${esc(t.terms)}</a>
+          <a class="more-opt" role="menuitem" href="${BASE}${VPATH(variant)}guide" data-vhref="guide" data-i18n="nav_guide">${esc(t.guide)}</a>
+          <a class="more-opt" role="menuitem" href="${BASE}${VPATH(variant)}about" data-vhref="about" data-i18n="about_short">${esc(t.about)}</a>
+          <a class="more-opt" role="menuitem" href="${BASE}${VPATH(variant)}privacy" data-vhref="privacy" data-i18n="privacy">${esc(t.privacy)}</a>
+          <a class="more-opt" role="menuitem" href="${BASE}${VPATH(variant)}terms" data-vhref="terms" data-i18n="terms">${esc(t.terms)}</a>
           <a class="more-opt" role="menuitem" href="mailto:contact@themusicalmap.com">contact@themusicalmap.com</a>
         </div>
       </div>
-      <a id="mine-link" class="nav-cta" href="https://my.themusicalmap.com/?hl=${variant}">${esc(t.mine)}</a>
+      <a id="mine-link" class="nav-cta" href="https://my.themusicalmap.com/?hl=${variant}" data-hlhref="https://my.themusicalmap.com/" data-i18n="nav_mine">${esc(t.mine)}</a>
     </nav>
   </header>
 
@@ -348,7 +348,7 @@ function page(variant, shows) {
   <div id="app">
     <aside id="sidebar">
       <div id="controls">
-        <input id="search" type="search" placeholder="${esc(t.search)}" autocomplete="off" />
+        <input id="search" type="search" placeholder="${esc(t.search)}" data-i18n-ph="search_ph" autocomplete="off" />
         <div id="count"></div><!-- 本月上演即時計數(app.js 填字);位置=搜尋欄下、#controls 底線上 -->
       </div>
       <!-- prerendered for crawlers (Google + AI bots that don't run JS); the app
@@ -362,13 +362,13 @@ function page(variant, shows) {
     </aside>
     <div id="mapcol">
       <div id="filterbar">
-        <span class="fb-lbl">${esc(t.filterLabel)}</span>
+        <span class="fb-lbl" data-i18n="filter_origin">${esc(t.filterLabel)}</span>
         <div id="tag-filters" role="group" aria-label="filter"></div>
       </div>
       <main id="map">
         <div id="timebar">
           <button id="time-play" class="tb-btn" title="play">▶</button>
-          <button id="time-today" class="tb-btn tb-now" title="today">${variant === "en" ? "This month" : variant === "zh-hans" ? "本月" : "本月"}</button>
+          <button id="time-today" class="tb-btn tb-now" title="today" data-i18n="today">${variant === "en" ? "This month" : variant === "zh-hans" ? "本月" : "本月"}</button>
           <input id="time-range" type="range" min="0" max="36" value="0" step="1" aria-label="${variant === "en" ? "Month timeline" : "月份時間軸"}" />
           <!-- 原生 month input 的顯示格式跟「瀏覽器語言」走、不理頁面 lang(中文瀏覽器上英文頁會顯示 2026年07月)
                → 蓋一層自己用頁面語言格式化的 label,原生 input 透明墊底只負責點開月曆 -->

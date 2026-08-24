@@ -302,15 +302,24 @@ map.addControl(new LocateControl());
 // 頂部 nav 留給功能項,手機版也因此看得到法務連結(nav-link 在手機被藏)
 // 法務連結包一層 .attr-legal:手機用 CSS 隱藏(改由 header 的 ≡ 選單提供,因 attribution
 // 在手機會被 Safari 底部工具列蓋住、點不到);桌面照舊顯示。© 品牌識別保留不藏。
-map.attributionControl.addAttribution(
-  `© ${new Date().getFullYear()} MusicalMap` +   // 短版版權(法律上非必要但具專業識別;不用過時的 All Rights Reserved)
-  `<span class="attr-legal"> · ` +
-  `<a href="${window.MM_BASE || "/"}about?hl=${window.MM_VARIANT || "zh-hant"}">${t("about_short")}</a> · ` +
-  `<a href="${window.MM_BASE || "/"}privacy?hl=${window.MM_VARIANT || "zh-hant"}">${t("privacy_short")}</a> · ` +
-  `<a href="${window.MM_BASE || "/"}terms?hl=${window.MM_VARIANT || "zh-hant"}">${t("terms_short")}</a> · ` +
-  // 信箱印全文(不寫成「聯絡」二字):廣告/合作洽談方與媒體採購常直接掃頁面上的 @ 字串或 mailto: href,
-  // 只給一個 label 連結等於沒露出。語言中性,三語變體共用同一串,不進字典。
-  `<a href="mailto:contact@themusicalmap.com">contact@themusicalmap.com</a></span>`);
+// 法務連結列做成函式:就地切語言時要用新語言重繪(移除舊的再加),否則停在舊語言。
+let _legalAttrHtml = null;
+function renderLegalAttribution() {
+  const base = window.MM_BASE || "/";
+  const v = window.MM_VARIANT || "zh-hant";
+  const html =
+    `© ${new Date().getFullYear()} MusicalMap` +   // 短版版權(法律上非必要但具專業識別;不用過時的 All Rights Reserved)
+    `<span class="attr-legal"> · ` +
+    `<a href="${base}about?hl=${v}">${t("about_short")}</a> · ` +
+    `<a href="${base}privacy?hl=${v}">${t("privacy_short")}</a> · ` +
+    `<a href="${base}terms?hl=${v}">${t("terms_short")}</a> · ` +
+    // 信箱印全文(不寫成「聯絡」二字):廣告/合作洽談方與媒體採購常直接掃頁面上的 @ 字串或 mailto: href。語言中性。
+    `<a href="mailto:contact@themusicalmap.com">contact@themusicalmap.com</a></span>`;
+  if (_legalAttrHtml) map.attributionControl.removeAttribution(_legalAttrHtml);
+  map.attributionControl.addAttribution(html);
+  _legalAttrHtml = html;
+}
+renderLegalAttribution();
 
 // (移除:開發用的縮放層級讀數「z 2」原本露在 +/- 下方給使用者看——dev 殘留,破壞精品感,2026-07-10)
 const cluster = L.markerClusterGroup({
@@ -1132,6 +1141,7 @@ window.addEventListener("mm-langchange", async function () {
   }
   buildTagFilters();   // 重貼傳統別 pill 文字(ACTIVE_TAGS 篩選狀態保留)
   renderDataNote();
+  if (typeof renderLegalAttribution === "function") renderLegalAttribution();   // 頁尾法務連結換語言
 
   const restoreTab = function (m) {   // 還原切換前開著的 tab(劇情),否則卡會落回票務
     if (keepTab !== "story" || !m || !m.getPopup || !m.getPopup()) return;
