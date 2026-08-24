@@ -238,14 +238,17 @@ const satellite = L.tileLayer(
 L.control.layers({ [t("map")]: streets, [t("satellite")]: satellite }, null, { position: "topright" }).addTo(map);
 // 法務連結放 attribution 列(Google Maps 慣例:全螢幕地圖 app 無頁尾,隱私/條款跟圖資出處同列);
 // 頂部 nav 留給功能項,手機版也因此看得到法務連結(nav-link 在手機被藏)
+// 法務連結包一層 .attr-legal:手機用 CSS 隱藏(改由 header 的 ≡ 選單提供,因 attribution
+// 在手機會被 Safari 底部工具列蓋住、點不到);桌面照舊顯示。© 品牌識別保留不藏。
 map.attributionControl.addAttribution(
-  `© ${new Date().getFullYear()} MusicalMap · ` +   // 短版版權(法律上非必要但具專業識別;不用過時的 All Rights Reserved)
+  `© ${new Date().getFullYear()} MusicalMap` +   // 短版版權(法律上非必要但具專業識別;不用過時的 All Rights Reserved)
+  `<span class="attr-legal"> · ` +
   `<a href="${window.MM_BASE || "/"}about?hl=${window.MM_VARIANT || "zh-hant"}">${t("about_short")}</a> · ` +
   `<a href="${window.MM_BASE || "/"}privacy?hl=${window.MM_VARIANT || "zh-hant"}">${t("privacy_short")}</a> · ` +
   `<a href="${window.MM_BASE || "/"}terms?hl=${window.MM_VARIANT || "zh-hant"}">${t("terms_short")}</a> · ` +
   // 信箱印全文(不寫成「聯絡」二字):廣告/合作洽談方與媒體採購常直接掃頁面上的 @ 字串或 mailto: href,
   // 只給一個 label 連結等於沒露出。語言中性,三語變體共用同一串,不進字典。
-  `<a href="mailto:contact@themusicalmap.com">contact@themusicalmap.com</a>`);
+  `<a href="mailto:contact@themusicalmap.com">contact@themusicalmap.com</a></span>`);
 
 // (移除:開發用的縮放層級讀數「z 2」原本露在 +/- 下方給使用者看——dev 殘留,破壞精品感,2026-07-10)
 const cluster = L.markerClusterGroup({

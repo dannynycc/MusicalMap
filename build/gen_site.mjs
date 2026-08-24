@@ -43,7 +43,7 @@ const JSONLD_CAP = 300; // cap Event ItemList; full text list is unbounded (chea
 // cache-bust token for js/css so returning visitors never run a stale app.js (the bug
 // where a cached old app.js fetched a relative data path and showed an empty map). Token
 // is a content hash of the actual assets → it changes IFF the js/css change.
-const ASSETS = ["js/app.js", "js/i18n.js", "js/config.js", "js/mm-acct-menu.js", "css/style.css"];
+const ASSETS = ["js/app.js", "js/i18n.js", "js/config.js", "js/mm-acct-menu.js", "js/mm-more-menu.js", "css/style.css"];
 const VER = (() => {
   const h = crypto.createHash("md5");
   for (const p of ASSETS) h.update(fs.readFileSync(p));
@@ -245,14 +245,14 @@ function page(variant, shows) {
   const st = siteStats(shows);
   const desc = fillDesc(v.desc, st);   // {NC}→真實國家數(2026-07-10)
   const t = variant === "en"
-    ? { tagline: "Musicals playing around the world right now", theatres: "All theatres", mine: "My Musicals", guide: "Guide",
+    ? { tagline: "Musicals playing around the world right now", theatres: "All theatres", mine: "My Musicals", guide: "Guide", about: "About",
         maphome: "Map home", search: "Search musicals, cities, theatres…", privacy: "Privacy", terms: "Terms",
         h1: "MusicalMap — Live World Map of Musicals Playing Now", listhdr: "Musicals playing now and in the coming year", filterLabel: "Origin" }
     : variant === "zh-hans"
-    ? { tagline: "此刻全球正在上演的音乐剧", theatres: "所有剧院", mine: "我的音乐剧", guide: "使用指南",
+    ? { tagline: "此刻全球正在上演的音乐剧", theatres: "所有剧院", mine: "我的音乐剧", guide: "使用指南", about: "关于",
         maphome: "地图首页", search: "搜寻音乐剧名、城市、剧院…", privacy: "隐私政策", terms: "使用条款",
         h1: "MusicalMap — 全球此刻正在上演的音乐剧实时地图", listhdr: "正在上演与未来一年的音乐剧", filterLabel: "原创分类" }
-    : { tagline: "此刻全球正在上演的音樂劇", theatres: "所有劇院", mine: "我的音樂劇", guide: "使用指南",
+    : { tagline: "此刻全球正在上演的音樂劇", theatres: "所有劇院", mine: "我的音樂劇", guide: "使用指南", about: "關於",
         maphome: "地圖首頁", search: "搜尋音樂劇名、城市、劇院…", privacy: "隱私權政策", terms: "使用條款",
         h1: "MusicalMap — 全球此刻正在上演的音樂劇即時地圖", listhdr: "正在上演與未來一年的音樂劇", filterLabel: "原創分類" };
   // zh-hans pages load OpenCC (small t2cn dict) so i18n can simplify the UI chrome strings.
@@ -305,6 +305,7 @@ function page(variant, shows) {
   <script src="${BASE}js/mm-acct-menu.js?v=${VER}" defer></script>
   <script src="${BASE}js/mm-xlang.js?v=3" defer></script><!-- 跨網域語言傳遞 --><!-- 登入過(mm_owner cookie)→「我的音樂劇」CTA 自動換成大頭照選單;未登入照常顯示 CTA -->
   <script src="${BASE}js/mm-lang.js?v=${VER}" defer></script><!-- 語言切換下拉(globe→繁中/简中/English)開關行為 -->
+  <script src="${BASE}js/mm-more-menu.js?v=${VER}" defer></script><!-- ≡ 選單(手機:指南/法務連結)開關 -->
 
   <!-- Google Analytics(GA4 G-GC07MYC1MY;訪客來源/行為分析。root 路由頁不埋(立即轉走);隱私揭露見 privacy.html §1/§3) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-GC07MYC1MY"></script>
@@ -325,7 +326,17 @@ function page(variant, shows) {
       ${langSwitch(variant)}
       <a class="nav-link" href="${BASE}${VPATH(variant)}">${esc(t.maphome)}</a>
       <a class="nav-link" href="${BASE}${VPATH(variant)}guide">${esc(t.guide)}</a><!-- 直連同語言靜態變體(v2.15.0 起),不繞 ?hl= 路由;theatres 已撤站(v2.18.0) -->
-      <!-- 隱私/條款移到地圖右下 attribution 列(Google Maps 慣例,見 app.js addAttribution) -->
+      <!-- 隱私/條款桌面在地圖右下 attribution 列;手機 attribution 被 Safari 底bar 蓋住→改用下面的 ≡ 選單(v2.79) -->
+      <div id="more-menu" class="more-menu">
+        <button class="more-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="${esc(t.guide)} / ${esc(t.about)}">≡</button>
+        <div class="more-pop" role="menu" hidden>
+          <a class="more-opt" role="menuitem" href="${BASE}${VPATH(variant)}guide">${esc(t.guide)}</a>
+          <a class="more-opt" role="menuitem" href="${BASE}${VPATH(variant)}about">${esc(t.about)}</a>
+          <a class="more-opt" role="menuitem" href="${BASE}${VPATH(variant)}privacy">${esc(t.privacy)}</a>
+          <a class="more-opt" role="menuitem" href="${BASE}${VPATH(variant)}terms">${esc(t.terms)}</a>
+          <a class="more-opt" role="menuitem" href="mailto:contact@themusicalmap.com">contact@themusicalmap.com</a>
+        </div>
+      </div>
       <a id="mine-link" class="nav-cta" href="https://my.themusicalmap.com/?hl=${variant}">${esc(t.mine)}</a>
     </nav>
   </header>
