@@ -297,7 +297,12 @@ body:not(.ready) #count { display: none; }
   #time-range { min-width: 130px; }
 }
 @media (max-width: 680px) {
-  #timebar { left: 4%; right: 4%; bottom: 10px; padding: 8px 10px; gap: 6px; }
+  /* bottom:10px 讓 timebar 貼著地圖底,與 Leaflet 版權列(窄螢幕會折成兩行)重疊,
+     日期標籤被蓋住;真手機再疊上 Safari 底部工具列就整條看不到(2026-08-24 使用者回報)。
+     抬高到版權列 + 安全區(home indicator)之上,確保永遠可見可點。 */
+  #timebar { left: 4%; right: 4%;
+    bottom: calc(56px + env(safe-area-inset-bottom, 0px));
+    padding: 8px 10px; gap: 6px; }
   #time-range { min-width: 90px; }
 }
 
