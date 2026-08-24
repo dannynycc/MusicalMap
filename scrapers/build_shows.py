@@ -335,6 +335,14 @@ def unescape_entities(t):
     return s
 
 
+# 剝掉尾綴年份後若只剩這些詞,表示年份才是劇名本體(「Musical 1989」= 波蘭音樂劇《1989》)。
+# 小寫比對;新增前先想清楚:這裡放的是「單獨出現時等於沒有劇名」的類別詞。
+YEAR_STRIP_GENERIC = {
+    "musical", "the musical", "musicalu", "spektakl", "show", "the show",
+    "concert", "koncert", "musical show", "gala",
+}
+
+
 def clean_title(t):
     t = unescape_entities(t).strip()
     t = re.sub(r"\s*\|.*$", "", t)          # drop promoter pipe-tails (… | Official … Packages)
@@ -398,9 +406,12 @@ def clean_title(t):
         t = ANNOT_SUFFIX_RE.sub("", t).strip()                  # "- Suite Rental" / "- Age Recommendation"
         t = re.sub(r"\s*\((?:19|20)\d{2}\)\s*$", "", t).strip()  # trailing year, e.g. "(1993)"
         # trailing bare year——防呆:剝完若只剩 <5 字元(「Los 2000」→「Los」慘案,2026-07-13)
-        # 表示「年份」其實是劇名一部分,還原不剝
+        # 表示「年份」其實是劇名一部分,還原不剝。
+        # 2026-08-24 補第二道:剝完若只剩**通用類別詞**(「Musical 1989」→「Musical」——
+        # 波蘭那齣劇的真名就是《1989》,ebilet 標題前面掛類別詞)。長度夠但等於沒有劇名,
+        # 使用者會看到一張卡叫「Musical」。
         _t2 = re.sub(r"\s+(?:19|20)\d{2}[\s!.]*$", "", t).strip()
-        if len(_t2) >= 5:
+        if len(_t2) >= 5 and _t2.lower() not in YEAR_STRIP_GENERIC:
             t = _t2
     return re.sub(r"\s{2,}", " ", t).strip()
 

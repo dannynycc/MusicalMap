@@ -20,6 +20,24 @@ How we read each show:
 Non-musicals leak into the "musicale" bucket (concerts, recitals, galas, talent
 shows, stand-up, solo-artist tours), so titles are filtered (see DROP/KEEP below).
 
+2026-08-24 — bot 牆與守門(這支曾經悄悄弄丟 8 檔波蘭音樂劇):
+  排程那班 19 個 slug 全數找到,但其中 **11 個事件頁 fetch failed**(six / wicked /
+  my-fair-lady / next-to-normal / 1989 / high-heels …),只解析出 4 筆。當時本檔
+  **沒有任何守門**,4 筆殘缺資料直接覆蓋掉前一天的 12 筆、退出碼還是 0 → CI 只發了
+  一則 warning,線上就這樣少了 8 檔(SIX / Wicked / Beetlejuice / My Fair Lady /
+  Next to Normal / Musical 1989 / Serce ze szkła / Metro 35 lat)。
+  查下去發現 429 的 body 是 **DataDome 的 JS 挑戰頁**(`dd_referrer` +「Please enable
+  JS」),封鎖是 IP 級:urllib / curl_cffi(chrome124) / headless Playwright / 真 Chrome
+  當天全都拿到同一頁。逐頁重試不會過,只會加深封鎖(那班為此空轉 43 分鐘)。
+  因此:
+    · 偵測到挑戰頁 → `Blocked` → **中止整輪、不寫檔**(見 `_abort`)
+    · 事件頁抓取失敗率 > `MAX_FETCH_FAIL` → 同樣不寫檔、非零退出
+    · 重試次數由 6 收到 3(挑戰頁重試無用,單純節流 2 次退避夠了)
+  守的是「抓取失敗率」而非 `_guard.py` 的筆數跌幅——這來源只有十幾筆,FLOOR=50 的
+  筆數守門對它永遠空轉(`_guard.py` 檔頭已載明),失敗率才是對症的軸。
+  ⚠️ 未來若 DataDome 常態化,下一步是 atrapalo.py 那套(Playwright 取 clearance
+  cookie → 灌進 curl_cffi 快車道);已知 headless 當下也被擋,需要時再實測。
+
 Output: data/poland.json     Run: python scrapers/poland.py
 """
 
@@ -33,6 +51,7 @@ import hashlib
 import urllib.request
 import urllib.error
 from datetime import datetime, timezone, timedelta
+from typing import NoReturn
 from pathlib import Path
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
@@ -87,20 +106,61 @@ KEEP_WORDS = [
 ]
 
 
-def get(url, tries=6):
+class FetchFailed(Exception):
+    """單頁抓不到(逾時/連線錯/非挑戰頁的 429)。跟「這齣不是音樂劇」的合法丟棄
+    不同型:合法丟棄是資料判斷,抓取失敗是**我們沒看到資料**,不可以當成「沒有這齣」。"""
+
+
+class Blocked(Exception):
+    """eBilet 的 bot 牆(DataDome)擋下了整個 IP,不是單頁失敗。
+
+    2026-08-24 觀察到的樣子:HTTP 429,body 是 ~2.3KB 的 JS 挑戰頁(含 `dd_referrer`
+    與「Please enable JS and disable any ad blocker」)。封鎖是 **IP 級**的——urllib、
+    curl_cffi(chrome124 指紋)、headless Playwright、真 Chrome 全都拿到同一頁。
+    這種狀態下逐頁重試只會加深封鎖(那天 CI 為此空轉 43 分鐘),所以一偵測到就中止整輪。"""
+
+
+def _is_challenge(body):
+    return "dd_referrer" in body or "disable any ad blocker" in body
+
+
+# JSON-LD 缺 location 時的場館兜底(僅限場館固定的駐演製作,鍵為小寫劇名)。
+#   Wicked — Teatr Muzyczny ROMA(Nowogrodzka 49, Warszawa)波蘭非複製版駐演。
+#   查證(2026-08-24):teatrroma.pl/spektakl/wicked/ 官方場次表 2026-09-26~2026-11-29
+#   與 eBilet 抓到的檔期完全一致;cojestgrane.pl 亦列同一場館與 9/26 首場。
+VENUE_FALLBACK = {
+    "wicked": ("Teatr Muzyczny ROMA", "Warszawa"),
+}
+
+
+def get(url, tries=3):
     """Fetch a URL as UTF-8 text, retrying with exponential backoff on 429/5xx.
 
-    eBilet rate-limits bursts hard, so the backoff is generous (15s..90s)."""
+    eBilet rate-limits bursts hard. 429 有兩種:單純節流(重試會過)與 bot 牆挑戰頁
+    (重試永遠不會過,見 `Blocked`)。後者直接拋 `Blocked` 中止整輪。"""
     for k in range(tries):
         try:
             req = urllib.request.Request(url, headers=UA)
             with urllib.request.urlopen(req, timeout=30) as r:
-                return r.read().decode("utf-8", "ignore")
+                body = r.read().decode("utf-8", "ignore")
+            # DataDome 不一定用 429 送挑戰頁,200 也會——內容才是判準
+            if _is_challenge(body):
+                raise Blocked(url)
+            return body
         except urllib.error.HTTPError as e:
+            body = ""
+            try:
+                body = e.read().decode("utf-8", "ignore")
+            except Exception:
+                pass
+            if e.code == 429 and _is_challenge(body):
+                raise Blocked(url)
             if e.code in (429, 500, 502, 503) and k < tries - 1:
-                time.sleep(15 * (k + 1))   # 15s, 30s, 45s, 60s, 75s
+                time.sleep(15 * (k + 1))   # 15s, 30s
                 continue
             return ""
+        except Blocked:
+            raise
         except Exception:
             if k < tries - 1:
                 time.sleep(10 * (k + 1))
@@ -141,7 +201,7 @@ def parse_event(slug):
     url = f"{BASE}/teatr/musicale/{slug}"
     d = get(url)
     if not d:
-        return None, f"{slug} (fetch failed)"
+        raise FetchFailed(slug)
 
     # Clean title from og:title, fall back to the LD name.
     og_t = re.search(r'<meta property="og:title" content="([^"]+)"', d)
@@ -166,6 +226,15 @@ def parse_event(slug):
             city = (addr.get("addressLocality") or "").strip() or None
         except Exception:
             pass
+
+    # eBilet 的 JSON-LD 偶爾整塊少掉 location(2026-08-24 實例:Wicked 那頁),結果是
+    # 一張沒有劇院、沒有城市、沒有座標的卡——地圖上根本不會出現。這裡只補**駐演製作**
+    # (sit-down,場館固定),不碰巡演(巡演換場館,硬填就是造假)。
+    # 每筆都要有一手依據,並在下面註明。
+    if not venue:
+        fb = VENUE_FALLBACK.get(title.strip().lower())
+        if fb:
+            venue, city = fb
 
     # If we still have no strong musical signal AND it's an unsure title, drop it
     # (instruction: "when unsure, exclude and log").
@@ -209,18 +278,56 @@ def venue_coords(venue):
     return None, None
 
 
+# 事件頁抓取失敗率超過這個比例就視為來源故障:不覆蓋舊檔、以非零退出碼讓 CI 變紅。
+# 門檻取 0.25:合法的個別失敗(某頁暫時 500)不該擋,整批失敗一定要擋。
+MAX_FETCH_FAIL = 0.25
+
+
+def _abort(why, kept_n, slugs_n, failed=None) -> NoReturn:
+    """不覆蓋舊檔就結束——寧可資料舊一天,也不要用殘缺資料蓋掉好資料。"""
+    print(f"\n[poland] ABORT: {why}", flush=True)
+    print(f"[poland] 只解析到 {kept_n}/{slugs_n} 筆,"
+          f"data/poland.json **維持原樣**(舊資料仍完整,build_shows 照常拿得到)。",
+          flush=True)
+    if failed:
+        print("[poland] 抓不到的 slug:", ", ".join(failed), flush=True)
+    sys.exit(1)
+
+
 def main():
-    slugs = collect_slugs()
+    try:
+        slugs = collect_slugs()
+    except Blocked as b:
+        _abort(f"eBilet bot 牆(DataDome)在列表頁就擋下整個 IP — {b}",
+               kept_n=0, slugs_n=0)
     print(f"Found {len(slugs)} candidate slugs", flush=True)
 
-    kept, dropped = [], []
+    kept, dropped, failed = [], [], []
     for slug in slugs:
-        row, reason = parse_event(slug)
+        try:
+            row, reason = parse_event(slug)
+        except FetchFailed:
+            failed.append(slug)
+            continue
+        except Blocked as b:
+            _abort(f"eBilet bot 牆(DataDome)擋下整個 IP — 於 {b} 中止",
+                   kept_n=len(kept), slugs_n=len(slugs))
+        finally:
+            time.sleep(4.0)   # polite gap between event pages (avoids 429)
         if row is None:
             dropped.append(reason)
         else:
             kept.append(row)
-        time.sleep(4.0)   # polite gap between event pages (avoids 429)
+
+    # 抓取失敗率守門。2026-08-24:19 個 slug 有 11 個 fetch failed,poland.py 沒有
+    # 任何守門,4 筆殘缺資料就這樣覆蓋掉 12 筆好資料、退出碼還是 0(線上少了 SIX /
+    # Wicked / Beetlejuice / My Fair Lady / Next to Normal 等 8 檔)。
+    # 守的是「抓取失敗率」而不是 `_guard.py` 的筆數跌幅:這個來源只有十幾筆,
+    # FLOOR=50 的筆數守門對它永遠空轉(見 _guard.py 檔頭),失敗率才是對症的軸。
+    if slugs and len(failed) / len(slugs) > MAX_FETCH_FAIL:
+        _abort(f"{len(failed)}/{len(slugs)} 個事件頁抓不到"
+               f"(>{MAX_FETCH_FAIL:.0%}) — 視為來源故障",
+               kept_n=len(kept), slugs_n=len(slugs), failed=failed)
 
     shows = []
     coords_n = null_n = 0

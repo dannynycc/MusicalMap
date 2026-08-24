@@ -1,9 +1,9 @@
 {
   "meta": {
     "source": "merged",
-    "generated_at": "2026-08-24 01:02 UTC",
-    "total": 2067,
-    "verified": 2067,
+    "generated_at": "2026-08-24 01:17 UTC",
+    "total": 2075,
+    "verified": 2075,
     "unverified": 0,
     "sources": [
       {
@@ -197,10 +197,10 @@
       },
       {
         "file": "poland.json",
-        "count": 4,
+        "count": 12,
         "meta": {
           "source": "ebilet.pl",
-          "count": 4
+          "count": 12
         }
       },
       {
@@ -32973,6 +32973,243 @@
           "kind": "ticketing"
         }
       ]
+    },
+    {
+      "id": "pl-66516edb",
+      "title": "SIX",
+      "title_en": "",
+      "venue": "Teatr Syrena w Warszawie",
+      "city": "Warszawa",
+      "country": "Poland",
+      "lat": 52.21643,
+      "lng": 21.022132,
+      "start_date": "2026-11-06",
+      "end_date": "2027-01-24",
+      "image": "https://www.ebilet.pl/media/cms/media/hflcp1fs/six-1080x1080-1-dbe7c6cc-bc7c-4bc9-acc9-5fa399fc0a31.webp",
+      "ticket_url": "https://www.ebilet.pl/teatr/musicale/six",
+      "type": "tour",
+      "verified": true,
+      "source": "ebilet.pl",
+      "group": "six",
+      "ticket_links": [
+        {
+          "label": "官方網站",
+          "url": "https://teatrsyrena.pl/six-musical/",
+          "kind": "official"
+        },
+        {
+          "label": "售票連結",
+          "url": "https://www.ebilet.pl/teatr/musicale/six",
+          "kind": "ticketing"
+        }
+      ],
+      "link_kind": "ticketing",
+      "tag": "Broadway/West End",
+      "alt": "SIX 六個皇后 六个皇后 六位皇后"
+    },
+    {
+      "id": "pl-429215fc",
+      "title": "Serce ze szkła. Musical zen",
+      "title_en": "",
+      "venue": "STUDIO teatrgaleria",
+      "city": "Warszawa",
+      "country": "Poland",
+      "lat": 52.22027,
+      "lng": 21.02346,
+      "start_date": "2026-10-30",
+      "end_date": "2026-10-31",
+      "image": "https://www.ebilet.pl/media/cms/media/nhxms2dc/sercezeszklastudio1080x1080-50fcf06e-3c39-4669-bff5-313232eabbf9.webp",
+      "ticket_url": "https://www.ebilet.pl/teatr/musicale/krolowa-sniegu-teatr-studio",
+      "type": "tour",
+      "verified": true,
+      "source": "ebilet.pl+override",
+      "group": "serce ze szka musical zen",
+      "link_kind": "ticketing",
+      "tag": "歐陸原創",
+      "ticket_links": [
+        {
+          "url": "https://www.ebilet.pl/teatr/musicale/krolowa-sniegu-teatr-studio",
+          "kind": "ticketing"
+        }
+      ]
+    },
+    {
+      "id": "pl-c5bc7acb",
+      "title": "Musical 1989",
+      "title_en": "",
+      "venue": "Hala Stulecia",
+      "city": "Wrocław",
+      "country": "Poland",
+      "lat": 51.106953,
+      "lng": 17.077329,
+      "start_date": "2026-09-17",
+      "end_date": "2026-09-17",
+      "image": "https://www.ebilet.pl/media/cms/media/ocyn1qp5/1920x1080-2.webp",
+      "ticket_url": "https://www.ebilet.pl/teatr/musicale/1989",
+      "type": "tour",
+      "verified": true,
+      "source": "ebilet.pl",
+      "group": "musical 1989",
+      "link_kind": "ticketing",
+      "tag": "歐陸原創",
+      "ticket_links": [
+        {
+          "url": "https://www.ebilet.pl/teatr/musicale/1989",
+          "kind": "ticketing"
+        }
+      ]
+    },
+    {
+      "id": "pl-a68a42d5",
+      "title": "My Fair Lady",
+      "title_en": "",
+      "venue": "CKiS – Dom Kultury OSKARD",
+      "city": "Konin",
+      "country": "Poland",
+      "lat": 52.227952,
+      "lng": 18.2545,
+      "start_date": "2026-11-08",
+      "end_date": "2026-12-10",
+      "image": "https://www.ebilet.pl/media/cms/media/unphyh30/1080x1080-ebilet-88fa9a29-8f38-4258-bc2a-62739214fe76.webp",
+      "ticket_url": "https://www.ebilet.pl/teatr/musicale/my-fair-lady",
+      "type": "tour",
+      "verified": true,
+      "source": "ebilet.pl",
+      "group": "my fair lady",
+      "link_kind": "ticketing",
+      "tag": "Broadway/West End",
+      "alt": "My Fair Lady 窈窕淑女 マイ・フェア・レディ 賣花女 卖花女",
+      "ticket_links": [
+        {
+          "url": "https://www.ebilet.pl/teatr/musicale/my-fair-lady",
+          "kind": "ticketing"
+        }
+      ]
+    },
+    {
+      "id": "pl-3e2f092b",
+      "title": "Next to Normal",
+      "title_en": "",
+      "venue": "Teatr Syrena w Warszawie",
+      "city": "Warszawa",
+      "country": "Poland",
+      "lat": 52.21643,
+      "lng": 21.022132,
+      "start_date": "2027-01-28",
+      "end_date": "2027-01-31",
+      "image": "https://www.ebilet.pl/media/cms/media/vq1cnd23/ntn_grafiki-02-55658b60-3876-1592-29df-a864daf85e32.webp",
+      "ticket_url": "https://www.ebilet.pl/teatr/musicale/next-to-normal",
+      "type": "tour",
+      "verified": true,
+      "source": "ebilet.pl",
+      "group": "next to normal",
+      "ticket_links": [
+        {
+          "label": "官方網站",
+          "url": "https://www.nexttonormal.com/",
+          "kind": "official"
+        },
+        {
+          "label": "售票連結",
+          "url": "https://www.ebilet.pl/teatr/musicale/next-to-normal",
+          "kind": "ticketing"
+        }
+      ],
+      "link_kind": "ticketing",
+      "tag": "Broadway/West End",
+      "alt": "Next to Normal 近乎正常"
+    },
+    {
+      "id": "pl-d39c66ec",
+      "title": "Wicked",
+      "title_en": "",
+      "venue": "Teatr Muzyczny ROMA",
+      "city": "Warszawa",
+      "country": "Poland",
+      "lat": 52.2247,
+      "lng": 21.0156,
+      "start_date": "2026-09-26",
+      "end_date": "2026-11-29",
+      "image": "https://www.ebilet.pl/media/cms/media/zrqfm4ss/a1080x1080_wicked_-8d8f58ca-20af-4fb1-ba91-0db76191f2f2.webp",
+      "ticket_url": "https://www.ebilet.pl/teatr/musicale/wicked",
+      "type": "tour",
+      "verified": true,
+      "source": "ebilet.pl",
+      "group": "wicked",
+      "ticket_links": [
+        {
+          "label": "官方網站",
+          "url": "https://wickedthemusical.com/",
+          "kind": "official"
+        },
+        {
+          "label": "售票連結",
+          "url": "https://www.ebilet.pl/teatr/musicale/wicked",
+          "kind": "ticketing"
+        }
+      ],
+      "link_kind": "ticketing",
+      "tag": "Broadway/West End",
+      "alt": "Wicked ウィキッド 女巫前傳 女巫前传 魔法壞女巫 魔法坏女巫 罪惡壞女巫 罪恶坏女巫"
+    },
+    {
+      "id": "pl-05bede20",
+      "title": "Musical Metro! To już 35 lat!",
+      "title_en": "",
+      "venue": "Hala Globus",
+      "city": "Lublin",
+      "country": "Poland",
+      "lat": 51.238696,
+      "lng": 22.532277,
+      "start_date": "2026-11-29",
+      "end_date": "2027-06-05",
+      "image": "https://www.ebilet.pl/media/cms/media/tmdlsq3e/metro35_1080x1080.webp",
+      "ticket_url": "https://www.ebilet.pl/teatr/musicale/metro-jubileusz",
+      "type": "tour",
+      "verified": true,
+      "source": "ebilet.pl",
+      "group": "musical metro to juz 35 lat",
+      "link_kind": "ticketing",
+      "tag": "歐陸原創",
+      "ticket_links": [
+        {
+          "url": "https://www.ebilet.pl/teatr/musicale/metro-jubileusz",
+          "kind": "ticketing"
+        }
+      ]
+    },
+    {
+      "id": "pl-b3e910f3",
+      "title": "Beetlejuice",
+      "title_en": "",
+      "venue": "Teatr Syrena w Warszawie",
+      "city": "Warszawa",
+      "country": "Poland",
+      "lat": 52.21643,
+      "lng": 21.022132,
+      "start_date": "2026-09-24",
+      "end_date": "2026-11-29",
+      "image": "https://www.ebilet.pl/media/cms/media/wyrp2f2b/beetlejuice-3-e3551655-2c5a-4a8a-94f0-ff0d5d34283a.webp",
+      "ticket_url": "https://www.ebilet.pl/teatr/musicale/beetlejuice",
+      "type": "tour",
+      "verified": true,
+      "source": "ebilet.pl",
+      "group": "beetlejuice",
+      "ticket_links": [
+        {
+          "label": "官方網站",
+          "url": "https://beetlejuicebroadway.com/",
+          "kind": "official"
+        },
+        {
+          "label": "售票連結",
+          "url": "https://www.ebilet.pl/teatr/musicale/beetlejuice",
+          "kind": "ticketing"
+        }
+      ],
+      "link_kind": "ticketing",
+      "tag": "Broadway/West End",
+      "alt": "Beetlejuice 陰間大法師 阴间大法师 ビートルジュース 嘩鬼家族 哗鬼家族"
     },
     {
       "id": "no-5e06a861",

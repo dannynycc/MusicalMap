@@ -151,7 +151,7 @@ scrapers/  ──產出──>  data/*.json  ──merge──>  data/shows.json
 | `data/shows.json` | **前端唯一讀的檔**，由 build 產生 |
 | `data/works.json` | **正典作品主檔**（207 筆，單一真相來源）：每齣作品的血統 tag、跨語言別名、選填海報與版本層。任何別名（`Macskák`／`キャッツ`／`Cats`）都收斂到同一作品 |
 | `data/official_sites.json` | 作品官網（224 部劇／478 條網址），依場次國家挑對應地區的官網 |
-| `data/venues_catalog.json` | 自動帶入字典（5,486 場館去重、中英劇名、幣別、海報） |
+| `data/venues_catalog.json` | 自動帶入字典（5,491 場館去重、中英劇名、幣別、海報） |
 | `data/venue_coords.json` | 場館級權威座標（建築級 ≤30m） |
 | `data/archive/<year>.json` | 歷史累積層，按年分檔 + `index.json` |
 
