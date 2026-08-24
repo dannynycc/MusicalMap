@@ -1086,11 +1086,17 @@ async function boot() {
 // 就地切換語言(i18n.switchTo 觸發):換該語言的資料+簡介、重繪,並保留畫面狀態——
 // 搜尋字(input 值不動)、地圖中心/縮放(map 物件不動)、月份(monthOffset 不動)、開著的劇卡(用 id 重開)。
 window.addEventListener("mm-langchange", async function () {
-  // 捕捉「當前開著的卡」必須在任何 render/clearLayers 之前(否則卡已被關掉,撈不到)。
-  let keepOpen = null;
+  // 捕捉「當前開著的卡 + 它開在哪個 tab」必須在任何 render/clearLayers 之前(否則卡已被關掉,撈不到)。
+  let keepOpen = null, keepTab = "tix";
   for (const id in markerById) {
     const mm = markerById[id];
-    if (mm && mm.isPopupOpen && mm.isPopupOpen()) { keepOpen = id; break; }
+    if (mm && mm.isPopupOpen && mm.isPopupOpen()) {
+      keepOpen = id;
+      const el = mm.getPopup && mm.getPopup() && mm.getPopup().getElement();
+      const story = el && el.querySelector('.pop-tab[onclick*="story"]');
+      if (story && story.getAttribute("aria-selected") === "true") keepTab = "story";
+      break;
+    }
   }
   const v = (window.MM_VARIANT) || (window.I18N && window.I18N.variant);
   // 變體頁(地圖 app)→ 就地換該語言的資料+簡介;非變體/無 loadLangData → 只重繪(沿用舊行為)。
@@ -1109,9 +1115,17 @@ window.addEventListener("mm-langchange", async function () {
   render();            // 依新語言重建側欄+marker;搜尋/地圖視野/月份自動沿用
   if (keepOpen && markerById[keepOpen]) {
     const m = markerById[keepOpen];
-    if (m._icon) m.openPopup();
-    else if (cluster.zoomToShowLayer) cluster.zoomToShowLayer(m, function () { m.openPopup(); });
-    else m.openPopup();
+    const doOpen = function () {
+      m.openPopup();
+      if (keepTab === "story") {   // 還原切換前開著的 tab(劇情),否則重建的卡預設落在票務
+        const el = m.getPopup && m.getPopup() && m.getPopup().getElement();
+        const story = el && el.querySelector('.pop-tab[onclick*="story"]');
+        if (story) window.mmTab(story, "story");
+      }
+    };
+    if (m._icon) doOpen();
+    else if (cluster.zoomToShowLayer) cluster.zoomToShowLayer(m, doOpen);
+    else doOpen();
   }
 });
 
