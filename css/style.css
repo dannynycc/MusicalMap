@@ -297,13 +297,13 @@ body:not(.ready) #count { display: none; }
   #time-range { min-width: 130px; }
 }
 @media (max-width: 680px) {
-  /* bottom:10px 讓 timebar 貼著地圖底,與 Leaflet 版權列(窄螢幕會折成兩行)重疊,
-     日期標籤被蓋住;真手機再疊上 Safari 底部工具列就整條看不到(2026-08-24 使用者回報)。
-     抬高到版權列 + 安全區(home indicator)之上,確保永遠可見可點。 */
-  #timebar { left: 4%; right: 4%;
-    bottom: calc(56px + env(safe-area-inset-bottom, 0px));
+  /* 月份滑桿移到「地圖頂部」(2026-08-24 使用者朋友回報:原本在地圖最底,又被 Leaflet 版權列
+     + Safari 底bar 蓋住,根本沒發現;直覺想在頂部換月)。一滑到地圖就看得到、不必滑到最底。
+     地圖左上縮放 +/-、右上圖層鈕會被 timebar 蓋到 → 把 Leaflet 頂部控制往下移讓開。 */
+  #timebar { left: 4%; right: 4%; top: 10px; bottom: auto;
     padding: 8px 10px; gap: 6px; }
   #time-range { min-width: 90px; }
+  .leaflet-top { top: 66px; }   /* 讓開頂部 timebar(高 ~50px + top:10px) */
 }
 
 /* poster marker */
