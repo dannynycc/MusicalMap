@@ -683,9 +683,9 @@ function popupHtml(show) {
   // ({zh:…}/{en:…}/{"zh-hans":…})。這裡語言無關地取出該筆簡介文字。
   const _synRec = show.group ? SYN[show.group] : null;
   const syn = _synRec ? (_synRec.zh || _synRec.en || _synRec["zh-hans"] || "") : "";
+  const story = syn ? syn.split(/\n{2,}/).map((p) => `<p>${esc(p)}</p>`).join("") : "";
   let ticket = "";
   if (ordered.length && syn) {
-    const story = syn.split(/\n{2,}/).map((p) => `<p>${esc(p)}</p>`).join("");
     ticket = `<div class="pop-tix pop-tabbed">
       <div class="pop-tabs" role="tablist">
         <button class="pop-tab" role="tab" aria-selected="true"  onclick="mmTab(this,'tix')">${esc(t("get_tickets"))}</button>
@@ -696,6 +696,9 @@ function popupHtml(show) {
     </div>`;
   } else if (ordered.length) {
     ticket = `<div class="pop-tix"><div class="pop-tix-h">${esc(t("get_tickets"))}</div><div class="pop-tiles">${tilesHtml}</div></div>`;
+  } else if (syn) {
+    // 有簡介但無第三方售票連結(常見於四季/迪士尼等自營劇場)→ 只顯示劇情,不因缺票就把簡介藏掉
+    ticket = `<div class="pop-tix"><div class="pop-tix-h">${esc(t("story_tab"))}</div><div class="pop-story">${story}</div></div>`;
   }
   // tour_name 通常是在地化/巡演製作名(「& Julia」「アラジン」「…North American Tour」),照用;
   // 但 TM 的 attraction 有時是「人名」(獨角戲演員,如 Harper Jones)——2~3 個首字大寫單字、
