@@ -1,34 +1,9 @@
 {
   "meta": {
     "source": "ticketmaster",
-    "count": 1065
+    "count": 1078
   },
   "shows": [
-    {
-      "id": "tm-come-from-away-allen-elizabethan-theatre",
-      "title": "Come from Away",
-      "type": "tour",
-      "venue": "Allen Elizabethan Theatre",
-      "city": "Ashland",
-      "country": "United States Of America",
-      "lat": 0.0,
-      "lng": 0.0,
-      "start_date": "2026-08-25",
-      "end_date": "2026-10-24",
-      "ticket_url": "https://www.ticketmaster.com/come-from-away-touring-tickets/artist/2459898",
-      "attraction_url": "https://www.ticketmaster.com/come-from-away-touring-tickets/artist/2459898",
-      "ticket_links": [
-        {
-          "country": "US",
-          "url": "https://www.ticketmaster.com/come-from-away-touring-tickets/artist/2459898"
-        }
-      ],
-      "image": "https://s1.ticketm.net/dam/a/daf/9c7ea07f-fd88-427e-8c69-94f92600fdaf_SOURCE",
-      "tour_name": "Come From Away (Touring)",
-      "verified": true,
-      "source": "ticketmaster",
-      "onsale_only": true
-    },
     {
       "id": "tm-the-lion-king-new-york-ny-minskoff-theatre",
       "title": "The Lion King (New York, NY)",
@@ -1130,6 +1105,31 @@
       "onsale_only": true
     },
     {
+      "id": "tm-come-from-away-allen-elizabethan-theatre",
+      "title": "Come from Away",
+      "type": "tour",
+      "venue": "Allen Elizabethan Theatre",
+      "city": "Ashland",
+      "country": "United States Of America",
+      "lat": 0.0,
+      "lng": 0.0,
+      "start_date": "2026-08-26",
+      "end_date": "2026-10-24",
+      "ticket_url": "https://www.ticketmaster.com/come-from-away-touring-tickets/artist/2459898",
+      "attraction_url": "https://www.ticketmaster.com/come-from-away-touring-tickets/artist/2459898",
+      "ticket_links": [
+        {
+          "country": "US",
+          "url": "https://www.ticketmaster.com/come-from-away-touring-tickets/artist/2459898"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/daf/9c7ea07f-fd88-427e-8c69-94f92600fdaf_SOURCE",
+      "tour_name": "Come From Away (Touring)",
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
       "id": "tm-pippin-short-north-stage-garden-theater",
       "title": "Pippin",
       "type": "tour",
@@ -2080,31 +2080,6 @@
       "onsale_only": true
     },
     {
-      "id": "tm-midnight-daryl-roth-theatre",
-      "title": "Midnight",
-      "type": "tour",
-      "venue": "Daryl Roth Theatre",
-      "city": "New York",
-      "country": "United States Of America",
-      "lat": 40.735318,
-      "lng": -73.989443,
-      "start_date": "2026-09-12",
-      "end_date": "2026-11-08",
-      "ticket_url": "https://www.ticketmaster.com/midnight-tickets/artist/4009209",
-      "attraction_url": "https://www.ticketmaster.com/midnight-tickets/artist/4009209",
-      "ticket_links": [
-        {
-          "country": "US",
-          "url": "https://www.ticketmaster.com/midnight-tickets/artist/4009209"
-        }
-      ],
-      "image": "https://s1.ticketm.net/dam/c/07d/fda8c807-42eb-4b81-9f16-f3a8367e107d_106371_TABLET_LANDSCAPE_LARGE_16_9.jpg",
-      "tour_name": null,
-      "verified": true,
-      "source": "ticketmaster",
-      "onsale_only": true
-    },
-    {
       "id": "tm-buena-vista-social-club-shea-s-buffalo-theatre",
       "title": "Buena Vista Social Club",
       "type": "tour",
@@ -2425,6 +2400,31 @@
       ],
       "image": "https://s1.ticketm.net/dam/a/1c8/4c6416b3-a0d2-41ac-a495-e40cae8581c8_SOURCE",
       "tour_name": "The Phantom of the Opera (Touring)",
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
+      "id": "tm-midnight-daryl-roth-theatre",
+      "title": "Midnight",
+      "type": "tour",
+      "venue": "Daryl Roth Theatre",
+      "city": "New York",
+      "country": "United States Of America",
+      "lat": 40.735318,
+      "lng": -73.989443,
+      "start_date": "2026-09-17",
+      "end_date": "2026-11-08",
+      "ticket_url": "https://www.ticketmaster.com/midnight-tickets/artist/4009209",
+      "attraction_url": "https://www.ticketmaster.com/midnight-tickets/artist/4009209",
+      "ticket_links": [
+        {
+          "country": "US",
+          "url": "https://www.ticketmaster.com/midnight-tickets/artist/4009209"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/c/07d/fda8c807-42eb-4b81-9f16-f3a8367e107d_106371_TABLET_LANDSCAPE_LARGE_16_9.jpg",
+      "tour_name": null,
       "verified": true,
       "source": "ticketmaster",
       "onsale_only": true
@@ -7180,6 +7180,31 @@
       "onsale_only": true
     },
     {
+      "id": "tm-the-wiz-majestic-theatre-san-antonio",
+      "title": "The Wiz",
+      "type": "tour",
+      "venue": "Majestic Theatre San Antonio",
+      "city": "San Antonio",
+      "country": "United States Of America",
+      "lat": 29.424801,
+      "lng": -98.488503,
+      "start_date": "2026-10-30",
+      "end_date": "2026-10-31",
+      "ticket_url": "https://www.ticketmaster.com/the-wiz-touring-tickets/artist/3007845",
+      "attraction_url": "https://www.ticketmaster.com/the-wiz-touring-tickets/artist/3007845",
+      "ticket_links": [
+        {
+          "country": "US",
+          "url": "https://www.ticketmaster.com/the-wiz-touring-tickets/artist/3007845"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/f3c/cccfecb4-60ce-4467-b89f-74db91da1f3c_SOURCE",
+      "tour_name": "The Wiz (Touring)",
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
       "id": "tm-my-generation-fred-kavli-theatre-b-of-a-performing-arts-center-thousand-oaks",
       "title": "My Generation",
       "type": "tour",
@@ -8330,6 +8355,31 @@
       "onsale_only": true
     },
     {
+      "id": "tm-cabaret-alys-robinson-stephens-pac",
+      "title": "Cabaret",
+      "type": "tour",
+      "venue": "Alys Robinson Stephens PAC",
+      "city": "Birmingham",
+      "country": "United States Of America",
+      "lat": 33.5065,
+      "lng": -86.808601,
+      "start_date": "2026-11-11",
+      "end_date": "2026-11-15",
+      "ticket_url": "https://www.ticketmaster.com/cabaret-tickets/artist/844059",
+      "attraction_url": "https://www.ticketmaster.com/cabaret-tickets/artist/844059",
+      "ticket_links": [
+        {
+          "country": "US",
+          "url": "https://www.ticketmaster.com/cabaret-tickets/artist/844059"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/fe9/1aa77c82-3708-4a3b-85fc-301938d10fe9_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
       "id": "tm-the-lion-king-whitney-hall",
       "title": "The Lion King",
       "type": "tour",
@@ -8500,6 +8550,31 @@
       ],
       "image": "https://s1.ticketm.net/dam/c/07d/fda8c807-42eb-4b81-9f16-f3a8367e107d_106371_TABLET_LANDSCAPE_LARGE_16_9.jpg",
       "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
+      "id": "tm-annie-woodland-opera-house",
+      "title": "Annie",
+      "type": "tour",
+      "venue": "Woodland Opera House",
+      "city": "Woodland",
+      "country": "United States Of America",
+      "lat": 38.6796,
+      "lng": -121.764397,
+      "start_date": "2026-11-13",
+      "end_date": "2026-11-29",
+      "ticket_url": "https://www.ticketmaster.com/annie-touring-tickets/artist/1982741",
+      "attraction_url": "https://www.ticketmaster.com/annie-touring-tickets/artist/1982741",
+      "ticket_links": [
+        {
+          "country": "US",
+          "url": "https://www.ticketmaster.com/annie-touring-tickets/artist/1982741"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/58d/0fd40389-b660-40e3-a278-c973367ee58d_SOURCE",
+      "tour_name": "Annie (Touring)",
       "verified": true,
       "source": "ticketmaster",
       "onsale_only": true
@@ -9430,6 +9505,31 @@
       "onsale_only": true
     },
     {
+      "id": "tm-annie-rodey-theatre",
+      "title": "Annie",
+      "type": "tour",
+      "venue": "Rodey Theatre",
+      "city": "Albuquerque",
+      "country": "United States Of America",
+      "lat": 35.09,
+      "lng": -106.619003,
+      "start_date": "2026-11-20",
+      "end_date": "2026-11-29",
+      "ticket_url": "https://www.ticketmaster.com/annie-touring-tickets/artist/1982741",
+      "attraction_url": "https://www.ticketmaster.com/annie-touring-tickets/artist/1982741",
+      "ticket_links": [
+        {
+          "country": "US",
+          "url": "https://www.ticketmaster.com/annie-touring-tickets/artist/1982741"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/58d/0fd40389-b660-40e3-a278-c973367ee58d_SOURCE",
+      "tour_name": "Annie (Touring)",
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
       "id": "tm-holiday-inn-the-tuacahn-amphitheatre",
       "title": "Holiday Inn",
       "type": "tour",
@@ -9449,6 +9549,31 @@
         }
       ],
       "image": "https://s1.ticketm.net/dam/c/aae/b503db1a-c908-473b-a218-96d123cd5aae_105501_TABLET_LANDSCAPE_LARGE_16_9.jpg",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
+      "id": "tm-annie-tarrytown-music-hall",
+      "title": "Annie",
+      "type": "tour",
+      "venue": "Tarrytown Music Hall",
+      "city": "Tarrytown",
+      "country": "United States Of America",
+      "lat": 41.085098,
+      "lng": -73.846001,
+      "start_date": "2026-11-21",
+      "end_date": "2026-11-29",
+      "ticket_url": "https://www.ticketmaster.com/annie-tickets/artist/844866",
+      "attraction_url": "https://www.ticketmaster.com/annie-tickets/artist/844866",
+      "ticket_links": [
+        {
+          "country": "US",
+          "url": "https://www.ticketmaster.com/annie-tickets/artist/844866"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/196/675fc888-a2b7-4c4d-9fea-4f33d466b196_SOURCE",
       "tour_name": null,
       "verified": true,
       "source": "ticketmaster",
@@ -9930,6 +10055,31 @@
       "onsale_only": true
     },
     {
+      "id": "tm-dolly-parton-s-smoky-mountain-christmas-carol-state-theatre",
+      "title": "Dolly Parton's Smoky Mountain Christmas Carol",
+      "type": "tour",
+      "venue": "State Theatre",
+      "city": "Minneapolis",
+      "country": "United States Of America",
+      "lat": 44.976832,
+      "lng": -93.276688,
+      "start_date": "2026-11-24",
+      "end_date": "2026-11-24",
+      "ticket_url": "https://www.ticketmaster.com/dolly-partons-smoky-mountain-christmas-carol-tickets/artist/2906715",
+      "attraction_url": "https://www.ticketmaster.com/dolly-partons-smoky-mountain-christmas-carol-tickets/artist/2906715",
+      "ticket_links": [
+        {
+          "country": "US",
+          "url": "https://www.ticketmaster.com/dolly-partons-smoky-mountain-christmas-carol-tickets/artist/2906715"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/a45/c25f8976-1d3d-4880-98b6-694bc833da45_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
       "id": "tm-elf-reynolds-hall",
       "title": "Elf",
       "type": "tour",
@@ -10025,6 +10175,31 @@
       ],
       "image": "https://s1.ticketm.net/dam/a/912/10f7a2ee-92bb-45eb-9f75-b1156ce0c912_SOURCE",
       "tour_name": "A Christmas Story: The Musical (Touring)",
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
+      "id": "tm-annie-winningstad-theatre",
+      "title": "Annie",
+      "type": "tour",
+      "venue": "Winningstad Theatre",
+      "city": "Portland",
+      "country": "United States Of America",
+      "lat": 45.518398,
+      "lng": -122.674301,
+      "start_date": "2026-11-27",
+      "end_date": "2026-12-20",
+      "ticket_url": "https://www.ticketmaster.com/annie-touring-tickets/artist/1982741",
+      "attraction_url": "https://www.ticketmaster.com/annie-touring-tickets/artist/1982741",
+      "ticket_links": [
+        {
+          "country": "US",
+          "url": "https://www.ticketmaster.com/annie-touring-tickets/artist/1982741"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/58d/0fd40389-b660-40e3-a278-c973367ee58d_SOURCE",
+      "tour_name": "Annie (Touring)",
       "verified": true,
       "source": "ticketmaster",
       "onsale_only": true
@@ -10580,6 +10755,31 @@
       "onsale_only": true
     },
     {
+      "id": "tm-annie-wagon-wheel-center-for-the-arts",
+      "title": "Annie",
+      "type": "tour",
+      "venue": "Wagon Wheel Center for the Arts",
+      "city": "Warsaw",
+      "country": "United States Of America",
+      "lat": 41.243,
+      "lng": -85.860802,
+      "start_date": "2026-12-04",
+      "end_date": "2026-12-20",
+      "ticket_url": "https://www.ticketmaster.com/annie-touring-tickets/artist/1982741",
+      "attraction_url": "https://www.ticketmaster.com/annie-touring-tickets/artist/1982741",
+      "ticket_links": [
+        {
+          "country": "US",
+          "url": "https://www.ticketmaster.com/annie-touring-tickets/artist/1982741"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/58d/0fd40389-b660-40e3-a278-c973367ee58d_SOURCE",
+      "tour_name": "Annie (Touring)",
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
       "id": "tm-daniel-in-the-lions-den-tour-family-arena",
       "title": "Daniel In The Lions' Den Tour",
       "type": "tour",
@@ -10600,6 +10800,31 @@
       ],
       "image": "https://s1.ticketm.net/dam/a/d67/eb48f90b-950f-4ead-b3a5-789dfa3a1d67_SOURCE",
       "tour_name": "Daniel In The Lions' Den",
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
+      "id": "tm-annie-weinberg-center-for-the-arts",
+      "title": "Annie",
+      "type": "tour",
+      "venue": "Weinberg Center For The Arts",
+      "city": "Frederick",
+      "country": "United States Of America",
+      "lat": 39.439301,
+      "lng": -77.342796,
+      "start_date": "2026-12-04",
+      "end_date": "2026-12-06",
+      "ticket_url": "https://www.ticketmaster.com/annie-touring-tickets/artist/1982741",
+      "attraction_url": "https://www.ticketmaster.com/annie-touring-tickets/artist/1982741",
+      "ticket_links": [
+        {
+          "country": "US",
+          "url": "https://www.ticketmaster.com/annie-touring-tickets/artist/1982741"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/58d/0fd40389-b660-40e3-a278-c973367ee58d_SOURCE",
+      "tour_name": "Annie (Touring)",
       "verified": true,
       "source": "ticketmaster",
       "onsale_only": true
@@ -12800,6 +13025,31 @@
       ],
       "image": "https://s1.ticketm.net/dam/a/ee9/68bffb18-e2ba-49c2-bb45-954639b05ee9_SOURCE",
       "tour_name": "The Outsiders (Touring)",
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
+      "id": "tm-legally-blonde-cerritos-center-for-the-performing-arts",
+      "title": "Legally Blonde",
+      "type": "tour",
+      "venue": "Cerritos Center for the Performing Arts",
+      "city": "Cerritos",
+      "country": "United States Of America",
+      "lat": 33.86799,
+      "lng": -118.06182,
+      "start_date": "2027-01-19",
+      "end_date": "2027-01-21",
+      "ticket_url": "https://www.ticketmaster.com/legally-blonde-tickets/artist/1088449",
+      "attraction_url": "https://www.ticketmaster.com/legally-blonde-tickets/artist/1088449",
+      "ticket_links": [
+        {
+          "country": "US",
+          "url": "https://www.ticketmaster.com/legally-blonde-tickets/artist/1088449"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/e/c46/8015f25f-574f-4511-9c94-3645ea5d0c46_SOURCE",
+      "tour_name": null,
       "verified": true,
       "source": "ticketmaster",
       "onsale_only": true
@@ -15200,6 +15450,56 @@
       ],
       "image": "https://s1.ticketm.net/dam/e/d14/6eb8adf3-4961-44d0-9bcc-3225e0de9d14_TABLET_LANDSCAPE_LARGE_16_9.jpg",
       "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
+      "id": "tm-hadestown-dpac",
+      "title": "Hadestown",
+      "type": "tour",
+      "venue": "DPAC",
+      "city": "Durham",
+      "country": "United States Of America",
+      "lat": 35.993306,
+      "lng": -78.902225,
+      "start_date": "2027-03-05",
+      "end_date": "2027-03-07",
+      "ticket_url": "https://www.ticketmaster.com/hadestown-touring-tickets/artist/2737495",
+      "attraction_url": "https://www.ticketmaster.com/hadestown-touring-tickets/artist/2737495",
+      "ticket_links": [
+        {
+          "country": "US",
+          "url": "https://www.ticketmaster.com/hadestown-touring-tickets/artist/2737495"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/61e/742b6e05-ae36-426c-a21f-91727d67e61e_SOURCE",
+      "tour_name": "Hadestown (Touring)",
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
+      "id": "tm-annie-high-point-theatre-nc",
+      "title": "Annie",
+      "type": "tour",
+      "venue": "High Point Theatre - NC",
+      "city": "High Point",
+      "country": "United States Of America",
+      "lat": 35.980801,
+      "lng": -80.127197,
+      "start_date": "2027-03-05",
+      "end_date": "2027-03-07",
+      "ticket_url": "https://www.ticketmaster.com/annie-touring-tickets/artist/1982741",
+      "attraction_url": "https://www.ticketmaster.com/annie-touring-tickets/artist/1982741",
+      "ticket_links": [
+        {
+          "country": "US",
+          "url": "https://www.ticketmaster.com/annie-touring-tickets/artist/1982741"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/58d/0fd40389-b660-40e3-a278-c973367ee58d_SOURCE",
+      "tour_name": "Annie (Touring)",
       "verified": true,
       "source": "ticketmaster",
       "onsale_only": true
@@ -18255,6 +18555,31 @@
       "onsale_only": true
     },
     {
+      "id": "tm-in-the-heights-phoenix-theatre-stephenson-theatre",
+      "title": "In the Heights",
+      "type": "tour",
+      "venue": "Phoenix Theatre - Stephenson Theatre",
+      "city": "Phoenix",
+      "country": "United States Of America",
+      "lat": 33.452999,
+      "lng": -112.069702,
+      "start_date": "2027-05-19",
+      "end_date": "2027-06-20",
+      "ticket_url": "https://www.ticketmaster.com/in-the-heights-touring-tickets/artist/1516493",
+      "attraction_url": "https://www.ticketmaster.com/in-the-heights-touring-tickets/artist/1516493",
+      "ticket_links": [
+        {
+          "country": "US",
+          "url": "https://www.ticketmaster.com/in-the-heights-touring-tickets/artist/1516493"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/c/07d/fda8c807-42eb-4b81-9f16-f3a8367e107d_106371_TABLET_LANDSCAPE_LARGE_16_9.jpg",
+      "tour_name": "In the Heights (Touring)",
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
       "id": "tm-legally-blonde-capital-one-hall",
       "title": "Legally Blonde",
       "type": "tour",
@@ -20614,7 +20939,7 @@
       "lat": 19.437771,
       "lng": -99.161629,
       "start_date": "2026-08-28",
-      "end_date": "2026-08-30",
+      "end_date": "2026-11-01",
       "ticket_url": "https://www.ticketmaster.com/mentiras-tickets/artist/1343168",
       "attraction_url": "https://www.ticketmaster.com/mentiras-tickets/artist/1343168",
       "ticket_links": [
@@ -20689,7 +21014,7 @@
       "lat": 19.437771,
       "lng": -99.161629,
       "start_date": "2026-08-29",
-      "end_date": "2026-09-26",
+      "end_date": "2026-10-31",
       "ticket_url": "https://www.ticketmaster.com/mentidrags-tickets/artist/2720516",
       "attraction_url": "https://www.ticketmaster.com/mentidrags-tickets/artist/2720516",
       "ticket_links": [
@@ -20714,7 +21039,7 @@
       "lat": 19.43663,
       "lng": -99.143532,
       "start_date": "2026-08-30",
-      "end_date": "2026-08-30",
+      "end_date": "2026-09-27",
       "ticket_url": "https://www.ticketmaster.com/descubriendo-a-cri-cri-tickets/artist/2910493",
       "attraction_url": "https://www.ticketmaster.com/descubriendo-a-cri-cri-tickets/artist/2910493",
       "ticket_links": [
@@ -22064,7 +22389,7 @@
       "lat": 51.512019,
       "lng": -0.13324,
       "start_date": "2026-08-25",
-      "end_date": "2027-03-14",
+      "end_date": "2027-01-23",
       "ticket_url": "https://www.ticketmaster.com/oliver-touring-tickets/artist/1424800",
       "attraction_url": "https://www.ticketmaster.com/oliver-touring-tickets/artist/1424800",
       "ticket_links": [
@@ -23180,8 +23505,8 @@
       "onsale_only": true
     },
     {
-      "id": "tm-jeff-wayne-s-the-war-of-the-worlds-sec-armadillo",
-      "title": "Jeff Wayne's the War of the Worlds",
+      "id": "tm-jeff-wayne-s-musical-version-of-the-war-of-the-worlds-sec-armadillo",
+      "title": "Jeff Wayne's Musical Version of The War of The Worlds",
       "type": "tour",
       "venue": "SEC Armadillo",
       "city": "Glasgow",
@@ -23199,7 +23524,7 @@
         }
       ],
       "image": "https://s1.ticketm.net/dam/a/a77/91119429-781f-4147-91cb-ce83206c1a77_SOURCE",
-      "tour_name": null,
+      "tour_name": "Jeff Wayne's the War of the Worlds",
       "verified": true,
       "source": "ticketmaster",
       "onsale_only": true
@@ -23455,8 +23780,8 @@
       "onsale_only": true
     },
     {
-      "id": "tm-andrew-lloyd-webber-s-love-never-dies-the-phantom-returns-the-london-palladium",
-      "title": "Andrew Lloyd Webber's LOVE NEVER DIES - The Phantom Returns",
+      "id": "tm-love-never-dies-the-london-palladium",
+      "title": "Love Never Dies",
       "type": "tour",
       "venue": "The London Palladium",
       "city": "London",
@@ -25888,7 +26213,7 @@
       "country": "Denmark",
       "lat": 55.67971,
       "lng": 12.53344,
-      "start_date": "2026-08-26",
+      "start_date": "2026-08-29",
       "end_date": "2026-09-26",
       "ticket_url": "https://www.ticketmaster.com/tina-the-tina-turner-musical-tickets/artist/2383230",
       "attraction_url": "https://www.ticketmaster.com/tina-the-tina-turner-musical-tickets/artist/2383230",
@@ -25964,7 +26289,7 @@
       "lat": 57.04346,
       "lng": 9.91332,
       "start_date": "2026-10-21",
-      "end_date": "2026-10-25",
+      "end_date": "2026-10-23",
       "ticket_url": "https://www.ticketmaster.com/tina-the-tina-turner-musical-tickets/artist/2383230",
       "attraction_url": "https://www.ticketmaster.com/tina-the-tina-turner-musical-tickets/artist/2383230",
       "ticket_links": [
