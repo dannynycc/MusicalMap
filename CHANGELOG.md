@@ -11,6 +11,15 @@
 
 ---
 
+## [v2.88.0] - 2026-08-26 02:13
+
+### 韓國名劇知識庫先入庫首批 10 部三語(整夜 loop tier,超嚴格多源交叉)
+
+過夜 tier 任務第一階段:10 部知名韓國原創音樂劇三語入庫(先入庫/forward-bank,catalog 目前無場次,待韓國製作巡演亞洲自動掛卡)。每部由 agent 做超嚴格多源交叉(英文維基+韓語 나무위키/위키백과+售票處 Interpark+官網+韓語劇評,≥3 獨立來源),confidence 未達 high 不寫;人工據 verified 事實親筆三語(繁中手寫、簡中 OpenCC、英文自然英語)。
+
+- **10 部**:Frankenstein 프랑켄슈타인、Hero 영웅、The Last Empress 명성황후、Marie Curie 마리 퀴리、The Man Who Laughs 웃는 남자、Mata Hari 마타하리、Interview 인터뷰、Xcalibur 엑스칼리버、Ben-Hur 벤허、Gwanghwamun Sonata 광화문 연가。
+- **多源交叉抓出並更正的錯誤**:Hero 作曲為오상준(정성화是主演非作曲)、Ben-Hur 非 Frank Wildhorn 而是王容範+李聖俊(與 Frankenstein 同班底)、Gwanghwamun 製作非 EMK 而是 CJ ENM+首爾市音樂劇團。史實(안중근/明成皇后乙未事變)逐項核對。
+- library 三語 182→192;殘留掃描 0。此批為 forward-bank,不改動 served/正式站(catalog 無場次),僅持久化後台庫。
 ## [v2.87.2] - 2026-08-26 01:29
 
 ### Masquerade 沉浸式簡介定稿(使用者逐句校訂)
