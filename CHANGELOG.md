@@ -11,6 +11,12 @@
 
 ---
 
+## [v2.88.3] - 2026-08-26 02:34
+
+### 整夜 tier:5 部經典音樂劇先入庫三語
+
+Spring Awakening、In the Heights、The Color Purple、Dreamgirls、Ragtime——catalog 目前無場次,先入庫三語(有巡演自動掛卡)。agent 查 Wikipedia+官方確認音樂劇+劇情+主創+史實;人工據 verified 事實親筆三語。library 202→207,殘留 0。此批 forward-bank 不改 served。
+
 ## [v2.88.2] - 2026-08-26 02:26
 
 ### 整夜 tier:再新增 5 部 Western 音樂劇三語(有場次卡片)
