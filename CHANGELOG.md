@@ -11,6 +11,12 @@
 
 ---
 
+## [v2.88.8] - 2026-08-26 03:05
+
+### 整夜 tier:5 部經典音樂劇先入庫三語
+
+The Drowsy Chaperone、A Gentleman's Guide to Love and Murder、Natasha Pierre & the Great Comet of 1812、The Scottsboro Boys、The Light in the Piazza——先入庫三語。agent 查證高信心;人工據 verified 事實親筆三語。library 227→232,殘留 0。
+
 ## [v2.88.7] - 2026-08-26 02:59
 
 ### 整夜 tier:5 部音樂劇三語(Full Monty 有場次上線 + 4 部先入庫)
