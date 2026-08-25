@@ -11,6 +11,12 @@
 
 ---
 
+## [v2.88.6] - 2026-08-26 02:54
+
+### 整夜 tier:5 部經典音樂劇先入庫三語
+
+Assassins、Merrily We Roll Along、Grand Hotel、City of Angels、Titanic——先入庫三語。agent 查 Wikipedia+官方確認音樂劇+劇情+主創+史實;人工據 verified 事實親筆三語。library 217→222,殘留 0。
+
 ## [v2.88.5] - 2026-08-26 02:48
 
 ### 整夜 tier:5 部經典音樂劇先入庫三語
