@@ -11,6 +11,15 @@
 
 ---
 
+## [v2.88.9] - 2026-08-26 03:10
+
+### 整夜 tier 完成:知識庫共新增 55 部三語(10 韓國名劇 + 45 西方經典)
+
+過夜 loop 任務全數完成,knowledge library 三語 182→237(+55)。方法:每部 5 組 agent 平行多源查證(Western 走 Wikipedia+官方/MTI;10 部韓國名劇加做韓語 나무위키/위키+Interpark+韓語劇評的超嚴格 ≥3 獨立來源交叉,confidence 未達 high 不寫),再由人工據 verified 事實親筆撰寫三語(繁中手寫、簡中 OpenCC、英文自然英語)。全程殘留掃描 0、0 部跳過。
+
+- **本批 5 部**:Caroline or Change、Passion、Big Fish、The Prom、The Wedding Singer(有場次上線)。library 232→237、served 193→194。
+- **多源交叉抓出並更正**(尤其韓劇):Hero 作曲오상준(非主演정성화)、Ben-Hur 非 Wildhorn 而是王容範+李聖俊、光化門戀歌製作為 CJ ENM(非 EMK)。
+- **有場次即時上線(卡片)**:12 部(Bright Star/Memphis/Tarzan/Tuck Everlasting/Falsettos/She Loves Me/Nine/1776/Damn Yankees/Bat Boy/Full Monty/Wedding Singer);其餘 43 部為 forward-bank(含 10 韓劇),待巡演自動掛卡。
 ## [v2.88.8] - 2026-08-26 03:05
 
 ### 整夜 tier:5 部經典音樂劇先入庫三語
