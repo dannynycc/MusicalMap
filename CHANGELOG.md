@@ -11,6 +11,11 @@
 
 ---
 
+## [v2.88.2] - 2026-08-26 02:26
+
+### 整夜 tier:再新增 5 部 Western 音樂劇三語(有場次卡片)
+
+She Loves Me、Nine、1776、Damn Yankees、Bat Boy——catalog 有場次,三語入庫上線。agent 查 Wikipedia+官方/MTI 確認音樂劇+劇情+主創(1776 史實逐項核對);人工據 verified 事實親筆三語。library 197→202、served 187→192,殘留 0,gen_site 重建。
 ## [v2.88.1] - 2026-08-26 02:19
 
 ### 整夜 tier:新增 5 部 Western 音樂劇三語(有場次、卡片顯示)
