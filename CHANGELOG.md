@@ -11,6 +11,11 @@
 
 ---
 
+## [v2.88.1] - 2026-08-26 02:19
+
+### 整夜 tier:新增 5 部 Western 音樂劇三語(有場次、卡片顯示)
+
+Bright Star、Memphis、Tarzan、Tuck Everlasting、Falsettos——皆 catalog 有場次,三語入庫並上線顯示卡片。agent 查 Wikipedia+官方/授權方確認音樂劇+劇情+主創;人工據 verified 事實親筆三語。library 192→197、served 182→187,殘留 0,gen_site 重建 DATA_VER 更新。
 ## [v2.88.0] - 2026-08-26 02:13
 
 ### 韓國名劇知識庫先入庫首批 10 部三語(整夜 loop tier,超嚴格多源交叉)
