@@ -11,6 +11,12 @@
 
 ---
 
+## [v2.88.4] - 2026-08-26 02:41
+
+### 整夜 tier:5 部黃金年代經典音樂劇先入庫三語
+
+Company、Gypsy、Newsies、Hello, Dolly!、Kiss Me, Kate——先入庫三語。agent 查 Wikipedia+官方/MTI 確認音樂劇+劇情+主創;人工據 verified 事實親筆三語。library 207→212,殘留 0,forward-bank 不改 served。
+
 ## [v2.88.3] - 2026-08-26 02:34
 
 ### 整夜 tier:5 部經典音樂劇先入庫三語
