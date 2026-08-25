@@ -11,6 +11,11 @@
 
 ---
 
+## [v2.88.7] - 2026-08-26 02:59
+
+### 整夜 tier:5 部音樂劇三語(Full Monty 有場次上線 + 4 部先入庫)
+
+Once on This Island、The Pajama Game、Bye Bye Birdie、Kiss of the Spider Woman(先入庫)、The Full Monty(catalog 有場次、卡片上線)。agent 查證高信心;人工據 verified 事實親筆三語。library 222→227、served 192→193,殘留 0,gen_site 重建。
 ## [v2.88.6] - 2026-08-26 02:54
 
 ### 整夜 tier:5 部經典音樂劇先入庫三語
