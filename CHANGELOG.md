@@ -11,6 +11,12 @@
 
 ---
 
+## [v2.88.5] - 2026-08-26 02:48
+
+### 整夜 tier:5 部經典音樂劇先入庫三語
+
+Camelot、Brigadoon、Aida、American Idiot、Godspell——先入庫三語(agent 查證高信心;Aida/American Idiot 檔案遺失但已驗 high,據 verified 事實撰寫)。library 212→217,殘留 0。清除 Brigadoon agent 誤放於 repo 的 data/synopses_draft 檔。
+
 ## [v2.88.4] - 2026-08-26 02:41
 
 ### 整夜 tier:5 部黃金年代經典音樂劇先入庫三語
