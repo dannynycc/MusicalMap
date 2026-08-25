@@ -11,6 +11,16 @@
 
 ---
 
+## [v2.87.0] - 2026-08-25 23:38
+
+### 西方經典音樂劇簡介:新增 22 部三語(改用 agent 查證+人工撰寫,棄用不穩的 Perplexity)
+
+原本經典 24 部走 Perplexity 生成,嚴重限流(英文 0/24、繁中 9/24),且 Perplexity 對冷門劇曾幻覺。改用對台灣那套可靠流程:5 組 agent 逐部查 Wikipedia/官方/授權方(MTI/Concord/R&H),確認音樂劇 vs 話劇、劇情、角色、史實;再由人工據 verified 事實親筆寫三語(繁中手寫、簡中 OpenCC、英文手寫)。
+
+- **揪出 2 部話劇剔除**(這是音樂劇地圖):**Oh, Mary!**(Cole Escola,僅少量配樂無歌唱敘事)、**The Picture of Dorian Gray**(Kip Williams 版,Sarah Snook 憑此獲 2025 東尼「最佳話劇女主角」)。
+- **新增 22 部三語**:Into the Woods、Little Shop of Horrors、Sunday in the Park with George、The Last Five Years、Putnam County Spelling Bee、Urinetown、Billy Elliot、Barnum、Parade、Fun Home、Carousel、La Cage aux Folles、The Pirates of Penzance、School of Rock、Jekyll & Hyde、Young Frankenstein、Kimberly Akimbo、Suffs、The Devil Wears Prada、Just in Time、Beautiful、Million Dollar Quartet。
+- **史實/類型嚴謹**:Parade 的 Leo Frank 案(1913 Mary Phagan 遇害、1915 私刑)逐項核對;Pirates of Penzance 註明為 G&S 喜歌劇;Little Shop 舞台版悲劇黑色結局;Fun Home 父親死因保留曖昧(Alison 推測);Devil Wears Prada 為較新作品、沿用電影/小說主線。
+- **入庫**:kb_merge 三語 library 160→182(0 覆蓋,22 全新增)、build_served 同步 served 182/語(全 22 部命中 catalog)、殘留掃描 0、gen_site 重建 DATA_VER 更新。
 ## [v2.86.1] - 2026-08-25 23:16
 
 ### 台灣新增 24 部的來源誠信複核 + 無聲の海腳間仔地名精準化
