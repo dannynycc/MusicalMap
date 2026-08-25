@@ -11,6 +11,26 @@
 
 ---
 
+## [v2.83.1] - 2026-08-25 08:14
+
+### 知識庫首批入庫:28 部知名音樂劇三語簡介(library/served 81→109)
+
+把「Tier1」28 部知名百老匯/西區音樂劇的三語簡介生成、逐部人工 QA 後併入後台知識庫,前端 served 同步增加:
+- **入庫**:`kb_merge` 三語各 +28 group(0 覆蓋),`data/synopses_library/` 81→109;`build_served_synopses`
+  過濾 library ∩ catalog(677 group)→ `data/synopses/` 81→109。28 部全部命中 catalog(卡片數如 Gatsby 23、
+  Tommy 13、Hell's Kitchen 12),**0 孤兒 group、原 81 部一部未掉**。`gen_site` 重建(DATA_VER ef4afac→dd1ec0)。
+- **🐛 修 `kb_merge.py` 致命 bug**:`keymap` 變數被 `keymap=[]` 覆蓋成 list 後又呼叫 `.get()`,一跑就崩且
+  keymap 檔被忽略;log 用途的 list 改名 `keylog`。(v2.83.0 提交的版本是壞的,從未成功跑過。)
+- **逐部人工 QA 修正**(自動掃描抓不到、須熟劇者通讀):
+  - 人物錯置——簡中《世界大戰》記者未婚妻誤植為牧師之妻 Beth(→ 卡莉/Carrie);簡中《Hell's Kitchen》
+    把父親戴维斯誤當教鋼琴的鄰居(→ 正確為鋼琴家鄰居莉莎·简,戴维斯是後來重現的父親);簡中《Mystic Pizza》
+    把凱特的對象蒂姆寫成「富家男孩/階層差異」(→ 正確為她去當保母的已婚年长建築師)。
+  - 殘留清理——多部混入「全劇總結/总结:」標題文字、來源 slug(concordtheatricals/mtishows/chicagodefender/
+    newyorktheater/menopausethemusical)、地名直譯(繁中 Leatherhead「皮革頭」→ 萊瑟黑德)、英文括號註記
+    (The Outsiders「(Dally)」)。
+- **生成流程學到**:Perplexity 反覆「無法啟動工作階段」主要是**帳號階段性限流/負載**,非特定片名——同名劇在
+  別語言可成功,閒置時段單串流重試即通(Hell's Kitchen/BOOP/Oliver! 三部英文最後都補齊)。三語各 28 部全數到位。
+
 ## [v2.83.0] - 2026-08-25 11:58
 
 ### 後台音樂劇知識庫基礎設施(前端零變動)

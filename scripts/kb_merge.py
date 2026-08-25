@@ -38,7 +38,7 @@ def main():
     d = json.load(io.open(DATA, encoding="utf-8"))
     syn = d["syn"]
     before = len(syn)
-    added = 0; updated = 0; keymap = []
+    added = 0; updated = 0; keylog = []
     for r in gen:
         title = r.get("show") or r.get("title")
         text = r.get("synopsis") or r.get("text")
@@ -51,11 +51,11 @@ def main():
         else:
             added += 1
         rec[SUB] = text
-        keymap.append("%s -> %s" % (title, key))
+        keylog.append("%s -> %s" % (title, key))
     json.dump(d, io.open(DATA, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
     log("=== kb_merge %s: %d 筆輸入; group 新增 %d, 覆蓋 %d; 庫從 %d -> %d ===" %
         (LANG, len(gen), added, updated, before, len(syn)))
-    for k in keymap:
+    for k in keylog:
         log("   " + k)
 
 if __name__ == "__main__":
