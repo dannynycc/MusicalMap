@@ -11,6 +11,28 @@
 
 ---
 
+## [v2.84.0] - 2026-08-25 11:08
+
+### 簡介全面品質翻修:開頭改「直接入戲」+ 逐部人工全讀 81 部 + 新增 8 部(→117)
+
+使用者指出兩件事:(1)簡介開頭滿是「《劇名》描寫/描述/講述…」書評口吻,不像在講音樂劇;(2)我先前只 QA 了 Tier1 28 部、原本 81 部從沒讀過。全面翻修:
+
+- **開頭全部改成場景開場(使用者選「直接入戲、無框架」)**:三語掃出並改寫 **160+ 個**書評式/框架開頭
+  (繁中 描寫/描述/講述/以…為背景/為主軸;簡中 讲述;英文 follows/narrates),拿掉「《劇名》+動詞」的
+  meta 框架,第一句直接進故事;並**逐部檢查頭兩句流暢度**,修掉因只改首句造成的 **60 餘處第一二句重複**
+  (使用者提醒「有時要頭兩句一起改」)。標點統一全形。
+- **逐部人工全讀原本 81 部 × 三語本文**(先前只讀 Tier1):內容準確度整體極高,修正:簡中《世界大戰》未婚妻
+  誤植、《Hell's Kitchen》父親當成鋼琴老師、《Mystic Pizza》蒂姆角色錯置(前版已修);本輪再修簡中 SIX
+  「凱瑟琳·帕」漏字、《綠野仙蹤》銀鞋→紅寶石鞋(MGM 版,與繁中一致;《The Wiz》維持銀鞋)、Spamalot
+  「高文」→貝德維爾(此劇無 Gawain);清掉多部殘留時間戳(清晨X:XX)與來源 slug(nsmt/theatermania/
+  newyorktheatreguide/+1 等)。
+- **新增 8 部知名劇(使用者點名)**:Titanique、The Greatest Showman(大娛樂家/馬戲之王)、The Hunchback
+  of Notre Dame(迪士尼版,與法文 Notre-Dame de Paris 為不同劇)、Paddington the Musical、Masquerade
+  (Phantom 重構)、Jane Eyre、Fifty Shades! The Musical Parody、Dracula(Frank Wildhorn)。三語生成+逐部
+  QA(修簡中《大娛樂家》把菲利普誤列為空中飛人等)。庫 **109→117**,前端 served 同步 117,8 部全命中 catalog。
+- **入庫流程修正**:先把含全部 QA 改進的 served 同步回後台庫,再 build_served,避免舊庫覆蓋改進。gen_site 重建
+  DATA_VER dd1ec0→cb1e78。
+
 ## [v2.83.1] - 2026-08-25 08:14
 
 ### 知識庫首批入庫:28 部知名音樂劇三語簡介(library/served 81→109)
