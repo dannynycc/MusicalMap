@@ -11,6 +11,17 @@
 
 ---
 
+## [v2.95.1] - 2026-08-27 07:29
+
+### 德奧緩收 3 部補齊入庫(Comet 恢復後補空 + 嚴格查證)
+
+承 v2.95.0,Comet 限流恢復後補上先前緩收的缺語言。經嚴格逐篇查證(獨立查證+交叉比對+主客不倒)後再入庫 3 部:
+- **Wir sind am Leben**:查證**確認真實存在**(Peter Plate/Rosenstolz + Ulf Leo Sommer 創作,柏林 Theater des Westens 2026-03-21 首演,1990 柏林占屋社群/愛滋主題)——三語逐句與官方吻合、零改。
+- **Tabaluga und Lilli**(Peter Maffay 搖滾音樂劇):简中「蜘蛛女王」→「蜘蛛女」(die Schwarze Witwe 非女王);清 zh 殘留「全劇總結」標題行。
+- **Wahnsinn**(Wolfgang Petry jukebox):英文**刪除嚴重杜撰**(莎賓娜與 Wolf 一夜情——官方無此外遇,還原 Wolf–Jessica 線)、简中修正托比親屬(Karsten & Gabi 之子)。
+
+**仍緩收**:Die Weihnachtsbäckerei(en/zh 正確但**简中框架臆造**「大人忘了聖誕」非真實劇情,不硬收待重生)、Le Petit Prince(zh 補空中)。庫 →287/語、served →238/語。build 全鏈重建。
+
 ## [v2.95.0] - 2026-08-27 05:38
 
 ### 德奧/法式 19 部三語簡介入庫(嚴格逐篇查證,衝簡介覆蓋率)
