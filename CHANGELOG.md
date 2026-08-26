@@ -11,6 +11,14 @@
 
 ---
 
+## [v2.91.0] - 2026-08-26 14:58
+
+### 標題中文加註擴充至 136 部(全目錄查證)+ 修兩個假重複分組
+
+**加註擴充**:承 v2.89.0 標題加註,原僅 4 部。派 14 組 agent 逐部查證(先 55 famous + 全目錄 630 掃),**絕不憑空翻譯、查不到即保留英文**,共收 **136 部**有官方/通行中文名者(繁 133/简 134)。繁简用詞不同者分開:歌劇魅影/剧院魅影、女巫前傳/魔法坏女巫、真善美/音乐之声、鐘樓怪人/巴黎圣母院、第六感生死戀/人鬼情未了、火爆浪子/油脂…。含歐陸大戲(伊莉莎白/羅密歐與茱麗葉/吸血鬼之舞/麗貝卡)、迪士尼(小美人魚)、日本 2.5 次元(日文題名下註中文:網球王子/咒術迴戰/刀劍亂舞/排球少年)。使用者逐項審核,修正 Anastasia 真假公主、Dear Evan Hansen 親愛的艾文·漢森、Kinky Boots 統一長靴皇后、Maybe Happy Ending 简中改也许美好结局。標題本身已是中文者(阿波羅尼亞/海上鋼琴師…)排除,站上自動繁简轉換即可。
+
+**修假重複分組**:使用者抓到 group_key 把票務產物後綴當成不同劇 —— Ticketmaster「The Addams Family - Waitlist」、杜拜「Moulin Rouge! Le Musical at The Junction」各自被拆成獨立 group。group_key 加針對性後綴清洗(waitlist / le musical at the junction),併回母 group(Addams 5 場、Moulin Rouge 8 場)。Oliver! vs Oliver Twist、A Christmas Carol vs …Musical 經查為不同製作,維持分開。
+
 ## [v2.90.0] - 2026-08-26 13:55
 
 ### 45 部西方劇簡介改用 Perplexity 自然語言版(三語逐部語意查核修正)

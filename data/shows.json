@@ -1,9 +1,9 @@
 {
   "meta": {
     "source": "merged",
-    "generated_at": "2026-08-26 05:54 UTC",
-    "total": 2124,
-    "verified": 2124,
+    "generated_at": "2026-08-26 06:57 UTC",
+    "total": 2123,
+    "verified": 2123,
     "unverified": 0,
     "sources": [
       {
@@ -309,7 +309,7 @@
       },
       {
         "file": "tm_tours.json",
-        "count": 76
+        "count": 75
       }
     ]
   },
@@ -33592,15 +33592,22 @@
       "type": "tour",
       "verified": true,
       "source": "platinumlist",
-      "group": "moulin rouge le musical at the junction",
-      "link_kind": "ticketing",
-      "tag": "Broadway/West End",
+      "group": "moulin rouge",
       "ticket_links": [
         {
+          "label": "官方網站",
+          "url": "https://moulinrougemusical.com/",
+          "kind": "official"
+        },
+        {
+          "label": "售票連結",
           "url": "https://dubai.platinumlist.net/event-tickets/107488/moulin-rouge-le-musical-at-the-junction-in-dubai",
           "kind": "ticketing"
         }
-      ]
+      ],
+      "link_kind": "ticketing",
+      "tag": "Broadway/West End",
+      "alt": "Moulin Rouge! 紅磨坊 红磨坊 ムーラン・ルージュ 梦断花都 夢斷花都"
     },
     {
       "id": "me-b0a139a8",
@@ -60954,9 +60961,10 @@
       "verified": true,
       "source": "ticketmaster",
       "onsale_only": true,
-      "group": "addams family waitlist",
+      "group": "addams family",
       "link_kind": "ticketing",
-      "tag": "Broadway/West End"
+      "tag": "Broadway/West End",
+      "alt": "The Addams Family 阿達一族 阿达一族 La Familia Addams 亞當斯一家 亚当斯一家"
     },
     {
       "id": "tm-elf-crown-live",
@@ -65731,35 +65739,6 @@
       "ticket_links": [
         {
           "url": "https://www.ticketmaster.com/a-christmas-carol-tickets/artist/803392",
-          "kind": "ticketing"
-        }
-      ]
-    },
-    {
-      "id": "tmt-addams-family-teatro-at-the-italian-forum",
-      "title": "The Addams Family",
-      "type": "tour",
-      "venue": "Teatro - At The Italian Forum",
-      "city": "Sydney",
-      "country": "Australia",
-      "lat": -33.887009,
-      "lng": 151.158291,
-      "start_date": "2026-11-17",
-      "end_date": "2026-11-17",
-      "ticket_url": "https://www.ticketmaster.com/the-addams-family-tickets/artist/1732718",
-      "attraction_url": "https://www.ticketmaster.com/the-addams-family-tickets/artist/1732718",
-      "image": "https://s1.ticketm.net/dam/a/a48/4d9d0e72-1c9d-4e47-95f4-1aabc03eca48_SOURCE",
-      "tour_name": null,
-      "verified": true,
-      "onsale_only": true,
-      "source": "ticketmaster",
-      "group": "addams family",
-      "link_kind": "ticketing",
-      "tag": "Broadway/West End",
-      "alt": "The Addams Family 阿達一族 阿达一族 La Familia Addams 亞當斯一家 亚当斯一家",
-      "ticket_links": [
-        {
-          "url": "https://www.ticketmaster.com/the-addams-family-tickets/artist/1732718",
           "kind": "ticketing"
         }
       ]

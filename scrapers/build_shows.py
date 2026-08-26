@@ -169,6 +169,12 @@ def group_key(title):
     尾綴「(the/das/el/le/il) musical」摺疊:『The Addams Family Musical』與『The Addams
     Family』是同一齣,尾綴只是來源加註——去掉後再查 registry/當 group,兩種列法才會合併。"""
     t = _norm(title)
+    # 票務產物後綴清洗(2026-08-26 使用者抓到假重複分組):
+    # Ticketmaster「- Waitlist」候補名單、杜拜「Le Musical at The Junction」場館名誤附進標題,
+    # 都是同一齣被拆成兩個 group。針對性清洗(不做通用 "at X"/"le musical" 以免誤傷本體)。
+    t = re.sub(r"\s+waitlist$", "", t)
+    t = re.sub(r"\s+le musical at the junction$", "", t)
+    t = t.strip()
     w = WORK_IDX.get(t)
     if w:
         return w["cgroup"]
