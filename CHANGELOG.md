@@ -11,6 +11,24 @@
 
 ---
 
+## [v2.92.0] - 2026-08-26 19:17
+
+### 西方 22 部三語簡介入庫 + 剔 47 部非音樂劇 + 補 36 中文名 + 6 組重複 group 合併
+
+延續今早「Perplexity 生成=主體(自然語言)、事實查證=輔(只抓錯不重寫)」的嚴格方法,一次收斂多項:
+
+**① 西方 22 部音樂劇三語簡介入庫**:px_gen(Comet/Perplexity)生成三語簡介 → 派 3 組 agent 對 5 批 fact_result 做**語意層級**比對(非正則、非只看結尾)。相符者原樣採用,有誤者**只**改寫錯的那個事實、行文語氣段落原樣保留。實際修正:Count of Monte Cristo 简中結局改回 Wildhorn 版「與梅塞苔絲重逢團圓」(原誤植小說陰鬱版)、Death Note en 修內部矛盾/简中刪本劇已刪的 Near 情節、101 Dalmatians 简中主人 Roger/Anita→Tom(改編自 Dodie Smith 小說非迪士尼)、Oliver Twist en+简中版本錯誤(小說情節→音樂劇 *Oliver!*、Fagin 未被捕)、Hercules 半人馬→半羊人、Footloose 简中母親未逝、Prince of Egypt 简中「女儿→王后」收養摩西、High School Musical zh 劇中劇《茱麗葉與羅密歐》、Love Never Dies 简中拉乌尔子爵(非伯爵)、Madagascar 简中福沙(掠食者非狐猴)。另清掉 Perplexity 洩漏的抓取來源標籤(spotlight-musicals/glimmerglass/icm/mtishows/londontheatre/concordtheatricals/全劇總結)。庫 237→258/語。
+
+**② 剔除 47 部非音樂劇**(not_musical.json 83→130):派 agent 逐一查證 atrapalo 西班牙節目(40 部:致敬演唱會/晚宴秀/全息巡演/魔術冰上秀/街舞/YouTuber 兒童跟唱/卡巴萊綜藝)+ 已確認 10 部(Darren Criss 演唱會、Jeff Wayne's War of the Worlds 全息巡演、Tina 致敬搖滾秀、Michael Legend MJ 致敬、It's A Wonderful Life 廣播劇、Remember Live 懷舊派對…)+ To Kill a Mockingbird(Sorkin 話劇非音樂劇)、Brokeback Mountain(歌劇/劇作)。**Jaane Pehchane Anjane 查證為真音樂劇予以保留**。全 47 筆先模擬比對確認 100% 命中 catalog(無死碼、無誤殺,tina 真劇/SIX/Wicked/Lion King 皆存)。
+
+**③ 補 36 個中文譯名**(i18n_maps 繁 133→169、简 134→165):派 agent 查證,17 部在 catalog 立即顯示(Pretty Woman 麻雀變鳳凰/风月俏佳人、Grinch 鬼靈精/圣诞怪杰、Bodyguard 終極保鑣/保镖、Everybody's Talking About Jamie、Buena Vista Social Club 樂士浮生錄、Little Shop of Horrors 恐怖小店、Mrs. Doubtfire 窈窕奶爸…)+ 19 部未上架但有簡介的名作先建防護(明成皇后/笑面人/光化門戀歌/春醒/夢幻女郎/伙伴們/報童傳奇/美國白痴/蜘蛛女之吻…)。低信心 4 部(居禮夫人/科學怪人/賓虛/拉格泰姆,官方引進名未證)暫不加。台灣原創繁中站標題已是中文者跳過(避免重複)。
+
+**④ Shrek 繁中用詞**:法夸領主→法克大人(台灣譯名)、綠色食人妖→綠色怪物(使用者:食人妖太可怕)。
+
+**⑤ 6 組重複 group 合併**(works.json 加別名,group_key 收斂後驗證):Shrek, a Musical→shrek、Sweeney Todd: The Demon Barber…→sweeney todd、Beetlejuice Karlín→beetlejuice、Dracula Karlín→dracula、& Juliet - Try Out→and juliet、Dr. Seuss How The Grinch…→how the grinch stole christmas(後者同時把我新生的音樂劇版簡介[老 Max 旁白/胡城]併為 canonical)。**絕不誤併**:Oliver!≠Oliver Twist、rocky(拳擊)≠rocky horror、Buena Vista(寶塚)≠social club、Bennato 版 Peter Pan 皆保留獨立。
+
+catalog 632→631 group、shows 2046、served 214/語。build_shows→gen_catalog→gen_variants→build_served→gen_site 全重建,DATA_VER 更新。
+
 ## [v2.91.5] - 2026-08-26 17:12
 
 ### 修 3 個過長卻分段太少的簡介(使用者抓到 Book of Mormon 繁中看得累)
