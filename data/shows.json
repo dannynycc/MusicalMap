@@ -1,9 +1,9 @@
 {
   "meta": {
     "source": "merged",
-    "generated_at": "2026-08-26 06:57 UTC",
-    "total": 2123,
-    "verified": 2123,
+    "generated_at": "2026-08-26 11:09 UTC",
+    "total": 2132,
+    "verified": 2132,
     "unverified": 0,
     "sources": [
       {
@@ -134,10 +134,10 @@
       },
       {
         "file": "atrapalo.json",
-        "count": 146,
+        "count": 148,
         "meta": {
           "source": "atrapalo.com",
-          "count": 146
+          "count": 148
         }
       },
       {
@@ -230,18 +230,18 @@
       },
       {
         "file": "china.json",
-        "count": 7,
+        "count": 8,
         "meta": {
           "source": "shcstheatre.com",
-          "count": 7
+          "count": 8
         }
       },
       {
         "file": "china_poly.json",
-        "count": 62,
+        "count": 64,
         "meta": {
           "source": "polyt.cn",
-          "count": 62
+          "count": 64
         }
       },
       {
@@ -287,11 +287,11 @@
       },
       {
         "file": "philippines.json",
-        "count": 0,
+        "count": 1,
         "meta": {
           "source": "ticketworld.com.ph",
-          "count": 0,
-          "generated_at": "2026-08-25"
+          "count": 1,
+          "generated_at": "2026-08-26"
         }
       },
       {
@@ -305,11 +305,11 @@
       },
       {
         "file": "ticketmaster.json",
-        "count": 781
+        "count": 783
       },
       {
         "file": "tm_tours.json",
-        "count": 75
+        "count": 76
       }
     ]
   },
@@ -1057,7 +1057,7 @@
       "lat": 40.762797,
       "lng": -73.987647,
       "start_date": "2025-11-17",
-      "end_date": "2026-09-06",
+      "end_date": "2026-10-11",
       "ticket_url": "https://www.broadway-show-tickets.com/musicals/the-25th-annual-putnam-county-spelling-bee-tickets/",
       "image": "https://cdn-imgix.headout.com/media/images/9b90be75-94d3-4a0a-b0a8-917c7371ad2d-1759136242557-315392.png",
       "tour_name": null,
@@ -1356,7 +1356,7 @@
       "lat": 51.508243,
       "lng": -0.131863,
       "start_date": "2021-07-27",
-      "end_date": "2027-03-13",
+      "end_date": null,
       "ticket_url": "https://www.londontheatre.co.uk/show/308-the-phantom-of-the-opera-tickets",
       "image": "https://images.ctfassets.net/6pezt69ih962/spO4dvQ2d27GnxYWBxnBF/8c5b5f11521a16004fc4c9f8b6a2ec9f/480x720.jpg",
       "tour_name": "Phantom of the Opera",
@@ -1400,7 +1400,7 @@
       "lat": 51.512291,
       "lng": -0.119187,
       "start_date": "2021-08-25",
-      "end_date": "2027-03-13",
+      "end_date": null,
       "ticket_url": "https://www.londontheatre.co.uk/show/304-mamma-mia-tickets",
       "image": "https://images.ctfassets.net/6pezt69ih962/39KDloySXpIxKrTnJ70MR3/31111cf027f2b1e160ff8cced30bbc11/MM-2026-05-summer26-campaign-BBs-TTG-PrimaryPortrait-480x720.jpg",
       "tour_name": null,
@@ -1435,50 +1435,6 @@
       "alt": "Mamma Mia! 媽媽咪呀 妈妈咪呀 媽媽咪呀！ 妈妈咪呀！ マンマ・ミーア"
     },
     {
-      "id": "westend-les-miserables-tickets",
-      "title": "Les Misérables",
-      "type": "resident",
-      "venue": "Sondheim Theatre",
-      "city": "London",
-      "country": "UK",
-      "lat": 51.511869,
-      "lng": -0.132601,
-      "start_date": "2021-09-25",
-      "end_date": "2027-03-13",
-      "ticket_url": "https://www.londontheatre.co.uk/show/300-les-miserables-tickets",
-      "image": "https://images.ctfassets.net/6pezt69ih962/47DmmERqPjWVTLnJFvHdU8/2a237f6cef4165a6c73c35d7ae5d68ab/MIS_Updated-Ticket-Agent_480x720_AW.jpg",
-      "tour_name": null,
-      "verified": true,
-      "source": "londontheatre.co.uk",
-      "group": "les miserables",
-      "end_rolling": true,
-      "ticket_links": [
-        {
-          "label": "官方網站",
-          "url": "https://www.lesmis.com/",
-          "kind": "official"
-        },
-        {
-          "label": "TodayTix",
-          "url": "https://www.todaytix.com/london/shows/300-les-miserables",
-          "kind": "ticketing"
-        },
-        {
-          "label": "LondonTheatre",
-          "url": "https://www.londontheatre.co.uk/show/300-les-miserables-tickets",
-          "kind": "ticketing"
-        },
-        {
-          "label": "Ticketmaster",
-          "url": "https://www.ticketmaster.co.uk/les-miserables-tickets/artist/803968",
-          "kind": "ticketing"
-        }
-      ],
-      "link_kind": "ticketing",
-      "tag": "Broadway/West End",
-      "alt": "Les Misérables 悲慘世界 悲惨世界 Les Mis レ・ミゼラブル A nyomorultak 孤星淚 孤星泪"
-    },
-    {
       "id": "westend-book-of-mormon-tickets",
       "title": "The Book of Mormon",
       "type": "resident",
@@ -1488,7 +1444,7 @@
       "lat": 51.510234,
       "lng": -0.132087,
       "start_date": "2024-11-07",
-      "end_date": "2026-10-03",
+      "end_date": null,
       "ticket_url": "https://www.londontheatre.co.uk/show/287-book-of-mormon-tickets",
       "image": "https://images.ctfassets.net/6pezt69ih962/43pvCu2hFdKU9FtVF9gHne/c08208c3a2489852c439664de82faae6/mormon_with_people.jpg",
       "tour_name": null,
@@ -1523,6 +1479,94 @@
       "alt": "The Book of Mormon 摩門經 摩门经 摩門之書 摩门之书 摩爾門經 摩尔门经"
     },
     {
+      "id": "westend-les-miserables-tickets",
+      "title": "Les Misérables",
+      "type": "resident",
+      "venue": "Sondheim Theatre",
+      "city": "London",
+      "country": "UK",
+      "lat": 51.511869,
+      "lng": -0.132601,
+      "start_date": "2021-09-25",
+      "end_date": null,
+      "ticket_url": "https://www.londontheatre.co.uk/show/300-les-miserables-tickets",
+      "image": "https://images.ctfassets.net/6pezt69ih962/47DmmERqPjWVTLnJFvHdU8/2a237f6cef4165a6c73c35d7ae5d68ab/MIS_Updated-Ticket-Agent_480x720_AW.jpg",
+      "tour_name": null,
+      "verified": true,
+      "source": "londontheatre.co.uk",
+      "group": "les miserables",
+      "end_rolling": true,
+      "ticket_links": [
+        {
+          "label": "官方網站",
+          "url": "https://www.lesmis.com/",
+          "kind": "official"
+        },
+        {
+          "label": "TodayTix",
+          "url": "https://www.todaytix.com/london/shows/300-les-miserables",
+          "kind": "ticketing"
+        },
+        {
+          "label": "LondonTheatre",
+          "url": "https://www.londontheatre.co.uk/show/300-les-miserables-tickets",
+          "kind": "ticketing"
+        },
+        {
+          "label": "Ticketmaster",
+          "url": "https://www.ticketmaster.co.uk/les-miserables-tickets/artist/803968",
+          "kind": "ticketing"
+        }
+      ],
+      "link_kind": "ticketing",
+      "tag": "Broadway/West End",
+      "alt": "Les Misérables 悲慘世界 悲惨世界 Les Mis レ・ミゼラブル A nyomorultak 孤星淚 孤星泪"
+    },
+    {
+      "id": "westend-matilda-the-musical-tickets",
+      "title": "Matilda",
+      "type": "resident",
+      "venue": "Cambridge Theatre",
+      "city": "London",
+      "country": "UK",
+      "lat": 51.513665,
+      "lng": -0.126629,
+      "start_date": "2021-09-16",
+      "end_date": null,
+      "ticket_url": "https://www.londontheatre.co.uk/show/305-matilda-the-musical-tickets",
+      "image": "https://images.ctfassets.net/6pezt69ih962/k6qL80R5pVTdHj3qkhSBm/d64f78182790328ed79c48ad80350ae5/MAT25_Q3_055_15_year_ticket_agent_button_TTG_480x720_AW2.jpg",
+      "tour_name": "Matilda The Musical",
+      "verified": true,
+      "source": "londontheatre.co.uk",
+      "group": "matilda",
+      "end_rolling": true,
+      "ticket_links": [
+        {
+          "label": "官方網站",
+          "url": "https://uk.matildathemusical.com/",
+          "kind": "official"
+        },
+        {
+          "label": "TodayTix",
+          "url": "https://www.todaytix.com/london/shows/305-matilda-the-musical",
+          "kind": "ticketing"
+        },
+        {
+          "label": "LondonTheatre",
+          "url": "https://www.londontheatre.co.uk/show/305-matilda-the-musical-tickets",
+          "kind": "ticketing"
+        },
+        {
+          "label": "Ticketmaster",
+          "url": "https://www.ticketmaster.com/matilda-the-musical-tickets/artist/1601714",
+          "kind": "ticketing"
+        }
+      ],
+      "link_kind": "ticketing",
+      "tag": "Broadway/West End",
+      "alt": "Matilda 瑪蒂達 玛蒂达 マチルダ Matilda El Musical Matilda el Musical con Elena Matilda el Musical con Emilia 小魔女 玛蒂尔达 瑪蒂爾達"
+    },
+    {
       "id": "westend-the-lion-king-tickets",
       "title": "The Lion King",
       "type": "resident",
@@ -1532,7 +1576,7 @@
       "lat": 51.51154,
       "lng": -0.120081,
       "start_date": "2021-08-18",
-      "end_date": "2027-05-16",
+      "end_date": null,
       "ticket_url": "https://www.londontheatre.co.uk/show/302-the-lion-king-tickets",
       "image": "https://images.ctfassets.net/6pezt69ih962/3FJhEKZg8sM6nRDgtp3Zi2/dfcff597d5d2ff4a2c99ff431f16a12e/480_x_720_Corrected.jpg",
       "tour_name": null,
@@ -1572,48 +1616,53 @@
       "alt": "The Lion King 獅子王 狮子王 ライオンキング Az oroszlánkirály El Rey León Le Roi Lion"
     },
     {
-      "id": "westend-matilda-the-musical-tickets",
-      "title": "Matilda",
+      "id": "westend-wicked-tickets",
+      "title": "Wicked",
       "type": "resident",
-      "venue": "Cambridge Theatre",
+      "venue": "Apollo Victoria Theatre",
       "city": "London",
       "country": "UK",
-      "lat": 51.513665,
-      "lng": -0.126629,
-      "start_date": "2021-09-16",
-      "end_date": "2027-09-05",
-      "ticket_url": "https://www.londontheatre.co.uk/show/305-matilda-the-musical-tickets",
-      "image": "https://images.ctfassets.net/6pezt69ih962/k6qL80R5pVTdHj3qkhSBm/d64f78182790328ed79c48ad80350ae5/MAT25_Q3_055_15_year_ticket_agent_button_TTG_480x720_AW2.jpg",
-      "tour_name": "Matilda The Musical",
+      "lat": 51.495745,
+      "lng": -0.142734,
+      "start_date": "2021-09-15",
+      "end_date": null,
+      "ticket_url": "https://www.londontheatre.co.uk/show/313-wicked-tickets",
+      "image": "https://images.ctfassets.net/6pezt69ih962/7AkVwNyOeUOYeoYOgxNxah/f1080eedd215d88606fc81ef64468ba2/Wicked_TTG_480x720_1.jpg",
+      "tour_name": null,
       "verified": true,
       "source": "londontheatre.co.uk",
-      "group": "matilda",
-      "end_rolling": true,
+      "group": "wicked",
       "ticket_links": [
         {
           "label": "官方網站",
-          "url": "https://uk.matildathemusical.com/",
+          "url": "https://www.wickedthemusical.co.uk/",
           "kind": "official"
         },
         {
           "label": "TodayTix",
-          "url": "https://www.todaytix.com/london/shows/305-matilda-the-musical",
+          "url": "https://www.todaytix.com/london/shows/313-wicked",
           "kind": "ticketing"
         },
         {
           "label": "LondonTheatre",
-          "url": "https://www.londontheatre.co.uk/show/305-matilda-the-musical-tickets",
+          "url": "https://www.londontheatre.co.uk/show/313-wicked-tickets",
+          "kind": "ticketing"
+        },
+        {
+          "label": "ATG",
+          "url": "https://www.atgtickets.com/shows/wicked/apollo-victoria-theatre/",
           "kind": "ticketing"
         },
         {
           "label": "Ticketmaster",
-          "url": "https://www.ticketmaster.com/matilda-the-musical-tickets/artist/1601714",
+          "url": "https://www.ticketmaster.com/wicked-london-tickets/artist/873966",
           "kind": "ticketing"
         }
       ],
+      "end_rolling": true,
       "link_kind": "ticketing",
       "tag": "Broadway/West End",
-      "alt": "Matilda 瑪蒂達 玛蒂达 マチルダ Matilda El Musical Matilda el Musical con Elena Matilda el Musical con Emilia 小魔女 玛蒂尔达 瑪蒂爾達"
+      "alt": "Wicked ウィキッド 女巫前傳 女巫前传 魔法壞女巫 魔法坏女巫 罪惡壞女巫 罪恶坏女巫"
     },
     {
       "id": "westend-disneys-hercules",
@@ -1658,55 +1707,6 @@
       "tag": "Broadway/West End"
     },
     {
-      "id": "westend-wicked-tickets",
-      "title": "Wicked",
-      "type": "resident",
-      "venue": "Apollo Victoria Theatre",
-      "city": "London",
-      "country": "UK",
-      "lat": 51.495745,
-      "lng": -0.142734,
-      "start_date": "2021-09-15",
-      "end_date": "2027-05-29",
-      "ticket_url": "https://www.londontheatre.co.uk/show/313-wicked-tickets",
-      "image": "https://images.ctfassets.net/6pezt69ih962/7AkVwNyOeUOYeoYOgxNxah/f1080eedd215d88606fc81ef64468ba2/Wicked_TTG_480x720_1.jpg",
-      "tour_name": null,
-      "verified": true,
-      "source": "londontheatre.co.uk",
-      "group": "wicked",
-      "ticket_links": [
-        {
-          "label": "官方網站",
-          "url": "https://www.wickedthemusical.co.uk/",
-          "kind": "official"
-        },
-        {
-          "label": "TodayTix",
-          "url": "https://www.todaytix.com/london/shows/313-wicked",
-          "kind": "ticketing"
-        },
-        {
-          "label": "LondonTheatre",
-          "url": "https://www.londontheatre.co.uk/show/313-wicked-tickets",
-          "kind": "ticketing"
-        },
-        {
-          "label": "ATG",
-          "url": "https://www.atgtickets.com/shows/wicked/apollo-victoria-theatre/",
-          "kind": "ticketing"
-        },
-        {
-          "label": "Ticketmaster",
-          "url": "https://www.ticketmaster.com/wicked-london-tickets/artist/873966",
-          "kind": "ticketing"
-        }
-      ],
-      "end_rolling": true,
-      "link_kind": "ticketing",
-      "tag": "Broadway/West End",
-      "alt": "Wicked ウィキッド 女巫前傳 女巫前传 魔法壞女巫 魔法坏女巫 罪惡壞女巫 罪恶坏女巫"
-    },
-    {
       "id": "westend-oliver",
       "title": "Oliver!",
       "type": "resident",
@@ -1716,7 +1716,7 @@
       "lat": 51.511789,
       "lng": -0.132825,
       "start_date": "2024-12-14",
-      "end_date": "2027-03-14",
+      "end_date": null,
       "ticket_url": "https://www.londontheatre.co.uk/show/40713-oliver",
       "image": "https://images.ctfassets.net/6pezt69ih962/420drnn3FSxXsNtsOtJh3m/bf54b084a38791adc09dd7efc2af7039/Oliver__TodayTix_480x720.jpg",
       "tour_name": null,
@@ -1749,50 +1749,6 @@
       "link_kind": "ticketing",
       "tag": "Broadway/West End",
       "alt": "Oliver! OLIVER TWIST - Koffers produksjoner 孤雛淚 孤雏泪 奧利弗 奥利弗 霧都孤兒 雾都孤儿 苦海孤雛 苦海孤雏"
-    },
-    {
-      "id": "westend-the-devil-wears-prada",
-      "title": "The Devil Wears Prada",
-      "type": "resident",
-      "venue": "Dominion Theatre",
-      "city": "London",
-      "country": "UK",
-      "lat": 51.516681,
-      "lng": -0.12986,
-      "start_date": "2024-10-24",
-      "end_date": "2027-02-06",
-      "ticket_url": "https://www.londontheatre.co.uk/show/34706-the-devil-wears-prada",
-      "image": "https://images.ctfassets.net/6pezt69ih962/2eW4bQMQMjScpxWiRH1NFn/9854067e52140a612f66b06f37a0acac/DWP-2025-12-TTG-Logo-480x720px-57021SA.jpg",
-      "tour_name": null,
-      "verified": true,
-      "source": "londontheatre.co.uk",
-      "group": "devil wears prada",
-      "end_rolling": true,
-      "ticket_links": [
-        {
-          "label": "官方網站",
-          "url": "https://devilwearspradamusical.com",
-          "kind": "official"
-        },
-        {
-          "label": "TodayTix",
-          "url": "https://www.todaytix.com/london/shows/34706-the-devil-wears-prada",
-          "kind": "ticketing"
-        },
-        {
-          "label": "LondonTheatre",
-          "url": "https://www.londontheatre.co.uk/show/34706-the-devil-wears-prada",
-          "kind": "ticketing"
-        },
-        {
-          "label": "Ticketmaster",
-          "url": "https://www.ticketmaster.com/the-devil-wears-prada-london-tickets/artist/3069760",
-          "kind": "ticketing"
-        }
-      ],
-      "link_kind": "ticketing",
-      "tag": "Broadway/West End",
-      "alt": "The Devil Wears Prada 穿著Prada的惡魔 穿著Prada的恶魔 穿普拉達的女王 穿普拉达的女王"
     },
     {
       "id": "westend-sinatra-the-musical",
@@ -1837,6 +1793,50 @@
       "tag": "Broadway/West End"
     },
     {
+      "id": "westend-the-devil-wears-prada",
+      "title": "The Devil Wears Prada",
+      "type": "resident",
+      "venue": "Dominion Theatre",
+      "city": "London",
+      "country": "UK",
+      "lat": 51.516681,
+      "lng": -0.12986,
+      "start_date": "2024-10-24",
+      "end_date": null,
+      "ticket_url": "https://www.londontheatre.co.uk/show/34706-the-devil-wears-prada",
+      "image": "https://images.ctfassets.net/6pezt69ih962/2eW4bQMQMjScpxWiRH1NFn/9854067e52140a612f66b06f37a0acac/DWP-2025-12-TTG-Logo-480x720px-57021SA.jpg",
+      "tour_name": null,
+      "verified": true,
+      "source": "londontheatre.co.uk",
+      "group": "devil wears prada",
+      "end_rolling": true,
+      "ticket_links": [
+        {
+          "label": "官方網站",
+          "url": "https://devilwearspradamusical.com",
+          "kind": "official"
+        },
+        {
+          "label": "TodayTix",
+          "url": "https://www.todaytix.com/london/shows/34706-the-devil-wears-prada",
+          "kind": "ticketing"
+        },
+        {
+          "label": "LondonTheatre",
+          "url": "https://www.londontheatre.co.uk/show/34706-the-devil-wears-prada",
+          "kind": "ticketing"
+        },
+        {
+          "label": "Ticketmaster",
+          "url": "https://www.ticketmaster.com/the-devil-wears-prada-london-tickets/artist/3069760",
+          "kind": "ticketing"
+        }
+      ],
+      "link_kind": "ticketing",
+      "tag": "Broadway/West End",
+      "alt": "The Devil Wears Prada 穿著Prada的惡魔 穿著Prada的恶魔 穿普拉達的女王 穿普拉达的女王"
+    },
+    {
       "id": "westend-six-the-musical-tickets",
       "title": "SIX",
       "type": "resident",
@@ -1846,7 +1846,7 @@
       "lat": 51.510273,
       "lng": -0.122382,
       "start_date": "2021-09-29",
-      "end_date": "2027-11-28",
+      "end_date": null,
       "ticket_url": "https://www.londontheatre.co.uk/show/12201-six-the-musical-tickets",
       "image": "https://images.ctfassets.net/6pezt69ih962/3TO2fdHw7WqTXwET9RGqJO/97c8d60a3aad0a57474d2efa5d21b20b/SIX26045_TodayTix_480x720pxls.jpg",
       "tour_name": null,
@@ -1890,7 +1890,7 @@
       "lat": 51.507005,
       "lng": -0.123609,
       "start_date": "2021-11-15",
-      "end_date": null,
+      "end_date": "2027-09-18",
       "ticket_url": "https://www.londontheatre.co.uk/show/23939-cabaret-tickets",
       "image": "https://images.ctfassets.net/6pezt69ih962/6abWX4KAaw94BhKBrocgfu/d26cf055ade5adaa4e5a4be79f2edc8e/CAB25_Q3_029_Remaining_Ticket_Agent_Buttons_New_Creative_TTG_480x720px_AW.jpg",
       "tour_name": null,
@@ -1925,6 +1925,50 @@
       "alt": "Cabaret 酒店 キャバレー 歌廳 歌厅 卡巴萊 卡巴莱"
     },
     {
+      "id": "westend-beetlejuice-the-musical",
+      "title": "Beetlejuice",
+      "type": "resident",
+      "venue": "Prince Edward Theatre",
+      "city": "London",
+      "country": "UK",
+      "lat": 51.513512,
+      "lng": -0.130742,
+      "start_date": "2026-05-20",
+      "end_date": null,
+      "ticket_url": "https://www.londontheatre.co.uk/show/45407-beetlejuice-the-musical",
+      "image": "https://images.ctfassets.net/6pezt69ih962/4zvwwGxyZE8AQZjtTuukOC/566bf286ad4c29ddfdd2e6a4758420e7/BJ-202607-Lydia-BBs-TTG-PrimaryPortrait-480x720.jpg",
+      "tour_name": null,
+      "verified": true,
+      "source": "londontheatre.co.uk",
+      "group": "beetlejuice",
+      "end_rolling": true,
+      "ticket_links": [
+        {
+          "label": "官方網站",
+          "url": "https://beetlejuicemusical.co.uk/",
+          "kind": "official"
+        },
+        {
+          "label": "TodayTix",
+          "url": "https://www.todaytix.com/london/shows/45407-beetlejuice-the-musical",
+          "kind": "ticketing"
+        },
+        {
+          "label": "LondonTheatre",
+          "url": "https://www.londontheatre.co.uk/show/45407-beetlejuice-the-musical",
+          "kind": "ticketing"
+        },
+        {
+          "label": "Ticketmaster",
+          "url": "https://www.ticketmaster.com/beetlejuice-touring-tickets/artist/2867362",
+          "kind": "ticketing"
+        }
+      ],
+      "link_kind": "ticketing",
+      "tag": "Broadway/West End",
+      "alt": "Beetlejuice 陰間大法師 阴间大法师 ビートルジュース 嘩鬼家族 哗鬼家族"
+    },
+    {
       "id": "westend-titanique",
       "title": "Titanique",
       "type": "resident",
@@ -1934,7 +1978,7 @@
       "lat": 51.509727,
       "lng": -0.134269,
       "start_date": "2024-12-09",
-      "end_date": null,
+      "end_date": "2027-01-03",
       "ticket_url": "https://www.londontheatre.co.uk/show/40903-titanique",
       "image": "https://images.ctfassets.net/6pezt69ih962/2RxUtV11rF1GAygCPV2o5L/35774e0fe3e2c8e2489b43c997ad831d/TQE485-TTGAssets-July26-480x720-FINAL.jpg",
       "tour_name": null,
@@ -1968,48 +2012,46 @@
       "tag": "Broadway/West End"
     },
     {
-      "id": "westend-beetlejuice-the-musical",
-      "title": "Beetlejuice",
+      "id": "westend-avenue-q",
+      "title": "Avenue Q",
       "type": "resident",
-      "venue": "Prince Edward Theatre",
+      "venue": "Shaftesbury Theatre",
       "city": "London",
       "country": "UK",
-      "lat": 51.513512,
-      "lng": -0.130742,
-      "start_date": "2026-05-20",
-      "end_date": "2027-04-17",
-      "ticket_url": "https://www.londontheatre.co.uk/show/45407-beetlejuice-the-musical",
-      "image": "https://images.ctfassets.net/6pezt69ih962/4zvwwGxyZE8AQZjtTuukOC/566bf286ad4c29ddfdd2e6a4758420e7/BJ-202607-Lydia-BBs-TTG-PrimaryPortrait-480x720.jpg",
+      "lat": 51.516072,
+      "lng": -0.12593,
+      "start_date": "2026-03-20",
+      "end_date": "2027-01-03",
+      "ticket_url": "https://www.londontheatre.co.uk/show/45732-avenue-q",
+      "image": "https://images.ctfassets.net/6pezt69ih962/3PsrkynnwWvWgVYVs00USm/b89736fd8eb446fb6e5567b2adbf34a3/8523_02_AVEQ_TTG_Stars_480x720_v1.jpg",
       "tour_name": null,
       "verified": true,
       "source": "londontheatre.co.uk",
-      "group": "beetlejuice",
-      "end_rolling": true,
+      "group": "avenue q",
       "ticket_links": [
         {
           "label": "官方網站",
-          "url": "https://beetlejuicemusical.co.uk/",
+          "url": "https://avenueqmusical.co.uk/",
           "kind": "official"
         },
         {
           "label": "TodayTix",
-          "url": "https://www.todaytix.com/london/shows/45407-beetlejuice-the-musical",
+          "url": "https://www.todaytix.com/london/shows/45732-avenue-q",
           "kind": "ticketing"
         },
         {
           "label": "LondonTheatre",
-          "url": "https://www.londontheatre.co.uk/show/45407-beetlejuice-the-musical",
+          "url": "https://www.londontheatre.co.uk/show/45732-avenue-q",
           "kind": "ticketing"
         },
         {
           "label": "Ticketmaster",
-          "url": "https://www.ticketmaster.com/beetlejuice-touring-tickets/artist/2867362",
+          "url": "https://www.ticketmaster.com/avenue-q-tickets/artist/973986",
           "kind": "ticketing"
         }
       ],
       "link_kind": "ticketing",
-      "tag": "Broadway/West End",
-      "alt": "Beetlejuice 陰間大法師 阴间大法师 ビートルジュース 嘩鬼家族 哗鬼家族"
+      "tag": "Broadway/West End"
     },
     {
       "id": "westend-the-producers",
@@ -2053,48 +2095,6 @@
       "link_kind": "ticketing",
       "tag": "Broadway/West End",
       "alt": "The Producers 金牌製作人 金牌制作人 プロデューサーズ 金牌監製 金牌监制 Producenti"
-    },
-    {
-      "id": "westend-avenue-q",
-      "title": "Avenue Q",
-      "type": "resident",
-      "venue": "Shaftesbury Theatre",
-      "city": "London",
-      "country": "UK",
-      "lat": 51.516072,
-      "lng": -0.12593,
-      "start_date": "2026-03-20",
-      "end_date": "2027-01-03",
-      "ticket_url": "https://www.londontheatre.co.uk/show/45732-avenue-q",
-      "image": "https://images.ctfassets.net/6pezt69ih962/3PsrkynnwWvWgVYVs00USm/b89736fd8eb446fb6e5567b2adbf34a3/8523_02_AVEQ_TTG_Stars_480x720_v1.jpg",
-      "tour_name": null,
-      "verified": true,
-      "source": "londontheatre.co.uk",
-      "group": "avenue q",
-      "ticket_links": [
-        {
-          "label": "官方網站",
-          "url": "https://avenueqmusical.co.uk/",
-          "kind": "official"
-        },
-        {
-          "label": "TodayTix",
-          "url": "https://www.todaytix.com/london/shows/45732-avenue-q",
-          "kind": "ticketing"
-        },
-        {
-          "label": "LondonTheatre",
-          "url": "https://www.londontheatre.co.uk/show/45732-avenue-q",
-          "kind": "ticketing"
-        },
-        {
-          "label": "Ticketmaster",
-          "url": "https://www.ticketmaster.com/avenue-q-tickets/artist/973986",
-          "kind": "ticketing"
-        }
-      ],
-      "link_kind": "ticketing",
-      "tag": "Broadway/West End"
     },
     {
       "id": "westend-grease-the-immersive-movie-musical",
@@ -2177,48 +2177,6 @@
       "tag": "Broadway/West End"
     },
     {
-      "id": "westend-high-school-musical",
-      "title": "High School Musical",
-      "type": "resident",
-      "venue": "Troubadour Wembley Park Theatre",
-      "city": "London",
-      "country": "UK",
-      "lat": 51.560871,
-      "lng": -0.281283,
-      "start_date": "2026-10-12",
-      "end_date": "2027-01-03",
-      "ticket_url": "https://www.londontheatre.co.uk/show/46909-high-school-musical",
-      "image": "https://images.ctfassets.net/6pezt69ih962/6AFSs8Fz6A8V3XTkxQl4z5/28e279847c4b656093cf0ca541b78266/480_x_720_TTG_Now_Live.jpg",
-      "tour_name": null,
-      "verified": true,
-      "source": "londontheatre.co.uk",
-      "group": "high school musical",
-      "ticket_links": [
-        {
-          "label": "官方網站",
-          "url": "https://highschoolmusicalonstage.com/",
-          "kind": "official"
-        },
-        {
-          "label": "TodayTix",
-          "url": "https://www.todaytix.com/london/shows/46909-high-school-musical",
-          "kind": "ticketing"
-        },
-        {
-          "label": "LondonTheatre",
-          "url": "https://www.londontheatre.co.uk/show/46909-high-school-musical",
-          "kind": "ticketing"
-        },
-        {
-          "label": "Ticketmaster",
-          "url": "https://www.ticketmaster.com/high-school-musical-tickets/artist/1064123",
-          "kind": "ticketing"
-        }
-      ],
-      "link_kind": "ticketing",
-      "tag": "Broadway/West End"
-    },
-    {
       "id": "westend-into-the-woods",
       "title": "Into the Woods",
       "type": "resident",
@@ -2260,6 +2218,48 @@
       "link_kind": "ticketing",
       "tag": "Broadway/West End",
       "alt": "Into the Woods 拜訪森林 拜访森林 魔法黑森林"
+    },
+    {
+      "id": "westend-high-school-musical",
+      "title": "High School Musical",
+      "type": "resident",
+      "venue": "Troubadour Wembley Park Theatre",
+      "city": "London",
+      "country": "UK",
+      "lat": 51.560871,
+      "lng": -0.281283,
+      "start_date": "2026-10-12",
+      "end_date": "2027-01-03",
+      "ticket_url": "https://www.londontheatre.co.uk/show/46909-high-school-musical",
+      "image": "https://images.ctfassets.net/6pezt69ih962/6AFSs8Fz6A8V3XTkxQl4z5/28e279847c4b656093cf0ca541b78266/480_x_720_TTG_Now_Live.jpg",
+      "tour_name": null,
+      "verified": true,
+      "source": "londontheatre.co.uk",
+      "group": "high school musical",
+      "ticket_links": [
+        {
+          "label": "官方網站",
+          "url": "https://highschoolmusicalonstage.com/",
+          "kind": "official"
+        },
+        {
+          "label": "TodayTix",
+          "url": "https://www.todaytix.com/london/shows/46909-high-school-musical",
+          "kind": "ticketing"
+        },
+        {
+          "label": "LondonTheatre",
+          "url": "https://www.londontheatre.co.uk/show/46909-high-school-musical",
+          "kind": "ticketing"
+        },
+        {
+          "label": "Ticketmaster",
+          "url": "https://www.ticketmaster.com/high-school-musical-tickets/artist/1064123",
+          "kind": "ticketing"
+        }
+      ],
+      "link_kind": "ticketing",
+      "tag": "Broadway/West End"
     },
     {
       "id": "westend-trainspotting-the-musical",
@@ -2457,6 +2457,38 @@
       "tag": "Broadway/West End"
     },
     {
+      "id": "westend-shamilton-the-improvised-hip-hop-musical",
+      "title": "Shamilton! The Improvised Hip-Hop Musical",
+      "type": "resident",
+      "venue": "The Other Palace - Main Theatre",
+      "city": "London",
+      "country": "UK",
+      "lat": 51.498864,
+      "lng": -0.142233,
+      "start_date": "2026-09-08",
+      "end_date": "2026-09-20",
+      "ticket_url": "https://www.londontheatre.co.uk/show/47569-shamilton-the-improvised-hip-hop-musical",
+      "image": "https://images.ctfassets.net/6pezt69ih962/K9ZbiCMnONNXsJDHlzZTP/a6995894a99019834fd7d5783a7129a9/480x720_SHAM_TOP_V1.png",
+      "tour_name": null,
+      "verified": true,
+      "source": "londontheatre.co.uk",
+      "group": "shamilton the improvised hip",
+      "ticket_links": [
+        {
+          "label": "TodayTix",
+          "url": "https://www.todaytix.com/london/shows/47569-shamilton-the-improvised-hip-hop-musical",
+          "kind": "ticketing"
+        },
+        {
+          "label": "LondonTheatre",
+          "url": "https://www.londontheatre.co.uk/show/47569-shamilton-the-improvised-hip-hop-musical",
+          "kind": "ticketing"
+        }
+      ],
+      "link_kind": "ticketing",
+      "tag": "Broadway/West End"
+    },
+    {
       "id": "westend-one-day-the-musical",
       "title": "One Day – The Musical",
       "type": "resident",
@@ -2499,82 +2531,6 @@
       "tag": "Broadway/West End"
     },
     {
-      "id": "westend-shamilton-the-improvised-hip-hop-musical",
-      "title": "Shamilton! The Improvised Hip-Hop Musical",
-      "type": "resident",
-      "venue": "The Other Palace - Main Theatre",
-      "city": "London",
-      "country": "UK",
-      "lat": 51.498864,
-      "lng": -0.142233,
-      "start_date": "2026-09-08",
-      "end_date": "2026-09-20",
-      "ticket_url": "https://www.londontheatre.co.uk/show/47569-shamilton-the-improvised-hip-hop-musical",
-      "image": "https://images.ctfassets.net/6pezt69ih962/K9ZbiCMnONNXsJDHlzZTP/a6995894a99019834fd7d5783a7129a9/480x720_SHAM_TOP_V1.png",
-      "tour_name": null,
-      "verified": true,
-      "source": "londontheatre.co.uk",
-      "group": "shamilton the improvised hip",
-      "ticket_links": [
-        {
-          "label": "TodayTix",
-          "url": "https://www.todaytix.com/london/shows/47569-shamilton-the-improvised-hip-hop-musical",
-          "kind": "ticketing"
-        },
-        {
-          "label": "LondonTheatre",
-          "url": "https://www.londontheatre.co.uk/show/47569-shamilton-the-improvised-hip-hop-musical",
-          "kind": "ticketing"
-        }
-      ],
-      "link_kind": "ticketing",
-      "tag": "Broadway/West End"
-    },
-    {
-      "id": "westend-hamilton-tickets",
-      "title": "Hamilton",
-      "type": "resident",
-      "venue": "Victoria Palace Theatre",
-      "city": "London",
-      "country": "UK",
-      "lat": 51.496657,
-      "lng": -0.14258,
-      "start_date": "2021-08-19",
-      "end_date": "2027-03-13",
-      "ticket_url": "https://www.londontheatre.co.uk/show/20561-hamilton-tickets",
-      "image": "https://images.ctfassets.net/6pezt69ih962/1LDjWFwIBcfRSEXA4BkL8T/860fedcfedf0a467703e9afa4caa67b0/prod_1580719924849_HamPoster.jpg",
-      "tour_name": null,
-      "verified": true,
-      "source": "londontheatre.co.uk",
-      "group": "hamilton",
-      "end_rolling": true,
-      "ticket_links": [
-        {
-          "label": "官方網站",
-          "url": "https://hamiltonmusical.com/",
-          "kind": "official"
-        },
-        {
-          "label": "TodayTix",
-          "url": "https://www.todaytix.com/london/shows/20561-hamilton",
-          "kind": "ticketing"
-        },
-        {
-          "label": "LondonTheatre",
-          "url": "https://www.londontheatre.co.uk/show/20561-hamilton-tickets",
-          "kind": "ticketing"
-        },
-        {
-          "label": "Ticketmaster",
-          "url": "https://www.ticketmaster.co.uk/hamilton-tickets/artist/5218048",
-          "kind": "ticketing"
-        }
-      ],
-      "link_kind": "ticketing",
-      "tag": "Broadway/West End",
-      "alt": "Hamilton 漢密爾頓 汉密尔顿 漢彌爾頓 汉弥尔顿 漢米爾頓 汉米尔顿"
-    },
-    {
       "id": "westend-the-last-ship",
       "title": "The Last Ship",
       "type": "resident",
@@ -2612,6 +2568,50 @@
       "tag": "Broadway/West End"
     },
     {
+      "id": "westend-hamilton-tickets",
+      "title": "Hamilton",
+      "type": "resident",
+      "venue": "Victoria Palace Theatre",
+      "city": "London",
+      "country": "UK",
+      "lat": 51.496657,
+      "lng": -0.14258,
+      "start_date": "2021-08-19",
+      "end_date": null,
+      "ticket_url": "https://www.londontheatre.co.uk/show/20561-hamilton-tickets",
+      "image": "https://images.ctfassets.net/6pezt69ih962/1LDjWFwIBcfRSEXA4BkL8T/860fedcfedf0a467703e9afa4caa67b0/prod_1580719924849_HamPoster.jpg",
+      "tour_name": null,
+      "verified": true,
+      "source": "londontheatre.co.uk",
+      "group": "hamilton",
+      "end_rolling": true,
+      "ticket_links": [
+        {
+          "label": "官方網站",
+          "url": "https://hamiltonmusical.com/",
+          "kind": "official"
+        },
+        {
+          "label": "TodayTix",
+          "url": "https://www.todaytix.com/london/shows/20561-hamilton",
+          "kind": "ticketing"
+        },
+        {
+          "label": "LondonTheatre",
+          "url": "https://www.londontheatre.co.uk/show/20561-hamilton-tickets",
+          "kind": "ticketing"
+        },
+        {
+          "label": "Ticketmaster",
+          "url": "https://www.ticketmaster.co.uk/hamilton-tickets/artist/5218048",
+          "kind": "ticketing"
+        }
+      ],
+      "link_kind": "ticketing",
+      "tag": "Broadway/West End",
+      "alt": "Hamilton 漢密爾頓 汉密尔顿 漢彌爾頓 汉弥尔顿 漢米爾頓 汉米尔顿"
+    },
+    {
       "id": "westend-moulin-rouge-the-musical-tickets",
       "title": "Moulin Rouge!",
       "type": "resident",
@@ -2621,7 +2621,7 @@
       "lat": 51.510951,
       "lng": -0.135575,
       "start_date": "2021-11-12",
-      "end_date": "2027-02-20",
+      "end_date": null,
       "ticket_url": "https://www.londontheatre.co.uk/show/23350-moulin-rouge-the-musical-tickets",
       "image": "https://images.ctfassets.net/6pezt69ih962/2IADtsJ2ZhlLl969nsQxEA/eeed62ddd7e0fdd69ce787e79f91c99e/MR-JAN25-BBs-TTG-PrimaryPortrait-480x720.jpg",
       "tour_name": "Moulin Rouge! The Musical",
@@ -2670,7 +2670,7 @@
       "lat": 51.510205,
       "lng": -0.120924,
       "start_date": "2025-11-01",
-      "end_date": "2028-02-13",
+      "end_date": null,
       "ticket_url": "https://www.londontheatre.co.uk/show/44232-paddington-the-musical",
       "image": "https://images.ctfassets.net/6pezt69ih962/4QHgN5f6z1dj2bx79vKaIR/0711be0831211a090dc5686999a81ad0/TTG_480x720.jpg",
       "tour_name": null,
@@ -2718,7 +2718,7 @@
       "lat": 51.51122,
       "lng": -0.133782,
       "start_date": "2024-02-10",
-      "end_date": "2027-06-27",
+      "end_date": null,
       "ticket_url": "https://www.londontheatre.co.uk/show/24465-hadestown-tickets",
       "image": "https://images.ctfassets.net/6pezt69ih962/5i72ufeFcwqL06EMJbXu6A/810c1902b38baf1a7e6e1876b07886b4/480_x_720.jpg",
       "tour_name": null,
@@ -2762,14 +2762,13 @@
       "lat": 51.510237,
       "lng": -0.127074,
       "start_date": "2026-09-26",
-      "end_date": "2027-03-27",
+      "end_date": null,
       "ticket_url": "https://www.londontheatre.co.uk/show/46910-rent",
       "image": "https://images.ctfassets.net/6pezt69ih962/4vSjwCLNhSAgYIwwgqmSSS/8f2aa43a7d20617b54c6e53360f42852/480x720_RENT.jpg",
       "tour_name": null,
       "verified": true,
       "source": "londontheatre.co.uk",
       "group": "rent",
-      "end_rolling": true,
       "ticket_links": [
         {
           "label": "官方網站",
@@ -2839,14 +2838,13 @@
       "lat": 51.510122,
       "lng": -0.122762,
       "start_date": "2027-02-12",
-      "end_date": "2027-07-31",
+      "end_date": null,
       "ticket_url": "https://www.londontheatre.co.uk/show/46308-billy-elliot-the-musical",
       "image": "https://images.ctfassets.net/6pezt69ih962/5JXlwcCeQTRwlLzP97pm1l/7f608c162f5fb6d68d24481c02bfd476/Billy_Elliot_480x720.png",
       "tour_name": "Billy Elliot the Musical",
       "verified": true,
       "source": "londontheatre.co.uk",
       "group": "billy elliot",
-      "end_rolling": true,
       "ticket_links": [
         {
           "label": "官方網站",
@@ -2990,7 +2988,7 @@
       "lat": 51.513665,
       "lng": -0.126629,
       "start_date": "2023-05-22",
-      "end_date": "2026-12-21",
+      "end_date": null,
       "ticket_url": "https://www.londontheatre.co.uk/show/28218-showstopper-the-improvised-musical",
       "image": "https://images.ctfassets.net/6pezt69ih962/7DBPKqe8AoK9IGMfrbva4h/a41ec0e5527a51710e39e030cef22f93/ST_Key_Art_480_x_720_RGB.jpg",
       "tour_name": null,
@@ -3033,14 +3031,13 @@
       "lat": 51.51322,
       "lng": -0.159169,
       "start_date": "2026-09-12",
-      "end_date": "2027-01-31",
+      "end_date": null,
       "ticket_url": "https://www.londontheatre.co.uk/show/46320-burlesque",
       "image": "https://images.ctfassets.net/6pezt69ih962/72fVTcTk6In704TW25IzzD/7070b20b74e5818cf15dbbbd77d1b705/Burlesque_480x720px.png",
       "tour_name": null,
       "verified": true,
       "source": "londontheatre.co.uk",
       "group": "burlesque",
-      "end_rolling": true,
       "ticket_links": [
         {
           "label": "官方網站",
@@ -3221,6 +3218,44 @@
       "tag": "Broadway/West End"
     },
     {
+      "id": "westend-dirty-dancing",
+      "title": "Dirty Dancing",
+      "type": "resident",
+      "venue": "Capital Theatre",
+      "city": "London",
+      "country": "UK",
+      "lat": 51.479658,
+      "lng": 0.015974,
+      "start_date": "2026-10-16",
+      "end_date": null,
+      "ticket_url": "https://www.londontheatre.co.uk/show/43487-dirty-dancing",
+      "image": "https://images.ctfassets.net/6pezt69ih962/2xKeisXLsE4PbgKbIrXYFQ/d1cb8a0f06a90b1ca9ac78bb08ba14db/7336_09_DD_TTG_480x720.jpg",
+      "tour_name": "Dirty Dancing: The Classic Story on Stage",
+      "verified": true,
+      "source": "londontheatre.co.uk",
+      "group": "dirty dancing",
+      "ticket_links": [
+        {
+          "label": "官方網站",
+          "url": "https://dirtydancingonstage.co.uk/",
+          "kind": "official"
+        },
+        {
+          "label": "LondonTheatre",
+          "url": "https://www.londontheatre.co.uk/show/43487-dirty-dancing",
+          "kind": "ticketing"
+        },
+        {
+          "label": "Ticketmaster",
+          "url": "https://www.ticketmaster.co.uk/dirty-dancing-tickets/artist/1518833",
+          "kind": "ticketing"
+        }
+      ],
+      "link_kind": "ticketing",
+      "tag": "Broadway/West End",
+      "alt": "Dirty Dancing Dirty Dancing: The Musical Dirty Dancing - The Classic Story On Stage Dirty Dancing: The Classic Story On Stage 熱舞十七 热舞十七"
+    },
+    {
       "id": "westend-jane-eyre",
       "title": "Jane Eyre",
       "type": "resident",
@@ -3252,45 +3287,6 @@
       "link_kind": "ticketing",
       "tag": "Broadway/West End",
       "alt": "Jane Eyre 简·爱 簡·愛 簡愛 简爱 Jane Eyre the Musical"
-    },
-    {
-      "id": "westend-dirty-dancing",
-      "title": "Dirty Dancing",
-      "type": "resident",
-      "venue": "Capital Theatre",
-      "city": "London",
-      "country": "UK",
-      "lat": 51.479658,
-      "lng": 0.015974,
-      "start_date": "2026-10-16",
-      "end_date": "2027-03-21",
-      "ticket_url": "https://www.londontheatre.co.uk/show/43487-dirty-dancing",
-      "image": "https://images.ctfassets.net/6pezt69ih962/2xKeisXLsE4PbgKbIrXYFQ/d1cb8a0f06a90b1ca9ac78bb08ba14db/7336_09_DD_TTG_480x720.jpg",
-      "tour_name": "Dirty Dancing: The Classic Story on Stage",
-      "verified": true,
-      "source": "londontheatre.co.uk",
-      "group": "dirty dancing",
-      "end_rolling": true,
-      "ticket_links": [
-        {
-          "label": "官方網站",
-          "url": "https://dirtydancingonstage.co.uk/",
-          "kind": "official"
-        },
-        {
-          "label": "LondonTheatre",
-          "url": "https://www.londontheatre.co.uk/show/43487-dirty-dancing",
-          "kind": "ticketing"
-        },
-        {
-          "label": "Ticketmaster",
-          "url": "https://www.ticketmaster.co.uk/dirty-dancing-tickets/artist/1518833",
-          "kind": "ticketing"
-        }
-      ],
-      "link_kind": "ticketing",
-      "tag": "Broadway/West End",
-      "alt": "Dirty Dancing Dirty Dancing: The Musical Dirty Dancing - The Classic Story On Stage Dirty Dancing: The Classic Story On Stage 熱舞十七 热舞十七"
     },
     {
       "id": "westend-ceilidh",
@@ -8806,7 +8802,7 @@
       "alt": "The Great Gatsby 大亨小傳 大亨小传 了不起的蓋茨比 了不起的盖茨比"
     },
     {
-      "id": "tour-the-lion-king-rafiki-montreal-qc-2026-08-26",
+      "id": "tour-the-lion-king-rafiki-montreal-qc-2026-08-19",
       "title": "The Lion King",
       "type": "tour",
       "venue": "Place Des Arts",
@@ -8814,7 +8810,7 @@
       "country": "Canada",
       "lat": 45.50832,
       "lng": -73.566431,
-      "start_date": "2026-08-26",
+      "start_date": "2026-08-19",
       "end_date": "2026-09-06",
       "ticket_url": "https://www.broadway.org/tours/the-lion-king-rafiki",
       "image": "https://cdn.craft.cloud/4027eea6-6e91-4e75-bd40-d01cbeb9c781/assets/shows/thelionking-24_2024-05-28-212402_jpuj.jpg",
@@ -12816,7 +12812,7 @@
       "country": "UK",
       "lat": 50.461291,
       "lng": -3.529995,
-      "start_date": "2026-08-26",
+      "start_date": null,
       "end_date": "2026-08-29",
       "ticket_url": "https://www.atgtickets.com/shows/barnum/princess-theatre-torquay/",
       "image": "https://res.cloudinary.com/dwzhqvxaz/image/upload/w_1280,q_auto,f_auto/v1750251792/Titles/Barnum/Barnum_Title-Shot_1920x1080.jpg",
@@ -13043,7 +13039,7 @@
       "country": "UK",
       "lat": 53.024643,
       "lng": -2.177048,
-      "start_date": "2026-08-26",
+      "start_date": null,
       "end_date": "2026-08-29",
       "ticket_url": "https://www.atgtickets.com/shows/burlesque-the-musical/regent-theatre/",
       "image": "https://res.cloudinary.com/dwzhqvxaz/image/upload/w_1280,q_auto,f_auto/v1784537078/Titles/Burlesque%20The%20Musical%20(Tour)/Burlesque_LockUp_Bulbs_1920x1080.jpg",
@@ -14121,7 +14117,7 @@
       "country": "UK",
       "lat": 52.044081,
       "lng": -0.748787,
-      "start_date": "2026-08-26",
+      "start_date": null,
       "end_date": "2026-08-29",
       "ticket_url": "https://www.atgtickets.com/shows/dirty-dancing/milton-keynes-theatre/",
       "image": "https://res.cloudinary.com/dwzhqvxaz/image/upload/w_1280,q_auto,f_auto/v1758801293/Titles/Dirty%20Dancing/2025/DD26_Tour_ATG_onsale_1920x1080_social.jpg",
@@ -17071,7 +17067,7 @@
       "country": "UK",
       "lat": 55.864993,
       "lng": -4.268655,
-      "start_date": "2026-08-26",
+      "start_date": null,
       "end_date": "2026-08-29",
       "ticket_url": "https://www.atgtickets.com/shows/mamma-mia/kings-theatre-glasgow/",
       "image": "https://res.cloudinary.com/dwzhqvxaz/image/upload/w_1280,q_auto,f_auto/v1783606985/Titles/Mamma%20Mia/MM_ON_SALE_ASSETS_SOCIAL_1920x1080_b.jpg",
@@ -17533,7 +17529,7 @@
       "country": "UK",
       "lat": 51.513287,
       "lng": -0.120693,
-      "start_date": "2026-08-26",
+      "start_date": null,
       "end_date": "2027-02-20",
       "ticket_url": "https://www.atgtickets.com/shows/operation-mincemeat-a-new-musical/fortune-theatre/",
       "image": "https://res.cloudinary.com/dwzhqvxaz/image/upload/w_1280,q_auto,f_auto/v1721642563/Titles/Operation%20Mincemeat/OM_Title_1920x1080.jpg",
@@ -18685,7 +18681,7 @@
       "country": "UK",
       "lat": 51.462199,
       "lng": -0.303951,
-      "start_date": "2026-08-26",
+      "start_date": null,
       "end_date": "2026-08-29",
       "ticket_url": "https://www.atgtickets.com/shows/the-choir-of-man/richmond-theatre/",
       "image": "https://res.cloudinary.com/dwzhqvxaz/image/upload/w_1280,q_auto,f_auto/v1759232698/Titles/The%20Choir%20of%20Man/ChoirOfMan_Title_1920x1080.jpg",
@@ -19678,6 +19674,34 @@
       "ticket_links": [
         {
           "url": "https://www.atrapalo.com/entradas/artemis_e4951596/",
+          "kind": "ticketing"
+        }
+      ]
+    },
+    {
+      "id": "atr-assassinat-per-a-dos-4952444",
+      "title": "Assassinat per a dos",
+      "type": "tour",
+      "venue": "Teatre Goya",
+      "city": "Barcelona",
+      "country": "Spain",
+      "lat": 41.384101,
+      "lng": 2.164225,
+      "start_date": "2026-10-20",
+      "end_date": "2026-11-24",
+      "ticket_url": "https://www.atrapalo.com/entradas/assassinat-per-a-dos_e4952444/",
+      "image": "https://cdn.atrapalo.com/o/event/4952444/1822569.jpg",
+      "tour_name": "Assassinat per a dos",
+      "verified": true,
+      "source": "atrapalo.com",
+      "price_from": "18.40",
+      "currency": "EUR",
+      "group": "assassinat per a dos",
+      "link_kind": "ticketing",
+      "tag": "西葡音樂劇",
+      "ticket_links": [
+        {
+          "url": "https://www.atrapalo.com/entradas/assassinat-per-a-dos_e4952444/",
           "kind": "ticketing"
         }
       ]
@@ -20952,6 +20976,34 @@
       "ticket_links": [
         {
           "url": "https://www.atrapalo.com/entradas/el-gran-show_e4948784/",
+          "kind": "ticketing"
+        }
+      ]
+    },
+    {
+      "id": "atr-el-hilo-invisible-el-musical-4952446",
+      "title": "El Hilo Invisible",
+      "type": "tour",
+      "venue": "Teatro Alcázar",
+      "city": "Madrid",
+      "country": "Spain",
+      "lat": 40.417741,
+      "lng": -3.699077,
+      "start_date": "2026-12-06",
+      "end_date": "2027-01-10",
+      "ticket_url": "https://www.atrapalo.com/entradas/el-hilo-invisible-el-musical_e4952446/",
+      "image": "https://cdn.atrapalo.com/o/event/4952446/1822586.jpg",
+      "tour_name": "El Hilo Invisible - El Musical",
+      "verified": true,
+      "source": "atrapalo.com",
+      "price_from": "15.00",
+      "currency": "EUR",
+      "group": "el hilo invisible",
+      "link_kind": "ticketing",
+      "tag": "西葡音樂劇",
+      "ticket_links": [
+        {
+          "url": "https://www.atrapalo.com/entradas/el-hilo-invisible-el-musical_e4952446/",
           "kind": "ticketing"
         }
       ]
@@ -22299,7 +22351,7 @@
       "country": "Spain",
       "lat": 38.915214,
       "lng": -6.338521,
-      "start_date": "2026-08-27",
+      "start_date": "2026-08-28",
       "end_date": "2026-08-30",
       "ticket_url": "https://www.atrapalo.com/entradas/las-9-musas-72-festival-de-merida_e4947359/",
       "image": "https://cdn.atrapalo.com/o/event/4947359/1794039.jpg",
@@ -23192,32 +23244,6 @@
       ]
     },
     {
-      "id": "opentix-2059097848899674113-0",
-      "title": "記憶的星光",
-      "title_en": "失智症關懷音樂劇",
-      "venue": "屏東藝術館",
-      "city": "Pingtung",
-      "country": "Taiwan",
-      "lat": 22.676996,
-      "lng": 120.477178,
-      "start_date": "2026-09-05",
-      "end_date": "2026-09-05",
-      "image": "https://s3.resource.opentix.life/upload/program/1782189642546cqJMI2JAUR.png",
-      "ticket_url": "https://www.opentix.life/program/2059097848899674113",
-      "type": "tour",
-      "verified": true,
-      "source": "opentix.life",
-      "group": "記憶的星光",
-      "link_kind": "ticketing",
-      "tag": "台灣原創",
-      "ticket_links": [
-        {
-          "url": "https://www.opentix.life/program/2059097848899674113",
-          "kind": "ticketing"
-        }
-      ]
-    },
-    {
       "id": "opentix-2043526998491496449-0",
       "title": "我在詐騙公司上班",
       "title_en": "I am Working in a Fraud Company",
@@ -23239,6 +23265,32 @@
       "ticket_links": [
         {
           "url": "https://www.opentix.life/program/2043526998491496449",
+          "kind": "ticketing"
+        }
+      ]
+    },
+    {
+      "id": "opentix-2059097848899674113-0",
+      "title": "記憶的星光",
+      "title_en": "失智症關懷音樂劇",
+      "venue": "屏東藝術館",
+      "city": "Pingtung",
+      "country": "Taiwan",
+      "lat": 22.676996,
+      "lng": 120.477178,
+      "start_date": "2026-09-05",
+      "end_date": "2026-09-05",
+      "image": "https://s3.resource.opentix.life/upload/program/1782189642546cqJMI2JAUR.png",
+      "ticket_url": "https://www.opentix.life/program/2059097848899674113",
+      "type": "tour",
+      "verified": true,
+      "source": "opentix.life",
+      "group": "記憶的星光",
+      "link_kind": "ticketing",
+      "tag": "台灣原創",
+      "ticket_links": [
+        {
+          "url": "https://www.opentix.life/program/2059097848899674113",
           "kind": "ticketing"
         }
       ]
@@ -26239,37 +26291,30 @@
       "alt": "Nine NINE 華麗年代 华丽年代 九"
     },
     {
-      "id": "ee-1cb7abef",
-      "title": "Evita",
+      "id": "ee-98b51234",
+      "title": "Mindig itt leszünk...Mohács 500",
       "title_en": "",
-      "venue": "Madách Színház",
+      "venue": "Budapesti Operettszínház",
       "city": "Budapest",
       "country": "Hungary",
-      "lat": 47.501177,
-      "lng": 19.068345,
-      "start_date": "2026-09-18",
-      "end_date": "2026-10-18",
-      "image": "https://pb2.programinfo.hu/imgs/system-4/program/000/191/305/evita-original-286665.webp",
-      "ticket_url": "https://www.jegy.hu/program/evita-191305",
+      "lat": 47.503908,
+      "lng": 19.060105,
+      "start_date": "2026-09-11",
+      "end_date": "2026-09-21",
+      "image": "https://pb2.programinfo.hu/imgs/system-4/program/000/193/383/mindig-itt-leszunkmohacs-500-original-291485.webp",
+      "ticket_url": "https://www.jegy.hu/program/mindig-itt-leszunkmohacs-500-193383",
       "type": "tour",
       "verified": true,
       "source": "jegy.hu",
-      "group": "evita",
+      "group": "mindig itt leszunk mohacs 500",
+      "link_kind": "ticketing",
+      "tag": "歐陸原創",
       "ticket_links": [
         {
-          "label": "官方網站",
-          "url": "https://madachszinhaz.hu/szindarab/evita",
-          "kind": "official"
-        },
-        {
-          "label": "售票連結",
-          "url": "https://www.jegy.hu/program/evita-191305",
+          "url": "https://www.jegy.hu/program/mindig-itt-leszunkmohacs-500-193383",
           "kind": "ticketing"
         }
-      ],
-      "link_kind": "ticketing",
-      "tag": "Broadway/West End",
-      "alt": "Evita 艾薇塔 エビータ Evita - 50 years, the golden jubilee 貝隆夫人 贝隆夫人"
+      ]
     },
     {
       "id": "ee-296264cb",
@@ -26298,30 +26343,37 @@
       ]
     },
     {
-      "id": "ee-50f8e84a",
-      "title": "A TRÓN",
+      "id": "ee-66f4d248",
+      "title": "Mamma Mia!",
       "title_en": "",
-      "venue": "Erkel Színház",
-      "city": "Budapest",
+      "venue": "Győr Audi Aréna",
+      "city": "Győr",
       "country": "Hungary",
-      "lat": 47.496919,
-      "lng": 19.076806,
-      "start_date": "2026-09-18",
-      "end_date": "2026-11-15",
-      "image": "https://pb2.programinfo.hu/imgs/system-4/program/000/176/305/a-tron-original-261173.webp",
-      "ticket_url": "https://www.jegy.hu/program/a-tron-176305",
+      "lat": 47.698293,
+      "lng": 17.666476,
+      "start_date": "2026-11-20",
+      "end_date": "2026-11-20",
+      "image": "https://pb2.programinfo.hu/imgs/system-4/program/000/136/952/mamma-mia-original-284930.webp",
+      "ticket_url": "https://www.jegy.hu/program/mamma-mia-136952",
       "type": "tour",
       "verified": true,
       "source": "jegy.hu",
-      "group": "a tron",
-      "link_kind": "ticketing",
-      "tag": "歐陸原創",
+      "group": "mamma mia",
       "ticket_links": [
         {
-          "url": "https://www.jegy.hu/program/a-tron-176305",
+          "label": "官方網站",
+          "url": "https://madachszinhaz.hu/szindarab/mamma-mia",
+          "kind": "official"
+        },
+        {
+          "label": "售票連結",
+          "url": "https://www.jegy.hu/program/mamma-mia-136952",
           "kind": "ticketing"
         }
-      ]
+      ],
+      "link_kind": "ticketing",
+      "tag": "Broadway/West End",
+      "alt": "Mamma Mia! 媽媽咪呀 妈妈咪呀 媽媽咪呀！ 妈妈咪呀！ マンマ・ミーア"
     },
     {
       "id": "ee-13a8a7f2",
@@ -26358,6 +26410,39 @@
       "alt": "Pretty Woman 麻雀變鳳凰 麻雀变凤凰 Pretty Woman (Micsoda nő!) 風月俏佳人 风月俏佳人 漂亮女人"
     },
     {
+      "id": "ee-1cb7abef",
+      "title": "Evita",
+      "title_en": "",
+      "venue": "Madách Színház",
+      "city": "Budapest",
+      "country": "Hungary",
+      "lat": 47.501177,
+      "lng": 19.068345,
+      "start_date": "2026-09-18",
+      "end_date": "2026-10-18",
+      "image": "https://pb2.programinfo.hu/imgs/system-4/program/000/191/305/evita-original-286665.webp",
+      "ticket_url": "https://www.jegy.hu/program/evita-191305",
+      "type": "tour",
+      "verified": true,
+      "source": "jegy.hu",
+      "group": "evita",
+      "ticket_links": [
+        {
+          "label": "官方網站",
+          "url": "https://madachszinhaz.hu/szindarab/evita",
+          "kind": "official"
+        },
+        {
+          "label": "售票連結",
+          "url": "https://www.jegy.hu/program/evita-191305",
+          "kind": "ticketing"
+        }
+      ],
+      "link_kind": "ticketing",
+      "tag": "Broadway/West End",
+      "alt": "Evita 艾薇塔 エビータ Evita - 50 years, the golden jubilee 貝隆夫人 贝隆夫人"
+    },
+    {
       "id": "ee-c02ee8ae",
       "title": "A Szépség és a Szörnyeteg",
       "title_en": "",
@@ -26379,6 +26464,32 @@
       "ticket_links": [
         {
           "url": "https://www.jegy.hu/program/a-szepseg-es-a-szornyeteg-37275",
+          "kind": "ticketing"
+        }
+      ]
+    },
+    {
+      "id": "ee-50f8e84a",
+      "title": "A TRÓN",
+      "title_en": "",
+      "venue": "Erkel Színház",
+      "city": "Budapest",
+      "country": "Hungary",
+      "lat": 47.496919,
+      "lng": 19.076806,
+      "start_date": "2026-09-18",
+      "end_date": "2026-11-15",
+      "image": "https://pb2.programinfo.hu/imgs/system-4/program/000/176/305/a-tron-original-261173.webp",
+      "ticket_url": "https://www.jegy.hu/program/a-tron-176305",
+      "type": "tour",
+      "verified": true,
+      "source": "jegy.hu",
+      "group": "a tron",
+      "link_kind": "ticketing",
+      "tag": "歐陸原創",
+      "ticket_links": [
+        {
+          "url": "https://www.jegy.hu/program/a-tron-176305",
           "kind": "ticketing"
         }
       ]
@@ -26416,125 +26527,6 @@
       "link_kind": "ticketing",
       "tag": "Broadway/West End",
       "alt": "The Phantom of the Opera 歌劇魅影 歌剧魅影 Az Operaház Fantomja Das Phantom der Oper Das Phantom der Oper - Die Originalproduktion オペラ座の怪人 El Fantasma de la Ópera El Fantasma De La Ópera México 劇院魅影 剧院魅影 歌聲魅影 歌声魅影"
-    },
-    {
-      "id": "ee-a07242ad",
-      "title": "Rebecca",
-      "title_en": "",
-      "venue": "Erkel Színház",
-      "city": "Budapest",
-      "country": "Hungary",
-      "lat": 47.496919,
-      "lng": 19.076806,
-      "start_date": "2026-09-25",
-      "end_date": "2026-10-18",
-      "image": "https://pb2.programinfo.hu/imgs/system-4/program/000/183/464/rebecca-original-284522.webp",
-      "ticket_url": "https://www.jegy.hu/program/rebecca-183464",
-      "type": "tour",
-      "verified": true,
-      "source": "jegy.hu",
-      "group": "rebecca",
-      "ticket_links": [
-        {
-          "label": "官方網站",
-          "url": "https://erkelszinhaz.hu/eloadas/rebecca/",
-          "kind": "official"
-        },
-        {
-          "label": "售票連結",
-          "url": "https://www.jegy.hu/program/rebecca-183464",
-          "kind": "ticketing"
-        }
-      ],
-      "tour_name": "Rebecca - A Manderley-ház asszonya",
-      "link_kind": "ticketing",
-      "tag": "德奧音樂劇",
-      "alt": "Rebecca レベッカ"
-    },
-    {
-      "id": "ee-98b51234",
-      "title": "Mindig itt leszünk...Mohács 500",
-      "title_en": "",
-      "venue": "Budapesti Operettszínház",
-      "city": "Budapest",
-      "country": "Hungary",
-      "lat": 47.503908,
-      "lng": 19.060105,
-      "start_date": "2026-09-11",
-      "end_date": "2026-09-21",
-      "image": "https://pb2.programinfo.hu/imgs/system-4/program/000/193/383/mindig-itt-leszunkmohacs-500-original-291485.webp",
-      "ticket_url": "https://www.jegy.hu/program/mindig-itt-leszunkmohacs-500-193383",
-      "type": "tour",
-      "verified": true,
-      "source": "jegy.hu",
-      "group": "mindig itt leszunk mohacs 500",
-      "link_kind": "ticketing",
-      "tag": "歐陸原創",
-      "ticket_links": [
-        {
-          "url": "https://www.jegy.hu/program/mindig-itt-leszunkmohacs-500-193383",
-          "kind": "ticketing"
-        }
-      ]
-    },
-    {
-      "id": "ee-8e1cd7fa",
-      "title": "Wonderland",
-      "title_en": "",
-      "venue": "Magyar Színház",
-      "city": "Budapest",
-      "country": "Hungary",
-      "lat": 47.503361,
-      "lng": 19.072744,
-      "start_date": "2026-09-18",
-      "end_date": "2026-10-31",
-      "image": "https://pb2.programinfo.hu/imgs/system-4/program/000/193/424/wonderland-original-290233.webp",
-      "ticket_url": "https://www.jegy.hu/program/wonderland-193424",
-      "type": "tour",
-      "verified": true,
-      "source": "jegy.hu",
-      "group": "wonderland",
-      "ticket_links": [
-        {
-          "label": "官方網站",
-          "url": "https://magyarszinhaz.hu/programok/wonderland/",
-          "kind": "official"
-        },
-        {
-          "label": "售票連結",
-          "url": "https://www.jegy.hu/program/wonderland-193424",
-          "kind": "ticketing"
-        }
-      ],
-      "link_kind": "ticketing",
-      "tag": "Broadway/West End",
-      "alt": "Wonderland Wildhorn – Murphy: WONDERLAND musical 仙境"
-    },
-    {
-      "id": "ee-6d0cc6aa",
-      "title": "Macskafogó",
-      "title_en": "",
-      "venue": "József Attila Színház",
-      "city": "Budapest",
-      "country": "Hungary",
-      "lat": 47.531641,
-      "lng": 19.067203,
-      "start_date": "2026-10-17",
-      "end_date": "2026-10-18",
-      "image": "https://pb2.programinfo.hu/imgs/system-4/program/000/105/963/macskafogo-original-235041.webp",
-      "ticket_url": "https://www.jegy.hu/program/macskafogo-105963",
-      "type": "tour",
-      "verified": true,
-      "source": "jegy.hu",
-      "group": "macskafogo",
-      "link_kind": "ticketing",
-      "tag": "歐陸原創",
-      "ticket_links": [
-        {
-          "url": "https://www.jegy.hu/program/macskafogo-105963",
-          "kind": "ticketing"
-        }
-      ]
     },
     {
       "id": "ee-45810539",
@@ -26589,71 +26581,38 @@
       ]
     },
     {
-      "id": "ee-510cbb08",
-      "title": "Tanz der Vampire",
-      "title_en": "",
-      "venue": "Magyar Színház",
-      "city": "Budapest",
-      "country": "Hungary",
-      "lat": 47.503361,
-      "lng": 19.072744,
-      "start_date": "2027-01-07",
-      "end_date": "2027-01-10",
-      "image": "https://pb2.programinfo.hu/imgs/system-4/program/000/183/050/vampirok-balja-musical-original-271370.webp",
-      "ticket_url": "https://www.jegy.hu/program/vampirok-balja-musical-183050",
-      "type": "tour",
-      "verified": true,
-      "source": "jegy.hu",
-      "group": "tanz der vampire",
-      "tour_name": "VÁMPÍROK BÁLJA musical",
-      "ticket_links": [
-        {
-          "label": "官方網站",
-          "url": "https://vampirokbalja.com/",
-          "kind": "official"
-        },
-        {
-          "label": "售票連結",
-          "url": "https://www.jegy.hu/program/vampirok-balja-musical-183050",
-          "kind": "ticketing"
-        }
-      ],
-      "link_kind": "ticketing",
-      "tag": "德奧音樂劇",
-      "alt": "Tanz der Vampire Dance of the Vampires Le Bal des Vampires VÁMPÍROK BÁLJA VÁMPÍROK BÁLJA musical ダンス・オブ・ヴァンパイア"
-    },
-    {
-      "id": "ee-e6d078dc",
-      "title": "Elisabeth",
+      "id": "ee-a07242ad",
+      "title": "Rebecca",
       "title_en": "",
       "venue": "Erkel Színház",
       "city": "Budapest",
       "country": "Hungary",
       "lat": 47.496919,
       "lng": 19.076806,
-      "start_date": "2026-10-02",
-      "end_date": "2026-11-08",
-      "image": "https://pb2.programinfo.hu/imgs/system-4/program/000/176/307/elisabeth-original-267239.webp",
-      "ticket_url": "https://www.jegy.hu/program/elisabeth-176307",
+      "start_date": "2026-09-25",
+      "end_date": "2026-10-18",
+      "image": "https://pb2.programinfo.hu/imgs/system-4/program/000/183/464/rebecca-original-284522.webp",
+      "ticket_url": "https://www.jegy.hu/program/rebecca-183464",
       "type": "tour",
       "verified": true,
       "source": "jegy.hu",
-      "group": "elisabeth",
+      "group": "rebecca",
       "ticket_links": [
         {
           "label": "官方網站",
-          "url": "https://www.vbw-international.at/home/elisabeth",
+          "url": "https://erkelszinhaz.hu/eloadas/rebecca/",
           "kind": "official"
         },
         {
           "label": "售票連結",
-          "url": "https://www.jegy.hu/program/elisabeth-176307",
+          "url": "https://www.jegy.hu/program/rebecca-183464",
           "kind": "ticketing"
         }
       ],
+      "tour_name": "Rebecca - A Manderley-ház asszonya",
       "link_kind": "ticketing",
       "tag": "德奧音樂劇",
-      "alt": "Elisabeth 伊莉莎白 エリザベート"
+      "alt": "Rebecca レベッカ"
     },
     {
       "id": "ee-92488e30",
@@ -26690,6 +26649,92 @@
       "alt": "Cats 貓 猫 Macskák キャッツ CATS: The Jellicle Ball"
     },
     {
+      "id": "ee-08e9d238",
+      "title": "Shrek, a Musical",
+      "title_en": "",
+      "venue": "József Attila Színház",
+      "city": "Budapest",
+      "country": "Hungary",
+      "lat": 47.531641,
+      "lng": 19.067203,
+      "start_date": "2026-10-03",
+      "end_date": "2026-10-04",
+      "image": "https://pb2.programinfo.hu/imgs/system-4/program/000/175/882/shrek-a-musical-original-263228.webp",
+      "ticket_url": "https://www.jegy.hu/program/shrek-a-musical-175882",
+      "type": "tour",
+      "verified": true,
+      "source": "jegy.hu",
+      "group": "shrek a musical",
+      "link_kind": "ticketing",
+      "tag": "歐陸原創",
+      "ticket_links": [
+        {
+          "url": "https://www.jegy.hu/program/shrek-a-musical-175882",
+          "kind": "ticketing"
+        }
+      ]
+    },
+    {
+      "id": "ee-0baf731b",
+      "title": "Carmen",
+      "title_en": "",
+      "venue": "Budapesti Operettszínház",
+      "city": "Budapest",
+      "country": "Hungary",
+      "lat": 47.503908,
+      "lng": 19.060105,
+      "start_date": "2026-10-29",
+      "end_date": "2026-10-31",
+      "image": "https://pb2.programinfo.hu/imgs/system-4/program/000/147/472/carmen-original-239503.webp",
+      "ticket_url": "https://www.jegy.hu/program/carmen-147472",
+      "type": "tour",
+      "verified": true,
+      "source": "jegy.hu",
+      "group": "carmen",
+      "link_kind": "ticketing",
+      "tag": "歐陸原創",
+      "ticket_links": [
+        {
+          "url": "https://www.jegy.hu/program/carmen-147472",
+          "kind": "ticketing"
+        }
+      ]
+    },
+    {
+      "id": "ee-510cbb08",
+      "title": "Tanz der Vampire",
+      "title_en": "",
+      "venue": "Magyar Színház",
+      "city": "Budapest",
+      "country": "Hungary",
+      "lat": 47.503361,
+      "lng": 19.072744,
+      "start_date": "2027-01-07",
+      "end_date": "2027-01-10",
+      "image": "https://pb2.programinfo.hu/imgs/system-4/program/000/183/050/vampirok-balja-musical-original-271370.webp",
+      "ticket_url": "https://www.jegy.hu/program/vampirok-balja-musical-183050",
+      "type": "tour",
+      "verified": true,
+      "source": "jegy.hu",
+      "group": "tanz der vampire",
+      "tour_name": "VÁMPÍROK BÁLJA musical",
+      "ticket_links": [
+        {
+          "label": "官方網站",
+          "url": "https://vampirokbalja.com/",
+          "kind": "official"
+        },
+        {
+          "label": "售票連結",
+          "url": "https://www.jegy.hu/program/vampirok-balja-musical-183050",
+          "kind": "ticketing"
+        }
+      ],
+      "link_kind": "ticketing",
+      "tag": "德奧音樂劇",
+      "alt": "Tanz der Vampire Dance of the Vampires Le Bal des Vampires VÁMPÍROK BÁLJA VÁMPÍROK BÁLJA musical ダンス・オブ・ヴァンパイア"
+    },
+    {
       "id": "ee-c88603eb",
       "title": "Sister Act",
       "title_en": "",
@@ -26724,79 +26769,197 @@
       "alt": "Sister Act 修女也瘋狂 修女也疯狂 APÁCA SHOW"
     },
     {
-      "id": "ee-08e9d238",
-      "title": "Shrek, a Musical",
+      "id": "ee-c75895dd",
+      "title": "Mamma Mia!",
       "title_en": "",
-      "venue": "József Attila Színház",
-      "city": "Budapest",
+      "venue": "Debrecen Főnix Aréna",
+      "city": "Debrecen",
       "country": "Hungary",
-      "lat": 47.531641,
-      "lng": 19.067203,
-      "start_date": "2026-10-03",
-      "end_date": "2026-10-04",
-      "image": "https://pb2.programinfo.hu/imgs/system-4/program/000/175/882/shrek-a-musical-original-263228.webp",
-      "ticket_url": "https://www.jegy.hu/program/shrek-a-musical-175882",
+      "lat": 47.545598,
+      "lng": 21.642969,
+      "start_date": "2026-11-22",
+      "end_date": "2026-11-22",
+      "image": "https://pb2.programinfo.hu/imgs/system-4/program/000/190/884/mamma-mia-original-284931.webp",
+      "ticket_url": "https://www.jegy.hu/program/mamma-mia-190884",
       "type": "tour",
       "verified": true,
       "source": "jegy.hu",
-      "group": "shrek a musical",
+      "group": "mamma mia",
+      "ticket_links": [
+        {
+          "label": "官方網站",
+          "url": "https://madachszinhaz.hu/szindarab/mamma-mia",
+          "kind": "official"
+        },
+        {
+          "label": "售票連結",
+          "url": "https://www.jegy.hu/program/mamma-mia-190884",
+          "kind": "ticketing"
+        }
+      ],
+      "link_kind": "ticketing",
+      "tag": "Broadway/West End",
+      "alt": "Mamma Mia! 媽媽咪呀 妈妈咪呀 媽媽咪呀！ 妈妈咪呀！ マンマ・ミーア"
+    },
+    {
+      "id": "ee-7c87c39d",
+      "title": "Valahol Európában",
+      "title_en": "",
+      "venue": "Magyar Színház",
+      "city": "Budapest",
+      "country": "Hungary",
+      "lat": 47.503361,
+      "lng": 19.072744,
+      "start_date": "2026-10-22",
+      "end_date": "2026-10-25",
+      "image": "https://pb2.programinfo.hu/imgs/system-4/program/000/178/170/valahol-europaban-original-266703.webp",
+      "ticket_url": "https://www.jegy.hu/program/valahol-europaban-178170",
+      "type": "tour",
+      "verified": true,
+      "source": "jegy.hu",
+      "group": "valahol europaban",
       "link_kind": "ticketing",
       "tag": "歐陸原創",
       "ticket_links": [
         {
-          "url": "https://www.jegy.hu/program/shrek-a-musical-175882",
+          "url": "https://www.jegy.hu/program/valahol-europaban-178170",
           "kind": "ticketing"
         }
       ]
     },
     {
-      "id": "ee-5f015e28",
-      "title": "Moravetz - Balásy - Horváth K. - Papp;",
+      "id": "ee-f8fc779c",
+      "title": "A Riviéra vadorzói",
       "title_en": "",
-      "venue": "Szigetvári Vár",
-      "city": "Szigetvár",
+      "venue": "Móricz Zsigmond Színház",
+      "city": "Nyíregyháza",
       "country": "Hungary",
-      "lat": 46.050218,
-      "lng": 17.798047,
-      "start_date": "2026-08-30",
-      "end_date": "2026-08-30",
-      "image": "https://pb2.programinfo.hu/imgs/system-4/program/000/117/912/moravetz-balasy-horvath-k-papp-zrinyi-1566-tortenelmi-musical-original-287960.webp",
-      "ticket_url": "https://www.jegy.hu/program/moravetz-balasy-horvath-k-papp-zrinyi-1566-tortenelmi-musical-117912",
+      "lat": 47.954445,
+      "lng": 21.711515,
+      "start_date": "2026-09-11",
+      "end_date": "2026-09-12",
+      "image": "https://pb2.programinfo.hu/imgs/system-4/program/000/194/535/a-riviera-vadorzoi-original-291374.webp",
+      "ticket_url": "https://www.jegy.hu/program/a-riviera-vadorzoi-194535",
       "type": "tour",
       "verified": true,
       "source": "jegy.hu",
-      "group": "moravetz balasy horvath k papp",
+      "group": "a riviera vadorzoi",
       "link_kind": "ticketing",
       "tag": "歐陸原創",
       "ticket_links": [
         {
-          "url": "https://www.jegy.hu/program/moravetz-balasy-horvath-k-papp-zrinyi-1566-tortenelmi-musical-117912",
+          "url": "https://www.jegy.hu/program/a-riviera-vadorzoi-194535",
           "kind": "ticketing"
         }
       ]
     },
     {
-      "id": "ee-0baf731b",
-      "title": "Carmen",
+      "id": "ee-c90d7774",
+      "title": "Ezeregy éjszaka",
       "title_en": "",
-      "venue": "Budapesti Operettszínház",
+      "venue": "Magyar Színház",
       "city": "Budapest",
       "country": "Hungary",
-      "lat": 47.503908,
-      "lng": 19.060105,
-      "start_date": "2026-10-29",
-      "end_date": "2026-10-31",
-      "image": "https://pb2.programinfo.hu/imgs/system-4/program/000/147/472/carmen-original-239503.webp",
-      "ticket_url": "https://www.jegy.hu/program/carmen-147472",
+      "lat": 47.503361,
+      "lng": 19.072744,
+      "start_date": "2026-10-16",
+      "end_date": "2026-10-18",
+      "image": "https://pb2.programinfo.hu/imgs/system-4/program/000/178/139/ezeregy-ejszaka-original-266708.webp",
+      "ticket_url": "https://www.jegy.hu/program/ezeregy-ejszaka-178139",
       "type": "tour",
       "verified": true,
       "source": "jegy.hu",
-      "group": "carmen",
+      "group": "ezeregy ejszaka",
       "link_kind": "ticketing",
       "tag": "歐陸原創",
       "ticket_links": [
         {
-          "url": "https://www.jegy.hu/program/carmen-147472",
+          "url": "https://www.jegy.hu/program/ezeregy-ejszaka-178139",
+          "kind": "ticketing"
+        }
+      ]
+    },
+    {
+      "id": "ee-e6d078dc",
+      "title": "Elisabeth",
+      "title_en": "",
+      "venue": "Erkel Színház",
+      "city": "Budapest",
+      "country": "Hungary",
+      "lat": 47.496919,
+      "lng": 19.076806,
+      "start_date": "2026-10-02",
+      "end_date": "2026-11-08",
+      "image": "https://pb2.programinfo.hu/imgs/system-4/program/000/176/307/elisabeth-original-267239.webp",
+      "ticket_url": "https://www.jegy.hu/program/elisabeth-176307",
+      "type": "tour",
+      "verified": true,
+      "source": "jegy.hu",
+      "group": "elisabeth",
+      "ticket_links": [
+        {
+          "label": "官方網站",
+          "url": "https://www.vbw-international.at/home/elisabeth",
+          "kind": "official"
+        },
+        {
+          "label": "售票連結",
+          "url": "https://www.jegy.hu/program/elisabeth-176307",
+          "kind": "ticketing"
+        }
+      ],
+      "link_kind": "ticketing",
+      "tag": "德奧音樂劇",
+      "alt": "Elisabeth 伊莉莎白 エリザベート"
+    },
+    {
+      "id": "ee-56a70a4d",
+      "title": "Dés László – Geszti Péter – Békés Pál: A dzsungel könyve - Roxszínház előadásában",
+      "title_en": "",
+      "venue": "AGORA - Művelődési és Sportház",
+      "city": "Szombathely",
+      "country": "Hungary",
+      "lat": 47.23648,
+      "lng": 16.621417,
+      "start_date": "2026-11-21",
+      "end_date": "2026-11-21",
+      "image": "https://pb2.programinfo.hu/imgs/system-4/program/000/191/115/des-laszlo-geszti-peter-bekes-pal-a-dzsungel-konyve-roxszinhaz-eloadasaban-original-284177.webp",
+      "ticket_url": "https://www.jegy.hu/program/des-laszlo-geszti-peter-bekes-pal-a-dzsungel-konyve-roxszinhaz-eloadasaban-191115",
+      "type": "tour",
+      "verified": true,
+      "source": "jegy.hu",
+      "group": "des laszlo geszti peter bekes pal a dzsungel konyve roxszinhaz eloadasaban",
+      "link_kind": "ticketing",
+      "tag": "歐陸原創",
+      "ticket_links": [
+        {
+          "url": "https://www.jegy.hu/program/des-laszlo-geszti-peter-bekes-pal-a-dzsungel-konyve-roxszinhaz-eloadasaban-191115",
+          "kind": "ticketing"
+        }
+      ]
+    },
+    {
+      "id": "ee-d0df8c8b",
+      "title": "Légy jó mindhalálig",
+      "title_en": "",
+      "venue": "Pannon Várszínház Nonprofit Kft.",
+      "city": "Veszprém",
+      "country": "Hungary",
+      "lat": 47.09311,
+      "lng": 17.907723,
+      "start_date": "2026-09-16",
+      "end_date": "2026-09-16",
+      "image": "https://pb2.programinfo.hu/imgs/system-4/program/000/194/542/legy-jo-mindhalalig-original-290196.webp",
+      "ticket_url": "https://www.jegy.hu/program/legy-jo-mindhalalig-194542",
+      "type": "tour",
+      "verified": true,
+      "source": "jegy.hu",
+      "group": "legy jo mindhalalig",
+      "link_kind": "ticketing",
+      "tag": "歐陸原創",
+      "ticket_links": [
+        {
+          "url": "https://www.jegy.hu/program/legy-jo-mindhalalig-194542",
           "kind": "ticketing"
         }
       ]
@@ -26830,131 +26993,27 @@
       ]
     },
     {
-      "id": "ee-c90d7774",
-      "title": "Ezeregy éjszaka",
+      "id": "ee-7e30b9c2",
+      "title": "Egri csillagok",
       "title_en": "",
-      "venue": "Magyar Színház",
-      "city": "Budapest",
+      "venue": "Paulay Ede Színház",
+      "city": "Tokaj",
       "country": "Hungary",
-      "lat": 47.503361,
-      "lng": 19.072744,
-      "start_date": "2026-10-16",
-      "end_date": "2026-10-18",
-      "image": "https://pb2.programinfo.hu/imgs/system-4/program/000/178/139/ezeregy-ejszaka-original-266708.webp",
-      "ticket_url": "https://www.jegy.hu/program/ezeregy-ejszaka-178139",
+      "lat": null,
+      "lng": null,
+      "start_date": "2026-09-10",
+      "end_date": "2026-09-10",
+      "image": "https://www.jegy.hu/resources/img/noimage222.jpg",
+      "ticket_url": "https://www.jegy.hu/program/egri-csillagok-190237",
       "type": "tour",
       "verified": true,
       "source": "jegy.hu",
-      "group": "ezeregy ejszaka",
+      "group": "egri csillagok",
       "link_kind": "ticketing",
       "tag": "歐陸原創",
       "ticket_links": [
         {
-          "url": "https://www.jegy.hu/program/ezeregy-ejszaka-178139",
-          "kind": "ticketing"
-        }
-      ]
-    },
-    {
-      "id": "ee-f8fc779c",
-      "title": "A Riviéra vadorzói",
-      "title_en": "",
-      "venue": "Móricz Zsigmond Színház",
-      "city": "Nyíregyháza",
-      "country": "Hungary",
-      "lat": 47.954445,
-      "lng": 21.711515,
-      "start_date": "2026-09-11",
-      "end_date": "2026-09-12",
-      "image": "https://pb2.programinfo.hu/imgs/system-4/program/000/194/535/a-riviera-vadorzoi-original-291374.webp",
-      "ticket_url": "https://www.jegy.hu/program/a-riviera-vadorzoi-194535",
-      "type": "tour",
-      "verified": true,
-      "source": "jegy.hu",
-      "group": "a riviera vadorzoi",
-      "link_kind": "ticketing",
-      "tag": "歐陸原創",
-      "ticket_links": [
-        {
-          "url": "https://www.jegy.hu/program/a-riviera-vadorzoi-194535",
-          "kind": "ticketing"
-        }
-      ]
-    },
-    {
-      "id": "ee-d0df8c8b",
-      "title": "Légy jó mindhalálig",
-      "title_en": "",
-      "venue": "Pannon Várszínház Nonprofit Kft.",
-      "city": "Veszprém",
-      "country": "Hungary",
-      "lat": 47.09311,
-      "lng": 17.907723,
-      "start_date": "2026-09-27",
-      "end_date": "2026-09-27",
-      "image": "https://pb2.programinfo.hu/imgs/system-4/program/000/191/669/legy-jo-mindhalalig-original-290197.webp",
-      "ticket_url": "https://www.jegy.hu/program/legy-jo-mindhalalig-191669",
-      "type": "tour",
-      "verified": true,
-      "source": "jegy.hu",
-      "group": "legy jo mindhalalig",
-      "link_kind": "ticketing",
-      "tag": "歐陸原創",
-      "ticket_links": [
-        {
-          "url": "https://www.jegy.hu/program/legy-jo-mindhalalig-191669",
-          "kind": "ticketing"
-        }
-      ]
-    },
-    {
-      "id": "ee-67fd2d19",
-      "title": "A Padlás",
-      "title_en": "",
-      "venue": "Szegedi Nemzeti Színház",
-      "city": "Szeged",
-      "country": "Hungary",
-      "lat": 46.24884,
-      "lng": 20.14919,
-      "start_date": "2026-10-29",
-      "end_date": "2026-10-30",
-      "image": "https://pb2.programinfo.hu/imgs/system-4/program/000/174/878/presser-g-stevanovity-d-horvath-p-a-padlas-original-267050.webp",
-      "ticket_url": "https://www.jegy.hu/program/presser-g-stevanovity-d-horvath-p-a-padlas-174878",
-      "type": "tour",
-      "verified": true,
-      "source": "jegy.hu+override",
-      "group": "a padlas",
-      "link_kind": "ticketing",
-      "tag": "歐陸原創",
-      "ticket_links": [
-        {
-          "url": "https://www.jegy.hu/program/presser-g-stevanovity-d-horvath-p-a-padlas-174878",
-          "kind": "ticketing"
-        }
-      ]
-    },
-    {
-      "id": "ee-6f6f123a",
-      "title": "Nikola Tesla - Végtelen energia",
-      "title_en": "",
-      "venue": "Pomázi Szabadtéri Színpad-Breier Farm",
-      "city": "Pomáz",
-      "country": "Hungary",
-      "lat": 47.663682,
-      "lng": 18.965707,
-      "start_date": "2026-09-12",
-      "end_date": "2026-09-12",
-      "image": "https://pb2.programinfo.hu/imgs/system-4/program/000/193/735/nikola-tesla-vegtelen-energia-original-288355.webp",
-      "ticket_url": "https://www.jegy.hu/program/nikola-tesla-vegtelen-energia-193735",
-      "type": "tour",
-      "verified": true,
-      "source": "jegy.hu",
-      "group": "nikola tesla vegtelen energia",
-      "link_kind": "ticketing",
-      "tag": "歐陸原創",
-      "ticket_links": [
-        {
-          "url": "https://www.jegy.hu/program/nikola-tesla-vegtelen-energia-193735",
+          "url": "https://www.jegy.hu/program/egri-csillagok-190237",
           "kind": "ticketing"
         }
       ]
@@ -26983,6 +27042,67 @@
       "ticket_links": [
         {
           "url": "https://www.jegy.hu/program/madagaszkar-zenes-kalandtura-178175",
+          "kind": "ticketing"
+        }
+      ]
+    },
+    {
+      "id": "ee-8e1cd7fa",
+      "title": "Wonderland",
+      "title_en": "",
+      "venue": "Magyar Színház",
+      "city": "Budapest",
+      "country": "Hungary",
+      "lat": 47.503361,
+      "lng": 19.072744,
+      "start_date": "2026-09-18",
+      "end_date": "2026-10-31",
+      "image": "https://pb2.programinfo.hu/imgs/system-4/program/000/193/424/wonderland-original-290233.webp",
+      "ticket_url": "https://www.jegy.hu/program/wonderland-193424",
+      "type": "tour",
+      "verified": true,
+      "source": "jegy.hu",
+      "group": "wonderland",
+      "ticket_links": [
+        {
+          "label": "官方網站",
+          "url": "https://magyarszinhaz.hu/programok/wonderland/",
+          "kind": "official"
+        },
+        {
+          "label": "售票連結",
+          "url": "https://www.jegy.hu/program/wonderland-193424",
+          "kind": "ticketing"
+        }
+      ],
+      "link_kind": "ticketing",
+      "tag": "Broadway/West End",
+      "alt": "Wonderland Wildhorn – Murphy: WONDERLAND musical 仙境"
+    },
+    {
+      "id": "ee-5e507b69",
+      "title": "Motherhood the Musical",
+      "title_en": "",
+      "venue": "Liliom Produkció",
+      "city": "Tatabánya",
+      "country": "Hungary",
+      "lat": 47.519759,
+      "lng": 19.15971,
+      "start_date": "2026-09-26",
+      "end_date": "2026-09-26",
+      "image": "https://pb2.programinfo.hu/imgs/system-4/program/000/165/873/anyatigrisek-musical-original-288962.webp",
+      "ticket_url": "https://www.jegy.hu/program/anyatigrisek-musical-165873",
+      "type": "tour",
+      "verified": true,
+      "source": "jegy.hu",
+      "group": "motherhood",
+      "tour_name": "Anyatigrisek - musical",
+      "link_kind": "ticketing",
+      "tag": "Broadway/West End",
+      "alt": "Motherhood the Musical Anyatigrisek - musical",
+      "ticket_links": [
+        {
+          "url": "https://www.jegy.hu/program/anyatigrisek-musical-165873",
           "kind": "ticketing"
         }
       ]
@@ -27021,201 +27141,131 @@
       "alt": "Mamma Mia! 媽媽咪呀 妈妈咪呀 媽媽咪呀！ 妈妈咪呀！ マンマ・ミーア"
     },
     {
-      "id": "ee-5e507b69",
-      "title": "Motherhood the Musical",
+      "id": "ee-6f6f123a",
+      "title": "Nikola Tesla - Végtelen energia",
       "title_en": "",
-      "venue": "Liliom Produkció",
-      "city": "Tatabánya",
+      "venue": "Pomázi Szabadtéri Színpad-Breier Farm",
+      "city": "Pomáz",
       "country": "Hungary",
-      "lat": 47.519759,
-      "lng": 19.15971,
-      "start_date": "2026-09-26",
-      "end_date": "2026-09-26",
-      "image": "https://pb2.programinfo.hu/imgs/system-4/program/000/165/873/anyatigrisek-musical-original-288962.webp",
-      "ticket_url": "https://www.jegy.hu/program/anyatigrisek-musical-165873",
+      "lat": 47.663682,
+      "lng": 18.965707,
+      "start_date": "2026-09-12",
+      "end_date": "2026-09-12",
+      "image": "https://pb2.programinfo.hu/imgs/system-4/program/000/193/735/nikola-tesla-vegtelen-energia-original-288355.webp",
+      "ticket_url": "https://www.jegy.hu/program/nikola-tesla-vegtelen-energia-193735",
       "type": "tour",
       "verified": true,
       "source": "jegy.hu",
-      "group": "motherhood",
-      "tour_name": "Anyatigrisek - musical",
-      "link_kind": "ticketing",
-      "tag": "Broadway/West End",
-      "alt": "Motherhood the Musical Anyatigrisek - musical",
-      "ticket_links": [
-        {
-          "url": "https://www.jegy.hu/program/anyatigrisek-musical-165873",
-          "kind": "ticketing"
-        }
-      ]
-    },
-    {
-      "id": "ee-b1ecb298",
-      "title": "Rudolf",
-      "title_en": "",
-      "venue": "Győri Nemzeti Színház",
-      "city": "Győr",
-      "country": "Hungary",
-      "lat": 47.686581,
-      "lng": 17.635384,
-      "start_date": "2026-10-25",
-      "end_date": "2026-10-25",
-      "image": "https://pb2.programinfo.hu/imgs/system-4/program/000/175/716/rudolf-original-275678.webp",
-      "ticket_url": "https://www.jegy.hu/program/rudolf-175716",
-      "type": "tour",
-      "verified": true,
-      "source": "jegy.hu",
-      "group": "rudolf",
-      "ticket_links": [
-        {
-          "label": "官方網站",
-          "url": "https://www.vbw-international.at/home/rudolf",
-          "kind": "official"
-        },
-        {
-          "label": "售票連結",
-          "url": "https://www.jegy.hu/program/rudolf-175716",
-          "kind": "ticketing"
-        }
-      ],
-      "link_kind": "ticketing",
-      "tag": "德奧音樂劇",
-      "alt": "Rudolf ルドルフ"
-    },
-    {
-      "id": "ee-46ae15d9",
-      "title": "EDDA musical - A kör",
-      "title_en": "",
-      "venue": "Hírös Agóra",
-      "city": "Kecskemét",
-      "country": "Hungary",
-      "lat": 46.90706,
-      "lng": 19.689587,
-      "start_date": "2026-09-23",
-      "end_date": "2026-09-23",
-      "image": "https://pb2.programinfo.hu/imgs/system-4/program/000/190/714/edda-musical-a-kor-original-283613.webp",
-      "ticket_url": "https://www.jegy.hu/program/edda-musical-a-kor-190714",
-      "type": "tour",
-      "verified": true,
-      "source": "jegy.hu",
-      "group": "edda musical a kor",
+      "group": "nikola tesla vegtelen energia",
       "link_kind": "ticketing",
       "tag": "歐陸原創",
       "ticket_links": [
         {
-          "url": "https://www.jegy.hu/program/edda-musical-a-kor-190714",
+          "url": "https://www.jegy.hu/program/nikola-tesla-vegtelen-energia-193735",
           "kind": "ticketing"
         }
       ]
     },
     {
-      "id": "ee-c75895dd",
-      "title": "Mamma Mia!",
+      "id": "ee-e39c1b4e",
+      "title": "Presser-Sztevanovity: A padlás",
       "title_en": "",
-      "venue": "Debrecen Főnix Aréna",
-      "city": "Debrecen",
+      "venue": "Művészetek Háza",
+      "city": "Miskolc",
       "country": "Hungary",
-      "lat": 47.545598,
-      "lng": 21.642969,
-      "start_date": "2026-11-22",
-      "end_date": "2026-11-22",
-      "image": "https://pb2.programinfo.hu/imgs/system-4/program/000/190/884/mamma-mia-original-284931.webp",
-      "ticket_url": "https://www.jegy.hu/program/mamma-mia-190884",
+      "lat": null,
+      "lng": null,
+      "start_date": "2026-10-30",
+      "end_date": "2026-10-30",
+      "image": "https://pb2.programinfo.hu/imgs/system-4/program/000/140/800/presser-sztevanovity-a-padlas-original-199647.webp",
+      "ticket_url": "https://www.jegy.hu/program/presser-sztevanovity-a-padlas-140800",
       "type": "tour",
       "verified": true,
       "source": "jegy.hu",
-      "group": "mamma mia",
-      "ticket_links": [
-        {
-          "label": "官方網站",
-          "url": "https://madachszinhaz.hu/szindarab/mamma-mia",
-          "kind": "official"
-        },
-        {
-          "label": "售票連結",
-          "url": "https://www.jegy.hu/program/mamma-mia-190884",
-          "kind": "ticketing"
-        }
-      ],
-      "link_kind": "ticketing",
-      "tag": "Broadway/West End",
-      "alt": "Mamma Mia! 媽媽咪呀 妈妈咪呀 媽媽咪呀！ 妈妈咪呀！ マンマ・ミーア"
-    },
-    {
-      "id": "ee-386f695a",
-      "title": "A DZSUNGEL KÖNYVE",
-      "title_en": "",
-      "venue": "Marczibányi Téri Művelődési Központ",
-      "city": "Budapest",
-      "country": "Hungary",
-      "lat": 47.513355,
-      "lng": 19.020931,
-      "start_date": "2026-09-25",
-      "end_date": "2026-09-25",
-      "image": "https://pb2.programinfo.hu/imgs/system-4/program/000/184/989/a-dzsungel-konyve-original-274386.webp",
-      "ticket_url": "https://www.jegy.hu/program/a-dzsungel-konyve-184989",
-      "type": "tour",
-      "verified": true,
-      "source": "jegy.hu",
-      "group": "a dzsungel konyve",
+      "group": "presser sztevanovity a padlas",
       "link_kind": "ticketing",
       "tag": "歐陸原創",
       "ticket_links": [
         {
-          "url": "https://www.jegy.hu/program/a-dzsungel-konyve-184989",
+          "url": "https://www.jegy.hu/program/presser-sztevanovity-a-padlas-140800",
           "kind": "ticketing"
         }
       ]
     },
     {
-      "id": "ee-d2b42ab0",
-      "title": "Hair",
+      "id": "ee-67fd2d19",
+      "title": "A Padlás",
       "title_en": "",
-      "venue": "Szeged Városi Sportcsarnok",
+      "venue": "Szegedi Nemzeti Színház",
       "city": "Szeged",
       "country": "Hungary",
-      "lat": 46.244849,
-      "lng": 20.162709,
-      "start_date": "2026-12-06",
-      "end_date": "2026-12-06",
-      "image": "https://pb2.programinfo.hu/imgs/system-4/program/000/192/968/ragni-rado-macdermot-hair-musical-roxinhaz-eloadasaban-original-287079.webp",
-      "ticket_url": "https://www.jegy.hu/program/ragni-rado-macdermot-hair-musical-roxinhaz-eloadasaban-192968",
+      "lat": 46.24884,
+      "lng": 20.14919,
+      "start_date": "2026-10-29",
+      "end_date": "2026-10-30",
+      "image": "https://pb2.programinfo.hu/imgs/system-4/program/000/174/878/presser-g-stevanovity-d-horvath-p-a-padlas-original-267050.webp",
+      "ticket_url": "https://www.jegy.hu/program/presser-g-stevanovity-d-horvath-p-a-padlas-174878",
       "type": "tour",
       "verified": true,
-      "source": "jegy.hu",
-      "group": "hair",
-      "tour_name": "Ragni - Rado - MacDermot: HAIR musical - Roxínház előadásában",
+      "source": "jegy.hu+override",
+      "group": "a padlas",
       "link_kind": "ticketing",
-      "tag": "Broadway/West End",
-      "alt": "Hair Ragni - Rado - MacDermot: HAIR musical 毛髮 毛发",
+      "tag": "歐陸原創",
       "ticket_links": [
         {
-          "url": "https://www.jegy.hu/program/ragni-rado-macdermot-hair-musical-roxinhaz-eloadasaban-192968",
+          "url": "https://www.jegy.hu/program/presser-g-stevanovity-d-horvath-p-a-padlas-174878",
           "kind": "ticketing"
         }
       ]
     },
     {
-      "id": "ee-bf2bf60e",
-      "title": "Az Éj Eleganciája – Több mint musical / Mahó Andrea – Csengeri Attila – Kovács Gábor",
+      "id": "ee-6d0cc6aa",
+      "title": "Macskafogó",
       "title_en": "",
-      "venue": "KÖFÉM Művelődési Ház",
-      "city": "Székesfehérvár",
+      "venue": "József Attila Színház",
+      "city": "Budapest",
       "country": "Hungary",
-      "lat": 47.191085,
-      "lng": 18.463834,
-      "start_date": "2026-09-24",
-      "end_date": "2026-09-24",
-      "image": "https://pb2.programinfo.hu/imgs/system-4/program/000/192/905/az-ej-eleganciaja-tobb-mint-musical-maho-andrea-csengeri-attila-kovacs-gabor-original-286939.webp",
-      "ticket_url": "https://www.jegy.hu/program/az-ej-eleganciaja-tobb-mint-musical-maho-andrea-csengeri-attila-kovacs-gabor-192905",
+      "lat": 47.531641,
+      "lng": 19.067203,
+      "start_date": "2026-10-17",
+      "end_date": "2026-10-18",
+      "image": "https://pb2.programinfo.hu/imgs/system-4/program/000/105/963/macskafogo-original-235041.webp",
+      "ticket_url": "https://www.jegy.hu/program/macskafogo-105963",
       "type": "tour",
       "verified": true,
       "source": "jegy.hu",
-      "group": "az ej eleganciaja",
+      "group": "macskafogo",
       "link_kind": "ticketing",
       "tag": "歐陸原創",
       "ticket_links": [
         {
-          "url": "https://www.jegy.hu/program/az-ej-eleganciaja-tobb-mint-musical-maho-andrea-csengeri-attila-kovacs-gabor-192905",
+          "url": "https://www.jegy.hu/program/macskafogo-105963",
+          "kind": "ticketing"
+        }
+      ]
+    },
+    {
+      "id": "ee-377169cb",
+      "title": "Dés László – Geszti Péter – Békés Pál: A dzsungel könyve",
+      "title_en": "",
+      "venue": "Art mozi",
+      "city": "Zalaegerszeg",
+      "country": "Hungary",
+      "lat": 46.844509,
+      "lng": 16.846342,
+      "start_date": "2026-10-09",
+      "end_date": "2026-10-09",
+      "image": "https://pb2.programinfo.hu/imgs/system-4/program/000/190/955/des-laszlo-geszti-peter-bekes-pal-a-dzsungel-konyve-original-284054.webp",
+      "ticket_url": "https://www.jegy.hu/program/des-laszlo-geszti-peter-bekes-pal-a-dzsungel-konyve-190955",
+      "type": "tour",
+      "verified": true,
+      "source": "jegy.hu",
+      "group": "des laszlo geszti peter bekes pal a dzsungel konyve",
+      "link_kind": "ticketing",
+      "tag": "歐陸原創",
+      "ticket_links": [
+        {
+          "url": "https://www.jegy.hu/program/des-laszlo-geszti-peter-bekes-pal-a-dzsungel-konyve-190955",
           "kind": "ticketing"
         }
       ]
@@ -32893,7 +32943,7 @@
       "lat": 52.088455,
       "lng": 5.107443,
       "start_date": "2026-09-01",
-      "end_date": null,
+      "end_date": "2026-12-30",
       "image": "https://mediaportal.stage-entertainment.com/asset/c2edf1b3-f6ea-4457-a9d9-a26d4f99dafc/thumbnail/webimage--Juliet_Tour_Boeknujouwtickets-16x9",
       "ticket_url": "https://www.stage-entertainment.nl/shows/musical/andjuliet",
       "type": "resident",
@@ -32901,6 +32951,7 @@
       "source": "stage-entertainment.nl+override",
       "group": "and juliet",
       "tour_name": "& Juliet de powerpopmusical",
+      "end_rolling": true,
       "ticket_links": [
         {
           "label": "官方網站",
@@ -33410,7 +33461,7 @@
       "lat": 59.915085,
       "lng": 10.738549,
       "start_date": "2026-10-17",
-      "end_date": "2027-01-27",
+      "end_date": "2027-01-28",
       "image": "https://detnorsketeatret.imgix.net/16_9-Cabaret.png?auto=format&",
       "ticket_url": "https://www.detnorsketeatret.no/framsyningar/cabaret",
       "type": "resident",
@@ -33855,6 +33906,33 @@
       ],
       "link_kind": "ticketing",
       "tag": "中國原創"
+    },
+    {
+      "id": "shcs-42075",
+      "title": "莫里哀",
+      "type": "limited",
+      "venue": "上海文化广场 Shanghai Culture Square",
+      "city": "Shanghai",
+      "city_cn": "上海",
+      "country": "China",
+      "lat": 31.212022,
+      "lng": 121.462142,
+      "start_date": "2026-12-30",
+      "end_date": "2027-01-10",
+      "ticket_url": "https://www.shcstheatre.com/Program/ProgramDetails.aspx?program_id=42075",
+      "image": "https://pic.shcstheatre.com/upload/program/1920x696/134321276895531725_70.jpg",
+      "tour_name": null,
+      "verified": true,
+      "source": "shcstheatre.com",
+      "group": "莫里哀",
+      "link_kind": "ticketing",
+      "tag": "中國原創",
+      "ticket_links": [
+        {
+          "url": "https://www.shcstheatre.com/Program/ProgramDetails.aspx?program_id=42075",
+          "kind": "ticketing"
+        }
+      ]
     },
     {
       "id": "poly-9218700",
@@ -34431,27 +34509,27 @@
       "tag": "中國原創"
     },
     {
-      "id": "poly-9718100",
-      "title": "红莲",
+      "id": "poly-9401900",
+      "title": "六个说谎的大学生",
       "type": "limited",
-      "venue": "重庆大剧院",
-      "city": "Chongqing",
-      "city_cn": "重庆",
+      "venue": "海口湾演艺中心",
+      "city": "Haikou",
+      "city_cn": "海口",
       "country": "China",
-      "lat": 29.569956,
-      "lng": 106.581187,
+      "lat": 20.028061,
+      "lng": 110.309418,
       "start_date": "2026-09-19",
-      "end_date": "2026-09-19",
-      "ticket_url": "https://detail.damai.cn/item.htm?id=1065127053332",
-      "image": "https://cdn.polyt.cn/jpg/2026-07-06/8ed61d8aa21630919ba2451d8ff7c027.jpg",
+      "end_date": "2026-09-20",
+      "ticket_url": "https://detail.damai.cn/item.htm?id=1058380073533",
+      "image": "https://cdn.polyt.cn/jpg/2026-04-28/84dbde8720778c5065eef201aa22bce5.jpg",
       "tour_name": null,
       "verified": true,
       "source": "polyt.cn",
-      "group": "红莲",
+      "group": "六个说谎的大学生",
       "ticket_links": [
         {
           "label": "大麥",
-          "url": "https://detail.damai.cn/item.htm?id=1065127053332",
+          "url": "https://detail.damai.cn/item.htm?id=1058380073533",
           "kind": "ticketing"
         }
       ],
@@ -34487,27 +34565,27 @@
       "tag": "中國原創"
     },
     {
-      "id": "poly-9401900",
-      "title": "六个说谎的大学生",
+      "id": "poly-9718100",
+      "title": "红莲",
       "type": "limited",
-      "venue": "海口湾演艺中心",
-      "city": "Haikou",
-      "city_cn": "海口",
+      "venue": "重庆大剧院",
+      "city": "Chongqing",
+      "city_cn": "重庆",
       "country": "China",
-      "lat": 20.028061,
-      "lng": 110.309418,
+      "lat": 29.569956,
+      "lng": 106.581187,
       "start_date": "2026-09-19",
-      "end_date": "2026-09-20",
-      "ticket_url": "https://detail.damai.cn/item.htm?id=1058380073533",
-      "image": "https://cdn.polyt.cn/jpg/2026-04-28/84dbde8720778c5065eef201aa22bce5.jpg",
+      "end_date": "2026-09-19",
+      "ticket_url": "https://detail.damai.cn/item.htm?id=1065127053332",
+      "image": "https://cdn.polyt.cn/jpg/2026-07-06/8ed61d8aa21630919ba2451d8ff7c027.jpg",
       "tour_name": null,
       "verified": true,
       "source": "polyt.cn",
-      "group": "六个说谎的大学生",
+      "group": "红莲",
       "ticket_links": [
         {
           "label": "大麥",
-          "url": "https://detail.damai.cn/item.htm?id=1058380073533",
+          "url": "https://detail.damai.cn/item.htm?id=1065127053332",
           "kind": "ticketing"
         }
       ],
@@ -34685,34 +34763,6 @@
       "tag": "中國原創"
     },
     {
-      "id": "poly-9641800",
-      "title": "#0528",
-      "type": "limited",
-      "venue": "山西大剧院",
-      "city": "Taiyuan",
-      "city_cn": "太原",
-      "country": "China",
-      "lat": 37.807658,
-      "lng": 112.533232,
-      "start_date": "2026-10-01",
-      "end_date": "2026-10-02",
-      "ticket_url": "https://detail.damai.cn/item.htm?id=1066378463807",
-      "image": "https://cdn.polyt.cn/png/2026-07-20/2ef104538e6e936a225b2c5f808b1e20.png",
-      "tour_name": null,
-      "verified": true,
-      "source": "polyt.cn",
-      "group": "0528",
-      "ticket_links": [
-        {
-          "label": "大麥",
-          "url": "https://detail.damai.cn/item.htm?id=1066378463807",
-          "kind": "ticketing"
-        }
-      ],
-      "link_kind": "ticketing",
-      "tag": "中國原創"
-    },
-    {
       "id": "poly-9513300",
       "title": "SIX",
       "type": "limited",
@@ -34745,6 +34795,34 @@
       "link_kind": "ticketing",
       "tag": "Broadway/West End",
       "alt": "SIX 六個皇后 六个皇后 六位皇后"
+    },
+    {
+      "id": "poly-9641800",
+      "title": "#0528",
+      "type": "limited",
+      "venue": "山西大剧院",
+      "city": "Taiyuan",
+      "city_cn": "太原",
+      "country": "China",
+      "lat": 37.807658,
+      "lng": 112.533232,
+      "start_date": "2026-10-01",
+      "end_date": "2026-10-02",
+      "ticket_url": "https://detail.damai.cn/item.htm?id=1066378463807",
+      "image": "https://cdn.polyt.cn/png/2026-07-20/2ef104538e6e936a225b2c5f808b1e20.png",
+      "tour_name": null,
+      "verified": true,
+      "source": "polyt.cn",
+      "group": "0528",
+      "ticket_links": [
+        {
+          "label": "大麥",
+          "url": "https://detail.damai.cn/item.htm?id=1066378463807",
+          "kind": "ticketing"
+        }
+      ],
+      "link_kind": "ticketing",
+      "tag": "中國原創"
     },
     {
       "id": "poly-9303700",
@@ -35343,6 +35421,35 @@
       "tag": "中國原創"
     },
     {
+      "id": "poly-9897600",
+      "title": "Jane Eyre",
+      "type": "limited",
+      "venue": "杭州临平大剧院",
+      "city": "Hangzhou",
+      "city_cn": "杭州",
+      "country": "China",
+      "lat": 30.421008,
+      "lng": 120.299839,
+      "start_date": "2026-11-07",
+      "end_date": "2026-11-08",
+      "ticket_url": "https://search.damai.cn/search.htm?keyword=%E7%AE%80%C2%B7%E7%88%B1",
+      "image": "https://cdn.polyt.cn/jpg/2026-08-25/b6ad5ca6b835d3ea513781e735075d53.jpg",
+      "tour_name": "简·爱",
+      "verified": true,
+      "source": "polyt.cn",
+      "group": "jane eyre",
+      "link_kind": "ticketing",
+      "tag": "Broadway/West End",
+      "alt": "Jane Eyre 简·爱 簡·愛 簡愛 简爱 Jane Eyre the Musical",
+      "ticket_links": [
+        {
+          "url": "https://search.damai.cn/search.htm?keyword=%E7%AE%80%C2%B7%E7%88%B1",
+          "kind": "ticketing",
+          "label": "大麥"
+        }
+      ]
+    },
+    {
       "id": "poly-8775700",
       "title": "SIX",
       "type": "limited",
@@ -35433,6 +35540,34 @@
       "tag": "中國原創"
     },
     {
+      "id": "poly-9879300",
+      "title": "破墙",
+      "type": "limited",
+      "venue": "青岛大剧院",
+      "city": "Qingdao",
+      "city_cn": "青岛",
+      "country": "China",
+      "lat": 36.09964,
+      "lng": 120.473667,
+      "start_date": "2026-11-20",
+      "end_date": "2026-11-21",
+      "ticket_url": "https://detail.damai.cn/item.htm?id=1077198265956",
+      "image": "https://cdn.polyt.cn/jpg/2026-08-21/dac15fd324c5be62cf42446251564ca7.jpg",
+      "tour_name": null,
+      "verified": true,
+      "source": "polyt.cn",
+      "group": "破墙",
+      "ticket_links": [
+        {
+          "label": "大麥",
+          "url": "https://detail.damai.cn/item.htm?id=1077198265956",
+          "kind": "ticketing"
+        }
+      ],
+      "link_kind": "ticketing",
+      "tag": "中國原創"
+    },
+    {
       "id": "poly-9732200",
       "title": "Hedwig and the Angry Inch",
       "type": "limited",
@@ -35460,34 +35595,6 @@
       "link_kind": "ticketing",
       "tag": "Broadway/West End",
       "alt": "Hedwig and the Angry Inch HEDWIG Hedwig 摇滚芭比 搖滾芭比 海德薇"
-    },
-    {
-      "id": "poly-9879300",
-      "title": "破墙",
-      "type": "limited",
-      "venue": "青岛大剧院",
-      "city": "Qingdao",
-      "city_cn": "青岛",
-      "country": "China",
-      "lat": 36.09964,
-      "lng": 120.473667,
-      "start_date": "2026-11-20",
-      "end_date": "2026-11-21",
-      "ticket_url": "https://detail.damai.cn/item.htm?id=1077198265956",
-      "image": "https://cdn.polyt.cn/jpg/2026-08-21/dac15fd324c5be62cf42446251564ca7.jpg",
-      "tour_name": null,
-      "verified": true,
-      "source": "polyt.cn",
-      "group": "破墙",
-      "ticket_links": [
-        {
-          "label": "大麥",
-          "url": "https://detail.damai.cn/item.htm?id=1077198265956",
-          "kind": "ticketing"
-        }
-      ],
-      "link_kind": "ticketing",
-      "tag": "中國原創"
     },
     {
       "id": "poly-1000277705",
@@ -35607,6 +35714,34 @@
       ],
       "link_kind": "ticketing",
       "tag": "中國原創"
+    },
+    {
+      "id": "poly-9897900",
+      "title": "#0528",
+      "type": "limited",
+      "venue": "杭州临平大剧院",
+      "city": "Hangzhou",
+      "city_cn": "杭州",
+      "country": "China",
+      "lat": 30.421008,
+      "lng": 120.299839,
+      "start_date": "2027-01-08",
+      "end_date": "2027-01-08",
+      "ticket_url": "https://search.damai.cn/search.htm?keyword=%230528",
+      "image": "https://cdn.polyt.cn/jpg/2026-08-26/0c086036690651bd9667396194a729dc.jpg",
+      "tour_name": null,
+      "verified": true,
+      "source": "polyt.cn",
+      "group": "0528",
+      "link_kind": "ticketing",
+      "tag": "中國原創",
+      "ticket_links": [
+        {
+          "url": "https://search.damai.cn/search.htm?keyword=%230528",
+          "kind": "ticketing",
+          "label": "大麥"
+        }
+      ]
     },
     {
       "id": "juooo-52924",
@@ -41063,6 +41198,39 @@
       ]
     },
     {
+      "id": "ph-the-notebook-the-musical-samsung-performing-arts-theater",
+      "title": "The Notebook",
+      "type": "tour",
+      "venue": "Samsung Performing Arts Theater",
+      "city": "Manila",
+      "country": "Philippines",
+      "lat": 14.572325,
+      "lng": 121.018776,
+      "start_date": "2026-09-03",
+      "end_date": "2026-09-20",
+      "ticket_url": "https://premier.ticketworld.com.ph/shows/Show.aspx?sh=NOTEBOOK26",
+      "image": "https://cdn.craft.cloud/4027eea6-6e91-4e75-bd40-d01cbeb9c781/assets/shows/notebook-1000.jpg",
+      "tour_name": "The Notebook The Musical",
+      "verified": true,
+      "source": "ticketworld.com.ph",
+      "group": "notebook",
+      "ticket_links": [
+        {
+          "label": "官方網站",
+          "url": "https://notebookmusical.com/",
+          "kind": "official"
+        },
+        {
+          "label": "售票連結",
+          "url": "https://premier.ticketworld.com.ph/shows/Show.aspx?sh=NOTEBOOK26",
+          "kind": "ticketing"
+        }
+      ],
+      "link_kind": "ticketing",
+      "tag": "Broadway/West End",
+      "alt": "The Notebook The Notebook The Musical The Notebook: The Musical"
+    },
+    {
       "id": "manual-phantom-shanghai-2026",
       "title": "The Phantom of the Opera",
       "type": "tour",
@@ -41972,44 +42140,6 @@
       "alt": "Starlight Express 星光快車 星光快车 スターライトエクスプレス"
     },
     {
-      "id": "tm-the-rocky-horror-show-studio-54",
-      "title": "The Rocky Horror Show",
-      "type": "tour",
-      "venue": "Studio 54",
-      "city": "New York",
-      "country": "USA",
-      "lat": 40.764406,
-      "lng": -73.983719,
-      "start_date": "2026-08-25",
-      "end_date": "2026-11-29",
-      "ticket_url": "https://www.ticketmaster.com/the-rocky-horror-show-tickets/artist/804241",
-      "attraction_url": "https://www.ticketmaster.com/the-rocky-horror-show-tickets/artist/804241",
-      "ticket_links": [
-        {
-          "label": "官方網站",
-          "url": "https://rockyhorrorshowbroadway.com/",
-          "kind": "official"
-        },
-        {
-          "label": "TodayTix",
-          "url": "https://www.todaytix.com/nyc/shows/43905-the-rocky-horror-show-on-broadway",
-          "kind": "ticketing"
-        },
-        {
-          "country": "US",
-          "url": "https://www.ticketmaster.com/the-rocky-horror-show-tickets/artist/804241"
-        }
-      ],
-      "image": "https://s1.ticketm.net/dam/a/7fb/08694303-391b-4f27-b5c2-4918134e37fb_SOURCE",
-      "tour_name": null,
-      "verified": true,
-      "source": "ticketmaster",
-      "onsale_only": true,
-      "group": "rocky horror show",
-      "link_kind": "ticketing",
-      "tag": "Broadway/West End"
-    },
-    {
       "id": "tm-moulin-rouge-al-hirschfeld-theatre",
       "title": "Moulin Rouge!",
       "type": "tour",
@@ -42018,7 +42148,7 @@
       "country": "USA",
       "lat": 40.759261,
       "lng": -73.989201,
-      "start_date": "2026-08-25",
+      "start_date": "2026-08-26",
       "end_date": "2026-08-30",
       "ticket_url": "https://www.ticketmaster.com/moulin-rouge-the-musical-ny-tickets/artist/2571914",
       "attraction_url": "https://www.ticketmaster.com/moulin-rouge-the-musical-ny-tickets/artist/2571914",
@@ -42047,100 +42177,6 @@
       "link_kind": "ticketing",
       "tag": "Broadway/West End",
       "alt": "Moulin Rouge! 紅磨坊 红磨坊 ムーラン・ルージュ 梦断花都 夢斷花都"
-    },
-    {
-      "id": "tm-water-for-elephants-eccles-theater-salt-lake-city",
-      "title": "Water for Elephants",
-      "type": "tour",
-      "venue": "Eccles Theater - Salt Lake City",
-      "city": "Salt Lake City, UT",
-      "country": "USA",
-      "lat": 40.766363,
-      "lng": -111.890583,
-      "start_date": "2026-08-25",
-      "end_date": "2026-08-30",
-      "ticket_url": "https://www.ticketmaster.com/water-for-elephants-touring-tickets/artist/3627249",
-      "attraction_url": "https://www.ticketmaster.com/water-for-elephants-touring-tickets/artist/3627249",
-      "ticket_links": [
-        {
-          "label": "官方網站",
-          "url": "https://waterforelephantsthemusical.com/",
-          "kind": "official"
-        },
-        {
-          "country": "US",
-          "url": "https://www.ticketmaster.com/water-for-elephants-touring-tickets/artist/3627249"
-        }
-      ],
-      "image": "https://s1.ticketm.net/dam/a/65f/eb67f402-ccb1-4382-a7a4-0db73bcb365f_SOURCE",
-      "tour_name": null,
-      "verified": true,
-      "source": "ticketmaster",
-      "onsale_only": true,
-      "group": "water for elephants",
-      "link_kind": "ticketing",
-      "tag": "Broadway/West End"
-    },
-    {
-      "id": "tm-all-shook-up-alexis-park-resort-hotel",
-      "title": "All Shook Up",
-      "type": "tour",
-      "venue": "Alexis Park Resort Hotel",
-      "city": "Las Vegas, NV",
-      "country": "USA",
-      "lat": 36.107577,
-      "lng": -115.156252,
-      "start_date": "2026-08-25",
-      "end_date": "2027-12-31",
-      "ticket_url": "https://www.ticketmaster.com/all-shook-up-tickets/artist/911675",
-      "attraction_url": "https://www.ticketmaster.com/all-shook-up-tickets/artist/911675",
-      "ticket_links": [
-        {
-          "country": "US",
-          "url": "https://www.ticketmaster.com/all-shook-up-tickets/artist/911675"
-        }
-      ],
-      "image": "https://s1.ticketm.net/dam/a/13b/a132e2d2-0073-47f0-8554-2934d583513b_SOURCE",
-      "tour_name": null,
-      "verified": true,
-      "source": "ticketmaster",
-      "onsale_only": true,
-      "group": "all shook up",
-      "link_kind": "ticketing",
-      "tag": "Broadway/West End"
-    },
-    {
-      "id": "tm-joseph-and-the-amazing-technicolor-dreamcoat-hale-center-theatre-at-mountain-america",
-      "title": "Joseph and the Amazing Technicolor Dreamcoat",
-      "type": "tour",
-      "venue": "Hale Center Theatre at Mountain America",
-      "city": "Sandy",
-      "country": "USA",
-      "lat": 40.571681,
-      "lng": -111.898212,
-      "start_date": "2026-08-25",
-      "end_date": "2026-10-07",
-      "ticket_url": "https://www.ticketmaster.com/joseph-and-the-amazing-technicolor-dreamcoat-tickets/artist/803932",
-      "attraction_url": "https://www.ticketmaster.com/joseph-and-the-amazing-technicolor-dreamcoat-tickets/artist/803932",
-      "ticket_links": [
-        {
-          "label": "官方網站",
-          "url": "https://www.josephthemusical.com/",
-          "kind": "official"
-        },
-        {
-          "country": "US",
-          "url": "https://www.ticketmaster.com/joseph-and-the-amazing-technicolor-dreamcoat-tickets/artist/803932"
-        }
-      ],
-      "image": "https://s1.ticketm.net/dam/a/9a5/0382d888-c534-4dcb-9aac-927f59a749a5_SOURCE",
-      "tour_name": null,
-      "verified": true,
-      "source": "ticketmaster",
-      "onsale_only": true,
-      "group": "joseph and the amazing technicolor dreamcoat",
-      "link_kind": "ticketing",
-      "tag": "Broadway/West End"
     },
     {
       "id": "tm-music-theater-works-west-side-story-george-van-dusen-theatre-at-north-shore-center",
@@ -42175,6 +42211,44 @@
       "link_kind": "ticketing",
       "tag": "Broadway/West End",
       "alt": "West Side Story 西城故事 ウエスト・サイド・ストーリー 夢斷城西 梦断城西"
+    },
+    {
+      "id": "tm-the-rocky-horror-show-studio-54",
+      "title": "The Rocky Horror Show",
+      "type": "tour",
+      "venue": "Studio 54",
+      "city": "New York",
+      "country": "USA",
+      "lat": 40.764406,
+      "lng": -73.983719,
+      "start_date": "2026-08-26",
+      "end_date": "2026-11-29",
+      "ticket_url": "https://www.ticketmaster.com/the-rocky-horror-show-tickets/artist/804241",
+      "attraction_url": "https://www.ticketmaster.com/the-rocky-horror-show-tickets/artist/804241",
+      "ticket_links": [
+        {
+          "label": "官方網站",
+          "url": "https://rockyhorrorshowbroadway.com/",
+          "kind": "official"
+        },
+        {
+          "label": "TodayTix",
+          "url": "https://www.todaytix.com/nyc/shows/43905-the-rocky-horror-show-on-broadway",
+          "kind": "ticketing"
+        },
+        {
+          "country": "US",
+          "url": "https://www.ticketmaster.com/the-rocky-horror-show-tickets/artist/804241"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/7fb/08694303-391b-4f27-b5c2-4918134e37fb_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true,
+      "group": "rocky horror show",
+      "link_kind": "ticketing",
+      "tag": "Broadway/West End"
     },
     {
       "id": "tm-beautiful-the-carole-king-musical-the-argyle-theatre-at-babylon-village",
@@ -42304,6 +42378,100 @@
       "link_kind": "ticketing",
       "tag": "Broadway/West End",
       "alt": "Come from Away 來自遠方 来自远方"
+    },
+    {
+      "id": "tm-water-for-elephants-eccles-theater-salt-lake-city",
+      "title": "Water for Elephants",
+      "type": "tour",
+      "venue": "Eccles Theater - Salt Lake City",
+      "city": "Salt Lake City, UT",
+      "country": "USA",
+      "lat": 40.766363,
+      "lng": -111.890583,
+      "start_date": "2026-08-26",
+      "end_date": "2026-08-30",
+      "ticket_url": "https://www.ticketmaster.com/water-for-elephants-touring-tickets/artist/3627249",
+      "attraction_url": "https://www.ticketmaster.com/water-for-elephants-touring-tickets/artist/3627249",
+      "ticket_links": [
+        {
+          "label": "官方網站",
+          "url": "https://waterforelephantsthemusical.com/",
+          "kind": "official"
+        },
+        {
+          "country": "US",
+          "url": "https://www.ticketmaster.com/water-for-elephants-touring-tickets/artist/3627249"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/65f/eb67f402-ccb1-4382-a7a4-0db73bcb365f_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true,
+      "group": "water for elephants",
+      "link_kind": "ticketing",
+      "tag": "Broadway/West End"
+    },
+    {
+      "id": "tm-all-shook-up-alexis-park-resort-hotel",
+      "title": "All Shook Up",
+      "type": "tour",
+      "venue": "Alexis Park Resort Hotel",
+      "city": "Las Vegas, NV",
+      "country": "USA",
+      "lat": 36.107577,
+      "lng": -115.156252,
+      "start_date": "2026-08-26",
+      "end_date": "2027-12-31",
+      "ticket_url": "https://www.ticketmaster.com/all-shook-up-tickets/artist/911675",
+      "attraction_url": "https://www.ticketmaster.com/all-shook-up-tickets/artist/911675",
+      "ticket_links": [
+        {
+          "country": "US",
+          "url": "https://www.ticketmaster.com/all-shook-up-tickets/artist/911675"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/13b/a132e2d2-0073-47f0-8554-2934d583513b_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true,
+      "group": "all shook up",
+      "link_kind": "ticketing",
+      "tag": "Broadway/West End"
+    },
+    {
+      "id": "tm-joseph-and-the-amazing-technicolor-dreamcoat-hale-center-theatre-at-mountain-america",
+      "title": "Joseph and the Amazing Technicolor Dreamcoat",
+      "type": "tour",
+      "venue": "Hale Center Theatre at Mountain America",
+      "city": "Sandy",
+      "country": "USA",
+      "lat": 40.571681,
+      "lng": -111.898212,
+      "start_date": "2026-08-26",
+      "end_date": "2026-10-07",
+      "ticket_url": "https://www.ticketmaster.com/joseph-and-the-amazing-technicolor-dreamcoat-tickets/artist/803932",
+      "attraction_url": "https://www.ticketmaster.com/joseph-and-the-amazing-technicolor-dreamcoat-tickets/artist/803932",
+      "ticket_links": [
+        {
+          "label": "官方網站",
+          "url": "https://www.josephthemusical.com/",
+          "kind": "official"
+        },
+        {
+          "country": "US",
+          "url": "https://www.ticketmaster.com/joseph-and-the-amazing-technicolor-dreamcoat-tickets/artist/803932"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/9a5/0382d888-c534-4dcb-9aac-927f59a749a5_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true,
+      "group": "joseph and the amazing technicolor dreamcoat",
+      "link_kind": "ticketing",
+      "tag": "Broadway/West End"
     },
     {
       "id": "tm-grease-the-tuacahn-amphitheatre",
@@ -59314,7 +59482,7 @@
       "country": "Canada",
       "lat": 43.655252,
       "lng": -79.379405,
-      "start_date": "2026-08-25",
+      "start_date": "2026-08-26",
       "end_date": "2026-09-06",
       "ticket_url": "https://www.ticketmaster.com/the-great-gatsby-touring-tickets/artist/3656169",
       "attraction_url": "https://www.ticketmaster.com/the-great-gatsby-touring-tickets/artist/3656169",
@@ -59978,40 +60146,6 @@
       "alt": "Come from Away 來自遠方 来自远方"
     },
     {
-      "id": "tm-ride-the-cyclone-el-musical-teatro-xola-julio-prieto",
-      "title": "Ride the Cyclone",
-      "type": "tour",
-      "venue": "Teatro Xola Julio Prieto",
-      "city": "México",
-      "country": "Mexico",
-      "lat": 19.396024,
-      "lng": -99.161299,
-      "start_date": "2026-08-25",
-      "end_date": "2026-10-27",
-      "ticket_url": "https://www.ticketmaster.com/ride-the-cyclone-mexico-tickets/artist/4280264",
-      "attraction_url": "https://www.ticketmaster.com/ride-the-cyclone-mexico-tickets/artist/4280264",
-      "ticket_links": [
-        {
-          "label": "官方網站",
-          "url": "https://www.ridethecyclonemusical.com",
-          "kind": "official"
-        },
-        {
-          "country": "MX",
-          "url": "https://www.ticketmaster.com/ride-the-cyclone-mexico-tickets/artist/4280264"
-        }
-      ],
-      "image": "https://s1.ticketm.net/dam/a/16a/8f365918-7880-40be-9756-b8d08d62a16a_SOURCE",
-      "tour_name": "Ride The Cyclone México",
-      "verified": true,
-      "source": "ticketmaster",
-      "onsale_only": true,
-      "group": "ride the cyclone",
-      "link_kind": "ticketing",
-      "tag": "Broadway/West End",
-      "alt": "Ride the Cyclone Ride The Cyclone el Musical"
-    },
-    {
       "id": "tm-el-fantasma-de-la-pera-teatro-de-los-insurgentes",
       "title": "The Phantom of the Opera",
       "type": "tour",
@@ -60450,6 +60584,68 @@
       "tag": "西葡音樂劇"
     },
     {
+      "id": "tm-la-rumba-foro-stelaris-fiesta-americana-reforma",
+      "title": "La Rumba",
+      "type": "tour",
+      "venue": "Foro Stelaris Fiesta Americana Reforma",
+      "city": "Ciudad de México",
+      "country": "Mexico",
+      "lat": 19.432196,
+      "lng": -99.154739,
+      "start_date": "2026-10-04",
+      "end_date": "2026-10-25",
+      "ticket_url": "https://www.ticketmaster.com/la-rumba-tickets/artist/4639656",
+      "attraction_url": "https://www.ticketmaster.com/la-rumba-tickets/artist/4639656",
+      "ticket_links": [
+        {
+          "country": "MX",
+          "url": "https://www.ticketmaster.com/la-rumba-tickets/artist/4639656"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/9a9/3cb9ff23-743f-48f5-9685-a2a27a9ef9a9_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true,
+      "group": "la rumba",
+      "link_kind": "ticketing",
+      "tag": "西葡音樂劇"
+    },
+    {
+      "id": "tm-ride-the-cyclone-el-musical-teatro-xola-julio-prieto",
+      "title": "Ride the Cyclone",
+      "type": "tour",
+      "venue": "Teatro Xola Julio Prieto",
+      "city": "México",
+      "country": "Mexico",
+      "lat": 19.396024,
+      "lng": -99.161299,
+      "start_date": "2026-10-06",
+      "end_date": "2026-10-27",
+      "ticket_url": "https://www.ticketmaster.com/ride-the-cyclone-mexico-tickets/artist/4280264",
+      "attraction_url": "https://www.ticketmaster.com/ride-the-cyclone-mexico-tickets/artist/4280264",
+      "ticket_links": [
+        {
+          "label": "官方網站",
+          "url": "https://www.ridethecyclonemusical.com",
+          "kind": "official"
+        },
+        {
+          "country": "MX",
+          "url": "https://www.ticketmaster.com/ride-the-cyclone-mexico-tickets/artist/4280264"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/16a/8f365918-7880-40be-9756-b8d08d62a16a_SOURCE",
+      "tour_name": "Ride The Cyclone México",
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true,
+      "group": "ride the cyclone",
+      "link_kind": "ticketing",
+      "tag": "Broadway/West End",
+      "alt": "Ride the Cyclone Ride The Cyclone el Musical"
+    },
+    {
       "id": "tm-beetlejuice-el-musical-centro-cultural-teatro-i",
       "title": "Beetlejuice",
       "type": "tour",
@@ -60809,7 +61005,7 @@
       "lat": -33.868321,
       "lng": 151.196234,
       "start_date": "2026-10-15",
-      "end_date": "2026-10-17",
+      "end_date": "2026-10-18",
       "ticket_url": "https://www.ticketmaster.com/carousel-tickets/artist/896810",
       "attraction_url": "https://www.ticketmaster.com/carousel-tickets/artist/896810",
       "ticket_links": [
@@ -61495,7 +61691,7 @@
       "country": "UK",
       "lat": 51.515706,
       "lng": -0.130608,
-      "start_date": "2026-08-25",
+      "start_date": "2026-08-26",
       "end_date": "2026-09-12",
       "ticket_url": "https://www.ticketmaster.com/tao-of-glass-tickets/artist/4323689",
       "attraction_url": "https://www.ticketmaster.com/tao-of-glass-tickets/artist/4323689",
@@ -61780,7 +61976,7 @@
       "tag": "Broadway/West End"
     },
     {
-      "id": "tm-jeff-wayne-s-musical-version-of-the-war-of-the-worlds-sec-armadillo",
+      "id": "tm-jeff-wayne-s-the-war-of-the-worlds-sec-armadillo",
       "title": "Jeff Wayne's The War of the Worlds",
       "type": "tour",
       "venue": "SEC Armadillo",
@@ -61804,7 +62000,7 @@
         }
       ],
       "image": "https://s1.ticketm.net/dam/a/a77/91119429-781f-4147-91cb-ce83206c1a77_SOURCE",
-      "tour_name": "Jeff Wayne's the War of the Worlds",
+      "tour_name": null,
       "verified": true,
       "source": "ticketmaster",
       "onsale_only": true,
@@ -62017,7 +62213,7 @@
       "alt": "Jeff Wayne's The War of the Worlds Jeff Wayne's Musical Version of The War of The Worlds Jeff Wayne's Musical Version of the War of the Worlds: Live! Jeff Wayne's the War of the Worlds 世界大戰 世界大战"
     },
     {
-      "id": "tm-love-never-dies-the-london-palladium",
+      "id": "tm-andrew-lloyd-webber-s-love-never-dies-the-phantom-returns-the-london-palladium",
       "title": "Love Never Dies",
       "type": "tour",
       "venue": "The London Palladium",
@@ -62799,7 +62995,7 @@
       "country": "Ireland",
       "lat": 53.344185,
       "lng": -6.240018,
-      "start_date": "2026-08-25",
+      "start_date": "2026-08-26",
       "end_date": "2026-09-05",
       "ticket_url": "https://www.ticketmaster.com/mean-girls-touring-tickets/artist/2599052",
       "attraction_url": "https://www.ticketmaster.com/mean-girls-touring-tickets/artist/2599052",
@@ -63119,6 +63315,34 @@
       "link_kind": "ticketing",
       "tag": "Broadway/West End",
       "alt": "Dirty Dancing Dirty Dancing: The Musical Dirty Dancing - The Classic Story On Stage Dirty Dancing: The Classic Story On Stage 熱舞十七 热舞十七"
+    },
+    {
+      "id": "tm-country-girl-tf-royal-theatre-castlebar",
+      "title": "Country Girl",
+      "type": "tour",
+      "venue": "TF Royal Theatre, Castlebar",
+      "city": "Co. Mayo",
+      "country": "Ireland",
+      "lat": 53.852856,
+      "lng": -9.304932,
+      "start_date": "2027-03-04",
+      "end_date": "2027-03-04",
+      "ticket_url": "https://www.ticketmaster.com/country-girl-tickets/artist/4640031",
+      "attraction_url": "https://www.ticketmaster.com/country-girl-tickets/artist/4640031",
+      "ticket_links": [
+        {
+          "country": "IE",
+          "url": "https://www.ticketmaster.com/country-girl-tickets/artist/4640031"
+        }
+      ],
+      "image": null,
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true,
+      "group": "country girl",
+      "link_kind": "ticketing",
+      "tag": "Broadway/West End"
     },
     {
       "id": "tm-cats-bord-gais-energy-theatre",
@@ -64518,7 +64742,7 @@
       "country": "South Africa",
       "lat": -33.919686,
       "lng": 18.43045,
-      "start_date": "2026-09-04",
+      "start_date": "2026-09-03",
       "end_date": "2026-10-11",
       "ticket_url": "https://www.ticketmaster.com/mamma-mia-international-tickets/artist/804014",
       "attraction_url": "https://www.ticketmaster.com/mamma-mia-international-tickets/artist/804014",
@@ -66198,6 +66422,34 @@
       ]
     },
     {
+      "id": "tmt-in-the-heights-new-york-city-center",
+      "title": "In the Heights",
+      "type": "tour",
+      "venue": "New York City Center",
+      "city": "New York",
+      "country": "USA",
+      "lat": 40.765202,
+      "lng": -73.985298,
+      "start_date": "2026-10-28",
+      "end_date": "2026-11-15",
+      "ticket_url": "https://www.ticketmaster.com/in-the-heights-tickets/artist/1089137",
+      "attraction_url": "https://www.ticketmaster.com/in-the-heights-tickets/artist/1089137",
+      "image": null,
+      "tour_name": null,
+      "verified": true,
+      "onsale_only": true,
+      "source": "ticketmaster",
+      "group": "in the heights",
+      "link_kind": "ticketing",
+      "tag": "Broadway/West End",
+      "ticket_links": [
+        {
+          "url": "https://www.ticketmaster.com/in-the-heights-tickets/artist/1089137",
+          "kind": "ticketing"
+        }
+      ]
+    },
+    {
       "id": "tmt-le-roi-soleil-vorst-nationaal-forest-national",
       "title": "Le Roi Soleil",
       "type": "tour",
@@ -66339,7 +66591,7 @@
       "country": "USA",
       "lat": 41.740685,
       "lng": -70.191788,
-      "start_date": "2026-08-25",
+      "start_date": "2026-08-26",
       "end_date": "2026-08-29",
       "ticket_url": "https://www.ticketmaster.com/mean-girls-touring-tickets/artist/2599052",
       "attraction_url": "https://www.ticketmaster.com/mean-girls-touring-tickets/artist/2599052",
