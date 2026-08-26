@@ -245,6 +245,28 @@ def _canon_title(name):
     return n.strip()
 
 
+# 大麥標題外框常標明引進來源(如「法语原版音乐剧《茶花女》」),但預設 fallback 只認
+# 「平台=中國」→ 一律誤標中國原創(2026-08-26 使用者抓到:法语茶花女/韩国 SHADOW 等被標中國)。
+# 從外框抽 origin hint 傳給 build_shows.classify_tag(registry > hint > 平台 fallback)。
+# 只認「鐵定=引進」的保守外框:語言原版/百老汇原版等;曖昧的「中文版」(原作國別不明)不出 hint,
+# 這種仍靠 works.json 註冊。無外框的引進(如無框的韓國劇)也只能靠註冊,不在此列。
+_ORIGIN_HINTS = [
+    (("法语原版音乐剧", "法语音乐剧", "法语版音乐剧", "法语原版"), "法式音樂劇"),
+    (("韩国原版音乐剧", "韩语原版音乐剧", "韩国音乐剧", "韩版音乐剧", "韩国原版"), "韓國原創"),
+    (("德语音乐剧", "德语原版音乐剧", "维也纳音乐剧", "德奥音乐剧"), "德奧音樂劇"),
+    (("英语原版音乐剧", "百老汇原版音乐剧", "外百老汇原版", "伦敦西区原版"), "Broadway/West End"),
+    (("西班牙语音乐剧", "西语原版音乐剧"), "西葡音樂劇"),
+]
+
+
+def _origin_hint(name):
+    """從大麥原始標題外框判讀引進來源 tradition;無明確外框回 None(交給 registry/fallback)。"""
+    for keys, trad in _ORIGIN_HINTS:
+        if any(k in name for k in keys):
+            return trad
+    return None
+
+
 def _parse_dates(showtime):
     """'2026.07.02-07.05'→('2026-07-02','2026-07-05')。處理跨月/單日/帶星期時間
     (如 '2026.06.28 周日 15:00')/跨年。只取日期數字,丟掉星期與時刻。"""
@@ -325,6 +347,7 @@ def build():
             "tour_name": None,
             "verified": True,            # 真實官方 API 抓取(真場館/檔期/連結),同 juooo 標 verified
             "source": "damai",
+            "tag_hint": _origin_hint(r.get("nameNoHtml", "")),  # 引進來源外框→正確 tradition
         })
     shows.sort(key=lambda s: (s["city"], s["title"]))
     out = {"meta": {"source": "damai.cn", "count": len(shows),
