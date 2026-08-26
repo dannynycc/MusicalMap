@@ -1,9 +1,9 @@
 {
   "meta": {
     "source": "merged",
-    "generated_at": "2026-08-26 15:02 UTC",
-    "total": 2050,
-    "verified": 2050,
+    "generated_at": "2026-08-26 17:11 UTC",
+    "total": 2038,
+    "verified": 2038,
     "unverified": 0,
     "sources": [
       {
@@ -11245,32 +11245,6 @@
       "ticket_links": [
         {
           "url": "https://kageki.hankyu.co.jp/revue/2026/kurotokage/index.html",
-          "kind": "official"
-        }
-      ]
-    },
-    {
-      "id": "tkz-ponoichizoku-takarazuka-2026-07-11",
-      "title": "ポーの一族",
-      "type": "tour",
-      "venue": "宝塚大劇場",
-      "city": "Takarazuka (兵庫)",
-      "country": "Japan",
-      "lat": 34.807226,
-      "lng": 135.346246,
-      "start_date": "2026-07-11",
-      "end_date": "2026-08-23",
-      "ticket_url": "https://kageki.hankyu.co.jp/revue/2026/ponoichizoku/index.html",
-      "image": "https://kageki.hankyu.co.jp/revue/2026/ponoichizoku/a7ouvb00000y18cb-img/a7ouvb00000y18ji.jpg",
-      "tour_name": null,
-      "verified": true,
-      "source": "kageki.hankyu.co.jp",
-      "group": "ポーの一族",
-      "link_kind": "official",
-      "tag": "日本原創",
-      "ticket_links": [
-        {
-          "url": "https://kageki.hankyu.co.jp/revue/2026/ponoichizoku/index.html",
           "kind": "official"
         }
       ]
@@ -34233,35 +34207,6 @@
       "alt": "Lizzie LIZZIE丽兹 LIZZIE麗茲 丽兹 麗茲 LIZZIE"
     },
     {
-      "id": "damai-1071032529210",
-      "title": "云梦花开",
-      "type": "limited",
-      "venue": "天桥艺术中心-小剧场",
-      "city": "Beijing",
-      "city_cn": "北京",
-      "country": "China",
-      "lat": 39.883806,
-      "lng": 116.397678,
-      "start_date": "2026-08-22",
-      "end_date": "2026-08-23",
-      "ticket_url": "https://detail.damai.cn/item.htm?id=1071032529210",
-      "ticket_links": [
-        {
-          "label": "大麥",
-          "url": "https://detail.damai.cn/item.htm?id=1071032529210",
-          "kind": "ticketing"
-        }
-      ],
-      "image": "https://img.alicdn.com/bao/uploaded/https://img.alicdn.com/imgextra/i3/2251059038/O1CN01xRtKI32GdSncEwnkm_!!2251059038.png",
-      "tour_name": null,
-      "verified": true,
-      "source": "damai",
-      "tag_hint": null,
-      "group": "云梦花开",
-      "link_kind": "ticketing",
-      "tag": "中國原創"
-    },
-    {
       "id": "damai-1068555727185",
       "title": "The Brothers Karamazov",
       "type": "limited",
@@ -34379,35 +34324,6 @@
       "tag": "中國原創"
     },
     {
-      "id": "damai-1066012532444",
-      "title": "寻找声音的耳朵",
-      "type": "limited",
-      "venue": "天桥艺术中心-中剧场",
-      "city": "Beijing",
-      "city_cn": "北京",
-      "country": "China",
-      "lat": 39.883806,
-      "lng": 116.397678,
-      "start_date": "2026-08-22",
-      "end_date": "2026-08-23",
-      "ticket_url": "https://detail.damai.cn/item.htm?id=1066012532444",
-      "ticket_links": [
-        {
-          "label": "大麥",
-          "url": "https://detail.damai.cn/item.htm?id=1066012532444",
-          "kind": "ticketing"
-        }
-      ],
-      "image": "https://img.alicdn.com/bao/uploaded/https://img.alicdn.com/imgextra/i4/2251059038/O1CN01hggeVX2GdSnITsKH4_!!2251059038.png",
-      "tour_name": null,
-      "verified": true,
-      "source": "damai",
-      "tag_hint": null,
-      "group": "寻找声音的耳朵",
-      "link_kind": "ticketing",
-      "tag": "中國原創"
-    },
-    {
       "id": "damai-1074007869293",
       "title": "寻找李二狗",
       "type": "limited",
@@ -34433,35 +34349,6 @@
       "source": "damai",
       "tag_hint": null,
       "group": "寻找李二狗",
-      "link_kind": "ticketing",
-      "tag": "中國原創"
-    },
-    {
-      "id": "damai-1070263118129",
-      "title": "将进酒",
-      "type": "limited",
-      "venue": "华侨城大剧院(北京)",
-      "city": "Beijing",
-      "city_cn": "北京",
-      "country": "China",
-      "lat": 39.865609,
-      "lng": 116.49268,
-      "start_date": "2026-08-22",
-      "end_date": "2026-08-23",
-      "ticket_url": "https://detail.damai.cn/item.htm?id=1070263118129",
-      "ticket_links": [
-        {
-          "label": "大麥",
-          "url": "https://detail.damai.cn/item.htm?id=1070263118129",
-          "kind": "ticketing"
-        }
-      ],
-      "image": "https://img.alicdn.com/bao/uploaded/https://img.alicdn.com/imgextra/i1/2251059038/O1CN01Fwn36e2GdSnZkpki8_!!2251059038.png",
-      "tour_name": null,
-      "verified": true,
-      "source": "damai",
-      "tag_hint": null,
-      "group": "将进酒",
       "link_kind": "ticketing",
       "tag": "中國原創"
     },
@@ -34609,41 +34496,6 @@
       "group": "牡丹亭",
       "link_kind": "ticketing",
       "tag": "中國原創"
-    },
-    {
-      "id": "damai-1051733334817",
-      "title": "Matilda",
-      "type": "limited",
-      "venue": "(通州区)北京艺术中心-歌剧院-国家大剧院分址",
-      "city": "Beijing",
-      "city_cn": "北京",
-      "country": "China",
-      "lat": 39.885282,
-      "lng": 116.712456,
-      "start_date": "2026-08-13",
-      "end_date": "2026-08-23",
-      "ticket_url": "https://detail.damai.cn/item.htm?id=1051733334817",
-      "ticket_links": [
-        {
-          "label": "官方網站",
-          "url": "https://uk.matildathemusical.com/",
-          "kind": "official"
-        },
-        {
-          "label": "大麥",
-          "url": "https://detail.damai.cn/item.htm?id=1051733334817",
-          "kind": "ticketing"
-        }
-      ],
-      "image": "https://img.alicdn.com/bao/uploaded/https://img.alicdn.com/imgextra/i4/2251059038/O1CN01wlFU7c2GdSnePNMCF_!!2251059038.png",
-      "tour_name": "玛蒂尔达",
-      "verified": true,
-      "source": "damai",
-      "tag_hint": "Broadway/West End",
-      "group": "matilda",
-      "link_kind": "ticketing",
-      "tag": "Broadway/West End",
-      "alt": "Matilda 瑪蒂達 玛蒂达 マチルダ Matilda El Musical Matilda el Musical con Elena Matilda el Musical con Emilia 小魔女 玛蒂尔达 瑪蒂爾達"
     },
     {
       "id": "damai-1056949862543",
@@ -35009,36 +34861,6 @@
       "group": "青春之歌",
       "link_kind": "ticketing",
       "tag": "中國原創"
-    },
-    {
-      "id": "damai-1054451708493",
-      "title": "Imaginary (NYMT)",
-      "type": "limited",
-      "venue": "重庆大剧院-中剧场",
-      "city": "Chongqing",
-      "city_cn": "重庆",
-      "country": "China",
-      "lat": 29.572843,
-      "lng": 106.5775,
-      "start_date": "2026-08-23",
-      "end_date": "2026-08-23",
-      "ticket_url": "https://detail.damai.cn/item.htm?id=1054451708493",
-      "ticket_links": [
-        {
-          "label": "大麥",
-          "url": "https://detail.damai.cn/item.htm?id=1054451708493",
-          "kind": "ticketing"
-        }
-      ],
-      "image": "https://img.alicdn.com/bao/uploaded/https://img.alicdn.com/imgextra/i4/2251059038/O1CN01hIfIa72GdSmcwG0Qw_!!2251059038.png",
-      "tour_name": "Imaginary我和我",
-      "verified": true,
-      "source": "damai",
-      "tag_hint": null,
-      "group": "imaginary nymt",
-      "link_kind": "ticketing",
-      "tag": "Broadway/West End",
-      "alt": "Imaginary (NYMT) Imaginary我和我"
     },
     {
       "id": "damai-1066597541096",
@@ -35665,36 +35487,6 @@
       "group": "空中花园谋杀案",
       "link_kind": "ticketing",
       "tag": "中國原創"
-    },
-    {
-      "id": "damai-726496313127",
-      "title": "The Wizard of Oz",
-      "type": "limited",
-      "venue": "广州正佳大剧院",
-      "city": "Guangzhou",
-      "city_cn": "广州",
-      "country": "China",
-      "lat": 23.1346415,
-      "lng": 113.3216015,
-      "start_date": "2026-08-22",
-      "end_date": "2026-08-23",
-      "ticket_url": "https://detail.damai.cn/item.htm?id=726496313127",
-      "ticket_links": [
-        {
-          "label": "大麥",
-          "url": "https://detail.damai.cn/item.htm?id=726496313127",
-          "kind": "ticketing"
-        }
-      ],
-      "image": "https://img.alicdn.com/bao/uploaded/https://img.alicdn.com/imgextra/i1/2251059038/O1CN01pvi3uK2GdSmsfST8z_!!2251059038.jpg",
-      "tour_name": "绿野仙踪",
-      "verified": true,
-      "source": "damai",
-      "tag_hint": null,
-      "group": "wizard of oz",
-      "link_kind": "ticketing",
-      "tag": "Broadway/West End",
-      "alt": "The Wizard of Oz 綠野仙蹤 绿野仙踪 Wizard Of Oz De Tovenaar van Oz"
     },
     {
       "id": "damai-1069842920576",
@@ -37377,35 +37169,6 @@
       "tag": "中國原創"
     },
     {
-      "id": "damai-1004975867406",
-      "title": "她对此感到厌烦",
-      "type": "limited",
-      "venue": "黄浦剧场-小剧场",
-      "city": "Shanghai",
-      "city_cn": "上海",
-      "country": "China",
-      "lat": 31.23837,
-      "lng": 121.475561,
-      "start_date": "2026-08-13",
-      "end_date": "2026-08-23",
-      "ticket_url": "https://detail.damai.cn/item.htm?id=1004975867406",
-      "ticket_links": [
-        {
-          "label": "大麥",
-          "url": "https://detail.damai.cn/item.htm?id=1004975867406",
-          "kind": "ticketing"
-        }
-      ],
-      "image": "https://img.alicdn.com/bao/uploaded/https://img.alicdn.com/imgextra/i4/2251059038/O1CN01hHvxIN2GdSmsyF307_!!2251059038.jpg",
-      "tour_name": null,
-      "verified": true,
-      "source": "damai",
-      "tag_hint": null,
-      "group": "她对此感到厌烦",
-      "link_kind": "ticketing",
-      "tag": "中國原創"
-    },
-    {
       "id": "damai-1065956114283",
       "title": "嫌疑人X的献身",
       "type": "limited",
@@ -38086,36 +37849,6 @@
       "tag": "中國原創"
     },
     {
-      "id": "damai-1054883953855",
-      "title": "Les Souliers Rouges (The Red Shoes)",
-      "type": "limited",
-      "venue": "保利上海城市剧院",
-      "city": "Shanghai",
-      "city_cn": "上海",
-      "country": "China",
-      "lat": 31.10507,
-      "lng": 121.38961,
-      "start_date": "2026-08-21",
-      "end_date": "2026-08-23",
-      "ticket_url": "https://detail.damai.cn/item.htm?id=1054883953855",
-      "ticket_links": [
-        {
-          "label": "大麥",
-          "url": "https://detail.damai.cn/item.htm?id=1054883953855",
-          "kind": "ticketing"
-        }
-      ],
-      "image": "https://img.alicdn.com/bao/uploaded/https://img.alicdn.com/imgextra/i1/2251059038/O1CN01C2Uq0b2GdSmmw6eLq_!!2251059038.jpg",
-      "tour_name": "红舞鞋",
-      "verified": true,
-      "source": "damai",
-      "tag_hint": "法式音樂劇",
-      "group": "les souliers rouges the red shoes",
-      "link_kind": "ticketing",
-      "tag": "法式音樂劇",
-      "alt": "Les Souliers Rouges (The Red Shoes) 红舞鞋 紅舞鞋"
-    },
-    {
       "id": "damai-1015354157911",
       "title": "红莲",
       "type": "limited",
@@ -38528,35 +38261,6 @@
       "source": "damai",
       "tag_hint": null,
       "group": "黑旗令",
-      "link_kind": "ticketing",
-      "tag": "中國原創"
-    },
-    {
-      "id": "damai-1059991326367",
-      "title": "鼓浪之声",
-      "type": "limited",
-      "venue": "西施大剧院",
-      "city": "Shaoxing",
-      "city_cn": "绍兴",
-      "country": "China",
-      "lat": 29.712033,
-      "lng": 120.230278,
-      "start_date": "2026-08-23",
-      "end_date": "2026-08-23",
-      "ticket_url": "https://detail.damai.cn/item.htm?id=1059991326367",
-      "ticket_links": [
-        {
-          "label": "大麥",
-          "url": "https://detail.damai.cn/item.htm?id=1059991326367",
-          "kind": "ticketing"
-        }
-      ],
-      "image": "https://img.alicdn.com/bao/uploaded/https://img.alicdn.com/imgextra/i4/2251059038/O1CN01Oetagx2GdSn3lFO4z_!!2251059038.png",
-      "tour_name": null,
-      "verified": true,
-      "source": "damai",
-      "tag_hint": null,
-      "group": "鼓浪之声",
       "link_kind": "ticketing",
       "tag": "中國原創"
     },
@@ -39026,35 +38730,6 @@
       "source": "damai",
       "tag_hint": null,
       "group": "破墙",
-      "link_kind": "ticketing",
-      "tag": "中國原創"
-    },
-    {
-      "id": "damai-972586530210",
-      "title": "无刃之镜",
-      "type": "limited",
-      "venue": "南开大悦城·牛奶剧场",
-      "city": "Tianjin",
-      "city_cn": "天津",
-      "country": "China",
-      "lat": 39.135414,
-      "lng": 117.180126,
-      "start_date": "2026-08-22",
-      "end_date": "2026-08-23",
-      "ticket_url": "https://detail.damai.cn/item.htm?id=972586530210",
-      "ticket_links": [
-        {
-          "label": "大麥",
-          "url": "https://detail.damai.cn/item.htm?id=972586530210",
-          "kind": "ticketing"
-        }
-      ],
-      "image": "https://img.alicdn.com/bao/uploaded/https://img.alicdn.com/imgextra/i3/2251059038/O1CN01KM4wJz2GdSnBnaf7U_!!2251059038.jpg",
-      "tour_name": null,
-      "verified": true,
-      "source": "damai",
-      "tag_hint": null,
-      "group": "无刃之镜",
       "link_kind": "ticketing",
       "tag": "中國原創"
     },
@@ -39610,35 +39285,6 @@
       "source": "damai",
       "tag_hint": null,
       "group": "0528",
-      "link_kind": "ticketing",
-      "tag": "中國原創"
-    },
-    {
-      "id": "damai-1030316621807",
-      "title": "博物馆奇遇记",
-      "type": "limited",
-      "venue": "珠海金湾艺术中心·多功能厅(b馆)",
-      "city": "Zhuhai",
-      "city_cn": "珠海",
-      "country": "China",
-      "lat": 22.11341,
-      "lng": 113.36081,
-      "start_date": "2026-08-22",
-      "end_date": "2026-08-23",
-      "ticket_url": "https://detail.damai.cn/item.htm?id=1030316621807",
-      "ticket_links": [
-        {
-          "label": "大麥",
-          "url": "https://detail.damai.cn/item.htm?id=1030316621807",
-          "kind": "ticketing"
-        }
-      ],
-      "image": "https://img.alicdn.com/bao/uploaded/https://img.alicdn.com/imgextra/i4/2251059038/O1CN01ZB5B2c2GdSlm6hEax_!!2251059038.png",
-      "tour_name": null,
-      "verified": true,
-      "source": "damai",
-      "tag_hint": null,
-      "group": "博物馆奇遇记",
       "link_kind": "ticketing",
       "tag": "中國原創"
     },
