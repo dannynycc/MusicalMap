@@ -11,6 +11,12 @@
 
 ---
 
+## [v2.91.4] - 2026-08-26 15:55
+
+### 英文站補 36 個亞洲場館官方英文名(全庫稽核 venue 命名)
+
+承 v2.91.3,主動全庫稽核 venue 命名(不等使用者逐個回報):發現英文站有 87 個場館顯示中/日/韓文(未翻譯),多為大麥新增的大陸場館、日本場館、台灣場館。派 6 組 agent 逐一查官方英文名,補進 venues_en.json 36 筆(高14/中11/低11,微劇場無官方英文名者據實保留中文、不亂音譯):日本 Meijiza/Osaka-jo Hall/Yokohama Arena/Sogetsu Hall/Kintetsu Art Kan/Ariake Arena…、大陸 China National Opera House/Dalian Grand Theater/Yunnan Grand Theater/OCT Theatre/Canton Tower Theatre/Taoxichuan Grand Theatre…、台灣 Guling Street Avant-garde Theatre/Kaohsiung Zhongshan Hall…。英文站未翻譯 87→51(剩者為無官方英文名的上海星空間系微劇場)。另修「Cool Japan Park Osaka Ttホール」因大小寫沒 exact-match 走 fuzzy 產生重複貼名的 bug(加 exact key)。venues_en.json 227→263。
+
 ## [v2.91.3] - 2026-08-26 15:40
 
 ### 修中文站 venue 殘留英文綴(中英混雜場館名不一致)
