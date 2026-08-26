@@ -1,9 +1,9 @@
 {
   "meta": {
     "source": "merged",
-    "generated_at": "2026-08-26 05:47 UTC",
-    "total": 2126,
-    "verified": 2126,
+    "generated_at": "2026-08-26 05:54 UTC",
+    "total": 2124,
+    "verified": 2124,
     "unverified": 0,
     "sources": [
       {
@@ -270,10 +270,10 @@
       },
       {
         "file": "china_damai.json",
-        "count": 403,
+        "count": 400,
         "meta": {
           "source": "damai.cn",
-          "count": 403,
+          "count": 400,
           "note": "人工協助抓取(x5sec 需真人解);劇名+城市去重;含精準 detail 連結"
         }
       },
@@ -40323,34 +40323,6 @@
       "tag": "中國原創"
     },
     {
-      "id": "damai-1001034499027",
-      "title": "狐妖小红娘 第三部",
-      "type": "limited",
-      "venue": "太原青年宫演艺中心",
-      "city": "Taiyuan",
-      "city_cn": "太原",
-      "country": "China",
-      "lat": 37.874149,
-      "lng": 112.541851,
-      "start_date": "2026-08-29",
-      "end_date": "2026-08-29",
-      "ticket_url": "https://detail.damai.cn/item.htm?id=1001034499027",
-      "ticket_links": [
-        {
-          "label": "大麥",
-          "url": "https://detail.damai.cn/item.htm?id=1001034499027",
-          "kind": "ticketing"
-        }
-      ],
-      "image": "https://img.alicdn.com/bao/uploaded/https://img.alicdn.com/imgextra/i2/2251059038/O1CN01CLJZGo2GdSlgz3SuW_!!2251059038.jpg",
-      "tour_name": null,
-      "verified": true,
-      "source": "damai",
-      "group": "狐妖小红娘 第三部",
-      "link_kind": "ticketing",
-      "tag": "中國原創"
-    },
-    {
       "id": "damai-1063826604430",
       "title": "她对此感到厌烦",
       "type": "limited",
@@ -40740,34 +40712,6 @@
       "verified": true,
       "source": "damai",
       "group": "渡河 渡河",
-      "link_kind": "ticketing",
-      "tag": "中國原創"
-    },
-    {
-      "id": "damai-1059328701046",
-      "title": "琵琶行",
-      "type": "limited",
-      "venue": "西安人民剧院",
-      "city": "Xi'an",
-      "city_cn": "西安",
-      "country": "China",
-      "lat": 34.266794,
-      "lng": 108.947043,
-      "start_date": "2026-09-18",
-      "end_date": "2026-09-19",
-      "ticket_url": "https://detail.damai.cn/item.htm?id=1059328701046",
-      "ticket_links": [
-        {
-          "label": "大麥",
-          "url": "https://detail.damai.cn/item.htm?id=1059328701046",
-          "kind": "ticketing"
-        }
-      ],
-      "image": "https://img.alicdn.com/bao/uploaded/https://img.alicdn.com/imgextra/i1/2251059038/O1CN01xNthJw2GdSnYtykic_!!2251059038.png",
-      "tour_name": null,
-      "verified": true,
-      "source": "damai",
-      "group": "琵琶行",
       "link_kind": "ticketing",
       "tag": "中國原創"
     },

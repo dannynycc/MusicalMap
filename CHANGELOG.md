@@ -11,6 +11,20 @@
 
 ---
 
+## [v2.90.0] - 2026-08-26 13:55
+
+### 45 部西方劇簡介改用 Perplexity 自然語言版(三語逐部語意查核修正)
+
+**主客歸位**:KB 簡介以 Perplexity 生成版為主體(自然語言像真人),我/agent 版僅作事實查核。把整夜手寫的 55 部裡 45 部西方劇,三語全部換成 px_gen(Perplexity)生成版。
+
+**逐部語意查核**:三語各派 7 組 agent 做「真語意分析」(逐句讀懂劇情對照多源查證事實,非正則、非只看結尾),再 match 直採 Perplexity 原文、mismatch 保留文筆只改錯誤事實:
+- 英文 45:37 match、8 修正(Passion 標題同音幻覺→消歧義重生成;Bright Star/Company/Ragtime/Assassins bar→barn/A Gentleman's Guide 死法/She Loves Me/Gypsy)
+- 繁中 45:38 match、7 修正(Bright Star 姓 Dobbs/Dreamgirls 芝加哥/Hello Dolly!/Brigadoon 蘇格蘭/Kiss of the Spider Woman/Full Monty 水牛城/The Prom)
+- 简中 45:24 match、21 修正(简中這批 Perplexity 較不準:Falsettos 誤譯、City of Angels 性別、Company 五對夫妻、Full Monty 電影版、Aida 努比亚 等)
+各語錯誤不相同(如英文 Assassins bar→barn 但繁中對、繁中 Aida 對但简中錯),故三語獨立查核。kb_merge 覆蓋庫 45 部(0 新增)、build_served→gen_site。
+
+**大麥再剔 3 grey**:batch 6 深查補回,剔 燃烧(開心麻花 live 秀)、狐妖小红娘(2.5次元情景秀)、琵琶行(詩樂音樂戲劇);空中花园谋杀案 確認孟京辉真搖滾音樂劇保留。大麥 400 場次。
+
 ## [v2.89.0] - 2026-08-26 13:48
 
 ### 標題中文加註 + 大麥重抓(逐部深查剔除非音樂劇)
