@@ -972,6 +972,9 @@ function showGroupItem(items, parity) {
   };
   items = [...items].sort((a, b) => _lrRank(a) - _lrRank(b));
   const title = displayTitle(items);
+  // 大作官方中文名加註(繁简站),清單標題旁淡淡帶出;用預設色不另上色(2026-08-26)。
+  const _cnA = items[0].cn_annot;
+  const cnAnnot = _cnA ? `<span class="grp-title-cn">${esc(_cnA)}</span>` : "";
   const li = document.createElement("li");
   const multi = items.length > 1;
   li.className = `show-group t${parity}${multi ? " multi" : ""}`;
@@ -987,7 +990,7 @@ function showGroupItem(items, parity) {
       <div class="show-item single" data-id="${esc(first.id)}">
         ${thumb}
         <div class="info">
-          <div class="title">${esc(title)}${badge}</div>
+          <div class="title">${esc(title)}${cnAnnot}${badge}</div>
           <div class="loc">${locTrio(first)}</div>
         </div>
       </div>`;
@@ -1002,7 +1005,7 @@ function showGroupItem(items, parity) {
     <div class="show-item header has-children">
       ${thumb}
       <div class="info">
-        <div class="title">${esc(title)}${badge}</div>
+        <div class="title">${esc(title)}${cnAnnot}${badge}</div>
         <div class="city-count">${esc(t("city_count", { n: items.length }))}</div>
       </div>
       <span class="chev">▾</span>

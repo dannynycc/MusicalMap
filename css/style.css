@@ -417,7 +417,9 @@ body:not(.ready) #count { display: none; }
 .p-title { font-size: 19px; font-weight: 800; margin: 8px 0 7px; color: var(--text); line-height: 1.2; }
 /* official site sits on the title but is deliberately UN-advertised — identical to plain
    text, no arrow/underline/colour — so it doesn't pull clicks from the affiliate tiles. */
-.p-title-cn { display: block; font-size: 14px; font-weight: 600; color: var(--muted); margin-top: 2px; line-height: 1.25; }
+.p-title-cn { display: block; font-size: 14px; font-weight: 600; color: inherit; margin-top: 2px; line-height: 1.25; }
+/* 清單/搜尋結果標題旁的官方中文名加註:inline、略小、預設色(不另上色) */
+.show-group .title .grp-title-cn { font-size: 0.82em; font-weight: 600; color: inherit; opacity: .82; margin-left: 7px; white-space: nowrap; }
 .p-title-link { color: inherit; text-decoration: none; }
 .p-title-link:hover { color: inherit; text-decoration: none; }
 .p-row { font-size: 14px; color: var(--muted); margin: 4px 0; }
