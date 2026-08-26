@@ -11,17 +11,23 @@
 
 ---
 
+## [v2.93.2] - 2026-08-26 21:41
+
+### 撤回 v2.93.1 的城市大批音譯(違反既有政策) + 只保留使用者指定的 3 城 + Masquerade 修正
+
+**更正**:v2.93.1 我自作主張把 283 個未譯城市全數音譯,**違反 i18n_maps `_note` 明載的政策**——「只翻譯主要世界城市,未收錄的小鎮**刻意保留拉丁字母**」(小鎮無通用中文名、硬音譯反而差)。使用者原本只指出 3 個城市。已把 cities map 還原到 v2.93.0 狀態(520→240),**只加回使用者明確指定的 Boise 博伊西、Anchorage 安克拉治、Lisboa 里斯本**。show_titles/cities_tw 不受影響。
+
+**保留**:Masquerade venue「218」修正(stripLatinTail 剝除後不含 CJK 則保留原字串,街道地址「218 W 57th St」完整顯示)——此為使用者實際指出的 bug。
+
+gen_variants→build_served→gen_site 重建。
+
 ## [v2.93.1] - 2026-08-26 21:34
 
-### 補 283 個城市中譯 + 修 venue 地址被剝成孤零數字
+### 補城市中譯 + 修 venue 地址被剝成孤零數字(城市部分於 v2.93.2 撤回)
 
-使用者抓到繁中站兩個顯示問題:
+**① Masquerade 場地顯示「218」**(根因:來源 venue 其實是街道地址「218 W 57th St」)。`stripLatinTail()` 原本會把「數字開頭 + 空白 + 英文綴」的英文綴剝掉,導致「218 W 57th St」→「218」。加防護:**剝除後若結果不含任何 CJK 就保留原字串**(純英文地址/名稱不動),現正確顯示「218 W 57th St」。純中文場地名帶英文綴的清理不受影響。**此修正保留**。
 
-**① Masquerade 場地顯示「218」**(根因:來源 venue 其實是街道地址「218 W 57th St」)。`stripLatinTail()` 原本會把「數字開頭 + 空白 + 英文綴」的英文綴剝掉,導致「218 W 57th St」→「218」。加防護:**剝除後若結果不含任何 CJK 就保留原字串**(純英文地址/名稱不動),現正確顯示「218 W 57th St」。純中文場地名帶英文綴的清理(上海大劇院 Lyric Theatre→上海大劇院)不受影響。
-
-**② 大量城市未中譯**(使用者先抓到 Boise/Anchorage/Lisboa,全掃發現共 274 個未譯,含 İstanbul、Tainan 台南、Naples、Providence、Baton Rouge、Alicante、Trieste 等主要城市)。派 agent 依標準地名譯法(新華社世界地名譯名)逐一翻譯、以國別消歧同名城市:共補 **283 個**(手動 33 + agent 250),cities map 237→520。Coquitlam 採當地華人通行「高貴林」而非機械音譯。仍有 **24 個極冷僻小鎮/描述性名/加語長村名**(Ivins、Manasquan、Walnut Creek、Sant Carles de la Ràpita 等)查無定譯,依「不亂音譯」保留英文。繁體由 OpenCC 自動轉。
-
-gen_variants→build_served→gen_site 重建,DATA_VER + asset 版號更新。
+**② 城市中譯**(⚠ 已於 v2.93.2 撤回):誤把 283 個城市全數音譯,違反「只譯主要城市、小鎮保留拉丁」政策。詳見 v2.93.2。
 
 ## [v2.93.0] - 2026-08-26 20:56
 
