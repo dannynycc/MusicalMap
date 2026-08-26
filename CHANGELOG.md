@@ -15,7 +15,7 @@
 
 ### 整夜 tier 事後 QA:7 組獨立查核 55 部,修正 5 處事實小錯
 
-對 55 部已上線簡介派 7 組獨立事實查核 agent(對 Wikipedia/官方,韓劇加韓語源);52 部中 47 accurate、5 部各一小錯,已修:Pajama Game(非首屆而是 1955 東尼)、Bye Bye Birdie(1960→1961 東尼)、光化門戀歌(寫生比賽在德壽宮非光化門;製作只 CJ ENM)、Interview(非雙人劇,含第三角 Joan)、Bright Star(雜誌全名 Asheville Southern Journal)。另 Aida/Gypsy/American Idiot 獨立重查 pass。無劇情杜撰。build_served+gen_site 重建。
+對 55 部已上線簡介派 7 組獨立事實查核 agent(對 Wikipedia/官方,韓劇加韓語源);52 部中 47 accurate、5 部各一小錯,已修:Pajama Game(非首屆而是 1955 東尼)、Bye Bye Birdie(1960→1961 東尼)、光化門戀歌(寫生比賽在德壽宮非光化門;製作只 CJ ENM)、Interview(非雙人劇,含第三角 Joan)、Bright Star(雜誌全名 Asheville Southern Journal)。另 Aida/Gypsy/American Idiot 獨立重查 pass。無劇情杜撰。build_served+gen_site 重建。推送時遇 cron 資料刷新(auto-refresh listings),rebase 整合後重生 served/HTML(catalog 2094→2107)、DATA_VER 更新。
 
 ## [v2.88.9] - 2026-08-26 03:10
 
