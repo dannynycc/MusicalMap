@@ -18,6 +18,7 @@ CITY_EN = {
     "桂林": "Guilin", "贵阳": "Guiyang", "海口": "Haikou", "杭州": "Hangzhou",
     "哈尔滨": "Harbin", "合肥": "Hefei", "衡阳": "Hengyang", "淮安": "Huai'an",
     "黄冈": "Huanggang", "嘉兴": "Jiaxing", "济南": "Jinan", "晋城": "Jincheng",
+    "景德镇": "Jingdezhen", "舟山": "Zhoushan",
     "金华": "Jinhua", "昆明": "Kunming", "昆山": "Kunshan", "廊坊": "Langfang",
     "临平": "Linping", "临沂": "Linyi", "丽水": "Lishui", "柳州": "Liuzhou",
     "马鞍山": "Ma'anshan", "中国澳门": "Macau", "南昌": "Nanchang", "南充": "Nanchong",

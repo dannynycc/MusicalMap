@@ -11,6 +11,16 @@
 
 ---
 
+## [v2.89.0] - 2026-08-26 13:48
+
+### 標題中文加註 + 大麥重抓(逐部深查剔除非音樂劇)
+
+**標題加註**:繁简站對「有官方中文譯名的大作」在英文題名下方淡色加註中文(如 Maybe Happy Ending → 或許是美好結局、The Phantom of the Opera → 歌劇魅影),保留百老匯英文品牌又給中文讀者在地名。gen_variants 新增 `cn_annot` 欄(來源 i18n_maps 的 show_titles/_tw,英文題名保留為主),app.js 卡片渲染 `.p-title-cn`。收錄名單:Maybe Happy Ending、Phantom、Kiki's Delivery Service、My Bucket List(繁简各補齊)。
+
+**大麥重抓**(約每月一次,人工協助解滑塊):raw 1540 筆 → build 濾真音樂劇。較上次(389/66 城)**淨增場次、新增景德镇/舟山 2 城**(已補 `_cn_cities.py` 城市中英對照)。9 個微劇場座標由使用者提供精確地址、Google geocode + GCJ-02→WGS-84 補入 venue_coords.json(深圳湾剧场同名路陷阱手動校正到宝安),中國場次座標 0 缺口。
+
+**逐部深查剔除**:派 8 組 agent 對大麥音乐剧分類逐部多源查證(扫剧 y.saoju.net/百度百科/豆瓣),剔除經查證非傳統書本音樂劇者 —— not_musical=感觉(MJ 致敬演唱會);grey(音乐剧场/音乐戏剧/舞蹈剧场/戏曲融合/概念秀)=月食之歌、机动BPM、求婚女王、被消失的选择、见字如面、金童子、雪夜归来、小王子(央华版)、哥仔姐仔踏着火、坏家伙。`_NEG` 另加保險詞(放映/展映/银幕/GALA/致敬)擋放映版與致敬秀。收錄名單見 `_EXCLUDE_WORKS`。build_shows→gen_variants→gen_site 重建,DATA_VER 更新。
+
 ## [v2.88.10] - 2026-08-26 08:49
 
 ### 整夜 tier 事後 QA:7 組獨立查核 55 部,修正 5 處事實小錯

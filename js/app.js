@@ -712,9 +712,12 @@ function popupHtml(show) {
   // Official site is reachable by clicking the title, but we DON'T advertise it (no arrow,
   // no hover styling): a visible link cue would funnel clicks to the non-paying official
   // site and away from the affiliate ticketing tiles. Looks like plain text; still a link.
+  // 大作若有官方中文譯名(gen_variants 產的 cn_annot),繁简站在英文題名下方淡色加註,
+  // 保留百老匯英文品牌又給中文讀者在地名(2026-08-26)。英文站無 cn_annot。
+  const cnAnnot = show.cn_annot ? `<span class="p-title-cn">${esc(show.cn_annot)}</span>` : "";
   const title = official
-    ? `<p class="p-title"><a class="p-title-link" href="${esc(official.url)}" data-aff="${esc(affiliateUrl(official.url))}" onmousedown="this.href=this.dataset.aff" target="_blank" rel="noopener">${titleTxt}</a></p>`
-    : `<p class="p-title">${titleTxt}</p>`;
+    ? `<p class="p-title"><a class="p-title-link" href="${esc(official.url)}" data-aff="${esc(affiliateUrl(official.url))}" onmousedown="this.href=this.dataset.aff" target="_blank" rel="noopener">${titleTxt}</a>${cnAnnot}</p>`
+    : `<p class="p-title">${titleTxt}${cnAnnot}</p>`;
   // body width by tile count (DEFINITE px so Leaflet sizes the wrapper right — no overflow):
   // 3-tile row needs ~344px content; a lone source uses a narrower panel (less blank).
   const bodyW = ordered.length >= 3 ? 380 : 280;

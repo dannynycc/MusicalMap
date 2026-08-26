@@ -195,11 +195,41 @@ _NEG = ["舞蹈诗剧", "舞蹈剧场", "舞蹈秀", "现代舞", "街舞", "歌
         "券包", "套票", "通票", "年卡", "月卡", "次卡", "惠民卡", "9.9元",  # 非單一場次的票券商品
         # 比賽/教學展演:掛「音乐剧」名目但不是劇目演出(2026-08-12 桃李杯青少年舞蹈
         # 教育教学成果展示活动實案)。用詞取窄的,避免誤殺正常劇名。
-        "成果展示", "教学成果", "大赛", "比赛"]
+        "成果展示", "教学成果", "大赛", "比赛",
+        # 放映/影像版:高清放映、劇院現場等「放電影」非現場演出(2026-08-26 使用者提醒;
+        # 目前多在 话剧 分類已天然排除,加此為保險,萬一被誤歸音乐剧分類。放映/展映/银幕
+        # 無正常劇名會誤中)。GALA=金曲拼盤展演非單一劇目(剧团哇音音乐剧GALA 實案)。
+        "放映", "展映", "银幕", "GALA",
+        # 致敬秀/jukebox tribute:掛「致敬音乐剧」名目的明星金曲致敬 revue,無原創劇情
+        # (2026-08-26 使用者判定:伦敦西区原版致敬音乐剧《致敬流行天王迈克尔·杰克逊》×4城,
+        # 類 Thriller Live)。目前庫內「致敬」僅此 MJ 系列命中,乾淨。
+        "致敬"]
 
 
 def _is_musical(name):
     return any(p in name for p in _POS) and not any(g in name for g in _NEG)
+
+
+# 2026-08-26 逐部 agent 多源深查(扫剧/百度百科/豆瓣)判定為「非傳統書本音樂劇」而剔除:
+# not_musical=感觉(MJ 致敬演唱會);grey(音乐剧场/音乐戏剧/舞蹈剧场/戏曲融合/概念秀,雖自
+# 稱音乐剧但非書本音樂劇)=其餘。已逐一驗證這些核心名在庫內無正牌同名劇會被誤傷。
+_EXCLUDE_WORKS = [
+    "感觉",           # MJ 致敬演唱會(音乐舞台/CAN YOU FEEL IT)
+    "月食之歌",       # 西班牙非言語親子色彩劇場
+    "机动BPM",        # 流動式互動音樂劇場(概念)
+    "求婚女王",       # 開心麻花獨角音樂喜劇(音樂穿插)
+    "被消失的选择",   # 實驗獨角肖像音樂劇
+    "见字如面",       # 淮劇戲曲音樂劇場
+    "金童子",         # 音乐剧场(话剧歌剧類)
+    "雪夜归来",       # 中國原創音樂戲劇(聲樂×戲劇)
+    "小王子",         # 央華版音樂戲劇(即興音樂)
+    "哥仔姐仔踏着火",  # 香港踢踏舞蹈劇場
+    "坏家伙",         # Musical Show 唱跳概念秀
+]
+
+
+def _excluded(name):
+    return any(w in name for w in _EXCLUDE_WORKS)
 
 
 def _canon_title(name):
@@ -239,7 +269,8 @@ def build():
     rows = json.load(open(OUT_RAW, encoding="utf-8"))
     mus = [r for r in rows if r.get("subcategoryname") == "音乐剧"]
     keep_raw = [r for r in mus if _is_musical(r.get("nameNoHtml", ""))
-                and (r.get("venue") or "") not in ("大麦网", "大麥網", "")]
+                and (r.get("venue") or "") not in ("大麦网", "大麥網", "")
+                and not _excluded(r.get("nameNoHtml", ""))]
     dropped = len(mus) - len(keep_raw)
 
     # 劇名+城市去重。raw 是跨次 harvest 累積的,同劇同城可能同時有「已完結舊檔」與

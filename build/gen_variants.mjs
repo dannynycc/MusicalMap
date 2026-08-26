@@ -192,7 +192,15 @@ for (const variant of VARIANTS) {
   out.shows.forEach((s, i) => {
     s.city = place("cities", s.city, variant, s);
     s.country = place("countries", s.country, variant);
-    s.title = (variant === "en" && enTitle(s)) || zhTitle(s, variant) || cjk(s.title, variant);
+    // 有官方中文譯名的劇(大作,收在 show_titles/_tw):繁简站保留英文題名為主,
+    // 中文名以 cn_annot 加註在題名旁,而非取代英文(2026-08-26)。其餘照舊。
+    const _cnName = zhTitle(s, variant);
+    if (_cnName && variant !== "en") {
+      s.cn_annot = _cnName;
+      s.title = cjk(s.title, variant);        // 英文題名經 cjk() 原樣通過
+    } else {
+      s.title = (variant === "en" && enTitle(s)) || cjk(s.title, variant);
+    }
     if (s.venue) s.venue = variant === "en" ? venueEn(s.venue, s) : cjk(s.venue, variant);
     if (s.tour_name) s.tour_name = cjk(s.tour_name, variant);
     if (Array.isArray(s.ticket_links)) {

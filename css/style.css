@@ -417,6 +417,7 @@ body:not(.ready) #count { display: none; }
 .p-title { font-size: 19px; font-weight: 800; margin: 8px 0 7px; color: var(--text); line-height: 1.2; }
 /* official site sits on the title but is deliberately UN-advertised — identical to plain
    text, no arrow/underline/colour — so it doesn't pull clicks from the affiliate tiles. */
+.p-title-cn { display: block; font-size: 14px; font-weight: 600; color: var(--muted); margin-top: 2px; line-height: 1.25; }
 .p-title-link { color: inherit; text-decoration: none; }
 .p-title-link:hover { color: inherit; text-decoration: none; }
 .p-row { font-size: 14px; color: var(--muted); margin: 4px 0; }
