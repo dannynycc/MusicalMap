@@ -11,6 +11,22 @@
 
 ---
 
+## [v2.95.0] - 2026-08-27 05:38
+
+### 德奧/法式 19 部三語簡介入庫(嚴格逐篇查證,衝簡介覆蓋率)
+
+使用者要衝德奧/法式的三語簡介覆蓋率。px_gen(Comet/Perplexity 德/法官方名為 query)生成 24 部三語 →**19 部三語全齊入庫**、5 部緩收(生成階段限流嚴重、逐輪單串流補空)。
+
+**嚴格逐篇校對**(使用者三度強調不可偷懶):派 3 組 agent 把 19 部 × 3 語 = 57 篇**每一篇完整讀過**,各自**獨立查證史實**(維基/官方 Musicallexikon/劇評)與 Perplexity 輸出**交叉比對**,語意分析,**Perplexity 自然語言為主體、只修錯不改文風(主客不倒)**。抓到並最小修正的事實錯誤:
+- **das phantom der oper(Sasson & Sautter 德語版)简中**:混入了**韋伯版專屬情節**(Don Juan Triumphant 逼演、殺 Piangi、Point of No Return 對唱、空面具意象)→ 修回 Leroux 原著版(此製作直接改編 Leroux 小說,與韋伯是不同作品)。
+- **爱因斯坦(Wildhorn《Einstein》)英文**:整段**杜撰**了「病理學家 Harvey 偷切愛因斯坦大腦」框架(混入偷腦紀錄片)→ 修回本劇真實框架(晚年愛因斯坦夜船甲板 + 小提琴回顧)。
+- **莫里哀(Dove Attia)英文**:Armande Béjart 是 Madeleine 的**女兒**非妹妹(核心衝突)、刪除不在本劇的 Fouquet/Vaux/Lully 場次。
+- **Cléopâtre 英文**:「托勒密與克麗奧佩脫拉+凱撒結盟」與史實相反(托勒密起兵反凱撒兵敗)且與繁/简自相矛盾 → 修正。
+- **Drei Haselnüsse 简中**:繼姊兩個→一個(原著僅 Dora)、刪杜撰橋段。
+- 其餘 13 部三語查證全對、一字未改。清除 Perplexity 洩漏的來源標籤(stage-entertainment/reddit/regardencoulisse/visitberlin/ticketac/vbw-international 等)。
+
+在 catalog 者(das phantom/Rebecca/Le Roi Soleil/Les Souliers Rouges/茶花女/莫里哀/爱因斯坦/路德维希/Maria Theresia/Salon Rosie/Schneekönigin/Weihnachten mit Bibi/Drei Haselnüsse)簡介即顯示;未上架者(搖滾莫札特/Mozart!/亞瑟王傳奇/1789/三劍客/埃及豔后)入知識庫,未來上架即顯示。庫 →284/語、served →235/語。**緩收 5 部**(Die Weihnachtsbäckerei/Tabaluga/Wahnsinn/Wir sind am Leben/Le Petit Prince,各缺 1–3 語,Comet 凌晨限流)待恢復再補。build 全鏈重建。
+
 ## [v2.94.2] - 2026-08-27 01:12
 
 ### 補 15 個德奧/法式經典中文名 + 註冊 8 齣法/德音樂劇(搖滾莫札特/Mozart!/亞瑟王等)
