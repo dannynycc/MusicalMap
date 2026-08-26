@@ -11,6 +11,12 @@
 
 ---
 
+## [v2.91.3] - 2026-08-26 15:40
+
+### 修中文站 venue 殘留英文綴(中英混雜場館名不一致)
+
+使用者抓到:同一齣上海《劇院魅影》,英文站 venue 顯示「Shanghai Grand Theatre」、繁中站卻顯示「上海大劇院 Lyric Theatre」(拖著英文 Lyric Theatre)。根因:來源 venue 字串本身中英混雜(shgtheatre 手動源),venues_en.json 有對到 Shanghai Grand Theatre 供英文站用,但中文站 cjk() 只轉中文、英文綴殘留。gen_variants 加 `stripLatinTail()`:中文站顯示時清掉「中文名/号/數字 + 空白 + 純英文綴」的殘留(上海大劇院 Lyric Theatre→上海大劇院、上海文化广场 Shanghai Culture Square→上海文化广场、星空间322号 Take One→星空间322号)。本身即拉丁名的場館(NOL Uniplex (大學路)、Tokyu Theatre Orb (渋谷ヒカリエ)、Aichi Sky Expo…ホールA)因無「CJK+空白+英文」尾綴,完全不受影響。英文站不變。
+
 ## [v2.91.2] - 2026-08-26 15:19
 
 ### 清單中文加註改為與英文題名同大小、同亮度

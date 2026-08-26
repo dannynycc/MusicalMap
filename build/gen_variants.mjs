@@ -69,6 +69,14 @@ function venueEn(v, rec) {
   if (lat && lat[0].trim().split(/\s+/).length >= 2) return lat[0].trim();
   return v;
 }
+// 中文站 venue 顯示:清掉「中文名 + 後面拖著的純英文綴」的殘留英文
+// (「上海大劇院 Lyric Theatre」→「上海大劇院」、「上海文化广场 Shanghai Culture Square」→「上海文化广场」)。
+// 只在「英文綴前面緊鄰 CJK/号/數字 + 空白」時清,故本身即拉丁名的場館(NOL Uniplex (大學路)、
+// Tokyu Theatre Orb (渋谷…)、ホールA 無空白者)完全不受影響(2026-08-26 使用者抓到魅影 venue 中英不一致)。
+function stripLatinTail(v) {
+  if (!v) return v;
+  return v.replace(/(?<=[㐀-鿿぀-ヿ가-힯号號\d])\s+[A-Za-z][A-Za-z0-9'’&.,()\-\s]*$/u, "").trim();
+}
 const VARIANTS = ["en", "zh-hans", "zh-hant"];
 
 // City/country localization, language-specific (per user spec):
@@ -201,7 +209,7 @@ for (const variant of VARIANTS) {
     } else {
       s.title = (variant === "en" && enTitle(s)) || cjk(s.title, variant);
     }
-    if (s.venue) s.venue = variant === "en" ? venueEn(s.venue, s) : cjk(s.venue, variant);
+    if (s.venue) s.venue = variant === "en" ? venueEn(s.venue, s) : stripLatinTail(cjk(s.venue, variant));
     if (s.tour_name) s.tour_name = cjk(s.tour_name, variant);
     if (Array.isArray(s.ticket_links)) {
       for (const l of s.ticket_links) if (l.label) l.label = label(l.label, variant);
