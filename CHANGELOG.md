@@ -11,6 +11,14 @@
 
 ---
 
+## [v2.93.3] - 2026-08-26 21:44
+
+### 依使用者指定再加 İstanbul、Tainan(共 5 城)
+
+承 v2.93.2,使用者指定再加 2 城:İstanbul→伊斯坦布尔(繁 伊斯坦布爾)、Tainan→台南(繁 OpenCC 轉 臺南)。cities 240→242(共 Boise/Anchorage/Lisboa/İstanbul/Tainan 5 個)。**未再擴充其他城市**(遵守「只譯指定/主要城市」)。
+
+搜尋驗證:`fold()`(toLowerCase→NFKD→去 combining)使 `İstanbul`、`Istanbul`、`istanbul` 折疊後皆為 `istanbul`,İ 與 I 搜尋互通;搜尋 blob 同時含英文與中文名,兩種都搜得到。
+
 ## [v2.93.2] - 2026-08-26 21:41
 
 ### 撤回 v2.93.1 的城市大批音譯(違反既有政策) + 只保留使用者指定的 3 城 + Masquerade 修正
