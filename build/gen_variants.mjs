@@ -75,7 +75,11 @@ function venueEn(v, rec) {
 // Tokyu Theatre Orb (渋谷…)、ホールA 無空白者)完全不受影響(2026-08-26 使用者抓到魅影 venue 中英不一致)。
 function stripLatinTail(v) {
   if (!v) return v;
-  return v.replace(/(?<=[㐀-鿿぀-ヿ가-힯号號\d])\s+[A-Za-z][A-Za-z0-9'’&.,()\-\s]*$/u, "").trim();
+  const stripped = v.replace(/(?<=[㐀-鿿぀-ヿ가-힯号號\d])\s+[A-Za-z][A-Za-z0-9'’&.,()\-\s]*$/u, "").trim();
+  // 只有剝除後仍保有 CJK 內容才採用:純英文地址/名稱(如 "218 W 57th St")開頭雖是數字,
+  // 剝掉英文綴會變成孤零數字「218」——這種情況保留原字串(2026-08-26 使用者抓到 Masquerade)。
+  if (stripped !== v && !/[㐀-鿿぀-ヿ가-힯]/u.test(stripped)) return v;
+  return stripped;
 }
 const VARIANTS = ["en", "zh-hans", "zh-hant"];
 

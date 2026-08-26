@@ -11,6 +11,18 @@
 
 ---
 
+## [v2.93.1] - 2026-08-26 21:34
+
+### 補 283 個城市中譯 + 修 venue 地址被剝成孤零數字
+
+使用者抓到繁中站兩個顯示問題:
+
+**① Masquerade 場地顯示「218」**(根因:來源 venue 其實是街道地址「218 W 57th St」)。`stripLatinTail()` 原本會把「數字開頭 + 空白 + 英文綴」的英文綴剝掉,導致「218 W 57th St」→「218」。加防護:**剝除後若結果不含任何 CJK 就保留原字串**(純英文地址/名稱不動),現正確顯示「218 W 57th St」。純中文場地名帶英文綴的清理(上海大劇院 Lyric Theatre→上海大劇院)不受影響。
+
+**② 大量城市未中譯**(使用者先抓到 Boise/Anchorage/Lisboa,全掃發現共 274 個未譯,含 İstanbul、Tainan 台南、Naples、Providence、Baton Rouge、Alicante、Trieste 等主要城市)。派 agent 依標準地名譯法(新華社世界地名譯名)逐一翻譯、以國別消歧同名城市:共補 **283 個**(手動 33 + agent 250),cities map 237→520。Coquitlam 採當地華人通行「高貴林」而非機械音譯。仍有 **24 個極冷僻小鎮/描述性名/加語長村名**(Ivins、Manasquan、Walnut Creek、Sant Carles de la Ràpita 等)查無定譯,依「不亂音譯」保留英文。繁體由 OpenCC 自動轉。
+
+gen_variants→build_served→gen_site 重建,DATA_VER + asset 版號更新。
+
 ## [v2.93.0] - 2026-08-26 20:56
 
 ### 日本 2.5 次元 7 部音樂劇三語簡介入庫 + 剔 3 部話劇 + 中文名微調
