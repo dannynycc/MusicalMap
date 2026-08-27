@@ -11,6 +11,12 @@
 
 ---
 
+## [v2.95.3] - 2026-08-27 09:38
+
+### 新增簡介驗證出處帳本(可跨 session 追溯)
+
+使用者問「有多少三語簡介經過嚴格方法 B 驗證」,發現知識庫沒有「每部用什麼驗證方式」的標記、無法追溯。新增 `data/synopses_verification.json` 帳本(keyed by group),每部記 `method`(B=Perplexity 主體+agent 逐語言語意查核+多源交叉、只修錯不改文風;A=agent 多源查證事實→人工寫三語;legacy=早期入庫待重驗;none)+ date/langs/sources/errors_fixed/confidence/batch。**回填**本次 session 方法 B 嚴驗的 53 部(西方 22/日本 7/德奧法式 24),其餘 236 部標 legacy 待驗。將於後續以方法 B 重驗 legacy(優先 Broadway/West End 144 部在庫)、把逐部結果寫回帳本。此檔隨每次入庫/重驗更新,未來 session 讀它即知每部驗證出處。
+
 ## [v2.95.2] - 2026-08-27 07:54
 
 ### 最後 2 部補齊 → 德奧/法式三語簡介覆蓋率雙 100%

@@ -1,0 +1,3002 @@
+{
+ "_note": "每部知識庫簡介(data/synopses_library)的驗證出處帳本,讓跨 session 可追溯。method: B=Perplexity 生成為主體→agent 逐語言語意查核+獨立多源交叉比對(只修錯不改文風,主客不倒);A=agent 多源查證事實→人工據事實親筆寫三語;legacy=早期入庫,驗證方式未明確標記、待以方法 B 重驗;none=未經獨立事實查核。入庫或重驗時務必更新此檔。",
+ "_schema": "verified[group]={method,date(YYYY-MM-DD),langs:[...],sources,errors_fixed:[...],confidence,batch}",
+ "verified": {
+  "101 dalmatians": {
+   "method": "B",
+   "date": "2026-08-27",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "wikipedia/官方/劇評/多源",
+   "confidence": "high",
+   "batch": "west-cmpw-2026-08-27"
+  },
+  "1776": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "1789 les amants de la bastille": {
+   "method": "B",
+   "date": "2026-08-27",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "wikipedia/官方/劇評/多源",
+   "confidence": "high",
+   "batch": "euro-de-fr-2026-08-27"
+  },
+  "25th annual putnam county spelling bee": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "42nd street": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "a beautiful noise": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "a chorus line": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "a christmas carol": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "a christmas story": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "a gentlemans guide to love and murder": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "addams family": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "aida": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "aladdin": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "amelie": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "american idiot": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "anastasia": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "and juliet": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "annie": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "assassins": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "avenue q": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "back to the future": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "barnum": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "bat boy": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "beautiful": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "beauty and the beast": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "beetlejuice": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "ben hur musical": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "big fish": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "billy elliot": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "blbff": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "bodyguard": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "book of mormon": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "boop": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "brigadoon": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "bright star": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "buena vista social club": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "burlesque": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "bye bye birdie": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "cabaret": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "camelot": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "caroline or change": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "carousel": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "cats": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "charlie and the chocolate factory": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "chicago": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "cinderella": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "city of angels": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "cleopatre la derniere reine degypte": {
+   "method": "B",
+   "date": "2026-08-27",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "wikipedia/官方/劇評/多源",
+   "confidence": "high",
+   "batch": "euro-de-fr-2026-08-27"
+  },
+  "color purple": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "come from away": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "company": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "count of monte cristo": {
+   "method": "B",
+   "date": "2026-08-27",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "wikipedia/官方/劇評/多源",
+   "confidence": "high",
+   "batch": "west-cmpw-2026-08-27"
+  },
+  "damn yankees": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "das phantom der oper die originalproduktion von sasson sautter": {
+   "method": "B",
+   "date": "2026-08-27",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "wikipedia/官方/劇評/多源",
+   "confidence": "high",
+   "batch": "euro-de-fr-2026-08-27"
+  },
+  "dear evan hansen": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "death becomes her": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "death note": {
+   "method": "B",
+   "date": "2026-08-27",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "wikipedia/官方/劇評/多源",
+   "confidence": "high",
+   "batch": "west-cmpw-2026-08-27"
+  },
+  "devil wears prada": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "diary of a wimpy kid": {
+   "method": "B",
+   "date": "2026-08-27",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "wikipedia/官方/劇評/多源",
+   "confidence": "high",
+   "batch": "west-cmpw-2026-08-27"
+  },
+  "die weihnachtsbackerei": {
+   "method": "B",
+   "date": "2026-08-27",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "wikipedia/官方/劇評/多源",
+   "confidence": "high",
+   "batch": "euro-de-fr-2026-08-27"
+  },
+  "dirty dancing": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "dracula": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "dreamgirls": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "drei haselnusse fur aschenbrodel": {
+   "method": "B",
+   "date": "2026-08-27",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "wikipedia/官方/劇評/多源",
+   "confidence": "high",
+   "batch": "euro-de-fr-2026-08-27"
+  },
+  "drowsy chaperone": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "elf": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "elisabeth": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "everybodys talking about jamie": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "evita": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "falsettos": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "fiddler on the roof": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "fifty shades": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "finding neverland": {
+   "method": "B",
+   "date": "2026-08-27",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "wikipedia/官方/劇評/多源",
+   "confidence": "high",
+   "batch": "west-cmpw-2026-08-27"
+  },
+  "footloose": {
+   "method": "B",
+   "date": "2026-08-27",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "wikipedia/官方/劇評/多源",
+   "confidence": "high",
+   "batch": "west-cmpw-2026-08-27"
+  },
+  "frankenstein": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "frozen": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "full monty": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "fun home": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "funny girl": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "ghost": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "godspell": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "grand hotel": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "grease": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "great gatsby": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "greatest showman": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "guys and dolls": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "gwanghwamun sonata": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "gypsy": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "hadestown": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "hairspray": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "hamilton": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "heathers": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "hedwig and the angry inch": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "hello dolly": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "hells kitchen": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "hercules": {
+   "method": "B",
+   "date": "2026-08-27",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "wikipedia/官方/劇評/多源",
+   "confidence": "high",
+   "batch": "west-cmpw-2026-08-27"
+  },
+  "hero the musical": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "high school musical": {
+   "method": "B",
+   "date": "2026-08-27",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "wikipedia/官方/劇評/多源",
+   "confidence": "high",
+   "batch": "west-cmpw-2026-08-27"
+  },
+  "honk": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "how the grinch stole christmas": {
+   "method": "B",
+   "date": "2026-08-27",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "wikipedia/官方/劇評/多源",
+   "confidence": "high",
+   "batch": "west-cmpw-2026-08-27"
+  },
+  "hunchback of notre dame": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "in the heights": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "interview korean": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "into the woods": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "jane eyre": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "jeff waynes the war of the worlds": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "jekyll and hyde": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "jersey boys": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "jesus christ superstar": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "joseph and the amazing technicolor dreamcoat": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "just for one day": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "just in time": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "kikis delivery service": {
+   "method": "B",
+   "date": "2026-08-27",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "wikipedia/官方/劇評/多源",
+   "confidence": "high",
+   "batch": "west-cmpw-2026-08-27"
+  },
+  "kimberly akimbo": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "kinky boots": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "kiss me kate": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "kiss of the spider woman": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "la cage aux folles": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "la legende du roi arthur": {
+   "method": "B",
+   "date": "2026-08-27",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "wikipedia/官方/劇評/多源",
+   "confidence": "high",
+   "batch": "euro-de-fr-2026-08-27"
+  },
+  "last empress": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "last five years": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "le petit prince": {
+   "method": "B",
+   "date": "2026-08-27",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "wikipedia/官方/劇評/多源",
+   "confidence": "high",
+   "batch": "euro-de-fr-2026-08-27"
+  },
+  "le roi soleil": {
+   "method": "B",
+   "date": "2026-08-27",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "wikipedia/官方/劇評/多源",
+   "confidence": "high",
+   "batch": "euro-de-fr-2026-08-27"
+  },
+  "legally blonde": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "les miserables": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "les souliers rouges the red shoes": {
+   "method": "B",
+   "date": "2026-08-27",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "wikipedia/官方/劇評/多源",
+   "confidence": "high",
+   "batch": "euro-de-fr-2026-08-27"
+  },
+  "les trois mousquetaires": {
+   "method": "B",
+   "date": "2026-08-27",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "wikipedia/官方/劇評/多源",
+   "confidence": "high",
+   "batch": "euro-de-fr-2026-08-27"
+  },
+  "light in the piazza": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "lion king": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "little mermaid": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "little shop of horrors": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "little women": {
+   "method": "B",
+   "date": "2026-08-27",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "wikipedia/官方/劇評/多源",
+   "confidence": "high",
+   "batch": "west-cmpw-2026-08-27"
+  },
+  "love any way": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "love never dies": {
+   "method": "B",
+   "date": "2026-08-27",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "wikipedia/官方/劇評/多源",
+   "confidence": "high",
+   "batch": "west-cmpw-2026-08-27"
+  },
+  "madagascar": {
+   "method": "B",
+   "date": "2026-08-27",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "wikipedia/官方/劇評/多源",
+   "confidence": "high",
+   "batch": "west-cmpw-2026-08-27"
+  },
+  "mamma mia": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "man who laughs": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "maria theresia": {
+   "method": "B",
+   "date": "2026-08-27",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "wikipedia/官方/劇評/多源",
+   "confidence": "high",
+   "batch": "euro-de-fr-2026-08-27"
+  },
+  "marie curie": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "martin guerre": {
+   "method": "B",
+   "date": "2026-08-27",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "wikipedia/官方/劇評/多源",
+   "confidence": "high",
+   "batch": "west-cmpw-2026-08-27"
+  },
+  "marvin": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "mary poppins": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "masquerade": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "mata hari": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "matilda": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "maybe happy ending": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "mean girls": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "memphis": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "menopause": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "merrily we roll along": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "million dollar quartet": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "miss saigon": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "mj": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "moulin rouge": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "mozart": {
+   "method": "B",
+   "date": "2026-08-27",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "wikipedia/官方/劇評/多源",
+   "confidence": "high",
+   "batch": "euro-de-fr-2026-08-27"
+  },
+  "mozart lopera rock": {
+   "method": "B",
+   "date": "2026-08-27",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "wikipedia/官方/劇評/多源",
+   "confidence": "high",
+   "batch": "euro-de-fr-2026-08-27"
+  },
+  "mrs doubtfire": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "music man": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "musical taru": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "my bucket list": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "my fair lady": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "mystic pizza": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "natasha pierre and the great comet of 1812": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "newsies": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "next to normal": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "nine": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "notebook": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "notre dame de paris": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "oklahoma": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "oliver": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "oliver twist": {
+   "method": "B",
+   "date": "2026-08-27",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "wikipedia/官方/劇評/多源",
+   "confidence": "high",
+   "batch": "west-cmpw-2026-08-27"
+  },
+  "once": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "once on this island": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "operation mincemeat": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "outsiders": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "paddington": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "pajama game": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "parade": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "passion": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "peter pan": {
+   "method": "B",
+   "date": "2026-08-27",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "wikipedia/官方/劇評/多源",
+   "confidence": "high",
+   "batch": "west-cmpw-2026-08-27"
+  },
+  "phantom of the opera": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "picture of dorian gray": {
+   "method": "B",
+   "date": "2026-08-27",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "wikipedia/官方/劇評/多源",
+   "confidence": "high",
+   "batch": "west-cmpw-2026-08-27"
+  },
+  "pippin": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "pirates of penzance": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "pretty woman": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "prince of egypt": {
+   "method": "B",
+   "date": "2026-08-27",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "wikipedia/官方/劇評/多源",
+   "confidence": "high",
+   "batch": "west-cmpw-2026-08-27"
+  },
+  "producers": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "prom": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "ragtime": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "rebecca": {
+   "method": "B",
+   "date": "2026-08-27",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "wikipedia/官方/劇評/多源",
+   "confidence": "high",
+   "batch": "euro-de-fr-2026-08-27"
+  },
+  "rent": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "robin hood": {
+   "method": "B",
+   "date": "2026-08-27",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "wikipedia/官方/劇評/多源",
+   "confidence": "high",
+   "batch": "west-cmpw-2026-08-27"
+  },
+  "rock of ages": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "rocky horror show": {
+   "method": "B",
+   "date": "2026-08-27",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "wikipedia/官方/劇評/多源",
+   "confidence": "high",
+   "batch": "west-cmpw-2026-08-27"
+  },
+  "romeo et juliette": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "salon rosie": {
+   "method": "B",
+   "date": "2026-08-27",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "wikipedia/官方/劇評/多源",
+   "confidence": "high",
+   "batch": "euro-de-fr-2026-08-27"
+  },
+  "schneekonigin": {
+   "method": "B",
+   "date": "2026-08-27",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "wikipedia/官方/劇評/多源",
+   "confidence": "high",
+   "batch": "euro-de-fr-2026-08-27"
+  },
+  "school of rock": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "scottsboro boys": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "she loves me": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "show boat": {
+   "method": "B",
+   "date": "2026-08-27",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "wikipedia/官方/劇評/多源",
+   "confidence": "high",
+   "batch": "west-cmpw-2026-08-27"
+  },
+  "shrek": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "shucked": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "si sol mi": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "singin in the rain": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "sister act": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "six": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "something rotten": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "sound of music": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "spamalot": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "spring awakening": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "starlight express": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "suffs": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "sunday in the park with george": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "sunset boulevard": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "sweeney todd": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "tabaluga und lilli": {
+   "method": "B",
+   "date": "2026-08-27",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "wikipedia/官方/劇評/多源",
+   "confidence": "high",
+   "batch": "euro-de-fr-2026-08-27"
+  },
+  "tanz der vampire": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "tarzan": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "tina": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "titanic": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "titanique": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "tommy": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "tootsie": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "tuck everlasting": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "urinetown": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "wahnsinn": {
+   "method": "B",
+   "date": "2026-08-27",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "wikipedia/官方/劇評/多源",
+   "confidence": "high",
+   "batch": "euro-de-fr-2026-08-27"
+  },
+  "waitress": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "water for elephants": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "we will rock you": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "wedding singer": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "weihnachten mit bibi and tina": {
+   "method": "B",
+   "date": "2026-08-27",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "wikipedia/官方/劇評/多源",
+   "confidence": "high",
+   "batch": "euro-de-fr-2026-08-27"
+  },
+  "west side story": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "wicked": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "wir sind am leben": {
+   "method": "B",
+   "date": "2026-08-27",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "wikipedia/官方/劇評/多源",
+   "confidence": "high",
+   "batch": "euro-de-fr-2026-08-27"
+  },
+  "wiz": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "wizard of oz": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "xcalibur": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "young frankenstein": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "zorro": {
+   "method": "B",
+   "date": "2026-08-27",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "wikipedia/官方/劇評/多源",
+   "confidence": "high",
+   "batch": "west-cmpw-2026-08-27"
+  },
+  "ケロロ軍曹": {
+   "method": "B",
+   "date": "2026-08-27",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "wikipedia/官方/劇評/多源",
+   "confidence": "high",
+   "batch": "japan-2.5d-2026-08-27"
+  },
+  "テニスの王子様": {
+   "method": "B",
+   "date": "2026-08-27",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "wikipedia/官方/劇評/多源",
+   "confidence": "high",
+   "batch": "japan-2.5d-2026-08-27"
+  },
+  "ポーの一族": {
+   "method": "B",
+   "date": "2026-08-27",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "wikipedia/官方/劇評/多源",
+   "confidence": "high",
+   "batch": "japan-2.5d-2026-08-27"
+  },
+  "三個不結婚的女人": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "三個傻瓜": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "不親愛家人": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "今晚 我想來點": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "你好 我是接體員": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "你的工作 你的休假": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "刀剣乱舞": {
+   "method": "B",
+   "date": "2026-08-27",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "wikipedia/官方/劇評/多源",
+   "confidence": "high",
+   "batch": "japan-2.5d-2026-08-27"
+  },
+  "別叫我成功 藝術界歸來的兒子": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "勸世三姊妹": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "囍宴": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "夢幻雞排大冒險": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "大家都怎麼做音樂劇": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "太空阿嬤": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "小王子": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "市場女人心 第一市場二部曲": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "微笑半世紀": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "忍たま乱太郎": {
+   "method": "B",
+   "date": "2026-08-27",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "wikipedia/官方/劇評/多源",
+   "confidence": "high",
+   "batch": "japan-2.5d-2026-08-27"
+  },
+  "情人哏裡出西施": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "我在詐騙公司上班": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "我的爵視金曲夜": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "換氣練習": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "新テニスの王子様": {
+   "method": "B",
+   "date": "2026-08-27",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "wikipedia/官方/劇評/多源",
+   "confidence": "high",
+   "batch": "japan-2.5d-2026-08-27"
+  },
+  "月亮雪酪": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "水鬼學校和失去媽媽的水獺": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "渡子江 死了都要愛": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "漂浪半島": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "潘朵拉的音樂盒": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "無聲の海腳間仔": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "爬上頂樓看月亮": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "爱因斯坦 时间相对论": {
+   "method": "B",
+   "date": "2026-08-27",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "wikipedia/官方/劇評/多源",
+   "confidence": "high",
+   "batch": "euro-de-fr-2026-08-27"
+  },
+  "生命最美好的5分鍾": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "當亞斯遇見人魚": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "神明便利商店": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "老男孩": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "茶花女": {
+   "method": "B",
+   "date": "2026-08-27",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "wikipedia/官方/劇評/多源",
+   "confidence": "high",
+   "batch": "euro-de-fr-2026-08-27"
+  },
+  "莫里哀": {
+   "method": "B",
+   "date": "2026-08-27",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "wikipedia/官方/劇評/多源",
+   "confidence": "high",
+   "batch": "euro-de-fr-2026-08-27"
+  },
+  "蕾娜絲的修理小舖": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "薄桜鬼 真改": {
+   "method": "B",
+   "date": "2026-08-27",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "wikipedia/官方/劇評/多源",
+   "confidence": "high",
+   "batch": "japan-2.5d-2026-08-27"
+  },
+  "記憶的星光": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "跑跑殭丙仁": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "路德维希二世 国王归来": {
+   "method": "B",
+   "date": "2026-08-27",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "wikipedia/官方/劇評/多源",
+   "confidence": "high",
+   "batch": "euro-de-fr-2026-08-27"
+  },
+  "轟吧 全壘打": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "阿卡的兒歌大冒險": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "阿甯咕的爸鼻不見了": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "青瞑猴 出外讀冊拼出頭": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  },
+  "馬克斯威妖 我睡了我的面試官": {
+   "method": "legacy",
+   "date": null,
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "note": "早期入庫,待方法B重驗"
+  }
+ }
+}
