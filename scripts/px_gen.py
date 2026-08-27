@@ -75,7 +75,7 @@ def clean(text, q):
         if re.match(r"^(Searching|Reading|Analyzing|Looking|Gathering|Checking)", s): continue  # 英文進度行
         if TS.match(s): continue
         if re.sub(r"\s+","",s)==qn: continue
-        if re.fullmatch(r"(wikipedia|britannica|[a-z0-9.\-]+\.[a-z]{2,})",s,re.I): continue
+        if re.fullmatch(r"(wikipedia|britannica|theatermania|stageagent|mtishows|playbill|broadwayworld|whatsonstage|concordtheatricals|londontheatre|masterworksbroadway|broadwaymusicalhome|theatregold|seatplan|ibdb|fandom|broadway|[a-z0-9.\-]+\.[a-z]{2,})",s,re.I): continue  # 來源名殘留(Perplexity 內文引註)
         if PROGRESS.match(s) and len(s)<40: continue
         keep.append(ln)
     paras=[p.strip() for p in re.split(r"\n\s*\n","\n".join(keep).strip()) if p.strip()]

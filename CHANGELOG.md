@@ -11,6 +11,23 @@
 
 ---
 
+## [v2.96.6] - 2026-08-28 01:16
+
+### 親自 Chrome 多源驗證:239 部 served 簡介逐部三語查核 + 修正 8 部確認錯誤
+- 完成全 239 部 served 簡介的「音樂劇本身」多源人工查證(claude-in-chrome 真 Google,三語 en/繁/簡 對照;帳本 `data/synopses_personal_verify.json`)。判定:語意正確 217 部維持原文不動、確認錯誤 22 部修正、0 待決。
+- 本次修正 8 部**確認與該音樂劇實際劇情不符**者(只改錯處、保留 Perplexity 原有語感,非重寫):
+  - **Rebecca(繁)**:補上舞會後段結局——法醫證實 Rebecca 罹絕症/自戕使 Maxim 脫罪、Danvers 太太焚燒 Manderley 並葬身火場,並補全劇總結段。
+  - **雪之女王 Die Schneekönigin(簡+en)**:補「鏡子碎片刺入」的施法機制與救援高潮(原簡體「Kai 無故消失」語焉不詳)。
+  - **佐羅 Zorro(繁/簡)**:Ramon 更正為 Diego 兒時好友篡位者(非總督),補巴塞隆納/吉普賽人/Inez/Diego 返鄉/父親遭囚。
+  - **羅賓漢 Robin Hood(簡)**:改寫為 Chris de Burgh 音樂劇版本(洛克斯里/Guy 十字軍/誤傳戰死/舍伍德/決鬥)。
+  - **Wahnsinn(en)**:補 Bahia del Sol 島嶼線(Sabine 瑜伽假期、紅色金龜車拋錨、島上飯店重逢)。
+  - **忍者亂太郎 第1弾(繁/簡)**:改寫為該作具體劇情(定向越野/Dokutake 大炮/三人被擄/六年級生畢業考救援)。
+  - **聖誕烘焙 Die Weihnachtsbäckerei(繁/簡)**:改寫為具體劇情(手足約拿斯/寶拉/艾蜜莉+狗瑪芬、大雪困住父母、空冰箱/失食譜)。
+  - **& Juliet(繁/簡)**:補莎士比亞/Anne Hathaway 後設框架段與劇作家之爭(原缺此結構,僅泛講 Juliet 故事)。
+- **顯示標題**:Mrs. Doubtfire 簡體 `寡妇奶妈` → `窈窕奶爸`(`data/i18n_maps.json`)。
+- **工具**:`scripts/px_gen.py` 的 `clean()` 加強來源名殘留過濾(theatermania/stageagent/playbill/broadwayworld 等 Perplexity 內文引註),避免生成物夾帶來源字串。
+- 走完整管線:`gen_variants` → `build_served_synopses` → `gen_site`,DATA_VER 7eb8f1d051 → 36e0cf19ff 破快取。
+
 ## [v2.96.3] - 2026-08-27 14:14
 
 ### 工具落地:Perplexity 三語簡介生成腳本進 repo(可跨 session 重現)
