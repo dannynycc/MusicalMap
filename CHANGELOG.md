@@ -11,6 +11,24 @@
 
 ---
 
+## [v2.96.0] - 2026-08-27 11:48
+
+### 內容正確性:Broadway/West End 144 部三語簡介嚴格重驗(方法 B)
+- 兩階段查核在庫 144 部百老匯/西區音樂劇簡介:
+  - 階段一(單源快掃,100 部):抓出 27 部、38 處逐語言事實錯誤並修正。
+  - 階段二(方法 B 真多源,全 144 部):每部 WebFetch ≥2 個獨立網域交叉;**125/144(86%)達 ≥2 獨立來源**,19 部因劇場網站擋爬僅維基單源(已於 verification 逐部誠實標記);B 另抓出 16 部事實錯誤。
+- 修正型態:電影版vs舞台版混淆(Grease/Aladdin/Anastasia/Annie/Beetlejuice/Spamalot/Tommy/Tootsie…)、跨語言角色張冠李戴(Avenue Q/Death Becomes Her/Producers…)、數字/邏輯矛盾(A Chorus Line 17人・四男四女、Joseph 十個哥哥、Bat Boy)、地名(Parade 佐治亞州、Kinky Boots 英格蘭中部)、雜質字串清除。
+- 主客不倒:Perplexity 自然語言為主體,只修事實、不改文風;逐語言只動出錯欄位。
+
+### 新增:法語音樂劇《唐璜》Don Juan
+- 完整管線新增(Perplexity 三語生成 → 多源查證 → 修正 → 入庫)。
+- 消歧義:明確為 2004 法語/魁北克音樂劇(非莫札特歌劇 Don Giovanni);繁簡首版曾漂移莫札特版,已釘劇情重生成,經 fr.wikipedia + en.wikipedia 雙源查證。
+- 註:目前僅 works.json 註冊、尚不在 catalog,簡介已備妥,待該製作被 scrape 即自動掛上。
+
+### 資料品質
+- 全庫清除 Perplexity 格式殘留標題「全劇總結/全剧总结」21 處(繁 15・簡 6)。
+- 更新驗證帳本 data/synopses_verification.json:198 部標為 method B(含本次 144 Broadway + Don Juan),逐部記錄多源達標狀態(external_multisource)。
+
 ## [v2.95.3] - 2026-08-27 09:38
 
 ### 新增簡介驗證出處帳本(可跨 session 追溯)

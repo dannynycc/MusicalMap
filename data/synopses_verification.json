@@ -1,5 +1,5 @@
 {
- "_note": "每部知識庫簡介(data/synopses_library)的驗證出處帳本,讓跨 session 可追溯。method: B=Perplexity 生成為主體→agent 逐語言語意查核+獨立多源交叉比對(只修錯不改文風,主客不倒);A=agent 多源查證事實→人工據事實親筆寫三語;legacy=早期入庫,驗證方式未明確標記、待以方法 B 重驗;none=未經獨立事實查核。入庫或重驗時務必更新此檔。",
+ "_note": "每部知識庫簡介(data/synopses_library)的驗證出處帳本,讓跨 session 可追溯。method: B=Perplexity 生成為主體 → 有經過 agent 逐語言語意查核+獨立多源交叉比對(只修錯不改文風,主客不倒);A=Perplexity 生成為主體,但「沒有」經過 agent 逐語言語意查核+多源交叉(即未嚴格驗證);legacy=早期入庫、驗證方式未明確標記、待以方法 B 重驗(多數應為 A);none=未經任何獨立事實查核。入庫或重驗時務必更新此檔。",
  "_schema": "verified[group]={method,date(YYYY-MM-DD),langs:[...],sources,errors_fixed:[...],confidence,batch}",
  "verified": {
   "101 dalmatians": {
@@ -15,14 +15,17 @@
    "batch": "west-cmpw-2026-08-27"
   },
   "1776": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": 0.9,
+   "batch": "broadway-methodB-2026-08-27"
   },
   "1789 les amants de la bastille": {
    "method": "B",
@@ -37,64 +40,82 @@
    "batch": "euro-de-fr-2026-08-27"
   },
   "25th annual putnam county spelling bee": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": 0.9,
+   "batch": "broadway-methodB-2026-08-27"
   },
   "42nd street": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": 0.9,
+   "batch": "broadway-methodB-2026-08-27"
   },
   "a beautiful noise": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": 0.9,
+   "batch": "broadway-methodB-2026-08-27"
   },
   "a chorus line": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": 0.9,
+   "batch": "broadway-methodB-2026-08-27"
   },
   "a christmas carol": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": 0.9,
+   "batch": "broadway-methodB-2026-08-27"
   },
   "a christmas story": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": 0.6,
+   "batch": "broadway-methodB-2026-08-27"
   },
   "a gentlemans guide to love and murder": {
    "method": "legacy",
@@ -107,14 +128,17 @@
    "note": "早期入庫,待方法B重驗"
   },
   "addams family": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": 0.6,
+   "batch": "broadway-methodB-2026-08-27"
   },
   "aida": {
    "method": "legacy",
@@ -127,24 +151,30 @@
    "note": "早期入庫,待方法B重驗"
   },
   "aladdin": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": 0.9,
+   "batch": "broadway-methodB-2026-08-27"
   },
   "amelie": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": 0.9,
+   "batch": "broadway-methodB-2026-08-27"
   },
   "american idiot": {
    "method": "legacy",
@@ -157,34 +187,43 @@
    "note": "早期入庫,待方法B重驗"
   },
   "anastasia": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": 0.9,
+   "batch": "broadway-methodB-2026-08-27"
   },
   "and juliet": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": 0.9,
+   "batch": "broadway-methodB-2026-08-27"
   },
   "annie": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": 0.92,
+   "batch": "broadway-methodB-2026-08-27"
   },
   "assassins": {
    "method": "legacy",
@@ -197,74 +236,95 @@
    "note": "早期入庫,待方法B重驗"
   },
   "avenue q": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": 0.92,
+   "batch": "broadway-methodB-2026-08-27"
   },
   "back to the future": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": 0.92,
+   "batch": "broadway-methodB-2026-08-27"
   },
   "barnum": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": 0.92,
+   "batch": "broadway-methodB-2026-08-27"
   },
   "bat boy": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": 0.82,
+   "batch": "broadway-methodB-2026-08-27"
   },
   "beautiful": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": 0.9,
+   "batch": "broadway-methodB-2026-08-27"
   },
   "beauty and the beast": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": 0.92,
+   "batch": "broadway-methodB-2026-08-27"
   },
   "beetlejuice": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": 0.88,
+   "batch": "broadway-methodB-2026-08-27"
   },
   "ben hur musical": {
    "method": "legacy",
@@ -287,14 +347,17 @@
    "note": "早期入庫,待方法B重驗"
   },
   "billy elliot": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": "high",
+   "batch": "broadway-methodB-2026-08-27"
   },
   "blbff": {
    "method": "legacy",
@@ -307,34 +370,43 @@
    "note": "早期入庫,待方法B重驗"
   },
   "bodyguard": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": "high",
+   "batch": "broadway-methodB-2026-08-27"
   },
   "book of mormon": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": "high",
+   "batch": "broadway-methodB-2026-08-27"
   },
   "boop": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia 單一網域(第二源被bot牆擋,誠實標單源)",
+   "external_multisource": false,
+   "confidence": "high",
+   "batch": "broadway-methodB-2026-08-27"
   },
   "brigadoon": {
    "method": "legacy",
@@ -347,34 +419,43 @@
    "note": "早期入庫,待方法B重驗"
   },
   "bright star": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": "high",
+   "batch": "broadway-methodB-2026-08-27"
   },
   "buena vista social club": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": "high",
+   "batch": "broadway-methodB-2026-08-27"
   },
   "burlesque": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": "high",
+   "batch": "broadway-methodB-2026-08-27"
   },
   "bye bye birdie": {
    "method": "legacy",
@@ -387,14 +468,17 @@
    "note": "早期入庫,待方法B重驗"
   },
   "cabaret": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": "high",
+   "batch": "broadway-methodB-2026-08-27"
   },
   "camelot": {
    "method": "legacy",
@@ -417,54 +501,69 @@
    "note": "早期入庫,待方法B重驗"
   },
   "carousel": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": "high",
+   "batch": "broadway-methodB-2026-08-27"
   },
   "cats": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": "high",
+   "batch": "broadway-methodB-2026-08-27"
   },
   "charlie and the chocolate factory": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": "high",
+   "batch": "broadway-methodB-2026-08-27"
   },
   "chicago": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia 單一網域(第二源被bot牆擋,誠實標單源)",
+   "external_multisource": false,
+   "confidence": "high",
+   "batch": "broadway-methodB-2026-08-27"
   },
   "cinderella": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia 單一網域(第二源被bot牆擋,誠實標單源)",
+   "external_multisource": false,
+   "confidence": "high",
+   "batch": "broadway-methodB-2026-08-27"
   },
   "city of angels": {
    "method": "legacy",
@@ -499,14 +598,17 @@
    "note": "早期入庫,待方法B重驗"
   },
   "come from away": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia 單一網域(第二源被bot牆擋,誠實標單源)",
+   "external_multisource": false,
+   "confidence": "high",
+   "batch": "broadway-methodB-2026-08-27"
   },
   "company": {
    "method": "legacy",
@@ -531,14 +633,17 @@
    "batch": "west-cmpw-2026-08-27"
   },
   "damn yankees": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia 單一網域(第二源被bot牆擋,誠實標單源)",
+   "external_multisource": false,
+   "confidence": "high",
+   "batch": "broadway-methodB-2026-08-27"
   },
   "das phantom der oper die originalproduktion von sasson sautter": {
    "method": "B",
@@ -553,24 +658,30 @@
    "batch": "euro-de-fr-2026-08-27"
   },
   "dear evan hansen": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": "high",
+   "batch": "broadway-methodB-2026-08-27"
   },
   "death becomes her": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia 單一網域(第二源被bot牆擋,誠實標單源)",
+   "external_multisource": false,
+   "confidence": "high",
+   "batch": "broadway-methodB-2026-08-27"
   },
   "death note": {
    "method": "B",
@@ -585,14 +696,17 @@
    "batch": "west-cmpw-2026-08-27"
   },
   "devil wears prada": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": "high",
+   "batch": "broadway-methodB-2026-08-27"
   },
   "diary of a wimpy kid": {
    "method": "B",
@@ -619,24 +733,30 @@
    "batch": "euro-de-fr-2026-08-27"
   },
   "dirty dancing": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia 單一網域(第二源被bot牆擋,誠實標單源)",
+   "external_multisource": false,
+   "confidence": "high",
+   "batch": "broadway-methodB-2026-08-27"
   },
   "dracula": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia 單一網域(第二源被bot牆擋,誠實標單源)",
+   "external_multisource": false,
+   "confidence": "high",
+   "batch": "broadway-methodB-2026-08-27"
   },
   "dreamgirls": {
    "method": "legacy",
@@ -671,14 +791,17 @@
    "note": "早期入庫,待方法B重驗"
   },
   "elf": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": "high",
+   "batch": "broadway-methodB-2026-08-27"
   },
   "elisabeth": {
    "method": "legacy",
@@ -691,54 +814,69 @@
    "note": "早期入庫,待方法B重驗"
   },
   "everybodys talking about jamie": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia 單一網域(第二源被bot牆擋,誠實標單源)",
+   "external_multisource": false,
+   "confidence": "high",
+   "batch": "broadway-methodB-2026-08-27"
   },
   "evita": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia 單一網域(第二源被bot牆擋,誠實標單源)",
+   "external_multisource": false,
+   "confidence": "high",
+   "batch": "broadway-methodB-2026-08-27"
   },
   "falsettos": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia 單一網域(第二源被bot牆擋,誠實標單源)",
+   "external_multisource": false,
+   "confidence": "high",
+   "batch": "broadway-methodB-2026-08-27"
   },
   "fiddler on the roof": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": "high",
+   "batch": "broadway-methodB-2026-08-27"
   },
   "fifty shades": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia 單一網域(第二源被bot牆擋,誠實標單源)",
+   "external_multisource": false,
+   "confidence": "medium",
+   "batch": "broadway-methodB-2026-08-27"
   },
   "finding neverland": {
    "method": "B",
@@ -775,54 +913,69 @@
    "note": "早期入庫,待方法B重驗"
   },
   "frozen": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia 單一網域(第二源被bot牆擋,誠實標單源)",
+   "external_multisource": false,
+   "confidence": "high",
+   "batch": "broadway-methodB-2026-08-27"
   },
   "full monty": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": "high",
+   "batch": "broadway-methodB-2026-08-27"
   },
   "fun home": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia 單一網域(第二源被bot牆擋,誠實標單源)",
+   "external_multisource": false,
+   "confidence": "high",
+   "batch": "broadway-methodB-2026-08-27"
   },
   "funny girl": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia 單一網域(第二源被bot牆擋,誠實標單源)",
+   "external_multisource": false,
+   "confidence": "high",
+   "batch": "broadway-methodB-2026-08-27"
   },
   "ghost": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": 0.92,
+   "batch": "broadway-methodB-2026-08-27"
   },
   "godspell": {
    "method": "legacy",
@@ -845,44 +998,56 @@
    "note": "早期入庫,待方法B重驗"
   },
   "grease": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": 0.9,
+   "batch": "broadway-methodB-2026-08-27"
   },
   "great gatsby": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": 0.92,
+   "batch": "broadway-methodB-2026-08-27"
   },
   "greatest showman": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": 0.9,
+   "batch": "broadway-methodB-2026-08-27"
   },
   "guys and dolls": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": 0.93,
+   "batch": "broadway-methodB-2026-08-27"
   },
   "gwanghwamun sonata": {
    "method": "legacy",
@@ -905,54 +1070,69 @@
    "note": "早期入庫,待方法B重驗"
   },
   "hadestown": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": 0.94,
+   "batch": "broadway-methodB-2026-08-27"
   },
   "hairspray": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": 0.92,
+   "batch": "broadway-methodB-2026-08-27"
   },
   "hamilton": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": 0.93,
+   "batch": "broadway-methodB-2026-08-27"
   },
   "heathers": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": 0.93,
+   "batch": "broadway-methodB-2026-08-27"
   },
   "hedwig and the angry inch": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": 0.92,
+   "batch": "broadway-methodB-2026-08-27"
   },
   "hello dolly": {
    "method": "legacy",
@@ -965,14 +1145,17 @@
    "note": "早期入庫,待方法B重驗"
   },
   "hells kitchen": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": "high",
+   "batch": "broadway-methodB-2026-08-27"
   },
   "hercules": {
    "method": "B",
@@ -1009,14 +1192,17 @@
    "batch": "west-cmpw-2026-08-27"
   },
   "honk": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": "high",
+   "batch": "broadway-methodB-2026-08-27"
   },
   "how the grinch stole christmas": {
    "method": "B",
@@ -1031,24 +1217,30 @@
    "batch": "west-cmpw-2026-08-27"
   },
   "hunchback of notre dame": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": "high",
+   "batch": "broadway-methodB-2026-08-27"
   },
   "in the heights": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": "high",
+   "batch": "broadway-methodB-2026-08-27"
   },
   "interview korean": {
    "method": "legacy",
@@ -1061,24 +1253,30 @@
    "note": "早期入庫,待方法B重驗"
   },
   "into the woods": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": "high",
+   "batch": "broadway-methodB-2026-08-27"
   },
   "jane eyre": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": "high",
+   "batch": "broadway-methodB-2026-08-27"
   },
   "jeff waynes the war of the worlds": {
    "method": "legacy",
@@ -1091,64 +1289,82 @@
    "note": "早期入庫,待方法B重驗"
   },
   "jekyll and hyde": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": "high",
+   "batch": "broadway-methodB-2026-08-27"
   },
   "jersey boys": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": "high",
+   "batch": "broadway-methodB-2026-08-27"
   },
   "jesus christ superstar": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": "high",
+   "batch": "broadway-methodB-2026-08-27"
   },
   "joseph and the amazing technicolor dreamcoat": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": "high",
+   "batch": "broadway-methodB-2026-08-27"
   },
   "just for one day": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": "high",
+   "batch": "broadway-methodB-2026-08-27"
   },
   "just in time": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": "high",
+   "batch": "broadway-methodB-2026-08-27"
   },
   "kikis delivery service": {
    "method": "B",
@@ -1163,24 +1379,30 @@
    "batch": "west-cmpw-2026-08-27"
   },
   "kimberly akimbo": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": "high",
+   "batch": "broadway-methodB-2026-08-27"
   },
   "kinky boots": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": "high",
+   "batch": "broadway-methodB-2026-08-27"
   },
   "kiss me kate": {
    "method": "legacy",
@@ -1203,14 +1425,17 @@
    "note": "早期入庫,待方法B重驗"
   },
   "la cage aux folles": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia 單一網域(第二源被bot牆擋,誠實標單源)",
+   "external_multisource": false,
+   "confidence": "high",
+   "batch": "broadway-methodB-2026-08-27"
   },
   "la legende du roi arthur": {
    "method": "B",
@@ -1235,14 +1460,17 @@
    "note": "早期入庫,待方法B重驗"
   },
   "last five years": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": "high",
+   "batch": "broadway-methodB-2026-08-27"
   },
   "le petit prince": {
    "method": "B",
@@ -1269,24 +1497,30 @@
    "batch": "euro-de-fr-2026-08-27"
   },
   "legally blonde": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": "high",
+   "batch": "broadway-methodB-2026-08-27"
   },
   "les miserables": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": "high",
+   "batch": "broadway-methodB-2026-08-27"
   },
   "les souliers rouges the red shoes": {
    "method": "B",
@@ -1323,34 +1557,43 @@
    "note": "早期入庫,待方法B重驗"
   },
   "lion king": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": "high",
+   "batch": "broadway-methodB-2026-08-27"
   },
   "little mermaid": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": "high",
+   "batch": "broadway-methodB-2026-08-27"
   },
   "little shop of horrors": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": "high",
+   "batch": "broadway-methodB-2026-08-27"
   },
   "little women": {
    "method": "B",
@@ -1399,14 +1642,17 @@
    "batch": "west-cmpw-2026-08-27"
   },
   "mamma mia": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": "high",
+   "batch": "broadway-methodB-2026-08-27"
   },
   "man who laughs": {
    "method": "legacy",
@@ -1453,34 +1699,43 @@
    "batch": "west-cmpw-2026-08-27"
   },
   "marvin": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": "high",
+   "batch": "broadway-methodB-2026-08-27"
   },
   "mary poppins": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": "high",
+   "batch": "broadway-methodB-2026-08-27"
   },
   "masquerade": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia 單一網域(第二源被bot牆擋,誠實標單源)",
+   "external_multisource": false,
+   "confidence": "high",
+   "batch": "broadway-methodB-2026-08-27"
   },
   "mata hari": {
    "method": "legacy",
@@ -1493,14 +1748,17 @@
    "note": "早期入庫,待方法B重驗"
   },
   "matilda": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia 單一網域(第二源被bot牆擋,誠實標單源)",
+   "external_multisource": false,
+   "confidence": "high",
+   "batch": "broadway-methodB-2026-08-27"
   },
   "maybe happy ending": {
    "method": "legacy",
@@ -1513,34 +1771,43 @@
    "note": "早期入庫,待方法B重驗"
   },
   "mean girls": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": "high",
+   "batch": "broadway-methodB-2026-08-27"
   },
   "memphis": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": "high",
+   "batch": "broadway-methodB-2026-08-27"
   },
   "menopause": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": "high",
+   "batch": "broadway-methodB-2026-08-27"
   },
   "merrily we roll along": {
    "method": "legacy",
@@ -1553,44 +1820,56 @@
    "note": "早期入庫,待方法B重驗"
   },
   "million dollar quartet": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": "high",
+   "batch": "broadway-methodB-2026-08-27"
   },
   "miss saigon": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": "high",
+   "batch": "broadway-methodB-2026-08-27"
   },
   "mj": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": "high",
+   "batch": "broadway-methodB-2026-08-27"
   },
   "moulin rouge": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": "high",
+   "batch": "broadway-methodB-2026-08-27"
   },
   "mozart": {
    "method": "B",
@@ -1617,24 +1896,30 @@
    "batch": "euro-de-fr-2026-08-27"
   },
   "mrs doubtfire": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": "high",
+   "batch": "broadway-methodB-2026-08-27"
   },
   "music man": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": "high",
+   "batch": "broadway-methodB-2026-08-27"
   },
   "musical taru": {
    "method": "legacy",
@@ -1657,24 +1942,30 @@
    "note": "早期入庫,待方法B重驗"
   },
   "my fair lady": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": "high",
+   "batch": "broadway-methodB-2026-08-27"
   },
   "mystic pizza": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia 單一網域(第二源被bot牆擋,誠實標單源)",
+   "external_multisource": false,
+   "confidence": "high",
+   "batch": "broadway-methodB-2026-08-27"
   },
   "natasha pierre and the great comet of 1812": {
    "method": "legacy",
@@ -1697,34 +1988,43 @@
    "note": "早期入庫,待方法B重驗"
   },
   "next to normal": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": "high",
+   "batch": "broadway-methodB-2026-08-27"
   },
   "nine": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": "high",
+   "batch": "broadway-methodB-2026-08-27"
   },
   "notebook": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": "high",
+   "batch": "broadway-methodB-2026-08-27"
   },
   "notre dame de paris": {
    "method": "legacy",
@@ -1737,24 +2037,30 @@
    "note": "早期入庫,待方法B重驗"
   },
   "oklahoma": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": 0.95,
+   "batch": "broadway-methodB-2026-08-27"
   },
   "oliver": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": 0.9,
+   "batch": "broadway-methodB-2026-08-27"
   },
   "oliver twist": {
    "method": "B",
@@ -1769,14 +2075,17 @@
    "batch": "west-cmpw-2026-08-27"
   },
   "once": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": 0.9,
+   "batch": "broadway-methodB-2026-08-27"
   },
   "once on this island": {
    "method": "legacy",
@@ -1789,34 +2098,43 @@
    "note": "早期入庫,待方法B重驗"
   },
   "operation mincemeat": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": 0.92,
+   "batch": "broadway-methodB-2026-08-27"
   },
   "outsiders": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": 0.82,
+   "batch": "broadway-methodB-2026-08-27"
   },
   "paddington": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": 0.85,
+   "batch": "broadway-methodB-2026-08-27"
   },
   "pajama game": {
    "method": "legacy",
@@ -1829,14 +2147,17 @@
    "note": "早期入庫,待方法B重驗"
   },
   "parade": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": 0.95,
+   "batch": "broadway-methodB-2026-08-27"
   },
   "passion": {
    "method": "legacy",
@@ -1861,14 +2182,17 @@
    "batch": "west-cmpw-2026-08-27"
   },
   "phantom of the opera": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": 0.93,
+   "batch": "broadway-methodB-2026-08-27"
   },
   "picture of dorian gray": {
    "method": "B",
@@ -1883,34 +2207,43 @@
    "batch": "west-cmpw-2026-08-27"
   },
   "pippin": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": 0.92,
+   "batch": "broadway-methodB-2026-08-27"
   },
   "pirates of penzance": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": 0.93,
+   "batch": "broadway-methodB-2026-08-27"
   },
   "pretty woman": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": "high",
+   "batch": "broadway-methodB-2026-08-27"
   },
   "prince of egypt": {
    "method": "B",
@@ -1925,14 +2258,17 @@
    "batch": "west-cmpw-2026-08-27"
   },
   "producers": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": "high",
+   "batch": "broadway-methodB-2026-08-27"
   },
   "prom": {
    "method": "legacy",
@@ -1967,14 +2303,17 @@
    "batch": "euro-de-fr-2026-08-27"
   },
   "rent": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": "high",
+   "batch": "broadway-methodB-2026-08-27"
   },
   "robin hood": {
    "method": "B",
@@ -1989,14 +2328,17 @@
    "batch": "west-cmpw-2026-08-27"
   },
   "rock of ages": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": "high",
+   "batch": "broadway-methodB-2026-08-27"
   },
   "rocky horror show": {
    "method": "B",
@@ -2045,14 +2387,17 @@
    "batch": "euro-de-fr-2026-08-27"
   },
   "school of rock": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": "high",
+   "batch": "broadway-methodB-2026-08-27"
   },
   "scottsboro boys": {
    "method": "legacy",
@@ -2065,14 +2410,17 @@
    "note": "早期入庫,待方法B重驗"
   },
   "she loves me": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": "high",
+   "batch": "broadway-methodB-2026-08-27"
   },
   "show boat": {
    "method": "B",
@@ -2087,24 +2435,30 @@
    "batch": "west-cmpw-2026-08-27"
   },
   "shrek": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": "high",
+   "batch": "broadway-methodB-2026-08-27"
   },
   "shucked": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": "high",
+   "batch": "broadway-methodB-2026-08-27"
   },
   "si sol mi": {
    "method": "legacy",
@@ -2117,64 +2471,82 @@
    "note": "早期入庫,待方法B重驗"
   },
   "singin in the rain": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": "high",
+   "batch": "broadway-methodB-2026-08-27"
   },
   "sister act": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": "high",
+   "batch": "broadway-methodB-2026-08-27"
   },
   "six": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": "high",
+   "batch": "broadway-methodB-2026-08-27"
   },
   "something rotten": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": "high",
+   "batch": "broadway-methodB-2026-08-27"
   },
   "sound of music": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": "high",
+   "batch": "broadway-methodB-2026-08-27"
   },
   "spamalot": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": "high",
+   "batch": "broadway-methodB-2026-08-27"
   },
   "spring awakening": {
    "method": "legacy",
@@ -2187,54 +2559,69 @@
    "note": "早期入庫,待方法B重驗"
   },
   "starlight express": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": "high",
+   "batch": "broadway-methodB-2026-08-27"
   },
   "suffs": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": "high",
+   "batch": "broadway-methodB-2026-08-27"
   },
   "sunday in the park with george": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": "high",
+   "batch": "broadway-methodB-2026-08-27"
   },
   "sunset boulevard": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": "high",
+   "batch": "broadway-methodB-2026-08-27"
   },
   "sweeney todd": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": "high",
+   "batch": "broadway-methodB-2026-08-27"
   },
   "tabaluga und lilli": {
    "method": "B",
@@ -2259,24 +2646,30 @@
    "note": "早期入庫,待方法B重驗"
   },
   "tarzan": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": "high",
+   "batch": "broadway-methodB-2026-08-27"
   },
   "tina": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": 0.95,
+   "batch": "broadway-methodB-2026-08-27"
   },
   "titanic": {
    "method": "legacy",
@@ -2289,44 +2682,56 @@
    "note": "早期入庫,待方法B重驗"
   },
   "titanique": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": 0.9,
+   "batch": "broadway-methodB-2026-08-27"
   },
   "tommy": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": 0.9,
+   "batch": "broadway-methodB-2026-08-27"
   },
   "tootsie": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": 0.9,
+   "batch": "broadway-methodB-2026-08-27"
   },
   "tuck everlasting": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": 0.92,
+   "batch": "broadway-methodB-2026-08-27"
   },
   "urinetown": {
    "method": "legacy",
@@ -2351,44 +2756,56 @@
    "batch": "euro-de-fr-2026-08-27"
   },
   "waitress": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": 0.95,
+   "batch": "broadway-methodB-2026-08-27"
   },
   "water for elephants": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": 0.9,
+   "batch": "broadway-methodB-2026-08-27"
   },
   "we will rock you": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": 0.88,
+   "batch": "broadway-methodB-2026-08-27"
   },
   "wedding singer": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": 0.85,
+   "batch": "broadway-methodB-2026-08-27"
   },
   "weihnachten mit bibi and tina": {
    "method": "B",
@@ -2403,24 +2820,30 @@
    "batch": "euro-de-fr-2026-08-27"
   },
   "west side story": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": 0.95,
+   "batch": "broadway-methodB-2026-08-27"
   },
   "wicked": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": 0.97,
+   "batch": "broadway-methodB-2026-08-27"
   },
   "wir sind am leben": {
    "method": "B",
@@ -2435,24 +2858,30 @@
    "batch": "euro-de-fr-2026-08-27"
   },
   "wiz": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": 0.93,
+   "batch": "broadway-methodB-2026-08-27"
   },
   "wizard of oz": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": 0.97,
+   "batch": "broadway-methodB-2026-08-27"
   },
   "xcalibur": {
    "method": "legacy",
@@ -2465,14 +2894,17 @@
    "note": "早期入庫,待方法B重驗"
   },
   "young frankenstein": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "sources": "wikipedia + ≥1 獨立網域(真≥2源交叉)",
+   "external_multisource": true,
+   "confidence": 0.96,
+   "batch": "broadway-methodB-2026-08-27"
   },
   "zorro": {
    "method": "B",
@@ -2997,6 +3429,20 @@
     "zh-hans"
    ],
    "note": "早期入庫,待方法B重驗"
+  },
+  "don juan": {
+   "method": "B",
+   "date": "2026-08-27",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "fr.wikipedia + en.wikipedia(2個獨立網域交叉)",
+   "external_multisource": true,
+   "confidence": 0.82,
+   "batch": "donjuan-methodB-2026-08-27",
+   "note": "法語音樂劇《唐璜》(非莫札特歌劇);繁簡曾漂移莫札特版,已釘劇情重生成"
   }
  }
 }
