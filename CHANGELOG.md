@@ -28,6 +28,7 @@
 ### 資料品質
 - 全庫清除 Perplexity 格式殘留標題「全劇總結/全剧总结」21 處(繁 15・簡 6)。
 - 更新驗證帳本 data/synopses_verification.json:198 部標為 method B(含本次 144 Broadway + Don Juan),逐部記錄多源達標狀態(external_multisource)。
+- (產物)與並行 cron 的 listings 更新 rebase 合併後重跑 gen_site,HTML 反映最新 catalog(629)與本次簡介修正。
 
 ## [v2.95.3] - 2026-08-27 09:38
 
