@@ -507,6 +507,7 @@ NOT_MUSICAL_RE = re.compile(
     # TM files tribute/concert/songbook/drag acts under "Musical" — they're not
     # book musicals. Verified against the data: drops only these, no real shows.
     r"\btribute\b|\bconcert\b|\bsoundtrack\b|\bgala\b|\bcelebration\b|"
+    r"música inbal|\bmusica inbal\b|\ban evening with\b|"   # 2026-08-27 TM 誤歸:INBAL(墨西哥美術學院)音樂會系列 + 個人音樂會(An Evening with X)。已驗證只命中該類、不誤傷真音樂劇
     r"\bsymphony\b|\borchestra\b|\bballett?\b|芭蕾|"   # ballet/dance — not a book musical (NOT \bopera\b: Phantom of the Opera!)
     r"\bon ice\b|\bcirque\b|circus spectacular|\bflamenco\b|opera locos|"  # ice/circus/flamenco/vocal-comedy spectacle
     r"\bthe (?:songs|music|hits) of\b|\bsongs of\b|"

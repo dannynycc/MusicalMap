@@ -11,6 +11,14 @@
 
 ---
 
+## [v2.96.2] - 2026-08-27 13:11
+
+### 資料清理:移除 4 筆混入的非音樂劇(音樂會)
+- 地圖上被 Ticketmaster 誤歸「音樂劇」的 4 筆音樂會已移除:An Evening with Bernadette Peters(個人音樂會)+ 3 筆墨西哥 INBAL 音樂會系列(Bárbara Cerón / Alejandro Ruiz Vela / Black Noise Ensamble,標題含 Música INBAL. Ingreso…)。它們原本在地圖顯示圖釘但點進去無劇情。
+- 源頭修: 的  加  / (已驗證只命中該 4 類、零誤傷真音樂劇),下次每日 CI 自動永久擋掉(含未來換表演者的 INBAL 系列)。
+- catalog:629 → 625 群組。**#0528**(上海環境式駐演原創音樂劇)為真音樂劇,保留不動。
+- 已重產 shows.json(meta 計數同步)/ variants / 站點 HTML。
+
 ## [v2.96.1] - 2026-08-27 12:23
 
 ### 內容正確性:50 部 legacy 簡介方法B重驗(前端 served 簡介達 100% 嚴謹查核)
