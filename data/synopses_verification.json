@@ -360,14 +360,18 @@
    "batch": "broadway-methodB-2026-08-27"
   },
   "blbff": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "verify_scope": "internal",
+   "external_multisource": false,
+   "sources": [],
+   "confidence": "medium",
+   "batch": "legacy-methodB-2026-08-27"
   },
   "bodyguard": {
    "method": "B",
@@ -804,14 +808,21 @@
    "batch": "broadway-methodB-2026-08-27"
   },
   "elisabeth": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "verify_scope": "multisource",
+   "external_multisource": true,
+   "sources": [
+    "https://en.wikipedia.org/wiki/Elisabeth_(musical)",
+    "https://de.wikipedia.org/wiki/Elisabeth_(Musical)"
+   ],
+   "confidence": "high",
+   "batch": "legacy-methodB-2026-08-27"
   },
   "everybodys talking about jamie": {
    "method": "B",
@@ -903,14 +914,21 @@
    "batch": "west-cmpw-2026-08-27"
   },
   "frankenstein": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "verify_scope": "multisource",
+   "external_multisource": true,
+   "sources": [
+    "https://ko.wikipedia.org/wiki/%ED%94%84%EB%9E%91%EC%BC%84%EC%8A%88%ED%83%80%EC%9D%B8_(%EB%AE%A4%EC%A7%80%EC%BB%AC)",
+    "https://ko.wikipedia.org/wiki/%EC%B6%A9%EB%AC%B4%EC%95%84%ED%8A%B8%EC%84%BC%ED%84%B0"
+   ],
+   "confidence": "high",
+   "batch": "legacy-methodB-2026-08-27"
   },
   "frozen": {
    "method": "B",
@@ -1608,14 +1626,18 @@
    "batch": "west-cmpw-2026-08-27"
   },
   "love any way": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "verify_scope": "internal",
+   "external_multisource": false,
+   "sources": [],
+   "confidence": "medium",
+   "batch": "legacy-methodB-2026-08-27"
   },
   "love never dies": {
    "method": "B",
@@ -1761,14 +1783,21 @@
    "batch": "broadway-methodB-2026-08-27"
   },
   "maybe happy ending": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "verify_scope": "multisource",
+   "external_multisource": true,
+   "sources": [
+    "https://en.wikipedia.org/wiki/Maybe_Happy_Ending",
+    "https://ko.wikipedia.org/wiki/%EC%96%B4%EC%A9%8C%EB%A9%B4_%ED%95%B4%ED%94%BC%EC%97%94%EB%94%A9"
+   ],
+   "confidence": "high",
+   "batch": "legacy-methodB-2026-08-27"
   },
   "mean girls": {
    "method": "B",
@@ -1922,24 +1951,32 @@
    "batch": "broadway-methodB-2026-08-27"
   },
   "musical taru": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "verify_scope": "internal",
+   "external_multisource": false,
+   "sources": [],
+   "confidence": "medium",
+   "batch": "legacy-methodB-2026-08-27"
   },
   "my bucket list": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "verify_scope": "internal",
+   "external_multisource": false,
+   "sources": [],
+   "confidence": "medium",
+   "batch": "legacy-methodB-2026-08-27"
   },
   "my fair lady": {
    "method": "B",
@@ -2027,14 +2064,21 @@
    "batch": "broadway-methodB-2026-08-27"
   },
   "notre dame de paris": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "verify_scope": "multisource",
+   "external_multisource": true,
+   "sources": [
+    "https://en.wikipedia.org/wiki/Notre-Dame_de_Paris_(musical)",
+    "https://fr.wikipedia.org/wiki/Notre-Dame_de_Paris_(com%C3%A9die_musicale)"
+   ],
+   "confidence": "high",
+   "batch": "legacy-methodB-2026-08-27"
   },
   "oklahoma": {
    "method": "B",
@@ -2353,14 +2397,21 @@
    "batch": "west-cmpw-2026-08-27"
   },
   "romeo et juliette": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "verify_scope": "multisource",
+   "external_multisource": true,
+   "sources": [
+    "https://en.wikipedia.org/wiki/Rom%C3%A9o_et_Juliette_(musical)",
+    "https://fr.wikipedia.org/wiki/Rom%C3%A9o_et_Juliette,_de_la_haine_%C3%A0_l%27amour"
+   ],
+   "confidence": "high",
+   "batch": "legacy-methodB-2026-08-27"
   },
   "salon rosie": {
    "method": "B",
@@ -2461,14 +2512,18 @@
    "batch": "broadway-methodB-2026-08-27"
   },
   "si sol mi": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "verify_scope": "internal",
+   "external_multisource": false,
+   "sources": [],
+   "confidence": "medium",
+   "batch": "legacy-methodB-2026-08-27"
   },
   "singin in the rain": {
    "method": "B",
@@ -2636,14 +2691,20 @@
    "batch": "euro-de-fr-2026-08-27"
   },
   "tanz der vampire": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "verify_scope": "single",
+   "external_multisource": false,
+   "sources": [
+    "https://en.wikipedia.org/wiki/Dance_of_the_Vampires_(musical)"
+   ],
+   "confidence": 0.9,
+   "batch": "legacy-methodB-2026-08-27"
   },
   "tarzan": {
    "method": "B",
@@ -2734,14 +2795,20 @@
    "batch": "broadway-methodB-2026-08-27"
   },
   "urinetown": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "verify_scope": "single",
+   "external_multisource": false,
+   "sources": [
+    "https://en.wikipedia.org/wiki/Urinetown"
+   ],
+   "confidence": 0.95,
+   "batch": "legacy-methodB-2026-08-27"
   },
   "wahnsinn": {
    "method": "B",
@@ -2955,64 +3022,91 @@
    "batch": "japan-2.5d-2026-08-27"
   },
   "三個不結婚的女人": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "verify_scope": "internal",
+   "external_multisource": false,
+   "sources": [],
+   "confidence": 0.6,
+   "batch": "legacy-methodB-2026-08-27"
   },
   "三個傻瓜": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "verify_scope": "multisource",
+   "external_multisource": true,
+   "sources": [
+    "https://en.wikipedia.org/wiki/3_Idiots",
+    "https://zh.wikipedia.org/wiki/三個傻瓜"
+   ],
+   "confidence": 0.85,
+   "batch": "legacy-methodB-2026-08-27"
   },
   "不親愛家人": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "verify_scope": "internal",
+   "external_multisource": false,
+   "sources": [],
+   "confidence": 0.55,
+   "batch": "legacy-methodB-2026-08-27"
   },
   "今晚 我想來點": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "verify_scope": "internal",
+   "external_multisource": false,
+   "sources": [],
+   "confidence": 0.55,
+   "batch": "legacy-methodB-2026-08-27"
   },
   "你好 我是接體員": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "verify_scope": "internal",
+   "external_multisource": false,
+   "sources": [],
+   "confidence": 0.65,
+   "batch": "legacy-methodB-2026-08-27"
   },
   "你的工作 你的休假": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "verify_scope": "internal",
+   "external_multisource": false,
+   "sources": [],
+   "confidence": 0.5,
+   "batch": "legacy-methodB-2026-08-27"
   },
   "刀剣乱舞": {
    "method": "B",
@@ -3027,94 +3121,138 @@
    "batch": "japan-2.5d-2026-08-27"
   },
   "別叫我成功 藝術界歸來的兒子": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "verify_scope": "internal",
+   "external_multisource": false,
+   "sources": [],
+   "confidence": 0.6,
+   "batch": "legacy-methodB-2026-08-27"
   },
   "勸世三姊妹": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "verify_scope": "internal",
+   "external_multisource": false,
+   "sources": [],
+   "confidence": 0.7,
+   "batch": "legacy-methodB-2026-08-27"
   },
   "囍宴": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "verify_scope": "single",
+   "external_multisource": false,
+   "sources": [
+    "https://zh.wikipedia.org/wiki/%E5%9B%8D%E5%AE%B4_(%E9%9B%BB%E5%BD%B1)"
+   ],
+   "confidence": 0.75,
+   "batch": "legacy-methodB-2026-08-27"
   },
   "夢幻雞排大冒險": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "verify_scope": "internal",
+   "external_multisource": false,
+   "sources": [],
+   "confidence": 0.6,
+   "batch": "legacy-methodB-2026-08-27"
   },
   "大家都怎麼做音樂劇": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "verify_scope": "internal",
+   "external_multisource": false,
+   "sources": [],
+   "confidence": 0.6,
+   "batch": "legacy-methodB-2026-08-27"
   },
   "太空阿嬤": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "verify_scope": "internal",
+   "external_multisource": false,
+   "sources": [],
+   "confidence": 0.6,
+   "batch": "legacy-methodB-2026-08-27"
   },
   "小王子": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "verify_scope": "single",
+   "external_multisource": false,
+   "sources": [
+    "https://zh.wikipedia.org/wiki/%E5%B0%8F%E7%8E%8B%E5%AD%90"
+   ],
+   "confidence": 0.9,
+   "batch": "legacy-methodB-2026-08-27"
   },
   "市場女人心 第一市場二部曲": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "verify_scope": "internal",
+   "external_multisource": false,
+   "sources": [],
+   "confidence": 0.6,
+   "batch": "legacy-methodB-2026-08-27"
   },
   "微笑半世紀": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "verify_scope": "multisource",
+   "external_multisource": true,
+   "sources": [
+    "https://zh.wikipedia.org/wiki/%E6%96%BD%E6%8C%AF%E6%A6%AE",
+    "https://zh.wikipedia.org/wiki/%E6%9E%97%E6%86%B2%E9%8A%98",
+    "https://zh.wikipedia.org/wiki/%E7%AB%A5%E5%AD%90%E8%B3%A2"
+   ],
+   "confidence": 0.9,
+   "batch": "legacy-methodB-2026-08-27"
   },
   "忍たま乱太郎": {
    "method": "B",
@@ -3129,44 +3267,62 @@
    "batch": "japan-2.5d-2026-08-27"
   },
   "情人哏裡出西施": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "verify_scope": "internal",
+   "external_multisource": false,
+   "sources": [],
+   "confidence": 0.65,
+   "batch": "legacy-methodB-2026-08-27"
   },
   "我在詐騙公司上班": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "verify_scope": "single",
+   "external_multisource": false,
+   "sources": [
+    "https://zh.wikipedia.org/wiki/%E8%AC%9D%E6%9D%B1%E9%9C%96"
+   ],
+   "confidence": 0.8,
+   "batch": "legacy-methodB-2026-08-27"
   },
   "我的爵視金曲夜": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "verify_scope": "internal",
+   "external_multisource": false,
+   "sources": [],
+   "confidence": 0.6,
+   "batch": "legacy-methodB-2026-08-27"
   },
   "換氣練習": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "verify_scope": "internal",
+   "external_multisource": false,
+   "sources": [],
+   "confidence": 0.65,
+   "batch": "legacy-methodB-2026-08-27"
   },
   "新テニスの王子様": {
    "method": "B",
@@ -3181,74 +3337,108 @@
    "batch": "japan-2.5d-2026-08-27"
   },
   "月亮雪酪": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "verify_scope": "single",
+   "external_multisource": false,
+   "sources": [
+    "https://en.wikipedia.org/wiki/Baek_Hee-na"
+   ],
+   "confidence": 0.7,
+   "batch": "legacy-methodB-2026-08-27"
   },
   "水鬼學校和失去媽媽的水獺": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "verify_scope": "single",
+   "external_multisource": false,
+   "sources": [
+    "https://zh.wikipedia.org/wiki/甘耀明"
+   ],
+   "confidence": 0.78,
+   "batch": "legacy-methodB-2026-08-27"
   },
   "渡子江 死了都要愛": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "verify_scope": "internal",
+   "external_multisource": false,
+   "sources": [],
+   "confidence": 0.65,
+   "batch": "legacy-methodB-2026-08-27"
   },
   "漂浪半島": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "verify_scope": "internal",
+   "external_multisource": false,
+   "sources": [],
+   "confidence": 0.65,
+   "batch": "legacy-methodB-2026-08-27"
   },
   "潘朵拉的音樂盒": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "verify_scope": "internal",
+   "external_multisource": false,
+   "sources": [],
+   "confidence": 0.65,
+   "batch": "legacy-methodB-2026-08-27"
   },
   "無聲の海腳間仔": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "verify_scope": "internal",
+   "external_multisource": false,
+   "sources": [],
+   "confidence": 0.65,
+   "batch": "legacy-methodB-2026-08-27"
   },
   "爬上頂樓看月亮": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "verify_scope": "single",
+   "external_multisource": false,
+   "sources": [
+    "https://zh.wikipedia.org/wiki/簡莉穎"
+   ],
+   "confidence": 0.7,
+   "batch": "legacy-methodB-2026-08-27"
   },
   "爱因斯坦 时间相对论": {
    "method": "B",
@@ -3263,44 +3453,62 @@
    "batch": "euro-de-fr-2026-08-27"
   },
   "生命最美好的5分鍾": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "verify_scope": "internal",
+   "external_multisource": false,
+   "sources": [],
+   "confidence": 0.65,
+   "batch": "legacy-methodB-2026-08-27"
   },
   "當亞斯遇見人魚": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "verify_scope": "internal",
+   "external_multisource": false,
+   "sources": [],
+   "confidence": 0.65,
+   "batch": "legacy-methodB-2026-08-27"
   },
   "神明便利商店": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "verify_scope": "single",
+   "external_multisource": false,
+   "sources": [
+    "https://zh.wikipedia.org/wiki/謝東霖"
+   ],
+   "confidence": 0.7,
+   "batch": "legacy-methodB-2026-08-27"
   },
   "老男孩": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "verify_scope": "internal",
+   "external_multisource": false,
+   "sources": [],
+   "confidence": 0.6,
+   "batch": "legacy-methodB-2026-08-27"
   },
   "茶花女": {
    "method": "B",
@@ -3327,14 +3535,18 @@
    "batch": "euro-de-fr-2026-08-27"
   },
   "蕾娜絲的修理小舖": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "verify_scope": "internal",
+   "external_multisource": false,
+   "sources": [],
+   "confidence": 0.6,
+   "batch": "legacy-methodB-2026-08-27"
   },
   "薄桜鬼 真改": {
    "method": "B",
@@ -3349,24 +3561,32 @@
    "batch": "japan-2.5d-2026-08-27"
   },
   "記憶的星光": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "verify_scope": "internal",
+   "external_multisource": false,
+   "sources": [],
+   "confidence": 0.6,
+   "batch": "legacy-methodB-2026-08-27"
   },
   "跑跑殭丙仁": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "verify_scope": "internal",
+   "external_multisource": false,
+   "sources": [],
+   "confidence": 0.6,
+   "batch": "legacy-methodB-2026-08-27"
   },
   "路德维希二世 国王归来": {
    "method": "B",
@@ -3381,54 +3601,74 @@
    "batch": "euro-de-fr-2026-08-27"
   },
   "轟吧 全壘打": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "verify_scope": "internal",
+   "external_multisource": false,
+   "sources": [],
+   "confidence": 0.6,
+   "batch": "legacy-methodB-2026-08-27"
   },
   "阿卡的兒歌大冒險": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "verify_scope": "internal",
+   "external_multisource": false,
+   "sources": [],
+   "confidence": 0.6,
+   "batch": "legacy-methodB-2026-08-27"
   },
   "阿甯咕的爸鼻不見了": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "verify_scope": "internal",
+   "external_multisource": false,
+   "sources": [],
+   "confidence": 0.6,
+   "batch": "legacy-methodB-2026-08-27"
   },
   "青瞑猴 出外讀冊拼出頭": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "verify_scope": "internal",
+   "external_multisource": false,
+   "sources": [],
+   "confidence": 0.6,
+   "batch": "legacy-methodB-2026-08-27"
   },
   "馬克斯威妖 我睡了我的面試官": {
-   "method": "legacy",
-   "date": null,
+   "method": "B",
+   "date": "2026-08-27",
    "langs": [
     "en",
     "zh-hant",
     "zh-hans"
    ],
-   "note": "早期入庫,待方法B重驗"
+   "verify_scope": "internal",
+   "external_multisource": false,
+   "sources": [],
+   "confidence": 0.6,
+   "batch": "legacy-methodB-2026-08-27"
   },
   "don juan": {
    "method": "B",
