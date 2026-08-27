@@ -1,0 +1,1831 @@
+{
+  "_note": "68部新劇入庫前:真Chrome多源查證(獨立裁判)後,拿Perplexity三語各自對外部真相比對。correct=語意對保留原文;fixed=記錄修正,待kb_merge後套到library。",
+  "checked": {
+    "9 to 5": {
+      "date": "2026-08-28 01:47",
+      "method": "chrome-multisource",
+      "sources": [
+        "StageAgent",
+        "Broadway.com",
+        "Kim's Musical Theatre Library",
+        "Wikipedia"
+      ],
+      "checklist": {
+        "Violet=資深卻被跳過升遷(單親)": true,
+        "Judy=剛離婚/分居的職場新人(從沒工作過)": true,
+        "Doralee=祕書,被老闆造謠是其情婦而遭同事排擠(實為已婚)": true,
+        "誤下毒→軟禁Hart→接管公司": true,
+        "改革:彈性工時/托育/公平升遷": true,
+        "結局:Hart侵吞公款曝光,被發配玻利維亞分部,Violet升任": "en完整;繁簡以總結帶過"
+      },
+      "en": "correct",
+      "zhs": "correct",
+      "zht": "fixed",
+      "zht_error": "繁把 Doralee(桃樂絲)與 Judy(裘蒂)的角色設定對調:繁寫『桃樂絲=剛結束婚姻初入職場的新人;裘蒂=遭老闆性騷擾覬覦』,實際應為 裘蒂=離婚新人、桃樂絲=被造謠是情婦而遭排擠。",
+      "zht_fix_target": "桃樂絲是剛結束婚姻、初入職場的新人；裘蒂則因為工作表現出色，反而遭到老闆富蘭克林的性騷擾與覬覦。",
+      "zht_fix_to": "裘蒂是剛結束婚姻、初次踏入職場的新人；桃樂絲則因老闆四處放話與她有染，而遭同事誤解、排擠。",
+      "zhs_note": "開頭一句形容多拉莉『能力出众却总被忽视』略含糊,但正文角色歸屬正確(朱迪=离婚新人、多拉莉=被散布流言),語意對,保留原文。",
+      "zht_applied": true
+    },
+    "Bat Out of Hell 50th Anniversary": {
+      "date": "2026-08-28 01:50",
+      "method": "chrome-multisource",
+      "sources": [
+        "Wikipedia(完整劇情段)",
+        "London Theatre",
+        "Fandom Musical Directory Wiki",
+        "StageLeft NYC",
+        "jimsteinman.com",
+        "80sNostalgia",
+        "Dance Informa"
+      ],
+      "checklist": {
+        "設定:末世曼哈頓Obsidian,Strat領導永遠18歲的The Lost,Falco暴君統治": true,
+        "Raven=Falco之女將滿18被軟禁;Sloane=Falco之妻/Raven之母": true,
+        "Sloane送Raven的18歲禮物=Falco舊機車夾克": "簡✓明確;英/繁未提(非錯)",
+        "Strat邀Raven共度一夜→Falco突襲Deep End逮捕Jagwire": "簡✓;英/繁概述",
+        "Strat騎車墜大西洋懸崖假死": "簡✓(略加『為保護她』屬輕微潤飾);英/繁以衝突帶過",
+        "Zahara抽Raven的血輸給Strat救活": "簡✓明確;英/繁未細寫",
+        "Falco誤射Tink致死,Strat盛怒趕走Raven": "簡✓;英『catastrophic confrontation』概述;繁止於衝突前",
+        "半年後Strat向Raven道歉重修舊好": "簡✓;英『Raven決定離開』;繁未寫結局"
+      },
+      "en": "correct",
+      "zhs": "correct",
+      "zht": "correct",
+      "notes": "三語事實皆與Wikipedia劇情一致,無錯誤。簡體最完整精準;英文抽象但正確;繁體正確但較簡略、缺明確結局與總結段(屬完整度,非事實錯誤,size441在區間retry不會重寫)。皆保留原文。"
+    },
+    "Bear Grease (an Indigenous/First Nations parody musical reimagining of Grease)": {
+      "date": "2026-08-28 01:55",
+      "method": "chrome-multisource",
+      "sources": [
+        "TheaterMania",
+        "Valley News Live",
+        "DC Theater Arts",
+        "The Stages of MN",
+        "New York Theater",
+        "beargreaselive.com(官方)",
+        "MITSC"
+      ],
+      "checklist": {
+        "全原住民 Grease 戲仿,pow-wow 為背景的愛情喜劇": true,
+        "循 Grease 主線:Danny(Greasers/雷鳥幫首領) 與 Sandy(剛搬來的原住民女孩) 夏日相戀": true,
+        "Danny 為維持同伴前形象假裝冷淡": true,
+        "對應角色:Pink Ladies→粉紅阿姨們、Rizzo→Rezzo(外強內弱)、T-Birds→雷鳥幫": true,
+        "歌曲為 Grease 曲目改詞(Summer Nights 等)": true
+      },
+      "en": "correct",
+      "zhs": "correct",
+      "zht": "correct",
+      "notes": "劇情本就『鬆散地follow Grease』,三語皆貼合原住民戲仿設定、無事實錯誤。繁簡結尾較開放(未明寫重逢),但因循Grease故不算錯。皆保留原文。"
+    },
+    "The Curious Case of Benjamin Button": {
+      "date": "2026-08-28 01:55",
+      "method": "chrome-multisource",
+      "sources": [
+        "Wikipedia",
+        "London Theatre",
+        "Saga(劇評)",
+        "TheatreVibe",
+        "The Public Theater(官方)",
+        "Darren Clark Music(作曲官方)",
+        "Broadway Baby"
+      ],
+      "checklist": {
+        "設定:一戰結束的康瓦爾漁村,班傑明生為老人逆向變年輕": true,
+        "父母 Roger/Mary,母親投海身亡,班傑明被藏閣樓": true,
+        "愛人 Elowen=酒館女侍(barmaid),酒館 The Pickled Crab": true,
+        "班傑明職業=漁夫(fisherman)後從軍": "英✓;繁✗寫『錫礦工作』;簡✗寫『矿工』——Saga劇評明示becomes a fisherman",
+        "女兒溺海身亡使秘密曝光,班傑明離家尋解": "英/繁/簡皆✓",
+        "瓶中信:欲投海時發現舊時寫給Elowen的瓶中信而返家": "英✓;繁簡未寫(非錯)",
+        "結局:回鄉陪Elowen終老,班傑明退回嬰兒,出生70年後消失": "英完整;繁簡以總結帶過"
+      },
+      "en": "correct",
+      "zhs": "fixed",
+      "zht": "fixed",
+      "error": "繁簡都把班傑明的職業誤植為『礦工/錫礦』,實際是漁夫(fisherman)。此為繁簡『共同錯誤』——三語互比抓不到,靠外部劇評(Saga)+英文版揪出。",
+      "zht_fix_target": "班傑明曾進入錫礦工作，也在戰火中漂泊。",
+      "zht_fix_to": "班傑明曾在漁船上討生活，也在戰火中從軍漂泊。",
+      "zhs_fix_target": "本杰明做过矿工，后来参军；",
+      "zhs_fix_to": "本杰明当过渔民，后来参军；",
+      "applied_to_gen69": true,
+      "zht_applied": false
+    },
+    "Curtains": {
+      "date": "2026-08-28 01:55",
+      "method": "chrome-multisource",
+      "sources": [
+        "Wikipedia",
+        "Fandom Musical Directory",
+        "TV Tropes",
+        "The Harbinger(劇評)",
+        "Playbill",
+        "CurtainUp",
+        "Variety"
+      ],
+      "checklist": {
+        "1959波士頓Colonial劇院試演西部音樂劇Robbin' Hood": true,
+        "女主角Jessica Cranshaw(演技差)謝幕後中毒身亡": true,
+        "偵探Lt. Frank Cioffi=狂熱音樂劇迷,封鎖劇院辦案": true,
+        "Cioffi邊查案邊改戲,並與年輕演員Niki Harris相戀": true,
+        "第二起命案,兇手仍在劇院內": true,
+        "兇手=《波士頓環球報》劇評人 Daryl Grady(殺Jessica與Johnny)": "英✗寫『general manager總經理』(身分錯);簡✓『剧评人』;繁未點名(無錯)",
+        "支線:製作人Carmen殺了丈夫Sid(另一樁)": "三語皆未提(屬支線,非錯)",
+        "結局:兇手落網,Robbin' Hood重新開演,劇團重振": true
+      },
+      "en": "fixed",
+      "zhs": "correct",
+      "zht": "correct",
+      "error": "英文版把兇手Daryl Grady的身分寫成『the company's general manager(劇團總經理)』,實際他是《波士頓環球報》劇評人(Wikipedia/Fandom/TVTropes一致)。名字對、身分錯。簡體正確說是劇評人。",
+      "en_fix_target": "The murderer turns out to be Daryl Grady, the company’s general manager, whose concealed identity and history explain both killings.",
+      "en_fix_to": "The murderer turns out to be Daryl Grady, the Boston Globe theatre critic, whose concealed identity and history explain the killings.",
+      "applied_to_gen69": true
+    },
+    "Ceilidh The Musical": {
+      "date": "2026-08-28 01:56",
+      "method": "chrome-multisource",
+      "sources": [
+        "Wikipedia",
+        "DC Theater Arts",
+        "Maryland Theatre Guide",
+        "hotchka(劇評)",
+        "thegreyhound",
+        "National Trust for Scotland USA",
+        "Musical Theatre Network"
+      ],
+      "checklist": {
+        "沉浸式音樂劇,Noisemaker(Scott Gilmour+Claire McKenzie)創作,蘇格蘭ceilidh舞會框架": true,
+        "敘事者/領舞傳人=Ramsay MacLavaney,父親Leo=傳奇領唱者(caller)": true,
+        "母親Euna;Leo與Euna的愛情線": true,
+        "Ramsay自己的愛情線:伴侶Lucas": true,
+        "今昔交錯,傳承/家族/照顧老去親人的主題": true,
+        "Leo年老失去記憶(dementia)": "繁簡具體點出;來源未明證但與『照顧老去父母』主題一致、無矛盾→保留並註記"
+      },
+      "en": "correct",
+      "zhs": "correct",
+      "zht": "correct",
+      "notes": "核心設定(Ramsay MacLavaney/父Leo領唱者/母Euna/伴侶Lucas/今昔交錯/傳承主題)五源皆證實,三語皆對。唯Leo失憶為具體細節、外部未直接證實但無矛盾,保留。皆保留原文。"
+    },
+    "Dirty Rotten Scoundrels": {
+      "date": "2026-08-28 02:03",
+      "method": "chrome-multisource",
+      "sources": [
+        "MTI(官方)",
+        "Wikipedia",
+        "Your Observer(劇評)",
+        "NODA",
+        "StageAgent",
+        "Stratford Festival",
+        "Baguette on Broadway"
+      ],
+      "checklist": {
+        "蔚藍海岸Beaumont-sur-Mer,優雅騙子Lawrence Jameson假扮落難貴族騙富有女性": true,
+        "小騙子Freddy Benson靠悲慘故事行騙,兩人由師徒轉為對手": true,
+        "賭局:誰先從Christine Colgate騙到$50,000誰留下": "英✓五萬;繁✓五萬;簡✗寫『十万』(應為五萬)",
+        "翻轉:Christine其實是更高明的騙子『the Jackal』": "三語皆✓",
+        "騙局角色(Freddy假扮癱瘓士兵、Lawrence假扮精神科醫生Dr.Schaffhausen)": "三語皆簡化;繁『Lawrence殘疾王子』/簡『Lawrence殘疾軍官』把需錢者安到Lawrence身上,略含糊但非乾淨可證的錯,先記觀察不硬改",
+        "結局:兩騙子重新評估誰主導,轉為合作": true
+      },
+      "en": "correct",
+      "zhs": "fixed",
+      "zht": "correct",
+      "error": "簡體把賭注金額寫成『十万美元』,實際為$50,000(五萬,Your Observer劇評明示)。英/繁皆正確為五萬。",
+      "zhs_fix_target": "他们约定以骗到美国富家女克里斯汀十万美元为赌注",
+      "zhs_fix_to": "他们约定以骗到美国富家女克里斯汀五万美元为赌注",
+      "obs": "繁簡對兩人騙局角色的分配略含糊(把需要治療/手術費的角色安到Lawrence),但屬簡化;保留原文,標記供日後若要更精確再議。",
+      "applied_to_gen69": true
+    },
+    "Finian's Rainbow": {
+      "date": "2026-08-28 02:03",
+      "method": "chrome-multisource",
+      "sources": [
+        "New York Times",
+        "NPR",
+        "Substack(movies regrettably)",
+        "Masterworks Broadway",
+        "She Blogged By Night",
+        "New York Theatre Guide",
+        "Trailers From Hell"
+      ],
+      "checklist": {
+        "愛爾蘭人Finian帶女兒Sharon與偷來的金罐到美國南方Rainbow Valley": true,
+        "妖精Og一路追來要取回金子,否則永久失去魔力": "三語皆✓",
+        "Sharon與理想青年Woody Mahoney相戀": true,
+        "反派=種族歧視的白人參議員Billboard Rawkins,想奪佃農土地": "英✓;繁✓(參議員羅林斯);簡✗(誤寫成女地主『罗森小姐』)",
+        "Sharon因憤慨Rawkins的種族歧視,無意間許願把他變成黑人": "英✓明確;繁✓;簡保留twist但主角錯",
+        "結局:眾人團結,Og犧牲重獲永生的機會化解危機,真正珍貴的非黃金而是平等與尊嚴": true
+      },
+      "en": "correct",
+      "zhs": "fixed",
+      "zht": "correct",
+      "error": "簡體把反派(男性種族歧視參議員Billboard Rawkins)整個誤植為女地主『罗森小姐』——人名、性別、身分全錯(NYT/NPR/Substack/Masterworks五源證實是Senator Rawkins)。turns-black的『他』也被寫成『她』。",
+      "zhs_fixes": [
+        {
+          "target": "却受到贪婪地主罗森小姐的剥削。罗森控制着土地和债务，企图夺走居民的家园。",
+          "to": "却受到种族歧视的白人参议员比尔博·罗金斯的压迫。罗金斯把持着土地与债务，企图以欠税为由夺走谷地居民的家园。"
+        },
+        {
+          "target": "罗森发现黄金的秘密，试图占为己有；她还以偏见和权力伤害他人，最终因愿望的反噬而变成黑人，被迫体验自己曾施加的歧视。",
+          "to": "罗金斯发现黄金的秘密，试图占为己有；莎伦因憎恶他的种族歧视，无意间借金罐的魔力许愿，使他变成黑人，被迫亲身体验自己曾施加于他人的歧视。"
+        }
+      ],
+      "applied_to_gen69": true
+    },
+    "Girls Night": {
+      "date": "2026-08-28 02:03",
+      "method": "chrome-multisource",
+      "sources": [
+        "WhatsOnStage",
+        "Backstage",
+        "CurtainUp(劇評)",
+        "Worcester Telegram",
+        "CTX Live Theatre",
+        "North West End",
+        "The Gaiety"
+      ],
+      "checklist": {
+        "四好友在卡拉OK酒吧重聚,慶祝亡友Sharon的女兒Candy Rose訂婚": "英✓繁✓;簡✗(漏掉Sharon與Candy Rose訂婚框架)",
+        "亡友Sharon年輕時意外身亡(騎機車摔死),戴天使翅膀當旁白/鬼魂參與": "英✓繁✓;簡✗(完全未提)",
+        "四好友=Carol(派對咖)、Kate(Carol妹妹,循規代駕)、Anita(毒舌)、Liza(婚姻失落)": "英✓繁✓;簡✗(捏造成蘇菲Sophie/艾米Amy,丟了Carol/Anita)",
+        "卡拉OK歌唱成為說出隱藏心事的方式,重提青春與失去": "三語皆✓(主題層面)",
+        "逐漸揭開Sharon過去真相,友誼記憶不再美化": "英✓繁✓;簡以泛化衝突帶過"
+      },
+      "en": "correct",
+      "zhs": "fixed",
+      "zht": "correct",
+      "error": "簡體嚴重偏離:①人名捏造(蘇菲/艾米,非Carol/Anita)②完全漏掉核心框架(亡友Sharon戴天使翅膀旁白、慶祝其女Candy Rose訂婚)。英/繁皆正確。此簡體非spot-fix可解,需依真實劇情改寫。",
+      "zhs_fix_to": "《Girls Night》讲述四位多年好友在卡拉OK酒吧重聚的一夜。她们的老友莎朗年轻时意外身亡（骑机车摔倒离世），如今化作戴着天使翅膀的旁白，既回望往昔，也俏皮地参与这场聚会——众人正为莎朗的女儿坎蒂萝丝庆祝订婚。派对咖卡萝表面豪放、内心柔软；总当代驾、循规蹈矩的妹妹凯特；心直口快、以毒舌掩饰不安的安妮塔；以及看似家庭美满、婚姻却日渐失落的丽莎，轮流拿起麦克风。\n\n在酒精与金曲之间，夸张的演唱成了她们说出平日藏起来的心事的方式：重提青春、旧伤与失去，也直面成年后的失望。随着莎朗过去的真相慢慢浮现，四人对友谊的记忆不再只有美化，而是学会把彼此与莎朗都看成有缺点、有故事的真实的人。\n\n全剧以一场从欢闹走向坦诚的聚会，展现女性友谊在岁月中的考验与力量。夜色散去时，问题未必都解决了，她们却重新找回了诚实、笑声与彼此的连结。",
+      "applied_to_gen69": true
+    },
+    "Dolly - A True Original Musical": {
+      "date": "2026-08-28 02:05",
+      "method": "chrome-multisource",
+      "sources": [
+        "Woman's World",
+        "People.com",
+        "Taste of Country",
+        "Reddit r/Broadway",
+        "Billboard",
+        "Parade",
+        "官方Facebook DOLLY musical"
+      ],
+      "checklist": {
+        "Dolly Parton傳記劇,2025納許維爾故鄉首演,將上百老匯": true,
+        "自大煙山貧困山村起步,帶著才華闖納許維爾鄉村音樂圈": true,
+        "與Porter Wagoner的合作夥伴關係開啟全國知名度": "英✓明確;繁簡以『合作關係變化』概述(非錯)",
+        "摯友Judy Ogle的忠誠陪伴;Uncle Bill的影響": "英✓;繁簡未點名(非錯)",
+        "與Carl Dean的私人情感;Sandy Gallin代表更大名利世界": "英✓;簡✓提Carl;繁概述",
+        "主題:自我主導,成功不必放棄來處": true
+      },
+      "en": "correct",
+      "zhs": "correct",
+      "zht": "correct",
+      "notes": "傳記主線三語皆正確。英文最具體(點名Porter Wagoner/Judy Ogle/Carl Dean/Sandy Gallin);繁簡較概括但無事實錯誤。皆保留原文。(附:Dolly Parton本人於2026-08-26辭世,與劇情無關)"
+    },
+    "Dolly Parton's Smoky Mountain Christmas Carol": {
+      "date": "2026-08-28 02:05",
+      "method": "chrome-multisource",
+      "sources": [
+        "Wikipedia",
+        "DollyParton.com(官方)",
+        "smokymountainchristmascarol.com(官方)",
+        "The Guardian(劇評)",
+        "Parton and Pearl",
+        "theatrely",
+        "All That Dazzles"
+      ],
+      "checklist": {
+        "Dickens《小氣財神》改編,搬到1930年代大煙山東田納西礦鎮": true,
+        "Scrooge=礦業公司老闆,把持礦場/銀行/商店壓榨礦工": true,
+        "聖誕夜暴風雪,亡故合夥人Marley現身警告+三幽靈": true,
+        "過去幽靈:少年夢想與錯失的愛(Fanny)、Fezziwig的慷慨": "英✓;繁✓(失去真心愛他的人);簡✓(芬妮)",
+        "現在幽靈:Cratchit一家貧困卻相守、病弱的小提姆": true,
+        "未來幽靈:無人哀悼的孤獨死亡→Scrooge悔悟行善、與家人和解": true
+      },
+      "en": "correct",
+      "zhs": "correct",
+      "zht": "correct",
+      "notes": "標準《小氣財神》情節轉置1930s田納西礦鎮,三語與官方/Wikipedia一致,無錯誤。皆保留原文。"
+    },
+    "Hair": {
+      "date": "2026-08-28 02:05",
+      "method": "chrome-multisource",
+      "sources": [
+        "Wikipedia",
+        "StageAgent",
+        "Movies&TV Stack Exchange",
+        "Forestburgh Playhouse",
+        "TV Tropes",
+        "Scribd Overview",
+        "Tropedia"
+      ],
+      "checklist": {
+        "1967紐約,自稱Tribe的嬉皮部落,追求自由/愛/反戰": true,
+        "核心角色:敏感的Claude、張揚的Berger、投入政治的Sheila,及Woof/Hud/Jeanie/Dionne等": true,
+        "反戰、質疑種族/階級/性/消費主義,集體生活與抗議": true,
+        "Claude收到徵召令,在抗拒兵役與家庭/社會期待間掙扎": true,
+        "迷幻幻覺段:欲望與恐懼交織": "英✓明確;繁簡概述",
+        "結局:Claude最終入伍、死於越戰(舞台版;原想燒徵召令卻退縮)": "英✓明示戰死;繁『付出代價』/簡『蒙上沉重陰影』含蓄帶出(非錯)"
+      },
+      "en": "correct",
+      "zhs": "correct",
+      "zht": "correct",
+      "notes": "三語核心情節(Tribe/Claude徵召/幻覺/入伍戰死)皆與Wikipedia+StageAgent一致,無事實錯誤。低信心觀察:簡體『希拉出身富裕』非標準設定、來源未證亦未否證,屬小細節保留不改。皆保留原文。"
+    },
+    "High Society": {
+      "date": "2026-08-28 02:12",
+      "method": "chrome-multisource",
+      "sources": [
+        "Wikipedia",
+        "StageAgent",
+        "London Theatre",
+        "Concord Theatricals(官方)",
+        "TheaterMania",
+        "All That Dazzles",
+        "Faber Music"
+      ],
+      "checklist": {
+        "設定:長島Oyster Bay洛德家水岸莊園(舞台劇;1956電影才是Newport)": "英✓;繁✗(誤寫『紐波特』=電影設定);簡✓未指地點",
+        "千金Tracy Lord將嫁事業有成的George Kittredge": true,
+        "前夫C.K.Dexter Haven歸來;八卦雜誌記者Mike Connor+攝影師Liz Imbrie混入": "英✓繁✓簡✓",
+        "Dexter為壓下父親Seth婚外情報導而讓記者進門": "英✓簡✓;繁略",
+        "婚前派對Tracy醉酒與Mike親近,翌日羞愧;誤會叢生": true,
+        "結局:Tracy拒絕George,認清Dexter,改與前夫Dexter重新開始;Mike與Liz;父母和解": true
+      },
+      "en": "correct",
+      "zhs": "correct",
+      "zht": "fixed",
+      "error": "繁體把舞台劇地點誤寫成『紐波特(Newport)』——那是1956電影的設定;舞台音樂劇設在長島Oyster Bay(Wikipedia/London Theatre/Concord官方/TheaterMania五源一致)。屬『驗音樂劇本身卻套到電影』的錯。",
+      "zht_fix_target": "《上流社會》以富裕的紐波特社交圈為舞台，",
+      "zht_fix_to": "《上流社會》以長島奧伊斯特灣(Oyster Bay)富裕的社交圈為舞台，",
+      "zht_applied": false
+    },
+    "Holiday Inn": {
+      "date": "2026-08-28 02:12",
+      "method": "chrome-multisource",
+      "sources": [
+        "Concord Theatricals(官方)",
+        "Wikipedia",
+        "IMDb",
+        "Jonesborough Rep",
+        "Carey Purcell",
+        "Harmony Theater",
+        "Talkin'Broadway"
+      ],
+      "checklist": {
+        "Jim Hardy離開演藝圈到康乃狄克農場,改造成只在節慶營業的Holiday Inn": true,
+        "開場:Jim/Ted/Lila是紐約歌舞三人組;Lila選事業隨Ted巡演,離開Jim": "英✓繁✓;簡✗(漏掉Lila與開場三人組)",
+        "Jim遇上schoolteacher Linda Mason,兩人合作把農場變旅館並相戀": true,
+        "Ted Hanover=Jim的好友兼舞伴(舞者),想把Linda帶去好萊塢當新舞伴": "英✓繁✓;簡✗(誤寫Ted=『百老匯製作人』、帶去『紐約舞台』)",
+        "結局:Jim與Linda結合,Ted與Lila復合,各得其所": true
+      },
+      "en": "correct",
+      "zhs": "fixed",
+      "zht": "correct",
+      "error": "簡體把Ted Hanover(Jim的舞伴/舞者)誤寫成『百老汇的知名制作人』,且把他要帶Linda去的『好莱坞』寫成『纽约舞台』(Jonesborough Rep:lure Linda to be his dance partner in Hollywood;Wikipedia/IMDb:三人是歌舞act)。另漏掉Lila線。",
+      "zhs_fix_target": "吉姆的朋友泰德是百老汇的知名制作人，生活潇洒，却总在感情上慢半拍。他来到旅馆后被琳达深深吸引，并希望把她带回纽约、推上舞台。",
+      "zhs_fix_to": "吉姆的好友泰德是与他多年搭档的舞者，生活潇洒，却总在感情上慢半拍。他来到旅馆后被琳达深深吸引，并希望带她去好莱坞、成为自己的新舞伴。",
+      "applied_to_gen69": true
+    },
+    "Midnight at the Never Get": {
+      "date": "2026-08-28 02:12",
+      "method": "chrome-multisource",
+      "sources": [
+        "Playbill",
+        "London Theatre",
+        "The Guardian(劇評)",
+        "BroadwayWorld",
+        "Musical Theatre Review",
+        "TDF",
+        "Bistro Awards"
+      ],
+      "checklist": {
+        "1965紐約,同志戀情違法;歌手Trevor Copeland與作曲/鋼琴家Arthur Brightman": true,
+        "The Never Get=格林威治村地下同志酒吧": true,
+        "祕密表演組合『Midnight』,以男性代詞情歌抗爭(不改成女性)": true,
+        "走向主流的代價:被要求改代詞/體面化;抗議vs同化的抉擇": true,
+        "框架:Trevor以午夜紀念演出/回憶重構與Arthur的愛與離別": true
+      },
+      "en": "correct",
+      "zhs": "correct",
+      "zht": "correct",
+      "notes": "三語與Playbill/London Theatre/Guardian等一致,無錯誤。皆保留原文。"
+    },
+    "Murder for Two": {
+      "date": "2026-08-28 02:12",
+      "method": "chrome-multisource",
+      "sources": [
+        "Le Petit Theatre(學習指南)",
+        "Utah Shakespeare Festival",
+        "Royal Manitoba Theatre Centre",
+        "Wikipedia",
+        "Concord Theatricals(官方)",
+        "Plays To See",
+        "RVArt Review"
+      ],
+      "checklist": {
+        "小說家Arthur Whitney在生日派對摸黑時中槍身亡": true,
+        "小鎮警員Marcus Moscowicz想當偵探,趁正式偵探1小時後才到搶先辦案": true,
+        "嫌疑人各有動機:Arthur把身邊人寫進刻薄小說": true,
+        "第二起命案=有人『毒茶』(Le Petit指南證實need to solve TWO murders/who poisoned the tea)": "繁簡具體說是Griff被毒;與已證『毒茶第二命案』結構一致",
+        "『失竊筆記本』細節": "繁簡皆提;無獨立來源明證但與劇情不矛盾→保留註記",
+        "兇手身分": "三語皆不點名(whodunit,正確做法)"
+      },
+      "en": "correct",
+      "zhs": "correct",
+      "zht": "correct",
+      "notes": "核心(Arthur中槍/Marcus搶案/眾人因被寫進小說而有動機/毒茶第二命案)皆與Le Petit學習指南+Utah莎劇節一致。Griff為毒茶受害者與失竊筆記本屬具體細節,結構相符、無矛盾,保留。皆保留原文。"
+    },
+    "One Day – The Musical": {
+      "date": "2026-08-28 02:12",
+      "method": "chrome-multisource",
+      "sources": [
+        "Wikipedia(小說)",
+        "Wikipedia(2011電影)",
+        "LitCharts",
+        "London Theatre",
+        "Virgin Radio",
+        "SoBrief",
+        "Yahoo Entertainment"
+      ],
+      "checklist": {
+        "Dexter Mayhew與Emma Morley每年7/15(St Swithin's Day)重逢,橫跨20年": true,
+        "Dexter富裕玩世不恭→媒體事業/酗酒/自毀;Emma里茲出身理想主義→教師/作家,與Ian的不順感情": true,
+        "兩人始終彼此牽引,愛意總被時機/伴侶錯開": true,
+        "Dexter娶Sylvie生女Jasmine後離婚;母親Alison過世使他崩潰": "英✓明確;繁簡以『家庭變故/低谷』概述",
+        "終於在一起後,Emma死於單車車禍(被車撞)": "英✓明示;繁『猝不及防的殘酷轉折』/簡『突如其来的失去』含蓄帶出(非錯)",
+        "Dexter在悲傷後帶著Jasmine回到愛丁堡故地,學會承載失去與愛": "英✓;繁簡以成長/珍惜作結"
+      },
+      "en": "correct",
+      "zhs": "correct",
+      "zht": "correct",
+      "notes": "三語與Wikipedia/LitCharts一致。英文最具體(明示單車車禍死);繁簡含蓄但無事實錯誤。皆保留原文。"
+    },
+    "Schmigadoon!": {
+      "date": "2026-08-28 02:17",
+      "method": "chrome-multisource",
+      "sources": [
+        "Wikipedia(音樂劇)",
+        "Theatregold",
+        "Theatrical Rights Worldwide",
+        "New York Theatre Guide",
+        "TheaterMania",
+        "TheaterScene",
+        "BroadwayWorld",
+        "theatrecriticism"
+      ],
+      "checklist": {
+        "紐約醫師情侶Josh Skinner與Melissa Gimble健行修復感情,過迷霧石橋誤入小鎮Schmigadoon": true,
+        "鎮民隨時唱歌跳舞,如老派音樂劇世界": true,
+        "唯有找到『真愛』才能離開;Leprechaun告知條件": true,
+        "Melissa被嘉年華的Danny Bailey吸引": true,
+        "Josh被女侍Betsy McDonough追求,並與女教師Emma Tate生情": "英✓明確;繁簡未點名(Josh向鎮上女性示好,非錯)",
+        "小鎮歡樂表象下藏家庭秘密/壓抑欲望(Mayor Menlove/Mildred Layton等,戲仿Music Man)": true,
+        "結局:兩人停止歸咎對方,誠實面對真愛=看清缺點仍選擇彼此,一起過橋返回現實": true
+      },
+      "en": "correct",
+      "zhs": "correct",
+      "zht": "correct",
+      "notes": "已有2026百老匯舞台音樂劇版(改編自Apple TV+影集),MusicalMap收錄正確。三語核心情節皆與Wikipedia(音樂劇)+多篇百老匯劇評一致,無錯誤。英文最具體(點名Betsy/Emma Tate);繁簡未細列Josh的對象但無錯。皆保留原文。"
+    },
+    "All Shook Up": {
+      "date": "2026-08-28 02:27",
+      "method": "chrome-multisource",
+      "sources": [
+        "StageAgent",
+        "Wikipedia",
+        "Midbrow",
+        "TV Tropes",
+        "StageSceneLA",
+        "Playbill",
+        "The Round Table"
+      ],
+      "checklist": {
+        "1955中西部小鎮受『端莊法』管束(戲仿莎士比亞Twelfth Night+貓王歌曲)": true,
+        "流浪樂手Chad入鎮;女機械師Natalie一見鍾情,假扮男子『Ed』接近他": true,
+        "Miss Sandra(博物館管理員)反而愛上Ed;Dennis暗戀Natalie": true,
+        "Dean(鎮長之子)與Lorraine(Sylvia之女)是跨種族戀情,遭偏見阻撓": "英未明說;繁簡✓——Midbrow證實interracial couple,正確",
+        "結局:身分揭穿,多對戀人各自成對,小鎮擺脫壓抑走向自由": true
+      },
+      "en": "correct",
+      "zhs": "correct",
+      "zht": "correct",
+      "notes": "三語皆正確。繁簡納入Dean/Lorraine跨種族戀情經Midbrow證實無誤。繁『艾德留鬍子』屬小細節未證但不矛盾。皆保留原文。"
+    },
+    "The Buddy Holly Story": {
+      "date": "2026-08-28 02:27",
+      "method": "chrome-multisource",
+      "sources": [
+        "StageAgent",
+        "Wikipedia",
+        "buddythemusical.com(官方)",
+        "IMDb",
+        "North Shore Music Theatre",
+        "Moviepedia",
+        "Rays of Adventure"
+      ],
+      "checklist": {
+        "德州拉伯克的Buddy Holly組The Crickets,堅持搖滾不妥協": true,
+        "納許維爾錄音受挫→與製作人Norman Petty在新墨西哥Clovis合作走紅": "英✓簡✓;繁未點名Petty(非錯)",
+        "紐約遇Maria Elena(出版社接待員)閃電結婚": true,
+        "哈林區Apollo劇院(原期待黑人樂團)以熱演征服全場": "英✓簡✓;繁概述",
+        "1959冬季巡演;愛荷華Clear Lake演出後搭小飛機,與Ritchie Valens/Big Bopper空難身亡": "英✓簡✓明示;繁以總結『人生戛然而止』帶出"
+      },
+      "en": "correct",
+      "zhs": "correct",
+      "zht": "correct",
+      "notes": "三語核心與官方+StageAgent一致。繁未細寫空難但總結承認生命中斷,非錯。皆保留原文。"
+    },
+    "Bugsy Malone": {
+      "date": "2026-08-28 02:27",
+      "method": "chrome-multisource",
+      "sources": [
+        "StageAgent",
+        "MTI(官方全劇本synopsis)",
+        "Wikipedia",
+        "IMDb",
+        "NODA",
+        "British Council",
+        "Faber Music",
+        "Daily Info"
+      ],
+      "checklist": {
+        "設定:1929禁酒令時期的紐約": "英✓繁✓;簡✗(誤寫『芝加哥』)",
+        "兩幫對峙:胖山姆Fat Sam(大滿貫地下酒館) vs 丹迪丹Dandy Dan": "英✓繁✓;簡✗(誤寫成『菲茨杰拉德』與『德里赫莱蒂』)",
+        "丹迪丹擁有新式奶油槍(splurge guns),胖山姆去偷": "英✓繁✓;簡✗(把新武器歸給『胖子』幫)",
+        "全劇角色由兒童扮演,武器射奶油/奶油派": "三語皆✓",
+        "Bugsy在追歌手Blousey(想去好萊塢)與助胖山姆之間周旋;歌手Tallulah傾心Bugsy": true,
+        "結局:奶油大戰,兩幫和解;Bugsy與Blousey重修舊好": true
+      },
+      "en": "correct",
+      "zhs": "fixed",
+      "zht": "correct",
+      "error": "簡體三處重大錯誤:①城市寫成『芝加哥』(實為紐約)②兩幫老大寫成『菲茨杰拉德/德里赫莱蒂』(實為Fat Sam/Dandy Dan)③把新式奶油槍歸給『胖子』幫(實為Dandy Dan擁有)。NODA/Faber/British Council五源證實紐約1929+Fat Sam/Dandy Dan。需依真實劇情改寫。",
+      "zhs_fix_to": "《巴格西·马龙》将1929年禁酒令时期的纽约黑帮世界搬上舞台：这里的帮派成员全由孩子扮演，枪战使用会喷出奶油的“奶油弹”，危险与荒诞并存。城市由两股势力争夺：一边是经营“大满贯”地下酒馆的胖山姆(Fat Sam)，另一边是野心勃勃、企图吞并对手的丹迪·丹(Dandy Dan)。丹迪·丹得到一批威力惊人的新式奶油枪，接连击倒胖山姆的手下，令后者的地盘岌岌可危。\n\n原本只是小人物的巴格西·马龙曾是拳手，如今靠替人拉生意糊口。他聪明圆滑，希望赚到足够的钱，带心仪的歌手布鲁西·布朗去好莱坞、实现两人的梦想。然而，胖山姆酒馆的红牌歌手塔卢拉同样对巴格西抱有好感，使他的感情与处境更加复杂。\n\n胖山姆急需扭转败局，巴格西便被卷入行动，还在危急时刻救了他一命。巴格西召集一群街头少年组队，设法夺取丹迪·丹的奶油枪。可他忙于帮派事务，没能依约陪布鲁西前往好莱坞，令她伤心独自离去。最终，丹迪·丹率众闯入大满贯酒馆展开报复，奶油弹、奶油派与面粉炸弹齐飞，剑拔弩张的冲突化成一场失控又滑稽的大乱斗。混战结束后，两派人马终于放下敌意。\n\n全剧以黑帮片的外壳包裹童趣与喜剧色彩，展现巴格西从投机自保到主动承担责任的变化。最终，巴格西与布鲁西重修旧好，城市也迎来暂时的和平。",
+      "applied_to_gen69": true
+    },
+    "Death Takes A Holiday": {
+      "date": "2026-08-28 02:27",
+      "method": "chrome-multisource",
+      "sources": [
+        "Wikipedia(音樂劇)",
+        "CurtainUp(劇評)",
+        "IMDb(1934原作)",
+        "Carey Purcell",
+        "reflectionsinthelight(劇評)",
+        "theaterlife",
+        "TCM"
+      ],
+      "checklist": {
+        "一戰後1921義大利,死神化身英俊的Prince Nikolai Sirki來Lamberti公爵湖畔別墅體驗人生": true,
+        "公爵Vittorio得知其真實身分,恐懼地要僕人保密": true,
+        "Grazia剛與Corrado(科拉多)訂婚,車禍生還後開始懷疑婚姻": "英✓繁✓(科拉多);簡✗(誤寫未婚夫為『阿尔贝托』)",
+        "Grazia與Sirki相戀,解除婚約;死神首次體會愛/歡樂/失去的恐懼": true,
+        "查出真Sirki王子已死;午夜死神欲帶走Grazia": true,
+        "公爵勸誡『真愛非占有』;Grazia仍自願牽死神之手走入光中": true
+      },
+      "en": "correct",
+      "zhs": "fixed",
+      "zht": "correct",
+      "error": "簡體把未婚夫名字寫成『阿尔贝托(Alberto)』,實為Corrado/科拉多(IMDb+劇評證實Corrado Montelli)。另簡體有『［］［］』雜字殘留2處需清除。",
+      "zhs_fixes": [
+        {
+          "target": "意大利北部的兰贝蒂家正为女儿格拉齐娅与阿尔贝托的订婚欢庆",
+          "to": "意大利北部的兰贝蒂家正为女儿格拉齐娅与科拉多的订婚欢庆"
+        },
+        {
+          "target": "她本已与阿尔贝托订婚",
+          "to": "她本已与科拉多订婚"
+        },
+        {
+          "target": "世界上无人死去。［］［］",
+          "to": "世界上无人死去。"
+        },
+        {
+          "target": "重新回到永无止境的孤独中。［］［］",
+          "to": "重新回到永无止境的孤独中。"
+        }
+      ],
+      "applied_to_gen69": true
+    },
+    "Escape to Margaritaville": {
+      "date": "2026-08-28 02:27",
+      "method": "chrome-multisource",
+      "sources": [
+        "North Shore Music Theatre(官方synopsis)",
+        "StageAgent",
+        "Wikipedia",
+        "Playbill",
+        "White Birch Blog",
+        "The Berkshire Edge",
+        "harryforbes"
+      ],
+      "checklist": {
+        "加勒比海小島Margaritaville度假村;Tully Mars=駐唱歌手": "英✓簡✓;繁把主角名誤譯為『薩利』(應為塔利/Tully)",
+        "Brick=酒保,暗戀Tammy;Marley=老闆;Jamal=busboy;J.D.=前飛行員常客": "英✓;簡✗(把Brick暗戀對象寫成『酒吧经理瑞秋』,實為Tammy)",
+        "Rachel=辛辛那提來的環境科學家(採火山土樣),與Tully相戀": true,
+        "Tammy=Rachel好友,有控制狂未婚夫Chadd;島上找回自信": "英✓繁✓;簡略",
+        "火山爆發打散假期;Tully最後追到Rachel(去俄亥俄),Tammy拒Chadd選Brick": "英✓;繁簡以『重新選擇』概述"
+      },
+      "en": "correct",
+      "zhs": "fixed",
+      "zht": "fixed",
+      "error": "簡體把Brick的暗戀對象誤寫成『酒吧经理瑞秋』——實際Brick愛的是Tammy,且Rachel是遊客科學家(非酒吧經理)(North Shore官方+Berkshire Edge:Brick falls for Tammy)。繁體主角名『薩利』應為『塔利』(Tully)。",
+      "zhs_fixes": [
+        {
+          "target": "他最要好的朋友布里克经营酒吧，长期暗恋着忠诚能干的酒吧经理瑞秋，却始终不敢正视自己的感情。",
+          "to": "他最要好的朋友、酒保布里克性格内敛，在感情上一向羞怯被动，迟迟不敢迈出一步。"
+        },
+        {
+          "target": "布里克和瑞秋也在旁人的推动下坦白彼此情感。",
+          "to": "布里克和塔米也在旁人的推动下坦白彼此情感。"
+        }
+      ],
+      "zht_fix_target": "薩利",
+      "zht_fix_to": "塔利",
+      "zht_fix_note": "繁體全文『薩利』replace為『塔利』(Tully),約4處",
+      "applied_to_gen69": true
+    },
+    "Forever Plaid": {
+      "date": "2026-08-28 02:27",
+      "method": "chrome-multisource",
+      "sources": [
+        "Wikipedia",
+        "Utah Shakespeare Festival",
+        "MTI(官方)",
+        "Execulink",
+        "Ruth&Nathan Hale Theater",
+        "Rocklopedia Fakebandica",
+        "Masterworks Broadway"
+      ],
+      "checklist": {
+        "四名男子Sparky/Smudge/Jinx/Frankie(賓州)高中結識,熱愛四部和聲,組Forever Plaid": true,
+        "1964/2/9在前往首場重要演出途中車禍身亡(撞上載天主教女學生去看Beatles(Ed Sullivan)的巴士)": "英✓明確;繁簡✓車禍(未細寫Beatles巴士,非錯)",
+        "多年後獲重返人間機會,補完那場未竟的演唱會": true,
+        "演出中各自展現性格,流露對青春/友情/未竟夢想的牽掛": true,
+        "完成『和聲的使命』後告別返回宇宙": true
+      },
+      "en": "correct",
+      "zhs": "correct",
+      "zht": "correct",
+      "notes": "三語核心(四人和聲團/車禍身亡/死後返場補完演出)皆與MTI+Wikipedia一致。繁簡未細寫Beatles巴士細節但非錯。皆保留原文。"
+    },
+    "Franz & Marie": {
+      "date": "2026-08-28 02:38",
+      "method": "chrome-multisource",
+      "sources": [
+        "Charing Cross Theatre(官方)",
+        "Theatre Weekly",
+        "West End Best Friend",
+        "Broadway Baby",
+        "LitCharts(Woyzeck)",
+        "Wikipedia(Woyzeck)",
+        "The Theatre Times"
+      ],
+      "checklist": {
+        "改編Georg Büchner的德國悲劇《Woyzeck》,設19世紀末歐洲民間傳說戰亂邊境": true,
+        "士兵Franz Woyzeck戰後歸來受創傷幻覺(天空火光)折磨,精神漸崩": true,
+        "唯一牽掛=戀人Marie與嬰兒Georgie;軍規不准請假故無法結婚": true,
+        "為錢接受軍醫實驗,受上級(軍官/醫生)羞辱與階級壓迫": true,
+        "強勢鼓手少校介入,Franz猜忌加深": true,
+        "愛在恐懼/占有/羞恥/絕望中扭曲,推向無法挽回的悲劇(原作Franz刺死Marie)": true
+      },
+      "en": "correct",
+      "zhs": "correct",
+      "zht": "correct",
+      "notes": "三語皆為Woyzeck忠實重述,與Charing Cross官方+原作一致。三語皆以『悲劇/無法挽回』含蓄帶出結局(未明寫刺殺),非錯。皆保留原文。"
+    },
+    "Galileo": {
+      "date": "2026-08-28 02:38",
+      "method": "chrome-multisource",
+      "sources": [
+        "Wikipedia",
+        "官方galileomusical.com",
+        "New York Theatre Guide",
+        "BroadwayWorld(Berkeley Rep)",
+        "Local News Matters",
+        "SFGATE",
+        "Variety"
+      ],
+      "checklist": {
+        "搖滾音樂劇(Berkeley Rep 2024首演→百老匯),Galileo以望遠鏡挑戰教會": true,
+        "看見月球坑洞、木星衛星,確信日心說": true,
+        "摯友Bishop Maffeo Barberini登基成Pope Urban VIII後翻臉": "英✓;簡✓明示登教皇位;繁✓(友誼因權力受考驗)",
+        "女兒Virginia Galilei;與Alessandro Tarantola的感情": "英✓;簡✓提Virginia;繁概述",
+        "被傳喚至羅馬宗教裁判所,被迫撤回日心說": true
+      },
+      "en": "correct",
+      "zhs": "correct",
+      "zht": "correct",
+      "notes": "三語與Wikipedia/官方/多篇劇評一致,Barberini→Urban VIII、女兒Virginia、被迫撤回皆正確。皆保留原文。"
+    },
+    "HMS Pinafore": {
+      "date": "2026-08-28 02:38",
+      "method": "chrome-multisource",
+      "sources": [
+        "English National Opera",
+        "Utah Shakespeare Festival",
+        "Gilbert&Sullivan Archive",
+        "Wikipedia",
+        "Toledo Opera",
+        "Newcastle University",
+        "Faber Music",
+        "TV Tropes"
+      ],
+      "checklist": {
+        "軍艦Pinafore:艦長之女Josephine愛平民水手Ralph Rackstraw,卻被安排嫁海軍大臣Sir Joseph Porter": true,
+        "洩密私奔者=憤世嫉俗的水手Dick Deadeye,向『艦長』告發": "英✓;繁略(柯克蘭發現真相);簡✗(誤寫成女商販『巴特西姆』告知『波特爵士』)",
+        "Little Buttercup(Mrs.Cripps販婦,愛慕艦長)是唯一角色,揭露嬰兒調換": "英✓繁✓;簡✗(拆成『巴特西姆』+『小黄油』兩人)",
+        "調換真相:Ralph與Corcoran嬰兒時被對調→Ralph成艦長娶Josephine": true,
+        "結局:降階的Corcoran娶Buttercup;Sir Joseph轉向表妹Hebe": "英✓;繁略;簡✗(誤寫波特娶『巴特西姆』,應娶表妹Hebe)"
+      },
+      "en": "fixed",
+      "zhs": "fixed",
+      "zht": "correct",
+      "error": "①英文把《Pirates of Penzance》的『the very model of a modern major-general』誤安到Corcoran(Pinafore艦長唱的是『Captain of the Pinafore』)。②簡體把洩密者寫成女商販『巴特西姆告知波特爵士』(應為水手Dick Deadeye告知艦長),並把Little Buttercup拆成『巴特西姆+小黄油』兩人,結局又讓波特娶巴特西姆(應娶表妹Hebe)。ENO/G&S Archive/Faber等證實。",
+      "en_fix_target": "Captain Corcoran, who prides himself on being “the very model of a modern major-general” style of enlightened authority—kind to his crew but firm in rank—encourages Josephine to accept Sir Joseph.",
+      "en_fix_to": "Captain Corcoran, who prides himself on a style of enlightened authority—courteous to his crew but firm in rank—encourages Josephine to accept Sir Joseph.",
+      "zhs_fixes": [
+        {
+          "target": "关键时刻，长期暗恋舰长的女售货商巴特西姆向波特爵士揭露二人的计划。",
+          "to": "关键时刻，愤世嫉俗的水手迪克·戴德埃向舰长告发了二人的私奔计划。"
+        },
+        {
+          "target": "正当众人陷入僵局，船上的女仆小黄油透露：",
+          "to": "正当众人陷入僵局，长期爱慕舰长的贩妇小黄油透露："
+        },
+        {
+          "target": "波特爵士转而娶了巴特西姆，原舰长也接受了小黄油的感情。",
+          "to": "波特爵士转而看上了自己的表妹赫柏，原舰长则接受了小黄油的感情。"
+        }
+      ]
+    },
+    "Hot Mess: A New Musical": {
+      "date": "2026-08-28 02:38",
+      "method": "chrome-multisource",
+      "sources": [
+        "London Theatre(劇評)",
+        "Dialogue Earth",
+        "Theatre and Tonic",
+        "Official London Theatre",
+        "Musical Theatre Review",
+        "London Theatre Direct",
+        "Wikipedia"
+      ],
+      "checklist": {
+        "把氣候危機寫成地球與人類(Hu)的一段有毒戀情(擬人rom-com)": true,
+        "地球歷經無數糟糕約會(曾與恐龍相戀),遇上人類墜入愛河": "英✓繁✓;簡『霸王龙』屬具體化,非錯",
+        "人類學會耕作/建設,關係升溫;後轉為不斷索取資源": true,
+        "人類奔向『月球』的旅程令地球感到被背叛": "英✓;繁✗+簡✗(都誤寫成『火星』,London Theatre劇評明示moon)",
+        "地球忍耐並試圖溝通;關係走向決裂": true
+      },
+      "en": "correct",
+      "zhs": "fixed",
+      "zht": "fixed",
+      "error": "繁簡都把人類離開地球的目的地寫成『火星(Mars)』,實際劇中是『月球(the moon)』(London Theatre劇評:『Humanity takes a trip to the moon』)。又一繁簡『共同錯誤』。",
+      "zhs_fix_target": "他却把注意力转向遥远的星球，甚至开始憧憬火星。",
+      "zhs_fix_to": "他却把心思投向天外，甚至撇下地球、动身奔向月球。",
+      "zht_fix_target": "他將目光投向火星，彷彿另覓新歡",
+      "zht_fix_to": "他將目光投向月球，彷彿另覓新歡"
+    },
+    "I'm Every Woman - The Chaka Khan Musical": {
+      "date": "2026-08-28 02:38",
+      "method": "chrome-multisource",
+      "sources": [
+        "BroadwayWorld",
+        "London Theatre",
+        "London Evening Standard",
+        "KX Tickets",
+        "The Phenomenal Chaka Khan(官方FB)",
+        "Theatre and Tonic",
+        "官方imeverywomanthemusical.com"
+      ],
+      "checklist": {
+        "以戒癮互助會開場,回溯Yvette Marie Stevens的芝加哥歲月(父親毒癮)": true,
+        "投身民權運動、加入黑豹黨,獲賜名『Chaka』": "英✓(Afrocentre);繁✓『加入黑豹黨』經證實正確;簡✓",
+        "加入放克樂團Rufus任主唱走紅,後單飛": true,
+        "首任丈夫Hassan Khan(黑豹黨員),婚姻因猜忌/背叛破裂;女兒Milini": "英✓;繁簡✓",
+        "與Joni Mitchell/Prince/Stevie Wonder等音樂人交會;成癮幾乎毀掉生活": true,
+        "最終回到戒癮現場,承認脆弱,重拾與家人/音樂/自我的連結": true
+      },
+      "en": "correct",
+      "zhs": "correct",
+      "zht": "correct",
+      "notes": "三語與BroadwayWorld/London Theatre/Evening Standard一致。繁『加入黑豹黨』經Evening Standard等證實(Chaka早年確為黑豹黨員)。皆保留原文。"
+    },
+    "The Last Ship": {
+      "date": "2026-08-28 02:38",
+      "method": "chrome-multisource",
+      "sources": [
+        "Reddit r/musicals",
+        "Wikipedia",
+        "NBC New York",
+        "StageAgent",
+        "TheaterMania",
+        "newyorktheater.me",
+        "Variety"
+      ],
+      "checklist": {
+        "英格蘭東北Wallsend(Tyne河畔)造船小鎮,面臨船廠關閉": true,
+        "Gideon Fletcher少年離鄉出海,多年後(父親死後)返鄉": true,
+        "青梅竹馬Meg經營酒吧,已與Gideon舊友Arthur(亞瑟)訂婚": "英未點名;繁✓簡✓(Arthur經Reddit/NBC證實)",
+        "Meg有女兒Ellen(修訂版設定,亦為Gideon之女)": "英✓簡✓;繁概述",
+        "Father O'Brien(神父,得知自己將死)給小鎮『造完最後一艘船』的使命": "英未提神父(提工會Billy/Davey);繁✓簡✓——newyorktheater證實Father O'Brien",
+        "工人佔領船廠、靠自己技藝造完最後一艘船作為集體抗爭": true
+      },
+      "en": "correct",
+      "zhs": "correct",
+      "zht": "correct",
+      "notes": "三語核心一致。Meg未婚夫Arthur、神父Father O'Brien皆經多源證實。繁體有『［]』雜字殘留3處需清(列入繁體收尾清理)。皆保留原文(繁僅清雜字)。",
+      "zht_junk": "［]"
+    },
+    "Lizzie": {
+      "date": "2026-08-28 02:52",
+      "method": "chrome-multisource",
+      "sources": [
+        "StageAgent",
+        "Boston University",
+        "Thespians Blog",
+        "World of Mailman(Blogger)",
+        "Capital Letters",
+        "Korea Times",
+        "Little Village Magazine"
+      ],
+      "checklist": {
+        "1892麻州Fall River,Lizzie Borden與父Andrew/繼母Abby/姊Emma/女傭Bridget同住,父親專制": true,
+        "Lizzie的戀愛/親密對象=鄰居Alice Russell(非女傭Bridget)": "英✓繁✓;簡✗(誤把親密關係安到女傭Bridget、漏掉Alice)",
+        "父親Andrew與繼母Abby在家中遭斧頭殺害": true,
+        "Lizzie成頭號嫌疑,受審": true,
+        "審判證據不足,Lizzie獲判無罪;真相刻意模糊": "英✓明示無罪;繁簡以曖昧作結(非錯)"
+      },
+      "en": "correct",
+      "zhs": "fixed",
+      "zht": "correct",
+      "error": "簡體把Lizzie的曖昧/親密關係對象寫成女傭Bridget,並完全漏掉鄰居Alice Russell——實際戀人是Alice(Blogger明示『not with Bridget but instead [Alice]』;Thespians/Capital Letters皆證Alice是lover)。這正好把本劇『不是Bridget而是Alice』的關鍵翻轉搞反。",
+      "zhs_fix_target": "家中的女佣布里奇特见证着博登家的冲突，也与莉齐建立起暧昧而复杂的亲密关系。",
+      "zhs_fix_to": "家中的女佣布里奇特冷眼见证着博登家日渐紧绷的冲突；而邻居爱丽丝·拉塞尔的到来，则让莉齐第一次感受到一段暧昧而温柔的亲密关系，也窥见另一种生活的可能。"
+    },
+    "The Lost Boys: A New Musical": {
+      "date": "2026-08-28 02:52",
+      "method": "chrome-multisource",
+      "sources": [
+        "Wikipedia",
+        "官方lostboysmusical.com",
+        "New York Theatre Guide",
+        "Theatre Reviews Limited",
+        "Fandom",
+        "TV Tropes",
+        "Broadway.com"
+      ],
+      "checklist": {
+        "改編1987電影;Lucy Emerson離婚後帶子Michael/Sam搬到加州海濱鎮Santa Carla": true,
+        "Michael在海濱步道邂逅Star,被搖滾樂團首領David吸引": true,
+        "『迷途少年』其實是吸血鬼;Michael誤飲混David血的酒,半轉化(能飛/畏光)": true,
+        "Sam與吸血鬼獵人Frog兄弟(Edgar&Alan)合作救哥哥": true,
+        "Lucy與錄影帶店老闆Max相戀,Max其實是首領吸血鬼": "英✓繁✓簡✓",
+        "決戰擊敗吸血鬼,Max真面目曝光,家人團結": true
+      },
+      "en": "correct",
+      "zhs": "correct",
+      "zht": "correct",
+      "notes": "三語核心與電影+Wikipedia+官方一致,Max=head vampire、Frog兄弟、Star半吸血鬼皆正確。皆保留原文。"
+    },
+    "Mexodus (the musical about the Underground Railroad running south to Mexico)": {
+      "date": "2026-08-28 02:52",
+      "method": "chrome-multisource",
+      "sources": [
+        "The Knockturnal",
+        "ArtsBeatLA",
+        "New York Stage Review",
+        "Americas Quarterly",
+        "LA Times",
+        "Forbes",
+        "Latinx Project NYU",
+        "TheaterMania"
+      ],
+      "checklist": {
+        "1851;向『南』逃亡的地下鐵路——渡格蘭德河進入已廢奴的墨西哥": true,
+        "Henry=被奴役黑人,原與家人分離自肯塔基被賣到德州": "英/簡以『德州奴隸』概述;繁✓肯塔基(The Knockturnal證實torn from mother in Kentucky)",
+        "Henry在與莊園主衝突中自衛殺死對方,遭通緝逃亡": "繁✓明示殺死莊園主(多源證實killing his master in self-defense);英/簡以『altercation/冲突』較含蓄帶過(非錯)",
+        "被墨西哥農夫Carlos(前美墨戰爭軍醫,背負棄袍愧疚)救起": true,
+        "兩人由戒備到共同勞動/躲避邊境危險而建立信任": true,
+        "Carlos助Henry深入墨西哥、以新身分重生": "繁『恩里克』/英『imagine a future』;皆合理"
+      },
+      "en": "correct",
+      "zhs": "correct",
+      "zht": "correct",
+      "notes": "繁體具體背景(肯塔基出身、自衛殺死莊園主、遭通緝)經The Knockturnal/ArtsBeatLA/NY Stage Review證實正確,反而比英/簡的『altercation』更精準。繁『莊園主之妻誣陷』細節無來源明證但不矛盾,保留。皆保留原文。"
+    },
+    "Miracle On 34th Street": {
+      "date": "2026-08-28 02:52",
+      "method": "chrome-multisource",
+      "sources": [
+        "Wikipedia(Here's Love)",
+        "MTI(官方)",
+        "Masterworks Broadway",
+        "StageAgent",
+        "Theatre Trip",
+        "David Spicer",
+        "Berkshire on Stage"
+      ],
+      "checklist": {
+        "梅西百貨感恩節遊行聖誕老人醉倒,Kris Kringle頂替並獲聘為店內聖誕老人": true,
+        "單親母親Doris Walker不讓女兒Susan相信童話;鄰居律師Fred Gailey追求Doris並鼓勵Susan": true,
+        "Kris不推銷店內商品,誠實指引顧客去別家→意外贏得信任、公關大勝": true,
+        "Kris能對荷蘭小女孩說荷語,真心傾聽每個孩子": "英未提;繁簡✓(經典橋段)",
+        "心理顧問Sawyer認定Kris精神失常,案件進法庭;Fred辯護": true,
+        "大量寄聖誕老人的信件送入法庭→法官判定Kris即聖誕老人;Doris接受Fred與奇蹟": true
+      },
+      "en": "correct",
+      "zhs": "correct",
+      "zht": "correct",
+      "notes": "三語與Here's Love(Meredith Willson)+MTI官方一致。荷蘭女孩橋段、法庭信件、Sawyer皆正確。皆保留原文。"
+    },
+    "Nunsense": {
+      "date": "2026-08-28 02:52",
+      "method": "chrome-multisource",
+      "sources": [
+        "Wikipedia",
+        "StageAgent",
+        "官方nunsense.com",
+        "IMDb",
+        "Musicals at Richter",
+        "NODA",
+        "Theatre By The Sea"
+      ],
+      "checklist": {
+        "Little Sisters of Hoboken;廚娘Sister Julia(Child of God)煮的湯毒死52名修女(肉毒桿菌)": true,
+        "募款款項被院長挪去買錄影設備,4具遺體只能暫放冷凍庫": "英✓繁✓;簡✓",
+        "五位倖存修女在學校禮堂辦募款綜藝秀籌喪葬費": true,
+        "院長Mary Regina(前馬戲團員/愛出風頭)、副院長Mary Hubert(較勁)、Robert Anne(布魯克林/直率)、Mary Leo(想當芭蕾修女)、Mary Amnesia(十字架砸頭失憶)": true,
+        "演出在歌舞/獨白/臨場互動中失控,修女各自流露心願與摩擦": true
+      },
+      "en": "correct",
+      "zhs": "correct",
+      "zht": "correct",
+      "notes": "三語與Wikipedia/官方/StageAgent一致(52修女中毒、冷凍庫、五修女、各角色設定)。簡『变质的奶油浓汤』對vichyssoise屬loose描述、非錯。皆保留原文。"
+    },
+    "Ride the Cyclone": {
+      "date": "2026-08-28 02:52",
+      "method": "chrome-multisource",
+      "sources": [
+        "Wikipedia",
+        "Ride The Cyclone Fandom",
+        "StageAgent",
+        "URI Theatre",
+        "Alliance Theatre",
+        "Maltz Jupiter",
+        "StageBuddy"
+      ],
+      "checklist": {
+        "鈾城(Saskatchewan)St. Cassian高中合唱團六人在雲霄飛車Cyclone事故中喪生": true,
+        "醒在算命機器人The Amazing Karnak主持的地獄邊境,只有一人能復生": true,
+        "六名角色=Ocean/Noel(幻想化身Monique)/Mischa(饒舌硬漢,網路未婚妻Talia)/Ricky(生前失語,死後找回聲音)/Constance/Jane Doe(失憶無名氏)": "英✓簡✓六人齊全;繁✗(把Mischa訛成怪名『珍米莎』且描述錯,並整個漏掉Ricky)",
+        "Ocean由爭勝轉為理解,最終讓Jane復生": true,
+        "Jane以『Penny Lamb』新身分重生,其餘接受死亡": "英✓簡✓;繁概述"
+      },
+      "en": "correct",
+      "zhs": "correct",
+      "zht": "fixed",
+      "error": "繁體把角色Mischa訛成不存在的『珍米莎』並給了不符的描述(『極度自信宣稱天生該成為舞台中心』),且整個漏掉Ricky Potts(生前失語死後發聲)。六名角色經URI/Alliance/Fandom證實為Ocean/Noel/Mischa/Ricky/Constance/Jane Doe。",
+      "zht_fix_target": "珍米莎則以極度自信、近乎誇張的姿態，宣稱自己天生就該成為舞台中心。",
+      "zht_fix_to": "外表桀驁的饒舌少年米沙，藉著對只在網路上相識的未婚妻塔莉亞的深情，袒露內心的柔軟；生前無法言語的瑞奇，則在死後找回聲音，訴說他腦海中繁盛的星際世界。"
+    },
+    "Rocky the Musical (the stage musical based on the 1976 Rocky boxing film, Ahrens & Flaherty)": {
+      "date": "2026-08-28 03:02",
+      "method": "chrome-multisource",
+      "sources": [
+        "Wikipedia",
+        "MTI(官方full synopsis)",
+        "TheaterMania",
+        "Exeunt NYC",
+        "Drayton Entertainment",
+        "Lord What's My Motivation",
+        "IMDb"
+      ],
+      "checklist": {
+        "費城小拳手Rocky Balboa,替高利貸Gazzo收帳": true,
+        "追求寵物店員Adrian(好友Paulie的害羞妹妹)": "英✓;簡✓(Paulie肉厂工人正確);繁✓",
+        "教練Mickey曾嫌他浪費天分": true,
+        "重量級冠軍Apollo Creed挑戰者退賽,選中綽號『義大利種馬』的Rocky打獨立紀念/新年賽": true,
+        "Rocky目標非奪冠而是『撐滿全場(go the distance)』": true,
+        "苦訓後屢倒屢起,與Apollo鏖戰到終場,贏回自尊": true
+      },
+      "en": "correct",
+      "zhs": "correct",
+      "zht": "correct",
+      "notes": "三語與Wikipedia/MTI官方一致(Gazzo/Adrian寵物店/Paulie/go the distance)。皆保留原文。"
+    },
+    "Rudolph the Red-Nosed Reindeer": {
+      "date": "2026-08-28 03:02",
+      "method": "chrome-multisource",
+      "sources": [
+        "Rudolph Fandom Wiki",
+        "Villains Wiki",
+        "Universal Pictures",
+        "Freeform",
+        "Reddit r/whatisit",
+        "Jane Sawyer Makes"
+      ],
+      "checklist": {
+        "雪人Sam旁白;北極聖誕鎮;Rudolph天生會發光的紅鼻子遭取笑": true,
+        "父親Donner;善良母鹿Clarice鼓勵他": true,
+        "精靈Hermey想當牙醫;兩個格格不入的夥伴結伴出走": true,
+        "淘金客Yukon Cornelius;雪怪Bumble(Abominable Snow Monster)": "英✓繁✓(邦布爾);簡✗(誤譯成『大黄蜂/bumblebee』,牠是雪怪)",
+        "不合群玩具島(King Moonracer);平安夜暴風雪,Rudolph紅鼻子引路救聖誕節": true
+      },
+      "en": "correct",
+      "zhs": "fixed",
+      "zht": "correct",
+      "error": "簡體把雪怪Bumble(Yukon對Abominable Snow Monster的稱呼)誤譯成『大黄蜂』(bumblebee/大黃蜂)——牠是雪怪不是蜂。Fandom/Villains Wiki證實Bumble=雪怪。",
+      "zhs_fix_target": "并多次躲避可怕的雪怪“大黄蜂”",
+      "zhs_fix_to": "并多次躲避可怕的雪怪“邦布尔”"
+    },
+    "Ruthless": {
+      "date": "2026-08-28 03:02",
+      "method": "chrome-multisource",
+      "sources": [
+        "Wikipedia",
+        "StageAgent",
+        "Lisa Mansour(劇評)",
+        "Raleigh Little Theatre",
+        "HEC-TV",
+        "Ladue News",
+        "SLOC"
+      ],
+      "checklist": {
+        "1950s主婦Judy Denmark與8歲反社會女兒Tina;經紀人Sylvia St. Croix煽動野心": true,
+        "Tina爭校內音樂劇《Pippi in Tahiti》主角未果(給了Louise Lerman)": true,
+        "Tina用跳繩把Louise吊死取而代之,事後被送進危險童星學校": "英✓;簡✓(跳繩吊死經Lisa Mansour證實);繁概述『無法挽回的後果』",
+        "祖母/養母Lita Encore=毒舌劇評家;生母Ruth Del Marco曾被Lita評論毀掉": "英✓簡✓;繁未點名(非錯)",
+        "Judy發現表演天賦,改名Ginger Del Marco成百老匯明星": "英✓簡✓;繁概述",
+        "身分/家族史/舊怨交織成鬧劇,Tina野心不減": true
+      },
+      "en": "correct",
+      "zhs": "correct",
+      "zht": "correct",
+      "notes": "戲仿Bad Seed/Gypsy/All About Eve。簡體『跳繩吊死Louise』經Lisa Mansour劇評證實正確;角色關係(Sylvia/Lita/Ruth/Ginger)皆對。繁較簡略但無錯。皆保留原文。"
+    },
+    "Scrooge": {
+      "date": "2026-08-28 03:02",
+      "method": "chrome-multisource",
+      "sources": [
+        "Wikipedia(Scrooge musical)",
+        "Moviepedia Fandom",
+        "Durham Musical Theatre",
+        "Theatricalia",
+        "Theatre Bristol",
+        "Medium(Peter Sanfilippo)",
+        "JAY Records"
+      ],
+      "checklist": {
+        "維多利亞倫敦;吝嗇放款人Scrooge厭惡聖誕,苛待職員Bob Cratchit": true,
+        "外甥名=Harry(哈利)": "英✓;繁✗(用狄更斯原著名『佛瑞德/Fred』);簡✗(用『弗雷德/Fred』)——Bricusse音樂劇角色表為Harry",
+        "亡故合夥人Marley現身+三聖誕精靈": true,
+        "失戀對象=Isabel(Fezziwig之女)": "英✓;簡✓(伊莎贝尔);繁✗(用『貝兒/Belle』狄更斯名)",
+        "未來精靈揭無人哀悼的死者即自己;Scrooge悔悟行善(送火雞/加薪/照顧小提姆)": true
+      },
+      "en": "correct",
+      "zhs": "fixed",
+      "zht": "fixed",
+      "error": "Bricusse的Scrooge音樂劇把外甥命名為『Harry』、失戀對象為『Isabel』(Wikipedia角色表+Moviepedia+Durham證實)。繁簡都把外甥寫成狄更斯原著的『Fred』(繁佛瑞德/簡弗雷德);繁另把失戀對象寫成原著的『貝兒/Belle』(應Isabel)。屬『驗音樂劇本身卻套原著名』。簡的『伊莎贝尔』對。",
+      "zhs_fix_target": "弗雷德",
+      "zhs_fix_to": "哈利",
+      "zhs_fix_note": "簡體『弗雷德』(外甥)→『哈利』,2處replace-all;失戀對象『伊莎贝尔』已對不動",
+      "zht_fixes": [
+        {
+          "target": "佛瑞德",
+          "to": "哈利",
+          "note": "繁外甥名2處"
+        },
+        {
+          "target": "失去心愛的貝兒",
+          "to": "失去心愛的伊莎貝爾"
+        }
+      ]
+    },
+    "Sinatra The Musical": {
+      "date": "2026-08-28 03:02",
+      "method": "chrome-multisource",
+      "sources": [
+        "London Theatre",
+        "The Guardian(劇評)",
+        "Broadway.com",
+        "Nederlander Theatres(官方)",
+        "Variety",
+        "London Theatre Reviews",
+        "Cassidy Travel"
+      ],
+      "checklist": {
+        "Frank Sinatra於紐約Paramount劇院崛起成全國偶像(1942)": true,
+        "妻子Nancy Sinatra與孩子;父母Dolly/Marty以他為傲": "英✓;繁簡✓Nancy與孩子",
+        "在好萊塢與影星Ava Gardner陷入熱戀,婚姻/名聲受創": true,
+        "八卦專欄(Hedda Hopper)與媒體把私事變公眾景觀,事業墜落": "英✓;繁簡以『輿論反噬』概述",
+        "憑意志與編曲家Nelson Riddle合作重建事業,完成史上最大復出": "英✓明確;繁簡以『重返巔峰』帶出"
+      },
+      "en": "correct",
+      "zhs": "correct",
+      "zht": "correct",
+      "notes": "三語與London Theatre/Guardian/Variety/官方一致(Paramount崛起、Nancy、Ava Gardner、醜聞墜落、復出)。皆保留原文。"
+    },
+    "The Smartest Giant in Town": {
+      "date": "2026-08-28 03:02",
+      "method": "chrome-multisource",
+      "sources": [
+        "juliadonaldson.co.uk(官方)",
+        "Julia Donaldson Fandom",
+        "WordPress(bferrante)",
+        "Kids Yoga Fun",
+        "Give Us A Story",
+        "Father Reading Every Day",
+        "Beibei"
+      ],
+      "checklist": {
+        "巨人George原穿破舊袍鞋被視為最邋遢,買了整套新衣(領帶/襯衫/長褲/襪/皮鞋/腰帶)": true,
+        "領帶→冷脖子的長頸鹿(圍巾)": true,
+        "襯衫→山羊(當船帆)": true,
+        "鞋→老鼠一家(當房子)": "英✓繁✓;簡概述",
+        "襪子→狐狸(當睡袋/床)": "英✓繁✓",
+        "腰帶→狗(鋪過沼澤bog)": "官方韻文+WordPress證實『belt across the bog for the dog』;英未提;繁✗(誤寫成『長褲鋪路』);簡未細寫",
+        "最後只剩內衣穿回舊袍;動物們送紙皇冠尊他為『最善良的巨人』": true
+      },
+      "en": "correct",
+      "zhs": "correct",
+      "zht": "fixed",
+      "error": "繁體把幫狗過沼澤的物品寫成『長褲』,原著是『腰帶(belt)』(官方韻文+WordPress:He puts his belt across the bog to help the dog)。George全程送出的是領帶/襯衫/鞋/襪/腰帶,並未送長褲。",
+      "zht_fix_target": "小狗困在泥濘裡過不了路，他又把長褲脫下來鋪成通道。",
+      "zht_fix_to": "小狗要過一片泥濘的沼澤，他便解下腰帶鋪成一座橋，讓小狗安全通過。"
+    },
+    "The Spongebob Musical": {
+      "date": "2026-08-28 03:12",
+      "method": "chrome-multisource",
+      "sources": [
+        "SpongeBob Fandom",
+        "Wikipedia",
+        "StageAgent",
+        "Concord Theatricals(官方)",
+        "The Sound on Stage",
+        "Wheelock Family Theatre",
+        "TV Tropes"
+      ],
+      "checklist": {
+        "比奇堡火山Mount Humongous將爆發威脅全鎮": true,
+        "登火山阻止爆發的三人組=海綿寶寶+派大星+珊迪(Sandy造泡泡裝置Eruption Interrupter)": "英✓繁✓;簡✗(誤寫成海綿寶寶+派大星+章魚哥,把珊迪換成章魚哥)",
+        "派大星被一群沙丁魚奉為崇拜的精神領袖": "英✓;簡✗(誤把此arc安給章魚哥)",
+        "章魚哥的線=想藉義演/慈善音樂會實現藝術野心": "英✓繁✓;簡漏",
+        "Plankton/Karen藉恐慌牟利;珊迪被當代罪羔羊排斥": true,
+        "珊迪登頂啟動裝置,火山未爆,泡泡落下拯救比奇堡;蟹老闆終認可海綿寶寶": true
+      },
+      "en": "correct",
+      "zhs": "fixed",
+      "zht": "correct",
+      "error": "簡體兩處角色錯位:①登火山的第三人應是珊迪(Sandy,造裝置的科學家),簡體誤寫成章魚哥;②被沙丁魚奉為崇拜英雄的是派大星(Patrick),簡體誤安給章魚哥。Fandom/Wheelock/Sound on Stage證實。",
+      "zhs_fix_target": "他和派大星、章鱼哥决定登上危险的火山，寻找阻止喷发的方法。途中，章鱼哥意外成为众人崇拜的“英雄”，享受着从未得到过的关注；而松鼠珊迪则凭借科学知识研制装置，努力寻找解决危机的技术方案。",
+      "zhs_fix_to": "他和派大星、松鼠珊迪决定登上危险的火山，寻找阻止喷发的方法。途中，派大星意外被一群沙丁鱼奉为崇拜的“精神领袖”，享受着从未得到过的关注；珊迪则凭借科学知识，研制出以泡泡阻止喷发的装置，努力寻找化解危机的技术方案。"
+    },
+    "Summer - The Donna Summer Musical": {
+      "date": "2026-08-28 03:12",
+      "method": "chrome-multisource",
+      "sources": [
+        "StageAgent",
+        "Wikipedia",
+        "Playbill",
+        "LA Times",
+        "jhpentertainment",
+        "Riverside Center",
+        "Theatre Washington"
+      ],
+      "checklist": {
+        "三位演員飾三階段唐娜:Diva Donna/Disco Donna/Duckling Donna": "英✓繁✓;簡以迪娃/唐娜/拉唐娅呈現(拉唐娅=本名LaDonna,非標準Duckling標籤但非事實錯誤)",
+        "波士頓成長(福音/教堂歌唱),渴望以歌聲離開受限生活": true,
+        "赴德國發展(與Gunther的傷害性關係)": "英✓;繁簡以德國感情/婚姻概述",
+        "回美與製作人Giorgio Moroder/Pete Bellotte/Casablanca的Neil Bogart合作走紅": "英✓;繁簡以『製作人合作』概述",
+        "成名代價:被塑造成性感符號、產業操控、成癮;Bruce Sudano成為穩定伴侶": "英✓;繁簡✓",
+        "在家庭/信仰/自我反省中重新掌握自己的聲音": true
+      },
+      "en": "correct",
+      "zhs": "correct",
+      "zht": "correct",
+      "notes": "三語核心(三階段唐娜/波士頓福音/Moroder/性感符號壓力/Bruce Sudano)皆與Wikipedia+LA Times一致。簡『拉唐娅』為Donna本名LaDonna,雖非『Duckling Donna』標籤但非錯,保留。皆保留原文。"
+    },
+    "Sylvia (the ZooNation hip-hop dance musical about suffragette Sylvia Pankhurst; not the A.R. Gurney play)": {
+      "date": "2026-08-28 03:12",
+      "method": "chrome-multisource",
+      "sources": [
+        "Wikipedia",
+        "ZooNation(官方)",
+        "Old Vic",
+        "StageAgent",
+        "London Theatre",
+        "Capital Theatres",
+        "The Mancunion"
+      ],
+      "checklist": {
+        "ZooNation嘻哈舞蹈音樂劇(Kate Prince),寫參政運動者Sylvia Pankhurst": true,
+        "從Sylvia被婦女社會政治聯盟(WSPU)逐出展開;母Emmeline/姊Christabel主導": true,
+        "運動轉激烈(砸窗/示威/絕食/入獄);Sylvia抗拒暴力": true,
+        "Sylvia更在意工人女性/貧民/被噤聲者,反對只為特權女性發聲": "官方證實『revolution for the forgotten: working women, the impoverished, the silenced』",
+        "與工黨Keir Hardie相戀;與George Lansbury組東倫敦婦女參政聯盟": "英✓繁✓簡✓",
+        "1918部分女性獲投票權;家庭裂痕與階級不平等未消": true
+      },
+      "en": "correct",
+      "zhs": "correct",
+      "zht": "correct",
+      "notes": "三語與Wikipedia/ZooNation官方/Old Vic一致(Pankhurst家/Keir Hardie/East London Federation/工人女性焦點)。皆保留原文。"
+    },
+    "Thelma & Louise: A New Musical": {
+      "date": "2026-08-28 03:12",
+      "method": "chrome-multisource",
+      "sources": [
+        "Wikipedia",
+        "IMDb",
+        "Sonia Friedman(官方)",
+        "Britannica",
+        "London Theatre",
+        "Daily Script",
+        "NCR"
+      ],
+      "checklist": {
+        "Louise(女侍)邀好友Thelma(困在與Darryl的婚姻)週末出遊": true,
+        "路邊honkytonk酒吧;Harlan意圖強暴Thelma,Louise持槍阻止並在他挑釁時開槍打死他": true,
+        "怕司法不信,兩人不報警,改逃往墨西哥(避開德州)": true,
+        "年輕流浪者JD(魅力/偷走Louise存款);Thelma從此主動搶劫商店": "英✓;繁✓(J.D.);簡以『金钱被盗』概述",
+        "Investigator Hal Slocumb循證/綠色Thunderbird追查成公開追捕": "英✓;繁簡以『警方追捕』概述",
+        "抵大峽谷被包圍,拒絕投降,牽手駕車衝下(不屈結局)": true
+      },
+      "en": "correct",
+      "zhs": "correct",
+      "zht": "correct",
+      "notes": "三語與Wikipedia/Britannica/官方一致(Harlan/JD/Hal Slocumb/綠Thunderbird/大峽谷)。皆保留原文。"
+    },
+    "Thrill Me: The Leopold & Loeb Story (the two-man off-Broadway thriller musical by Stephen Dolginoff)": {
+      "date": "2026-08-28 03:12",
+      "method": "chrome-multisource",
+      "sources": [
+        "Wikipedia",
+        "Concord Theatricals(官方)",
+        "百度百科",
+        "Musical Theatre Review",
+        "WOMR",
+        "loebandleopold WordPress",
+        "OurQuadCities"
+      ],
+      "checklist": {
+        "以1958 Joliet監獄Nathan Leopold第五次假釋聽證為框架,閃回1924芝加哥": "英✓簡✓;繁略寫『受審前』(框架較含糊但非假事實)",
+        "Nathan痴迷Richard Loeb,為留住他而參與縱火/偷竊": true,
+        "以血簽契約:Richard給親密,Nathan給才智協助犯罪": "英✓簡✓;繁概述『考驗/換取愛意』",
+        "Richard策劃綁架謀殺無辜少年Bobby Franks,自認完美犯罪": true,
+        "Nathan遺落的眼鏡成關鍵線索;兩人被判終身監禁": "英✓簡✓(簡另捕捉『眼鏡或為Nathan刻意』的翻轉);繁✓眼鏡破綻",
+        "多年後Nathan獲假釋,但Richard早已死於獄中(1936被獄友所殺)": "英✓簡✓;繁未寫(非錯)"
+      },
+      "en": "correct",
+      "zhs": "correct",
+      "zht": "correct",
+      "notes": "三語核心(1924罪案/血契約/Bobby Franks/眼鏡線索)皆與Concord官方+Wikipedia一致。簡最完整(含1958框架+眼鏡翻轉+Richard獄中死);繁較簡略、框架寫『受審前』略含糊但無假事實。皆保留原文。★此劇結尾需與『flames』併組。"
+    },
+    "Trainspotting the Musical": {
+      "date": "2026-08-28 03:12",
+      "method": "chrome-multisource",
+      "sources": [
+        "London Theatre",
+        "tickadoo",
+        "Theatre Weekly",
+        "Rolling Stone UK",
+        "Trainspotting Live(官方)",
+        "Audible",
+        "Wikipedia(小說)"
+      ],
+      "checklist": {
+        "設定年代=1980年代愛丁堡(海洛因/經濟蕭條)": "英✓繁✓(1980年代末);簡✗(誤寫『20世纪90年代』,應1980年代)",
+        "主角Mark Renton與Sick Boy/Spud/Tommy/Begbie/Kelly等毒友": "英✓繁✓;簡有Renton/Sick Boy/Tommy/Begbie(漏Spud,非錯)",
+        "找錢/找海洛因/逃避後果;友情因競爭與成癮受損": true,
+        "Renton屢次戒毒失敗;Tommy因毒品崩壞;(繁提嬰兒疏於照顧而死)": "英/繁✓;簡以Tommy崩壞帶出",
+        "眾人赴倫敦毒品交易得鉅款;Renton帶走大部分錢背叛同伴離開": true
+      },
+      "en": "correct",
+      "zhs": "fixed",
+      "zht": "correct",
+      "error": "簡體把設定年代寫成『20世纪90年代』,實際是1980年代愛丁堡(tickadoo/Theatre Weekly/Rolling Stone/官方皆證『1980s/late-1980s Edinburgh』)。",
+      "zhs_fix_target": "《猜火车》音乐剧聚焦20世纪90年代爱丁堡的一群边缘青年。",
+      "zhs_fix_to": "《猜火车》音乐剧聚焦20世纪80年代爱丁堡的一群边缘青年。"
+    },
+    "Two Strangers (Carry a Cake Across New York) — the British stage musical": {
+      "date": "2026-08-28 03:22",
+      "method": "chrome-multisource",
+      "sources": [
+        "Wikipedia",
+        "New York Theatre Guide",
+        "This Week in New York",
+        "NYT",
+        "WSJ",
+        "Exeunt NYC",
+        "Playbill"
+      ],
+      "checklist": {
+        "英國樂觀青年Dougal Todd來紐約參加從未謀面的父親Mark的婚禮": true,
+        "新娘Melissa(Mark的年輕未婚妻)之妹Robin Rainey到機場接他": true,
+        "去布魯克林(Flatbush)取多層婚禮蛋糕;兩人拖著蛋糕穿越紐約結緣": true,
+        "借Mark信用卡展開一夜曼哈頓冒險": true,
+        "翻轉:Melissa邀Dougal是為報復Mark出軌;Mark長期隱瞞Dougal;Mark出軌對象竟是Robin": "英✓簡✓;繁以『背叛與報復』概述(未明點Mark-Robin)",
+        "Dougal最終沒走進Trinity教堂;兩人在中餐館分食蛋糕、自創婚禮": true
+      },
+      "en": "correct",
+      "zhs": "correct",
+      "zht": "correct",
+      "notes": "三語與Wikipedia+NYT+官方一致(Dougal/Mark/Robin/Melissa/蛋糕/Mark-Robin翻轉/中餐館結局)。繁對Mark-Robin翻轉較含蓄但無假事實。皆保留原文。"
+    },
+    "The Unauthorized Hallmark(ish) Parody Musical": {
+      "date": "2026-08-28 03:22",
+      "method": "chrome-multisource",
+      "sources": [
+        "theWorkbook(casting)",
+        "官方Squarespace",
+        "front mezz junkies",
+        "Comedy Cake",
+        "Sesaya Arts",
+        "Fever",
+        "BroadwayWorld"
+      ],
+      "checklist": {
+        "戲仿Hallmark聖誕電影;大城市高管Holly聖誕返回古怪小鎮幫母親Merry顧家族生意": true,
+        "小鎮節慶漩渦:餅乾大賽、企業併購案、一隻脫逃的駝鹿": true,
+        "與舊情人Mark(小鎮警長)重逢舊情復燃": "英✓繁✓簡✓",
+        "餅乾大賽牽出作弊陰謀(對手Cookie)": "英✓繁✓;簡以『长期作弊的秘密』帶出",
+        "Holly在職涯晉升與重拾的小鎮情感/歸屬間抉擇,最終選擇連結與愛": true
+      },
+      "en": "correct",
+      "zhs": "correct",
+      "zht": "correct",
+      "notes": "三語與官方+多篇報導一致(Holly返鄉/母Merry/警長Mark/餅乾大賽作弊/脫逃駝鹿)。戲仿荒誕元素皆吻合。皆保留原文。"
+    },
+    "WaistWatchers The Musical!": {
+      "date": "2026-08-28 03:22",
+      "method": "chrome-multisource",
+      "sources": [
+        "官方waistwatchersthemusical.com",
+        "Carol Kassie(卡司表)",
+        "Facebook Casting Calls UK",
+        "miracleor2"
+      ],
+      "checklist": {
+        "庫克女子健身房;四名女性面對節食/運動/年齡/感情/身材焦慮": true,
+        "四人=Connie/Carla/Cindy/Cheryl(+活力年輕教練)": "英✓繁✓;簡✗(把Cindy/Cheryl捏造成『黛布Deb/露西Lucy』)",
+        "Connie首次上健身房想重拾性感,擔心丈夫不再覺得她有魅力": true,
+        "把節食失敗/暴食/整形/性/婚姻/變老化成誇張歌舞段落": true,
+        "結局非找到神奇節食法,而是在友誼中被誠實看見、學會自我接納": true
+      },
+      "en": "correct",
+      "zhs": "fixed",
+      "zht": "correct",
+      "error": "簡體把四位女性中的Cindy與Cheryl捏造成不存在的『黛布(Deb)』與『露西(Lucy)』。官方卡司表(Carol Kassie)證實四人為Connie/Carla/Cindy/Cheryl。",
+      "zhs_fix_target": "康妮、卡拉、黛布和露西是常在这里碰面的好友",
+      "zhs_fix_to": "康妮、卡拉、辛蒂和雪柔是常在这里碰面的好友"
+    },
+    "Wanted (the original stage musical about outlaw twin sisters in the American West)": {
+      "date": "2026-08-28 03:22",
+      "method": "chrome-multisource",
+      "sources": [
+        "NAMT(官方synopsis,fka Gun & Powder)",
+        "Wikipedia(Wanted: Legend of the Sisters Clarke)",
+        "Broadway.com",
+        "New York Theatre Guide",
+        "Washington Post",
+        "BroadwayWorld(Paper Mill)",
+        "DCist"
+      ],
+      "checklist": {
+        "1893德州;黑人雙胞胎Mary與Martha Clarke,母親Tallulah受地主/佃農債務逼迫": true,
+        "淺膚色姊妹發現可偽裝成白人,離家籌錢救母/奪回尊嚴": true,
+        "進入白人酒館/旅館世界:酒館老闆Jesse Whitewater、黑人青年Elijah、Flo/Sissy": "英✓;繁提Jesse/Elijah;簡提Jesse/Elijah",
+        "由被迫冒險走向持槍搶劫、成為通緝亡命姊妹(源自音樂劇Gun & Powder,Chéri祖先)": true,
+        "祖靈Kinfolk的聲音相伴": "英✓;繁簡未提(非錯)"
+      },
+      "en": "correct",
+      "zhs": "correct",
+      "zht": "correct",
+      "flag_unresolved": "三語對兩姊妹性格描述不一致:英文說Mary=謹慎/內在矛盾(引起Jesse注意)、Martha=剛烈(與Elijah連結);繁簡則說Martha=謹慎、Mary=大膽/沉醉於偽裝自由。Jesse/Elijah的配對僅英文明確指定,繁簡未指定。NAMT官方synopsis只到『a little romance shakes everything up』,WaPo提『profound transformation Mary undergoes』(略偏向Mary為轉變最大者)。外部來源無法明確定奪誰謹慎誰大膽——依誠實原則不臆測硬修,標記待日後有更明確劇本/官方資料再定。核心劇情三語皆正確。",
+      "notes": "核心(1893德州/黑人雙胞胎偽裝白人/救母債務/成亡命之徒/Jesse/Elijah)三語皆與NAMT官方+Wikipedia一致。僅姊妹性格細節不一致且外部未能證實,見flag_unresolved。皆暫保留原文。"
+    },
+    "Whispering Jack: The John Farnham Musical": {
+      "date": "2026-08-28 03:29",
+      "method": "chrome-multisource",
+      "sources": [
+        "Michael Cassel Group(官方)",
+        "Sydney Theatre Company(官方)",
+        "Rolling Stone Australia",
+        "The Guardian",
+        "BroadwayWorld",
+        "themusic.com.au",
+        "Kings Coaches"
+      ],
+      "checklist": {
+        "澳洲歌手John Farnham(King of Pop流行樂之王)事業低潮的背水一戰": true,
+        "1970年代末在RSL退伍軍人俱樂部趕場、加入Little River Band(小河樂團)巡演卻難脫『過氣』標籤": "英未提LRB;繁✓簡✓(Rolling Stone/BroadwayWorld證實)",
+        "1986年在墨爾本郊區車庫與經紀人Glenn Wheatley、新團隊錄製新專輯": true,
+        "妻子Jill支撐;Wheatley以固執信念(甚至抵押房子)推動翻身": true,
+        "〈You're the Voice〉+電台主管Cherie Romaro大力播送→席捲全國的復出": true
+      },
+      "en": "correct",
+      "zhs": "correct",
+      "zht": "correct",
+      "notes": "三語與Michael Cassel官方+Rolling Stone一致(King of Pop/RSL clubs/Little River Band/Glenn Wheatley/1986/You're the Voice)。繁簡從1970年代末講起反而比英文更完整。皆保留原文。"
+    },
+    "White Christmas": {
+      "date": "2026-08-28 03:29",
+      "method": "chrome-multisource",
+      "sources": [
+        "IMDb",
+        "Wikipedia",
+        "StageAgent",
+        "Brighton Musical",
+        "breakingcharacter",
+        "Town Theatre",
+        "Law & Liberty"
+      ],
+      "checklist": {
+        "二戰戰友Bob Wallace與Phil Davis戰後成當紅歌舞搭檔": true,
+        "結識Haynes姊妹Betty與Judy,隨她們到佛蒙特Pine Tree的Columbia Inn演出": true,
+        "旅館老闆竟是昔日長官Waverly將軍(退休後投入積蓄卻近破產、當地反常不下雪)": true,
+        "眾人辦大型聖誕秀救旅館並向將軍致敬": true,
+        "誤會:Betty以為Bob藉將軍困境為自己(電視/名聲)牟利而離開;後化解": "英/繁/簡皆✓(英『buy inn』略異,核心誤會相同)",
+        "結局:昔日部下齊聚、演出成功、Bob與Betty/Phil與Judy成對、終於下雪": true
+      },
+      "en": "correct",
+      "zhs": "correct",
+      "zht": "correct",
+      "notes": "三語與IMDb/Wikipedia/StageAgent一致(Bob/Phil/Haynes姊妹/Waverly將軍/Columbia Inn/誤會/下雪)。皆保留原文。"
+    },
+    "Wild About You": {
+      "date": "2026-08-28 03:29",
+      "method": "chrome-multisource",
+      "sources": [
+        "Charing Cross Theatre(官方)",
+        "london-theater-tickets",
+        "Facebook Wild About You官方",
+        "Stage Door News",
+        "Instagram官方"
+      ],
+      "checklist": {
+        "作曲作詞Chilina Kennedy、編劇Eric Holmes的新音樂劇": true,
+        "高中畢業日,Billy發現亡母Olivia寫給他的信件(原以為母親當年拋棄了他)": "英✓簡✓;繁✗(整篇是無關的異國浪漫驚悚)",
+        "Billy與好友Scoot循信中線索追尋母親一生": "英✓簡✓;繁✗",
+        "揭開Olivia複雜真實的一生(她的戀情、無法維繫的關係、對兒子的愛)": "英✓簡✓(簡提戀人Michael/Jess/Tom);繁✗",
+        "畢業成為與過去和解、更寬容理解自己的起點": "英✓簡✓;繁✗"
+      },
+      "en": "correct",
+      "zhs": "correct",
+      "zht": "fixed",
+      "error": "繁體整篇搞錯劇:生成的是一段『異國邂逅→秘密→追逐逃亡』的浪漫懸疑驚悚,與真實的Wild About You(Billy發現亡母Olivia舊信的尋根音樂劇,Chilina Kennedy/Eric Holmes)完全無關,是整篇幻覺。英/簡皆正確。繁需整篇重寫。",
+      "zht_fix_full_rewrite": true,
+      "zht_fix_to": "《Wild About You》從比利的高中畢業日展開。從小他就被告知,母親奧莉薇亞在他年幼時拋下了他,他早已學會與這份無解的缺席共處。然而畢業當天,他意外發現一只裝滿信件的箱子——那些都是奧莉薇亞當年寫給他的信。信件推翻了他多年來被灌輸的過去,也將他拉進這位他從未真正認識的母親、既複雜又親密的人生故事。\n\n在最好的朋友史庫特陪伴下,比利循著奧莉薇亞留下的線索前行。隨著兩人走過形塑她一生的人、地點與轉折,比利逐漸看見母親每個選擇背後的情感代價:她追求過的戀情、無法維繫的關係,以及她對兒子始終熾烈的愛。原本只是尋找事實的旅程,最終成為與遺傳而來的傷痛正面相對——比利必須決定,信中的母親能否與他多年來想像的那個母親和解。\n\n奧莉薇亞的故事沒有簡單的解釋,也沒有單一的壞人;它呈現的是一個在慾望、恐懼、錯誤與失去中,仍努力想被看見、被愛、被原諒的人。比利了解得越多,越不確定身分能否被他人講述的家族故事所定義,也越想清楚自己要把什麼帶進成年後的人生。\n\n全劇讓畢業不只是一場儀式性的結束,而是與自身過去建立新關係的起點:當比利終於觸及母親缺席背後的情感真相,他也帶著對自己更完整、更寬容的理解,走向未來。"
+    },
+    "The Will Rogers Follies": {
+      "date": "2026-08-28 03:41",
+      "method": "chrome-multisource",
+      "sources": [
+        "Wikipedia",
+        "StageAgent",
+        "Filmed Live Musicals",
+        "rationalmagic",
+        "Colorado Springs Pioneers Museum",
+        "NYT(1991)",
+        "New Haven Review"
+      ],
+      "checklist": {
+        "以Ziegfeld Follies歌舞秀為框架,Ziegfeld畫外音要求故事更浪漫/盛大": true,
+        "奧克拉荷馬牧場出生,父親Clem盼他繼承牧場;19歲赴阿根廷闖蕩": true,
+        "遇妻Betty Blake,結婚生子(4個);以套索與詼諧走紅vaudeville與Follies": true,
+        "成明星(舞台/廣播/報紙/好萊塢),甚至被推舉選總統": true,
+        "大蕭條;與飛行員好友Wiley Post前往阿拉斯加,墜機身亡(1935)": true
+      },
+      "en": "correct",
+      "zhs": "correct",
+      "zht": "correct",
+      "notes": "三語與Wikipedia/StageAgent一致(Ziegfeld框架/Clem/Betty Blake/Wiley Post阿拉斯加空難1935)。皆保留原文。"
+    },
+    "Wonderland (the Frank Wildhorn stage musical, a modern retelling of Alice in Wonderland)": {
+      "date": "2026-08-28 03:41",
+      "method": "chrome-multisource",
+      "sources": [
+        "Wikipedia",
+        "MTI(官方)",
+        "Kids Kiddle",
+        "Fandom Musical Directory",
+        "Masterworks Broadway",
+        "IBDB",
+        "Carey Purcell"
+      ],
+      "checklist": {
+        "紐約童書作家Alice Cornwinkle(努力修補與丈夫Jack的婚姻/親子關係/寫作)": "簡✓(女作家);英✗(誤稱divorced且未提作家);繁✗(誤寫『職場升遷』)",
+        "10歲女兒名=Chloe": "繁✓(克蘿伊)簡✓(克洛伊);英✗(誤寫Ellie)",
+        "追白兔搭電梯墜入奇境;毛毛蟲/柴郡貓/瘋帽客/三月兔等": true,
+        "主反派=瘋帽客(Mad Hatter,女性,利用紅心皇后奪權)": "繁✓簡✓(Kiddle證實Mad Hatter=main villain);英✗(把Queen of Hearts當主反派)",
+        "白騎士與丈夫Jack相關;Alice直面內心恐懼、重拾力量,回現實修補與女兒關係": "繁✓(白騎士神似傑克)"
+      },
+      "en": "fixed",
+      "zhs": "correct",
+      "zht": "fixed",
+      "error": "這齣英/繁都有錯、簡體最準:①女兒名應為Chloe——英文誤寫『Ellie』(繁簡皆對克蘿伊/克洛伊)。②Alice是童書作家——簡✓,繁誤寫『職場升遷近在咫尺』,英未提且誤稱『divorced』(實為努力修補與Jack的婚姻)。③主反派是瘋帽客(利用皇后奪權,Kiddle證實)——繁簡✓,英文卻把紅心皇后當主反派。Wikipedia/MTI/Kiddle/Masterworks證實。",
+      "en_fix_target": "Ellie",
+      "en_fix_to": "Chloe",
+      "en_fix_note": "英文daughter名Ellie→Chloe,replace-all(約4處)",
+      "zht_fix_target": "工作上的升遷近在咫尺，親子關係卻日漸緊張。",
+      "zht_fix_to": "身為童書作家的她卻苦於寫作停滯，與女兒的關係也日漸緊張。"
+    },
+    "Pride (the stage musical based on LGSM — Lesbians and Gays Support the Miners during the 1984 UK miners strike; not the film)": {
+      "date": "2026-08-28 03:41",
+      "method": "chrome-multisource",
+      "sources": [
+        "National Theatre(官方)",
+        "The Guardian",
+        "London Theatre Direct",
+        "Variety",
+        "BroadwayWorld",
+        "West End Theatre",
+        "Film Comment"
+      ],
+      "checklist": {
+        "1984-85英國礦工大罷工;24歲同志行動者Mark Ashton號召成立LGSM(女同志與男同志聲援礦工)": true,
+        "以倫敦Gay's the Word書店為據點募款": "英✓;繁簡以酒吧/街頭募款帶出(Gay's the Word繁提書店)",
+        "工會不願接受同志捐款→與南威爾斯Dulais Valley(杜莱斯谷)礦村結盟": "英✓簡✓(杜莱斯谷);繁✓南威爾斯礦村",
+        "村民從猜疑(Maureen)到接納(Hefina/Dai/Sian/Cliff);共餐/跳舞/募款化解隔閡": true,
+        "罷工惡化/警察壓力/兩邊的恐同/AIDS陰影考驗聯盟,兩社群仍選擇彼此": true
+      },
+      "en": "correct",
+      "zhs": "correct",
+      "zht": "correct",
+      "notes": "三語與National Theatre官方+多源一致(Mark Ashton/LGSM/Dulais Valley/Gay's the Word/1984)。簡『杜莱斯谷』正確。皆保留原文。"
+    },
+    "Our Ladies of Perpetual Succour (the stage musical based on the novel The Sopranos by Alan Warner; Scottish schoolgirl choir)": {
+      "date": "2026-08-28 03:41",
+      "method": "chrome-multisource",
+      "sources": [
+        "Wikipedia",
+        "IMDb",
+        "The Guardian",
+        "Everything Theatre",
+        "TV Tropes",
+        "Blogger(hamsandwichcinema)",
+        "Always Time For Theatre"
+      ],
+      "checklist": {
+        "六名Oban天主教女校合唱團少女赴愛丁堡歌唱比賽(源自Alan Warner小說The Sopranos)": true,
+        "比賽只是逃離小鎮/修女管束的藉口;女孩甩開師長在城裡酗酒/調情/重塑自我": true,
+        "Fionnula帶頭衝;Kylah想離開Oban;Orla癌症康復、直面死亡與失去童貞": "英✓;繁✓(歐拉身體虛弱/病痛);簡以『失恋自我怀疑』帶出",
+        "Kay家境較優渥、背負意外懷孕的秘密": "英✓;繁✓(凱家境優渥/重大祕密);簡『意外怀孕』未指定對象(無矛盾)",
+        "酒精/陌生男子/友情衝突使歡樂一日失控,眾人面對慾望/性向/懷孕/階級/失去": true
+      },
+      "en": "correct",
+      "zhs": "correct",
+      "zht": "correct",
+      "notes": "三語與IMDb/Guardian/劇評一致(六Oban少女/愛丁堡/The Sopranos/Orla癌症/懷孕subplot)。懷孕歸給Kay為英繁一致、簡未指定,無矛盾不硬修。皆保留原文。"
+    },
+    "Vape! The Grease Parody (an original full-length parody musical spoofing Grease)": {
+      "date": "2026-08-28 03:41",
+      "method": "chrome-multisource",
+      "sources": [
+        "Sketchworks Comedy(官方PDF)",
+        "DC Theater Arts",
+        "Instagram vapethemusical(官方)",
+        "Lawrenceville Arts Center",
+        "Facebook Vape官方",
+        "Carol Fox Associates"
+      ],
+      "checklist": {
+        "Grease全本戲仿,搬到有電子煙/交友軟體/社群人氣的現代Rydell High": true,
+        "循Grease主線:暑假海灘Danny與Sandy相戀,開學重逢": "官方PDF證實『Danny and Sandy on the beach at the end of summer』",
+        "Pink Squad(Rizzo/Frenchy/Marty/Jan)、T-Bros(Kenickie/Sonny)": true,
+        "Rizzo懷孕驚魂、Frenchy美容學校/Teen Angel、飆車炫耀改成環保車『綠色閃電』": "英✓繁✓;簡✓(綠色閃電)",
+        "校園舞會/得來速;Danny面對『想要Sandy』與『善待Sandy』的差別": true
+      },
+      "en": "correct",
+      "zhs": "correct",
+      "zht": "correct",
+      "notes": "Sketchworks原創Grease戲仿。官方PDF證實開場海灘設定。三語皆貼合戲仿premise。簡『桑迪救起丹尼』屬戲仿性別翻轉玩笑、未證亦未否證,保留。皆保留原文。"
+    },
+    "Midnight (the stage musical written and directed by Todrick Hall, set in the 19th-century American South)": {
+      "date": "2026-08-28 03:47",
+      "method": "chrome-multisource",
+      "sources": [
+        "Wikipedia",
+        "Playbill",
+        "Sadler's Wells(官方)",
+        "BroadwayWorld",
+        "Instagram卡司表",
+        "Broadway.com",
+        "todrickhall(官方YT)"
+      ],
+      "checklist": {
+        "Todrick Hall創作/導演/編舞/主演的sung-through音樂劇,19世紀美國南方": true,
+        "12名人物(6黑6白)交織於種族/階級社會": "三語皆✓",
+        "Rail=幼時被賣為奴的年輕黑人男子(Todrick Hall飾),與Lily Rose相戀": "卡司表證實Rail/Lily Rose;三語皆✓",
+        "Scarlet=Rail的年輕女主人,愛上富鄰Richard": "卡司表證實Scarlet/Richard;三語皆✓",
+        "Rail與Richard發展出跨越種族/階級的禁忌之愛;Rail遭殘酷攻擊後秩序崩解": "三語皆✓(billing:love, conflict, search for understanding)"
+      },
+      "en": "correct",
+      "zhs": "correct",
+      "zht": "correct",
+      "notes": "卡司表(Todrick Hall as Rail/Jeremy Beloate as Richard/Charlotte Odusanya as Lily Rose/Kennedy Caughell as Scarlet/Ayana George as Ethel)+Playbill/Sadler's Wells官方證實角色與19世紀南方設定。三語皆一致。皆保留原文。"
+    },
+    "One Sleepy Night": {
+      "date": "2026-08-28 03:47",
+      "method": "chrome-multisource",
+      "sources": [
+        "onesleepynight.com(官方FAQ/auditions)",
+        "WEMU"
+      ],
+      "checklist": {
+        "底特律;退休的Grandpa Benny Wilson與妻LaToya關係疏遠": true,
+        "孫女Shantelle不懂聖誕故事,Benny藉魔法望遠鏡帶全家進入故事": true,
+        "Benny化身智者之首Kaspar;LaToya成Mrs. K": "官方FAQ逐字證實",
+        "Shantelle成Boss Shepherd(老大牧羊女),指揮三位哥哥": "官方FAQ逐字證實『bosses her three older brothers』",
+        "天使報信,眾人各自前往伯利恆終於匯合;回底特律後Benny與LaToya和解": true
+      },
+      "en": "correct",
+      "zhs": "correct",
+      "zht": "correct",
+      "notes": "官方onesleepynight.com FAQ與三語逐字吻合(Kaspar head Wiseman/Mrs. K/Boss Shepherd+三個哥哥/Benny Wilson/底特律聖誕音樂劇)。皆保留原文。"
+    },
+    "A Mardi Gras Carol": {
+      "date": "2026-08-28 03:59",
+      "method": "chrome-multisource",
+      "sources": [
+        "Visit Jefferson Parish(官方)",
+        "BroadwayWorld(Westwego)",
+        "Event Tickets Center"
+      ],
+      "checklist": {
+        "設定:紐奧良嘉年華;Ebeneezer『Bubba』Scrooge一輩子討厭Mardi Gras": true,
+        "Lundi Gras夜,三位『嘉年華遊行社團(Carnival Krewes)過去/現在/未來』的幽靈造訪": "官方逐字證實;英✓",
+        "有Bob Cratchit/Marley/Tiny Tim/Fred等狄更斯配角": "英✓(無);繁✗+簡✗(憑空加入,實際劇無這些角色)",
+        "三幽靈帶Bubba看清孤立自己的代價→擁抱嘉年華精神與社區": true
+      },
+      "en": "correct",
+      "zhs": "fixed",
+      "zht": "fixed",
+      "error": "繁簡都把這齣戲套成完整《小氣財神》模板,憑空加了Bob Cratchit(克拉奇特)、Marley(馬利)、Tiny Tim(小提姆)、姪子Fred等角色——但官方(Visit Jefferson Parish)synopsis明示本劇是『Bubba Scrooge + 三位嘉年華Krewe幽靈』的較輕量版,沒有這些狄更斯配角。又一繁簡『共同套模板』幻覺。英文版正確。",
+      "zhs_fix_full_rewrite": true,
+      "zhs_fix_to": "《狂欢节颂歌》将狄更斯式的救赎故事移到新奥尔良的狂欢节。埃比尼泽·“巴巴”·斯克鲁奇一辈子都讨厌狂欢节：在他眼里，游行、串珠、国王饼和满城喧闹都只是无谓的吵闹；当整座城市为庆典忙碌时，他固执地把自己关起来，与周遭的社区格格不入。\n\n到了狂欢节前夜（Lundi Gras），三位“狂欢节游行社团（Krewe）”的幽灵——过去、现在与未来——接连造访，各自带他走进新奥尔良与它的人们的不同景象。过去之灵让他重温那些使他心肠变硬、也让他淡忘欢乐的往事；现在之灵带他置身于他一直排斥的、鲜活的狂欢庆典中：满街的爵士乐、游行、邻里的传统，以及愿意彼此包容的人情温暖，让他渐渐明白，节庆的欢乐并非装饰或分心之物，而是一种归属的表达。\n\n最后一位幽灵则让他看见一成不变的代价：在一个没有慷慨、没有连结、没有共同庆祝的未来里，他彻底把自己隔绝在这座城市的生活之外，只会因怨恨被人记住。他终于意识到，自己的轻蔑剥夺的其实是他自己。\n\n全剧总结\n\n清晨到来时，巴巴决定拥抱曾经不屑一顾的精神，向邻里与狂欢节的欢乐敞开自己，重新走进这座城市的生活。",
+      "zht_fix_full_rewrite": true,
+      "zht_fix_to": "《A Mardi Gras Carol》把狄更斯式的救贖故事移到紐奧良的嘉年華。一輩子討厭狂歡節的艾貝尼澤・「巴巴」・史古基，在他眼中，遊行、串珠、國王蛋糕與滿城喧鬧都只是無謂的吵鬧；當整座城市為慶典忙碌時，他固執地把自己關起來，與周遭社區格格不入。\n\n到了嘉年華前夜（Lundi Gras），三位「嘉年華遊行社團（Krewe）」的幽靈——過去、現在與未來——接連造訪，各自帶他走進紐奧良與它的人們的不同景象。過去之靈讓他重見那些使他心腸變硬、也讓他淡忘歡樂的往事；現在之靈帶他置身於他一直排斥的、鮮活的嘉年華慶典：滿街的爵士樂、遊行、鄰里傳統，以及願意彼此包容的人情溫暖，使他漸漸明白，節慶的歡樂並非裝飾或分心，而是一種歸屬的表達。\n\n最後一位幽靈則讓他看見一成不變的代價：在一個沒有慷慨、沒有連結、沒有共同慶祝的未來裡，他徹底把自己隔絕在這座城市的生活之外，只會因怨恨被人記住。他終於明白，自己的輕蔑剝奪的其實是他自己。\n\n全劇總結\n\n清晨到來時，巴巴選擇擁抱曾經不屑一顧的精神，向鄰里與嘉年華的歡樂敞開自己，重新走進這座城市的生活。"
+    },
+    "The Con Musical": {
+      "date": "2026-08-28 03:59",
+      "method": "chrome-multisource",
+      "sources": [
+        "Instagram/Hayes Theatre Co(Redfern Lane Productions)",
+        "Facebook Hayes Theatre Co",
+        "TCM",
+        "Segal Center CUNY"
+      ],
+      "checklist": {
+        "確有此劇(Redfern Lane Productions × Hayes Theatre Co,『seduced, swindled, swept off your feet』的騙局/浪漫音樂劇)": true,
+        "核心:精心設局的騙局、信任與背叛、身分偽裝、層層翻轉": "三語皆以通用騙術主題描寫(公開劇情資料極少)",
+        "具體角色名/設定": "三語皆未給(資料不足);單一騙徒(英/繁) vs 一群年輕人(簡)框架略異"
+      },
+      "en": "correct",
+      "zhs": "correct",
+      "zht": "correct",
+      "notes": "『The Con』為新/冷門音樂劇(Hayes Theatre),公開詳細劇情極少,三語皆為通用『騙局主題』描述、無可查證的具體事實錯誤。單一騙徒vs群體的框架差異外部無法定奪,依誠實原則不臆測硬修,標記為資料受限。皆暫保留原文。"
+    },
+    "Santa Claus (the family stage musical about Father Christmas)": {
+      "date": "2026-08-28 04:08",
+      "method": "chrome-multisource",
+      "sources": [
+        "santaclausthemusical.com(官方)",
+        "Concord Theatricals",
+        "Plays To See",
+        "La Comedia",
+        "Children's Theatre of Cincinnati",
+        "Casa Mañana",
+        "Sydney Musical Theatre"
+      ],
+      "checklist": {
+        "平安夜;Santa與Mrs. Claus服務1000年後宣布退休、要訓練接班人": "官方逐字證實『After 1,000 years...train a replacement』",
+        "選中網站設計師/單親爸爸Nick接任": "Children's Theatre證實Nick",
+        "女兒Bee(Beatrice)聰慧、擅科技,協助化解工坊危機": "Children's Theatre證實『Nick and his daughter, Bee』;繁✓碧雅;簡✓(未點名)",
+        "嫉妒的精靈(繁:亨奇Henchy)不服接班安排,暗中破壞": "官方『jealous, naughty elf set on ruining Nick』;繁✓簡✓",
+        "眾人合作化解危機,Nick成長,理解當Santa在於關懷而非全知": true
+      },
+      "en": "correct",
+      "zhs": "correct",
+      "zht": "correct",
+      "notes": "官方+Children's Theatre證實(1000年退休/Nick/女兒Bee/嫉妒精靈)。簡未點名Bee/Henchy但無錯。皆保留原文。"
+    },
+    "8 Scott Ave - Night at the Towers (Jack Grace New Zealand original musical, the Smith family talent contest at Tudor Towers)": {
+      "date": "2026-08-28 04:08",
+      "method": "chrome-multisource",
+      "sources": [
+        "Sir Howard Morrison Centre(官方)",
+        "NZ Herald",
+        "Rotorua Daily Post",
+        "RotoruaNZ",
+        "Facebook Smith Whanau",
+        "PressReader"
+      ],
+      "checklist": {
+        "Jack Grace的紐西蘭原創音樂劇,設1970年代初羅托魯瓦Tudor Towers夜總會": "官方/FB證實『early 70s』『1970s』;繁✓簡✓1970年代",
+        "Jimmy Smith(替地下賽馬接注的bookie)聽到才藝賽消息": true,
+        "獎金=100元(紐西蘭劇,應為紐元/中性,非美元)": "英『$100』✓;繁『100元』✓;簡✗(誤寫『100美元/USD』)",
+        "他替四位姊妹報名(姊妹平日在成衣/縫紉廠工作、下班打牌)": true,
+        "姊妹面對盛裝登台/久經舞台(奧克蘭/上過電視)的對手,克服怯場找回自己的聲音": true
+      },
+      "en": "correct",
+      "zhs": "fixed",
+      "zht": "correct",
+      "error": "簡體把才藝賽獎金寫成『100美元(USD)』——這是紐西蘭羅托魯瓦的原創音樂劇,獎金應為紐元(或中性『100元』,如英/繁)。屬幣別誤植。",
+      "zhs_fix_target": "冠军可获得100美元奖金",
+      "zhs_fix_to": "冠军可获得100元现金奖金"
+    },
+    "Rollers Forever (the jukebox stage musical about the Bay City Rollers)": {
+      "date": "2026-08-28 04:11",
+      "method": "chrome-multisource",
+      "sources": [
+        "GlasgowWorld",
+        "Glasgow Times",
+        "Glasgow Times(review)",
+        "BroadwayWorld",
+        "Westender Magazine",
+        "Edinburgh News",
+        "官方Facebook/Instagram"
+      ],
+      "checklist": {
+        "Bay City Rollers點唱機音樂劇,滿是格紋(tartan)與懷舊": true,
+        "兩位一輩子的Bay City Rollers歌迷Jenny與Susan,某個週六夜重逢並重溫青春": "GlasgowWorld逐字證實",
+        "回到1970年代Rollermania狂熱(電話亭/郵購目錄/唱片)": true,
+        "偶像團員(簡:Les McKeown/Stuart『Woody』Wood)": "簡✓(真實團員);英/繁未點名",
+        "Susan的哥哥Alec也捲入回憶,同樣藏著對樂團的熱愛": "英✓簡✓;繁未提Alec(非錯)"
+      },
+      "en": "correct",
+      "zhs": "correct",
+      "zht": "correct",
+      "notes": "三語與GlasgowWorld/Glasgow Times一致(Jenny/Susan週六夜重逢/Rollermania/tartan)。簡點名的Les McKeown/Woody Wood為真實Bay City Rollers團員。皆保留原文。"
+    },
+    "Country Girl: The Musical (by Emma Heatherington, an Irish country-music love story)": {
+      "date": "2026-08-28 04:11",
+      "method": "chrome-multisource",
+      "sources": [
+        "countrygirlthemusical.com(官方)",
+        "Belfast Telegraph",
+        "PressReader/Sunday Life",
+        "Discover Northern Ireland",
+        "Data Thistle",
+        "LinkedIn Emma Heatherington",
+        "官方Facebook"
+      ],
+      "checklist": {
+        "Emma Heatherington(Co Tyrone作家)創作,愛爾蘭首部當代country音樂劇(『Nashville At Heart』)": true,
+        "Rosie Ryan繼承家族小鎮酒吧,守著已故母親/祖母的記憶": "英✓繁✓簡✓",
+        "Rosie在留守故鄉與遠走澳洲之間拉扯": true,
+        "成名country歌手Luke Adams走進酒吧,厭倦名氣渴望安放自我": true,
+        "兩人一個有根想飛/一個像有翅膀卻想歸屬,愛情受名氣/距離/期待考驗": true
+      },
+      "en": "correct",
+      "zhs": "correct",
+      "zht": "correct",
+      "notes": "官方countrygirlthemusical.com+Belfast Telegraph證實(Emma Heatherington/愛爾蘭當代country音樂劇/酒吧love story)。三語premise一致、無矛盾。皆保留原文。"
+    }
+  },
+  "_status": {
+    "en_zhs_fixes_applied_to_gen69": [
+      "The Curious Case of Benjamin Button(簡)",
+      "Curtains(en)",
+      "Dirty Rotten Scoundrels(簡)",
+      "Finian's Rainbow(簡)",
+      "Girls Night(簡)",
+      "Holiday Inn(簡)",
+      "Bugsy Malone(簡)",
+      "Death Takes A Holiday(簡)",
+      "Escape to Margaritaville(簡)",
+      "HMS Pinafore(en)",
+      "HMS Pinafore(簡)",
+      "Hot Mess: A New Musical(簡)",
+      "Lizzie(簡)",
+      "Rudolph the Red-Nosed Reindeer(簡)",
+      "Scrooge(簡)",
+      "The Spongebob Musical(簡)",
+      "Trainspotting the Musical(簡)",
+      "WaistWatchers The Musical!(簡)",
+      "Wonderland (the Frank Wildhorn stage musical, a modern retelling of Alice in Wonderland)(en)",
+      "A Mardi Gras Carol(簡)",
+      "8 Scott Ave - Night at the Towers (Jack Grace New Zealand original musical, the Smith family talent contest at Tudor Towers)(簡)"
+    ],
+    "pending_zht_fixes_wait_for_retry": [
+      "9 to 5",
+      "The Curious Case of Benjamin Button",
+      "High Society",
+      "Escape to Margaritaville",
+      "Hot Mess: A New Musical",
+      "The Last Ship(雜字)",
+      "Ride the Cyclone",
+      "Scrooge",
+      "The Smartest Giant in Town",
+      "Wild About You",
+      "Wonderland (the Frank Wildhorn stage musical, a modern retelling of Alice in Wonderland)",
+      "A Mardi Gras Carol"
+    ],
+    "flags_unresolved": [
+      "Wanted (the original stage musical about outlaw twin sisters in the American West)"
+    ],
+    "note": "en/簡修正已套進gen69。繁修正等retry結束後一次做。之後kb_merge→build→部署。"
+  }
+}

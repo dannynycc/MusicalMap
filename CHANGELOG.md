@@ -11,6 +11,20 @@
 
 ---
 
+## [v2.97.0] - 2026-08-28 04:25
+
+### 68 部新劇三語簡介入庫上線(親自 Chrome 多源查證)+ flames 併入 Thrill Me
+- **新增 68 部音樂劇的三語(en/繁/簡)劇情簡介**,經逐部「音樂劇本身」真 Google 多源人工查證(claude-in-chrome,每部 4–8 個獨立來源 + checklist),再拿 Perplexity 生成的三語各自對外部真相比對;查證帳本落地 `data/gen_crosscheck_log.json`(repo 持久)。
+  - 判定:42 部三語全對、25 部含修正、1 部(Wanted)因外部資料不足標記 flag 不臆測硬修。
+  - 修正筆數:英文 3、簡體 18、繁體 11。簡體錯誤最多,多為外部才抓得到者:
+    - **繁簡共同錯**(三版互比無效):Benjamin Button 職業「礦工→漁夫」、Hot Mess「火星→月球」、A Mardi Gras Carol 憑空套入狄更斯角色(實際只有 Bubba+嘉年華 Krewe 三幽靈)。
+    - **整篇搞錯劇**:Wild About You 繁體生成了完全無關的浪漫驚悚,已依真實劇情(Billy 尋亡母 Olivia 的信)整篇重寫。
+    - **英文也錯**:Curtains 兇手身分(總經理→劇評人)、HMS Pinafore 誤植《海盜》台詞、Wonderland 女兒名/女主角職業/主反派。
+    - 其餘:9 to 5 角色對調、Bugsy Malone 城市與幫派老大、Finian's Rainbow 反派、Girls Night/WaistWatchers 捏造人名、SpongeBob 角色錯位、Scrooge 用原著名(Fred/Belle→Harry/Isabel)等。
+  - 後台庫 `data/synopses_library/` 290 → 358 群組;前端 `data/synopses/` 239 → 307(catalog ∩ 庫)。
+- **flames 併入 Thrill Me**:`data/shows.json` 4 場中國製作(廣州/南京/上海)的 group 由 `flames` 改為 `thrill me`,`data/works.json` 移除重複的 flames canonical、別名(Flames火焰/flames/危险游戏/危險遊戲)併入 Thrill Me;同一齣戲不再拆成兩張卡。
+- 走完整管線:kb_merge → gen_variants → build_served → gen_site;DATA_VER 021a8978e6 → f75778bf97。
+
 ## [v2.96.7] - 2026-08-28 01:31
 
 ### 修正 & Juliet The Nurse 譯名:乳母 → 奶媽/奶妈
