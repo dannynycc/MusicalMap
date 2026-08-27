@@ -11,6 +11,13 @@
 
 ---
 
+## [v2.97.1] - 2026-08-28 07:02
+
+### 清除 68 部簡介的來源引註殘留 + 解決 Wanted 姊妹性格對調
+- 清除 44 部簡介中共 47 行 Perplexity 來源引註殘留(mtishows/theatermania/broadwayworld/nzherald/wantedmusical 等 28 種無點連寫域名,px_gen clean() 未濾到),散落三語(多在英文)。只刪「整行剛好等於已知來源 token」,不碰正文。
+- 解決先前標記的 Wanted flag:多篇詳細劇評(Maryland Theatre Guide/NewJerseyStage/TheaterMania)定案——Mary 較謹慎、愛上白人富商 Jesse;Martha 剛烈(headstrong)、與黑人 Elijah 相戀。英文版原本正確,繁簡兩者把姊妹性格對調,已修正。至此 68 部 cross-check 0 flag、全部處理完。
+- build_served → gen_site;DATA_VER f75778bf97 → 8d9bdb83db。
+
 ## [v2.97.0] - 2026-08-28 04:25
 
 ### 68 部新劇三語簡介入庫上線(親自 Chrome 多源查證)+ flames 併入 Thrill Me

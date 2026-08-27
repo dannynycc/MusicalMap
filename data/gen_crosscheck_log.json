@@ -1400,10 +1400,10 @@
         "祖靈Kinfolk的聲音相伴": "英✓;繁簡未提(非錯)"
       },
       "en": "correct",
-      "zhs": "correct",
-      "zht": "correct",
-      "flag_unresolved": "三語對兩姊妹性格描述不一致:英文說Mary=謹慎/內在矛盾(引起Jesse注意)、Martha=剛烈(與Elijah連結);繁簡則說Martha=謹慎、Mary=大膽/沉醉於偽裝自由。Jesse/Elijah的配對僅英文明確指定,繁簡未指定。NAMT官方synopsis只到『a little romance shakes everything up』,WaPo提『profound transformation Mary undergoes』(略偏向Mary為轉變最大者)。外部來源無法明確定奪誰謹慎誰大膽——依誠實原則不臆測硬修,標記待日後有更明確劇本/官方資料再定。核心劇情三語皆正確。",
-      "notes": "核心(1893德州/黑人雙胞胎偽裝白人/救母債務/成亡命之徒/Jesse/Elijah)三語皆與NAMT官方+Wikipedia一致。僅姊妹性格細節不一致且外部未能證實,見flag_unresolved。皆暫保留原文。"
+      "zhs": "fixed",
+      "zht": "fixed",
+      "notes": "核心(1893德州/黑人雙胞胎偽裝白人/救母債務/成亡命之徒/Jesse/Elijah)三語皆與NAMT官方+Wikipedia一致。僅姊妹性格細節不一致且外部未能證實,見flag_unresolved。皆暫保留原文。",
+      "flag_resolved": "2026-08-28 07:02 已解決:多篇詳細劇評(Maryland Theatre Guide/NewJerseyStage/TheaterMania)定案——Mary=較謹慎、內心矛盾,愛上白人富商Jesse Whitewater;Martha='headstrong'(剛烈),與黑人Elijah相戀。故英文版原本就對(Mary謹慎→Jesse、Martha剛烈→Elijah);繁簡兩者把姊妹性格對調(說Martha謹慎/Mary大膽)——又一繁簡共同錯,已修正繁簡。"
     },
     "Whispering Jack: The John Farnham Musical": {
       "date": "2026-08-28 03:29",
@@ -1786,46 +1786,7 @@
     }
   },
   "_status": {
-    "en_zhs_fixes_applied_to_gen69": [
-      "The Curious Case of Benjamin Button(簡)",
-      "Curtains(en)",
-      "Dirty Rotten Scoundrels(簡)",
-      "Finian's Rainbow(簡)",
-      "Girls Night(簡)",
-      "Holiday Inn(簡)",
-      "Bugsy Malone(簡)",
-      "Death Takes A Holiday(簡)",
-      "Escape to Margaritaville(簡)",
-      "HMS Pinafore(en)",
-      "HMS Pinafore(簡)",
-      "Hot Mess: A New Musical(簡)",
-      "Lizzie(簡)",
-      "Rudolph the Red-Nosed Reindeer(簡)",
-      "Scrooge(簡)",
-      "The Spongebob Musical(簡)",
-      "Trainspotting the Musical(簡)",
-      "WaistWatchers The Musical!(簡)",
-      "Wonderland (the Frank Wildhorn stage musical, a modern retelling of Alice in Wonderland)(en)",
-      "A Mardi Gras Carol(簡)",
-      "8 Scott Ave - Night at the Towers (Jack Grace New Zealand original musical, the Smith family talent contest at Tudor Towers)(簡)"
-    ],
-    "pending_zht_fixes_wait_for_retry": [
-      "9 to 5",
-      "The Curious Case of Benjamin Button",
-      "High Society",
-      "Escape to Margaritaville",
-      "Hot Mess: A New Musical",
-      "The Last Ship(雜字)",
-      "Ride the Cyclone",
-      "Scrooge",
-      "The Smartest Giant in Town",
-      "Wild About You",
-      "Wonderland (the Frank Wildhorn stage musical, a modern retelling of Alice in Wonderland)",
-      "A Mardi Gras Carol"
-    ],
-    "flags_unresolved": [
-      "Wanted (the original stage musical about outlaw twin sisters in the American West)"
-    ],
-    "note": "en/簡修正已套進gen69。繁修正等retry結束後一次做。之後kb_merge→build→部署。"
+    "note": "全68部cross-check完成並上線(v2.97.0);v2.97.1補:清47行來源引註殘留+解決Wanted flag(繁簡姊妹性格對調)。所有修正已在庫+served+部署。",
+    "flags_unresolved": []
   }
 }
