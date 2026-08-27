@@ -18,6 +18,16 @@
 - 硬編絕對路徑改為 repo 相對( 基準),不再綁特定磁碟/暫存路徑。
 - 用法:(從 repo 根執行)。這是 KB 入庫管線「生成」步驟的工具,不影響前端網站。
 
+## [v2.96.3b/v2.96.4] - 2026-08-27 14:35
+
+### 覆蓋率:Broadway/West End 缺口 triage 第一階段(併入 + 排除)
+- 對 108 部「標 Broadway/West End、在演、無簡介」的缺口派 agent 分類。本次執行前兩桶:
+  - **併入 7 部**(外語版/巡演冠名/變體標題 → 收攏到既有 group,共用簡介):Alicia Keys' Hell's Kitchen→hells kitchen、Cinderella-Theater→cinderella、Million Dollar Quartet Christmas→million dollar quartet、Pirates! The Penzance Musical→pirates of penzance、The Rocky Horror Halloween Show→rocky horror show、The Who's Tommy(Age Rec/ASL)×2→tommy。已在 works.json 加別名(源頭收攏)。
+  - **排除 23 部**(非敘事:金曲串燒/演唱會/個人秀/即興秀/純話劇,如 Black to Broadway、Neil Berg's Broadway Holiday、Boys in the Band、Steel Magnolias、Shamilton!、Showstopper!…)已移除。
+- 源頭 gating(下次 CI 不再抓回、且不誤傷真音樂劇):23 部確切標題加進 (精確比對=零誤傷); 加 (即興秀,已驗證只命中 Shamilton/Showstopper)。
+- 覆蓋率(現演作品)38.2% → **40.2%**(分母因排除+收攏由 620 降到 590,簡介數不變)。
+- 重產 shows.json(meta 同步)/variants/HTML。
+
 ## [v2.96.2] - 2026-08-27 13:11
 
 ### 資料清理:移除 4 筆混入的非音樂劇(音樂會)
