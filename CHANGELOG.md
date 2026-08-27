@@ -18,6 +18,14 @@
 - 硬編絕對路徑改為 repo 相對( 基準),不再綁特定磁碟/暫存路徑。
 - 用法:(從 repo 根執行)。這是 KB 入庫管線「生成」步驟的工具,不影響前端網站。
 
+## [v2.96.5] - 2026-08-27 14:39
+
+### 覆蓋率:20 部「待查」深度調查結案(動用真 Chrome/Google)
+- 前一輪 triage 標為 uncertain 的 20 部冷門劇,派 agent 用盡辦法查(WebFetch 官方劇目頁/venue 官網/各國維基,硬案改用真實 Chrome 跑 Google)。**全部查清、無一需盲刪**。
+- 結果:**排除 9 部**(啞劇 pantomime Jack and the Beanstalk、搖滾演唱會 Rolling Thunder、香頌致敬秀 Lama、毛利火山文化展演 Tera Te Auahi、Don Black 作詞金曲演唱會 From The Heart、紐奧良喜劇 revue And the Ball and All / Our City of Saints、匹克球金曲秀 Super Pickle、60/70 樂團演唱會 My Generation)已移除並加進 not_musical.json 源頭排除。
+- **11 部確認為真音樂劇**(Pride/LGSM、Our Ladies of Perpetual Succour、Vape! The Grease Parody、Midnight/Todrick Hall、One Sleepy Night、A Mardi Gras Carol、The Con Musical、Santa Claus、8 Scott Ave、Rollers Forever、Country Girl)→ 併入「待生成」清單。
+- 覆蓋率(現演)40.2% → **40.8%**(237/581)。生成待辦:58(triage)+11(待查)= 69 部。
+
 ## [v2.96.3b/v2.96.4] - 2026-08-27 14:35
 
 ### 覆蓋率:Broadway/West End 缺口 triage 第一階段(併入 + 排除)
