@@ -4056,6 +4056,57 @@
       "external_multisource": true,
       "verify_scope": "multisource",
       "errors_fixed": "三語準;繁泛化未證實角色鄭允"
+    },
+    "western story": {
+      "method": "B",
+      "date": "2026-08-29",
+      "langs": [
+        "en",
+        "zh-hant",
+        "zh-hans"
+      ],
+      "sources": [
+        "namuwiki/Musicals of Korea/KONTENX/더뮤지컬"
+      ],
+      "confidence": "high",
+      "batch": "2026-08-29-korea-4",
+      "external_multisource": true,
+      "verify_scope": "multisource",
+      "errors_fixed": "三語準;EN剝mk殘留"
+    },
+    "sunny ten": {
+      "method": "B",
+      "date": "2026-08-29",
+      "langs": [
+        "en",
+        "zh-hant",
+        "zh-hans"
+      ],
+      "sources": [
+        "namuwiki-adj/채널예스/코리아아트뉴스/NOL"
+      ],
+      "confidence": "high",
+      "batch": "2026-08-29-korea-4",
+      "external_multisource": true,
+      "verify_scope": "multisource",
+      "errors_fixed": "三語準"
+    },
+    "screwtape letters": {
+      "method": "B",
+      "date": "2026-08-29",
+      "langs": [
+        "en",
+        "zh-hant",
+        "zh-hans"
+      ],
+      "sources": [
+        "namuwiki/국민일보/크리스천투데이"
+      ],
+      "confidence": "high",
+      "batch": "2026-08-29-korea-4",
+      "external_multisource": true,
+      "verify_scope": "multisource",
+      "errors_fixed": "三語準;名稱繁螺絲釘/簡斯克鲁泰普(標題步驟統一)"
     }
   }
 }
