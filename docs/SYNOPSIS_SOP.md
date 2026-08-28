@@ -29,6 +29,13 @@ python scripts/px_gen.py zh-hans  out_zhs.json @list.json
 - zh-hant 會自動套 `scripts/polish.py` 台灣定譯表 `data/synopses_tw_terms.json`。
 - 輸出 `[{show,synopsis,size,summary}]`；空生成/限流會重試（見 `feedback_perplexity_session_fail_is_ratelimit`）。
 
+> ⚡ **生成這一步可以外包／平行（與 §3 查證相反）。** 生成只是「叫 Perplexity 吐草稿」，
+> 沒有判斷、不怕主客顛倒，所以**劇量多時可派幾個 agent 平行去 Perplexity 查**（各拿一批 list、
+> 各連 CDP 跑 px_gen），大幅加速；劇量少也可以我自己一批批跑，只是慢。**但 §3 的查證絕不能這樣派**——
+> 那一步是我本人的手工活。分工一句話：**生成可平行外包，查證必本人親做。**
+> ⚠️ 平行時注意同一個 Comet CDP 9223 只有一個瀏覽器，多 agent 同時打同一 Perplexity 分頁會互搶；
+> 若要真平行，各 agent 用不同分頁/不同 CDP 埠，或錯開批次，避免 session 互相干擾。
+
 ## 3. 嚴格查證 method B（生成後，**逐部逐語言**）
 
 > 🚨 **這一步是這套方法的靈魂，不可省、不可外包。**

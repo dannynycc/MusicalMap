@@ -11,6 +11,11 @@
 
 ---
 
+## [v2.97.6] - 2026-08-28 10:36
+### 文件
+- `docs/SYNOPSIS_SOP.md` §2 補充分工原則：**生成可平行外包**（劇量多時派幾個 agent 各連 CDP 跑 px_gen 加速），**§3 查證必 Claude 本人親做**——生成只是叫 Perplexity 吐草稿無判斷、可外包；查證有事實判斷、不可派 agent。附平行時 Comet CDP 單瀏覽器互搶的注意事項。
+
+
 ## [v2.97.5] - 2026-08-28 10:30
 ### 文件
 - `docs/SYNOPSIS_SOP.md` §0/§3 強調：嚴格查證 method B **必須由 Claude 本人親自**用 claude-in-chrome 逐齣逐語言多源查證（**不派 agent 代查**），角色定位為「事實校對」而非重寫——Perplexity 產出是主體（語感自然），Claude 只在抓到事實錯時最小修正並保留其語感（Claude 自撰文字 AI 感過重）。
