@@ -11,6 +11,16 @@
 
 ---
 
+## [v2.98.1] - 2026-08-29 01:09
+### 標題出處查證（韓國原創 11 部已入庫劇）
+- 逐部 claude-in-chrome 多源查證三語標題出處（不硬翻，只用有出處的譯名）：
+  - **補官方中文名**：Oedipus→伊底帕斯（C MUSICAL官方台灣）、Paganini→帕格尼尼（多源）、Karamazov→繁 卡拉馬助夫兄弟們/簡 卡拉马佐夫兄弟（台/陸各官方）。
+  - **修正**：Dorian Gray 中文用音樂劇實際名「道林·格雷」（非小說《道林·格雷的畫像》）；Fan Letter 簡體→粉丝来信（中國官方中文版正名）。
+  - **補英文名**：Apollonia（原顯示 CJK）、Moon Sorbet（原顯示「CM Kids, Musical <Moon Sorbet>」）— 經 works.json 註冊 canonical（group 不變，簡介掛點不受影響）。
+  - **保留有出處者**：Frankenstein 科學怪人/弗兰肯斯坦、Maybe Happy Ending 或許是美好結局、My Bucket List 我的遺願清單（C MUSICAL官方授權版）、Fan Letter 繁 光的來信（台中歌劇院官方）。
+  - **不硬翻**：SHADOW 官方中文版本身保留英文《SHADOW》，故三語皆留 SHADOW 不加中文。
+- 工具： enTitle 正則加 ASCII <> 框（抽出 CM Kids <Moon Sorbet> 核心名，對重爬穩健）。
+
 ## [v2.98.0] - 2026-08-28 16:11
 ### 新增（韓國原創覆蓋 批次1）
 - **補上 6 部韓國原創音樂劇三語簡介**：Fan Letter《光的來信》(팬레터)、Brothers Karamazov (브라더스 까라마조프)、Oedipus (오이디푸스)、Paganini (파가니니)、Shadow (쉐도우)、Apollonia (아폴로니아)。韓國原創劇情覆蓋 5/38→11/38。

@@ -173,7 +173,7 @@ function enTitle(s) {
   if (!t) return null;
   t = t.replace(/^【[^】]*】\s*/, "");                     // 藝穗節【2026TFF】類前綴
   if (/[一-鿿ぁ-ヿ가-힯]/.test(t)) return null;            // 假英文名(源填了中文)
-  const q = t.match(/[“”"『《〈](.{3,}?)[“”"』》〉]/);      // 引號框住的核心名(開閉引號都寬鬆)
+  const q = t.match(/[“”"『《〈<](.{3,}?)[“”"』》〉>]/);      // 引號框住的核心名(開閉引號都寬鬆;含 ASCII <> 框,如 CM Kids <Moon Sorbet>)
   if (q) return q[1].trim();
   const c = t.split(/[:：]/);                              // 冒號前是機構/藝術節才當前綴切
   if (c.length > 1 && /company|festival|troupe|theatre|theater|production/i.test(c[0])) {
