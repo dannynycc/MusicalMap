@@ -3869,6 +3869,108 @@
       "external_multisource": true,
       "verify_scope": "multisource",
       "errors_fixed": "準;Rosaline為新星屬合理推斷;皆準"
+    },
+    "摇滚浮士德": {
+      "method": "B",
+      "date": "2026-08-29",
+      "langs": [
+        "en",
+        "zh-hant",
+        "zh-hans"
+      ],
+      "sources": [
+        "namuwiki/中国日报网/NOL World/韓國觀光公社/bilibili"
+      ],
+      "confidence": "high",
+      "batch": "2026-08-29-korea-2",
+      "external_multisource": true,
+      "verify_scope": "multisource",
+      "errors_fixed": "三語準;無漂到通用歌德版;簡移除未證實懷孕句"
+    },
+    "狂炎奏鸣曲": {
+      "method": "B",
+      "date": "2026-08-29",
+      "langs": [
+        "en",
+        "zh-hant",
+        "zh-hans"
+      ],
+      "sources": [
+        "namuwiki/Musicals of Korea/더뮤지컬/Hilda/豆瓣"
+      ],
+      "confidence": "high",
+      "batch": "2026-08-29-korea-2",
+      "external_multisource": true,
+      "verify_scope": "multisource",
+      "errors_fixed": "三語準;修標題字狂焰/光焰→狂炎"
+    },
+    "納爾齊斯與歌爾德蒙": {
+      "method": "B",
+      "date": "2026-08-29",
+      "langs": [
+        "en",
+        "zh-hant",
+        "zh-hans"
+      ],
+      "sources": [
+        "namuwiki(赫塞小說+뮤지컬子頁)"
+      ],
+      "confidence": "high",
+      "batch": "2026-08-29-korea-2",
+      "external_multisource": true,
+      "verify_scope": "multisource",
+      "errors_fixed": "三語準;繁那西瑟斯→納爾齊斯統一"
+    },
+    "days": {
+      "method": "B",
+      "date": "2026-08-29",
+      "langs": [
+        "en",
+        "zh-hant",
+        "zh-hans"
+      ],
+      "sources": [
+        "Musicals of Korea/arte/경기신문/더뮤지컬/官方IG"
+      ],
+      "confidence": "high",
+      "batch": "2026-08-29-korea-2",
+      "external_multisource": true,
+      "verify_scope": "multisource",
+      "errors_fixed": "三語準;修年份二十→三十年(1992+30=2022)"
+    },
+    "stravinsky": {
+      "method": "B",
+      "date": "2026-08-29",
+      "langs": [
+        "en",
+        "zh-hant",
+        "zh-hans"
+      ],
+      "sources": [
+        "namuwiki/문화체육관광부/서울문화투데이/브런치"
+      ],
+      "confidence": "high",
+      "batch": "2026-08-29-korea-2",
+      "external_multisource": true,
+      "verify_scope": "multisource",
+      "errors_fixed": "三語準;高風險卻寫對"
+    },
+    "红莲": {
+      "method": "B",
+      "date": "2026-08-29",
+      "langs": [
+        "en",
+        "zh-hant",
+        "zh-hans"
+      ],
+      "sources": [
+        "namuwiki全文(홍련뮤지컬)"
+      ],
+      "confidence": "high",
+      "batch": "2026-08-29-korea-2",
+      "external_multisource": true,
+      "verify_scope": "multisource",
+      "errors_fixed": "三語準;修簡父名许→裴武龙;139998數字無法證實留原"
     }
   }
 }
