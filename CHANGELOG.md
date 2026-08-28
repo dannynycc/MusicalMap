@@ -11,6 +11,13 @@
 
 ---
 
+## [v2.98.5] - 2026-08-29 05:16
+### 新增（韓國原創覆蓋 批次5 — 終批）
+- **補上 6 部韓國音樂劇三語簡介**：The Pilgrim's Progress（天路歷程）、Rabbit's Eight Sufferings（귀토·토끼전）、Madangnori Chunpung's Wife（이춘풍전 마당놀이）、Kiki's BPD Diary、2026 Midnight（1937蘇聯清洗）、WTOF Million Loves（백만송이의 사랑）。
+- **韓國原創劇情覆蓋 25/38 → 31/38 — 所有真敘事韓劇全數完成**（剩 7 部為已識別的非敘事/誤標：wild wild 成人秀、lee eun gyeol 魔術秀，及 5 部中國 damai 誤標）。
+- 流程：最小消歧義生成 → 我本人深讀 namuwiki 全文＋多域查證。Kiki EN 剝「acc」殘留；修多部開頭書評框架、剝全劇總結、收字數≤460。WTOF 原憂 disambiguation 不足致漂移，查證確認 Perplexity 寫對（백만송이의 사랑 點唱機+韓國近現代史）。
+- served 329→335。
+
 ## [v2.98.4] - 2026-08-29 04:27
 ### 新增（韓國原創覆蓋 批次4）
 - **補上 3 部韓國原創音樂劇三語簡介**：Western Story（喜劇西部劇）、Sunny Ten（點唱機愛情喜劇）、The Screwtape Letters（C.S. Lewis 改編）。韓國原創劇情覆蓋 22/38→25/38。
