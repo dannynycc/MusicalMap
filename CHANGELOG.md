@@ -11,6 +11,11 @@
 
 ---
 
+## [v2.97.5] - 2026-08-28 10:30
+### 文件
+- `docs/SYNOPSIS_SOP.md` §0/§3 強調：嚴格查證 method B **必須由 Claude 本人親自**用 claude-in-chrome 逐齣逐語言多源查證（**不派 agent 代查**），角色定位為「事實校對」而非重寫——Perplexity 產出是主體（語感自然），Claude 只在抓到事實錯時最小修正並保留其語感（Claude 自撰文字 AI 感過重）。
+
+
 ## [v2.97.4] - 2026-08-28 10:17
 ### 修正
 - 與每日資料自動刷新（`745aa776 auto-refresh listings`）rebase 後，重跑 `build_served_synopses` + `gen_site`，使 `index.html` 的 `DATA_VER` 與合併後資料一致（v2.97.3 rebase 時產物取遠端刷新版，未反映新入庫的《最美的一天》）。served 由合併後 catalog(586) 過濾為 307 —《最美的一天》仍在庫在架，一齣舊製作隨每日 catalog 汰換而下架（與本次無關的正常churn）。
