@@ -3702,6 +3702,30 @@
       "external_multisource": true,
       "verify_scope": "multisource",
       "errors_fixed": "opening-style(繁/簡書評框架→直接入戲);事實0錯"
+    },
+    "pinocchio": {
+      "method": "B",
+      "date": "2026-08-28",
+      "langs": [
+        "en",
+        "zh-hant",
+        "zh-hans"
+      ],
+      "sources": [
+        "shakespearesglobe.com(官方)",
+        "London Theatre",
+        "Evening Standard",
+        "British Theatre Guide",
+        "The Guardian",
+        "BroadwayWorld",
+        "Musical Theatre Review",
+        "Wikipedia(Steven Webb)"
+      ],
+      "confidence": "high",
+      "batch": "2026-08-28-broadway-newarrival",
+      "external_multisource": true,
+      "verify_scope": "multisource",
+      "errors_fixed": "繁補玩具國變驢缺段;事實0錯"
     }
   }
 }

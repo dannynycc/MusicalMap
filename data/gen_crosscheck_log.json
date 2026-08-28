@@ -1810,6 +1810,40 @@
       "zhs_fix_target": "開頭書評框架《劇名》讲述…",
       "zhs_fix_to": "直接入戲(多年前，丈夫毫无预兆地离开…)",
       "note": "事實面三語全正確,唯一修正=文風政策(開頭直接入戲);補之前漏做的第42部台灣原創"
+    },
+    "pinocchio (globe 2025)": {
+      "date": "2026-08-28",
+      "method": "chrome-multisource",
+      "group": "pinocchio",
+      "sources": [
+        "shakespearesglobe.com(官方)",
+        "London Theatre",
+        "Evening Standard",
+        "British Theatre Guide",
+        "The Guardian",
+        "BroadwayWorld",
+        "Musical Theatre Review",
+        "Wikipedia(Steven Webb)"
+      ],
+      "checklist": {
+        "創作": "Josephine/Fortune/Holmes",
+        "Geppetto": "outcast發明家",
+        "魔法木頭": "木匠贈",
+        "拒認父子": "✓",
+        "蟋蟀Giacomo": "真SW飾",
+        "Franzini": "✓",
+        "FoxCat": "✓",
+        "藍仙女": "真McCormick飾",
+        "Coachman玩具國變驢": "真SW飾",
+        "巨鯨重逢": "真whale",
+        "變真人": "✓"
+      },
+      "en": "correct",
+      "zht": "fixed",
+      "zhs": "correct",
+      "zht_fix_target": "漏玩具國變驢整段",
+      "zht_fix_to": "補馬車夫誘往玩具國、孩子變驢",
+      "note": "minimal prompt(不餵劇情);原疑鯨魚/藍仙女/蟋蟀漂移經多源查證全推翻皆真;事實0錯"
     }
   },
   "_status": {

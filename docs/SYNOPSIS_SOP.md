@@ -15,8 +15,20 @@
 ## 1. 消歧義（生成前，**必做**）
 同名作品先確認是哪一部，尤其「冷門外語音樂劇 vs 知名歌劇/話劇/電影」。
 - 查 `data/works.json`(canonical/aliases) + `data/shows.json`(venue/tag) 定位。
-- 在生成 prompt 的劇名後**釘住劇情核心**消歧義（Don Juan 教訓：中文查詢會漂到莫札特版；
-  石像/多娜伊內絲=錯版訊號）。tag 與 venue 打架（如 tag=台灣原創但場館在大陸巡演）要先查清製作方。
+- tag 與 venue 打架（如 tag=台灣原創但場館在大陸巡演）要先查清製作方。
+
+> 🚨🚨 **消歧義只釘「身份」，絕不餵「劇情」。** prompt 只給足以鎖定唯一那一齣的識別資訊
+> ——**創作者 / 場館 / 年份 / 製作方**（例：「Pinocchio，Charlie Josephine 編劇、Jim Fortune 作曲、
+> 2025 年 Shakespeare's Globe 首演那齣，不是迪士尼版也不是原著」）。**不可把角色名、情節點、結局
+> 寫進 prompt。** 為什麼？把劇情餵進去，Perplexity 只會把我的字原封不動吐回來，我再拿它去「查證」
+> ＝拿自己寫的東西對自己的 checklist＝球員兼裁判，§3 查證整個失效（2026-08-28 Pinocchio 犯過：
+> 我把 Franzini/Fox&Cat/Coachman/Monstra/變真人全塞進 prompt 被抓包）。
+> - 我 Chrome 研究得到的劇情 checklist 是**留給 §3 我自己驗證用**，不是餵給 Perplexity。
+> - 冷門到 Perplexity 可能全然不知的作品（如台灣在地小劇）：仍以「身份」為主；若真需給一句劇情
+>   梗概才鎖得住，也只給**一句最粗的定位**（如「講一對母女道別的原創音樂劇」），且要清楚意識到
+>   被餵的那一句不能當成「查證通過」——那句仍要在 §3 獨立對外部源確認。
+> - Don Juan 教訓仍成立：同名易漂（中文查 Don Juan 會漂到莫札特歌劇），但解法是釘**身份**
+>   （法式音樂劇/2004 魁北克/作曲 Félix Gray），不是餵劇情。
 
 ## 2. 生成（Comet CDP 9223 → Perplexity，答案在 `.prose`）
 ```

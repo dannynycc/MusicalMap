@@ -11,6 +11,15 @@
 
 ---
 
+## [v2.97.7] - 2026-08-28 14:38
+### 補齊
+- **補上 Broadway/West End《Pinocchio》(Shakespeare's Globe 2025 全新原創音樂劇)三語簡介** — Charlie Josephine 編劇、Jim Fortune 作曲、Sean Holmes 導演。以嚴格 method B（我本人 claude-in-chrome 多源查證，8+ 獨立網域：官方Globe/London Theatre/Evening Standard/British Theatre Guide/Guardian/BroadwayWorld/Musical Theatre Review/Wikipedia）。**用最小消歧義 prompt（只釘身份不餵劇情），讓 Perplexity 自生後才驗**——原疑「鯨魚/藍仙女/蟋蟀Giacomo=迪士尼漂移」經查證全部推翻皆真；事實 0 錯；僅繁體補回漏掉的「玩具國變驢」整段。
+### 分類修正
+- **移除並永久 ban《Todd McKenney Sings Peter Allen and Lots More》** — 澳洲演唱會/致敬秀（無劇情、非 Broadway/West End），誤入策展目錄。加入 `data/not_musical.json` 排除清單 + 從 `shows.json` 拔除。Broadway/West End 232→231 群組。
+### 文件
+- `docs/SYNOPSIS_SOP.md` §1 改寫：**消歧義只釘身份、絕不餵劇情**（餵了＝Perplexity 原樣吐回＝查證變球員兼裁判；本次 Pinocchio 犯過並修正）。
+
+
 ## [v2.97.6] - 2026-08-28 10:36
 ### 文件
 - `docs/SYNOPSIS_SOP.md` §2 補充分工原則：**生成可平行外包**（劇量多時派幾個 agent 各連 CDP 跑 px_gen 加速），**§3 查證必 Claude 本人親做**——生成只是叫 Perplexity 吐草稿無判斷、可外包；查證有事實判斷、不可派 agent。附平行時 Comet CDP 單瀏覽器互搶的注意事項。
