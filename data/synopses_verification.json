@@ -3747,6 +3747,128 @@
       "external_multisource": true,
       "verify_scope": "multisource",
       "errors_fixed": "繁補截斷結局+剝全劇總結標題;事實0錯(忠於Collodi)"
+    },
+    "fan letter": {
+      "method": "B",
+      "date": "2026-08-28",
+      "langs": [
+        "en",
+        "zh-hant",
+        "zh-hans"
+      ],
+      "sources": [
+        "namuwiki(全文)",
+        "Musicals of Korea",
+        "두산아트센터",
+        "매일경제",
+        "台中歌劇院"
+      ],
+      "confidence": "high",
+      "batch": "2026-08-28-korea-1",
+      "external_multisource": true,
+      "verify_scope": "multisource",
+      "errors_fixed": "EN未明講反轉但framing正確;繁簡皆寫出另一自我;皆準"
+    },
+    "brothers karamazov": {
+      "method": "B",
+      "date": "2026-08-28",
+      "langs": [
+        "en",
+        "zh-hant",
+        "zh-hans"
+      ],
+      "sources": [
+        "namuwiki",
+        "Musicals of Korea",
+        "주간경향",
+        "브런치"
+      ],
+      "confidence": "high",
+      "batch": "2026-08-28-korea-1",
+      "external_multisource": true,
+      "verify_scope": "multisource",
+      "errors_fixed": "忠原著,準;繁簡開頭書評框架已修"
+    },
+    "oedipus": {
+      "method": "B",
+      "date": "2026-08-28",
+      "langs": [
+        "en",
+        "zh-hant",
+        "zh-hans"
+      ],
+      "sources": [
+        "namuwiki",
+        "Musicals of Korea(TW)",
+        "더뮤지컬",
+        "서울신문"
+      ],
+      "confidence": "high",
+      "batch": "2026-08-28-korea-1",
+      "external_multisource": true,
+      "verify_scope": "multisource",
+      "errors_fixed": "準;簡開頭書評框架已修"
+    },
+    "paganini": {
+      "method": "B",
+      "date": "2026-08-28",
+      "langs": [
+        "en",
+        "zh-hant",
+        "zh-hans"
+      ],
+      "sources": [
+        "namuwiki(全文줄거리)",
+        "Musicals of Korea",
+        "매일경제",
+        "연합뉴스"
+      ],
+      "confidence": "high",
+      "batch": "2026-08-28-korea-1",
+      "external_multisource": true,
+      "verify_scope": "multisource",
+      "errors_fixed": "準;無漂到德奧/電影版;繁簡皆有Charlotte"
+    },
+    "shadow": {
+      "method": "B",
+      "date": "2026-08-28",
+      "langs": [
+        "en",
+        "zh-hant",
+        "zh-hans"
+      ],
+      "sources": [
+        "namuwiki(全文)",
+        "Musicals of Korea",
+        "arte.co.kr",
+        "더뮤지컬",
+        "Arirang"
+      ],
+      "confidence": "high",
+      "batch": "2026-08-28-korea-1",
+      "external_multisource": true,
+      "verify_scope": "multisource",
+      "errors_fixed": "高風險但生成準確;結局求原諒略詮釋;皆準"
+    },
+    "阿波羅尼亞": {
+      "method": "B",
+      "date": "2026-08-28",
+      "langs": [
+        "en",
+        "zh-hant",
+        "zh-hans"
+      ],
+      "sources": [
+        "namuwiki(全文)",
+        "더뮤지컬",
+        "브릿지경제",
+        "채널예스"
+      ],
+      "confidence": "high",
+      "batch": "2026-08-28-korea-1",
+      "external_multisource": true,
+      "verify_scope": "multisource",
+      "errors_fixed": "準;Rosaline為新星屬合理推斷;皆準"
     }
   }
 }

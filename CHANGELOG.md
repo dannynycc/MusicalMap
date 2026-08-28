@@ -11,6 +11,15 @@
 
 ---
 
+## [v2.98.0] - 2026-08-28 16:11
+### 新增（韓國原創覆蓋 批次1）
+- **補上 6 部韓國原創音樂劇三語簡介**：Fan Letter《光的來信》(팬레터)、Brothers Karamazov (브라더스 까라마조프)、Oedipus (오이디푸스)、Paganini (파가니니)、Shadow (쉐도우)、Apollonia (아폴로니아)。韓國原創劇情覆蓋 5/38→11/38。
+- 流程：最小消歧義生成（只釘身份不餵劇情）→ **我本人 claude-in-chrome 逐部深讀 namuwiki 全文 + 多域來源（Musicals of Korea / 官方 / 韓語劇評）交叉查證**。18 份（6×3語）事實全部正確、無漂移、無幻覺（含高風險 Shadow 思悼世子米櫃穿越、Paganini 葬禮審判 Achille/Colin/Lucio/Charlotte 皆核對無誤）。
+- 修正：4 份開頭書評框架→直接入戲（繁/簡 Karamazov、簡 Oedipus、簡 Apollonia）；剝除繁體「全劇總結」殘留標題 5 處；超字數 5 份收至 ≤460。事實 0 錯。
+- served 309→315。
+### 說明
+- 標題暫沿用現庫值（Fan Letter=光的來信 經查為台中歌劇院官方譯名，保留）；韓國標題出處逐部查證為後續工作。
+
 ## [v2.97.8] - 2026-08-28 14:59
 ### 補齊
 - **補上歐陸原創義大利《Pinocchio Musical》(Compagnia BIT) 三語簡介** — Melina Pellicano 編導、Stefano Lori & Marco Caselle 作曲，忠實改編 Collodi 原著。與上一版倫敦 Globe《Pinocchio》是**兩齣不同製作**（此為義大利版、歐陸原創，10月於 Palermo/Catania 演出）。最小消歧義生成、我本人多源 method B 查證（官方 pinocchiomusicalitalia.it / Teatrionline / Fondazione Coccia / Musical.it）；對照經典 Collodi 情節無漂移（未跑去迪士尼版或倫敦版）；繁體因長度截斷漏掉結局，已補回「渡海→大魚吞→魚腹與 Geppetto 重逢→背父逃生→化為血肉男孩」並剝除「全劇總結」殘留標題。served 308→309。
