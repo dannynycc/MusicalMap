@@ -3726,6 +3726,27 @@
       "external_multisource": true,
       "verify_scope": "multisource",
       "errors_fixed": "繁補玩具國變驢缺段;事實0錯"
+    },
+    "pinocchio musical": {
+      "method": "B",
+      "date": "2026-08-28",
+      "langs": [
+        "en",
+        "zh-hant",
+        "zh-hans"
+      ],
+      "sources": [
+        "pinocchiomusicalitalia.it(官方)",
+        "Teatrionline",
+        "Fondazione Teatro Coccia",
+        "Musical.it(Compagnia BIT)",
+        "CulturSocialArt(Melina Pellicano專訪)"
+      ],
+      "confidence": "high",
+      "batch": "2026-08-28-europa-italia",
+      "external_multisource": true,
+      "verify_scope": "multisource",
+      "errors_fixed": "繁補截斷結局+剝全劇總結標題;事實0錯(忠於Collodi)"
     }
   }
 }

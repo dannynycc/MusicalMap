@@ -11,6 +11,13 @@
 
 ---
 
+## [v2.97.8] - 2026-08-28 14:59
+### 補齊
+- **補上歐陸原創義大利《Pinocchio Musical》(Compagnia BIT) 三語簡介** — Melina Pellicano 編導、Stefano Lori & Marco Caselle 作曲，忠實改編 Collodi 原著。與上一版倫敦 Globe《Pinocchio》是**兩齣不同製作**（此為義大利版、歐陸原創，10月於 Palermo/Catania 演出）。最小消歧義生成、我本人多源 method B 查證（官方 pinocchiomusicalitalia.it / Teatrionline / Fondazione Coccia / Musical.it）；對照經典 Collodi 情節無漂移（未跑去迪士尼版或倫敦版）；繁體因長度截斷漏掉結局，已補回「渡海→大魚吞→魚腹與 Geppetto 重逢→背父逃生→化為血肉男孩」並剝除「全劇總結」殘留標題。served 308→309。
+### 說明
+- 使用者原本困惑「Pinocchio 看不到劇情」——因先前只補了倫敦 Globe 那齣（11月才開演、10月地圖看不到），這次補的是同名但不同的義大利製作。
+
+
 ## [v2.97.7] - 2026-08-28 14:38
 ### 補齊
 - **補上 Broadway/West End《Pinocchio》(Shakespeare's Globe 2025 全新原創音樂劇)三語簡介** — Charlie Josephine 編劇、Jim Fortune 作曲、Sean Holmes 導演。以嚴格 method B（我本人 claude-in-chrome 多源查證，8+ 獨立網域：官方Globe/London Theatre/Evening Standard/British Theatre Guide/Guardian/BroadwayWorld/Musical Theatre Review/Wikipedia）。**用最小消歧義 prompt（只釘身份不餵劇情），讓 Perplexity 自生後才驗**——原疑「鯨魚/藍仙女/蟋蟀Giacomo=迪士尼漂移」經查證全部推翻皆真；事實 0 錯；僅繁體補回漏掉的「玩具國變驢」整段。

@@ -1844,6 +1844,35 @@
       "zht_fix_target": "漏玩具國變驢整段",
       "zht_fix_to": "補馬車夫誘往玩具國、孩子變驢",
       "note": "minimal prompt(不餵劇情);原疑鯨魚/藍仙女/蟋蟀漂移經多源查證全推翻皆真;事實0錯"
+    },
+    "pinocchio musical (italia/compagnia bit)": {
+      "date": "2026-08-28",
+      "method": "chrome-multisource",
+      "group": "pinocchio musical",
+      "sources": [
+        "pinocchiomusicalitalia.it(官方)",
+        "Teatrionline",
+        "Fondazione Teatro Coccia",
+        "Musical.it(Compagnia BIT)",
+        "CulturSocialArt(Melina Pellicano專訪)"
+      ],
+      "checklist": {
+        "製作": "Compagnia BIT/Pellicano/Lori&Caselle",
+        "忠於原著": "la trama segue il libro✓",
+        "會說話蟋蟀": "✓",
+        "Mangiafuoco吃火人": "✓",
+        "GattoVolpe詐財": "✓",
+        "FataTurchina說謊鼻長": "✓",
+        "Lucignolo玩具國變驢": "✓",
+        "大魚重逢": "✓",
+        "變真人": "✓"
+      },
+      "en": "correct",
+      "zht": "fixed",
+      "zhs": "correct",
+      "zht_fix_target": "長度截斷漏整個結局(大魚重逢+變真人)+全劇總結標題殘留",
+      "zht_fix_to": "補渡海/大魚/魚腹重逢/背父逃生/化為血肉男孩;剝除全劇總結標題",
+      "note": "與倫敦Globe版=不同製作(此為義大利Compagnia BIT忠於Collodi版);minimal prompt;無漂移(未跑迪士尼/倫敦版)"
     }
   },
   "_status": {
