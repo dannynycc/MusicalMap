@@ -3971,6 +3971,91 @@
       "external_multisource": true,
       "verify_scope": "multisource",
       "errors_fixed": "三語準;修簡父名许→裴武龙;139998數字無法證實留原"
+    },
+    "mad hatter": {
+      "method": "B",
+      "date": "2026-08-29",
+      "langs": [
+        "en",
+        "zh-hant",
+        "zh-hans"
+      ],
+      "sources": [
+        "Musicals of Korea/더뮤지컬/서울문화투데이/NOL"
+      ],
+      "confidence": "high",
+      "batch": "2026-08-29-korea-3",
+      "external_multisource": true,
+      "verify_scope": "multisource",
+      "errors_fixed": "三語準;繁移除喬斯林幻覺句(來源證實喬斯林=Hector真實兒子)"
+    },
+    "laundry": {
+      "method": "B",
+      "date": "2026-08-29",
+      "langs": [
+        "en",
+        "zh-hant",
+        "zh-hans"
+      ],
+      "sources": [
+        "namuwiki全文"
+      ],
+      "confidence": "high",
+      "batch": "2026-08-29-korea-3",
+      "external_multisource": true,
+      "verify_scope": "multisource",
+      "errors_fixed": "三語準;完全對namuwiki"
+    },
+    "inside me": {
+      "method": "B",
+      "date": "2026-08-29",
+      "langs": [
+        "en",
+        "zh-hant",
+        "zh-hans"
+      ],
+      "sources": [
+        "namuwiki/데이트팝/문화저널/NOL"
+      ],
+      "confidence": "high",
+      "batch": "2026-08-29-korea-3",
+      "external_multisource": true,
+      "verify_scope": "multisource",
+      "errors_fixed": "三語準"
+    },
+    "portrait of a boy": {
+      "method": "B",
+      "date": "2026-08-29",
+      "langs": [
+        "en",
+        "zh-hant",
+        "zh-hans"
+      ],
+      "sources": [
+        "namuwiki/thepreview/artinsight/NOL"
+      ],
+      "confidence": "high",
+      "batch": "2026-08-29-korea-3",
+      "external_multisource": true,
+      "verify_scope": "multisource",
+      "errors_fixed": "三語準;冷門卻寫對"
+    },
+    "gone tomorrow": {
+      "method": "B",
+      "date": "2026-08-29",
+      "langs": [
+        "en",
+        "zh-hant",
+        "zh-hans"
+      ],
+      "sources": [
+        "namuwiki/Musicals of Korea"
+      ],
+      "confidence": "high",
+      "batch": "2026-08-29-korea-3",
+      "external_multisource": true,
+      "verify_scope": "multisource",
+      "errors_fixed": "三語準;繁泛化未證實角色鄭允"
     }
   }
 }
