@@ -1,434 +1,9 @@
 {
   "meta": {
     "source": "ticketmaster",
-    "count": 1088
+    "count": 1094
   },
   "shows": [
-    {
-      "id": "tm-mj-neil-simon-theatre",
-      "title": "MJ",
-      "type": "tour",
-      "venue": "Neil Simon Theatre",
-      "city": "New York",
-      "country": "United States Of America",
-      "lat": 40.763146,
-      "lng": -73.983996,
-      "start_date": "2026-08-26",
-      "end_date": "2027-05-30",
-      "ticket_url": "https://www.ticketmaster.com/mj-ny-tickets/artist/2714992",
-      "attraction_url": "https://www.ticketmaster.com/mj-ny-tickets/artist/2714992",
-      "ticket_links": [
-        {
-          "country": "US",
-          "url": "https://www.ticketmaster.com/mj-ny-tickets/artist/2714992"
-        }
-      ],
-      "image": "https://s1.ticketm.net/dam/a/5d3/feae6a80-7f38-4e8f-917f-2560abb9d5d3_SOURCE",
-      "tour_name": "Mj (Ny)",
-      "verified": true,
-      "source": "ticketmaster",
-      "onsale_only": true
-    },
-    {
-      "id": "tm-hamilton-ny-richard-rodgers-theatre",
-      "title": "Hamilton (NY)",
-      "type": "tour",
-      "venue": "Richard Rodgers Theatre",
-      "city": "New York",
-      "country": "United States Of America",
-      "lat": 40.759204,
-      "lng": -73.986763,
-      "start_date": "2026-08-26",
-      "end_date": "2027-06-13",
-      "ticket_url": "https://www.ticketmaster.com/hamilton-ny-tickets/artist/2095830",
-      "attraction_url": "https://www.ticketmaster.com/hamilton-ny-tickets/artist/2095830",
-      "ticket_links": [
-        {
-          "country": "US",
-          "url": "https://www.ticketmaster.com/hamilton-ny-tickets/artist/2095830"
-        }
-      ],
-      "image": "https://s1.ticketm.net/dam/a/00f/b9aebee0-d1cb-4a5c-8e0e-0ca03fd4d00f_SOURCE",
-      "tour_name": null,
-      "verified": true,
-      "source": "ticketmaster",
-      "onsale_only": true
-    },
-    {
-      "id": "tm-wicked-ny-gershwin-theatre",
-      "title": "Wicked (NY)",
-      "type": "tour",
-      "venue": "Gershwin Theatre",
-      "city": "New York",
-      "country": "United States Of America",
-      "lat": 40.762542,
-      "lng": -73.985027,
-      "start_date": "2026-08-26",
-      "end_date": "2027-04-11",
-      "ticket_url": "https://www.ticketmaster.com/wicked-ny-tickets/artist/965961",
-      "attraction_url": "https://www.ticketmaster.com/wicked-ny-tickets/artist/965961",
-      "ticket_links": [
-        {
-          "country": "US",
-          "url": "https://www.ticketmaster.com/wicked-ny-tickets/artist/965961"
-        }
-      ],
-      "image": "https://s1.ticketm.net/dam/a/963/bdfc3e57-f001-4729-9424-53d9ad83c963_SOURCE",
-      "tour_name": null,
-      "verified": true,
-      "source": "ticketmaster",
-      "onsale_only": true
-    },
-    {
-      "id": "tm-schmigadoon-nederlander-theatre",
-      "title": "Schmigadoon!",
-      "type": "tour",
-      "venue": "Nederlander Theatre",
-      "city": "New York",
-      "country": "United States Of America",
-      "lat": 40.755548,
-      "lng": -73.988237,
-      "start_date": "2026-08-26",
-      "end_date": "2027-01-03",
-      "ticket_url": "https://www.ticketmaster.com/schmigadoon-ny-tickets/artist/3985079",
-      "attraction_url": "https://www.ticketmaster.com/schmigadoon-ny-tickets/artist/3985079",
-      "ticket_links": [
-        {
-          "country": "US",
-          "url": "https://www.ticketmaster.com/schmigadoon-ny-tickets/artist/3985079"
-        }
-      ],
-      "image": "https://s1.ticketm.net/dam/a/10d/9749da81-88f8-418d-8362-85537650610d_SOURCE",
-      "tour_name": "Schmigadoon! (NY)",
-      "verified": true,
-      "source": "ticketmaster",
-      "onsale_only": true
-    },
-    {
-      "id": "tm-two-strangers-carry-a-cake-across-new-york-longacre-theatre",
-      "title": "Two Strangers (Carry a Cake Across New York)",
-      "type": "tour",
-      "venue": "Longacre Theatre",
-      "city": "New York",
-      "country": "United States Of America",
-      "lat": 40.760363,
-      "lng": -73.985974,
-      "start_date": "2026-08-26",
-      "end_date": "2026-11-22",
-      "ticket_url": "https://www.ticketmaster.com/two-strangers-carry-a-cake-across-tickets/artist/3098577",
-      "attraction_url": "https://www.ticketmaster.com/two-strangers-carry-a-cake-across-tickets/artist/3098577",
-      "ticket_links": [
-        {
-          "country": "US",
-          "url": "https://www.ticketmaster.com/two-strangers-carry-a-cake-across-tickets/artist/3098577"
-        }
-      ],
-      "image": "https://s1.ticketm.net/dam/a/f00/8ccb45fb-b42d-4b30-ad1f-cc80c4200f00_SOURCE",
-      "tour_name": null,
-      "verified": true,
-      "source": "ticketmaster",
-      "onsale_only": true
-    },
-    {
-      "id": "tm-buena-vista-social-club-gerald-schoenfeld-theatre",
-      "title": "Buena Vista Social Club",
-      "type": "tour",
-      "venue": "Gerald Schoenfeld Theatre",
-      "city": "New York",
-      "country": "United States Of America",
-      "lat": 40.758506,
-      "lng": -73.987426,
-      "start_date": "2026-08-26",
-      "end_date": "2027-01-17",
-      "ticket_url": "https://www.ticketmaster.com/buena-vista-social-club-ny-tickets/artist/3312859",
-      "attraction_url": "https://www.ticketmaster.com/buena-vista-social-club-ny-tickets/artist/3312859",
-      "ticket_links": [
-        {
-          "country": "US",
-          "url": "https://www.ticketmaster.com/buena-vista-social-club-ny-tickets/artist/3312859"
-        }
-      ],
-      "image": "https://s1.ticketm.net/dam/a/297/f67d2610-8a53-4698-bd54-b163aa1de297_SOURCE",
-      "tour_name": "Buena Vista Social Club (NY)",
-      "verified": true,
-      "source": "ticketmaster",
-      "onsale_only": true
-    },
-    {
-      "id": "tm-maybe-happy-ending-belasco-theatre",
-      "title": "Maybe Happy Ending",
-      "type": "tour",
-      "venue": "Belasco Theatre",
-      "city": "New York",
-      "country": "United States Of America",
-      "lat": 40.756627,
-      "lng": -73.983961,
-      "start_date": "2026-08-26",
-      "end_date": "2027-02-28",
-      "ticket_url": "https://www.ticketmaster.com/maybe-happy-ending-ny-tickets/artist/3312609",
-      "attraction_url": "https://www.ticketmaster.com/maybe-happy-ending-ny-tickets/artist/3312609",
-      "ticket_links": [
-        {
-          "country": "US",
-          "url": "https://www.ticketmaster.com/maybe-happy-ending-ny-tickets/artist/3312609"
-        }
-      ],
-      "image": "https://s1.ticketm.net/dam/a/e79/52f9533e-e840-4d49-ae71-c3237c8e8e79_SOURCE",
-      "tour_name": "Maybe Happy Ending (NY)",
-      "verified": true,
-      "source": "ticketmaster",
-      "onsale_only": true
-    },
-    {
-      "id": "tm-operation-mincemeat-a-new-musical-john-golden-theatre",
-      "title": "Operation Mincemeat: A New Musical",
-      "type": "tour",
-      "venue": "John Golden Theatre",
-      "city": "New York",
-      "country": "United States Of America",
-      "lat": 40.758841,
-      "lng": -73.98791,
-      "start_date": "2026-08-26",
-      "end_date": "2027-02-14",
-      "ticket_url": "https://www.ticketmaster.com/operation-mincemeat-ny-tickets/artist/2802932",
-      "attraction_url": "https://www.ticketmaster.com/operation-mincemeat-ny-tickets/artist/2802932",
-      "ticket_links": [
-        {
-          "country": "US",
-          "url": "https://www.ticketmaster.com/operation-mincemeat-ny-tickets/artist/2802932"
-        }
-      ],
-      "image": "https://s1.ticketm.net/dam/a/a2d/af40159e-2f5b-4149-a62d-0606e553ba2d_SOURCE",
-      "tour_name": "Operation Mincemeat (NY)",
-      "verified": true,
-      "source": "ticketmaster",
-      "onsale_only": true
-    },
-    {
-      "id": "tm-just-in-time-circle-in-the-square-theatre",
-      "title": "Just In Time",
-      "type": "tour",
-      "venue": "Circle In The Square Theatre",
-      "city": "New York",
-      "country": "United States Of America",
-      "lat": 40.762173,
-      "lng": -73.985349,
-      "start_date": "2026-08-26",
-      "end_date": "2027-02-07",
-      "ticket_url": "https://www.ticketmaster.com/just-in-time-ny-tickets/artist/3357794",
-      "attraction_url": "https://www.ticketmaster.com/just-in-time-ny-tickets/artist/3357794",
-      "ticket_links": [
-        {
-          "country": "US",
-          "url": "https://www.ticketmaster.com/just-in-time-ny-tickets/artist/3357794"
-        }
-      ],
-      "image": "https://s1.ticketm.net/dam/a/291/cfe3a4ab-f33c-48a7-8fec-22d26743d291_SOURCE",
-      "tour_name": "Just In Time (NY)",
-      "verified": true,
-      "source": "ticketmaster",
-      "onsale_only": true
-    },
-    {
-      "id": "tm-the-outsiders-bernard-b-jacobs-theatre",
-      "title": "The Outsiders",
-      "type": "tour",
-      "venue": "Bernard B. Jacobs Theatre",
-      "city": "New York",
-      "country": "United States Of America",
-      "lat": 40.758667,
-      "lng": -73.987757,
-      "start_date": "2026-08-26",
-      "end_date": "2027-01-31",
-      "ticket_url": "https://www.ticketmaster.com/the-outsiders-ny-tickets/artist/3110432",
-      "attraction_url": "https://www.ticketmaster.com/the-outsiders-ny-tickets/artist/3110432",
-      "ticket_links": [
-        {
-          "country": "US",
-          "url": "https://www.ticketmaster.com/the-outsiders-ny-tickets/artist/3110432"
-        }
-      ],
-      "image": "https://s1.ticketm.net/dam/a/c3d/9c3a5abc-b142-4a3e-92d9-713acc245c3d_SOURCE",
-      "tour_name": "The Outsiders (NY)",
-      "verified": true,
-      "source": "ticketmaster",
-      "onsale_only": true
-    },
-    {
-      "id": "tm-little-shop-of-horrors-westside-theatre-upstairs",
-      "title": "Little Shop Of Horrors",
-      "type": "tour",
-      "venue": "Westside Theatre Upstairs",
-      "city": "New York",
-      "country": "United States Of America",
-      "lat": 40.785414,
-      "lng": -73.979548,
-      "start_date": "2026-08-26",
-      "end_date": "2027-10-02",
-      "ticket_url": "https://www.ticketmaster.com/little-shop-of-horrors-ny-tickets/artist/1614882",
-      "attraction_url": "https://www.ticketmaster.com/little-shop-of-horrors-ny-tickets/artist/1614882",
-      "ticket_links": [
-        {
-          "country": "US",
-          "url": "https://www.ticketmaster.com/little-shop-of-horrors-ny-tickets/artist/1614882"
-        }
-      ],
-      "image": "https://s1.ticketm.net/dam/a/2c8/212bcfc5-dba6-4537-b62e-d63d6ceac2c8_SOURCE",
-      "tour_name": "Little Shop of Horrors (NY)",
-      "verified": true,
-      "source": "ticketmaster",
-      "onsale_only": true
-    },
-    {
-      "id": "tm-music-theater-works-west-side-story-george-van-dusen-theatre-at-north-shore-center",
-      "title": "Music Theater Works: West Side Story",
-      "type": "tour",
-      "venue": "George Van Dusen Theatre at North Shore Center",
-      "city": "Skokie",
-      "country": "United States Of America",
-      "lat": 42.062541,
-      "lng": -87.746785,
-      "start_date": "2026-08-26",
-      "end_date": "2026-08-30",
-      "ticket_url": "https://www.ticketmaster.com/music-theater-works-west-side-story-tickets/artist/4100669",
-      "attraction_url": "https://www.ticketmaster.com/music-theater-works-west-side-story-tickets/artist/4100669",
-      "ticket_links": [
-        {
-          "country": "US",
-          "url": "https://www.ticketmaster.com/music-theater-works-west-side-story-tickets/artist/4100669"
-        }
-      ],
-      "image": "https://s1.ticketm.net/dam/a/f10/0e48b453-f420-4849-a506-2980b0bb6f10_SOURCE",
-      "tour_name": null,
-      "verified": true,
-      "source": "ticketmaster",
-      "onsale_only": true
-    },
-    {
-      "id": "tm-mamma-mia-official-bjcc-ticket-hotel-packages-bjcc-concert-hall",
-      "title": "Mamma Mia! | Official BJCC Ticket + Hotel Packages",
-      "type": "tour",
-      "venue": "BJCC Concert Hall",
-      "city": "Birmingham",
-      "country": "United States Of America",
-      "lat": 33.523727,
-      "lng": -86.81011,
-      "start_date": "2026-08-26",
-      "end_date": "2026-08-26",
-      "ticket_url": "https://www.ticketmaster.com/mamma-mia-touring-tickets/artist/1120969",
-      "attraction_url": "https://www.ticketmaster.com/mamma-mia-touring-tickets/artist/1120969",
-      "ticket_links": [
-        {
-          "country": "US",
-          "url": "https://www.ticketmaster.com/mamma-mia-touring-tickets/artist/1120969"
-        }
-      ],
-      "image": "https://s1.ticketm.net/dam/a/a7e/49752c7d-133d-4ff5-a477-ae98b5e43a7e_SOURCE",
-      "tour_name": "Mamma Mia! (Touring)",
-      "verified": true,
-      "source": "ticketmaster",
-      "onsale_only": true
-    },
-    {
-      "id": "tm-the-lion-king-new-york-ny-minskoff-theatre",
-      "title": "The Lion King (New York, NY)",
-      "type": "tour",
-      "venue": "Minskoff Theatre",
-      "city": "New York",
-      "country": "United States Of America",
-      "lat": 40.757986,
-      "lng": -73.985772,
-      "start_date": "2026-08-26",
-      "end_date": "2027-01-03",
-      "ticket_url": "https://www.ticketmaster.com/the-lion-king-new-york-ny-tickets/artist/1039581",
-      "attraction_url": "https://www.ticketmaster.com/the-lion-king-new-york-ny-tickets/artist/1039581",
-      "ticket_links": [
-        {
-          "country": "US",
-          "url": "https://www.ticketmaster.com/the-lion-king-new-york-ny-tickets/artist/1039581"
-        }
-      ],
-      "image": "https://s1.ticketm.net/dam/a/7ae/48ba24c8-7e1c-4830-bff1-ad8451b847ae_SOURCE",
-      "tour_name": null,
-      "verified": true,
-      "source": "ticketmaster",
-      "onsale_only": true
-    },
-    {
-      "id": "tm-six-new-york-ny-lena-horne-theatre",
-      "title": "Six (New York, NY)",
-      "type": "tour",
-      "venue": "Lena Horne Theatre",
-      "city": "New York",
-      "country": "United States Of America",
-      "lat": 40.760056,
-      "lng": -73.986816,
-      "start_date": "2026-08-26",
-      "end_date": "2027-01-03",
-      "ticket_url": "https://www.ticketmaster.com/six-new-york-ny-tickets/artist/2677195",
-      "attraction_url": "https://www.ticketmaster.com/six-new-york-ny-tickets/artist/2677195",
-      "ticket_links": [
-        {
-          "country": "US",
-          "url": "https://www.ticketmaster.com/six-new-york-ny-tickets/artist/2677195"
-        }
-      ],
-      "image": "https://s1.ticketm.net/dam/a/26a/ae570422-5c6d-401a-8dae-8545b131126a_SOURCE",
-      "tour_name": null,
-      "verified": true,
-      "source": "ticketmaster",
-      "onsale_only": true
-    },
-    {
-      "id": "tm-the-lost-boys-palace-theatre-new-york",
-      "title": "The Lost Boys",
-      "type": "tour",
-      "venue": "Palace Theatre New York",
-      "city": "New York",
-      "country": "United States Of America",
-      "lat": 40.7591,
-      "lng": -73.984679,
-      "start_date": "2026-08-26",
-      "end_date": "2027-03-07",
-      "ticket_url": "https://www.ticketmaster.com/the-lost-boys-ny-tickets/artist/3935969",
-      "attraction_url": "https://www.ticketmaster.com/the-lost-boys-ny-tickets/artist/3935969",
-      "ticket_links": [
-        {
-          "country": "US",
-          "url": "https://www.ticketmaster.com/the-lost-boys-ny-tickets/artist/3935969"
-        }
-      ],
-      "image": "https://s1.ticketm.net/dam/a/867/b8a920a4-61d6-463c-96d5-2b4e89b65867_SOURCE",
-      "tour_name": "The Lost Boys (NY)",
-      "verified": true,
-      "source": "ticketmaster",
-      "onsale_only": true
-    },
-    {
-      "id": "tm-the-25th-annual-putnam-county-spelling-bee-new-world-stages-stage-3",
-      "title": "The 25th Annual Putnam County Spelling Bee",
-      "type": "tour",
-      "venue": "New World Stages - Stage 3",
-      "city": "New York",
-      "country": "United States Of America",
-      "lat": 40.763014,
-      "lng": -73.987627,
-      "start_date": "2026-08-26",
-      "end_date": "2026-10-11",
-      "ticket_url": "https://www.ticketmaster.com/the-25th-annual-putnam-county-spelling-tickets/artist/1169705",
-      "attraction_url": "https://www.ticketmaster.com/the-25th-annual-putnam-county-spelling-tickets/artist/1169705",
-      "ticket_links": [
-        {
-          "country": "US",
-          "url": "https://www.ticketmaster.com/the-25th-annual-putnam-county-spelling-tickets/artist/1169705"
-        }
-      ],
-      "image": "https://s1.ticketm.net/dam/a/0fe/8c1d4514-1703-4a77-a2e5-2a8b8089c0fe_SOURCE",
-      "tour_name": "The 25th Annual Putnam County Spelling Bee (NY)",
-      "verified": true,
-      "source": "ticketmaster",
-      "onsale_only": true
-    },
     {
       "id": "tm-heathers-new-world-stages-stage-1",
       "title": "Heathers",
@@ -438,7 +13,7 @@
       "country": "United States Of America",
       "lat": 40.763014,
       "lng": -73.987627,
-      "start_date": "2026-08-26",
+      "start_date": "2026-08-27",
       "end_date": "2026-11-08",
       "ticket_url": "https://www.ticketmaster.com/heathers-the-musical-tickets/artist/2075066",
       "attraction_url": "https://www.ticketmaster.com/heathers-the-musical-tickets/artist/2075066",
@@ -463,7 +38,7 @@
       "country": "United States Of America",
       "lat": 40.763518,
       "lng": -73.982991,
-      "start_date": "2026-08-26",
+      "start_date": "2026-08-27",
       "end_date": "2027-01-03",
       "ticket_url": "https://www.ticketmaster.com/the-great-gatsby-ny-tickets/artist/1237686",
       "attraction_url": "https://www.ticketmaster.com/the-great-gatsby-ny-tickets/artist/1237686",
@@ -480,150 +55,175 @@
       "onsale_only": true
     },
     {
-      "id": "tm-aladdin-new-amsterdam-theatre",
-      "title": "Aladdin",
+      "id": "tm-the-lion-king-new-york-ny-minskoff-theatre",
+      "title": "The Lion King (New York, NY)",
       "type": "tour",
-      "venue": "New Amsterdam Theatre",
+      "venue": "Minskoff Theatre",
       "city": "New York",
       "country": "United States Of America",
-      "lat": 40.756057,
-      "lng": -73.987929,
-      "start_date": "2026-08-26",
-      "end_date": "2027-06-27",
-      "ticket_url": "https://www.ticketmaster.com/aladdin-tickets/artist/1858715",
-      "attraction_url": "https://www.ticketmaster.com/aladdin-tickets/artist/1858715",
+      "lat": 40.757986,
+      "lng": -73.985772,
+      "start_date": "2026-08-27",
+      "end_date": "2027-01-03",
+      "ticket_url": "https://www.ticketmaster.com/the-lion-king-new-york-ny-tickets/artist/1039581",
+      "attraction_url": "https://www.ticketmaster.com/the-lion-king-new-york-ny-tickets/artist/1039581",
       "ticket_links": [
         {
           "country": "US",
-          "url": "https://www.ticketmaster.com/aladdin-tickets/artist/1858715"
+          "url": "https://www.ticketmaster.com/the-lion-king-new-york-ny-tickets/artist/1039581"
         }
       ],
-      "image": "https://s1.ticketm.net/dam/a/517/5ba651a0-33db-401d-8e63-87806e86f517_SOURCE",
+      "image": "https://s1.ticketm.net/dam/a/7ae/48ba24c8-7e1c-4830-bff1-ad8451b847ae_SOURCE",
       "tour_name": null,
       "verified": true,
       "source": "ticketmaster",
       "onsale_only": true
     },
     {
-      "id": "tm-the-notebook-the-national-theatre",
-      "title": "The Notebook",
+      "id": "tm-wicked-ny-gershwin-theatre",
+      "title": "Wicked (NY)",
       "type": "tour",
-      "venue": "The National Theatre",
-      "city": "Washington",
-      "country": "United States Of America",
-      "lat": 38.896267,
-      "lng": -77.03053,
-      "start_date": "2026-08-26",
-      "end_date": "2026-08-30",
-      "ticket_url": "https://www.ticketmaster.com/the-notebook-touring-tickets/artist/3656159",
-      "attraction_url": "https://www.ticketmaster.com/the-notebook-touring-tickets/artist/3656159",
-      "ticket_links": [
-        {
-          "country": "US",
-          "url": "https://www.ticketmaster.com/the-notebook-touring-tickets/artist/3656159"
-        }
-      ],
-      "image": "https://s1.ticketm.net/dam/a/5cf/57d5e1ab-fa4f-451c-980f-574584a785cf_SOURCE",
-      "tour_name": "The Notebook (Touring)",
-      "verified": true,
-      "source": "ticketmaster",
-      "onsale_only": true
-    },
-    {
-      "id": "tm-hamilton-robinson-center",
-      "title": "Hamilton",
-      "type": "tour",
-      "venue": "Robinson Center",
-      "city": "Little Rock",
-      "country": "United States Of America",
-      "lat": 34.748642,
-      "lng": -92.274248,
-      "start_date": "2026-08-26",
-      "end_date": "2026-08-30",
-      "ticket_url": "https://www.ticketmaster.com/hamilton-touring-tickets/artist/2336213",
-      "attraction_url": "https://www.ticketmaster.com/hamilton-touring-tickets/artist/2336213",
-      "ticket_links": [
-        {
-          "country": "US",
-          "url": "https://www.ticketmaster.com/hamilton-touring-tickets/artist/2336213"
-        }
-      ],
-      "image": "https://s1.ticketm.net/dam/a/d7a/6ffed4d3-61d3-44c3-8e63-cc776582fd7a_SOURCE",
-      "tour_name": "Hamilton (Touring)",
-      "verified": true,
-      "source": "ticketmaster",
-      "onsale_only": true
-    },
-    {
-      "id": "tm-wicked-music-hall-kansas-city",
-      "title": "Wicked",
-      "type": "tour",
-      "venue": "Music Hall Kansas City",
-      "city": "Kansas City",
-      "country": "United States Of America",
-      "lat": 39.099437,
-      "lng": -94.587721,
-      "start_date": "2026-08-26",
-      "end_date": "2026-08-30",
-      "ticket_url": "https://www.ticketmaster.com/wicked-touring-tickets/artist/864373",
-      "attraction_url": "https://www.ticketmaster.com/wicked-touring-tickets/artist/864373",
-      "ticket_links": [
-        {
-          "country": "US",
-          "url": "https://www.ticketmaster.com/wicked-touring-tickets/artist/864373"
-        }
-      ],
-      "image": "https://s1.ticketm.net/dam/a/8f4/eac77d3f-de25-40f5-af88-00ea8c1568f4_SOURCE",
-      "tour_name": "Wicked (Touring)",
-      "verified": true,
-      "source": "ticketmaster",
-      "onsale_only": true
-    },
-    {
-      "id": "tm-beauty-and-the-beast-hollywood-pantages-theatre",
-      "title": "Beauty and the Beast",
-      "type": "tour",
-      "venue": "Hollywood Pantages Theatre",
-      "city": "Los Angeles",
-      "country": "United States Of America",
-      "lat": 34.10201,
-      "lng": -118.325866,
-      "start_date": "2026-08-26",
-      "end_date": "2026-09-06",
-      "ticket_url": "https://www.ticketmaster.com/disneys-beauty-and-the-beast-touring-tickets/artist/803726",
-      "attraction_url": "https://www.ticketmaster.com/disneys-beauty-and-the-beast-touring-tickets/artist/803726",
-      "ticket_links": [
-        {
-          "country": "US",
-          "url": "https://www.ticketmaster.com/disneys-beauty-and-the-beast-touring-tickets/artist/803726"
-        }
-      ],
-      "image": "https://s1.ticketm.net/dam/a/d79/77d6e32c-631c-4539-bd38-1b848f90cd79_SOURCE",
-      "tour_name": "Beauty and the Beast (Touring)",
-      "verified": true,
-      "source": "ticketmaster",
-      "onsale_only": true
-    },
-    {
-      "id": "tm-the-rocky-horror-show-studio-54",
-      "title": "The Rocky Horror Show",
-      "type": "tour",
-      "venue": "Studio 54",
+      "venue": "Gershwin Theatre",
       "city": "New York",
       "country": "United States Of America",
-      "lat": 40.765202,
-      "lng": -73.985298,
+      "lat": 40.762542,
+      "lng": -73.985027,
       "start_date": "2026-08-27",
-      "end_date": "2026-11-29",
-      "ticket_url": "https://www.ticketmaster.com/the-rocky-horror-show-tickets/artist/804241",
-      "attraction_url": "https://www.ticketmaster.com/the-rocky-horror-show-tickets/artist/804241",
+      "end_date": "2027-04-11",
+      "ticket_url": "https://www.ticketmaster.com/wicked-ny-tickets/artist/965961",
+      "attraction_url": "https://www.ticketmaster.com/wicked-ny-tickets/artist/965961",
       "ticket_links": [
         {
           "country": "US",
-          "url": "https://www.ticketmaster.com/the-rocky-horror-show-tickets/artist/804241"
+          "url": "https://www.ticketmaster.com/wicked-ny-tickets/artist/965961"
         }
       ],
-      "image": "https://s1.ticketm.net/dam/a/7fb/08694303-391b-4f27-b5c2-4918134e37fb_SOURCE",
+      "image": "https://s1.ticketm.net/dam/a/963/bdfc3e57-f001-4729-9424-53d9ad83c963_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
+      "id": "tm-mj-neil-simon-theatre",
+      "title": "MJ",
+      "type": "tour",
+      "venue": "Neil Simon Theatre",
+      "city": "New York",
+      "country": "United States Of America",
+      "lat": 40.763146,
+      "lng": -73.983996,
+      "start_date": "2026-08-27",
+      "end_date": "2027-05-30",
+      "ticket_url": "https://www.ticketmaster.com/mj-ny-tickets/artist/2714992",
+      "attraction_url": "https://www.ticketmaster.com/mj-ny-tickets/artist/2714992",
+      "ticket_links": [
+        {
+          "country": "US",
+          "url": "https://www.ticketmaster.com/mj-ny-tickets/artist/2714992"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/5d3/feae6a80-7f38-4e8f-917f-2560abb9d5d3_SOURCE",
+      "tour_name": "Mj (Ny)",
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
+      "id": "tm-six-new-york-ny-lena-horne-theatre",
+      "title": "Six (New York, NY)",
+      "type": "tour",
+      "venue": "Lena Horne Theatre",
+      "city": "New York",
+      "country": "United States Of America",
+      "lat": 40.760056,
+      "lng": -73.986816,
+      "start_date": "2026-08-27",
+      "end_date": "2027-01-03",
+      "ticket_url": "https://www.ticketmaster.com/six-new-york-ny-tickets/artist/2677195",
+      "attraction_url": "https://www.ticketmaster.com/six-new-york-ny-tickets/artist/2677195",
+      "ticket_links": [
+        {
+          "country": "US",
+          "url": "https://www.ticketmaster.com/six-new-york-ny-tickets/artist/2677195"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/26a/ae570422-5c6d-401a-8dae-8545b131126a_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
+      "id": "tm-the-lost-boys-palace-theatre-new-york",
+      "title": "The Lost Boys",
+      "type": "tour",
+      "venue": "Palace Theatre New York",
+      "city": "New York",
+      "country": "United States Of America",
+      "lat": 40.7591,
+      "lng": -73.984679,
+      "start_date": "2026-08-27",
+      "end_date": "2027-03-07",
+      "ticket_url": "https://www.ticketmaster.com/the-lost-boys-ny-tickets/artist/3935969",
+      "attraction_url": "https://www.ticketmaster.com/the-lost-boys-ny-tickets/artist/3935969",
+      "ticket_links": [
+        {
+          "country": "US",
+          "url": "https://www.ticketmaster.com/the-lost-boys-ny-tickets/artist/3935969"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/867/b8a920a4-61d6-463c-96d5-2b4e89b65867_SOURCE",
+      "tour_name": "The Lost Boys (NY)",
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
+      "id": "tm-schmigadoon-nederlander-theatre",
+      "title": "Schmigadoon!",
+      "type": "tour",
+      "venue": "Nederlander Theatre",
+      "city": "New York",
+      "country": "United States Of America",
+      "lat": 40.755548,
+      "lng": -73.988237,
+      "start_date": "2026-08-27",
+      "end_date": "2027-01-03",
+      "ticket_url": "https://www.ticketmaster.com/schmigadoon-ny-tickets/artist/3985079",
+      "attraction_url": "https://www.ticketmaster.com/schmigadoon-ny-tickets/artist/3985079",
+      "ticket_links": [
+        {
+          "country": "US",
+          "url": "https://www.ticketmaster.com/schmigadoon-ny-tickets/artist/3985079"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/10d/9749da81-88f8-418d-8362-85537650610d_SOURCE",
+      "tour_name": "Schmigadoon! (NY)",
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
+      "id": "tm-hamilton-ny-richard-rodgers-theatre",
+      "title": "Hamilton (NY)",
+      "type": "tour",
+      "venue": "Richard Rodgers Theatre",
+      "city": "New York",
+      "country": "United States Of America",
+      "lat": 40.759204,
+      "lng": -73.986763,
+      "start_date": "2026-08-27",
+      "end_date": "2027-06-13",
+      "ticket_url": "https://www.ticketmaster.com/hamilton-ny-tickets/artist/2095830",
+      "attraction_url": "https://www.ticketmaster.com/hamilton-ny-tickets/artist/2095830",
+      "ticket_links": [
+        {
+          "country": "US",
+          "url": "https://www.ticketmaster.com/hamilton-ny-tickets/artist/2095830"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/00f/b9aebee0-d1cb-4a5c-8e0e-0ca03fd4d00f_SOURCE",
       "tour_name": null,
       "verified": true,
       "source": "ticketmaster",
@@ -655,41 +255,166 @@
       "onsale_only": true
     },
     {
-      "id": "tm-pippin-short-north-stage-garden-theater",
-      "title": "Pippin",
+      "id": "tm-the-25th-annual-putnam-county-spelling-bee-new-world-stages-stage-3",
+      "title": "The 25th Annual Putnam County Spelling Bee",
       "type": "tour",
-      "venue": "Short North Stage - Garden Theater",
-      "city": "Columbus",
+      "venue": "New World Stages - Stage 3",
+      "city": "New York",
       "country": "United States Of America",
-      "lat": 39.990601,
-      "lng": -83.0,
+      "lat": 40.763014,
+      "lng": -73.987627,
       "start_date": "2026-08-27",
-      "end_date": "2026-08-29",
-      "ticket_url": "https://www.ticketmaster.com/pippin-tickets/artist/987363",
-      "attraction_url": "https://www.ticketmaster.com/pippin-tickets/artist/987363",
+      "end_date": "2026-10-11",
+      "ticket_url": "https://www.ticketmaster.com/the-25th-annual-putnam-county-spelling-tickets/artist/1169705",
+      "attraction_url": "https://www.ticketmaster.com/the-25th-annual-putnam-county-spelling-tickets/artist/1169705",
       "ticket_links": [
         {
           "country": "US",
-          "url": "https://www.ticketmaster.com/pippin-tickets/artist/987363"
+          "url": "https://www.ticketmaster.com/the-25th-annual-putnam-county-spelling-tickets/artist/1169705"
         }
       ],
-      "image": "https://s1.ticketm.net/dam/a/11f/fba364d4-e1c6-4fa7-bfb4-8444e91ef11f_SOURCE",
-      "tour_name": null,
+      "image": "https://s1.ticketm.net/dam/a/0fe/8c1d4514-1703-4a77-a2e5-2a8b8089c0fe_SOURCE",
+      "tour_name": "The 25th Annual Putnam County Spelling Bee (NY)",
       "verified": true,
       "source": "ticketmaster",
       "onsale_only": true
     },
     {
-      "id": "tm-little-shop-of-horrors-westside-theatre-upstairs-ny",
-      "title": "Little Shop of Horrors",
+      "id": "tm-buena-vista-social-club-gerald-schoenfeld-theatre",
+      "title": "Buena Vista Social Club",
       "type": "tour",
-      "venue": "Westside Theatre Upstairs - NY",
+      "venue": "Gerald Schoenfeld Theatre",
       "city": "New York",
       "country": "United States Of America",
-      "lat": 40.785999,
-      "lng": -73.9758,
+      "lat": 40.758506,
+      "lng": -73.987426,
       "start_date": "2026-08-27",
-      "end_date": "2027-01-24",
+      "end_date": "2027-01-17",
+      "ticket_url": "https://www.ticketmaster.com/buena-vista-social-club-ny-tickets/artist/3312859",
+      "attraction_url": "https://www.ticketmaster.com/buena-vista-social-club-ny-tickets/artist/3312859",
+      "ticket_links": [
+        {
+          "country": "US",
+          "url": "https://www.ticketmaster.com/buena-vista-social-club-ny-tickets/artist/3312859"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/297/f67d2610-8a53-4698-bd54-b163aa1de297_SOURCE",
+      "tour_name": "Buena Vista Social Club (NY)",
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
+      "id": "tm-maybe-happy-ending-belasco-theatre",
+      "title": "Maybe Happy Ending",
+      "type": "tour",
+      "venue": "Belasco Theatre",
+      "city": "New York",
+      "country": "United States Of America",
+      "lat": 40.756627,
+      "lng": -73.983961,
+      "start_date": "2026-08-27",
+      "end_date": "2027-02-28",
+      "ticket_url": "https://www.ticketmaster.com/maybe-happy-ending-ny-tickets/artist/3312609",
+      "attraction_url": "https://www.ticketmaster.com/maybe-happy-ending-ny-tickets/artist/3312609",
+      "ticket_links": [
+        {
+          "country": "US",
+          "url": "https://www.ticketmaster.com/maybe-happy-ending-ny-tickets/artist/3312609"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/e79/52f9533e-e840-4d49-ae71-c3237c8e8e79_SOURCE",
+      "tour_name": "Maybe Happy Ending (NY)",
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
+      "id": "tm-operation-mincemeat-a-new-musical-john-golden-theatre",
+      "title": "Operation Mincemeat: A New Musical",
+      "type": "tour",
+      "venue": "John Golden Theatre",
+      "city": "New York",
+      "country": "United States Of America",
+      "lat": 40.758841,
+      "lng": -73.98791,
+      "start_date": "2026-08-27",
+      "end_date": "2027-02-14",
+      "ticket_url": "https://www.ticketmaster.com/operation-mincemeat-ny-tickets/artist/2802932",
+      "attraction_url": "https://www.ticketmaster.com/operation-mincemeat-ny-tickets/artist/2802932",
+      "ticket_links": [
+        {
+          "country": "US",
+          "url": "https://www.ticketmaster.com/operation-mincemeat-ny-tickets/artist/2802932"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/a2d/af40159e-2f5b-4149-a62d-0606e553ba2d_SOURCE",
+      "tour_name": "Operation Mincemeat (NY)",
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
+      "id": "tm-just-in-time-circle-in-the-square-theatre",
+      "title": "Just In Time",
+      "type": "tour",
+      "venue": "Circle In The Square Theatre",
+      "city": "New York",
+      "country": "United States Of America",
+      "lat": 40.762173,
+      "lng": -73.985349,
+      "start_date": "2026-08-27",
+      "end_date": "2027-02-07",
+      "ticket_url": "https://www.ticketmaster.com/just-in-time-ny-tickets/artist/3357794",
+      "attraction_url": "https://www.ticketmaster.com/just-in-time-ny-tickets/artist/3357794",
+      "ticket_links": [
+        {
+          "country": "US",
+          "url": "https://www.ticketmaster.com/just-in-time-ny-tickets/artist/3357794"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/291/cfe3a4ab-f33c-48a7-8fec-22d26743d291_SOURCE",
+      "tour_name": "Just In Time (NY)",
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
+      "id": "tm-the-outsiders-bernard-b-jacobs-theatre",
+      "title": "The Outsiders",
+      "type": "tour",
+      "venue": "Bernard B. Jacobs Theatre",
+      "city": "New York",
+      "country": "United States Of America",
+      "lat": 40.758667,
+      "lng": -73.987757,
+      "start_date": "2026-08-27",
+      "end_date": "2027-01-31",
+      "ticket_url": "https://www.ticketmaster.com/the-outsiders-ny-tickets/artist/3110432",
+      "attraction_url": "https://www.ticketmaster.com/the-outsiders-ny-tickets/artist/3110432",
+      "ticket_links": [
+        {
+          "country": "US",
+          "url": "https://www.ticketmaster.com/the-outsiders-ny-tickets/artist/3110432"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/c3d/9c3a5abc-b142-4a3e-92d9-713acc245c3d_SOURCE",
+      "tour_name": "The Outsiders (NY)",
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
+      "id": "tm-little-shop-of-horrors-westside-theatre-upstairs",
+      "title": "Little Shop Of Horrors",
+      "type": "tour",
+      "venue": "Westside Theatre Upstairs",
+      "city": "New York",
+      "country": "United States Of America",
+      "lat": 40.785414,
+      "lng": -73.979548,
+      "start_date": "2026-08-27",
+      "end_date": "2027-10-03",
       "ticket_url": "https://www.ticketmaster.com/little-shop-of-horrors-ny-tickets/artist/1614882",
       "attraction_url": "https://www.ticketmaster.com/little-shop-of-horrors-ny-tickets/artist/1614882",
       "ticket_links": [
@@ -705,301 +430,126 @@
       "onsale_only": true
     },
     {
-      "id": "tm-beautiful-the-carole-king-musical-the-argyle-theatre-at-babylon-village",
-      "title": "Beautiful: The Carole King Musical",
+      "id": "tm-aladdin-new-amsterdam-theatre",
+      "title": "Aladdin",
       "type": "tour",
-      "venue": "The Argyle Theatre at Babylon Village",
-      "city": "Babylon",
+      "venue": "New Amsterdam Theatre",
+      "city": "New York",
       "country": "United States Of America",
-      "lat": 40.6311,
-      "lng": -73.343102,
+      "lat": 40.756057,
+      "lng": -73.987929,
       "start_date": "2026-08-27",
-      "end_date": "2026-08-30",
-      "ticket_url": "https://www.ticketmaster.com/beautiful-the-carole-king-musical-touring-tickets/artist/2117653",
-      "attraction_url": "https://www.ticketmaster.com/beautiful-the-carole-king-musical-touring-tickets/artist/2117653",
+      "end_date": "2027-06-27",
+      "ticket_url": "https://www.ticketmaster.com/aladdin-tickets/artist/1858715",
+      "attraction_url": "https://www.ticketmaster.com/aladdin-tickets/artist/1858715",
       "ticket_links": [
         {
           "country": "US",
-          "url": "https://www.ticketmaster.com/beautiful-the-carole-king-musical-touring-tickets/artist/2117653"
+          "url": "https://www.ticketmaster.com/aladdin-tickets/artist/1858715"
         }
       ],
-      "image": "https://s1.ticketm.net/dam/a/d06/c9bfd2a6-da18-4e15-8ff9-78a512a79d06_SOURCE",
-      "tour_name": "Beautiful: the Carole King Musical (Touring)",
+      "image": "https://s1.ticketm.net/dam/a/517/5ba651a0-33db-401d-8e63-87806e86f517_SOURCE",
+      "tour_name": null,
       "verified": true,
       "source": "ticketmaster",
       "onsale_only": true
     },
     {
-      "id": "tm-hamilton-richard-rodgers-theatre-ny",
+      "id": "tm-the-notebook-the-national-theatre",
+      "title": "The Notebook",
+      "type": "tour",
+      "venue": "The National Theatre",
+      "city": "Washington",
+      "country": "United States Of America",
+      "lat": 38.896267,
+      "lng": -77.03053,
+      "start_date": "2026-08-27",
+      "end_date": "2026-08-30",
+      "ticket_url": "https://www.ticketmaster.com/the-notebook-touring-tickets/artist/3656159",
+      "attraction_url": "https://www.ticketmaster.com/the-notebook-touring-tickets/artist/3656159",
+      "ticket_links": [
+        {
+          "country": "US",
+          "url": "https://www.ticketmaster.com/the-notebook-touring-tickets/artist/3656159"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/5cf/57d5e1ab-fa4f-451c-980f-574584a785cf_SOURCE",
+      "tour_name": "The Notebook (Touring)",
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
+      "id": "tm-two-strangers-carry-a-cake-across-new-york-longacre-theatre",
+      "title": "Two Strangers (Carry a Cake Across New York)",
+      "type": "tour",
+      "venue": "Longacre Theatre",
+      "city": "New York",
+      "country": "United States Of America",
+      "lat": 40.760363,
+      "lng": -73.985974,
+      "start_date": "2026-08-27",
+      "end_date": "2026-11-22",
+      "ticket_url": "https://www.ticketmaster.com/two-strangers-carry-a-cake-across-tickets/artist/3098577",
+      "attraction_url": "https://www.ticketmaster.com/two-strangers-carry-a-cake-across-tickets/artist/3098577",
+      "ticket_links": [
+        {
+          "country": "US",
+          "url": "https://www.ticketmaster.com/two-strangers-carry-a-cake-across-tickets/artist/3098577"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/f00/8ccb45fb-b42d-4b30-ad1f-cc80c4200f00_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
+      "id": "tm-hamilton-robinson-center",
       "title": "Hamilton",
       "type": "tour",
-      "venue": "Richard Rodgers Theatre-NY",
-      "city": "New York",
+      "venue": "Robinson Center",
+      "city": "Little Rock",
       "country": "United States Of America",
-      "lat": 40.7593,
-      "lng": -73.990196,
-      "start_date": "2026-08-27",
-      "end_date": "2026-09-13",
-      "ticket_url": "https://www.ticketmaster.com/hamilton-ny-tickets/artist/2095830",
-      "attraction_url": "https://www.ticketmaster.com/hamilton-ny-tickets/artist/2095830",
-      "ticket_links": [
-        {
-          "country": "US",
-          "url": "https://www.ticketmaster.com/hamilton-ny-tickets/artist/2095830"
-        }
-      ],
-      "image": "https://s1.ticketm.net/dam/a/00f/b9aebee0-d1cb-4a5c-8e0e-0ca03fd4d00f_SOURCE",
-      "tour_name": "Hamilton (NY)",
-      "verified": true,
-      "source": "ticketmaster",
-      "onsale_only": true
-    },
-    {
-      "id": "tm-chicago-ambassador-theatre-ny",
-      "title": "Chicago",
-      "type": "tour",
-      "venue": "Ambassador Theatre-NY",
-      "city": "New York",
-      "country": "United States Of America",
-      "lat": 40.765202,
-      "lng": -73.985298,
-      "start_date": "2026-08-27",
-      "end_date": "2027-03-28",
-      "ticket_url": "https://www.ticketmaster.com/chicago-the-musical-ny-tickets/artist/2503066",
-      "attraction_url": "https://www.ticketmaster.com/chicago-the-musical-ny-tickets/artist/2503066",
-      "ticket_links": [
-        {
-          "country": "US",
-          "url": "https://www.ticketmaster.com/chicago-the-musical-ny-tickets/artist/2503066"
-        }
-      ],
-      "image": "https://s1.ticketm.net/dam/a/ff9/5e9369f8-04d5-4a67-a77c-f850943fcff9_SOURCE",
-      "tour_name": "Chicago The Musical (NY)",
-      "verified": true,
-      "source": "ticketmaster",
-      "onsale_only": true
-    },
-    {
-      "id": "tm-juliet-stephen-sondheim-theatre",
-      "title": "& Juliet",
-      "type": "tour",
-      "venue": "Stephen Sondheim Theatre",
-      "city": "New York",
-      "country": "United States Of America",
-      "lat": 40.7593,
-      "lng": -73.990196,
-      "start_date": "2026-08-27",
-      "end_date": "2026-10-18",
-      "ticket_url": "https://www.ticketmaster.com/and-juliet-tickets/artist/2594925",
-      "attraction_url": "https://www.ticketmaster.com/and-juliet-tickets/artist/2594925",
-      "ticket_links": [
-        {
-          "country": "US",
-          "url": "https://www.ticketmaster.com/and-juliet-tickets/artist/2594925"
-        }
-      ],
-      "image": "https://s1.ticketm.net/dam/c/07d/fda8c807-42eb-4b81-9f16-f3a8367e107d_106371_TABLET_LANDSCAPE_LARGE_16_9.jpg",
-      "tour_name": "And Juliet",
-      "verified": true,
-      "source": "ticketmaster",
-      "onsale_only": true
-    },
-    {
-      "id": "tm-moulin-rouge-al-hirschfeld-theatre",
-      "title": "Moulin Rouge",
-      "type": "tour",
-      "venue": "Al Hirschfeld Theatre",
-      "city": "New York",
-      "country": "United States Of America",
-      "lat": 40.7593,
-      "lng": -73.990196,
+      "lat": 34.748642,
+      "lng": -92.274248,
       "start_date": "2026-08-27",
       "end_date": "2026-08-30",
-      "ticket_url": "https://www.ticketmaster.com/moulin-rouge-the-musical-ny-tickets/artist/2571914",
-      "attraction_url": "https://www.ticketmaster.com/moulin-rouge-the-musical-ny-tickets/artist/2571914",
+      "ticket_url": "https://www.ticketmaster.com/hamilton-touring-tickets/artist/2336213",
+      "attraction_url": "https://www.ticketmaster.com/hamilton-touring-tickets/artist/2336213",
       "ticket_links": [
         {
           "country": "US",
-          "url": "https://www.ticketmaster.com/moulin-rouge-the-musical-ny-tickets/artist/2571914"
+          "url": "https://www.ticketmaster.com/hamilton-touring-tickets/artist/2336213"
         }
       ],
-      "image": "https://s1.ticketm.net/dam/a/5da/a33e1fe8-c17d-4d1e-bdc1-327d199f45da_SOURCE",
-      "tour_name": "Moulin Rouge! The Musical (NY)",
+      "image": "https://s1.ticketm.net/dam/a/d7a/6ffed4d3-61d3-44c3-8e63-cc776582fd7a_SOURCE",
+      "tour_name": "Hamilton (Touring)",
       "verified": true,
       "source": "ticketmaster",
       "onsale_only": true
     },
     {
-      "id": "tm-the-book-of-mormon-eugene-o-neill-theatre",
-      "title": "The Book of Mormon",
+      "id": "tm-wicked-music-hall-kansas-city",
+      "title": "Wicked",
       "type": "tour",
-      "venue": "Eugene O'Neill Theatre",
-      "city": "New York",
+      "venue": "Music Hall Kansas City",
+      "city": "Kansas City",
       "country": "United States Of America",
-      "lat": 40.765202,
-      "lng": -73.985298,
-      "start_date": "2026-08-27",
-      "end_date": "2027-05-30",
-      "ticket_url": "https://www.ticketmaster.com/the-book-of-mormon-new-york-tickets/artist/1714389",
-      "attraction_url": "https://www.ticketmaster.com/the-book-of-mormon-new-york-tickets/artist/1714389",
-      "ticket_links": [
-        {
-          "country": "US",
-          "url": "https://www.ticketmaster.com/the-book-of-mormon-new-york-tickets/artist/1714389"
-        }
-      ],
-      "image": "https://s1.ticketm.net/dam/a/e87/c2269fde-ca56-433b-9893-1088e03cfe87_SOURCE",
-      "tour_name": "The Book Of Mormon (New York, NY)",
-      "verified": true,
-      "source": "ticketmaster",
-      "onsale_only": true
-    },
-    {
-      "id": "tm-the-lion-king-minskoff-theatre",
-      "title": "The Lion King",
-      "type": "tour",
-      "venue": "Minskoff Theatre",
-      "city": "New York",
-      "country": "United States Of America",
-      "lat": 40.7593,
-      "lng": -73.990196,
-      "start_date": "2026-08-27",
-      "end_date": "2027-01-03",
-      "ticket_url": "https://www.ticketmaster.com/the-lion-king-new-york-ny-tickets/artist/1039581",
-      "attraction_url": "https://www.ticketmaster.com/the-lion-king-new-york-ny-tickets/artist/1039581",
-      "ticket_links": [
-        {
-          "country": "US",
-          "url": "https://www.ticketmaster.com/the-lion-king-new-york-ny-tickets/artist/1039581"
-        }
-      ],
-      "image": "https://s1.ticketm.net/dam/a/7ae/48ba24c8-7e1c-4830-bff1-ad8451b847ae_SOURCE",
-      "tour_name": "The Lion King (New York, NY)",
-      "verified": true,
-      "source": "ticketmaster",
-      "onsale_only": true
-    },
-    {
-      "id": "tm-phantom-of-the-opera-entry-requires-a-valid-photo-id-all-guests-must-be-13-any-guest-under-16-must-be-accompanied-by-an-adult-masquerade-nyc",
-      "title": "Phantom Of The Opera (Entry requires a valid photo ID. All guests must be 13+. Any guest under 16 must be accompanied by an adult)",
-      "type": "tour",
-      "venue": "Masquerade NYC",
-      "city": "New York",
-      "country": "United States Of America",
-      "lat": 40.765202,
-      "lng": -73.985298,
-      "start_date": "2026-08-27",
-      "end_date": "2026-09-06",
-      "ticket_url": "https://www.ticketmaster.com/the-phantom-of-the-opera-touring-tickets/artist/1116096",
-      "attraction_url": "https://www.ticketmaster.com/the-phantom-of-the-opera-touring-tickets/artist/1116096",
-      "ticket_links": [
-        {
-          "country": "US",
-          "url": "https://www.ticketmaster.com/the-phantom-of-the-opera-touring-tickets/artist/1116096"
-        }
-      ],
-      "image": "https://s1.ticketm.net/dam/a/1c8/4c6416b3-a0d2-41ac-a495-e40cae8581c8_SOURCE",
-      "tour_name": "The Phantom of the Opera (Touring)",
-      "verified": true,
-      "source": "ticketmaster",
-      "onsale_only": true
-    },
-    {
-      "id": "tm-come-from-away-marriott-theater-lincolnshire-il",
-      "title": "Come from Away",
-      "type": "tour",
-      "venue": "Marriott Theater - Lincolnshire IL",
-      "city": "Lincolnshire",
-      "country": "United States Of America",
-      "lat": 42.194099,
-      "lng": -87.931702,
-      "start_date": "2026-08-27",
-      "end_date": "2026-10-18",
-      "ticket_url": "https://www.ticketmaster.com/come-from-away-touring-tickets/artist/2459898",
-      "attraction_url": "https://www.ticketmaster.com/come-from-away-touring-tickets/artist/2459898",
-      "ticket_links": [
-        {
-          "country": "US",
-          "url": "https://www.ticketmaster.com/come-from-away-touring-tickets/artist/2459898"
-        }
-      ],
-      "image": "https://s1.ticketm.net/dam/a/daf/9c7ea07f-fd88-427e-8c69-94f92600fdaf_SOURCE",
-      "tour_name": "Come From Away (Touring)",
-      "verified": true,
-      "source": "ticketmaster",
-      "onsale_only": true
-    },
-    {
-      "id": "tm-the-outsiders-civic-center-music-hall",
-      "title": "The Outsiders",
-      "type": "tour",
-      "venue": "Civic Center Music Hall",
-      "city": "Oklahoma City",
-      "country": "United States Of America",
-      "lat": 35.471401,
-      "lng": -97.519096,
+      "lat": 39.099437,
+      "lng": -94.587721,
       "start_date": "2026-08-27",
       "end_date": "2026-08-30",
-      "ticket_url": "https://www.ticketmaster.com/the-outsiders-touring-tickets/artist/3656154",
-      "attraction_url": "https://www.ticketmaster.com/the-outsiders-touring-tickets/artist/3656154",
+      "ticket_url": "https://www.ticketmaster.com/wicked-touring-tickets/artist/864373",
+      "attraction_url": "https://www.ticketmaster.com/wicked-touring-tickets/artist/864373",
       "ticket_links": [
         {
           "country": "US",
-          "url": "https://www.ticketmaster.com/the-outsiders-touring-tickets/artist/3656154"
+          "url": "https://www.ticketmaster.com/wicked-touring-tickets/artist/864373"
         }
       ],
-      "image": "https://s1.ticketm.net/dam/a/ee9/68bffb18-e2ba-49c2-bb45-954639b05ee9_SOURCE",
-      "tour_name": "The Outsiders (Touring)",
-      "verified": true,
-      "source": "ticketmaster",
-      "onsale_only": true
-    },
-    {
-      "id": "tm-come-from-away-red-mountain-theatre",
-      "title": "Come from Away",
-      "type": "tour",
-      "venue": "Red Mountain Theatre",
-      "city": "Birmingham",
-      "country": "United States Of America",
-      "lat": 33.5089,
-      "lng": -86.801399,
-      "start_date": "2026-08-27",
-      "end_date": "2026-09-20",
-      "ticket_url": "https://www.ticketmaster.com/come-from-away-touring-tickets/artist/2459898",
-      "attraction_url": "https://www.ticketmaster.com/come-from-away-touring-tickets/artist/2459898",
-      "ticket_links": [
-        {
-          "country": "US",
-          "url": "https://www.ticketmaster.com/come-from-away-touring-tickets/artist/2459898"
-        }
-      ],
-      "image": "https://s1.ticketm.net/dam/a/daf/9c7ea07f-fd88-427e-8c69-94f92600fdaf_SOURCE",
-      "tour_name": "Come From Away (Touring)",
-      "verified": true,
-      "source": "ticketmaster",
-      "onsale_only": true
-    },
-    {
-      "id": "tm-come-from-away-zach-theatre",
-      "title": "Come from Away",
-      "type": "tour",
-      "venue": "ZACH Theatre",
-      "city": "Austin",
-      "country": "United States Of America",
-      "lat": 30.243299,
-      "lng": -97.7658,
-      "start_date": "2026-08-27",
-      "end_date": "2026-09-27",
-      "ticket_url": "https://www.ticketmaster.com/come-from-away-touring-tickets/artist/2459898",
-      "attraction_url": "https://www.ticketmaster.com/come-from-away-touring-tickets/artist/2459898",
-      "ticket_links": [
-        {
-          "country": "US",
-          "url": "https://www.ticketmaster.com/come-from-away-touring-tickets/artist/2459898"
-        }
-      ],
-      "image": "https://s1.ticketm.net/dam/a/daf/9c7ea07f-fd88-427e-8c69-94f92600fdaf_SOURCE",
-      "tour_name": "Come From Away (Touring)",
+      "image": "https://s1.ticketm.net/dam/a/8f4/eac77d3f-de25-40f5-af88-00ea8c1568f4_SOURCE",
+      "tour_name": "Wicked (Touring)",
       "verified": true,
       "source": "ticketmaster",
       "onsale_only": true
@@ -1024,56 +574,6 @@
         }
       ],
       "image": "https://s1.ticketm.net/dam/e/a0c/2a941d9b-346e-4bca-bc18-ba90502d1a0c_SOURCE",
-      "tour_name": null,
-      "verified": true,
-      "source": "ticketmaster",
-      "onsale_only": true
-    },
-    {
-      "id": "tm-water-for-elephants-eccles-theater-salt-lake-city",
-      "title": "Water for Elephants",
-      "type": "tour",
-      "venue": "Eccles Theater - Salt Lake City",
-      "city": "Salt Lake City",
-      "country": "United States Of America",
-      "lat": 40.754799,
-      "lng": -111.883301,
-      "start_date": "2026-08-27",
-      "end_date": "2026-08-30",
-      "ticket_url": "https://www.ticketmaster.com/water-for-elephants-touring-tickets/artist/3627249",
-      "attraction_url": "https://www.ticketmaster.com/water-for-elephants-touring-tickets/artist/3627249",
-      "ticket_links": [
-        {
-          "country": "US",
-          "url": "https://www.ticketmaster.com/water-for-elephants-touring-tickets/artist/3627249"
-        }
-      ],
-      "image": "https://s1.ticketm.net/dam/a/65f/eb67f402-ccb1-4382-a7a4-0db73bcb365f_SOURCE",
-      "tour_name": "Water for Elephants (Touring)",
-      "verified": true,
-      "source": "ticketmaster",
-      "onsale_only": true
-    },
-    {
-      "id": "tm-all-shook-up-alexis-park-resort-hotel",
-      "title": "All Shook Up",
-      "type": "tour",
-      "venue": "Alexis Park Resort Hotel",
-      "city": "Las Vegas",
-      "country": "United States Of America",
-      "lat": 36.254799,
-      "lng": -115.526299,
-      "start_date": "2026-08-27",
-      "end_date": "2027-10-01",
-      "ticket_url": "https://www.ticketmaster.com/all-shook-up-tickets/artist/911675",
-      "attraction_url": "https://www.ticketmaster.com/all-shook-up-tickets/artist/911675",
-      "ticket_links": [
-        {
-          "country": "US",
-          "url": "https://www.ticketmaster.com/all-shook-up-tickets/artist/911675"
-        }
-      ],
-      "image": "https://s1.ticketm.net/dam/a/13b/a132e2d2-0073-47f0-8554-2934d583513b_SOURCE",
       "tour_name": null,
       "verified": true,
       "source": "ticketmaster",
@@ -1180,6 +680,31 @@
       "onsale_only": true
     },
     {
+      "id": "tm-beauty-and-the-beast-hollywood-pantages-theatre",
+      "title": "Beauty and the Beast",
+      "type": "tour",
+      "venue": "Hollywood Pantages Theatre",
+      "city": "Los Angeles",
+      "country": "United States Of America",
+      "lat": 34.10201,
+      "lng": -118.325866,
+      "start_date": "2026-08-27",
+      "end_date": "2026-09-06",
+      "ticket_url": "https://www.ticketmaster.com/disneys-beauty-and-the-beast-touring-tickets/artist/803726",
+      "attraction_url": "https://www.ticketmaster.com/disneys-beauty-and-the-beast-touring-tickets/artist/803726",
+      "ticket_links": [
+        {
+          "country": "US",
+          "url": "https://www.ticketmaster.com/disneys-beauty-and-the-beast-touring-tickets/artist/803726"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/d79/77d6e32c-631c-4539-bd38-1b848f90cd79_SOURCE",
+      "tour_name": "Beauty and the Beast (Touring)",
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
       "id": "tm-come-from-away-allen-elizabethan-theatre",
       "title": "Come from Away",
       "type": "tour",
@@ -1280,6 +805,206 @@
       "onsale_only": true
     },
     {
+      "id": "tm-the-rocky-horror-show-studio-54",
+      "title": "The Rocky Horror Show",
+      "type": "tour",
+      "venue": "Studio 54",
+      "city": "New York",
+      "country": "United States Of America",
+      "lat": 40.765202,
+      "lng": -73.985298,
+      "start_date": "2026-08-28",
+      "end_date": "2026-11-29",
+      "ticket_url": "https://www.ticketmaster.com/the-rocky-horror-show-tickets/artist/804241",
+      "attraction_url": "https://www.ticketmaster.com/the-rocky-horror-show-tickets/artist/804241",
+      "ticket_links": [
+        {
+          "country": "US",
+          "url": "https://www.ticketmaster.com/the-rocky-horror-show-tickets/artist/804241"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/7fb/08694303-391b-4f27-b5c2-4918134e37fb_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
+      "id": "tm-little-shop-of-horrors-westside-theatre-upstairs-ny",
+      "title": "Little Shop of Horrors",
+      "type": "tour",
+      "venue": "Westside Theatre Upstairs - NY",
+      "city": "New York",
+      "country": "United States Of America",
+      "lat": 40.785999,
+      "lng": -73.9758,
+      "start_date": "2026-08-28",
+      "end_date": "2027-01-24",
+      "ticket_url": "https://www.ticketmaster.com/little-shop-of-horrors-ny-tickets/artist/1614882",
+      "attraction_url": "https://www.ticketmaster.com/little-shop-of-horrors-ny-tickets/artist/1614882",
+      "ticket_links": [
+        {
+          "country": "US",
+          "url": "https://www.ticketmaster.com/little-shop-of-horrors-ny-tickets/artist/1614882"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/2c8/212bcfc5-dba6-4537-b62e-d63d6ceac2c8_SOURCE",
+      "tour_name": "Little Shop of Horrors (NY)",
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
+      "id": "tm-hamilton-richard-rodgers-theatre-ny",
+      "title": "Hamilton",
+      "type": "tour",
+      "venue": "Richard Rodgers Theatre-NY",
+      "city": "New York",
+      "country": "United States Of America",
+      "lat": 40.7593,
+      "lng": -73.990196,
+      "start_date": "2026-08-28",
+      "end_date": "2027-06-01",
+      "ticket_url": "https://www.ticketmaster.com/hamilton-ny-tickets/artist/2095830",
+      "attraction_url": "https://www.ticketmaster.com/hamilton-ny-tickets/artist/2095830",
+      "ticket_links": [
+        {
+          "country": "US",
+          "url": "https://www.ticketmaster.com/hamilton-ny-tickets/artist/2095830"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/00f/b9aebee0-d1cb-4a5c-8e0e-0ca03fd4d00f_SOURCE",
+      "tour_name": "Hamilton (NY)",
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
+      "id": "tm-moulin-rouge-al-hirschfeld-theatre",
+      "title": "Moulin Rouge",
+      "type": "tour",
+      "venue": "Al Hirschfeld Theatre",
+      "city": "New York",
+      "country": "United States Of America",
+      "lat": 40.7593,
+      "lng": -73.990196,
+      "start_date": "2026-08-28",
+      "end_date": "2026-08-30",
+      "ticket_url": "https://www.ticketmaster.com/moulin-rouge-the-musical-ny-tickets/artist/2571914",
+      "attraction_url": "https://www.ticketmaster.com/moulin-rouge-the-musical-ny-tickets/artist/2571914",
+      "ticket_links": [
+        {
+          "country": "US",
+          "url": "https://www.ticketmaster.com/moulin-rouge-the-musical-ny-tickets/artist/2571914"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/5da/a33e1fe8-c17d-4d1e-bdc1-327d199f45da_SOURCE",
+      "tour_name": "Moulin Rouge! The Musical (NY)",
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
+      "id": "tm-the-book-of-mormon-eugene-o-neill-theatre",
+      "title": "The Book of Mormon",
+      "type": "tour",
+      "venue": "Eugene O'Neill Theatre",
+      "city": "New York",
+      "country": "United States Of America",
+      "lat": 40.765202,
+      "lng": -73.985298,
+      "start_date": "2026-08-28",
+      "end_date": "2027-05-30",
+      "ticket_url": "https://www.ticketmaster.com/the-book-of-mormon-new-york-tickets/artist/1714389",
+      "attraction_url": "https://www.ticketmaster.com/the-book-of-mormon-new-york-tickets/artist/1714389",
+      "ticket_links": [
+        {
+          "country": "US",
+          "url": "https://www.ticketmaster.com/the-book-of-mormon-new-york-tickets/artist/1714389"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/e87/c2269fde-ca56-433b-9893-1088e03cfe87_SOURCE",
+      "tour_name": "The Book Of Mormon (New York, NY)",
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
+      "id": "tm-the-lion-king-minskoff-theatre",
+      "title": "The Lion King",
+      "type": "tour",
+      "venue": "Minskoff Theatre",
+      "city": "New York",
+      "country": "United States Of America",
+      "lat": 40.7593,
+      "lng": -73.990196,
+      "start_date": "2026-08-28",
+      "end_date": "2027-01-03",
+      "ticket_url": "https://www.ticketmaster.com/the-lion-king-new-york-ny-tickets/artist/1039581",
+      "attraction_url": "https://www.ticketmaster.com/the-lion-king-new-york-ny-tickets/artist/1039581",
+      "ticket_links": [
+        {
+          "country": "US",
+          "url": "https://www.ticketmaster.com/the-lion-king-new-york-ny-tickets/artist/1039581"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/7ae/48ba24c8-7e1c-4830-bff1-ad8451b847ae_SOURCE",
+      "tour_name": "The Lion King (New York, NY)",
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
+      "id": "tm-phantom-of-the-opera-entry-requires-a-valid-photo-id-all-guests-must-be-13-any-guest-under-16-must-be-accompanied-by-an-adult-masquerade-nyc",
+      "title": "Phantom Of The Opera (Entry requires a valid photo ID. All guests must be 13+. Any guest under 16 must be accompanied by an adult)",
+      "type": "tour",
+      "venue": "Masquerade NYC",
+      "city": "New York",
+      "country": "United States Of America",
+      "lat": 40.765202,
+      "lng": -73.985298,
+      "start_date": "2026-08-28",
+      "end_date": "2026-09-06",
+      "ticket_url": "https://www.ticketmaster.com/the-phantom-of-the-opera-touring-tickets/artist/1116096",
+      "attraction_url": "https://www.ticketmaster.com/the-phantom-of-the-opera-touring-tickets/artist/1116096",
+      "ticket_links": [
+        {
+          "country": "US",
+          "url": "https://www.ticketmaster.com/the-phantom-of-the-opera-touring-tickets/artist/1116096"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/1c8/4c6416b3-a0d2-41ac-a495-e40cae8581c8_SOURCE",
+      "tour_name": "The Phantom of the Opera (Touring)",
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
+      "id": "tm-beautiful-the-carole-king-musical-the-argyle-theatre-at-babylon-village",
+      "title": "Beautiful: The Carole King Musical",
+      "type": "tour",
+      "venue": "The Argyle Theatre at Babylon Village",
+      "city": "Babylon",
+      "country": "United States Of America",
+      "lat": 40.6311,
+      "lng": -73.343102,
+      "start_date": "2026-08-28",
+      "end_date": "2026-08-30",
+      "ticket_url": "https://www.ticketmaster.com/beautiful-the-carole-king-musical-touring-tickets/artist/2117653",
+      "attraction_url": "https://www.ticketmaster.com/beautiful-the-carole-king-musical-touring-tickets/artist/2117653",
+      "ticket_links": [
+        {
+          "country": "US",
+          "url": "https://www.ticketmaster.com/beautiful-the-carole-king-musical-touring-tickets/artist/2117653"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/d06/c9bfd2a6-da18-4e15-8ff9-78a512a79d06_SOURCE",
+      "tour_name": "Beautiful: the Carole King Musical (Touring)",
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
       "id": "tm-rock-never-dies-hard-rock-cafe-nyc",
       "title": "Rock Never Dies",
       "type": "tour",
@@ -1330,6 +1055,206 @@
       "onsale_only": true
     },
     {
+      "id": "tm-chicago-ambassador-theatre-ny",
+      "title": "Chicago",
+      "type": "tour",
+      "venue": "Ambassador Theatre-NY",
+      "city": "New York",
+      "country": "United States Of America",
+      "lat": 40.765202,
+      "lng": -73.985298,
+      "start_date": "2026-08-28",
+      "end_date": "2027-03-28",
+      "ticket_url": "https://www.ticketmaster.com/chicago-the-musical-ny-tickets/artist/2503066",
+      "attraction_url": "https://www.ticketmaster.com/chicago-the-musical-ny-tickets/artist/2503066",
+      "ticket_links": [
+        {
+          "country": "US",
+          "url": "https://www.ticketmaster.com/chicago-the-musical-ny-tickets/artist/2503066"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/ff9/5e9369f8-04d5-4a67-a77c-f850943fcff9_SOURCE",
+      "tour_name": "Chicago The Musical (NY)",
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
+      "id": "tm-juliet-stephen-sondheim-theatre",
+      "title": "& Juliet",
+      "type": "tour",
+      "venue": "Stephen Sondheim Theatre",
+      "city": "New York",
+      "country": "United States Of America",
+      "lat": 40.7593,
+      "lng": -73.990196,
+      "start_date": "2026-08-28",
+      "end_date": "2026-10-18",
+      "ticket_url": "https://www.ticketmaster.com/and-juliet-tickets/artist/2594925",
+      "attraction_url": "https://www.ticketmaster.com/and-juliet-tickets/artist/2594925",
+      "ticket_links": [
+        {
+          "country": "US",
+          "url": "https://www.ticketmaster.com/and-juliet-tickets/artist/2594925"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/c/07d/fda8c807-42eb-4b81-9f16-f3a8367e107d_106371_TABLET_LANDSCAPE_LARGE_16_9.jpg",
+      "tour_name": "And Juliet",
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
+      "id": "tm-come-from-away-marriott-theater-lincolnshire-il",
+      "title": "Come from Away",
+      "type": "tour",
+      "venue": "Marriott Theater - Lincolnshire IL",
+      "city": "Lincolnshire",
+      "country": "United States Of America",
+      "lat": 42.194099,
+      "lng": -87.931702,
+      "start_date": "2026-08-28",
+      "end_date": "2026-10-18",
+      "ticket_url": "https://www.ticketmaster.com/come-from-away-touring-tickets/artist/2459898",
+      "attraction_url": "https://www.ticketmaster.com/come-from-away-touring-tickets/artist/2459898",
+      "ticket_links": [
+        {
+          "country": "US",
+          "url": "https://www.ticketmaster.com/come-from-away-touring-tickets/artist/2459898"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/daf/9c7ea07f-fd88-427e-8c69-94f92600fdaf_SOURCE",
+      "tour_name": "Come From Away (Touring)",
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
+      "id": "tm-the-outsiders-civic-center-music-hall",
+      "title": "The Outsiders",
+      "type": "tour",
+      "venue": "Civic Center Music Hall",
+      "city": "Oklahoma City",
+      "country": "United States Of America",
+      "lat": 35.471401,
+      "lng": -97.519096,
+      "start_date": "2026-08-28",
+      "end_date": "2026-08-30",
+      "ticket_url": "https://www.ticketmaster.com/the-outsiders-touring-tickets/artist/3656154",
+      "attraction_url": "https://www.ticketmaster.com/the-outsiders-touring-tickets/artist/3656154",
+      "ticket_links": [
+        {
+          "country": "US",
+          "url": "https://www.ticketmaster.com/the-outsiders-touring-tickets/artist/3656154"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/ee9/68bffb18-e2ba-49c2-bb45-954639b05ee9_SOURCE",
+      "tour_name": "The Outsiders (Touring)",
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
+      "id": "tm-come-from-away-red-mountain-theatre",
+      "title": "Come from Away",
+      "type": "tour",
+      "venue": "Red Mountain Theatre",
+      "city": "Birmingham",
+      "country": "United States Of America",
+      "lat": 33.5089,
+      "lng": -86.801399,
+      "start_date": "2026-08-28",
+      "end_date": "2026-09-20",
+      "ticket_url": "https://www.ticketmaster.com/come-from-away-touring-tickets/artist/2459898",
+      "attraction_url": "https://www.ticketmaster.com/come-from-away-touring-tickets/artist/2459898",
+      "ticket_links": [
+        {
+          "country": "US",
+          "url": "https://www.ticketmaster.com/come-from-away-touring-tickets/artist/2459898"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/daf/9c7ea07f-fd88-427e-8c69-94f92600fdaf_SOURCE",
+      "tour_name": "Come From Away (Touring)",
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
+      "id": "tm-come-from-away-zach-theatre",
+      "title": "Come from Away",
+      "type": "tour",
+      "venue": "ZACH Theatre",
+      "city": "Austin",
+      "country": "United States Of America",
+      "lat": 30.243299,
+      "lng": -97.7658,
+      "start_date": "2026-08-28",
+      "end_date": "2026-09-27",
+      "ticket_url": "https://www.ticketmaster.com/come-from-away-touring-tickets/artist/2459898",
+      "attraction_url": "https://www.ticketmaster.com/come-from-away-touring-tickets/artist/2459898",
+      "ticket_links": [
+        {
+          "country": "US",
+          "url": "https://www.ticketmaster.com/come-from-away-touring-tickets/artist/2459898"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/daf/9c7ea07f-fd88-427e-8c69-94f92600fdaf_SOURCE",
+      "tour_name": "Come From Away (Touring)",
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
+      "id": "tm-music-theater-works-west-side-story-george-van-dusen-theatre-at-north-shore-center",
+      "title": "Music Theater Works: West Side Story",
+      "type": "tour",
+      "venue": "George Van Dusen Theatre at North Shore Center",
+      "city": "Skokie",
+      "country": "United States Of America",
+      "lat": 42.062541,
+      "lng": -87.746785,
+      "start_date": "2026-08-28",
+      "end_date": "2026-08-30",
+      "ticket_url": "https://www.ticketmaster.com/music-theater-works-west-side-story-tickets/artist/4100669",
+      "attraction_url": "https://www.ticketmaster.com/music-theater-works-west-side-story-tickets/artist/4100669",
+      "ticket_links": [
+        {
+          "country": "US",
+          "url": "https://www.ticketmaster.com/music-theater-works-west-side-story-tickets/artist/4100669"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/f10/0e48b453-f420-4849-a506-2980b0bb6f10_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
+      "id": "tm-all-shook-up-alexis-park-resort-hotel",
+      "title": "All Shook Up",
+      "type": "tour",
+      "venue": "Alexis Park Resort Hotel",
+      "city": "Las Vegas",
+      "country": "United States Of America",
+      "lat": 36.254799,
+      "lng": -115.526299,
+      "start_date": "2026-08-28",
+      "end_date": "2027-10-02",
+      "ticket_url": "https://www.ticketmaster.com/all-shook-up-tickets/artist/911675",
+      "attraction_url": "https://www.ticketmaster.com/all-shook-up-tickets/artist/911675",
+      "ticket_links": [
+        {
+          "country": "US",
+          "url": "https://www.ticketmaster.com/all-shook-up-tickets/artist/911675"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/13b/a132e2d2-0073-47f0-8554-2934d583513b_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
       "id": "tm-rock-of-ages-boise-little-theater",
       "title": "Rock of Ages",
       "type": "tour",
@@ -1350,6 +1275,56 @@
       ],
       "image": "https://s1.ticketm.net/dam/a/9fd/07bbdaf5-d9af-4902-9c0d-f043b12129fd_SOURCE",
       "tour_name": "Rock of Ages (Touring)",
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
+      "id": "tm-water-for-elephants-eccles-theater-salt-lake-city",
+      "title": "Water for Elephants",
+      "type": "tour",
+      "venue": "Eccles Theater - Salt Lake City",
+      "city": "Salt Lake City",
+      "country": "United States Of America",
+      "lat": 40.754799,
+      "lng": -111.883301,
+      "start_date": "2026-08-28",
+      "end_date": "2026-08-30",
+      "ticket_url": "https://www.ticketmaster.com/water-for-elephants-touring-tickets/artist/3627249",
+      "attraction_url": "https://www.ticketmaster.com/water-for-elephants-touring-tickets/artist/3627249",
+      "ticket_links": [
+        {
+          "country": "US",
+          "url": "https://www.ticketmaster.com/water-for-elephants-touring-tickets/artist/3627249"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/65f/eb67f402-ccb1-4382-a7a4-0db73bcb365f_SOURCE",
+      "tour_name": "Water for Elephants (Touring)",
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
+      "id": "tm-pippin-short-north-stage-garden-theater",
+      "title": "Pippin",
+      "type": "tour",
+      "venue": "Short North Stage - Garden Theater",
+      "city": "Columbus",
+      "country": "United States Of America",
+      "lat": 39.990601,
+      "lng": -83.0,
+      "start_date": "2026-08-29",
+      "end_date": "2026-08-29",
+      "ticket_url": "https://www.ticketmaster.com/pippin-tickets/artist/987363",
+      "attraction_url": "https://www.ticketmaster.com/pippin-tickets/artist/987363",
+      "ticket_links": [
+        {
+          "country": "US",
+          "url": "https://www.ticketmaster.com/pippin-tickets/artist/987363"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/11f/fba364d4-e1c6-4fa7-bfb4-8444e91ef11f_SOURCE",
+      "tour_name": null,
       "verified": true,
       "source": "ticketmaster",
       "onsale_only": true
@@ -2448,7 +2423,7 @@
           "url": "https://www.ticketmaster.com/midnight-tickets/artist/4009209"
         }
       ],
-      "image": "https://s1.ticketm.net/dam/c/07d/fda8c807-42eb-4b81-9f16-f3a8367e107d_106371_TABLET_LANDSCAPE_LARGE_16_9.jpg",
+      "image": "https://s1.ticketm.net/dam/a/f8a/ff3ab58e-42a8-4ec6-93be-981cb3792f8a_SOURCE",
       "tour_name": null,
       "verified": true,
       "source": "ticketmaster",
@@ -6805,6 +6780,31 @@
       "onsale_only": true
     },
     {
+      "id": "tm-beetlejuice-juanita-k-hammons-hall",
+      "title": "Beetlejuice",
+      "type": "tour",
+      "venue": "Juanita K. Hammons Hall",
+      "city": "Springfield",
+      "country": "United States Of America",
+      "lat": 37.205299,
+      "lng": -93.2976,
+      "start_date": "2026-10-27",
+      "end_date": "2026-10-29",
+      "ticket_url": "https://www.ticketmaster.com/beetlejuice-touring-tickets/artist/2867362",
+      "attraction_url": "https://www.ticketmaster.com/beetlejuice-touring-tickets/artist/2867362",
+      "ticket_links": [
+        {
+          "country": "US",
+          "url": "https://www.ticketmaster.com/beetlejuice-touring-tickets/artist/2867362"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/f3a/0881ccb5-67a5-447c-9fa2-1fa34f713f3a_SOURCE",
+      "tour_name": "Beetlejuice (Touring)",
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
       "id": "tm-water-for-elephants-asu-gammage",
       "title": "Water for Elephants",
       "type": "tour",
@@ -9055,6 +9055,31 @@
       "onsale_only": true
     },
     {
+      "id": "tm-six-prairie-home-alliance-theater",
+      "title": "SIX",
+      "type": "tour",
+      "venue": "Prairie Home Alliance Theater",
+      "city": "Peoria",
+      "country": "United States Of America",
+      "lat": 40.69186,
+      "lng": -89.59397,
+      "start_date": "2026-11-17",
+      "end_date": "2026-11-19",
+      "ticket_url": "https://www.ticketmaster.com/six-touring-tickets/artist/2725025",
+      "attraction_url": "https://www.ticketmaster.com/six-touring-tickets/artist/2725025",
+      "ticket_links": [
+        {
+          "country": "US",
+          "url": "https://www.ticketmaster.com/six-touring-tickets/artist/2725025"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/39e/091ca72a-c37d-42bb-868a-43de90d0f39e_SOURCE",
+      "tour_name": "SIX (Touring)",
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
       "id": "tm-maybe-happy-ending-orpheum-theatre",
       "title": "Maybe Happy Ending",
       "type": "tour",
@@ -11264,7 +11289,7 @@
       "lat": 40.7593,
       "lng": -73.990196,
       "start_date": "2026-12-07",
-      "end_date": "2027-10-02",
+      "end_date": "2027-10-03",
       "ticket_url": "https://www.ticketmaster.com/dolly-a-true-original-musical-tickets/artist/4618556",
       "attraction_url": "https://www.ticketmaster.com/dolly-a-true-original-musical-tickets/artist/4618556",
       "ticket_links": [
@@ -11975,6 +12000,31 @@
       ],
       "image": "https://s1.ticketm.net/dam/a/d05/6e2c8f9c-2ec2-4fc2-a2b2-9ec8c2971d05_SOURCE",
       "tour_name": "Mrs. Doubtfire (Touring)",
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
+      "id": "tm-death-becomes-her-au-rene-theater-at-the-broward-center",
+      "title": "Death Becomes Her",
+      "type": "tour",
+      "venue": "Au-Rene Theater at the Broward Center",
+      "city": "Ft Lauderdale",
+      "country": "United States Of America",
+      "lat": 26.1193,
+      "lng": -80.149426,
+      "start_date": "2026-12-15",
+      "end_date": "2026-12-27",
+      "ticket_url": "https://www.ticketmaster.com/death-becomes-her-touring-tickets/artist/4217954",
+      "attraction_url": "https://www.ticketmaster.com/death-becomes-her-touring-tickets/artist/4217954",
+      "ticket_links": [
+        {
+          "country": "US",
+          "url": "https://www.ticketmaster.com/death-becomes-her-touring-tickets/artist/4217954"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/247/0d5e0eb9-b130-418a-878f-53bf08b55247_SOURCE",
+      "tour_name": "Death Becomes Her (Touring)",
       "verified": true,
       "source": "ticketmaster",
       "onsale_only": true
@@ -13514,7 +13564,7 @@
       "lat": 40.785999,
       "lng": -73.9758,
       "start_date": "2027-01-26",
-      "end_date": "2027-10-02",
+      "end_date": "2027-10-03",
       "ticket_url": "https://www.ticketmaster.com/little-shop-of-horrors-ny-tickets/artist/1614882",
       "attraction_url": "https://www.ticketmaster.com/little-shop-of-horrors-ny-tickets/artist/1614882",
       "ticket_links": [
@@ -15364,7 +15414,7 @@
       "lat": 40.761909,
       "lng": -73.983591,
       "start_date": "2027-02-27",
-      "end_date": "2027-10-02",
+      "end_date": "2027-10-03",
       "ticket_url": "https://www.ticketmaster.com/evita-tickets/artist/844915",
       "attraction_url": "https://www.ticketmaster.com/evita-tickets/artist/844915",
       "ticket_links": [
@@ -15389,7 +15439,7 @@
       "lat": 40.765202,
       "lng": -73.985298,
       "start_date": "2027-02-27",
-      "end_date": "2027-10-02",
+      "end_date": "2027-10-03",
       "ticket_url": "https://www.ticketmaster.com/evita-tickets/artist/844915",
       "attraction_url": "https://www.ticketmaster.com/evita-tickets/artist/844915",
       "ticket_links": [
@@ -16273,7 +16323,7 @@
           "url": "https://www.ticketmaster.com/death-takes-a-holiday-tickets/artist/2217972"
         }
       ],
-      "image": "https://s1.ticketm.net/dam/c/07d/fda8c807-42eb-4b81-9f16-f3a8367e107d_106371_TABLET_LANDSCAPE_LARGE_16_9.jpg",
+      "image": "https://s1.ticketm.net/dam/e/827/154ef5e8-6e6c-4d65-a3b8-97d7d65ed827_SOURCE",
       "tour_name": null,
       "verified": true,
       "source": "ticketmaster",
@@ -17898,7 +17948,7 @@
           "url": "https://www.ticketmaster.com/search?q=Rolling%20Thunder"
         }
       ],
-      "image": "https://s1.ticketm.net/dam/c/07d/fda8c807-42eb-4b81-9f16-f3a8367e107d_106371_TABLET_LANDSCAPE_LARGE_16_9.jpg",
+      "image": "https://s1.ticketm.net/dam/e/0e9/d6809f8c-40a4-427d-a8db-ece1b14250e9_SOURCE",
       "tour_name": null,
       "verified": true,
       "source": "ticketmaster",
@@ -18325,6 +18375,31 @@
       ],
       "image": "https://s1.ticketm.net/dam/a/c0a/17a4606e-3bcd-4871-8c31-655376467c0a_SOURCE",
       "tour_name": "Menopause The Musical",
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
+      "id": "tm-operation-mincemeat-dpac",
+      "title": "Operation Mincemeat",
+      "type": "tour",
+      "venue": "DPAC",
+      "city": "Durham",
+      "country": "United States Of America",
+      "lat": 35.993306,
+      "lng": -78.902225,
+      "start_date": "2027-05-11",
+      "end_date": "2027-05-16",
+      "ticket_url": "https://www.ticketmaster.com/operation-mincemeat-touring-tickets/artist/4409334",
+      "attraction_url": "https://www.ticketmaster.com/operation-mincemeat-touring-tickets/artist/4409334",
+      "ticket_links": [
+        {
+          "country": "US",
+          "url": "https://www.ticketmaster.com/operation-mincemeat-touring-tickets/artist/4409334"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/cf4/bc05e339-5f4c-48ce-959e-b93c140a2cf4_SOURCE",
+      "tour_name": "Operation Mincemeat (Touring)",
       "verified": true,
       "source": "ticketmaster",
       "onsale_only": true
@@ -19605,6 +19680,31 @@
       "onsale_only": true
     },
     {
+      "id": "tm-just-in-time-dpac",
+      "title": "Just In Time",
+      "type": "tour",
+      "venue": "DPAC",
+      "city": "Durham",
+      "country": "United States Of America",
+      "lat": 35.993306,
+      "lng": -78.902225,
+      "start_date": "2027-07-13",
+      "end_date": "2027-07-18",
+      "ticket_url": "https://www.ticketmaster.com/just-in-time-touring-tickets/artist/4149114",
+      "attraction_url": "https://www.ticketmaster.com/just-in-time-touring-tickets/artist/4149114",
+      "ticket_links": [
+        {
+          "country": "US",
+          "url": "https://www.ticketmaster.com/just-in-time-touring-tickets/artist/4149114"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/94f/b66d2d2b-a4a3-49ab-b61a-7736f047294f_SOURCE",
+      "tour_name": "Just In Time (Touring)",
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
       "id": "tm-a-beautiful-noise-oxford-performing-arts-center-al",
       "title": "A Beautiful Noise",
       "type": "tour",
@@ -20125,31 +20225,6 @@
       ],
       "image": "https://s1.ticketm.net/dam/a/575/007d600b-fcd4-40df-9750-7d26082f5575_SOURCE",
       "tour_name": "Beauty and the Beast (Touring)",
-      "verified": true,
-      "source": "ticketmaster",
-      "onsale_only": true
-    },
-    {
-      "id": "tm-juliet-royal-alexandra-theatre",
-      "title": "& Juliet",
-      "type": "tour",
-      "venue": "Royal Alexandra Theatre",
-      "city": "Toronto",
-      "country": "Canada",
-      "lat": 0.0,
-      "lng": 0.0,
-      "start_date": "2026-08-27",
-      "end_date": "2026-08-27",
-      "ticket_url": "https://www.ticketmaster.com/juliet-touring-tickets/artist/3152190",
-      "attraction_url": "https://www.ticketmaster.com/juliet-touring-tickets/artist/3152190",
-      "ticket_links": [
-        {
-          "country": "CA",
-          "url": "https://www.ticketmaster.com/juliet-touring-tickets/artist/3152190"
-        }
-      ],
-      "image": "https://s1.ticketm.net/dam/a/2d1/12d88370-dc1e-48db-9aa0-6ec7596022d1_SOURCE",
-      "tour_name": "& Juliet (Touring)",
       "verified": true,
       "source": "ticketmaster",
       "onsale_only": true
@@ -20855,6 +20930,81 @@
       "onsale_only": true
     },
     {
+      "id": "tm-mrs-doubtfire-southern-alberta-jubilee-auditorium",
+      "title": "Mrs. Doubtfire",
+      "type": "tour",
+      "venue": "Southern Alberta Jubilee Auditorium",
+      "city": "Calgary",
+      "country": "Canada",
+      "lat": 51.063097,
+      "lng": -114.092031,
+      "start_date": "2027-01-05",
+      "end_date": "2027-01-10",
+      "ticket_url": "https://www.ticketmaster.com/mrs-doubtfire-touring-tickets/artist/3007777",
+      "attraction_url": "https://www.ticketmaster.com/mrs-doubtfire-touring-tickets/artist/3007777",
+      "ticket_links": [
+        {
+          "country": "CA",
+          "url": "https://www.ticketmaster.com/mrs-doubtfire-touring-tickets/artist/3007777"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/d05/6e2c8f9c-2ec2-4fc2-a2b2-9ec8c2971d05_SOURCE",
+      "tour_name": "Mrs. Doubtfire (Touring)",
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
+      "id": "tm-mrs-doubtfire-northern-alberta-jubilee-auditorium",
+      "title": "Mrs. Doubtfire",
+      "type": "tour",
+      "venue": "Northern Alberta Jubilee Auditorium",
+      "city": "Edmonton",
+      "country": "Canada",
+      "lat": 53.52289,
+      "lng": -113.526204,
+      "start_date": "2027-01-12",
+      "end_date": "2027-01-17",
+      "ticket_url": "https://www.ticketmaster.com/mrs-doubtfire-touring-tickets/artist/3007777",
+      "attraction_url": "https://www.ticketmaster.com/mrs-doubtfire-touring-tickets/artist/3007777",
+      "ticket_links": [
+        {
+          "country": "CA",
+          "url": "https://www.ticketmaster.com/mrs-doubtfire-touring-tickets/artist/3007777"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/d05/6e2c8f9c-2ec2-4fc2-a2b2-9ec8c2971d05_SOURCE",
+      "tour_name": "Mrs. Doubtfire (Touring)",
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
+      "id": "tm-mrs-doubtfire-queen-elizabeth-theatre",
+      "title": "Mrs. Doubtfire",
+      "type": "tour",
+      "venue": "Queen Elizabeth Theatre",
+      "city": "Vancouver",
+      "country": "Canada",
+      "lat": 49.277747,
+      "lng": -123.117482,
+      "start_date": "2027-01-19",
+      "end_date": "2027-01-24",
+      "ticket_url": "https://www.ticketmaster.com/mrs-doubtfire-touring-tickets/artist/3007777",
+      "attraction_url": "https://www.ticketmaster.com/mrs-doubtfire-touring-tickets/artist/3007777",
+      "ticket_links": [
+        {
+          "country": "CA",
+          "url": "https://www.ticketmaster.com/mrs-doubtfire-touring-tickets/artist/3007777"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/d05/6e2c8f9c-2ec2-4fc2-a2b2-9ec8c2971d05_SOURCE",
+      "tour_name": "Mrs. Doubtfire (Touring)",
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
       "id": "tm-urinetown-presented-by-meadowvale-music-theatre-meadowvale-theatre",
       "title": "Urinetown Presented By Meadowvale Music Theatre",
       "type": "tour",
@@ -20963,7 +21113,7 @@
       "country": "Mexico",
       "lat": 19.36499,
       "lng": -99.181938,
-      "start_date": "2026-08-26",
+      "start_date": "2026-08-27",
       "end_date": "2026-09-20",
       "ticket_url": "https://www.ticketmaster.com/el-fantasma-de-la-opera-mexico-tickets/artist/3900274",
       "attraction_url": "https://www.ticketmaster.com/el-fantasma-de-la-opera-mexico-tickets/artist/3900274",
@@ -20975,31 +21125,6 @@
       ],
       "image": "https://s1.ticketm.net/dam/a/070/c050c462-20a4-47f0-8a22-2943b7ff3070_SOURCE",
       "tour_name": "El Fantasma De La Ópera México",
-      "verified": true,
-      "source": "ticketmaster",
-      "onsale_only": true
-    },
-    {
-      "id": "tm-asesinato-para-dos-teatro-mil-n",
-      "title": "Asesinato para dos",
-      "type": "tour",
-      "venue": "Teatro Milán",
-      "city": "México",
-      "country": "Mexico",
-      "lat": 19.42995,
-      "lng": -99.156697,
-      "start_date": "2026-08-26",
-      "end_date": "2026-08-26",
-      "ticket_url": "https://www.ticketmaster.com/asesinato-para-dos-tickets/artist/3246873",
-      "attraction_url": "https://www.ticketmaster.com/asesinato-para-dos-tickets/artist/3246873",
-      "ticket_links": [
-        {
-          "country": "MX",
-          "url": "https://www.ticketmaster.com/asesinato-para-dos-tickets/artist/3246873"
-        }
-      ],
-      "image": "https://s1.ticketm.net/dam/a/2eb/77ca5e6f-c346-4f80-9f35-78a57802d2eb_SOURCE",
-      "tour_name": null,
       "verified": true,
       "source": "ticketmaster",
       "onsale_only": true
@@ -21713,7 +21838,7 @@
       "country": "Australia",
       "lat": -33.87962,
       "lng": 151.206329,
-      "start_date": "2026-08-27",
+      "start_date": "2026-08-28",
       "end_date": "2026-11-01",
       "ticket_url": "https://www.ticketmaster.com/disney-presents-the-lion-king-australia-tickets/artist/21441",
       "attraction_url": "https://www.ticketmaster.com/disney-presents-the-lion-king-australia-tickets/artist/21441",
@@ -21925,6 +22050,31 @@
       ],
       "image": "https://s1.ticketm.net/dam/a/d1f/14a7f89b-ecdf-4bce-ac5e-f00d19a7fd1f_SOURCE",
       "tour_name": "The Book of Mormon (Australia)",
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
+      "id": "tm-todd-mckenney-sings-peter-allen-and-lots-more-the-regent-theatre",
+      "title": "Todd Mckenney Sings Peter Allen And Lots More",
+      "type": "tour",
+      "venue": "The Regent Theatre",
+      "city": "Richmond",
+      "country": "Australia",
+      "lat": -33.597589,
+      "lng": 150.753507,
+      "start_date": "2026-10-25",
+      "end_date": "2026-10-25",
+      "ticket_url": "https://www.ticketmaster.com/todd-mckenney-tickets/artist/1716244",
+      "attraction_url": "https://www.ticketmaster.com/todd-mckenney-tickets/artist/1716244",
+      "ticket_links": [
+        {
+          "country": "AU",
+          "url": "https://www.ticketmaster.com/todd-mckenney-tickets/artist/1716244"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/93c/d86bfb2b-f09d-451d-92ce-f0b7dae5293c_SOURCE",
+      "tour_name": "Todd McKenney",
       "verified": true,
       "source": "ticketmaster",
       "onsale_only": true
@@ -22480,451 +22630,51 @@
       "onsale_only": true
     },
     {
-      "id": "tm-oliver-gielgud-theatre",
-      "title": "Oliver!",
+      "id": "tm-the-book-of-mormon-prince-of-wales-theatre",
+      "title": "The Book Of Mormon",
       "type": "tour",
-      "venue": "Gielgud Theatre",
+      "venue": "Prince of Wales Theatre",
       "city": "London",
       "country": "Great Britain",
-      "lat": 51.512019,
-      "lng": -0.13324,
-      "start_date": "2026-08-27",
-      "end_date": "2027-03-14",
-      "ticket_url": "https://www.ticketmaster.com/oliver-touring-tickets/artist/1424800",
-      "attraction_url": "https://www.ticketmaster.com/oliver-touring-tickets/artist/1424800",
+      "lat": 51.510009,
+      "lng": -0.131809,
+      "start_date": "2026-08-28",
+      "end_date": "2026-10-03",
+      "ticket_url": "https://www.ticketmaster.com/the-book-of-mormon-london-tickets/artist/1747137",
+      "attraction_url": "https://www.ticketmaster.com/the-book-of-mormon-london-tickets/artist/1747137",
       "ticket_links": [
         {
           "country": "GB",
-          "url": "https://www.ticketmaster.com/oliver-touring-tickets/artist/1424800"
+          "url": "https://www.ticketmaster.com/the-book-of-mormon-london-tickets/artist/1747137"
         }
       ],
-      "image": "https://s1.ticketm.net/dam/a/932/2dbb9ff7-7168-47a1-b329-59764f35c932_SOURCE",
-      "tour_name": "Oliver (Touring)",
+      "image": "https://s1.ticketm.net/dam/a/c69/ea3751d9-4dc8-4faa-ac4e-cae1cca33c69_SOURCE",
+      "tour_name": "The Book of Mormon (London)",
       "verified": true,
       "source": "ticketmaster",
       "onsale_only": true
     },
     {
-      "id": "tm-trainspotting-theatre-royal-haymarket",
-      "title": "Trainspotting",
+      "id": "tm-beetlejuice-prince-edward-theatre",
+      "title": "Beetlejuice",
       "type": "tour",
-      "venue": "Theatre Royal Haymarket",
+      "venue": "Prince Edward Theatre",
       "city": "London",
       "country": "Great Britain",
-      "lat": 51.50884,
-      "lng": -0.13128,
-      "start_date": "2026-08-27",
-      "end_date": "2026-09-05",
-      "ticket_url": "https://www.ticketmaster.com/trainspotting-the-musical-tickets/artist/4308314",
-      "attraction_url": "https://www.ticketmaster.com/trainspotting-the-musical-tickets/artist/4308314",
+      "lat": 51.513763,
+      "lng": -0.130964,
+      "start_date": "2026-08-28",
+      "end_date": "2027-04-17",
+      "ticket_url": "https://www.ticketmaster.com/beetlejuice-touring-tickets/artist/2867362",
+      "attraction_url": "https://www.ticketmaster.com/beetlejuice-touring-tickets/artist/2867362",
       "ticket_links": [
         {
           "country": "GB",
-          "url": "https://www.ticketmaster.com/trainspotting-the-musical-tickets/artist/4308314"
+          "url": "https://www.ticketmaster.com/beetlejuice-touring-tickets/artist/2867362"
         }
       ],
-      "image": "https://s1.ticketm.net/dam/a/39c/5f0a8de7-00b5-4a6a-bbb8-fed32018539c_SOURCE",
-      "tour_name": "Trainspotting the Musical",
-      "verified": true,
-      "source": "ticketmaster",
-      "onsale_only": true
-    },
-    {
-      "id": "tm-sinatra-aldwych-theatre",
-      "title": "Sinatra",
-      "type": "tour",
-      "venue": "Aldwych Theatre",
-      "city": "London",
-      "country": "Great Britain",
-      "lat": 51.51312,
-      "lng": -0.118841,
-      "start_date": "2026-08-27",
-      "end_date": "2027-04-10",
-      "ticket_url": "https://www.ticketmaster.com/sinatra-the-musical-tickets/artist/4170109",
-      "attraction_url": "https://www.ticketmaster.com/sinatra-the-musical-tickets/artist/4170109",
-      "ticket_links": [
-        {
-          "country": "GB",
-          "url": "https://www.ticketmaster.com/sinatra-the-musical-tickets/artist/4170109"
-        }
-      ],
-      "image": "https://s1.ticketm.net/dam/a/d96/7d3dcff2-64ba-4a2f-b0a5-efbe8a89cd96_SOURCE",
-      "tour_name": "Sinatra The Musical",
-      "verified": true,
-      "source": "ticketmaster",
-      "onsale_only": true
-    },
-    {
-      "id": "tm-hercules-theatre-royal-drury-lane",
-      "title": "Hercules",
-      "type": "tour",
-      "venue": "Theatre Royal Drury Lane",
-      "city": "London",
-      "country": "Great Britain",
-      "lat": 51.513008,
-      "lng": -0.120258,
-      "start_date": "2026-08-27",
-      "end_date": "2026-09-05",
-      "ticket_url": "https://www.ticketmaster.com/disneys-hercules-tickets/artist/3173874",
-      "attraction_url": "https://www.ticketmaster.com/disneys-hercules-tickets/artist/3173874",
-      "ticket_links": [
-        {
-          "country": "GB",
-          "url": "https://www.ticketmaster.com/disneys-hercules-tickets/artist/3173874"
-        }
-      ],
-      "image": "https://s1.ticketm.net/dam/a/ec8/aee698ca-36de-4d91-b2c6-cc4608771ec8_SOURCE",
-      "tour_name": null,
-      "verified": true,
-      "source": "ticketmaster",
-      "onsale_only": true
-    },
-    {
-      "id": "tm-i-m-every-woman-the-chaka-khan-musical-troubadour-wembley-park-theatre",
-      "title": "I'm Every Woman: the Chaka Khan Musical",
-      "type": "tour",
-      "venue": "Troubadour Wembley Park Theatre",
-      "city": "London",
-      "country": "Great Britain",
-      "lat": 51.56178,
-      "lng": -0.28527,
-      "start_date": "2026-08-27",
-      "end_date": "2026-09-27",
-      "ticket_url": "https://www.ticketmaster.com/im-every-woman-the-chaka-khan-tickets/artist/3692994",
-      "attraction_url": "https://www.ticketmaster.com/im-every-woman-the-chaka-khan-tickets/artist/3692994",
-      "ticket_links": [
-        {
-          "country": "GB",
-          "url": "https://www.ticketmaster.com/im-every-woman-the-chaka-khan-tickets/artist/3692994"
-        }
-      ],
-      "image": "https://s1.ticketm.net/dam/a/1c4/287c820b-1f1d-411d-81a3-a239051831c4_SOURCE",
-      "tour_name": "I'm Every Woman - The Chaka Khan Musical",
-      "verified": true,
-      "source": "ticketmaster",
-      "onsale_only": true
-    },
-    {
-      "id": "tm-avenue-q-shaftesbury-theatre",
-      "title": "Avenue Q",
-      "type": "tour",
-      "venue": "Shaftesbury Theatre",
-      "city": "London",
-      "country": "Great Britain",
-      "lat": 51.516285,
-      "lng": -0.126119,
-      "start_date": "2026-08-27",
-      "end_date": "2027-01-03",
-      "ticket_url": "https://www.ticketmaster.com/avenue-q-tickets/artist/973986",
-      "attraction_url": "https://www.ticketmaster.com/avenue-q-tickets/artist/973986",
-      "ticket_links": [
-        {
-          "country": "GB",
-          "url": "https://www.ticketmaster.com/avenue-q-tickets/artist/973986"
-        }
-      ],
-      "image": "https://s1.ticketm.net/dam/a/8a6/9e4839cf-ab9f-41f3-9ce3-4c7cd05b48a6_SOURCE",
-      "tour_name": null,
-      "verified": true,
-      "source": "ticketmaster",
-      "onsale_only": true
-    },
-    {
-      "id": "tm-the-producers-garrick-theatre",
-      "title": "The Producers",
-      "type": "tour",
-      "venue": "Garrick Theatre",
-      "city": "London",
-      "country": "Great Britain",
-      "lat": 51.509954,
-      "lng": -0.127819,
-      "start_date": "2026-08-27",
-      "end_date": "2026-09-19",
-      "ticket_url": "https://www.ticketmaster.com/the-producers-tickets/artist/936938",
-      "attraction_url": "https://www.ticketmaster.com/the-producers-tickets/artist/936938",
-      "ticket_links": [
-        {
-          "country": "GB",
-          "url": "https://www.ticketmaster.com/the-producers-tickets/artist/936938"
-        }
-      ],
-      "image": "https://s1.ticketm.net/dam/a/05d/8ce4f510-7c94-40bb-b261-6c67e754105d_SOURCE",
-      "tour_name": null,
-      "verified": true,
-      "source": "ticketmaster",
-      "onsale_only": true
-    },
-    {
-      "id": "tm-tao-of-glass-sohoplace",
-      "title": "Tao of Glass",
-      "type": "tour",
-      "venue": "sohoplace",
-      "city": "London",
-      "country": "Great Britain",
-      "lat": 51.515607,
-      "lng": -0.130436,
-      "start_date": "2026-08-27",
-      "end_date": "2026-09-12",
-      "ticket_url": "https://www.ticketmaster.com/tao-of-glass-tickets/artist/4323689",
-      "attraction_url": "https://www.ticketmaster.com/tao-of-glass-tickets/artist/4323689",
-      "ticket_links": [
-        {
-          "country": "GB",
-          "url": "https://www.ticketmaster.com/tao-of-glass-tickets/artist/4323689"
-        }
-      ],
-      "image": "https://s1.ticketm.net/dam/a/74b/f936423e-a8e9-4284-8f25-f6634975d74b_SOURCE",
-      "tour_name": null,
-      "verified": true,
-      "source": "ticketmaster",
-      "onsale_only": true
-    },
-    {
-      "id": "tm-oliver-gielgud-theatre",
-      "title": "Oliver",
-      "type": "tour",
-      "venue": "Gielgud Theatre",
-      "city": "London",
-      "country": "Great Britain",
-      "lat": 51.512019,
-      "lng": -0.13324,
-      "start_date": "2026-08-27",
-      "end_date": "2027-02-02",
-      "ticket_url": "https://www.ticketmaster.com/oliver-touring-tickets/artist/1424800",
-      "attraction_url": "https://www.ticketmaster.com/oliver-touring-tickets/artist/1424800",
-      "ticket_links": [
-        {
-          "country": "GB",
-          "url": "https://www.ticketmaster.com/oliver-touring-tickets/artist/1424800"
-        }
-      ],
-      "image": "https://s1.ticketm.net/dam/a/932/2dbb9ff7-7168-47a1-b329-59764f35c932_SOURCE",
-      "tour_name": "Oliver (Touring)",
-      "verified": true,
-      "source": "ticketmaster",
-      "onsale_only": true
-    },
-    {
-      "id": "tm-come-alive-the-greatest-showman-circus-spectacular-empress-museum",
-      "title": "Come Alive! The Greatest Showman Circus Spectacular",
-      "type": "tour",
-      "venue": "Empress Museum",
-      "city": "London",
-      "country": "Great Britain",
-      "lat": 51.488501,
-      "lng": -0.198469,
-      "start_date": "2026-08-27",
-      "end_date": "2027-04-11",
-      "ticket_url": "https://www.ticketmaster.com/come-alive-the-greatest-showman-circus-tickets/artist/3176214",
-      "attraction_url": "https://www.ticketmaster.com/come-alive-the-greatest-showman-circus-tickets/artist/3176214",
-      "ticket_links": [
-        {
-          "country": "GB",
-          "url": "https://www.ticketmaster.com/come-alive-the-greatest-showman-circus-tickets/artist/3176214"
-        }
-      ],
-      "image": "https://s1.ticketm.net/dam/a/52f/58c9a7e4-8a9f-4d9e-8f68-9d448df0852f_SOURCE",
-      "tour_name": null,
-      "verified": true,
-      "source": "ticketmaster",
-      "onsale_only": true
-    },
-    {
-      "id": "tm-hot-mess-a-new-musical-the-other-palace",
-      "title": "Hot Mess: A New Musical",
-      "type": "tour",
-      "venue": "The Other Palace",
-      "city": "London",
-      "country": "Great Britain",
-      "lat": 51.498724,
-      "lng": -0.142113,
-      "start_date": "2026-08-27",
-      "end_date": "2026-09-06",
-      "ticket_url": "https://www.ticketmaster.co.uk/hot-mess-a-new-musical-tickets/artist/5710360",
-      "attraction_url": "https://www.ticketmaster.co.uk/hot-mess-a-new-musical-tickets/artist/5710360",
-      "ticket_links": [
-        {
-          "country": "GB",
-          "url": "https://www.ticketmaster.co.uk/hot-mess-a-new-musical-tickets/artist/5710360"
-        }
-      ],
-      "image": "https://s1.ticketm.net/dam/a/c49/6da7ff42-4028-4856-aaf7-6bb3b5d59c49_SOURCE",
-      "tour_name": null,
-      "verified": true,
-      "source": "ticketmaster",
-      "onsale_only": true
-    },
-    {
-      "id": "tm-hamilton-victoria-palace-theatre",
-      "title": "Hamilton",
-      "type": "tour",
-      "venue": "Victoria Palace Theatre",
-      "city": "London",
-      "country": "Great Britain",
-      "lat": 51.497012,
-      "lng": -0.142382,
-      "start_date": "2026-08-27",
-      "end_date": "2027-03-13",
-      "ticket_url": "https://www.ticketmaster.co.uk/hamilton-tickets/artist/5218048",
-      "attraction_url": "https://www.ticketmaster.co.uk/hamilton-tickets/artist/5218048",
-      "ticket_links": [
-        {
-          "country": "GB",
-          "url": "https://www.ticketmaster.co.uk/hamilton-tickets/artist/5218048"
-        }
-      ],
-      "image": "https://s1.ticketm.net/dam/a/cdc/29b8c95f-bcdd-467c-9c94-d3d54e3b7cdc_SOURCE",
-      "tour_name": "Hamilton (UK)",
-      "verified": true,
-      "source": "ticketmaster",
-      "onsale_only": true
-    },
-    {
-      "id": "tm-hadestown-lyric-theatre",
-      "title": "Hadestown",
-      "type": "tour",
-      "venue": "Lyric Theatre",
-      "city": "London",
-      "country": "Great Britain",
-      "lat": 51.511248,
-      "lng": -0.133935,
-      "start_date": "2026-08-27",
-      "end_date": "2027-06-27",
-      "ticket_url": "https://www.ticketmaster.co.uk/hadestown-tickets/artist/5335180",
-      "attraction_url": "https://www.ticketmaster.co.uk/hadestown-tickets/artist/5335180",
-      "ticket_links": [
-        {
-          "country": "GB",
-          "url": "https://www.ticketmaster.co.uk/hadestown-tickets/artist/5335180"
-        }
-      ],
-      "image": "https://s1.ticketm.net/dam/a/a15/7b13031e-c0ba-40de-91db-d9384c70aa15_SOURCE",
-      "tour_name": "Hadestown (Touring)",
-      "verified": true,
-      "source": "ticketmaster",
-      "onsale_only": true
-    },
-    {
-      "id": "tm-moulin-rouge-piccadilly-theatre",
-      "title": "Moulin Rouge!",
-      "type": "tour",
-      "venue": "Piccadilly Theatre",
-      "city": "London",
-      "country": "Great Britain",
-      "lat": 51.511054,
-      "lng": -0.1354,
-      "start_date": "2026-08-27",
-      "end_date": "2027-02-20",
-      "ticket_url": "https://www.ticketmaster.co.uk/moulin-rouge-the-musical-tickets/artist/5352214",
-      "attraction_url": "https://www.ticketmaster.co.uk/moulin-rouge-the-musical-tickets/artist/5352214",
-      "ticket_links": [
-        {
-          "country": "GB",
-          "url": "https://www.ticketmaster.co.uk/moulin-rouge-the-musical-tickets/artist/5352214"
-        }
-      ],
-      "image": "https://s1.ticketm.net/dam/a/9c7/4d3edba2-ce6d-423d-afac-be4a6b2319c7_SOURCE",
-      "tour_name": "Moulin Rouge! The Musical (UK)",
-      "verified": true,
-      "source": "ticketmaster",
-      "onsale_only": true
-    },
-    {
-      "id": "tm-les-mis-rables-sondheim-theatre",
-      "title": "Les Misérables",
-      "type": "tour",
-      "venue": "Sondheim Theatre",
-      "city": "London",
-      "country": "Great Britain",
-      "lat": 51.512116,
-      "lng": -0.133106,
-      "start_date": "2026-08-27",
-      "end_date": "2027-03-13",
-      "ticket_url": "https://www.ticketmaster.co.uk/les-miserables-tickets/artist/803968",
-      "attraction_url": "https://www.ticketmaster.co.uk/les-miserables-tickets/artist/803968",
-      "ticket_links": [
-        {
-          "country": "GB",
-          "url": "https://www.ticketmaster.co.uk/les-miserables-tickets/artist/803968"
-        }
-      ],
-      "image": "https://s1.ticketm.net/dam/a/3b0/c4eee40f-453d-49ce-b8ff-445d66c903b0_SOURCE",
-      "tour_name": null,
-      "verified": true,
-      "source": "ticketmaster",
-      "onsale_only": true
-    },
-    {
-      "id": "tm-death-note-barbican-theatre",
-      "title": "Death Note",
-      "type": "tour",
-      "venue": "Barbican Theatre",
-      "city": "London",
-      "country": "Great Britain",
-      "lat": 51.519812,
-      "lng": -0.093919,
-      "start_date": "2026-08-27",
-      "end_date": "2026-09-12",
-      "ticket_url": "https://www.ticketmaster.co.uk/death-note-the-musical-tickets/artist/5420800",
-      "attraction_url": "https://www.ticketmaster.co.uk/death-note-the-musical-tickets/artist/5420800",
-      "ticket_links": [
-        {
-          "country": "GB",
-          "url": "https://www.ticketmaster.co.uk/death-note-the-musical-tickets/artist/5420800"
-        }
-      ],
-      "image": "https://s1.ticketm.net/dam/a/6a5/fc24b451-cf93-4161-ab2b-619e898f96a5_SOURCE",
-      "tour_name": "Death Note The Musical",
-      "verified": true,
-      "source": "ticketmaster",
-      "onsale_only": true
-    },
-    {
-      "id": "tm-mamma-mia-novello-theatre",
-      "title": "Mamma Mia",
-      "type": "tour",
-      "venue": "Novello Theatre",
-      "city": "London",
-      "country": "Great Britain",
-      "lat": 51.511933,
-      "lng": -0.119423,
-      "start_date": "2026-08-27",
-      "end_date": "2026-09-26",
-      "ticket_url": "https://www.ticketmaster.com/mamma-mia-international-tickets/artist/804014",
-      "attraction_url": "https://www.ticketmaster.com/mamma-mia-international-tickets/artist/804014",
-      "ticket_links": [
-        {
-          "country": "GB",
-          "url": "https://www.ticketmaster.com/mamma-mia-international-tickets/artist/804014"
-        }
-      ],
-      "image": "https://s1.ticketm.net/dam/a/cd2/421fee2f-28dc-4cf8-961b-f63262ee3cd2_SOURCE",
-      "tour_name": "Mamma Mia! (International)",
-      "verified": true,
-      "source": "ticketmaster",
-      "onsale_only": true
-    },
-    {
-      "id": "tm-six-vaudeville-theatre",
-      "title": "SIX",
-      "type": "tour",
-      "venue": "Vaudeville Theatre",
-      "city": "London",
-      "country": "Great Britain",
-      "lat": 51.510546,
-      "lng": -0.12265,
-      "start_date": "2026-08-27",
-      "end_date": "2027-10-02",
-      "ticket_url": "https://www.ticketmaster.co.uk/six-the-musical-tickets/artist/5263549",
-      "attraction_url": "https://www.ticketmaster.co.uk/six-the-musical-tickets/artist/5263549",
-      "ticket_links": [
-        {
-          "country": "GB",
-          "url": "https://www.ticketmaster.co.uk/six-the-musical-tickets/artist/5263549"
-        }
-      ],
-      "image": "https://s1.ticketm.net/dam/a/8de/ab16e57b-0a9f-4ea4-9e1f-7bbc7923d8de_SOURCE",
-      "tour_name": "SIX the Musical",
+      "image": "https://s1.ticketm.net/dam/a/a69/b47eb14c-bc69-4e79-8ba9-8b71bba61a69_SOURCE",
+      "tour_name": "Beetlejuice (Touring)",
       "verified": true,
       "source": "ticketmaster",
       "onsale_only": true
@@ -22938,7 +22688,7 @@
       "country": "Great Britain",
       "lat": 51.501581,
       "lng": 0.005519,
-      "start_date": "2026-08-27",
+      "start_date": "2026-08-28",
       "end_date": "2027-04-04",
       "ticket_url": "https://www.ticketmaster.com/mamma-mia-the-party-tickets/artist/2141740",
       "attraction_url": "https://www.ticketmaster.com/mamma-mia-the-party-tickets/artist/2141740",
@@ -22963,7 +22713,7 @@
       "country": "Great Britain",
       "lat": 51.51351,
       "lng": -0.126407,
-      "start_date": "2026-08-27",
+      "start_date": "2026-08-28",
       "end_date": "2027-09-05",
       "ticket_url": "https://www.ticketmaster.com/matilda-the-musical-tickets/artist/1601714",
       "attraction_url": "https://www.ticketmaster.com/matilda-the-musical-tickets/artist/1601714",
@@ -22988,7 +22738,7 @@
       "country": "Great Britain",
       "lat": 51.508133,
       "lng": -0.132044,
-      "start_date": "2026-08-27",
+      "start_date": "2026-08-28",
       "end_date": "2026-10-16",
       "ticket_url": "https://www.ticketmaster.com/the-phantom-of-the-opera-tickets/artist/804174",
       "attraction_url": "https://www.ticketmaster.com/the-phantom-of-the-opera-tickets/artist/804174",
@@ -23005,26 +22755,151 @@
       "onsale_only": true
     },
     {
-      "id": "tm-the-book-of-mormon-prince-of-wales-theatre",
-      "title": "The Book Of Mormon",
+      "id": "tm-trainspotting-theatre-royal-haymarket",
+      "title": "Trainspotting",
       "type": "tour",
-      "venue": "Prince of Wales Theatre",
+      "venue": "Theatre Royal Haymarket",
       "city": "London",
       "country": "Great Britain",
-      "lat": 51.510009,
-      "lng": -0.131809,
-      "start_date": "2026-08-27",
-      "end_date": "2026-10-03",
-      "ticket_url": "https://www.ticketmaster.com/the-book-of-mormon-london-tickets/artist/1747137",
-      "attraction_url": "https://www.ticketmaster.com/the-book-of-mormon-london-tickets/artist/1747137",
+      "lat": 51.50884,
+      "lng": -0.13128,
+      "start_date": "2026-08-28",
+      "end_date": "2026-09-05",
+      "ticket_url": "https://www.ticketmaster.com/trainspotting-the-musical-tickets/artist/4308314",
+      "attraction_url": "https://www.ticketmaster.com/trainspotting-the-musical-tickets/artist/4308314",
       "ticket_links": [
         {
           "country": "GB",
-          "url": "https://www.ticketmaster.com/the-book-of-mormon-london-tickets/artist/1747137"
+          "url": "https://www.ticketmaster.com/trainspotting-the-musical-tickets/artist/4308314"
         }
       ],
-      "image": "https://s1.ticketm.net/dam/a/c69/ea3751d9-4dc8-4faa-ac4e-cae1cca33c69_SOURCE",
-      "tour_name": "The Book of Mormon (London)",
+      "image": "https://s1.ticketm.net/dam/a/39c/5f0a8de7-00b5-4a6a-bbb8-fed32018539c_SOURCE",
+      "tour_name": "Trainspotting the Musical",
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
+      "id": "tm-sinatra-aldwych-theatre",
+      "title": "Sinatra",
+      "type": "tour",
+      "venue": "Aldwych Theatre",
+      "city": "London",
+      "country": "Great Britain",
+      "lat": 51.51312,
+      "lng": -0.118841,
+      "start_date": "2026-08-28",
+      "end_date": "2027-04-10",
+      "ticket_url": "https://www.ticketmaster.com/sinatra-the-musical-tickets/artist/4170109",
+      "attraction_url": "https://www.ticketmaster.com/sinatra-the-musical-tickets/artist/4170109",
+      "ticket_links": [
+        {
+          "country": "GB",
+          "url": "https://www.ticketmaster.com/sinatra-the-musical-tickets/artist/4170109"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/d96/7d3dcff2-64ba-4a2f-b0a5-efbe8a89cd96_SOURCE",
+      "tour_name": "Sinatra The Musical",
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
+      "id": "tm-hercules-theatre-royal-drury-lane",
+      "title": "Hercules",
+      "type": "tour",
+      "venue": "Theatre Royal Drury Lane",
+      "city": "London",
+      "country": "Great Britain",
+      "lat": 51.513008,
+      "lng": -0.120258,
+      "start_date": "2026-08-28",
+      "end_date": "2026-09-05",
+      "ticket_url": "https://www.ticketmaster.com/disneys-hercules-tickets/artist/3173874",
+      "attraction_url": "https://www.ticketmaster.com/disneys-hercules-tickets/artist/3173874",
+      "ticket_links": [
+        {
+          "country": "GB",
+          "url": "https://www.ticketmaster.com/disneys-hercules-tickets/artist/3173874"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/ec8/aee698ca-36de-4d91-b2c6-cc4608771ec8_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
+      "id": "tm-i-m-every-woman-the-chaka-khan-musical-troubadour-wembley-park-theatre",
+      "title": "I'm Every Woman: the Chaka Khan Musical",
+      "type": "tour",
+      "venue": "Troubadour Wembley Park Theatre",
+      "city": "London",
+      "country": "Great Britain",
+      "lat": 51.56178,
+      "lng": -0.28527,
+      "start_date": "2026-08-28",
+      "end_date": "2026-09-27",
+      "ticket_url": "https://www.ticketmaster.com/im-every-woman-the-chaka-khan-tickets/artist/3692994",
+      "attraction_url": "https://www.ticketmaster.com/im-every-woman-the-chaka-khan-tickets/artist/3692994",
+      "ticket_links": [
+        {
+          "country": "GB",
+          "url": "https://www.ticketmaster.com/im-every-woman-the-chaka-khan-tickets/artist/3692994"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/1c4/287c820b-1f1d-411d-81a3-a239051831c4_SOURCE",
+      "tour_name": "I'm Every Woman - The Chaka Khan Musical",
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
+      "id": "tm-avenue-q-shaftesbury-theatre",
+      "title": "Avenue Q",
+      "type": "tour",
+      "venue": "Shaftesbury Theatre",
+      "city": "London",
+      "country": "Great Britain",
+      "lat": 51.516285,
+      "lng": -0.126119,
+      "start_date": "2026-08-28",
+      "end_date": "2027-01-03",
+      "ticket_url": "https://www.ticketmaster.com/avenue-q-tickets/artist/973986",
+      "attraction_url": "https://www.ticketmaster.com/avenue-q-tickets/artist/973986",
+      "ticket_links": [
+        {
+          "country": "GB",
+          "url": "https://www.ticketmaster.com/avenue-q-tickets/artist/973986"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/8a6/9e4839cf-ab9f-41f3-9ce3-4c7cd05b48a6_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
+      "id": "tm-the-producers-garrick-theatre",
+      "title": "The Producers",
+      "type": "tour",
+      "venue": "Garrick Theatre",
+      "city": "London",
+      "country": "Great Britain",
+      "lat": 51.509954,
+      "lng": -0.127819,
+      "start_date": "2026-08-28",
+      "end_date": "2026-09-19",
+      "ticket_url": "https://www.ticketmaster.com/the-producers-tickets/artist/936938",
+      "attraction_url": "https://www.ticketmaster.com/the-producers-tickets/artist/936938",
+      "ticket_links": [
+        {
+          "country": "GB",
+          "url": "https://www.ticketmaster.com/the-producers-tickets/artist/936938"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/05d/8ce4f510-7c94-40bb-b261-6c67e754105d_SOURCE",
+      "tour_name": null,
       "verified": true,
       "source": "ticketmaster",
       "onsale_only": true
@@ -23038,7 +22913,7 @@
       "country": "Great Britain",
       "lat": 51.495785,
       "lng": -0.142691,
-      "start_date": "2026-08-27",
+      "start_date": "2026-08-28",
       "end_date": "2027-05-29",
       "ticket_url": "https://www.ticketmaster.com/wicked-london-tickets/artist/873966",
       "attraction_url": "https://www.ticketmaster.com/wicked-london-tickets/artist/873966",
@@ -23048,7 +22923,7 @@
           "url": "https://www.ticketmaster.com/wicked-london-tickets/artist/873966"
         }
       ],
-      "image": "https://s1.ticketm.net/dam/a/949/09573d87-a8f5-4027-9309-eb242b836949_SOURCE",
+      "image": "https://s1.ticketm.net/dam/a/782/f34f4ed8-6150-49aa-b845-eb7009bf3782_SOURCE",
       "tour_name": "Wicked (London)",
       "verified": true,
       "source": "ticketmaster",
@@ -23063,8 +22938,8 @@
       "country": "Great Britain",
       "lat": 51.516971,
       "lng": -0.129679,
-      "start_date": "2026-08-27",
-      "end_date": "2027-02-06",
+      "start_date": "2026-08-28",
+      "end_date": "2027-09-25",
       "ticket_url": "https://www.ticketmaster.com/the-devil-wears-prada-london-tickets/artist/3069760",
       "attraction_url": "https://www.ticketmaster.com/the-devil-wears-prada-london-tickets/artist/3069760",
       "ticket_links": [
@@ -23080,26 +22955,151 @@
       "onsale_only": true
     },
     {
-      "id": "tm-beetlejuice-prince-edward-theatre",
-      "title": "Beetlejuice",
+      "id": "tm-tao-of-glass-sohoplace",
+      "title": "Tao of Glass",
       "type": "tour",
-      "venue": "Prince Edward Theatre",
+      "venue": "sohoplace",
       "city": "London",
       "country": "Great Britain",
-      "lat": 51.513763,
-      "lng": -0.130964,
-      "start_date": "2026-08-27",
-      "end_date": "2027-04-17",
-      "ticket_url": "https://www.ticketmaster.com/beetlejuice-touring-tickets/artist/2867362",
-      "attraction_url": "https://www.ticketmaster.com/beetlejuice-touring-tickets/artist/2867362",
+      "lat": 51.515607,
+      "lng": -0.130436,
+      "start_date": "2026-08-28",
+      "end_date": "2026-09-12",
+      "ticket_url": "https://www.ticketmaster.com/tao-of-glass-tickets/artist/4323689",
+      "attraction_url": "https://www.ticketmaster.com/tao-of-glass-tickets/artist/4323689",
       "ticket_links": [
         {
           "country": "GB",
-          "url": "https://www.ticketmaster.com/beetlejuice-touring-tickets/artist/2867362"
+          "url": "https://www.ticketmaster.com/tao-of-glass-tickets/artist/4323689"
         }
       ],
-      "image": "https://s1.ticketm.net/dam/a/a69/b47eb14c-bc69-4e79-8ba9-8b71bba61a69_SOURCE",
-      "tour_name": "Beetlejuice (Touring)",
+      "image": "https://s1.ticketm.net/dam/a/74b/f936423e-a8e9-4284-8f25-f6634975d74b_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
+      "id": "tm-mamma-mia-novello-theatre",
+      "title": "Mamma Mia",
+      "type": "tour",
+      "venue": "Novello Theatre",
+      "city": "London",
+      "country": "Great Britain",
+      "lat": 51.511933,
+      "lng": -0.119423,
+      "start_date": "2026-08-28",
+      "end_date": "2026-09-26",
+      "ticket_url": "https://www.ticketmaster.com/mamma-mia-international-tickets/artist/804014",
+      "attraction_url": "https://www.ticketmaster.com/mamma-mia-international-tickets/artist/804014",
+      "ticket_links": [
+        {
+          "country": "GB",
+          "url": "https://www.ticketmaster.com/mamma-mia-international-tickets/artist/804014"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/cd2/421fee2f-28dc-4cf8-961b-f63262ee3cd2_SOURCE",
+      "tour_name": "Mamma Mia! (International)",
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
+      "id": "tm-oliver-gielgud-theatre",
+      "title": "Oliver",
+      "type": "tour",
+      "venue": "Gielgud Theatre",
+      "city": "London",
+      "country": "Great Britain",
+      "lat": 51.512019,
+      "lng": -0.13324,
+      "start_date": "2026-08-28",
+      "end_date": "2027-02-02",
+      "ticket_url": "https://www.ticketmaster.com/oliver-touring-tickets/artist/1424800",
+      "attraction_url": "https://www.ticketmaster.com/oliver-touring-tickets/artist/1424800",
+      "ticket_links": [
+        {
+          "country": "GB",
+          "url": "https://www.ticketmaster.com/oliver-touring-tickets/artist/1424800"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/932/2dbb9ff7-7168-47a1-b329-59764f35c932_SOURCE",
+      "tour_name": "Oliver (Touring)",
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
+      "id": "tm-come-alive-the-greatest-showman-circus-spectacular-empress-museum",
+      "title": "Come Alive! The Greatest Showman Circus Spectacular",
+      "type": "tour",
+      "venue": "Empress Museum",
+      "city": "London",
+      "country": "Great Britain",
+      "lat": 51.488501,
+      "lng": -0.198469,
+      "start_date": "2026-08-28",
+      "end_date": "2027-04-11",
+      "ticket_url": "https://www.ticketmaster.com/come-alive-the-greatest-showman-circus-tickets/artist/3176214",
+      "attraction_url": "https://www.ticketmaster.com/come-alive-the-greatest-showman-circus-tickets/artist/3176214",
+      "ticket_links": [
+        {
+          "country": "GB",
+          "url": "https://www.ticketmaster.com/come-alive-the-greatest-showman-circus-tickets/artist/3176214"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/52f/58c9a7e4-8a9f-4d9e-8f68-9d448df0852f_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
+      "id": "tm-oliver-gielgud-theatre",
+      "title": "Oliver!",
+      "type": "tour",
+      "venue": "Gielgud Theatre",
+      "city": "London",
+      "country": "Great Britain",
+      "lat": 51.512019,
+      "lng": -0.13324,
+      "start_date": "2026-08-28",
+      "end_date": "2027-03-14",
+      "ticket_url": "https://www.ticketmaster.com/oliver-touring-tickets/artist/1424800",
+      "attraction_url": "https://www.ticketmaster.com/oliver-touring-tickets/artist/1424800",
+      "ticket_links": [
+        {
+          "country": "GB",
+          "url": "https://www.ticketmaster.com/oliver-touring-tickets/artist/1424800"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/932/2dbb9ff7-7168-47a1-b329-59764f35c932_SOURCE",
+      "tour_name": "Oliver (Touring)",
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
+      "id": "tm-hot-mess-a-new-musical-the-other-palace",
+      "title": "Hot Mess: A New Musical",
+      "type": "tour",
+      "venue": "The Other Palace",
+      "city": "London",
+      "country": "Great Britain",
+      "lat": 51.498724,
+      "lng": -0.142113,
+      "start_date": "2026-08-28",
+      "end_date": "2026-09-06",
+      "ticket_url": "https://www.ticketmaster.co.uk/hot-mess-a-new-musical-tickets/artist/5710360",
+      "attraction_url": "https://www.ticketmaster.co.uk/hot-mess-a-new-musical-tickets/artist/5710360",
+      "ticket_links": [
+        {
+          "country": "GB",
+          "url": "https://www.ticketmaster.co.uk/hot-mess-a-new-musical-tickets/artist/5710360"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/c49/6da7ff42-4028-4856-aaf7-6bb3b5d59c49_SOURCE",
+      "tour_name": null,
       "verified": true,
       "source": "ticketmaster",
       "onsale_only": true
@@ -23113,7 +23113,7 @@
       "country": "Great Britain",
       "lat": 51.506975,
       "lng": -0.123719,
-      "start_date": "2026-08-27",
+      "start_date": "2026-08-28",
       "end_date": "2027-09-18",
       "ticket_url": "https://www.ticketmaster.co.uk/cabaret-tickets/artist/844059",
       "attraction_url": "https://www.ticketmaster.co.uk/cabaret-tickets/artist/844059",
@@ -23130,6 +23130,81 @@
       "onsale_only": true
     },
     {
+      "id": "tm-hamilton-victoria-palace-theatre",
+      "title": "Hamilton",
+      "type": "tour",
+      "venue": "Victoria Palace Theatre",
+      "city": "London",
+      "country": "Great Britain",
+      "lat": 51.497012,
+      "lng": -0.142382,
+      "start_date": "2026-08-28",
+      "end_date": "2027-03-13",
+      "ticket_url": "https://www.ticketmaster.co.uk/hamilton-tickets/artist/5218048",
+      "attraction_url": "https://www.ticketmaster.co.uk/hamilton-tickets/artist/5218048",
+      "ticket_links": [
+        {
+          "country": "GB",
+          "url": "https://www.ticketmaster.co.uk/hamilton-tickets/artist/5218048"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/cdc/29b8c95f-bcdd-467c-9c94-d3d54e3b7cdc_SOURCE",
+      "tour_name": "Hamilton (UK)",
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
+      "id": "tm-hadestown-lyric-theatre",
+      "title": "Hadestown",
+      "type": "tour",
+      "venue": "Lyric Theatre",
+      "city": "London",
+      "country": "Great Britain",
+      "lat": 51.511248,
+      "lng": -0.133935,
+      "start_date": "2026-08-28",
+      "end_date": "2027-06-27",
+      "ticket_url": "https://www.ticketmaster.co.uk/hadestown-tickets/artist/5335180",
+      "attraction_url": "https://www.ticketmaster.co.uk/hadestown-tickets/artist/5335180",
+      "ticket_links": [
+        {
+          "country": "GB",
+          "url": "https://www.ticketmaster.co.uk/hadestown-tickets/artist/5335180"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/a15/7b13031e-c0ba-40de-91db-d9384c70aa15_SOURCE",
+      "tour_name": "Hadestown (Touring)",
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
+      "id": "tm-moulin-rouge-piccadilly-theatre",
+      "title": "Moulin Rouge!",
+      "type": "tour",
+      "venue": "Piccadilly Theatre",
+      "city": "London",
+      "country": "Great Britain",
+      "lat": 51.511054,
+      "lng": -0.1354,
+      "start_date": "2026-08-28",
+      "end_date": "2027-02-20",
+      "ticket_url": "https://www.ticketmaster.co.uk/moulin-rouge-the-musical-tickets/artist/5352214",
+      "attraction_url": "https://www.ticketmaster.co.uk/moulin-rouge-the-musical-tickets/artist/5352214",
+      "ticket_links": [
+        {
+          "country": "GB",
+          "url": "https://www.ticketmaster.co.uk/moulin-rouge-the-musical-tickets/artist/5352214"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/9c7/4d3edba2-ce6d-423d-afac-be4a6b2319c7_SOURCE",
+      "tour_name": "Moulin Rouge! The Musical (UK)",
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
       "id": "tm-disney-s-the-lion-king-lyceum-theatre",
       "title": "Disney’s The Lion King",
       "type": "tour",
@@ -23138,7 +23213,7 @@
       "country": "Great Britain",
       "lat": 51.511718,
       "lng": -0.120008,
-      "start_date": "2026-08-27",
+      "start_date": "2026-08-28",
       "end_date": "2027-05-16",
       "ticket_url": "https://www.ticketmaster.co.uk/disneys-the-lion-king-uk-tickets/artist/975016",
       "attraction_url": "https://www.ticketmaster.co.uk/disneys-the-lion-king-uk-tickets/artist/975016",
@@ -23155,6 +23230,31 @@
       "onsale_only": true
     },
     {
+      "id": "tm-les-mis-rables-sondheim-theatre",
+      "title": "Les Misérables",
+      "type": "tour",
+      "venue": "Sondheim Theatre",
+      "city": "London",
+      "country": "Great Britain",
+      "lat": 51.512116,
+      "lng": -0.133106,
+      "start_date": "2026-08-28",
+      "end_date": "2027-03-13",
+      "ticket_url": "https://www.ticketmaster.co.uk/les-miserables-tickets/artist/803968",
+      "attraction_url": "https://www.ticketmaster.co.uk/les-miserables-tickets/artist/803968",
+      "ticket_links": [
+        {
+          "country": "GB",
+          "url": "https://www.ticketmaster.co.uk/les-miserables-tickets/artist/803968"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/3b0/c4eee40f-453d-49ce-b8ff-445d66c903b0_SOURCE",
+      "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
       "id": "tm-titanique-criterion-theatre",
       "title": "Titanique",
       "type": "tour",
@@ -23163,7 +23263,7 @@
       "country": "Great Britain",
       "lat": 51.509707,
       "lng": -0.133724,
-      "start_date": "2026-08-27",
+      "start_date": "2026-08-28",
       "end_date": "2027-01-03",
       "ticket_url": "https://www.ticketmaster.co.uk/titanique-tickets/artist/5482959",
       "attraction_url": "https://www.ticketmaster.co.uk/titanique-tickets/artist/5482959",
@@ -23175,6 +23275,56 @@
       ],
       "image": "https://s1.ticketm.net/dam/a/1f2/3812eff6-4904-4d2b-a9a7-32df4bee31f2_SOURCE",
       "tour_name": null,
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
+      "id": "tm-death-note-barbican-theatre",
+      "title": "Death Note",
+      "type": "tour",
+      "venue": "Barbican Theatre",
+      "city": "London",
+      "country": "Great Britain",
+      "lat": 51.519812,
+      "lng": -0.093919,
+      "start_date": "2026-08-28",
+      "end_date": "2026-09-12",
+      "ticket_url": "https://www.ticketmaster.co.uk/death-note-the-musical-tickets/artist/5420800",
+      "attraction_url": "https://www.ticketmaster.co.uk/death-note-the-musical-tickets/artist/5420800",
+      "ticket_links": [
+        {
+          "country": "GB",
+          "url": "https://www.ticketmaster.co.uk/death-note-the-musical-tickets/artist/5420800"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/6a5/fc24b451-cf93-4161-ab2b-619e898f96a5_SOURCE",
+      "tour_name": "Death Note The Musical",
+      "verified": true,
+      "source": "ticketmaster",
+      "onsale_only": true
+    },
+    {
+      "id": "tm-six-vaudeville-theatre",
+      "title": "SIX",
+      "type": "tour",
+      "venue": "Vaudeville Theatre",
+      "city": "London",
+      "country": "Great Britain",
+      "lat": 51.510546,
+      "lng": -0.12265,
+      "start_date": "2026-08-28",
+      "end_date": "2027-10-03",
+      "ticket_url": "https://www.ticketmaster.co.uk/six-the-musical-tickets/artist/5263549",
+      "attraction_url": "https://www.ticketmaster.co.uk/six-the-musical-tickets/artist/5263549",
+      "ticket_links": [
+        {
+          "country": "GB",
+          "url": "https://www.ticketmaster.co.uk/six-the-musical-tickets/artist/5263549"
+        }
+      ],
+      "image": "https://s1.ticketm.net/dam/a/8de/ab16e57b-0a9f-4ea4-9e1f-7bbc7923d8de_SOURCE",
+      "tour_name": "SIX the Musical",
       "verified": true,
       "source": "ticketmaster",
       "onsale_only": true
@@ -23514,7 +23664,7 @@
       "lat": 51.510022,
       "lng": -0.120813,
       "start_date": "2026-10-01",
-      "end_date": "2027-10-02",
+      "end_date": "2027-10-03",
       "ticket_url": "https://www.ticketmaster.com/paddington-the-musical-tickets/artist/3670794",
       "attraction_url": "https://www.ticketmaster.com/paddington-the-musical-tickets/artist/3670794",
       "ticket_links": [
@@ -25363,7 +25513,7 @@
       "country": "Ireland",
       "lat": 53.344201,
       "lng": -6.240274,
-      "start_date": "2026-08-27",
+      "start_date": "2026-08-28",
       "end_date": "2026-09-05",
       "ticket_url": "https://www.ticketmaster.com/mean-girls-touring-tickets/artist/2599052",
       "attraction_url": "https://www.ticketmaster.com/mean-girls-touring-tickets/artist/2599052",
@@ -26464,7 +26614,7 @@
       "lat": 51.49149,
       "lng": 6.88615,
       "start_date": "2027-09-29",
-      "end_date": "2027-10-02",
+      "end_date": "2027-10-03",
       "ticket_url": "https://www.ticketmaster.com/mamma-mia-international-tickets/artist/804014",
       "attraction_url": "https://www.ticketmaster.com/mamma-mia-international-tickets/artist/804014",
       "ticket_links": [
@@ -26688,7 +26838,7 @@
       "country": "Denmark",
       "lat": 55.67328,
       "lng": 12.55545,
-      "start_date": "2027-02-12",
+      "start_date": "2027-02-14",
       "end_date": "2027-05-01",
       "ticket_url": "https://www.ticketmaster.com/sunset-boulevard-tickets/artist/904803",
       "attraction_url": "https://www.ticketmaster.com/sunset-boulevard-tickets/artist/904803",
@@ -27013,7 +27163,7 @@
       "country": "Sweden",
       "lat": 59.324127,
       "lng": 18.096259,
-      "start_date": "2026-08-27",
+      "start_date": "2026-08-29",
       "end_date": "2026-11-21",
       "ticket_url": "https://www.ticketmaster.com/mamma-mia-the-party-tickets/artist/2141740",
       "attraction_url": "https://www.ticketmaster.com/mamma-mia-the-party-tickets/artist/2141740",
@@ -27188,7 +27338,7 @@
       "country": "South Africa",
       "lat": -26.02503,
       "lng": 28.01504,
-      "start_date": "2026-10-17",
+      "start_date": "2026-10-16",
       "end_date": "2026-11-22",
       "ticket_url": "https://www.ticketmaster.com/mamma-mia-international-tickets/artist/804014",
       "attraction_url": "https://www.ticketmaster.com/mamma-mia-international-tickets/artist/804014",
