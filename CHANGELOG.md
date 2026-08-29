@@ -1,4 +1,4 @@
-# 變更紀錄 CHANGELOG
+﻿# 變更紀錄 CHANGELOG
 
 > 時間一律為**台北時間 (UTC+8)**。每次 commit 前先跑 `Get-Date -Format "yyyy-MM-dd HH:mm"` 取真實時間再寫。
 >
@@ -11,7 +11,7 @@
 
 ---
 
-## [v2.98.9] - 2026-08-29 04:52
+## [v2.98.9] - 2026-08-29 12:52
 ### 修復 apollonia/moon sorbet 簡介斷鏈(cron 刷新改英文 group key)
 - cron 資料刷新把 apollonia/moon sorbet 的 group key 從中文(阿波羅尼亞/月亮雪酪)翻成英文,批次1的三語簡介仍掛舊中文 key→斷鏈未上架。
 - 修法:library 三語補一份簡介到英文 key(保留舊 key),build_served/gen_site 重建。served 338→340。
