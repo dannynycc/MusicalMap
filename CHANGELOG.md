@@ -11,6 +11,13 @@
 
 ---
 
+## [v2.98.18] - 2026-08-30 03:37
+### 日本原創收尾:補稽核抓到的遺漏 The London Way + 全站100%覆蓋確認
+- 全站日本原創28組覆蓋率稽核→抓到 london way ivresse vague(宙組双bill『The London Way／Ivresse Vague』)三語全缺(前批建list時漏)。芝居半=The London Way(正塚晴彦,倫敦ヒューマニズム群像劇);ショー半Ivresse Vague為revue。產地日本原創。
+- §3:官方あらすじ稀薄(僅群像劇/humanism/移り変わる時代)→維持概念層。修:①en移除未證實的「early 1970s」年代 ②繁剝「全劇總結」標題 ③🚨簡中整段幻覺(捏造阿德里安/軍情五處/英愛衝突/酒吧爆炸等零官方依據的角色劇情)→棄用,改以乾淨繁中OpenCC t2s轉簡替換。
+- 稽核複驗:28/28日本原創組三語簡介100%覆蓋,0遺漏。
+- 知識庫416;served 363/語;DATA_VER 10114814db。
+
 ## [v2.98.17] - 2026-08-30 03:17
 ### 日本原創 Batch 3:10部三語簡介(日本原創收尾完成)
 - 補簡介(en/繁/簡,完整flow):魔法使いの約束(まほステ)、新サクラ大戦the Stage、TIGER&BUNNY THE STAGE、Paradox Live on Stage-Road to Legend-、PandoraHearts、けものフレンズ、えぶりでいホスト、王様の耳はロバの耳(四季)、夢から醒めた夢(四季)、スクールアイドルミュージカル。
