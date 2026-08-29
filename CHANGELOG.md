@@ -11,6 +11,12 @@
 
 ---
 
+## [v2.98.12] - 2026-08-29 20:40
+### 德拉拉牙科診所 重分類 台灣原創→韓國原創(依原創國家分類政策)
+- 使用者確認分類按「原創地點/國家」。德拉拉源頭=韓國繪本作家 윤담요《드라랄라 치과》+韓國家庭音樂劇,AM創意僅中文化轉譯來台;故產地韓國。
+- 修法:works.json 登錄 {canonical:德拉拉牙科診所, tradition:韓國原創, aliases:含 드라랄라 치과/Delara}→scrapers/build_shows.py 套用(registered work tradition wins)。shows.json/variants/venues_catalog 外科手術改 tag 保持最小 diff。
+- 韓國原創 35→36 組;台灣原創 44→43 組(仍 100% 覆蓋)。DATA_VER 3e80dad6ae。
+
 ## [v2.98.11] - 2026-08-29 20:22
 ### 補 3 部零星缺漏(South Pacific + 2 部台灣)三語簡介
 - 填補覆蓋缺口(cron 刷新新加入的敘事音樂劇):BW/WE 的 South Pacific、台灣的 德拉拉牙科診所、那個女人是誰(Ruth)。
