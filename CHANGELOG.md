@@ -11,6 +11,14 @@
 
 ---
 
+## [v2.98.10] - 2026-08-29 13:22
+### 移除 2 部非音樂劇(魔術秀/裸舞秀)—— not_musical.json 排除
+- 使用者確認:lee eun gyeol 30周年 ONE OF ONE(이은결=魔術師,마술쇼)、WILD WILD(19禁쇼뮤지컬,無敘事裸舞秀)不屬敘事音樂劇,不該出現在音樂劇地圖。
+- 複驗(뉴데일리/NOL/yeonmuduck/IG):lee=마술쇼(제작 EG컴퍼니);wild=만19세이상 revue(제작 더블유투컴퍼니)。
+- 修法:加入 not_musical.json titles → scrapers/build_shows.py 重建剔除(dropped 3 筆場次)→ gen_catalog/gen_variants/gen_site 重建;shows.json 語意 diff 僅移除 3 筆、venues_catalog/not_musical 外科手術保持最小 diff。
+- 🐛 過程自己踩坑:誤用 scripts/build_shows.py(實為 scrapers/),靜默報錯一度以為排除失效;改對路徑即成。
+- 韓國原創 37→35 組(全部 35 部真敘事韓劇皆三語簡介=100%)。DATA_VER 4ed6a52658。
+
 ## [v2.98.9] - 2026-08-29 12:52
 ### 修復 apollonia/moon sorbet 簡介斷鏈(cron 刷新改英文 group key)
 - cron 資料刷新把 apollonia/moon sorbet 的 group key 從中文(阿波羅尼亞/月亮雪酪)翻成英文,批次1的三語簡介仍掛舊中文 key→斷鏈未上架。
