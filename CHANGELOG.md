@@ -11,6 +11,12 @@
 
 ---
 
+## [v2.98.9] - 2026-08-29 04:52
+### 修復 apollonia/moon sorbet 簡介斷鏈(cron 刷新改英文 group key)
+- cron 資料刷新把 apollonia/moon sorbet 的 group key 從中文(阿波羅尼亞/月亮雪酪)翻成英文,批次1的三語簡介仍掛舊中文 key→斷鏈未上架。
+- 修法:library 三語補一份簡介到英文 key(保留舊 key),build_served/gen_site 重建。served 338→340。
+- 韓國原創覆蓋回到正確值:35/37(剩 wild wild/lee eun gyeol 無劇情秀正當排除)。DATA_VER a52e39ee81。
+
 ## [v2.98.8] - 2026-08-29 12:44
 ### 補完 4 部先前誤排除的韓國原創(阴天/treadmill/6点下班/小说)三語簡介
 - 承 v2.98.7 產地查證:這 4 部確認 Korean-origin,但先前因誤當「中國誤標」而漏補簡介,導致韓國覆蓋出現缺口。用完整嚴格流程補齊。
