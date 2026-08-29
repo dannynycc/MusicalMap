@@ -11,6 +11,26 @@
 
 ---
 
+## [v2.98.6] - 2026-08-29 08:46
+### 韓國原創 8 齣「不達標」重驗（使用者質問後全面複查）
+- 起因：使用者問「昨晚韓國這批有 100% 照規範做嗎」。誠實複查昨晚研究筆記後承認：約 8 齣未達深讀多源標準（浮士德筆記自標「namuwiki 待補」、Sunny Ten/Rabbits 標「namuwiki-adjacent」、Pilgrim/Madangnori/Kiki 三齣**完全無研究筆記**、WTOF disambiguation 風險）。
+- **由我本人用 claude-in-chrome 逐齣以 live 來源頁為裁判重驗**（非派 agent）；每齣留可查證證據檔（scratchpad/kr_redo_evidence/*.md：來源 URL＋原文引用＋逐句比對）。
+- **結果：8 齣內容全部 PASS**（含最可疑者）：
+  - 摇滚浮士德=韓國《THE DEVIL 더 데빌》(이지나/Woody Pak)引進中文版，百度百科創作團隊/角色/劇情全對；正確裁判是製作方百度百科（namuwiki 無此頁）。
+  - Madangnori=국립극장 2026 新作《춘풍이 마누라》以妻子金氏為主角（非舊版오목改編），與經典이춘풍전一致。
+  - Rabbits=《귀토-토끼의 팔난》，連「父死於鷹(독수리)、母死於獵人(포수)」細節都命中（씨네21/연합뉴스）。
+  - Sunny Ten=最可疑的「혜영在준호求婚節目上被甩」因果，티스토리 줄거리證實屬實。
+  - WTOF=혜성컴퍼니《백만사》，한국 근현대사 100년 주크박스(42곡)，核心未漂移。
+  - Kiki/Pilgrim=對 namuwiki 全文，核心全對。
+### 修正（4 齣小瑕疵，改 library→build_served→gen_site）
+- Kiki 三語：移除 namuwiki 시놉시스無的「家屬工作坊」場景（加碼）。
+- Pilgrim 繁/簡：「信仰、盼望與愛等同行者」→「信實與盼望」（原著旅途同伴為 Faithful+Hopeful，「愛/Charity」非旅伴；EN 原本即正確未動）。
+- Rabbits 簡：結尾「最后一同前往月宫」→刪（來源為回歸陸地，且與繁不一致）。
+- WTOF 簡：刪未經來源證實的「世界杯热潮」句（繁無、來源無）。
+### 產地叢集（獨立議題，未擅改）
+- 🚨 糾正先前「5 部中國誤標」結論：works.json aliases 顯示 **阴天=사의찬미(Death Song 韓劇)、桑塔露琪亚=아폴로니아前传** 很可能真韓國；納爾齊斯=缪时客中國製作（十二楼場館）。產地須逐部查、不批次推定，待逐一確認後才動 works.json tradition。
+- DATA_VER 640fb5e287；served 維持 335。
+
 ## [v2.98.5] - 2026-08-29 05:16
 ### 新增（韓國原創覆蓋 批次5 — 終批）
 - **補上 6 部韓國音樂劇三語簡介**：The Pilgrim's Progress（天路歷程）、Rabbit's Eight Sufferings（귀토·토끼전）、Madangnori Chunpung's Wife（이춘풍전 마당놀이）、Kiki's BPD Diary、2026 Midnight（1937蘇聯清洗）、WTOF Million Loves（백만송이의 사랑）。
