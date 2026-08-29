@@ -11,6 +11,13 @@
 
 ---
 
+## [v2.98.15] - 2026-08-29 23:36
+### メイビー en 型號改正:移除製作版特定數字(自我糾錯,交叉查證後)
+- 重讀 en.wikipedia《Maybe Happy Ending》發現 Helperbot 型號**依製作版本不同**:百老匯英文版 Oliver=3/Claire=5;韓國原版 Oliver=5/Claire=6。
+- v2.98.13 我把 Perplexity en 原本的「3/5」(=百老匯英文版,本來正確)「改成」5/6(韓版),而本 listing 為日本東宝製作、型號慣例無法確認 → 反而引入不確定。
+- 改法:en 移除具體型號,改「an obsolete earlier-model Helperbot」/「a newer-model Helperbot」——對所有製作版本皆真,契合 en.wikipedia「earlier model…durable / newer model」。繁(本無型號)、簡(「较新型号」無數字)本已安全,不動。
+- DATA_VER fc8283d867。
+
 ## [v2.98.14] - 2026-08-29 23:32
 ### 白爪草 繁 簡介修法改正:退回 Perplexity 原文做外科式最小修正(自我糾錯)
 - 問題:v2.98.13 我把白爪草繁「錯誤反轉段」整段用自己的話重寫,違反「Perplexity 生成=主體語感、我只查正確性做最小修正」原則(主客弄反+injectAI感)。
