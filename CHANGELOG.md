@@ -11,6 +11,12 @@
 
 ---
 
+## [v2.98.19] - 2026-08-30 08:36
+### The London Way 簡中改用原生Perplexity生成(flow合規修正)
+- v2.98.18因Perplexity簡中整段幻覺,曾以繁中OpenCC轉簡替代=偏離「Perplexity生成三語自然語言」flow。
+- 依指示以錨定prompt(注入官方群像劇事實+明令勿虛構角色/情節)重新讓Perplexity生成簡中;新版§3查核無捏造角色、無虛構年代、概念層正確且語言自然→採用取代OpenCC版。
+- (併入cron auto-refresh後重產。)DATA_VER 7e01f00438。日本原創維持28/28三語100%覆蓋。
+
 ## [v2.98.18] - 2026-08-30 03:37
 ### 日本原創收尾:補稽核抓到的遺漏 The London Way + 全站100%覆蓋確認
 - 全站日本原創28組覆蓋率稽核→抓到 london way ivresse vague(宙組双bill『The London Way／Ivresse Vague』)三語全缺(前批建list時漏)。芝居半=The London Way(正塚晴彦,倫敦ヒューマニズム群像劇);ショー半Ivresse Vague為revue。產地日本原創。
