@@ -11,6 +11,12 @@
 
 ---
 
+## [v2.98.22] - 2026-08-30 09:33
+### Maybe Happy Ending 補日本官網(東宝),各地區官網各自對應不打架
+- 使用者發現合併後日本場官網問題。official_sites.json 的 maybe happy ending 只有 global(maybehappyending.com)+us_tour,缺 jp。
+- 補 jp=https://www.tohostage.com/maybe/(WebFetch 確認為東宝シアタークリエ『メイビー、ハッピーエンディング』官方頁)。build_shows 依場次 country 掛地區官網:日本場→東宝頁、百老匯場→global,card 各顯示地區對應官網(kind:official,置於售票上方),互不衝突。
+- 日本場售票維持 toho.co.jp/stage/lineup(scraper層);東宝官網頁本身列有東宝ナビザーブ/ぴあ/e+/ローチケ多家授權售票(日本製作常態)。DATA_VER 11b3f8d4de。
+
 ## [v2.98.21] - 2026-08-30 09:18
 ### メイビー 合併進統一「Maybe Happy Ending」組(同一齣劇不應拆兩列,修正v2.98.20)
 - v2.98.20 為保留日文獨立列,用專屬works entry把日本メイビー與百老匯Maybe Happy Ending拆成兩組=錯誤:搜英文查不到日本場、搜日文查不到百老匯,明明是同一齣劇。
