@@ -1,9 +1,9 @@
 {
   "meta": {
     "source": "atgtickets.com",
-    "count": 198,
-    "tour_hubs": 29,
-    "tour_stops": 193
+    "count": 197,
+    "tour_hubs": 28,
+    "tour_stops": 192
   },
   "shows": [
     {
@@ -41,23 +41,6 @@
       "source": "atgtickets.com"
     },
     {
-      "id": "atg-shows-moulin-rouge-the-musical-piccadilly-theatre",
-      "title": "Moulin Rouge! The Musical",
-      "type": "tour",
-      "venue": "Piccadilly Theatre",
-      "city": "London",
-      "country": "UK",
-      "lat": 51.510997,
-      "lng": -0.135395,
-      "start_date": null,
-      "end_date": "2027-02-27",
-      "ticket_url": "https://www.atgtickets.com/shows/moulin-rouge-the-musical/piccadilly-theatre/",
-      "image": "https://res.cloudinary.com/dwzhqvxaz/image/upload/w_1280,q_auto,f_auto/v1774270910/Titles/Moulin%20Rouge/7ce89f57-a784-4c92-a2e7-9434fb4575ab.jpg",
-      "tour_name": null,
-      "verified": true,
-      "source": "atgtickets.com"
-    },
-    {
       "id": "atg-shows-wicked-apollo-victoria-theatre",
       "title": "Wicked",
       "type": "tour",
@@ -70,6 +53,23 @@
       "end_date": "2027-05-30",
       "ticket_url": "https://www.atgtickets.com/shows/wicked/apollo-victoria-theatre/",
       "image": "https://res.cloudinary.com/dwzhqvxaz/image/upload/w_1280,q_auto,f_auto/v1724228109/Titles/Wicked/Tour/Wicked_Tour_Title_1920x1080.jpg",
+      "tour_name": null,
+      "verified": true,
+      "source": "atgtickets.com"
+    },
+    {
+      "id": "atg-shows-moulin-rouge-the-musical-piccadilly-theatre",
+      "title": "Moulin Rouge! The Musical",
+      "type": "tour",
+      "venue": "Piccadilly Theatre",
+      "city": "London",
+      "country": "UK",
+      "lat": 51.510997,
+      "lng": -0.135395,
+      "start_date": null,
+      "end_date": "2027-02-27",
+      "ticket_url": "https://www.atgtickets.com/shows/moulin-rouge-the-musical/piccadilly-theatre/",
+      "image": "https://res.cloudinary.com/dwzhqvxaz/image/upload/w_1280,q_auto,f_auto/v1774270910/Titles/Moulin%20Rouge/7ce89f57-a784-4c92-a2e7-9434fb4575ab.jpg",
       "tour_name": null,
       "verified": true,
       "source": "atgtickets.com"
@@ -2718,7 +2718,7 @@
       "country": "UK",
       "lat": 51.513331,
       "lng": -0.120896,
-      "start_date": null,
+      "start_date": "2026-08-31",
       "end_date": "2027-02-20",
       "ticket_url": "https://www.atgtickets.com/shows/operation-mincemeat-a-new-musical/fortune-theatre/",
       "image": "https://res.cloudinary.com/dwzhqvxaz/image/upload/w_1280,q_auto,f_auto/v1721642563/Titles/Operation%20Mincemeat/OM_Title_1920x1080.jpg",
@@ -3301,23 +3301,6 @@
       "ticket_url": "https://www.atgtickets.com/shows/starlight-express/sunderland-empire/",
       "image": "https://res.cloudinary.com/dwzhqvxaz/image/upload/w_1280,q_auto,f_auto/v1778588085/Titles/Starlight%20Express/Tour%202027/SE_Tour_Generic_1920x1080.jpg",
       "tour_name": "Starlight Express — UK Tour",
-      "verified": true,
-      "source": "atgtickets.com"
-    },
-    {
-      "id": "atg-tour-the-choir-of-man-aylesbury-waterside-theatre",
-      "title": "The Choir of Man",
-      "type": "tour",
-      "venue": "Aylesbury Waterside Theatre",
-      "city": "Aylesbury",
-      "country": "UK",
-      "lat": 51.816141,
-      "lng": -0.813038,
-      "start_date": "2026-09-01",
-      "end_date": "2026-09-05",
-      "ticket_url": "https://www.atgtickets.com/shows/the-choir-of-man/aylesbury-waterside-theatre/",
-      "image": "https://res.cloudinary.com/dwzhqvxaz/image/upload/w_1280,q_auto,f_auto/v1759232698/Titles/The%20Choir%20of%20Man/ChoirOfMan_Title_1920x1080.jpg",
-      "tour_name": "The Choir of Man — UK Tour",
       "verified": true,
       "source": "atgtickets.com"
     },
