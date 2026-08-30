@@ -11,6 +11,15 @@
 
 ---
 
+## [v2.98.23] - 2026-08-30 10:03
+### 東宝 scraper 修正:補抓 Me and My Girl/SPY×FAMILY + 全東宝劇改專屬售票頁
+- 使用者發現東宝 lineup 上的 ミー＆マイガール 沒被抓到,且メイビー售票連結是籠統的 toho.co.jp/stage/lineup。
+- 根因:①japan.py 場館白名單只有羅馬拼音「EX THEATER ARIAKE」,卡片實際寫日文「EXシアター有明」→對不上被當「場館不明」丟掉(Me and My Girl);②多會場字串(「川越（プレビュー）、東京建物Brillia HALL本公演」)被 VAGUE_VENUE 的頓號規則整個丟掉(SPY×FAMILY);③ticket_url 硬編成籠統 lineup 頁。
+- 修:①VENUES 加「EXシアター有明」「東京建物 Brillia HALL」別名;②多會場改「取白名單命中、優先非プレビュー主公演場館」;③從卡片 anchor(#maybe/#me_and_mygirl…)導出各劇專屬頁 tohostage.com/<slug>/ 當 ticket_url(9部全 HTTP 200 驗過)。
+- 新場館 EXシアター有明[35.6296,139.7874]、東京建物Brillia HALL[35.7319,139.7157] 經 geocode_google 補座標。
+- 結果:東宝場 7→9(補 Me and My Girl@EX THEATER ARIAKE=Broadway/West End、SPY×FAMILY2@Brillia HALL=日本原創),全部上地圖+專屬售票頁;メイビー日本場售票=tohostage.com/maybe。DATA_VER bd1ac139cb。
+- ⚠SPY×FAMILY(日本原創)簡介待補(緊接處理)。
+
 ## [v2.98.22] - 2026-08-30 09:33
 ### Maybe Happy Ending 補日本官網(東宝),各地區官網各自對應不打架
 - 使用者發現合併後日本場官網問題。official_sites.json 的 maybe happy ending 只有 global(maybehappyending.com)+us_tour,缺 jp。

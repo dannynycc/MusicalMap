@@ -43,7 +43,9 @@ VENUES = {
     "日生劇場": ("日生劇場", "Tokyo"),
     "東急シアターオーブ": ("東急シアターオーブ", "Tokyo"),
     "EX THEATER ARIAKE": ("EX THEATER ARIAKE", "Tokyo"),
+    "EXシアター有明": ("EX THEATER ARIAKE", "Tokyo"),
     "東京建物Brillia HALL": ("東京建物Brillia HALL", "Tokyo"),
+    "東京建物 Brillia HALL": ("東京建物Brillia HALL", "Tokyo"),
     "梅田芸術劇場": ("梅田芸術劇場メインホール", "Osaka"),
     "梅田芸術劇場メインホール": ("梅田芸術劇場メインホール", "Osaka"),
     "ウェスタ川越": ("ウェスタ川越", "Kawagoe"),
@@ -111,11 +113,14 @@ def scrape_toho():
     # poster keyed by the card's alt text (which equals the full title)
     art = {html.unescape(a).strip(): s for s, a in
            re.findall(r'card-lineup__image"\s+src="([^"]+)"[^>]*alt="([^"]+)"', h)}
+    # 卡片:<a class="card-lineup…" href="#<slug>"> … title / text(date) / at(venue)。
+    # href 的 #<slug> = 該劇專屬頁 tohostage.com/<slug> 的 slug(民王→#tamiou、rent→#rent2026…)。
     cards = re.findall(
+        r'<a class="card-lineup[^"]*"\s+href="([^"]*)"[^>]*>.*?'
         r'card-lineup__title">\s*(.*?)</p>.*?card-lineup__text">\s*(.*?)</p>.*?card-lineup__at">\s*(.*?)</p>',
         h, re.S)
     out, dropped = [], []
-    for t, d, v in cards:
+    for href, t, d, v in cards:
         title_raw = html.unescape(t).strip()
         if "ミュージカル" not in title_raw:
             continue                                    # plays / concerts (舞台『…』, …Concert)
@@ -124,12 +129,24 @@ def scrape_toho():
         ds = jp_dates(date_txt)
         if not ds:
             dropped.append(f"{title_raw} (日期模糊: {date_txt[:16]})"); continue
-        if VAGUE_VENUE.search(venue_raw) or venue_raw not in VENUES:
+        # 會場:多會場字串(「A（プレビュー）、B本公演」)取白名單命中者;優先非プレビュー(主公演)場館。
+        matches = []
+        for part in re.split(r"[、，]", venue_raw):
+            is_preview = ("プレビュー" in part) or ("preview" in part.lower())
+            part = re.sub(r"（.*?）|\(.*?\)", "", part).strip()
+            if part in VENUES:
+                matches.append((is_preview, part))
+        matches.sort(key=lambda x: x[0])            # False(主公演) 先於 True(プレビュー)
+        venue_key = matches[0][1] if matches else None
+        if not venue_key:
             dropped.append(f"{title_raw} (場館不明: {venue_raw[:16]})"); continue
-        name, city = VENUES[venue_raw]
+        name, city = VENUES[venue_key]
+        # ticket_url:優先用該劇專屬 tohostage 頁(從卡片 anchor #<slug> 導出),否則退回 lineup。
+        slug = href[1:] if href.startswith("#") else ""
+        url = f"https://www.tohostage.com/{slug}/" if slug else "https://www.toho.co.jp/stage/lineup"
         out.append({"title": clean_title(title_raw), "venue": name, "city": city,
                     "start": ds[0], "end": ds[-1], "image": art.get(title_raw),
-                    "url": "https://www.toho.co.jp/stage/lineup", "source": "toho.co.jp"})
+                    "url": url, "source": "toho.co.jp"})
     return out, dropped
 
 
