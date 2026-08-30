@@ -11,6 +11,15 @@
 
 ---
 
+## [v2.98.28] - 2026-08-30 23:01
+### Me and My Girl / Rudolf 補做多來源查證+官方中文標題正名(補足前批縮水的§3)
+- 承認 v2.98.27 對這兩部只用單一來源(維基)、§3不夠獨立、標題沒查官方——補做到位。
+- 多來源交叉(每部3-4獨立源):
+  - Me and My Girl:維基(結局Sally蛻變獲接納)+Playbill(Sir John Tremayne/Maria)+百度百科/豆瓣/涼風真世維基(中文名《我和我的女孩》、角色Jacqueline Carstone)。
+  - Rudolf:維基+百度百科/豆瓣/痞客邦/Daisy's(劇情、Stéphanie=比利時公主、既有中文名)。
+- 修正:①Rudolf繁標題《梅耶林的祕密》(自創)→《梅耶林事件》(對應原名Affaire Mayerling+既有譯名) ②Me and My Girl繁標題《我與我的女孩》→《我和我的女孩》(百度/豆瓣既有) ③Me and My Girl三語補正確結局(Sally歷練後學會周旋上流、兩人獲家族認可——前版只寫Bill不變、漏了Sally蛻變,與史實矛盾)。
+- DATA_VER 356ed5b18e。Broadway/West End+德奧仍100%。
+
 ## [v2.98.27] - 2026-08-30 22:44
 ### 補 Broadway/West End + 德奧 缺口→兩類三語簡介100%
 - 使用者要求補這兩類的小缺口(原99%/94%)。查證後三部各有不同原因:
