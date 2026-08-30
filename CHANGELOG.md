@@ -11,6 +11,15 @@
 
 ---
 
+## [v2.98.27] - 2026-08-30 22:44
+### 補 Broadway/West End + 德奧 缺口→兩類三語簡介100%
+- 使用者要求補這兩類的小缺口(原99%/94%)。查證後三部各有不同原因:
+  - Me and My Girl:本session才由東宝scraper新抓到(先前被靜默漏抓),從未有簡介→補。
+  - Rudolf(Wildhorn《Rudolf – Affaire Mayerling》,匈牙利Győr製作):德奧那批漏做→補。
+  - Cabaret At The Kit Kat Club:實為同劇拆組(與已有簡介的cabaret組同=倫敦Playhouse沉浸式製作)→加works alias合併去重,非另寫。
+- flow:en.wikipedia逐部深讀ground truth→Perplexity身份釘死生成三語→§3查核:Me and My Girl軟化「Sally拒絕變貴婦」(實際結局Sally蛻變獲接納);Rudolf簡中剝總結標題+軟化未證實開場;Rudolf史實(Franz Joseph/Taaffe/Mary Vetsera/Julius Felix筆名/梅耶林)全符。
+- 結果:Broadway/West End 233/233、德奧音樂劇 16/16 皆100%。知識庫418;served 365/語;DATA_VER 957b16ef70。
+
 ## [v2.98.26] - 2026-08-30 18:32
 ### 補台北演藝廳座標→「那個女人是誰?」上地圖;全資料庫0場次缺座標
 - 使用者問「有沒有明確是音樂劇但沒上地圖的」→查得僅1齣:『那個女人是誰?』@臺北市政府青年局3樓臺北演藝廳(台北,opentix),因場館缺座標未顯示。
