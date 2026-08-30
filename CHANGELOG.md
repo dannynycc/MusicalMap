@@ -11,6 +11,12 @@
 
 ---
 
+## [v2.98.20] - 2026-08-30 09:04
+### 產地核對:メイビー ハッピーエンディング 日本原創→韓國原創(使用者裁示)
+- 使用者核對產地待核對清單後裁示:メイビー改韓國原創,其餘3部(RRR/ロボット/王様の耳)維持日本原創。
+- 修法:works.json 加專屬 entry {canonical:"メイビー、ハッピーエンディング", tradition:韓國原創, aliases:["メイビー ハッピーエンディング"]}。刻意用專屬entry而非併入既有"Maybe Happy Ending"canonical,以保留日文標題獨立列+原有三語簡介key不變(併入會改英文標題並使簡介對不上)。英文百老匯"Maybe Happy Ending"組不受影響。
+- 結果:日本原創28→27組、韓國原創36→37組;メイビー三語簡介保留;shows 1958(cron基線)。DATA_VER ff6226a3c3。
+
 ## [v2.98.19] - 2026-08-30 08:36
 ### The London Way 簡中改用原生Perplexity生成(flow合規修正)
 - v2.98.18因Perplexity簡中整段幻覺,曾以繁中OpenCC轉簡替代=偏離「Perplexity生成三語自然語言」flow。
