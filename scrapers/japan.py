@@ -138,9 +138,22 @@ def scrape_toho():
                 matches.append((is_preview, part))
         matches.sort(key=lambda x: x[0])            # False(主公演) 先於 True(プレビュー)
         venue_key = matches[0][1] if matches else None
-        if not venue_key:
-            dropped.append(f"{title_raw} (場館不明: {venue_raw[:16]})"); continue
-        name, city = VENUES[venue_key]
+        if venue_key:
+            name, city = VENUES[venue_key]
+        else:
+            # 白名單沒有 → 分兩種:
+            #  (a)「その他/全国ツアー/多會場」這種根本不是單一實體場館 → 真的丟掉(無法定位)。
+            #  (b) 具體但沒登錄的「新場館」→ 不丟!留著(場館用原名、城市留空),
+            #      交給 geocode_google 自動查座標、verify_geo 反查城市 → 戲會自己補上位置,
+            #      不必等人工把場館加進白名單。同時發 ::warning:: 提醒補正式英文名。
+            #      (2026-08-30 治本:先前『ミー＆マイガール』因日文場館名對不上白名單被靜默漏抓。)
+            # 取第一個具體場館(剝（）註記)來判斷;用「單一場館」而非整串判 VAGUE,
+            # 免得多會場的頓號誤觸規則。單一場館若含 その他/全国/ツアー 或空 → 真的無法定位。
+            single = re.sub(r"（.*?）|\(.*?\)", "", re.split(r"[、，]", venue_raw)[0]).strip()
+            if not single or re.search(r"その他|全国|ツアー|未定", single):
+                dropped.append(f"{title_raw} (場館不明[真丟]: {venue_raw[:20]})"); continue
+            name, city = single, ""
+            dropped.append(f"{title_raw} (新場館未登錄[已保留待geocode]: {single[:20]})")
         # ticket_url:優先用該劇專屬 tohostage 頁(從卡片 anchor #<slug> 導出),否則退回 lineup。
         slug = href[1:] if href.startswith("#") else ""
         url = f"https://www.tohostage.com/{slug}/" if slug else "https://www.toho.co.jp/stage/lineup"
@@ -285,6 +298,18 @@ def main():
         print(f"    keep: {s['title']} @ {s['venue']} ({s['city']}) {s['start_date']}~{s['end_date']}", flush=True)
     for d in dropped:
         print("    drop:", d, flush=True)
+    # 防呆:場館不明=新場館沒登錄→整齣戲被漏抓。這是靜默資料流失,必須醒目化,
+    # 不要淹沒在日誌裡(2026-08-30:『ミー＆マイガール』因日文場館名對不上白名單被漏,
+    # 使用者才發現)。GitHub Actions 會把 ::warning:: 顯示在每日 run 摘要,一眼看到。
+    kept_new = [d for d in dropped if "已保留待geocode" in d]      # 新場館,已留著會自癒
+    lost = [d for d in dropped if "[真丟]" in d or "城市未對應" in d]  # 真的無法定位=有漏抓風險
+    for d in kept_new:
+        print(f"::warning::japan 新場館:已保留待自動定位(有空補正式英文名/城市進白名單): {d}", flush=True)
+    for d in lost:
+        print(f"::warning::japan 無法定位,整齣被漏抓(請人工處理): {d}", flush=True)
+    if lost:
+        print(f"::warning::japan: 共 {len(lost)} 齣真的被漏抓(見上),{len(kept_new)} 齣新場館已保留自癒。",
+              flush=True)
 
 
 if __name__ == "__main__":
