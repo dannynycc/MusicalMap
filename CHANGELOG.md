@@ -11,6 +11,62 @@
 
 ---
 
+## [v2.98.33] - 2026-09-01 03:47
+
+### 歐陸原創 54 組三語標題逐部查證:填入 20 組中文名 + 2 組官方英文名,其餘一律不硬翻
+
+依使用者規則:**查不到中文圈確實通行的對應劇名就不准硬翻,列清單交代**。
+54 組逐部查證(繁中 / 簡中 / 官方英文各自獨立查),證據與來源全記在 `scratchpad/titles/findings.md`。
+
+**查證管道(每部至少四個,查無才判不譯)**
+(1) 各語維基 `langlinks` 至 zh(API);(2) zh.wikipedia **地區詞轉換**(zh-tw vs zh-cn 各自取用,
+工具 `scratchpad/titles/zhvar.py`);(3) Google 全網中文搜尋;(4) 出版/影視資料庫定向查
+(博客來、誠品、Readmoo、**開眼電影網**、豆瓣圖書/電影、百度百科)。
+
+**★ 抓到 7 組「繁簡完全不同名」——OpenCC 轉不出來,必須分別填**
+| 劇 | 繁中(台灣) | 簡中(大陸) |
+|---|---|---|
+| Oliver Twist | 孤雛淚 | 雾都孤儿 |
+| A Christmas Carol | 小氣財神 | 圣诞颂歌 |
+| Så som i himmelen | 就像在天堂 | 其实在天堂 |
+| Änglagård | 天使之**屋** | 天使之**家** |
+| Elvált nők klubja | 大老婆俱樂部 | 前妻俱乐部 |
+| Ronja Rövardotter | 強盜的女兒 | 绿林女儿罗妮娅 |
+| Emil i Lönneberga | 小搗蛋艾米爾 | 淘气包埃米尔 |
+另有 Peter Pan(台「彼得潘」/陸「彼得·潘」,差**間隔號**)、
+A dzsungel könyve(台《叢林奇譚》/陸《丛林之书》)。
+
+**新增 20 組簡中 + 18 組繁中**(`data/i18n_maps.json` → show_titles / show_titles_tw;
+gen_variants 以 `cn_annot` 加註在原題旁,**不取代原題**)。
+其中 `pippi pa sirkus`、`ternet ninja` **只填簡中**——台灣查無任何來源,依規定繁中不填。
+
+**新增 2 組官方英文名**(`data/overrides.json`,附來源)
+- `Pippi på sirkus` → **Pippi at the Circus**(ABBA 官方國際粉絲會、Helen Sjöholm 官網、
+  Björn Ulvaeus 本人貼文)
+- `Ternet Ninja` → **Checkered Ninja**(英語配音版正式名;IMDb / Netflix / JustWatch 一致)
+其餘各劇的「英文名」都只是**原著或電影**的英文名,不是本製作發布的官方名 → 依政策不填。
+
+**判定不譯 27 組**,理由逐部記錄。其中特別註明三種陷阱:
+- **維基 langlink 誤連**:`cs:Anděl Páně` 連到 zh:**三鐘經**(那是天主教禱詞,不是這部電影);
+  `hu:Mohácsi csata` 連到 zh:**摩哈赤战役**(那是戰役,不是劇名)。**都不可拿來當劇名**
+- **售票網站的介面翻譯不是譯名**:De Spiekpietjes 在 Viagogo/StubHub 只有分類被譯成「音樂劇」,
+  劇名本身從未被譯
+- **AI 生成站的機器直譯不是通行譯名**:Serce ze szkła 只有 Audiala 直譯成「禅意音乐剧」,不採用
+
+**另立「待使用者定奪」清單**(劇名=人名/暱稱):FRIDA、Michelangelo da Caravaggio、
+Nikola Tesla - Végtelen energia、POLITA、Raffaella、Maradona El Diego、A Padlás。
+中文圈用中文名指稱**該人物**,但沒有任何中文名指稱**這齣音樂劇**;填了等於由我替它命名 → 一律不填,
+只把兩岸人名譯法列表交出。A Padlás 另附唯一弱線索(一則微博轉載稱「音乐剧《阁楼》」,
+單一非正式來源,不足以認定)。
+
+**⚠ 補查推翻前一輪判定**:`Pippi på sirkus` 原判 C(不譯),換管道(官方粉絲會 / 藝人本人社群 /
+在地中文媒體 / BroadwayWorld)後找到官方英文名與簡中媒體用名 → 改判 B。
+教訓已寫進 findings:**一輪查不到不等於沒有**。
+
+`build_shows` 重跑的 diff 只有預期的 2 筆(title_en + source 標記),無其他記錄變動。
+
+---
+
 ## [v2.98.32] - 2026-09-01 03:10
 
 ### 4 部新進匈牙利劇三語逐部深查入庫(修 19 處 + 簡中 1 部整篇重譯)
