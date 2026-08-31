@@ -1,10 +1,52 @@
 #!/bin/sh
-# 提交防呆：改了原始碼/UI/scraper 卻沒更新 CHANGELOG.md 就擋下。
+# 提交防呆：
+#  (1) 改了原始碼/UI/scraper 卻沒更新 CHANGELOG.md 就擋下。
+#  (2) CHANGELOG 最新一筆的時間戳跟現在差太多 → **只警告不擋**。
 # 啟用方式（每個 clone 設定一次）： git config core.hooksPath .githooks
 # 確定要略過： git commit --no-verify
 
 staged=$(git diff --cached --name-only)
 
+# --- (2) 時間戳合理性：只要這次有動 CHANGELOG 就檢查，warn-only ---
+# 由來：2026-09-01 一晚兩次把時間戳「預先寫死成估算值」再送出
+# （實跑 04:27 卻寫 04:40、實跑 05:53 卻寫 05:52）。規則早就存在（先跑 Get-Date 再寫），
+# 光靠記性顯然不夠，所以讓工具在送出前把差異指出來。
+# 不擋是刻意的：補寫舊 entry、跨時區、手動整理歷史都是合法情境，擋下只會礙事。
+#
+# 🚨 這段有兩個踩過的坑，改的時候別退回去：
+#   a. stdout 必須設成 UTF-8。第一版沒設，訊息裡的 "⚠"(U+26A0) 在 cp950 直接
+#      UnicodeEncodeError，而下面的 `2>/dev/null || true` 會把錯誤整個吞掉
+#      → 警告永遠不會出現，防呆靜默失效（比沒做更糟，因為會誤以為有保護）。
+#   b. 訊息不用非 ASCII 裝飾符號，改用 [!]。
+if echo "$staged" | grep -q '^CHANGELOG\.md$'; then
+  python - <<'PYCHK' 2>/dev/null || true
+import io, re, sys, datetime
+try:
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+except Exception:
+    pass
+try:
+    s = io.open('CHANGELOG.md', encoding='utf-8-sig').read()
+except Exception:
+    sys.exit(0)
+m = re.search(r'^## \[[^\]]+\] - (\d{4}-\d{2}-\d{2}) (\d{2}:\d{2})', s, re.M)
+if not m:
+    sys.exit(0)
+try:
+    t = datetime.datetime.strptime(m.group(1) + ' ' + m.group(2), '%Y-%m-%d %H:%M')
+except Exception:
+    sys.exit(0)
+now = datetime.datetime.now()
+diff = abs((now - t).total_seconds()) / 60.0
+if diff > 30:
+    print('[!] CHANGELOG 最新一筆時間戳 %s %s，與現在 %s 相差 %d 分鐘。'
+          % (m.group(1), m.group(2), now.strftime('%Y-%m-%d %H:%M'), int(diff)))
+    print('    若是估算或寫死的值，請改成實跑值：Get-Date -Format "yyyy-MM-dd HH:mm"')
+    print('    （補寫舊 entry 屬正常，忽略即可；此檢查不會擋下提交。）')
+PYCHK
+fi
+
+# --- (1) CHANGELOG 更新強制 ---
 # 沒有原始碼類變更（例如只是 data/*.json 自動刷新）→ 放行
 echo "$staged" | grep -qE '\.(js|css|html|py|yml)$|^README|^docs/' || exit 0
 
