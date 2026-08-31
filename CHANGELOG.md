@@ -11,6 +11,45 @@
 
 ---
 
+## [v2.98.32] - 2026-09-01 03:10
+
+### 4 部新進匈牙利劇三語逐部深查入庫(修 19 處 + 簡中 1 部整篇重譯)
+
+依 8/31 夜訂立的流程跑完 `Vizeli:Szeretve mind a vérpadig` / `Egri csillagok – A nagy musical` /
+`Valahol Európában` / `Ezeregy éjszaka`,**每部三語各自逐句比對**(前一輪只驗繁中,是漏洞)。
+判準一律是「**這個製作自己怎麼寫**」——官方角色表 / 官方劇情 / 專業樂評;原著、電影只能當對照。
+
+**🚨 抓到一篇整篇幻覺**
+`Szeretve mind a vérpadig` 的**簡中**生成寫成「**1870 年代**的匈牙利,年輕貴族**阿爾帕德**與**伊洛娜**」,
+實際是 **1698–1710 拉科齊獨立戰爭**、主角 **Ocskay László / Tisza Ilonka** —— 人名年代情節全部憑空編造。
+處置:繁中版已逐句查證正確,改用 `scripts/px_translate.py` 純翻譯(不得改語意),一次通過驗收後由我逐句放行。
+
+**修正 19 處(每條在 `scratchpad/euro2/gen/apply_fixes.py` 附來源與理由,匹配不到即報錯)**
+- **英文 12 條**:`Szunyoghy Ozmanda`→官方 **Ozmonda**;`the young Vicuska…later known as Cecey Éva`→
+  官方一律 **Cecey Éva**;`Sahriár király` 當人名重複(király=國王)→**King Sahriár**;
+  `a Jósnő` / `the Emberfejeket termő fa` 匈牙利文標籤直接搬進英文散文→改英文釋義;
+  哈倫「naive young prince…court life」→樂評載其為**被奪走王位與視力的年輕君主**;
+  Dzsinn 補上**出自瓶中**;`Valahol Európában` 的「有人被抓、其他人營救」查無來源→
+  換成 hu.wiki 逐字支持的「Kuksi 中槍致命→明知被捕仍送進村子→Kuksi 死→Simon 帶回免罪令並把城堡判歸孩子」。
+- **繁中 3 條**:「**神燈**精靈」是迪士尼版→官方角色為 DZSINN、樂評作「a **palackból** szabadult Dzsinn」;
+  「阿里」→官方寫法 **ALI(DA)**;「王子哈倫/美麗堅毅的茉莉」→改用有據的身分(被篡位的年輕君主 / 蘇丹之女)。
+- **簡中 4 條**:「精靈**胡克**」無此角色→刪名;「**乞丐裝束**」查無來源→改為有據的**失去視力**;
+  `Valahol Európában` 的「煽動者和村民抓走伙伴/冒險營救同伴」查無來源→改為 hu.wiki 逐字內容。
+
+**⚠ 兩次差點把對的改成錯的(記錄在 `scratchpad/euro2/verify.md`)**
+1. 看到「哈倫/茉莉/賈法爾/阿里」直覺判為「迪士尼《阿拉丁》污染」——**錯**,本製作官方角色表就叫
+   HARÚN / JÁZMIN / DZSÁFÁR / ALI(DA);樂評開宗明義說本劇是「Disney 音樂劇的正經替代品」。
+2. `Egri csillagok` 的護符情節先照原著判成錯,查官方劇情後確認**音樂劇版就是孩子帶走護符**,生成是對的。
+
+**查證來源**:magyarszinhaz.hu 官方頁(劇情+完整角色表)、jegy.hu / port.hu / atempo.sk / Magyar Nemzet
+的官方角色表、spirituszonline.hu 專業樂評(László Ferenc)、hu.wikipedia
+(`Valahol Európában (film)` / `Egri csillagok` / `Ocskay László (kuruc brigadéros)`)。
+
+**入庫**:三語知識庫 469 → **473**;served 410 部;`gen_variants` + `gen_site` 已重產(DATA_VER 8dfec5e9a7)。
+編碼健檢(私用區字元 / U+FFFD)= 0。
+
+---
+
 ## [v2.98.31] - 2026-09-01 01:39
 
 ### 修正 38 個中國場館的座標系錯誤(GCJ-02 未轉 WGS-84,釘子偏約 500m)+ 補完最後 2 筆缺座標

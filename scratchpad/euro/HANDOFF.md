@@ -191,3 +191,21 @@ Perplexity 的輸入框是 contenteditable,`p.keyboard.type(Q)` 打到 `\n` 時�
 2. 重生成不是萬靈丹。資料不足的劇,換 prompt 只是換一組錯 → **每部重生成後都要逐部複驗**。
 3. 生成不出來時,**翻譯已查證正確的另一語版本**比再賭一次生成可靠,但必須用
    段落數/字數比把關,確保只轉語言、不改語意。
+
+---
+
+# 📌 2026-09-01 03:10 狀態更新(本檔上方「尚未…」段落多已過時)
+
+- **zh-hans 已全部跑完**(上方第 36、65 行的「尚未跑 / 尚未生成」作廢)。
+- 歐陸原創 51 組三語入庫完成;後續 4 部**新進匈牙利劇**亦完成三語逐部深查:
+  `Vizeli:Szeretve mind a vérpadig` / `Egri csillagok – A nagy musical` /
+  `Valahol Európában` / `Ezeregy éjszaka` —— 證據見 **`scratchpad/euro2/verify.md`**,
+  修正規則見 **`scratchpad/euro2/gen/apply_fixes.py`**(v2.98.32)。
+- 知識庫三語各 **473** 組;served **410** 部;`gen_variants` + `gen_site` 已重產。
+- **流程補強(前一輪的漏洞)**:必須**每部三語各自逐句比對**。
+  前一輪 `Szeretve mind a vérpadig` 只驗繁中就結案,漏掉簡中整篇是幻覺(1870 年代/阿爾帕德/伊洛娜)。
+
+## 仍未做
+- **歐陸劇的三語標題查證**(zh-hant / zh-hans / 官方英文名):51 組僅完成 8 組,
+  進度與筆記在 `scratchpad/titles/findings.md`、`scratchpad/titles/README.md`。
+  規則:查不到真實對應譯名的**不准硬翻**,列入 do-not-translate 清單。
