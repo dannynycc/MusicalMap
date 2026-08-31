@@ -13,6 +13,17 @@
 
 ## [v2.98.29] - 2026-09-01 00:14
 
+### 補記 — 2026-09-01 00:18 rebase 後重產
+
+與 cron 的 auto-refresh 併行,push 被拒後 rebase;衝突全是產物檔(shows.json、variants/*、venues_catalog、index.html×3),
+取遠端版本後本機重跑 `build_shows` → `gen_variants` → `build_served_synopses` → `gen_site`,
+讓本批的 `works.json` / `not_musical.json` 變更套用到最新場次資料上。DATA_VER 重新 bump。
+
+本批 51 部中有 3 部(`Légy jó mindhalálig`、`A meseautó`、`Zrínyi 1566`)因場次結束已離開 catalog,
+故不在前端 served;**簡介仍完整保存在 `synopses_library`**,日後有新場次會自動掛回——這是 `build_served` 的既有設計,非資料遺失。
+前端實際 served:en 48 / zh-hant 48 / zh-hans 46。
+
+
 ### 歐陸原創 51 部:三語逐部深查(claude-in-chrome 多來源實讀)
 
 **方法**:本人在真 Chrome 逐部開官方頁/劇院頁/劇評/百科多來源,讀原文,對「劇情正確性 / 事實 / 語意」三個維度逐句比對。
