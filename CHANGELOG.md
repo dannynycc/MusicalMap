@@ -11,6 +11,69 @@
 
 ---
 
+## [v2.99.0] - 2026-09-01 07:33
+
+### 非歐陸範圍的內容問題與 rebelové 未證實細節:多源深查後處理(使用者授權第 2、3 類)
+
+依「最嚴謹、本人用 claude-in-chrome 多源深查、來源不只兩個、留下證據」的要求執行。
+完整證據(含每個爭點查了哪些網域、逐字引文、我判斷錯的地方)在 `scratchpad/nonEU/verify.md`。
+
+**🚨 `grand hotel`:多源查完後,推翻了我自己先前的判斷**
+只看 en.wikipedia 時我判「繁中的『聽見求救挺身阻止』錯、應為行竊被抓」。
+查**官方授權商 MTI 的 Full Synopsis** 後發現繁中是對的,逐字:
+> The Baron sneaks in next door and is about to rob Preysing **when he hears Flaemmchen's cries
+> from the next room. He runs next door and confronts Preysing**… The fight escalates until
+> **The Baron takes out his gun, which Preysing grabs and shoots The Baron dead.**
+
+Wikipedia 那版把「聽見呼救→衝過去」整步省略成 "After a struggle"。
+**單一來源的省略,會被誤讀成另一版本的錯誤。** 繁中的「投資獲利」同樣被 MTI 證實正確
+(“persuaded Otto to **invest in the stock market**”)。這兩處**都不改**。
+- **項鍊材質**:MTI 官方全文從頭到尾只寫 "a necklace",**不指明材質**;Wikipedia 寫 diamond(無註腳)、
+  原著與 1932 電影是 pearls。→ 繁「鑽石」與簡「珍珠」**都拿掉材質**,兩邊都不超出官方。
+- Preysing:MTI 作 "a **general manager** of a textile mill" → 繁「老闆」、簡「企业家」改為**總經理**。
+- ⚠ 排除了假來源:Fandom / Alchetron / 多則 Facebook 貼文全是 **Wikipedia 原文轉載**,不算獨立來源。
+
+**🚨 `screwtape letters`:先釐清這是**韓國原創音樂劇**,不是美國版**
+PLAYDB 分類逐字「창작뮤지컬」(原創音樂劇),首爾明倫藝術廳。查**韓語**一手來源,
+**6 個獨立網域一致**:官方角色是 **블랙엔젤(Black Angel)**,不是 Lilith。
+(Naver Blog「경험 많은 악마 블랙엔젤」、나무위키卡司、Instagram×2/Facebook/Threads 謝幕紀錄;
+데이포유 的官方文案「악마특수공작대(Devil Special Agency)…원수(Jesus)」正好對上我們英文簡介的措辭,
+證明簡介寫的確實是這個製作。)
+→ 英文 Lilith→**Black Angel**(×2)、繁中「女惡魔莉莉絲」→**惡魔黑天使**(「女」字拿掉:官方未言明性別,
+該角由 서하임、김태영 輪演)、簡中**補上**這個原本缺漏的主要角色。
+
+**`moon sorbet` / `月亮雪酪`(台灣劇):簡中是繁中的純字轉換,沒做在地化**
+冷氣房→**空调房**、全球暖化→**全球变暖**(zh.wikipedia 地區詞確認)。
+🚨 「主委」**刻意不改成「楼长/居委会主任」**——那是大陸的社區制度,會把台灣公寓的戲改寫成大陸社區
+= 改變事實;改為補全職稱「管委会主委」,既保留台灣脈絡又讓大陸讀者看懂。
+
+**六組繁簡缺口:查完推翻了兩個原本的假設**
+- `six`:**不是「缺繁中」**。維基兩岸條目名皆為「SIX (音樂劇/音乐剧)」、首粗體都是 SIX,
+  台灣媒體一律寫《SIX》且**從未在台演出**;搜「六个皇后」→ 全是中國歷代皇后條目、**零音樂劇結果**
+  → **簡中的「六个皇后」是查無來源的硬翻,刪除**;繁中不填才是對的。
+- `death becomes her`:**不是「缺簡中」,是繁中欄位填了大陸譯名**。
+  台灣正式片名是《**捉神弄鬼**》(開眼電影網片名頁 + 開眼金馬奇幻影展新聞 + 影評 + 維基 zh-tw),
+  「飛越長生」是大陸譯名 → 繁中改正,簡中補「飞越长生」。
+- 另補簡中:`music man`→欢乐音乐妙无穷(百度百科明指音樂劇)、`outsiders`→小教父(維基兩岸同名)、
+  `producers`→**金牌制作人**(豆瓣「看过的舞台剧」3 位用戶;⚠ 大陸對**電影**叫「制片人」,對**音樂劇**叫
+  「金牌制作人」)、`young frankenstein`→新科学怪人(豆瓣奧斯卡/紐約影評人名單 ×2)。
+
+**第 3 類 `rebelove karlin`:查 6 個管道仍查無 → 移除,不引入新宣稱**
+cs.wikipedia / **ČSFD 官方 Obsah** / 音樂劇角色表 / Google 捷克語多輪 / Novinky 劇評(被 cookie 牆擋,
+依規定不去點接受)/ TipTicket —— 「新開的咖啡館」「自稱修理工」全部 0 命中 → 依 SOP
+「官方查不到的細節不放行」移除。有據的部分保留:牧師(角色表有 Farář)、父親(Terezin otec)、
+逃兵(ČSFD:kluk, který **utekl z vojny**)。
+
+**🚨 過程中修掉我自己腳本的一個 bug(會靜默重複插入)**
+`apply_fixes.py` 的冪等判斷只看「old 在不在文中」。當 **new 包含 old**(例如在原句後面插入一段)時,
+套用後 old 仍在文中 → **重跑會重複插入**。實際踩到:screwtape 簡中被插入兩次
+「并让经验丰富的恶魔黑天使一同参与，」。已修為「new 已在文中且 new 包含 old 也算已套用」,
+並**連跑 3 次驗證冪等**(全部 0 套用、無重複)。
+
+QA 四支重跑:缺陷回歸七類全 0、翻譯稿用語 473 組全過、歐陸三語缺漏 0。
+
+---
+
 ## [v2.98.40] - 2026-09-01 06:03
 
 ### pre-commit 加時間戳防呆(warn-only);過程中發現它第一版會靜默失效
