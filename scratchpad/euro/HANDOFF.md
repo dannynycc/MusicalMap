@@ -205,7 +205,13 @@ Perplexity 的輸入框是 contenteditable,`p.keyboard.type(Q)` 打到 `\n` 時�
 - **流程補強(前一輪的漏洞)**:必須**每部三語各自逐句比對**。
   前一輪 `Szeretve mind a vérpadig` 只驗繁中就結案,漏掉簡中整篇是幻覺(1870 年代/阿爾帕德/伊洛娜)。
 
-## 仍未做
-- **歐陸劇的三語標題查證**(zh-hant / zh-hans / 官方英文名):51 組僅完成 8 組,
-  進度與筆記在 `scratchpad/titles/findings.md`、`scratchpad/titles/README.md`。
-  規則:查不到真實對應譯名的**不准硬翻**,列入 do-not-translate 清單。
+## ✅ 歐陸劇三語標題查證:54 組全部完成(v2.98.33,已上線)
+- 填入 **20 組簡中 + 18 組繁中**(`data/i18n_maps.json`)、**2 組官方英文名**(`data/overrides.json`)
+- **27 組判不譯**,理由逐部記錄;另有 **7 組留給使用者定奪**(劇名=人名/暱稱)
+- 證據:`scratchpad/titles/findings.md`;工具:`zhvar.py`(zh-tw/zh-cn 地區詞轉換)、`probe.py`(langlinks)
+- 已在正式站真 DOM 驗過渲染(含「只填簡中」那兩部在繁中站乾淨無註解、無空 span)
+
+## 仍未做(交給使用者定奪,不自行填)
+- 標題「待定奪」7 組:FRIDA / Caravaggio / Nikola Tesla / POLITA / Raffaella / Maradona / A Padlás
+- 非歐陸的既有繁簡缺口:`six` 缺繁中名;`death becomes her`、`music man`、`outsiders`、
+  `producers`、`young frankenstein` 缺簡中名(皆為既有,非本次造成)

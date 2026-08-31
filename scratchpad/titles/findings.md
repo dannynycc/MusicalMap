@@ -376,3 +376,41 @@
 | a padlas | A Padlás | (阁楼?) | (阁楼?) | 僅一則微博轉載稱「音乐剧《阁楼》」,單一非正式來源 |
 
 人名譯名來源:zh.wikipedia 地區詞轉換(zh-tw / zh-cn 各自取用)。
+
+---
+
+# ✅ 正式站眼見為憑驗證(2026-09-01 04:0x,真 Chrome 開 themusicalmap.com)
+
+不是只看 JSON——實際在**正式站的真 DOM** 確認渲染:
+
+| 檢查 | 結果 |
+|---|---|
+| 繁中站 LUPIN 卡片 | `LUPIN - Il Musical<span class="grp-title-cn">亞森·羅蘋</span>` ✓ 原題保留、中文加註在旁 |
+| 繁中站 Så som i himmelen | `Så som i himmelen<span class="grp-title-cn">就像在天堂</span>` ✓ |
+| 簡中站 Pippi på sirkus | `Pippi på sirkus<span class="grp-title-cn">皮皮在马戏团</span>` ✓ |
+| **繁中站** Pippi på sirkus(刻意不填繁中) | `<div class="title">Pippi på sirkus</div>` ✓ **乾淨無註解,也沒有留下空的 span** |
+| 全頁空的 `.grp-title-cn` 數量 | **0** |
+
+⚠ 一開始在首頁量到多數新名字「0 次命中」,差點誤判沒生效——
+實際是**預設只顯示本月(2026-09)**,而 Änglagård(2027-03)、Ronja(2026-12)、
+Elvált nők klubja(2026-10)、Macskafogó(2026-10)都不在本月。
+把 `#time-month` 調到該月份後即正常顯示。**先確認篩選條件,再下「沒生效」的結論。**
+
+---
+
+# 一致性掃描(對全庫 209/211 筆,不只本次新增)
+
+**1. 同一個中文名對到多個 group — 9 組,全部正確**
+`圣诞颂歌`(a christmas carol / a christmas carol bit)、
+`美女与野兽`(beauty and the beast / belle e la bestia)、
+`雾都孤儿`(oliver / oliver twist)三組是本次新增涉入,
+都是**同一作品的不同製作**,與既有的 addams family、shrek、sweeney todd、moulin rouge 模式一致 → 不是錯誤。
+
+**2. 繁簡不齊(既有問題,非本次造成,未擅自更動)**
+- 只有簡中沒繁中:`six`(**既有**;SIX 在台灣有正式引進,值得補繁中名)、
+  `pippi pa sirkus` / `ternet ninja`(**本次刻意**,台灣查無來源)
+- 只有繁中沒簡中:`death becomes her`、`music man`、`outsiders`、`producers`、`young frankenstein`(**既有**)
+→ i18n 屬策展政策,這幾筆都不在本次委託的歐陸範圍內,**留作待辦交給使用者定奪**,不自行填。
+
+**3. 繁中欄位是否混入簡體字**:掃描器報 3 筆(埃及豔后 / 長靴皇后 / 明成皇后),
+逐字確認為**誤報**——「后」在正體中文裡本來就是「皇后」的正字,不是「後」的簡化。資料乾淨。
