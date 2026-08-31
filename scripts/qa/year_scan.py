@@ -15,7 +15,7 @@ sys.stdout=io.TextIOWrapper(sys.stdout.buffer,encoding='utf-8')
 def load(n):
     d=json.load(io.open('data/synopses_library/'+n,encoding='utf-8')); return d.get('syn',d)
 en,zht,zhs=load('en.json'),load('zh-hant.json'),load('zh-hans.json')
-EU=sorted(json.load(io.open('scratchpad/titles/groups.json',encoding='utf-8')))
+EU=sorted(json.load(io.open('scripts/qa/fixtures/euro_groups.json',encoding='utf-8')))
 YR=re.compile(r'(?<!\d)(1[0-9]{3}|20[0-4][0-9])(?!\d)')
 def body(d,g,k):
     v=d.get(g); return v.get(k,'') if isinstance(v,dict) else ''

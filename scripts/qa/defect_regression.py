@@ -21,7 +21,7 @@ def load(n):
     return d.get('syn', d)
 
 en, zht, zhs = load('en.json'), load('zh-hant.json'), load('zh-hans.json')
-EU = sorted(json.load(io.open('scratchpad/titles/groups.json', encoding='utf-8')))
+EU = sorted(json.load(io.open('scripts/qa/fixtures/euro_groups.json', encoding='utf-8')))
 
 CHECKS = [
  ('A 英文 slug 殘留',      re.compile(r'\b[a-z]{3,}(?:-[a-z0-9]{2,}){2,}\b')),

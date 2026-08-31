@@ -92,6 +92,29 @@ node build/gen_site.mjs                      # 重建三語 HTML，DATA_VER(md5)
 - sub-key：en→en、zh-hant→zh、zh-hans→zh-hans。檔案 indent=2 + CRLF。
 - 🚨 **直接改過 served 要先同步回 library 再 build_served**，否則舊 library 覆蓋掉改進。
 - 🚨 **每次 merge 後重掃殘留**：來源 slug（單一小寫 latin token）、「全劇總結」標題會被重新帶進來。
+  → 用 §5.5 的 `defect_regression.py`，不要用肉眼。
+
+## 5.5 入庫後的自動化把關（2026-09-01 建立；**四支都只是線索，不是判定**）
+
+| 工具 | 抓什麼 | 已知局限（務必先讀） |
+|---|---|---|
+| `scripts/qa/defect_regression.py` | 七類**先前真的發生過**的缺陷：英文 slug 殘留、簡中清晨時間戳、「全劇總結」標題殘留、書評框架開頭、段落過少、說明性開場、引用/UI 殘留 | slug 檢測只比對**含連字號的多詞 group slug**。第一版寫成「連字號連三個以上小寫詞」，6 筆全誤報（`thirteen-year-old`、`good-and-evil`、`larger-than-life` 都是合法英文）；改成比對 group slug 後仍誤報單字 group（`metro` vs 正文的 the metro） |
+| `scripts/qa/xlang_scan3.py` | 繁×簡**整篇講不同故事**（bigram Jaccard + 已知陽性基準線） | **一定要拿已知陽性當基準**，否則看不出門檻在哪。已知陽性 0.0578 / 全庫最低 0.0706 —— 只差 0.013，**低分不等於有問題**（翻譯稿分數高、獨立生成分數天然就低），一律人工複查 |
+| `scripts/qa/year_scan.py` | 三語**年份**不一致（年份不受音譯影響，是唯一橫跨三語的硬錨點）+ 三語完整性 | **訊噪比很差，10 個裡 9 個誤報**：`"1990s"`/`"early-1960s"` 會被抓成 1990/1960；某語有某語無只是詳略差異。價值不在判定，而在**把視線帶到某一句**（曾順著 "In 1969" 讀到同句的專名錯字 Xintia→Cynthia） |
+| `scripts/qa/check_translation_locale.py` | 繁→簡翻譯稿**有沒有真的換詞**（OpenCC 只轉字不轉詞） | 詞對表第一版 25 組裡有 **14 組是錯規則**（`乐团`/`团员`/`影片` 在大陸完全通用），全庫掃出的 13 組全是誤報。現為 16 組，砍掉的原因寫在腳本註解，**別再加回來** |
+
+**兩條血淚規則**
+1. 🚨 **自己做的檢查工具，規則表本身也要驗證。** 沒驗證的規則表只會製造誤報，
+   比沒有工具更糟——它會讓人去「修」根本沒錯的東西。
+2. 🚨 **自動掃描全過 ≠ 品質好。** 四支全綠仍要人工讀；反過來，掃描報的低分/命中
+   多半是誤報，**判定一律靠人工讀三語 + 查官方**（`feedback_full_read_beats_automated_qa`）。
+
+**翻譯稿（`px_translate.py`）另有兩個專屬風險**
+- `--dir en2zht`（英譯中）會留**翻譯腔**：`populated by`→「住著」、`separation`→「離散」、
+  `breaking the story open`→「撕裂」、`bodily embarrassment`→「窘迫」。譯完必須通篇重讀潤稿。
+- 潤稿時以「**專名集合前後必須完全相同**」為硬條件把關（拉丁專名數 + 各專名出現次數）。
+  這條真的攔下過事故：為避免同句重複把第二個「冰雪女王」改成「另一面」，
+  但官方角色表的 `Królowa Śniegu` 與 `Królowa Śniegu W Kryzysie` 是**兩個列名的角色**。
 
 ## 6. 上線 + 正式站驗證（不拿 localhost 交卷；`feedback_verify_on_production_not_localhost`）
 - commit（只 stage 自己的檔）+ CHANGELOG（台北時間 HH:MM，先跑 Get-Date）+ tag + push。

@@ -4,7 +4,7 @@
 使用者要求逐字:「拿繁中結果的去叫 perplexity 翻成簡體的語意(**並且使用中國用語**)」。
 OpenCC 只轉字不轉詞 —— 若模型偷懶,會留下「杯葛 / 超級電腦 / 資訊」這類轉了字卻沒換詞的台灣用語。
 
-用法: python scripts/check_translation_locale.py <group> [<group> ...]
+用法: python scripts/qa/check_translation_locale.py <group> [<group> ...]
       不給參數則檢查全部 zh-hans 庫。
 
 ⚠ 這支只是**攔明顯漏網**,25 組詞對涵蓋不了全部。

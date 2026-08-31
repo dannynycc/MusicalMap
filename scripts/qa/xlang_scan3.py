@@ -34,8 +34,8 @@ def load(n):
 zht, zhs = load('zh-hant.json'), load('zh-hans.json')
 G = 'vizeli szeretve mind a verpadig'
 ref = zht[G]['zh']
-bad = [x for x in json.load(io.open('scratchpad/euro2/gen/out_zhs.before_fix.json', encoding='utf-8'))
-       if x['show'].startswith('Szeretve')][0]['synopsis']
+_fx = json.load(io.open('scripts/qa/fixtures/known_positive.json', encoding='utf-8'))
+bad = _fx['hallucinated_zhs']
 
 rows = []
 for g in sorted(set(zht) & set(zhs)):

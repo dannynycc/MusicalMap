@@ -11,6 +11,37 @@
 
 ---
 
+## [v2.98.39] - 2026-09-01 05:52
+
+### 把今晚的 4 支 QA 檢查器收進 `scripts/qa/` 並寫進 SOP,連同各自的局限
+
+工具做了不寫進管線文件,下一個 session 根本不會跑。補齊三件事:
+
+**1. 從 scratchpad 搬進 `scripts/qa/`**(`git mv` 保留歷史)
+`scratchpad/euro2/` 名義上是暫存區,日後清理會把工具一起刪掉。
+四支統一收在 `scripts/qa/`:`defect_regression.py` / `xlang_scan3.py` /
+`year_scan.py` / `check_translation_locale.py`,從 repo root 逐支實跑通過。
+
+**2. 固定基準線與依賴 → `scripts/qa/fixtures/`**
+`xlang_scan3.py` 的門檻**完全依賴那唯一一個已知陽性樣本**(Szeretve 的幻覺簡中);
+另兩支依賴 `scratchpad/titles/groups.json`。這些檔一旦被當暫存清掉,
+掃描器就退化成**看不出門檻的 v1**(當初就是因為沒有基準線而誤判「無區辨力」)。
+→ 存成 `fixtures/known_positive.json`(附說明為什麼需要它)與 `fixtures/euro_groups.json`,
+三支腳本改讀 fixtures。
+
+**3. 寫進 `docs/SYNOPSIS_SOP.md` 新增的 §5.5**
+每支都列出**已知局限**,而不只是用法——因為這四支的誤報率都很高:
+- `defect_regression`:slug 檢測誤報過 `thirteen-year-old` / `good-and-evil` / `larger-than-life`
+- `xlang_scan3`:已知陽性 0.0578 vs 全庫最低 0.0706,只差 0.013,**低分不等於有問題**
+- `year_scan`:**10 個裡 9 個誤報**,價值在「把視線帶到某一句」而非判定
+- `check_translation_locale`:詞對表第一版 25 組裡 14 組是錯規則
+
+同時寫進兩條血淚規則:**自己做的檢查工具規則表本身也要驗證**、
+**自動掃描全過 ≠ 品質好**;以及 `px_translate --dir en2zht` 的翻譯腔風險與
+「專名集合前後必須完全相同」這條把關(它真的攔下過把兩個列名角色併成一個的事故)。
+
+---
+
 ## [v2.98.38] - 2026-09-01 05:44
 
 ### 新增翻譯稿「用語在地化」檢查工具;並修掉我自己詞對表裡的 14 組錯規則
