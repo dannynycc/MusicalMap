@@ -10,7 +10,7 @@
 """
 import json, io, os, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
-EXPECT = {"out_en.json": 51, "out_zht.json": 51, "out_zhs.json": 49}
+EXPECT = {"out_en.json": 51, "out_zht.json": 51, "out_zhs.json": 51}
 
 SENTINEL = {  # 檔案 -> [(部別前綴 or None, 必須存在的字串)]
     "out_en.json": [("A Christmas Carol", "his wife Rose"), ("Saturnin", "named Jirotka"),
@@ -20,7 +20,9 @@ SENTINEL = {  # 檔案 -> [(部別前綴 or None, 必須存在的字串)]
                      ("Änglagård", "贊德"), ("Močál Story", "布拉熱娜"),
                      ("The Julekalender", "桑德")],   # 這裡的桑德是官方 Sand,必須留著
     "out_zhs.json": [("MADE IN", "瑞奇"), ("Metro", "扬"), ("Saturnin", "伊罗特卡"),
-                     ("Mindig itt", "拉约什二世"), ("A dzsungel", "图娜")],
+                     ("Mindig itt", "拉约什二世"), ("A dzsungel", "图娜"),
+                     ("Aggiungi", "亲自打来的电话"), ("Aggiungi", "白鸽"),
+                     ("A Padlás", "摆渡人"), ("A Padlás", "鬼魂")],
 }
 BANNED = {   # 檔案 -> [(部別前綴, 不可出現的字串)]
     "out_en.json": [(None, "a Budapest bank"), (None, "flinke-kindjes-meter"), (None, "Liga tolerance")],

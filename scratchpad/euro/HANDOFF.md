@@ -113,3 +113,63 @@ zht: `瑞奇` / `草叢` / `'o russo`;zhs: `瑞奇` / `扬` / `伊罗特卡`)。
 4. `node scripts/gen_site.mjs`(bump DATA_VER)
 5. commit + CHANGELOG(台北時間 HH:MM,**先跑 Get-Date**)+ tag + push
 6. 到正式站 themusicalmap.com 驗 DATA_VER 與抽驗幾部簡介
+
+## 2026-09-01 00:18 已完成部署
+
+- commit `1fb992ed`(深查與修正)+ `71af9f2f`(rebase 後重產),tag **v2.98.29**,已 push,ahead/behind = 0
+- DATA_VER `643f16a807`
+- 前端 served:**en 48 / zh-hant 48 / zh-hans 46**
+  - 51 部中 3 部(`Légy jó mindhalálig`、`A meseautó`、`Zrínyi 1566`)場次已結束而離開 catalog,
+    簡介仍在 `synopses_library`,日後有新場次自動掛回(build_served 既有設計)
+  - 簡中另有 2 部暫緩(`Aggiungi un posto a tavola`、`A Padlás`),見 `gen/out_zhs_HELD.json`
+
+### 遺留待辦
+1. **簡中 2 部**待日後重試生成:`Aggiungi un posto a tavola`、`A Padlás`
+   —— 兩次生成都不通過,Perplexity 對這兩部可用資料不足。重試前建議先在 Chrome 讀官方頁,
+   把**身份釘定**再加強(仍不可餵劇情),或等該劇有更多中文資料後再試。
+2. **繁中 `Serce ze szkła`** 已通過但**未涵蓋自傳層次**(官方:Maria Peszek 與其父 Jan Peszek 的自傳線索)。
+   簡中新版反而有;日後可考慮重生成繁中一次。
+3. **簡中 `Europavisjonar` 字數 527**(區間 400–450)。單獨重跑過一次得 475 字,但新版內容更差
+   (多出查無據的「戈爾巴喬夫與雷根」、把 glasnost 誤譯成「去玻璃化」、掉了斯托爾滕貝格與勒龐),
+   故**保留 527 字的正確版**。日後若要壓字數,務必再複驗內容。
+
+### 每次改動後請重跑
+```
+python scratchpad/euro/gen/apply_fixes.py       # 匹配不到即報錯
+python scratchpad/euro/gen/regression_check.py  # 哨兵 + 禁用字串(綁定部別)
+```
+
+## 正式站驗證(2026-09-01 00:20,DATA_VER `643f16a807`)
+
+在 themusicalmap.com 實際抓 `data/synopses/*.json` 抽驗 **20 項,全部通過**:
+- 哨兵(我曾改錯後查證復原的內容,線上確實看得到):`a christmas carol bit` 的 **Rose**、
+  `saturnin hybernia` 的 **Jirotka**、`macskafogo` 的 **Cicus**、`zlatovlaska` 的 **Černovláska**、
+  `belle e la bestia` 的**公主記憶**
+- 實際修好的錯:繁中 `anglagard` 的**贊德**、`made in hungaria` 的**瑞奇**、`mocal story` 的**布拉熱娜**、
+  `vy nejste zena pane` 去掉的**寬容聯盟**、`pippi pa sirkus` 的**卡門西塔**、`julekalender` 的**歐魯夫**;
+  簡中 `a dzsungel konyve` 的**圖娜**、`metro` 的**揚**、`saturnin hybernia` 的**伊羅特卡**、
+  `mohacs 500` 的**拉約什二世**、`snowboardaci` 的**妹妹瑪爾塔**、`emil i lonneberga` 的**長工阿爾弗雷德**、
+  `serce ze szka` 的**格爾達**、`musical 1989` 的**瓦文薩**、`europavisjonar` 的**斯托爾滕貝格**
+
+### ⚠ 驗證時踩到兩次的坑:**slug ≠ 劇名**
+抽驗時我兩度誤判成「未生效」,其實是查錯 key:
+- `Saturnin` 的 slug 是 **`saturnin hybernia`**(不是 `saturnin`)
+- `The Julekalender` 的 slug 是 **`julekalender`**(不是 `the julekalender`)
+- 最容易誤判的一個:**`A Christmas Carol` 有兩部同名不同戲**——
+  既有的英美版是 `a christmas carol`,本批的義大利 Compagnia BIT 版是 **`a christmas carol bit`**。
+  我一度以為「我的內容沒寫進去」,其實是拿英美版的 key 去驗義大利版。
+→ **驗證前一定先從 `gen/keymap.json` 取 slug**,不要用劇名猜。
+
+## 繁中→簡中「純翻譯」路線(2026-09-01)
+
+那 2 部簡中兩次生成都不通過,改採:**把已查證正確的繁中版交給 Perplexity 做在地化翻譯**
+(只轉語言與用語,不得增刪改寫情節)。腳本:`scripts/px_translate.py`。
+
+驗收比生成模式嚴格,因為重點是「不改語意」:
+段落數必須與原文完全相同(防漏段)/ 字數比 0.80–1.25(防摘要化或灌水)/ 無繁體字殘留 / 無「以下、翻译如下」前言。
+
+### ⚠ 踩到的坑:`keyboard.type` 遇換行會直接送出
+Perplexity 的輸入框是 contenteditable,`p.keyboard.type(Q)` 打到 `\n` 時等同按 Enter → **訊息被提前送出**,
+結果只送出第一行指令、原文根本沒貼進去。Perplexity 回的是「请把需要翻译的繁体中文剧情简介贴出来」,
+長度 60 字、1 段 —— 這種失敗會「看起來像成功」(有回應、通過 clean),只有靠**段落數/字數比驗收**才抓得到。
+修法:逐行 `type`,行間 `Shift+Enter`,最後才 `Enter` 送出。
