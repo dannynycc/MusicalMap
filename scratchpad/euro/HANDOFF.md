@@ -33,7 +33,7 @@
 - 生成中(背景,Comet CDP 9223):
   - `python scripts/px_gen.py en scratchpad/euro/gen/out_en.json @scratchpad/euro/gen/list.json` → log_en.txt
   - `python scripts/px_gen.py zh-hant scratchpad/euro/gen/out_zht.json @…/list.json` → log_zht.txt
-  - **zh-hans 尚未跑**(限流考量,同時最多 2 串流;en/zht 完成後再跑)
+  - ~~**zh-hans 尚未跑**(限流考量,同時最多 2 串流;en/zht 完成後再跑)~~ ← **已作廢,zh-hans 早已跑完**
 - ⚙️ 本 session 改了 `scripts/px_gen.py` 的字數提示(en 280→**250**、zh-hant 420→**390**+硬上限句):實測 Perplexity 一律超寫,舊提示會讓每部重試滿 7 次(慢 7 倍)。改後多半一次過。
 - §3 查證用的外部 ground truth **已備妥**(我本人多源實讀,每部 3-7 個獨立網域):
   - `verify_truth_italy.md`(15 部)、`verify_truth_czech.md`(10 部)、`verify_truth_hungary.md`(13 部)、`verify_truth_poland_nordic_be.md`(波4 / 北歐8 / 比1)
@@ -62,7 +62,7 @@
 ## 📋 §3 查證進度(我本人親做,紀錄在 `verify_fixes.md`)
 - EN:1-25 查完(義 15 + 捷 10)。實質要修的:①A Christmas Carol 的「wife Rose」是幻覺 ②Belle e la Bestia 編了 Belle 的身世與「Belle 就是失落公主」的懸念 ③Il ragazzo 用電影情節而非舞台版 ④Raffaella 兩個查無據的人名 ⑤Caravaggio 把敘事者 Don Fernando 寫成壓迫者 ⑥Saturnin 把敘事者取名為作者的姓 Jirotka ⑦VY NEJSTE 的「Liga tolerance」查無據 ⑧**Zlatovláska 四處編造**(蛇寫成魚、兩個國王名、四個姊妹名、二婚結局)⑨Rebelové 的地名 Kostelec。
 - ZH-HANT:1-13 查完。最嚴重是 **Aggiungi un posto a tavola 人物關係整組錯**(Clementina 被寫成 Consolazione 的女兒;實為市長之女且愛的是神父,Totò 愛的是 Consolazione),另有多篇「全劇總結」標題殘留、Gloria/Scugnizzi 開頭是書評框架、Peter Pan 的 Tiger Lily 譯成「莉莉公主」(台灣通行為虎蓮公主)。
-- ZH-HANS:尚未生成。
+- ZH-HANS:~~尚未生成。~~ ← **已作廢,zh-hans 已全部生成並查證入庫**
 - ⚠️ **改 `out_*.json` 一定要等該語言的 px_gen 完全結束**——它每完成一部就把記憶體裡的整個 results 陣列 dump 回檔案,中途改會被蓋掉。
 
 ## 後續管線(見 memory `project_musicalmap_kb_banking` / SOP §5-6)

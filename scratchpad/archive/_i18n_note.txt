@@ -1,0 +1,8 @@
+【_note】
+Place-name + platform localization maps (English → Simplified Chinese). build/gen_variants.mjs uses these. CITIES are language-specific: the Chinese variants show CITY ONLY (no US/CA state) — major world cities translated from this map, unmapped towns kept in Latin (zh-hant via OpenCC cn→tw); the English variant shows 'City, ST', back-filling the state/province code learned from records that carry one. Values are Simplified (zh-hant gets Traditional via OpenCC).
+
+【_state_note】
+Authoritative US-state / CA-province code per city, so the English variant can show 'City, ST' even when no source record carried the code. build/gen_variants prefers the code learned from the data, then falls back to this map.
+
+【_cities_tw_note】
+Taiwan (繁體) overrides for cities where Taiwan uses a DIFFERENT translation than Mainland — not just different characters (OpenCC handles those). zh-hant looks here first, else falls back to OpenCC(cities[Simplified]). Verified against Taiwanese media usage 2026-06-25.
