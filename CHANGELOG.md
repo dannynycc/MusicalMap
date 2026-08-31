@@ -11,6 +11,35 @@
 
 ---
 
+## [v2.98.35] - 2026-09-01 04:43
+
+### 補上英文版的交叉檢查:三語年份錨點掃描,揪出一個專名錯字
+
+繁×簡的用字掃描**抓不到「英文版單獨出錯」**——英文是拉丁字母、中文是音譯,沒得比。
+年份不受音譯影響,是唯一能橫跨三語的硬錨點,補做這個檢查(`scratchpad/euro2/year_scan.py`)。
+
+**歐陸原創 54 組:三語缺漏 0 組**(完整性再確認一次)。
+
+**年份不一致 10 組,逐一讀上下文後 9 組是誤報**,原因記在腳本註解裡:
+- `"1990s"` / `"early-1960s"` 被正規表示式抓成 1990 / 1960(europavisjonar、made in hungaria)
+- 某語有、某語沒有 = 詳略差異(a christmas carol bit 的 1843 是原著出版年、rebelove 的 1968)
+- 查了確認正確的:`musical 1989` 簡中「1980年夏天格但斯克造船廠罷工、萊赫·瓦文薩、團結工聯」
+  是史實;`egri csillagok` 的 1533/1552、`mindig itt leszunk` 的 1526(莫哈奇戰役)前已查證;
+  `anglagard` 簡中的 1971 加上文中「二十年後」與該片 1992 年上映相符
+
+**真正抓到的一個**:`elvalt nok klubja` 英文版
+> In 1969, four inseparable graduates—**Xintia**, Elise, Brenda and Annie
+
+年份 1969 正確(Paramount Wiki 逐字「In 1969, four friends, Annie, Brenda, Elise, and
+**Cynthia**, graduate from Middlebury College」),但**專名拼成了 Xintia**。
+匈牙利版官方簡介保留 Brenda / Elise 等原名,而 "Xintia" 在英文與匈牙利文(Cintia)皆非標準拼寫
+→ 修正為 **Cynthia**。
+
+順帶記下方法上的心得:年份掃描本身的訊噪比很差(10 個裡 9 個誤報),
+但它的價值不在判定,而在**把視線帶到某一句**——這次就是順著 "In 1969" 讀到同一句的專名錯字。
+
+---
+
 ## [v2.98.34] - 2026-09-01 04:27
 
 ### 跨語言一致性掃描全庫 473 組,修好 2 組被前一輪漏掉的失真簡介
