@@ -215,3 +215,45 @@ Perplexity 的輸入框是 contenteditable,`p.keyboard.type(Q)` 打到 `\n` 時�
 - 標題「待定奪」7 組:FRIDA / Caravaggio / Nikola Tesla / POLITA / Raffaella / Maradona / A Padlás
 - 非歐陸的既有繁簡缺口:`six` 缺繁中名;`death becomes her`、`music man`、`outsiders`、
   `producers`、`young frankenstein` 缺簡中名(皆為既有,非本次造成)
+
+---
+
+# 🏁 2026-09-01 06:10 最終狀態(v2.98.32 → v2.98.40,全部上線並驗證)
+
+## 已完成
+| 版本 | 內容 |
+|---|---|
+| v2.98.31 | 38 個中國場館 GCJ-02 座標系修正 + 補完最後 2 筆缺座標 |
+| v2.98.32 | 4 部新匈牙利劇三語逐部深查(修 19 處 + 簡中 1 部整篇重譯) |
+| v2.98.33 | 歐陸 54 組三語標題查證(填 20 簡 + 18 繁 + 2 官方英文名;27 組判不譯) |
+| v2.98.34 | 全庫 473 組跨語言掃描(修 `serce ze szka` 繁中、`made in hungaria` 簡中) |
+| v2.98.35 | 三語年份錨點掃描(補英文版交叉檢查,揪出 Xintia→Cynthia) |
+| v2.98.36 | 已知缺陷回歸掃描七類全 0;修 gloria 英文排版離群值 |
+| v2.98.37 | `serce ze szka` 繁中去翻譯腔(專名集合零變動把關) |
+| v2.98.38 | 新增翻譯稿用語在地化檢查;修掉自己詞對表裡的 14 組錯規則 |
+| v2.98.39 | 4 支 QA 檢查器收進 `scripts/qa/` + 寫進 SOP §5.5(含各自局限) |
+| v2.98.40 | pre-commit 時間戳防呆(warn-only);修掉它第一版會靜默失效的問題 |
+
+**正式站最終驗證 22 項全過**(served 410 / 歐陸 54 組三語齊 / 場次 1978 /
+繁簡中文名 21+23 / 2 個官方英文名 / 12 處內容修正逐項屬實 / gloria 4 段)。
+
+## 下一個 session 要用的工具(都在 `scripts/qa/`,用法與**局限**見 `docs/SYNOPSIS_SOP.md` §5.5)
+`defect_regression.py`(七類已知缺陷)、`xlang_scan3.py`(繁×簡整篇失真,**依賴
+`fixtures/known_positive.json` 當基準線,別刪**)、`year_scan.py`(三語年份錨點)、
+`check_translation_locale.py`(繁→簡有沒有真的換詞)。
+🚨 四支**誤報率都很高,只是線索不是判定**;全綠也不代表品質好,仍要人工讀。
+
+## ⏸ 待使用者定奪(**我刻意沒動**,避免把委託從歐陸 54 組擴張成全庫 473 組)
+1. **標題 7 組(劇名=人名/暱稱)**:FRIDA、Michelangelo da Caravaggio、
+   Nikola Tesla - Végtelen energia、POLITA、Raffaella、Maradona El Diego、A Padlás。
+   中文圈有**該人物**的譯名,但沒有任何中文名指稱**這齣劇**;填了等於由我替它命名。
+   兩岸人名譯法已列表在 `scratchpad/titles/findings.md` 末尾。
+2. **非歐陸範圍的內容問題**(記錄在 `scratchpad/euro2/xlang_findings.md`):
+   - `grand hotel`:繁「**鑽石**項鍊」vs 簡「**珍珠**項鍊」矛盾;
+     繁「聽見求救挺身阻止」vs 英/簡「行竊時被 Preysing 當場抓到」動機不同
+   - `screwtape letters`:英文有 demon **Lilith**,**簡中整個漏掉**
+   - `moon sorbet` / `月亮雪酪`(台灣劇):簡中用了台灣用語「冷氣房」「主委」
+   - `six` 缺繁中名;`death becomes her`/`music man`/`outsiders`/`producers`/
+     `young frankenstein` 缺簡中名
+3. **`rebelove karlin` 兩處未證實細節**(無反證故未改):繁中「幫父親打理**新開的咖啡館**」、
+   「三名自稱**修理工**」——cs.wikipedia 與官方角色表都查不到,但條目極短,查無 ≠ 錯。
