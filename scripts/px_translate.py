@@ -20,6 +20,11 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from playwright.sync_api import sync_playwright
 
 INP, OUT = sys.argv[1], sys.argv[2]
+# 方向:zht2zhs(預設)繁中→簡中;en2zht 英文→繁中(台灣用語);en2zhs 英文→簡中
+DIR = "zht2zhs"
+if "--dir" in sys.argv:
+    DIR = sys.argv[sys.argv.index("--dir") + 1]
+assert DIR in ("zht2zhs", "en2zht", "en2zhs"), "未知方向 " + DIR
 MAX_TRY = 6
 END_OK = "。！？…」』）.!?\""
 UI = {"回答","連結","圖片","分享","搜尋網路","來源","相關","匯出","重新生成","複製","Copy","Sources","Answer",
@@ -29,6 +34,10 @@ PROGRESS = re.compile(r"^(查找|搜尋|搜索|查閱|查詢|正在|讀取|分�
 # 抽測用的繁體字(這些字在簡體文本中不該出現)
 TRAD = "為與這麼個們來對時後說產動務開關實現處點麼經濟會體區華書東馬車門長風飛" \
        "陣陳際隨階雙難靜韓題顯驗體驚讓認識語調議護讀變讓豐醫獸禮權歸歲歷"
+
+# 抽測用的簡體字(這些字在繁體文本中不該出現)
+SIMP = "为与这么个们来对时后说产动务开关实现处点经济会体区华书东马车门长风飞" \
+       "阵陈际随阶双难静韩题显验惊让认识语调议护读变丰医兽礼权归岁历师红爱丽"
 
 PREFACE = re.compile(r"^(以下|下面|这是|這是|翻译|翻譯|译文|譯文|好的|当然|當然|Here|Sure|Below)")
 
@@ -66,12 +75,41 @@ def verdict(src, got):
     if not got: bad.append("空白")
     else:
         ratio = len(got) / max(1, len(src))
-        if not (0.80 <= ratio <= 1.25): bad.append("字數比 %.2f" % ratio)
-    left = trad_left(got)
-    if left: bad.append("繁體殘留 " + "".join(left[:8]))
+        # 中譯中字數相當;英譯中會短很多(英文字母 vs 中文字)
+        lo, hi = (0.80, 1.25) if DIR == "zht2zhs" else (0.28, 0.75)
+        if not (lo <= ratio <= hi):
+            bad.append("字數比 %.2f(容許 %.2f~%.2f)" % (ratio, lo, hi))
+    if DIR.endswith("zhs"):
+        left = trad_left(got)
+        if left: bad.append("繁體殘留 " + "".join(left[:8]))
+    else:
+        left = sorted(set(c for c in got if c in SIMP))
+        if left: bad.append("簡體殘留 " + "".join(left[:8]))
+    if DIR.startswith("en") and got and not re.search(r"[一-鿿]", got):
+        bad.append("輸出沒有中文")
     return (not bad), bad
 
 def build_q(src):
+    if DIR == "en2zht":
+        return (
+            "請把下面這段英文的音樂劇劇情簡介翻譯成**繁體中文（台灣用語）**。\n"
+            "嚴格要求：\n"
+            "1. 只做語言轉換，**絕對不要增加、刪減或改寫任何情節、人物、因果與結論**；\n"
+            "2. 段落數必須與原文完全相同，逐段對應翻譯；\n"
+            "3. 人名、地名採台灣慣用譯法；沒有慣用譯法的保留原文拼寫，不要自創；\n"
+            "4. 不要加任何標題、說明、前言或註解，直接輸出翻譯後的正文。\n\n"
+            "原文：\n" + src
+        )
+    if DIR == "en2zhs":
+        return (
+            "请把下面这段英文的音乐剧剧情简介翻译成**简体中文（中国大陆用语）**。\n"
+            "严格要求：\n"
+            "1. 只做语言转换，**绝对不要增加、删减或改写任何情节、人物、因果与结论**；\n"
+            "2. 段落数必须与原文完全相同，逐段对应翻译；\n"
+            "3. 人名、地名按大陆惯用译法；没有惯用译法的保留原文拼写，不要自创；\n"
+            "4. 不要加任何标题、说明、前言或注解，直接输出翻译后的正文。\n\n"
+            "原文：\n" + src
+        )
     return (
         "请把下面这段繁体中文的音乐剧剧情简介翻译成简体中文，"
         "并改用中国大陆通用的译名与用语（人名、地名按大陆惯用译法；用词也改成大陆习惯说法）。\n"
