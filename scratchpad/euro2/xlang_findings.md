@@ -68,3 +68,58 @@ libretto Klaudia Hartung-Wójciak、音樂 Andrzej Smolik、導演 Cezary Tomasz
   整理成清單交使用者定奪——避免把「歐陸簡介查證」擴張成「全庫 473 組重審」。
 - 掃描器留在 `scratchpad/euro2/xlang_scan3.py`,可隨時重跑;
   完整分數在 `scratchpad/euro2/xlang_scan2.json`(v2,僅供參考,指標已作廢)。
+
+---
+
+# 歐陸原創低分區:7 組全部人工複查完畢
+
+掃描只是**線索**,判定一律靠人工讀三語 + 查官方。歐陸原創 54 組中分數最低的 7 組:
+
+| 組 | 分數 | 判定 |
+|---|---|---|
+| serce ze szka musical zen | 0.0722 | 🔴 **繁中整篇偏離 → 已重譯** |
+| forza venite gente | 0.0796 | ✅ 通過 |
+| saturnin hybernia | 0.0805 | ✅ 通過 |
+| rebelove karlin | 0.0860 | ✅ 通過 |
+| il ragazzo dai pantaloni rosa | 0.0911 | ✅ 通過(**差點誤判,見下**) |
+| julekalender | 0.0935 | ✅ 通過 |
+| made in hungaria | 0.0880 | 🔴 **簡中主線被換掉 → 已重譯**(0.088 → **0.779**) |
+
+## ⚠ `il ragazzo dai pantaloni rosa`:我差點第三次把對的改成錯的
+
+一開始看到繁簡矛盾就準備判簡中錯:
+- 繁「疼愛自己的母親泰蕾莎、**父親與弟弟**,日常看似平凡溫暖」
+- 簡「**父母分居後**,安德烈背負起照顧弟弟的壓力」
+
+it.wikipedia 第一段:「Andrea Spezzacatena è un adolescente che **vive con i genitori Teresa e Tommaso
+e il fratello minore Daniele**」→ 看起來繁中對、簡中錯。
+我還找到一則部落格寫 Andrea 羨慕「genitori divorziati come i suoi amici per regali, vacanze e
+paghette doppie」(羨慕朋友父母離婚可以拿雙份禮物零用錢),差點就用它「證實」簡中誤讀。
+
+**繼續往下讀才發現:**
+> Andrea subisce un duro colpo quando **i suoi genitori gli annunciano di voler divorziare**.
+
+父母**後來確實宣布要離婚**。繁中寫的是開場狀態,簡中寫的是後續發展,**兩者都正確**。
+另外簡中的「音樂老師焦利」也有據——演員表逐字「**Settimo Palazzo: prof. Gioli**」。
+
+→ **判定 0 修正。** 這是本次第三次「差點拿一個片段去訂正另一個」,
+教訓同前:**讀完整段再判,單一段落不足以否定另一語言的敘述。**
+
+## 其餘 5 組的查證重點
+
+- **julekalender**:三語角色全對得上(Gammel Nok / Nasser / Benny / Oluf / Gertrud);
+  簡中另有「小飛機墜落土豆田」,英文亦作 "A storm-tossed craft" → 簡中更精確,繁中只是略。✅
+- **saturnin hybernia**:繁「吉羅特卡」/簡「伊罗特卡」/英 "Jirotka" 一致。
+  ⚠ Jirotka 是**原著作者名**(Zdeněk Jirotka),小說裡敘事者無名——但前一輪已查證
+  hybernia.eu 官方卡司框有「**Jirotka — Radek Melša**」,本舞台版就是把角色命名為 Jirotka。✅
+- **rebelove karlin**:cs.wikipedia 逐字「v českém **pohraničí** v červnu až srpnu roku **1968**」、
+  「tří **maturantek** – Terezy, Bugyny, Julči, a tří vojáků, **uprchlíků z armády**
+  – Šimona, Boba a Emana」→ 繁中的年代、邊境、三名剛畢業女生、三名逃兵全部對上。
+  音樂劇版角色表另有「**Farář**(牧師)– Vladislav Beneš / Petr Štěpánek」(zena-in.cz 2020 角色表)
+  → 繁中「躲在**牧師**親戚所在的教堂」有據。✅
+  ⚠ **未能證實(無反證,故不改)**:繁中的「幫父親打理**新開的咖啡館**」與「三名自稱**修理工**」
+  在 cs.wikipedia 與官方角色表都查不到。條目本身極短,「查無」不等於「錯」→ 列為待查。
+  另註:cs.wiki 載結局為「Tereza, **její otec a jeho přítelkyně emigrují. Šimon skončí ve vězení**」
+  (泰蕾莎與父親及父親女友移民、西蒙入獄),繁簡兩版都只寫到「被迫分離」,未寫結局 → 是略非錯。
+- **forza venite gente**:繁「嘉勒」/簡「圣女克拉拉」= Chiara/Clare 兩岸不同譯法,非矛盾;
+  簡中把「貧窮」「魔鬼」列為登場人物,與本劇的擬人化角色設定相符。✅
