@@ -11,6 +11,31 @@
 
 ---
 
+## [v2.98.29] - 2026-09-01 00:14
+
+### 歐陸原創 51 部:三語逐部深查(claude-in-chrome 多來源實讀)
+
+**方法**:本人在真 Chrome 逐部開官方頁/劇院頁/劇評/百科多來源,讀原文,對「劇情正確性 / 事實 / 語意」三個維度逐句比對。
+證據留在 `scratchpad/euro/verify_chrome_evidence.md`(783 行)、`_hu.md`、`verify_zh_findings.md`,每部都記打開的 URL、官方原文照抄、三欄比對表。
+
+**修正**(全部經 `scratchpad/euro/gen/apply_fixes.py`,每條規則附查證理由,匹配不到就報錯)
+- 英文 19 處、繁中 30 處、簡中 33 處(另專名全篇替換 12 處)
+- 重新生成 10 部(局部替換救不回來者):繁中 2 部全通過;簡中 8 部中 6 部通過、**2 部複驗仍不通過故不上架**
+  (`Aggiungi un posto a tavola`、`A Padlás` 的簡中暫緩,另存 `gen/out_zhs_HELD.json` 含理由)
+- 因此本批入庫:en 51 / zh-hant 51 / **zh-hans 49**
+
+**撤回自己先前的誤修 1 處**:`A meseautó` 的銀行名 `Központi bank` 是官方角色表寫的,我當初當成查無據改掉了,已改回。
+連同先前 7 條,共 8 條「拿原著/電影當標準去訂正舞台製作」的誤修已全部撤除,並在 `apply_fixes.py` 留下「切勿復原」註記與根因。
+
+**新增回歸防護**:`gen/regression_check.py` —— 哨兵(曾誤修後復原的字串必須still在)+ 禁用字串(已查證為錯的寫法不可再現,且**綁定部別**,因為同一個中譯在別部可能是對的:「桑德」在 Änglagård 是把 Zander 誤譯,在 The Julekalender 卻是官方角色 Oluf Sand 的正確譯名)。這支掃描器當場抓出我漏改的第二處「國王」。
+
+**典型修正**
+- 被原作/他作汙染:`A dzsungel könyve` 簡中混入迪士尼原創的「路易王」;`Pippi på sirkus` 繁中寫進原著警察 Kling och Klang;`Zlatovláska` 簡中把考驗寫成灰姑娘的「從灰燼分揀種子」;`Snowboarďáci` 繁中用電影三女孩名(舞台版併為 Lucka)
+- 生成本來就對舞台版、差點被我改錯:`MADE IN HUNGÁRIA` 主角是 **Ricky**(電影才叫 Miki)、`Så som i himmelen` 舞台版死於**心臟**(電影是撞頭)、`Änglagård` 舞台版**開場就拆信**(電影留懸念)
+- 角色關係錯:`Močál Story` 繁中把尋人者寫成失蹤者;`Snowboarďáci` 簡中把女主角 Lucka 寫成「姐姐」;`Elvált nők klubja` 繁中把 Elise 的丈夫 Bill 安給 Annie;`Aggiungi` 繁中把「神父最後吻了她」寫成相反
+- 查無據的專名:`Liga tolerance`(官方角色表補齊後定案)、`Koch Sokker og Sko`、Zlatovláska 的兩個國王名
+
+
 ## [v2.98.28] - 2026-08-30 23:01
 ### Me and My Girl / Rudolf 補做多來源查證+官方中文標題正名(補足前批縮水的§3)
 - 承認 v2.98.27 對這兩部只用單一來源(維基)、§3不夠獨立、標題沒查官方——補做到位。

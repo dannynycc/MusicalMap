@@ -11,23 +11,40 @@ from playwright.sync_api import sync_playwright
 LANG, OUT, LIST = sys.argv[1], sys.argv[2], sys.argv[3]
 
 if LANG == "en":
-    TAIL = (" — the musical. Write a plot synopsis of about 280 words as a single flowing article in English, "
-            "using character and place names as used in English-language productions. "
+    # 250(不是 280):實測 Perplexity 一律超寫約 25%,寫 280 會穩定落在 340~370(超出 HI),
+    # 每部都要重試滿 7 次。要 250 才會落進 280~340 的目標區間。
+    TAIL = (" — the musical. Write a plot synopsis of about 250 words as a single flowing article in English, "
+            # 原本寫「用英語製作慣用的角色/地名」——對捷克、匈牙利、波蘭、北歐這些**沒有英語製作**的
+            # 在地劇,這句會誘導 Perplexity 自行編一個英文名(Saturnin 的 Milouš 被寫成《Jeeves》的
+            # Bertie、doktor Vlach 被寫成 Witherspoon)。改成:保留原文名字,不要發明英文對應。
+            "keeping the character and place names used in the production's own language; "
+            "do not invent English equivalents for names that have none. "
             "IMPORTANT: end with a SEPARATE final paragraph of two to three sentences summarising the whole "
             "show's themes. "
+            "Open the first sentence inside the story itself — a scene, a person, an action. "
+            "Do NOT open with the show's title or a review-style frame "
+            "(no \"X follows/tells/explores…\", no \"X is a musical about…\", no \"Set against…, X follows…\"). "
             "Describe only the plot; do not mention the original source material, your sources, or version notes.")
     LO, HI, CENTER = 220, 340, 280
     size = lambda t: len(t.split())
 elif LANG == "zh-hans":
     TAIL = ("音乐剧 用约380字介绍剧情（写成一篇文章，简体中文，使用中国大陆通用的译名与用语）。"
             "全文连同结尾总结务必控制在400到450字之间，绝对不要超过450字，宁可精简剧情细节。"
-            "务必在文章最后独立分一段写全剧总结，长度两到三句。"
+            # 別寫「全剧总结」四個字:Perplexity 會把它當標題印進正文(舊批 18 部繁/簡都中招)。
+            "文章最后必须独立成段收束全剧，长度两到三句；这一段不要加任何小标题。"
+            "开头第一句直接进入故事场景（人物、地点、动作），"
+            "绝对不要用「《剧名》描写／讲述／以……为背景」这种书评口吻开场，也不要在正文里写出剧院名称。"
             "只描述剧情本身，不要提到原著小说，也不要说明资料来源或版本比对。")
     LO, HI, CENTER = 400, 450, 425
     size = lambda t: len(t)
 else:  # zh-hant
-    TAIL = ("音樂劇 用約420字介紹劇情（寫成一篇文章，台灣繁體中文，使用台灣慣用的譯名與用語），字數控制在400到460字之間。"
-            "務必在文章最後獨立分一段寫全劇總結，長度兩到三句。"
+    # 390(不是 420)+ 明確硬上限:實測寫 420 會穩定落在 460~520(超出 HI=450),每部得重試好幾次。
+    TAIL = ("音樂劇 用約390字介紹劇情（寫成一篇文章，台灣繁體中文，使用台灣慣用的譯名與用語）。"
+            "全文連同結尾總結務必控制在400到450字之間，絕對不要超過450字，寧可精簡劇情細節。"
+            # 同上:不要出現「全劇總結」這四個字,否則會被當成標題寫進正文。
+            "文章最後必須獨立成段收束全劇，長度兩到三句；這一段不要加任何小標題。"
+            "開頭第一句直接進入故事場景（人物、地點、動作），"
+            "絕對不要用「《劇名》描寫／講述／以……為背景」這種書評口吻開場，也不要在正文裡寫出劇院名稱。"
             "只描述劇情本身，不要提到原著小說，也不要說明資料來源或版本比對。")
     LO, HI, CENTER = 400, 450, 425
     size = lambda t: len(t)
@@ -76,7 +93,7 @@ def clean(text, q):
         if TS.match(s): continue
         if re.sub(r"\s+","",s)==qn: continue
         if re.fullmatch(r"(wikipedia|britannica|theatermania|stageagent|mtishows|playbill|broadwayworld|whatsonstage|concordtheatricals|londontheatre|masterworksbroadway|broadwaymusicalhome|theatregold|seatplan|ibdb|fandom|broadway|[a-z0-9.\-]+\.[a-z]{2,})",s,re.I): continue  # 來源名殘留(Perplexity 內文引註)
-        if re.fullmatch(r"[a-z][a-z0-9\-]{3,}", s): continue         # 無點連寫來源名殘留(mtishows/wantedmusical/countrygirlthemusical/nationaltheatrescotland…):整行單一小寫 latin token,正文成段絕不會如此
+        if re.fullmatch(r"[a-z][a-z0-9\-]{1,}", s): continue         # 無點連寫來源名殘留(mtishows/wantedmusical/countrygirlthemusical/nationaltheatrescotland…):整行單一小寫 latin token,正文成段絕不會如此。2 字元起(原本 {3,} 漏掉 hdk/nfi 這種三字母劇院縮寫)
         if PROGRESS.match(s) and len(s)<40: continue
         keep.append(ln)
     paras=[p.strip() for p in re.split(r"\n\s*\n","\n".join(keep).strip()) if p.strip()]

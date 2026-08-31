@@ -1,0 +1,5 @@
+# 生成過程的中間檔與日誌不進版控;證據簿與腳本要保留
+euro/gen/logs/
+euro/gen/_*.txt
+euro/gen/regen_*_list.json
+euro/gen/regen_keymap*.json
