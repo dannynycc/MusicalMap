@@ -11,6 +11,58 @@
 
 ---
 
+## [v2.99.7] - 2026-09-01 10:56
+
+### `es navidad` 第二輪深查:判定不變(音樂劇),但信心從「單一來源」升級為製作方層級多源佐證
+
+v2.99.5 把這組標為「⚠ 低信心,外部查無獨立來源」。使用者要求再查,於是用 Claude in Chrome
+換角度重查。**結論不變,但理由的強度完全不同了** —— 而且找到了關鍵突破口:
+先前搜尋全部失敗,是因為拿劇名「es Navidad」去搜(西語常見詞組,結果被無關聖誕活動淹沒);
+這次改從 **atrapalo 頁面的「Servicio prestado por」欄位挖出製作方**,才有了可用的錨點。
+
+**製作方:Dalpao Producciones**(Oneida Jaqueline Troconis),馬德里。
+
+**新增的四項佐證**
+1. 本齣描述段:完整敘事 + 「**canciones** emocionantes, grandes **coreografías**」
+   (歌曲 + 大型編舞),這正是音樂劇的結構定義。
+2. 製作方官方 Linktree 把**同場館、同聖誕檔期的前作**標為「**Mágica Navidad, El musical**」。
+3. 同製作方在本庫的另外兩齣(`espejito espejito`「es mucho más que **un musical**」、
+   `erase otra vez`「**un musical** deslumbrante」)自撰文案都明寫 musical
+   → 證明這家公司**會標、也知道怎麼標**。
+4. 旗下常態作品含「Fantasía, **Musical** Tributo Disney」「Todo El Rollo, **tributo musical**」,
+   音樂劇是其主力產線之一。
+
+**反面訊號照實記錄,沒有只挑對自己有利的**
+- 本齣文案**通篇未出現 musical 一字**,而同製作方另兩齣有 —— 這是**同公司內部對照**,
+  比跨公司比較有力,不可忽略。
+- Dalpao 的 IG 曾把 Mágica Navidad 寫成「Una **obra de teatro** para toda la familia」,
+  與自家 Linktree 的「El musical」矛盾 —— **製作方自己的用詞就不一致**,
+  這也代表「文案沒寫 musical」不足以反證。
+- atrapalo 的 `Categoría: Musicales` **不採信**:整批西葡資料就是從該分類爬來的,零鑑別力
+  (這是本次盤點一開始就確立的原則,等同球員兼裁判)。
+
+**查證分級要精準**(不把「製作方層級的多源」說成「這齣本身的多源」):
+- **這齣本身**:仍**只有 atrapalo 單一來源**,且該文案是製作方自己寫的。
+- **製作方層級**:多來源交叉(官方 Linktree、IG、entradas.com、taquilla.com、
+  tomaticket.es、madridesteatro.com、Revista Godot)。
+
+**為什麼查不到獨立來源 —— 有答案了,不是「查不動」**
+拿描述中兩句獨特句子(`buscar al próximo sustituto de santa`、
+`Deben encontrar un tesoro antes de noche buena`)做 Google 精確比對,結果**皆為零**。
+這齣 **2026-12-05 才首演**,網路上還沒有任何報導或宣傳貼文。
+零足跡是**時間問題**,不是「它不是音樂劇」的證據。
+
+**順帶排除的兩個假設**(都查了,都不成立,記錄下來免得下次重查)
+- `Mágica Navidad` 是否為本齣改名?→ 否。tomaticket 全文比對後是**完全不同的劇情**
+  (三個小精靈 Moto / Elisa / Bellezón 被罰關在教室),本齣是兩個小精靈離開北極找聖誕老人接班人。
+- 同製作方的「Bingo **Musical** Dalpao」標題帶 Musical,會不會下次重抓混進來?
+  → **不會**。atrapalo 把它歸在「Bares, fiestas y discotecas」(18 禁派對)而非 Musicales,
+  爬蟲抓不到,**不需要加預防性排除規則**。假設的風險不存在,就不要為它加規則。
+
+**本版無資料變動**:判定維持 musical,`shows.json` / `not_musical.json` 皆未動,
+僅更新 `scratchpad/eses/ledger.json` 的證據與分級,並把 `ledger.py` 裡寫死的「64 組」改為 68。
+
+
 ## [v2.99.6] - 2026-09-01 10:36
 
 ### 補一條靜默失效防線:las andanzas 同時登記 da / de 兩種拼法

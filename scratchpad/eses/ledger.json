@@ -1,5 +1,5 @@
 {
- "_note": "西葡 64 組是否為音樂劇的逐組查證帳本。sources=實際打開過的網址;evidence=逐字引文;verdict=判定;why=理由。不確定者必須有 >=2 個獨立來源的交叉查證。 🚨 教訓(2026-09-01):我一度自己「編」atrapalo 的 URL id 去 fetch,結果抓到完全不相干的頁面(哥本哈根導覽/塞維亞喜劇之夜/Tudela 徒步導覽)。URL 一律從 data/shows.json 的真實 ticket_url 取,絕不自行拼湊。 🚨 方法教訓 2:atrapalo 的 Descripción 是行銷文案,**不提音樂不代表不是音樂劇**(divorcio igualitario 通篇未提音樂,但 BroadwayWorld/Revista Godot/官方 IG 等 6 源確認是 comedia romántica musical)。判定必須看 atrapalo 頁面的 Categoría 欄位 + 至少一個獨立外部源,不能只讀 Descripción。 🚨 方法教訓 3:atrapalo 的 Categoría 欄位【沒有鑑別力】——這批西葡資料本來就是 scraper 從 atrapalo 的 Musicales 分類抓的,所以每一組必然顯示 Categoría=Musicales,拿它當判定依據=球員兼裁判。有鑑別力的只有:(a) 描述裡的具體音樂劇證據(原創配樂/作曲者掛名/自稱 musical 且有劇情),(b) atrapalo 以外的獨立來源(BroadwayWorld / Revista Godot / 劇院官網 / 劇評 / 官方社群)。 🚨 方法教訓 4(調整舉證責任):我兩次憑「描述的單一特徵」誤判為非音樂劇(divorcio igualitario 因描述沒提音樂、princess story 因描述提到合照),兩次都被外部來源推翻。改用更嚴謹的標準:【預設留下】,要判定「不是音樂劇」必須有**外部證據明確指出它是別的類型**(官方稱 concierto/tributo/recital/obra de teatro sin música,或實質是演唱會/導覽/見面會),而不是「描述沒提到音樂」這種消極理由。",
+ "_note": "西葡 68 組是否為音樂劇的逐組查證帳本。sources=實際打開過的網址;evidence=逐字引文;verdict=判定;why=理由。不確定者必須有 >=2 個獨立來源的交叉查證。 🚨 教訓(2026-09-01):我一度自己「編」atrapalo 的 URL id 去 fetch,結果抓到完全不相干的頁面(哥本哈根導覽/塞維亞喜劇之夜/Tudela 徒步導覽)。URL 一律從 data/shows.json 的真實 ticket_url 取,絕不自行拼湊。 🚨 方法教訓 2:atrapalo 的 Descripción 是行銷文案,**不提音樂不代表不是音樂劇**(divorcio igualitario 通篇未提音樂,但 BroadwayWorld/Revista Godot/官方 IG 等 6 源確認是 comedia romántica musical)。判定必須看 atrapalo 頁面的 Categoría 欄位 + 至少一個獨立外部源,不能只讀 Descripción。 🚨 方法教訓 3:atrapalo 的 Categoría 欄位【沒有鑑別力】——這批西葡資料本來就是 scraper 從 atrapalo 的 Musicales 分類抓的,所以每一組必然顯示 Categoría=Musicales,拿它當判定依據=球員兼裁判。有鑑別力的只有:(a) 描述裡的具體音樂劇證據(原創配樂/作曲者掛名/自稱 musical 且有劇情),(b) atrapalo 以外的獨立來源(BroadwayWorld / Revista Godot / 劇院官網 / 劇評 / 官方社群)。 🚨 方法教訓 4(調整舉證責任):我兩次憑「描述的單一特徵」誤判為非音樂劇(divorcio igualitario 因描述沒提音樂、princess story 因描述提到合照),兩次都被外部來源推翻。改用更嚴謹的標準:【預設留下】,要判定「不是音樂劇」必須有**外部證據明確指出它是別的類型**(官方稱 concierto/tributo/recital/obra de teatro sin música,或實質是演唱會/導覽/見面會),而不是「描述沒提到音樂」這種消極理由。",
  "items": {
   "princess story": {
    "verdict": "musical",
@@ -692,12 +692,18 @@
   },
   "es navidad": {
    "verdict": "musical",
-   "why": "⚠ 信心度低於其他組:外部查無獨立來源(『es Navidad』是常見詞組,搜尋全是不相關的聖誕活動)。判定依據僅為 atrapalo 描述的劇情結構——有完整敘事(兩個小精靈離開北極尋找聖誕老人接班人、平安夜前要找到寶藏)、有『personajes inolvidables』與『canciones』。依舉證標準(無外部證據指其為別的類型)預設留下",
+   "why": "⚠ 查證分級要精準:【這齣本身】仍只有 atrapalo 單一來源(製作方自撰文案);【製作方層級】則是多來源交叉。2026-09-01 第二輪深查後,佐證從『只有劇情結構』升級為四項:①本齣描述有完整敘事+『canciones emocionantes, grandes coreografías』(歌曲+大型編舞,即音樂劇的結構定義);②製作方 Dalpao Producciones 官方 Linktree 把同場館同聖誕檔期的前作標為『Mágica Navidad, El musical』;③同製作方在本庫的另外兩齣(espejito espejito / erase otra vez)自撰文案都明寫 un musical,證明他們會標也知道怎麼標;④旗下常態作品含 Fantasía Musical Tributo Disney、Todo El Rollo tributo musical,音樂劇是其主力產線之一。反面訊號一併記錄:本齣文案通篇未出現 musical 一字,而同製作方其他兩齣有——此為同公司內部對照,不可忽略。結論:維持 musical,但這齣本身仍無獨立來源。",
    "sources": [
-    "https://www.atrapalo.com/entradas/-es-navidad-_e4952581/"
+    "https://www.atrapalo.com/entradas/es-navidad_e4952581/",
+    "https://linktr.ee/dalpaoproducciones",
+    "https://www.tomaticket.es/es-es/entradas-magica-navidad-en-madrid",
+    "https://www.instagram.com/dalpaoproducciones/",
+    "https://www.entradas.com/artist/dalpao-producciones/",
+    "https://revistagodot.com/compania/dalpao-producciones/",
+    "https://madridesteatro.com/entradas-erase-otra-vez-dalpao-producciones/"
    ],
-   "evidence": "¿Y si la Navidad no fuera una fecha... sino un lugar al que siempre podemos volver? Cuando el espíritu navideño comienza a desaparecer, un viaje inesperado de dos duendes llevará a pequeños y mayores fuera del polo norte a buscar al próximo sustituto de santa... Deben encontrar un tesoro antes de noche buena. Entre personajes inolvidables, cancione...",
-   "category": "兒童聖誕音樂劇(⚠ 僅單一來源)"
+   "evidence": "【本齣 atrapalo 描述段】『Cuando el espíritu navideño comienza a desaparecer, un viaje inesperado de dos duendes llevará a pequeños y mayores fuera del polo norte a buscar al próximo sustituto de santa... Deben encontrar un tesoro antes de noche buena. Entre personajes inolvidables, canciones emocionantes, grandes coreografías y una historia mágica』;製作方欄位『Servicio prestado por: Dalpao Producciones (Oneida Jaqueline Troconis)』;時長 70 分鐘、Para todos los públicos。【製作方 Linktree 連結標題】『Mágica Navidad, El musical』。【反面】本齣描述段 musical 出現 0 次(atrapalo 的 Categoría: Musicales 不採信——整批資料就是從該分類爬來的,零鑑別力);Dalpao IG 曾把 Mágica Navidad 寫成『Una obra de teatro para toda la familia』(但同公司 Linktree 標 El musical,製作方自己用詞就不一致)。【外部足跡】以描述中兩句獨特句子做 Google 精確比對,結果皆為零——這齣 2026-12-05 才首演,網路上尚無任何報導,這解釋了為何查不到獨立來源,而非證明它不是音樂劇。【排除的假設】Mágica Navidad 經 tomaticket 全文比對確認是完全不同的劇情(三個小精靈 Moto/Elisa/Bellezón 被關在教室),非本齣改名。【順帶排除的未來風險】同製作方的 Bingo Musical Dalpao 標題雖帶 Musical,但 atrapalo 把它歸在 Bares, fiestas y discotecas(18 禁派對)而非 Musicales,爬蟲不會抓到,無需加排除規則。",
+   "category": "兒童/家庭聖誕音樂劇(Dalpao Producciones)"
   },
   "las andanzas da la catrina": {
    "verdict": "not_musical",
