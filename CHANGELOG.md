@@ -11,6 +11,49 @@
 
 ---
 
+## [v2.99.3] - 2026-09-01 10:15
+
+### 西葡 64 組「是不是音樂劇」逐組查證**完成**:56 是音樂劇、**8 組要踢掉**
+
+依使用者要求「整體仔細查證盤過、把混進來的踢掉、不確定就多找網頁交叉、留下可 review 的軌跡」。
+逐組帳本:`scratchpad/eses/ledger.json`(每組記 sources / evidence 逐字引文 / verdict / why)。
+
+**判定為「不是音樂劇」的 8 組**(共 8 個場次,佔全庫 1995 場次的 0.4%)
+
+| group | 類型 | 關鍵證據 |
+|---|---|---|
+| `hoy no me puedo levantar 20 anos despues` | 原卡司致敬演唱會 | **製作方一再主動澄清**:Ticketmaster「**no es el musical**. Es un show」/ Cartelera CDMX「no es el musical **sino un concierto**」/ Teatrando「No es el musical」/ El Sol de México 同 |
+| `kika edgar corazon roto tour` | 個人演唱會巡演 | 藝人官方 FB「**el concierto** de Kika Edgar」;Lunario 場館「un **recorrido musical de sus grandes éxitos**」 |
+| `la original rondalla de saltillo` | 傳統 rondalla 音樂會 | La Maraka 場館「llega con **un concierto**」;成立 60 年的浪漫彈唱團體、serenata 傳統 |
+| `la barcarola` | 幼兒音樂視覺體驗 | Liceu 官方「**espectacle musicovisual**」、屬 **Petit Liceu** 教育系列;現場插畫+音樂,**無敘事無角色** |
+| `trencanous jazz` | 偶戲+爵士 | 所有來源一致「**titelles i jazz**」、屬 Petit Liceu;**無任何來源稱其為 musical** |
+| `ocupo cupido` | 卡巴萊短劇秀 | 「a través de **sketches cómicos y canciones**」=短劇集錦非連貫敘事;列於 **23° Festival Internacional de Cabaret** |
+| `la otra histria de rosa` | 戲劇作品 | 在 **festivaldecabaret.com** 有專頁、參加 **Muestra Estatal de Teatro**、製作方為 Grupo Ecléctico de **Teatro** |
+| `rock en familia i love rock and roll` | 音樂科普秀(⚠邊界) | teatrebarcelona 分類**含「Espectacle concert」**;木偶是**敘事者**、講 AC/DC 與 Queen 等**真實樂團**的歷史。**反面證據也已記入**(同頁亦標 Musicals),供推翻 |
+
+**🚨 我在這輪犯了 7 次判斷錯誤,全部被外部來源推翻,都記在帳本裡**
+`divorcio igualitario`(描述沒提音樂 → 6 源證實是 comedia romántica musical)、
+`princess story`(描述提到跟公主合照 → 官網「Un **Musical**」+全國巡演)、
+`busco pis`(描述只說 comedia → 劇院官方與**巴塞隆納市政府**皆稱「un musical」)、
+`el flautista de hamelin`(描述 1100 字 musical 0 次 → pequemonigotes「su **versión musical**」)、
+`mi madre serrat y yo` / `mi padre sabina y yo`(我疑為演唱會 → 都有完整劇情)、
+`la nit del music alt`(我疑為音樂之夜 → 官方「Un **musical sobre musicals**」)、
+`快乐即逝`(我判為分類錯誤 → **tag 標的是作品血統**,它是巴塞隆納音樂劇來滬演出,分類完全正確)。
+
+**方法上的四條教訓(全部記在帳本 `_note`)**
+1. 我一度**自己拼湊 atrapalo 的 URL id** 去 fetch,抓到完全不相干的頁面(哥本哈根導覽/塞維亞喜劇之夜/
+   Tudela 徒步導覽)→ 改用 `genjs.py` 從 `data/shows.json` 取真實 ticket_url,結構上不可能編錯。
+2. **售票頁的行銷文案不提音樂 ≠ 不是音樂劇**。
+3. **atrapalo 的 `Categoría` 欄位沒有鑑別力**——這批資料本來就是從它的 Musicales 分類抓的,
+   每組必然顯示 Musicales,拿來判定=球員兼裁判。
+4. **舉證責任**:預設留下;要判「不是音樂劇」必須有**外部證據明確指出它是別的類型**
+   (官方稱 concierto / 列於卡巴萊藝術節 / 製作方自己澄清不是 musical),
+   而不是「描述沒提到音樂」這種消極理由。
+
+**尚未執行**:這 8 組的實際踢除(要決定是改 tag、還是從 `data/` 來源過濾),等使用者確認判定無誤後再動資料。
+
+---
+
 ## [v2.99.2] - 2026-09-01 09:56
 
 ### 西葡 64 組「是不是音樂劇」逐組查證(進行中):atrapalo 45 組完成,建立可 review 的 trace 帳本
