@@ -247,13 +247,17 @@
    "category": "原創音樂劇(1919 馬德里地鐵)"
   },
   "el ladron de arabia": {
-   "verdict": "uncertain",
-   "why": "描述內 musical 0 次,且逐字自稱『el tributo a una de las historias más emblemáticas』=阿拉丁致敬秀 → 依舉證標準需外部確認是否為正規音樂劇",
+   "verdict": "musical",
+   "why": "全名為『Tributo a Aladdín』,但『tributo』指【非授權的致敬製作】而非演唱會形式;PequePlanMadrid 明確歸類為 Musical Familiar,且有完整敘事與歌曲",
    "sources": [
+    "https://www.pequeplanmadrid.es/",
+    "https://www.palcongrex.es/agenda",
+    "https://www.entradas.com/",
+    "https://www.instagram.com/espectaculosonbeat/",
     "https://www.atrapalo.com/entradas/el-ladron-de-arabia-en-plasencia_e4949095/"
    ],
-   "evidence": "Adéntrate en Agrabah... No te pierdas el tributo a una de las historias más emblemáticas jamás contadas",
-   "category": "待定(自稱 tributo,疑為致敬秀)"
+   "evidence": "PequePlanMadrid:『Musical Familiar – El ladrón de Arabia - Tributo a Aladdín』/『Una lámpara mágica, un genio dispuesto a conceder deseos y una gran aventura en las calles de Agrabah』/ IG:『Un viaje mágico por Agrabah lleno de aventuras, risas y canciones』",
+   "category": "家庭音樂劇(阿拉丁致敬版,OnBeat Producciones)"
   },
   "ella era anita": {
    "verdict": "musical",
@@ -409,22 +413,94 @@
    "category": "傳記 jukebox musical(Rocío Dúrcal)"
   },
   "villanas": {
-   "verdict": "uncertain",
-   "why": "描述內 musical 0 次,但有明確角色(Maléfica/Úrsula/Reina Malvada/Madrastra)、敘事(反派視角重述)與 canciones → 需外部確認",
+   "verdict": "musical",
+   "why": "atrapalo 描述未自稱 musical,但外部 3 源確認,且明載為【原創歌曲】",
    "sources": [
+    "https://www.broadwayworld.com/spain/",
+    "https://teatromadrid.com/espectaculo/villanas",
+    "https://www.brodwei.com/villanas",
     "https://www.atrapalo.com/entradas/villanas_e4950221/"
    ],
-   "evidence": "\"Villanas\", el espectáculo que está conquistando el Teatro Arlequín Gran Vía y que promete un giro inesperado lleno de humor, canciones y mucha magia. Maléfica, Úrsula, la Reina Malvada y la Madrastra de Cenicienta",
-   "category": "待定(有角色歌曲但未自稱 musical)"
+   "evidence": "BroadwayWorld:『Espectáculo musical de la compañía BRODWEI con canciones originales』/ teatromadrid:『Villanas es un espectáculo musical con canciones originales』/ BRODWEI 官網:『VILLANAS, el musical de BRODWEI』(3ª temporada)",
+   "category": "原創音樂劇(BRODWEI,第3季)"
   },
   "princesas": {
-   "verdict": "uncertain",
-   "why": "描述內 musical 0 次,稱『espectáculo familiar』『una auténtica fiesta de magia, música y emoción』,未見角色與劇情 → 需外部確認是音樂劇還是主題活動",
+   "verdict": "musical",
+   "why": "entradas.com 的條目名直接是『Princesas: El Musical』;Tomaticket 官方售票同描述",
    "sources": [
+    "https://www.entradas.com/artist/princesas-el-musical/",
+    "https://entradas2.tomaticket.es/",
     "https://www.atrapalo.com/entradas/princesas_e4952206/"
    ],
-   "evidence": "Princesas es el espectáculo familiar que transforma cualquier tarde en una auténtica fiesta de magia, música y emoción",
-   "category": "待定(疑為公主主題活動秀)"
+   "evidence": "entradas.com 條目名:『Princesas: El Musical』;『“Princesas” es un espectáculo familiar lleno de música, fantasía, emoción y magia escénica, donde los más pequeños vivirán un viaje inolvidable』",
+   "category": "家庭音樂劇(巡演)"
+  },
+  "la nit del music alt": {
+   "verdict": "musical",
+   "why": "我原疑為音樂之夜演唱會 → 錯。官方逐字『Un musical sobre musicals』,有虛構敘事框架(說服 Sòfocles 與 Èsquil 加入音樂舞蹈的無名藝術家)",
+   "sources": [
+    "https://www.teatrebarcelona.com/espectacle/la-nit-del-music-alt"
+   ],
+   "evidence": "分類 Inici » Musicals;『Grans experts... a la recerca dels límits del teatre musical... Us ho explicaran, tot cantant, amb la Banda Municipal de Barcelona. Un musical sobre musicals… i alguna cosa més.』",
+   "category": "音樂劇(關於音樂劇的音樂劇,Festival Grec)"
+  },
+  "autonomos": {
+   "verdict": "musical",
+   "why": "官方標題即『Autónomos, el musical』;teatrebarcelona 分類含 Musicals;548 則評論、長期駐演",
+   "sources": [
+    "https://www.teatrebarcelona.com/espectacle/autonomos-el-musical"
+   ],
+   "evidence": "分類=Humor, Monòlegs, Musicals, Proximitat, Teatre;『La comèdia Autónomos, el musical segueix imbatible a la cartellera bar...』",
+   "category": "喜劇音樂劇(加泰語)"
+  },
+  "en joan sense por i la casa encantada": {
+   "verdict": "musical",
+   "why": "官方逐字『un espectacle musical pensat...』,分類 Infantil + Musicals",
+   "sources": [
+    "https://www.teatrebarcelona.com/espectacle/en-joan-sense-por-i-la-casa-encantada"
+   ],
+   "evidence": "La companyia La Roda Produccions proposa En Joan sense por i la casa encantada, un espectacle musical pensat",
+   "category": "兒童音樂劇(La Roda Produccions)"
+  },
+  "la barcarola": {
+   "verdict": "not_musical",
+   "why": "Liceu 官方定位為『espectacle musicovisual』,核心是現場插畫與音樂融合,目的是讓幼兒認識樂曲的基本元素;**無戲劇敘事、無角色**。屬 Liceu 的兒童音樂教育系列 Petit Liceu,非音樂劇",
+   "sources": [
+    "https://www.liceubarcelona.cat/ca/temporada/la-barcarola",
+    "https://liceuoperaplus.com/la-barcarola/",
+    "https://lacultivadora.cat/",
+    "https://www.instagram.com/patossa/",
+    "https://www.teatrebarcelona.com/espectacle/la-barcarola"
+   ],
+   "evidence": "Liceu 官網:『La barcarola és un espectacle on la creació visual i la il·lustració en directe de La Patossa flueixen al ritme de la música』/ Liceu OPERA+:『PETIT LICEU / LA BARCAROLA — Una experiència musicovisual immersiva per als més petits』/ 視覺藝術家 La Patossa 本人 IG:『hago las visuales en directo』",
+   "category": "❌ 幼兒音樂視覺沉浸體驗(Petit Liceu 系列)"
+  },
+  "rock en familia i love rock and roll": {
+   "verdict": "not_musical",
+   "why": "⚠ 邊界案例,判定理由與反面證據都列出。判踢掉:teatrebarcelona 分類**含『Espectacle concert』**;內容是木偶作為【敘事者】介紹 AC/DC、Queen、Metallica、Beatles 等**真實樂團的歷史**(音樂科普),而非虛構戲劇敘事。反面證據:teatrebarcelona 同時也標了 Musicals、並稱『espectacle familiar musical』→ 若使用者認為應保留,可推翻此判定",
+   "sources": [
+    "https://www.teatrepoliorama.com/909-i-love-rock-and-roll",
+    "https://www.teatrebarcelona.com/espectacle/rock-en-familia-i-love-rock-roll",
+    "https://www.entradas.com/artist/rock-en-familia/",
+    "https://www.barcelona.cat/",
+    "https://larambleta.com/"
+   ],
+   "evidence": "Teatre Poliorama 官方:『Rock en familia vuelve con un espectáculo renovado de I LOVE ROCK AND ROLL, donde Rosendo y nuestras nuevas marionetas contarán las historias más...』/ teatrebarcelona 分類=『Espectacle concert, Infantil, Infantil i familiar, Música, Musicals』/ 內容涵蓋 AC/DC, Queen, Metallica, Beatles, Fito y Barricada",
+   "category": "❌ 家庭搖滾音樂科普秀(邊界判斷)"
+  },
+  "trencanous jazz": {
+   "verdict": "not_musical",
+   "why": "所有來源一致描述為『titelles i jazz』——用偶戲搭配爵士樂演奏『講述』胡桃鉗的故事,屬 Petit Liceu 幼兒系列;**無任何來源稱其為 musical**,角色不歌唱、音樂為器樂伴奏",
+   "sources": [
+    "https://www.teatrebarcelona.com/espectacle/trencanous-jazz",
+    "https://www.timeout.cat/barcelona/ca/nens/trencanous-jazz",
+    "https://www.socpetit.cat/trencanous-jazz/",
+    "https://lacultivadora.cat/",
+    "https://www.facebook.com/TeatreBarcelona",
+    "https://ohsi.cat/"
+   ],
+   "evidence": "Teatre Barcelona 官方:『Trencanous-Jazz és una proposta de titelles i jazz per explicar la fantàstica història d'El trencanous』/ Time Out:『Titelles i jazz s'uneixen per explicar la clàssica història』/ Socpetit:『la combinació que ens proposa el Petit Liceu』",
+   "category": "❌ 偶戲 + 爵士樂(Petit Liceu 系列)"
   }
  }
 }
