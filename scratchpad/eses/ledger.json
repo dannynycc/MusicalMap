@@ -1,0 +1,430 @@
+{
+ "_note": "西葡 64 組是否為音樂劇的逐組查證帳本。sources=實際打開過的網址;evidence=逐字引文;verdict=判定;why=理由。不確定者必須有 >=2 個獨立來源的交叉查證。 🚨 教訓(2026-09-01):我一度自己「編」atrapalo 的 URL id 去 fetch,結果抓到完全不相干的頁面(哥本哈根導覽/塞維亞喜劇之夜/Tudela 徒步導覽)。URL 一律從 data/shows.json 的真實 ticket_url 取,絕不自行拼湊。 🚨 方法教訓 2:atrapalo 的 Descripción 是行銷文案,**不提音樂不代表不是音樂劇**(divorcio igualitario 通篇未提音樂,但 BroadwayWorld/Revista Godot/官方 IG 等 6 源確認是 comedia romántica musical)。判定必須看 atrapalo 頁面的 Categoría 欄位 + 至少一個獨立外部源,不能只讀 Descripción。 🚨 方法教訓 3:atrapalo 的 Categoría 欄位【沒有鑑別力】——這批西葡資料本來就是 scraper 從 atrapalo 的 Musicales 分類抓的,所以每一組必然顯示 Categoría=Musicales,拿它當判定依據=球員兼裁判。有鑑別力的只有:(a) 描述裡的具體音樂劇證據(原創配樂/作曲者掛名/自稱 musical 且有劇情),(b) atrapalo 以外的獨立來源(BroadwayWorld / Revista Godot / 劇院官網 / 劇評 / 官方社群)。 🚨 方法教訓 4(調整舉證責任):我兩次憑「描述的單一特徵」誤判為非音樂劇(divorcio igualitario 因描述沒提音樂、princess story 因描述提到合照),兩次都被外部來源推翻。改用更嚴謹的標準:【預設留下】,要判定「不是音樂劇」必須有**外部證據明確指出它是別的類型**(官方稱 concierto/tributo/recital/obra de teatro sin música,或實質是演唱會/導覽/見面會),而不是「描述沒提到音樂」這種消極理由。",
+ "items": {
+  "princess story": {
+   "verdict": "musical",
+   "why": "🚨 我的初判錯誤(第二次同型錯誤)。我因描述提到『跟公主合照』就判為見面會,但合照是演後加值活動,不影響作品性質。官方網站與官方社群皆自稱 musical,且有 2026/27 全國巡演",
+   "sources": [
+    "https://www.princesspartymadrid.com/eventos",
+    "https://www.facebook.com/princessparty_madrid",
+    "https://www.instagram.com/princessparty_madrid/",
+    "https://www.atrapalo.com/entradas/princess-story-alcala-de-henares_e4948440/",
+    "https://castellonkids.com/"
+   ],
+   "evidence": "官網:『Princess Story Un Musical de Princess Party Madrid』/ 官方FB:『el estreno de Princess Story, el musical !!』/ Castellón Kids:『Musical Princess Story, en La Vall d'Uixó』/ 官方IG:『¡PRINCESS STORY SE VA DE GIRA! ... GIRA NACIONAL 2026/27』",
+   "category": "家庭音樂劇(全國巡演)"
+  },
+  "encantats": {
+   "verdict": "musical",
+   "why": "官方逐字『comedia musical』,有角色 Martí / Miquel 與夏天回鄉的劇情",
+   "sources": [
+    "https://www.atrapalo.com/entradas/encantats_e4948884/"
+   ],
+   "evidence": "Encants es una comedia musical con más de 30 grandes éxitos del pop-rock catalán... Cuando Martí, un adolescente enganchado a las pantallas, es obligado a pasar el verano en el pueblo con su hermano Miquel",
+   "category": "comedia musical(加泰語)"
+  },
+  "un refugi al sol": {
+   "verdict": "musical",
+   "why": "官方逐字『una comedia musical』",
+   "sources": [
+    "https://www.atrapalo.com/entradas/un-refugi-al-sol_e4951840/"
+   ],
+   "evidence": "pasado y presente se dan la mano para bailar al ritmo de una comedia musical. Así es Un refugi al sol",
+   "category": "comedia musical(加泰語)"
+  },
+  "a media luz": {
+   "verdict": "musical",
+   "why": "官方逐字『un musical de tango』,有三人關係的敘事",
+   "sources": [
+    "https://www.atrapalo.com/entradas/a-media-luz_e4952250/"
+   ],
+   "evidence": "Prepárate para sumergirte en un musical de tango donde los secretos laten",
+   "category": "tango musical"
+  },
+  "a todo ritmo": {
+   "verdict": "musical",
+   "why": "官方逐字『una comedia musical』,有男女主角 Aitana 與 Reta 的愛情線",
+   "sources": [
+    "https://www.atrapalo.com/entradas/a-todo-ritmo_e4923884/"
+   ],
+   "evidence": "¡A todo ritmo!, una comedia musical... Una historia de amor tan torpe como verdadera, entre Aitana, una mujer brillante y libre, y Reta, un romántico desastre",
+   "category": "comedia musical"
+  },
+  "alicia en el pais de las maravillas": {
+   "verdict": "musical",
+   "why": "有完整敘事(Alicia 與 Sr. Conejo 的旅程);惟描述未自稱 musical,已標註待補強",
+   "sources": [
+    "https://www.atrapalo.com/entradas/alicia-en-el-pais-de-las-maravillas_e4917513/"
+   ],
+   "evidence": "Alicia es una joven con una imaginación desbordante... Acompañada por el Sr. Conejo, Alicia se embarcará en un fascinante viaje",
+   "category": "兒童音樂劇(愛麗絲)"
+  },
+  "armstrong un musical muy espacial": {
+   "verdict": "musical",
+   "why": "標題自稱 musical,且有主角 Piper(Neil Armstrong 孫女)與太空學校劇情",
+   "sources": [
+    "https://www.atrapalo.com/entradas/armstrong-un-musical-muy-espacial_e4949054/"
+   ],
+   "evidence": "Piper siempre había escuchado muchas historias de su abuelo, Neil Armstrong... estudia para convertirse en astronauta. Su escuela, el Instituto de Aeronáutica Espacial",
+   "category": "兒童音樂劇"
+  },
+  "mil guitarras": {
+   "verdict": "musical",
+   "why": "有主角 Bear(前樂團成員,現於修車廠)與 Rachel 重逢的完整劇情,非致敬演唱會",
+   "sources": [
+    "https://www.atrapalo.com/entradas/mil-guitarras-el-rock-musical_e4949108/"
+   ],
+   "evidence": "Bear, apodado así por sus días gloriosos como miembro de 'Los Bears', ahora pasa sus jornadas entre motores y herramientas en un taller de coches... Todo cambia cuando Rachel, la carismática cantante del grupo, aparece de nuevo en su vida",
+   "category": "rock musical"
+  },
+  "rincones con lorena gomez": {
+   "verdict": "musical",
+   "why": "我原本憑標題疑為演唱會,實際有角色 Macorina 與搬家翻箱的完整敘事",
+   "sources": [
+    "https://www.atrapalo.com/entradas/rincones-con-lorena-gomez-un-musical-sobre-los-amores-de-tu-vida_e4951239/"
+   ],
+   "evidence": "En Rincones, Macorina se enfrenta a una mudanza que es mucho más que cambiar de casa: es reorganizar su mundo interior. Entre cajas y recuerdos, decide que el amor... estorba",
+   "category": "音樂劇(獨角/小型)"
+  },
+  "germans de sang": {
+   "verdict": "musical",
+   "why": "官方逐字『narra la historia de dos hermanos gemelos』,即 Willy Russell 的 Blood Brothers",
+   "sources": [
+    "https://www.atrapalo.com/entradas/germans-de-sang_e4920338/"
+   ],
+   "evidence": "Germans de sang narra la historia de dos hermanos gemelos",
+   "category": "Blood Brothers 加泰語版"
+  },
+  "bienvenidos un musical con exitos de los 80s y 90s": {
+   "verdict": "musical",
+   "why": "有主角 Blanca 與劇情(離開家鄉追音樂夢),官方自稱 musical",
+   "sources": [
+    "https://www.atrapalo.com/entradas/bienvenidos-un-musical-con-exitos-de-los-80-y-90-alcala-de-henares_e4947205/"
+   ],
+   "evidence": "Años 80. Blanca, una joven con una pasión desbordante por la música, huye de su pueblo...",
+   "category": "jukebox musical"
+  },
+  "artemis": {
+   "verdict": "musical",
+   "why": "官方逐字『este monólogo musical único, donde una sola actriz』,有主角 Diana 與科幻敘事",
+   "sources": [
+    "https://www.atrapalo.com/entradas/artemis_e4951596/"
+   ],
+   "evidence": "Prepárate para romper esquemas con este monólogo musical único, donde una sola actriz te hará viajar por emociones, canciones y ciencia ficción en directo. Diana, nuestra protagonista, se refugia en las galaxias",
+   "category": "獨角音樂劇(monólogo musical)"
+  },
+  "assassinat per a dos": {
+   "verdict": "musical",
+   "why": "官方逐字『una comedia musical premiada que da una vuelta de tuerca al género detectivesco』",
+   "sources": [
+    "https://www.atrapalo.com/entradas/assassinat-per-a-dos_e4952444/"
+   ],
+   "evidence": "Assassinat per a dos en el Teatre Goya, una comedia musical premiada que da una vuelta de tuerca al género detectivesco",
+   "category": "comedia musical(疑為 Murder for Two 加泰語版)"
+  },
+  "bienvenidos un musical con los exitos de los 80s y los 90s totana": {
+   "verdict": "musical",
+   "why": "描述與 group『bienvenidos un musical con exitos de los 80s y 90s』完全相同(同為 Blanca 的故事)→ ⚠ 兩個 group 應合併",
+   "sources": [
+    "https://www.atrapalo.com/entradas/bienvenidos-un-musical-con-los-exitos-de-los-80-s-y-los-90-s-totana_e4951604/"
+   ],
+   "evidence": "Años 80. Blanca, una joven con una pasión desbordante por la música, huye de su pueblo y la presión de su padre para perseguir su sueño musical en Madrid... la Movida Madrileña de telón de fondo",
+   "category": "jukebox musical(與另一 group 同劇,不同場地)"
+  },
+  "crush": {
+   "verdict": "musical",
+   "why": "官方逐字『el musical』,有角色 Eva(神經科學家)與 Marc(音樂家),並載明原創配樂作曲者與編導",
+   "sources": [
+    "https://www.atrapalo.com/entradas/crush_e4951300/"
+   ],
+   "evidence": "Crush, el musical... Eva —neurocientífica— y Marc —músico— celebran su aniversario... una banda sonora original compuesta por Mireia Morera, bajo el texto y la dirección de Daniel J. Meyer",
+   "category": "原創小型音樂劇"
+  },
+  "busco pis": {
+   "verdict": "musical",
+   "why": "atrapalo 描述只說 comedia/sátira,但劇院官方與巴塞隆納市政府官網皆逐字稱『un musical』;創作者 Xavi Morató i Gerard Sesé",
+   "sources": [
+    "https://teatreapolo.com/cartellera/busco-pis/",
+    "https://www.barcelona.cat/",
+    "https://www.teatrebarcelona.com/",
+    "https://www.facebook.com/generaciodm",
+    "https://www.atrapalo.com/entradas/busco-pis_e4951411/"
+   ],
+   "evidence": "Teatre Apolo 官方:『Busco Pis!, un musical de lloguer temporal. Una sàtira implacable...』/ Ajuntament de Barcelona 同逐字 / 官方FB:『Si vols veure el musical sencer』",
+   "category": "comèdia musical(加泰語)"
+  },
+  "chuchuwa viaja jugando": {
+   "verdict": "musical",
+   "why": "entradas.com、官方 FB、El Corte Inglés 一致稱『espectáculo musical familiar』,有固定角色 Ali/Popy/Nina/Tulo 與火車旅程敘事;無任何來源稱其為 concierto。⚠ 註記:歌曲是既有兒歌而非原創配樂",
+   "sources": [
+    "https://www.entradas.com/artist/chuchuwa/",
+    "https://www.facebook.com/",
+    "https://www.elcorteingles.es/entradas/",
+    "https://www.atrapalo.com/entradas/chuchuwa-viaja-jugando_e4952268/"
+   ],
+   "evidence": "entradas.com:『Chuchuwá: un viaje musical para toda la familia. Chuchuwá: Viaja Jugando es un espectáculo musical familiar』/ 官方FB:『un precioso espectáculo musical para toda la familia donde Ali, Popy, Nina y Tulo recorren junto al mágico tren Chuchuwá』",
+   "category": "兒童音樂劇(歌曲為經典兒歌非原創)"
+  },
+  "despres de nosaltres": {
+   "verdict": "musical",
+   "why": "官方逐字『El musical Després de nosaltres』,並載明原創音樂 Miquel Tejada、編導 Jumon Erra",
+   "sources": [
+    "https://www.atrapalo.com/entradas/despres-de-nosaltres_e4949827/"
+   ],
+   "evidence": "El musical Després de nosaltres te invita a descubrirlo... Bajo la dirección y el texto de Jumon Erra y la música original de Miquel Tejada",
+   "category": "原創音樂劇(加泰語)"
+  },
+  "el alma al aire": {
+   "verdict": "musical",
+   "why": "Stage Entertainment España(《獅子王》《TINA》製作方)出品;關鍵是歌曲『se convierten en la banda sonora de una trama』=有劇情,非純致敬演唱會",
+   "sources": [
+    "https://www.atrapalo.com/entradas/el-alma-al-aire_e4943409/"
+   ],
+   "evidence": "El Alma al Aire es mucho más que un musical homenaje a Alejandro Sanz... los éxitos más emblemáticos del artista se convierten en la banda sonora de una trama llena de vida, sueños y segundas oportunidades. Esta superproducción original, firmada por Stage Entertainment España",
+   "category": "jukebox musical(Alejandro Sanz 歌曲)"
+  },
+  "divorcio igualitario": {
+   "verdict": "musical",
+   "why": "🚨 我的初判錯誤:atrapalo 的 Descripción 通篇 1400 字未提音樂,我一度判為話劇。交叉查 6 個獨立來源全部確認是音樂劇 → 『售票頁描述不提音樂』不能當作不是音樂劇的依據",
+   "sources": [
+    "https://www.atrapalo.com/entradas/divorcio-igualitario_e4918454/",
+    "https://www.broadwayworld.com/spain/",
+    "https://revistagodot.com/obras/divorcio-igualitario/",
+    "https://teatrolara.com/programacion/",
+    "https://www.instagram.com/divorcio_musical/",
+    "https://entradasflaman.com/"
+   ],
+   "evidence": "BroadwayWorld:『una nueva comedia romántica musical』/ Revista Godot:『Género: Drama musical』/ Atrápalo 分類欄:『Categoría: Musicales』/ 官方 IG 帳號 @divorcio_musical『Divorcio igualitario el musical』/ entradasflaman:『Este musical innovador, protagonizado por Daniel Acebes y Gabriel García』",
+   "category": "comedia romántica musical"
+  },
+  "el fil invisible": {
+   "verdict": "musical",
+   "why": "atrapalo 頁面標題即『El fil invisible, el musical』;改編自 Míriam Tirado 同名繪本,有角色 Míriam 與 Nura。⚠ 與 group『el hilo invisible』為同一齣的加泰/西語版,應考慮合併",
+   "sources": [
+    "https://www.atrapalo.com/entradas/el-fil-invisible-el-musical_e4916958/"
+   ],
+   "evidence": "頁面標題『El fil invisible, el musical (Barcelona)』;描述『Basado en el cuento de Míriam Tirado... el relato de Nura, una niña que descubre un secreto』",
+   "category": "兒童音樂劇(加泰語;改編自 Míriam Tirado 繪本)"
+  },
+  "el hilo invisible": {
+   "verdict": "musical",
+   "why": "官方逐字『El hilo invisible, el musical』,同為 Míriam 的故事 → 與 el fil invisible 同劇不同語言版本",
+   "sources": [
+    "https://www.atrapalo.com/entradas/el-hilo-invisible-el-musical_e4952446/"
+   ],
+   "evidence": "El hilo invisible, el musical, es mucho más que una función: es un viaje lleno de ternura y descubrimientos... Míriam, una escritora en busca d...",
+   "category": "兒童音樂劇(西語版,同上)"
+  },
+  "el flautista de hamelin": {
+   "verdict": "musical",
+   "why": "atrapalo 描述 1100 字內 musical 0 次、稱其為『la obra』,但外部來源明確:pequemonigotes『su versión musical』、官方 FB『Música en directo』",
+   "sources": [
+    "https://pequemonigotes.es/2026/06/12/",
+    "https://gruposmedia.com/cartelera/",
+    "https://www.facebook.com/clubsmediateatro",
+    "https://www.esmadrid.com/agenda",
+    "https://www.atrapalo.com/entradas/el-flautista-de-hamelin_e4947278/"
+   ],
+   "evidence": "pequemonigotes:『Teatro Tyl Tyl lleva al Teatro Fígaro su versión musical de El Flautista de Hamelín』/ 官方FB(Club Smedia Teatro):『El flautista de Hamelin llega al Teatro Fígaro desde el 4 de octubre. Música en directo』",
+   "category": "兒童音樂劇(Teatro Tyl Tyl 製作)"
+  },
+  "el mago de oz": {
+   "verdict": "musical",
+   "why": "官方逐字『El musical que emociona a los niños』,角色齊全(Dorita/Toto/Espantapájaros/Hombre de Hojalata/León)",
+   "sources": [
+    "https://www.atrapalo.com/entradas/el-mago-de-oz_e4949005/"
+   ],
+   "evidence": "El musical que emociona a los niños te invita a recorrer el célebre camino de baldosas amarillas junto a Dorita, su fiel perro Toto... el Espantapájaros, el Hombre de Hojalata y el valiente León",
+   "category": "兒童音樂劇(綠野仙蹤)"
+  },
+  "el misterio de chamberi": {
+   "verdict": "musical",
+   "why": "官方逐字『un espectáculo musical único』,有明確時空設定與敘事(1919 年馬德里地鐵開通)",
+   "sources": [
+    "https://www.atrapalo.com/entradas/el-misterio-de-chamberi_e4949465/"
+   ],
+   "evidence": "Déjate llevar por un espectáculo musical único que te traslada al Madrid de 1919, justo al emocionante momento en que el Metro abrió sus puertas por primera vez",
+   "category": "原創音樂劇(1919 馬德里地鐵)"
+  },
+  "el ladron de arabia": {
+   "verdict": "uncertain",
+   "why": "描述內 musical 0 次,且逐字自稱『el tributo a una de las historias más emblemáticas』=阿拉丁致敬秀 → 依舉證標準需外部確認是否為正規音樂劇",
+   "sources": [
+    "https://www.atrapalo.com/entradas/el-ladron-de-arabia-en-plasencia_e4949095/"
+   ],
+   "evidence": "Adéntrate en Agrabah... No te pierdas el tributo a una de las historias más emblemáticas jamás contadas",
+   "category": "待定(自稱 tributo,疑為致敬秀)"
+  },
+  "ella era anita": {
+   "verdict": "musical",
+   "why": "以美國音樂劇傳奇 Chita Rivera 為本的敘事作品;『homenaje』指主題致敬而非演唱會形式,官方明載『La obra presenta la historia』且以多重鏡像與聲音敘事",
+   "sources": [
+    "https://www.atrapalo.com/entradas/ella-era-anita_e4939041/"
+   ],
+   "evidence": "Un homenaje a una figura clave de la historia del teatro musical americano... La obra presenta la historia de una mujer singular, inspirada en la figura de Chita Rivera, leyenda del teatro musical, pero narrada a través de múltiples espejos y voces",
+   "category": "傳記音樂劇(Chita Rivera)"
+  },
+  "erase otra vez": {
+   "verdict": "musical",
+   "why": "官方逐字『un musical deslumbrante』,設定為童話主角的下一代",
+   "sources": [
+    "https://www.atrapalo.com/entradas/erase-otra-vez_e4952466/"
+   ],
+   "evidence": "Érase Otra Vez te invita a descubrirlo en un musical deslumbrante donde los cuentos clásicos se reinventan... los hijos de princesas, héroes y...",
+   "category": "家庭音樂劇(童話續篇)"
+  },
+  "espejito espejito": {
+   "verdict": "musical",
+   "why": "官方逐字『es mucho más que un musical』",
+   "sources": [
+    "https://www.atrapalo.com/entradas/espejito-espejito_e4952266/"
+   ],
+   "evidence": "Espejito, Espejito es mucho más que un musical: es una experiencia donde los clásicos de siempre se reinventan con humor, música y mucha fantasía",
+   "category": "家庭音樂劇(童話改編)"
+  },
+  "garfio y la isla del tesoro": {
+   "verdict": "musical",
+   "why": "官方逐字『un espectáculo musical lleno de aventuras』,Teatro Olympia 演出",
+   "sources": [
+    "https://www.atrapalo.com/entradas/garfio-y-la-isla-del-tesoro_e4926173/"
+   ],
+   "evidence": "Garfio y la isla del tesoro llega al Teatro Olympia con un espectáculo musical lleno de aventuras, humor y mensajes positivos para toda la familia",
+   "category": "家庭音樂劇(虎克船長)"
+  },
+  "gaudi el despertar del geni": {
+   "verdict": "musical",
+   "why": "官方逐字『llega un musical』,主題為高第逝世百年、描寫其童年",
+   "sources": [
+    "https://www.atrapalo.com/entradas/gaudi-el-despertar-del-geni_e4949004/"
+   ],
+   "evidence": "El año en el que se conmemora el centenario de la muerte de Antoni Gaudí, llega un musical que nos invita a descubrir al niño que soñaba transformar el mundo",
+   "category": "傳記音樂劇(高第,加泰語)"
+  },
+  "imagilusion": {
+   "verdict": "musical",
+   "why": "官方逐字『el musical familiar』,劇名副標 AroundtheWorld",
+   "sources": [
+    "https://www.atrapalo.com/entradas/imagilusion_e4951946/"
+   ],
+   "evidence": "IMAGILUSION te invita a subirte a su mágico vuelo con “AroundtheWorld”, el musical familiar que está conquistando corazones en la Comunidad Valenciana",
+   "category": "家庭音樂劇(巡演,瓦倫西亞)"
+  },
+  "jurassic game": {
+   "verdict": "musical",
+   "why": "官方逐字『una aventura musical interactiva con canciones, coreografías』,有主角(11 歲男孩與父親)",
+   "sources": [
+    "https://www.atrapalo.com/entradas/jurassic-game_e4909322/"
+   ],
+   "evidence": "Un espectáculo, una aventura musical, un videojuego... Una aventura musical interactiva con canciones, coreografías, proyecciones en 3D... Un niño de 11 años y su padre tienen",
+   "category": "互動家庭音樂劇"
+  },
+  "la julia i el tauro": {
+   "verdict": "musical",
+   "why": "官方逐字『Un musical cautivador』,題材為家庭關係、成年與精神疾病",
+   "sources": [
+    "https://www.atrapalo.com/entradas/la-julia-i-el-tauro_e4950133/"
+   ],
+   "evidence": "Un musical cautivador que aborda, con sensibilidad y belleza, temas como las relaciones familiares, el paso a la edad adulta y las enfermedades mentales",
+   "category": "原創音樂劇(加泰語)"
+  },
+  "la opera de los tres centavos con coque malla": {
+   "verdict": "musical",
+   "why": "即 Die Dreigroschenoper,音樂劇場經典;官方描述『una comedia criminal con música』。⚠ 名為 ópera 但公認屬音樂劇場範疇,非傳統歌劇",
+   "sources": [
+    "https://www.atrapalo.com/entradas/la-opera-de-los-tres-centavos-con-coque-malla_e4936412/"
+   ],
+   "evidence": "La ópera de los tres centavos aterriza en el Teatro Infanta Isabel para romper todos los esquemas: una comedia criminal con música, ironía y una actualidad q...",
+   "category": "三便士歌劇(Brecht/Weill)西語製作"
+  },
+  "la vida en un segundo": {
+   "verdict": "musical",
+   "why": "有主角 Lázaro 與死後世界的敘事,以既有金曲串成;⚠ 官方自稱『espectáculo teatral』而非 musical,但『al ritmo de grandes éxitos musicales』+ 完整劇情 → 歸為 jukebox musical,已標註此保留",
+   "sources": [
+    "https://www.atrapalo.com/entradas/la-vida-en-un-segundo_e4948964/"
+   ],
+   "evidence": "un espectáculo teatral donde el humor y la emoción bailan juntos al ritmo de grandes éxitos musicales. Lázaro, nuestro protagonista, parece no tener su mejor día",
+   "category": "jukebox 音樂劇場(自稱 espectáculo teatral)"
+  },
+  "libre": {
+   "verdict": "musical",
+   "why": "官方逐字『Libre, el musical de Nino Bravo』,並主動聲明『va mucho más allá del típico tributo』=自我區隔於致敬秀;掛名導演 Santiago Sánchez / Víctor Lucas",
+   "sources": [
+    "https://www.atrapalo.com/entradas/libre-el-musical-de-nino-bravo_e4945107/"
+   ],
+   "evidence": "'Libre, el musical de Nino Bravo' te invita a dejarte llevar por la emoción y la música en un espectáculo que va mucho más allá del típico tributo. Bajo la dirección de Santiago Sánchez y Víctor Lucas",
+   "category": "jukebox musical(Nino Bravo)"
+  },
+  "los chicos del coro": {
+   "verdict": "musical",
+   "why": "官方逐字『Los chicos del coro, el musical』,主角為 Clement Mathieu 老師(即 Les Choristes 的主角)",
+   "sources": [
+    "https://www.atrapalo.com/entradas/los-chicos-del-coro-el-musical_e4947255/"
+   ],
+   "evidence": "Así arranca la historia de Los chicos del coro, el musical, una entrañable aventura en la que el profesor Clement Mathieu decide desafiar el silencio",
+   "category": "音樂劇(改編自《放牛班的春天》)"
+  },
+  "mi madre serrat y yo": {
+   "verdict": "musical",
+   "why": "我原疑為演唱會 → 錯。有完整劇情:主角 Lucía(啟發 Serrat 名曲〈Penélope〉之人)與女兒 Penélope 搬回家的衝突;已演 18 季、逾 15 萬觀眾",
+   "sources": [
+    "https://www.atrapalo.com/entradas/mi-madre-serrat-y-yo_e86674/"
+   ],
+   "evidence": "Lucía, la que inspiró la increíble canción de Serrat, es la protagonista... El conflicto se plantea cuando Penélope, su hija, llega a su casa con una maleta para quedarse a vivir",
+   "category": "jukebox musical(Serrat 歌曲)"
+  },
+  "mi padre sabina y yo": {
+   "verdict": "musical",
+   "why": "我原疑為演唱會 → 錯。有完整劇情(年輕歌手 Jaime 尋找生父),且觀眾隨劇唱 Sabina 名曲;⚠ 描述內 musical 字樣 0,判定依據為劇情結構 + 歌曲整合",
+   "sources": [
+    "https://www.atrapalo.com/entradas/mi-padre-sabina-y-yo_e59662/"
+   ],
+   "evidence": "La solución esta comedia hilarante con la que se divertirá toda la familia, cantando a la vez las canciones más conocidas del maestro Sabina. Jaime, un joven cantante, algo ingenuo e inocente, decide buscar a qui...",
+   "category": "jukebox 音樂喜劇(Sabina 歌曲)"
+  },
+  "osky y su hilo multicolor": {
+   "verdict": "musical",
+   "why": "官方逐字『Un musical para toda la familia』",
+   "sources": [
+    "https://www.atrapalo.com/entradas/osky-y-su-hilo-multicolor_e4952468/"
+   ],
+   "evidence": "Un musical para toda la familia que celebra la amistad, la imaginación y la fuerza de los sueños",
+   "category": "家庭音樂劇"
+  },
+  "pegados": {
+   "verdict": "musical",
+   "why": "官方逐字『un musical original español』,導演 Gabriel Olivares",
+   "sources": [
+    "https://www.atrapalo.com/entradas/pegados_e4951503/"
+   ],
+   "evidence": "¿Buscas un musical original español que te sorprenda de verdad? Pegados vuelve a los escenarios con una producción totalmente renovada, bajo la dirección de Gabriel Olivares",
+   "category": "西班牙原創音樂劇"
+  },
+  "rocio durcal es inolvidable": {
+   "verdict": "musical",
+   "why": "官方逐字『participar en un musical único que rinde homenaje a su madre』;有敘事框架——主角是 Rocío Dúrcal 的女兒 Carmen Morales 本人面對是否參演的抉擇",
+   "sources": [
+    "https://www.atrapalo.com/entradas/rocio-durcal-es-inolvidable_e4951174/"
+   ],
+   "evidence": "Carmen Morales se enfrenta a una decisión tan inesperada como emotiva: participar en un musical único que rinde homenaje a su madre, la inolvidable Rocío Dúrcal",
+   "category": "傳記 jukebox musical(Rocío Dúrcal)"
+  },
+  "villanas": {
+   "verdict": "uncertain",
+   "why": "描述內 musical 0 次,但有明確角色(Maléfica/Úrsula/Reina Malvada/Madrastra)、敘事(反派視角重述)與 canciones → 需外部確認",
+   "sources": [
+    "https://www.atrapalo.com/entradas/villanas_e4950221/"
+   ],
+   "evidence": "\"Villanas\", el espectáculo que está conquistando el Teatro Arlequín Gran Vía y que promete un giro inesperado lleno de humor, canciones y mucha magia. Maléfica, Úrsula, la Reina Malvada y la Madrastra de Cenicienta",
+   "category": "待定(有角色歌曲但未自稱 musical)"
+  },
+  "princesas": {
+   "verdict": "uncertain",
+   "why": "描述內 musical 0 次,稱『espectáculo familiar』『una auténtica fiesta de magia, música y emoción』,未見角色與劇情 → 需外部確認是音樂劇還是主題活動",
+   "sources": [
+    "https://www.atrapalo.com/entradas/princesas_e4952206/"
+   ],
+   "evidence": "Princesas es el espectáculo familiar que transforma cualquier tarde en una auténtica fiesta de magia, música y emoción",
+   "category": "待定(疑為公主主題活動秀)"
+  }
+ }
+}

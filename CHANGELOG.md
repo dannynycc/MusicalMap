@@ -11,6 +11,43 @@
 
 ---
 
+## [v2.99.2] - 2026-09-01 09:56
+
+### 西葡 64 組「是不是音樂劇」逐組查證(進行中):atrapalo 45 組完成,建立可 review 的 trace 帳本
+
+使用者要求整體盤查西葡分類、把混進來的非音樂劇踢掉,並留下可 review 的查證軌跡。
+帳本:`scratchpad/eses/ledger.json`(每組記 sources / evidence 逐字引文 / verdict / why)。
+
+**目前進度**:45 / 64 組(atrapalo 全數)→ **42 判定為音樂劇、3 待交叉查**
+(`el ladron de arabia` 自稱 tributo、`princesas` 與 `villanas` 未自稱 musical)。
+
+**🚨 過程中我犯的四個錯,全部記進帳本 `_note`**
+
+1. **我自己「編」了 atrapalo 的 URL id 去 fetch** → 抓到完全不相干的頁面
+   (哥本哈根私人導覽 / 塞維亞河邊喜劇之夜 / Tudela 免費徒步導覽),差點把錯誤資料寫進帳本。
+   → 改為 `scratchpad/eses/genjs.py` 從 `data/shows.json` 取**真實 ticket_url**,結構上不可能編錯。
+   (回頭驗證前 11 筆:10 筆 URL 相符,1 筆只是 group 名打錯,帳本未被污染。)
+2. **atrapalo 的 Descripción 是行銷文案,不提音樂不代表不是音樂劇**。
+   `divorcio igualitario` 通篇 1400 字未提音樂、我一度判為話劇,
+   交叉查 6 源(BroadwayWorld「comedia romántica musical」、Revista Godot「Género: Drama musical」、
+   官方 IG 帳號 @divorcio_musical…)全部推翻我的判斷。
+3. **atrapalo 的 `Categoría` 欄位沒有鑑別力**:這批資料本來就是 scraper 從它的
+   Musicales 分類抓的,每組必然顯示 Musicales,拿來判定=球員兼裁判。我一度以為找到好訊號。
+4. **調整舉證責任**:我兩次憑「描述的單一特徵」誤判為非音樂劇
+   (divorcio 因沒提音樂、`princess story` 因描述提到跟公主合照 —— 但官網逐字
+   「Princess Story **Un Musical**」且有全國巡演),兩次都被外部推翻。
+   → 改為**預設留下**;要判定「不是音樂劇」必須有**外部證據明確指出它是別的類型**,
+   而不是「描述沒提到音樂」這種消極理由。
+
+**方法上的收穫**:atrapalo 有 bot 牆(WebFetch 拿到 Client Challenge),
+改用**在 atrapalo 網域內同源 fetch**(帶 cookie)批次取頁,可行且穩定;
+但跨域時會被 CORS 擋,執行前必須先導航回該網域。
+
+**還沒做**:非 atrapalo 的 19 組(ticketmaster 10、teatrebarcelona 6、bol.pt / sympla / shcstheatre 各 1)
++ 3 組 uncertain 的交叉查。
+
+---
+
 ## [v2.99.1] - 2026-09-01 07:37
 
 ### 正式站驗證抓到 v2.99.0 的兩個問題:一個是我漏改,一個是我的驗證寫錯
