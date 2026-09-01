@@ -11,6 +11,56 @@
 
 ---
 
+## [v2.103.1] - 2026-09-01 18:48
+
+### 對 8 組「保留原文」再深挖:2 組改判,6 組維持但證據升級
+
+使用者質疑「59/59 為什麼是 85%」後,指出那 9 組 keep(扣掉標題已是中文的 `快乐即逝` = 8 組)
+要「全部再仔細去查過,多 source、超級深入、多網頁,不要想著偷懶」。照做了,**結果證明使用者是對的**。
+
+### 🔄 改判 2 組 —— 兩次都是我第一輪【查錯地方】
+
+**`artemis` → 阿提米絲 / 阿耳忒弥斯**
+初判 keep 的理由是「官方文案通篇未提神話,無法證實題名指女神」。
+**問題在於我只看了售票頁與場館頁——那種文體本來就不會解釋題名典故。**
+改查劇評後立刻找到:加泰文化媒體 Núvol〈El gran allunatge de Mireia Morera〉逐字寫
+『Artemis ens presenta la història de la **Diana –el nom romà de la deessa Àrtemis–**』
+(主角 Diana 正是女神 Àrtemis 的羅馬名)。再以 5 個來源交叉確認主角確實叫 Diana
+(Teatre Condal 官方、Grup Focus 官方 Dossier、Cartellera Focus、Recomana、巴塞隆納市政府)。
+中文維基「阿耳忒弥斯」條目也**獨立佐證**了這個對應:『对应罗马神话中的狄阿娜(拉丁語:Diana)』。
+題名還與「主角癡迷太空」形成雙關——NASA 登月計畫正名 Artemis(中文即阿提米絲計畫/阿耳忒弥斯计划)。
+
+**`el alma al aire` → 袒露的靈魂 / 袒露的灵魂**
+初判 keep 的理由是「中文圈對這張專輯一律用原文」。
+**問題在於我問錯問題:只問『專輯有無中文名』,沒問『這齣音樂劇有無』,也沒查官方英譯。**
+重查後:英文維基載明『El Alma al Aire (**transl. The Bared Soul**)』,曲目表亦逐字寫
+『"El Alma al Aire" ("The Bared Soul")』,且其引用的西語報導標題英譯一致
+(El Mundo「This is 'the bared soul'」、Reforma「He puts his bared soul」、El Tiempo「with the bared soul」)。
+據此英譯橋樑中譯——與 `A Padlás→The Attic→閣樓`、`El fil invisible→The Invisible Thread→看不見的線` 同模式。
+⚠ 另查到 GetYourGuide 繁中頁把本劇譯為《心靈在風中飄蕩》,**未採用**:單一來源、
+該站自己的頁面標題仍用原文、且把 `al aire`(袒露在外)誤解為「在風中飄蕩」。
+
+### ✅ 維持 keep 的 6 組,但每組都補上了硬證據(原本有些只是我的推測)
+
+| 組 | 新證據 |
+|---|---|
+| `la nit del music alt` | Recomana.cat 的**評論標題自己就玩成「Alt+Control+Musical」**,內文寫「Jordi Oriol 無窮無盡地藏著**文字遊戲**」;Núvol 稱其「既是致敬也是**戲仿**」;入圍**第 28 屆加泰隆尼亞劇評人獎**。原本「題名是雙關」只是我的推測,現在有劇評直接證實 |
+| `crush` | 製作方 RUGIDO Teatre 官網有**加泰語 `/crush` 與西語 `/crush-es` 兩版,題名一律 CRUSH 未在地化**;英文貼文亦然。製作方自己三語都不譯 → 信心由 medium **升為 high** |
+| `mentidrags` | 專搜中文譯名,**唯一命中的中文網頁就是我們自己的 themusicalmap.com** —— 中文圈除了本站沒人提過 |
+| `imagilusion` | 再查詞源與中文皆無所獲,只回傳西班牙各地市政府活動公告(Pulpí、Baza、Almería)→ 確認是**品牌名**而非可解析普通詞 |
+| `jurassic game` | 中文零相關結果 |
+| `princess story` | 中文零相關結果(只撞到 VoiceTube 的同名童話影片,已排除) |
+
+### 結果
+
+西葡最終:**translate 52 / keep 7**;`show_titles_tw` 與 `show_titles` 各 291 → **293**。
+本機驗證繁 59/59、簡 59/59 相符。
+
+**兩次改判的共同病根值得記**:第一輪都不是「查不到」,而是**查錯文體 / 問錯問題**——
+售票頁不會解釋題名典故(該找劇評);問「專輯有無中文名」得不到「劇名有無中文名」的答案。
+**同一個字串在不同身份(專輯名/劇名/角色名)下,查證結果可能完全不同。**
+
+
 ## [v2.103.0] - 2026-09-01 17:25
 
 ### 西葡 59 組中文劇名:逐組多輪查證後套用 50 組(9 組保留原文),覆蓋率 0% → 85%

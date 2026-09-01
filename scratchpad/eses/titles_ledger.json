@@ -356,24 +356,55 @@
      "查詢": "Alejandro Sanz \"El Alma al Aire\" 專輯 OR 专辑 中文 譯名",
      "看到什麼": "博客來商品頁標題『Alejandro Sanz / El Alma Al Aire』(藝人名譯為亞雷漢德羅桑斯,但【專輯名保留原文】);中文維基『亞雷漢德羅·桑斯』:『他接下來在2000年發行的專輯 El Alma al Aire 在推出的第一周就有百萬張的銷售量』(原文不譯);百度百科『2000年底发行的「El Alma Al Aire」专辑』(原文不譯);酷狗音樂同",
      "判斷": "四個中文來源(含台灣最大通路、中文維基、百度百科)一致保留原文 → 判定不翻,信心 high"
+    },
+    {
+     "round": 1,
+     "目的": "(初判)查專輯有無中文譯名",
+     "查詢": "Alejandro Sanz \"El Alma al Aire\" 專輯 中文 譯名",
+     "看到什麼": "博客來、中文維基『亞雷漢德羅·桑斯』條目、百度百科、酷狗音樂【全部保留西文原名】",
+     "判斷": "❌ 當時據此判 keep。問題在於:我只問了『專輯有沒有中文名』,沒問『這齣音樂劇有沒有』,也沒查官方英譯"
+    },
+    {
+     "round": 2,
+     "目的": "(重查)專攻【這齣音樂劇】在中文圈的報導",
+     "查詢": "Alejandro Sanz 音樂劇 馬德里 2026 中文 報導",
+     "看到什麼": "★ GetYourGuide 繁中頁逐字:『《心靈在風中飄蕩》(EL ALMA AL AIRE)由 Alejandro Sanz 曲目組成的音樂劇』;另有簡中頁譯 Alejandro Sanz 為『亞歷杭德羅·桑茲』",
+     "判斷": "找到一個【針對本劇】的中文譯名,但需確認是否為機翻、是否有其他來源"
+    },
+    {
+     "round": 3,
+     "目的": "交叉驗證『心靈在風中飄蕩』的來源廣度",
+     "查詢": "\"心靈在風中飄蕩\" OR \"心灵在风中飘荡\" EL ALMA AL AIRE 音樂劇",
+     "看到什麼": "全部命中都來自 GetYourGuide 同一站的同一段文案(多個頁面重複);且【該站自己的頁面標題仍寫『馬德里:《El Alma al Aire》音樂劇門票』保留原文】",
+     "判斷": "單一來源、且該站自己都不把它當正式劇名 → 不足以當既定譯名。且語意有偏差:al aire 是『袒露在外』不是『在風中飄蕩』"
+    },
+    {
+     "round": 4,
+     "目的": "查官方英譯(可當橋樑,如同 A Padlás→The Attic)",
+     "查詢": "\"El Alma al Aire\" musical Stage Entertainment English title + 開啟英文維基條目",
+     "看到什麼": "英文維基 El Alma al Aire 條目:『El Alma al Aire (transl. The Bared Soul)[1] is the sixth studio album…』(註1 為 Billboard 2000 年報導);曲目表:『6.「El Alma al Aire」(「The Bared Soul」)』;參考文獻標題英譯一致:El Mundo『「Así es El Alma al Aire」[This is \\u0027the bared soul\\u0027]』、Reforma『「Pone su alma en el aire」[He puts his bared soul]』、El Tiempo『「Alejandro Sanz con el alma al aire」[Alejandro Sanz with the bared soul]』",
+     "判斷": "『The Bared Soul』是穩定一致的英譯(不只維基,還對應 Billboard 與多家西語媒體標題的英譯)→ 據以中譯『袒露的靈魂』。改判 translate,信心 medium(經橋樑意譯)"
     }
    ],
    "group": "el alma al aire",
-   "verdict": "keep",
-   "tw": null,
-   "cn": null,
-   "confidence": "high",
-   "why": "保留原文不翻。題名就是 Alejandro Sanz 2000 年專輯《El Alma al Aire》的名字,而【中文圈對這張專輯一律保留西文原名】:博客來商品頁、中文維基『亞雷漢德羅·桑斯』條目、百度百科、酷狗音樂全部寫原文不譯。我若自創『敞開的靈魂』之類,等於製造一個中文世界不存在的名字,且與所有既有中文資料對不上。歸『原文即通用』類。",
+   "verdict": "translate",
+   "tw": "袒露的靈魂",
+   "cn": "袒露的灵魂",
+   "confidence": "medium",
+   "why": "🔄【改判】原判 keep(理由:中文圈對這張專輯一律用原文)。使用者要求再深挖後發現我【查得不夠深】——先前只查了『專輯』沒查『這齣音樂劇』,也沒查官方英譯。重查後有兩條新線索:①英文維基載明官方英譯『El Alma al Aire (transl. The Bared Soul)』,曲目表亦逐字寫『「El Alma al Aire」(「The Bared Soul」)』,且其引用的西語報導標題英譯一致(El Mundo「This is \\u0027the bared soul\\u0027」、Reforma「He puts his bared soul」、El Tiempo「Alejandro Sanz with the bared soul」);②GetYourGuide 繁中頁把本劇譯為《心靈在風中飄蕩》。採①的英譯橋樑譯為『袒露的靈魂』——與 A Padlás→The Attic→閣樓、El fil invisible→The Invisible Thread→看不見的線 同一模式。⚠ 標 medium:這是經英譯橋樑的意譯,非中文圈既有說法。",
    "sources": [
+    "https://en.wikipedia.org/wiki/El_Alma_al_Aire",
     "https://www.stage.es/musicales/el-alma-al-aire/",
-    "https://www.entradas.com/artist/el-alma-al-aire/",
-    "https://www.instagram.com/elalmaalairemusical/",
-    "https://madridesteatro.com/obra/el-alma-al-aire/",
+    "https://www.getyourguide.com/",
+    "https://www.broadwayworld.com/",
     "https://www.books.com.tw/products/",
     "https://zh.wikipedia.org/wiki/亞雷漢德羅·桑斯",
-    "https://baike.baidu.com/item/亚利杭德罗·桑兹"
+    "https://baike.baidu.com/item/亚利杭德罗·桑兹",
+    "https://www.esmadrid.com/events-calendar/"
    ],
-   "evidence": "Stage Entertainment 官方 IG:『EL ALMA AL AIRE, EL MUSICAL Con las canciones de Alejandro Sanz. Nuevo musical de Stage Entertainment España. Estreno 1 de octubre 2026』/ 中文維基:『他接下來在2000年發行的專輯 El Alma al Aire 在推出的第一周就有百萬張的銷售量』/ 百度百科:『2000年底发行的「El Alma Al Aire」专辑也获得拉丁葛莱美奖年度最佳专辑…』"
+   "evidence": "英文維基:『El Alma al Aire (transl. The Bared Soul) is the sixth studio album by Spanish singer-songwriter Alejandro Sanz.』;曲目表『6.「El Alma al Aire」(「The Bared Soul」)』/ El Mundo 標題英譯:『「Así es El Alma al Aire」[This is \\u0027the bared soul\\u0027]』/ GetYourGuide 繁中:『《心靈在風中飄蕩》(EL ALMA AL AIRE)由 Alejandro Sanz 曲目組成的音樂劇』",
+   "捨棄的候選": "《心靈在風中飄蕩》(GetYourGuide)——單一來源、該站自己的標題仍用原文、且把 al aire 誤解為『在風中飄蕩』;正確語意是『袒露在外』",
+   "教訓": "初判問錯問題:只問『專輯有無中文名』,沒問『這齣音樂劇有無』,也沒查官方英譯。同一個字串在不同身份(專輯/劇名)下的查證結果可能完全不同。"
   },
   "mentiras": {
    "rounds": [
@@ -1215,6 +1246,13 @@
      "查詢": "\"La Nit del Músic Alt\" musical Barcelona Grec teatre",
      "看到什麼": "L\\u0027Auditori 官方:『La Banda Municipal de Barcelona al Festival Grec el 28 de juliol de 2026 amb l\\u0027espectacle 「La Nit del Músic Alt」』;巴塞隆納市政府活動頁標題:『La Nit del Músic Alt. Un tipus de gènere ambigu』,分類 Teatre + Música,場地 Teatre Grec,100 分鐘;Festival Grec 售票頁:『Segona visita al Teatre Grec de La Nit del Músic Alt, una producció del festival Grec i la Banda Municipal de Barcelona que busca els límits del teatre musical』",
      "判斷": "官方自己把副標寫成『曖昧的類型』並說要『探索音樂劇的邊界』——題名 Músic Alt 顯然是 musical 的拆字雙關。譯出來就沒有梗了 → keep"
+    },
+    {
+     "round": 2,
+     "目的": "(重查)找劇評對題名文字遊戲的直接佐證,而非只憑我自己的推測",
+     "查詢": "\"La Nit del Músic Alt\" Grec 2025 crítica \"gènere\" joc de paraules OR títol Banda Municipal",
+     "看到什麼": "★ Recomana.cat 評論標題:『Alt+Control+Musical』,內文『CRÍTiCA: La nit del músic alt. Jordi Oriol és infinit amagant jocs de…』;Núvol〈Mama, Medea, Hècuba i un músic alt〉:『Amb dramatúrgia de Carles Pedragosa i direcció d\\u0027ell mateix i Jordi Oriol, La nit del músic alt és homenatge i paròdia, festa i sarau』;加泰語維基『XXVIII Premis de la Crítica de les Arts Escèniques』列有『La Nit del Músic Alt. Un tipus de gènere ambigu, Carles Pedragosa Torres, Indi Gest i la Banda Municipal de Barcelona』;Diari ARA 列為 Grec 2025 必看;巴塞隆納市政府 50 週年官方 PDF 亦收錄",
+     "判斷": "劇評【直接證實】題名是文字遊戲(評論標題自己也玩了一次)→ 原本我只是推測,現在有硬證據。維持 keep,信心由 high 維持"
     }
    ],
    "group": "la nit del music alt",
@@ -1222,16 +1260,19 @@
    "tw": null,
    "cn": null,
    "confidence": "high",
-   "why": "保留原文。這是 Grec 藝術節與巴塞隆納市立管樂團的共同製作,官方副標『Un tipus de gènere ambigu』(一種曖昧的類型),定位是『busca els límits del teatre musical』(探索音樂劇的邊界)。題名 Músic Alt 是【雙關】:字面為『高個子的樂手』,連讀又近似 musical(音樂劇);副標的 gènere 在加泰語同時是『類型』與『性別』,也是雙關。這種雙關中譯必然失去,任何譯法都會把一個玩語言的標題變成平鋪直述 → 依規則保留原文。",
+   "why": "✅【重查後維持 keep,且證據升級】使用者要求對 keep 組再深挖。新增決定性證據:①劇評網 Recomana.cat 的評論【標題本身就玩成 Alt+Control+Musical】,內文寫『Jordi Oriol és infinit amagant jocs de paraules』(Jordi Oriol 無窮無盡地藏著文字遊戲);②Núvol 劇評:『La nit del músic alt és homenatge i paròdia』(既是致敬也是戲仿);③本劇入圍【第 28 屆加泰隆尼亞劇評人獎】(加泰語維基有條目)。題名是刻意的文字遊戲(Músic Alt 連讀近 musical;副標 gènere 兼指類型與性別),中譯必然失去 → 保留原文。",
    "sources": [
-    "https://www.auditori.cat/",
+    "https://www.recomana.cat/obra/la-nit-del-music-alt",
+    "https://www.recomana.cat/obra/critica",
+    "https://www.nuvol.com/teatre-i-dansa/",
+    "https://ca.wikipedia.org/wiki/XXVIII_Premis_de_la_Crítica_de_les_Arts_Escèniques",
+    "https://www.ara.cat/cultura/teatre/",
     "https://www.barcelona.cat/",
-    "https://teatremusical.cat/espectacle/",
+    "https://www.auditori.cat/",
     "https://festivalgrec.koobin.cat/",
-    "https://www.tresc.cat/la-nit-del-music-alt",
-    "https://www.culturajove.cat/"
+    "https://www.andreusotorra.com/teatre"
    ],
-   "evidence": "巴塞隆納市政府:『La Nit del Músic Alt. Un tipus de gènere ambigu…Disciplina: Teatre, Música;Espai: Teatre Grec;Durada: 100 min』/ Festival Grec:『una producció del festival Grec i la Banda Municipal de Barcelona que busca els límits del teatre musical』"
+   "evidence": "Recomana.cat 評論標題:『Alt+Control+Musical』;內文『CRÍTiCA: La nit del músic alt. Jordi Oriol és infinit amagant jocs de…』/ Núvol:『La nit del músic alt és homenatge i paròdia, festa i sarau』/ 加泰語維基劇評人獎名單:『La Nit del Músic Alt. Un tipus de gènere ambigu, Carles Pedragosa Torres, Indi Gest i la Banda Municipal de Barcelona』"
   },
   "mentidrags": {
    "rounds": [
@@ -1241,6 +1282,13 @@
      "查詢": "\"Mentidrags\" musical México drag Mentiras",
      "看到什麼": "官方站:『Mentidrags es un espectáculo que conjunta lo mejor del glamour y los mejores éxitos de los 80s, siendo la versión Drag del musical mexicano más exitoso del…』;Ticketmaster MX:『Mentiras El Musical, MentiDrags o M Party en el Teatro Aldama』;Cartelera de Teatro CDMX:『Un drama musical donde 4 mujeres y un galán cuentan su historia llena de mentiras』;Myticketmx:『Mentidrags El Musical es una versión drag del icónico musical mexicano 「Mentiras」』;官方 IG 標籤 #MentiDrags 與 #MentirasElMusical 並列",
      "判斷": "確認是 Mentiras 的 drag 版,題名為混成詞。中文無對應構詞 → keep,並在帳本註明它與 mentiras 是同一系列的不同版本"
+    },
+    {
+     "round": 2,
+     "目的": "(重查)專門搜中文譯名",
+     "查詢": "\"Mentidrags\" 中文 OR 譯名 OR 变装 音乐剧 墨西哥",
+     "看到什麼": "唯一命中:themusicalmap.com(本站簡中頁)『Mentidrags. Teatro Aldama. 墨西哥城, 墨西哥. 8/29 – 10/31. Mentiras el Musical.』——即中文圈只有我們自己列過它",
+     "判斷": "確認中文圈無既定譯名,且無任何中文討論可循 → 維持 keep"
     }
    ],
    "group": "mentidrags",
@@ -1248,16 +1296,15 @@
    "tw": null,
    "cn": null,
    "confidence": "high",
-   "why": "保留原文。官方網站 mentiraselmusical.com 逐字:『Mentidrags es un espectáculo que conjunta lo mejor del glamour y los mejores éxitos de los 80s, siendo la versión Drag del musical mexicano más exitoso』——它是《Mentiras》的變裝版。題名 Mentidrags 是 Mentiras + Drags 的【混成詞】,中文沒有對應的構詞方式;若譯成『謊言變裝版』那是解釋不是譯名,且會與同庫的 mentiras(謊言)混淆 → keep。",
+   "why": "✅【重查後維持 keep】專門查中文譯名的結果很說明問題:唯一命中的中文網頁【就是我們自己的 themusicalmap.com】——中文圈除了本站沒有任何人提過這齣戲。確認無既定譯名。題名 Mentidrags 是 Mentiras+Drags 的混成詞,中文無對應構詞;譯成『謊言變裝版』是解釋不是譯名,且會與同庫的 mentiras(謊言)混淆。",
    "sources": [
     "https://www.mentiraselmusical.com/",
     "https://www.ticketmaster.com.mx/artist/",
     "https://carteleradeteatro.mx/mentidrags",
-    "https://cartelera.cdmx.gob.mx/",
     "https://myticketmx.com/products/",
-    "https://www.instagram.com/oficial_mentiras/"
+    "https://themusicalmap.com/zh-hans"
    ],
-   "evidence": "官方站:『Mentidrags es un espectáculo que conjunta lo mejor del glamour y los mejores éxitos de los 80s, siendo la versión Drag del musical mexicano más exitoso del…』/ Myticketmx:『Mentidrags El Musical es una versión drag del icónico musical mexicano「Mentiras」, que llega al Teatro Aldama con todo el glamour y la energía de los 80s』",
+   "evidence": "中文搜尋唯一命中為本站:『Mentidrags. Teatro Aldama. 墨西哥城, 墨西哥. 8/29 – 10/31.』/ 官方站:『Mentidrags es un espectáculo que conjunta lo mejor del glamour y los mejores éxitos de los 80s, siendo la versión Drag del musical mexicano más exitoso del…』",
    "關聯": "與同庫的 mentiras(《謊言》)是同一系列;兩者都在 Teatro Aldama 演出"
   },
   "imagilusion": {
@@ -1268,6 +1315,13 @@
      "查詢": "\"Imagilusion\" musical Alicante OR Valencia familiar espectáculo",
      "看到什麼": "Atrapalo:『IMAGILUSION te invita a subirte a su mágico vuelo con 「AroundtheWorld」, el musical familiar que está conquistando corazones en la Comunidad Valenciana』;Fever:『Vive la magia de Disney con 「IMAGILUSION: Around the World」, un musical familiar e inclusivo』;Alcoi Plaza Teatre:『IMAGILUSION presenta 「Around the World」, un musical familiar que rinde homenaje a los grandes clásicos de Disney』;官方 IG @imagilusion_show 自述『Compañia de danza』;另有寫作 Imagilusión(帶重音)的用法",
      "判斷": "確認為製作方自創的混成詞(imaginación+ilusión),且兼作團名。中文無對應構詞,音譯無依據 → keep"
+    },
+    {
+     "round": 2,
+     "目的": "(重查)找詞源說明或中文譯名",
+     "查詢": "\"Imagilusión\" OR \"Imagilusion\" significado nombre compañía imaginación ilusión",
+     "看到什麼": "僅回傳活動公告:Pulpí 市政府『16 de mayo:「Imagilusión」con Ballet Essentials - 18:30h』;Web de Baza『espectáculo familiar gratuito: Imagilusión, en la Caseta Municipal』;KUVER PRODUCCIONES(阿爾梅里亞 Teatro Cervantes)宣傳。無詞源說明、無中文",
+     "判斷": "確認為品牌名而非可譯普通詞 → 維持 keep"
     }
    ],
    "group": "imagilusion",
@@ -1275,18 +1329,16 @@
    "tw": null,
    "cn": null,
    "confidence": "high",
-   "why": "保留原文。Imagilusión 是製作方自創的【混成詞】(imaginación 想像 + ilusión 幻想/憧憬),同時是團名也是節目名(官方 IG @imagilusion_show 自述 Compañia de danza)。演出全名為『IMAGILUSION: Around the World』,是向迪士尼經典致敬的家庭音樂劇。生造詞無中文對應構詞,音譯是我發明的 → keep。",
+   "why": "✅【重查後維持 keep】再查詞源與中文譯名皆無所獲:搜尋只回傳西班牙各地市政府的活動公告(Pulpí、Baza、Almería 等),顯示 Imagilusión 是【節目/團體的品牌名】而非可解析的普通詞;查無任何詞源說明,亦無中文譯名。生造混成詞(imaginación+ilusión)無中文對應構詞,音譯無依據 → 維持保留原文。",
    "sources": [
     "https://www.atrapalo.com/entradas/imagilusion/",
     "https://feverup.com/",
-    "https://www.e-ticketplus.com/entradas",
-    "https://agendaalcoy.com/event/",
-    "https://plazateatre.com/evento",
-    "https://torrevieja.com/eventos",
-    "https://www.myguidealicante.com/",
+    "https://www.facebook.com/AyuntamientoDePulpi",
+    "https://www.webdebaza.com/",
+    "https://www.facebook.com/KUVERPRODUCCIONES",
     "https://www.instagram.com/imagilusion_show/"
    ],
-   "evidence": "Fever:『Vive la magia de Disney con 「IMAGILUSION: Around the World」, un musical familiar e inclusivo』/ Alcoi Plaza Teatre:『IMAGILUSION presenta 「Around the World」, un musical familiar que rinde homenaje a los grandes clásicos de Disney y nos invita a viajar con la imaginación』/ My Guide Alicante:『IMAGILUSION es un musical familiar en Alicante que presenta clásicos de Disney con música en vivo』"
+   "evidence": "Pulpí 市政府:『16 de mayo:「Imagilusión」con Ballet Essentials - 18:30h』/ Web de Baza:『El Día del Niño… contará con el espectáculo familiar gratuito: Imagilusión, en la Caseta Municipal』/ Fever:『Vive la magia de Disney con「IMAGILUSION: Around the World」, un musical familiar e inclusivo』"
   },
   "rocio durcal es inolvidable": {
    "rounds": [
@@ -1653,23 +1705,32 @@
      "查詢": "\"Crush\" musical Barcelona teatre original petit format",
      "看到什麼": "Teatre Musical:『Crush, un nou musical de petit format arribarà al Teatre Akadèmia de Barcelona la temporada 2026-27. Del 2 de desembre de 2026 al 3 de gener de 2027. El Teatre Akadèmia de Barcelona estrenarà Crush, un nou musical de petit format escrit…』;Teatre Barcelona 售票列表『Crush. Teatre Akadèmia』;TRESC 文案:『Hi ha un instant de silenci que existeix just abans que tot canviï, però ningú el recorda fins que…』;製作方 RUGIDO TEATRE(IG)",
      "判斷": "確認為加泰語原創小型音樂劇;題名為英文借詞,非加泰語詞。⚠ 排除混淆:搜尋另有『Croqueta Crush Festival』等無關活動"
+    },
+    {
+     "round": 2,
+     "目的": "(重查)查製作方官網是否有其他語言版本的題名(若他們自己會譯,我就該譯)",
+     "查詢": "\"Crush\" Teatre Akadèmia musical Rugido Teatre sinopsi 2026 Daniel J. Meyer",
+     "看到什麼": "RUGIDO Teatre 官網兩個網址並存:rugidoteatre.com/crush(加泰語)與 rugidoteatre.com/crush-es(西語),兩者標題皆為『CRUSH El nou musical de Daniel J. Meyer i Mireia Morera, amb Diana Roig i Albert Baró. Estrena desembre 2026 al Teatre Akadèmia, Barcelona』;IG 英文貼文:『CRUSH opens at Teatre Akadèmia this December. A new musical starring Diana Roig and Albert Baró. By Daniel J. Meyer & Mireia Morera』",
+     "判斷": "製作方在加泰語/西語/英語三種語言下【都保留 CRUSH】→ 跨語言題名的意圖明確,保留原文正確。順帶發現:編劇之一 Mireia Morera 正是同庫 artemis 的創作者"
     }
    ],
    "group": "crush",
    "verdict": "keep",
    "tw": null,
    "cn": null,
-   "confidence": "medium",
-   "why": "保留原文。Teatre Akadèmia(巴塞隆納)的加泰語小型原創音樂劇(RUGIDO TEATRE,2026-12-02 至 2027-01-03)。題名 Crush 是【英文詞】,在西語/加泰語中直接借用。依既有房規『原文即通用(英文題名)』不譯——與歐陸批次的 Win for life、Musical 1989 同一處理。⚠ 標 medium:crush 在中文確有對應說法『暗戀』,譯出來對中文讀者更直觀;但那會把一個刻意使用英文外來語的題名改寫成中文詞,且本劇無既定中文譯名,故從既有房規保留原文。這一筆屬可討論的邊界,誠實標記。",
+   "confidence": "high",
+   "why": "✅【重查後維持 keep,信心由 medium 升為 high】新增決定性證據:製作方 RUGIDO Teatre 官網有【加泰語 /crush 與西語 /crush-es 兩個語言版本,題名一律寫 CRUSH 未在地化】;其英文貼文亦用 CRUSH。也就是說製作方自己在三種語言下都不譯這個字 —— 這是刻意的跨語言題名,不是懶得翻。原本我標 medium 是因為擔心『暗戀』更直觀;現在有製作方自身的做法佐證,可升為 high。",
    "sources": [
+    "https://rugidoteatre.com/crush",
+    "https://rugidoteatre.com/crush-es",
+    "https://www.instagram.com/rugidoteatre/",
     "https://teatremusical.cat/2026/07/21/",
     "https://www.teatrebarcelona.com/pagina/musicals",
-    "https://www.tresc.cat/",
-    "https://www.instagram.com/rugidoteatre/",
-    "https://www.teatreakademia.cat/"
+    "https://www.tresc.cat/"
    ],
-   "evidence": "Teatre Musical:『Crush, un nou musical de petit format arribarà al Teatre Akadèmia de Barcelona la temporada 2026-27… Del 2 de desembre de 2026 al 3 de gener de 2027』/ TRESC:『Hi ha un instant de silenci que existeix just abans que tot canviï, però ningú el recorda fins que…』",
-   "捨棄的候選": "『暗戀』——crush 的常見中譯,但會把刻意使用的英文外來語題名改寫成中文詞,且本劇無既定中文譯名"
+   "evidence": "RUGIDO Teatre 官網(加泰語版與西語版標題相同):『CRUSH El nou musical de Daniel J. Meyer i Mireia Morera, amb Diana Roig i Albert Baró. Estrena desembre 2026 al Teatre Akadèmia, Barcelona』/ IG 英文:『CRUSH opens at Teatre Akadèmia this December.』",
+   "捨棄的候選": "『暗戀』——crush 的常見中譯,但會把刻意使用的英文外來語題名改寫成中文詞,且本劇無既定中文譯名",
+   "關聯": "編劇 Mireia Morera 也是同庫 artemis 的創作者"
   },
   "bienvenidos un musical con exitos de los 80s y 90s": {
    "rounds": [
@@ -1787,27 +1848,66 @@
      "查詢": "中文維基 API 變體轉換『阿耳忒弥斯』",
      "看到什麼": "zh-tw=阿提米絲 / zh-cn=阿耳忒弥斯(台陸差異極大)",
      "判斷": "譯名備妥但【不採用】——因為沒有證據支持它指女神。記錄下來,日後若查到作者說明可直接改"
+    },
+    {
+     "round": 1,
+     "目的": "(初判)確認題名所指",
+     "查詢": "\"Artemis\" musical Barcelona teatre monòleg OR unipersonal espectacle",
+     "看到什麼": "官方文案只說『Un monòleg musical…Una filla…』『sobre el que pesa, el que cura i el que no es diu』,通篇未提神話",
+     "判斷": "❌ 當時判定無法證實指女神 → keep。事後證明這是【查得不夠深】,只看了售票頁與場館頁"
+    },
+    {
+     "round": 2,
+     "目的": "(重查)找創作者訪談或劇評對題名的說明",
+     "查詢": "\"Artemis\" \"Mireia Morera\" entrevista per què títol deessa OR mitologia OR nom",
+     "看到什麼": "3Cat(加泰公共廣電)節目『Ja m\\u0027entens』有 Mireia Morera 談本劇;劇評人 Andreu Sotorra 的 CLIP DE TEATRE 有評論;Time Out Barcelona 有介紹",
+     "判斷": "找到權威評論管道,但還沒看到題名解釋 → 再查劇情梗概"
+    },
+    {
+     "round": 3,
+     "目的": "從劇情梗概找主角名與神話連結",
+     "查詢": "\"Artemis\" Mireia Morera monòleg musical \"deessa\" OR \"caceres\" OR \"lluna\" sinopsi crítica",
+     "看到什麼": "★ Núvol〈El gran allunatge de Mireia Morera〉:『Artemis ens presenta la història de la Diana –el nom romà de la deessa Àrtemis–, una adolescent obsessionada…』;Recomana:『Artemis és la història de la Diana, una adolescent outsider apassionada de l\\u0027espai』;Andreu Sotorra 另一篇提到『Artemis II, per visitar l\\u0027altra cara de la Lluna』(NASA 阿提米絲二號)",
+     "判斷": "★ 決定性證據:Núvol 明說 Diana 是女神 Àrtemis 的羅馬名 → 題名確實指女神"
+    },
+    {
+     "round": 4,
+     "目的": "多來源確認主角確實叫 Diana(不能只靠一篇評論)",
+     "查詢": "\"Artemis\" \"Diana\" Mireia Morera musical Grec Condal sinopsi espai",
+     "看到什麼": "Teatre Condal 官方:『La Diana és la protagonista d\\u0027aquesta explosió carregada de comicitat, música i efectes audiovisuals』;Cartellera Focus(Grup Focus 官方)同;Grup Focus 官方 Dossier(PDF):『la Diana es trobarà davant la…』;巴塞隆納市政府:『La ciencia ficción es el refugio de Diana para combatir las amenazas del planeta Tierra』;Recomana、Teatre Barcelona 皆同",
+     "判斷": "五個以上來源(含官方劇院與製作集團 Focus 的官方文件)一致確認主角為 Diana → 佐證充分"
+    },
+    {
+     "round": 5,
+     "目的": "取權威中文譯名並反向驗證 Diana/Artemis 的對應",
+     "查詢": "中文維基 API 變體轉換『阿耳忒弥斯』『阿耳忒弥斯计划』『狄安娜』+ 搜尋",
+     "看到什麼": "中文維基『阿耳忒弥斯』:『阿耳忒弥斯(古希臘語:Ἄρτεμις,英語:Artemis,也译阿特米斯、亞脫密絲…)对应罗马神话中的狄阿娜(拉丁語:Diana)』;變體 zh-tw=阿提米絲 / zh-cn=阿耳忒弥斯;NASA 計畫 zh-tw=阿提米絲計畫 / zh-cn=阿耳忒弥斯计划;『狄阿娜(拉丁語:Diana),羅馬神話中的月亮女神』",
+     "判斷": "中文維基【獨立佐證】了 Artemis↔Diana 的對應,與 Núvol 說法吻合。譯名採維基變體。改判 translate,信心 high"
     }
    ],
    "group": "artemis",
-   "verdict": "keep",
-   "tw": null,
-   "cn": null,
-   "confidence": "medium",
-   "why": "保留原文。Cia Gèminis 的加泰語獨角音樂劇(Teatre Condal 巴塞隆納,80 分鐘),由 Mireia Morera 一人編劇、作曲、演出,Pol Sanuy 導演,是她在 Institut del Teatre 的畢業製作。⚠ 關鍵判斷:我手上【已有】希臘女神 Artemis 的權威中文譯名(維基變體:繁『阿提米絲』/ 簡『阿耳忒弥斯』),但【沒有任何證據顯示本劇題名指的是女神】——官方文案只說『Una filla…』(一個女兒)、『sobre el que pesa, el que cura i el que no es diu』(關於重擔、療癒與說不出口的事),通篇未提神話。有譯名不等於該用;套上去等於我替作者決定題名的意思。故保留原文。標 medium 是因為這是『可能是女神但無法證實』的懸而未決,不是查證失敗。",
+   "verdict": "translate",
+   "tw": "阿提米絲",
+   "cn": "阿耳忒弥斯",
+   "confidence": "high",
+   "why": "🔄【改判】原判 keep(理由:無法證實題名指希臘女神)。使用者要求對 9 組 keep 再深挖後,找到決定性證據:主角名叫 Diana,而 Diana 正是女神 Artemis 的羅馬名——加泰文化媒體 Núvol 的評論逐字寫『la Diana –el nom romà de la deessa Àrtemis–』,中文維基『阿耳忒弥斯』條目也獨立記載『对应罗马神话中的狄阿娜(拉丁語:Diana)』。題名同時與『主角癡迷太空』形成雙關(NASA 登月計畫即名 Artemis,中文正作阿提米絲計畫/阿耳忒弥斯计划)。譯名取中文維基變體:繁『阿提米絲』/ 簡『阿耳忒弥斯』(台陸差異極大)。",
    "sources": [
-    "https://guia.barcelona.cat/detall/espectacle-artemis",
+    "https://www.nuvol.com/teatre-i-dansa/el-gran-allunatge-de-mireia-morera-333905",
+    "https://www.recomana.cat/obra/artemis",
     "https://www.teatrecondal.cat/artemis",
-    "https://www.teatrebarcelona.com/artemis",
-    "https://www.culturajove.cat/artemis",
-    "https://teatremontcada.cat/",
-    "https://www.auditoricornella.com/",
-    "https://teatralnet.com/artemis-un-monoleg/",
-    "https://teatremusical.cat/"
+    "https://cartellera.focus.cat/artemis",
+    "https://www.focus.cat/2024/06/Artemis-DdP.pdf",
+    "https://www.barcelona.cat/",
+    "https://www.andreusotorra.com/teatre",
+    "https://dinamics.3cat.cat/",
+    "https://zh.wikipedia.org/wiki/阿耳忒弥斯",
+    "https://zh.wikipedia.org/wiki/阿耳忒弥斯计划",
+    "https://zh.wikipedia.org/wiki/狄阿娜"
    ],
-   "evidence": "巴塞隆納市政府:『Un monòleg musical com no l\\u0027has vist mai escrit, composat i interpretat per una sola actriu en escena amb música en directe. Una filla…』/ Teatre Barcelona:『Artemis és la primera obra monòleg musical de creació pròpia escrita i composada per la Mireia Morera』/ teatralnet:『Artemis és el projecte de final de grau de l\\u0027Institut del Teatre de Mireia Morera』",
+   "evidence": "Núvol:『Artemis ens presenta la història de la Diana –el nom romà de la deessa Àrtemis–, una adolescent obsessionada…』/ Teatre Condal:『La Diana és la protagonista d\\u0027aquesta explosió carregada de comicitat, música i efectes audiovisuals』/ 巴塞隆納市政府:『La ciencia ficción es el refugio de Diana para combatir las amenazas del planeta Tierra』/ 中文維基:『阿耳忒弥斯(古希臘語:Ἄρτεμις,英語:Artemis)…对应罗马神话中的狄阿娜(拉丁語:Diana)』",
    "備而不用": "若日後確認題名指希臘女神,譯名為 繁『阿提米絲』/ 簡『阿耳忒弥斯』(中文維基變體)",
-   "關聯": "與同庫的 un refugi al sol 同為 Cia Gèminis 作品"
+   "關聯": "與同庫的 un refugi al sol 同為 Cia Gèminis 作品",
+   "教訓": "初判只看了售票頁與場館頁就下『無法證實』的結論。真正的答案在【劇評與劇情梗概】裡——官方售票文案本來就不會解釋題名典故。查證要找對文體,不是多查幾個售票網。"
   },
   "chuchuwa viaja jugando": {
    "rounds": [
@@ -1873,6 +1973,13 @@
      "查詢": "\"Jurassic Game\" musical Valencia familiar interactivo teatro",
      "看到什麼": "Teatro Olympia 官方節目表:『Jurassic Game. Un musical familiar con Dinosaurios y Princesas. 27 septiembre 2026 - 4 octubre 2026』;Applausa:『Jurassic Game es un musical familiar que combina canciones, coreografías, proyecciones en 3D y…』;Teatro Olympia FB:『vuelve「Jurassic Game」una aventura musical interactiva con canciones, coreografías, proyecciones en 3D』;Atrapalo:『Musicales. 75 minutos. Castellano. Familiar』;另在 La Rambleta 演出",
      "判斷": "確認為西語演出但【題名為英文】→ 依房規保留原文"
+    },
+    {
+     "round": 2,
+     "目的": "(重查)專門搜中文譯名",
+     "查詢": "\"Jurassic Game\" musical 中文 OR 侏羅紀 遊戲 瓦倫西亞",
+     "看到什麼": "零相關結果(只回傳台灣車庫娛樂等影音平台的無關圖片結果)",
+     "判斷": "中文圈無此劇任何資料,亦無既定譯名 → 維持 keep"
     }
    ],
    "group": "jurassic game",
@@ -1880,16 +1987,14 @@
    "tw": null,
    "cn": null,
    "confidence": "high",
-   "why": "保留原文。Teatro Olympia(瓦倫西亞)等地的互動家庭音樂劇,含 3D 投影。題名 Jurassic Game 是【英文】,依既有房規『原文即通用(英文題名)』不譯——與歐陸批次的 Win for life、以及本批的 Crush、Princess Story 同一處理。且 Jurassic 一詞因《侏羅紀公園》系列在中文圈已高度可辨識。",
+   "why": "✅【重查後維持 keep】專門查中文譯名:零相關結果(命中的全是台灣影音平台的不相關內容)。題名為英文,依既有房規『原文即通用』不譯;且 Jurassic 一詞因《侏羅紀公園》系列在中文圈已高度可辨識。",
    "sources": [
     "https://www.teatro-olympia.com/",
     "https://www.applausa.com/eventos/",
-    "https://www.facebook.com/teatroolympia",
     "https://larambleta.com/por-espacios",
-    "https://www.atrapalo.com/entradas/",
-    "https://www.teatroenvalencia.com/"
+    "https://www.atrapalo.com/entradas/"
    ],
-   "evidence": "Teatro Olympia:『Jurassic Game. Un musical familiar con Dinosaurios y Princesas. 27 septiembre 2026 - 4 octubre 2026』/ Applausa:『Jurassic Game es un musical familiar que combina canciones, coreografías, proyecciones en 3D y…』"
+   "evidence": "Teatro Olympia:『Jurassic Game. Un musical familiar con Dinosaurios y Princesas. 27 septiembre 2026 - 4 octubre 2026』/ 中文搜尋零相關結果"
   },
   "princess story": {
    "rounds": [
@@ -1899,6 +2004,13 @@
      "查詢": "\"Princess Story\" musical España gira familiar princesas",
      "看到什麼": "製作方官網 princesspartymadrid.com:『Princess Story Un Musical de Princess Party Madrid…GIRA NACIONAL 2026/27…Princess Story es el espectáculo familiar…』;官方 IG:『Llega Princess Story, el musical que hará soñar a toda la familia. Acompaña a tus princesas favoritas en una aventura llena de música, magia y emoción』;Atrapalo:『Duración: 90 minutos;Idiomas: Castellano』;巡演含 La Vall d\\u0027Uixó、Vila-real、Alcalá de Henares 等地",
      "判斷": "確認為西語演出但【題名為英文】→ 依房規保留原文"
+    },
+    {
+     "round": 2,
+     "目的": "(重查)專門搜中文譯名",
+     "查詢": "\"Princess Story\" 音樂劇 OR 音乐剧 西班牙 中文 公主",
+     "看到什麼": "零相關結果——命中的是 VoiceTube 英語學習站的童話影片(『白雪公主故事…Snow White Princess Story』、『長髮公主與迪士尼公主們的故事』),與西班牙這齣製作無關",
+     "判斷": "中文圈無此劇資料 → 維持 keep。⚠ 順帶排除同名混淆:Princess Story 是常見英文詞組,搜尋易撞到童話影片"
     }
    ],
    "group": "princess story",
@@ -1906,14 +2018,14 @@
    "tw": null,
    "cn": null,
    "confidence": "high",
-   "why": "保留原文。Princess Party Madrid 製作的家庭音樂劇,2026/27 全國巡演。題名 Princess Story 是【英文】,依既有房規『原文即通用(英文題名)』不譯。",
+   "why": "✅【重查後維持 keep】專門查中文譯名:零相關結果(命中的是 VoiceTube 的英語學習影片『Princess Story』床邊故事,與本劇無關)。題名為英文,依既有房規『原文即通用』不譯。",
    "sources": [
     "https://www.princesspartymadrid.com/",
     "https://www.instagram.com/princessparty_madrid/",
     "https://www.atrapalo.com/entradas/princess-story/",
-    "https://www.facebook.com/princessparty_madrid"
+    "https://tw.voicetube.com/"
    ],
-   "evidence": "官方站:『Princess Story Un Musical de Princess Party Madrid…GIRA NACIONAL 2026/27』/ 官方 IG:『Llega Princess Story, el musical que hará soñar a toda la familia』"
+   "evidence": "製作方官網:『Princess Story Un Musical de Princess Party Madrid…GIRA NACIONAL 2026/27』/ 中文搜尋零相關結果(僅撞到同名童話影片)"
   },
   "osky y su hilo multicolor": {
    "rounds": [
