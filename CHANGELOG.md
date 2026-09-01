@@ -11,6 +11,55 @@
 
 ---
 
+## [v2.100.0] - 2026-09-01 11:21
+
+### 修正我先前的錯誤判斷:7 齣人物傳記劇補上中文名(先前我說「查不到」是錯的)
+
+使用者質疑:「你跟我說 Nikola Tesla 沒有中文名?沒有繁體中文名?沒有簡體中文名?」
+**使用者是對的,我先前的說法是錯的。**
+
+我把兩件不同的事混在一起,講成同一件:
+- **人物本人的標準中文譯名** —— 存在,而且權威來源明確(特斯拉當然有中文名)
+- **這齣戲的官方中文劇名** —— 不存在(這些戲從未在華語地區演出)
+
+我查證的是後者,卻把結論說成前者,於是變成「查不到中文名」這種明顯錯誤的說法。
+
+**補上的 7 組**(值 = 人物本人的標準中文譯名,取自中文維基條目名及其 zh-tw / zh-cn 變體轉換)
+
+| group | 原題名 | 繁 | 簡 |
+|---|---|---|---|
+| `frida opera musical` | FRIDA Opera Musical | 芙烈達·卡蘿 | 弗里达·卡罗 |
+| `michelangelo da caravaggio` | Michelangelo da Caravaggio - A Rock Musical | 卡拉瓦喬 | 卡拉瓦乔 |
+| `nikola tesla vegtelen energia` | Nikola Tesla - Végtelen energia | 尼古拉·特斯拉 | 尼古拉·特斯拉 |
+| `polita` | POLITA | 波拉·尼格利 | 波拉·内格里 |
+| `raffaella` | Raffaella il Musical | 拉斐拉·卡拉 | 拉斐拉·卡拉 |
+| `maradona el diego` | Maradona El Diego - Opera Musical | 迪亞哥·馬拉度納 | 迭戈·马拉多纳 |
+| `a padlas` | A Padlás | 閣樓 | 阁楼 |
+
+**兩個需要說明的個案**
+- `POLITA` 查證後確認是波蘭默片巨星 **Pola Negri** 的傳記音樂劇(華沙 Studio Buffo,
+  3D 音樂劇,Natasza Urbańska 主演,劇中出現 Ernst Lubitsch、卓別林、Rudolph Valentino)。
+  Polita 是她的暱稱。先前只看劇名完全無從判斷,是查了售票頁全文才確定。
+- `A Padlás` **不是人名**,是匈牙利文的「閣樓」。它有**官方英文題名 The Attic**
+  (jegy.hu 與原製作劇院 Vígszínház 都用此名),所以中譯有官方依據,不是我自創。
+
+**刻意不做的事:不翻副標。**
+`Végtelen energia`(匈:無限能量)、`El Diego`(馬拉度納的暱稱)都沒有官方中文依據,
+依 `gen_variants.mjs` 註解中既有的政策「**只收有官方依據的名字**」不收。
+只填人名本身,穩且不越界。
+
+**Raffaella Carrà 的來源等級要講清楚**:中文維基**沒有她的獨立條目**,
+值取自條目內文用法(2026 冬奧開幕式條目,zh-tw / zh-cn / zh-hk 三個變體皆作「拉斐拉·卡拉」)。
+另有異譯「拉法埃拉·卡拉」(逝世列表的紅連結)與「拉菲拉·卡拉」(udn 部落格)。
+這一筆的依據弱於其他六筆,已寫進 `_show_titles_note`。
+
+**驗證**:重跑 gen_variants 後逐筆檢查 14 個組合(7 組 × 繁簡),
+`cn_annot` 全部正確,且**全部進了搜尋索引** —— 使用者在繁中站打「特斯拉」或
+簡中站打「马拉多纳」都能找到這些劇(先前只能打原文)。
+
+新增 `_show_titles_note` 記錄這次的依據與政策,避免下次有人誤以為這些是官方劇名。
+
+
 ## [v2.99.7] - 2026-09-01 10:56
 
 ### `es navidad` 第二輪深查:判定不變(音樂劇),但信心從「單一來源」升級為製作方層級多源佐證
