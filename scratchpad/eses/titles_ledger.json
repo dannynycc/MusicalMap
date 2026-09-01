@@ -1,0 +1,1975 @@
+{
+ "_note": "西葡 59 組中文劇名的逐組查證帳本。使用者(2026-09-01)要求:必須多輪深度查詢、稍有不確定就要再 dive in 查更多網頁交叉比對,且思考與執行過程都要寫進來供 review。規則沿用歐陸:普通名詞/片語→翻(需詞義依據);純專有名詞/虛構人名→保留原文(音譯不發明)。⚠ 人名劇「加副標」的例外只適用歐陸,西葡不適用。",
+ "items": {
+  "germans de sang": {
+   "rounds": [
+    {
+     "round": 1,
+     "目的": "先確認它到底是不是 Blood Brothers 的加泰語版(帳本分類這樣寫,但要自己驗)",
+     "查詢": "\"Germans de sang\" musical Barcelona \"Blood Brothers\" Willy Russell",
+     "開啟頁面": "https://willyrussell.com/latest-news/germans-de-sang-blood-brothers-barcelona",
+     "看到什麼": "原作者 Willy Russell 官方網站逐字:『Originally produced at Teatro Condal in 1994, Blood Brothers returns to the Barcelona stage in translation as Germans de Sang.』",
+     "判斷": "作者官網=最高權威來源,身份確認。但這只解決『它是什麼』,還不知道中文怎麼叫 → 需要第二輪"
+    },
+    {
+     "round": 2,
+     "目的": "查《Blood Brothers》在中文圈是否已有既定譯名(不能自己直譯)",
+     "查詢": "\"Blood Brothers\" 音樂劇 Willy Russell 中文 譯名 西區",
+     "看到什麼": "四個獨立來源一致用《兄弟情仇》:①BBC 中文 2012『《兄弟情仇》音乐剧将在伦敦西区落幕…英国音乐剧《兄弟情仇》(Blood Brothers)』;②音樂劇資料站 geocities『兄弟情仇 Blood Brothers』;③PChome 個人新聞台 2006『音樂劇:兄弟情仇 Blood Brothers』;④痞客邦音樂劇分類",
+     "判斷": "BBC 為權威媒體且與其他三源一致,四源交叉 → 採《兄弟情仇》,信心 high。不需第三輪"
+    }
+   ],
+   "group": "germans de sang",
+   "verdict": "translate",
+   "tw": "兄弟情仇",
+   "cn": "兄弟情仇",
+   "confidence": "high",
+   "why": "這是 Willy Russell《Blood Brothers》的加泰語版(原作者官網證實),而《Blood Brothers》在中文圈有既定譯名《兄弟情仇》,四個獨立來源一致(含 BBC 中文)。繁簡同形。⚠ 我原本憑印象想譯「血兄弟」——查證後證實是錯的,這條記下來提醒自己別靠直覺。",
+   "sources": [
+    "https://willyrussell.com/latest-news/germans-de-sang-blood-brothers-barcelona",
+    "https://www.bbc.com/zhongwen/simp/uk/2012/08/",
+    "https://www.geocities.ws/mymusicalsworld/bloodbrothers.htm",
+    "https://mypaper.pchome.com.tw/yccheng99/post/",
+    "https://joycjs.pixnet.net/blog/category/音樂劇"
+   ],
+   "evidence": "willyrussell.com(原作者官網):『Originally produced at Teatro Condal in 1994, Blood Brothers returns to the Barcelona stage in translation as Germans de Sang. …prior to the 10th December 2025 premier.』/ BBC 中文:『在伦敦西区热演了24年的英国音乐剧《兄弟情仇》(Blood Brothers)将最后落下帷幕。这部由维利·罗素(Willy Russell)创作的曾获奥利维尔戏剧大奖的音乐…』"
+  },
+  "urinetown": {
+   "rounds": [
+    {
+     "round": 1,
+     "目的": "查 Urinetown 是否已有既定中文譯名(不能自己直譯)",
+     "查詢": "Urinetown 音樂劇 中文 譯名 尿鎮 OR 尿城 OR 公廁",
+     "看到什麼": "繁體側四個台灣來源全用《尿尿城》:①國藝會【表演藝術評論台】許仁豪〈合歌舞以革命?《尿尿城》〉;②台灣索尼音樂官網『百老匯音樂劇「尿尿城」』;③樹德科技大學演藝系製作《尿尿城》(Urinetown: The Musical);④瘋戲樂工作室 FB『《URINETOWN尿尿城》是首演於2001年的百老匯音樂劇』。簡體側出現分歧:bilibili 譯配字幕作《撒尿乡》(尿镇);另有 geocities 用『尿鎮』",
+     "判斷": "繁體側已足夠(四源含官方平台與實際製作單位)。但簡體側只有 bilibili 一個 UGC 來源,兩個候選詞互斥 → 不夠,必須再查"
+    },
+    {
+     "round": 2,
+     "目的": "確認中國大陸的標準說法(要找資料庫級來源,不能只靠 UGC 影片標題)",
+     "查詢": "音乐剧 \"尿镇\" Urinetown 百老汇 中文版 OR 译配",
+     "看到什麼": "豆瓣劇目條目的正式名稱格式為『尿都 / Urinetown / 尿镇』(=中文名/原文名/又名),多位使用者的觀劇紀錄全部指向同一條目,寫法一致",
+     "判斷": "豆瓣是中國最主要的劇目資料庫,其條目【中文名】為『尿都』、『尿镇』列為又名 → 簡體採『尿都』。異譯(尿镇/撒尿乡)一併記錄備查"
+    }
+   ],
+   "group": "urinetown",
+   "verdict": "translate",
+   "tw": "尿尿城",
+   "cn": "尿都",
+   "confidence": "high",
+   "why": "百老匯 2001 年托尼獎作品,中文圈有既定譯名,而且是【台陸分歧】的典型:台灣壓倒性用《尿尿城》(含國藝會官方評論平台、台灣索尼音樂官網、瘋戲樂工作室、樹德科大實際製作);中國則以豆瓣條目主名《尿都》為準(又名《尿镇》)。這正是 show_titles / show_titles_tw 分兩張表存在的理由。",
+   "sources": [
+    "https://pareviews.ncafroc.org.tw/",
+    "https://sonymusic.com.tw/album/",
+    "https://www.tlrc.stu.edu.tw/",
+    "https://www.facebook.com/StudioM.tw/",
+    "https://www.douban.com/people/bogjebote/drama/collect",
+    "https://www.bilibili.com/video/",
+    "https://www.geocities.ws/mymusicalsworld/urinetown"
+   ],
+   "evidence": "表演藝術評論台(國藝會):『合歌舞以革命?《尿尿城》…此劇原名 Urinetown: The Musical 由 Mark Hollmann 寫成,雖然是東尼獎得主』/ 樹德科大:『百老匯音樂劇《尿尿城》(Urinetown: The Musical)…曾獲得第56屆東尼獎3項大獎』/ 瘋戲樂工作室:『《URINETOWN尿尿城》是首演於2001年的百老匯音樂劇』/ 豆瓣條目:『尿都 / Urinetown / 尿镇』/ bilibili:『【英中译配字幕】音乐剧《撒尿乡》(尿镇) Urinetown The Musical』",
+   "異譯備查": "簡體另有『尿镇』(豆瓣又名、geocities)與『撒尿乡』(bilibili 譯配);繁體另有『尿鎮』(geocities,單一業餘站,不採)"
+  },
+  "alicia en el pais de las maravillas": {
+   "rounds": [
+    {
+     "round": 1,
+     "目的": "確認製作身份(不是同名的別的東西)",
+     "查詢": "\"Alicia en el país de las maravillas\" musical Madrid teatro 2026",
+     "看到什麼": "Teatro Lara 官方節目表;entradas.com『Alicia en el pais de las maravillas - La Maquineta en Teatro Lara』;製作方 IG『El próximo 6 de septiembre comienza nuestra 17ª TEMPORADA de ALICIA EN EL PAÍS DE LAS MARAVILLAS en el Teatro Lara. Canciones,...』",
+     "判斷": "身份明確,且有 Canciones(歌曲)佐證音樂劇形式"
+    },
+    {
+     "round": 2,
+     "目的": "取權威中文譯名而非自譯",
+     "查詢": "中文維基 API 條目『愛麗絲夢遊仙境』繁簡變體轉換",
+     "看到什麼": "zh-tw=愛麗絲夢遊仙境 / zh-cn=爱丽丝梦游仙境",
+     "判斷": "繁簡僅字形差異,採用"
+    }
+   ],
+   "group": "alicia en el pais de las maravillas",
+   "verdict": "translate",
+   "tw": "愛麗絲夢遊仙境",
+   "cn": "爱丽丝梦游仙境",
+   "confidence": "high",
+   "why": "確認是路易斯·卡羅原作的音樂劇版(Teatro Lara 馬德里,La Maquineta 製作,已第 17 季),非同名他作。中文既定譯名取自中文維基條目及其繁簡變體轉換。",
+   "sources": [
+    "https://teatrolara.com/programacion",
+    "https://www.entradas.com/event/alicia-en-el-pais-de-las-maravillas/",
+    "https://www.instagram.com/lamaquinetateatro/",
+    "https://zh.wikipedia.org/wiki/愛麗絲夢遊仙境"
+   ],
+   "evidence": "La Maquineta IG:『El próximo 6 de septiembre comienza nuestra 17ª TEMPORADA de ALICIA EN EL PAÍS DE LAS MARAVILLAS en el Teatro Lara. Canciones, …』"
+  },
+  "cinderela": {
+   "rounds": [
+    {
+     "round": 1,
+     "目的": "確認製作與場地",
+     "查詢": "\"Cinderela\" \"O Musical\" Aveiro EUROPARQUE Portugal",
+     "看到什麼": "BOL.pt(葡萄牙官方售票)『Cinderela - O Musical EUROPARQUE Família Teatro』;Ticketline 分類『Musical, Mais Novos』;另在 Coliseu do Porto、Academia de Santo Amaro(里斯本)演出",
+     "判斷": "確為葡萄牙巡演的兒童音樂劇版灰姑娘"
+    },
+    {
+     "round": 2,
+     "目的": "選定中文譯名(灰姑娘 vs 仙履奇緣)",
+     "查詢": "中文維基 API 變體轉換",
+     "看到什麼": "zh-tw=灰姑娘 / zh-cn=灰姑娘",
+     "判斷": "『仙履奇緣』是迪士尼電影的台灣譯名,本製作與迪士尼無關,不套用;採通用『灰姑娘』"
+    }
+   ],
+   "group": "cinderela",
+   "verdict": "translate",
+   "tw": "灰姑娘",
+   "cn": "灰姑娘",
+   "confidence": "high",
+   "why": "葡萄牙製作《Cinderela - O Musical》,售票平台分類為 Musical / Mais Novos(兒童)。Cinderela=Cinderella,中文維基條目名繁簡同為『灰姑娘』。台灣另有迪士尼片名《仙履奇緣》,但那是迪士尼電影專屬譯名,本製作非迪士尼授權,故採通用的『灰姑娘』。",
+   "sources": [
+    "https://www.bol.pt/Comprar/Bilhetes/",
+    "https://www.ticketline.pt/",
+    "https://oazis.app/",
+    "https://zh.wikipedia.org/wiki/灰姑娘"
+   ],
+   "evidence": "BOL.pt:『Cinderela - O Musical EUROPARQUE Família Teatro』/ Ticketline:『Cinderela - O Musical. Musical, Mais Novos.』"
+  },
+  "el mago de oz": {
+   "rounds": [
+    {
+     "round": 1,
+     "目的": "確認製作身份",
+     "查詢": "\"El Mago de Oz\" musical Madrid teatro infantil 2026",
+     "看到什麼": "Grupo Smedia 官方『El Mago de Oz, el musical · Desde el 25 de octubre de 2026 · Teatro Maravillas · Cartelera, Infantil y Familiar, Musicales, Teatro』;El Corte Inglés 售票頁同",
+     "判斷": "⚠ 注意:西班牙有同名重金屬樂團 Mägo de Oz(搜尋結果也冒出『Mägo de Oz en Valencia』),但本筆是 Teatro Maravillas 的兒童音樂劇、拼寫為 Mago 非 Mägo,身份無誤"
+    },
+    {
+     "round": 2,
+     "目的": "取權威中文譯名",
+     "查詢": "中文維基 API 變體轉換",
+     "看到什麼": "zh-tw=綠野仙蹤 / zh-cn=绿野仙踪",
+     "判斷": "採用"
+    }
+   ],
+   "group": "el mago de oz",
+   "verdict": "translate",
+   "tw": "綠野仙蹤",
+   "cn": "绿野仙踪",
+   "confidence": "high",
+   "why": "Teatro Maravillas(馬德里)製作《El Mago de Oz, el musical》,官方分類 Infantil y Familiar / Musicales。The Wizard of Oz 中文既定譯名。",
+   "sources": [
+    "https://gruposmedia.com/cartelera/",
+    "https://www.elcorteingles.es/entradas/teatro/",
+    "https://www.atrapalo.com/entradas/el-mago-de-oz/",
+    "https://zh.wikipedia.org/wiki/綠野仙蹤"
+   ],
+   "evidence": "Grupo Smedia:『El Mago de Oz, el musical · Desde el 25 de octubre de 2026 · Domingos: 12:30 horas · Todos los públicos · Cartelera, Infantil y Familiar, Musicales, Teatro』"
+  },
+  "el flautista de hamelin": {
+   "rounds": [
+    {
+     "round": 1,
+     "目的": "確認製作身份與形式",
+     "查詢": "\"El flautista de Hamelin\" musical \"Tyl Tyl\" teatro",
+     "看到什麼": "Teatro Tyl Tyl 官網有專頁;摘要載明『La compañía Teatro Tyl Tyl presenta su versión musical de El flautista de Hamelín』、導演 Daniel Lovecchio、文本 Pury Estalayo 與 Daniel Lovecchio、『propuesta expresionista con gran protagonismo de la música y un final alternativo sobre la niñez』、演出於 Teatro Fígaro(馬德里)",
+     "判斷": "確為該故事的音樂劇版(有另類結局,但仍是同一故事,題名不變)"
+    },
+    {
+     "round": 2,
+     "目的": "取權威中文譯名",
+     "查詢": "中文維基 API 變體轉換",
+     "看到什麼": "zh-tw=花衣魔笛手 / zh-cn=花衣魔笛手(繁簡同形)",
+     "判斷": "採用"
+    }
+   ],
+   "group": "el flautista de hamelin",
+   "verdict": "translate",
+   "tw": "花衣魔笛手",
+   "cn": "花衣魔笛手",
+   "confidence": "high",
+   "why": "Teatro Tyl Tyl 製作的音樂劇版哈梅恩吹笛人。中文維基條目『花衣魔笛手』繁簡同形。",
+   "sources": [
+    "https://www.tyltyl.org/el-flautista-de-hamelin",
+    "https://www.turismomadrid.es/",
+    "https://zh.wikipedia.org/wiki/花衣魔笛手"
+   ],
+   "evidence": "Teatro Tyl Tyl:『La compañía Teatro Tyl Tyl presenta su versión musical de \"El flautista de Hamelín\", un montaje enfocado en la infancia…』"
+  },
+  "los chicos del coro": {
+   "rounds": [
+    {
+     "round": 1,
+     "目的": "確認是否為 Les Choristes 改編(而非同名他作)",
+     "查詢": "\"Los chicos del coro\" musical Barcelona teatro Les Choristes",
+     "看到什麼": "Teatre Barcelona:『En los chicos del coro hay tres temas: La infancia, la música y la enseñanza. Un internado/correccional, en 1949, tras la guerra mundial, en una Francia llena…』;Balañá en viu(Teatre Tívoli):『La adaptación del exitazo del cine francés, ¡ahora en vivo!』;官方站 loschicosdelcoro.es",
+     "判斷": "劇情設定與 Les Choristes 完全吻合,且官方明說改編自法國電影 → 身份確認"
+    },
+    {
+     "round": 2,
+     "目的": "取權威中文譯名",
+     "查詢": "中文維基 API 變體轉換",
+     "看到什麼": "zh-tw=放牛班的春天 / zh-cn=放牛班的春天(條目名繁簡同)",
+     "判斷": "採用"
+    }
+   ],
+   "group": "los chicos del coro",
+   "verdict": "translate",
+   "tw": "放牛班的春天",
+   "cn": "放牛班的春天",
+   "confidence": "high",
+   "why": "確認是法國電影《Les Choristes》的音樂劇改編(官方宣傳逐字寫『La adaptación del exitazo del cine francés』,劇情設定 1949 年戰後法國的寄宿學校/教養院)。中文維基條目『放牛班的春天』繁簡同名。",
+   "sources": [
+    "https://www.teatrebarcelona.com/los-chicos-del-coro",
+    "https://loschicosdelcoro.es/",
+    "https://www.balanaenviu.com/loschicosdelcoro",
+    "https://zh.wikipedia.org/wiki/放牛班的春天"
+   ],
+   "evidence": "Teatre Barcelona:『Un internado/correccional, en 1949, tras la guerra mundial, en una Francia llena…』/ Balañá:『Por fin llega a Barcelona el musical de Los Chicos Del Coro con la mejor banda sonora! La adaptación del exitazo del cine francés』"
+  },
+  "el libro de la selva la aventura de mowgli": {
+   "rounds": [
+    {
+     "round": 1,
+     "目的": "確認製作身份與形式",
+     "查詢": "\"El Libro de la Selva\" \"La Aventura de Mowgli\" musical México teatro",
+     "看到什麼": "Cartelera de Teatro CDMX 有專頁;Teatro de la Nación『Vive una emocionante aventura musical junto a…』;Ticketmaster MX 分類 Musicales;場地 Teatro Tepeyac Carmen Montejo(墨西哥城);另在西班牙 Mares de Papel 藝術節以『MUSICAL FAMILIAR』巡演",
+     "判斷": "身份與音樂劇形式確認"
+    },
+    {
+     "round": 2,
+     "目的": "釐清中文該用哪個譯名(叢林奇譚 vs 森林王子)——這裡有陷阱",
+     "查詢": "吉卜林 The Jungle Book 叢林奇譚 森林王子 台灣 譯名 差別",
+     "看到什麼": "中文維基逐字:『《叢林奇譚》(英語:The Jungle Book,1894年,又稱《叢林之書》、《叢林故事》等,其中毛克利的故事又稱《森林王子》)』;台中國家歌劇院 FB:『1967年,迪士尼用動畫《森林王子》重現主角毛克利的成長與冒險』;維基《與森林共舞》條目註明 2016 電影在中國大陸譯《奇幻森林》、香港譯《魔幻森林》",
+     "判斷": "一度考慮用《森林王子》(因為副標正是 Mowgli 的故事),但《森林王子》是【迪士尼動畫】的品牌譯名,而本製作用的是【書名】且與迪士尼無關 → 忠於製作方實際題名,採《叢林奇譚》。此判斷刻意記錄,避免日後被誤改"
+    },
+    {
+     "round": 3,
+     "目的": "取繁簡變體",
+     "查詢": "中文維基 API 變體轉換『叢林奇譚』",
+     "看到什麼": "zh-tw=叢林奇譚 / zh-cn=丛林奇谭",
+     "判斷": "採用"
+    }
+   ],
+   "group": "el libro de la selva la aventura de mowgli",
+   "verdict": "translate",
+   "tw": "叢林奇譚：毛克利的冒險",
+   "cn": "丛林奇谭：毛克利的冒险",
+   "confidence": "high",
+   "why": "墨西哥 Teatro Tepeyac 的家庭音樂劇,取材自吉卜林《The Jungle Book》。譯名忠於【製作方實際使用的題名】:他們用的是書名 El Libro de la Selva,不是迪士尼的動畫品牌,故採書名的中文條目名『叢林奇譚/丛林奇谭』,副標 La Aventura de Mowgli 直譯。",
+   "sources": [
+    "https://carteleradeteatro.mx/libro-la-selva/",
+    "https://teatrodelanacion.com.mx/obras/",
+    "https://www.ticketmaster.com.mx/artist/",
+    "https://teatrando.com.mx/la-aventura-de-mowgli/",
+    "https://zh.wikipedia.org/wiki/叢林奇譚",
+    "https://zh.wikipedia.org/wiki/與森林共舞"
+   ],
+   "evidence": "Teatro de la Nación:『El Libro de la Selva: La Aventura de Mowgli. septiembre 2023 a septiembre 2026… Vive una emocionante aventura musical junto a…』/ 中文維基:『《叢林奇譚》(英語:The Jungle Book…其中毛克利的故事又稱《森林王子》)』",
+   "捨棄的候選": "《森林王子》——它是迪士尼動畫的譯名品牌,本製作用書名且非迪士尼授權,套用會張冠李戴"
+  },
+  "garfio y la isla del tesoro": {
+   "rounds": [
+    {
+     "round": 1,
+     "目的": "確認製作與角色來源",
+     "查詢": "\"Garfio y la isla del tesoro\" musical Valencia teatro familiar",
+     "看到什麼": "Teatro Olympia 官方:『Garfio y la isla del tesoro. Un musical para toda la familia. Un musical lleno de humor…』;Applausa:『Garfio y la isla del tesoro es un divertido musical familiar donde personajes tan queridos como Peter Pan,…』;conocevalencia:『un musical familiar de 80 minutos con música original』",
+     "判斷": "官方文案點名 Peter Pan 角色群 → Garfio 確為虎克船長;isla del tesoro 為金銀島"
+    },
+    {
+     "round": 2,
+     "目的": "取兩個專名的權威繁簡譯法",
+     "查詢": "中文維基 API 變體轉換『虎克船長』『金銀島』",
+     "看到什麼": "虎克船長:zh-tw=虎克船長 / zh-cn=铁钩船长(差異大);金銀島:zh-tw=金銀島 / zh-cn=金银岛",
+     "判斷": "若我憑印象寫,簡體會誤寫成『虎克船长』——查證後才知大陸作『铁钩船长』。採維基變體"
+    }
+   ],
+   "group": "garfio y la isla del tesoro",
+   "verdict": "translate",
+   "tw": "虎克船長與金銀島",
+   "cn": "铁钩船长与金银岛",
+   "confidence": "high",
+   "why": "瓦倫西亞 Teatro Olympia 的家庭音樂劇,Garfio=《彼得潘》的虎克船長,isla del tesoro=《金銀島》。⚠ 這組的台陸譯名差異很大:虎克船長(繁)vs 铁钩船长(簡),取自中文維基變體轉換,不是我自己配的。",
+   "sources": [
+    "https://www.teatro-olympia.com/garfio-y-la-isla-del-tesoro",
+    "https://www.atrapalo.com/entradas/garfio-y-la-isla-del-tesoro/",
+    "https://www.applausa.com/eventos/",
+    "https://conocevalencia.es/",
+    "https://zh.wikipedia.org/wiki/虎克船長",
+    "https://zh.wikipedia.org/wiki/金銀島"
+   ],
+   "evidence": "Teatro Olympia:『Garfio y la isla del tesoro. Un musical para toda la familia.』/ Applausa:『es un divertido musical familiar donde personajes tan queridos como Peter Pan,…』/ 維基變體:虎克船長 zh-tw=虎克船長, zh-cn=铁钩船长"
+  },
+  "a media luz": {
+   "rounds": [
+    {
+     "round": 1,
+     "目的": "確認製作身份與形式",
+     "查詢": "\"A media luz\" musical tango Madrid teatro 2026 espectáculo",
+     "看到什麼": "Espacio Alma 官方與 OnBeat Producciones 官方皆寫『Musical de tango para tres cuerpos y una ciudad. A Media Luz nace del deseo de poner en diálogo el tango tradicional con las formas contemporáneas de amar』;entradas.com『Tres vidas están a punto de cruzarse en una ciudad donde cada tango guarda un secreto. De temática LGTBIQ+, A Media Luz es una historia sobre el amor, la libertad y los vínculos』",
+     "判斷": "原創探戈音樂劇、LGBTQ+ 題材,身份確認。題名同時是經典探戈曲名 → 必須查該曲有無既定中譯,不能直接自譯"
+    },
+    {
+     "round": 2,
+     "目的": "查《A media luz》這首探戈名曲的既定中文曲名",
+     "查詢": "\"A media luz\" 探戈 名曲 中文 譯名 Donato",
+     "看到什麼": "只找到一個 UGC 來源:YouTube 吉他演奏影片『A Media Luz(朦朧燈光下)』,說明是經典阿根廷探戈名曲;博客來的探戈選輯只列西文原名",
+     "判斷": "單一業餘來源不足以當既定譯名 → 依使用者要求,不確定就再 dive in"
+    },
+    {
+     "round": 3,
+     "目的": "找出版品級的曲名對照表(樂譜書通常有正式中文曲名)",
+     "查詢": "阿根廷探戈 名曲 \"A Media Luz\" 中文 曲名 朦胧 OR 微光 OR 半明",
+     "看到什麼": "劉清祥編著《中外名曲簡用套譜(專業用)》的目錄逐字列『A MEDIA LUZ-微光』,並在博客來、音樂家小舖、大陸書店、古韻社、台北音樂家書房五個通路的商品頁一致出現(同一出版品的目錄)",
+     "判斷": "正式出版樂譜的曲名對照 > YouTube 業餘影片 → 採『微光』。繁簡同形"
+    }
+   ],
+   "group": "a media luz",
+   "verdict": "translate",
+   "tw": "微光",
+   "cn": "微光",
+   "confidence": "high",
+   "why": "OnBeat Producciones 的原創探戈音樂劇(Espacio Alma,馬德里),題名借用 Edgardo Donato 的經典探戈名曲《A media luz》。該曲在中文有【正式出版品】的曲名對照:劉清祥編著《中外名曲簡用套譜》列『A MEDIA LUZ-微光』,四個獨立通路目錄一致。故採『微光』,非我自譯。",
+   "sources": [
+    "https://www.espacioalma.es/eventos",
+    "https://www.espectaculosonbeat.com/",
+    "https://www.entradas.com/artist/a-media-luz/",
+    "https://www.carteleramusicales.es/a-media-luz",
+    "https://www.books.com.tw/products/",
+    "https://musikershop.com/goods",
+    "https://www.talubook.com/product",
+    "https://www.goodin.com.tw/goods",
+    "https://www.musiker.com.tw/MusicBook"
+   ],
+   "evidence": "Espacio Alma/OnBeat:『Musical de tango para tres cuerpos y una ciudad.』/ entradas.com:『De temática LGTBIQ+, A Media Luz es una historia sobre el amor, la libertad y los vínculos.』/《中外名曲簡用套譜》目錄:『A MEDIA LUZ-微光』",
+   "捨棄的候選": "『朦朧燈光下』——僅出現在單一 YouTube 業餘演奏影片,無出版品或機構背書"
+  },
+  "el alma al aire": {
+   "rounds": [
+    {
+     "round": 1,
+     "目的": "確認製作身份",
+     "查詢": "\"El Alma al aire\" musical Alejandro Sanz Madrid teatro",
+     "看到什麼": "Stage Entertainment España 官方:『Compra tus entradas para El Alma al Aire… déjate llevar por las canciones de Alejandro Sanz』;官方 IG『EL ALMA AL AIRE, EL MUSICAL Con las canciones de Alejandro Sanz Nuevo musical de Stage Entertainment España. Estreno 1 de octubre 2026』;Teatro Coliseum 馬德里;編舞 Lynne Page",
+     "判斷": "確為以 Alejandro Sanz 歌曲構成的 jukebox 音樂劇,題名取自其 2000 年同名專輯 → 要查專輯名在中文圈怎麼寫"
+    },
+    {
+     "round": 2,
+     "目的": "查該專輯在中文圈是否有既定譯名",
+     "查詢": "Alejandro Sanz \"El Alma al Aire\" 專輯 OR 专辑 中文 譯名",
+     "看到什麼": "博客來商品頁標題『Alejandro Sanz / El Alma Al Aire』(藝人名譯為亞雷漢德羅桑斯,但【專輯名保留原文】);中文維基『亞雷漢德羅·桑斯』:『他接下來在2000年發行的專輯 El Alma al Aire 在推出的第一周就有百萬張的銷售量』(原文不譯);百度百科『2000年底发行的「El Alma Al Aire」专辑』(原文不譯);酷狗音樂同",
+     "判斷": "四個中文來源(含台灣最大通路、中文維基、百度百科)一致保留原文 → 判定不翻,信心 high"
+    }
+   ],
+   "group": "el alma al aire",
+   "verdict": "keep",
+   "tw": null,
+   "cn": null,
+   "confidence": "high",
+   "why": "保留原文不翻。題名就是 Alejandro Sanz 2000 年專輯《El Alma al Aire》的名字,而【中文圈對這張專輯一律保留西文原名】:博客來商品頁、中文維基『亞雷漢德羅·桑斯』條目、百度百科、酷狗音樂全部寫原文不譯。我若自創『敞開的靈魂』之類,等於製造一個中文世界不存在的名字,且與所有既有中文資料對不上。歸『原文即通用』類。",
+   "sources": [
+    "https://www.stage.es/musicales/el-alma-al-aire/",
+    "https://www.entradas.com/artist/el-alma-al-aire/",
+    "https://www.instagram.com/elalmaalairemusical/",
+    "https://madridesteatro.com/obra/el-alma-al-aire/",
+    "https://www.books.com.tw/products/",
+    "https://zh.wikipedia.org/wiki/亞雷漢德羅·桑斯",
+    "https://baike.baidu.com/item/亚利杭德罗·桑兹"
+   ],
+   "evidence": "Stage Entertainment 官方 IG:『EL ALMA AL AIRE, EL MUSICAL Con las canciones de Alejandro Sanz. Nuevo musical de Stage Entertainment España. Estreno 1 de octubre 2026』/ 中文維基:『他接下來在2000年發行的專輯 El Alma al Aire 在推出的第一周就有百萬張的銷售量』/ 百度百科:『2000年底发行的「El Alma Al Aire」专辑也获得拉丁葛莱美奖年度最佳专辑…』"
+  },
+  "mentiras": {
+   "rounds": [
+    {
+     "round": 1,
+     "目的": "查是否已有中文譯名",
+     "查詢": "\"Mentiras el musical\" México 中文 OR 譯名 OR 谎言 音乐剧",
+     "看到什麼": "mxhuaren.com(墨西哥華人網)報導:『玛尔·孔特雷拉斯演出《谎言》后紧急入院』,內文:『背景:《Mentiras, el musical》是墨西哥城热门音乐剧,常年在 Teatro de los Insurgentes 上演,主演多为知名艺人』",
+     "判斷": "找到一個中文用例《谎言》,但單一來源 → 依規則要再查"
+    },
+    {
+     "round": 2,
+     "目的": "找第二個中文來源交叉",
+     "查詢": "墨西哥 音乐剧 《谎言》 Mentiras 八十年代 金曲",
+     "看到什麼": "Google 回『找不到符合搜尋字詞的文件』——零結果",
+     "判斷": "中文圈對這齣的討論極少,交叉失敗 → 再換角度查豆瓣"
+    },
+    {
+     "round": 3,
+     "目的": "查豆瓣是否有此劇條目(中國劇目資料庫)",
+     "查詢": "site:douban.com Mentiras 音乐剧 OR 舞台剧 墨西哥",
+     "看到什麼": "只搜到不相關的墨西哥電視劇演職員頁(Lo que callamos las mujeres),無此音樂劇條目",
+     "判斷": "豆瓣無條目 → 確認中文圈無既定譯名。改以『詞義明確 + 單一中文媒體用例』譯為謊言/谎言,信心誠實標 medium"
+    },
+    {
+     "round": 4,
+     "目的": "確認製作身份與規模(避免同名混淆)",
+     "查詢": "\"Mentiras\" musical México \"Teatro Aldama\" OR \"Insurgentes\" jukebox 80s español",
+     "看到什麼": "宣傳素材逐字『MENTIRAS el Musical EL CLÁSICO MEXICANO QUE HA HECHO HISTORIA TEATRO ALDAMA』;西語維基有專條『Mentiras: el musical…3 de junio del 2022, en el Teatro Aldama』;IG 貼文『Amor, traición y hits que marcaron los 80s』;另有 Netflix 影集《Mentiras la serie》帶動討論",
+     "判斷": "身份無誤,確為墨西哥經典 jukebox 音樂劇"
+    }
+   ],
+   "group": "mentiras",
+   "verdict": "translate",
+   "tw": "謊言",
+   "cn": "谎言",
+   "confidence": "medium",
+   "why": "墨西哥指標性 jukebox 音樂劇(80 年代西語金曲),Teatro Aldama 長演,西語維基有專條,並衍生 Netflix 影集《Mentiras la serie》。mentiras=lies 詞義無歧義;中文有【一個】媒體用例:墨西哥華人網稱《谎言》。⚠ 信心標 medium 而非 high:只有單一中文來源,豆瓣無此條目,不算既定譯名,是『詞義明確 + 一個用例』。",
+   "sources": [
+    "https://mxhuaren.com/news/",
+    "https://es.wikipedia.org/wiki/Mentiras:_el_musical",
+    "https://www.instagram.com/punto.guate/",
+    "https://www.instagram.com/edenpintos/",
+    "https://movie.douban.com/"
+   ],
+   "evidence": "墨西哥華人網:『玛尔·孔特雷拉斯演出《谎言》后紧急入院…《Mentiras, el musical》是墨西哥城热门音乐剧,常年在 Teatro de los Insurgentes 上演』/ 宣傳素材:『MENTIRAS el Musical EL CLÁSICO MEXICANO QUE HA HECHO HISTORIA TEATRO ALDAMA』"
+  },
+  "libre": {
+   "rounds": [
+    {
+     "round": 1,
+     "目的": "確認製作身份",
+     "查詢": "\"Libre\" musical Nino Bravo Madrid teatro 2026 jukebox",
+     "看到什麼": "MadridTeatro:『Libre, el musical de Nino Bravo prorroga hasta el 13 de septiembre. Del 24 de julio al 13 septiembre 2026. Proponemos un viaje por la vida y carrera de…』;Threads『NINO BRAVO: LIBRE, EL MUSICAL en el Teatro Amaya』;MAKMA 專訪:『Con Libre. El musical de Nino Bravo, la compañía Melomans rinde tributo al cantante valenciano』",
+     "判斷": "身份確認。⚠ 同時注意到有一部同名電影《Libre》正在拍攝(dispararte.com『Ha arrancado oficialmente el rodaje de Libre』),不是本劇,不可混淆"
+    },
+    {
+     "round": 2,
+     "目的": "查〈Libre〉這首歌/這齣劇的中文說法",
+     "查詢": "Nino Bravo \"Libre\" 歌曲 中文 譯名 自由 西班牙",
+     "看到什麼": "Foro3D 中文版(標註『从西班牙语翻译』):『Musical Libre sobre Nino Bravo amplía fechas hasta el 13 de septiembre…献给尼诺·布拉沃的音乐剧《自由》已延长在马德里…』;百度百科 Nino Bravo 條目:『尼诺·布拉沃留下了《Libre》、《Te Quiero, Te Quiero》、《Un Beso Y Una Flor》等多首歌曲』(歌名保留原文)",
+     "判斷": "針對【本劇】的中文報導用《自由》,但那是機翻站;百度在列【歌曲】時保留原文。取捨:劇名註記的目的是讓中文讀者辨識,libre=自由 無歧義且有用例 → 採《自由》,信心誠實標 medium"
+    }
+   ],
+   "group": "libre",
+   "verdict": "translate",
+   "tw": "自由",
+   "cn": "自由",
+   "confidence": "medium",
+   "why": "Melomans 劇團向 Nino Bravo 致敬的 jukebox 音樂劇(Teatro Amaya,馬德里),全名 Nino Bravo: Libre, el musical。題名取自 Nino Bravo 1972 年名曲〈Libre〉。libre=自由 詞義無歧義,且有中文報導【針對這齣音樂劇】用《自由》。⚠ 標 medium:該中文來源是機器翻譯的網站;而百度百科在列他的歌時是保留原文《Libre》不譯的,兩者有張力,誠實記下。",
+   "sources": [
+    "https://www.facebook.com/MadridTeatro",
+    "https://www.makma.net/pau-ferrer-melomans/",
+    "https://teatromadrid.com/pagina/musicales",
+    "https://foro3d.com/ch-cn/",
+    "https://baike.baidu.com/item/Nino Bravo",
+    "https://dispararte.com/"
+   ],
+   "evidence": "MAKMA:『Con Libre. El musical de Nino Bravo, la compañía Melomans rinde tributo al cantante valenciano mediante una propuesta escénica que explora…』/ Foro3D 中文:『献给尼诺·布拉沃的音乐剧《自由》已延长在马德里…』/ 百度百科:『尼诺·布拉沃留下了《Libre》、《Te Quiero, Te Quiero》…等多首歌曲』",
+   "須留意": "同名電影《Libre》(向 Nino Bravo 致敬的劇情片)2026 年開拍,與本舞台劇不同,日後查證勿混淆"
+  },
+  "pegados": {
+   "rounds": [
+    {
+     "round": 1,
+     "目的": "確認製作身份、規模與劇情(劇名要對得上劇情才不會亂譯)",
+     "查詢": "\"Pegados\" musical Madrid teatro original español premio",
+     "看到什麼": "Masescena:『Desde su estreno en 2010, Pegados ha recorrido nueve países y acumula cinco premios entre los más prestigiosos del teatro musical español』;entradas.com:『Ganador de cinco premios —tres Premis Butaca y dos Premios Max—, Pegados es uno de los musicales originales españoles de mayor éxito internacional』;atrapalo:『Una comedia musical original donde dos desconocidos despiertan pegados y el amor, el deseo y el humor se mezclan sin remedio』;todoMUSICALES 劇情:『Dos jóvenes se conocen en una discoteca y terminan consumando el acto sexual en un vulgar lavabo. Pero los protagonistas se encontrarán con un…』;本季由 Gabriel Olivares 執導,Gran Teatro Pavón",
+     "判斷": "劇名 = 劇情狀態(兩人黏住分不開),詞義與劇情完全對應。接著要確認中文圈有無既定譯名"
+    },
+    {
+     "round": 2,
+     "目的": "查中文是否已有譯名(不能自創覆蓋既有說法)",
+     "查詢": "\"Pegados\" 音樂劇 OR 音乐剧 西班牙 中文 黏",
+     "看到什麼": "零相關結果(唯一命中是馬德里某店家的西語評論,與本劇無關)",
+     "判斷": "中文圈無既定譯名 → 以詞義直譯『黏在一起』;pegado 是普通形容詞,不涉專名音譯,無發明風險"
+    }
+   ],
+   "group": "pegados",
+   "verdict": "translate",
+   "tw": "黏在一起",
+   "cn": "黏在一起",
+   "confidence": "high",
+   "why": "西班牙原創音樂劇(2010 首演),劇名 Pegados 是形容詞複數,直指劇情核心:兩個陌生人一夜後醒來『黏在一起』分不開。Wiktionary 已驗 pegado = cleaving / sticking / stuck。中文圈查無既定譯名 → 依規則以詞義直譯,普通形容詞無音譯風險。",
+   "sources": [
+    "https://www.masescena.es/pegados-regresa-madrid/",
+    "https://www.broadwayworld.com/spain/",
+    "https://madridesteatro.com/obra/pegados/",
+    "https://www.atrapalo.com/entradas/pegados/",
+    "https://www.entradas.com/artist/pegados/",
+    "https://www.carteleramusicales.es/",
+    "https://www.elespanol.com/",
+    "http://www.todomusicales.com/content/",
+    "https://en.wiktionary.org/wiki/pegado"
+   ],
+   "evidence": "atrapalo:『Una comedia musical original donde dos desconocidos despiertan pegados y el amor, el deseo y el humor se mezclan sin remedio.』/ entradas.com:『Ganador de cinco premios —tres Premis Butaca y dos Premios Max—, Pegados es uno de los musicales originales españoles de mayor éxito internacional.』/ Wiktionary(Spanish pegado):『cleaving, sticking, stuck』"
+  },
+  "villanas": {
+   "rounds": [
+    {
+     "round": 1,
+     "目的": "確認製作身份與角色群(才知道 villanas 指誰)",
+     "查詢": "\"Villanas\" musical Madrid BRODWEI teatro temporada",
+     "看到什麼": "BRODWEI 官網:『VILLANAS…Lugar: Teatros Arlequín Gran Vía, Madrid;Periodo: Tercera temporada;Duración: 75 minutos aprox.;Edad recomendada: +14 años』;BroadwayWorld:『Espectáculo musical de la compañía BRODWEI con canciones originales. Maléfica, Úrsula, la Reina Malvada y la Madrastra de…』;Revista Godot 分類『Género: Comedia musical』;Teatros Luchana:『Villanas es una comedia musical donde las malas no son tan malas… o eso dicen ellas』",
+     "判斷": "確認是原創喜劇音樂劇,主角為經典童話反派女角群。接著查中文譯法"
+    },
+    {
+     "round": 2,
+     "目的": "查中文既定譯名,以及 villana 在中文的慣用對應",
+     "查詢": "\"Villanas\" 音樂劇 西班牙 中文 反派 OR 壞女人",
+     "看到什麼": "本劇無任何中文譯名。但搜到中文劇名對照的實際用例:『西班牙劇名:Villana: los protagonistas oyen mi voz interior / 中文劇名:穿書女反派:男主角們聽得到我心聲』——即 Villana → 女反派",
+     "判斷": "本劇無既定譯名,但 villana 在中文的慣用對應是『女反派』,有實際對照用例支撐,非我自創。採『女反派』"
+    }
+   ],
+   "group": "villanas",
+   "verdict": "translate",
+   "tw": "女反派",
+   "cn": "女反派",
+   "confidence": "high",
+   "why": "BRODWEI 劇團的原創喜劇音樂劇(馬德里 Teatro Arlequín Gran Vía 第三季),角色是童話/迪士尼反派女角:Maléfica(梅菲瑟)、Úrsula(烏蘇拉)、la Reina Malvada(壞皇后)、la Madrastra(繼母)。villana=villainess(Wiktionary 已驗),而中文對『Villana』的對應用法就是『女反派』(在中文劇名對照中實際出現)。中文圈無此劇既定譯名,以詞義直譯。",
+   "sources": [
+    "https://www.brodwei.com/villanas",
+    "https://www.broadwayworld.com/spain/",
+    "https://revistagodot.com/obras/villanas/",
+    "https://www.facebook.com/TeatrosLuchana",
+    "https://www.instagram.com/brodwei_/",
+    "https://en.wiktionary.org/wiki/villana"
+   ],
+   "evidence": "BroadwayWorld:『Espectáculo musical de la compañía BRODWEI con canciones originales. Maléfica, Úrsula, la Reina Malvada y la Madrastra de…』/ Teatros Luchana:『Villanas es una comedia musical donde las malas no son tan malas… o eso dicen ellas.』/ 中文劇名對照用例:『西班牙劇名:Villana… 中文劇名:穿書女反派…』/ Wiktionary(Spanish villana):『villainess』"
+  },
+  "busco pis": {
+   "rounds": [
+    {
+     "round": 1,
+     "目的": "確認製作身份、語言與主題",
+     "查詢": "\"Busco pis\" musical Barcelona comèdia teatre Apolo",
+     "看到什麼": "Teatre Apolo 官方:『Busco Pis!, un musical de lloguer temporal. Una sàtira implacable i divertidíssima dels nostres dies que riu absolutament de tot el món.』;Teatre Barcelona 標明作者『Xavi Morató i Gerard Sesé』;Club Vanguardia『Busco pis! Un musical en lloguer temporal』檔期 2026-10-16 至 2027-01-23;IG culturajove_cat:『Buscar pis a Barcelona és una tasca impossible』",
+     "判斷": "確認為加泰語原創喜劇音樂劇,主題就是『找房子』。副標 un musical de lloguer temporal(臨時出租的音樂劇)是租屋雙關,不譯"
+    },
+    {
+     "round": 2,
+     "目的": "確認詞義並排除既有中文譯名",
+     "查詢": "Wiktionary 加泰語 pis 詞條 + 中文搜尋",
+     "看到什麼": "Wiktionary(Catalan pis):『floor / flat』;中文圈無任何此劇資料",
+     "判斷": "以詞義直譯『我要找房子!』。台灣語境用『找房子』比『找公寓』自然,且 pis 在加泰語即一般住宅單位"
+    }
+   ],
+   "group": "busco pis",
+   "verdict": "translate",
+   "tw": "我要找房子！",
+   "cn": "我要找房子！",
+   "confidence": "high",
+   "why": "加泰語喜劇音樂劇(Teatre Apolo 巴塞隆納),主題是巴塞隆納租屋難。Wiktionary 已驗加泰語 pis = floor / flat(公寓),busco = 我在找。中文圈查無既定譯名,以詞義直譯,無專名音譯風險。",
+   "sources": [
+    "https://teatreapolo.com/cartellera/busco-pis/",
+    "https://www.teatrebarcelona.com/busco-pis",
+    "https://club.lavanguardia.com/busco-pis/",
+    "https://www.atrapalo.com/entradas/busco-pis/",
+    "https://www.entradas.com/event/busco-pis/",
+    "https://en.wiktionary.org/wiki/pis"
+   ],
+   "evidence": "Teatre Apolo:『Busco Pis!, un musical de lloguer temporal. Una sàtira implacable i divertidíssima dels nostres dies que riu absolutament de tot el món.』/ Wiktionary(Catalan pis):『floor / flat』"
+  },
+  "el fil invisible": {
+   "rounds": [
+    {
+     "round": 1,
+     "目的": "確認製作身份與原著",
+     "查詢": "\"El fil invisible\" musical Barcelona Míriam Tirado conte",
+     "看到什麼": "作者官網 miriamtirado.com 有本劇專頁:『El fil invisible, el musical parla sobre els vincles que ens uneixen amb els que més volem』;Teatre Barcelona:『El fil invisible, el musical, es basa en el conte de Míriam Tirado』;Teatre Goya:『Basat en el conte El fil invisible de Míriam Tirado, publicat per B de Blok Penguin Random House Grupo Editorial. Direcció: Alícia Serrat』;製作方 Viu el Teatre;Kursaal 劇情:『La Míriam és una escriptora que busca inspiració per escriure un conte…』",
+     "判斷": "改編自繪本 → 若繪本有中文版,那才是權威譯名,必須先查"
+    },
+    {
+     "round": 2,
+     "目的": "查繪本有無中文版(繪本中譯優先於我自譯)",
+     "查詢": "Míriam Tirado \"El hilo invisible\" 繪本 中文版 看不見的線",
+     "看到什麼": "無中文版。但 Penguin Random House 官方書目與 Amazon 皆以雙語書名列出:『El hilo invisible / The Invisible Thread』(B de Blok 出版,64 頁,5-8 歲)",
+     "判斷": "沒有中文版,但有【官方英文題名 The Invisible Thread】→ 據以中譯『看不見的線』"
+    },
+    {
+     "round": 3,
+     "目的": "反查是否已有人用『看不見的線』指這本書(避免撞既有不同譯法)",
+     "查詢": "\"看不見的線\" OR \"看不见的线\" 繪本 Tirado 西班牙 親子",
+     "看到什麼": "Google 回『找不到符合搜尋字詞的文件』——零結果",
+     "判斷": "中文圈完全沒有這本書的討論,不存在既有譯法衝突 → 採官方英文題名直譯"
+    }
+   ],
+   "group": "el fil invisible",
+   "verdict": "translate",
+   "tw": "看不見的線",
+   "cn": "看不见的线",
+   "confidence": "high",
+   "why": "改編自 Míriam Tirado 的同名加泰語繪本。繪本【沒有中文版】(兩輪搜尋皆零結果),但 Penguin Random House 出版的官方書名是雙語並列『El hilo invisible / The Invisible Thread』——有【官方英文題名】可當橋樑,中譯『看不見的線』有依據,不是我自創。這與歐陸批次 A Padlás→官方英文 The Attic→閣樓 是同一個模式。",
+   "sources": [
+    "https://www.miriamtirado.com/event/",
+    "https://www.teatrebarcelona.com/el-fil-invisible",
+    "https://www.teatregoya.cat/el-fil-invisible",
+    "https://viuelteatre.com/",
+    "https://www.kursaal.cat/acte/el-fil-invisible",
+    "https://www.penguinrandomhouse.com/books/el-hilo-invisible/",
+    "https://www.barcelona.cat/"
+   ],
+   "evidence": "Teatre Goya:『Basat en el conte El fil invisible de Míriam Tirado, publicat per B de Blok Penguin Random House Grupo Editorial.』/ Penguin Random House 官方書名:『El hilo invisible / The Invisible Thread. By Míriam Tirado. Age Range: 5-8 years.』"
+  },
+  "el hilo invisible": {
+   "rounds": [
+    {
+     "round": 1,
+     "目的": "確認與加泰語版為同一作品的不同語言版",
+     "查詢": "沿用 el fil invisible 的查證結果 + 繪本西語原名比對",
+     "看到什麼": "繪本官方書名即西語『El hilo invisible』(加泰語原名 El fil invisible);兩者為同一作品的兩個語言版本",
+     "判斷": "譯名與加泰語版一致,不另創"
+    }
+   ],
+   "group": "el hilo invisible",
+   "verdict": "translate",
+   "tw": "看不見的線",
+   "cn": "看不见的线",
+   "confidence": "high",
+   "why": "與 el fil invisible 是同一部作品的西語版(加泰語 el fil = 西語 el hilo = 線),原著同為 Míriam Tirado 繪本。譯名同步,依據同上(Penguin Random House 官方英文題名 The Invisible Thread)。",
+   "sources": [
+    "https://www.penguinrandomhouse.com/books/el-hilo-invisible/",
+    "https://www.miriamtirado.com/el-hilo-invisible/"
+   ],
+   "evidence": "Penguin Random House:『El hilo invisible / The Invisible Thread』;miriamtirado.com:『«El hilo invisible» es un cuento ilustrado en formato grande y de 64 páginas, sobre los vínculos que nos unen.』",
+   "待辦": "這兩組(el fil invisible / el hilo invisible)是同一部作品的加泰語版與西語版,先前筆記已標記【應考慮合併為同一 group】,屬另一項工作,不在本次劇名任務範圍"
+  },
+  "espejito espejito": {
+   "rounds": [
+    {
+     "round": 1,
+     "目的": "確認製作身份與題名來源",
+     "查詢": "\"Espejito, Espejito\" musical Madrid Dalpao Espacio Broadway familiar",
+     "看到什麼": "Dalpao 官方 IG:『ESPEJITO, ESPEJITO ¿Final feliz? ¡Y un cuerno! Está princesa vuelve… pero no como la recuerdas. Ahora raja de sus amigas princesas, se queja de su príncipe con barriga y canta sus miserias』;Taquilla.com 上架為『Espejito Espejito - Dalpao Producciones』;另有宣傳寫全名『ESPEJITO, ESPEJITO MÁGICO - Un musical de cuento inolvidable』,Espacio Broadway 週六場、第 2 季",
+     "判斷": "確認為顛覆童話的家庭喜劇音樂劇,題名取自《白雪公主》魔鏡台詞 → 中文應沿用該台詞的既定說法,不可自譯"
+    },
+    {
+     "round": 2,
+     "目的": "確認中文對這句台詞的固定寫法(繁/簡)",
+     "查詢": "白雪公主 \"魔鏡魔鏡\" OR \"魔镜魔镜\" 台詞 誰是最美",
+     "看到什麼": "國立歷史博物館官方社群:『魔鏡...魔鏡...誰是世界上最美麗的女人?』這句台詞…就是童話故事《白雪公主》中的經典台詞』;希平方教學專欄:『《白雪公主》中最有名的台詞就是壞皇后問魔鏡:Magic Mirror, on the wall…(魔鏡魔鏡,這世界上最美的人是誰?)』;LINE TODAY:『魔鏡~魔鏡~誰是世界上最美的人啊?』;知乎專欄(簡體):『《白雪公主》中标志性的台词「魔镜,魔镜,谁是世界上最美丽的女人?」』",
+     "判斷": "繁『魔鏡魔鏡』、簡『魔镜魔镜』皆有多個來源(含公立博物館、教學媒體、知乎)→ 採用,信心 high"
+    }
+   ],
+   "group": "espejito espejito",
+   "verdict": "translate",
+   "tw": "魔鏡魔鏡",
+   "cn": "魔镜魔镜",
+   "confidence": "high",
+   "why": "Dalpao Producciones 的家庭喜劇音樂劇(Espacio Broadway 馬德里),顛覆版公主故事。題名 Espejito, espejito 就是《白雪公主》裡壞皇后問魔鏡的西語台詞開頭,中文既定說法是『魔鏡魔鏡』,多個中文來源一致,非我自譯。",
+   "sources": [
+    "https://www.instagram.com/dalpaoproducciones/",
+    "https://www.taquilla.com/espectaculos/",
+    "https://www.facebook.com/nmh.museum",
+    "https://www.hopenglish.com/",
+    "https://zhuanlan.zhihu.com/",
+    "https://today.line.me/tw/"
+   ],
+   "evidence": "Dalpao IG:『ESPEJITO, ESPEJITO ¿Final feliz? ¡Y un cuerno! Está princesa vuelve… pero no como la recuerdas.』/ 國立歷史博物館:『「魔鏡...魔鏡...誰是世界上最美麗的女人?」這句台詞大家一定不陌生,就是童話故事《白雪公主》中的經典台詞』/ 知乎:『《白雪公主》中标志性的台词「魔镜,魔镜,谁是世界上最美丽的女人?」』"
+  },
+  "el misterio de chamberi": {
+   "rounds": [
+    {
+     "round": 1,
+     "目的": "確認製作身份與題名所指",
+     "查詢": "\"El Misterio de Chamberí\" musical Madrid metro 1919 teatro",
+     "看到什麼": "entradas.com:『Viaja al Madrid de 1919 y vive una mágica historia de amor entre dos médicos de distintas épocas. Un gran musical con viajes en el tiempo』;同站 Biography:『La acción comienza con un gran número musical de apertura que nos lleva al día 31 de octubre de 1919, momento en el que se…』;IG 多則:『EL MISTERIO DE CHAMBERÍ MUSICAL 12 de septiembre Espacio Alma. Un viaje musical al Madrid de 1919, justo cuando se inaugura…』;Teleaudiencias:『Pedro Ordoñez firma el guión de esta obra, con música de Pablo Miyar』",
+     "判斷": "確認為原創時空穿越音樂劇,Chamberí 指馬德里的地區/地鐵站 → 必須查該地名的既定中文譯名,不可自行音譯"
+    },
+    {
+     "round": 2,
+     "目的": "查 Chamberí 的既定中文譯名(繁/簡)",
+     "查詢": "馬德里 Chamberí 地鐵 鬼站 中文 譯名 昌貝里 OR 查貝里",
+     "看到什麼": "第一輪只回傳圖片區,但其中 Booking.com 的繁中標題出現『西班牙馬德里錢貝里最佳飯店』——線索指向『錢貝里』,但單一商業網站不夠",
+     "判斷": "需要權威來源確認,再查一輪"
+    },
+    {
+     "round": 3,
+     "目的": "用權威來源確認繁簡兩種寫法",
+     "查詢": "马德里 \"钱贝里\" OR \"錢貝里\" Chamberí 区 OR 區",
+     "看到什麼": "中文維基【專條】:『錢貝里(西班牙語:Chamberí)是西班牙首都馬德里的21個區之一,下轄有6個分區…面積469.22公頃』(zh-tw『錢貝里區』/ zh-cn『钱贝里区』);馬德里旅遊局官方中文頁 esmadrid.com:『钱贝里区由 Trafalgar, Arapiles, Gaztambide, Vallehermoso, Ríos Rosas和Almagro六个小区组成』;Booking.com、Trip.com、可樂旅遊、Airbnb 亦一致用錢貝里/钱贝里",
+     "判斷": "中文維基專條 + 官方旅遊局中文頁 + 多家旅遊平台一致 → 繁『錢貝里』、簡『钱贝里』,信心 high。⚠ 順帶排除混淆:Chamartín(查馬丁)是另一個區,不可搞混"
+    }
+   ],
+   "group": "el misterio de chamberi",
+   "verdict": "translate",
+   "tw": "錢貝里之謎",
+   "cn": "钱贝里之谜",
+   "confidence": "high",
+   "why": "Espacio Alma(馬德里)的原創音樂劇:1919 年馬德里、兩個不同時代醫生的時空愛情,背景正是 1919-10-31 馬德里地鐵通車(Chamberí 即那座 1966 年關閉、著名的『鬼站』)。Chamberí 是馬德里 21 個行政區之一,【有既定中文譯名】:中文維基專條『錢貝里區/钱贝里区』,馬德里旅遊局官方中文頁亦作『钱贝里区』→ 地名音譯不是我發明的。misterio=謎。",
+   "sources": [
+    "https://www.entradas.com/artist/el-misterio-de-chamberi/",
+    "https://www.carteleramusicales.es/el-misterio-de-chamberi",
+    "https://www.atrapalo.com/entradas/el-misterio-de-chamberi/",
+    "https://tvteleaudiencias.wordpress.com/",
+    "https://zh.wikipedia.org/wiki/錢貝里區",
+    "https://www.esmadrid.com/zh-hans/chamberi",
+    "https://www.booking.com/"
+   ],
+   "evidence": "entradas.com:『Viaja al Madrid de 1919 y vive una mágica historia de amor entre dos médicos de distintas épocas. Un gran musical con viajes en el tiempo』/ 中文維基:『錢貝里(西班牙語:Chamberí)是西班牙首都馬德里的21個區之一』/ 馬德里旅遊局:『钱贝里区由 Trafalgar, Arapiles, Gaztambide… 六个小区组成』"
+  },
+  "la opera de los tres centavos con coque malla": {
+   "rounds": [
+    {
+     "round": 1,
+     "目的": "確認是否為 Brecht/Weill 原作(而非同名他作)",
+     "查詢": "\"La Ópera de los tres centavos\" \"Coque Malla\" Madrid Brecht Weill teatro",
+     "看到什麼": "Teatro Infanta Isabel 官方:『La ópera de los tres centavos con COQUE MALLA · De Bertolt Brecht (texto) y Kurt Weill (música) en colaboración de Elisabeth Hauptmann』;BroadwayWorld:『Coque Malla se convierte en Mackie Navaja en LA ÓPERA DE LOS TRES CENTAVOS, la obra de Bertolt Brecht y Kurt Weill』;馬德里自治區官網有演職員表",
+     "判斷": "身份確認無誤,連 Hauptmann 的協作署名都在,是正典版本"
+    },
+    {
+     "round": 2,
+     "目的": "確認中文既定譯名(三便士 vs 三分錢)",
+     "查詢": "布萊希特 \"三便士歌劇\" OR \"三分錢歌劇\" 韋爾 中文 譯名",
+     "看到什麼": "臺北表演藝術中心(官方)2026 年柏林劇團原裝來台:『柏林劇團《三便士歌劇》原裝來臺…劇情描述維多利亞時代的倫敦,由乞丐集團首領皮佑納與人稱「大刀麥基」的黑幫頭子分庭抗禮』;中央廣播電臺:『近百年前震撼歐洲劇壇的《三便士歌劇》(The Threepenny Opera)如今由柏林劇團原裝來台』;UDN、Yahoo新聞同;博客來有中文書《三便士歌劇》(貝托爾特·布萊希特)。⚠ 異譯:音樂家小舖的《西洋歌劇名作解說》用『三分錢歌劇(Die Dreigroschenoper)』",
+     "判斷": "《三便士歌劇》有國家級劇場與媒體背書、且中文維基把『三分錢歌劇』導向『三便士歌劇』→ 採三便士歌劇;三分錢歌劇列為異譯備查"
+    }
+   ],
+   "group": "la opera de los tres centavos con coque malla",
+   "verdict": "translate",
+   "tw": "三便士歌劇",
+   "cn": "三便士歌剧",
+   "confidence": "high",
+   "why": "確認是 Bertolt Brecht(劇本)與 Kurt Weill(音樂)的《Die Dreigroschenoper》西語製作(Teatro Infanta Isabel 馬德里,Coque Malla 飾 Mackie Navaja=大刀麥基)。中文既定譯名《三便士歌劇》,來源包含臺北表演藝術中心(官方)、中央廣播電臺、UDN、博客來中文書。副標『con Coque Malla』是主演姓名,依規則不譯(西葡不加副標,且為人名)。",
+   "sources": [
+    "https://www.teatroinfantaisabel.es/obra/",
+    "https://www.broadwayworld.com/spain/",
+    "https://madridesteatro.com/obra/la-opera-de-los-tres-centavos/",
+    "https://www.madrid.org/",
+    "https://tpac.org.taipei/news/",
+    "https://www.rti.org.tw/news/",
+    "https://search.books.com.tw/",
+    "https://musikershop.com/goods"
+   ],
+   "evidence": "Teatro Infanta Isabel:『La ópera de los tres centavos con COQUE MALLA · De Bertolt Brecht (texto) y Kurt Weill (música) en colaboración de Elisabeth Hauptmann』/ 臺北表演藝術中心:『柏林劇團《三便士歌劇》原裝來臺 布萊希特百年前剖見資本主義』/ 中央廣播電臺:『近百年前震撼歐洲劇壇的《三便士歌劇》(The Threepenny Opera)』",
+   "異譯備查": "《三分錢歌劇》——見於《西洋歌劇名作解說》,中文維基將此名導向《三便士歌劇》"
+  },
+  "ella era anita": {
+   "rounds": [
+    {
+     "round": 1,
+     "目的": "確認題名 Anita 指誰(是人名還是別的)",
+     "查詢": "\"Ella era Anita\" musical Barcelona Chita Rivera teatre",
+     "看到什麼": "Teatre Barcelona:『Ella era Anita és un homenatge a Chita Rivera, una figura cabdal de la història del teatre musical』;巴塞隆納市政府:『L\\u0027obra presenta la història d\\u0027una dona singular, inspirada en la figura de Chita Rivera』;Applausa:『Ella Era Anita es un musical lleno de emoción, música en directo y coreografías vibrantes que rinde homenaje a la mítica Chita Rivera y a todas las artistas que…』;BroadwayWorld:『El próximo 23 de marzo de 2026, el escenario del Teatre Condal acogerá el estreno de ELLA ERA ANITA』",
+     "判斷": "Anita = Chita Rivera 在《西城故事》飾演的角色名 → 要用該角色的既定中文譯名,不可自行音譯"
+    },
+    {
+     "round": 2,
+     "目的": "確認《西城故事》角色 Anita 的中文既定譯名",
+     "查詢": "西城故事 角色 Anita 中文 安妮塔",
+     "看到什麼": "哈佛商業評論繁體中文版(該文主角正是 Chita Rivera):『里薇拉一開始只是音樂劇歌隊的一員,但很快就來到鎂光燈下,在百老匯演出《西城故事》(West Side Story)的安妮塔(Anita)、《芝加哥》(Chicago)的薇瑪(Velma)』;中文維基『亞莉安娜·黛博塞』條目:『2021《西城故事》安妮塔(Anita)』;ELLE:『飾演「安妮塔」的演員麗塔莫瑞諾』;袁曉輝影評同",
+     "判斷": "多來源一致作『安妮塔』,且最相關的那篇(哈佛商業評論寫 Chita Rivera)也用此譯 → 題名譯『她曾是安妮塔』,信心 high"
+    }
+   ],
+   "group": "ella era anita",
+   "verdict": "translate",
+   "tw": "她曾是安妮塔",
+   "cn": "她曾是安妮塔",
+   "confidence": "high",
+   "why": "Teatre Condal(巴塞隆納)的音樂劇,向百老匯傳奇 Chita Rivera 致敬;Anita 正是她在《西城故事》原卡司飾演的角色。中文對該角色的既定譯名是『安妮塔』,而且最佳佐證正好是寫 Chita Rivera 的那篇:哈佛商業評論繁體中文版『里薇拉…在百老匯演出《西城故事》的安妮塔(Anita)』。ella era = 她曾是。",
+   "sources": [
+    "https://www.teatrecondal.cat/ella-era-anita/",
+    "https://www.teatrebarcelona.com/ella-era-anita",
+    "https://ajuntament.barcelona.cat/",
+    "https://www.applausa.com/events/",
+    "https://www.broadwayworld.com/spain/",
+    "https://www.hbrtaiwan.com/article/chita-rivera",
+    "https://zh.wikipedia.org/wiki/亞莉安娜·黛博塞"
+   ],
+   "evidence": "Teatre Barcelona:『Ella era Anita és un homenatge a Chita Rivera, una figura cabdal de la història del teatre musical』/ 哈佛商業評論繁中版:『里薇拉…在百老匯演出《西城故事》(West Side Story)的安妮塔(Anita)、《芝加哥》(Chicago)的薇瑪(Velma)』",
+   "順帶記錄": "哈佛商業評論把 Chita Rivera 譯為『奇塔·里薇拉』,中文維基條目名則為『奇塔·里韦拉』(簡)。本題名不含她的姓名,故不需要,但日後若有相關劇目可直接引用"
+  },
+  "assassinat per a dos": {
+   "rounds": [
+    {
+     "round": 1,
+     "目的": "確認是否為既有作品的加泰語版",
+     "查詢": "\"Assassinat per a dos\" musical Barcelona \"Murder for Two\" teatre",
+     "看到什麼": "零結果(查詢條件加了 Murder for Two 太嚴)",
+     "判斷": "條件過嚴,放寬重查"
+    },
+    {
+     "round": 2,
+     "目的": "放寬條件找製作資訊",
+     "查詢": "\"Assassinat per a dos\" teatre Barcelona musical",
+     "看到什麼": "Cartelera Musicales:『「Assassinat per a dos」: el aclamado y premiado musical de misterio se estrena en catalán en el Teatre Goya de Barcelona』;Atrapalo:『una comedia musical premiada que da una vuelta de tuerca al género detectivesco』;Viagogo 的頁面 URL 顯示西語版名為 Asesinato para dos",
+     "判斷": "確認是既有得獎作品的加泰語首演版,但還沒查到原作是誰 → 要打開官方頁看演職員表"
+    },
+    {
+     "round": 3,
+     "目的": "從官方頁的 Fitxa artística 取原作者",
+     "開啟頁面": "https://www.teatrebarcelona.com/espectacle/asesinato-para-dos(先試 teatregoya.cat 但擴充回『Permission denied for reading page content on this domain』)",
+     "看到什麼": "演職員表逐字:『Autoria: Kellen Blair / Joe Kinosian;Adaptació: Zenón Recalde;Direcció musical: Gaby Goldman』。劇情:『El policia Marcus Moscowitz somia convertir-se en detectiu… el famós novel·lista Arthur Whitney és assassinat… hi ha dotze sospitosos』,兩名演員分飾十三角並現場彈鋼琴",
+     "判斷": "作者與劇情都與百老匯《Murder for Two》完全吻合 → 身份確認,接著查該劇中文譯名"
+    },
+    {
+     "round": 4,
+     "目的": "查《Murder for Two》的中文既定譯名",
+     "查詢": "\"Murder for Two\" 音樂劇 中文 譯名 雙人 OR 两人 謀殺",
+     "看到什麼": "豆瓣條目:『两个人的谋杀 / Murder For Two』(天橋藝術中心小劇場);搜狐:『百老汇爆笑悬疑音乐剧《两个人的谋杀》(Murder for Two)中文版 2023演员招募正式开启。一架钢琴,两个人』;東方演出網:『百老汇爆笑悬疑音乐剧《两个人的谋杀》(MURDER FOR TWO)』;百度百科(坂本昌行):『主演的百老汇音乐剧《MURDER FOR TWO(两个人的谋杀)》』;澳門訊報(繁體):『將帶來美國百老匯爆笑懸疑音樂劇《兩個人的謀殺》(Murder For Two)的中文普通話版演出』",
+     "判斷": "中國已有中文版製作且譯名確立,五個來源一致 → 採《兩個人的謀殺/两个人的谋杀》,信心 high"
+    }
+   ],
+   "group": "assassinat per a dos",
+   "verdict": "translate",
+   "tw": "兩個人的謀殺",
+   "cn": "两个人的谋杀",
+   "confidence": "high",
+   "why": "官方演職員表載明作者為 Kellen Blair 與 Joe Kinosian —— 即百老匯《Murder for Two》,本製作是其【加泰語版】(改編/導演 Zenón Recalde,Teatre Goya)。而《Murder for Two》在中文圈【已有中文版製作與確立譯名】《兩個人的謀殺 / 两个人的谋杀》,多源一致(豆瓣條目、搜狐、東方演出網、百度百科、澳門訊報)。⚠ 我原本要直譯成『雙人謀殺案』,查證後證實會錯。",
+   "sources": [
+    "https://www.teatrebarcelona.com/espectacle/asesinato-para-dos",
+    "https://www.teatregoya.cat/",
+    "https://www.atrapalo.com/entradas/assassinat-per-a-dos/",
+    "https://www.carteleramusicales.es/barcelona",
+    "https://www.douban.com/",
+    "https://www.sohu.com/",
+    "https://m.df962388.com/news",
+    "https://baike.baidu.com/item/坂本昌行",
+    "https://www.facebook.com/SonPouSt"
+   ],
+   "evidence": "Teatre Barcelona 演職員表:『Autoria: Kellen Blair / Joe Kinosian』/ 劇情:『El policia Marcus Moscowitz somia convertir-se en detectiu. Una nit fatídica, el famós novel·lista Arthur Whitney és assassinat al saló de casa seva… hi ha dotze sospitosos』/ 搜狐:『百老汇爆笑悬疑音乐剧《两个人的谋杀》(Murder for Two)中文版』/ 澳門訊報:『美國百老匯爆笑懸疑音樂劇《兩個人的謀殺》(Murder For Two)的中文普通話版』",
+   "捨棄的候選": "『雙人謀殺案』——我原本的直譯,查證後發現中文圈已有確立譯名,直譯會與既有製作對不上"
+  },
+  "la julia i el tauro": {
+   "rounds": [
+    {
+     "round": 1,
+     "目的": "確認製作身份與原著",
+     "查詢": "\"La Júlia i el tauró\" musical Barcelona teatre família",
+     "看到什麼": "SAT! Sant Andreu Teatre:『La Júlia i el tauró - Teatre al detall - Un musical captivador que aborda, amb sensibilitat i bellesa, temes com les relacions familiars, el pas a l\\u0027edat…』,分類『Gènere: Familiar Teatre Teatre musical;Festivals i cicles: Festival Grec』;Recomana.cat:『és una nova dramatúrgia de Jordi Palet (amb direcció de Joan Maria Segura) a partir de la novel·la homònima de Kiran Millwood Hardgrave』;Grec 藝術節 IG:『Un far perdut a les illes Shetland, una mare biòloga… una història emocionant sobre la família, la salut mental i els secrets』",
+     "判斷": "改編自小說 → 若小說有中文版,那才是權威譯名,必須先查"
+    },
+    {
+     "round": 2,
+     "目的": "查原著小說《Julia and the Shark》有無中文版",
+     "查詢": "\"Julia and the Shark\" Kiran Millwood Hargrave 中文版 OR 繁體 小說 譯",
+     "看到什麼": "三民網路書店只上架【英文原版】:『Julia and the Shark. 出版日:2022/03/17 作者:Kiran Millwood Hargrave 出版社:Hachette UK 裝訂:平裝。Julia跟著雙親來到極北小島…』;查無任何中文版",
+     "判斷": "無中文版 → 只能以詞義直譯,信心不能標 high"
+    },
+    {
+     "round": 3,
+     "目的": "取 tauró 與 Júlia 的權威繁簡寫法",
+     "查詢": "Wiktionary 加泰語 tauró + 中文維基 API 變體轉換",
+     "看到什麼": "Wiktionary(Catalan tauró):『shark』;維基變體:鯊魚 zh-tw=鯊魚 / zh-cn=鲨鱼;人名以『茱莉亞·羅伯茲』條目取變體 → zh-tw=茱莉亞·羅勃茲 / zh-cn=茱莉娅·罗伯茨,即 Julia→茱莉亞/茱莉娅",
+     "判斷": "譯『茱莉亞與鯊魚/茱莉娅与鲨鱼』;因無官方中文書名,信心誠實標 medium"
+    }
+   ],
+   "group": "la julia i el tauro",
+   "verdict": "translate",
+   "tw": "茱莉亞與鯊魚",
+   "cn": "茱莉娅与鲨鱼",
+   "confidence": "medium",
+   "why": "Teatre al Detall 的家庭音樂劇(SAT! Sant Andreu Teatre,Grec 藝術節首演),改編自 Kiran Millwood Hargrave 的同名小說《Julia and the Shark》。原著【無中文版】(三民書店只上架 Puffin UK 英文原版),故無權威書名可循;以詞義直譯。tauró=shark(Wiktionary 已驗),繁簡取自維基變體(鯊魚/鲨鱼、茱莉亞/茱莉娅)。⚠ 標 medium:人名 Júlia 的中譯雖屬通用譯法(以茱莉亞·羅勃茲/茱莉娅·罗伯茨 條目變體為據),但仍非本作品的官方中文名。",
+   "sources": [
+    "https://www.sat-teatre.cat/",
+    "https://www.teatrebarcelona.com/la-julia-i-el-tauro",
+    "https://www.recomana.cat/obra/la-julia-i-el-tauro",
+    "https://www.barcelona.cat/",
+    "https://www.instagram.com/grecfestivalbcn/",
+    "https://www.sanmin.com.tw/",
+    "https://en.wiktionary.org/wiki/tauró"
+   ],
+   "evidence": "Recomana.cat:『La Júlia i el tauró és una nova dramatúrgia de Jordi Palet (amb direcció de Joan Maria Segura) a partir de la novel·la homònima de Kiran Millwood Hardgrave』/ SAT!:『Un musical captivador que aborda, amb sensibilitat i bellesa, temes com les relacions familiars』/ 三民書店:『Julia and the Shark…作者:Kiran Millwood Hargrave 出版社:Hachette UK』(英文原版)"
+  },
+  "un refugi al sol": {
+   "rounds": [
+    {
+     "round": 1,
+     "目的": "確認製作身份與形式",
+     "查詢": "\"Un refugi al sol\" musical Barcelona teatre comèdia",
+     "看到什麼": "Teatre Barcelona:『Un refugi al sol és un musical generacional i rural, un viatge entre el passat i el present, entre la intimitat familiar i l\\u0027explosió escènica』;巴塞隆納市政府:『Musical Un refugi al sol, de la Cia. Gèminis… Un cant a la resistència i a la celebració de la diferència. En Kai i l\\u0027Ària són germans i artistes』;Sala Versus Glòries:『ens parla del repte social de construir una identitat pròpia en un món que sembla abocat al caos』;TRESC:『Nominat a Millor espectacle musical de Proximitat als IX Premis Teatre Barcelona』;Núvol:『un musical produït per la sala Versus Glòries』",
+     "判斷": "確認為加泰語原創小型音樂劇(入圍第九屆 Premis Teatre Barcelona 最佳近距離音樂劇)。題名為普通名詞片語"
+    },
+    {
+     "round": 2,
+     "目的": "確認詞義並排除既有中文譯名",
+     "查詢": "Wiktionary 加泰語 refugi + 中文搜尋",
+     "看到什麼": "Wiktionary(Catalan refugi):『refuge / shelter』;中文圈查無此劇任何資料",
+     "判斷": "以詞義直譯『陽光下的避難所』"
+    }
+   ],
+   "group": "un refugi al sol",
+   "verdict": "translate",
+   "tw": "陽光下的避難所",
+   "cn": "阳光下的避难所",
+   "confidence": "high",
+   "why": "Cia. Gèminis 的原創音樂劇(Sala Versus Glòries 巴塞隆納製作),兄妹 Kai 與 Ària 是藝術家,主題為在混亂世界中建構自我認同、『抵抗與慶祝差異』。中文圈無任何資料,以詞義直譯:refugi=refuge/shelter(Wiktionary 已驗)、al sol=在陽光下。全為普通名詞,無專名音譯風險。",
+   "sources": [
+    "https://www.teatrebarcelona.com/un-refugi-al-sol",
+    "https://www.barcelona.cat/",
+    "https://www.salaversusglories.cat/",
+    "https://www.onelteatrebatega.cat/",
+    "https://www.tresc.cat/un-refugi-al-sol",
+    "https://www.nuvol.com/teatre-i-dansa/",
+    "https://en.wiktionary.org/wiki/refugi"
+   ],
+   "evidence": "Teatre Barcelona:『Un refugi al sol és un musical generacional i rural, un viatge entre el passat i el present』/ 巴塞隆納市政府:『Un cant a la resistència i a la celebració de la diferència. En Kai i l\\u0027Ària són germans i artistes』/ Wiktionary(Catalan refugi):『refuge / shelter』"
+  },
+  "encantats": {
+   "rounds": [
+    {
+     "round": 1,
+     "目的": "確認製作身份與題名語義走向",
+     "查詢": "\"Encantats\" musical Cornellà OR Barcelona teatre comèdia musical",
+     "看到什麼": "Teatre Apolo 官方:『ENCANTATS és una comèdia musical amb més de 30 grans èxits del pop-rock català que combina humor, fantasia i emoció per convidar-nos a riure i a cantar a ple…』;官方 IG:『La comèdia musical que et tornarà a fer creure en la màgia al ritme de pop-rock català』;巴塞隆納市政府與 Atrapalo 同;導演 Guille Guillado",
+     "判斷": "確認為加泰語 jukebox 喜劇音樂劇,主軸是『重新相信魔法』→ encantats 取『著魔/被施魔法』義,而非『幸會』義"
+    },
+    {
+     "round": 2,
+     "目的": "確認中文圈有無既定譯名,並旁證 encantats 的中文語感",
+     "查詢": "\"Encantats\" 音樂劇 加泰隆尼亞 OR 巴塞隆納 中文",
+     "看到什麼": "本劇無任何中文資料。旁證:加泰隆尼亞著名的 Els Encantats 雙峰,中文旅遊網站(繁簡兩版)皆譯『Els Encantats(意為「迷人的山峰」)』",
+     "判斷": "無既定譯名 → 以詞義直譯『著了魔』;旁證顯示中文對 encantats 的處理即『迷人/著魔』一路,方向無誤"
+    }
+   ],
+   "group": "encantats",
+   "verdict": "translate",
+   "tw": "著了魔",
+   "cn": "着了魔",
+   "confidence": "high",
+   "why": "Teatre Apolo(巴塞隆納)的加泰語 jukebox 喜劇音樂劇,用了 30 多首加泰隆尼亞 pop-rock 金曲,官方標語『La comèdia musical que et tornarà a fer creure en la màgia』(讓你重新相信魔法)。encantat=enchanted, delighted(Wiktionary 已驗),與『相信魔法』的主軸吻合 → 譯『著了魔』。中文圈無既定譯名。",
+   "sources": [
+    "https://teatreapolo.com/encantats-2",
+    "https://teatremusical.cat/espectacle/encantats",
+    "https://www.teatrebarcelona.com/encantats",
+    "https://guia.barcelona.cat/",
+    "https://www.atrapalo.com/entradas/encantats/",
+    "https://www.instagram.com/encantats_elmusical/",
+    "https://en.wiktionary.org/wiki/encantat"
+   ],
+   "evidence": "Teatre Apolo:『ENCANTATS és una comèdia musical amb més de 30 grans èxits del pop-rock català que combina humor, fantasia i emoció』/ 官方 IG:『La comèdia musical que et tornarà a fer creure en la màgia al ritme de pop-rock català』/ Wiktionary(Catalan encantat):『enchanted, delighted』"
+  },
+  "despres de nosaltres": {
+   "rounds": [
+    {
+     "round": 1,
+     "目的": "確認製作身份與題名含義",
+     "查詢": "\"Després de nosaltres\" musical Barcelona teatre original",
+     "看到什麼": "BroadwayWorld:『El nuevo musical catalán DESPRÉS DE NOSALTRES, creado por Jumon Erra y Miquel Tejada, se ha presentado este lunes en Barcelona』;Espai Texas 官方副標:『DESPRÉS DE NOSALTRES / UN MUSICAL SOBRE EL AMOR DESPUÉS DEL AMOR』;Teatre Barcelona 評論:『Cuando la ruptura no rompe el vínculo… el nuevo musical escrito y dirigido por Jumon Erra, con música de Miquel Tejada』;Cartelera Musicales:『un musical de pequeño formato con música en directo』",
+     "判斷": "身份確認;題名為普通片語,語義由官方副標(愛之後的愛)佐證"
+    },
+    {
+     "round": 2,
+     "目的": "確認中文圈無既定譯名",
+     "查詢": "\"Autonomos el musical\" OR \"Després de nosaltres\" 中文 音樂劇 譯名",
+     "看到什麼": "Google 回『找不到符合搜尋字詞的文件』——零結果",
+     "判斷": "無既定譯名 → 詞義直譯"
+    }
+   ],
+   "group": "despres de nosaltres",
+   "verdict": "translate",
+   "tw": "在我們之後",
+   "cn": "在我们之后",
+   "confidence": "high",
+   "why": "Espai Texas 的加泰語小型原創音樂劇(Jumon Erra 編導、Miquel Tejada 作曲,Grec 藝術節首演),主題是分手之後羈絆是否還在,官方副標寫明『UN MUSICAL SOBRE EL AMOR DESPUÉS DEL AMOR』(關於愛之後的愛)。després=later/afterwards(Wiktionary 已驗)、nosaltres=我們 → 直譯『在我們之後』。中文圈無既定譯名。",
+   "sources": [
+    "https://www.broadwayworld.com/spain/",
+    "https://espaitexas.cat/espectacle/",
+    "https://www.teatrebarcelona.com/",
+    "https://www.atrapalo.com/entradas/despres-de-nosaltres/",
+    "https://www.carteleramusicales.es/despres-de-nosaltres",
+    "https://en.wiktionary.org/wiki/després"
+   ],
+   "evidence": "Espai Texas:『DESPRÉS DE NOSALTRES / UN MUSICAL SOBRE EL AMOR DESPUÉS DEL AMOR』/ Teatre Barcelona:『Cuando la ruptura no rompe el vínculo… el nuevo musical escrito y dirigido por Jumon Erra, con música de Miquel Tejada』/ Wiktionary(Catalan després):『later / afterwards』"
+  },
+  "autonomos": {
+   "rounds": [
+    {
+     "round": 1,
+     "目的": "確認製作身份與 autónomos 在本劇指什麼",
+     "查詢": "\"Autònoms\" OR \"Autónomos\" musical Barcelona teatre comèdia",
+     "看到什麼": "Espai Texas:『La comèdia Autónomos, el musical inicia la 9a temporada d\\u0027èxit! Un fenomen escènic sobre les peripècies d\\u0027un nou freelance per sobreviure al món laboral』;Teatre Barcelona:『Álex Martínez Vidal i Andreu Rami han creat, amb el músic Joan Berenguer, Autónomos. El musical, el primer musical inspirat en les aventures dels freelance』;OA2 Produccions:『Una comèdia musical d\\u0027èxit… que satiritza sobre dura vida dels treballadors autònoms espanyols』",
+     "判斷": "確認題名指的是自由接案/自僱工作者,不是『自治』等其他義項"
+    },
+    {
+     "round": 2,
+     "目的": "確認中文圈無既定譯名",
+     "查詢": "\"Autonomos el musical\" OR \"Després de nosaltres\" 中文 音樂劇 譯名",
+     "看到什麼": "零結果",
+     "判斷": "無既定譯名 → 詞義直譯『自由工作者』;繁簡同形"
+    }
+   ],
+   "group": "autonomos",
+   "verdict": "translate",
+   "tw": "自由工作者",
+   "cn": "自由工作者",
+   "confidence": "high",
+   "why": "Espai Texas 的喜劇音樂劇,已演到第 9 季,官方逐字寫明是『el primer musical inspirat en les aventures dels freelance』、『satiritza sobre dura vida dels treballadors autònoms espanyols』。autónomo=self-employed, freelance(Wiktionary 已驗)。中文圈無既定譯名 → 以詞義直譯,取中文最通用的『自由工作者』(西班牙的 autónomo 是自僱登記身分,但本劇談的就是 freelance 生活)。",
+   "sources": [
+    "https://espaitexas.cat/espectacle/autonomos-el-musical",
+    "https://www.teatrebarcelona.com/autonomos-el-musical",
+    "https://www.oa2produccions.cat/autonomos",
+    "https://www.timeout.cat/barcelona/teatre/autonomos-el-musical",
+    "https://www.barcelona.cat/",
+    "https://www.tresc.cat/autonomos-el-musical",
+    "https://en.wiktionary.org/wiki/autónomo"
+   ],
+   "evidence": "Teatre Barcelona:『Álex Martínez Vidal i Andreu Rami han creat, amb el músic Joan Berenguer, Autónomos. El musical, el primer musical inspirat en les aventures dels freelance』/ OA2 Produccions:『Una comèdia musical d\\u0027èxit a la cartellera teatral de Barcelona, que satiritza sobre dura vida dels treballadors autònoms espanyols』/ Wiktionary(Spanish autónomo):『self-employed, freelance』"
+  },
+  "gaudi el despertar del geni": {
+   "rounds": [
+    {
+     "round": 1,
+     "目的": "確認製作身份與題名所指",
+     "查詢": "\"Gaudí\" \"El Despertar Del Geni\" musical Barcelona teatre",
+     "看到什麼": "Teatre Poliorama 官方:『GAUDÍ: EL DESPERTAR DEL GENI. Un musical per viatjar a la infantesa de Gaudí. Del 15.11.26 al 24.01.27』;巴塞隆納大學:『Gaudí: el despertar del geni és un musical que explora la infantesa d\\u0027Antoni Gaudí i mostra com la malaltia, la natura i la imaginació van forjar el seu…』;Trílope(製作方)劇情頁;Ruta del Modernisme FB:『Coincidint amb l\\u0027Any Gaudí 2026, s\\u0027estrena a Barcelona Gaudí: El despertar del geni, un espectacle musical familiar』",
+     "判斷": "確認講的是建築師 Antoni Gaudí(非同名他人)→ 用其既定中文譯名"
+    },
+    {
+     "round": 2,
+     "目的": "取權威繁簡譯名(這個名字台陸差很多)",
+     "查詢": "中文維基 API 條目『安东尼·高迪』變體轉換",
+     "看到什麼": "zh-tw=安東尼·高第 / zh-cn=安东尼·高迪",
+     "判斷": "若我憑印象兩邊都寫『高第』就會錯,大陸作『高迪』。題名只含姓氏 → 繁『高第』/ 簡『高迪』"
+    }
+   ],
+   "group": "gaudi el despertar del geni",
+   "verdict": "translate",
+   "tw": "高第",
+   "cn": "高迪",
+   "confidence": "high",
+   "why": "Trílope 製作的加泰語家庭音樂劇(Teatre Poliorama 巴塞隆納,配合 2026 高第年),講建築師 Antoni Gaudí 的童年。中文既定譯名有明確【台陸差異】:繁『安東尼·高第』/ 簡『安东尼·高迪』(中文維基條目變體轉換)。題名只有姓氏,故取『高第/高迪』。⚠ 副標 El despertar del geni(天才的覺醒)不譯——人名劇加副標的例外【只適用歐陸】,西葡不適用。",
+   "sources": [
+    "https://www.teatrepoliorama.com/",
+    "https://www.barcelona.cat/",
+    "https://www.ub.edu/avantatge/",
+    "https://trilope.cat/espectacles",
+    "https://www.atrapalo.com/entradas/gaudi-el-despertar-del-geni/",
+    "https://www.broadwayworld.com/spain/",
+    "https://zh.wikipedia.org/wiki/安东尼·高迪"
+   ],
+   "evidence": "Teatre Poliorama:『GAUDÍ: EL DESPERTAR DEL GENI. Un musical per viatjar a la infantesa de Gaudí.』/ 巴塞隆納大學:『un musical que explora la infantesa d\\u0027Antoni Gaudí i mostra com la malaltia, la natura i la imaginació van forjar el seu…』/ 維基變體:zh-tw=安東尼·高第, zh-cn=安东尼·高迪"
+  },
+  "mi madre serrat y yo": {
+   "rounds": [
+    {
+     "round": 1,
+     "目的": "確認製作身份",
+     "查詢": "\"Mi madre, Serrat y yo\" musical Madrid teatro Joan Manuel Serrat",
+     "看到什麼": "Plot Point 官方:『Una obra de teatro de plot point con las canciones de Joan Manuel Serrat』;馬德里旅遊局:『Música – Joan Manuel Serrat;Arreglos musicales – Gonzalo García Baz』;Atrapalo 分類『Categoría: Musicales』時長 80 分鐘;Madrid Es Teatro:『Mi madre, Serrat y yo continúa arrasando en los escenarios en su 16ª temporada teatral ininterrumpida』;BroadwayWorld 提到主角 Lucia 與 Penelope",
+     "判斷": "確認為以 Serrat 歌曲構成的音樂劇,題名中的 Serrat 即歌手本人 → 查其中文譯名"
+    },
+    {
+     "round": 2,
+     "目的": "查 Joan Manuel Serrat 的中文既定譯名",
+     "查詢": "中文維基 API 搜尋 + 變體轉換",
+     "看到什麼": "中文維基有專條:『胡安·曼努埃尔·色拉特(西班牙語:Joan Manuel Serrat i Teresa,1943年12月27日—),是一位西班牙加泰罗尼亚歌手』;變體:zh-tw=胡安·曼努埃爾·色拉特 / zh-cn=胡安·曼努埃尔·色拉特(姓氏繁簡同形『色拉特』)",
+     "判斷": "有維基條目可據 → 譯『我媽媽、色拉特和我』。但流通度低,信心標 medium"
+    }
+   ],
+   "group": "mi madre serrat y yo",
+   "verdict": "translate",
+   "tw": "我媽媽、色拉特和我",
+   "cn": "我妈妈、色拉特和我",
+   "confidence": "medium",
+   "why": "ArtEspacio Plot Point(馬德里)的 jukebox 音樂喜劇,已第 16 季,用 Joan Manuel Serrat 的歌,講母女故事。Serrat 有中文維基條目『胡安·曼努埃爾·色拉特/胡安·曼努埃尔·色拉特』,姓氏作『色拉特』→ 可譯。⚠ 標 medium:『色拉特』雖有維基條目為據,但在中文圈流通度低,一般讀者未必認得;這是『有依據但不普及』的情況,誠實標記。",
+   "sources": [
+    "https://www.plotpoint.es/",
+    "https://www.esmadrid.com/agenda/",
+    "https://www.atrapalo.com/entradas/mi-madre-serrat-y-yo/",
+    "https://teatromadrid.com/espectaculo/",
+    "https://madridesteatro.com/obra/",
+    "https://www.broadwayworld.com/spain/",
+    "https://zh.wikipedia.org/wiki/胡安·曼努埃尔·色拉特"
+   ],
+   "evidence": "Plot Point:『Una obra de teatro de plot point con las canciones de Joan Manuel Serrat』/ Madrid Es Teatro:『Mi madre, Serrat y yo continúa arrasando en los escenarios en su 16ª temporada teatral ininterrumpida』/ 中文維基:『胡安·曼努埃尔·色拉特(西班牙語:Joan Manuel Serrat i Teresa…),是一位西班牙加泰罗尼亚歌手』"
+  },
+  "mi padre sabina y yo": {
+   "rounds": [
+    {
+     "round": 1,
+     "目的": "確認製作身份",
+     "查詢": "\"Mi padre, Sabina y yo\" musical Madrid teatro Joaquín Sabina",
+     "看到什麼": "Plot Point 官方:『Una obra de teatro musical sobre la paternidad con las canciones de Sabina』;entradas.com 劇情:『Jaime, un joven cantante, algo ingenuo e inocente, decide buscar a su padre. Joaquín es un canalla sediento de vida』;Madrid Es Teatro:『La comedia musical「Mi padre, Sabina y yo」cumple 6 años conquistando corazones sobre las tablas de ArtEspacio PLOT POINT』;Taquilla:『A caballo entre la comedia musical y el drama teatral convencional』",
+     "判斷": "身份確認,題名中的 Sabina 即歌手 Joaquín Sabina → 查其中文譯名"
+    },
+    {
+     "round": 2,
+     "目的": "查 Joaquín Sabina 的中文譯名(維基)",
+     "查詢": "中文維基 API 搜尋『Joaquín Sabina 西班牙 歌手 创作 诗人』與『萨维纳 西班牙 歌手 Sabina』",
+     "看到什麼": "第一個查詢零結果;第二個只回傳不相關條目(瓦哈卡的薩滿 María Sabina、加冕禮賓客名單、玻利維亞文化部)——中文維基【沒有 Joaquín Sabina 的條目】",
+     "判斷": "維基查無 → 再用一般網頁搜尋確認"
+    },
+    {
+     "round": 3,
+     "目的": "用一般網頁搜尋確認中文圈是否有其他既定譯法",
+     "查詢": "\"Joaquín Sabina\" 西班牙 歌手 中文 譯名 薩維納 OR 萨巴纳",
+     "看到什麼": "Google 回『找不到符合搜尋字詞的文件』——零結果",
+     "判斷": "確認中文圈無既定譯名。不自行音譯,姓名保留原文,其餘照譯"
+    }
+   ],
+   "group": "mi padre sabina y yo",
+   "verdict": "translate",
+   "tw": "我爸爸、Sabina 和我",
+   "cn": "我爸爸、Sabina 和我",
+   "confidence": "medium",
+   "why": "與上一齣同為 ArtEspacio Plot Point 作品(已第 6 年),用 Joaquín Sabina 的歌,講父子(年輕歌手 Jaime 尋父)。⚠ 關鍵:Joaquín Sabina 在中文圈【查無既定譯名】——中文維基無條目,兩輪中文搜尋皆零結果。依規則【音譯不發明】,故姓名保留原文,其餘可譯的部分照譯 → 『我爸爸、Sabina 和我』。這種中西混排不美觀,但比我編一個中文世界不存在的音譯誠實。信心標 medium 即因此。",
+   "sources": [
+    "https://www.plotpoint.es/",
+    "https://www.entradas.com/artist/mi-padre-sabina-y-yo/",
+    "https://madridesteatro.com/obra/",
+    "https://www.atrapalo.com/entradas/mi-padre-sabina-y-yo/",
+    "https://www.taquilla.com/",
+    "https://tea3.eu/articulos/",
+    "https://www.timeout.es/madrid/teatro/"
+   ],
+   "evidence": "Plot Point:『Una obra de teatro musical sobre la paternidad con las canciones de Sabina』/ entradas.com:『Jaime, un joven cantante, algo ingenuo e inocente, decide buscar a su padre. Joaquín es un canalla sediento de vida.』/ 中文維基與一般搜尋皆查無 Joaquín Sabina 的中文譯名",
+   "對照": "同劇團的姊妹作 mi madre serrat y yo 之所以能全譯,是因為 Serrat 有中文維基條目;Sabina 沒有。兩者處置不同不是不一致,而是【依據有無】的差別"
+  },
+  "divorcio igualitario": {
+   "rounds": [
+    {
+     "round": 1,
+     "目的": "確認製作身份與題名的反諷對象",
+     "查詢": "\"Divorcio igualitario\" musical Madrid teatro comedia romántica",
+     "看到什麼": "BroadwayWorld:『El próximo 3 de agosto el Teatro Lara de Madrid acogerá el estreno de DIVORCIO IGUALITARIO, una nueva comedia romántica musical』;Planomato:『Representación teatral de comedia dramática que narra la historia de amor y ruptura de una pareja gay, contado de atrás hacia adelante』;官方 IG:『Una comedia romántica musical sobre el amor, la pareja y todo lo que ocurre entre el «hola, ¿qué tal?» y el…』;Tu Otra Alternativa:『la nueva propuesta de Diagoras Producciones』",
+     "判斷": "確認為同志伴侶題材、倒敘結構的音樂喜劇 → 題名的 igualitario 是呼應同婚語彙,不是泛稱『平等』"
+    },
+    {
+     "round": 2,
+     "目的": "查中文既定譯名,並確認 igualitario 在同婚語境的中文對應",
+     "查詢": "三劇名合併查中文譯名 + 西班牙 \"matrimonio igualitario\" 中文 平權婚姻 OR 平等婚姻",
+     "看到什麼": "三個劇名的中文譯名皆零結果;劍橋詞典(英-漢):『marriage equality 的翻譯…中文(繁體):(同性戀人士享有的)平等婚姻、(同性戀人士享有的)婚姻平等權;西班牙語:matrimonio igualitario』;中文維基《同性結合關係歷史年表》亦引用 matrimonio igualitario 原文",
+     "判斷": "本劇無既定譯名;igualitario 的權威中文對應為『平等/平權』一路。台灣社會慣用『婚姻平權』,故繁體取『平權離婚』、簡體『平权离婚』。劍橋的『平等婚姻』列為異譯參考"
+    }
+   ],
+   "group": "divorcio igualitario",
+   "verdict": "translate",
+   "tw": "平權離婚",
+   "cn": "平权离婚",
+   "confidence": "medium",
+   "why": "Teatro Lara(馬德里)、Diagoras Producciones 的浪漫喜劇音樂劇,倒敘一對【同志伴侶】的相戀與分手。題名是仿西班牙同婚用語 matrimonio igualitario(婚姻平權)造的,語帶反諷:同志終於也能平等地離婚。igualitario=egalitarian, equal(Wiktionary 已驗);劍橋詞典把 matrimonio igualitario 對到 marriage equality,中文釋為『(同性戀人士享有的)平等婚姻/婚姻平等權』。⚠ 標 medium:中文沒有這齣戲的既定譯名,且『平權』與『平等』兩種譯法都通行,我取台灣社會慣用的『平權』(婚姻平權)。",
+   "sources": [
+    "https://teatrolara.com/programacion",
+    "https://www.broadwayworld.com/spain/",
+    "https://www.planomato.com/madrid",
+    "https://www.instagram.com/divorcio_musical/",
+    "https://www.tuotraalternativa.com/",
+    "https://www.elcorteingles.es/entradas/teatro/",
+    "https://dictionary.cambridge.org/zht/詞典/英語-漢語-繁體/marriage-equality",
+    "https://en.wiktionary.org/wiki/igualitario"
+   ],
+   "evidence": "BroadwayWorld:『el Teatro Lara de Madrid acogerá el estreno de DIVORCIO IGUALITARIO, una nueva comedia romántica musical』/ Planomato:『narra la historia de amor y ruptura de una pareja gay, contado de atrás hacia adelante』/ 劍橋詞典:『marriage equality…中文(繁體):(同性戀人士享有的)平等婚姻…西班牙語:matrimonio igualitario』",
+   "異譯參考": "『平等離婚』——依劍橋詞典對 igualitario 的『平等』譯法;未採用是因中文讀來不順,且台灣慣用語是『平權』"
+  },
+  "el ladron de arabia": {
+   "rounds": [
+    {
+     "round": 1,
+     "目的": "確認製作身份與題名所指",
+     "查詢": "\"El ladrón de Arabia\" musical OnBeat familiar teatro Aladín",
+     "看到什麼": "Gijón 市政府活動頁:『Musical familiar「El ladrón de Arabia: Tributo a Aladdin」. Un tributo a la banda sonora de la película, con ocho personajes en escena que nos trasportarán a la magia de Arabia. Duración: 90\\u0027』;Teatro Madrid:『El ladrón de Arabia es un espectáculo tributo a Aladdín de Onbeat Producciones. Sinopsis. Agrabah es la tierra donde todo es posible, incluido el amor de…』;entradas.com 條目名『El Ladrón de Arabia (tributo a Aladdín)』",
+     "判斷": "確認是阿拉丁致敬音樂劇,但製作方【刻意用自創題名】而非 Aladdín → 中譯也應忠於其題名,不可直接寫成『阿拉丁』"
+    },
+    {
+     "round": 2,
+     "目的": "確認中文圈無既定譯名",
+     "查詢": "三劇名合併查中文譯名",
+     "看到什麼": "零結果",
+     "判斷": "無既定譯名 → 以詞義直譯『阿拉伯大盜』;ladrón 為普通名詞,Arabia 是既定地名(阿拉伯),無自創音譯風險"
+    }
+   ],
+   "group": "el ladron de arabia",
+   "verdict": "translate",
+   "tw": "阿拉伯大盜",
+   "cn": "阿拉伯大盗",
+   "confidence": "high",
+   "why": "OnBeat Producciones 的家庭音樂劇,官方全名為『El ladrón de Arabia - Tributo a Aladdín』(阿拉丁致敬版),場景設在 Agrabah。ladrón=thief, robber(Wiktionary 已驗),de Arabia=阿拉伯的 → 『阿拉伯大盜』。中文圈無既定譯名,以詞義直譯;為避免與迪士尼《阿拉丁》混淆,刻意不用『阿拉丁』字樣,忠於製作方自己迴避版權而另取的題名。",
+   "sources": [
+    "https://www.gijon.es/eventos/",
+    "https://teatromadrid.com/espectaculo/",
+    "https://www.entradas.com/artist/el-ladron-de-arabia/",
+    "https://www.atrapalo.com/entradas/el-ladron-de-arabia/",
+    "https://www.elcorteingles.es/entradas/en-familia/",
+    "https://www.pequeplanmadrid.es/",
+    "https://www.planomato.com/sevilla",
+    "https://en.wiktionary.org/wiki/ladrón"
+   ],
+   "evidence": "Gijón 市政府:『Musical familiar「El ladrón de Arabia: Tributo a Aladdin」. Un tributo a la banda sonora de la película, con ocho personajes en escena que nos trasportarán a la magia de Arabia.』/ Teatro Madrid:『El ladrón de Arabia es un espectáculo tributo a Aladdín de Onbeat Producciones… Agrabah es la tierra donde todo es posible』/ Wiktionary(Spanish ladrón):『thief; robber; rogue; crook』"
+  },
+  "la vida en un segundo": {
+   "rounds": [
+    {
+     "round": 1,
+     "目的": "確認製作身份與題名語義",
+     "查詢": "\"La vida en un segundo\" musical Madrid teatro espectáculo",
+     "看到什麼": "Teatro Arlequín Gran Vía 官方:『LA VIDA EN UN SEGUNDO. Lázaro ha tocado fondo: tras años de curro basura, su novia le deja tirado en nochevieja en la Puerta del Sol. Cuando cree que no…』;entradas.com:『un emocionante espectáculo que mezcla teatro, música y humor para reflexionar sobre el amor, la amistad y todo lo que da sentido a la…』;Atrapalo:『un espectáculo teatral donde el humor y la emoción bailan juntos al ritmo de grandes éxitos musicales』;BroadwayWorld:『Tras su estreno en Barcelona, LA VIDA EN UN SEGUNDO iniciará temporada en Madrid a partir del 17 de septiembre』",
+     "判斷": "身份確認。題名是普通片語,與『人生在一瞬間翻轉』的劇情吻合"
+    },
+    {
+     "round": 2,
+     "目的": "確認中文圈無既定譯名",
+     "查詢": "三劇名合併查中文譯名",
+     "看到什麼": "零結果",
+     "判斷": "無既定譯名 → 詞義直譯『一秒鐘的人生』"
+    }
+   ],
+   "group": "la vida en un segundo",
+   "verdict": "translate",
+   "tw": "一秒鐘的人生",
+   "cn": "一秒钟的人生",
+   "confidence": "high",
+   "why": "Teatro Arlequín Gran Vía(馬德里,先在巴塞隆納首演)的音樂劇場作品,主角 Lázaro 在跨年夜被女友甩在太陽門廣場,以幽默與金曲串起對愛情與友誼的回望。題名為普通片語:la vida=人生、en un segundo=在一秒之間 → 『一秒鐘的人生』。中文圈無既定譯名。",
+   "sources": [
+    "https://teatroarlequingranvia.com/eventos/",
+    "https://www.entradas.com/artist/la-vida-en-un-segundo/",
+    "https://www.atrapalo.com/entradas/la-vida-en-un-segundo/",
+    "https://www.carteleramusicales.es/la-vida-en-un-segundo",
+    "https://www.elcorteingles.es/entradas/teatro/",
+    "https://www.broadwayworld.com/spain/"
+   ],
+   "evidence": "Teatro Arlequín Gran Vía:『LA VIDA EN UN SEGUNDO. Lázaro ha tocado fondo: tras años de curro basura, su novia le deja tirado en nochevieja en la Puerta del Sol.』/ entradas.com:『un emocionante espectáculo que mezcla teatro, música y humor para reflexionar sobre el amor, la amistad』"
+  },
+  "la nit del music alt": {
+   "rounds": [
+    {
+     "round": 1,
+     "目的": "確認製作身份與題名是否為雙關",
+     "查詢": "\"La Nit del Músic Alt\" musical Barcelona Grec teatre",
+     "看到什麼": "L\\u0027Auditori 官方:『La Banda Municipal de Barcelona al Festival Grec el 28 de juliol de 2026 amb l\\u0027espectacle 「La Nit del Músic Alt」』;巴塞隆納市政府活動頁標題:『La Nit del Músic Alt. Un tipus de gènere ambigu』,分類 Teatre + Música,場地 Teatre Grec,100 分鐘;Festival Grec 售票頁:『Segona visita al Teatre Grec de La Nit del Músic Alt, una producció del festival Grec i la Banda Municipal de Barcelona que busca els límits del teatre musical』",
+     "判斷": "官方自己把副標寫成『曖昧的類型』並說要『探索音樂劇的邊界』——題名 Músic Alt 顯然是 musical 的拆字雙關。譯出來就沒有梗了 → keep"
+    }
+   ],
+   "group": "la nit del music alt",
+   "verdict": "keep",
+   "tw": null,
+   "cn": null,
+   "confidence": "high",
+   "why": "保留原文。這是 Grec 藝術節與巴塞隆納市立管樂團的共同製作,官方副標『Un tipus de gènere ambigu』(一種曖昧的類型),定位是『busca els límits del teatre musical』(探索音樂劇的邊界)。題名 Músic Alt 是【雙關】:字面為『高個子的樂手』,連讀又近似 musical(音樂劇);副標的 gènere 在加泰語同時是『類型』與『性別』,也是雙關。這種雙關中譯必然失去,任何譯法都會把一個玩語言的標題變成平鋪直述 → 依規則保留原文。",
+   "sources": [
+    "https://www.auditori.cat/",
+    "https://www.barcelona.cat/",
+    "https://teatremusical.cat/espectacle/",
+    "https://festivalgrec.koobin.cat/",
+    "https://www.tresc.cat/la-nit-del-music-alt",
+    "https://www.culturajove.cat/"
+   ],
+   "evidence": "巴塞隆納市政府:『La Nit del Músic Alt. Un tipus de gènere ambigu…Disciplina: Teatre, Música;Espai: Teatre Grec;Durada: 100 min』/ Festival Grec:『una producció del festival Grec i la Banda Municipal de Barcelona que busca els límits del teatre musical』"
+  },
+  "mentidrags": {
+   "rounds": [
+    {
+     "round": 1,
+     "目的": "確認題名構詞與作品關係",
+     "查詢": "\"Mentidrags\" musical México drag Mentiras",
+     "看到什麼": "官方站:『Mentidrags es un espectáculo que conjunta lo mejor del glamour y los mejores éxitos de los 80s, siendo la versión Drag del musical mexicano más exitoso del…』;Ticketmaster MX:『Mentiras El Musical, MentiDrags o M Party en el Teatro Aldama』;Cartelera de Teatro CDMX:『Un drama musical donde 4 mujeres y un galán cuentan su historia llena de mentiras』;Myticketmx:『Mentidrags El Musical es una versión drag del icónico musical mexicano 「Mentiras」』;官方 IG 標籤 #MentiDrags 與 #MentirasElMusical 並列",
+     "判斷": "確認是 Mentiras 的 drag 版,題名為混成詞。中文無對應構詞 → keep,並在帳本註明它與 mentiras 是同一系列的不同版本"
+    }
+   ],
+   "group": "mentidrags",
+   "verdict": "keep",
+   "tw": null,
+   "cn": null,
+   "confidence": "high",
+   "why": "保留原文。官方網站 mentiraselmusical.com 逐字:『Mentidrags es un espectáculo que conjunta lo mejor del glamour y los mejores éxitos de los 80s, siendo la versión Drag del musical mexicano más exitoso』——它是《Mentiras》的變裝版。題名 Mentidrags 是 Mentiras + Drags 的【混成詞】,中文沒有對應的構詞方式;若譯成『謊言變裝版』那是解釋不是譯名,且會與同庫的 mentiras(謊言)混淆 → keep。",
+   "sources": [
+    "https://www.mentiraselmusical.com/",
+    "https://www.ticketmaster.com.mx/artist/",
+    "https://carteleradeteatro.mx/mentidrags",
+    "https://cartelera.cdmx.gob.mx/",
+    "https://myticketmx.com/products/",
+    "https://www.instagram.com/oficial_mentiras/"
+   ],
+   "evidence": "官方站:『Mentidrags es un espectáculo que conjunta lo mejor del glamour y los mejores éxitos de los 80s, siendo la versión Drag del musical mexicano más exitoso del…』/ Myticketmx:『Mentidrags El Musical es una versión drag del icónico musical mexicano「Mentiras」, que llega al Teatro Aldama con todo el glamour y la energía de los 80s』",
+   "關聯": "與同庫的 mentiras(《謊言》)是同一系列;兩者都在 Teatro Aldama 演出"
+  },
+  "imagilusion": {
+   "rounds": [
+    {
+     "round": 1,
+     "目的": "確認 Imagilusion 是團名/生造詞還是可譯的普通詞",
+     "查詢": "\"Imagilusion\" musical Alicante OR Valencia familiar espectáculo",
+     "看到什麼": "Atrapalo:『IMAGILUSION te invita a subirte a su mágico vuelo con 「AroundtheWorld」, el musical familiar que está conquistando corazones en la Comunidad Valenciana』;Fever:『Vive la magia de Disney con 「IMAGILUSION: Around the World」, un musical familiar e inclusivo』;Alcoi Plaza Teatre:『IMAGILUSION presenta 「Around the World」, un musical familiar que rinde homenaje a los grandes clásicos de Disney』;官方 IG @imagilusion_show 自述『Compañia de danza』;另有寫作 Imagilusión(帶重音)的用法",
+     "判斷": "確認為製作方自創的混成詞(imaginación+ilusión),且兼作團名。中文無對應構詞,音譯無依據 → keep"
+    }
+   ],
+   "group": "imagilusion",
+   "verdict": "keep",
+   "tw": null,
+   "cn": null,
+   "confidence": "high",
+   "why": "保留原文。Imagilusión 是製作方自創的【混成詞】(imaginación 想像 + ilusión 幻想/憧憬),同時是團名也是節目名(官方 IG @imagilusion_show 自述 Compañia de danza)。演出全名為『IMAGILUSION: Around the World』,是向迪士尼經典致敬的家庭音樂劇。生造詞無中文對應構詞,音譯是我發明的 → keep。",
+   "sources": [
+    "https://www.atrapalo.com/entradas/imagilusion/",
+    "https://feverup.com/",
+    "https://www.e-ticketplus.com/entradas",
+    "https://agendaalcoy.com/event/",
+    "https://plazateatre.com/evento",
+    "https://torrevieja.com/eventos",
+    "https://www.myguidealicante.com/",
+    "https://www.instagram.com/imagilusion_show/"
+   ],
+   "evidence": "Fever:『Vive la magia de Disney con 「IMAGILUSION: Around the World」, un musical familiar e inclusivo』/ Alcoi Plaza Teatre:『IMAGILUSION presenta 「Around the World」, un musical familiar que rinde homenaje a los grandes clásicos de Disney y nos invita a viajar con la imaginación』/ My Guide Alicante:『IMAGILUSION es un musical familiar en Alicante que presenta clásicos de Disney con música en vivo』"
+  },
+  "rocio durcal es inolvidable": {
+   "rounds": [
+    {
+     "round": 1,
+     "目的": "確認 Rocío Dúrcal 在中文維基有無條目/譯名",
+     "查詢": "中文維基 API 搜尋『Rocío Dúrcal 西班牙 歌手 演员』",
+     "看到什麼": "無獨立條目。但兩處提及:①『2006年3月逝世人物列表』:『羅西奧·杜卡爾(RocíoDúrcal),61歲,西班牙歌手和演員,子宮癌』(紅連結);②『胡安·加布里埃尔』條目提到她",
+     "判斷": "有譯名但來源是列表的紅連結 → 要找更正式的用法,並確認繁簡兩版"
+    },
+    {
+     "round": 2,
+     "目的": "取更正式的譯名與繁簡兩版",
+     "查詢": "\"Rocío Dúrcal\" 西班牙 歌手 中文 羅西奧 OR 罗西奥 杜卡爾",
+     "看到什麼": "中文維基『胡安·加布里埃爾』條目遺產與影響段:zh-tw『羅西奧·杜爾卡爾 · Rocío Dúrcal』;同條目 zh-cn『罗西奥·杜尔卡尔(英语:Rocío Dúrcal)、伊莎贝尔·潘托哈…和何塞·何塞在内众多拉丁乐坛的顶尖歌手』;另有多則中譯的 Reddit 討論使用『羅西奧·杜卡爾』與『罗西奥·杜尔卡尔』",
+     "判斷": "條目【內文】的用法比逝世列表的紅連結正式,且提供了繁簡兩版 → 採『羅西奧·杜爾卡爾/罗西奥·杜尔卡尔』。異寫『杜卡爾』記入備查。因寫法未統一、流通度低,信心標 medium"
+    }
+   ],
+   "group": "rocio durcal es inolvidable",
+   "verdict": "translate",
+   "tw": "羅西奧·杜爾卡爾令人難忘",
+   "cn": "罗西奥·杜尔卡尔令人难忘",
+   "confidence": "medium",
+   "why": "向西班牙歌手/演員 Rocío Dúrcal(1944-2006)致敬的傳記 jukebox 音樂劇。她在中文維基【有譯名但無獨立條目】:中文維基『胡安·加布里埃爾』條目內文 zh-tw 作『羅西奧·杜爾卡爾』、zh-cn 作『罗西奥·杜尔卡尔』;另『2006年3月逝世人物列表』作『羅西奧·杜卡爾』(少一字)。inolvidable=unforgettable。⚠ 標 medium:兩種中文寫法並存(杜爾卡爾/杜卡爾),且她本人無中文維基獨立條目,譯名流通度低。",
+   "sources": [
+    "https://zh.wikipedia.org/zh-tw/胡安·加布里埃尔",
+    "https://zh.wikipedia.org/zh-cn/胡安·加布里埃尔",
+    "https://zh.wikipedia.org/zh-tw/2006年3月逝世人物列表",
+    "https://www.reddit.com/r/asklatinamerica/",
+    "https://www.reddit.com/r/rupaulsdragrace/"
+   ],
+   "evidence": "中文維基『胡安·加布里埃爾』(zh-tw):『羅西奧·杜爾卡爾 · Rocío Dúrcal』/ 同條目(zh-cn):『罗西奥·杜尔卡尔(英语:Rocío Dúrcal)、伊莎贝尔·潘托哈…和何塞·何塞在内众多拉丁乐坛的顶尖歌手创作了一系列炙手可热的名作』/『2006年3月逝世人物列表』:『羅西奧·杜卡爾(RocíoDúrcal),61歲,西班牙歌手和演員,子宮癌』",
+   "異寫備查": "『羅西奧·杜卡爾』(逝世列表紅連結,少一個「爾」)"
+  },
+  "rita lee uma autobiografia musical": {
+   "rounds": [
+    {
+     "round": 1,
+     "目的": "查 Rita Lee 中文譯名",
+     "查詢": "中文維基 API 搜尋『Rita Lee 巴西 摇滚 歌手 Os Mutantes』",
+     "看到什麼": "查無任何結果——中文維基沒有 Rita Lee 的條目",
+     "判斷": "無既定中文譯名 → 姓名不譯"
+    },
+    {
+     "round": 2,
+     "目的": "確認製作身份與副標語義",
+     "查詢": "\"Rita Lee\" \"uma autobiografia musical\" São Paulo teatro",
+     "看到什麼": "Eventim.com.br:『Rita Lee – Uma Autobiografia Musical é um espetáculo que celebra a vida e a obra da eterna rainha do rock brasileiro, trazendo ao palco sua irreverência』;Ingresso.com:『Visto por mais de 60 mil pessoas, o espetáculo Rita Lee - Uma Autobiografia Musical, estrelado por Mel Lisboa e dirigido por Marcio Macena e Débora Dubois』;Teatro Porto(聖保羅)官方檔期;Guia Folha 報導回歸聖保羅",
+     "判斷": "確認為傳記音樂劇,副標即『一部音樂自傳』→ 譯『Rita Lee:音樂自傳』"
+    }
+   ],
+   "group": "rita lee uma autobiografia musical",
+   "verdict": "translate",
+   "tw": "Rita Lee：音樂自傳",
+   "cn": "Rita Lee：音乐自传",
+   "confidence": "medium",
+   "why": "巴西聖保羅 Teatro Porto 的傳記音樂劇,Mel Lisboa 主演、Marcio Macena 與 Débora Dubois 執導,紀念巴西搖滾女王 Rita Lee。⚠ Rita Lee 在中文圈【查無既定譯名】(中文維基無條目),依規則音譯不發明 → 姓名保留原文;其餘可譯部分照譯(uma autobiografia musical = 一部音樂自傳)。她的姓名本就是拉丁字母寫法,中文圈也慣以原文稱呼,混排尚屬自然。信心標 medium 即因姓名未譯。",
+   "sources": [
+    "https://bileto.sympla.com.br/event/",
+    "https://infoteatro.com.br/peca/rita-lee-uma-autobiografia-musical",
+    "https://www.teatroportoseguro.com.br/",
+    "https://www.eventim.com.br/artist/",
+    "https://www.ingresso.com/informacoes",
+    "https://guia.folha.uol.com.br/",
+    "https://www.instagram.com/ritaleeumaautobiografiamusical/"
+   ],
+   "evidence": "Eventim:『Rita Lee – Uma Autobiografia Musical é um espetáculo que celebra a vida e a obra da eterna rainha do rock brasileiro, trazendo ao palco sua irreverência』/ Ingresso.com:『o espetáculo Rita Lee - Uma Autobiografia Musical, estrelado por Mel Lisboa e dirigido por Marcio Macena e Débora Dubois』"
+  },
+  "monstruos": {
+   "rounds": [
+    {
+     "round": 1,
+     "目的": "查中文圈是否已有此劇譯名",
+     "查詢": "\"Monstruos el Musical\" México 中文 OR 怪物 音乐剧",
+     "看到什麼": "加引號查詢零結果;去引號後回傳的全是不相關內容(台灣 OPENTIX 的動物樂團、AMcreative 恐龍音樂劇、Apple Music 歌單等)",
+     "判斷": "確認中文圈無此劇任何資料 → 以詞義直譯"
+    },
+    {
+     "round": 2,
+     "目的": "確認『怪物』的繁簡寫法",
+     "查詢": "中文維基 API 變體轉換『怪物』",
+     "看到什麼": "zh-tw=怪物 / zh-cn=怪物(繁簡同形)",
+     "判斷": "採『怪物』。⚠ 原文為複數 Monstruos,但中文不標複數,且劇中確為多個怪物(德古拉、科學怪人等),『怪物』已能涵蓋"
+    }
+   ],
+   "group": "monstruos",
+   "verdict": "translate",
+   "tw": "怪物",
+   "cn": "怪物",
+   "confidence": "high",
+   "why": "墨西哥的恐怖喜劇音樂劇(官方 FB 逐字『la comedia musical de terror mas exitosa de México』,角色為 Drácula、Frankenstein 等經典怪物;身份查證見早前的 ledger.json)。monstruo=monster,無歧義;中文圈查無此劇既定譯名,以詞義直譯。繁簡同形(維基變體確認『怪物』兩版皆同)。",
+   "sources": [
+    "https://www.facebook.com/MonstruosElMusical",
+    "https://carteleradeteatro.mx/genero/musical/",
+    "https://www.ticketmaster.com/monstruos-el-musical-tickets/artist/",
+    "https://zh.wikipedia.org/wiki/怪物"
+   ],
+   "evidence": "官方 FB:『Vive en carne propia el montaje de la comedia musical de terror mas exitosa de México. MONSTRUOS EL MUSICAL』/ Cartelera de Teatro CDMX:『Monstruos el musical, reúne a los monstruos más célebres de la historia como Drácula, Frankenstein, El…』"
+  },
+  "la rumba": {
+   "rounds": [
+    {
+     "round": 1,
+     "目的": "確認製作身份與 La Rumba 在本劇指什麼",
+     "查詢": "\"La Rumba\" musical \"Ciudad de México\" cabaret teatral espectáculo",
+     "看到什麼": "Ticketmaster MX:『La Rumba es un espectáculo musical que rinde homenaje a los grandes…』;Teatrando:『La Rumba, actualmente en cartelera en el Nuevo Teatro Versalles de la Ciudad de México, es una comedia musical que revive la nostalgia y el…』;Espectaculos 360:『Mark Silva y Miguel Briones serán los encargados de producir la nueva puesta en escena「La Rumba」』;另有 Teatros CDMX 提到『la Rumba, el Son, el Guaguancó, el Chachachá, la Pachanga』等舞曲並列",
+     "判斷": "確認 La Rumba 指的是舞曲/音樂類型(與 Son、Guaguancó、Chachachá 並列),不是別的義項 → 用該類型的既定中文譯名"
+    },
+    {
+     "round": 2,
+     "目的": "取 rumba 的權威繁簡中文譯名",
+     "查詢": "中文維基 API 變體轉換 + 搜尋『倫巴 古巴 音樂 舞蹈 rumba』",
+     "看到什麼": "『倫巴』無獨立條目,但多個條目使用:『體育舞蹈』(繁):『節奏舞:恰恰恰(Cha Cha Cha)、倫巴(Rumba)、搖擺(Swing)、曼波(Mambo)』;『古巴音乐』(簡):『现今古巴的音乐形式有:由宗教仪式演变而来的伦巴(Rumba)』;另有專條『佛朗明哥倫巴(西班牙語:rumba flamenca)』",
+     "判斷": "繁『倫巴』、簡『伦巴』皆有維基條目內文用例 → 採用"
+    }
+   ],
+   "group": "la rumba",
+   "verdict": "translate",
+   "tw": "倫巴",
+   "cn": "伦巴",
+   "confidence": "high",
+   "why": "墨西哥城的音樂喜劇/卡巴萊劇場作品(Nuevo Teatro Versalles),向古巴-加勒比的 rumba 等舞曲與 cabaret 黃金年代致敬。rumba 在中文有既定譯名『倫巴/伦巴』,見中文維基多個條目;台陸差異僅在字形。",
+   "sources": [
+    "https://www.ticketmaster.com.mx/event/",
+    "https://teatrando.com.mx/la-rumba-en-el-nuevo-teatro-versalles/",
+    "https://espectaculos360.mx/la-rumba/",
+    "https://hoyteatro.com/blog/",
+    "https://zh.wikipedia.org/wiki/體育舞蹈",
+    "https://zh.wikipedia.org/wiki/古巴音乐",
+    "https://zh.wikipedia.org/wiki/佛朗明哥倫巴"
+   ],
+   "evidence": "Ticketmaster MX:『La Rumba es un espectáculo musical que rinde homenaje a los grandes…』/ Teatrando:『es una comedia musical que revive la nostalgia』/ 中文維基『體育舞蹈』:『節奏舞:恰恰恰(Cha Cha Cha)、倫巴(Rumba)、搖擺(Swing)、曼波(Mambo)』/『古巴音乐』:『由宗教仪式演变而来的伦巴(Rumba)』"
+  },
+  "leyendas mexicanas de terror 2": {
+   "rounds": [
+    {
+     "round": 1,
+     "目的": "沿用早前已完成的身份查證(避免重複勞動)",
+     "查詢": "見 scratchpad/eses/ledger.json 的 leyendas mexicanas de terror 2 條目",
+     "看到什麼": "製作方 Tort Producciones 官方 IG:『LEYENDAS MEXICANAS DE TERROR 2 El musical del día de muertos』;⚠ 反面證據:Cartelera de Teatro CDMX 稱其為『Espectáculo de terror narrado por catrinas』(敘述式)",
+     "判斷": "身份已確認為音樂劇(官方自稱),反面證據已記錄在案。本輪只需處理譯名"
+    },
+    {
+     "round": 2,
+     "目的": "確認中文譯名與繁簡寫法",
+     "查詢": "中文維基 API 變體轉換『傳說』",
+     "看到什麼": "zh-tw=傳說 / zh-cn=传说",
+     "判斷": "題名各詞皆為普通名詞,無專名音譯風險 → 直譯『墨西哥恐怖傳說 2 / 墨西哥恐怖传说 2』"
+    }
+   ],
+   "group": "leyendas mexicanas de terror 2",
+   "verdict": "translate",
+   "tw": "墨西哥恐怖傳說 2",
+   "cn": "墨西哥恐怖传说 2",
+   "confidence": "high",
+   "why": "Tort Producciones 的亡靈節音樂劇(官方 IG 逐字『LEYENDAS MEXICANAS DE TERROR 2 El musical del día de muertos』;身份查證與反面證據見早前的 ledger.json)。題名全為普通名詞:leyendas=傳說、mexicanas=墨西哥的、terror=恐怖。中文圈無既定譯名,以詞義直譯;『傳說/传说』繁簡由維基變體確認。",
+   "sources": [
+    "https://www.instagram.com/tortproducciones/",
+    "https://carteleradeteatro.mx/genero/musical/",
+    "https://www.ticketmaster.com/leyendas-mexicanas-del-terror-2-tickets/artist/",
+    "https://zh.wikipedia.org/wiki/傳說"
+   ],
+   "evidence": "Tort Producciones 官方 IG:『LEYENDAS MEXICANAS DE TERROR 2 El musical del día de muertos』/ 反面:Cartelera de Teatro CDMX『Leyendas Mexicanas de Terror 2. Espectáculo de terror narrado por catrinas』"
+  },
+  "princesas": {
+   "rounds": [
+    {
+     "round": 1,
+     "目的": "確認製作身份,並確認複數是否有意義",
+     "查詢": "\"Princesas\" musical Alicante familiar gira espectáculo teatro",
+     "看到什麼": "Tomaticket:『El evento se realiza en Teatro Corfú 7 en Alicante』;Teatro Leal IG:『Princesas llega a Alicante con un espectáculo familiar lleno de música, fantasía, emoción y magia, donde diferentes princesas compartirán sus…』;Fun Capital FB 巡演資訊;阿利坎特主劇院節目冊(PDF):『Todas saben cantar. Pero, ¿Conocemos la vida de esas princesas? ¿Sabemos lo que supuso para ellas su propio cuento de hadas?』",
+     "判斷": "確認是多位公主各自講述自己故事的家庭音樂劇 → 複數有實質意義,中譯保留『們』。⚠ 排除混淆:另有同名西班牙電影《Princesas》(2005)與『Dinosaurios y Princesas』等他作,均非本劇"
+    },
+    {
+     "round": 2,
+     "目的": "確認中文圈無既定譯名",
+     "查詢": "三劇名合併查中文譯名",
+     "看到什麼": "零相關結果(命中的是《不可思議星球的雙胞胎公主》、西班牙電影 Princesas 的樂評、GBA 遊戲中英對照表等)",
+     "判斷": "無既定譯名 → 詞義直譯"
+    }
+   ],
+   "group": "princesas",
+   "verdict": "translate",
+   "tw": "公主們",
+   "cn": "公主们",
+   "confidence": "high",
+   "why": "Fun Capital 製作的家庭音樂劇(Teatro Corfú 7 阿利坎特等地巡演),官方文案『Princesas llega a Alicante con un espectáculo familiar lleno de música, fantasía, emoción y magia, donde diferentes princesas compartirán sus…』——由【多位不同公主】各自分享故事,故複數有實質意義,譯『公主們』而非『公主』。中文圈查無既定譯名。",
+   "sources": [
+    "https://www.tomaticket.es/entradas-princesas",
+    "https://www.instagram.com/teatroleallalaguna/",
+    "https://www.facebook.com/FunCapital",
+    "https://www.teatroprincipaldealicante.com/",
+    "https://torrevieja.com/eventos"
+   ],
+   "evidence": "Teatro Leal:『Princesas llega a Alicante con un espectáculo familiar lleno de música, fantasía, emoción y magia, donde diferentes princesas compartirán sus…』/ 阿利坎特主劇院節目冊:『Todas saben cantar. Pero, ¿Conocemos la vida de esas princesas? ¿Sabemos lo que supuso para ellas su propio cuento de hadas?』"
+  },
+  "mil guitarras": {
+   "rounds": [
+    {
+     "round": 1,
+     "目的": "確認製作身份與題名性質",
+     "查詢": "\"Mil guitarras\" \"El Rock Musical\" Madrid teatro",
+     "看到什麼": "Atrapalo/Atrapalo Colombia:『Mil guitarras - El Rock Musical · Espacio Alma (Madrid) Musicales. 16 jul al 26 sep. 110 minutos. Español. Para todas las edades』;官方 IG:『Okidoki PRODUCCIONES MIL GUITARRAS El Rock Musical NIRVANA, QUEEN, AEROSMITH, METALLICA, GUNS N\\u0027 ROSES, BON JOVI, TINA TURNER, MICHAEL JACKSON, Y MUCHOS MAS...』;Cinco Calaveras Producciones FB:『Los viejos rockeros nunca mueren. Descubre Mil Guitarras, El Rock Musical』",
+     "判斷": "確認為搖滾金曲音樂劇;題名為普通名詞片語,無雙關或專名"
+    },
+    {
+     "round": 2,
+     "目的": "確認中文圈無既定譯名",
+     "查詢": "三劇名合併查中文譯名",
+     "看到什麼": "零結果",
+     "判斷": "無既定譯名 → 直譯『一千把吉他』;類型標籤 El Rock Musical 依房規不譯(與歐陸批次的 Il Musical / das Musical 處理一致)"
+    }
+   ],
+   "group": "mil guitarras",
+   "verdict": "translate",
+   "tw": "一千把吉他",
+   "cn": "一千把吉他",
+   "confidence": "high",
+   "why": "Okidoki Producciones / Cinco Calaveras 製作的搖滾音樂劇(Espacio Alma 馬德里,110 分鐘),曲目為 NIRVANA、QUEEN、AEROSMITH、METALLICA、GUNS N\\u0027 ROSES、BON JOVI、TINA TURNER、MICHAEL JACKSON 等。題名 Mil guitarras 為普通名詞片語(mil=一千、guitarra=吉他),中文圈無既定譯名,直譯。副標 El Rock Musical 是類型標籤,依既有房規不譯。",
+   "sources": [
+    "https://www.atrapalo.com/entradas/mil-guitarras/",
+    "https://www.atrapalo.com.co/entradas/",
+    "https://www.instagram.com/",
+    "https://www.facebook.com/CincoCalaverasProducciones",
+    "https://madridesteatro.com/musicales-madrid-hoy/",
+    "https://www.taquilla.com/madrid/espacio-alma"
+   ],
+   "evidence": "Atrapalo:『Mil guitarras - El Rock Musical · Espacio Alma (Madrid) Musicales. 16 jul al 26 sep. 110 minutos』/ 官方 IG:『Okidoki PRODUCCIONES MIL GUITARRAS El Rock Musical NIRVANA, QUEEN, AEROSMITH, METALLICA, GUNS N\\u0027 ROSES, BON JOVI, TINA TURNER, MICHAEL JACKSON』"
+  },
+  "a todo ritmo": {
+   "rounds": [
+    {
+     "round": 1,
+     "目的": "確認製作身份與文案語境",
+     "查詢": "\"A Todo Ritmo\" musical Madrid Dalpao Espacio Broadway comedia",
+     "看到什麼": "Atrapalo:『Comedia musical llena de humor, nostalgia y canciones pop donde el amor imperfecto se baila a todo ritmo. Vive el musical más vibrante del año』;entradas.com:『A Todo Ritmo, el musical más explosivo, nostálgico y vibrante del año. Una historia de amor tan torpe como verdadera. Aitana, una mujer brillante y libre,…』;Dalpao 官方 IG:『¡A todo ritmo!, una comedia musical que te hará reír, cantar... y reconciliarte con el amor』;Fever/EVENTIM 皆在 Espacio Broadway",
+     "判斷": "身份確認。文案裡 a todo ritmo 是【副詞片語】用法(se baila a todo ritmo)→ 題名是慣用語,必須查詞義不能字面翻"
+    },
+    {
+     "round": 2,
+     "目的": "查 a todo ritmo 的慣用語意義",
+     "查詢": "\"a todo ritmo\" expresión significado español idiom meaning full speed",
+     "看到什麼": "Academic 雙語詞典:『a todo ritmo = in full swing, in full force, in full gear』(並與 a todo meter = full steam ahead 並列);Scribd《Modismos y Refranes Populares en Inglés》:『In full swing: A todo ritmo』;另有語言學專書列 A todo ritmo 與 A todo gas(全速)為同型構式",
+     "判斷": "確認為『全力/如火如荼』義。中譯取『節奏全開』:既保留 ritmo,也傳達 a todo。信心 medium(慣用語中譯無唯一解)"
+    },
+    {
+     "round": 3,
+     "目的": "確認中文圈無既定譯名",
+     "查詢": "三劇名合併查中文譯名",
+     "看到什麼": "零結果",
+     "判斷": "無既定譯名,採自譯並標明信心"
+    }
+   ],
+   "group": "a todo ritmo",
+   "verdict": "translate",
+   "tw": "節奏全開",
+   "cn": "节奏全开",
+   "confidence": "medium",
+   "why": "Dalpao Producciones 的浪漫喜劇音樂劇(Espacio Broadway 馬德里)。⚠ 題名是【西語慣用語】不是字面:a todo ritmo = in full swing / in full force / at full speed(詞典與慣用語對照表已驗),不能直譯成『到全部節奏』。官方文案『el amor imperfecto se baila a todo ritmo』(不完美的愛盡情舞動)。中文圈無既定譯名,取『節奏全開』——保留 ritmo(節奏)且傳達 a todo(全開)。標 medium 是因為慣用語的中譯本就沒有唯一解。",
+   "sources": [
+    "https://www.atrapalo.com/entradas/a-todo-ritmo/",
+    "https://www.entradas.com/artist/a-todo-ritmo/",
+    "https://feverup.com/",
+    "https://www.instagram.com/dalpaoproducciones/",
+    "https://www.eventim-light.com/",
+    "https://translate.academic.ru/",
+    "https://es.scribd.com/document/"
+   ],
+   "evidence": "Atrapalo:『Comedia musical llena de humor, nostalgia y canciones pop donde el amor imperfecto se baila a todo ritmo』/ Academic 詞典:『a todo ritmo = in full swing, in full force, in full gear』/ Modismos y Refranes Populares:『In full swing: A todo ritmo』",
+   "捨棄的候選": "『舞力全開』——會與 Just Dance 的中文名撞;『如火如荼』——太書面,不像劇名"
+  },
+  "erase otra vez": {
+   "rounds": [
+    {
+     "round": 1,
+     "目的": "確認製作身份與題名的文字遊戲",
+     "查詢": "\"Érase otra vez\" musical Madrid Dalpao cuentos princesas hijos + 早前 ledger.json 的身份查證",
+     "看到什麼": "Atrapalo:『Érase otra vez;Fechas: Del 3 oct. 2026 al 31 oct. 2026;Duración: 70 minutos;Audiencia: Para todos los públicos;Idiomas: Español;Categoría: Musicales』;早前 ledger.json 已記錄官方逐字『Érase Otra Vez te invita a descubrirlo en un musical deslumbrante donde los cuentos clásicos se reinventan... los hijos de princesas, héroes y...』",
+     "判斷": "確認是童話續篇題材;題名 Érase otra vez 明顯是把童話開頭 Érase una vez(從前從前)的 una 換成 otra(另一次/又一次)→ 中譯要保留這個『又』的巧思"
+    },
+    {
+     "round": 2,
+     "目的": "確認中文圈無既定譯名",
+     "查詢": "合併查詢(見同輪其他組)",
+     "看到什麼": "中文圈查無此劇任何資料",
+     "判斷": "無既定譯名 → 意譯『從前又一次』;因是文字遊戲的意譯,信心標 medium"
+    }
+   ],
+   "group": "erase otra vez",
+   "verdict": "translate",
+   "tw": "從前又一次",
+   "cn": "从前又一次",
+   "confidence": "medium",
+   "why": "Dalpao Producciones 的家庭音樂劇(Espacio Broadway 馬德里,70 分鐘),官方自述『un musical deslumbrante donde los cuentos clásicos se reinventan… los hijos de princesas, héroes y…』(童話主角的【下一代】)。題名是仿西語童話開頭 Érase una vez(從前從前)改成 otra vez(又一次)的【文字遊戲】,呼應『續篇/下一代』的設定 → 譯『從前又一次』。⚠ 標 medium:這是文字遊戲的意譯,中文沒有現成對應說法,也無既定譯名。",
+   "sources": [
+    "https://www.atrapalo.com/entradas/erase-otra-vez/",
+    "https://www.instagram.com/dalpaoproducciones/",
+    "https://linktr.ee/dalpaoproducciones"
+   ],
+   "evidence": "Atrapalo:『Érase otra vez… Duración: 70 minutos… Categoría: Musicales』/ 官方(見 ledger.json):『Érase Otra Vez te invita a descubrirlo en un musical deslumbrante donde los cuentos clásicos se reinventan... los hijos de princesas, héroes y...』"
+  },
+  "en joan sense por i la casa encantada": {
+   "rounds": [
+    {
+     "round": 1,
+     "目的": "確認製作身份與形式",
+     "查詢": "\"En Joan sense por\" \"casa encantada\" musical Barcelona La Roda",
+     "看到什麼": "SAT! Sant Andreu Teatre 分類『Cicle Mitjà i Cicle Superior / Teatre musical. EN JOAN SENSE POR I LA CASA ENCANTADA. Cia. La Roda Produccions』;巴塞隆納市政府:『Espectacle familiar…Sinopsi: Fantasmes, monstres, malediccions, música, balls』;Koobin 售票:『La Roda Produccions: Duración: 60 minutos;Edad: A partir de 4 años;¡Fantasmas, monstruos, maldiciones…』;Atrapalo:『Idiomas: Catalán』",
+     "判斷": "確認為加泰語家庭音樂劇。題名的 En Joan sense por 像是既有故事角色 → 必須查來源,不能當成原創人名"
+    },
+    {
+     "round": 2,
+     "目的": "查 Joan sense por 是否為既有民間故事,以及有無中文譯名",
+     "查詢": "\"Joan sense por\" rondalla catalana conte popular Grimm \"sin miedo\" + 格林童話 不知害怕 少年 中文 譯名 學發抖",
+     "看到什麼": "加泰語維基:『En Pere sense por (també anomenat En Joan sense por en altres versions) és un conte tradicional europeu, recollit a Els llibres de les fades i abans pels…』;西語版為 Juan sin miedo(Runruneando:『Juan sin miedo es un cuento popular de origen germánico, recopilado y publicado por los célebres Hermanos Grimm』);中文版該篇譯名為『傻小子學害怕』(Grimmstories.com 官方中文站、熾天使書城)或『學習發抖』(創世中文網、百度、bilibili)",
+     "判斷": "故事有中文譯名,但那是【故事名】不是角色名——中文版把主角叫『傻小子』,沒有專名。故無法直接套用。取西語對應版 Juan 的標準中譯『胡安』組成『無畏的胡安與鬼屋』,信心標 medium 並記錄理由"
+    }
+   ],
+   "group": "en joan sense por i la casa encantada",
+   "verdict": "translate",
+   "tw": "無畏的胡安與鬼屋",
+   "cn": "无畏的胡安与鬼屋",
+   "confidence": "medium",
+   "why": "La Roda Produccions 的加泰語家庭音樂劇(SAT! Sant Andreu Teatre / Teatre Condal,4 歲以上,60 分鐘,『Fantasmes, monstres, malediccions, música, balls』)。題名取自歐洲傳統故事:加泰語維基載明『En Pere sense por(també anomenat En Joan sense por en altres versions)és un conte tradicional europeu』,西語版即格林童話的 Juan sin miedo。sense por=無畏(por=fear,Wiktionary 已驗)、casa encantada=鬼屋。⚠ 標 medium:該故事的中文譯名是【故事名】『傻小子學害怕』/『學習發抖』,角色在中文版沒有名字;我取西語對應版 Juan 的標準中譯『胡安』,雖非自創音譯,但加泰語 Joan 的中文寫法確實無既定用例。",
+   "sources": [
+    "https://www.sat-teatre.cat/",
+    "https://guia.barcelona.cat/",
+    "https://www.teatrecondal.cat/en-joan-sense-por/",
+    "https://sat-teatre.koobin.cat/",
+    "https://www.atrapalo.com/entradas/en-joan-sense-por-i-la-casa-encantada/",
+    "https://ca.wikipedia.org/wiki/En_Pere_sense_por",
+    "https://www.grimmstories.com/zh/grimm_tongh/sha_xiaozi_xue_haipa",
+    "https://en.wiktionary.org/wiki/por"
+   ],
+   "evidence": "巴塞隆納市政府:『Espectacle familiar「En Joan sense por i la casa encantada」, a càrrec de la Cia. La Roda Produccions…Sinopsi: Fantasmes, monstres, malediccions, música, balls』/ 加泰語維基:『En Pere sense por (també anomenat En Joan sense por en altres versions) és un conte tradicional europeu』/ 中文格林童話篇名:『傻小子學害怕』",
+   "捨棄的候選": "直接用格林童話中文篇名『傻小子學害怕』——那是故事名不是本劇題名,且本劇是鬼屋冒險的家庭音樂劇,套用會張冠李戴"
+  },
+  "快乐即逝": {
+   "rounds": [
+    {
+     "round": 1,
+     "目的": "確認題名語言與是否需要註記",
+     "查詢": "檢視 data/shows.json 該組的 title 欄位與早前 ledger.json 的分類",
+     "看到什麼": "title 即『快乐即逝』(簡體中文);早前 ledger.json 記為『巴塞隆納當代音樂劇(來滬演出)』,tag 為西葡音樂劇是因為【作品產地】在巴塞隆納,演出地在上海",
+     "判斷": "題名已是中文 → 加註會重複顯示,不加。這不是『查不到』,是『不需要』"
+    }
+   ],
+   "group": "快乐即逝",
+   "verdict": "keep",
+   "tw": null,
+   "cn": null,
+   "confidence": "high",
+   "why": "不加中文註記。這一組的題名【本身就是中文】(巴塞隆納當代音樂劇來上海演出時使用的中文劇名)。cn_annot 的作用是把中文名加註在原文題名【旁邊】,若在中文題名旁再加同樣的中文,會在畫面上重複顯示同一組字。與歐陸批次的『茶花女』『莫里哀』處理一致。",
+   "sources": [
+    "https://detail.damai.cn/"
+   ],
+   "evidence": "data/shows.json 該組 title=『快乐即逝』,city=Shanghai,tag=西葡音樂劇(產地標記)"
+  },
+  "crush": {
+   "rounds": [
+    {
+     "round": 1,
+     "目的": "確認製作身份與題名性質",
+     "查詢": "\"Crush\" musical Barcelona teatre original petit format",
+     "看到什麼": "Teatre Musical:『Crush, un nou musical de petit format arribarà al Teatre Akadèmia de Barcelona la temporada 2026-27. Del 2 de desembre de 2026 al 3 de gener de 2027. El Teatre Akadèmia de Barcelona estrenarà Crush, un nou musical de petit format escrit…』;Teatre Barcelona 售票列表『Crush. Teatre Akadèmia』;TRESC 文案:『Hi ha un instant de silenci que existeix just abans que tot canviï, però ningú el recorda fins que…』;製作方 RUGIDO TEATRE(IG)",
+     "判斷": "確認為加泰語原創小型音樂劇;題名為英文借詞,非加泰語詞。⚠ 排除混淆:搜尋另有『Croqueta Crush Festival』等無關活動"
+    }
+   ],
+   "group": "crush",
+   "verdict": "keep",
+   "tw": null,
+   "cn": null,
+   "confidence": "medium",
+   "why": "保留原文。Teatre Akadèmia(巴塞隆納)的加泰語小型原創音樂劇(RUGIDO TEATRE,2026-12-02 至 2027-01-03)。題名 Crush 是【英文詞】,在西語/加泰語中直接借用。依既有房規『原文即通用(英文題名)』不譯——與歐陸批次的 Win for life、Musical 1989 同一處理。⚠ 標 medium:crush 在中文確有對應說法『暗戀』,譯出來對中文讀者更直觀;但那會把一個刻意使用英文外來語的題名改寫成中文詞,且本劇無既定中文譯名,故從既有房規保留原文。這一筆屬可討論的邊界,誠實標記。",
+   "sources": [
+    "https://teatremusical.cat/2026/07/21/",
+    "https://www.teatrebarcelona.com/pagina/musicals",
+    "https://www.tresc.cat/",
+    "https://www.instagram.com/rugidoteatre/",
+    "https://www.teatreakademia.cat/"
+   ],
+   "evidence": "Teatre Musical:『Crush, un nou musical de petit format arribarà al Teatre Akadèmia de Barcelona la temporada 2026-27… Del 2 de desembre de 2026 al 3 de gener de 2027』/ TRESC:『Hi ha un instant de silenci que existeix just abans que tot canviï, però ningú el recorda fins que…』",
+   "捨棄的候選": "『暗戀』——crush 的常見中譯,但會把刻意使用的英文外來語題名改寫成中文詞,且本劇無既定中文譯名"
+  },
+  "bienvenidos un musical con exitos de los 80s y 90s": {
+   "rounds": [
+    {
+     "round": 1,
+     "目的": "確認製作身份與曲目來源",
+     "查詢": "\"Bienvenidos\" \"musical\" \"éxitos de los 80\" gira España teatro",
+     "看到什麼": "官方 IG @bienvenidoselmusical:『BIENVENIDOS un Musical con los éxitos de los 80´s y 90´s. Tres jóvenes se convertirán en sus nuevos compañeros y familia, los cuales tendrán que…』;El Corte Inglés:『Disfruta de este musical cantando y bailando los grandes éxitos de los 80. ¡Alaska, Radio Futura, Tino Casal, Mecano y muchos más!』;巡演含 Alcalá de Henares(Auditorio Paco de Lucía)、Totana、Pontevedra 等地",
+     "判斷": "確認為西班牙金曲 jukebox 音樂劇。題名為普通問候語,無雙關"
+    },
+    {
+     "round": 2,
+     "目的": "確認中文圈無既定譯名",
+     "查詢": "同輪合併查詢",
+     "看到什麼": "中文圈查無此劇資料",
+     "判斷": "直譯『歡迎!』"
+    }
+   ],
+   "group": "bienvenidos un musical con exitos de los 80s y 90s",
+   "verdict": "translate",
+   "tw": "歡迎！",
+   "cn": "欢迎！",
+   "confidence": "high",
+   "why": "La Opción 製作的西班牙 80/90 年代金曲 jukebox 音樂劇(全國巡演,曲目含 Alaska、Radio Futura、Tino Casal、Mecano)。劇情:三個年輕人加入一個新的『家庭』。bienvenidos=welcome(歡迎),普通詞無歧義;中文圈無既定譯名 → 直譯『歡迎!』。副標『Un musical con éxitos de los 80\\u0027s y 90\\u0027s』是說明性文字,不譯。",
+   "sources": [
+    "https://www.instagram.com/bienvenidoselmusical/",
+    "https://www.elcorteingles.es/entradas/teatro/",
+    "https://www.atrapalo.com/entradas/bienvenidos/",
+    "https://www.entradas.com/artist/bienvenidos/",
+    "https://www.tomaticket.es/",
+    "https://www.hoymadrid.app/planes",
+    "https://www.todosalteatro.com/eventos"
+   ],
+   "evidence": "官方 IG:『BIENVENIDOS un Musical con los éxitos de los 80´s y 90´s. Tres jóvenes se convertirán en sus nuevos compañeros y familia』/ El Corte Inglés:『Disfruta de este musical cantando y bailando los grandes éxitos de los 80. ¡Alaska, Radio Futura, Tino Casal, Mecano y muchos más!』",
+   "備註": "與 bienvenidos un musical con los exitos de los 80s y los 90s totana 是【同一齣戲的不同場地】,譯名一致"
+  },
+  "bienvenidos un musical con los exitos de los 80s y los 90s totana": {
+   "rounds": [
+    {
+     "round": 1,
+     "目的": "確認與另一 group 為同一齣",
+     "查詢": "沿用同輪查證",
+     "看到什麼": "Atrapalo 條目名逐字含場地:『¡Bienvenidos! Un musical con los éxitos de los 80\\u0027s y los 90\\u0027s-Totana』,內容與另一組相同",
+     "判斷": "同劇不同場地,譯名同步"
+    }
+   ],
+   "group": "bienvenidos un musical con los exitos de los 80s y los 90s totana",
+   "verdict": "translate",
+   "tw": "歡迎！",
+   "cn": "欢迎！",
+   "confidence": "high",
+   "why": "與上一組是同一齣戲,只是場地不同(Totana)——來源把場地名寫進標題,因而分裂成兩個 group。譯名與上一組一致。",
+   "sources": [
+    "https://www.atrapalo.com/entradas/bienvenidos-totana/",
+    "https://www.instagram.com/bienvenidoselmusical/"
+   ],
+   "evidence": "Atrapalo:『¡Bienvenidos! Un musical con los éxitos de los 80\\u0027s y los 90\\u0027s-Totana』",
+   "待辦": "這兩組其實是同一齣戲(標題含場地名導致分裂),先前筆記已標記【應考慮合併】,屬另一項工作,不在本次劇名任務範圍"
+  },
+  "armstrong un musical muy espacial": {
+   "rounds": [
+    {
+     "round": 1,
+     "目的": "確認製作身份",
+     "查詢": "\"Armstrong\" \"un musical muy espacial\" Madrid teatro familiar",
+     "看到什麼": "Teatro Sanpol 官方節目表;teatroinfantilmadrid:『Armstrong, un musical muy espacial es una obra musical familiar de La Roda Producciones』;musicalesmadrid:『Un viaje teatral a la luna cargado de misterio, canciones y muchas…』;BroadwayWorld 觀眾票選入圍名單亦列此劇",
+     "判斷": "⚠ 看到『到月球的旅行』時我一度懷疑它改編自 Torben Kuhlmann 的知名繪本《Armstrong:一隻老鼠的登月冒險》——若是,繪本中文版才是權威譯名。必須查清楚,不能假設"
+    },
+    {
+     "round": 2,
+     "目的": "釐清 Armstrong 是太空人還是繪本裡的老鼠",
+     "查詢": "\"Armstrong\" \"La Roda Produccions\" musical luna ratón OR Kuhlmann OR astronauta",
+     "看到什麼": "giragiradis(發行商)逐字:『Piper siempre había escuchado muchas historias de su abuelo, Neil Armstrong, la primera persona que pisó la Luna』;Apropa Cultura 同;Teatre Barcelona:『La Roda Produccions estrena nuevo musical! Armstrong, un musical molt espacial promete ritmo, diversión, música en directo』;YouTube 官方影片說明提到 astronauta 與 Piper 想當太空人",
+     "判斷": "確認【不是】Kuhlmann 的老鼠繪本,而是真實太空人 Neil Armstrong 的孫女 Piper 的故事 → 用尼爾·阿姆斯壯的既定中文譯名"
+    },
+    {
+     "round": 3,
+     "目的": "取權威繁簡譯名(此名台陸差異大)",
+     "查詢": "中文維基 API 變體轉換『尼爾·阿姆斯壯』",
+     "看到什麼": "zh-tw=尼爾·阿姆斯壯 / zh-cn=尼尔·阿姆斯特朗",
+     "判斷": "憑印象兩邊都寫『阿姆斯壯』會錯,大陸作『阿姆斯特朗』。題名只含姓氏 → 繁『阿姆斯壯』/ 簡『阿姆斯特朗』"
+    }
+   ],
+   "group": "armstrong un musical muy espacial",
+   "verdict": "translate",
+   "tw": "阿姆斯壯",
+   "cn": "阿姆斯特朗",
+   "confidence": "high",
+   "why": "La Roda Produccions 的家庭音樂劇(Teatro Sanpol 馬德里 / SAT! 巴塞隆納,加泰語版名為 Armstrong, un musical molt espacial)。查證確認題名的 Armstrong 就是【登月太空人尼爾·阿姆斯壯】:官方劇情逐字『Piper siempre había escuchado muchas historias de su abuelo, Neil Armstrong, la primera persona que pisó la Luna』。中文既定譯名有明顯【台陸差異】:繁『尼爾·阿姆斯壯』/ 簡『尼尔·阿姆斯特朗』(中文維基變體轉換)。題名只有姓氏,故取『阿姆斯壯/阿姆斯特朗』。⚠ 副標 un musical muy espacial 是雙關(espacial 太空的/近 especial 特別的),依規則西葡不加副標,且雙關譯不出。",
+   "sources": [
+    "https://www.teatrosanpol.com/",
+    "https://www.atrapalo.com/entradas/armstrong-un-musical-muy-espacial/",
+    "https://giragiradis.com/armstrong-un-musical-muy-espacial/",
+    "https://www.apropacultura.org/evento",
+    "https://www.teatrebarcelona.com/armstrong",
+    "https://www.sat-teatre.cat/",
+    "https://teatroinfantilmadrid.com/",
+    "https://zh.wikipedia.org/wiki/尼爾·阿姆斯壯"
+   ],
+   "evidence": "giragiradis:『Un espectáculo de la Roda Produccions. Piper siempre había escuchado muchas historias de su abuelo, Neil Armstrong, la primera persona que pisó la Luna.』/ musicalesmadrid:『Un viaje teatral a la luna cargado de misterio, canciones y muchas…』/ 維基變體:zh-tw=尼爾·阿姆斯壯, zh-cn=尼尔·阿姆斯特朗",
+   "排除的假設": "Torben Kuhlmann 繪本《Armstrong》(老鼠登月)——查證後確認無關,本劇是真實太空人孫女的故事"
+  },
+  "artemis": {
+   "rounds": [
+    {
+     "round": 1,
+     "目的": "確認製作身份與題名所指",
+     "查詢": "\"Artemis\" musical Barcelona teatre monòleg OR unipersonal espectacle",
+     "看到什麼": "巴塞隆納市政府:『Un monòleg musical com no l\\u0027has vist mai escrit, composat i interpretat per una sola actriu en escena amb música en directe. Una filla…』;Teatre Barcelona:『Artemis és la primera obra monòleg musical de creació pròpia escrita i composada per la Mireia Morera que va ser premiada amb el reconeixement de Millor Lletra…』;Cultura Jove:『un monòleg musical protagonitzat per Mireia Morera. Un espectacle de la Cia Geminis, dirigit per Pol Sanuy』;FB:『Una peça íntima i poderosa sobre el que pesa, el que cura i el que no es diu』;teatralnet:『Artemis és el projecte de final de grau de l\\u0027Institut del Teatre de Mireia Morera』",
+     "判斷": "確認為個人創作的加泰語獨角音樂劇。所有文案【都沒有提到希臘神話】→ 無法確認題名指女神"
+    },
+    {
+     "round": 2,
+     "目的": "備查:若確為女神,中文譯名為何",
+     "查詢": "中文維基 API 變體轉換『阿耳忒弥斯』",
+     "看到什麼": "zh-tw=阿提米絲 / zh-cn=阿耳忒弥斯(台陸差異極大)",
+     "判斷": "譯名備妥但【不採用】——因為沒有證據支持它指女神。記錄下來,日後若查到作者說明可直接改"
+    }
+   ],
+   "group": "artemis",
+   "verdict": "keep",
+   "tw": null,
+   "cn": null,
+   "confidence": "medium",
+   "why": "保留原文。Cia Gèminis 的加泰語獨角音樂劇(Teatre Condal 巴塞隆納,80 分鐘),由 Mireia Morera 一人編劇、作曲、演出,Pol Sanuy 導演,是她在 Institut del Teatre 的畢業製作。⚠ 關鍵判斷:我手上【已有】希臘女神 Artemis 的權威中文譯名(維基變體:繁『阿提米絲』/ 簡『阿耳忒弥斯』),但【沒有任何證據顯示本劇題名指的是女神】——官方文案只說『Una filla…』(一個女兒)、『sobre el que pesa, el que cura i el que no es diu』(關於重擔、療癒與說不出口的事),通篇未提神話。有譯名不等於該用;套上去等於我替作者決定題名的意思。故保留原文。標 medium 是因為這是『可能是女神但無法證實』的懸而未決,不是查證失敗。",
+   "sources": [
+    "https://guia.barcelona.cat/detall/espectacle-artemis",
+    "https://www.teatrecondal.cat/artemis",
+    "https://www.teatrebarcelona.com/artemis",
+    "https://www.culturajove.cat/artemis",
+    "https://teatremontcada.cat/",
+    "https://www.auditoricornella.com/",
+    "https://teatralnet.com/artemis-un-monoleg/",
+    "https://teatremusical.cat/"
+   ],
+   "evidence": "巴塞隆納市政府:『Un monòleg musical com no l\\u0027has vist mai escrit, composat i interpretat per una sola actriu en escena amb música en directe. Una filla…』/ Teatre Barcelona:『Artemis és la primera obra monòleg musical de creació pròpia escrita i composada per la Mireia Morera』/ teatralnet:『Artemis és el projecte de final de grau de l\\u0027Institut del Teatre de Mireia Morera』",
+   "備而不用": "若日後確認題名指希臘女神,譯名為 繁『阿提米絲』/ 簡『阿耳忒弥斯』(中文維基變體)",
+   "關聯": "與同庫的 un refugi al sol 同為 Cia Gèminis 作品"
+  },
+  "chuchuwa viaja jugando": {
+   "rounds": [
+    {
+     "round": 1,
+     "目的": "確認 Chuchuwá 是專有名詞還是可譯的詞",
+     "查詢": "\"Chuchuwá viaja jugando\" musical Madrid infantil teatro",
+     "看到什麼": "Atrapalo:『Chuchuwá Viaja Jugando es un espectáculo musical familiar donde los personajes Ali, Popy, Nina y Tulo realizan un viaje lleno de imaginación, juegos y…』;El Corte Inglés / TodosAlTeatro:『CHUCHUWÁ: Viaja Jugando es un precioso espectáculo musical para toda la familia donde Ali, Popy, Nina y Tulo recorren junto al mágico tren Chuchuwá un viaje…』;entradas.com:『convierte el teatro en una estación de aventuras, juegos y canciones』;場地 Espacio Alma",
+     "判斷": "Chuchuwá 是【劇中魔法火車的名字】(mágico tren Chuchuwá),同時是知名西語兒歌名 → 專有名詞,中文無既定譯名,不自創音譯;副標可譯"
+    }
+   ],
+   "group": "chuchuwa viaja jugando",
+   "verdict": "translate",
+   "tw": "Chuchuwá：邊玩邊旅行",
+   "cn": "Chuchuwá：边玩边旅行",
+   "confidence": "medium",
+   "why": "Espacio Alma(馬德里)的家庭音樂劇,角色 Ali、Popy、Nina、Tulo 搭乘【魔法火車 Chuchuwá】展開旅程。Chuchuwá 既是劇中火車名,也是知名西語兒歌名,屬專有名詞且中文無既定譯名 → 保留原文;其餘可譯部分照譯(viaja jugando = 邊玩邊旅行)。⚠ 標 medium:中西混排不美觀,但比自創音譯誠實(處理方式與 Rita Lee、Mi padre Sabina y yo 一致)。",
+   "sources": [
+    "https://www.atrapalo.com/entradas/chuchuwa-viaja-jugando/",
+    "https://www.entradas.com/artist/chuchuwa/",
+    "https://www.elcorteingles.es/entradas/en-familia/",
+    "https://www.todosalteatro.com/teatro/",
+    "https://www.pequeplanmadrid.es/",
+    "https://tickets.oneboxtds.com/events"
+   ],
+   "evidence": "El Corte Inglés:『CHUCHUWÁ: Viaja Jugando es un precioso espectáculo musical para toda la familia donde Ali, Popy, Nina y Tulo recorren junto al mágico tren Chuchuwá un viaje…』/ Atrapalo:『donde los personajes Ali, Popy, Nina y Tulo realizan un viaje lleno de imaginación, juegos y…』"
+  },
+  "es navidad": {
+   "rounds": [
+    {
+     "round": 1,
+     "目的": "沿用早前的身份查證(該組已做過 4 輪深查)",
+     "查詢": "見 scratchpad/eses/ledger.json 的 es navidad 條目",
+     "看到什麼": "atrapalo 描述:『¿Y si la Navidad no fuera una fecha... sino un lugar al que siempre podemos volver? Cuando el espíritu navideño comienza a desaparecer, un viaje inesperado de dos duendes llevará a pequeños y mayores fuera del polo norte a buscar al próximo sustituto de santa』;製作方欄位『Servicio prestado por: Dalpao Producciones』",
+     "判斷": "身份已確認。本輪只需處理譯名"
+    },
+    {
+     "round": 2,
+     "目的": "確認題名語義與有無既定中文譯名",
+     "查詢": "題名為西語常用句『Es Navidad』;中文圈搜尋(早前查證時已做過,結果被無關聖誕活動淹沒)",
+     "看到什麼": "無任何中文譯名;句意明確為『聖誕節到了』",
+     "判斷": "直譯『聖誕節到了!』,保留原題的驚嘆語氣"
+    }
+   ],
+   "group": "es navidad",
+   "verdict": "translate",
+   "tw": "聖誕節到了！",
+   "cn": "圣诞节到了！",
+   "confidence": "high",
+   "why": "Dalpao Producciones 的兒童/家庭聖誕音樂劇(Teatro Salesianos Estrecho 馬德里,2026-12-05 至 2027-01-04)。身份與『是不是音樂劇』的完整查證見 scratchpad/eses/ledger.json(該筆做了 4 輪,並找出製作方 Dalpao 與其前作『Mágica Navidad, El musical』)。題名『¡ES NAVIDAD!』字面即『聖誕節到了!』,普通語句無雙關,中文圈無既定譯名 → 直譯。",
+   "sources": [
+    "https://www.atrapalo.com/entradas/es-navidad_e4952581/",
+    "https://linktr.ee/dalpaoproducciones",
+    "https://www.instagram.com/dalpaoproducciones/"
+   ],
+   "evidence": "atrapalo:『¡ES NAVIDAD! ¿Y si la Navidad no fuera una fecha... sino un lugar al que siempre podemos volver?…Entre personajes inolvidables, canciones emocionantes, grandes coreografías y una historia mágica』"
+  },
+  "jurassic game": {
+   "rounds": [
+    {
+     "round": 1,
+     "目的": "確認製作身份與題名語言",
+     "查詢": "\"Jurassic Game\" musical Valencia familiar interactivo teatro",
+     "看到什麼": "Teatro Olympia 官方節目表:『Jurassic Game. Un musical familiar con Dinosaurios y Princesas. 27 septiembre 2026 - 4 octubre 2026』;Applausa:『Jurassic Game es un musical familiar que combina canciones, coreografías, proyecciones en 3D y…』;Teatro Olympia FB:『vuelve「Jurassic Game」una aventura musical interactiva con canciones, coreografías, proyecciones en 3D』;Atrapalo:『Musicales. 75 minutos. Castellano. Familiar』;另在 La Rambleta 演出",
+     "判斷": "確認為西語演出但【題名為英文】→ 依房規保留原文"
+    }
+   ],
+   "group": "jurassic game",
+   "verdict": "keep",
+   "tw": null,
+   "cn": null,
+   "confidence": "high",
+   "why": "保留原文。Teatro Olympia(瓦倫西亞)等地的互動家庭音樂劇,含 3D 投影。題名 Jurassic Game 是【英文】,依既有房規『原文即通用(英文題名)』不譯——與歐陸批次的 Win for life、以及本批的 Crush、Princess Story 同一處理。且 Jurassic 一詞因《侏羅紀公園》系列在中文圈已高度可辨識。",
+   "sources": [
+    "https://www.teatro-olympia.com/",
+    "https://www.applausa.com/eventos/",
+    "https://www.facebook.com/teatroolympia",
+    "https://larambleta.com/por-espacios",
+    "https://www.atrapalo.com/entradas/",
+    "https://www.teatroenvalencia.com/"
+   ],
+   "evidence": "Teatro Olympia:『Jurassic Game. Un musical familiar con Dinosaurios y Princesas. 27 septiembre 2026 - 4 octubre 2026』/ Applausa:『Jurassic Game es un musical familiar que combina canciones, coreografías, proyecciones en 3D y…』"
+  },
+  "princess story": {
+   "rounds": [
+    {
+     "round": 1,
+     "目的": "確認製作身份與題名語言",
+     "查詢": "\"Princess Story\" musical España gira familiar princesas",
+     "看到什麼": "製作方官網 princesspartymadrid.com:『Princess Story Un Musical de Princess Party Madrid…GIRA NACIONAL 2026/27…Princess Story es el espectáculo familiar…』;官方 IG:『Llega Princess Story, el musical que hará soñar a toda la familia. Acompaña a tus princesas favoritas en una aventura llena de música, magia y emoción』;Atrapalo:『Duración: 90 minutos;Idiomas: Castellano』;巡演含 La Vall d\\u0027Uixó、Vila-real、Alcalá de Henares 等地",
+     "判斷": "確認為西語演出但【題名為英文】→ 依房規保留原文"
+    }
+   ],
+   "group": "princess story",
+   "verdict": "keep",
+   "tw": null,
+   "cn": null,
+   "confidence": "high",
+   "why": "保留原文。Princess Party Madrid 製作的家庭音樂劇,2026/27 全國巡演。題名 Princess Story 是【英文】,依既有房規『原文即通用(英文題名)』不譯。",
+   "sources": [
+    "https://www.princesspartymadrid.com/",
+    "https://www.instagram.com/princessparty_madrid/",
+    "https://www.atrapalo.com/entradas/princess-story/",
+    "https://www.facebook.com/princessparty_madrid"
+   ],
+   "evidence": "官方站:『Princess Story Un Musical de Princess Party Madrid…GIRA NACIONAL 2026/27』/ 官方 IG:『Llega Princess Story, el musical que hará soñar a toda la familia』"
+  },
+  "osky y su hilo multicolor": {
+   "rounds": [
+    {
+     "round": 1,
+     "目的": "確認製作身份與 Osky 是否為角色名",
+     "查詢": "\"Osky y su Hilo Multicolor\" musical Madrid familiar teatro",
+     "看到什麼": "Atrapalo:『Un musical familiar que celebra la amistad y los sueños, con música, magia…Osky y su Hilo Multicolor. Teatro Salesianos Estrecho, Madrid』;Taquilla、Atrapalo Colombia 皆列於 Musicales/Familiar 分類",
+     "判斷": "Osky 為劇中角色名(題名結構 X y su Y = 某某與他的某物)。中文圈查無任何資料,無既定譯名 → 人名保留、其餘照譯"
+    }
+   ],
+   "group": "osky y su hilo multicolor",
+   "verdict": "translate",
+   "tw": "Osky 與他的彩色線",
+   "cn": "Osky 与他的彩色线",
+   "confidence": "medium",
+   "why": "Teatro Salesianos Estrecho(馬德里)的家庭音樂劇,官方『Un musical familiar que celebra la amistad y los sueños, con música, magia…』。Osky 是【虛構角色名】,中文無既定譯名 → 依規則不自創音譯,保留原文;其餘可譯部分照譯(hilo=線、multicolor=彩色的)。⚠ 標 medium:中西混排不美觀,但比自創音譯誠實(與 Rita Lee、Chuchuwá、Mi padre Sabina y yo 一致)。",
+   "sources": [
+    "https://www.atrapalo.com/entradas/osky-y-su-hilo-multicolor/",
+    "https://www.atrapalo.com.co/entradas/",
+    "https://www.taquilla.com/madrid/teatro-salesianos-estrecho"
+   ],
+   "evidence": "Atrapalo:『Un musical familiar que celebra la amistad y los sueños, con música, magia…Osky y su Hilo Multicolor. Teatro Salesianos Estrecho, Madrid』"
+  },
+  "rincones con lorena gomez": {
+   "rounds": [
+    {
+     "round": 1,
+     "目的": "確認製作身份與題名結構",
+     "查詢": "\"Rincones\" \"Lorena Gómez\" musical Madrid teatro amores",
+     "看到什麼": "Grupo Smedia 官方:『Rincones, con Lorena Gómez. Un musical sobre los amores de tu vida.』;官方站 rinconeselmusical.es:『Bienvenidos a Rincones, el musical protagonizado por Lorena Gómez. Estreno el 30 de septiembre en el Teatro Pequeño Gran Vía de Madrid』;Club Smedia:『Un musical sobre el amor, las mudanzas que te cambian la vida y…』;Telemadrid 報導:『Lorena Gómez debuta sobre las tablas con「Rincones」』;80 分鐘",
+     "判斷": "題名主體是 Rincones,『con Lorena Gómez』為主演掛名 → 只譯主體"
+    },
+    {
+     "round": 2,
+     "目的": "確認 Lorena Gómez 有無中文譯名(若有,或可考慮保留掛名)",
+     "查詢": "中文維基 API 搜尋『Lorena Gómez 西班牙 歌手 Operación Triunfo』",
+     "看到什麼": "查無任何結果",
+     "判斷": "無中文譯名,更確定不加掛名。題名譯『角落』"
+    }
+   ],
+   "group": "rincones con lorena gomez",
+   "verdict": "translate",
+   "tw": "角落",
+   "cn": "角落",
+   "confidence": "medium",
+   "why": "Pequeño Teatro Gran Vía(馬德里)的音樂劇,由西班牙歌手 Lorena Gómez 主演,官方副標『Un musical sobre los amores de tu vida』(關於你這輩子的那些愛),主題是愛與『改變人生的搬家』。題名主體 rincones=角落(rincón 的複數)。⚠『con Lorena Gómez』是【主演掛名】不是題名的一部分,依規則不譯(西葡不加副標/主演名);且 Lorena Gómez 中文維基查無條目,音譯不發明。標 medium:中文無既定譯名,且『角落』是否能傳達原題意象見仁見智。",
+   "sources": [
+    "https://gruposmedia.com/cartelera/",
+    "https://rinconeselmusical.es/",
+    "https://www.atrapalo.com/entradas/rincones/",
+    "https://www.elcorteingles.es/entradas/teatro/",
+    "https://www.entradas.com/event/rincones/",
+    "https://www.telemadrid.es/"
+   ],
+   "evidence": "Grupo Smedia:『Rincones, con Lorena Gómez. Un musical sobre los amores de tu vida.』/ 官方站:『Bienvenidos a Rincones, el musical protagonizado por Lorena Gómez. Estreno el 30 de septiembre en el Teatro Pequeño Gran Vía de Madrid』/ Club Smedia:『Un musical sobre el amor, las mudanzas que te cambian la vida』"
+  }
+ }
+}
