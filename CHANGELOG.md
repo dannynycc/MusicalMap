@@ -11,6 +11,74 @@
 
 ---
 
+## [v2.101.0] - 2026-09-01 11:51
+
+### 歐陸中文劇名大補:39 → 62 組(覆蓋率 51% → 81%),新增 23 筆
+
+使用者指出「`A TRÓN` 這種翻不出中文嗎?」——**又是一次我判斷錯誤**。
+`A TRÓN` 是匈牙利文的「王座」,當然翻得出來。我把「**沒有官方中文劇名**」
+誤當成「**不能翻**」,但其中大量標題是**普通名詞或片語**,和已核可的
+`A Padlás`→閣樓 完全同型。
+
+**🚨 自動化查詢在這裡是陷阱,4 個命中 3 個錯**
+先試 Wikidata 中文標籤(幾乎全空),再試各語維基跨語言連結到中文版,得到 4 個命中:
+
+| 查詢 | 自動回傳 | 真相 |
+|---|---|---|
+| `A trón`(匈,王座) | 「思悼」 | ❌ 那是**韓國電影** |
+| `Anděl Páně`(捷,上帝的天使) | 「三鐘經」 | ❌ 那是**天主教祈禱文** |
+| `Wahnsinn`(德,瘋狂) | 「精神錯亂」 | ❌ 那是**醫學名詞** |
+| `Pippi Långstrump` | 「长袜子皮皮」 | ✅ 唯一正確 |
+
+同名詞在不同領域指向完全不同的東西,標題比對必然誤配。
+**若直接批次套用,就會把韓國電影的名字掛到匈牙利音樂劇上。**
+→ 改成**逐字用 Wiktionary 查字義**(結構化 API,不是讀網頁),再據字義翻譯。
+
+**採用的規則**(寫進 `_show_titles_note`)
+- ✅ **普通名詞 / 片語 → 翻**,字義以 Wiktionary 為據
+- ❌ **純專有名詞 / 虛構人名 → 不翻**,因為音譯是我發明的,沒有依據
+
+**新增 23 筆**(節錄,完整見 `data/i18n_maps.json`)
+
+| group | 原題 | 繁 | 簡 | 依據 |
+|---|---|---|---|---|
+| `tanz der vampire` | Tanz der Vampire | 吸血鬼之舞 | 吸血鬼之舞 | **中文維基實際用法**(「漢堡」條目:「吸血鬼之舞(Tanz der Vampire)」),非我直譯 |
+| `pippi pa sirkus` | Pippi på sirkus | 長襪皮皮在馬戲團 | 长袜子皮皮在马戏团 | 維基變體轉換:zh-tw=長襪皮皮 / zh-cn=长袜子皮皮;title_en=Pippi at the Circus |
+| `a tenkes kapitanya` | A Tenkes kapitánya | 坦凱什大尉 | 坦凯什大尉 | **Wikidata 中文標籤**(Q462483) |
+| `a tron` | A TRÓN | 王座 | 王座 | Wiktionary: trón = throne |
+| `56 csepp ver` | 56 csepp vér | 56滴血 | 56滴血 | csepp = drop / vér = blood |
+| `wahnsinn` | Wahnsinn | 瘋狂 | 疯狂 | Wiktionary: insanity, madness |
+| `die weihnachtsbackerei` | Die Weihnachtsbäckerei | 聖誕烘焙坊 | 圣诞烘焙坊 | Christmastime baking |
+| `andel pane karlin` | Anděl Páně | 上帝的天使 | 上帝的天使 | anděl = angel + Páně = of the Lord |
+| `cera una volta scugnizzi` | C'era una volta... Scugnizzi | 從前從前…街頭少年 | 从前从前…街头少年 | scugnizzo = street urchin |
+| `serce ze szka musical zen` | Serce ze szkła | 玻璃之心 | 玻璃之心 | serce = heart / szkło = glass |
+| `julekalender` | The Julekalender | 聖誕月曆 | 圣诞月历 | Wiktionary: Advent calendar |
+
+其餘:`hogyan tudnek elni nelkuled`→沒有你我該怎麼活?、`legy jo mindhalalig`→至死為善、
+`a meseauto`→童話汽車、`mindig itt leszunk mohacs 500`→我們永遠在此·莫哈奇500、
+`mocal story`→沼澤故事、`rebelove karlin`→叛逆者、`snowboardaci`→滑雪板玩家、
+`vy nejste zena pane`→先生,您不是女人!、`wir sind am leben`→我們活著、
+`aggiungi un posto a tavola`→餐桌加個位子、`metro`→地鐵、`ternet ninja`→格子忍者(繁)。
+
+**⚠ 覆蓋既有值 1 筆**:`pippi pa sirkus` 簡體從「皮皮在马戏团」改為「长袜子皮皮在马戏团」。
+理由是維基確認標準譯名為「长袜子皮皮」,原值漏了「长袜子」。這是**唯一**一筆覆蓋既有人工值,
+特此標明。
+
+**⚠ 待確認 1 筆**:`ternet ninja` 簡體既有值是「格仔忍者」(「格仔」是粵語用法),
+本次只補繁體「格子忍者」,**沒有動既有簡體值**——因為不知道原值來自哪個來源,
+不在無證據下覆蓋人工值。繁簡不一致,待確認。
+
+**仍未翻 15 組,逐筆有理由,不是漏掉**
+- 虛構人名/專有名詞(音譯我不發明):`edudant a francimor`、`saturnin hybernia`、
+  `tabaluga und lilli`、`weihnachten mit bibi and tina`、`salon rosie`、
+  `carodejnice bordelina`(含 Bordelína)、`kapka medu pro verunku`(含 Verunka)
+- 生造詞/雙關:`de spiekpietjes`(荷語 Sinterklaas 節慶生造詞)、
+  `europavisjonar`(挪威新語,Eurovision 雙關,翻了失去梗)
+- 原文即通用:`gloria`(拉丁文)、`win for life`(本來就是英文)、`musical 1989`(數字年份)
+- 直譯失真:`forza venite gente`(義語口號,「來吧大家」失真且無依據)
+- 標題已是中文:`茶花女`、`莫里哀`(中國製作,加註會在題名旁重複顯示同樣的字)
+
+
 ## [v2.100.1] - 2026-09-01 11:35
 
 ### 人名劇副標例外(限歐陸):全表掃描後只有 1 筆符合,已加
