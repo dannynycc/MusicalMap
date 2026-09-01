@@ -1,5 +1,5 @@
 {
- "_comment": "Explicit non-musical exclusion list — titles that source platforms file under theatre/musical but are NOT staged book/jukebox musicals: straight plays, stand-up, tribute-band concerts, vocal recitals, magic/clown/variety shows, immersive dining experiences, unlicensed knock-offs, and 2.5次元 舞台/STAGE spoken plays (the 2.5D world has both ミュージカル musicals AND 舞台 plays; only musicals belong here). Verified by web research (2026-06-14 audit). build_shows.py drops any show whose normalised title (or group) matches. Title-pattern rules live in NOT_MUSICAL_RE; this file is for one-off titles patterns can't catch. Add the exact title as it appears in the source. | 2026-09-01 西葡 64 組逐組查證後新增 8 筆(逐組證據與逐字引文見 scratchpad/eses/ledger.json;判定標準:預設留下,要踢掉必須有外部證據【明確指出它是別的類型】,而非「描述沒提到音樂」這種消極理由)。🚨 這 8 筆一律用【完整 group】排除,不可改用 title_prefix——hoy no me puedo levantar 20 anos despues 的原版(group=hoy no me puedo levantar)是真音樂劇,前綴會誤殺。",
+ "_comment": "Explicit non-musical exclusion list — titles that source platforms file under theatre/musical but are NOT staged book/jukebox musicals: straight plays, stand-up, tribute-band concerts, vocal recitals, magic/clown/variety shows, immersive dining experiences, unlicensed knock-offs, and 2.5次元 舞台/STAGE spoken plays (the 2.5D world has both ミュージカル musicals AND 舞台 plays; only musicals belong here). Verified by web research (2026-06-14 audit). build_shows.py drops any show whose normalised title (or group) matches. Title-pattern rules live in NOT_MUSICAL_RE; this file is for one-off titles patterns can't catch. Add the exact title as it appears in the source. | 2026-09-01 西葡 68 組逐組查證後新增 9 筆(逐組證據與逐字引文見 scratchpad/eses/ledger.json;判定標準:預設留下,要踢掉必須有外部證據【明確指出它是別的類型】,而非「描述沒提到音樂」這種消極理由)。🚨 這 8 筆一律用【完整 group】排除,不可改用 title_prefix——hoy no me puedo levantar 20 anos despues 的原版(group=hoy no me puedo levantar)是真音樂劇,前綴會誤殺。 | las andanzas da la catrina:注意來源標題把 de 誤植成 da,排除鍵須用來源實際寫法(da),不是正確拼法。",
  "titles": [
   "18TRIP",
   "2026 CHANGGEUK PLAYWRIGHT PROJECT SHOWCASE",
@@ -163,6 +163,7 @@
   "la barcarola",
   "la original rondalla de saltillo de la uaaan",
   "la otra historia de rosa",
+  "las andanzas da la catrina",
   "lee eun gyeol 30th anniversary one of one",
   "ocupo cupido",
   "rock en familia i love rock and roll",

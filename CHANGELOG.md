@@ -11,6 +11,67 @@
 
 ---
 
+## [v2.99.5] - 2026-09-01 10:29
+
+### 西葡盤點收尾:最後 4 組查證完畢 + 第 9 組非音樂劇踢除
+
+v2.99.4 的 CHANGELOG 明寫過「盤點期間 cron 又進了 4 組,**尚未查證**,所以『西葡已全部盤完』
+目前**不成立**」。這一版把那 4 組補完,帳本 64 → **68 組**,該說法現在才成立。
+
+**4 組判定**(逐字引文與來源清單見 `scratchpad/eses/ledger.json`)
+
+| 組 | 判定 | 決定性證據 |
+|---|---|---|
+| `monstruos` | 音樂劇 | 官方 FB 逐字「la **comedia musical** de terror mas exitosa de México」 |
+| `leyendas mexicanas de terror 2` | 音樂劇 | 製作方 Tort Producciones 官方 IG「**El musical** del día de muertos」 |
+| `es navidad` | 音樂劇(⚠ 低信心) | **外部查無獨立來源**,判定僅依 atrapalo 描述的劇情結構 |
+| `las andanzas da la catrina` | ❌ **非音樂劇** → 踢除 | 多來源一律「una obra」「La obra de teatro」,零次 musical;結構是「cuatro cuentos vinculados」(四個獨立故事串聯);製作方 COTEMEX = Compañía de **Teatro** México |
+
+**誠實標註三處不確定,沒有為了湊「全部查完」而含糊帶過:**
+- `es navidad`:「es Navidad」是西語常見詞組,搜尋結果全被無關聖誕活動淹沒,找不到這個特定製作。
+  依本次既定舉證標準(**預設留下**,要踢掉必須有外部證據**明確指出它是別的類型**)判為音樂劇,
+  但信心度明顯低於其他 67 組,已在帳本標記。
+- `leyendas mexicanas de terror 2`:存在反面證據 —— Cartelera de Teatro CDMX 稱其為
+  「Espectáculo de terror **narrado** por catrinas」(敘述式)。官方自稱 musical 且無來源明確
+  指其為別的類型 → 留下,反證一併記入帳本。
+- `las andanzas da la catrina` 也非鐵案:官方 IG 有「Color, humor, **música** y tradición」,
+  確有音樂成分,屬邊界案例,可被推翻。踢除理由是「多來源積極稱其為 obra + 短篇集結構」,
+  不是「描述沒提到音樂」這種消極理由。
+
+**🚨 排除鍵要用來源的錯字**:來源標題把 `de` 誤植成 `da`(`Las Andanzas **Da** La Catrina`),
+`not_musical.json` 必須照抄來源實際寫法,寫成正確拼法會完全比對不到。已寫進檔案註解。
+
+**驗證:反證測試**(沿用 v2.99.4 的做法,確認是我的規則在作用,不是碰巧被其他去重邏輯刪掉)
+- 加規則 → 總場次 **1986**
+- 暫時移除該條 → 該組回來,總場次 **1987**
+- 差值 1,完全對上;另掃 `catrina`/`andanza` 關鍵字確認**零誤殺**(相鄰的
+  `leyendas mexicanas de terror 2` 同為亡靈節題材但 group 不含這些字,未受波及)
+
+### 順帶修正:前端 served 簡介殘留 8 組已下檔劇
+
+`data/synopses/` 是 `synopses_library ∩ catalog` 的產物。cron 刷新 `shows.json` 時
+CI **不重建網站**(見 `docs/WORKFLOW.md`),所以下檔的劇會留在 served 檔裡變成死資料。
+這次本機重跑整條管線後對齊,三語各 410 → **404 組**。
+
+殘留的 8 組:`a dzsungel konyve`、`egri csillagok`、`funny girl`、`me and my girl`、
+`spyfamily 2`、`vizeli szeretve mind a verpadig`、`west side story`、`民王`。
+**不是使用者可見的 bug**(這些劇本來就不在地圖上,簡介沒有渲染機會),只是檔案虛胖 ——
+據實記錄,不誇大成「修好了一個 bug」。
+
+發現經過值得記一筆:diff 顯示 served 少了 6 組,但我只踢掉 **1** 組**沒有簡介**的劇 ——
+數字對不上就是內部矛盾,先查清楚才提交。查證後確認是舊 served 過期,不是這次改動誤刪。
+提交前另加驗不變式 `served == lib ∩ catalog`:三語**過期殘留 0、漏交付 0**。
+
+### QA
+- `defect_regression` 七類已知缺陷 0 命中;`xlang_scan3` 全庫最低 0.0706 > 已知陽性 0.0578
+  (仍有區辨力);`check_translation_locale` 473 組全過
+- `year_scan` 報 10 組「年份不一致」,**逐組讀過,全屬良性**:
+  `made in hungaria` 英文寫 `early-1960s`,正則抓成 1960,與中文 1963 其實一致
+  (1963 屬 early 1960s,也符合原作設定);
+  `musical 1989` 簡中多出的 1980 是格但斯克造船廠罷工,史實正確,只是繁中/英文沒提。
+  這兩種誤報樣態 `docs/SYNOPSIS_SOP.md` §5.5 早已載明,故不改工具。
+
+
 ## [v2.99.4] - 2026-09-01 10:21
 
 ### 執行踢除:8 組非音樂劇已從資料層排除(反證測試確認生效、零誤殺)

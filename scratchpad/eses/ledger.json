@@ -665,6 +665,53 @@
    ],
    "evidence": "上海文化廣場官方:『巴塞罗那当代音乐剧《快乐即逝》· 类型:音乐剧 · 地点:上海文化广场 主剧场 · 日期:2026.9.18-9.20』/ 上海黃浦區人民政府:『自2023年首演后,巴塞罗那当代音乐剧《快乐即逝》横扫西班牙多项戏剧大奖,以167场演出成为地区现象级作品』/ 澎湃新聞:『改编自加泰罗尼亚现代主义戏剧经典的音乐剧《快乐即逝》,是西班牙传奇...』",
    "category": "巴塞隆納當代音樂劇(來滬演出)"
+  },
+  "monstruos": {
+   "verdict": "musical",
+   "why": "官方 FB 逐字『la comedia musical de terror mas exitosa de México』;Cartelera de Teatro CDMX 列於 Musical 分類;角色為 Drácula、Frankenstein 等經典怪物",
+   "sources": [
+    "https://www.facebook.com/MonstruosElMusical",
+    "https://carteleradeteatro.mx/genero/musical/",
+    "https://teatrando.com.mx/",
+    "https://www.ticketmaster.com/monstruos-el-musical-tickets/artist/"
+   ],
+   "evidence": "官方FB:『Vive en carne propia el montaje de la comedia musical de terror mas exitosa de México. MONSTRUOS EL MUSICAL』/ Cartelera:『Monstruos el musical, reúne a los monstruos más célebres de la historia como Drácula, Frankenstein, El...』",
+   "category": "恐怖喜劇音樂劇(墨西哥)"
+  },
+  "leyendas mexicanas de terror 2": {
+   "verdict": "musical",
+   "why": "製作方 Tort Producciones 官方 IG 逐字『LEYENDAS MEXICANAS DE TERROR 2 El musical del día de muertos』。⚠ 反面證據:Cartelera de Teatro CDMX 稱『Espectáculo de terror narrado por catrinas』(敘述式);依舉證標準,官方自稱 musical 且無來源明確指其為別的類型 → 留下",
+   "sources": [
+    "https://www.instagram.com/tortproducciones/",
+    "https://carteleradeteatro.mx/genero/musical/",
+    "https://teatrando.com.mx/",
+    "https://www.ticketmaster.com/leyendas-mexicanas-del-terror-2-tickets/artist/"
+   ],
+   "evidence": "Tort Producciones 官方IG:『LEYENDAS MEXICANAS DE TERROR 2 El musical del día de muertos』/ 反面:Cartelera de Teatro CDMX『Leyendas Mexicanas de Terror 2. Espectáculo de terror narrado por catrinas』",
+   "category": "亡靈節音樂劇(Tort Producciones)"
+  },
+  "es navidad": {
+   "verdict": "musical",
+   "why": "⚠ 信心度低於其他組:外部查無獨立來源(『es Navidad』是常見詞組,搜尋全是不相關的聖誕活動)。判定依據僅為 atrapalo 描述的劇情結構——有完整敘事(兩個小精靈離開北極尋找聖誕老人接班人、平安夜前要找到寶藏)、有『personajes inolvidables』與『canciones』。依舉證標準(無外部證據指其為別的類型)預設留下",
+   "sources": [
+    "https://www.atrapalo.com/entradas/-es-navidad-_e4952581/"
+   ],
+   "evidence": "¿Y si la Navidad no fuera una fecha... sino un lugar al que siempre podemos volver? Cuando el espíritu navideño comienza a desaparecer, un viaje inesperado de dos duendes llevará a pequeños y mayores fuera del polo norte a buscar al próximo sustituto de santa... Deben encontrar un tesoro antes de noche buena. Entre personajes inolvidables, cancione...",
+   "category": "兒童聖誕音樂劇(⚠ 僅單一來源)"
+  },
+  "las andanzas da la catrina": {
+   "verdict": "not_musical",
+   "why": "積極證據:①多來源一律稱『una obra』『La obra de teatro』,零次 musical;②結構為『cuatro cuentos vinculados』(四個獨立故事串聯),同 ocupo cupido 的短篇集模式而非連貫音樂劇敘事;③製作方為 COTEMEX(Compañía de **Teatro** México)。⚠ 反面證據:官方 IG 提到『Color, humor, música y tradición』,確有音樂成分 → 屬邊界,可推翻",
+   "sources": [
+    "https://teatrando.com.mx/las-andanzas-de-la-catrina/",
+    "https://www.cronica.com.mx/cultura/",
+    "https://www.facebook.com/CulturaQueretaro",
+    "https://www.instagram.com/catrinacotemex/",
+    "https://carteleradeteatro.mx/las-andanzas-de-la-catrina/",
+    "https://cuspidemexico.com/"
+   ],
+   "evidence": "Teatrando:『una obra que celebra el Día de Muertos con leyendas』/ La Crónica de Hoy:『La obra de teatro Las Andanzas de la Catrina es un tributo a la identidad y cultura mexicanas』/ Querétaro 市文化局:『Son cuatro cuentos vinculados por la celebración del Día de Muertos』/ 官方IG:『Un homenaje a la vida, a la muerte y a México. Color, humor, música y tradición』",
+   "category": "❌ 戲劇作品(四個故事串聯的亡靈節劇)"
   }
  }
 }
