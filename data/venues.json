@@ -245,9 +245,10 @@
     "query": "Music Hall, Kansas City, MO, USA"
   },
   "des moines civic center|des moines, ia": {
-    "lat": null,
-    "lng": null,
-    "query": "Des Moines Civic Center, Des Moines, IA, USA"
+    "lat": 41.587309,
+    "lng": -93.620501,
+    "query": "Des Moines Civic Center, Des Moines, IA, USA",
+    "src": "google"
   },
   "citizens opera house|boston, ma": {
     "lat": 42.354258,
@@ -255,14 +256,16 @@
     "query": "Citizens Opera House, Boston, MA, USA"
   },
   "tanger center for the performing arts|greensboro, nc": {
-    "lat": null,
-    "lng": null,
-    "query": "Tanger Center for the Performing Arts, Greensboro, NC, USA"
+    "lat": 36.075152,
+    "lng": -79.789753,
+    "query": "Tanger Center for the Performing Arts, Greensboro, NC, USA",
+    "src": "google"
   },
   "keybank state theatre|cleveland, oh": {
-    "lat": null,
-    "lng": null,
-    "query": "KeyBank State Theatre, Cleveland, OH, USA"
+    "lat": 41.501184,
+    "lng": -81.680768,
+    "query": "KeyBank State Theatre, Cleveland, OH, USA",
+    "src": "google"
   },
   "dr. phillips center|orlando, fl": {
     "lat": 28.537657,
@@ -295,9 +298,10 @@
     "query": "The Fabulous Fox, St. Louis, MO, USA"
   },
   "the majestic theatre|san antonio, tx": {
-    "lat": null,
-    "lng": null,
-    "query": "The Majestic Theatre, San Antonio, TX, USA"
+    "lat": 29.426173,
+    "lng": -98.490606,
+    "query": "The Majestic Theatre, San Antonio, TX, USA",
+    "src": "google"
   },
   "hobby center|houston, tx": {
     "lat": 29.761658,
@@ -315,9 +319,10 @@
     "query": "Landmark Theatre, Syracuse, NY, USA"
   },
   "stranahan theater and great hall|toledo, oh": {
-    "lat": null,
-    "lng": null,
-    "query": "Stranahan Theater And Great Hall, Toledo, OH, USA"
+    "lat": 41.592697,
+    "lng": -83.651812,
+    "query": "Stranahan Theater And Great Hall, Toledo, OH, USA",
+    "src": "google"
   },
   "hippodrome theatre|baltimore, md": {
     "lat": 39.289765,
@@ -345,9 +350,10 @@
     "query": "Keller Auditorium, Portland, OR, USA"
   },
   "the plaza theatre|el paso, tx": {
-    "lat": null,
-    "lng": null,
-    "query": "The Plaza Theatre, El Paso, TX, USA"
+    "lat": 31.758666,
+    "lng": -106.489356,
+    "query": "The Plaza Theatre, El Paso, TX, USA",
+    "src": "google"
   },
   "centennial hall|tucson, az": {
     "lat": 32.230913,
@@ -355,14 +361,16 @@
     "query": "Centennial Hall, Tucson, AZ, USA"
   },
   "asu gammage|tempe, az": {
-    "lat": null,
-    "lng": null,
-    "query": "ASU Gammage, Tempe, AZ, USA"
+    "lat": 33.416265,
+    "lng": -111.938001,
+    "query": "ASU Gammage, Tempe, AZ, USA",
+    "src": "google"
   },
   "san diego civic theatre|san diego, ca": {
-    "lat": null,
-    "lng": null,
-    "query": "San Diego Civic Theatre, San Diego, CA, USA"
+    "lat": 32.717585,
+    "lng": -117.162218,
+    "query": "San Diego Civic Theatre, San Diego, CA, USA",
+    "src": "google"
   },
   "curran theatre|san francisco, ca": {
     "lat": 37.786831,
@@ -375,9 +383,10 @@
     "query": "Pantages Theatre, Los Angeles, CA, USA"
   },
   "san jose center for the perf. arts|san jose, ca": {
-    "lat": null,
-    "lng": null,
-    "query": "San Jose Center For The Perf. Arts, San Jose, CA, USA"
+    "lat": 37.253256,
+    "lng": -121.949178,
+    "query": "San Jose Center For The Perf. Arts, San Jose, CA, USA",
+    "src": "google"
   },
   "the smith center|las vegas, nv": {
     "lat": 36.168781,
@@ -402,22 +411,29 @@
   "southern alberta jubilee auditorium|calgary, ab": {
     "lat": null,
     "lng": null,
-    "query": "Southern Alberta Jubilee Auditorium, Calgary, AB, USA"
+    "query": "Southern Alberta Jubilee Auditorium, Calgary, AB, USA",
+    "src": "google-miss",
+    "note": "country mismatch us vs ca"
   },
   "northern alberta jubilee auditorium|edmonton, ab": {
     "lat": null,
     "lng": null,
-    "query": "Northern Alberta Jubilee Auditorium, Edmonton, AB, USA"
+    "query": "Northern Alberta Jubilee Auditorium, Edmonton, AB, USA",
+    "src": "google-miss",
+    "note": "country mismatch us vs ca"
   },
   "queen elizabeth theatre|vancouver, bc": {
     "lat": null,
     "lng": null,
-    "query": "Queen Elizabeth Theatre, Vancouver, BC, USA"
+    "query": "Queen Elizabeth Theatre, Vancouver, BC, USA",
+    "src": "google-miss",
+    "note": "country mismatch us vs ca"
   },
   "morrison center for the perf. arts|boise, id": {
-    "lat": null,
-    "lng": null,
-    "query": "Morrison Center for the Perf. Arts, Boise, ID, USA"
+    "lat": 43.606816,
+    "lng": -116.207057,
+    "query": "Morrison Center for the Perf. Arts, Boise, ID, USA",
+    "src": "google"
   },
   "paramount theatre|seattle, wa": {
     "lat": 47.613245,
@@ -425,9 +441,10 @@
     "query": "Paramount Theatre, Seattle, WA, USA"
   },
   "shea&#039;s performing arts center|buffalo, ny": {
-    "lat": null,
-    "lng": null,
-    "query": "Shea&#039;s Performing Arts Center, Buffalo, NY, USA"
+    "lat": 42.891744,
+    "lng": -78.873201,
+    "query": "Shea&#039;s Performing Arts Center, Buffalo, NY, USA",
+    "src": "google"
   },
   "adrienne arsht center|miami, fl": {
     "lat": 25.789469,
@@ -440,19 +457,22 @@
     "query": "Straz Center for the Performing Arts, Tampa, FL, USA"
   },
   "broward center for the perf. arts|fort lauderdale, fl": {
-    "lat": null,
-    "lng": null,
-    "query": "Broward Center For The Perf. Arts, Fort Lauderdale, FL, USA"
+    "lat": 26.122551,
+    "lng": -80.134407,
+    "query": "Broward Center For The Perf. Arts, Fort Lauderdale, FL, USA",
+    "src": "google"
   },
   "dr. phillips center for the performing arts: walt disney  theater|orlando, fl": {
-    "lat": null,
-    "lng": null,
-    "query": "Dr. Phillips Center for the Performing Arts: Walt Disney  Theater, Orlando, FL, USA"
+    "lat": 28.537459,
+    "lng": -81.376959,
+    "query": "Dr. Phillips Center for the Performing Arts: Walt Disney  Theater, Orlando, FL, USA",
+    "src": "google"
   },
   "hobby center for the perf. arts|houston, tx": {
-    "lat": null,
-    "lng": null,
-    "query": "Hobby Center For The Perf. Arts, Houston, TX, USA"
+    "lat": 29.761667,
+    "lng": -95.369722,
+    "query": "Hobby Center For The Perf. Arts, Houston, TX, USA",
+    "src": "google"
   },
   "majestic theatre|san antonio, tx": {
     "lat": 29.426354,
@@ -460,9 +480,10 @@
     "query": "Majestic Theatre, San Antonio, TX, USA"
   },
   "bass concert hall @ u of tx at austin|austin, tx": {
-    "lat": null,
-    "lng": null,
-    "query": "Bass Concert Hall @ U of TX at Austin, Austin, TX, USA"
+    "lat": 30.286392,
+    "lng": -97.7312,
+    "query": "Bass Concert Hall @ U of TX at Austin, Austin, TX, USA",
+    "src": "google"
   },
   "saenger theatre|new orleans, la": {
     "lat": 29.956393,
@@ -490,14 +511,16 @@
     "query": "Tennessee Theatre, Knoxville, TN, USA"
   },
   "hayes hall|naples, fl": {
-    "lat": null,
-    "lng": null,
-    "query": "Hayes Hall, Naples, FL, USA"
+    "lat": 26.127143,
+    "lng": -81.76475,
+    "query": "Hayes Hall, Naples, FL, USA",
+    "src": "google"
   },
   "ordway center for the perf. arts|st. paul, mn": {
-    "lat": null,
-    "lng": null,
-    "query": "Ordway Center For The Perf. Arts, St. Paul, MN, USA"
+    "lat": 44.944511,
+    "lng": -93.097855,
+    "query": "Ordway Center For The Perf. Arts, St. Paul, MN, USA",
+    "src": "google"
   },
   "james m. nederlander theatre|chicago, il": {
     "lat": 41.884953,
@@ -530,9 +553,10 @@
     "query": "Blumenthal Center: Belk Theater, Charlotte, NC, USA"
   },
   "peace center for the perf. arts|greenville, sc": {
-    "lat": null,
-    "lng": null,
-    "query": "Peace Center For The Perf. Arts, Greenville, SC, USA"
+    "lat": 34.847562,
+    "lng": -82.401107,
+    "query": "Peace Center For The Perf. Arts, Greenville, SC, USA",
+    "src": "google"
   },
   "emerson colonial theatre|boston, ma": {
     "lat": 42.35231,
@@ -540,9 +564,10 @@
     "query": "Emerson Colonial Theatre, Boston, MA, USA"
   },
   "kentucky center for the perf. arts|louisville, ky": {
-    "lat": null,
-    "lng": null,
-    "query": "Kentucky Center For The Perf. Arts, Louisville, KY, USA"
+    "lat": 38.257089,
+    "lng": -85.758791,
+    "query": "Kentucky Center For The Perf. Arts, Louisville, KY, USA",
+    "src": "google"
   },
   "bass performance hall|fort worth, tx": {
     "lat": 32.754753,
@@ -555,9 +580,10 @@
     "query": "Civic Center Music Hall, Oklahoma City, OK, USA"
   },
   "robinson performance hall|little rock, ar": {
-    "lat": null,
-    "lng": null,
-    "query": "Robinson Performance Hall, Little Rock, AR, USA"
+    "lat": 34.757917,
+    "lng": -92.348304,
+    "query": "Robinson Performance Hall, Little Rock, AR, USA",
+    "src": "google"
   },
   "birmingham-jefferson concert hall|birmingham, al": {
     "lat": 33.525309,
@@ -565,9 +591,10 @@
     "query": "Birmingham-Jefferson Concert Hall, Birmingham, AL, USA"
   },
   "jacksonville center for the performing arts: moran theatre|jacksonville, fl": {
-    "lat": null,
-    "lng": null,
-    "query": "Jacksonville Center for the Performing Arts: Moran Theatre, Jacksonville, FL, USA"
+    "lat": 30.324873,
+    "lng": -81.662749,
+    "query": "Jacksonville Center for the Performing Arts: Moran Theatre, Jacksonville, FL, USA",
+    "src": "google"
   },
   "pioneer center|reno, nv": {
     "lat": 39.524293,
@@ -580,14 +607,16 @@
     "query": "SAFE Credit Union Performing Arts Center, Sacramento, CA, USA"
   },
   "devos hall|grand rapids, mi": {
-    "lat": null,
-    "lng": null,
-    "query": "DeVos Hall, Grand Rapids, MI, USA"
+    "lat": 42.968226,
+    "lng": -85.673072,
+    "query": "DeVos Hall, Grand Rapids, MI, USA",
+    "src": "google"
   },
   "toronto, on|toronto, on": {
-    "lat": null,
-    "lng": null,
-    "query": "Toronto, ON, Toronto, ON, USA"
+    "lat": 38.794595,
+    "lng": -106.534838,
+    "query": "Toronto, ON, Toronto, ON, USA",
+    "src": "google"
   },
   "auditorium theatre|rochester, ny": {
     "lat": 43.16061,
@@ -610,9 +639,10 @@
     "query": "Proctors, Schenectady, NY, USA"
   },
   "uihlein hall at marcus performing arts center|milwaukee, wi": {
-    "lat": null,
-    "lng": null,
-    "query": "Uihlein Hall at Marcus Performing Arts Center, Milwaukee, WI, USA"
+    "lat": 43.042907,
+    "lng": -87.911399,
+    "query": "Uihlein Hall at Marcus Performing Arts Center, Milwaukee, WI, USA",
+    "src": "google"
   },
   "clowes memorial hall|indianapolis, in": {
     "lat": 39.840453,
@@ -620,14 +650,16 @@
     "query": "Clowes Memorial Hall, Indianapolis, IN, USA"
   },
   "wharton center for the performing arts|east lansing, mi": {
-    "lat": null,
-    "lng": null,
-    "query": "Wharton Center for the Performing Arts, East Lansing, MI, USA"
+    "lat": 42.723852,
+    "lng": -84.470701,
+    "query": "Wharton Center for the Performing Arts, East Lansing, MI, USA",
+    "src": "google"
   },
   "auditorium theatre of roosevelt univ.|chicago, il": {
-    "lat": null,
-    "lng": null,
-    "query": "Auditorium Theatre of Roosevelt Univ., Chicago, IL, USA"
+    "lat": 41.87585,
+    "lng": -87.625241,
+    "query": "Auditorium Theatre of Roosevelt Univ., Chicago, IL, USA",
+    "src": "google"
   },
   "hult center for the performing arts|eugene, or": {
     "lat": 44.052686,
@@ -640,9 +672,10 @@
     "query": "First Interstate Center for the Arts, Spokane, WA, USA"
   },
   "mccallum theatre for the perf. arts|palm desert, ca": {
-    "lat": null,
-    "lng": null,
-    "query": "McCallum Theatre For The Perf. Arts, Palm Desert, CA, USA"
+    "lat": 33.729917,
+    "lng": -116.389105,
+    "query": "McCallum Theatre For The Perf. Arts, Palm Desert, CA, USA",
+    "src": "google"
   },
   "washington pavilion|sioux falls, sd": {
     "lat": 43.544258,
@@ -662,17 +695,22 @@
   "national arts centre: southam hall|ottawa, on": {
     "lat": null,
     "lng": null,
-    "query": "National Arts Centre: Southam Hall, Ottawa, ON, USA"
+    "query": "National Arts Centre: Southam Hall, Ottawa, ON, USA",
+    "src": "google-miss",
+    "note": "country mismatch us vs ca"
   },
   "academy of music: kimmel center|philadelphia, pa": {
-    "lat": null,
-    "lng": null,
-    "query": "Academy of Music: Kimmel Center, Philadelphia, PA, USA"
+    "lat": 39.947984,
+    "lng": -75.164898,
+    "query": "Academy of Music: Kimmel Center, Philadelphia, PA, USA",
+    "src": "google"
   },
   "place des arts|montreal, qc": {
     "lat": null,
     "lng": null,
-    "query": "Place Des Arts, Montreal, QC, USA"
+    "query": "Place Des Arts, Montreal, QC, USA",
+    "src": "google-miss",
+    "note": "country mismatch us vs ca"
   },
   "lied center for performing arts|lincoln, ne": {
     "lat": 40.816339,
@@ -705,9 +743,10 @@
     "query": "Washington, DC, Washington, DC, USA"
   },
   "benjamin &amp; marian schuster performing arts center|dayton, oh": {
-    "lat": null,
-    "lng": null,
-    "query": "Benjamin &amp; Marian Schuster Performing Arts Center, Dayton, OH, USA"
+    "lat": 39.761183,
+    "lng": -84.193306,
+    "query": "Benjamin &amp; Marian Schuster Performing Arts Center, Dayton, OH, USA",
+    "src": "google"
   },
   "opera house|boston, ma": {
     "lat": 42.354258,
@@ -735,9 +774,10 @@
     "query": "Wilmington, NC, Wilmington, NC, USA"
   },
   "the embassy theatre|fort wayne, in": {
-    "lat": null,
-    "lng": null,
-    "query": "The Embassy Theatre, Fort Wayne, IN, USA"
+    "lat": 41.075737,
+    "lng": -85.139762,
+    "query": "The Embassy Theatre, Fort Wayne, IN, USA",
+    "src": "google"
   },
   "bloomington, in|bloomington, in": {
     "lat": 39.180236,
@@ -745,9 +785,10 @@
     "query": "Bloomington, IN, Bloomington, IN, USA"
   },
   "peoria civic center theatre|peoria, il": {
-    "lat": null,
-    "lng": null,
-    "query": "Peoria Civic Center Theatre, Peoria, IL, USA"
+    "lat": 40.691694,
+    "lng": -89.593961,
+    "query": "Peoria Civic Center Theatre, Peoria, IL, USA",
+    "src": "google"
   },
   "adler theatre|davenport, ia": {
     "lat": 41.522776,
@@ -755,9 +796,10 @@
     "query": "Adler Theatre, Davenport, IA, USA"
   },
   "the playhouse on rodney square|wilmington, de": {
-    "lat": null,
-    "lng": null,
-    "query": "The Playhouse on Rodney Square, Wilmington, DE, USA"
+    "lat": 39.745797,
+    "lng": -75.547852,
+    "query": "The Playhouse on Rodney Square, Wilmington, DE, USA",
+    "src": "google"
   },
   "lexington, ky|lexington, ky": {
     "lat": 37.977718,
@@ -780,29 +822,35 @@
     "query": "San Antonio, TX, San Antonio, TX, USA"
   },
   "at&amp;t performing arts center|dallas, tx": {
-    "lat": null,
-    "lng": null,
-    "query": "AT&amp;T Performing Arts Center, Dallas, TX, USA"
+    "lat": 32.791229,
+    "lng": -96.797525,
+    "query": "AT&amp;T Performing Arts Center, Dallas, TX, USA",
+    "src": "google"
   },
   "victoria, bc|victoria, bc": {
     "lat": null,
     "lng": null,
-    "query": "Victoria, BC, Victoria, BC, USA"
+    "query": "Victoria, BC, Victoria, BC, USA",
+    "src": "google-miss",
+    "note": "country mismatch us vs ca"
   },
   "chapman music hall at tulsa pac|tulsa, ok": {
-    "lat": null,
-    "lng": null,
-    "query": "Chapman Music Hall At Tulsa PAC, Tulsa, OK, USA"
+    "lat": 36.154174,
+    "lng": -95.989204,
+    "query": "Chapman Music Hall At Tulsa PAC, Tulsa, OK, USA",
+    "src": "google"
   },
   "the hanover theatre and conservatory for the performing arts|worcester, ma": {
-    "lat": null,
-    "lng": null,
-    "query": "The Hanover Theatre and Conservatory for the Performing Arts, Worcester, MA, USA"
+    "lat": 42.26075,
+    "lng": -71.803117,
+    "query": "The Hanover Theatre and Conservatory for the Performing Arts, Worcester, MA, USA",
+    "src": "google"
   },
   "wang theatre at the boch center|boston, ma": {
-    "lat": null,
-    "lng": null,
-    "query": "Wang Theatre at the Boch Center, Boston, MA, USA"
+    "lat": 42.350371,
+    "lng": -71.064804,
+    "query": "Wang Theatre at the Boch Center, Boston, MA, USA",
+    "src": "google"
   },
   "harrison opera house|norfolk, va": {
     "lat": 36.858227,
@@ -820,9 +868,10 @@
     "query": "Connor Palace, Cleveland, OH, USA"
   },
   "aronoff center: procter &amp; gamble hall|cincinnati, oh": {
-    "lat": null,
-    "lng": null,
-    "query": "Aronoff Center: Procter &amp; Gamble Hall, Cincinnati, OH, USA"
+    "lat": 39.103564,
+    "lng": -84.51179,
+    "query": "Aronoff Center: Procter &amp; Gamble Hall, Cincinnati, OH, USA",
+    "src": "google"
   },
   "murat centre|indianapolis, in": {
     "lat": 39.774583,
@@ -845,14 +894,16 @@
     "query": "Orpheum Theatre, San Francisco, CA, USA"
   },
   "municipal auditorium music hall|kansas city, mo": {
-    "lat": null,
-    "lng": null,
-    "query": "Municipal Auditorium Music Hall, Kansas City, MO, USA"
+    "lat": 39.09787,
+    "lng": -94.586341,
+    "query": "Municipal Auditorium Music Hall, Kansas City, MO, USA",
+    "src": "google"
   },
   "showcenter complex|monterrey": {
-    "lat": null,
-    "lng": null,
-    "query": "Showcenter Complex, Monterrey, USA"
+    "lat": 38.794595,
+    "lng": -106.534838,
+    "query": "Showcenter Complex, Monterrey, USA",
+    "src": "google"
   },
   "city|toledo, oh|usa": {
     "lat": 41.652914,
@@ -1075,19 +1126,22 @@
     "query": "Théâtre Mogador, Paris, France"
   },
   "mehr! theater am großmarkt|hambug|germany": {
-    "lat": null,
-    "lng": null,
-    "query": "Mehr! Theater am Großmarkt, Hambug, Germany"
+    "lat": 53.542732,
+    "lng": 10.016309,
+    "query": "Mehr! Theater am Großmarkt, Hambug, Germany",
+    "src": "google"
   },
   "city|hambug|germany": {
-    "lat": null,
-    "lng": null,
-    "query": "Hambug, Germany"
+    "lat": 53.548828,
+    "lng": 9.98717,
+    "query": "Hambug, Germany",
+    "src": "google"
   },
   "stage theater im hafen|hamburg|germany": {
-    "lat": null,
-    "lng": null,
-    "query": "Stage Theater Im Hafen, Hamburg, Germany"
+    "lat": 53.539728,
+    "lng": 9.973148,
+    "query": "Stage Theater Im Hafen, Hamburg, Germany",
+    "src": "google"
   },
   "city|hamburg|germany": {
     "lat": 53.550172,
@@ -1095,9 +1149,10 @@
     "query": "Hamburg, Germany"
   },
   "stage theater an der elbe hamburg|hamburg|germany": {
-    "lat": null,
-    "lng": null,
-    "query": "Stage Theater an der Elbe Hamburg, Hamburg, Germany"
+    "lat": 53.539752,
+    "lng": 9.974495,
+    "query": "Stage Theater an der Elbe Hamburg, Hamburg, Germany",
+    "src": "google"
   },
   "musical dome|cologne|germany": {
     "lat": 50.942828,
@@ -1105,9 +1160,10 @@
     "query": "Musical Dome, Cologne, Germany"
   },
   "dentsu shiki theatre, umi|tokyo|japan": {
-    "lat": null,
-    "lng": null,
-    "query": "Dentsu Shiki Theatre, UMI, Tokyo, Japan"
+    "lat": 35.664887,
+    "lng": 139.762493,
+    "query": "Dentsu Shiki Theatre, UMI, Tokyo, Japan",
+    "src": "google"
   },
   "city|tokyo|japan": {
     "lat": 35.67686,
@@ -1115,19 +1171,22 @@
     "query": "Tokyo, Japan"
   },
   "jr east shiki theater|tokyo|japan": {
-    "lat": null,
-    "lng": null,
-    "query": "JR East Shiki Theater, Tokyo, Japan"
+    "lat": 35.656881,
+    "lng": 139.761854,
+    "query": "JR East Shiki Theater, Tokyo, Japan",
+    "src": "google"
   },
   "tbs akasaka act theater|tokyo|japan": {
-    "lat": null,
-    "lng": null,
-    "query": "TBS Akasaka ACT Theater, Tokyo, Japan"
+    "lat": 35.672842,
+    "lng": 139.735111,
+    "query": "TBS Akasaka ACT Theater, Tokyo, Japan",
+    "src": "google"
   },
   "shiki theatre haru|tokyo|japan": {
-    "lat": null,
-    "lng": null,
-    "query": "Shiki Theatre HARU, Tokyo, Japan"
+    "lat": 35.657484,
+    "lng": 139.761244,
+    "query": "Shiki Theatre HARU, Tokyo, Japan",
+    "src": "google"
   },
   "teatro telcel|mexico city|mexico": {
     "lat": 19.440941,
@@ -1135,9 +1194,10 @@
     "query": "Teatro Telcel, Mexico City, Mexico"
   },
   "beatrix theatre utrecht|utrecht|netherlands": {
-    "lat": null,
-    "lng": null,
-    "query": "Beatrix Theatre Utrecht, Utrecht, Netherlands"
+    "lat": 52.088455,
+    "lng": 5.107443,
+    "query": "Beatrix Theatre Utrecht, Utrecht, Netherlands",
+    "src": "google"
   },
   "city|utrecht|netherlands": {
     "lat": 52.090701,
@@ -1145,9 +1205,10 @@
     "query": "Utrecht, Netherlands"
   },
   "teatro apolo madrid|spain|spain": {
-    "lat": null,
-    "lng": null,
-    "query": "Teatro Apolo Madrid, Spain, Spain"
+    "lat": 40.412189,
+    "lng": -3.703334,
+    "query": "Teatro Apolo Madrid, Spain, Spain",
+    "src": "google"
   },
   "city|spain|spain": {
     "lat": 40.423728,
@@ -1528,14 +1589,16 @@
     "query": "Savoy Theatre, London, UK"
   },
   "the-alexandra-theatre-birmingham|uk": {
-    "lat": null,
-    "lng": null,
-    "query": "The Alexandra, Birmingham, Birmingham, UK"
+    "lat": 52.47616,
+    "lng": -1.901186,
+    "query": "The Alexandra, Birmingham, Birmingham, UK",
+    "src": "google"
   },
   "kit-kat-club-at-the-playhouse|uk": {
-    "lat": null,
-    "lng": null,
-    "query": "Kit Kat Club at the Playhouse, London, UK"
+    "lat": 51.507005,
+    "lng": -0.123609,
+    "query": "Kit Kat Club at the Playhouse, London, UK",
+    "src": "google"
   },
   "lyceum-theatre|uk": {
     "lat": 51.511481,
@@ -1558,29 +1621,34 @@
     "query": "Opera House Manchester, Manchester, UK"
   },
   "regent-theatre|uk": {
-    "lat": null,
-    "lng": null,
-    "query": "Regent Theatre, Stoke-on-Trent, UK, UK"
+    "lat": 53.024644,
+    "lng": -2.177089,
+    "query": "Regent Theatre, Stoke-on-Trent, UK, UK",
+    "src": "google"
   },
   "richmond-theatre|uk": {
-    "lat": null,
-    "lng": null,
-    "query": "Richmond Theatre, UK, UK"
+    "lat": 51.462199,
+    "lng": -0.303951,
+    "query": "Richmond Theatre, UK, UK",
+    "src": "google"
   },
   "aylesbury-waterside-theatre|uk": {
-    "lat": null,
-    "lng": null,
-    "query": "Aylesbury Waterside Theatre, UK, UK"
+    "lat": 51.814792,
+    "lng": -0.809475,
+    "query": "Aylesbury Waterside Theatre, UK, UK",
+    "src": "google"
   },
   "swansea-arena|uk": {
-    "lat": null,
-    "lng": null,
-    "query": "Swansea Building Society Arena, UK, UK"
+    "lat": 51.62144,
+    "lng": -3.943646,
+    "query": "Swansea Building Society Arena, UK, UK",
+    "src": "google"
   },
   "bristol-hippodrome|uk": {
-    "lat": null,
-    "lng": null,
-    "query": "Bristol Hippodrome, UK, UK"
+    "lat": 51.453194,
+    "lng": -2.598263,
+    "query": "Bristol Hippodrome, UK, UK",
+    "src": "google"
   },
   "princess-theatre-torquay|uk": {
     "lat": 50.461284,
@@ -1588,14 +1656,16 @@
     "query": "Princess Theatre, Torquay, Torquay, UK"
   },
   "duke-of-yorks-theatre|uk": {
-    "lat": null,
-    "lng": null,
-    "query": "Duke of York&#x27;s Theatre, London, UK"
+    "lat": 51.510237,
+    "lng": -0.127074,
+    "query": "Duke of York&#x27;s Theatre, London, UK",
+    "src": "google"
   },
   "kings-theatre-glasgow|uk": {
-    "lat": null,
-    "lng": null,
-    "query": "King&#x27;s Theatre, Glasgow, Glasgow, UK"
+    "lat": 55.864993,
+    "lng": -4.268655,
+    "query": "King&#x27;s Theatre, Glasgow, Glasgow, UK",
+    "src": "google"
   },
   "grand-opera-house-york|uk": {
     "lat": 53.957135,
@@ -1603,114 +1673,136 @@
     "query": "Grand Opera House York, York, UK"
   },
   "norman-bragg-studio-aylesbury|uk": {
-    "lat": null,
-    "lng": null,
-    "query": "Norman Bragg Studio, Aylesbury, Aylesbury, UK"
+    "lat": 51.814592,
+    "lng": -0.809631,
+    "query": "Norman Bragg Studio, Aylesbury, Aylesbury, UK",
+    "src": "google"
   },
   "liverpool-empire|uk": {
-    "lat": null,
-    "lng": null,
-    "query": "Liverpool Empire, UK, UK"
+    "lat": 53.408873,
+    "lng": -2.978285,
+    "query": "Liverpool Empire, UK, UK",
+    "src": "google"
   },
   "shaftesbury-theatre|uk": {
-    "lat": null,
-    "lng": null,
-    "query": "Shaftesbury Theatre, UK, UK"
+    "lat": 51.516072,
+    "lng": -0.12593,
+    "query": "Shaftesbury Theatre, UK, UK",
+    "src": "google"
   },
   "prince-edward-theatre|uk": {
-    "lat": null,
-    "lng": null,
-    "query": "Prince Edward Theatre, UK, UK"
+    "lat": 51.513512,
+    "lng": -0.130742,
+    "query": "Prince Edward Theatre, UK, UK",
+    "src": "google"
   },
   "adelphi-theatre|uk": {
-    "lat": null,
-    "lng": null,
-    "query": "Adelphi Theatre, UK, UK"
+    "lat": 51.510122,
+    "lng": -0.122762,
+    "query": "Adelphi Theatre, UK, UK",
+    "src": "google"
   },
   "charing-cross-theatre|uk": {
-    "lat": null,
-    "lng": null,
-    "query": "Charing Cross Theatre, UK, UK"
+    "lat": 51.508026,
+    "lng": -0.124121,
+    "query": "Charing Cross Theatre, UK, UK",
+    "src": "google"
   },
   "theatre-royal-drury-lane|uk": {
-    "lat": null,
-    "lng": null,
-    "query": "Theatre Royal Drury Lane, UK, UK"
+    "lat": 51.512854,
+    "lng": -0.120372,
+    "query": "Theatre Royal Drury Lane, UK, UK",
+    "src": "google"
   },
   "queen-elizabeth-hall|uk": {
-    "lat": null,
-    "lng": null,
-    "query": "Queen Elizabeth Hall, UK, UK"
+    "lat": 51.5066,
+    "lng": -0.116517,
+    "query": "Queen Elizabeth Hall, UK, UK",
+    "src": "google"
   },
   "lyric-theatre|uk": {
-    "lat": null,
-    "lng": null,
-    "query": "Lyric Theatre, UK, UK"
+    "lat": 51.51122,
+    "lng": -0.133782,
+    "query": "Lyric Theatre, UK, UK",
+    "src": "google"
   },
   "victoria-palace-theatre|uk": {
-    "lat": null,
-    "lng": null,
-    "query": "Victoria Palace Theatre, UK, UK"
+    "lat": 51.49667,
+    "lng": -0.142457,
+    "query": "Victoria Palace Theatre, UK, UK",
+    "src": "google"
   },
   "barbican-theatre|uk": {
-    "lat": null,
-    "lng": null,
-    "query": "Barbican Theatre, UK, UK"
+    "lat": 51.520208,
+    "lng": -0.093786,
+    "query": "Barbican Theatre, UK, UK",
+    "src": "google"
   },
   "the-other-palace|uk": {
-    "lat": null,
-    "lng": null,
-    "query": "The Other Palace, UK, UK"
+    "lat": 51.498864,
+    "lng": -0.142233,
+    "query": "The Other Palace, UK, UK",
+    "src": "google"
   },
   "troubadour-wembley-park-theatre|uk": {
-    "lat": null,
-    "lng": null,
-    "query": "Troubadour Wembley Park Theatre, UK, UK"
+    "lat": 51.560871,
+    "lng": -0.281283,
+    "query": "Troubadour Wembley Park Theatre, UK, UK",
+    "src": "google"
   },
   "noel-coward-theatre|uk": {
-    "lat": null,
-    "lng": null,
-    "query": "Noël Coward Theatre, UK, UK"
+    "lat": 51.511145,
+    "lng": -0.127226,
+    "query": "Noël Coward Theatre, UK, UK",
+    "src": "google"
   },
   "london-coliseum|uk": {
-    "lat": null,
-    "lng": null,
-    "query": "London Coliseum, UK, UK"
+    "lat": 51.509869,
+    "lng": -0.126656,
+    "query": "London Coliseum, UK, UK",
+    "src": "google"
   },
   "sondheim-theatre|uk": {
-    "lat": null,
-    "lng": null,
-    "query": "Sondheim Theatre, UK, UK"
+    "lat": 51.511869,
+    "lng": -0.132601,
+    "query": "Sondheim Theatre, UK, UK",
+    "src": "google"
   },
   "novello-theatre|uk": {
-    "lat": null,
-    "lng": null,
-    "query": "Novello Theatre, UK, UK"
+    "lat": 51.512366,
+    "lng": -0.119206,
+    "query": "Novello Theatre, UK, UK",
+    "src": "google"
   },
   "cambridge-theatre|uk": {
-    "lat": null,
-    "lng": null,
-    "query": "Cambridge Theatre, UK, UK"
+    "lat": 51.513665,
+    "lng": -0.126629,
+    "query": "Cambridge Theatre, UK, UK",
+    "src": "google"
   },
   "gielgud-theatre|uk": {
-    "lat": null,
-    "lng": null,
-    "query": "Gielgud Theatre, UK, UK"
+    "lat": 51.511639,
+    "lng": -0.13303,
+    "query": "Gielgud Theatre, UK, UK",
+    "src": "google"
   },
   "his-majestys-theatre|uk": {
-    "lat": null,
-    "lng": null,
-    "query": "His Majesty’s Theatre, UK, UK"
+    "lat": 51.508243,
+    "lng": -0.131863,
+    "query": "His Majesty’s Theatre, UK, UK",
+    "src": "google"
   },
   "prince-of-wales-theatre|uk": {
-    "lat": null,
-    "lng": null,
-    "query": "Prince of Wales Theatre, UK, UK"
+    "lat": 51.510234,
+    "lng": -0.132087,
+    "query": "Prince of Wales Theatre, UK, UK",
+    "src": "google"
   },
   "sohoplace|uk": {
-    "lat": null,
-    "lng": null,
-    "query": "@sohoplace, UK, UK"
+    "lat": 51.515706,
+    "lng": -0.130608,
+    "query": "@sohoplace, UK, UK",
+    "src": "google"
   },
   "dominion-theatre|uk": {
     "lat": 51.516924,
@@ -1718,14 +1810,16 @@
     "query": "Dominion Theatre, London, UK"
   },
   "garrick-theatre|uk": {
-    "lat": null,
-    "lng": null,
-    "query": "Garrick Theatre, UK, UK"
+    "lat": 51.510074,
+    "lng": -0.127912,
+    "query": "Garrick Theatre, UK, UK",
+    "src": "google"
   },
   "criterion-theatre|uk": {
-    "lat": null,
-    "lng": null,
-    "query": "Criterion Theatre, UK, UK"
+    "lat": 51.509727,
+    "lng": -0.13427,
+    "query": "Criterion Theatre, UK, UK",
+    "src": "google"
   },
   "palace-theatre-manchester|uk": {
     "lat": 53.475022,
@@ -1758,9 +1852,10 @@
     "query": "Stoke, UK"
   },
   "woking-theatre|uk": {
-    "lat": null,
-    "lng": null,
-    "query": "Woking Theatre, Woking, UK"
+    "lat": 51.320058,
+    "lng": -0.560601,
+    "query": "Woking Theatre, Woking, UK",
+    "src": "google"
   },
   "city|woking|uk": {
     "lat": 51.320189,
@@ -1983,9 +2078,10 @@
     "query": "Teatro Soho Club, Madrid, Spain (manual)"
   },
   "espacio madriz|madrid": {
-    "lat": null,
-    "lng": null,
-    "query": "Espacio Madriz, Madrid, Spain"
+    "lat": 40.410313,
+    "lng": -3.733573,
+    "query": "Espacio Madriz, Madrid, Spain",
+    "src": "google"
   },
   "stage gran teatro musical|madrid": {
     "lat": 40.391906,
@@ -1993,9 +2089,10 @@
     "query": "Stage Gran Teatro Musical, Madrid, Spain"
   },
   "teatro por confirmar|madrid": {
-    "lat": null,
-    "lng": null,
-    "query": "Teatro por confirmar, Madrid, Spain"
+    "lat": 40.422413,
+    "lng": -3.704095,
+    "query": "Teatro por confirmar, Madrid, Spain",
+    "src": "google"
   },
   "teatro del barrio|madrid": {
     "lat": 40.409608,
@@ -2069,9 +2166,10 @@
     "query": "Teatre Grec, Barcelona, Spain"
   },
   "teatre eolia|barcelona": {
-    "lat": null,
-    "lng": null,
-    "query": "Teatre Eòlia, Barcelona, Spain"
+    "lat": 41.392612,
+    "lng": 2.176169,
+    "query": "Teatre Eòlia, Barcelona, Spain",
+    "src": "google"
   },
   "teatre gaudi barcelona|barcelona": {
     "lat": 41.40743,
@@ -2079,9 +2177,10 @@
     "query": "Teatre Gaudí Barcelona, Barcelona, Spain"
   },
   "eixample teatre|barcelona": {
-    "lat": null,
-    "lng": null,
-    "query": "Eixample Teatre, Barcelona, Spain"
+    "lat": 41.385309,
+    "lng": 2.15599,
+    "query": "Eixample Teatre, Barcelona, Spain",
+    "src": "google"
   },
   "sala beckett|barcelona": {
     "lat": 41.404582,
@@ -2094,9 +2193,10 @@
     "query": "Teatre Lliure - Gràcia, Barcelona, Spain"
   },
   "sala aquarella|barcelona": {
-    "lat": null,
-    "lng": null,
-    "query": "Sala Aquarella, Barcelona, Spain"
+    "lat": 41.384157,
+    "lng": 2.161725,
+    "query": "Sala Aquarella, Barcelona, Spain",
+    "src": "google"
   },
   "sala pangoli|barcelona": {
     "lat": 41.401589,
@@ -2155,9 +2255,10 @@
     "query": "SAT! Sant Andreu Teatre, Barcelona, Spain"
   },
   "starlight express theater|bochum": {
-    "lat": null,
-    "lng": null,
-    "query": "Starlight Express Theater, Stadionring 24, Bochum, Germany"
+    "lat": 51.492651,
+    "lng": 7.233717,
+    "query": "Starlight Express Theater, Stadionring 24, Bochum, Germany",
+    "src": "google"
   },
   "piazza garibaldi|senigallia|it": {
     "lat": 43.714044,
@@ -2170,9 +2271,10 @@
     "query": "Reggia di Caserta, Caserta, Italy"
   },
   "ferrara summer festival - piazza ariostea|ferrara|it": {
-    "lat": null,
-    "lng": null,
-    "query": "Ferrara Summer Festival - Piazza Ariostea, Ferrara, Italy"
+    "lat": 44.841685,
+    "lng": 11.62515,
+    "query": "Ferrara Summer Festival - Piazza Ariostea, Ferrara, Italy",
+    "src": "google"
   },
   "city|ferrara|italy": {
     "lat": 44.766764,
@@ -2190,9 +2292,10 @@
     "query": "Olbia Arena, Olbia, Italy"
   },
   "arena del mare|sabaudia|it": {
-    "lat": null,
-    "lng": null,
-    "query": "Arena del Mare, Sabaudia, Italy"
+    "lat": 41.298591,
+    "lng": 13.020693,
+    "query": "Arena del Mare, Sabaudia, Italy",
+    "src": "google"
   },
   "city|sabaudia|italy": {
     "lat": 41.301567,
@@ -2220,9 +2323,10 @@
     "query": "ChorusLife Arena, Bergamo, Italy"
   },
   "pala rescifina|messina|it": {
-    "lat": null,
-    "lng": null,
-    "query": "Pala Rescifina, Messina, Italy"
+    "lat": 38.156458,
+    "lng": 15.52543,
+    "query": "Pala Rescifina, Messina, Italy",
+    "src": "google"
   },
   "city|messina|italy": {
     "lat": 38.193757,
@@ -2245,9 +2349,10 @@
     "query": "Nelson Mandela Forum, Firenze, Italy"
   },
   "prealpi sanbiagio arena|conegliano|it": {
-    "lat": null,
-    "lng": null,
-    "query": "Prealpi SanBiagio Arena, Conegliano, Italy"
+    "lat": 45.866254,
+    "lng": 12.315308,
+    "query": "Prealpi SanBiagio Arena, Conegliano, Italy",
+    "src": "google"
   },
   "city|conegliano|italy": {
     "lat": 45.90373,
@@ -2255,9 +2360,10 @@
     "query": "Conegliano, Italy"
   },
   "inalpi arena (ex pala alpitour)|torino|it": {
-    "lat": null,
-    "lng": null,
-    "query": "Inalpi Arena (ex Pala Alpitour), Torino, Italy"
+    "lat": 45.041528,
+    "lng": 7.652191,
+    "query": "Inalpi Arena (ex Pala Alpitour), Torino, Italy",
+    "src": "google"
   },
   "city|torino|italy": {
     "lat": 45.067755,
@@ -2280,9 +2386,10 @@
     "query": "Politeama, Catanzaro, Italy"
   },
   "cmp arena|bassano del grappa|it": {
-    "lat": null,
-    "lng": null,
-    "query": "CMP Arena, Bassano Del Grappa, Italy"
+    "lat": 45.746994,
+    "lng": 11.740583,
+    "query": "CMP Arena, Bassano Del Grappa, Italy",
+    "src": "google"
   },
   "city|bassano del grappa|italy": {
     "lat": 45.772601,
@@ -2305,9 +2412,10 @@
     "query": "Palazzo del turismo, Jesolo, Italy"
   },
   "dis_play|brescia|it": {
-    "lat": null,
-    "lng": null,
-    "query": "Dis_Play, Brescia, Italy"
+    "lat": 45.528235,
+    "lng": 10.175224,
+    "query": "Dis_Play, Brescia, Italy",
+    "src": "google"
   },
   "city|brescia|italy": {
     "lat": 45.779581,
@@ -2335,9 +2443,10 @@
     "query": "Nuovo, Verona, Italy"
   },
   "palaprometeo (ex-palarossini)|ancona|it": {
-    "lat": null,
-    "lng": null,
-    "query": "PalaPrometeo (ex-Palarossini), Ancona, Italy"
+    "lat": 43.5665,
+    "lng": 13.526669,
+    "query": "PalaPrometeo (ex-Palarossini), Ancona, Italy",
+    "src": "google"
   },
   "city|ancona|italy": {
     "lat": 43.480119,
@@ -2370,9 +2479,10 @@
     "query": "Golden, Palermo, Italy"
   },
   "il sistina chapiteau - milano|sesto san giovanni|it": {
-    "lat": null,
-    "lng": null,
-    "query": "Il Sistina Chapiteau - Milano, Sesto San Giovanni, Italy"
+    "lat": 45.526434,
+    "lng": 9.246771,
+    "query": "Il Sistina Chapiteau - Milano, Sesto San Giovanni, Italy",
+    "src": "google"
   },
   "city|sesto san giovanni|italy": {
     "lat": 45.534793,
@@ -2510,9 +2620,10 @@
     "query": "Dei Marsi, Avezzano, Italy"
   },
   "nuovo teatro orione|roma|it": {
-    "lat": null,
-    "lng": null,
-    "query": "Nuovo Teatro Orione, Roma, Italy"
+    "lat": 41.879544,
+    "lng": 12.515263,
+    "query": "Nuovo Teatro Orione, Roma, Italy",
+    "src": "google"
   },
   "city|roma|italy": {
     "lat": 41.89332,
@@ -2535,9 +2646,10 @@
     "query": "Europa, Aprilia, Italy"
   },
   "circus visioni|pescara|it": {
-    "lat": null,
-    "lng": null,
-    "query": "Circus Visioni, Pescara, Italy"
+    "lat": 42.466776,
+    "lng": 14.208876,
+    "query": "Circus Visioni, Pescara, Italy",
+    "src": "google"
   },
   "city|pescara|italy": {
     "lat": 42.310262,
@@ -2590,9 +2702,10 @@
     "query": "I 4 Mori, Livorno, Italy"
   },
   "president|piacenza|it": {
-    "lat": null,
-    "lng": null,
-    "query": "President, Piacenza, Italy"
+    "lat": 45.052642,
+    "lng": 9.693688,
+    "query": "President, Piacenza, Italy",
+    "src": "google"
   },
   "city|piacenza|italy": {
     "lat": 44.847635,
@@ -2600,9 +2713,10 @@
     "query": "Piacenza, Italy"
   },
   "cinema teatro don bosco|padova|it": {
-    "lat": null,
-    "lng": null,
-    "query": "Cinema teatro Don Bosco, Padova, Italy"
+    "lat": 45.398636,
+    "lng": 11.895782,
+    "query": "Cinema teatro Don Bosco, Padova, Italy",
+    "src": "google"
   },
   "city|padova|italy": {
     "lat": 45.391408,
@@ -2645,9 +2759,10 @@
     "query": "Alfieri, Asti, Italy"
   },
   "teatro infinity 1|cremona|it": {
-    "lat": null,
-    "lng": null,
-    "query": "Teatro Infinity 1, Cremona, Italy"
+    "lat": 45.151269,
+    "lng": 10.031861,
+    "query": "Teatro Infinity 1, Cremona, Italy",
+    "src": "google"
   },
   "city|cremona|italy": {
     "lat": 45.220864,
@@ -2655,9 +2770,10 @@
     "query": "Cremona, Italy"
   },
   "comunale luigi russolo|portogruaro|it": {
-    "lat": null,
-    "lng": null,
-    "query": "Comunale Luigi Russolo, Portogruaro, Italy"
+    "lat": 45.777692,
+    "lng": 12.841187,
+    "query": "Comunale Luigi Russolo, Portogruaro, Italy",
+    "src": "google"
   },
   "city|portogruaro|italy": {
     "lat": 45.757741,
@@ -2665,9 +2781,10 @@
     "query": "Portogruaro, Italy"
   },
   "comunale - dino buzzati|belluno|it": {
-    "lat": null,
-    "lng": null,
-    "query": "Comunale - Dino Buzzati, Belluno, Italy"
+    "lat": 46.141637,
+    "lng": 12.214826,
+    "query": "Comunale - Dino Buzzati, Belluno, Italy",
+    "src": "google"
   },
   "city|belluno|italy": {
     "lat": 46.280541,
@@ -2762,9 +2879,10 @@
     "query": "Sh Art Hall, Seoul, South Korea"
   },
   "stanley performing arts center|utica, ny": {
-    "lat": null,
-    "lng": null,
-    "query": "Stanley Performing Arts Center, Utica, NY, USA"
+    "lat": 43.099207,
+    "lng": -75.235366,
+    "query": "Stanley Performing Arts Center, Utica, NY, USA",
+    "src": "google"
   },
   "city|utica, ny|usa": {
     "lat": 43.100903,
@@ -2782,9 +2900,10 @@
     "query": "Princess of Wales, Toronto, ON, Canada"
   },
   "indiana university auditorium|bloomington, in": {
-    "lat": null,
-    "lng": null,
-    "query": "Indiana University Auditorium, Bloomington, IN, USA"
+    "lat": 39.168456,
+    "lng": -86.517927,
+    "query": "Indiana University Auditorium, Bloomington, IN, USA",
+    "src": "google"
   },
   "city|bloomington, in|usa": {
     "lat": 39.16704,
@@ -2792,9 +2911,10 @@
     "query": "Bloomington, IN, USA"
   },
   "the royal theatre|victoria, bc": {
-    "lat": null,
-    "lng": null,
-    "query": "The Royal Theatre, Victoria, BC, Canada"
+    "lat": 48.423317,
+    "lng": -123.362358,
+    "query": "The Royal Theatre, Victoria, BC, Canada",
+    "src": "google"
   },
   "hammons hall|springfield, mo": {
     "lat": 37.204683,
@@ -2899,9 +3019,10 @@
     "query": "NOL Seokyeong Square SKON1, South Korea"
   },
   "playhouse-theatre|London": {
-    "lat": null,
-    "lng": null,
-    "query": "Kit Kat Club at the Playhouse Theatre, London, UK"
+    "lat": 51.507005,
+    "lng": -0.123609,
+    "query": "Kit Kat Club at the Playhouse Theatre, London, UK",
+    "src": "google"
   },
   "criterion-theatre|London": {
     "lat": 51.509576,
@@ -2957,9 +3078,10 @@
     "query": "DREAM THEATRE, South Korea"
   },
   "wilson center at cape fear community college|wilmington, nc": {
-    "lat": null,
-    "lng": null,
-    "query": "Wilson Center at Cape Fear Community College, Wilmington, NC, USA"
+    "lat": 34.243594,
+    "lng": -77.947297,
+    "query": "Wilson Center at Cape Fear Community College, Wilmington, NC, USA",
+    "src": "google"
   },
   "city|wilmington, nc|usa": {
     "lat": 34.235285,
@@ -3024,7 +3146,9 @@
   "lac - lugano arte e cultura|lugano|it": {
     "lat": null,
     "lng": null,
-    "query": "LAC - Lugano Arte e Cultura, Lugano, Italy"
+    "query": "LAC - Lugano Arte e Cultura, Lugano, Italy",
+    "src": "google-miss",
+    "note": "country mismatch it vs ch"
   },
   "city|lugano|italy": {
     "lat": 46.020039,
