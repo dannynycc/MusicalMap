@@ -460,8 +460,7 @@
    "verified": true,
    "source": "interpark / edaily / newdaily (manual)",
    "_checked": "2026-09-02",
-   "_note": "2026-09-01 에스앤코(S&Co)公告的【韓語版】,慶祝全球 40 週年 + 韓國首演 25 週年,首爾 블루스퀘어 우리은행홀,只演兩個月。日期經 edaily(2026-09-01 10:28)與 newdaily 兩家韓媒逐字確認:12월 22일 개막 ~ 2027년 2월 28일。⚠ 為何要手動補:我們的韓國來源 interpark.py 讀的是【國際英文站 world.nol.com】,這檔目前掛在【韓國國內站 tickets.interpark.com】。國際站的搜尋頁是 JS 算繪,靜態抓取無法確認它在不在上面,故先手動建檔;之後若爬蟲自己抓到,build_shows 的 (group, city, venue) 去重會自動合併,不會變成兩筆。",
-   "city_cn": "首爾"
+   "_note": "2026-09-01 에스앤코(S&Co)公告的【韓語版】,慶祝全球 40 週年 + 韓國首演 25 週年,首爾 블루스퀘어 우리은행홀,只演兩個月。日期經 edaily(2026-09-01 10:28)與 newdaily 兩家韓媒逐字確認:12월 22일 개막 ~ 2027년 2월 28일。⚠ 為何要手動補:我們的韓國來源 interpark.py 讀的是【國際英文站 world.nol.com】,這檔目前掛在【韓國國內站 tickets.interpark.com】。國際站的搜尋頁是 JS 算繪,靜態抓取無法確認它在不在上面,故先手動建檔;之後若爬蟲自己抓到,build_shows 的 (group, city, venue) 去重會自動合併,不會變成兩筆。"
   }
  ]
 }

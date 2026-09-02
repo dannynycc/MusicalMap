@@ -66,10 +66,41 @@ VENUES = {
 }
 KOREAN_CITIES = ["Seoul", "Busan", "Daegu", "Daejeon", "Incheon", "Gwangju", "Ulsan", "Suwon", "Goyang"]
 
+# 韓文城市名 → 英文。city_hint 原本只比對英文,所以「오싹한 알바 - 부산」這種
+# 韓文標題推不出城市,會掉進預設的 Seoul —— 那是【錯的城市】,不是缺值。
+KO_CITY = {
+    "서울": "Seoul", "부산": "Busan", "대구": "Daegu", "대전": "Daejeon",
+    "인천": "Incheon", "광주": "Gwangju", "울산": "Ulsan", "세종": "Sejong",
+    "수원": "Suwon", "고양": "Goyang", "용인": "Yongin", "화성": "Hwaseong",
+    "성남": "Seongnam", "안양": "Anyang", "부천": "Bucheon", "안산": "Ansan",
+    "청주": "Cheongju", "천안": "Cheonan", "전주": "Jeonju", "창원": "Changwon",
+    "안동": "Andong", "포항": "Pohang", "김해": "Gimhae", "춘천": "Chuncheon",
+    "강릉": "Gangneung", "제주": "Jeju", "여수": "Yeosu", "익산": "Iksan",
+}
+
+# API 的 regionName → (城市, 地理編碼用的區域字串)。
+# ⚠️ 有一半是【道(省級)】不是市:경기/강원/충북/충남/전북/경북/경남。
+#    那些不能當城市名貼上去,只能當 Nominatim 的區域提示,城市改由標題或場館推。
+REGION = {
+    "Seoul": ("Seoul", "Seoul"),
+    "부산시": ("Busan", "Busan"), "대구시": ("Daegu", "Daegu"),
+    "인천시": ("Incheon", "Incheon"), "대전시": ("Daejeon", "Daejeon"),
+    "광주시": ("Gwangju", "Gwangju"), "울산시": ("Ulsan", "Ulsan"),
+    "세종시": ("Sejong", "Sejong"),
+    "경기": (None, "Gyeonggi-do"), "강원": (None, "Gangwon-do"),
+    "충북": (None, "Chungcheongbuk-do"), "충남": (None, "Chungcheongnam-do"),
+    "전북": (None, "Jeollabuk-do"), "전남": (None, "Jeollanam-do"),
+    "경북": (None, "Gyeongsangbuk-do"), "경남": (None, "Gyeongsangnam-do"),
+    "제주": ("Jeju", "Jeju"),
+}
+
 
 # Service/merch products that NOL lists under MUSICAL but are not shows
-JUNK = re.compile(r"caption\s*glasses|rental|자막|렌탈|주차|parking|package|패키지|"
-                  r"goods|md\b|gift\s*card", re.I)
+# 2026-09-02 補 subtitle glasses / pre-order:拿掉 globalType=EN 後多抓到
+# 「Dear Evan Hansen Subtitle Glasses Pre-order」——字幕眼鏡預購,不是演出。
+# 原規則只認 caption glasses 與韓文的 자막,漏掉英文的 subtitle 寫法。
+JUNK = re.compile(r"caption\s*glasses|subtitle\s*glasses|pre-?order|rental|자막|렌탈|주차|"
+                  r"parking|package|패키지|goods|md\b|gift\s*card", re.I)
 
 
 def clean_title(name):
@@ -86,12 +117,21 @@ def city_hint(name):
     for c in KOREAN_CITIES[1:]:
         if re.search(rf"(?:^|[-–(\s]){c}\b", name, re.I):
             return c
+    # 韓文城市名(標題常以「- 부산」「- 대구」標示巡演城市)
+    for ko, en in KO_CITY.items():
+        if ko in name:
+            return en
     return None
 
 
 def fetch_page(page):
+    # ⚠️ 不要加回 globalType/languageType=EN。2026-09-02 實測:那兩個參數不是「翻譯成英文」,
+    # 而是【只回國際夥伴節目】的篩選器 —— 帶著它只拿得到 58 檔,拿掉是 133 檔,
+    # 而且 EN 的結果是 KR 的【嚴格子集】、同一檔在兩邊的 goodsName 完全相同
+    # (不會讓既有英文劇名變成韓文)。多出來的 75 檔是首爾以外的地方製作居多
+    # (大邱的 Dracula、仁川的 생텍쥐페리…),那正是我們原本整批看不到的盲區。
     qs = urllib.parse.urlencode({
-        "goodsStatus": "Y,D", "globalType": "EN", "languageType": "EN",
+        "goodsStatus": "Y,D",
         "genreType": "MUSICAL", "page": page, "size": 15, "includeNonPartnerGoods": "true",
     })
     req = urllib.request.Request(f"{API}?{qs}", headers={"User-Agent": UA})
@@ -118,21 +158,43 @@ def main():
     shows, missing = [], []
     for it in items:
         raw_title = it.get("goodsName") or ""
+        # Interpark 把【넌버벌 퍼포먼스】掛在 MUSICAL 這個大分類底下(Ca=Mus&SubCa=Non),
+        # 但那些不是音樂劇:NANTA(난타)、JUMP、PAINTERS(現場作畫)、魔術師秀、跆拳道秀。
+        # 2026-09-02 逐一看過該子類的 14 檔,沒有一檔是音樂劇 → 整個子類排除。
+        # 用 subGenreName 從源頭擋,比事後用劇名比對可靠(페인터즈 有「- 고양」
+        # 「- 서대문 전용관」「The Painters」「PAINTERS」等多種寫法)。
+        if (it.get("subGenreName") or "").strip() == "Non Verbal Performance":
+            continue
         if JUNK.search(raw_title):
             continue  # caption-glasses rental / parking / merch — not a show
         title = clean_title(raw_title)
         place = (it.get("placeName") or "").strip()
         if not title or not place:
             continue
-        city = city_hint(raw_title) or city_hint(place)
+        # 城市優先序:標題 → 場館名 → API 的 regionName。
+        # ⚠️ 絕不再無條件 fallback 到 "Seoul":2026-09-02 拿掉 globalType=EN 之後
+        #    才發現地方場次會被一律標成首爾(「오싹한 알바 - 부산」被標 Seoul),
+        #    那是【錯的城市】不是缺值,會在地圖上把釜山的戲釘在首爾。
+        rcity, rregion = REGION.get((it.get("regionName") or "").strip(), (None, None))
+        city = city_hint(raw_title) or city_hint(place) or rcity
         vk = next((v for k, v in VENUES.items() if k in place.lower()), None)
+        # 🚨 白名單是【子字串】比對,會把不同城市的同名場館併成一個。
+        #    2026-09-02 實例:API 的「Sejong Culture and Arts Center (Jochiwon)」
+        #    在【世宗市】,卻因為含 "sejong" 被對到首爾的세종문화회관,
+        #    套上首爾座標 → 城市寫世宗、圖釘落在首爾的內部矛盾。
+        #    所以:若已獨立判斷出城市、而且與白名單的城市不符,就視為誤配、不採用。
+        if vk and city and vk[1] != city:
+            vk = None
         if vk:
             venue, vcity, lat, lng = vk
             city = city or vcity
         else:
             venue = place
-            city = city or "Seoul"
-            lat, lng = geocode(f"{place}|{city}|kr".lower(), f"{place}, {city}, South Korea")
+            # 地理編碼帶上區域,道級(경기/전북…)也能幫 Nominatim 收斂
+            area = city or rregion
+            city = city or rregion or "Seoul"
+            lat, lng = geocode(f"{place}|{area}|kr".lower(), f"{place}, {area}, South Korea") \
+                if area else (None, None)
             if lat is None:
                 lat, lng = geocode(f"{place}|kr".lower(), f"{place}, South Korea")
         if lat is None:
