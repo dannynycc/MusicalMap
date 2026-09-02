@@ -2,7 +2,7 @@
 """輪詢正式站直到本次部署的 DATA_VER 出現。標記已先對舊版檔驗過 0 匹配。"""
 import io, sys, time, urllib.request
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
-MARK = "7d87425356"
+MARK = "e3dd49ef4e"
 URL = "https://themusicalmap.com/"
 UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) MusicalMap-deploy-check"}
 for i in range(40):
