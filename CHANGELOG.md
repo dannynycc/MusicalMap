@@ -11,6 +11,37 @@
 
 ---
 
+## [v2.105.2] - 2026-09-02 11:45
+
+### 清掉 manual.json 的 4 筆過期檔期 —— 每日自動化紅燈的【另一半】原因
+
+排程 run 一直是紅的,其實同時有兩個原因,v2.105.0 只解掉波蘭那一個:
+
+```
+FAILURES: - poland (ebilet)          ← v2.105.0 已解(降為 warn)
+          - manual.json 過期稽核      ← 本版解
+```
+
+`audit_manual` 報 4 筆 `end_date` 已過。**逐筆查證是閉幕還是移師下一站,不是直接刪**:
+
+| 項目 | 查證結果 | 處置 |
+|---|---|---|
+| Chicago @ Tokyu Theatre Orb 東京 | 官方 `chicagothemusical.com/international` 已無東京,列的是 OSAKA Orix Theater 9/3–6 與 DUBAI Coca-Cola Arena 12/16–20 | 刪(**後繼兩筆本來就已在檔內**) |
+| Heathers @ Coliseum Theatre 雪梨 | 官方巡演表:Coliseum 26–29 Aug 之後是 Roslyn Packer Theatre 1–19 Sep、Perth Regal Theatre 30 Sep–11 Oct | 刪(**後繼兩筆本來就已在檔內**) |
+| Anastasia @ Teatro Astral 布宜諾斯艾利斯 | 官方售票寫到 30/08/2026;alternativateatral 已把 ASTRAL(2026)列在「histórico de funciones」;查無延長 | 刪(確認閉幕) |
+| Rita Lee @ Teatro Porto Seguro 聖保羅 | **延長**,不是閉幕 | 改 end_date |
+
+🚨 **Rita Lee 的日期差點寫錯。** 搜尋先給出「prorrogada até setembro(9/15)」,
+但那是**前一次**延長的舊報導;劇院官網頁面逐字是「De 18 de Abril a **25 de Outubro**」
+(週五六 20h、週日 17h)。以官網為準改為 `2026-10-25`,並把這個陷阱寫進該筆的 `_note`。
+
+**刪除前先斷言後繼檔期存在**才動手(`assert {'manual-chicago-osaka','manual-chicago-dubai'} <= ids`),
+避免把整齣戲從地圖上刪掉。重建驗證:shows.json 1983 → 1981,消失的只有東京 Chicago 與
+布宜諾斯艾利斯 Anastasia 兩筆,大阪/杜拜/Roslyn Packer/伯斯全部健在,零誤刪。
+`audit_manual` 現為「OK: 無過期、無逾期未查證項目」。
+
+---
+
 ## [v2.105.1] - 2026-09-02 11:08
 
 ### 波蘭新資料的分類修正:兩齣英國音樂劇被標成「歐陸原創」

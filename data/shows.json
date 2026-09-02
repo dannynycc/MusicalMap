@@ -1,9 +1,9 @@
 {
   "meta": {
     "source": "merged",
-    "generated_at": "2026-09-02 03:07 UTC",
-    "total": 1983,
-    "verified": 1983,
+    "generated_at": "2026-09-02 03:44 UTC",
+    "total": 1981,
+    "verified": 1981,
     "unverified": 0,
     "sources": [
       {
@@ -300,7 +300,7 @@
       },
       {
         "file": "manual.json",
-        "count": 27,
+        "count": 24,
         "meta": {
           "source": "manual-curated",
           "note": "Hand-curated shows from regional venues/promoters no scraper covers yet (China venues, Live Nation FR, …). Each entry verified against the official ticketing page on the date in _checked. Add here whenever a gap is found; build merges automatically. Images: ALWAYS the original full-size official URL — no compression, no self-hosting (user preference: quality over speed).",
@@ -38991,40 +38991,6 @@
       "alt": "Roméo et Juliette 羅密歐與茱麗葉 罗密欧与茱丽叶 ロミオとジュリエット RÓMEÓ ÉS JÚLIA - musical"
     },
     {
-      "id": "manual-chicago-tokyo",
-      "title": "Chicago",
-      "type": "tour",
-      "venue": "Tokyu Theatre Orb (渋谷ヒカリエ)",
-      "city": "Tokyo",
-      "country": "Japan",
-      "lat": 35.659076,
-      "lng": 139.703047,
-      "start_date": "2026-08-19",
-      "end_date": "2026-08-30",
-      "ticket_url": "https://www.kyodotokyo.com/chicago-en/",
-      "image": "https://cdn-imgix.headout.com/media/images/66e07f1dce2f156d5206918e3e662ee1-519.png",
-      "tour_name": "シカゴ",
-      "verified": true,
-      "source": "chicagothemusical.com/international (manual)",
-      "_checked": "2026-08-12",
-      "group": "chicago",
-      "ticket_links": [
-        {
-          "label": "官方網站",
-          "url": "https://chicagothemusical.jp/",
-          "kind": "official"
-        },
-        {
-          "label": "官方售票",
-          "url": "https://www.kyodotokyo.com/chicago-en/",
-          "kind": "ticketing"
-        }
-      ],
-      "link_kind": "ticketing",
-      "tag": "Broadway/West End",
-      "alt": "Chicago 芝加哥 シカゴ Muzikál CHICAGO"
-    },
-    {
       "id": "manual-chicago-osaka",
       "title": "Chicago",
       "type": "tour",
@@ -39282,14 +39248,14 @@
       "lat": -23.530238,
       "lng": -46.645357,
       "start_date": "2026-04-18",
-      "end_date": "2026-08-30",
+      "end_date": "2026-10-25",
       "ticket_url": "https://bileto.sympla.com.br/event/116591",
       "image": "posters/rita-lee-saopaulo-2026.jpg",
       "tour_name": null,
       "verified": true,
       "source": "sympla.com.br (manual)",
-      "_checked": "2026-08-12",
-      "_note": "Teatro Porto Seguro/媒體:temporada até 30/08/2026",
+      "_checked": "2026-09-02",
+      "_note": "2026-09-02 劇院官網逐字「De 18 de Abril a 25 de Outubro」(週五六 20h、週日 17h)。⚠ 注意有更舊的報導寫「prorrogada até setembro」,那是前一次延長,已被 10/25 取代。",
       "group": "rita lee uma autobiografia musical",
       "ticket_links": [
         {
@@ -39305,41 +39271,6 @@
       ],
       "link_kind": "ticketing",
       "tag": "西葡音樂劇"
-    },
-    {
-      "id": "manual-anastasia-buenosaires-2026",
-      "title": "Anastasia",
-      "type": "sit-down",
-      "venue": "Teatro Astral",
-      "city": "Buenos Aires",
-      "country": "Argentina",
-      "lat": -34.603935,
-      "lng": -58.389922,
-      "start_date": "2026-05-05",
-      "end_date": "2026-08-30",
-      "ticket_url": "https://www.atrapalo.com.ar/entradas/anastasia-el-musical_e4945100/",
-      "image": "https://s1.ticketm.net/dam/a/186/914bfec0-450f-48a2-a15f-411e53c0b186_SOURCE",
-      "tour_name": "Anastasia, el musical — producción argentina (versión en español)",
-      "verified": true,
-      "source": "cadena3 / atrapalo (manual)",
-      "_checked": "2026-08-24",
-      "_note": "2026-08-24 官方售票 listing 標明 Hasta el 30/08/2026(週六日 20:00),改為有限檔期。",
-      "group": "anastasia",
-      "ticket_links": [
-        {
-          "label": "官方網站",
-          "url": "https://www.instagram.com/anastasiaelmusical/",
-          "kind": "official"
-        },
-        {
-          "label": "官方售票",
-          "url": "https://www.atrapalo.com.ar/entradas/anastasia-el-musical_e4945100/",
-          "kind": "ticketing"
-        }
-      ],
-      "link_kind": "ticketing",
-      "tag": "Broadway/West End",
-      "alt": "Anastasia 真假公主 アナスタシア 安娜塔西亞 安娜塔西亚 安娜斯塔西婭 安娜斯塔西娅"
     },
     {
       "id": "manual-oliver-capetown-2026",
