@@ -34,6 +34,10 @@ Jeremi Przybora 編劇、Janusz Stokłosa 作曲、Janusz Józefowicz 導演的*
 (2000 年於 Teatr Roma 世界首演),只是取材自 Barrie 的故事,不是授權版。
 維持「歐陸原創」且不併入 `peter pan` 組。
 
+⚠️ 本版分兩個 commit:第一個只 stage 了 `data/` 與 CHANGELOG,**漏掉 gen_site 的產物**
+(`index.html` 三語 + `sitemap.xml`),DATA_VER 沒更新等於分類修正不會真的上線;
+第二個 commit 補上,tag `v2.105.1` 移到補完的那一個。
+
 ---
 
 ## [v2.105.0] - 2026-09-02 11:00
