@@ -1,0 +1,158 @@
+[
+ {
+  "group": "busco pis",
+  "rounds": ["簡中輪:對照 Teatre Apolo 官方 SINOPSIS 發現簡中【整篇寫的是另一齣戲】—— 憑空編出『幾名年輕人合租看房搶房』,官方的主角 Laia、她 36 歲仍住父母家、房地產大會 BCN Sell&Rent Village 全部缺席。這是三語中唯一一次單一語言整篇崩壞,英文與繁中都是對的。整段重寫。"],
+  "fixes_add": ["[簡中][高] 整篇重寫為官方 sinopsis:36 歲的莱娅仍住父母家、孤注一擲闖進 BCN Sell&Rent Village、繫綠領帶的仲介 / 會哭的大房東 / 吃酪梨吐司的外國人 / 只想拍照的政客;並補官方的『大房東在此繼續分食這塊蛋糕』與『對所有人都不留情面的辛辣諷刺』。刪除全部憑空編造的合租線"],
+  "confidence": "high", "verify_scope": "劇院官方 SINOPSIS 逐字比對(先前輪次取得)"
+ },
+ {
+  "group": "el ladron de arabia",
+  "rounds": ["簡中輪:與英文、繁中第一版同樣中招 —— 整篇是迪士尼電影《阿拉丁》的情節(賈方奪權、神祕洞穴、變成王子、奪燈、釋放燈神)。官方 SINOPSIS 完整文案裡這些【一個都沒有】。三語同時中招,再次印證『官方留白處會被通行版本填滿,且三語錯誤重疊』。"],
+  "fixes_add": ["[簡中][高] 整段重寫為官方結構:神燈精靈是敘事者兼無疑的主角(el protagonista sin duda es el genio / te cuenta la historia a través del genio)、阿格拉巴是『一切皆有可能』之地、Jasmine 體現選擇所愛與追求平等的抗爭、阿拉丁的目標只是追隨真愛、Onbeat 劇團的致敬秀形式;並補官方點名的兩首曲目與現場真唱/宮殿風服裝。刪除賈方、奇蹟洞、變王子、奪燈、釋放精靈等全部電影情節"],
+  "confidence": "high", "verify_scope": "Auditorio Cartuja 官方 SINOPSIS 完整逐字比對"
+ },
+ {
+  "group": "el mago de oz",
+  "rounds": ["簡中輪:與英文第一版同樣把 1939 年電影版結構混入 —— 開場出現『北方善女巫格琳達指路』,但官方完整 sinopsis 沒有任何善良女巫;主角名也用了通行譯名『多蘿茜』而非本製作的 Dorita。"],
+  "fixes_add": ["[簡中][高] 多蘿茜 → 朵莉塔(本製作角色名 Dorita);刪除北方善女巫格琳達整句,改為『壓死東方惡女巫 → 銀鞋成為戰利品 → 只有沿黃磚路走到翡翠城一途』(銀鞋為 Baum 原著設定,官方自稱忠於原著,可用;紅寶石鞋為電影版新創,不可用)"],
+  "confidence": "high", "verify_scope": "官方完整 sinopsis + Baum 原著設定交叉"
+ },
+ {
+  "group": "el flautista de hamelin",
+  "rounds": ["簡中輪:與英文、繁中同樣寫出了格林童話的經典結局(孩子跟著笛聲離去、大人付出無法挽回的代價)。Teatro Fígaro 官方明說本製作『recrea un final alternativo』且未公開新結局 —— 官方刻意留白,模型三語一致地用通行版本填滿。"],
+  "fixes_add": ["[簡中][高] 刪除經典結局整段,改為寫到『大人背信 → 吹笛人再度舉笛』為止,並明講本製作為這個故事重寫了一個不同的結局、答案與人們從小聽到大的那一個並不相同"],
+  "confidence": "high", "verify_scope": "劇院官方頁逐字(官方僅公開開頭,結局刻意不寫)"
+ },
+ {
+  "group": "erase otra vez",
+  "rounds": ["簡中輪:三語共通地寫出『魔咒抹除童話 / 公主與反派後代合作』框架,查無任何來源,且概念與迪士尼 Descendants 高度相近有借用風險。反查專有名詞後取得的官方 sinopsis 完全是另一回事。整段重寫。"],
+  "fixes_add": ["[簡中][高] 整段重寫為官方 sinopsis:薇拉寧可穿球鞋不穿玻璃鞋、不需要人救;巴勃罗想跳舞繪畫演戲卻被宮廷生活擋住;『到府靈感』(Inspiración a Domicilio)介入相助;兩人聯手挑戰『說故事先生』(Míster Cuenta Cuentos)的傳統敘事。並補 Zapatos de Papel 劇團、六十分鐘、建議四歲以上。刪除全部無來源的『魔法抹除童話 / 後代 / 血統』框架"],
+  "confidence": "high", "verify_scope": "官方 sinopsis 逐字(經反查專有名詞才找到正確作品)"
+ },
+ {
+  "group": "la julia i el tauro",
+  "rounds": ["簡中輪:出現男孩『金』整條友誼線。原著小說有 Kin 這個角色,但查遍演出方、劇團官網與地方媒體,舞台版隻字未提,且卡司為小型編制。依『沉浸式/改編製作查該製作本身,不套原著』原則刪除。"],
+  "fixes_add": ["[簡中][高] 刪除男孩『金』整條線(原著小說有、舞台版查無);改補官方的昂斯特島(Unst,設得蘭群島最北端)地名與島上生活,保留母親對格陵蘭鯊的執著轉為偏執、父親修燈塔、朱莉婭第一次發現父母並不完美"],
+  "confidence": "high", "verify_scope": "官方/媒體 sinopsi + 演出方與劇團官網反向確認舞台版無此角色"
+ },
+ {
+  "group": "la rumba",
+  "rounds": ["簡中輪:開場寫成兩位老太太『輾轉回到』舊歌舞廳,但官方逐字是『從養老院前往獨立天使紀念碑的遠足團中溜走 → 迷路 → 隨便躲進一處廢墟 → 才認出這是舊地』—— 是【意外誤入】不是【刻意重返】,語意方向相反。另外把托妮塔寫成『她最親近的助手』,官方只說是形影不離的朋友;也漏掉官方明寫的『年輕版的自己(Carmina 與 Lelé)同台演出』雙時間線。"],
+  "fixes_add": ["[簡中][高] 開場改回官方版本:遠足團中溜走 → 迷路 → 誤入廢墟才認出是當年登台的地方", "[簡中][中] 刪除『托妮塔是她的助手』(官方僅稱 su inseparable amiga);補上年輕版的卡米娜與莱莱同台演出、台上同時並存兩個年代"],
+  "confidence": "high", "verify_scope": "官方 sinopsis 逐字比對"
+ },
+ {
+  "group": "libre",
+  "rounds": ["簡中輪:寫 Nino Bravo『三十歲時因車禍猝然離世』。查生卒:1944-08-03 生、1973-04-16 卒,享年 28 歲,年齡寫錯。"],
+  "fixes_add": ["[簡中][高] 三十歲 → 二十八歲(Nino Bravo 1944-08-03 生、1973-04-16 卒)"],
+  "confidence": "high", "verify_scope": "生卒年月日直接推算"
+ },
+ {
+  "group": "encantats",
+  "rounds": ["簡中輪:三語中唯獨簡中沒寫出本作的核心身分 —— 這是一齣串起三十首以上加泰隆尼亞 pop-rock 金曲的點唱機音樂劇。"],
+  "fixes_add": ["[簡中][中] 補上核心身分:全劇串起三十多首加泰隆尼亞 pop-rock 金曲,把整整一個世代的歌單搬上舞台"],
+  "confidence": "high", "verify_scope": "官方頁(先前輪次取得)"
+ },
+ {
+  "group": "a media luz",
+  "rounds": ["簡中輪:官方明寫這是 LGBTIQ+ 題材、寫的是『三具身體與一座城市』,三語原本都沒點出來,英繁已補,簡中補齊。"],
+  "fixes_add": ["[簡中][中] 補上官方明寫的 LGBTIQ+ 題材定位與『三具身體與一座城市』;為維持 450 字上限,精簡三處贅句"],
+  "confidence": "high", "verify_scope": "官方頁逐字"
+ },
+ {
+  "group": "a todo ritmo",
+  "rounds": ["簡中輪:出現官方沒有的『汽水』細節。繁中先前也獨立出現過『芬達汽水』並已刪 —— 兩個中文版各自冒出同一個虛構物件,這是同源模型的痕跡,【不能當成互相佐證】。"],
+  "fixes_add": ["[簡中][低] 『汽水、舞步』→『歌單、舞步』(官方核心是 alma de playlist,汽水查無來源)"],
+  "confidence": "high", "verify_scope": "官方頁 + 與繁中同型錯誤的交叉判讀"
+ },
+ {
+  "group": "artemis",
+  "rounds": ["簡中輪:漏掉兩項有來源的情節(轉學是為了擺脫前一所學校解決不了的衝突、真正想念的電影學校學費超出家庭負擔)與本作的獨角戲形式。"],
+  "fixes_add": ["[簡中][低] 補上轉學原因與電影學校學費過高兩項;補上全劇由一名演員分飾所有角色的獨角戲形式;精簡結尾避免書評式收束"],
+  "confidence": "high", "verify_scope": "官方頁 + 劇評"
+ },
+ {
+  "group": "assassinat per a dos",
+  "rounds": ["簡中輪:漏掉本作最關鍵的形式(只有兩名演員分飾十三個角色、兩人都彈鋼琴);另外寫被害人『倒在鋼琴旁』,官方只說在自家客廳遇害,屬過度具體化。"],
+  "fixes_add": ["[簡中][中] 補上核心形式:全劇只有兩名演員、分飾包括馬庫斯在內的十三個角色、兩人輪流坐到鋼琴前伴奏", "[簡中][低] 刪除『倒在鋼琴旁』(官方僅稱在自家客廳遇害);精簡兩處以容納形式說明"],
+  "confidence": "high", "verify_scope": "官方頁逐字(角色名亦已避開百老匯原版的 Barrette Lewis / Murray / Barb 陷阱)"
+ },
+ {
+  "group": "el hilo invisible",
+  "rounds": ["簡中輪:角色名用了加泰語版的 Quim(基姆)。本組是馬德里西語版,官方角色名為 Quimi。"],
+  "fixes_add": ["[簡中][中] 基姆 → 基米(本組為西語版,官方作 Quimi;加泰語版 el fil invisible 才是 Quim)"],
+  "confidence": "high", "verify_scope": "兩版官方頁角色名對照"
+ },
+ {
+  "group": "el libro de la selva la aventura de mowgli",
+  "rounds": ["簡中輪:寫路易王『對人類掌握的火焰充滿好奇,希望莫格里交出這種神秘力量』—— 這是迪士尼 1967 年動畫的設定,官方只寫路上遇到 Rey Louie 與 Kaa,未提火焰。"],
+  "fixes_add": ["[簡中][低] 刪除路易王索求火焰整句(迪士尼 1967 動畫設定,官方未提)"],
+  "confidence": "high", "verify_scope": "官方頁逐字"
+ },
+ {
+  "group": "en joan sense por i la casa encantada",
+  "rounds": ["簡中輪:三處問題。(1)『馬丁一家』—— 官方未給姓氏,三語全中的捏造。(2)『驚悚晚餐』與『鬼屋花園裡埋著改變全局的祕密』查無佐證。(3)人名用了西語化的『胡安』,但本作是加泰語製作,官方作 Joan。"],
+  "fixes_add": ["[簡中][中] 『馬丁一家』→『一對父母』(官方未給姓氏)", "[簡中][中] 刪除查無佐證的『驚悚晚餐』與『鬼屋花園裡埋著改變全局的祕密』,改以官方的鬼魂/怪物/詛咒推進", "[簡中][中] 胡安 → 琼(加泰語製作,官方作 Joan);並補官方的核心訊息『害怕不見得是壞事,會害怕也不代表你不勇敢』"],
+  "confidence": "high", "verify_scope": "官方 sinopsi 逐字"
+ },
+ {
+  "group": "imagilusion",
+  "rounds": ["簡中輪:出現《尋夢環遊記》(Coco),但官方致敬名單裡沒有這一部。另外漏掉本作的共融特色(全場有西班牙手語翻譯員同台)。"],
+  "fixes_add": ["[簡中][中] 刪除官方名單沒有的《尋夢環遊記》(保留已寫對的《魔法滿屋》與瑪麗·波平斯);補上西班牙手語翻譯員全程同台的共融特色"],
+  "confidence": "high", "verify_scope": "官方頁致敬名單逐項比對"
+ },
+ {
+  "group": "jurassic game",
+  "rounds": ["簡中輪:寫『兩名反派』,官方只說 personajes malvados,未給數量。"],
+  "fixes_add": ["[簡中][低] 『兩名反派』→『反派角色』(官方未指定數量)"],
+  "confidence": "high", "verify_scope": "官方頁逐字"
+ },
+ {
+  "group": "la vida en un segundo",
+  "rounds": ["簡中輪:三語都漏掉本作的核心形式 —— 只有一名演員分飾所有角色。英繁已補,簡中補齊。"],
+  "fixes_add": ["[簡中][中] 補上『全劇由一名演員分飾所有角色』;精簡一處以維持字數"],
+  "confidence": "high", "verify_scope": "官方頁"
+ },
+ {
+  "group": "la nit del music alt",
+  "rounds": ["簡中輪:內容正確(未寫成有主角的敘事音樂劇),但漏掉演出編制。"],
+  "fixes_add": ["[簡中][低] 補上編制:台上是巴塞隆納市立管樂團、合唱團與六名歌手演員;精簡三處以容納"],
+  "confidence": "high", "verify_scope": "官方頁"
+ },
+ {
+  "group": "la opera de los tres centavos con coque malla",
+  "rounds": ["簡中輪:未寫出本版導演 Mario Vega 明確設定的時代。英文已確認為兩次大戰之間的倫敦。"],
+  "fixes_add": ["[簡中][低] 開場補上本版設定:兩次大戰之間的倫敦(非維多利亞時代,亦非搬到當代)"],
+  "confidence": "high", "verify_scope": "本版導演訪談 + 製作方頁"
+ },
+ {
+  "group": "mentidrags",
+  "rounds": ["簡中輪:完全沒提本作與《Mentiras》的核心差異 —— 四個角色【全部由變裝皇后演出】。若不寫,這齣戲與 Mentiras 幾乎無從區分。另確認簡中用的是『遺囑』而非『信』,與繁中最終版本一致(繁中曾被我誤改為『信』後又依第二來源還原)。"],
+  "fixes_add": ["[簡中][中] 補上核心差異:四個角色全部由變裝皇后演出、量身打造的華服,以及對性別角色與愛情期待的批判;為維持 450 字上限精簡五處", "[簡中][低] 『二十世紀八十年代流行金曲』→『八十年代流行金曲』(壓縮,語意不變)"],
+  "confidence": "high", "verify_scope": "官方頁 + 與 Netflix 影集版差異的交叉確認"
+ },
+ {
+  "group": "mil guitarras",
+  "rounds": ["簡中輪:兩項簡中獨有、英繁皆無的內容 —— 『在無數民間慶典上演唱』與『暗戀對象蒂娜』。官方 Descripción 被截斷,且該站已觸發 bot 防護無法展開(未嘗試繞過),無法證實,依『未證實不可擴寫』原則刪除。"],
+  "fixes_add": ["[簡中][中] 刪除『在無數民間慶典上演唱』與『暗戀對象蒂娜』(簡中獨有、查無佐證);改補官方文案自己的開場命題『搖滾從不過時,老搖滾客也一樣』"],
+  "confidence": "medium", "verify_scope": "官方 Descripción 僅取得片段(Atrápalo 觸發 bot 防護,未繞過);本次為【刪除未證實內容】而非新增,方向上是收斂風險。"
+ },
+ {
+  "group": "rincones con lorena gomez",
+  "rounds": ["簡中輪:三語都漏掉本作形式 —— 獨角音樂劇,台上只有一位演出者、一架鋼琴與人聲。英繁已補,簡中補齊。"],
+  "fixes_add": ["[簡中][中] 補上獨角音樂劇形式(一位演出者、一架鋼琴、一個人的聲音);精簡兩處以容納"],
+  "confidence": "high", "verify_scope": "官方頁"
+ },
+ {
+  "group": "crush",
+  "rounds": ["簡中輪:內容完全正確,且保住了官方的 CRUSH/CRASH 雙關(『既像心動,也隱約像一場撞擊』)。僅字數 463 超出 450 上限。"],
+  "fixes_add": ["[簡中][低] 463 → 449 字,精簡五處贅語,不動任何事實內容"],
+  "confidence": "high", "verify_scope": "官方頁(內容本輪未改,僅壓縮)"
+ },
+ {
+  "group": "rita lee uma autobiografia musical",
+  "rounds": ["簡中輪:原本懷疑簡中獨有的四位巴西音樂人角色是捏造,查官方卡司後【四位全部確認為真實角色】:Ney Matogrosso(Fabiano Augusto 飾)、Gal Costa(Yael Pecarovich)、Elis Regina(Flavia Strongolli)、Raul Seixas(Gustavo Rezê);另有英繁都沒寫到的 Gilberto Gil 與審查官 Solange。『懷孕時經歷拘押』亦與官方『sua prisão em 1976, na ditadura』相符。這是第 16 次『懷疑生成有錯 → 查證後發現生成是對的』。"],
+  "fixes_add": ["[簡中][低] 462 → 448 字,精簡七處贅語;內容全部查證正確,一字未刪事實"],
+  "confidence": "high", "verify_scope": "多源交叉:官方卡司名單 + 官方演出簡介 + pt.wikipedia + 媒體報導"
+ }
+]

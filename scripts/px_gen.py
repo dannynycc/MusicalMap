@@ -97,8 +97,16 @@ def clean(text, q):
         if PROGRESS.match(s) and len(s)<40: continue
         keep.append(ln)
     paras=[p.strip() for p in re.split(r"\n\s*\n","\n".join(keep).strip()) if p.strip()]
+    # 裸標題污染:Perplexity 偶爾把「Themes」「主題」這類小標【單獨成段】印進正文中間
+    # (2026-09-02 實測 16 篇英文有 2 篇中招,先前 germans de sang 也是)。尾段守衛只砍結尾,
+    # 砍不到夾在中間的,所以在這裡濾:單行、短、且沒有句末標點的段落 = 標題,正文成段絕不會如此。
+    paras=[p for p in paras if not ("\n" not in p and len(p) < 40 and p[-1] not in END_OK)]
     while paras and paras[-1] and paras[-1][-1] not in END_OK: paras.pop()
     out="\n\n".join(paras).strip()
+    # 行內引用標記殘留:Perplexity 的 [1] 被上游清掉數字後會留下空的方括號。
+    # 2026-09-02 實測:繁中 ella era anita 正文裡出現兩個「［］」(全形)。
+    # 逐行過濾抓不到(它黏在句末,不是獨立一行),所以在成文後做行內清除。
+    out=re.sub(r"\s*[\[［]\s*\d*\s*[\]］]", "", out)
     if LANG == "zh-hant":
         try:
             from polish import normalize_tw

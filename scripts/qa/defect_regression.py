@@ -21,7 +21,11 @@ def load(n):
     return d.get('syn', d)
 
 en, zht, zhs = load('en.json'), load('zh-hant.json'), load('zh-hans.json')
-EU = sorted(json.load(io.open('scripts/qa/fixtures/euro_groups.json', encoding='utf-8')))
+# fixtures/*_groups.json 全部納入:歐陸(euro_groups)+西葡(eses_groups)+日後新批次。
+# 只要新批次丟一個 <名稱>_groups.json 進 fixtures/,掃描自動涵蓋,不用再改這支。
+import glob, os
+EU = sorted({g for f in sorted(glob.glob('scripts/qa/fixtures/*_groups.json'))
+               for g in json.load(io.open(f, encoding='utf-8'))})
 
 CHECKS = [
  ('A 英文 slug 殘留',      re.compile(r'\b[a-z]{3,}(?:-[a-z0-9]{2,}){2,}\b')),
@@ -29,7 +33,7 @@ CHECKS = [
  ('C 標題字面殘留',        re.compile(r'(全劇總結|全剧总结|劇情簡介|剧情简介|^\s*#{1,4}\s|^\s*\*\*[^*]{2,12}\*\*\s*[::]?\s*$)', re.M)),
  ('D 書評框架開頭',        re.compile(r'^(本劇|本剧|這是一[部齣]|这是一[部出]|該劇|该剧|全劇|全剧)')),
  ('F 說明性開場',          re.compile(r'^(以下|下面|翻譯|翻译|譯文|译文|好的|當然|当然|Here is|Below)')),
- ('G 引用/UI 殘留',        re.compile(r'(\[\d+\]|來源[::]|来源[::]|Sources?[::]|搜尋網路|重新生成)')),
+ ('G 引用/UI 殘留',        re.compile(r'(\[\d+\]|[\[［]\s*\d*\s*[\]］]|來源[::]|来源[::]|Sources?[::]|搜尋網路|重新生成)')),
 ]
 
 def body(d, g, k):
@@ -60,7 +64,8 @@ for g in EU:
         if len(paras) < 3:
             hits.append(('E 段落過少(<3)', g, lab, '共 %d 段' % len(paras)))
 
-print('掃描歐陸原創 %d 組 × 三語' % len(EU))
+print('掃描 %d 組 × 三語(來源:%s)'
+      % (len(EU), ', '.join(os.path.basename(f) for f in sorted(glob.glob('scripts/qa/fixtures/*_groups.json')))))
 if not hits:
     print('\n✅ 七類已知缺陷 全部 0 命中')
 else:

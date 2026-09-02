@@ -1,0 +1,1440 @@
+{
+ "artemis": {
+  "sources": [
+   "https://www.teatrecondal.cat/ca/ex/artemis/ (演出方官方頁,完整 SINOPSI+fitxa)",
+   "https://www.recomana.cat/obra/un-refugi-al-sol/ (Jordi Bordes 於後作劇評中回述 Artemis 劇情)",
+   "https://www.artezblai.com 2024-06-21",
+   "teatremusical.cat 2024-10-08",
+   "santceloni.cat 2026-02-01",
+   "https://www.teatrebarcelona.com/espectacle/artemis (官方 sinopsi + 導演的話 + 6 篇觀眾/劇評)",
+   "https://www.recomana.cat/obra/artemis/",
+   "https://elrincondeltaradete.blogspot.com/2024/10/critica-teatro-artemis-de-mireia-morea.html"
+  ],
+  "official_plot": "Teatre Condal 官方 SINOPSI(逐字):Un monòleg musical com no l'has vist mai escrit, composat i interpretat per una sola actriu en escena amb música en directe. Una filla que està massa a la lluna i una mare que toca molt de peus a terra. Aquesta és la història de trauma compartit, de solitud i de superació d'una família monomarental que ha emocionat als espectadors del concurs RIIING del festival GREC de Barcelona. La Diana és la protagonista d'aquesta explosió carregada de comicitat, música i efectes audiovisuals a càrrec d'una sola intèrpret, la Mireia Morera, autora i compositora de la peça i membre de la Cia Geminis. En un temps on les generacions adultes i les joves no es troben, aquest relat té l'objectiu de teixir ponts i reivindicar fer les paus amb la família, la figura de la dona creadora, els referents LGTBIQ+ i la importància de la salut mental. || Teatre Barcelona 官方 sinopsi(逐字):La ciència ficció és el refugi de la Diana per combatre les amenaces del planeta terra. El seu pare va desaparèixer quan ella era petita, la seva mare cada cop és més lluny i ella sent un buit existencial que només pot omplir amb el cinema, la seva gran passió. Tot es complica quan s'enamora per primera vegada i descobreix que a través de l'engany pot aconseguir l'amor que necessita i es torna addicta a mentir compulsivament. En aquesta història coming of age … la Diana es trobarà davant la problemàtica de fer-se gran i s'enfrontarà a allò que li fa més por: la confrontació amb la seva mare.",
+  "key_facts": [
+   "【獨角戲】全劇僅一名演員 Mireia Morera(她同時是編劇與作曲),現場音樂 —— 生成若出現多個登場角色互動即為錯誤",
+   "主角名 Diana",
+   "單親媽媽家庭(família monomarental):活在雲端的女兒 vs 極度腳踏實地的母親",
+   "Jordi Bordes 劇評回述:衝突是母女之間,加上女兒對【拋棄她們的父親】孩童式的崇拜",
+   "80 分鐘,加泰語,建議 12 歲以上",
+   "出身 2024 巴塞隆納 GREC 音樂節 RIIING 競賽,Grec 2024 共製",
+   "主題:世代之間搭橋、與家庭和解、女性創作者形象、LGBTIQ+ 榜樣、心理健康",
+   "同劇團 Cia Gèminis 的【前作】,後作為 Un refugi al sol(導演 Pol Sanuy)",
+   "Diana 是羅馬神話中 Artemis 的名字;科幻是她用來對抗『地球上的威脅』的避難所",
+   "【換學校的原因有來源】Jordi Casas:『ha canviat d'institut perquè tenia conflictes en l'anterior, li costa fer amics』—— 是為了擺脫前一所學校的衝突,而且交不到朋友",
+   "【想做的事有來源】Llapis:『una noia obsessionada en fer un guió d'una pel·lícula de ciència-ficció』(執著於寫一部科幻片劇本);Jordi Casas:『el cinema … és l'àmbit on voldria treballar, però les escoles de cinema són molt cares』(想進電影界工作,但電影學校太貴)",
+   "【謊言的代價有來源】Llapis:『es trobarà immersa en una espiral de mentides que li acabarà passant factura』",
+   "官方明說結局指向:『s'enfrontarà a allò que li fa més por: la confrontació amb la seva mare』",
+   "Taradete:她愛的是【80 年代】的科幻片(單一來源,可不寫)",
+   "舞台上只有一台 Roland 電子琴,Mireia Morera 一人分飾所有角色(母親、同學、電影老師等)",
+   "獲 RIIING 競賽『最佳歌詞』獎;入圍 Premis Butaca 最佳小型音樂劇與最佳音樂劇演員"
+  ],
+  "pending_fixes_en": [
+   "補:換學校是為了擺脫前一所學校的衝突(生成只寫 After changing schools,沒說原因)",
+   "補:電影學校太貴 —— 這是她夢想與現實之間的具體阻礙,生成完全沒有",
+   "補/強化:謊言最終要她付出代價(espiral de mentides que li acabarà passant factura)",
+   "檢查:生成寫 becoming a screenwriter —— 有來源(obsessionada en fer un guió),可保留;但另一來源說她想當導演,建議改為涵蓋兩者的『想以電影為業/執著於寫科幻劇本』",
+   "⚠ 不可自行指定初戀對象的性別:官方只寫 s'enamora per primera vegada,雖有二手摘要提到 girlfriend,無逐字佐證前不寫"
+  ],
+  "note": "⚠ 生成程序每輪覆寫 b2/out_en.json,批次跑完前不可改檔;待修項記在 pending_fixes_en。"
+ },
+ "assassinat per a dos": {
+  "sources": [
+   "https://www.teatregoya.cat/ca/ex/assassinat-per-a-dos/ (演出方官方頁,完整 SINOPSI+fitxa)",
+   "https://es.teatrebarcelona.com/espectaculo/asesinato-para-dos (西語版)"
+  ],
+  "official_plot": "Teatre Goya 官方 SINOPSI(逐字):El policia Marcus Moscowitz somia convertir-se en detectiu. Una nit fatídica, el famós novel·lista Arthur Whitney és assassinat al saló de casa seva. És l'oportunitat perfecta per demostrar el seu infal·lible instint i descobrir l'assassí... El problema és que hi ha dotze sospitosos. Qui podria haver comès el crim? La seva vídua, Dahlía? El seu psicòleg, el Dr. Griff? La famosa ballarina Paulette Lewis? Els seus insufribles veïns, Harry i Anne? Marcus Moscowitz (Mikel Herzog) disposa de poc més d'una hora per interrogar els dotze sospitosos (Dídac Flores) i resoldre el cas. Dos actors interpreten tretze personatges i, a més, toquen el piano.",
+  "key_facts": [
+   "🚨 這是百老匯 Murder for Two(Kellen Blair/Joe Kinosian)的加泰語官方改編,但【角色名被改過】:官方寫芭蕾舞者是 Paulette Lewis(百老匯原版為 Barrette Lewis)、鄰居是 Harry i Anne(原版為 Murray 與 Barb Flandon)。若照百老匯版寫必錯,一律以 Teatre Goya 官方名單為準。",
+   "警察 Marcus Moscowitz 夢想成為偵探;被害者是小說家 Arthur Whitney,在自家客廳遇害",
+   "12 名嫌疑人、13 個角色、【只有 2 名演員】,且兩人都彈鋼琴 —— 生成若寫成多人卡司即為錯誤",
+   "點名的嫌疑人:遺孀 Dahlía、心理醫師 Dr. Griff、名芭蕾舞者 Paulette Lewis、難相處的鄰居 Harry 與 Anne",
+   "Moscowitz 只有一個多小時可以偵訊完 12 人並破案",
+   "95 分鐘,加泰語,全年齡;改編與總導演 Zenón Recalde,音樂總監 Gaby Goldman;製作 El Tío Caracoles",
+   "演員:Dídac Flores(飾全部嫌疑人)/ Mikel Herzog Jr(飾 Moscowitz)"
+  ]
+ },
+ "el fil invisible": {
+  "sources": [
+   "https://www.teatregoya.cat/ca/ex/el-fil-invisible/ (演出方官方頁,完整 SINOPSI+fitxa)",
+   "https://www.barcelona.cat/barcelonacultura (市府文化頁)",
+   "broadwayworld.com/spain 2026-02-04(百場)"
+  ],
+  "official_plot": "Teatre Goya 官方 SINOPSI(逐字,加泰語版):La Míriam és una escriptora que busca inspiració per escriure un conte molt especial: el relat de la Nura, una nena que descobreix un secret amagat al seu melic; l'existència d'un fil invisible que la connecta amb les persones que estima més enllà del temps i de l'espai. La Nura, juntament amb els seus amics en Quim i la Lia, emprendrà una emocionant i divertida aventura per intentar recuperar el somriure perdut del seu company Àlex, i tots quatre descobriran la màgia dels vincles que establim amb els altres.",
+  "key_facts": [
+   "🚨 有【童書原著】:Míriam Tirado 的繪本《El fil invisible》(B de Blok / Penguin Random House)。但舞台版【多了一層原著沒有的框架】:作家 Míriam 為了寫這個故事尋找靈感,故事在她筆下展開 —— 不可只照繪本寫。",
+   "Nura 是發現自己肚臍藏著祕密的小女孩:一條看不見的線,超越時間與空間把她與所愛的人連在一起",
+   "Nura 與朋友一起展開冒險,想找回同學 Àlex/Álex 失去的笑容,四個人一起發現人與人之間連結的魔法",
+   "製作方 Viu el Teatre;劇本 Alícia Serrat,音樂 Víctor Arbelo 與 Alícia Serrat,劇構含 Daniel Anglès;導演 Alícia Serrat",
+   "巴塞隆納劇場獎(Premis Teatre Barcelona)兩項獎,含最佳家庭演出",
+   "同一作品【同時有兩地製作】:巴塞隆納 Teatre Goya(加泰語)與馬德里 Teatro Alcázar(西語),本目錄拆成 el fil invisible / el hilo invisible 兩組",
+   "加泰語版角色名:Nura、Quim、Lia、Àlex;75 分鐘,加泰語,家庭向"
+  ]
+ },
+ "el hilo invisible": {
+  "sources": [
+   "https://teatromadrid.com/espectaculo/el-hilo-invisible",
+   "https://gruposmedia.com/teatro-alcazar/el-hilo-invisible/",
+   "https://www.esmadrid.com/agenda/hilo-invisible-musical-teatro-alcazar",
+   "broadwayworld.com/spain 2025-10-31",
+   "https://www.teatregoya.cat/ca/ex/el-fil-invisible/ (加泰語版官方頁,用於比對兩版差異)"
+  ],
+  "official_plot": "馬德里 Teatro Alcázar 西語版官方 sinopsis:Míriam es una escritora que busca inspiración para escribir un cuento muy especial: el relato de Nura, una niña que descubre un secreto escondido en su ombligo; la existencia de un hilo invisible que la conecta con las personas que quiere más allá del tiempo y del espacio. Nura, junto a sus amigos Quimi y Lia, emprenderá una emocionante y divertida aventura para intentar recuperar la sonrisa perdida de su compañero Álex, y los cuatro descubrirán la magia de los vínculos que establecemos con los demás.",
+  "key_facts": [
+   "🚨 有【童書原著】:Míriam Tirado 的繪本《El fil invisible》(B de Blok / Penguin Random House)。但舞台版【多了一層原著沒有的框架】:作家 Míriam 為了寫這個故事尋找靈感,故事在她筆下展開 —— 不可只照繪本寫。",
+   "Nura 是發現自己肚臍藏著祕密的小女孩:一條看不見的線,超越時間與空間把她與所愛的人連在一起",
+   "Nura 與朋友一起展開冒險,想找回同學 Àlex/Álex 失去的笑容,四個人一起發現人與人之間連結的魔法",
+   "製作方 Viu el Teatre;劇本 Alícia Serrat,音樂 Víctor Arbelo 與 Alícia Serrat,劇構含 Daniel Anglès;導演 Alícia Serrat",
+   "巴塞隆納劇場獎(Premis Teatre Barcelona)兩項獎,含最佳家庭演出",
+   "同一作品【同時有兩地製作】:巴塞隆納 Teatre Goya(加泰語)與馬德里 Teatro Alcázar(西語),本目錄拆成 el fil invisible / el hilo invisible 兩組",
+   "西語版角色名:Nura、Quimi(加泰語版作 Quim)、Lia、Álex —— 兩版拼寫不同,各自對應各自的語言版本",
+   "⚠ 待辦(結構問題,非本次劇情任務):el fil invisible 與 el hilo invisible 是同一作品的兩地製作,目前在目錄中被拆成兩組;依既有規則同劇多地製作應合併為單一 canonical 組別,需另行決定。"
+  ]
+ },
+ "gaudi el despertar del geni": {
+  "sources": [
+   "https://www.gaudieldespertardelgeni.cat/ (作品官方網站)",
+   "https://www.gaudieldespertardelgeni.cat/docs 官方 38 頁教育 dossier PDF",
+   "teatrebarcelona.com / Teatre Poliorama 檔期"
+  ],
+  "official_plot": "官方網站(逐字):L'any en què es commemora el centenari de la mort d'Antoni Gaudí, arriba un musical que ens convida a descobrir el nen que somiava transformar el món. Amb fantasia, humor i tendresa, l'obra revela la seva lluita contra la malaltia, la connexió amb la natura com a font d'inspiració i el naixement d'un talent extraordinari: donar vida a allò que aparentment no en té. || 官方 dossier:Gaudí: El despertar del geni narra una història de superació d'un nen malalt.",
+  "key_facts": [
+   "🚨 傳記題材高風險:本劇【只演 Gaudí 的童年】(el nen que somiava transformar el món / una història de superació d'un nen malalt),不是 Gaudí 的完整生平。生成若寫聖家堂、奎爾公園、米拉之家等成年作品或他的死亡,即為【拿真實傳記充當劇情】,必須修掉。",
+   "三條官方點名的主軸:與疾病(風濕)搏鬥、以大自然為靈感來源、天賦的誕生——『賦予看似沒有生命的東西生命』",
+   "Casa Batlló 共同創作,為 Gaudí 逝世百年(1926–2026)而作",
+   "家庭向音樂劇,約 75 分鐘,加泰語,10 位演員在台上,7 個聲部 18 種樂器全現場",
+   "導演 Cristina Estarelles;音樂總監 Asier Olabarrieta;製作 Trílope",
+   "音樂是 Led Zeppelin、Mozart、Eminem、The Police 與加泰傳統歌曲的 mashup(官方自稱『trencadís sonor』,呼應高第的碎磁磚工法)",
+   "2026-06-26 於 Reus 的 Teatre Fortuny 試演;2026-11-15 於 Teatre Poliorama 正式首演,演到 2027 年 1 月"
+  ]
+ },
+ "encantats": {
+  "sources": [
+   "https://teatreapolo.com/historico/encantats/ (演出方官方頁:完整 SINOPSIS+完整角色卡司+技術團隊)",
+   "teatremusical.cat 2026-04-17",
+   "https://www.carteleramusicales.es/encantats"
+  ],
+  "official_plot": "Teatre Apolo 官方 SINOPSIS(逐字):ENCANTATS es una comedia musical con más de 30 grandes éxitos del pop-rock catalán que combina humor, fantasía y emoción para invitarnos a reír y cantar a pleno pulmón. Cuando Martí, un adolescente pegado a las pantallas, es obligado a pasar el verano en el pueblo con su hermano Miquel y su cuñada Maria del Mar, lo que parecía un castigo se convierte en una aventura inesperada entre leyendas, hadas y vecinas mirones. Con una estética de cuento, una mirada tierna sobre los vínculos y un universo escénico tan alocado como reconocible, ENCANTATS habla del deseo de ser visto, amado y escuchado. Un espectáculo popular, divertido y emotivo que hace de la música catalana un espacio de memoria compartida, celebración y reencuentro.",
+  "key_facts": [
+   "⚠ 同名陷阱:另有一齣 David Plana 的《Els encantats》(講一個破碎家庭的父子女三人旅程),與本劇【完全無關】。本目錄對應的是 Guille Guillado 編導、在 Kinepolis Splau/Mataró 與 Teatre Apolo 演出的加泰 pop-rock 點唱機音樂劇。",
+   "主角 Martí:離不開螢幕的青少年,被迫到鄉下跟哥哥 Miquel 與嫂嫂 Maria del Mar 過暑假",
+   "看似懲罰,結果變成一場在【傳說、仙子與愛管閒事的鄰居太太】之間展開的意外冒險",
+   "官方點名的主題:『渴望被看見、被愛、被聽見』(el deseo de ser visto, amado y escuchado)",
+   "30 首以上加泰隆尼亞 pop-rock 金曲的點唱機音樂劇;100 分鐘;加泰語;全年齡",
+   "完整角色表:MARTÍ(Alfonso Trabal)、MIQUEL(Toni Durany)、Mª DEL MAR(Desirée Moreno)、GAIA(Nerea Royo)、MARÇAL/CONXITA(Guifré Baró)、JOAQUIMA/ASSUMPCIÓ(Albeni Aranda)",
+   "編劇兼導演 Guille Guillado;編舞 Ariel Juin"
+  ]
+ },
+ "ella era anita": {
+  "sources": [
+   "https://www.teatrecondal.cat/ca/ex/ella-era-anita/ (演出方官方頁:完整 SINOPSI+完整 fitxa)",
+   "https://www.masescena.es/otras-disciplinas/llega-al-teatro-condal-de-barcelona-ella-era-anita-...",
+   "En Platea 劇評(Norman Marsà)"
+  ],
+  "official_plot": "Teatre Condal 官方 SINOPSI(逐字):L'obra presenta la història d'una dona singular, inspirada en la figura de Chita Rivera, llegenda del teatre musical, però explicada des d'un diàleg entre la seva trajectòria i la de l'actriu i creadora Ester Bartomeu. Passarem per la infantesa dins d'una família porto-riquenya, l'accident que va posar a prova la seva carrera, l'esclat a Broadway amb títols com West Side Story, Chicago o Kiss of the Spider Woman, però també per la disciplina, la maternitat, les renúncies, la invisibilització i la lluita que han marcat el camí de tantes dones. Els personatges que Chita va interpretar —Anita, Velma o Aurora— es converteixen en veus interiors que dialoguen amb la protagonista. La història convida l'espectador a endinsar-se en una experiència on els límits entre realitat i ficció, entre biografia i construcció teatral es desdibuixen.",
+  "key_facts": [
+   "🚨 雙重高風險:①這【不是 Chita Rivera 的直述傳記】,而是她的人生與創作者 Ester Bartomeu 自身歷程的【對話】,現實與虛構的界線被刻意模糊;②劇名雖叫『Anita』,但【不是《西城故事》的劇情】—— Anita、Velma、Aurora 是 Chita 演過的角色,在本劇中化為與主角對話的【內心聲音】。生成若寫成 Chita Rivera 生平年表或西城故事劇情,即為錯誤。",
+   "涵蓋:波多黎各家庭的童年、一場考驗其職涯的意外、在百老匯的爆發(West Side Story / Chicago / Kiss of the Spider Woman),以及紀律、母職、割捨、被隱形化與奮鬥",
+   "官方定位:向 Chita Rivera 以及所有為後人開路的女性致敬",
+   "【全女性】創作與演出團隊,現場樂隊也全部由女性組成",
+   "75 分鐘,加泰語,全年齡;2026-10-19 至 12-14 於 Teatre Condal",
+   "原創與主演 Ester Bartomeu;導演 Gara Roda;劇本 Alícia Serrat(《Pegados》作者);音樂總監與編曲 Andrea Puig Doria",
+   "演員僅四人:Ester Bartomeu、Queralt Albinyana、Xaro Campo、Júlia Pérez"
+  ]
+ },
+ "busco pis": {
+  "sources": [
+   "https://teatreapolo.com/cartelera/busco-pis/ (演出方官方頁,完整 SINOPSIS)",
+   "https://www.teatrebarcelona.com/es/genero/musicales",
+   "carteleramusicales.es"
+  ],
+  "official_plot": "Teatre Apolo 官方 SINOPSIS(逐字):Hoy arranca el congreso inmobiliario más importante de la ciudad, el BCN Sell&Rent Village, donde los grandes propietarios se reúnen para continuar repartiéndose el pastel. Laia, no tiene previsto ir. Con treinta y seis años y viviendo en casa de sus padres, no puede encontrarse más alejada de este mundo. Ella lo único que quiere es independizarse, pero la situación está imposible. En un último intento desesperado por salirse de esta situación, Laia acabará envuelta en un enorme lío que la llevará a conocer la fauna al completo del mercado inmobiliario: comerciales con corbata verde, grandes tenedores que lloran, guiris que desayunan avocado toast, políticos que solo quieren hacerse 'la foto'… Una sátira implacable y divertidísima que se ríe absolutamente de todos.",
+  "key_facts": [
+   "原創加泰語音樂劇,主題是【巴塞隆納的房市/租屋危機】,不是泛泛的都市喜劇",
+   "主角 Laia:36 歲、還住在爸媽家,唯一想要的就是搬出去獨立,但市況讓她辦不到",
+   "故事場景是全市最大的房地產大會【BCN Sell&Rent Village】,大房東們在那裡繼續分food",
+   "Laia 在最後一次孤注一擲的嘗試中被捲進大麻煩,見識到房市生態的各色人物:繫綠領帶的仲介、會哭的大房東(grandes tenedores)、吃酪梨吐司當早餐的外國人、只想拍照作秀的政客",
+   "官方定位:一部對所有人都不留情面的辛辣諷刺喜劇",
+   "90 分鐘,加泰語,全年齡;編劇兼導演 Xavi Morató;音樂與音樂總監 Gerard Sesé"
+  ]
+ },
+ "el mago de oz": {
+  "sources": [
+   "https://teatromadrid.com/espectaculo/mago-oz-cuento-musical",
+   "https://madridesteatro.com/el-mago-de-oz-en-el-teatro-sanpol/",
+   "https://historia.teatrosanpol.com/el-mago-de-oz-1995-el-musical/ 與 /el-mago-de-oz-2009-el-musical/ (劇團自建的演出史)",
+   "https://www.masescena.es/.../la-bicicleta-compania-estable-del-teatro-sanpol-...",
+   "https://revistagodot.com/obras/el-mago-de-oz-un-cuento-musical/",
+   "https://elteatrero.com/2018/11/01/critica-el-mago-de-oz-teatro-sanpol/"
+  ],
+  "official_plot": "官方 sinopsis(逐字):El musical nos lleva por el camino de baldosas amarillas a Oz. Por él van Dorita, su perro Toto y sus entrañables amigos el Espantapájaros, el León y el Hombre de Hojalata. Aunque la malvada Bruja del Oeste acecha en la sombra, ellos siguen su camino buscando bajo las estrellas, sobre el arco iris y siempre más y más allá, el fabuloso mundo del misterioso Mago de Oz. || La obra, llena de audacia, ternura y diversión, sigue con fidelidad la hermosa historia de Frank Baum. || Teatro Madrid 版官方 sinopsis【完整逐字】:¿Preparados para vivir una aventura inolvidable en familia? El musical que emociona a los niños te invita a recorrer el célebre camino de baldosas amarillas junto a Dorita, su fiel perro Toto y un grupo de amigos tan únicos como entrañables: el Espantapájaros, el Hombre de Hojalata y el valiente León. Juntos, se enfrentarán a la temible Bruja del Oeste mientras buscan el fabuloso mundo del misterioso Mago de Oz, atravesando paisajes llenos de magia y canciones bajo las estrellas y sobre el arcoíris. || 90 分鐘,建議 4 歲以上;卡司:Ainhoa Molina、Beatriz Costa、Julio Armesto、Manuel Varela、Víctor Benedé、Blanca Degá、Álex Jiménez,以及【真狗 Mika 飾演 Toto】。",
+  "key_facts": [
+   "🚨 主角在這個製作叫【Dorita】,不是 Dorothy —— 生成若用 Dorothy 即為套用原著/電影而非本製作",
+   "🚨 官方自述【忠於 Frank Baum 的原著小說】,不是 1939 年 MGM 電影版;但同時又唱電影版的名曲(En algún lugar sobre el arco iris / Nos vamos a ver al mago)。因此【鞋子顏色等原著與電影相異的細節一律不要寫】(原著是銀鞋、電影是紅寶石鞋),無官方佐證不可斷言。",
+   "角色:Dorita、小狗 Toto、稻草人 Espantapájaros、獅子 León、錫人 Hombre de Hojalata、西方壞女巫 Bruja del Oeste",
+   "劇團 Compañía La Bicicleta(Teatro Sanpol 的駐團),與倫敦 Polka Theatre for Children 共製",
+   "版本 Ana María Boudeguer 與 Julio Jaime Fischtel;導演 Natalia Jara;7 名演員",
+   "1995-10-09 首演,至今已重製 8 次,是該劇院的招牌兒童音樂劇",
+   "🚨 2026-09-02 查證:官方完整 sinopsis 【沒有】龍捲風、堪薩斯、Tía Enma(艾姆嬸嬸),也【沒有】Hada Glinda 或任何善良女巫 —— 只有 Dorita、Toto、稻草人、錫人、獅子、西方壞女巫與奧茲大法師。",
+   "特別注意 Glinda:本製作自稱忠於 Baum 原著,而【原著裡在故事開頭迎接桃樂絲的是未具名的北方善女巫,Glinda 是南方善女巫、要到結局才出現】;『Glinda 一開場就給予指引』是【1939 年電影版】的結構。生成若這樣寫等於又回到電影版。",
+   "卡司裡有一隻真狗 Mika 飾演 Toto(可作為本製作的特色寫入)"
+  ]
+ },
+ "alicia en el pais de las maravillas": {
+  "sources": [
+   "https://teatrolara.com/programacion/alicia-en-el-pais-de-las-maravillas (演出方官方頁)",
+   "https://teatromadrid.com/espectaculo/la-maquineta-alicia-pais-las-maravillas",
+   "https://madridesteatro.com/obra/alicia-en-el-pais-de-las-maravillas-el-musical/",
+   "https://www.esmadrid.com/agenda/alicia-pais-maravillas-teatro-lara-sala-candido-lara",
+   "https://www.timeout.es/madrid/es/teatro/alicia-en-el-pais-de-las-maravillas-musical"
+  ],
+  "official_plot": "官方 sinopsis(逐字):Alicia es una joven inquieta e imaginativa, que sueña con vivir en un mundo mágico y maravilloso… De la mano del Sr. Conejo, se embarcará en un fascinante viaje a ese lugar donde los sueños se hacen realidad. Vivirá mil aventuras con característicos personajes como la Oruga Azul o la Gatita de Cheshire. Disfrutará celebrando su NO CUMPLEAÑOS con el Sombrerero Loco y sus amigos Humpty Dumpty y la pequeña Lirona. Y como gran final, jugará en el Gran Torneo de Croquet, contra la Reina de Corazones.",
+  "key_facts": [
+   "🚨 這是 La Maquineta 劇團的【自有改編】(改編與導演 Roberto Doctor),不是 Carroll 原著也不是迪士尼版。生成若寫原著的假海龜、紅心傑克審判等橋段即為錯誤。",
+   "本製作的角色與段落(官方逐字):Sr. Conejo(兔子先生)、Oruga Azul(藍毛毛蟲)、【la Gatita de Cheshire(柴郡貓在本製作是【母】的)】、Sombrerero Loco(瘋帽匠)、Humpty Dumpty、la pequeña Lirona(小睡鼠)、Reina de Corazones",
+   "⚠ 本製作是【混合體】:Humpty Dumpty 出自《鏡中奇緣》而非《愛麗絲夢遊仙境》,『NO CUMPLEAÑOS(非生日)』則出自迪士尼動畫 —— 這是這個改編自己的組合,照原著寫會錯",
+   "官方明寫的結局:以【Gran Torneo de Croquet(槌球大賽)】對決紅心皇后作為大結局",
+   "家庭向音樂劇;2010 年西班牙國家戲劇獎最佳舞台呈現;入圍音樂劇獎最佳兒童音樂劇與最佳髮妝",
+   "Teatro Lara(Sala Cándido Lara),週日 12:00"
+  ]
+ },
+ "el flautista de hamelin": {
+  "sources": [
+   "https://gruposmedia.com/cartelera/el-flautista-de-hamelin/ (Teatro Fígaro 所屬集團官方頁)",
+   "https://teatromadrid.com/espectaculo/el-flautista-de-hamelin (標示製作方 La Caja Lista)",
+   "劇團網站 tyltyl.org(官方頁上標示的 Web Cía,待進一步查證)"
+  ],
+  "official_plot": "官方頁(逐字):La ciudad de Hamelín está desbordada por una invasión de ratas que nadie logra detener. Cuando todo parece perdido, un extraño flautista aparece y, con una melodía hipnótica, hace desaparecer a las ratas. || 官方另明說本製作『recrea un final alternativo』(改寫了一個與經典故事不同的結局)。",
+  "key_facts": [
+   "🚨 官方明說本製作【改寫了結局】(final alternativo)。格林童話原版結局是吹笛人因未拿到報酬而把全城孩子帶走 —— 生成若照原版寫結局即為錯誤,且官方未公開新結局內容,【寧可不寫結局細節】。",
+   "官方只交代到開頭:漢姆林城鼠患失控,無人能解;絕望之際一名奇怪的吹笛人出現,用催眠般的旋律讓老鼠消失",
+   "55 分鐘,全年齡,Teatro Fígaro(Calle Doctor Cortezo, 5, Madrid)",
+   "⚠ 同名陷阱:Cineteca Madrid 另有一齣同名的實驗性製作(強調藝術與童年的關係、象徵性舞台、表現主義),與 Teatro Fígaro 這版【不是同一個作品】,查資料時不可混用",
+   "待補:製作方(teatromadrid 標為 La Caja Lista,官方頁指向 tyltyl.org)、導演、卡司"
+  ]
+ },
+ "garfio y la isla del tesoro": {
+  "sources": [
+   "https://www.teatro-olympia.com/garfio-y-la-isla-del-tesoro (演出方官方頁)",
+   "https://www.lovevalencia.com/evento/garfio-y-la-isla-del-tesoro-el-musical-familiar-llega-a-valencia",
+   "https://www.teatroenvalencia.com/TOLYMPIA/garfio-y-la-isla-del-tesoro",
+   "Teatro Olympia 官方 Facebook 影片",
+   "(2026-09-02 複驗:生成新增的四個細節逐字命中官方頁)"
+  ],
+  "official_plot": "官方 sinopsis:En el mundo de los cuentos el clima se ha vuelto loco. En algunos hace un frío que hiela hasta los pensamientos y en otros un calor que abrasa. Peter Pan, el Sombrerero Loco y Gretel deciden buscar una solución a este desastre y van a ver a Merlín, que sabe las respuestas de casi todas las preguntas. Merlín les revela que la solución se encuentra en un cofre escondido en una isla lejana. Para llegar hasta ella deben convencer a Garfio, prometiéndole grandes riquezas. La aventura les llevará a enfrentarse a la Bruja del Mar, las Sirenas hipnotizadoras y Plastiferrón, un monstruo hecho de residuos plásticos arrojados al mar.",
+  "key_facts": [
+   "🚨 這是【完全原創的童話混搭】,與《金銀島》(Stevenson)和《彼得潘》原著【毫無關係】,只是借用角色。生成若寫成金銀島尋寶或彼得潘劇情即為徹底錯誤。",
+   "設定:童話世界的氣候失控 —— 有些故事裡冷到把思緒都凍住,有些熱到燒灼",
+   "三位主角:【彼得潘、瘋帽匠、葛麗特】(來自三個不同童話)決定去找【梅林】求解",
+   "梅林說解答在遠方島嶼上的一個箱子裡;他們必須用巨大財富說服【虎克船長 Garfio】帶他們去",
+   "路上要面對:海之女巫 Bruja del Mar、會催眠的美人魚 Sirenas、以及【Plastiferrón】—— 一隻由丟進海裡的塑膠垃圾組成的怪物",
+   "核心是【環保/氣候】訊息,官方稱傳達面對全球挑戰時的希望與團結",
+   "有【觀眾互動】:小朋友會被當成船員參與冒險;家庭向聖誕檔期節目"
+  ],
+  "verified_extras": [
+   "✓ Merlín 的【魔法大鍋 caldero】:官方『Tras consultar su caldero mágico, el gran mago les dice que la solución está en un cofre』",
+   "✓ 島名【la isla de Robinsón】:官方『Durante la travesía la isla de Robinsón viven grandes aventuras』",
+   "✓ 小觀眾當【grumetes(見習水手)】:官方『participación de los más pequeños del público como grumetes del barco』",
+   "✓ 美人魚官方寫作【Las Sirenitas】(不是 las Sirenas):官方『enfrentándose a la Bruja del Mar, Las Sirenitas hipnotizadoras』",
+   "80 分鐘;導演 Diego Braguinsky 與 Jaime Pujol;原創音樂 Víctor Lucas"
+  ]
+ },
+ "la opera de los tres centavos con coque malla": {
+  "sources": [
+   "https://www.teatroinfantaisabel.es/obra/la-opera-de-los-tres-centavos/ (演出方官方頁)",
+   "https://www.esmadrid.com/agenda/opera-tres-centavos-coque-malla-teatro-infanta-isabel",
+   "https://revistagodot.com/obras/la-opera-de-los-tres-centavos-con-coque-malla/",
+   "https://revistateatros.es/la-opera-de-los-tres-centavos/",
+   "https://www.carteleramusicales.es/la-opera-de-los-tres-centavos"
+  ],
+  "official_plot": "官方/媒體 sinopsis:Es una versión contemporánea del clásico de Bertolt Brecht basada en la sátira musical The Beggar's Opera, escrita en el siglo XVIII por el dramaturgo inglés John Gay. La función denuncia las injusticias sociales y el funcionamiento del sistema capitalista. Cuando Polly, la hija de Peachum, decide casarse en secreto con el mismísimo Mackie, la ciudad se convierte en un tablero de ajedrez donde todos mueven ficha para sobrevivir. || 官方頁另述:1928 年首演於柏林、正值經濟危機;Brecht 意在控訴賣淫、貧困與濫權,呈現他眼中『像一部有組織的犯罪機器一樣運轉』的經濟體系最赤裸的版本。",
+  "key_facts": [
+   "🚨 這是【Brecht/Weill 原作的當代版本】(versión contemporánea),導演 Mario Vega。官方頁【沒有說明是否把場景搬離維多利亞時代的倫敦或改到現代】—— 在查到明確說法前,不可自行斷言時代/城市設定。",
+   "確認可寫的情節:Peachum 的女兒 Polly 決定與 Mackie 祕密結婚,整座城市變成一盤棋,每個人都在為生存下棋",
+   "主題:控訴社會不公與資本主義運作;賣淫、貧困、濫權",
+   "Coque Malla 飾主角(Mackie);其餘卡司:Carmen Barrantes、Omar Calicchio、Paula Iwasaki、Miquel Mars、Cristina García、Andrea Guasch、Pablo Novoa、Néstor Ballesteros;cover Dulcinea Juárez —— 官方【未公布角色對應】",
+   "音樂 Kurt Weill,德文原著劇本 Bertolt Brecht,源頭是 John Gay 18 世紀的《The Beggar's Opera》",
+   "120 分鐘;Teatro Infanta Isabel,2026-09-23 起;音樂總監 Miguel Malla",
+   "製作:Barco Pirata、Unahoramenos Producciones、Teatro Pérez Galdós",
+   "⚠ 待查:結局(原作有刻意突兀的『國王赦免』反諷結局)在這版是否保留 —— 無佐證前不寫結局"
+  ]
+ },
+ "crush": {
+  "sources": [
+   "https://teatreakademia.cat/espectacle/crush/ (演出方官方頁,完整 sinopsi)",
+   "https://ajuntament.barcelona.cat/sanitatisalut/... (503/錯誤頁,兩種方式都讀不到,待重試)",
+   "https://teatreakademia.cat/ (官方站,本劇已不在當前檔期頁)",
+   "carteleramusicales.es / teatrebarcelona.com",
+   "https://www.teatrebarcelona.com/espectacle/crsh-tothom-pot-caure (【不同作品】,僅用於排除同名混淆)"
+  ],
+  "official_plot": "Teatre Akadèmia 官方(逐字開場):Hi ha un instant de silenci que existeix just abans que tot canviï, però ningú el recorda fins que ja ha passat. || 內容:Eva(神經科學家)與 Marc(音樂家)在一起四年,想成為父母,並在慶祝週年的同時衡量什麼該說、什麼該藏。故事聚焦在一個『時鐘將停下來(el rellotge s'aturarà)』的轉捩點。主題:生育的難題、為人父母的渴望,以及生活無情的速度 —— 明知時間有限,人為什麼還是停不下來;現在的選擇究竟出於真心,還是承襲來的預設。",
+  "key_facts": [
+   "🚨 同名陷阱:Teatre Barcelona 上的《CR#SH, tothom pot caure》是【另一齣完全不同的戲】(Mea Culpa 劇團,2022,導演 Miquel Mas Fiol,三名年輕人在體能測驗中回顧青春期,講焦慮與心理健康)。查資料時絕不可把兩者混為一談。",
+   "本劇:雙人親密音樂劇,主演 Diana Roig 與 Albert Baró;劇本兼導演 Daniel J. Meyer;音樂 Mireia Morera(與 Artemis、Un refugi al sol 同一位作曲者)",
+   "製作:Rugido Teatre + Teatre Akadèmia;加泰語演唱;於 Teatre Akadèmia 演出",
+   "✓ 2026-09-02 查證:生成寫的 Eva(神經科學家)、Marc(音樂家)、在一起四年、想生小孩、慶祝週年、生育困境 —— 【官方頁逐項對上,全部正確】",
+   "加泰語;Teatre Akadèmia,2026-12-02 至 2027-01-03;票價 22 歐起;官方未列時長",
+   "官方另有一句雙關:CRUSH 換個讀法也可以是 CRASH"
+  ]
+ },
+ "_note": "預查策略:先把最容易被『原著/電影/百老匯原版』污染的組別的官方劇情逐字存下來;其餘等生成落地後,針對生成【實際講了什麼】做定向查證,較有效率。",
+ "el ladron de arabia": {
+  "sources": [
+   "https://auditoriocartuja.com/evento/el-ladron-de-arabia-tributo-a-aladdin/",
+   "https://www.entradas.com (官方售票頁描述)",
+   "https://www.elcorteingles.es (同一份官方文案)",
+   "https://www.palcongrex.es/agenda (Palacio de Congresos 檔期,目錄對應場次)",
+   "https://entradas360.com",
+   "Instagram @habemusteatro_oficial",
+   "https://auditoriocartuja.com/evento/el-ladron-de-arabia-tributo-a-aladdin/ (取得【完整】官方 SINOPSIS)"
+  ],
+  "official_plot": "Auditorio Cartuja 官方 SINOPSIS【完整逐字】:Agrabah es la tierra donde todo es posible, incluido el amor de una princesa con alguien humilde del pueblo rompiendo las normas establecidas y superando barreras sociales. La lucha por elegir el amor y por la igualdad están representados en Jasmine. Ese es el transfondo de La lámpara maravillosa, aunque el protagonista sin duda es el genio que surge de la lámpara para ayudar a Aladdín a lograr su objetivo: seguir el amor verdadero. La compañía Onbeat te cuenta la historia en forma de tributo como nunca antes se había hecho, a través del genio y con temas musicales de Brodway jamás cantados en España. A las canciones archiconocidas, como el genio tan genial o un mundo ideal, se unen otras melodías que te trasladarán a la magia de una historia con una excelente puesta en escena, increíbles voces en directo, atractivas coreografías llenas de vidas y un vestuario propio de los palacios de oriente, sin olvidar un homenaje a Bollywood.",
+  "key_facts": [
+   "🚨🚨 官方完整文案裡【完全沒有】Abu、Jafar、奇蹟洞、三個願望、阿里王子、釋放精靈 —— 這些全是迪士尼電影的情節。",
+   "🚨 本作的【敘事主體是神燈精靈】:官方明寫『el protagonista sin duda es el genio』與『te cuenta la historia … a través del genio』—— 故事是【透過精靈講出來的】,精靈才是主角,不是阿拉丁。",
+   "Jasmine 的定位:她體現了【選擇愛的抗爭與追求平等】(La lucha por elegir el amor y por la igualdad están representados en Jasmine)",
+   "阿拉丁的目標被官方濃縮為一句:【追隨真愛】(seguir el amor verdadero);背景是一位公主與平民之間打破成規、跨越階級藩籬的愛情",
+   "形式:Onbeat 劇團的【致敬秀】,唱在西班牙沒唱過的百老匯曲目,加上『el genio tan genial』(Friend Like Me)與『un mundo ideal』(A Whole New World)等名曲;現場真唱、東方宮殿風服裝、並向寶萊塢致敬",
+   "70 分鐘;全西班牙巡演"
+  ],
+  "pending_fixes_en": [
+   "🚨【必須大幅改寫】生成把整部迪士尼電影的劇情搬進來(Abu、Jafar、奇蹟洞、diamante en bruto、三個願望、阿里王子、Jafar 奪燈、用最後一個願望釋放精靈),官方文案一個字都沒提。",
+   "改寫方向:以【精靈作為敘事者兼主角】為結構,寫 Agrabah 的階級藩籬、Jasmine 對選擇愛與平等的抗爭、阿拉丁追隨真愛的目標,以及這是一場致敬秀的形式(百老匯曲目、寶萊塢編舞、東方宮殿服裝)。",
+   "不可寫官方未提的任何情節轉折。"
+  ],
+  "confidence_cap": "這組的信心上限 high(官方完整文案已取得),但前提是【照官方改寫】;若沿用生成的迪士尼版劇情則為錯誤。"
+ },
+ "el libro de la selva la aventura de mowgli": {
+  "sources": [
+   "https://carteleradeteatro.mx/2016/libro-la-selva/",
+   "https://www.timeoutmexico.mx/ciudad-de-mexico/ninyos/el-libro-de-la-selva-la-aventura-de-mowgli",
+   "https://cartelera.cdmx.gob.mx/21609/... (墨西哥市政府文化議程)",
+   "https://teatrando.com.mx/la-aventura-de-mowgli/",
+   "https://www.broadwayworld.com/.../El-Libro-de-la-Selva-La-Aventura-de-Mowgli-M-xico"
+  ],
+  "official_plot": "官方 sinopsis:Basada en el libro que Rudyard Kipling escribió en 1894. Mowgli es un pequeño niño abandonado en medio de la selva que fue rescatado por una familia de lobos. Shere Khan, el tigre más respetado de la selva, quiere devorar a Mowgli porque ha jurado vengarse de los humanos que destruyeron a su familia, por lo que Bagheera, la gran pantera, debe llevarse a Mowgli en contra de su voluntad. La misión se complica cuando Mowgli conoce a un bonachón oso llamado Baloo que vive sin complicaciones y adopta a Mowgli como su hijo. En el camino a la aldea de los hombres conocerás al extravagante Rey Louie, la hipnótica serpiente Kaa y al temible Shere Khan.",
+  "key_facts": [
+   "⚠ 混合體:官方自稱【改編自 Kipling 1894 年的原著】,但角色裡有【Rey Louie(路易王)】—— 那是迪士尼 1967 年動畫【新創】的角色,Kipling 原著沒有。所以這齣是原著+迪士尼的混合,不可只照其中一邊寫。",
+   "本製作明說的 Shere Khan 動機:他發誓要向【摧毀他家族的人類】復仇 —— 這是本製作自己的設定,原著與迪士尼版都沒這樣寫,務必保留",
+   "Bagheera 是【違背 Mowgli 意願】把他帶走(debe llevarse a Mowgli en contra de su voluntad)",
+   "Baloo 是個無憂無慮的好脾氣熊,【收 Mowgli 當兒子】",
+   "路上會遇到:浮誇的 Rey Louie、會催眠的蛇 Kaa、可怕的 Shere Khan;目的地是【人類的村莊】",
+   "製作人兼導演 Alejandro Medina;墨西哥市 Teatro Tepeyac(Carmen Montejo)長銷兒童音樂劇,歷年卡司多次更換"
+  ]
+ },
+ "cinderela": {
+  "sources": [
+   "https://pumpkin.pt/eventos/cinderela-musical-europarque/ (目錄對應場館 Europarque 的官方活動頁)",
+   "https://pumpkin.pt/eventos/cinderela-musical/",
+   "https://www.forumbraga.com/Detail/Index/553bbbd2-...",
+   "https://iporto.amp.pt/eventos/cinderela-3/"
+  ],
+  "official_plot": "官方 sinopse(逐字):O encantador espetáculo 「Cinderela – o Musical」, é baseado na clássica história dos irmãos Grimm sobre a jovem Cinderela maltratada pela madrasta e as suas duas filhas, que sonha mudar de vida e encontrar a felicidade. Cinderela acredita no poder dos sonhos e tem uma fé inabalável no futuro, que não se deixa abater mesmo nas maiores adversidades. Tudo muda quando surge a sua fada madrinha que lhe mostra que 「sonhar é acreditar」. || O musical segue o texto e o enredo original deste grande clássico.",
+  "key_facts": [
+   "🚨 官方明說改編自【格林兄弟】的版本,不是迪士尼版 —— 生成若寫成迪士尼動畫的情節(南瓜馬車細節、老鼠 Gus/Jaq、貓 Lucifer 等)即為錯誤;另注意有媒體(SAPO)誤稱其為迪士尼經典,不可採信",
+   "官方明說【忠於原經典的文本與情節】(segue o texto e o enredo original)",
+   "官方點出的重點:被繼母與兩個繼姊妹虐待的少女、相信夢想的力量、對未來抱有不可動搖的信念、仙女教母出現後說『夢想就是相信』(sonhar é acreditar)",
+   "現場演唱,7 名演員/歌手/舞者;約 60 分鐘;有特效、佈景與服裝",
+   "⚠ 目錄記為 Aveiro,實際場館 Europarque 位於【Santa Maria da Feira】(屬 Aveiro 縣) —— 兩種說法都對,不是錯誤"
+  ]
+ },
+ "mi madre serrat y yo": {
+  "sources": [
+   "https://madridesteatro.com/obra/mi-madre-serrat-y-yo/",
+   "https://www.esmadrid.com/agenda/mi-madre-serrat-yo-artespacio-plot-point",
+   "https://www.timeout.es/madrid/es/teatro/mi-madre-serrat-y-yo-1",
+   "https://www.taquilla.com/entradas/mi-madre-serrat-y-yo",
+   "https://revistateatros.es/actualidad/no-te-pierdas-mi-madre-serrat-y-yo-y-mi-padre-sabina-y-yo-...",
+   "https://guiadelocio.es/madrid/plan/mi-madre-serrat-y-yo-..."
+  ],
+  "official_plot": "官方 sinopsis:Tras su separación, Penélope decide mudarse a vivir con su madre. Sin embargo, la convivencia no es fácil debido a sus personalidades opuestas: la madre, más libre y espontánea, y la hija, más formal y estructurada. Estas diferencias generan una serie de situaciones cómicas y emotivas, mientras ambas intentan reorganizar sus vidas y abrirse a nuevas oportunidades. La historia se desarrolla con las letras de Serrat como hilo conductor.",
+  "key_facts": [
+   "🚨 同一位作者(Carlos de Matteis)、同一個劇場(Artespacio Plot Point)的【姊妹作】,劇情【完全不同】,極易互相混淆 —— 生成時務必逐項核對是哪一齣。",
+   "主角是【女兒 Penélope】,離婚/分居後搬回去跟【母親】同住",
+   "衝突來自兩人性格相反:母親比較自由率性,女兒比較拘謹有條理",
+   "以【Joan Manuel Serrat 的歌詞】作為貫穿全劇的線索,並強調其曲目與女性形象的連結",
+   "已演到第 13 季,是馬德里最長壽的演出之一,累計超過 10 萬觀眾",
+   "導演 Carlos de Matteis"
+  ]
+ },
+ "mi padre sabina y yo": {
+  "sources": [
+   "https://madridesteatro.com/mi-padre-sabina-y-yo/",
+   "https://revistateatros.es/actualidad/no-te-pierdas-mi-madre-serrat-y-yo-y-mi-padre-sabina-y-yo-..."
+  ],
+  "official_plot": "官方 sinopsis:Un hombre de unos sesenta años que, en medio de una de sus muchas fiestas llenas de mujeres y rock&roll, recibe la visita de un joven de 25 años que dice ser su hijo. Hasta que lleguen los resultados de la prueba de ADN, ambos se ven obligados a compartir un modo de vida totalmente distinto hasta ahora.",
+  "key_facts": [
+   "🚨 同一位作者(Carlos de Matteis)、同一個劇場(Artespacio Plot Point)的【姊妹作】,劇情【完全不同】,極易互相混淆 —— 生成時務必逐項核對是哪一齣。",
+   "主角是【父親】:一個六十歲上下的男人,生活裡滿是派對、女人與搖滾樂",
+   "一名 25 歲的年輕人上門,自稱是他的兒子",
+   "在【DNA 檢驗結果出來之前】,兩個生活方式南轅北轍的人被迫共處",
+   "以【Joaquín Sabina 的歌】為音樂主軸",
+   "Carlos de Matteis 集編劇、導演與主演於一身"
+  ]
+ },
+ "el alma al aire": {
+  "sources": [
+   "https://teatromadrid.com/espectaculo/el-alma-al-aire-el-musical",
+   "https://www.esmadrid.com/en/whats-on/alma-aire-musical-teatro-ocaso-coliseum",
+   "https://madridesteatro.com/obra/el-alma-al-aire-un-musical-de-alejandro-sanz-en-el-teatro-coliseum/",
+   "https://revistagodot.com/obras/el-alma-al-aire-el-musical/",
+   "https://www.eldebate.com/cultura/20260325/... ",
+   "https://www.telecinco.es/noticias/cultura/20260324/..."
+  ],
+  "official_plot": "官方 sinopsis:El Alma al Aire lleva al espectador a un pequeño pueblo pesquero donde personajes de distintas generaciones se enfrentan a decisiones importantes que marcarán su destino. La narración sigue a Ale, un joven músico con talento, su familia y su amigo Bruno, que ven cómo la llegada de Alma —una promotora inmobiliaria de Madrid que se muda al pueblo con sus dos hijas— altera el equilibrio de la comunidad. La historia celebra el valor de las raíces, la amistad, la música y el poder casi mágico del viento del sur.",
+  "key_facts": [
+   "🚨 這是【全新原創虛構故事】,只是用 Alejandro Sanz 的歌 —— 不是他的傳記。生成若寫成 Alejandro Sanz 的生平即為徹底錯誤。",
+   "場景:一個【小漁村】,不同世代的人物各自面臨會決定命運的重要抉擇",
+   "角色:Ale(有才華的年輕音樂人)、他的家人、他的朋友 Bruno;以及【Alma】—— 一位從馬德里搬來的房地產開發商,帶著她的【兩個女兒】,她的到來打破了社區的平衡",
+   "主題:根源的價值、友情、音樂,以及【南風】近乎魔法的力量;風格融合傳統習俗與魔幻寫實",
+   "使用的歌曲包含 El Alma al Aire、Cuando Nadie Me Ve、Amiga Mía、Corazón Partío、No es lo Mismo",
+   "製作 Stage Entertainment Spain,獲 Alejandro Sanz 本人全力支持;劇本 Álvaro Tato(兩座 MAX 獎)",
+   "約 2 小時 30 分(含 30 分鐘中場);2026-10-01 於 Teatro Ocaso Coliseum 首演"
+  ]
+ },
+ "villanas": {
+  "sources": [
+   "https://teatromadrid.com/espectaculo/villanas",
+   "https://www.taquilla.com/entradas/villanas",
+   "https://www.carteleramusicales.es/madrid/villanas",
+   "https://teatroarlequingranvia.com/"
+  ],
+  "official_plot": "官方 sinopsis(逐字):Úrsula, Maléfica, la Madrastra de Cenicienta y la Reina Malvada se encuentran atrapadas en el Limbo de las Villanas. Mientras cumplen su condena por sus actos, pasan los años, pero la Hermandad de las Hadas Madrinas de la Misericordia concede el indulto a una villana cada cien años. Las cuatro villanas cantarán su propia versión de la historia en un esfuerzo de demostrar por qué cada una merece más ser liberada de su condena.",
+  "key_facts": [
+   "🚨 這【不是】任何一部原童話或迪士尼電影的劇情,而是一個全新框架:四個反派在【惡女煉獄(Limbo de las Villanas)】服刑",
+   "規則:『慈悲仙女教母姊妹會』每【一百年】只赦免【一個】反派",
+   "四個角色:烏蘇拉(Úrsula)、梅菲瑟(Maléfica)、灰姑娘的繼母(la Madrastra)、壞皇后(la Reina Malvada)",
+   "戲劇動作:四人各自唱出【自己版本的故事】,爭論誰更該被釋放 —— 結構上明顯致敬音樂劇《SIX》",
+   "劇團 Brodwei;75 分鐘;卡司:Carmen Calle(壞皇后)、Kery Sankoh(梅菲瑟)、Ariadna Comas(繼母)、Carlos Báez"
+  ]
+ },
+ "la vida en un segundo": {
+  "sources": [
+   "https://cervezencuando.com/comprar-entradas/lavidaenunsegundo-teatro-teatroarlequingranvia-madrid/",
+   "https://teatromadrid.com / Teatro Arlequín Gran Vía 檔期頁"
+  ],
+  "official_plot": "官方 sinopsis(逐字):Un solo actor da vida a todos los personajes que habitan una historia sobre el amor, la amistad y la pérdida, al ritmo de canciones de artistas como Mecano, Celia Cruz, Shakira, Amaral, Alaska o Juanes. Lázaro ha tocado fondo: tras años de curro basura, su novia le deja tirado en nochevieja en la Puerta del Sol. Cuando cree que no puede ir a peor, morirá atragantado con una uva, y su vida… pasará en un segundo. A partir de ahí arranca un viaje donde la música, el humor y la emoción se entrelazan para responder a la gran pregunta: ¿qué narices pasa cuando la palmas?",
+  "key_facts": [
+   "【獨角戲】只有一名演員(Manuel Ramos)分飾所有角色 —— 生成若寫成多人卡司互動即為錯誤",
+   "主角 Lázaro 已經跌到谷底:做了多年爛工作,女友在【跨年夜的太陽門廣場(Puerta del Sol)】把他甩了",
+   "以為不會更慘的時候,他【被一顆葡萄噎死】(西班牙跨年吃十二顆葡萄的習俗),人生在一秒之間閃過",
+   "從這裡開始一趟旅程,用音樂、幽默與情感回答:人死掉之後到底會怎樣?",
+   "點唱機曲目來自 Mecano、Celia Cruz、Shakira、Amaral、Alaska、Juanes",
+   "劇團 ConUnCantoEnLosDientes,與 Alejandra Jiménez Cascón 合作"
+  ]
+ },
+ "_venue_espacio_alma": {
+  "適用組別": [
+   "a media luz",
+   "chuchuwa viaja jugando",
+   "el misterio de chamberi",
+   "espejito espejito",
+   "mil guitarras"
+  ],
+  "sources": [
+   "https://www.espacioalma.es/",
+   "https://www.carteleramusicales.es/teatro/espacio-alma",
+   "https://www.esmadrid.com/en/tourist-information/espacio-alma"
+  ],
+  "notes": [
+   "Espacio Alma 位於馬德里 Chamberí 區 Calle Alberto Aguilera 4,是【舊 Verdi 電影院】改建,由 Onbeat 製作公司經營(與《El ladrón de Arabia》同一家)",
+   "兩個廳都配備【360° LED 環繞投影】:Sala Roja(固定座位 300 人)與 Sala Azul(120 平方米,晚餐秀與私人活動,劇場式座位 200 人)",
+   "場地定位是【沉浸式演出與晚餐秀】—— 依既有規則,沉浸式作品要寫【這一版的體驗與敘事重點】,不能套用同名經典或原作的標準劇情",
+   "⚠ 這幾齣的網路資料極薄,官方 sinopsis 不易取得。查核策略改為【看生成實際講了什麼再定向查證】;若查不到佐證,寧可把該筆信心標為 medium/low 並如實說明,不可硬掰"
+  ]
+ },
+ "el misterio de chamberi": {
+  "sources": [
+   "Instagram @eraseunavezmadrid(引述 BroadwayWorld):『EL MISTERIO DE CHAMBERÍ MUSICAL 12 de septiembre Espacio Alma — Un viaje musical al Madrid de 1919, justo cuando se inaugura el [Metro]』",
+   "Instagram @jriveraeu(卡司致謝貼文,證實 2026-09-12 於 Espacio Alma)",
+   "Instagram @madrid_24horas(提及 Ateneo de Madrid 的發表會,主創 Pedro Ordóñez)",
+   "https://www.carteleramusicales.es/teatro/espacio-alma(檔期 2026-09-12 至 09-30)",
+   "https://en.wikipedia.org/wiki/Chamberí_(Madrid_Metro)(背景:1919-10-17 隨馬德里地鐵一號線通車,1966-05-22 關閉,2008 年以 Andén 0 博物館重開,即知名的『幽靈車站』)"
+  ],
+  "official_plot": "⚠ 【官方完整劇情大綱查無】。目前只能確認的官方級敘述:『Un viaje musical al Madrid de 1919, justo cuando se inaugura el Metro』(一趟回到 1919 年馬德里、地鐵正要通車那一刻的音樂旅程)。",
+  "key_facts": [
+   "✓ 已證實:設定在【1919 年馬德里地鐵通車】的時刻(兩個獨立來源)",
+   "✓ 背景事實(維基):Chamberí 站 1919-10-17 隨一號線啟用,1966 年關閉成為著名的『幽靈車站』,2008 年以地鐵博物館 Andén 0 重新開放",
+   "🚨 【未證實】生成中的具體情節:1919 年的一位醫生、穿越到現代、遇見現代的女醫生、跨世紀戀情 —— 查遍 Google、BroadwayWorld、售票頁與場館頁【都找不到任何佐證】",
+   "處置:此組的信心不得標 high。入庫前必須再試 Instagram 原貼文全文;若仍無佐證,只保留已證實的部分(1919 年地鐵通車的音樂旅程 + 幽靈車站),【刪掉未證實的角色與情節】,並在帳本如實記為單一來源/部分未證實",
+   "主創 Pedro Ordóñez;場地 Espacio Alma(360° LED 沉浸式)"
+  ]
+ },
+ "divorcio igualitario": {
+  "sources": [
+   "https://teatrolara.com/programacion/divorcio-igualitario- (演出方官方頁)",
+   "https://teatromadrid.com/espectaculo/divorcio-igualitario",
+   "https://www.broadwayworld.com/spain/article/DIVORCIO-IGUALITARIO-llega-al-Teatro-Lara-20250710",
+   "https://www.madrid24horas.com/event/.../teatro-lara-acoge-divorcio-igualitario-...",
+   "https://pongamosquehablodemadrid.com/2026/07/30/divorcio-igualitario-..."
+  ],
+  "official_plot": "官方/媒體 sinopsis:新的浪漫喜劇音樂劇,【從結局開始講一段愛情】,並呼應西班牙【同性婚姻合法二十週年】。故事跟著兩個男人走一趟【倒敘】的旅程:從簽下離婚協議書那一刻開始,一路回溯到他們結婚的那天,以原創歌曲問『當愛情結束之後,還剩下什麼』。",
+  "key_facts": [
+   "🚨 敘事結構是【倒敘】:從離婚簽字開始,反向走回婚禮 —— 生成若寫成正敘的相戀→結婚→離婚即為結構寫錯",
+   "主角是【兩個男人】;作品呼應西班牙同性婚姻合法【二十週年】(2005 年通過)",
+   "全原創歌曲,主題是『愛情結束後還留下什麼』",
+   "演員兩人:Daniel Acebes 與 Gabriel García(兩人也共同執導)",
+   "劇本與歌詞 Gabriel García;作曲 Gabriel Martínez;製作 Diagoras Producciones;Teatro Lara(Sala Lola Membrives)"
+  ]
+ },
+ "libre": {
+  "sources": [
+   "https://teatromadrid.com/espectaculo/nino-bravo-libre-el-musical",
+   "https://www.esmadrid.com/agenda/nino-bravo-libre-musical-teatro-amaya",
+   "https://www.broadwayworld.com/spain/article/LIBRE-EL-MUSICAL-DE-NINO-BRAVO-...-20260427",
+   "https://www.masescena.es/otras-disciplinas/el-24-de-julio-llega-al-teatro-amaya-...",
+   "https://madridesteatro.com/obra/nino-bravo-libre-el-musical-en-el-teatro-apolo/",
+   "https://www.taquilla.com/entradas/nino-bravo-libre-el-musical"
+  ],
+  "official_plot": "官方/媒體:《Libre》是向【瓦倫西亞歌手 Nino Bravo】致敬的音樂劇,由 Santiago Sánchez 與 Víctor Lucas 編劇與執導。以一種原創形式回顧他的生平與歌唱生涯:【純人聲(a cappella)音樂劇場】,加上大量幽默。全場穿插個人軼事、喜劇橋段,以及超過 60 首歌的重新詮釋 —— 現場以 loop、序列與人聲效果等新技術演唱,更新音色但不失原味。",
+  "key_facts": [
+   "🚨 這【不是傳統的書本式音樂劇,也不是直述傳記劇】,而是【純人聲(a cappella)】的致敬秀:四位歌手【只用聲音】唱完 60 多首歌,現場用 loop 與人聲效果堆疊。生成若寫成有情節、有角色扮演的 Nino Bravo 傳記劇即為錯誤。",
+   "演出者是人聲團體【Melomans】:Edu Escartí、Gonzalo Manglano、Javi Reig、Pau Ferrer(本季另有 Fer Barber、Xavi Barbié、Kike Llorca 擔任 cover/swing)",
+   "內容:回顧 Nino Bravo 生平與生涯的關鍵時刻,混合個人軼事與喜劇",
+   "編劇與導演 Santiago Sánchez、Víctor Lucas",
+   "獲 PremiOFF 多個獎項,含最佳原創音樂劇、最佳音響設計、最佳海報設計",
+   "第二季於 Teatro Amaya 演出(2026-07-24 起)"
+  ]
+ },
+ "快乐即逝": {
+  "sources": [
+   "https://www.dagolldagom.com/ca/lalegriaquepassa (製作方 Dagoll Dagom 官方頁)",
+   "https://www.teatrepoliorama.com/ca/programacio/c/763-lalegria-que-passa.html (首演劇院官方頁)",
+   "https://www.teatrebarcelona.com/espectacle/dagoll-dagom-lalegria-que-passa",
+   "https://www.ara.cat/cultura/teatre/dagoll-dagom-comiat-alegria-passa-rusinol-poliorama_1_4645402.html",
+   "https://www.vilaweb.cat/noticies/dagoll-dagom-lalegria-que-passa-a-la-xina/ (赴中國巡演報導)",
+   "https://www.shcstheatre.com (上海文化廣場官方檔期)",
+   "https://www.meet-in-shanghai.net (上海官方旅遊資訊,中文介紹)",
+   "https://www.douban.com/event (中文版介紹)"
+  ],
+  "official_plot": "官方 sinopsi【完整逐字,2026-09-02 重取】:Un poble gris, monoton i industrial veu trencada la seva rutina laborable amb l'arribada d'un gran espectacle musical. La companyia ha sigut contractada per l'alcalde del poble i propietari de l'unica fabrica en tota la poblacio. Joan, el fill de l'alcalde que es a punt de casar-se amb la seva parella Lina, s'enamora de la gran estrella Zaira i vol fugir amb ella lluny del poble gris. Zaira, en canvi, esta esgotada de la seva vida nomada i desitjaria quedar-se a viure al poble i portar una vida amb tranquil-litat. Al seu costat Puck, l'agressiu manager, la maltracta creient-la de la seva propietat i li exigeix que continui. L'autoritari i fals democrata alcalde obliga el seu fill a desistir dels seus somnis. || 中譯要點:(1)灰暗單調的工業小鎮因大型歌舞團到來而打斷日常 (2)劇團是鎮長請來的,他同時是全鎮唯一工廠的老闆 (3)鎮長之子 Joan 正要與未婚妻 Lina 結婚,卻愛上大明星 Zaira,想帶她逃離灰鎮 (4)Zaira 相反:她已厭倦漂泊,想要的正是留在鎮上過安穩日子 (5)Puck 這個【粗暴的經紀人】把她視為己有、虐待她並要求她繼續 (6)專斷而假意民主的鎮長強迫兒子放棄夢想",
+  "key_facts": [
+   "🚨 中文劇名《快樂即逝》的原作是加泰隆尼亞語音樂劇《L'alegria que passa》,由傳奇劇團【Dagoll Dagom】製作,是他們【五十週年的封箱之作】,2023 年於巴塞隆納 Teatre Poliorama 首演。這一筆在目錄裡雖然掛在上海文化廣場,但【是西葡作品】,放在西葡批次是正確的。",
+   "🚨 有【文學原著】:Santiago Rusiñol 1898 年於 Teatre Romea 首演的同名劇作。但本作是【音樂劇改編】,把關以 Dagoll Dagom 這版為準,不可只寫 1898 年原劇。",
+   "核心反諷(務必保留):Joan 想跟 Zaira 逃離小鎮,但 Zaira 想要的恰恰是【留下來過安穩日子】—— 兩人的渴望正好相反",
+   "角色:鎮長之子 Joan、他的未婚妻 Lina、劇團明星 Zaira;鎮長同時是全鎮唯一工廠的老闆",
+   "舞台語彙:9 名演員同時承載兩個對立的世界(機械的工廠小鎮 vs 流浪的歌舞團);以現代音樂為底,融合電子樂與現場演奏,編舞交織【街舞、雜技與肢體劇場】",
+   "導演 Marc Rosich;音樂總監 Andreu Gallén;編舞 Ariadna Peya(與《Germans de sang》《Un refugi al sol》同一批創作者)",
+   "巴塞隆納演出 167 場;2023 年 Butaca 獎:最佳音樂劇、最佳音樂劇女演員、最佳音樂劇男演員、最佳音效設計",
+   "✓ 已確認目錄中【沒有】巴塞隆納場次,不存在同劇拆兩組的問題",
+   "🚨 2026-09-02 更正:先前存進本檔的 official_plot 是【截斷版】(只到第 4 點),導致英文那一輪查核時『漏了 Puck』不會被判為遺漏 —— 比對基準有缺口,檢查就會靜默漏報。已換成完整逐字版。",
+   "✓ 角色對應(卡司):Zaira=Mariona Castillo、Joan=Pau Oliver(Rusiñol 原作作 Joanet)、鎮長與小丑=Àngels Gonyalons 一人分飾、Puck=原作中的 Cop de Puny",
+   "✓ Lina 是 Dagoll Dagom 【新增】的角色(Joan 的未婚妻、對鎮長極忠誠),Rusiñol 1898 原作沒有",
+   "✓ 另有敘事者角色 Nil(Eloi Gómez 飾),是灰鎮裡唯一清醒、試圖喚醒眾人的人",
+   "✗ 劇團【沒有名字】:官方作 un gran espectacle musical、ca.wikipedia 作 una companyia d'espectacles、搜尋結果亦無 —— 簡中生成的「天才方舟」為捏造,已刪",
+   "⛔ grup62.cat 的角色解析文被 WAF 阻擋(Web Page Blocked, Attack ID 20000018),未嘗試繞過"
+  ]
+ },
+ "despres de nosaltres": {
+  "sources": [
+   "https://espaitexas.cat/espectacle/despres-de-nosaltres/ (演出方官方頁)",
+   "https://www.barcelona.cat/grec/ca/espectacle/despres-de-nosaltres (Grec 音樂節官方頁)",
+   "https://es.teatrebarcelona.com/espectaculo/despres-de-nosaltres",
+   "https://enplatea.com/despres-de-nosaltres-grec-festival-barcelona-critica-2026/ (劇評)",
+   "https://www.independent.cat/noticia/158739/..."
+  ],
+  "official_plot": "官方 sinopsi:Lena 與 Adrià 分手至今已經一年。他們確實不再在一起了,但那段關係曾經很重要。Adrià 是電影配樂作曲家;Lena 在一個知名音樂節工作。全劇跟著這對分手後的情侶,試圖找出對方還能在自己生命裡佔據什麼位置。在回憶、沉默、誤解與日常的小動作之間,兩人展開一趟情感旅程 —— 分手不再被理解為句點,而是另一種相愛方式的開始。",
+  "key_facts": [
+   "原創加泰語音樂劇,現場演奏;90 分鐘;以幽默、明亮與溫柔的眼光看待分手後的關係",
+   "兩位主角:【Lena】(在知名音樂節工作)與【Adrià】(電影配樂作曲家),分手【已滿一年】—— 故事從分手之後開始,不是分手的過程",
+   "核心命題:分手不是句點,而是另一種相愛方式的開始;兩人試著找出對方還能在自己生命裡佔什麼位置",
+   "演員只有兩位:Júlia Jové 與 Xavi Navarro;鍵盤 Andrea Mir 在台上",
+   "編劇兼導演 Jumon Erra(《Un refugi al sol》的共同編導);音樂 Miquel Tejada",
+   "製作 Teatre Texas 與 La Santa Pepa,與 Grec Festival de Barcelona 2026 共製"
+  ]
+ },
+ "la julia i el tauro": {
+  "sources": [
+   "https://www.sat-teatre.cat/ (演出場館 SAT! Sant Andreu Teatre 官方)",
+   "https://www.descobrir.cat/subscriptors/julia-tauro_405975_102.html",
+   "劇團 Teatre al Detall 相關報導",
+   "https://www.radiocalellatv.cat/teatre-al-detall-estrena-la-julia-i-el-tauro-amb-el-debut-de-nora-idanez/",
+   "https://www.calella.com/2026/08/02/la-companyia-calellenca-teatre-al-detall-suma-una-nova-generacio-al-repartiment-...",
+   "https://www.teatrealdetall.com/historia/"
+  ],
+  "official_plot": "官方/媒體 sinopsi:改編自英國作家 Kiran Millwood Hargrave 的同名小說。一個即將離家去讀生物學的女孩,回想七年前在【設得蘭群島邊緣的 Unst 燈塔】發生的事:那年夏天她和父親、母親在那裡度過 —— 父親負責修燈塔,母親是生物學家,想解開【格陵蘭鯊魚長壽的祕密】。當母親的執著轉為偏執,Júlia 第一次意識到自己的父母既不是無堅不摧,也不是完美的。",
+  "key_facts": [
+   "⚠ 有【小說原著】(Kiran Millwood Hargrave《Julia and the Shark》)。把關以【舞台版】為準:『即將離家去讀生物學、回望七年前那個夏天』的倒敘框架要照官方寫,不可改用小說的敘事方式。",
+   "地點很具體:設得蘭群島邊緣的【Unst 燈塔】;父親修燈塔、母親研究【格陵蘭鯊魚】的長壽之謎",
+   "轉折:母親的執著變成偏執,Júlia 第一次發現父母並非無懈可擊、並不完美",
+   "官方點名的主題:【去污名化的心理健康】與【支持網絡的重要】",
+   "家庭向音樂劇,充滿情感與詩意;劇團 Teatre al Detall(專做家庭向作品的加泰劇團)",
+   "✓ 2026-09-02 查證:官方/媒體描述寫的是【a ten-year-old girl(十歲女孩)】—— 確認英文與繁中寫的『十歲』正確(先前標為未證實,現升為已證實)",
+   "✓ 卡司:Nora Idàñez 飾茱莉亞(劇團創辦人 Txell Botey 與 Xavi Idàñez 之女的舞台首秀),與導演 Joan Maria Segura 等人同台 —— 是小型編制",
+   "🚨 簡中生成的角色【男孩「金」(原著小說裡的 Kin)】:查遍演出方、劇團官網與地方媒體報導,【舞台版隻字未提】。原著有此角色不等於舞台版保留,依既有紀律不可寫入。",
+   "2026-07-16、17 於 SAT! 演出兩場,9 月赴 Santa Susanna 的 Micròmetre 藝術節"
+  ]
+ },
+ "mentidrags": {
+  "sources": [
+   "https://carteleradeteatro.mx/2022/mentidrags-un-show-paralelo-y-celebratorio-de-mentiras/",
+   "https://carteleradeteatro.mx/2022/mentidrags/",
+   "https://teatrando.com.mx/mentidrags-el-musical-teatro-aldama-cdmx/",
+   "https://www.chilango.com/que-hacer/musica/mentidrags-en-el-teatro-aldama-2022/",
+   "https://myticketmx.com/products/mentidrags-el-musical",
+   "https://en.wikipedia.org/wiki/Mentiras,_el_musical (母作)"
+  ],
+  "official_plot": "官方/媒體:《Mentidrags》是《Mentiras, el musical》的【變裝版】,劇情【幾乎完全相同】,但全部由變裝皇后演出,並為此特別製作戲服。故事:四個女人 —— Daniela、Yuri、Dulce 與 Lupita —— 必須解開一個謎:她們都愛過的那個男人,究竟是誰殺的。每個角色在一首首標記了整個世代的 80 年代金曲之間,重建自己版本的真相。",
+  "key_facts": [
+   "🚨 這是同批次裡《mentiras》的【姊妹作/平行製作】,同一個劇場(Teatro Aldama)、劇情幾乎相同 —— 兩組簡介不可寫成一樣,必須點出本作的差異:【全部由變裝皇后演出】",
+   "四個角色沿用母作:Daniela、Yuri、Dulce、Lupita;謎題是『她們都愛過的那個男人是誰殺的』;每人各自重建自己版本的真相",
+   "本作特有:誇張的表演、搶眼的戲服、變裝藝術特有的舞台自由度,放大了幽默、戲劇性,以及對【性別角色與愛情期待】的隱含批判",
+   "定位:向《Mentiras》最忠實的觀眾群之一 ——【LGBTQ+ 社群】致敬,但仍是闔家可看的提案",
+   "卡司輪替演出:Nelson Carreras、Fher Soberanes、Emi、Carlos Fonseca、Leexa Fox、Marcelo Carraro、Mary Francis Reyes、Regina Voce、Christian Chávez、Miguel Martínez",
+   "80 年代西語金曲的點唱機音樂劇(與母作同一套曲目基礎)",
+   "🚨 2026-09-02 重大補正:本劇【真正的結局】是 —— Emmanuel【假死】,而黑紗底下的神祕女子 Manoela【其實就是他男扮女裝】;遺囑指出兇手就在四人之中,她們一度打算把罪推給 Manoela;最後四人發現自己不再愛他,決定【拋下他離開】,日後成為朋友並選擇原諒。",
+   "📌『遺囑(testamento)』與『信(carta)』兩種說法在不同來源都出現,【都不算錯】;我先前把繁中的『遺囑』改成『信』是依據不足,已回復。",
+   "📌 三語對這個結局的處理:簡中【完整揭露】(正確);繁中【點到為止】(『死亡、遺囑與黑紗背後的布局徹底翻轉眾人的認知』——已入庫的 mentiras 繁中也有);英文【只寫到眾人離開】未揭露反轉。"
+  ]
+ },
+ "la nit del music alt": {
+  "sources": [
+   "https://www.barcelona.cat/grec/en/show/la-nit-del-music-alt-un-tipus-de-genere-ambigu (Grec 音樂節官方頁)",
+   "https://www.auditori.cat/en/events/la-nit-del-music-alt/ (樂團官方)",
+   "https://beteve.cat/cultura/nit-music-alt-banda-municipal-indi-gest-teatre-grec/",
+   "https://es.teatrebarcelona.com/espectaculo/la-nit-del-music-alt",
+   "https://teatremusical.cat/espectacle/la-nit-del-music-alt-un-tipus-de-genere-ambigu"
+  ],
+  "official_plot": "官方:全名《La Nit del Músic Alt. Un tipus de gènere ambigu》,由 Grec 音樂節與【巴塞隆納市立管樂團(Banda Municipal de Barcelona)】及劇團 Indi Gest 共同製作,探索音樂劇場的邊界。虛構前提:一位無名藝術家【ψηλός μουσικός(Psilós Mousikós,意為『高個子的音樂家』)】說服了索福克勒斯與埃斯庫羅斯把音樂與舞蹈放進他們的劇作 —— 他被奉為音樂劇這個與民主一同誕生的劇種的創始者。全場是一場【假的研討會(fals simposi)】:專家的聲音、不可能的曲目與荒誕的思辨,試圖回答『音樂劇到底是什麼、它的邊界在哪裡』。",
+  "key_facts": [
+   "🚨 這【不是有情節的敘事音樂劇】,而是【音樂會 × 諷刺劇 × 荒謬講座 × 舞台致敬】的混種。生成若寫成有主角、有故事線的劇情即為錯誤 —— 簡介要寫【形式與概念】。",
+   "虛構設定:無名藝術家 ψηλός μουσικός 說服索福克勒斯與埃斯庫羅斯把音樂與舞蹈加進戲劇,成為音樂劇的『始祖』;音樂劇被說成是與民主一同誕生的劇種",
+   "結構:一場假的學術研討會,用幽默與想像去拆解再重建音樂劇的歷史",
+   "演出者:巴塞隆納市立管樂團(指揮 José Rafael Pascual-Vilaplana)+ 劇團 Indi Gest + 多位歌手",
+   "曲目橫跨 Andrew Lloyd Webber、Carles Santos、Offenbach、Kurt Weill、Cole Porter、Gershwin、Albert Guinovart",
+   "Grec 音樂節節目,於 Teatre Grec 演出(2026-07-28),為第二度造訪"
+  ]
+ },
+ "jurassic game": {
+  "sources": [
+   "https://www.teatro-olympia.com/jurassic-game (演出場館官方頁)",
+   "https://www.teatroenvalencia.com/jurassic-game",
+   "https://www.atrapalo.com/entradas/jurassic-game_e4909322/",
+   "https://patapato.es/jurassic-game/",
+   "Teatro Olympia 官方 Facebook"
+  ],
+  "official_plot": "官方 sinopsis:一個 11 歲男孩和他的爸爸必須去救回他們的【三角龍寶寶】—— 牠被一群從【電玩裡跑出來】的壞角色綁走了。為此他們要面對【超過 4 公尺高】的恐龍、與一個印第安人搏鬥、對抗想統治世界的反派,並得到一位【會跳舞的公主】的幫助 —— 整個故事都發生在電玩世界裡。",
+  "key_facts": [
+   "🚨 這【與《侏羅紀公園》電影毫無關係】,是原創的家庭向互動音樂劇,前身叫《Dinosaurios y Princesas》(恐龍與公主)。生成若寫成侏羅紀公園的劇情即為徹底錯誤。",
+   "主角是【11 歲男孩與他的父親】;要救的是他們的【三角龍寶寶】;綁架者是從電玩中逃出來的壞角色",
+   "設定發生在【電玩世界】裡;有超過 4 公尺高的恐龍、一個印第安人角色、想統治世界的反派,以及一位會跳舞的公主相助",
+   "形式:互動式音樂冒險,有歌曲、編舞、3D 投影與『擬真』恐龍",
+   "音樂 Victor Lucas(曾獲最佳音樂創作獎);演員含 Rafa Alarcón 與 Pau Vercher(Broadway World 最佳音樂劇男演員)",
+   "Teatro Olympia(瓦倫西亞),2026-09-27 至 10-04"
+  ]
+ },
+ "rita lee uma autobiografia musical": {
+  "sources": [
+   "https://www.teatroportoseguro.com.br/event/rita-lee-uma-autobiografia-musical/ (演出場館官方頁)",
+   "https://blog.portoseguro.com.br/rita-lee-uma-autobiografia-musical-...",
+   "https://catracalivre.com.br/gira/espetaculo-rita-lee-uma-autobiografia-musical-teatro-porto-sp/",
+   "https://infoteatro.com.br/peca/rita-leee-uma-autobiografia-musical/",
+   "https://saopauloparacriancas.com.br/musical-sobre-rita-lee/",
+   "https://pt.wikipedia.org/wiki/Rita_Lee:_Uma_Autobiografia_Musical(完整卡司與角色對應)",
+   "https://www.fiemg.com.br/sesi-cultura/programacao/detalhe/rita-lee-uma-autobiografia-musical/",
+   "https://rollingstone.com.br/noticia/rita-lee-uma-autobiografia-musical-anuncia-novas-datas-no-teatro/"
+  ],
+  "official_plot": "官方 sinopse:改編自 Rita Lee 於 2016 年出版的【同名自傳】。全劇走過這位巴西搖滾女王生涯的關鍵時刻,混合幽默、情感與音樂:從 Os Mutantes 時期一路到個人時期的暢銷金曲,途中觸及審查、創作自由、愛、社會行動與自我重塑等主題。也處理她與樂團 Tutti-Frutti 的階段、【軍政府獨裁時期入獄】,以及她與人生與音樂上的重要夥伴 Roberto de Carvalho 的關係。",
+  "key_facts": [
+   "⚠ 有【自傳原著】(Rita Lee 2016 年的自傳《Rita Lee: Uma Autobiografia》)。這是【改編自那本書】的音樂劇,不是泛泛的傳記劇 —— 把關以舞台版為準,但本作與原著的關係是官方明說的,可寫。",
+   "生涯階段:Os Mutantes 時期 → Tutti-Frutti 樂團時期 → 個人單飛的暢銷金曲",
+   "官方明列的主題:審查、創作自由、愛、社會行動(ativismo)、自我重塑",
+   "具體事件:【軍事獨裁時期入獄】;與 Roberto de Carvalho 的人生與音樂夥伴關係",
+   "曲目含 Ovelha Negra、Lança Perfume、Agora Só Falta Você 等經典",
+   "主演 Mel Lisboa(她 2014 年已在《Rita Lee Mora ao Lado》演過 Rita Lee);導演 Marcio Macena 與 Débora Dubois;音樂總監 Marco França、Marcio Guimarães",
+   "葡萄牙語(巴西),Teatro Porto Seguro(聖保羅);全國巡演後回歸",
+   "✓ 2026-09-02 查證:簡中寫的四位巴西音樂人【全部是本劇真實角色】,官方卡司逐一對應 —— Ney Matogrosso(Fabiano Augusto 飾)、Gal Costa(Yael Pecarovich)、Elis Regina(Flavia Strongolli)、Raul Seixas(Gustavo Rezê)",
+   "✓ 另有兩個英文與繁中都沒寫到的角色:【Gilberto Gil】(Roquildes Junior 飾)與【審查官 Solange(Censora Solange)】(Carol Portes 飾)—— 後者呼應官方主題裡的『審查』",
+   "✓ Arnaldo Baptista 與 Charles Jones 由同一演員 Antonio Vanfill 分飾;Roberto de Carvalho 由 Bruno Fraga 飾",
+   "✓【1976 年獨裁時期入獄】經官方確認(sua prisão em 1976, na ditadura);簡中另寫『懷孕時經歷拘押』與史實相符(Rita Lee 1976 年被捕時懷孕)",
+   "✓ 官方明列的主題:童年與初入藝壇、Mutantes 與 Tutti-Frutti、1976 入獄、與 Roberto de Carvalho 的靈魂相遇、經典歌曲與唱片、動物權利行動、跌撞與榮耀",
+   "導演 Débora Dubois 與 Márcio Macena;2024-04-26 於 Teatro Porto 首演"
+  ]
+ },
+ "rocio durcal es inolvidable": {
+  "sources": [
+   "https://www.teatretalia.es/rocio-durcal-es-inolvidable (演出場館官方頁)",
+   "https://www.visitvalencia.com/agenda-valencia/espectaculo-rocio-durcal-es-inolvidable-en-valencia (瓦倫西亞官方觀光局)",
+   "https://www.carteleramusicales.es/valencia"
+  ],
+  "official_plot": "官方 sinopsis:Carmen 接到一個邀約 —— 要做一齣關於【她母親】的音樂劇。她和導演一起讀劇本,兩人在過程中一件件掀開軼事、最私密的時刻,以及西班牙如何隨著 Rocío 的一首首暢銷曲一起改變。最後留下的問題是:Carmen 到底會不會答應讓這齣瘋狂的音樂劇上演?",
+  "key_facts": [
+   "🚨 這【不是直述的 Rocío Dúrcal 傳記劇】,而是一個【後設框架】:她的女兒被邀請製作一齣關於母親的音樂劇,全劇是她與導演【一起讀劇本】的過程,懸念是她最後會不會點頭讓戲上演。生成若寫成從 1944 年出生開始的生平年表即為錯誤。",
+   "演 Carmen 的就是 Rocío Dúrcal【真正的女兒 Carmen Morales】本人",
+   "官方也說本劇走過 Rocío Dúrcal 從 1944 年出生到今天的一生,時而戲劇、時而喜劇,但始終溫柔 —— 生平是【被讀出來的內容】,框架仍是母女/後設那一層",
+   "創作者 Juan Carlos Rubio;歌曲由 Julio Awad 改編,現場由 Carmen Morales 與 Alejandro Vera 演唱",
+   "曲目含 Más bonita que ninguna、Canción de juventud、Tengo 17 años、Trébole、Las leandras、Como han pasado los años、La gata bajo la lluvia 等",
+   "Teatre Talia(瓦倫西亞),2026-11-11 至 11-15"
+  ]
+ },
+ "rincones con lorena gomez": {
+  "sources": [
+   "https://rinconeselmusical.es/ (作品官方網站)",
+   "https://gruposmedia.com/cartelera/rincones/ (演出場館所屬集團官方頁)",
+   "https://teatromadrid.com/espectaculo/rincones-lorena-gomez",
+   "https://www.telemadrid.es/programas/madrid-directo/Lorena-Gomez-debuta-...",
+   "https://www.hola.com/actualidad/20251013861231/..."
+  ],
+  "official_plot": "官方 sinopsis(逐字):Rincones es una poética y musical reflexión sobre el amor, la complejidad de las relaciones y la búsqueda de identidad en ellas. Macorina, en el contexto de una mudanza en la que intenta reorganizar su vida, sólo tiene una idea clara: el amor estorba. Acompañada por una vibrante banda sonora, realizará un paseo retrospectivo por sus experiencias vitales a través de las personas que han ido cruzándose por ella. Un viaje en el que desembalar cajas será, para la protagonista, abrir su corazón y desentrañar, rincón a rincón, por qué decidió dejar el amor fuera del camión de la mudanza. || 另述:一齣以【鋼琴與人聲】演出的動人音樂獨白,Macorina 對著過去的戀人們回憶並歌唱,想找到一個答案:愛情到底值不值得?",
+  "key_facts": [
+   "【獨角音樂劇】只有一位演出者(歌手 Lorena Gómez 的舞台首秀),形式是【鋼琴與人聲】的音樂獨白 —— 生成若寫成多人卡司即為錯誤",
+   "主角名【Macorina】。故事的處境是【搬家】:她一邊試著重整人生,心裡只有一個明確的念頭 ——『愛情很礙事』",
+   "核心比喻:拆開一箱箱行李,就是一個角落一個角落地打開自己的心,弄明白【為什麼她決定把愛情留在搬家貨車外面】",
+   "全劇是對過往戀人的回顧與傾訴,要回答的問題是:愛情值不值得?",
+   "配樂取自【西班牙 pop/rock 的知名金曲】(點唱機式)",
+   "Pequeño Teatro Gran Vía(馬德里),週一至週三 20:00;2025-09-30 首演"
+  ]
+ },
+ "armstrong un musical muy espacial": {
+  "sources": [
+   "https://teatromadrid.com/espectaculo/armstrong-un-musical-muy-espacial",
+   "https://giragiradis.com/armstrong-un-musical-muy-espacial/ (發行商官方頁)",
+   "https://www.sat-teatre.cat/es/p/c/521-armstrong-un-musical-molt-espacial.html (加泰語版)",
+   "https://es.teatrebarcelona.com/espectaculo/armstrong-un-musical-molt-espacial",
+   "https://espaimaragall.cat/es/events/armstrong-un-musical-molt-espacial/"
+  ],
+  "official_plot": "官方 sinopsis:Piper 從小聽祖父【Neil Armstrong】—— 第一個踏上月球的人 —— 講了無數故事,一直夢想著飛行,並為了成為太空人而努力。她就讀的【太空航空學院】正在準備【阿波羅 18 號任務】的發射,學生中只有三位能登上火箭,目標是重返月球。Piper 想成為其中之一,為此必須通過重重難關。然而一群【邪惡駭客】想阻止這次任務,因為他們想搶先回到月球、盜走能讓他們致富的【月球石】。",
+  "key_facts": [
+   "🚨 這【不是 Neil Armstrong 的傳記劇】,而是虛構的家庭向冒險故事。Armstrong 只是主角的【祖父】,本人不是主角。生成若寫成阿波羅 11 號登月的真實歷史即為錯誤。",
+   "主角是【Piper】,Neil Armstrong 的孫女,夢想成為太空人",
+   "情境:太空航空學院正籌備【阿波羅 18 號】,學生中只有三人能上火箭、任務是重返月球",
+   "反派:一群邪惡駭客,想搶先回到月球盜走月球石致富",
+   "官方點名的主題:自我超越、友情、團隊合作,以及【向祖父母致敬】",
+   "劇團 La Roda Produccions;家庭向,建議 5 歲以上;有西語版與加泰語版(Armstrong, un musical molt espacial)"
+  ]
+ },
+ "_thin_sources_watchlist": {
+  "組別": [
+   "imagilusion",
+   "princesas",
+   "princess story",
+   "espejito espejito",
+   "erase otra vez",
+   "osky y su hilo multicolor",
+   "chuchuwa viaja jugando",
+   "mil guitarras",
+   "a media luz",
+   "a todo ritmo",
+   "bienvenidos un musical con exitos de los 80s y 90s",
+   "bienvenidos un musical con los exitos de los 80s y los 90s totana",
+   "la rumba"
+  ],
+  "說明": "這些是小型/巡演/晚餐秀類演出,網路上【查不到官方劇情大綱】。策略:等三語生成落地後,拿生成【實際寫出的具體情節與角色名】去反查;查得到就核對,查不到就把該組的簡介收斂到只剩可證實的部分(類型、形式、曲目年代),並在帳本如實標為 medium/low 信心與單一/零來源。絕不可為了湊字數而編造情節。",
+  "已知場地脈絡": "Teatro Corfú 7(Alicante)是新場地;Espacio Alma(Madrid)是 360° LED 沉浸式場地,由 Onbeat 經營;Auditorio Municipal Paco de Lucía(Alcalá de Henares)與 Teatro Ginés Rosa(Totana)是市立場館的巡演檔期。"
+ },
+ "la rumba": {
+  "sources": [
+   "https://carteleradeteatro.mx/2024/la-rumba/ (墨西哥市劇場資料庫,含 sinopsis 與完整 ficha)",
+   "https://www.facebook.com/LaRumbaMusical/ 與 https://www.instagram.com/larumbamusic/ (製作方官方社群)",
+   "https://carteleradeteatro.mx/teatro/centro/stelaris-foro-reforma/ (場館)"
+  ],
+  "official_plot": "官方 sinopsis(逐字):Dos señoras de la tercera edad se escapan de su grupo de excursión del asilo que las llevaba a visitar el Ángel de la Independencia. Al verse perdidas entran a un lugar abandonado que resulta ser un salón de rumba en ruinas que curiosamente es dónde ellas trabajaban en su juventud. Una vieja rumbera, Chencha Carmina y su inseparable amiga Toñita Lelé llegan a 「LA RUMBA」 el lugar de sus pasadas glorias en el escenario, que vemos dramatizadas en su 「yo」 más joven (Carmina y Lelé).",
+  "key_facts": [
+   "情境很具體:兩位老太太從安養院的【參觀獨立天使紀念碑】遠足團裡溜走,迷路後走進一處廢墟,結果那正是【她們年輕時工作的倫巴舞廳】",
+   "角色:老年的倫巴舞者【Chencha Carmina】與她形影不離的好友【Toñita Lelé】;她們年輕時的自己【Carmina】與【Lelé】由另外的演員在戲中戲裡演出",
+   "結構:老年的兩人回到『LA RUMBA』這個她們昔日舞台榮光之地,過往以【年輕版的自己】被戲劇化呈現 —— 生成若寫成單一時間線即為結構寫錯",
+   "導演 Bernardo Cárdenas;劇本 Daniel Vives、Carlos Rangel、Sergio Alazcagua、Ernesto Gutiérrez",
+   "卡司:Lorena de la Garza、Fernanda Ostos、Grisel Margarita、Jenny García、Estefania Ahumada、Samuel Zarazúa、Tania Valenzuela",
+   "於墨西哥市 Fiesta Americana Reforma 飯店的 Foro Stelaris 演出"
+  ]
+ },
+ "_batch2_en_review": {
+  "gaudi el despertar del geni": "✓ 通過。只寫童年、風濕病、以自然為師、『賦予看似無生命之物生命』,沒有把聖家堂等成年作品寫進來 —— 傳記污染的坑成功避開。",
+  "garfio y la isla del tesoro": "✓ 通過,且生成比我先前找到的官方文案更完整,四個新細節全部逐字查證命中。",
+  "jurassic game": "✓ 大致通過。⚠ 漏掉官方提到的『印第安人』角色(可不寫);⚠ 新增『explorers』與『把遊戲的混亂變成真實權力』屬官方沒有的延伸,待收斂。",
+  "el ladron de arabia": "✓ 已依官方結構整段重寫(神燈精靈為敘事者兼主角、Jasmine 體現選擇愛與平等的抗爭、阿拉丁的目標是追隨真愛、致敬秀形式與寶萊塢致敬),刪除全部迪士尼電影情節。",
+  "el libro de la selva la aventura de mowgli": "✓ 通過,本製作特有的設定(Shere Khan 的復仇動機、Bagheera 違背意願帶走 Mowgli、Baloo 收他當兒子)都寫對了。⚠ 官方拼法是【Rey Louie】,生成寫成 Rey Louis,待修;⚠ 又出現裸標題『Themes』,清理器會處理。",
+  "el fil invisible": "✓ 通過(Míriam 框架、Nura、肚臍、Quim/Lia/Àlex 失去笑容都對)。⚠ 小修:生成寫『A young Míriam』,官方寫的是【una escriptora】(一位作家),沒有『年輕』這個設定,拿掉。",
+  "el hilo invisible": "✓ 情節通過。🚨 但【用錯語言版本的角色名】:馬德里西語版是【Quimi】與【Álex】,生成沿用了加泰語版的 Quim 與 Àlex。必須改成西語版拼法 —— 這正是同一作品兩地製作要分開寫的理由。",
+  "el flautista de hamelin": "🚨 不通過:生成寫了【經典結局】(鎮民賴帳、吹笛人用笛聲把孩子帶走)。但官方明說本製作『recrea un final alternativo』(改寫了一個不同的結局)。必須刪掉經典結局的敘述;官方未公開新結局內容,【寧可不寫結局】,只寫到鎮民背信的轉折為止。",
+  "ella era anita": "🚨 語意反了:生成寫『An accident redirects her path toward dance』(意外把她推向舞蹈),但官方寫的是【l'accident que va posar a prova la seva carrera】(那場意外【考驗】了她的職業生涯)—— 意外是【威脅】不是【契機】。必須改。另需確認全文是否寫到本劇的核心裝置:Chita 的人生與創作者 Ester Bartomeu 自身歷程的【對話】,以及 Anita/Velma/Aurora 化為內心聲音。",
+  "la julia i el tauro": "✓ 通過且細節豐富。⚠ 生成新增的三項待查:①母親偷偷放進行李箱的【筆記本】作為倒敘的觸發 ②那年 Júlia【十歲】 ③格陵蘭鯊『活得比樹還久』。前兩項若查無佐證應收斂為官方寫法。",
+  "cinderela": "✓ 通過。用葡萄牙語角色名(Madrasta / Fada Madrinha),忠於格林版,沒有寫進迪士尼動畫的老鼠與貓。",
+  "despres de nosaltres": "✓ 通過(分手滿一年、Adrià 電影配樂、Lena 在知名音樂節)。⚠ 生成新增『Lena 主動去找 Adrià』與『Adrià 正忙於一個吃重的新委託』,官方 sinopsi 沒有,屬延伸,待收斂。",
+  "divorcio igualitario": "✓ 通過。角色名【Raúl 與 Moisés】經查證【確為真實角色名】(BroadwayWorld / madrid24horas),不是杜撰;倒敘結構也對。另可補:70 分鐘、親密小品形式。",
+  "el alma al aire": "✓ 通過,而且我一度誤判的兩處查證後【生成是對的】:①製作方 Stage Entertainment 官方頁明寫『un pueblo pesquero marcado por el viento de Levante』②『un viejo vagón convertido en bar』確實存在。⚠ 但售票頁的官方 sinopsis 寫的是『el poder casi mágico del viento del sur』—— 兩份官方文案對風向說法不一致,採製作方版本(Levante),並在帳本記錄此矛盾。另可補官方的『dos familias』。",
+  "la nit del music alt": "部分通過。✓ 官方加泰語全文證實:ψηλός μουσικός 的稱呼【不確定是指音樂總監的職位還是他的身高】,且官方明寫『ell (o ella)』——【性別不確定也是官方寫的】,生成兩項都對;✓『假研討會 simposi』『與民主同時誕生』『避免單一模型被強加』也都對。🚨 但生成開場的【奠基儀式 / 把 Montjuïc 與 Paral·lel 打造成歐洲音樂劇中心】在 Grec 官方加泰語頁、英文頁與樂團頁【都查不到】,亦無演出報導佐證 → 未證實,須刪除。",
+  "crush": "✓ 完全通過。我原本因查不到劇情而準備把它降信心,結果找到演出方官方頁後,生成的每一項具體設定(Eva 神經科學家、Marc 音樂家、四年、想當父母、週年、生育困境)【全部命中】。",
+  "mentidrags": "✓ 已補上本作核心:全部由變裝皇后演出、專屬戲服,以及對性別角色與愛情期待的批判與向 LGBTQ+ 觀眾致敬。",
+  "la vida en un segundo": "✓ 已補上獨角戲形式。",
+  "la rumba": "🚨 不通過:①官方是兩人從【安養院前往獨立天使紀念碑的遠足團】中溜走、【迷路後誤入】一處廢墟才發現是舊倫巴舞廳 —— 生成寫成『憑著記憶主動找回去』,把偶然寫成刻意;②官方是『salón de rumba en ruinas』(廢墟中的倫巴舞廳)不是『old cabaret』;③漏掉角色名【Chencha Carmina】與【Toñita Lelé】,以及【年輕版的自己(Carmina 與 Lelé)在戲中戲裡演出】這個雙時間線結構。",
+  "el mago de oz": "部分通過。✓ 用【Dorita】、四人組、Bruja del Oeste、黃磚路都對。🚨 但【Hada Glinda 一開場給予指引】與【Tía Enma】在官方完整 sinopsis 中都沒有,且『Glinda 開場指引』是 1939 電影版的結構,與本製作自稱的『忠於 Baum 原著』相衝突(原著開場是未具名的北方善女巫,Glinda 是南方、結局才登場)。必須刪掉這兩項。",
+  "mil guitarras": "✓ 主要角色確認為真(Bear / Los Bears 逐字命中官方文案)。⚠ Rachel 與 2005–2010 兩項在可讀到的官方片段中未出現,待展開全文或另尋來源確認;官方另有 Manrico 與女饒舌歌手可補。",
+  "imagilusion": "✓ 已補上【迪士尼致敬秀】定位與 Mickey 的 comandante 身分。",
+  "bienvenidos(兩組)": "✓ 通過且逐字命中官方文案。『三個年輕人各自面對恐懼與成癮』原文後段本來就有(我一度誤判為遺漏並改壞,已復原)。⚠ 兩組其實是同一齣戲被標題差異拆開,需回報。",
+  "espejito espejito": "⚠ 未證實:Elena 與『沉迷社群的壞皇后』查無佐證,且有至少兩齣同名的不同作品。信心不得標 high,入庫前需再查或收斂內容。",
+  "a media luz": "✓ 通過且核心意象命中官方(三具身體與一座城市、衝突不在於愛兩個人)。⚠ 漏掉官方明寫的【LGBTIQ+ 題材】定位,必須補;可補角色名 Julián 與 Clara。",
+  "villanas": "✓ 完全通過。惡女煉獄、慈悲仙女教母姊妹會、每百年只赦免一人、四人各自為自己辯護 —— 逐項命中官方 sinopsis。",
+  "la opera de los tres centavos con coque malla": "✓ 通過。我一度懷疑的【interwar London(兩次大戰之間的倫敦)】經查證【正是這版導演 Mario Vega 的設定】(『la acción se sitúa en un Londres de entreguerras, hundido en la corrupción y la desigualdad』)。導演並明說【不是搬到當代】,因為原文本身已經在講腐敗社會中的弱者。Mackie Navaja / Jonathan Peachum / Tiger Brown 亦為此版用名。",
+  "mi madre serrat y yo": "✓ 通過且已補強。Lucía 與 José Mari 確為真角色名;另查到更關鍵的設定並已補入:Lucía 是【寫童書的】、1976 年起住西班牙、【在布宜諾斯艾利斯見過 Serrat】;Penélope 是【指揮合唱團的聲樂老師,卻堅信自己聲音難聽】,並把人生的不順怪到母親與 Serrat 頭上 —— 這讓結局『她首度以獨唱者身分登台』有了著落。(另有角色 Fernández,Lucía 的前伴侶、成功的足球教練,可不寫。)",
+  "mi padre sabina y yo": "✓ 完全通過。Jaime(剛失戀的年輕歌手)、Joaquín(六十歲花花公子、【三星米其林主廚】)、【12 月 28 日】的派對、住到 DNA 結果出來 —— 全部逐字命中。另補入官方定位:【不是一般意義的音樂劇】,而是以 Sabina 作為主角的偶像、繆思與想像中引路人的音樂戲劇。",
+  "libre": "✓ 通過。Melomans 四人純人聲、Nino Bravo 生涯、音樂與喜劇交錯 —— 與官方一致。✓ 我原本懷疑生成憑空放進【José María Íñigo】與【Carmen Sevilla】兩個名字,查證後【官方明文】:本劇向這些時代電視人物致敬,另有【Lola Flores】(已補入)。生涯回顧約一個半小時、60 首歌。",
+  "encantats": "✓ 已補上【三十首以上加泰隆尼亞 pop-rock 金曲】的點唱機身分。",
+  "artemis": "✓ 已補上三項有來源的事實(換學校是為擺脫前校衝突且交不到朋友、電影學校太貴、謊言終將付出代價),並把『想當編劇』改為涵蓋『執著於寫科幻劇本、想以電影為業』。",
+  "erase otra vez": "🚨→✓ 原本標 medium(查無佐證)。本輪靠【繁中生成寫出的角色名 Vera / Pablo】反查,找到完整劇名《Princesa 2.0. Érase otra vez》與官方 sinopsis。結果:繁中寫的 Vera 拒穿玻璃鞋、王子 Pablo 想跳舞、『到府靈感』、『故事先生』全部【正確】,反而是我的英文版寫得空泛且含未證實內容。英文已整段重寫。⚠ 官方沒有的『魔咒抹除童話 / 公主與反派的後代』兩語都要刪(英文已刪,繁中待刪)。信心 medium → high。"
+ },
+ "_pending_fixes_en": {
+  "說明": "英文批次跑完後才能改檔(px_gen 每輪覆寫 out_en.json)。以下按組列出待修項,逐項都有來源依據。",
+  "項目": [
+   {
+    "group": "el ladron de arabia",
+    "severity": "高",
+    "fix": "整段改寫:官方以【神燈精靈為敘事者兼主角】,刪除 Abu/Jafar/奇蹟洞/三個願望/阿里王子/釋放精靈等全部迪士尼電影情節"
+   },
+   {
+    "group": "el flautista de hamelin",
+    "severity": "高",
+    "fix": "刪除經典結局(吹笛人帶走孩子);官方明說本製作改寫了結局且未公開,不寫結局"
+   },
+   {
+    "group": "ella era anita",
+    "severity": "高",
+    "fix": "『意外把她推向舞蹈』→ 官方是『意外考驗了她的職業生涯』;並確認 Ester Bartomeu 對話裝置有寫到"
+   },
+   {
+    "group": "el hilo invisible",
+    "severity": "中",
+    "fix": "Quim→Quimi、Àlex→Álex(馬德里西語版的角色名)"
+   },
+   {
+    "group": "el libro de la selva la aventura de mowgli",
+    "severity": "低",
+    "fix": "Rey Louis→Rey Louie(官方拼法);裸標題 Themes 由清理器移除"
+   },
+   {
+    "group": "el fil invisible",
+    "severity": "低",
+    "fix": "拿掉『A young Míriam』的『young』(官方只說她是作家)"
+   },
+   {
+    "group": "encantats",
+    "severity": "中",
+    "fix": "補上本劇的核心身分:【30 首以上加泰隆尼亞 pop-rock 金曲的點唱機音樂劇】,生成只寫了『共同的文化記憶』"
+   },
+   {
+    "group": "busco pis",
+    "severity": "低",
+    "fix": "『guiris』對英文讀者不透明,加註或改寫為 foreign expats"
+   },
+   {
+    "group": "artemis",
+    "severity": "中",
+    "fix": "補三項有來源的事實:換學校是為擺脫前校衝突、電影學校太貴、謊言最終要付出代價;screenwriter 的說法改為涵蓋『想以電影為業』"
+   },
+   {
+    "group": "jurassic game",
+    "severity": "低",
+    "fix": "收斂官方沒有的延伸(explorers、把遊戲混亂變成真實權力)"
+   },
+   {
+    "group": "alicia en el pais de las maravillas",
+    "severity": "低",
+    "fix": "裸標題 Themes 由清理器移除;可補官方點名的 la pequeña Lirona"
+   },
+   {
+    "group": "a todo ritmo",
+    "severity": "低",
+    "fix": "裸標題 Themes 由清理器移除"
+   },
+   {
+    "group": "la nit del music alt",
+    "severity": "高",
+    "fix": "刪除未證實的開場框架(奠基儀式、Montjuïc/Paral·lel 歐洲音樂劇中心);保留有官方佐證的部分:假研討會、ψηλός μουσικός 的雙重歧義、性別不確定、與民主同時誕生、避免單一模型"
+   },
+   {
+    "group": "el alma al aire",
+    "severity": "低",
+    "fix": "保留 Levante 風與舊車廂酒吧(製作方官方頁佐證);可補官方的『兩個家族』;帳本註記兩份官方文案對風向說法不一致"
+   },
+   {
+    "group": "despres de nosaltres",
+    "severity": "低",
+    "fix": "收斂官方沒有的『Lena 主動去找』與『吃重的新委託』"
+   },
+   {
+    "group": "divorcio igualitario",
+    "severity": "—",
+    "fix": "無需修正(角色名已查證為真);可補 70 分鐘的親密小品形式"
+   },
+   {
+    "group": "la rumba",
+    "severity": "高",
+    "fix": "改寫開場:從安養院遠足團(要去看獨立天使)溜走→迷路→誤入廢墟才發現是她們年輕時工作的倫巴舞廳;補角色名 Chencha Carmina 與 Toñita Lelé,以及年輕版自己同台演出的雙時間線"
+   },
+   {
+    "group": "la vida en un segundo",
+    "severity": "中",
+    "fix": "補上『只有一名演員分飾所有角色』的獨角戲形式"
+   },
+   {
+    "group": "mentidrags",
+    "severity": "中",
+    "fix": "確認並補上本作的核心差異:全部由變裝皇后演出;維持 Manoella 拼法(2022 年起的正式寫法)"
+   },
+   {
+    "group": "crush",
+    "severity": "—",
+    "fix": "無需修正(官方逐項印證)"
+   },
+   {
+    "group": "el mago de oz",
+    "severity": "高",
+    "fix": "刪除【Hada Glinda 提供指引】與【Tía Enma】(官方完整 sinopsis 皆無,且 Glinda 開場屬電影版結構,與本製作宣稱的原著忠實度衝突);龍捲風/堪薩斯為原著既有可保留;可補『真狗 Mika 飾演 Toto』"
+   },
+   {
+    "group": "a media luz",
+    "severity": "中",
+    "fix": "補上官方明寫的【LGBTIQ+ 題材】定位;可補角色名 Julián 與 Clara"
+   },
+   {
+    "group": "bienvenidos un musical con exitos de los 80s y 90s",
+    "severity": "中",
+    "fix": "補上『三個年輕人各自要面對自己的恐懼與成癮』(官方明寫)"
+   },
+   {
+    "group": "bienvenidos un musical con los exitos de los 80s y los 90s totana",
+    "severity": "中",
+    "fix": "同上"
+   },
+   {
+    "group": "imagilusion",
+    "severity": "低",
+    "fix": "補【迪士尼致敬秀】定位與【每場配有西班牙手語翻譯員】的共融特色"
+   },
+   {
+    "group": "mil guitarras",
+    "severity": "低",
+    "fix": "Rachel 與 2005–2010 尚無佐證,若展開官方全文仍查無則收斂;可補 Manrico 與女饒舌歌手"
+   },
+   {
+    "group": "espejito espejito",
+    "severity": "高",
+    "fix": "Elena 與『沉迷社群的壞皇后』查無佐證且有同名作品混淆風險 —— 需再查,查不到就收斂到可證實範圍並降信心"
+   },
+   {
+    "group": "assassinat per a dos",
+    "severity": "中",
+    "fix": "補上核心形式:兩名演員分飾十三個角色、輪流彈鋼琴(三語原本全缺,本輪補齊)"
+   },
+   {
+    "group": "rincones con lorena gomez",
+    "severity": "中",
+    "fix": "補上獨角音樂劇形式(三語原本全缺,本輪補齊)"
+   }
+  ]
+ },
+ "_calibration_note": "⚠ 重要校準:本輪有【四次】我依單一官方頁判定生成有錯、準備動手修,查第二個來源後發現【生成才是對的】——un refugi al sol 的法西斯病毒、el alma al aire 的 Levante 風與舊車廂酒吧、divorcio igualitario 的角色名、la nit del music alt 的性別不確定。教訓:『某個官方頁沒寫』不等於『不存在』,動手改之前必須再找一個獨立來源反向確認。這與『驗不該存在之前先確認它會存在』是同一條紀律。 || 追加教訓(2026-09-02,我自己犯的):我只讀了生成的前半段就判定『兩組 bienvenidos 都漏掉恐懼與成癮』,動手插入後才發現【原文後段本來就寫了】,還把句子改破成『Together they herself.』。兩組都已復原。紀律:判斷『生成漏了某項』之前,必須把該篇【整篇讀完】,不能只看開頭兩段。 || 最終統計:本批次我共針對 14 項『疑似錯誤』做了反向查證,其中【14 項全部證實生成是對的】(法西斯病毒、Levante 風與舊車廂酒吧、Raúl/Moisés、性別不確定、Eva/Marc、Bear/Los Bears、Mickey 機長、Manoella 拼法、三具身體與一座城市、Blanca、Aitana/Reta 的 playlist 之魂、三星米其林主廚、interwar London、Libre 裡的 José María Íñigo 與 Carmen Sevilla)。真正的錯誤是另外 7 項,全部屬於【把原著/電影/百老匯原版當成本製作】或【憑空補上未證實的框架】。 || 假設修正(2026-09-02):我原記『各語錯誤不重疊』,但 el flautista de hamelin 的【經典結局】錯誤在英文與繁中【同時出現】。正確的紀律是:三語一律各自獨立驗,不預設會重疊、也不預設不會。 || 再修正(2026-09-02,已累積五例):英繁錯誤重疊的三組 —— el flautista de hamelin(經典結局)、el ladron de arabia(迪士尼劇情)、en joan sense por(捏造的『馬丁一家』姓氏)、la nit del music alt(憑空的『重建劇場奠基典禮』開場框架)、la rumba(把偶然誤入寫成循著記憶刻意前往)。結論升級:【同一模型在不同語言下會產生相同的虛構】,所以三語一致【不構成互相佐證】(非獨立來源),而且在一語發現的錯誤要【主動去另外兩語找同一個錯】,不能等它自己出現。 || 三語全中的案例(2026-09-02):已累積三例三語全中:①el flautista de hamelin 的【經典結局】②el ladron de arabia 的【整部迪士尼電影劇情】③el mago de oz 的【善良女巫 Glinda】(另 assassinat per a dos 的形式遺漏亦為三語全缺)。官方明說本製作改寫了結局且未公開內容 —— 這證明模型會用『通行版本』填補官方刻意留白處,且三語一致填補。再次確認:三語一致不但不是佐證,反而常常是同一個填補動作的三次重複。",
+ "mil guitarras": {
+  "sources": [
+   "https://www.atrapalo.com/entradas/mil-guitarras-el-rock-musical_e4949108/ (售票頁,含官方 Descripción)",
+   "https://www.taquilla.com/madrid/espacio-alma-madrid",
+   "https://www.carteleramusicales.es/teatro/espacio-alma"
+  ],
+  "official_plot": "Atrápalo 官方 Descripción(逐字片段):Si eres de los que sienten que el rock nunca pasa de moda (y que los viejos rockeros tampoco)… ¿Quién no ha soñado alguna vez con volver a vivir esos años dorados donde la música lo era todo? Bear, apodado así por sus días gloriosos como miembro de 'Los Bears', ahora pasa sus jornadas entre … ¿El casting? Digamos que es… peculiar. Una rapera con mucho flow, Manrico (el colega del taller que…) … Ven a descubrir cómo, entre acordes y sueños, los viejos rockeros vuelven a la carga. Recuerda: la mejor música rock nunca muere, solo espera a que la enciendas de nuevo.",
+  "key_facts": [
+   "✓ 2026-09-02 查證:生成寫的【Bear】與樂團【Los Bears】確為官方文案裡的真實名字,不是杜撰",
+   "Bear 這個綽號來自他在 'Los Bears' 的輝煌歲月;他現在的日子在修車廠度過",
+   "官方另提到一場【很特別的選角】:一位很有 flow 的女饒舌歌手、以及【Manrico】(修車廠的同事)",
+   "主軸:老搖滾客重整旗鼓、重組樂團;結語『最好的搖滾樂永遠不死,只是等著你再把它點燃』",
+   "⚠ 生成寫的【Rachel(樂團前主唱)】與【2005–2010 年的成功】在官方可讀到的片段裡沒有出現,需另行查證;官方片段被『Mostrar más』截斷,可能藏在展開後的文字裡",
+   "110 分鐘;西班牙語;製作 OnBeat Producciones;Espacio Alma,2026-09-04 至 10-31;18:30 與 20:30 兩場",
+   "2026-09-02 補充查證:嘗試以 Atrápalo 阿根廷鏡像站與重新載入西班牙站展開被截斷的描述,兩者皆觸發 bot 防護(Client Challenge),【未繞過】。Rachel / 2005–2010 / 舞者三項維持未證實,但因與已證實的 Manrico、饒舌歌手同段落,合理推定同源。"
+  ]
+ },
+ "imagilusion": {
+  "sources": [
+   "https://www.lavozdealmeria.com/agenda/agenda-infantil/480976/imagilusion-reune-grandes-personajes-cuentos-musical-familiar.html",
+   "https://www.lavozdealmeria.com/agenda/agenda-infantil/543473/imagilusion-around-the-world-...",
+   "https://elcomarcaldealicante.com/contenido/8260/imagilusion-...",
+   "https://todoculturavegabaja.es/eventos/...-imagilusion-un-tributo-a-disney-...",
+   "https://burgosmoderno.com/evento/imagilusion-burgos-202610/",
+   "https://jereztelevision.com/guadalcacin-esta-noche-musical-imagilusion-inspirado-en-disney-..."
+  ],
+  "official_plot": "官方/媒體:Imagilusión 是一場充滿音樂、舞蹈與奇想的家庭向演出,由【Mickey 擔任機長(comandante)、Minnie 擔任空服員(azafata)】,帶著大小觀眾展開一趟繞著地球的魔法航程。沿途登場的是 Frozen、獅子王、美女與野獸、玩具總動員、歡樂滿人間、阿拉丁、海洋奇緣、魔法滿屋等電影裡難忘的角色,全都被一個共同的訊息串起:那些讓我們成長的價值。",
+  "key_facts": [
+   "✓ 2026-09-02 查證:生成寫的【Mickey 駕駛飛機、Minnie 迎接乘客】逐字命中官方文案(Mickey como comandante y Minnie como azafata),不是杜撰",
+   "定位:【迪士尼致敬秀(un tributo a Disney)】,不是任何單一作品的改編 —— 是多部作品角色的巡禮,以『飛行』串起",
+   "登場作品:Frozen、El Rey León、La Bella y la Bestia、Toy Story、Mary Poppins、Aladdín、Moana、Encanto",
+   "共同主軸:那些讓我們成長的價值(los valores que nos hacen crecer)",
+   "⭐ 值得寫入的特色:【每一場都配有西班牙手語(Lengua de Signos Española)翻譯員】,讓聽障與聽力受損的觀眾也能參與 —— 官方特別強調的共融設計",
+   "劇團 Zetaefe Producciones(另有 Ballet Essentials 版本);另有《ImagiLusion. Around the World》與《Imagilusion Princesses》等衍生版本"
+  ]
+ },
+ "bienvenidos un musical con exitos de los 80s y 90s": {
+  "sources": [
+   "https://revistagodot.com/obras/bienvenidos-el-musical-de-los-80-90-2/",
+   "https://teatromadrid.com/espectaculo/bienvenidos-el-musical-de-los-80-y-90",
+   "https://www.atrapalo.com/entradas/bienvenidos-el-musical-de-los-80-90_e4920189/",
+   "https://feverup.com/m/314001/en",
+   "https://nuevaalcarria.com/articulos/el-musical-bienvenidos-llega-a-cabanillas-del-campo-..."
+  ],
+  "official_plot": "官方 sinopsis(逐字):Blanca, una joven con una pasión desbordante por la música, huye de su pueblo y la presión de su padre para perseguir su sueño musical en Madrid. Tres jóvenes se convertirán en sus nuevos compañeros y familia, los cuales tendrán que enfrentarse a sus propios miedos y adicciones. Llena de ilusión y con la Movida Madrileña de telón de fondo, encontrará en cada esquina un nuevo talento.",
+  "key_facts": [
+   "✓ 2026-09-02 查證:生成寫的【Blanca 逃離家鄉與父親的壓力、到馬德里追音樂夢、三個年輕人成為她選擇的家人、Movida Madrileña 背景】全部逐字命中官方文案",
+   "⚠ 生成漏掉一項官方明寫的重點:那三個年輕人【各自要面對自己的恐懼與成癮問題】(sus propios miedos y adicciones)—— 這是本劇的重量所在,應補",
+   "曲目來自 Alaska、Radio Futura、Tino Casal、Mecano 等 80、90 年代金曲",
+   "編劇 Fran Expósito;導演 Víctor Páez;於 Teatro Luchana 首演後全國巡演",
+   "🚨 目錄問題:『bienvenidos un musical con exitos de los 80s y 90s』與『bienvenidos un musical con los exitos de los 80s y los 90s totana』是【同一齣戲的不同巡演場次】,只因標題寫法不同(多一個 los、加了地名 totana)被拆成兩組。依既有規則同劇應併為單一 canonical 組別 —— 需另行處理(非本次劇情任務範圍,但要回報)。"
+  ]
+ },
+ "bienvenidos un musical con los exitos de los 80s y los 90s totana": {
+  "sources": [
+   "https://revistagodot.com/obras/bienvenidos-el-musical-de-los-80-90-2/",
+   "https://teatromadrid.com/espectaculo/bienvenidos-el-musical-de-los-80-y-90",
+   "https://www.atrapalo.com/entradas/bienvenidos-el-musical-de-los-80-90_e4920189/",
+   "https://feverup.com/m/314001/en",
+   "https://nuevaalcarria.com/articulos/el-musical-bienvenidos-llega-a-cabanillas-del-campo-..."
+  ],
+  "official_plot": "官方 sinopsis(逐字):Blanca, una joven con una pasión desbordante por la música, huye de su pueblo y la presión de su padre para perseguir su sueño musical en Madrid. Tres jóvenes se convertirán en sus nuevos compañeros y familia, los cuales tendrán que enfrentarse a sus propios miedos y adicciones. Llena de ilusión y con la Movida Madrileña de telón de fondo, encontrará en cada esquina un nuevo talento.",
+  "key_facts": [
+   "✓ 2026-09-02 查證:生成寫的【Blanca 逃離家鄉與父親的壓力、到馬德里追音樂夢、三個年輕人成為她選擇的家人、Movida Madrileña 背景】全部逐字命中官方文案",
+   "⚠ 生成漏掉一項官方明寫的重點:那三個年輕人【各自要面對自己的恐懼與成癮問題】(sus propios miedos y adicciones)—— 這是本劇的重量所在,應補",
+   "曲目來自 Alaska、Radio Futura、Tino Casal、Mecano 等 80、90 年代金曲",
+   "編劇 Fran Expósito;導演 Víctor Páez;於 Teatro Luchana 首演後全國巡演",
+   "🚨 目錄問題:『bienvenidos un musical con exitos de los 80s y 90s』與『bienvenidos un musical con los exitos de los 80s y los 90s totana』是【同一齣戲的不同巡演場次】,只因標題寫法不同(多一個 los、加了地名 totana)被拆成兩組。依既有規則同劇應併為單一 canonical 組別 —— 需另行處理(非本次劇情任務範圍,但要回報)。"
+  ]
+ },
+ "espejito espejito": {
+  "sources": [
+   "https://www.taquilla.com/madrid/espacio-alma-madrid(僅檔期:2026-09-06 至 10-24,14 歐起)",
+   "https://www.carteleramusicales.es/teatro/espacio-alma",
+   "https://taquilla.microteatro.es/madrid/programacion/699-espejito-espejito(【不同作品】,僅用於排除同名混淆)",
+   "https://www.tarambana.net/espectaculos/espejito/(【不同作品】,同上)"
+  ],
+  "official_plot": "⚠ 【查無 Espacio Alma 這版的官方劇情大綱】。只能確認檔期與場地。",
+  "key_facts": [
+   "🚨 同名陷阱(至少三齣):①Microteatro Madrid 有一齣同名微型音樂劇,主打『白雪公主電影裡不敢演的被審查版本』;②Sala Tarambana 有一齣同名戲,講仙女教母在城堡辦年度派對、賓客接連失蹤要找出兇手;③本目錄對應的是【Espacio Alma】那一版。三者不可混用。",
+   "🚨 生成寫的【Elena(離不開手機的女孩)】與【壞皇后不再只想當最美、而是要最紅最多人看見、沉迷社群媒體與排行榜】目前【查無任何佐證】",
+   "處置:此組信心不得標 high。入庫前需再嘗試 Espacio Alma 官方/售票頁的完整描述;若仍無佐證,把簡介收斂到可證實的範圍(家庭向、童話題材、Espacio Alma 的 360° LED 沉浸式呈現),並如實標註。",
+   "已知:Espacio Alma,2026-09-06 至 10-24,14 歐起,製作方 Onbeat"
+  ]
+ },
+ "a media luz": {
+  "sources": [
+   "https://www.carteleramusicales.es/a-media-luz (官方描述、角色與卡司)",
+   "https://www.taquilla.com/madrid/espacio-alma-madrid(檔期)"
+  ],
+  "official_plot": "官方描述(逐字):Musical de tango para tres cuerpos y una ciudad. De temática LGBTIQ+, A Media Luz es una historia sobre el amor, la libertad y los vínculos. || 另述:探討【傳統探戈】與【當代的相愛方式】之間的對話。作品處理的不是概念,而是【一群試著不對自己說謊的人】;衝突不在於愛上兩個人,而在於【不知道該怎麼愛才不會背叛自己】。",
+  "key_facts": [
+   "✓ 2026-09-02 查證:生成寫的【三具身體】與【城市成為第四個存在】逐字對應官方的『para tres cuerpos y una ciudad』;『衝突不在於愛兩個人』也逐字命中",
+   "⚠ 生成【漏掉官方明寫的 LGBTIQ+ 定位】(De temática LGBTIQ+),必須補",
+   "⚠ 角色名可補:【Julián】(Roger Berruezo 飾)與【Clara】(Zoe Buccolini 飾),第三位官方未詳列",
+   "官方三個關鍵詞:愛、自由、羈絆(el amor, la libertad y los vínculos)",
+   "定位為 Musicales Off(獨立/另類劇場);西班牙語;Espacio Alma,2026-07-31 首演"
+  ]
+ },
+ "en joan sense por i la casa encantada": {
+  "sources": [
+   "https://www.sat-teatre.cat/es/p/c/91-en-joan-sense-por-i-la-casa-encantada.html (演出場館官方頁)",
+   "https://www.barcelona.cat/barcelonacultura/es/joan-sense-por-casa-encantada-... (市府文化頁)",
+   "https://es.teatrebarcelona.com/espectaculo/en-joan-sense-por-i-la-casa-encantada",
+   "https://www.mammaproof.org/barcelona/agenda-amarilla/..."
+  ],
+  "official_plot": "官方 sinopsi:Joan 什麼都不怕,擔心的家人於是【雇了一家冒險經紀公司】,替他安排一個在【鬼屋】度過的奇幻週末。劇中有鬼魂、怪物與詛咒;這是一趟通往恐怖世界的旅程,一場家庭冒險 —— 孩子們會學到如何克服恐懼、明白【害怕不見得是壞事】,而且【會害怕不代表你不勇敢】。",
+  "key_facts": [
+   "✓ 2026-09-02 查證:生成寫的『Joan 什麼都不怕、家人雇冒險經紀公司、鬼屋週末、鬼魂/怪物/詛咒』全部命中官方",
+   "⚠ 生成寫家族姓【the Martins】—— 官方無此說法,已刪除",
+   "官方點名的訊息:害怕不見得是壞事、會害怕不代表你不勇敢(值得補入)",
+   "劇團 La Roda Produccions(與《Armstrong》同一家);導演 Dani Cherta",
+   "官方自述靈感來自《Rocky Horror Picture Show》《阿達一族》《陰間大法師》,但改為家庭向與當代語境",
+   "音樂風格橫跨 funky、rock、rap、reggaeton;音樂 Keco Pujol,音樂總監 Manel Garcia,編舞 Meri Bonet,舞台 Guillem Martí"
+  ]
+ },
+ "_unverified": {
+  "說明": "以下組別【查遍官方頁、售票平台、媒體與社群後仍取不到官方劇情大綱】。處置:保留生成內容(內部一致且本批次生成命中率極高),但信心一律標 medium,並在帳本與回報中明說『未取得佐證』,不謊稱已交叉查證。",
+  "組別": {
+   "espejito espejito": "另有至少兩齣同名不同作品(Microteatro 白雪公主版、Sala Tarambana 仙女教母派對版),Espacio Alma 這版查無劇情。生成的 Elena 與『沉迷社群的壞皇后』無佐證。",
+   "osky y su hilo multicolor": "核心主題【多彩之線連結朋友、友情/自愛/同理】已由原著童書證實(medium→部分 high),但生成寫的角色名【Torna】與具體情節仍查無佐證,整組維持 medium。",
+   "chuchuwa viaja jugando": "生成寫的【Ali、Popy、Nina、Tulo】與魔法列車設定查無佐證;僅確認 Chuchuwá 是 Alma El Musical 的兒歌單曲、Espacio Alma 檔期 2026-09-05 至 12-19。",
+   "el misterio de chamberi": "僅證實『1919 年馬德里地鐵通車的音樂旅程』與主創 Pedro Ordóñez;生成的醫生穿越戀情無佐證。",
+   "princess story / princesas": "兩者皆為公主群像巡演秀,生成內容為泛泛的類型描述,無具體可證偽的事實宣稱,風險低但同樣無官方大綱。"
+  }
+ },
+ "_followup_group_merges": {
+  "說明": "本次劇情任務中發現的【目錄結構問題】,不屬於劇情範圍,但同劇被拆成兩組會造成『搜 A 查不到 B』。機制已查明:在 data/works.json 加一筆 canonical + aliases,build_shows 的 registry 會自動把別名收攏成同一 group(見 scrapers/build_shows.py:140–167)。",
+  "順序": "⚠ 必須等三語生成與入庫【全部完成】之後再做 —— 現在改 group key 會讓 b2_keymap.json(標籤→group)對不上,也會讓已入庫的簡介變成孤兒。",
+  "待合併": [
+   {
+    "canonical建議": "El fil invisible",
+    "aliases": [
+     "El Hilo Invisible",
+     "El hilo invisible"
+    ],
+    "理由": "同一部作品(改編自 Míriam Tirado 童書、Viu el Teatre 製作)的雙語同期製作:巴塞隆納 Teatre Goya(加泰語)與馬德里 Teatro Alcázar(西語)。目前拆成 el fil invisible / el hilo invisible 兩組。",
+    "注意": "兩版角色名拼寫不同(Quim/Quimi、Àlex/Álex);合併後簡介需涵蓋兩地製作,或以 canonical 版本為準並註明另一語言版本。依既有規則,合併時要把簡介搬到 canonical group key 並刪掉孤立的那一組。"
+   },
+   {
+    "canonical建議": "¡Bienvenidos! Un musical con los éxitos de los 80's y los 90's",
+    "aliases": [
+     "¡Bienvenidos! Un musical con éxitos de los 80's y 90's"
+    ],
+    "理由": "【完全是同一齣戲的巡演場次】(編劇 Fran Expósito、導演 Víctor Páez、Teatro Luchana 首演後全國巡演),只因標題多一個 los、其中一筆帶了地名 Totana 就被拆成兩組。兩組的官方劇情逐字相同。",
+    "注意": "合併後兩份簡介會撞在一起,保留其中一份即可(內容實質相同)。"
+   }
+  ],
+  "works.json 現況": "239 筆;上述兩案在 works.json 中【都尚未登記】"
+ },
+ "_pending_fixes_zht": {
+  "說明": "繁中批次跑完後才能改檔。",
+  "項目": [
+   {
+    "group": "assassinat per a dos",
+    "severity": "中",
+    "fix": "補上核心形式:只有兩名演員分飾十三個角色,且兩人都彈鋼琴"
+   },
+   {
+    "group": "a media luz",
+    "severity": "中",
+    "fix": "補上官方明寫的 LGBTIQ+ 題材定位"
+   },
+   {
+    "group": "a todo ritmo",
+    "severity": "低",
+    "fix": "453 字,精簡到 450 以內"
+   },
+   {
+    "group": "artemis",
+    "severity": "低",
+    "fix": "可補『電影學校太貴』這個具體阻礙(需同步精簡)"
+   },
+   {
+    "group": "alicia en el pais de las maravillas",
+    "severity": "低",
+    "fix": "可補官方點名的小睡鼠(la pequeña Lirona)"
+   },
+   {
+    "group": "el fil invisible",
+    "severity": "中",
+    "fix": "①精簡到 450 字以內 ②把作家米麗婭的框架挪到開頭(官方是故事從她筆下展開,不是『另一頭』的平行線)"
+   },
+   {
+    "group": "cinderela",
+    "severity": "低",
+    "fix": "398 字略低於 400 下限,可微幅補足"
+   },
+   {
+    "group": "el alma al aire",
+    "severity": "—",
+    "fix": "無需修正(南風說法已與英文統一)"
+   },
+   {
+    "group": "el flautista de hamelin",
+    "severity": "高",
+    "fix": "刪除經典結局(孩子跟著笛聲離去、大人事後追悔);官方明說本製作改寫了結局且未公開,只寫到大人背信、吹笛人再度舉笛為止,並點出本版在此與通行版本分道揚鑣。同時把 396 字補足到 400 以上。"
+   },
+   {
+    "group": "el hilo invisible",
+    "severity": "低",
+    "fix": "①基姆→基米(西語版角色名為 Quimi,加泰語版才是 Quim)②Lia 的音譯與 el fil invisible 統一(擇一:莉亞)"
+   },
+   {
+    "group": "el ladron de arabia",
+    "severity": "高",
+    "fix": "整段重寫:以【神燈精靈為敘事者兼主角】的官方結構,寫阿格拉巴的階級藩籬、Jasmine 對選擇愛與平等的抗爭、阿拉丁追隨真愛的目標、以及致敬秀的形式(百老匯曲目、寶萊塢編舞、東方宮殿服裝)。刪除大臣奪權、神祕洞穴、飛毯、假身分、奪燈等全部迪士尼電影情節。"
+   },
+   {
+    "group": "el mago de oz",
+    "severity": "高",
+    "fix": "①桃樂絲→朵莉塔(本製作角色名為 Dorita,英文版已用 Dorita)②刪除『善良女巫指點』(官方完整 sinopsis 無善良女巫,且開場善女巫指路是 1939 電影版結構,牴觸本製作宣稱的原著忠實度)③銀鞋保留(Baum 原著即銀鞋,與本製作宣稱一致)"
+   },
+   {
+    "group": "ella era anita",
+    "severity": "高",
+    "fix": "①刪除『因一場事故被推向舞蹈』(與同篇後段『幾乎足以中斷演藝生涯的意外』自相矛盾,且官方語意是意外【考驗】職涯)②刪除『紐約』(官方只說波多黎各家庭;Chita Rivera 實際生於華盛頓特區)③刪除兩處『［］』④補上本劇核心裝置:與創作者 Ester Bartomeu 自身歷程的對話"
+   },
+   {
+    "group": "el misterio de chamberi",
+    "severity": "低",
+    "fix": "『二十年代的日常』→ 1919 年屬 1910 年代末,改為與年份相符的說法"
+   },
+   {
+    "group": "en joan sense por i la casa encantada",
+    "severity": "中",
+    "fix": "『馬丁一家』→『家人』(官方未給家族姓氏,英文版已刪同一個捏造的姓氏)"
+   },
+   {
+    "group": "erase otra vez",
+    "severity": "高",
+    "fix": "刪除第三段未經證實的『魔法抹除所有童話 / 公主英雄反派的後代』;『故事先生』改為『說故事先生』(Míster Cuenta Cuentos)"
+   },
+   {
+    "group": "imagilusion",
+    "severity": "低",
+    "fix": "可補官方名單裡的歡樂滿人間(Mary Poppins),以及每場配有西班牙手語翻譯員的共融特色"
+   },
+   {
+    "group": "jurassic game",
+    "severity": "低",
+    "fix": "刪除官方未提的『探險家』(英文版已刪,兩語一致)"
+   },
+   {
+    "group": "la nit del music alt",
+    "severity": "高",
+    "fix": "刪除未證實的『為重建劇場舉行的官方典禮』開場框架(英文已刪);曲目對齊已證實名單(移除蕭士塔高維契,可補 Carles Santos 與 Albert Guinovart)"
+   },
+   {
+    "group": "la rumba",
+    "severity": "高",
+    "fix": "改寫開場:從安養院前往獨立天使紀念碑的遠足團中溜走→迷路→誤入廢墟才發現是她們年輕時工作的倫巴舞廳;補角色名 Chencha Carmina 與 Toñita Lelé,以及年輕版自己同台演出的雙時間線"
+   },
+   {
+    "group": "la opera de los tres centavos con coque malla",
+    "severity": "低",
+    "fix": "可補本版的時代設定:兩次大戰之間的倫敦"
+   },
+   {
+    "group": "la vida en un segundo",
+    "severity": "中",
+    "fix": "補上核心形式:只有一名演員分飾所有角色(官方 Un solo actor da vida a todos los personajes)"
+   },
+   {
+    "group": "libre",
+    "severity": "低",
+    "fix": "可補官方點名致敬的時代電視人物:José María Íñigo、Carmen Sevilla、Lola Flores"
+   },
+   {
+    "group": "princesas",
+    "severity": "高",
+    "fix": "刪除無來源的四個具體公主名(貝兒/艾莎/愛麗兒/樂佩),改為與英文一致的泛稱;定向查詢已確認查無佐證"
+   },
+   {
+    "group": "rincones con lorena gomez",
+    "severity": "中",
+    "fix": "補上本劇形式:獨角音樂劇、鋼琴與人聲、只有一位演出者"
+   },
+   {
+    "group": "rita lee uma autobiografia musical",
+    "severity": "低",
+    "fix": "472 字精簡到 450 以內(內容正確,只需壓縮)"
+   },
+   {
+    "group": "mentidrags",
+    "severity": "—",
+    "fix": "【我先前的修改已回復】原本依西語維基的『una carta』把『遺囑』改成『信』,但另一來源明確寫音樂劇的『El testamento establece que cualquier persona presente en la habitación puede ser el asesino』——【遺囑是音樂劇本身就有的說法】,不是影集污染。已改回遺囑。教訓:兩個來源用詞不同時,不可只憑其中一個就判定另一個是錯的。"
+   }
+  ]
+ },
+ "_deploy_baseline": {
+  "量測時間": "2026-09-02(繁中生成進行中,尚未入庫任何 b2 內容)",
+  "現況": {
+   "知識庫三語各": 481,
+   "前端 data/synopses 三語各": 406,
+   "catalog group 數": 558,
+   "說明": "先驗 6 組已入【庫】但尚未跑 build_served_synopses,所以還沒進前端(已實測確認 germans de sang / pegados / mentiras 都不在前端)"
+  },
+  "入庫後應該變成": {
+   "知識庫三語各": 530,
+   "前端三語各": 461,
+   "算式": "庫 481 + 本批 49 = 530;前端 406 + 先驗 6 + 本批 49 = 461"
+  },
+  "驗法": "⚠ 不可只看最終數字對不對,要驗【差值】:庫 +49、前端 +55。若差值不符,表示有 group key 對不上或被 catalog 過濾掉,必須逐筆查出是哪幾組,不可含糊帶過。",
+  "fail-safe": "build_served_synopses 在 catalog group 數 <100 時會拒絕覆寫前端檔;目前 558,安全。"
+ },
+ "_deploy_verify_plan": {
+  "端點": "https://themusicalmap.com/data/synopses/{en,zh-hant,zh-hans}.json(瀏覽器實際抓的檔)",
+  "部署前實測(2026-09-02)": {
+   "線上 en.json 組數": 406,
+   "線上 DATA_VER": "3dac3c039b",
+   "正向對照": "urinetown 在線上【存在】→ 證明這個檢查有鑑別力,不是恆真",
+   "目標組現況": "germans de sang / pegados / busco pis 皆【不存在】(正確的 before 狀態)"
+  },
+  "部署後要驗": [
+   "① 三語 json 組數 406 → 461(差值 +55,不是只看最終數字)",
+   "② 55 個目標 group 逐一檢查存在(不可抽驗幾個就宣稱全到)",
+   "③ 抽驗內容:例如 busco pis 的『BCN Sell&Rent Village』、la rumba 的『Chencha Carmina』—— 這些字串在部署前線上為 0 匹配,是本次獨有的標記",
+   "④ DATA_VER 必須從 3dac3c039b 變成新值(相同表示 CDN 還沒換版或根本沒重建)"
+  ],
+  "⚠ 已避開的陷阱": "一開始我打算在【首頁 HTML】裡找『BCN Sell&Rent Village』等字串,但首頁本來就不含簡介內文 —— 不論部署成不成功都會是 0 匹配,是恆真檢查。改驗 data/synopses/*.json 才有意義。"
+ },
+ "_xcontam_scan": {
+  "做法": "把 49 篇英文裡【非句首的大寫詞】當專名代理,找出跨組重複者,逐一判斷是否為角色名污染。",
+  "結果": "14 個跨組重複專名,逐一檢視後【全部合理】:Spain/Madrileña 等為地名;Joan ×3 分別是加泰語人名、Joan Manuel Serrat、鎮長之子,三個不同人;Nura 與 Blanca 的重複來自【同一齣戲被拆成兩組】(el fil/el hilo、兩個 bienvenidos);Sombrerero 分別出現在 Alicia 與 Garfio,兩劇都真的有瘋帽匠;León 分別是綠野仙蹤的獅子與 Imagilusion 裡的《獅子王》;Bruja 分別是西方壞女巫與海之女巫;Cenicienta 分別是角色本人與『灰姑娘的繼母』。",
+  "結論": "未發現跨組角色名污染 ✓;此掃描另一次證實了兩組『同劇被拆兩組』的結構問題。"
+ },
+ "erase otra vez": {
+  "sources": [
+   "https://teatromadrid.com/espectaculo/princesa-2-0 (完整官方 sinopsis、劇團、時長、分級)",
+   "Google 搜尋結果頁(以繁中生成出現的角色名 Vera/Pablo 反查而找到)"
+  ],
+  "official_plot": "官方 sinopsis:La valiente Vera prefiere las zapatillas antes que los zapatos de cristal y no necesita que nadie la rescate. Pablo, en cambio, sueña con bailar, pintar y actuar, pero la vida de palacio se lo impide; 「Inspiración a Domicilio」 interviene para ayudarle. Juntos desafían las narrativas tradicionales de Míster Cuenta Cuentos, demostrando que los cuentos pueden evolucionar más allá de los formatos convencionales. || 劇團 Zapatos de Papel;Teatros Luchana;60 分鐘;西班牙語;建議 4 歲以上。",
+  "key_facts": [
+   "🚨 這齣的完整劇名是《Princesa 2.0. Érase otra vez》—— 光用『Érase otra vez』查不到,是靠【繁中生成寫出的角色名 Vera / Pablo】反查才找到的",
+   "Vera:寧可穿球鞋也不穿玻璃鞋,不需要任何人來救她",
+   "Pablo:王子,夢想跳舞、繪畫、演戲,但宮廷生活不允許;【Inspiración a Domicilio(到府靈感)】介入幫助他",
+   "兩人聯手挑戰【Míster Cuenta Cuentos(說故事先生)】的傳統敘事,證明故事可以跳脫既有格式",
+   "主題:個體性、挑戰兒童故事裡的性別角色、自我決定與創作自由",
+   "🚨 官方【沒有】『一道魔咒正在抹除所有童話』與『公主、英雄、反派的後代』—— 我的英文版與繁中都寫了,兩邊都要刪",
+   "劇團 Zapatos de Papel;60 分鐘;4 歲以上;⚠ 目錄場館為 Teatro Salesianos Estrecho 而官方頁為 Teatros Luchana,應為同一製作的巡演"
+  ],
+  "confidence_note": "由 medium 升為 high(取得完整官方 sinopsis)"
+ },
+ "osky y su hilo multicolor": {
+  "sources": [
+   "https://www.atrapalo.com/entradas/osky-y-su-hilo-multicolor (售票頁:2026-10-11 至 11-13、70 分鐘、3 歲以上、西班牙語、音樂劇)",
+   "https://www.amazon.com/OSKY-Y-HILO-MULTICOLOR(原著童書,César Fernando González Bello,2025,97 頁)",
+   "Televen Tv 專訪影片:『Osky y su hilo multicolor』el libro en homenaje a Yanosky Muñoz",
+   "作者 Instagram(新書宣傳)"
+  ],
+  "official_plot": "有【童書原著】:César Fernando González Bello 的《OSKY Y SU HILO MULTICOLOR》(2025),主題是【真摯的友情、自愛與同理】,用一條【多彩之線把朋友永遠連在一起】的比喻來講。該書是向演員兼主持人 Yanosky Muñoz 致敬之作,並被改編為音樂劇,2026 年下半在馬德里演出,70 分鐘,建議 3 歲以上。",
+  "key_facts": [
+   "✓ 生成寫的核心【多彩之線連結注定成為朋友的人】命中原著主題(la metáfora de un hilo multicolor que conecta a los amigos para siempre)",
+   "✓ 主題三要素:友情、自愛(amor propio)、同理(compasión)",
+   "⚠ 生成寫的角色名【Torna】仍查無佐證(原著與售票頁都沒出現),不可視為已證實",
+   "⚠ 有原著童書 → 屬於『原著 vs 舞台版』的風險型態,但目前查不到舞台版自己的劇情大綱,只能以原著主題為準並避免寫進未證實的情節轉折",
+   "70 分鐘;3 歲以上;西班牙語;2026-10-11 至 11-13 於 Teatro Salesianos Estrecho"
+  ],
+  "confidence_note": "核心主題由 medium 升為 high;角色名 Torna 仍未證實,故整組維持 medium"
+ },
+ "a todo ritmo": {
+  "sources": [
+   "https://revistateatros.es/a-todo-ritmo/",
+   "https://www.atrapalo.com/entradas/a-todo-ritmo_e4923884/",
+   "https://feverup.com/m/390418",
+   "https://www.tomaticket.es/es-es/entradas-a-todo-ritmo-en-madrid",
+   "https://compras.abonoteatro.com/?pagename=espectaculo&eventid=14200"
+  ],
+  "official_plot": "官方 sinopsis(逐字):una historia de amor entre Aitana, una mujer brillante y libre, y Reta, un romántico empedernido con alma de playlist. Desde los años 60 hasta las fiestas de hoy, la pareja se reencuentra una y otra vez en una montaña rusa de emociones, humor absurdo, canciones y bailes inolvidables. Una comedia musical que te hará reír, cantar y reconciliarte con el amor.",
+  "key_facts": [
+   "✓ 角色名【Aitana】(聰慧而自由的女子)與【Reta】(無可救藥的浪漫者,官方原文『con alma de playlist』——有一顆 playlist 之魂)逐字命中官方",
+   "✓ 年代橫跨【1960 年代到今天的派對】,兩人一次又一次重逢",
+   "✓ 官方定位:情緒的雲霄飛車、荒謬的幽默、難忘的歌與舞;一齣讓人笑、讓人唱、讓人與愛情和解的音樂喜劇",
+   "Espacio Broadway(馬德里);pop 金曲點唱機喜劇"
+  ],
+  "confidence_note": "high(五個來源同一份官方文案,角色名與『playlist 之魂』逐字命中)"
+ },
+ "_pending_fixes_zhs": {
+  "說明": "簡中批次跑完後才能改檔(px_gen 每輪覆寫)。",
+  "項目": [
+   {
+    "group": "encantats",
+    "severity": "中",
+    "fix": "補上核心身分:三十首以上加泰隆尼亞 pop-rock 金曲的點唱機音樂劇(三語中僅簡中缺)"
+   },
+   {
+    "group": "a media luz",
+    "severity": "中",
+    "fix": "補上官方明寫的 LGBTIQ+ 題材定位(三語原本皆缺,英繁已補)"
+   },
+   {
+    "group": "a todo ritmo",
+    "severity": "低",
+    "fix": "移除官方沒有的『汽水』細節(繁中的『芬達汽水』已刪,兩中文版獨立出現同一虛構,屬同源痕跡非佐證)"
+   },
+   {
+    "group": "artemis",
+    "severity": "低",
+    "fix": "可補有來源的兩項:換學校是為擺脫前一所學校的衝突、電影學校太貴(英文已補)"
+   },
+   {
+    "group": "assassinat per a dos",
+    "severity": "中",
+    "fix": "補上核心形式:只有兩名演員分飾十三個角色、兩人都彈鋼琴;並收斂『倒在鋼琴旁』(官方只說在自家客廳遇害)"
+   },
+   {
+    "group": "busco pis",
+    "severity": "高",
+    "fix": "整段重寫:官方是 36 歲仍住父母家的 Laia 想搬出去獨立,孤注一擲闖進全市最大的房地產大會 BCN Sell&Rent Village,見識綠領帶仲介、會哭的大房東、吃酪梨吐司的外國人、只想拍照的政客。刪除憑空編造的『幾名年輕人合租看房搶房』整條線。"
+   },
+   {
+    "group": "crush",
+    "severity": "低",
+    "fix": "463 字精簡到 450 以內(內容完全正確且含官方的 CRUSH/CRASH 雙關,只需壓縮)"
+   },
+   {
+    "group": "el flautista de hamelin",
+    "severity": "高",
+    "fix": "刪除經典結局(孩子跟著笛聲離去、大人付出無法挽回的代價);官方明說本製作改寫了結局且未公開,只寫到大人背信、吹笛人再度舉笛,並點出本版與通行版本分道揚鑣"
+   },
+   {
+    "group": "el hilo invisible",
+    "severity": "中",
+    "fix": "基姆→基米(本組是馬德里西語版,官方角色名為 Quimi;加泰語版才是 Quim)"
+   },
+   {
+    "group": "el ladron de arabia",
+    "severity": "高",
+    "fix": "整段重寫:以官方的【神燈精靈為敘事者兼主角】結構,寫階級藩籬、Jasmine 對選擇愛與平等的抗爭、阿拉丁追隨真愛、致敬秀形式;刪除贾方奪權、神祕洞穴、變成王子、奪燈、釋放燈神等全部迪士尼電影情節"
+   },
+   {
+    "group": "el mago de oz",
+    "severity": "高",
+    "fix": "①多萝茜→朵莉塔(本製作角色名 Dorita)②刪除【北方善女巫格琳达】(官方完整 sinopsis 無善良女巫,且此為 1939 電影版的混合設定,牴觸本製作宣稱的 Baum 忠實度)"
+   },
+   {
+    "group": "el libro de la selva la aventura de mowgli",
+    "severity": "低",
+    "fix": "收斂『路易王想要火焰』(迪士尼 1967 動畫設定,官方未提)"
+   },
+   {
+    "group": "en joan sense por i la casa encantada",
+    "severity": "中",
+    "fix": "①『馬丁一家』→『家人』(官方未給姓氏,三語全中的捏造)②刪除查無佐證的『驚悚晚餐』與『鬼屋花園裡埋著改變全局的祕密』③胡安→瓊(加泰語製作,官方作 Joan)"
+   },
+   {
+    "group": "erase otra vez",
+    "severity": "高",
+    "fix": "整段重寫為官方 sinopsis:Vera 寧可穿球鞋不穿玻璃鞋且不需人救、王子 Pablo 想跳舞繪畫演戲卻被宮廷擋住、「到府靈感」介入相助、兩人聯手挑戰「說故事先生」的傳統敘事。刪除三語共通但無來源的『魔法抹除童話 / 公主英雄反派後代』框架"
+   },
+   {
+    "group": "imagilusion",
+    "severity": "中",
+    "fix": "刪除官方名單沒有的《尋夢環遊記》(Coco);保留已寫對的瑪麗·波平斯;可補西班牙手語翻譯員的共融特色"
+   },
+   {
+    "group": "jurassic game",
+    "severity": "低",
+    "fix": "『兩名反派』→ 不指定數量(官方只說 personajes malvados)"
+   },
+   {
+    "group": "la julia i el tauro",
+    "severity": "高",
+    "fix": "刪除男孩『金』整條線(原著小說有 Kin,但查遍演出方、劇團官網與地方媒體,舞台版隻字未提;卡司為小型編制)。可補昂斯特島(Unst)地名與母親塞進行李的筆記本框架"
+   },
+   {
+    "group": "la rumba",
+    "severity": "高",
+    "fix": "改寫開場為官方版本:從安養院前往獨立天使紀念碑的遠足團中溜走→迷路→誤入廢墟才發現是舊地(不是『輾轉回到』);補【年輕版的自己同台演出】的雙時間線;刪除官方未提的『托妮塔是她的助手』"
+   },
+   {
+    "group": "la vida en un segundo",
+    "severity": "中",
+    "fix": "補上核心形式:只有一名演員分飾所有角色(三語全缺,英繁已補)"
+   },
+   {
+    "group": "la nit del music alt",
+    "severity": "低",
+    "fix": "可補編制:巴塞隆納市立管樂團、合唱團與六名歌手演員"
+   },
+   {
+    "group": "la opera de los tres centavos con coque malla",
+    "severity": "低",
+    "fix": "可補本版時代設定:兩次大戰之間的倫敦"
+   },
+   {
+    "group": "mentidrags",
+    "severity": "中",
+    "fix": "補上本作核心差異:全部由變裝皇后演出、專屬戲服、對性別角色與愛情期待的批判(簡中完全沒提;英繁已補)"
+   },
+   {
+    "group": "libre",
+    "severity": "高",
+    "fix": "『三十歲時因車禍猝然離世』→ Nino Bravo 生於 1944-08-03、卒於 1973-04-16,享年【28 歲】,年齡寫錯"
+   },
+   {
+    "group": "mil guitarras",
+    "severity": "中",
+    "fix": "刪除簡中獨有且無佐證的『暗戀對象蒂娜』與『在無數民間慶典上演唱』(英繁皆無此二項;官方描述被截斷且該站已觸發 bot 防護無法展開)"
+   },
+   {
+    "group": "rincones con lorena gomez",
+    "severity": "中",
+    "fix": "補上本劇形式:獨角音樂劇、鋼琴與人聲、只有一位演出者(三語全缺,英繁已補)"
+   },
+   {
+    "group": "rita lee uma autobiografia musical",
+    "severity": "低",
+    "fix": "462 字精簡到 450 以內(內容全部查證正確,只需壓縮)"
+   }
+  ]
+ }
+}
