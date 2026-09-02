@@ -122,9 +122,14 @@ DROP_ACTS = ["최현우", "choi hyun woo", "합창단", "기획연주회"]
 #   · 「Subtitle]…」= 同一檔的字幕場次,與本體重複(WIDERSTAND 兩筆都在)
 # ⚠️ 刻意【不】排除 음악극(音樂劇場)與 창극(唱劇):那是韓國自己的音樂戲劇類型,
 #    不是「非音樂劇」,砍掉等於單方面刪掉一整個類別。
+#   · 뮤지컬펍 / musical pub = 音樂劇【酒吧】。商品名是「입장권 구매」(入場券購買),
+#     場館名就等於商品名(MusicalPub SpotLight),casting 全空 —— 賣的是進場消費,
+#     不是一齣有劇情有角色的製作,與上面的沉浸式餐飲同類。2026-09-02 使用者要求
+#     逐檔驗「到底是不是音樂劇」時抓到。
 NOT_A_PRODUCTION = re.compile(
     r"이머시브\s*다이닝|immersive\s*dining|리딩\s*쇼케이스|reading[-\s]*showcase|"
-    r"뮤지컬\s*콘서트|musical\s*concert|^\s*[\[［]\s*subtitle\s*[\]］]", re.I)
+    r"뮤지컬\s*콘서트|musical\s*concert|뮤지컬\s*펍|musical\s*pub|"
+    r"^\s*[\[［]\s*subtitle\s*[\]］]", re.I)
 # ⚠️ subtitle 那條要吃【全形】括號［］:實際標題是「［Subtitle］ Musical WIDERSTAND」,
 #    第一版只寫半形 [] 完全沒擋到 —— 測了才發現,肉眼看兩者幾乎一樣。
 
@@ -177,6 +182,26 @@ def city_candidates(*texts):
             if re.search(rf"(?:^|[-–(\s]){en}\b", name, re.I) and en not in found:
                 found.append(en)
     return found
+
+
+def ticket_url(it):
+    """購票連結:國際站 vs 韓國站要分開,選錯就是 404。
+
+    🚨 2026-09-02 的 regression:那天拿掉 globalType=EN 之後多抓到的 75 檔是
+    【只在韓國內銷】的場次,而 world.nol.com 是國際站 —— 它只放 globalType 非空的節目。
+    結果那批的購票連結全部 404,佔當時韓國目錄的一半(46/92 組)。
+    CI 不會發現,因為連結能不能開從來沒被檢查過。
+
+    實測(4/4 乾淨對照):
+      有 globalType(The Painters / LET ME FLY / Dracula 대구 / MIDNIGHT)→ world.nol.com 200
+      無 globalType(물속의 달 / 목마와 숙녀 / 1457 / 놐놐놐)          → world.nol.com 404
+    內銷場次的正確網址是 tickets.interpark.com/goods/{goodsCode}(已用瀏覽器實開確認,
+    頁面帶完整劇情、卡司與類型標籤)。
+    """
+    gc, pc = it.get("goodsCode"), it.get("placeCode")
+    if (it.get("globalType") or "").strip():
+        return f"https://world.nol.com/en/ticket/places/{pc}/products/{gc}"
+    return f"https://tickets.interpark.com/goods/{gc}"
 
 
 def fetch_page(page):
@@ -272,7 +297,7 @@ def main():
             missing.append(f"{title} @ {place}")
             continue  # never guess a position
 
-        gc, pc = it.get("goodsCode"), it.get("placeCode")
+        gc = it.get("goodsCode")
         shows.append({
             "id": f"ip-{gc}",
             "title": title,
@@ -284,7 +309,7 @@ def main():
             "lng": lng,
             "start_date": it.get("playStartDate") or None,
             "end_date": it.get("playEndDate") or None,
-            "ticket_url": f"https://world.nol.com/en/ticket/places/{pc}/products/{gc}",
+            "ticket_url": ticket_url(it),
             # posterImageUrl (…_p.gif) is the live poster; goodsLargeImageUrl often 404s
             "image": it.get("posterImageUrl") or it.get("goodsLargeImageUrl") or it.get("goodsSmallImageUrl"),
             "tour_name": None,
