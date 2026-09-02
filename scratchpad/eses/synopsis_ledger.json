@@ -2786,7 +2786,14 @@
     "打開 dagolldagom.com/ca/lalegriaquepassa 取得【完整】官方 sinopsi,比我原先存的多出兩個要素:(1)『Al seu costat Puck, l'agressiu mànager, la maltracta creient-la de la seva propietat i li exigeix que continuï』(2)『L'autoritari i fals demòcrata alcalde obliga el seu fill a desistir dels seus somnis』。",
     "→ 這代表英文那一輪的查核基準本身有缺口:英文與簡中【都漏了 Puck 這條線】卻不會被判為遺漏,因為當時的比對基準裡根本沒有 Puck。繁中寫的『經紀人帕克將她視為私有物…以暴力阻止她離開』於是從『疑似捏造』翻案為【逐字命中官方原文】。",
     "grup62.cat 那篇角色解析被 WAF 擋下(Web Page Blocked, Attack ID 20000018),沒有嘗試繞過。改以搜尋摘要 + ca.wikipedia 官方 API 取得卡司:Zaira(Mariona Castillo)、Joan(Pau Oliver,Rusiñol 原作作 Joanet)、鎮長與小丑(皆由 Àngels Gonyalons 分飾)、Puck(原作名 Cop de Puny);Lina 是 Dagoll Dagom 【新增】的角色(Joan 的未婚妻、對鎮長極忠誠);另有敘事者 Nil。",
-    "劇團名:官方頁作『un gran espectacle musical』、ca.wikipedia 作『Una companyia d'espectacles』、搜尋結果亦無團名 —— 三個獨立來源都沒有名字,判定簡中的「天才方舟」為捏造,刪除。"
+    "劇團名:官方頁作『un gran espectacle musical』、ca.wikipedia 作『Una companyia d'espectacles』、搜尋結果亦無團名 —— 三個獨立來源都沒有名字,判定簡中的「天才方舟」為捏造,刪除。",
+    "【外部意見查證輪】使用者轉來 Gemini 的建議:認為鎮長請劇團來的動機是「商業利益(賺錢、活絡小鎮經濟)與展現權力」,而非我寫的「為驅散沉悶」,並建議改成「唯利是圖的鎮長兼唯一工廠主人為帶動小鎮消費並展現政績」。使用者明確要求自己判斷、不要被牽著鼻子走,但若真的是我錯就要確實修正。",
+    "第一步回到官方 sinopsi:只有『La companyia ha sigut contractada per l'alcalde del poble i propietari de l'única fàbrica en tota la població』——【完全沒有寫動機】。所以我的『為驅散沉悶』與 Gemini 的『帶動消費、展現政績』在官方文本層面【都是沒有依據的】,不能直接照單全收。",
+    "第二步找有沒有來源實際寫過動機。VilaWeb(加泰隆尼亞主流媒體)逐字:『propietat de l'alcalde, que és qui els ha contractat 【per donar als seus treballadors una mica d'alegria i fer oblidar la vida gris que porten】』—— 鎮長請劇團來是【為了給工人一點歡樂、讓他們忘掉自己過的灰色生活】。",
+    "→ 判定:Gemini 錯,我的『為驅散沉悶』與唯一有記載的動機一致,【不改】。採用 Gemini 的說法等於把查證過的內容換成沒有來源的內容。",
+    "同一段 VilaWeb 原文另外印證了兩件事:(1)『l'estrella de la companyia que 【lidera Clown】』—— 劇團由小丑帶領,我先前標為 △ 未證實的『由小丑帶領的流浪表演團』因此升級為 ✓;(2)『Li recorda quan ell mateix va fugir del seu destí, que és substituir al seu pare i casar-se amb la seva promesa, Lina』—— 對應繁中『瓊安曾離開小鎮、夢想成為藝術家,最終被父親與安穩人生拉回原處』。",
+    "recomana.cat 獨立佐證小丑:『aquell altre Clown que dirigeix la companyia ambulant』,並說明鎮長與小丑由同一演員(Àngels Gonyalons)飾演,是因為兩者被設定為彼此相反又互補的兩面。",
+    "⚠ 但這一輪查出【我自己真的漏掉的東西】:官方 sinopsi 明寫『L'autoritari i fals demòcrata alcalde obliga el seu fill a desistir dels seus somnis』(專斷而假意民主的鎮長強迫兒子放棄夢想)。英文與簡中都有寫,【只有繁中漏了】。這比 Gemini 提的那點更值得修 —— 而且它正好說明鎮長的『善意』確實有反諷,只是反諷不在營利,而在他是個專斷的假民主派。"
    ],
    "group": "快乐即逝",
    "sources": [
@@ -2800,13 +2807,16 @@
     "https://www.douban.com/event (中文版介紹)",
     "https://www.dagolldagom.com/ca/lalegriaquepassa (製作方官網,取得完整 sinopsi)",
     "https://ca.wikipedia.org/w/api.php?action=query&prop=extracts&titles=L'alegria que passa (musical) (維基官方 API)",
-    "https://www.grup62.cat/blog/actualitat/articulo-alegria-passa-personatges (⛔ WAF 阻擋,未取得,未嘗試繞過)"
+    "https://www.grup62.cat/blog/actualitat/articulo-alegria-passa-personatges (⛔ WAF 阻擋,未取得,未嘗試繞過)",
+    "https://www.vilaweb.cat/noticies/dagoll-dagom-acomiada-rusinol/ (逐字寫出鎮長請劇團的動機,以及劇團由 Clown 帶領)",
+    "https://www.recomana.cat/obra/lalegria-que-passa/ (獨立佐證 Clown 帶領劇團;說明鎮長與小丑同一演員的設計用意)",
+    "https://www.3cat.cat/3catinfo/3cat-estrena-lalegria-que-passa-lultim-musical-de-dagoll-dagom/noticia/3282122/"
    ],
    "official_plot": "官方 sinopsi:一個灰暗、單調的工業小鎮,日復一日的勞動節奏因為一個大型歌舞團的到來而被打斷。這個劇團是鎮長請來的 —— 他同時也是全鎮唯一那間工廠的老闆。鎮長的兒子【Joan】正要和未婚妻【Lina】結婚,卻愛上了劇團的大明星【Zaira】,想跟她一起逃離這個灰色小鎮。然而 Zaira 早已厭倦四處漂泊的生活,她想要的正是留在鎮上、過安穩的日子。",
    "checks": {
-    "劇情": "✓ 三語都寫對了「灰暗工業小鎮 + 鎮長請來歌舞團」的開場。✗ 簡中原本漏掉未婚妻 Lina 與「鎮長=全鎮唯一工廠老闆」。⚠ 英文與簡中皆漏 Puck 這條壓迫線(官方 sinopsi 六要素之一)。⚠ 三語皆未寫「鎮長強迫兒子放棄夢想」。",
-    "事實": "✗ 簡中「天才方舟」劇團名:三個獨立來源皆無,捏造 → 刪。✓ 繁中「經紀人帕克」翻案為正確(官方逐字:Puck, l'agressiu mànager)。",
-    "語意": "✗ 簡中把核心反諷寫軟成「早已習慣漂泊、明白自由伴隨孤獨」—— 那是性格描寫,不是【慾望】。官方的重點是兩人想要的東西【正好相反】:他想帶她走,她想要的正是留下。已改寫為明講。"
+    "劇情": "✓ 鎮長請劇團的動機經 VilaWeb 逐字證實為『給工人一點歡樂、忘掉灰色生活』,與繁中『為驅散沉悶』一致。✗ 繁中漏了官方明寫的『專斷而假意民主的鎮長強迫兒子放棄夢想』(英文與簡中都有)。",
+    "事實": "✓『由小丑帶領的流浪表演團』經 VilaWeb + recomana.cat 兩個獨立來源證實(lidera Clown / Clown que dirigeix la companyia ambulant),先前的 △ 標記升級為 ✓。",
+    "語意": "✓ 鎮長善意的反諷性由官方的『autoritari i fals demòcrata』承擔,補進繁中後三語一致。"
    },
    "fixes": [
     "(英文與繁中皆無需修正)",
@@ -2815,18 +2825,21 @@
     "[簡中][中] 補上未婚妻莉娜(官方角色,原本整個缺席)與「鎮長同時是全鎮唯一工廠的老闆」",
     "[簡中][中] 補上官方 sinopsi 的 Puck(經紀人視她為私有物、粗暴逼她繼續上路)與「專斷而假意民主的鎮長強迫兒子放棄夢想」",
     "[英文][中] 補上同樣漏掉的 Puck 與鎮長強迫兒子放棄夢想兩段(287→329 words)。這是【基準殘缺導致的漏報】,不是英文那輪判斷失誤 —— 當時 official_plot 是截斷版",
-    "[帳本][高] 修正 prefetch 的 official_plot 為完整官方逐字版(原為截斷版,少了 Puck 與鎮長兩句)"
+    "[帳本][高] 修正 prefetch 的 official_plot 為完整官方逐字版(原為截斷版,少了 Puck 與鎮長兩句)",
+    "[繁中][中] 補上官方 sinopsi 明寫、但三語中唯獨繁中漏掉的『專斷、把民主掛在嘴邊的鎮長,最終出手強迫兒子放棄夢想』;為容納此句精簡六處贅語,459→448 字",
+    "[查證][—] 駁回 Gemini 對動機的修改建議(『唯利是圖 / 帶動消費 / 展現政績』查無任何來源),維持原文『為驅散沉悶』",
+    "[帳本][—]『由小丑帶領』從 △ 未證實升級為 ✓ 已證實(兩個獨立加泰語來源)"
    ],
    "confidence": "high",
-   "verify_scope": "多源交叉:製作方官網完整 sinopsi(第一手)+ ca.wikipedia 官方 API + 搜尋摘要的卡司對應。grup62.cat 角色解析因 WAF 未能取得,已如實記錄。",
+   "verify_scope": "多源交叉:製作方官方 sinopsi(第一手)+ VilaWeb(逐字動機與 Clown)+ recomana.cat(獨立佐證 Clown 與角色設計)。三處一致,且對 Gemini 提出的營利動機一致沉默。",
    "lang_done": [
     "en",
     "zh-hant"
    ],
    "discarded": [
-    "捨棄假設「繁中的經紀人帕克是模型捏造」—— 官方逐字證實存在,且『視為私有物』『逼她繼續』皆命中。這是第 17 次「懷疑生成有錯 → 查證後發現生成是對的」",
-    "未採用 Nil(敘事者)與小丑的細節進入三語正文:官方 sinopsi 本身沒寫,只在卡司與劇評層級出現,且三語字數已滿",
-    "繁中「小丑帶領的流浪表演團」保留但標記 △:小丑確為真實角色(Àngels Gonyalons 分飾鎮長與小丑),但『帶領劇團』一說未見官方文字;繁中已達 450 字上限無空間調整,風險低故不動"
+    "捨棄 Gemini 建議的『唯利是圖的鎮長為帶動小鎮消費並展現政績』:官方 sinopsi 沒有動機,唯一有記載動機的 VilaWeb 說的是相反方向(為工人的歡樂)。這個建議在文學上說得通,但採用它就是把有來源的內容換成沒來源的內容",
+    "排除『官方沒寫動機所以兩邊都該刪』的做法:VilaWeb 有寫,不是留白,不需要收斂",
+    "注意:鎮長的『善意』並非天真敘述 —— 官方同時稱他 autoritari i fals demòcrata。Gemini 感覺到的反諷是存在的,只是它猜錯了反諷的內容(不是營利,是專斷與強迫兒子)"
    ]
   }
  }

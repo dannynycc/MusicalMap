@@ -11,6 +11,36 @@
 
 ---
 
+## [v2.105.3] - 2026-09-02 12:09
+
+### 《快樂即逝》繁中補上官方明寫、三語中唯獨繁中漏掉的一句(外部意見查證後的結果)
+
+使用者轉來 Gemini 對這篇的建議:認為鎮長請流浪劇團來的動機是「商業利益與展現政績」,
+而非文中寫的「為驅散沉悶」,並要求我自己判斷、不要照單全收。
+
+**查證結果:Gemini 錯,原文維持不動。**
+- 官方 sinopsi 只寫「劇團是由鎮長(同時是全鎮唯一工廠老闆)請來的」,**沒有寫動機** ——
+  所以我的寫法與 Gemini 的寫法在官方文本層面都沒有依據。
+- 但 **VilaWeb** 逐字寫出了動機:「que és qui els ha contractat **per donar als seus
+  treballadors una mica d'alegria i fer oblidar la vida gris que porten**」
+  (鎮長請他們來,是為了給工人一點歡樂、讓他們忘掉自己過的灰色生活)。
+- → 與「為驅散沉悶」一致。採用 Gemini 的說法等於**把有來源的內容換成沒來源的內容**。
+
+**同一輪查證的兩個副產品:**
+- ✅「由小丑帶領的流浪表演團」從 △ 未證實**升級為已證實**:VilaWeb「l'estrella de la
+  companyia que **lidera Clown**」+ recomana.cat「aquell altre **Clown que dirigeix la
+  companyia ambulant**」兩個獨立來源。recomana.cat 另說明鎮長與小丑由同一演員
+  (Àngels Gonyalons)飾演,是因為兩者被設定成彼此相反又互補的兩面。
+- 🚨 **查出我自己真的漏掉的東西**:官方 sinopsi 明寫「L'autoritari i fals demòcrata alcalde
+  obliga el seu fill a desistir dels seus somnis」(專斷而假意民主的鎮長強迫兒子放棄夢想),
+  **英文與簡中都有,只有繁中漏了**。已補進繁中並精簡六處贅語(459 → 448 字)。
+
+這一句比 Gemini 提的那點更值得修,而且正好說明鎮長的「善意」確實有反諷 ——
+只是反諷不在營利,而在他是個專斷的假民主派、還親手扼殺兒子的夢想。
+Gemini 感覺到的反諷是存在的,它只是猜錯了反諷的內容。
+
+---
+
 ## [v2.105.2] - 2026-09-02 11:45
 
 ### 清掉 manual.json 的 4 筆過期檔期 —— 每日自動化紅燈的【另一半】原因
