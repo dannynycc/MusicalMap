@@ -94,6 +94,40 @@ REGION = {
     "제주": ("Jeju", "Jeju"),
 }
 
+# 道 → 該道底下的市。用途:regionName 只給到道級時,標題裡的城市名【必須屬於這個道】
+# 才採用。2026-09-02 實例:「［청주,세종］뮤지컬…」@ 소극장 쇠내골,regionName=충북。
+# 標題同時有 청주 與 세종(那是【巡演城市清單】不是場館所在地),不加這個檢查
+# 會讓同一個場館一半標清州、一半標世宗 —— 世宗是獨立的特別自治市,不在충북。
+PROVINCE_CITIES = {
+    "Gyeonggi-do": {"Suwon", "Goyang", "Yongin", "Seongnam", "Hwaseong", "Anyang",
+                    "Bucheon", "Ansan", "Icheon", "Gunpo", "Anseong", "Pocheon", "Hanam"},
+    "Gangwon-do": {"Chuncheon", "Gangneung", "Wonju", "Yeongwol", "Inje"},
+    "Chungcheongbuk-do": {"Cheongju", "Chungju", "Jecheon"},
+    "Chungcheongnam-do": {"Cheonan", "Gongju", "Asan", "Boryeong"},
+    "Jeollabuk-do": {"Jeonju", "Iksan", "Gunsan"},
+    "Jeollanam-do": {"Yeosu", "Suncheon", "Mokpo"},
+    "Gyeongsangbuk-do": {"Pohang", "Andong", "Gyeongju", "Gumi"},
+    "Gyeongsangnam-do": {"Changwon", "Jinju", "Gimhae", "Yangsan"},
+}
+
+# Interpark 自己的分類會漏。魔術師 최현우 的 7 場裡只有 1 場被標 Non Verbal Performance,
+# 其餘 6 場標成 Creation Musicals —— 子分類擋不住,只能點名。
+# (與 poland.py 的 DROP_ARTISTS 同一個做法:來源把個人秀混進音樂劇分類。)
+DROP_ACTS = ["최현우", "choi hyun woo", "합창단", "기획연주회"]
+
+# 不是「舞台製作」的形式。2026-09-02 拿掉 globalType=EN 後才一起冒出來:
+#   · 이머시브 다이닝 = 沉浸式餐飲(not_musical.json 的說明本來就把它列為排除對象)
+#   · 리딩쇼케이스 / Reading-Showcase = 劇本朗讀會,不是正式製作
+#   · 뮤지컬 콘서트 / Musical Concert = 音樂會版,不是舞台製作
+#   · 「Subtitle]…」= 同一檔的字幕場次,與本體重複(WIDERSTAND 兩筆都在)
+# ⚠️ 刻意【不】排除 음악극(音樂劇場)與 창극(唱劇):那是韓國自己的音樂戲劇類型,
+#    不是「非音樂劇」,砍掉等於單方面刪掉一整個類別。
+NOT_A_PRODUCTION = re.compile(
+    r"이머시브\s*다이닝|immersive\s*dining|리딩\s*쇼케이스|reading[-\s]*showcase|"
+    r"뮤지컬\s*콘서트|musical\s*concert|^\s*[\[［]\s*subtitle\s*[\]］]", re.I)
+# ⚠️ subtitle 那條要吃【全形】括號［］:實際標題是「［Subtitle］ Musical WIDERSTAND」,
+#    第一版只寫半形 [] 完全沒擋到 —— 測了才發現,肉眼看兩者幾乎一樣。
+
 
 # Service/merch products that NOL lists under MUSICAL but are not shows
 # 2026-09-02 補 subtitle glasses / pre-order:拿掉 globalType=EN 後多抓到
@@ -122,6 +156,27 @@ def city_hint(name):
         if ko in name:
             return en
     return None
+
+
+def city_candidates(*texts):
+    """把文字裡出現的【所有】城市名都收集起來(韓文與英文都比)。
+
+    為什麼不能只取第一個:「［청주,세종］뮤지컬…」同時出現清州與世宗,那是
+    【巡演城市清單】不是場館所在地;只取第一個會拿到世宗(場館其實在清州)。
+    呼叫端再用 PROVINCE_CITIES 挑出屬於該道的那一個。
+    英文也要比,因為城市名常常只出現在場館的英文名裡(Seongnam Arts Center)。
+    """
+    found, all_cities = [], set(KO_CITY.values()) | {c for s in PROVINCE_CITIES.values() for c in s}
+    for name in texts:
+        if not name:
+            continue
+        for ko, en in KO_CITY.items():
+            if ko in name and en not in found:
+                found.append(en)
+        for en in all_cities:
+            if re.search(rf"(?:^|[-–(\s]){en}\b", name, re.I) and en not in found:
+                found.append(en)
+    return found
 
 
 def fetch_page(page):
@@ -167,6 +222,10 @@ def main():
             continue
         if JUNK.search(raw_title):
             continue  # caption-glasses rental / parking / merch — not a show
+        if any(a in raw_title.lower() for a in DROP_ACTS):
+            continue  # 魔術師個人秀 / 合唱團公演 —— 來源誤掛在音樂劇分類下
+        if NOT_A_PRODUCTION.search(raw_title):
+            continue  # 沉浸式餐飲 / 劇本朗讀會 / 音樂會版 / 字幕重複場
         title = clean_title(raw_title)
         place = (it.get("placeName") or "").strip()
         if not title or not place:
@@ -176,7 +235,19 @@ def main():
         #    才發現地方場次會被一律標成首爾(「오싹한 알바 - 부산」被標 Seoul),
         #    那是【錯的城市】不是缺值,會在地圖上把釜山的戲釘在首爾。
         rcity, rregion = REGION.get((it.get("regionName") or "").strip(), (None, None))
-        city = city_hint(raw_title) or city_hint(place) or rcity
+        # 🚨 regionName 是 API 的權威欄位,【優先於】從標題/場館名猜出來的城市。
+        #    2026-09-02 實例:「세종문화회관 M씨어터」的 regionName=Seoul(正確,
+        #    세종문화회관在首爾),但場館名含「세종」→ 猜成 Sejong → 連帶讓
+        #    地理編碼查詢變成「…, Sejong, South Korea」→ Google 回世宗市的座標。
+        #    【猜錯的城市會污染地理編碼,把場館搬到另一個城市去】,不只是標籤錯。
+        if rcity:
+            city = rcity                      # 廣域市:直接採用,不讓猜測覆蓋
+        elif rregion:
+            # 只到道級:從標題與場館名的【所有】候選城市裡,挑屬於這個道的那一個。
+            ok = PROVINCE_CITIES.get(rregion, set())
+            city = next((c for c in city_candidates(raw_title, place) if c in ok), None)
+        else:
+            city = city_hint(raw_title) or city_hint(place)
         vk = next((v for k, v in VENUES.items() if k in place.lower()), None)
         # 🚨 白名單是【子字串】比對,會把不同城市的同名場館併成一個。
         #    2026-09-02 實例:API 的「Sejong Culture and Arts Center (Jochiwon)」
