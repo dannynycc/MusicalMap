@@ -1226,5 +1226,18 @@
     "繁中『妍熙』寫成老闆娘、簡中寫『老闆』;官方只寫 주인(店主),未指定性別"
    ]
   }
+ },
+ "_fixes_applied": {
+  "when": "2026-09-03 04:45",
+  "how": "逐條套用 verify_log 裡記下的最小修正,共 67 處(50 處單句替換 + 17 處逐篇全域替換)。只改事實錯的那一處,不動語感、不整段重寫。",
+  "verification": "套用後用已知錯誤清單反掃三語 177 篇:【殘留 0 處】。掃描項目包含 Halabeom / Geunyeo / Geu Namja / Geu Yeoja / Horangi / Gumiho / Kkachi / Kkamagwi / Najdokkaebi / Okhwangsangje / Yosep / Sebang Yohan / Garot Yuda / Dongbang Baksas / Cheotsarang Chatgi / Delphoi / Athina / Helga / Anne Kret / Beoman / Jonsi / ticket.yes24 / 雪話 / 老들 / 漢堡的街頭 / 西緬 / 櫻花園 / 隱匿身分 / Play Bar / 演出資訊顯示 / 雪花的俱樂部 / 2026年地球上最早 / 韩旼烈 / 莱昂贝尔 / 程序员工作中耗尽 / 1930年代的京城 / 二十周年纪念 / 2012年中韩",
+  "note": "兩處第一次未命中,原因是【全形逗號】與【彎引號 ’】,已補上。這類字元差異是逐句替換最常見的漏網,值得記住。"
+ },
+ "_regeneration": {
+  "when": "2026-09-03 04:35 起",
+  "scope": "英文 7 齣 / 繁中 10 齣 / 簡中 8 齣(6 齣三語全重 + 單語重生成)",
+  "method": "🚨 依 SOP §1 的例外條款處理。這些戲的官方劇情【只存在於詳情圖裡】,純文字搜尋找不到,所以模型第一次生成時只能編(有幾齣直接搬了《媽媽咪呀!》《小王子》《Shakespeare's R&J》)。重生成的 prompt 改為【把我本人從官方詳情圖逐字讀出來的原文放進去】,並明令『只根據這段文字寫,不可代換成別的作品、不可自行加入不存在的人物與事件』。",
+  "honesty_note": "⚠ 因此這幾齣的 verify_scope 必須誠實標記為【official_text】而非【multisource】:產出正確不代表模型『知道』這齣戲,而是我把官方文本餵給它做自然語言改寫。查證基準仍是官方原文本身(我獨立讀出的),不構成球員兼裁判 —— 但這一點要寫進帳本,不可含糊。",
+  "incident": "三條並行時 Comet 的 Page.goto 逾時(prompt 變長、輸入時間拉長),英文那條 exit 1。已降並行重跑;memory feedback_perplexity_session_fail_is_ratelimit 記過同類情形。"
  }
 }
