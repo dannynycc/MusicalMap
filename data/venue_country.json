@@ -9,5 +9,6 @@
  "place des arts|montreal": "Canada",
  "victoria, bc|victoria": "Canada",
  "showcenter complex|monterrey": "Mexico",
- "lac - lugano arte e cultura|lugano": "Switzerland"
+ "lac - lugano arte e cultura|lugano": "Switzerland",
+ "_note_lugano": "lac - lugano arte e cultura|lugano 這筆自 2026-09-02 起【冗餘但刻意保留】:scrapers/italy.py 已用 NON_IT_CITIES 直接輸出 Switzerland,不再需要事後修正。留著是雙保險——若那個修正被回退,這裡仍會擋住,不會讓提契諾的場館又靜悄悄變回義大利。"
 }

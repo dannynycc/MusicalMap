@@ -40,6 +40,19 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from geocode import geocode  # noqa: E402  (Nominatim + persistent cache, shared)
 from _guard import guard_shrink  # noqa: E402  (抓取結果暴跌就不覆蓋舊檔)
 
+# teatro.it 上會出現的【非義大利】城市。義大利語劇場圈涵蓋提契諾(義語瑞士)等地,
+# 但本站每一筆的 country 原本都寫死 "Italy"。2026-09-02 由 Lugano 一檔查出來。
+# 影響有兩層:(1) 國家標籤錯 (2) 地理編碼查詢被強制加「, Italy」→ 查到義大利境內
+# 的別的地方(Lugano → 科莫湖畔 Menaggio,差 22 km)。(2) 比 (1) 危險得多。
+NON_IT_CITIES = {
+    # 提契諾州 Ticino(義大利語瑞士)
+    "lugano": "Switzerland", "bellinzona": "Switzerland", "locarno": "Switzerland",
+    "mendrisio": "Switzerland", "chiasso": "Switzerland", "ascona": "Switzerland",
+    "massagno": "Switzerland", "biasca": "Switzerland",
+    # 其他義大利語地區
+    "san marino": "San Marino", "città del vaticano": "Vatican City",
+}
+
 DATA = Path(__file__).resolve().parent.parent / "data"
 CET = timezone(timedelta(hours=1))
 UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/124.0",
@@ -287,20 +300,30 @@ def main():
     shows = []
     n_coords = 0
     for s in rows:
+        # teatro.it 收的是【義大利語】劇場,不等於【義大利境內】—— 提契諾(義語瑞士)
+        # 的場館也會上這個站。這支原本從頭到尾寫死 country="Italy",地理編碼也一律
+        # 強制加「, Italy」。2026-09-02 實例:Lugano 的 LAC 被標成義大利;更糟的是
+        # 城市 fallback 查「Lugano, Italy」拿回來的是【科莫湖畔的 Menaggio】,
+        # 離真正的盧加諾 22 公里 —— 那不是查無,是【查到別的地方】,
+        # 比查無危險得多(有座標、地圖畫得出來、從外面看不出任何問題)。
+        country = NON_IT_CITIES.get((s["city"] or "").lower(), "Italy")
         lat, lng = venue_coords(s["venue"], s["city"])
         if lat is None and s["city"]:
             # 一站一筆後站點變多,手表蓋不住 → 共用 Nominatim 快取;場館查不到退城市中心
+            # slug 保留 |it 前綴(那只是快取命名空間,改了會讓 183 檔全部重新地理編碼);
+            # 但【查詢字串】與城市 fallback 的 slug 要帶真正的國家。
             lat, lng = geocode(f"{s['venue']}|{s['city']}|it".lower(),
-                               f"{s['venue']}, {s['city']}, Italy")
+                               f"{s['venue']}, {s['city']}, {country}")
             if lat is None:
-                lat, lng = geocode(f"city|{s['city']}|italy".lower(), f"{s['city']}, Italy")
+                lat, lng = geocode(f"city|{s['city']}|{country}".lower(),
+                                   f"{s['city']}, {country}")
         if lat is not None:
             n_coords += 1
         sid = "it-" + hashlib.md5(
             f"teatro.it|{s['title']}|{s['venue']}".encode()).hexdigest()[:8]
         shows.append({
             "id": sid, "title": s["title"], "title_en": "",
-            "venue": s["venue"], "city": s["city"], "country": "Italy",
+            "venue": s["venue"], "city": s["city"], "country": country,
             "lat": lat, "lng": lng,
             "start_date": s["start"], "end_date": s["end"],
             "image": s["image"], "ticket_url": s["url"],
