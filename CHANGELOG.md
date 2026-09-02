@@ -11,6 +11,23 @@
 
 ---
 
+## [v2.104.3] - 2026-09-02 10:16
+
+### 護照戳章里程碑死條件修正（me.html + u-view.js）
+
+App 夜間稽核（第 52 輪）對照時抓到：`milestoneFor()` 只比
+`'United Kingdom'`/`'United States'` 全名，但資料層實掃 1,980 場
+country 只有 **'USA'(801)/'UK'(263)、零全名**——死條件：
+「FIRST BROADWAY / FIRST WEST END」里程碑從來沒有人看到過，
+大家永遠只拿到普通的 FIRST。
+
+修法：兩種寫法都收（UK/United Kingdom、USA/United States），
+me.html:543 與 js/u-view.js:300（公開頁同一段）同步修。
+驗證：me.html 全部 inline script 與 u-view.js 通過 node --check；
+App 端 passport.ts 本來就收兩種寫法，兩端從此一致。
+
+---
+
 ## [v2.104.2] - 2026-09-02 09:29
 
 ### 波蘭資料手動刷新(CI 上的 eBilet 抓取連三次被 DataDome 擋下)

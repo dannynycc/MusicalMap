@@ -541,7 +541,9 @@ function stampSvg(s){
 }
 function venueShort(t){const m={'The Phantom of the Opera':'PHANTOM','Les Misérables':'LES MIS',"Standing at the Sky's Edge":"SKY'S EDGE",'The Book of Mormon':'BOOK OF MORMON','König der Löwen':'LÖWEN'};return m[t]||t.slice(0,14);}
 function milestoneFor(s,idxInCountry,firstOfCountry){
-  if(firstOfCountry)return s.country==='United Kingdom'?'FIRST WEST END':s.country==='United States'?'FIRST BROADWAY':'FIRST';  // 非英美不再接空 cc
+  // 🚨 資料層實掃 1,980 場:country 只有 'USA'(801)/'UK'(263)、零全名——舊寫法只比全名是死條件,
+  // FIRST BROADWAY/WEST END 從來沒觸發過(2026-09-02 App 夜間稽核第 52 輪抓到)。兩種寫法都收。
+  if(firstOfCountry){const c=s.country;return (c==='UK'||c==='United Kingdom')?'FIRST WEST END':(c==='USA'||c==='United States')?'FIRST BROADWAY':'FIRST';}  // 非英美不再接空 cc
   return null;
 }
 function renderPassport(){

@@ -297,7 +297,8 @@
     }
     function venueShort(t) { const m = { 'The Phantom of the Opera': 'PHANTOM', 'Les Misérables': 'LES MIS', "Standing at the Sky's Edge": "SKY'S EDGE", 'The Book of Mormon': 'BOOK OF MORMON', 'König der Löwen': 'LÖWEN' }; return m[t] || t.slice(0, 14); }
     function milestoneFor(s, idxInCountry, firstOfCountry) {
-      if (firstOfCountry) return s.country === 'United Kingdom' ? 'FIRST WEST END' : s.country === 'United States' ? 'FIRST BROADWAY' : 'FIRST';
+      // 同 me.html:資料層實為 UK/USA,只比全名=死條件(2026-09-02 修)。
+      if (firstOfCountry) { const c = s.country; return (c === 'UK' || c === 'United Kingdom') ? 'FIRST WEST END' : (c === 'USA' || c === 'United States') ? 'FIRST BROADWAY' : 'FIRST'; }
       return null;
     }
     function renderPassport() {
