@@ -27,6 +27,21 @@ if LANG == "en":
             "Greek, Thai...), transliterate them into the Latin alphabet using the standard "
             "romanisation of that language (Korean 유견 -> Yugyeon, 이산 -> Yi San, 사도 -> Sado). "
             "The English text must contain no non-Latin characters at all. "
+            # 🚨 2026-09-03 韓國批查證抓到的反效果:上面那句被【過度套用到普通名詞】。
+            # 官方人物表常直接用普通名詞當角色名(그녀=「她」、그 남자/그 여자=「那個男人/女人」、
+            # 호랑이=「老虎」、구미호=「九尾狐」、까치=「喜鵲」),結果英文稿寫成 Geunyeo /
+            # Geu Namja / Horangi / Gumiho / Kkachi,英語讀者完全不知道台上是什麼角色;
+            # 連公司名 첫사랑 찾기 주식회사 都被整串拼成 Cheotsarang Chatgi Jusik Hoesa。
+            # 只有【專有名詞】要拼音,普通名詞一律意譯。
+            "BUT romanise only proper names (people, places). If a character or organisation is named "
+            "with an ordinary noun or phrase rather than a personal name — Korean 그녀 (\"She\"), "
+            "그 남자 / 그 여자 (\"the Man\" / \"the Woman\"), 호랑이 (\"the Tiger\"), 구미호 "
+            "(\"the Nine-tailed Fox\"), 첫사랑 찾기 주식회사 (\"First Love Finding Inc.\") — "
+            "translate it into English instead of transliterating it. "
+            # 同理,英語本來就有標準名稱的地名/人名要用英語標準寫法,不要用當地語言轉寫
+            # (Delphoi/Athina 被寫進英文稿,應是 Delphi/Athens)。
+            "For places and historical figures that already have a standard English name, use the "
+            "English name (Delphi not Delphoi, Athens not Athina). "
             "IMPORTANT: end with a SEPARATE final paragraph of two to three sentences summarising the whole "
             "show's themes. "
             "Open the first sentence inside the story itself — a scene, a person, an action. "
@@ -100,7 +115,9 @@ def clean(text, q):
         if re.match(r"^(Searching|Reading|Analyzing|Looking|Gathering|Checking)", s): continue  # 英文進度行
         if TS.match(s): continue
         if re.sub(r"\s+","",s)==qn: continue
-        if re.fullmatch(r"(wikipedia|britannica|theatermania|stageagent|mtishows|playbill|broadwayworld|whatsonstage|concordtheatricals|londontheatre|masterworksbroadway|broadwaymusicalhome|theatregold|seatplan|ibdb|fandom|broadway|[a-z0-9.\-]+\.[a-z]{2,})",s,re.I): continue  # 來源名殘留(Perplexity 內文引註)
+        # ⚠ 網域尾綴不一定全是字母:2026-09-03 韓國批實測,韓國售票站【ticket.yes24】
+        # 因為結尾是數字而躲過 [a-z]{2,},在 5 篇裡被當成正文留了下來。改成允許數字結尾。
+        if re.fullmatch(r"(wikipedia|britannica|theatermania|stageagent|mtishows|playbill|broadwayworld|whatsonstage|concordtheatricals|londontheatre|masterworksbroadway|broadwaymusicalhome|theatregold|seatplan|ibdb|fandom|broadway|[a-z0-9.\-]+\.[a-z][a-z0-9]{1,})",s,re.I): continue  # 來源名殘留(Perplexity 內文引註)
         if re.fullmatch(r"[a-z][a-z0-9\-]{1,}", s): continue         # 無點連寫來源名殘留(mtishows/wantedmusical/countrygirlthemusical/nationaltheatrescotland…):整行單一小寫 latin token,正文成段絕不會如此。2 字元起(原本 {3,} 漏掉 hdk/nfi 這種三字母劇院縮寫)
         if PROGRESS.match(s) and len(s)<40: continue
         keep.append(ln)
@@ -115,6 +132,10 @@ def clean(text, q):
     # 2026-09-02 實測:繁中 ella era anita 正文裡出現兩個「［］」(全形)。
     # 逐行過濾抓不到(它黏在句末,不是獨立一行),所以在成文後做行內清除。
     out=re.sub(r"\s*[\[［]\s*\d*\s*[\]］]", "", out)
+    # 來源名也會【黏在句末】而不是自成一行(『…retain his place in the palace. ticket.yes24』),
+    # 逐行過濾抓不到,所以成文後再做一次行內清除。
+    out=re.sub(r"(?:(?<=[.。!?！？」』\"'])|(?<=" + chr(10) + r"))\s*"
+               r"[a-z0-9][a-z0-9.\-]*\.[a-z][a-z0-9]{1,}\s*(?=" + chr(10) + r"|$)", "", out)
     if LANG == "zh-hant":
         try:
             from polish import normalize_tw
