@@ -85,25 +85,10 @@ VENUES = {
 # --- Non-musical filter ----------------------------------------------------
 # Drop if any of these substrings appear in the (lower-cased) title. Covers the
 # concert / recital / gala / talent-show / stand-up / solo-artist-tour leakage.
-DROP_WORDS = [
-    "koncert", "recital", "jazz", "kolęd", "koled", "kabaret", "stand-up",
-    "stand up", "komediowy", "komediowa", "gala", "talent show", " tour",
-    "tribute", "symfonicz", "improwizowany", "improwizacja",
-]
-# Known solo artists whose "musicale"-bucket entries are live shows, not musicals.
-DROP_ARTISTS = [
-    "michał bajor", "michal bajor", "edyta geppert", "igor herbut",
-    "grzegorz turnau", "kayah", "andrzej piaseczny",
-]
-# Strong KEEP signals — overrides the drop list (e.g. a title that contains both
-# "musical" and a borderline word). Known musical/operetka titles + genre words.
-KEEP_WORDS = [
-    "musical", "musicalow", "operetka", "wicked", "six", "mamma mia",
-    "skrzypek na dachu", "dracula", "beetlejuice", "madagaskar",
-    "next to normal", "metro", "dzień świstaka", "dzien swistaka",
-    "chłopi", "chlopi", "wiedźmin", "wiedzmin", "producenci", "high heels",
-    "my fair lady", "polita",
-]
+# 音樂劇判定與 DROP/KEEP 清單已抽到 scrapers/_pl_musical.py,
+# 與 poland_teatry.py(劇院官網)共用同一份規則——兩邊分岔會產生
+# 「同劇在 A 來源算音樂劇、在 B 來源不算」這種最難查的資料錯。
+from _pl_musical import is_musical  # noqa: E402
 
 
 class FetchFailed(Exception):
@@ -180,20 +165,6 @@ def collect_slugs():
             slugs.setdefault(s, None)
         time.sleep(3.0)   # be polite between listing requests
     return list(slugs)
-
-
-def is_musical(title):
-    """Return (keep: bool, reason: str). KEEP words win over DROP words."""
-    t = title.lower()
-    if any(k in t for k in KEEP_WORDS):
-        return True, "keep-signal"
-    for a in DROP_ARTISTS:
-        if a in t:
-            return False, f"solo-artist ({a})"
-    for w in DROP_WORDS:
-        if w in t:
-            return False, f"non-musical word ({w.strip()})"
-    return None, "unsure"   # None = no strong signal either way
 
 
 def parse_event(slug):

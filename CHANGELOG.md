@@ -11,6 +11,96 @@
 
 ---
 
+## [v2.105.0] - 2026-09-02 11:00
+
+### 波蘭改抓劇院官網:解掉單一來源依賴,場次 10 → 20 齣
+
+波蘭原本 **100% 只靠 eBilet 一個來源**,而 eBilet 有 DataDome bot 牆。新增
+`scrapers/poland_teatry.py` 直抓三間華沙音樂劇院官網,eBilet 降為補充來源。
+
+**先確認過「真的只有一個來源」**:`ticketmaster.py` 的國家清單雖然含 `PL`,
+實測 `tm_tours.json` / `ticketmaster.json` 裡波蘭 **0 筆**,形同虛設。
+另外試過 KupBilecik / Bilety24 / Going. / Eventim.pl / Biletyna —— 華沙那幾齣大戲
+(Wicked / SIX / Beetlejuice)在這些平台上都找不到,**因為劇院自己賣票**。
+這正好說明官網才是對的來源。
+
+| 來源 | 方式 | 抓到 |
+|---|---|---|
+| Teatr Syrena | 純 HTTP,逐製作頁 | 10 齣 |
+| Teatr Muzyczny ROMA | 純 HTTP,售票子網域月曆 `?m=&y=` | 1 齣 |
+| Studio Buffo | Playwright(日期是 JS 算繪),月表 | 5 齣 |
+| eBilet(降級) | 原樣保留 | 補租借場地的 4 齣 |
+
+**交叉驗證:eBilet 原有 11 齣,0 遺失。** 三間劇院涵蓋的 7 齣裡有 6 齣日期與 eBilet
+**完全一致**(`Bitwa o tron` 官網多一場 10/15,以劇院自家售票日曆為準);
+其餘 4 齣在租借場地(STUDIO teatrgaleria / Hala Stulecia / OSKARD / Hala Globus),
+官網不涵蓋,仍由 eBilet 提供。shows.json 波蘭 10 → 20,全庫 1973 → 1983,零場次消失。
+
+### 新增的 10 齣逐齣查證過,不是靠「這是音樂劇院所以都算」
+
+`Starzyński`(官方寫 premiera musicalu)、`Kajko i Kokosz`(漫畫改編音樂劇,
+Jakub Lubowicz 作曲)、`Na prochach`(eBilet 歸類 Spektakle Muzyczne)、
+`Wypiór`(演職員表有作曲 Mariusz Obijalski 與作詞 Grzegorz Uzdański)、
+`MISTRZ I MAŁGORZATA`(Janusz Józefowicz 導演、Janusz Stokłosa 作曲)、
+`Matylda` / `Wszyscy mówią o Jamiem` / `ROMEO I JULIA` / `PIOTRUŚ PAN`(已知音樂劇)。
+
+❌ **排除 `GULLIVER´s TRAVELS`**:查出來是 TNT Theatre Britain 的英語巡演【話劇】,
+而且實際演出地是 Teatr V6 不是 Buffo —— 收進來會同時錯在「不是音樂劇」與
+「標錯場館座標」。已在 `_pl_musical.VENUE_ONLY_DROP` 加上外語客座演出的排除。
+
+✅ **順帶救回一齣被誤殺的**:`Bitwa o tron` 先前在 shows.json 裡是**被過濾掉的** ——
+eBilet 的完整標題「Bitwa o tron. Musicalowy talent show」中了 `talent show` 排除規則。
+查證後確認它是 Teatr Syrena 2021 年的**原創音樂劇**(Jacek Mikołajczyk 編劇作詞導演、
+Tomasz Filipczak 作曲),拿過觀眾票選「年度最佳首演」「最佳導演」等獎,
+只是採用選秀節目的形式當敘事框架。官網標題沒有那個副標,因此得以收進來。
+
+### 開發過程踩到三個「會讓成品不能用」的坑,都記在程式碼註解裡
+
+1. **過濾器靜默失效。** `is_musical()` 回傳的是 **(keep, reason) 三態 tuple**,不是 bool。
+   第一版寫成 `if not is_musical(title)` —— 非空 tuple 永遠為真,**過濾整個沒作用**,
+   演唱會與禮券會被當成音樂劇收進來。不會報錯、資料看起來也「有出來」。
+   → 抽出 `scrapers/_pl_musical.py` 共用模組,提供 `keep_for_venue_site()` 正確解包三態。
+2. **日期抓錯區塊。** 「Najbliższe spektakle」那段的日期是 `24.09`(**沒有年份**),
+   我的正則要四位年份,結果 Syrena 一齣都抓不到。正確來源是訂票的日期選單
+   (`24.09.2026, 19:00`)。另外每頁頁尾有個無關的 `18.07.2002`(電子報法條),
+   直接對整頁取 min/max 會把開演日算成 2002 年。
+3. **巡演場次被併進錯的場館。** Buffo 的節目表連外地巡演也列
+   (「Musical METRO - trasa koncertowa … - Arena Jaskółka Tarnów」),
+   而劇名清理會把「- trasa koncertowa …」剝掉 → 剝完變「METRO」被併進華沙那筆,
+   把塔爾努夫的場次標到華沙座標上,`METRO` 結束日因此從 2026-12-13 被拉長到 2027-06-05。
+   → 在清理【之前】就擋掉巡演列。
+
+🚨 **另外差點用一個恆真的檢查交卷**:本來想用「頁面有沒有出現 musical」判斷是不是音樂劇,
+結果每頁都 True —— 導覽選單裡就有「Historia musicalu」。加了對照組(教育頁、餐廳頁)
+才發現它們也全中。**檢查器要先證明它會對不該過的東西說不。**
+
+### 重構:`is_musical` 抽成共用模組(附回歸測試)
+
+`poland.py` 與 `poland_teatry.py` 現在共用 `scrapers/_pl_musical.py` 的同一份
+DROP/KEEP 清單 —— 兩邊規則分岔會產生「同一齣在 A 來源算音樂劇、在 B 來源不算」
+這種最難查的資料錯。另一個原因是 `poland.py` 在 module 層改 `sys.stdout`,
+別的腳本 `from poland import …` 會連帶被改掉輸出串流(實測會炸
+「I/O operation on closed file」)。
+
+**回歸測試**:拿 git 版的 `is_musical` 與抽出後的版本比對 31 個劇名,**0 個不一致**;
+三態分布 True 14 / None 9 / False 8,證明測試不是恆真。
+
+### CI:新來源設 gate,eBilet 降為 warn
+
+```
+gate "poland (劇院官網)"    python scrapers/_run.py scrapers/poland_teatry.py
+warn "poland (ebilet 補充)"  python scrapers/_run.py scrapers/poland.py
+```
+eBilet 被 DataDome 擋不再讓整個 run 變紅(2026-09-01 起連三班因此紅燈)。
+`poland_teatry.py` 自己有守門:三個來源各有 `MIN_EXPECTED` 下限,
+任一低於下限就**整輪中止、不寫檔**(首次實測 Syrena 回 0 時確實擋下來了,不是空轉的守門)。
+
+`build_shows.py` 三處登記新來源:`SOURCE_FILES` 加 `poland_teatry.json`、
+`SOURCE_PRIORITY` 把 `.official` 排到最前(去重時官網勝過售票平台)、
+`SOURCE_LABEL` 與 `OFFICIAL_SOURCES` 讓按鈕顯示「劇院官網」而非「售票連結」。
+
+---
+
 ## [v2.104.3] - 2026-09-02 10:16
 
 ### 護照戳章里程碑死條件修正（me.html + u-view.js）

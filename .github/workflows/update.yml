@@ -100,7 +100,11 @@ jobs:
           gate "italy (teatro.it)"             python scrapers/_run.py scrapers/italy.py
           gate "sweden (showtic)"              python scrapers/_run.py scrapers/sweden.py
           gate "netherlands (stage)"           python scrapers/_run.py scrapers/netherlands.py
-          gate "poland (ebilet)"               python scrapers/_run.py scrapers/poland.py
+          # 波蘭有兩條路。主力是【劇院官網】(Syrena/ROMA/Buffo,沒有 bot 牆);
+          # eBilet 只補租借場地的巡演,它有 DataDome、會間歇性擋掉整個機房 IP
+          # (2026-09-01 起連三班被擋),所以降成 warn:掛掉只提醒,不再讓整個 run 變紅。
+          gate "poland (劇院官網)"             python scrapers/_run.py scrapers/poland_teatry.py
+          warn "poland (ebilet 補充)"          python scrapers/_run.py scrapers/poland.py
           gate "norway"                        python scrapers/_run.py scrapers/norway.py
           gate "austria (VBW)"                 python scrapers/_run.py scrapers/austria.py
           gate "middleeast (platinumlist)"     python scrapers/_run.py scrapers/middleeast.py

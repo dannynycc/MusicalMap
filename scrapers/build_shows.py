@@ -198,7 +198,11 @@ SOURCE_FILES = ["broadway.json", "westend.json", "tours.json", "intl.json",
                 "atg.json", "stage_de.json", "madrid.json", "barcelona.json",
                 "atrapalo.json", "opentix.json",
                 "utiki.json", "japan.json", "easteurope.json",
-                "italy.json", "sweden.json", "netherlands.json", "poland.json",
+                "italy.json", "sweden.json", "netherlands.json",
+                # 波蘭有兩條路:劇院官網(poland_teatry,主力、沒有 bot 牆)與
+                # eBilet(poland,補充,涵蓋租借場地的巡演;有 DataDome 會被擋)。
+                # 兩檔的重複由下面既有的 (group, city, venue) / (group, 座標) 去重處理。
+                "poland_teatry.json", "poland.json",
                 "norway.json", "austria.json", "middleeast.json", "china.json",
                 "china_poly.json", "china_ypiao.json", "china_chinaticket.json",
                 "china_juooo.json", "china_damai.json",
@@ -211,7 +215,7 @@ SOURCE_FILES = ["broadway.json", "westend.json", "tours.json", "intl.json",
 # want atrapalo to win the primary record (it's the channel we monetise via Sovrn;
 # teatromadrid sells through its own 4tickets/OneBox, which earns us nothing). The
 # non-monetised source's buy link still rides along (merged), so coverage is kept.
-SOURCE_PRIORITY = ["shiki.jp", "kageki", "broadway-show-tickets", "londontheatre",
+SOURCE_PRIORITY = [".official", "shiki.jp", "kageki", "broadway-show-tickets", "londontheatre",
                    "interpark", "stage-entertainment", "atrapalo", "teatromadrid", "manual",
                    "broadway.org", "atgtickets", "ticketmaster"]
 SOURCE_LABEL = {
@@ -221,9 +225,11 @@ SOURCE_LABEL = {
     "ticketmaster": "Ticketmaster", "manual": "官方售票", "shgtheatre": "上海大劇院",
     "teatromadrid": "TeatroMadrid", "atrapalo": "Atrápalo",
     "livenation": "Live Nation", "ndm.cz": "NDM官網",
+    ".official": "劇院官網",
 }
 # 官網(製作方/劇團/劇院自營) vs 售票平台(第三方票務)。
-OFFICIAL_SOURCES = ("shiki.jp", "kageki", "stage-entertainment", "shgtheatre", "ndm.cz")
+OFFICIAL_SOURCES = ("shiki.jp", "kageki", "stage-entertainment", "shgtheatre", "ndm.cz",
+                    ".official")   # 波蘭劇院官網:syrena/roma/buffo.official
 
 
 def src_kind(src):

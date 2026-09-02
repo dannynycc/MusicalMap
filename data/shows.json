@@ -1,9 +1,9 @@
 {
   "meta": {
     "source": "merged",
-    "generated_at": "2026-09-02 01:28 UTC",
-    "total": 1973,
-    "verified": 1973,
+    "generated_at": "2026-09-02 02:57 UTC",
+    "total": 1983,
+    "verified": 1983,
     "unverified": 0,
     "sources": [
       {
@@ -190,6 +190,14 @@
         "meta": {
           "source": "stage-entertainment.nl",
           "count": 2
+        }
+      },
+      {
+        "file": "poland_teatry.json",
+        "count": 16,
+        "meta": {
+          "source": "官方劇院網站(Syrena / ROMA / Buffo)",
+          "count": 16
         }
       },
       {
@@ -30551,7 +30559,45 @@
       "alt": "MJ the Musical MJ The Michael Jackson Musical 麥可傑克森音樂劇 麦可杰克森音乐剧 麥可·傑克森 麦可·杰克森 MJ：音樂劇 MJ：音乐剧"
     },
     {
-      "id": "pl-55a9ad38",
+      "id": "plt-0cef19e1",
+      "title": "Wicked",
+      "title_en": "",
+      "venue": "Teatr Muzyczny ROMA",
+      "city": "Warszawa",
+      "country": "Poland",
+      "lat": 52.227624,
+      "lng": 21.007693,
+      "start_date": "2026-09-26",
+      "end_date": "2026-11-29",
+      "image": "https://cdn-imgix.headout.com/media/images/2f4ad34a-ed5c-4e2f-9698-5feb968d87aa-1783944799004-439435.png",
+      "ticket_url": "https://bilety.teatrroma.pl/",
+      "type": "tour",
+      "verified": true,
+      "source": "roma.official",
+      "group": "wicked",
+      "ticket_links": [
+        {
+          "label": "官方網站",
+          "url": "https://wickedthemusical.com/",
+          "kind": "official"
+        },
+        {
+          "label": "劇院官網",
+          "url": "https://bilety.teatrroma.pl/",
+          "kind": "official"
+        },
+        {
+          "label": "售票連結",
+          "url": "https://www.ebilet.pl/teatr/musicale/wicked",
+          "kind": "ticketing"
+        }
+      ],
+      "link_kind": "official",
+      "tag": "Broadway/West End",
+      "alt": "Wicked ウィキッド 女巫前傳 女巫前传 魔法壞女巫 魔法坏女巫 罪惡壞女巫 罪恶坏女巫"
+    },
+    {
+      "id": "plt-6e501afb",
       "title": "Metro",
       "title_en": "",
       "venue": "Teatr Studio Buffo w Warszawie",
@@ -30561,24 +30607,82 @@
       "lng": 21.026116,
       "start_date": "2026-09-18",
       "end_date": "2026-12-13",
-      "image": "https://www.ebilet.pl/media/cms/media/y34dgv44/metro35_1080x1080.webp",
-      "ticket_url": "https://www.ebilet.pl/teatr/musicale/metro-w-buffo",
+      "image": "https://www.ebilet.pl/media/cms/media/tmdlsq3e/metro35_1080x1080.webp",
+      "ticket_url": "https://www.studiobuffo.com.pl/repertuar",
       "type": "tour",
       "verified": true,
-      "source": "ebilet.pl",
+      "source": "buffo.official",
       "group": "metro",
-      "link_kind": "ticketing",
-      "tag": "歐陸原創",
-      "alt": "Metro Musical Metro! To już 35 lat!",
       "ticket_links": [
         {
+          "label": "劇院官網",
+          "url": "https://www.studiobuffo.com.pl/repertuar",
+          "kind": "official"
+        },
+        {
+          "label": "售票連結",
           "url": "https://www.ebilet.pl/teatr/musicale/metro-w-buffo",
           "kind": "ticketing"
+        }
+      ],
+      "link_kind": "official",
+      "tag": "歐陸原創",
+      "alt": "Metro Musical Metro! To już 35 lat!"
+    },
+    {
+      "id": "plt-0d35050c",
+      "title": "MISTRZ I MAŁGORZATA",
+      "title_en": "",
+      "venue": "Teatr Studio Buffo w Warszawie",
+      "city": "Warszawa",
+      "country": "Poland",
+      "lat": 52.227947,
+      "lng": 21.026116,
+      "start_date": "2026-09-24",
+      "end_date": "2026-12-20",
+      "image": "",
+      "ticket_url": "https://www.studiobuffo.com.pl/repertuar",
+      "type": "tour",
+      "verified": true,
+      "source": "buffo.official",
+      "group": "mistrz i magorzata",
+      "link_kind": "official",
+      "tag": "歐陸原創",
+      "ticket_links": [
+        {
+          "url": "https://www.studiobuffo.com.pl/repertuar",
+          "kind": "official"
         }
       ]
     },
     {
-      "id": "pl-00a82eea",
+      "id": "plt-cc170e22",
+      "title": "ROMEO I JULIA",
+      "title_en": "",
+      "venue": "Teatr Studio Buffo w Warszawie",
+      "city": "Warszawa",
+      "country": "Poland",
+      "lat": 52.227947,
+      "lng": 21.026116,
+      "start_date": "2026-09-29",
+      "end_date": "2026-12-09",
+      "image": "",
+      "ticket_url": "https://www.studiobuffo.com.pl/repertuar",
+      "type": "tour",
+      "verified": true,
+      "source": "buffo.official",
+      "group": "romeo i julia",
+      "link_kind": "official",
+      "tag": "歐陸原創",
+      "ticket_links": [
+        {
+          "url": "https://www.studiobuffo.com.pl/repertuar",
+          "kind": "official"
+        }
+      ]
+    },
+    {
+      "id": "plt-779f4f13",
       "title": "POLITA",
       "title_en": "",
       "venue": "Teatr Studio Buffo w Warszawie",
@@ -30588,23 +30692,223 @@
       "lng": 21.026116,
       "start_date": "2026-10-03",
       "end_date": "2026-12-06",
-      "image": "https://www.ebilet.pl/media/cms/media/q4jdevy5/polita11-ef1384ee-706b-4c44-9f72-b08e15534a5c.webp",
-      "ticket_url": "https://www.ebilet.pl/teatr/musicale/polita-musical-3d-live",
+      "image": "",
+      "ticket_url": "https://www.studiobuffo.com.pl/repertuar",
       "type": "tour",
       "verified": true,
-      "source": "ebilet.pl",
+      "source": "buffo.official",
       "group": "polita",
-      "link_kind": "ticketing",
+      "ticket_links": [
+        {
+          "label": "劇院官網",
+          "url": "https://www.studiobuffo.com.pl/repertuar",
+          "kind": "official"
+        },
+        {
+          "label": "售票連結",
+          "url": "https://www.ebilet.pl/teatr/musicale/polita-musical-3d-live",
+          "kind": "ticketing"
+        }
+      ],
+      "link_kind": "official",
+      "tag": "歐陸原創"
+    },
+    {
+      "id": "plt-4739333f",
+      "title": "PIOTRUŚ PAN",
+      "title_en": "",
+      "venue": "Teatr Studio Buffo w Warszawie",
+      "city": "Warszawa",
+      "country": "Poland",
+      "lat": 52.227947,
+      "lng": 21.026116,
+      "start_date": "2026-10-06",
+      "end_date": "2026-12-03",
+      "image": "",
+      "ticket_url": "https://www.studiobuffo.com.pl/repertuar",
+      "type": "tour",
+      "verified": true,
+      "source": "buffo.official",
+      "group": "piotrus pan",
+      "link_kind": "official",
       "tag": "歐陸原創",
       "ticket_links": [
         {
-          "url": "https://www.ebilet.pl/teatr/musicale/polita-musical-3d-live",
-          "kind": "ticketing"
+          "url": "https://www.studiobuffo.com.pl/repertuar",
+          "kind": "official"
         }
       ]
     },
     {
-      "id": "pl-66516edb",
+      "id": "plt-43e377a4",
+      "title": "Wszyscy mówią o Jamiem",
+      "title_en": "",
+      "venue": "Teatr Syrena w Warszawie",
+      "city": "Warszawa",
+      "country": "Poland",
+      "lat": 52.21643,
+      "lng": 21.022132,
+      "start_date": "2026-09-05",
+      "end_date": "2026-12-20",
+      "image": "",
+      "ticket_url": "https://teatrsyrena.pl/wszyscy-mowia-o-jamiem/",
+      "type": "tour",
+      "verified": true,
+      "source": "syrena.official",
+      "group": "wszyscy mowia o jamiem",
+      "link_kind": "official",
+      "tag": "歐陸原創",
+      "ticket_links": [
+        {
+          "url": "https://teatrsyrena.pl/wszyscy-mowia-o-jamiem/",
+          "kind": "official"
+        }
+      ]
+    },
+    {
+      "id": "plt-8f6c4e7c",
+      "title": "Beetlejuice",
+      "title_en": "",
+      "venue": "Teatr Syrena w Warszawie",
+      "city": "Warszawa",
+      "country": "Poland",
+      "lat": 52.21643,
+      "lng": 21.022132,
+      "start_date": "2026-09-24",
+      "end_date": "2026-11-29",
+      "image": "https://images.ctfassets.net/6pezt69ih962/4zvwwGxyZE8AQZjtTuukOC/566bf286ad4c29ddfdd2e6a4758420e7/BJ-202607-Lydia-BBs-TTG-PrimaryPortrait-480x720.jpg",
+      "ticket_url": "https://teatrsyrena.pl/beetlejuice/",
+      "type": "tour",
+      "verified": true,
+      "source": "syrena.official",
+      "group": "beetlejuice",
+      "ticket_links": [
+        {
+          "label": "官方網站",
+          "url": "https://beetlejuicebroadway.com/",
+          "kind": "official"
+        },
+        {
+          "label": "劇院官網",
+          "url": "https://teatrsyrena.pl/beetlejuice/",
+          "kind": "official"
+        },
+        {
+          "label": "售票連結",
+          "url": "https://www.ebilet.pl/teatr/musicale/beetlejuice",
+          "kind": "ticketing"
+        }
+      ],
+      "link_kind": "official",
+      "tag": "Broadway/West End",
+      "alt": "Beetlejuice 陰間大法師 阴间大法师 ビートルジュース 嘩鬼家族 哗鬼家族 Beetlejuice Karlín"
+    },
+    {
+      "id": "plt-848f33b3",
+      "title": "Na prochach",
+      "title_en": "",
+      "venue": "Teatr Syrena w Warszawie",
+      "city": "Warszawa",
+      "country": "Poland",
+      "lat": 52.21643,
+      "lng": 21.022132,
+      "start_date": "2026-10-09",
+      "end_date": "2026-10-11",
+      "image": "",
+      "ticket_url": "https://teatrsyrena.pl/na-prochach/",
+      "type": "tour",
+      "verified": true,
+      "source": "syrena.official",
+      "group": "na prochach",
+      "link_kind": "official",
+      "tag": "歐陸原創",
+      "ticket_links": [
+        {
+          "url": "https://teatrsyrena.pl/na-prochach/",
+          "kind": "official"
+        }
+      ]
+    },
+    {
+      "id": "plt-6e4dbf11",
+      "title": "Bitwa o tron",
+      "title_en": "",
+      "venue": "Teatr Syrena w Warszawie",
+      "city": "Warszawa",
+      "country": "Poland",
+      "lat": 52.21643,
+      "lng": 21.022132,
+      "start_date": "2026-10-15",
+      "end_date": "2026-10-18",
+      "image": "",
+      "ticket_url": "https://teatrsyrena.pl/bitwa-o-tron-musicalowy-talent-show/",
+      "type": "tour",
+      "verified": true,
+      "source": "syrena.official",
+      "group": "bitwa o tron",
+      "link_kind": "official",
+      "tag": "歐陸原創",
+      "ticket_links": [
+        {
+          "url": "https://teatrsyrena.pl/bitwa-o-tron-musicalowy-talent-show/",
+          "kind": "official"
+        }
+      ]
+    },
+    {
+      "id": "plt-5c924f31",
+      "title": "Starzyński",
+      "title_en": "",
+      "venue": "Teatr Syrena w Warszawie",
+      "city": "Warszawa",
+      "country": "Poland",
+      "lat": 52.21643,
+      "lng": 21.022132,
+      "start_date": "2026-10-23",
+      "end_date": "2026-10-25",
+      "image": "",
+      "ticket_url": "https://teatrsyrena.pl/starzynski/",
+      "type": "tour",
+      "verified": true,
+      "source": "syrena.official",
+      "group": "starzynski",
+      "link_kind": "official",
+      "tag": "歐陸原創",
+      "ticket_links": [
+        {
+          "url": "https://teatrsyrena.pl/starzynski/",
+          "kind": "official"
+        }
+      ]
+    },
+    {
+      "id": "plt-e862ebdd",
+      "title": "Matylda",
+      "title_en": "",
+      "venue": "Teatr Syrena w Warszawie",
+      "city": "Warszawa",
+      "country": "Poland",
+      "lat": 52.21643,
+      "lng": 21.022132,
+      "start_date": "2026-10-30",
+      "end_date": "2027-01-17",
+      "image": "",
+      "ticket_url": "https://teatrsyrena.pl/matylda/",
+      "type": "tour",
+      "verified": true,
+      "source": "syrena.official",
+      "group": "matylda",
+      "link_kind": "official",
+      "tag": "歐陸原創",
+      "ticket_links": [
+        {
+          "url": "https://teatrsyrena.pl/matylda/",
+          "kind": "official"
+        }
+      ]
+    },
+    {
+      "id": "plt-618548e3",
       "title": "SIX",
       "title_en": "",
       "venue": "Teatr Syrena w Warszawie",
@@ -30614,27 +30918,112 @@
       "lng": 21.022132,
       "start_date": "2026-11-06",
       "end_date": "2027-01-24",
-      "image": "https://www.ebilet.pl/media/cms/media/hflcp1fs/six-1080x1080-1-dbe7c6cc-bc7c-4bc9-acc9-5fa399fc0a31.webp",
-      "ticket_url": "https://www.ebilet.pl/teatr/musicale/six",
+      "image": "https://cdn-imgix.headout.com/media/images/ee361875-e48c-4ed3-9b11-854ddb98f748-1775027715542-250505_SIX_ConcertBanners_480x720_RG3.jpg",
+      "ticket_url": "https://teatrsyrena.pl/six-musical/",
       "type": "tour",
       "verified": true,
-      "source": "ebilet.pl",
+      "source": "syrena.official",
       "group": "six",
       "ticket_links": [
         {
           "label": "官方網站",
           "url": "https://teatrsyrena.pl/six-musical/",
           "kind": "official"
+        }
+      ],
+      "link_kind": "official",
+      "tag": "Broadway/West End",
+      "alt": "SIX 六個皇后 六个皇后 六位皇后"
+    },
+    {
+      "id": "plt-3ac9870d",
+      "title": "Wypiór",
+      "title_en": "",
+      "venue": "Teatr Syrena w Warszawie",
+      "city": "Warszawa",
+      "country": "Poland",
+      "lat": 52.21643,
+      "lng": 21.022132,
+      "start_date": "2026-11-20",
+      "end_date": "2026-11-21",
+      "image": "",
+      "ticket_url": "https://teatrsyrena.pl/wypior/",
+      "type": "tour",
+      "verified": true,
+      "source": "syrena.official",
+      "group": "wypior",
+      "link_kind": "official",
+      "tag": "歐陸原創",
+      "ticket_links": [
+        {
+          "url": "https://teatrsyrena.pl/wypior/",
+          "kind": "official"
+        }
+      ]
+    },
+    {
+      "id": "plt-cdcde5f3",
+      "title": "Kajko i Kokosz. Szkoła latania",
+      "title_en": "",
+      "venue": "Teatr Syrena w Warszawie",
+      "city": "Warszawa",
+      "country": "Poland",
+      "lat": 52.21643,
+      "lng": 21.022132,
+      "start_date": "2026-11-21",
+      "end_date": "2026-11-22",
+      "image": "",
+      "ticket_url": "https://teatrsyrena.pl/kajko-i-kokosz-szkola-latania/",
+      "type": "tour",
+      "verified": true,
+      "source": "syrena.official",
+      "group": "kajko i kokosz szkoa latania",
+      "link_kind": "official",
+      "tag": "歐陸原創",
+      "ticket_links": [
+        {
+          "url": "https://teatrsyrena.pl/kajko-i-kokosz-szkola-latania/",
+          "kind": "official"
+        }
+      ]
+    },
+    {
+      "id": "plt-9f5846dd",
+      "title": "Next to Normal",
+      "title_en": "",
+      "venue": "Teatr Syrena w Warszawie",
+      "city": "Warszawa",
+      "country": "Poland",
+      "lat": 52.21643,
+      "lng": 21.022132,
+      "start_date": "2027-01-28",
+      "end_date": "2027-01-31",
+      "image": "",
+      "ticket_url": "https://teatrsyrena.pl/next_to_normal/",
+      "type": "tour",
+      "verified": true,
+      "source": "syrena.official",
+      "group": "next to normal",
+      "ticket_links": [
+        {
+          "label": "官方網站",
+          "url": "https://www.nexttonormal.com/",
+          "kind": "official"
+        },
+        {
+          "label": "劇院官網",
+          "url": "https://teatrsyrena.pl/next_to_normal/",
+          "kind": "official"
         },
         {
           "label": "售票連結",
-          "url": "https://www.ebilet.pl/teatr/musicale/six",
+          "url": "https://www.ebilet.pl/teatr/musicale/next-to-normal",
           "kind": "ticketing"
         }
       ],
-      "link_kind": "ticketing",
+      "link_kind": "official",
       "tag": "Broadway/West End",
-      "alt": "SIX 六個皇后 六个皇后 六位皇后"
+      "alt": "Next to Normal 近乎正常"
     },
     {
       "id": "pl-429215fc",
@@ -30716,39 +31105,6 @@
       ]
     },
     {
-      "id": "pl-3e2f092b",
-      "title": "Next to Normal",
-      "title_en": "",
-      "venue": "Teatr Syrena w Warszawie",
-      "city": "Warszawa",
-      "country": "Poland",
-      "lat": 52.21643,
-      "lng": 21.022132,
-      "start_date": "2027-01-28",
-      "end_date": "2027-01-31",
-      "image": "https://www.ebilet.pl/media/cms/media/vq1cnd23/ntn_grafiki-02-55658b60-3876-1592-29df-a864daf85e32.webp",
-      "ticket_url": "https://www.ebilet.pl/teatr/musicale/next-to-normal",
-      "type": "tour",
-      "verified": true,
-      "source": "ebilet.pl",
-      "group": "next to normal",
-      "ticket_links": [
-        {
-          "label": "官方網站",
-          "url": "https://www.nexttonormal.com/",
-          "kind": "official"
-        },
-        {
-          "label": "售票連結",
-          "url": "https://www.ebilet.pl/teatr/musicale/next-to-normal",
-          "kind": "ticketing"
-        }
-      ],
-      "link_kind": "ticketing",
-      "tag": "Broadway/West End",
-      "alt": "Next to Normal 近乎正常"
-    },
-    {
       "id": "pl-05bede20",
       "title": "Metro",
       "title_en": "",
@@ -30775,72 +31131,6 @@
           "kind": "ticketing"
         }
       ]
-    },
-    {
-      "id": "pl-86c3cfff",
-      "title": "Wicked",
-      "title_en": "",
-      "venue": "Teatr Muzyczny ROMA",
-      "city": "Warszawa",
-      "country": "Poland",
-      "lat": 52.227624,
-      "lng": 21.007693,
-      "start_date": "2026-09-26",
-      "end_date": "2026-11-29",
-      "image": "https://www.ebilet.pl/media/cms/media/r3qhyakd/1080x1080_wickeduniejow-6b76aada-1c28-45a2-9dc7-e4a836b11212.webp",
-      "ticket_url": "https://www.ebilet.pl/teatr/musicale/wicked",
-      "type": "tour",
-      "verified": true,
-      "source": "ebilet.pl",
-      "group": "wicked",
-      "ticket_links": [
-        {
-          "label": "官方網站",
-          "url": "https://wickedthemusical.com/",
-          "kind": "official"
-        },
-        {
-          "label": "售票連結",
-          "url": "https://www.ebilet.pl/teatr/musicale/wicked",
-          "kind": "ticketing"
-        }
-      ],
-      "link_kind": "ticketing",
-      "tag": "Broadway/West End",
-      "alt": "Wicked ウィキッド 女巫前傳 女巫前传 魔法壞女巫 魔法坏女巫 罪惡壞女巫 罪恶坏女巫"
-    },
-    {
-      "id": "pl-b3e910f3",
-      "title": "Beetlejuice",
-      "title_en": "",
-      "venue": "Teatr Syrena w Warszawie",
-      "city": "Warszawa",
-      "country": "Poland",
-      "lat": 52.21643,
-      "lng": 21.022132,
-      "start_date": "2026-09-24",
-      "end_date": "2026-11-29",
-      "image": "https://www.ebilet.pl/media/cms/media/wyrp2f2b/beetlejuice-3-e3551655-2c5a-4a8a-94f0-ff0d5d34283a.webp",
-      "ticket_url": "https://www.ebilet.pl/teatr/musicale/beetlejuice",
-      "type": "tour",
-      "verified": true,
-      "source": "ebilet.pl",
-      "group": "beetlejuice",
-      "ticket_links": [
-        {
-          "label": "官方網站",
-          "url": "https://beetlejuicebroadway.com/",
-          "kind": "official"
-        },
-        {
-          "label": "售票連結",
-          "url": "https://www.ebilet.pl/teatr/musicale/beetlejuice",
-          "kind": "ticketing"
-        }
-      ],
-      "link_kind": "ticketing",
-      "tag": "Broadway/West End",
-      "alt": "Beetlejuice 陰間大法師 阴间大法师 ビートルジュース 嘩鬼家族 哗鬼家族 Beetlejuice Karlín"
     },
     {
       "id": "no-5e06a861",
