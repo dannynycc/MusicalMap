@@ -11,6 +11,62 @@
 
 ---
 
+## [v2.104.1] - 2026-09-02 08:25
+
+### 合併兩對「同劇被拆成兩組」,並修掉一條錯誤的非音樂劇排除規則(順帶救回 2 場)
+
+西葡批次收尾時處理先前標記的重複組別。合併規則沿用既有政策:同一部戲的多地製作要收斂成
+單一 canonical 組別,否則使用者搜 A 查不到 B。
+
+**兩對合併**(`data/works.json` 註冊 canonical + aliases)
+
+| canonical | 併入的孤立組 | 合併後 |
+|---|---|---|
+| `El fil invisible` | `el hilo invisible`(馬德里西語版) | 2 場:Barcelona + Madrid |
+| `¡Bienvenidos! Un musical con éxitos de los 80's y 90's` | `…con los éxitos de los 80's y los 90's-Totana` | 6 場 |
+
+`el fil invisible` 查證:同原著(Míriam Tirado 繪本)、同創作團隊(Alícia Serrat / Daniel Anglès /
+Víctor Arbelo)、同角色群(Nura / Quim / Lia / Àlex),媒體明寫馬德里版是巴塞隆納成功之後的巡演。
+孤立組的三語簡介刪除,知識庫 530 → 528、served 461 → 459。
+
+### 合併時撞到資料遺失,追出一條既有的錯誤排除規則
+
+第一次註冊 bienvenidos 的 canonical 後,**Totana 那一場整個消失**(shows.json 1971 → 1970)。
+
+- **差異測試**(移除條目 → 重建 → Totana 回來)確認是這次合併造成的,不是既有狀態。
+- **逐段比對兩次建置的完整輸出**定位到:不是 `(group, lat, lng)` 或 `(group, city, venue)` 去重
+  (四個場館座標與城市都不同),而是 `not_musical.json` 排除清單,命中數 226 → 227。
+- **內部矛盾**:`¡Bienvenidos! Un musical con éxitos de los 80's y 90's` 在 `not_musical.json` 裡
+  (v2.92.0「剔 47 非音樂劇」時加的),但 `overrides.json` 又有 4 筆 `atr-bienvenidos-*` 把各鎮標題與
+  group 統一成【那個被排除的正式名】。overrides 跑在排除【之後】,所以這 4 筆繞過了排除規則
+  —— 同一齣戲既被判非音樂劇、又留在目錄裡、還寫了三語簡介。
+- **解矛盾**:回查官方文案(Revista Godot)—— 80 年代,Blanca 因父親的壓力逃離小鎮到馬德里追音樂夢,
+  三個年輕人成為她的新夥伴與家人、各自要面對自己的恐懼與成癮,背景是 Movida Madrileña,
+  曲目為 Alaska、Radio Futura、Tino Casal、Mecano。**這是有劇本的點唱機音樂劇,不是致敬演唱會**,
+  not_musical 那一筆判錯。
+- **移除該筆後:1971 → 1973**,多出 **Ciempozuelos** 與 **Cúllar Vega** 兩場
+  —— 這兩鎮沒有 override 保護,一直被錯誤規則靜默丟掉。零場次消失。
+- 再加回合併條目:1973 → 1973,零遺失,該組完整六個城鎮。
+
+🚨 **這個 bug 的形狀值得記**:排除規則與繞過它的 override 並存,規則對「有 override 的」失效、
+對「沒 override 的」照殺。從外面看資料完全正常(三場都在),要等到合併讓第四場繼承了那個被排除的
+group key,矛盾才被逼出來。**稽核只驗「留下的資料對不對」看不見這種靜默刪除。**
+
+### 差點被自己的正則誤導
+
+掃 `el fil invisible` 簡中角色名時,腳本報「缺 Quim 與 Àlex」——**全文一讀發現名字都在**,
+是我的正則漏了簡體字形 `莱` 與單字譯名 `金`。真正的問題是另一件事:簡中把 Quim 譯成「金」,
+與繁中「基姆」、英文 Quim 不一致,已統一為「基姆」。
+(再次印證 `feedback_full_read_beats_automated_qa`:自動掃描的命中與漏報都要人工讀過才算數。)
+
+⚠ 附帶失效:先前為 `el hilo invisible` 做的簡中修正「基姆→基米」(西語版角色作 Quimi)隨該組刪除而失效;
+合併後顯示的是加泰語 canonical,角色名用 Quim 系,原本就是對的。
+
+**QA**:七類已知缺陷 53 組 × 三語 0 命中;裸標題 1584 篇 0 命中;
+`scripts/qa/fixtures/eses_groups.json` 同步 55 → 53 組。
+
+---
+
 ## [v2.104.0] - 2026-09-02 08:07
 
 ### 西葡音樂劇三語簡介補完:55 組全數入庫,逐組留下可檢視的查核證據

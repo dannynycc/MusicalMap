@@ -589,7 +589,16 @@
      "開啟頁面": "(見該組 sources;本輪另新增的定向查詢已記在判斷欄)",
      "看到什麼逐字原文": "(見該組 official_plot)",
      "判斷": "待逐篇細讀"
-    }
+    },
+    "合併輪:目錄裡有兩個 bienvenidos 組,標題只差一個 `los` 與結尾的 `-Totana` 後綴,是同一個巡演製作被來源標題差異拆開。兩組各自寫了三語簡介,內容都是 Blanca 逃離小鎮到馬德里、Movida Madrileña 背景 —— 同一齣戲無疑。",
+    "⚠ 值得記:兩份英文簡介是同一個模型獨立生成兩次,**相似度只有 0.047**(繁中 0.238),卻都寫對了。這再次說明『相似度低』不等於『有錯』,不能拿相似度當判定依據。",
+    "第一次嘗試:在 works.json 註冊 canonical + alias。重建後 Totana 那一場【整個消失】,shows.json 1971 → 1970。",
+    "差異測試(移除條目 → 重建):Totana 回來,1971。確認是我的合併造成的資料遺失,不能就這樣上。",
+    "追因:比對兩次建置的完整輸出,差異在 `dropped N non-musical(s) from not_musical.json exclusion list` 226 → 227 —— 不是去重,是【排除清單】。",
+    "查 `data/not_musical.json`:「¡Bienvenidos! Un musical con éxitos de los 80's y 90's」在 titles 清單裡(v2.92.0『剔 47 非音樂劇』時加的)。但 `data/overrides.json` 又有 4 筆 `atr-bienvenidos-*` 條目把各鎮的標題與 group 統一成那個【被排除的】正式名 —— 而 overrides 跑在排除之後,等於讓排除規則對這 4 筆失效。這就是內部矛盾:同一齣戲既被判定非音樂劇、又被 override 留在目錄裡、我還為它寫了三語簡介。",
+    "解矛盾:回頭查它到底是不是音樂劇。Revista Godot 官方文案有完整劇本線 —— 80 年代,Blanca 因父親的壓力逃離小鎮到馬德里追音樂夢;三個年輕人成為她的新夥伴與家人,各自要面對自己的恐懼與成癮;背景是 Movida Madrileña,曲目為 Alaska、Radio Futura、Tino Casal、Mecano 等 80 年代金曲。這是【有劇本的點唱機音樂劇】,不是致敬演唱會,not_musical 那筆判錯了。",
+    "移除該筆後重建:1971 → 1973,**多出兩場一直被靜默丟掉的巡演場次**(Ciempozuelos 的 Sala Multifuncional、Cúllar Vega 的 Teatro Municipal)—— 這兩鎮沒有 override 保護,所以被排除規則殺掉了。零場次消失。",
+    "再加回 works.json 合併條目:1973 → 1973,零遺失,該組完整六個城鎮(Alcalá de Henares、Ciempozuelos、Cúllar Vega、La Puebla de Montalbán、Totana、Águilas)。"
    ],
    "group": "bienvenidos un musical con exitos de los 80s y 90s",
    "sources": [
@@ -597,21 +606,30 @@
     "https://teatromadrid.com/espectaculo/bienvenidos-el-musical-de-los-80-y-90",
     "https://www.atrapalo.com/entradas/bienvenidos-el-musical-de-los-80-90_e4920189/",
     "https://feverup.com/m/314001/en",
-    "https://nuevaalcarria.com/articulos/el-musical-bienvenidos-llega-a-cabanillas-del-campo-..."
+    "https://nuevaalcarria.com/articulos/el-musical-bienvenidos-llega-a-cabanillas-del-campo-...",
+    "https://revistagodot.com/obras/bienvenidos-el-musical-de-los-80-90-2/ (官方劇情文案,判定是否為音樂劇的關鍵來源)"
    ],
    "official_plot": "官方 sinopsis(逐字):Blanca, una joven con una pasión desbordante por la música, huye de su pueblo y la presión de su padre para perseguir su sueño musical en Madrid. Tres jóvenes se convertirán en sus nuevos compañeros y familia, los cuales tendrán que enfrentarse a sus propios miedos y adicciones. Llena de ilusión y con la Movida Madrileña de telón de fondo, encontrará en cada esquina un nuevo talento.",
-   "checks": [
-    "待逐篇細讀",
-    "【語意】繁中 447 字,落在 px_gen 的 400–450 區間;裸標題與引用標記殘留掃描 0 命中"
-   ],
+   "checks": {
+    "劇情": "✓ 兩組的三語簡介都寫對了同一個故事(Blanca / 父親的壓力 / 馬德里 / Movida Madrileña),保留 3 場那組的版本。",
+    "事實": "✗ `not_musical.json` 把本作判為非音樂劇 —— 官方文案有完整劇本與角色線,判錯,已移除該筆。",
+    "語意": "✓ 保留版本無問題。"
+   },
    "fixes": [
-    "[EN][中] 補上『三個年輕人各自要面對自己的恐懼與成癮』(官方明寫)"
+    "[EN][中] 補上『三個年輕人各自要面對自己的恐懼與成癮』(官方明寫)",
+    "[合併][中] 與 `…los 90s totana` 組合併為單一 canonical 組別(works.json 註冊 canonical + alias);刪除孤立組的三語簡介,保留 3 場那組的版本",
+    "[資料][高] 移除 `data/not_musical.json` 中誤判的「¡Bienvenidos! Un musical con éxitos de los 80's y 90's」—— 官方文案證明是有劇本的點唱機音樂劇。此修正順帶救回 Ciempozuelos 與 Cúllar Vega 兩場一直被靜默丟掉的巡演場次(1971 → 1973)"
    ],
    "confidence": "high",
-   "verify_scope": "多源交叉:演出方/製作方官方頁的逐字 sinopsis + 媒體或劇評佐證;把關全部以【本製作】為準,原著/電影/原版僅作背景比對。",
+   "verify_scope": "多源交叉:官方劇情文案(Revista Godot)+ 先前輪次的 5 個來源;合併與排除規則的影響一律以【重建前後差值】實測,不看最終數字。",
    "lang_done": [
     "en",
     "zh-hant"
+   ],
+   "discarded": [
+    "捨棄『用 works.json 直接合併就好』的做法:實測會讓 Totana 場次消失,原因是合併讓該筆繼承了被排除的 canonical group,卻沒有繼承 overrides.json 的保護。必須先修掉錯誤的排除規則",
+    "排除『是去重造成的』假設:`(group, lat, lng)` 與 `(group, city, venue)` 兩道去重都不會命中 —— 四個場館座標互不相同、城市也不同。是逐段比對建置輸出才定位到排除清單",
+    "排除『這齣戲不該在目錄裡』的可能:官方文案有完整劇本線與角色,不是 not_musical.json 針對的致敬演唱會/朗誦會類型"
    ]
   },
   "encantats": {
@@ -970,7 +988,9 @@
    "lang_done": [
     "en",
     "zh-hant"
-   ]
+   ],
+   "merged_into": "bienvenidos un musical con exitos de los 80s y 90s",
+   "note_merged": "⚠ 此組已於 2026-09-02 合併進 `bienvenidos un musical con exitos de los 80s y 90s`,簡介已刪除。查核紀錄保留供追溯,但這個 group key 已不存在於目錄。"
   },
   "busco pis": {
    "rounds": [
@@ -1308,13 +1328,20 @@
      "開啟頁面": "(見該組 sources;本輪另新增的定向查詢已記在判斷欄)",
      "看到什麼逐字原文": "(見該組 official_plot)",
      "判斷": "✓ 內容通過:努拉、肚臍裡的祕密、看不見的線、作家米麗婭、同學阿萊克斯失去笑容、好友基姆與莉亞 —— 角色名用【加泰語版】拼法正確。⚠ 兩處待修:①458 字超過 450 上限;②米麗婭的框架被寫成第二段開頭的『另一頭』,但官方是【故事從作家筆下展開】(La Míriam és una escriptora que busca inspiració… el relat de la Nura),順序相反,應把框架挪到開頭。"
-    }
+    },
+    "合併輪:目錄裡 `el fil invisible`(巴塞隆納 Teatre Goya,加泰語)與 `el hilo invisible`(馬德里 Teatro Alcázar,西語)是兩個獨立組別,各自寫了一份三語簡介。依既有規則『同劇多地製作要合併成單一 canonical 組別』,先查是否真的同一部。",
+    "查證結果:同一部無疑 —— 原著同為 Míriam Tirado 的暢銷繪本,創作團隊同為 Alícia Serrat / Daniel Anglès / Víctor Arbelo,角色同為 Nura、Quim(西語版 Quimi)、Lia、Àlex(西語版 Álex)。媒體明寫『After its success in Barcelona, the family show arrived at the Teatro Alcázar in Madrid』—— 是巴塞隆納加泰語版之後的馬德里西語版,不是兩部戲。",
+    "處置:在 `data/works.json` 註冊 canonical = 「El fil invisible」(加泰語原版先行),alias = 「El Hilo Invisible」。重建後該組 2 場(Barcelona + Madrid),無場次遺失。canonical 組保留自己的三語簡介,孤立組 `el hilo invisible` 的三語簡介刪除。",
+    "⚠ 附帶失效:先前為 `el hilo invisible` 做的簡中修正『基姆→基米』(西語版角色作 Quimi)隨該組刪除而失效。合併後顯示的是加泰語 canonical,角色名用 Quim 系,原 `el fil invisible` 的版本本來就是對的。"
    ],
    "group": "el fil invisible",
    "sources": [
     "https://www.teatregoya.cat/ca/ex/el-fil-invisible/ (演出方官方頁,完整 SINOPSI+fitxa)",
     "https://www.barcelona.cat/barcelonacultura (市府文化頁)",
-    "broadwayworld.com/spain 2026-02-04(百場)"
+    "broadwayworld.com/spain 2026-02-04(百場)",
+    "https://gruposmedia.com/teatro-alcazar/el-hilo-invisible/ (馬德里劇院官方頁)",
+    "https://elpequenoespectador.es/2025/12/el-hilo-invisible-basado-en-la-literaria-de-miriam-tirado-y-dirigida-por-alicia-serrat/",
+    "https://teatromadrid.com/espectaculo/el-hilo-invisible"
    ],
    "official_plot": "Teatre Goya 官方 SINOPSI(逐字,加泰語版):La Míriam és una escriptora que busca inspiració per escriure un conte molt especial: el relat de la Nura, una nena que descobreix un secret amagat al seu melic; l'existència d'un fil invisible que la connecta amb les persones que estima més enllà del temps i de l'espai. La Nura, juntament amb els seus amics en Quim i la Lia, emprendrà una emocionant i divertida aventura per intentar recuperar el somriure perdut del seu company Àlex, i tots quatre descobriran la màgia dels vincles que establim amb els altres.",
    "checks": [
@@ -1323,10 +1350,11 @@
    ],
    "fixes": [
     "[EN][低] 拿掉『A young Míriam』的『young』(官方只說她是作家)",
-    "[繁中][中] ①精簡到 450 字以內 ②把作家米麗婭的框架挪到開頭(官方是故事從她筆下展開,不是『另一頭』的平行線)"
+    "[繁中][中] ①精簡到 450 字以內 ②把作家米麗婭的框架挪到開頭(官方是故事從她筆下展開,不是『另一頭』的平行線)",
+    "[合併][中] 與 `el hilo invisible` 合併為單一 canonical 組別 `el fil invisible`(works.json 註冊 canonical + alias);刪除孤立組的三語簡介。重建驗證:2 場(Barcelona + Madrid),shows.json 總數不變、零場次遺失"
    ],
    "confidence": "high",
-   "verify_scope": "多源交叉:演出方/製作方官方頁的逐字 sinopsis + 媒體或劇評佐證;把關全部以【本製作】為準,原著/電影/原版僅作背景比對。",
+   "verify_scope": "多源交叉:馬德里劇院官方頁 + 兒童劇專門媒體 + 售票平台,三處一致指向同一原著、同一創作團隊、同一批角色,且明寫是巴塞隆納之後的馬德里版。",
    "lang_done": [
     "en",
     "zh-hant"
@@ -1428,7 +1456,9 @@
    "lang_done": [
     "en",
     "zh-hant"
-   ]
+   ],
+   "merged_into": "el fil invisible",
+   "note_merged": "⚠ 此組已於 2026-09-02 合併進 `el fil invisible`,簡介已刪除。查核紀錄保留供追溯,但這個 group key 已不存在於目錄。"
   },
   "el ladron de arabia": {
    "rounds": [
