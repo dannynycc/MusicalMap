@@ -20,3 +20,12 @@ package-lock.json
 .cf_analytics_token
 scrapers/.cf_analytics_token
 data/synopses_draft/
+
+# 韓國批查證用的官方詳情圖(下載自 Interpark)—— 絕不入庫:
+# ①這是商業演出的海報與詳情長圖,public repo 等於公開再散布;②單次就 387MB。
+# 判讀結果都已寫進 scratchpad/kr/p4_ledger.json 的逐字原文,圖本身不需要保留在版控裡。
+scratchpad/kr/detail_img/
+scratchpad/kr/sheet/
+scratchpad/kr/poster/
+scratchpad/kr/cmp/
+scratchpad/kr/img/

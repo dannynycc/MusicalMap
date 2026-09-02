@@ -19,6 +19,14 @@ if LANG == "en":
             # Bertie、doktor Vlach 被寫成 Witherspoon)。改成:保留原文名字,不要發明英文對應。
             "keeping the character and place names used in the production's own language; "
             "do not invent English equivalents for names that have none. "
+            # 🚨 2026-09-02 韓國批實測:上面那句「用製作方自己語言的名字」對【非拉丁字系】會被
+            # 照字面執行 —— 17 篇英文稿有 11 篇直接把韓文原字貼進英文正文(『유견 earns small
+            # coins in the 저자…』),英語讀者完全讀不了。那句本來是為捷克/匈牙利/波蘭寫的
+            # (拉丁字系,照抄即可)。所以要補一句:非拉丁字系一律【羅馬拼音】,不是照抄也不是意譯。
+            "If those names are written in a non-Latin script (Korean, Japanese, Chinese, Cyrillic, "
+            "Greek, Thai...), transliterate them into the Latin alphabet using the standard "
+            "romanisation of that language (Korean 유견 -> Yugyeon, 이산 -> Yi San, 사도 -> Sado). "
+            "The English text must contain no non-Latin characters at all. "
             "IMPORTANT: end with a SEPARATE final paragraph of two to three sentences summarising the whole "
             "show's themes. "
             "Open the first sentence inside the story itself — a scene, a person, an action. "
