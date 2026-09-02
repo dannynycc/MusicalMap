@@ -1,0 +1,132 @@
+[
+ {
+  "group": "a media luz",
+  "sources_add": [
+   "https://www.espectaculosonbeat.com/espectaculos/a-media-luz (製作方 OnBeat Producciones 官方頁)",
+   "https://espacioalma.es/eventos/a-media-luz (場館 Espacio Alma 官方頁,Calle Alberto Aguilera 4,2026-09-02~2026-12-30,票價自 16 €)",
+   "https://www.atrapalo.com/entradas/a-media-luz_e4952250/ (售票;18 歲以上、西班牙語、2026-09-02~10-28、服務提供者 OnBeat Producciones / TUS REDES EN MIS MANOS S.L.)",
+   "https://www.instagram.com/_a_media_luz_/ 劇組官方帳號三則角色介紹貼文(2026-06-09/10/12),經 imginn 鏡像讀取完整內文:/p/DZX1mr_tD5y/(JULIÁN)、/p/DZaVQVyNprD/(CLARA)、/p/DZffuvytqez/(TOMÁS)"
+  ],
+  "official_plot": "製作方 OnBeat 官方頁(逐字):Musical de tango para tres cuerpos y una ciudad. A Media Luz nace del deseo de poner en diálogo el tango tradicional con las formas contemporáneas de amar. Tres vidas están a punto de cruzarse en una ciudad donde cada tango guarda un secreto. De temática LGTBIQ+, A Media Luz es una historia sobre el amor, la libertad y los vínculos. La obra no habla de conceptos, sino de personas intentando no mentirse. El conflicto no es amar a dos personas, sino no saber cómo hacerlo sin traicionarse. || ⚠ 製作方頁面在「sin」之後就被截斷,完整句「sin traicionarse」是在 Cartelera Musicales 的 INTRODUCCIÓN 取得的;兩處其餘文字逐字相同,可確認同一份官方文案。|| 劇組官方 IG 角色介紹(逐字):JULIÁN(Roger Berruezo)Un español en Buenos Aires. Un hombre de certezas. O eso cree. / CLARA(Zoe Buccolini)Brillante y difícil de sorprender. Observa. Entiende más de lo que dice. / TOMÁS(Ariel Juin)Llega tarde. Siempre. Y nunca por casualidad. || 副標 Tango en 2x3;首演 2026-07-31;Ariel Juin 為本劇編劇(A Media Luz es su primera obra como autor)。",
+  "rounds": [
+   {
+    "目的": "使用者指出既有查核只有 2 個來源、未達「多源深度交叉」標準,故重查到官方層。",
+    "查詢": "先以劇名+musical+tango+LGTBIQ+sinopsis 定位,發現製作方是 OnBeat Producciones(與 chuchuwa、el ladrón de arabia 同一家),直接取製作方官方頁;再補場館官方頁與售票頁。",
+    "開啟頁面": "espectaculosonbeat.com / carteleramusicales.es / espacioalma.es / atrapalo.com",
+    "看到什麼逐字原文": "見 official_plot。另:場館頁檔期到 2026-12-30(比目錄的 10-28 長,但目錄的 10-28 與 Atrápalo 售票視窗一致,不改)。",
+    "判斷": "簡介裡最關鍵的一句「不是能否同時愛上兩個人,而是…不背叛自己」與官方 El conflicto no es amar a dos personas, sino no saber cómo hacerlo sin traicionarse 幾乎逐字對應,語意維度通過。"
+   },
+   {
+    "目的": "官方文案只有主題陳述、沒有角色,必須確認我們三語裡的角色描寫有沒有來源。",
+    "查詢": "從搜尋結果發現劇組官方 IG @_a_media_luz_ 有「Os presentamos a …」角色介紹系列;IG 本站未登入讀不到貼文內文,改用 imginn 鏡像逐則開啟取完整 caption。",
+    "開啟頁面": "imginn.com/p/DZX1mr_tD5y/ 、/p/DZaVQVyNprD/ 、/p/DZffuvytqez/",
+    "看到什麼逐字原文": "三位角色的官方設定(見 official_plot)。JULIÁN 那則寫明 Un español en Buenos Aires —— 故事城市是布宜諾斯艾利斯。",
+    "判斷": "抓到兩處自創:繁中把場景寫成「酒吧般曖昧的夜晚」(官方三處一致寫 una ciudad,無酒吧),簡中自行分派了三個角色的性格(與官方設定完全不同)。兩者都改掉。"
+   }
+  ],
+  "checks": {
+   "plot": "「三具身體與一座城市」「每支探戈都藏著祕密」「三人生命即將交錯」→ 官方 Musical de tango para tres cuerpos y una ciudad / Tres vidas están a punto de cruzarse en una ciudad donde cada tango guarda un secreto → ✓吻合",
+   "plot_2": "「不是能否同時愛上兩個人,而是如何在愛裡坦誠…不背叛自己」→ 官方 El conflicto no es amar a dos personas, sino no saber cómo hacerlo sin traicionarse → ✓吻合(traicionarse=背叛自己)",
+   "plot_3": "繁中原寫「在酒吧般曖昧的夜晚裡」→ 官方/場館/Cartelera 三處都只寫 una ciudad,IG 指出是布宜諾斯艾利斯 → ✗捏造,已改",
+   "plot_4": "簡中原寫「其中一人渴望挣脱既有关系…另一人则害怕承认…第三人看似自由洒脱」→ 官方 IG 的三位角色是 JULIÁN(自認凡事都有答案的異鄉西班牙人)/ CLARA(聰慧難驚、看得比說的多)/ TOMÁS(永遠遲到且從不是碰巧)→ ✗捏造,已換成官方設定",
+   "facts": "LGTBIQ+ ✓;探戈音樂劇 ✓;三人 ✓;馬德里 Espacio Alma - Sala Azul 週三 21:00 ✓;18 歲以上、西班牙語 ✓(三語簡介均未寫這兩項,不算錯)",
+   "semantics": "英文原本只寫 three people,未用上已查證的角色名 → ⚠遺漏,已補入三位角色與布宜諾斯艾利斯"
+  },
+  "fixes_add": [
+   "繁中:刪除自創的「酒吧」場景,改為官方支持的布宜諾斯艾利斯;並補入三位角色(胡利安/克拉拉/托馬斯)與其官方設定。",
+   "簡中:刪除自創的三角色性格分派,換成劇組官方 IG 的角色設定。",
+   "英文:把泛稱的 three people 改為具名的 Julián / Clara / Tomás 並帶入官方設定;城市明確為 Buenos Aires。",
+   "三語長度重新落在窗口內(en 318 詞 / 繁 440 字 / 簡 435 字),由 fix_amedialuz.py 的護欄檢查後才寫檔。"
+  ],
+  "discarded": [
+   "Google AI 摘要給的卡司(Roger Berruezo / Ariel Juin / Flor Lopardo 或 Zoe Buccolini)未直接採信 —— 依既有教訓 Google AI 摘要不可靠;改以劇組官方 IG 貼文逐則確認,實際第三位是 Zoe Buccolini 飾 CLARA,摘要提到的 Flor Lopardo 未在官方角色貼文中出現,故不寫入。",
+   "英文段落「the city … becomes a fourth presence」保留:雖非官方原文,但官方標題本身就把城市與三具身體並列(tres cuerpos y una ciudad),屬合理讀法而非事實宣稱。"
+  ],
+  "confidence": "high",
+  "verify_scope": "多源交叉:製作方官網 + 場館官網 + 劇組官方 IG(角色設定)+ 專門資料庫 Cartelera Musicales + 售票平台 Atrápalo,共 6 個獨立頁面;角色設定為劇組自己發布的第一手內容。",
+  "done": true,
+  "lang_done": ["en", "zh-hant", "zh-hans"]
+ },
+ {
+  "group": "assassinat per a dos",
+  "merged_into": "murder for two",
+  "note_merged": "2026-09-02 查核時發現這其實是百老匯《Murder for Two》(Joe Kinosian / Kellen Blair)的加泰隆尼亞語版,不是西葡原創。證據:Focus 官方頁(cartellera.focus.cat/ca/ex/assassinat-per-a-dos/)的劇情與嫌犯名單與原作完全一致 —— 警官 Marcus Moscowitz、被害小說家 Arthur Whitney、寡婦 Dahlía、心理醫師 Dr. Griff、芭蕾伶娜 Paulette Lewis、鄰居 Harry i Anne,12 名嫌犯、2 位演員演 13 個角色且自彈鋼琴;Atrápalo 描述相同;viagogo 與 StubHub 更直接把它掛在 asesinato-para-dos 這個 slug 下。works.json 本來就有 Murder for Two 且已登記西語別名 Asesinato para dos,只缺加泰語別名,所以巴塞隆納這檔變成孤兒組(資料庫裡同時存在 murder for two 的馬德里場與鳳凰城場)。⚠ 這條證據其實在本帳本原有的 sources 欄就已經寫著 es.teatrebarcelona.com/espectaculo/asesinato-para-dos(西語版),當時沒有據以行動。處置:works.json 的 Murder for Two 加入別名 Assassinat per a dos;三語孤兒簡介刪除(canonical 組本來就有完整三語);彈窗仍以 tour_name 顯示在地製作名 Assassinat per a dos。差值驗證:murder for two 2→3 場、assassinat per a dos 1→0、總場次 2059 不變。加泰語版製作:El Tío Caracoles,改編兼導演 Zenón Recalde,音樂總監 Gaby Goldman,演員 Dídac Flores / Mikel Herzog Jr,95 分鐘,加泰語。",
+  "confidence": "high",
+  "verify_scope": "多源交叉:Focus 官方頁(完整 SINOPSI + FITXA ARTÍSTICA)+ Atrápalo 完整描述 + 兩個第三方售票站的 asesinato-para-dos slug + 帳本原有的 teatrebarcelona 西語版頁。",
+  "done": true
+ },
+ {
+  "group": "la vida en un segundo",
+  "sources_add": [
+   "https://teatroarlequingranvia.com/eventos/la-vida-en-un-segundo/ (劇院官方頁,完整劇情+主創+14 歲以上)",
+   "https://www.broadwayworld.com/spain/article/LAVIDA-EN-UN-SEGUNDO-explora-con-humor-qu-ocurre-despus-de-la-muerte-20260625 (媒體報導)"
+  ],
+  "official_plot": "劇院官方頁(逐字):Lázaro ha tocado fondo: tras años de curro basura, su novia le deja tirado en nochevieja en la Puerta del Sol. Cuando cree que no puede ir a peor, morirá atragantado con una uva, y su vida… pasará en un segundo. A partir de ahí arranca un viaje donde la música, el humor y la emoción se entrelazan para responder a la gran pregunta: ¿qué narices pasa cuando la palmas? Y te damos una pista: quizás el otro barrio es mejor de lo que cuentan. La vida en un segundo es una experiencia teatral única y sorprendente, donde un solo actor da vida a todos los personajes que habitan una historia sobre el amor, la amistad y la pérdida, al ritmo de canciones de artistas como Mecano, Celia Cruz, Shakira, Amaral, Alaska o Juanes. || 主創:Dramaturgia Manuel Ramos(asesoría Alejandra Jiménez Cascón)、Dirección Alejandra Jiménez Cascón、Dirección musical Iván Herzog;劇團 ConUnCantoEnLosDientes;14 歲以上。|| BroadwayWorld:La propuesta nace a partir de un trabajo de investigación sobre las experiencias cercanas a la muerte (ECM);Manuel Ramos da vida a una decena de personajes。",
+  "rounds": [
+   {
+    "目的": "補足來源數(原本只有售票站與檔期頁 2 個),並用官方原文驗劇情三維度。",
+    "查詢": "劇名+musical+Arlequín/Madrid+sinopsis;取劇院官方頁與 BroadwayWorld 西班牙版。",
+    "開啟頁面": "teatroarlequingranvia.com(官方)、broadwayworld.com/spain(媒體)",
+    "看到什麼逐字原文": "見 official_plot。",
+    "判斷": "三語逐項比對後【沒有發現錯誤】,不做任何改寫 —— 依既有規則 Perplexity 的語感是主體,我只在有錯時才動。"
+   }
+  ],
+  "checks": {
+   "plot": "拉薩羅、跨年夜、太陽門廣場被女友拋下、被葡萄噎死、死後之旅 → 官方逐字對應 → ✓吻合",
+   "plot_2": "「全劇只有一名演員分飾所有角色」→ 官方 un solo actor da vida a todos los personajes → ✓吻合(BroadwayWorld 補充約十個角色)",
+   "plot_3": "「彼岸也許沒有傳聞中可怕」→ 官方 quizás el otro barrio es mejor de lo que cuentan → ✓吻合",
+   "facts": "愛、友情、失去三主題 → 官方 una historia sobre el amor, la amistad y la pérdida → ✓吻合;繁中寫的「十二顆葡萄」是西班牙跨年習俗的正確背景(官方只寫 una uva),屬文化脈絡非劇情宣稱,保留",
+   "semantics": "△未寫但不算錯:點唱機式選曲(Mecano/Celia Cruz/Shakira/Amaral/Alaska/Juanes)、80~90 分鐘、14 歲以上、源自瀕死經驗研究。三語只泛稱「音樂/流行歌曲」,屬資訊不足而非錯誤,依規則不硬塞。"
+  },
+  "confidence": "high",
+  "verify_scope": "多源交叉:劇院官方頁 + BroadwayWorld 西班牙版 + 原有的售票頁與 teatromadrid 檔期頁,共 4 個獨立來源;劇情逐句對得上官方原文,零修改。",
+  "done": true,
+  "lang_done": ["en", "zh-hant", "zh-hans"]
+ },
+ {
+  "group": "mi padre sabina y yo",
+  "sources_add": [
+   "https://www.plotpoint.es/obra-teatro/mi-padre-sabina-y-yo/ (製作方兼場館 PLOT POINT 官方頁)",
+   "https://teatromadrid.com/espectaculo/mi-padre-sabina-y-yo (完整 Sinopsis + Ficha artística)",
+   "https://tea3.eu/articulos/un-padre-un-hijo-y-joaquin-sabina-cantan-juntos-en-el-teatro-flumen (媒體報導)"
+  ],
+  "official_plot": "teatromadrid 官方 Sinopsis(逐字):Jaime, un joven cantante, algo ingenuo e inocente, decide buscar a quien cree que es su padre. Joaquín, es un mujeriego, algo canalla y sediento de vida. Experto chef con tres estrellas Michelín, su debilidad son las mujeres de todo tipo, edad y color. Un 28 de diciembre, en medio de una de sus habituales fiestas con chicas, la sorpresa golpea a su puerta: un chaval de 25 años se presenta como su hijo y decide instalarse allí hasta que el padre lo reconozca o lleguen los resultados de las pruebas de ADN. Durante ese tiempo de convivencia, ambas personalidades chocan y sus respectivos mundos estallan en conflictos que desnudan las fortalezas y debilidades de cada uno. Casi sin darse cuenta se van convirtiendo en padre e hijo antes de saber si realmente lo son. A caballo entre el teatro musical y el convencional, el guion se estructura en una serie de flashbacks que nos guían a través de la trama, mientras que las letras de Sabina matizan los momentos más emotivos de la función. || TEA3(逐字):Y un tercer protagonista de la historia, al que no se ve nunca, pero que siempre está presente: Joaquín Sabina. || 主創:Autoría y Dirección Carlos De Matteis;Música Pedro de Matteis、Gonzalo García Baz;Música original Joaquín Sabina。madridesteatro 另載父親角色設定為 un hombre de unos sesenta años。",
+  "rounds": [
+   {
+    "目的": "補足來源數並驗兩處官方沒說、只有我們寫的內容。",
+    "查詢": "劇名+musical+sinopsis+Madrid;依序取製作方兼場館官網、teatromadrid 完整劇情頁、TEA3 媒體報導、madridesteatro。",
+    "開啟頁面": "plotpoint.es(官方)、teatromadrid.com、tea3.eu、madridesteatro.com",
+    "看到什麼逐字原文": "見 official_plot。",
+    "判斷": "官方主線逐項吻合;但英文寫的「Sabina 是華金的偶像、繆思與想像中的嚮導」把 Sabina 掛在父親角色身上,而 TEA3 的說法是對整個故事而言的第三位主角;三語都寫的「海梅剛結束一段感情」在五個來源裡完全查不到。"
+   },
+   {
+    "目的": "確認「海梅剛分手」不是我漏看,而是真的沒有來源。",
+    "查詢": "在 madridesteatro 與 plotpoint 官方頁上逐一比對 novia / ruptura / pareja / desamor / soltero 等關鍵字。",
+    "開啟頁面": "madridesteatro.com/mi-padre-sabina-y-yo/(取得主要段落後跳出 Cloudflare 人機驗證,未嘗試繞過)、plotpoint.es",
+    "看到什麼逐字原文": "兩頁的關鍵字命中結果全部為「無」。",
+    "判斷": "五個來源皆無 → 判定為無來源支撐的角色細節,三語一律刪除。"
+   }
+  ],
+  "checks": {
+   "plot": "海梅(單純天真的年輕歌手)找上自認是父親的華金;華金是米其林三星主廚兼花花公子 → 官方逐字對應 → ✓吻合",
+   "plot_2": "12 月 28 日派對中被敲門、25 歲、住到父親承認或 DNA 結果出爐 → 官方逐字對應 → ✓吻合",
+   "plot_3": "「父子身分尚未證實,兩人卻已成父子」→ 官方 Casi sin darse cuenta se van convirtiendo en padre e hijo antes de saber si realmente lo son → ✓吻合",
+   "plot_4": "三語都寫的「海梅剛與女友分手 / 刚结束一段感情 / still bruised by the end of a relationship」→ 五個來源皆無 → ✗無來源,已刪",
+   "facts": "閃回結構、Sabina 歌詞烘托情緒 → 官方 el guion se estructura en una serie de flashbacks … las letras de Sabina matizan los momentos más emotivos → ✓吻合",
+   "semantics": "英文原寫 Sabina 是 Joaquín 的 idol, muse and imaginary guide → TEA3 說的是「整個故事的第三位主角,從未現身卻始終在場」→ △超譯,已改為貼合來源的說法並在中文補上同一事實"
+  },
+  "fixes_add": [
+   "三語:刪除查無來源的「海梅剛結束一段感情」。",
+   "英文:把 Sabina 從「華金的偶像/繆思/想像嚮導」改為官方說法「從未登台卻始終在場、主宰整個故事的第三個身影」。",
+   "繁中/簡中:補入同一條已查證事實(薩維納本人從未現身,卻像第三位主角般始終在場)—— 繁中刪字後會掉出 400 字下限,補的是查證過的內容而不是湊字。"
+  ],
+  "discarded": [
+   "Google AI 摘要寫「chef estrella Michelín」(單星);teatromadrid 官方寫 tres estrellas Michelín(三星),以官方為準,三語維持三星。",
+   "madridesteatro 的完整劇情段未取全(Cloudflare 人機驗證)—— 依規定不繞過驗證,改以已取得的段落與其他四源交叉,結論不受影響。"
+  ],
+  "confidence": "high",
+  "verify_scope": "多源交叉:製作方兼場館官網 + teatromadrid 完整劇情頁 + TEA3 媒體報導 + madridesteatro(部分)+ 原有的 revistateatros,共 5 個獨立來源。",
+  "done": true,
+  "lang_done": ["en", "zh-hant", "zh-hans"]
+ }
+]

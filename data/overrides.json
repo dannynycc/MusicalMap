@@ -1,5 +1,10 @@
 {
  "_note": "Manual corrections applied by build_shows.py AFTER merge, keyed by show id. Use when a source returns wrong or missing coordinates (e.g. it matched a same-named venue in another city). Any field here overrides the scraped value. Keys starting with _ are ignored.",
+ "atr-la-opera-de-los-tres-centavos-con-coque-malla-4936412": {
+  "end_date": "2026-11-06",
+  "end_rolling": false,
+  "_why": "Atrápalo 給的 2026-11-01 是它自己的售票視窗,不是閉幕日。劇院【官方售票系統】(tickets.oneboxtds.com/teatroinfantaisabel/events)寫『Del 18 de septiembre al 6 de noviembre de 2026』,起日與我們相同、迄日多 5 天。注意劇院的節目介紹頁另寫『A partir del 23 de septiembre』、Timeout 寫 22 —— 兩者都與售票系統不符,以售票系統為準(2026-09-02 查)。"
+ },
  "ip-26007357": {
   "city": "Daegu",
   "lat": 35.8331,

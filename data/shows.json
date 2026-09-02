@@ -1,7 +1,7 @@
 {
   "meta": {
     "source": "merged",
-    "generated_at": "2026-09-02 06:10 UTC",
+    "generated_at": "2026-09-02 07:47 UTC",
     "total": 2059,
     "verified": 2059,
     "unverified": 0,
@@ -20432,7 +20432,7 @@
     },
     {
       "id": "atr-assassinat-per-a-dos-4952444",
-      "title": "Assassinat per a dos",
+      "title": "Murder for Two",
       "type": "tour",
       "venue": "Teatre Goya",
       "city": "Barcelona",
@@ -20448,15 +20448,22 @@
       "source": "atrapalo.com",
       "price_from": "18.40",
       "currency": "EUR",
-      "group": "assassinat per a dos",
-      "link_kind": "ticketing",
-      "tag": "西葡音樂劇",
+      "group": "murder for two",
       "ticket_links": [
         {
+          "label": "官方網站",
+          "url": "https://murderfortwomusical.com/",
+          "kind": "official"
+        },
+        {
+          "label": "Atrápalo",
           "url": "https://www.atrapalo.com/entradas/assassinat-per-a-dos_e4952444/",
           "kind": "ticketing"
         }
-      ]
+      ],
+      "link_kind": "ticketing",
+      "tag": "Broadway/West End",
+      "alt": "Murder for Two Asesinato para dos Assassinat per a dos"
     },
     {
       "id": "atr-busco-pis-4951411",
@@ -20641,7 +20648,7 @@
     },
     {
       "id": "atr-germans-de-sang-4920338",
-      "title": "Germans de sang",
+      "title": "Blood Brothers",
       "type": "tour",
       "venue": "Teatre Condal",
       "city": "Barcelona",
@@ -20657,7 +20664,7 @@
       "source": "atrapalo.com",
       "price_from": "35.00",
       "currency": "EUR",
-      "group": "germans de sang",
+      "group": "blood brothers",
       "ticket_links": [
         {
           "label": "Atrápalo",
@@ -20671,7 +20678,8 @@
         }
       ],
       "link_kind": "ticketing",
-      "tag": "西葡音樂劇"
+      "tag": "Broadway/West End",
+      "alt": "Blood Brothers Germans de sang"
     },
     {
       "id": "atr-la-julia-i-el-tauro-4950133",
@@ -21167,7 +21175,7 @@
       ],
       "link_kind": "ticketing",
       "tag": "Broadway/West End",
-      "alt": "Murder for Two Asesinato para dos"
+      "alt": "Murder for Two Asesinato para dos Assassinat per a dos"
     },
     {
       "id": "atr-chuchuwa-viaja-jugando-4952268",
@@ -21532,15 +21540,16 @@
       "lat": 40.422245,
       "lng": -3.69553,
       "start_date": "2026-09-18",
-      "end_date": "2026-11-01",
+      "end_date": "2026-11-06",
       "ticket_url": "https://www.atrapalo.com/entradas/la-opera-de-los-tres-centavos-con-coque-malla_e4936412/",
       "image": "https://cdn.atrapalo.com/o/event/4936412/1734661.jpg",
       "tour_name": "La Ópera de los tres centavos, con Coque Malla",
       "verified": true,
-      "source": "atrapalo.com",
+      "source": "atrapalo.com+override",
       "price_from": "31.00",
       "currency": "EUR",
       "group": "la opera de los tres centavos con coque malla",
+      "end_rolling": false,
       "link_kind": "ticketing",
       "tag": "西葡音樂劇",
       "ticket_links": [
@@ -41899,7 +41908,7 @@
       "group": "murder for two",
       "link_kind": "ticketing",
       "tag": "Broadway/West End",
-      "alt": "Murder for Two Asesinato para dos"
+      "alt": "Murder for Two Asesinato para dos Assassinat per a dos"
     },
     {
       "id": "tm-the-buddy-holly-story-drury-lane-theatre-oakbrook-terrace",
@@ -57468,7 +57477,8 @@
       "onsale_only": true,
       "group": "urinetown",
       "link_kind": "ticketing",
-      "tag": "Broadway/West End"
+      "tag": "Broadway/West End",
+      "alt": "Urinetown Urinetown, el musical"
     },
     {
       "id": "tm-six-the-stanley",
@@ -59490,7 +59500,8 @@
       "onsale_only": true,
       "group": "urinetown",
       "link_kind": "ticketing",
-      "tag": "Broadway/West End"
+      "tag": "Broadway/West End",
+      "alt": "Urinetown Urinetown, el musical"
     },
     {
       "id": "tm-dirty-rotten-scoundrels-presented-by-city-centre-musical-productions-meadowvale-theatre",
@@ -59743,7 +59754,7 @@
     },
     {
       "id": "tm-urinetown-el-musical-teatro-mil-n",
-      "title": "Urinetown, el musical",
+      "title": "Urinetown",
       "type": "tour",
       "venue": "Teatro Milán",
       "city": "México",
@@ -59767,7 +59778,8 @@
       "onsale_only": true,
       "group": "urinetown",
       "link_kind": "ticketing",
-      "tag": "西葡音樂劇"
+      "tag": "Broadway/West End",
+      "alt": "Urinetown Urinetown, el musical"
     },
     {
       "id": "tm-monstruos-el-musical-tel-n-de-asfalto",

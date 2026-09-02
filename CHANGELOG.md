@@ -11,6 +11,107 @@
 
 ---
 
+## [v2.109.2] - 2026-09-02 15:56
+
+### 西葡查核補做:查出一齣被當成西葡原創的百老匯戲,以及一個錯了 5 天的閉幕日
+
+使用者問「你有嚴格按照我說的 flow 執行嗎」。誠實的答案是**沒有全部做到**:
+55 組裡有 9 組的來源數不到標準(其中 5 組甚至在帳本裡寫著「查無可用的官方劇情來源」,
+但那個結論是我只查了製作方/場館頁就收手得出的 —— 這類頁面本來就很少放劇情)。
+這一版把那 9 組補到位,並在補查的過程中撞出兩個**資料本身的錯誤**。
+
+**1. `Assassinat per a dos` 其實是百老匯《Murder for Two》的加泰語版**
+
+Focus 官方頁的劇情與嫌犯名單和原作逐項一致 —— 警官 Marcus Moscowitz、被害小說家
+Arthur Whitney、寡婦 Dahlía、心理醫師 Dr. Griff、芭蕾伶娜 Paulette Lewis、
+鄰居 Harry i Anne,12 名嫌犯、2 位演員演 13 個角色且自彈鋼琴;viagogo 與 StubHub
+更直接把它掛在 `asesinato-para-dos` 這個 slug 下。
+
+works.json 本來就有 `Murder for Two`,也已登記西語別名 `Asesinato para dos`,
+**只缺加泰語別名** —— 所以巴塞隆納這檔變成孤兒組,而資料庫裡同時還有馬德里場與鳳凰城場。
+使用者搜《Murder for Two》查不到巴塞隆納那檔,反之亦然。而且我們為同一部作品
+**存了兩套三語簡介**,連譯名都不一致(莫斯科維茲 / 莫斯科维奇 / 莫斯科维茨)。
+
+⚠ 這條證據其實**本來就寫在帳本裡** —— 該組的 sources 欄一直列著
+`es.teatrebarcelona.com/espectaculo/asesinato-para-dos(西語版)`。我當時看過、記下來了,
+但沒有據以行動。
+
+**為什麼既有的偵測器抓不到**:`discover_unmapped()` 用的是**標題相似度**,
+而「Assassinat per a dos」對「Murder for Two」的相似度是 0。翻譯型別名它結構上就看不見。
+
+**同症狀全庫掃描**(不只修這一筆),57 個西葡組逐一檢視,7 個嫌疑,逐部查證後:
+
+| 組 | 查證結果 | 處置 |
+|---|---|---|
+| assassinat per a dos | Focus 官方 fitxa 與原作角色全對 | ✅ 併入 `murder for two` |
+| germans de sang | Focus 官方 fitxa 直接寫 `Títol original: Blood brothers / Willy Russell` | ✅ 登記 `Blood Brothers` |
+| urinetown(墨西哥) | carteleradeteatro.mx 稱百老匯作品由 ÍCARO 劇團演出;ÍCARO 官方影片訪問**原作者 Greg Kotis** 本人 | ✅ 登記 `Urinetown` |
+| el mago de oz | Teatro Sanpol 自家劇團 La Bicicleta 的原創改編,歌詞 J. J. Fischtel,角色是 **Dorita / Tía Enma / Achicoria / Profesor Maravilla** | ❌ **不合併**(不是百老匯那部) |
+| cinderela(葡萄牙) | 7 人、60 分鐘的葡萄牙家庭巡演,與已登記 Cinderella 無授權關聯 | ❌ 不合併 |
+| la ópera de los tres centavos | 確為 Brecht/Weill《Die Dreigroschenoper》,但未登記 canonical | ⏸ 本版只修日期,分類待議 |
+| los chicos del coro | 官方說「基於 2004 法國電影」,但團隊列的是西班牙譯者與西班牙製作公司,未掛法國舞台版創作者 | ⏸ **證據兩可,不做推定式改分類** |
+
+`el mago de oz` 與 `cinderela` 是重點:**譯名相同不等於同一部作品**。
+如果照標題無腦加別名,就會把兩齣在地原創錯併進百老匯組 —— 這正是要逐部查、不能批次推定的原因。
+
+**差值驗證**(不看最終狀態):`murder for two` 2→3 場、`assassinat per a dos` 1→0、
+`germans de sang`→`blood brothers`、`urinetown` 三場標籤由「兩種」統一為 Broadway/West End、
+西葡場次 75→72、**總場次 2059 不變**(沒有任何一場在合併中消失)。
+彈窗仍以 tour_name 顯示在地製作名(Assassinat per a dos / Germans de sang)。
+
+**2. `La Ópera de los tres centavos` 的閉幕日短了 5 天**
+
+Atrápalo 給的 `2026-11-01` 是它自己的售票視窗,不是閉幕日。劇院**官方售票系統**寫
+`Del 18 de septiembre al 6 de noviembre de 2026` —— 起日與我們相同,迄日多 5 天,
+而 `end_rolling` 是 None,代表網站是把 11-01 當成真正的閉幕日在顯示。已加 override 修正。
+
+順帶記下:劇院自己的節目介紹頁寫「A partir del 23 de septiembre」、Timeout 寫 22,
+**兩者都與售票系統不符**。同一個劇院的兩個頁面互相矛盾時,以售票系統為準。
+
+### 三語簡介修訂(逐句對官方後才動)
+
+- **`a media luz`** — 找到劇組官方 IG 的三則角色介紹貼文,城市其實是**布宜諾斯艾利斯**:
+  JULIÁN「Un español en Buenos Aires. Un hombre de certezas. O eso cree.」/
+  CLARA「Brillante y difícil de sorprender.」/ TOMÁS「Llega tarde. Siempre. Y nunca por casualidad.」。
+  據此刪掉繁中自創的「酒吧般曖昧的夜晚」(官方三處一致寫 una ciudad)與簡中自創的三角色性格分派,
+  英文的泛稱 three people 改為具名角色。來源 2→6。
+- **`mi padre sabina y yo`** — 三語都寫的「海梅剛結束一段感情」在**五個來源裡完全查不到**,刪除;
+  英文原把 Sabina 說成「華金的偶像、繆思與想像嚮導」,改為官方說法
+  「從未現身卻始終在場的第三位主角」(TEA3 原文),中文補上同一條已查證事實。來源 2→5。
+- **`la vida en un segundo`** — 逐項對上劇院官方頁與 BroadwayWorld,**零錯誤、不改一個字**。來源 2→4。
+- **`chuchuwa` / `osky` / `princesas`** — 帳本原記「查無可用的官方劇情來源」是錯的。
+  先前被我標為查無佐證的 Ali/Popy/Nina/Tulo、Torna,在官方劇情裡逐字存在。
+  信心 medium→high,來源各 1→5。
+- **`erase otra vez` / `princess story`** — 官方確實只有檔期/時長而無逐段劇情,
+  信心維持 **medium**,verify_scope 據實寫明 —— 不把「官方單一來源」說成「多來源交叉」。
+
+### 帳本與 QA
+
+- `synopsis_ledger.json`:55 組全部有 sources / official_plot / rounds / checks / fixes /
+  confidence / verify_scope,且**不再有任何一組寫著「查無可用的官方劇情來源」**。
+  信心分布 high 50 / medium 5(medium 的每一組都寫清楚為何仍是 medium)。
+- **`data/synopses_verification.json` 補上這 55 組**(319→372 筆)。SOP §4 指定的常設出處總帳
+  一直只有 319 筆,西葡這批只寫在 `scratchpad/` 裡 —— 下個 session 依 SOP 去標準位置查,
+  會以為這 55 組「從沒查核過」。搬過去的是摘要(method/date/langs/sources/errors_fixed/
+  confidence/external_multisource/verify_scope + 指回 scratchpad 帳本的 `ledger` 欄),
+  逐輪過程與官方逐字原文仍留在帳本。`langs` 取**知識庫實際有什麼**而不是帳本欄位 ——
+  合併過的組帳本記的是舊組,會把語言數寫少。
+  驗證:既有 319 筆**零筆被改動或刪除**;verify_scope multisource 50 / single 5 / internal 0。
+- `scripts/qa/fixtures/eses_groups.json` 同步改名(assassinat→murder for two、
+  germans de sang→blood brothers),否則掃描器會漏掉這兩組。
+- 缺陷回歸 109 組×三語七類 0 命中;裸標題 0;跨語一致性最低 0.0692 仍高於已知陽性 0.0578;
+  翻譯語系 527 組全過;地理編碼**真缺口 0**(v2.109.1 的 LAC Lugano 已解決)。
+
+### 沒做的事(據實記錄)
+
+- `los chicos del coro` 與 `la ópera de los tres centavos` 的傳統分類**沒有改**。
+  前者證據兩可,後者要新增 canonical 才能歸到德奧,影響面比本版該承擔的大。兩者都留在西葡標籤下。
+- `tour_name` 與 `title` 同值的記錄全庫有 94 筆(本版新增 1 筆)。已確認顯示層是
+  `tname || canonTitle(show)` 二選一、不會重複,故**不動** —— 改全域去重屬於 build 合併邏輯變更,
+  回歸風險大於收益。
+
+---
+
 ## [v2.109.1] - 2026-09-02 14:10
 
 ### 查清楚了:`city|lugano|italy` 不是死鍵,是會持續把戲釘錯地方的活 bug

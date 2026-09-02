@@ -77,7 +77,7 @@ python scripts/px_gen.py zh-hans  out_zhs.json @list.json
 6. 例外的文風調整：開頭書評框架 → 直接入戲（見 §7）屬既定策展政策，可修；這不算「改語感」，
    是把 Perplexity 偶爾冒出的影評腔拿掉，其餘句子照舊保留。
 
-### 3.1 西葡批次(2026-09-02, 55 組)補上的四條規則
+### 3.1 西葡批次(2026-09-02, 55 組)補上的五條規則
 
 1. **錯誤「會不會重疊」有兩種情形，但結論一樣：各語獨立對外部真相查。**
    - 不重疊型（既有認知）：簡中準確度 << 繁中，各語錯在不同地方。
@@ -105,6 +105,25 @@ python scripts/px_gen.py zh-hans  out_zhs.json @list.json
    `rocio durcal es inolvidable` 的英文與簡中都寫了「導演屢受挫折、想靠這部戲翻身」，
    六個來源皆無。即使沒指名，讀者也能直接對應到編劇兼導演 Juan Carlos Rubio 本人 → 直接刪，
    不是「可寫可不寫」的細節。
+
+5. **寫簡介前先問「這到底是不是新作品」——譯名型別名沒有任何自動檢查抓得到。**
+   `Assassinat per a dos` 被當成西葡原創寫了整套三語，其實是百老匯《Murder for Two》的
+   加泰語版；works.json 早就有這部、也已登記西語別名 `Asesinato para dos`，**只缺加泰語別名**，
+   結果同一部作品在庫裡有兩套三語簡介，連角色譯名都不一致。
+   - **為什麼沒被擋下**：`discover_unmapped()` 比的是**標題相似度**，
+     而「Assassinat per a dos」對「Murder for Two」的相似度是 0 —— 翻譯型別名它結構上就看不見。
+     偵測器沒報 ≠ 沒問題。
+   - **辨識鍵是內容不是標題**：用角色名、主創、時長、劇情梗去對。
+     Focus 官方 fitxa 直接寫 `Títol original: Blood brothers / Willy Russell`（`Germans de sang`）
+     是最乾脆的一種；沒寫的就對角色名（Marcus Moscowitz / Arthur Whitney / Dr. Griff…）。
+   - ⚠ **反向同樣要防：譯名相同不等於同一部作品。**
+     `El Mago de Oz`（Teatro Sanpol）是自家劇團 La Bicicleta 的原創改編，
+     角色叫 **Dorita / Tía Enma / Achicoria / Profesor Maravilla**，歌詞是 J. J. Fischtel 寫的，
+     跟已登記的百老匯 `The Wizard of Oz` 無關；葡萄牙的 `Cinderela` 同理。
+     照標題無腦加別名會把在地原創錯併進百老匯組 —— **一律逐部查，不批次推定**
+     （memory `feedback_origin_per_show_not_batch`）。
+   - **合併後要驗差值不是驗最終狀態**：組別筆數一增一減、**總場次必須不變**；
+     在地製作名要留在 `tour_name`；孤兒簡介要刪掉。
 
 ## 4. 記帳本（每部必更新，否則追溯斷掉）
 - 交叉查核工作記錄：`data/gen_crosscheck_log.json`（method/sources/checklist/各語 correct|fixed/error）。
