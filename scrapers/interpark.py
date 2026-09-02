@@ -76,6 +76,15 @@ KO_CITY = {
     "청주": "Cheongju", "천안": "Cheonan", "전주": "Jeonju", "창원": "Changwon",
     "안동": "Andong", "포항": "Pohang", "김해": "Gimhae", "춘천": "Chuncheon",
     "강릉": "Gangneung", "제주": "Jeju", "여수": "Yeosu", "익산": "Iksan",
+    # 2026-09-02 補:下面這些只有英文名寫在 PROVINCE_CITIES,韓文對照一直漏掉,
+    # 造成兩個後果 ——(a) 韓文標題推不出城市,(b) strip_tour_city() 剝不掉後綴,
+    # 於是「그날들 - 용인」與「그날들 - 이천」變成兩個獨立的組(용인在表裡、이천不在)。
+    # 名單與 PROVINCE_CITIES 的英文逐一對齊。
+    "이천": "Icheon", "군포": "Gunpo", "안성": "Anseong", "포천": "Pocheon",
+    "하남": "Hanam", "원주": "Wonju", "인제": "Inje", "영월": "Yeongwol",
+    "충주": "Chungju", "제천": "Jecheon", "공주": "Gongju", "아산": "Asan",
+    "보령": "Boryeong", "군산": "Gunsan", "순천": "Suncheon", "목포": "Mokpo",
+    "경주": "Gyeongju", "구미": "Gumi", "진주": "Jinju", "양산": "Yangsan",
 }
 
 # API 的 regionName → (城市, 地理編碼用的區域字串)。
@@ -142,8 +151,37 @@ JUNK = re.compile(r"caption\s*glasses|subtitle\s*glasses|pre-?order|rental|자�
                   r"parking|package|패키지|goods|md\b|gift\s*card", re.I)
 
 
+def strip_tour_city(t):
+    """剝掉標題尾端的【巡演城市後綴】:「- 울산」「(대전)」「［청주,세종］」。
+
+    🚨 為什麼一定要剝(2026-09-02 查韓國劇名時發現):
+    城市後綴會進 group_key,造成兩個獨立而且都錯的後果——
+      1. **同一齣戲被拆成多組**:그날들 - 용인 / 그날들 - 이천 變成兩組,
+         썸데이 - 용인 / 썸데이［청주］ 也是。使用者搜其中一個看不到另一個。
+      2. **works.json 的別名對不上**:「팬레터」單獨查得到已登記的 Fan Letter,
+         但「팬레터 - 울산」的 group_key 是「팬레터 울산」,整個比對失效
+         (實測:前者 → Fan Letter,後者 → 無)。
+    當時 25 組帶城市後綴,問題是全面的,不是個案。
+
+    ⚠ 只剝【尾端】且【有分隔符】的城市名,不剝標題中間的地名 ——
+    「광화문연가」裡的 광화문(光化門)是劇名的一部分,不能動;
+    「전주비빔밥」裡的 전주(全州)也在名字中間,不能動。
+    在地全名仍由 build_shows 保進 tour_name(Love Never Dies 規則),資訊不會消失。
+    """
+    cities = "|".join(sorted(KO_CITY, key=len, reverse=True))
+    # 開頭的方括號城市清單:［청주,세종］뮤지컬 …
+    t = re.sub(r"^\s*[\[［]\s*(?:%s)(?:\s*,\s*(?:%s))*\s*[\]］]\s*" % (cities, cities), "", t)
+    # 尾端的城市後綴:- 울산 / (대전) / ［청주］
+    t = re.sub(r"[\s]*[-–—]\s*(?:%s)\s*$" % cities, "", t)
+    t = re.sub(r"[\s]*[\(（\[［]\s*(?:%s)(?:\s*,\s*(?:%s))*\s*[\)）\]］]\s*$" % (cities, cities), "", t)
+    return t.strip()
+
+
 def clean_title(name):
     t = (name or "").strip()
+    # ⚠ 順序:先剝城市方括號再剝類型前綴。反過來的話「［청주,세종］뮤지컬 베어만」
+    #    的前綴被方括號擋住,會留下「뮤지컬 베어만」(2026-09-02 差值測試時抓到)。
+    t = strip_tour_city(t)
     t = re.sub(r"^\s*(show\s+musical|musical\s*pub|musical|뮤지컬)\s*", "", t, flags=re.I)
     t = t.strip()
     t = re.sub(r"^[〈\[<(]\s*", "", t)
