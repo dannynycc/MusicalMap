@@ -7,6 +7,8 @@ zero network calls. This keeps us off unreliable per-run geocoding and respects
 Nominatim's usage policy (<=1 req/sec, descriptive User-Agent).
 """
 
+import atexit
+import datetime as _dt
 import json
 import time
 import urllib.parse
@@ -30,6 +32,31 @@ def _gkey():
         return GKEY_FILE.read_text(encoding="utf-8").strip() or None
     except OSError:
         return None
+
+
+# 這一輪實際被查詢過的 slug。用途:快取裡的「查不到」混了兩種東西 ——
+# (a) 現在還在用、真的定不出座標的場館(= 真缺口,會讓場次被丟掉)
+# (b) 舊格式留下的死鍵(場館早就有座標了,或已下檔)
+# 2026-09-02 實測:110 筆「查不到」裡有 75 筆屬於 (b),只看快取會把死鍵當成缺口。
+# 記下 last_seen 才分得出來。程式結束時一次寫回,不在每次呼叫時寫檔。
+_seen_this_run = set()
+
+
+def _flush_last_seen():
+    if not _seen_this_run:
+        return
+    try:
+        cache = _load_cache()
+        today = _dt.date.today().isoformat()
+        for slug in _seen_this_run:
+            if slug in cache:
+                cache[slug]["last_seen"] = today
+        _save_cache(cache)
+    except Exception:      # noqa: BLE001 — 收尾動作失敗不該影響爬蟲的產出
+        pass
+
+
+atexit.register(_flush_last_seen)
 
 
 def _load_cache():
@@ -79,6 +106,7 @@ def geocode(slug, query):
     query: human query for Nominatim (e.g. "His Majesty's Theatre, London, UK")
     Returns (None, None) and caches the miss-free None if not found.
     """
+    _seen_this_run.add(slug)
     cache = _load_cache()
     if slug in cache:
         c = cache[slug]

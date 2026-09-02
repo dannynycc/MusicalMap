@@ -153,6 +153,11 @@ jobs:
           gate "官網體檢 (audit_official)"      python scrapers/_run.py scrapers/audit_official.py --check-live
           # 地理體檢:國界框+venue_coords 修正表自體檢(2026-07-10 保利座標污染事件後入 CI)
           gate "地理體檢 (audit_geo)"           python scrapers/_run.py scrapers/audit_geo.py
+          # 地理編碼缺口:9 支爬蟲用 geocode,但只有 interpark 會印出自己丟掉什麼,
+          # 其餘 8 支定不出座標就【靜默跳過】——場次少了,資料照樣產出、CI 照樣全綠。
+          # 這支把那個看不見的數字印出來。用 warn 不用 gate:一個真的查不到的
+          # 偏遠場館不該讓整個 build 變紅,但要有人看得到它存在。
+          warn "地理編碼缺口 (audit_geocode_gaps)" python scripts/qa/audit_geocode_gaps.py
           # 日期體檢:格式/顛倒/已閉幕仍在檔/無開演日/三年後/超長檔期未標 rolling(2026-08-12 補;
           # 日期正確性是本站最高優先,先前竟然只有 audit_sample_truth 每天抽 ~15 筆 TM 卡在驗)
           gate "日期體檢 (audit_dates)"         python scrapers/_run.py scrapers/audit_dates.py
