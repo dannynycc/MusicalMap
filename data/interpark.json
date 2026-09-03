@@ -2,9 +2,46 @@
   "meta": {
     "source": "world.nol.com (Interpark)",
     "count": 104,
-    "dropped_no_coords": []
+    "dropped_no_coords": [
+      "빨래 @ 경기아트센터 대극장",
+      "쇼뮤지컬  드림하이 @ Gongju Art Culture Center Grand Theater"
+    ]
   },
   "shows": [
+    {
+      "id": "ip-26012626",
+      "title": "라면에 파송송",
+      "type": "tour",
+      "venue": "제이원 씨어터",
+      "city": "Seoul",
+      "country": "South Korea",
+      "lat": 37.58421,
+      "lng": 127.000449,
+      "start_date": "2026-09-21",
+      "end_date": "2026-10-11",
+      "ticket_url": "https://tickets.interpark.com/goods/26012626",
+      "image": "https://ticketimage.interpark.com/Play/image/large/26/26012626_p.gif",
+      "tour_name": null,
+      "verified": true,
+      "source": "world.nol.com (Interpark)"
+    },
+    {
+      "id": "ip-26012509",
+      "title": "［SUGAR DAY#7］Musical  WIDERSTAND",
+      "type": "tour",
+      "venue": "LINK ARTS CENTER DREAM 1 Hall",
+      "city": "Seoul",
+      "country": "South Korea",
+      "lat": 37.584611,
+      "lng": 127.002336,
+      "start_date": "2026-09-22",
+      "end_date": "2026-09-23",
+      "ticket_url": "https://world.nol.com/en/ticket/places/26000679/products/26012509",
+      "image": "https://ticketimage.interpark.com/Play/image/large/26/26012509_p.gif",
+      "tour_name": null,
+      "verified": true,
+      "source": "world.nol.com (Interpark)"
+    },
     {
       "id": "ip-26012442",
       "title": "물속의 달 - 오필리어",
@@ -528,23 +565,6 @@
       "end_date": "2026-12-13",
       "ticket_url": "https://world.nol.com/en/ticket/places/22000556/products/26011453",
       "image": "https://ticketimage.interpark.com/Play/image/large/26/26011453_p.gif",
-      "tour_name": null,
-      "verified": true,
-      "source": "world.nol.com (Interpark)"
-    },
-    {
-      "id": "ip-26011256",
-      "title": "헤어드레서",
-      "type": "tour",
-      "venue": "포천반월아트홀 대극장",
-      "city": "Pocheon",
-      "country": "South Korea",
-      "lat": 37.895881,
-      "lng": 127.212107,
-      "start_date": "2026-09-04",
-      "end_date": "2026-09-04",
-      "ticket_url": "https://tickets.interpark.com/goods/26011256",
-      "image": "https://ticketimage.interpark.com/Play/image/large/26/26011256_p.gif",
       "tour_name": null,
       "verified": true,
       "source": "world.nol.com (Interpark)"
@@ -1531,23 +1551,6 @@
       "end_date": "2026-09-30",
       "ticket_url": "https://world.nol.com/en/ticket/places/25000210/products/26002729",
       "image": "https://ticketimage.interpark.com/Play/image/large/26/26002729_p.gif",
-      "tour_name": null,
-      "verified": true,
-      "source": "world.nol.com (Interpark)"
-    },
-    {
-      "id": "ip-26000065",
-      "title": "쇼뮤지컬  드림하이",
-      "type": "tour",
-      "venue": "공주문예회관 대공연장",
-      "city": "Gongju",
-      "country": "South Korea",
-      "lat": 36.460184,
-      "lng": 127.111414,
-      "start_date": "2026-11-07",
-      "end_date": "2026-11-07",
-      "ticket_url": "https://tickets.interpark.com/goods/26000065",
-      "image": "https://ticketimage.interpark.com/Play/image/large/26/26000065_p.gif",
       "tour_name": null,
       "verified": true,
       "source": "world.nol.com (Interpark)"
