@@ -1,7 +1,7 @@
 {
   "meta": {
     "source": "broadway-show-tickets.com",
-    "count": 24,
+    "count": 25,
     "missing_coords": []
   },
   "shows": [
@@ -74,6 +74,23 @@
       "source": "broadway-show-tickets.com"
     },
     {
+      "id": "bway-740",
+      "title": "The Gazillion Bubble Show",
+      "type": "resident",
+      "venue": "New World Stages",
+      "city": "New York",
+      "country": "USA",
+      "lat": 40.762821,
+      "lng": -73.98761,
+      "start_date": "2007-01-17",
+      "end_date": "2026-01-04",
+      "ticket_url": "https://www.broadway-show-tickets.com/musicals/the-gazillion-bubble-show-tickets/",
+      "image": "https://cdn-imgix.headout.com/media/images/99ce1477b6c098151be7f92b121893b7-740.png",
+      "tour_name": null,
+      "verified": true,
+      "source": "broadway-show-tickets.com"
+    },
+    {
       "id": "bway-1293",
       "title": "Hamilton",
       "type": "resident",
@@ -100,7 +117,7 @@
       "lat": 40.760723,
       "lng": -73.985664,
       "start_date": "2019-03-22",
-      "end_date": "2027-01-23",
+      "end_date": "2027-02-26",
       "ticket_url": "https://www.broadway-show-tickets.com/musicals/hadestown-tickets/",
       "image": "https://cdn-imgix.headout.com/media/images/cf43939faa62255f2a620aa384e48cf1-10069.png",
       "tour_name": null,
@@ -389,7 +406,7 @@
       "lat": 40.761292,
       "lng": -73.985085,
       "start_date": "2023-02-17",
-      "end_date": "2027-01-17",
+      "end_date": "2027-02-27",
       "ticket_url": "https://www.broadway-show-tickets.com/musicals/chicago-tickets/",
       "image": "https://cdn-imgix.headout.com/media/images/66e07f1dce2f156d5206918e3e662ee1-519.png",
       "tour_name": null,
