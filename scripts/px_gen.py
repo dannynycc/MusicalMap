@@ -26,7 +26,16 @@ if LANG == "en":
             "If those names are written in a non-Latin script (Korean, Japanese, Chinese, Cyrillic, "
             "Greek, Thai...), transliterate them into the Latin alphabet using the standard "
             "romanisation of that language (Korean 유견 -> Yugyeon, 이산 -> Yi San, 사도 -> Sado). "
-            "The English text must contain no non-Latin characters at all. "
+            # 🚨 2026-09-03 波蘭批實測:上面那句「非拉丁字系一律羅馬拼音」被【過度套用到
+            # 拉丁字母的變音符號】。波蘭/匈牙利/捷克/德文的 ł ń ó ś ż ź ą ć ę ő ű ř č ö ä
+            # 本來就是拉丁字母,模型卻讀成「不能有非 ASCII」,整批拉平:
+            # Stanisław→Stanislaw、Władysław→Wladyslaw、Starzyński→Starzynski、
+            # Wazówna→Wazowna。三篇英文稿變音符號數 = 0。人名寫錯就是資料錯,必須擋。
+            "The rule above is about SCRIPTS, not accents: strip only characters from non-Latin "
+            "writing systems (CJK, Hangul, Cyrillic, Greek, Thai, Arabic, Hebrew). "
+            "Latin-script diacritics MUST be reproduced exactly as the production spells them — "
+            "keep Stanisław, Władysław, Starzyński, Małgorzata, Piotruś, Łysa Góra, Aschenbrödel, "
+            "Amélie, Dvořák, Szécsi. NEVER flatten them to plain ASCII. "
             # 🚨 2026-09-03 韓國批查證抓到的反效果:上面那句被【過度套用到普通名詞】。
             # 官方人物表常直接用普通名詞當角色名(그녀=「她」、그 남자/그 여자=「那個男人/女人」、
             # 호랑이=「老虎」、구미호=「九尾狐」、까치=「喜鵲」),結果英文稿寫成 Geunyeo /
