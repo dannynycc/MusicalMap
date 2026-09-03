@@ -1,0 +1,233 @@
+{
+ "na prochach": {
+  "verdict": "fix",
+  "errors": [
+   "官方角色表有【Konferansjerka(女司儀)】→『秀場框架』有依據,但【「電視」二字查無來源】,應改為不指定媒介的司儀開場",
+   "自行加上的職業設定「a persistent journalist」(Oliver Harris)與「Prosecutor」(Evelyn Morgan)仍查無來源 → 刪除",
+   "漏掉 Królowa opioidów → 補上",
+   "劇評提到的拳擊賽場面(walka bokserska)是印象深刻的場景,生成未提(非錯誤,可不補)"
+  ],
+  "ok": [
+   "家族姓氏正確用 Barker、沒有出現 Sackler/Purdue",
+   "Nancy/Brenda/Oliver Harris/Evelyn Morgan 都在官方角色表上",
+   "官方數字 50 萬人死亡、罰金低於獲利、換得免責,全部保留"
+  ],
+  "external": [
+   "e-teatr.pl 劇評 —— 逐一點名 Adam Barker(Piotr Siejka)、Archibald Barker(Jacek Pluta)、Rupert Barker(Michał Konarski)、Evelyn Morgan(Agnieszka Rose)、Oliver Harris(Michał Juraszek)、Carole/Konferansjerka/Brenda、Becky/Nancy,角色名全部與官方一致",
+   "同篇證實【Królowa opioidów】由編舞者 Ewelina Adamska-Porczyk 飾演,是全劇最具衝擊力的角色之一,有整段不說話只用身體演的場面 → 生成稿漏掉她確實是缺漏",
+   "kulturonieznawczyni 劇評摘要 —— 「Historia rodziny Barkerów, inspirowana prawdziwymi wydarzeniami związanymi z firmą Purdue Pharma」→ 影射 Purdue 屬實,但【台上姓氏就是 Barker】,行文不可改寫成 Sackler/Purdue",
+   "🚨 分類歧異:e-teatr 劇評開頭寫「『Na prochach』不是音樂劇!是充滿音樂、歌曲與編舞的戲劇」,但官方頁標示 SPEKTAKL MUZYCZNY、KPO 專案文件寫 Mikromusical → 採官方,並記錄此歧異"
+  ],
+  "tier": "A 多源交叉(官方 + e-teatr + kulturonieznawczyni)"
+ },
+ "bitwa o tron": {
+  "verdict": "pass",
+  "errors": [],
+  "ok": [
+   "八位國王數目與名字全對",
+   "四位女性評審 Bona Sforza/Anna Wazówna/Maria Kazimiera/Caryca Katarzyna Wielka 全在官方角色表",
+   "ks. Piotr Skarga 與 o. Augustyn Kordecki 也在官方角色表(我一度誤判為捏造,是我自己抽取時截斷)",
+   "終場由觀眾投票選出勝者,符合官方文案",
+   "波蘭變音符號全部保留"
+  ]
+ },
+ "starzynski": {
+  "verdict": "pass",
+  "errors": [],
+  "ok": [
+   "日期 1939-10-26~27 與官方逐字相符",
+   "Stanisław Lorentz(國家博物館館長)、Syrena、Józef Piłsudski、Ludwika Nitschowa、父母 全在官方角色表",
+   "引用《Dziady》符合官方註記",
+   "Żołnierz Gestapo 在角色表,故「被德軍逮捕」成立"
+  ]
+ },
+ "kajko i kokosz szkoa latania": {
+  "verdict": "verify",
+  "errors": [
+   "情節細節(城門被關、Łamignat 的魔笛、畢業證書+飛行藥膏+飛行箱、Mirmił Waleczny 封號)遠超官方文案 → 可能取自漫畫原著而非本製作,待查"
+  ],
+  "ok": [
+   "Kajko/Kokosz/Mirmił/Lubawa/Jaga/Łamignat/Hegemon/Zbójcerze 全在官方角色表",
+   "Łysa Góra 的 Wyższa Szkoła Latania na Miotle 符合官方"
+  ]
+ },
+ "wypior": {
+  "verdict": "fix",
+  "errors": [
+   "官方問句是「他還有沒有力量【拯救】這對 30 世代的感情」,生成寫成他讓日常生活變得不可能、暴露彼此的怨懟 → 重心相反",
+   "「公寓是 Marta 舅舅借的」官方沒有 → 待查",
+   "Szpital Banacha、Pole Mokotowskie 兩個具體地名官方沒有 → 待查"
+  ],
+  "ok": [
+   "Adam Mickiewicz/Marta/Łukasz/Detektyw/Stróż/Pielęgniarka/Zofia Szymanowska/Kot Eks 全在官方角色表",
+   "pl. Zbawiciela、白天躲衣櫃、夜裡從醫院垃圾取血 全部符合官方"
+  ]
+ },
+ "mistrz i magorzata": {
+  "verdict": "pass",
+  "errors": [],
+  "ok": [
+   "Woland/Korowiow/Behemot/Azazello/Hella/Iwan Bezdomny/Mistrz/Piłat/Jeszua(官方寫 Ha-Nocri)/Małgorzata 全在官方角色表",
+   "Bal Pełni Księżyca 與 piąty wymiar 都直接來自官方文案"
+  ]
+ },
+ "romeo i julia": {
+  "verdict": "regenerate",
+  "errors": [
+   "🚨 寫成【標準莎劇情節】,完全沒有本製作的 Dealer(毒販)與毒品線;官方內容警告明列 narkotyki/samobójstwo/zabójstwo",
+   "官方角色表沒有蒙太古家長,生成也沒寫錯,但整體框架仍是通用版",
+   "Rosalina 在官方角色表上卻沒出現"
+  ],
+  "ok": [
+   "「青少年愛情 vs 只顧自己生意與期待的成人世界」這個官方核心框架有寫到",
+   "Julia/Romeo/Capuletti 夫婦/Tybalt/Benvolio/Merkucjo/Parys/Niania/Ojciec Laurenty 名字都對"
+  ]
+ },
+ "piotrus pan": {
+  "verdict": "fix",
+  "errors": [
+   "🚨 Janek/Michaś 應為【Jaś / Miś】(官方角色表)",
+   "🚨『Nibywalencja』查無任何來源(波蘭通用譯名是 Nibylandia,官方頁也沒有)→ 不可使用,改用泛稱",
+   "『Dzwoneczek』不在官方角色表 → 刪除或改泛稱"
+  ],
+  "ok": [
+   "Piotruś Pan/Wendy/Kapitan Hak/Tygrysica z Lilią w Zębach 都在官方角色表",
+   "結尾「多年後回來找已長大的 Wendy,邀她女兒同飛」符合官方角色表有 Dorosła Wendy 與 Jane"
+  ],
+  "external": [
+   "Studio Buffo 官方頁全文 —— 含【Jaś】與【Miś】,【不含】Janek/Michaś/Dzwoneczek/Nibylandia/Nibywalencja;含 krokodyl",
+   "官方頁另載:Buffo 版首演 2015-12-12(2000 年那次是 Teatr Muzyczny Roma,演 3 季、20 萬人次)"
+  ],
+  "tier": "B 單一外部+官方(官方角色表為主要依據)"
+ },
+ "a pal utcai fiuk": {
+  "verdict": "pass",
+  "errors": [],
+  "ok": [
+   "Boka/Nemecsek/Pásztor 兄弟/Áts Feri/Geréb 全在 Vígszínház 官方角色表",
+   "Grund、Füvészkert、Gittegylet、golyók 都是原著與本製作共通的專有名詞"
+  ]
+ },
+ "deryne tarsulat ket osszeillo ember": {
+  "verdict": "pass",
+  "errors": [],
+  "ok": [
+   "【只有兩個角色】,沒有捏造第三人,符合官方雙人劇設定",
+   "十個月、天堂與地獄、兩人皆為知名藝人 全部符合官方文案"
+  ],
+  "external": [
+   "hu.wikipedia《Domján Edit》——「1972 januárjában találkozott Szécsi Pállal: szerelem volt első látásra… Tíz hónapig (januártól októberig) tartó szenvedélyes szerelem után azonban elváltak útjaik」;生卒 1932-12-25 ~ 1972-12-26,1972 年聖誕節自盡",
+   "hu.wikipedia《Szécsi Pál》——「1972-ben a Rádióban egy műsorban találkozott legismertebb szerelmével, Domján Edittel. A kölcsönös, lángoló szerelem januártól októberig tartott.」→ 證實【相遇於廣播電台的節目】;另載其「無照顧、無疼愛家庭的悲傷童年」;卒於 1974-04-30",
+   "→ 生成稿的『1972 年在 Magyar Rádió 相遇』『十個月』『她自盡後他回憶』『他自己的自毀在後』全部有據"
+  ],
+  "tier": "A 多源交叉(官方 jegy.hu + 匈牙利維基兩條)"
+ },
+ "edda musical a kor": {
+  "verdict": "fix",
+  "errors": [
+   "🚨『Isteni Hang(神聖之聲)』錯誤:維基寫靈魂是與【az Univerzum(宇宙)】對話(Kautzky Armand 配音)",
+   "⚠ 生成寫的是 2013 年原版結局;2024 年起的版本改為 Frédi 中槍後直接暗場、十年後回想。本檔是 2024 系列(Várudvari + Csiky Gergely),應依修訂版",
+   "維基記 2013 年版用 23 首歌,官方 jegy.hu 寫本檔 24 首 —— 不同製作,採官方數字"
+  ],
+  "ok": [
+   "Elmó 的尋路歷程符合官方「Elmó útkeresését követhetjük végig」"
+  ],
+  "external": [
+   "hu.wikipedia《A kör (musical)》—— 逐項證實 Angóra(Elmo 女友,因嫌他配不上而分手)、Fausztusz(Angóra 之父,有權勢、參選總統)、Szezár(車隊首領)、Írisz(Szezár 之妹)、Frédi(成為經紀人把 Elmo 捧紅);結局「Fausztusz 當選→大會上承認競選不實且將緊縮→暴動→Frédi 中槍→倒地見到 Elmo 與 Írisz 未出生的兒子→十年後」與生成稿【逐句吻合】",
+   "operett.hu / szinhaz.online —— 證實「Elmó 的尋路歷程 + 24 首 EDDA 金曲」"
+  ],
+  "tier": "A 多源交叉(官方 jegy.hu + 匈牙利維基 + operett.hu)"
+ },
+ "天堂邊緣": {
+  "verdict": "fix",
+  "errors": [
+   "🚨 寫「Twenty-eight years later」,官方明寫【29年來】守護震宇",
+   "秀燕=家族牽絆、何智=歌唱天賦的自我懷疑、菲菲=沒說出口的愛 —— 官方只說「各自最後的遺憾」,沒有分配這些內容 → 待查"
+  ],
+  "ok": [
+   "秀燕/何智/菲菲/震宇/天使 全是官方點名的角色",
+   "24 小時完成遺憾才能上天堂,符合官方"
+  ]
+ },
+ "precure colorful runway": {
+  "verdict": "regenerate",
+  "errors": [
+   "🚨 官方 2026-09-01 才發表,只公開「舞台原創故事+時尚主題+日常與作為プリキュア的使命」,生成卻編出反派動機(把個性扭曲成從眾)、四人各自的性格特質、戰鬥描寫 → 全是自行補的",
+   "必須砍回官方確實公開的範圍"
+  ],
+  "ok": [
+   "四位 Cure 與人類名、Bogart/Banshee/Gothic、百瀬昭彦 全部符合官方角色表"
+  ]
+ },
+ "naruto": {
+  "verdict": "fix",
+  "errors": [
+   "🚨 結尾出現元敘述「The official production identifies its story as…」—— 提示明文禁止提及出處/版本",
+   "「Ninja Academy 的編制」「Kakashi 新任教官」等細節來自漫畫設定,本製作是無台詞動作秀,官方只說『演少年篇的故事』→ 應收斂"
+  ],
+  "ok": [
+   "うずまきナルト/うちはサスケ/春野サクラ/はたけカカシ 全在官方角色表",
+   "少年篇、木ノ葉隠れの里 符合官方"
+  ]
+ },
+ "caperucita roja": {
+  "verdict": "fix",
+  "errors": [
+   "🚨 官方寫的是「un inesperado héroe(意料之外的英雄)」,生成寫成【Cazador(獵人)】—— 獵人是經典版角色,一點也不「意料之外」,自相矛盾",
+   "官方有「con la ayuda de sus amigos(在朋友幫助下)」,生成完全沒寫到朋友",
+   "把 Abuelita 寫成比野狼還瘋癲的怪人,官方沒有這個設定"
+  ],
+  "ok": [
+   "Caperucita Roja/Lobo/Abuelita 符合官方",
+   "「學會聽長輩的話、要謹慎」的教訓符合官方"
+  ]
+ },
+ "blood brothers": {
+  "verdict": "pass",
+  "errors": [
+   "⚠ Mrs Johnstone / Mrs Lyons / Sammy 三個名字仍未由外部來源逐一證實,但既然 Mickey/Eddie 沿用原版,採用原版命名是合理的;已在帳本標明證據層級"
+  ],
+  "ok": [
+   "雙胞胎出生即分離、在對立的兩個世界長大、兩位母親、愛上同一個女孩、最終悲劇 全部符合 Teatre Condal 官方 Sinopsi"
+  ],
+  "external": [
+   "El País Quadern 加泰語劇評(2025-12-22)—— 明確寫「els papers del 【Mickey】 i l'【Eddie】」,證實加泰語版沿用英文原版角色名;另提到「與他們一起長大、形影不離的女性朋友」(即 Linda,未點名)",
+   "同篇證實 1994 年 Ricard Reguant 版由 Àngels Gonyalons/Roger Pera/Joan Crosas 主演,與 Teatre Condal 官方「1994 年由 Focus 在同一劇院首演」一致",
+   "regio7 劇評標題證實為 Willy Russell 音樂劇的新製作"
+  ],
+  "tier": "A 多源交叉(Teatre Condal 官方 + El País + Regió7)"
+ },
+ "on your feet": {
+  "verdict": "verify",
+  "errors": [
+   "Nayib/José Fajardo/Gloria Fajardo/Consuelo 官方文案未點名 → 需確認確為本劇登場角色(均為真實人物,風險低但仍需查)"
+  ],
+  "ok": [
+   "Emilio 與 Gloria Estefan、Miami Sound Machine、官方點名的四首歌 全部符合",
+   "1990 年 Syracuse 巴士車禍與脊椎重傷為史實"
+  ]
+ },
+ "carrie": {
+  "verdict": "pass",
+  "errors": [],
+  "ok": [
+   "Carrie White、控制欲極強的母親、校園霸凌、Chamberlain(Maine) 全部符合官方",
+   "畢業舞會潑豬血、能力爆發 為本劇核心情節"
+  ],
+  "external": [
+   "carriethemusical.weebly.com 卡司資料庫 —— 百老匯原卡司:Betty Buckley(Margaret White)、Linzi Hateley(Carrie White)、Darlene Love(Mrs. Gardner)、Sally Ann Triplett(Sue Snell)、Charlotte D'Amboise(Chris Hargensen)、Paul Gyngell(Tommy Ross)、Gene Anthony Ray(Billy)→ 證實這些是本劇正典角色,非原著獨有",
+   "⚠ 百老匯版寫 Mrs. Gardner,生成稿寫 Miss Gardner(2012 修訂版用法)。本檔由 Concord Theatricals 授權=修訂版,採 Miss Gardner 可接受"
+  ],
+  "tier": "B 單一外部+官方"
+ },
+ "charlie brown christmas": {
+  "verdict": "verify",
+  "errors": [
+   "Sally/Schroeder/Patty/Violet/Frieda 官方通稿只點名 Charlie Brown/Snoopy/Lucy/Linus + 「the whole Peanuts gang」→ 需確認這些角色確實登場"
+  ],
+  "ok": [
+   "自己排一齣聖誕劇、最後領悟聖誕節真義 符合官方通稿",
+   "Lucy 的五分錢心理諮詢攤、小樹、Linus 的演說 為 1965 年原作核心,本劇為其舞台改編"
+  ]
+ }
+}
