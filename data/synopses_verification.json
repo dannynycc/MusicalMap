@@ -1,6 +1,6 @@
 {
  "_note": "每部知識庫簡介(data/synopses_library)的驗證出處帳本,讓跨 session 可追溯。method: B=Perplexity 生成為主體 → 有經過 agent 逐語言語意查核+獨立多源交叉比對(只修錯不改文風,主客不倒);A=Perplexity 生成為主體,但「沒有」經過 agent 逐語言語意查核+多源交叉(即未嚴格驗證);legacy=早期入庫、驗證方式未明確標記、待以方法 B 重驗(多數應為 A);none=未經任何獨立事實查核。入庫或重驗時務必更新此檔。",
- "_schema": "verified[group]={method,date(YYYY-MM-DD),langs:[...],sources,errors_fixed:[...],confidence,batch}",
+ "_schema": "verified[group]={method,date(YYYY-MM-DD),langs:[...],sources,errors_fixed,confidence,batch,external_multisource,external_source_count,note}。🚨【external_source_count 的定義,2026-09-03 韓國批次釐清】只數【獨立於主辦方】的來源:媒體報導、나무위키/wikipedia、PlayDB/KOPIS 等第三方資料庫、觀眾評論與部落格觀後感。同一張官方詳情圖的海報／SYNOPSIS／CAST／INFORMATION 是【一個】來源不是四個;售票通路的官方頁、製作公司自家官網與社群帳號也一律算官方同源(掛在通路上的【관람후기】除外)。external_multisource=true 需 external_source_count>=2。⚠ 外部來源還要看層級:只寫『開演日期/場地/卡司』的公演消息不構成劇情佐證,這類情形在 note 標明。",
  "verified": {
   "101 dalmatians": {
    "method": "B",
@@ -5057,6 +5057,886 @@
    "verify_scope": "multisource",
    "batch": "eses-2026-09-02",
    "ledger": "scratchpad/eses/synopsis_ledger.json#items.快乐即逝"
+  },
+  "haemongga": {
+   "method": "B",
+   "date": "2026-09-03",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方逐字 6 段 + 獨立外部來源 3 個",
+   "external_multisource": true,
+   "external_source_count": 3,
+   "confidence": "high",
+   "errors_fixed": 3,
+   "batch": "kr-methodB-2026-09-03",
+   "note": "官方詳情圖由本人逐張讀出並逐句比對三語"
+  },
+  "black mary poppins": {
+   "method": "B",
+   "date": "2026-09-03",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方逐字 5 段 + 獨立外部來源 15 個",
+   "external_multisource": true,
+   "external_source_count": 15,
+   "confidence": "high",
+   "errors_fixed": 2,
+   "batch": "kr-methodB-2026-09-03",
+   "note": "官方詳情圖由本人逐張讀出並逐句比對三語"
+  },
+  "brahms": {
+   "method": "B",
+   "date": "2026-09-03",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方逐字 2 段 + 獨立外部來源 5 個",
+   "external_multisource": true,
+   "external_source_count": 5,
+   "confidence": "high",
+   "errors_fixed": 5,
+   "batch": "kr-methodB-2026-09-03",
+   "note": "官方詳情圖由本人逐張讀出並逐句比對三語"
+  },
+  "cafe in": {
+   "method": "B",
+   "date": "2026-09-03",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方逐字 1 段 + 獨立外部來源 7 個",
+   "external_multisource": true,
+   "external_source_count": 7,
+   "confidence": "high",
+   "errors_fixed": 2,
+   "batch": "kr-methodB-2026-09-03",
+   "note": "官方詳情圖由本人逐張讀出並逐句比對三語"
+  },
+  "let me fly": {
+   "method": "B",
+   "date": "2026-09-03",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方逐字 5 段 + 獨立外部來源 2 個",
+   "external_multisource": true,
+   "external_source_count": 2,
+   "confidence": "high",
+   "errors_fixed": 1,
+   "batch": "kr-methodB-2026-09-03",
+   "note": "官方詳情圖由本人逐張讀出並逐句比對三語"
+  },
+  "let the cheongsachorong shine": {
+   "method": "B",
+   "date": "2026-09-03",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方逐字 4 段 + 獨立外部來源 3 個",
+   "external_multisource": true,
+   "external_source_count": 3,
+   "confidence": "high",
+   "errors_fixed": 2,
+   "batch": "kr-methodB-2026-09-03",
+   "note": "官方詳情圖由本人逐張讀出並逐句比對三語"
+  },
+  "origin of species": {
+   "method": "B",
+   "date": "2026-09-03",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方逐字 2 段 + 獨立外部來源 4 個",
+   "external_multisource": true,
+   "external_source_count": 4,
+   "confidence": "high",
+   "errors_fixed": 0,
+   "batch": "kr-methodB-2026-09-03",
+   "note": "官方詳情圖由本人逐張讀出並逐句比對三語"
+  },
+  "gwanghwamun love song": {
+   "method": "B",
+   "date": "2026-09-03",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方逐字 4 段 + 獨立外部來源 3 個",
+   "external_multisource": true,
+   "external_source_count": 3,
+   "confidence": "high",
+   "errors_fixed": 2,
+   "batch": "kr-methodB-2026-09-03",
+   "note": "官方詳情圖由本人逐張讀出並逐句比對三語"
+  },
+  "park yeol": {
+   "method": "B",
+   "date": "2026-09-03",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方逐字 4 段 + 獨立外部來源 2 個",
+   "external_multisource": true,
+   "external_source_count": 2,
+   "confidence": "high",
+   "errors_fixed": 0,
+   "batch": "kr-methodB-2026-09-03",
+   "note": "官方詳情圖由本人逐張讀出並逐句比對三語"
+  },
+  "widerstand": {
+   "method": "B",
+   "date": "2026-09-03",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方逐字 2 段 + 獨立外部來源 4 個",
+   "external_multisource": true,
+   "external_source_count": 4,
+   "confidence": "high",
+   "errors_fixed": 2,
+   "batch": "kr-methodB-2026-09-03",
+   "note": "官方詳情圖由本人逐張讀出並逐句比對三語"
+  },
+  "your letter": {
+   "method": "B",
+   "date": "2026-09-03",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方逐字 5 段 + 獨立外部來源 3 個",
+   "external_multisource": true,
+   "external_source_count": 3,
+   "confidence": "high",
+   "errors_fixed": 3,
+   "batch": "kr-methodB-2026-09-03",
+   "note": "官方詳情圖由本人逐張讀出並逐句比對三語"
+  },
+  "m butterfly": {
+   "method": "B",
+   "date": "2026-09-03",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方逐字 2 段 + 獨立外部來源 4 個",
+   "external_multisource": true,
+   "external_source_count": 4,
+   "confidence": "high",
+   "errors_fixed": 3,
+   "batch": "kr-methodB-2026-09-03",
+   "note": "官方詳情圖由本人逐張讀出並逐句比對三語"
+  },
+  "socrates paradox": {
+   "method": "B",
+   "date": "2026-09-03",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方逐字 4 段 + 獨立外部來源 2 個",
+   "external_multisource": true,
+   "external_source_count": 2,
+   "confidence": "high",
+   "errors_fixed": 1,
+   "batch": "kr-methodB-2026-09-03",
+   "note": "官方詳情圖由本人逐張讀出並逐句比對三語"
+  },
+  "turbulent age": {
+   "method": "B",
+   "date": "2026-09-03",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方逐字 4 段 + 獨立外部來源 4 個",
+   "external_multisource": true,
+   "external_source_count": 4,
+   "confidence": "high",
+   "errors_fixed": 0,
+   "batch": "kr-methodB-2026-09-03",
+   "note": "官方詳情圖由本人逐張讀出並逐句比對三語"
+  },
+  "welcome to the hyunam dong bookshop": {
+   "method": "B",
+   "date": "2026-09-03",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方逐字 5 段 + 獨立外部來源 4 個",
+   "external_multisource": true,
+   "external_source_count": 4,
+   "confidence": "high",
+   "errors_fixed": 4,
+   "batch": "kr-methodB-2026-09-03",
+   "note": "官方詳情圖由本人逐張讀出並逐句比對三語"
+  },
+  "his story": {
+   "method": "B",
+   "date": "2026-09-03",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方逐字 6 段 + 獨立外部來源 2 個",
+   "external_multisource": true,
+   "external_source_count": 2,
+   "confidence": "high",
+   "errors_fixed": 2,
+   "batch": "kr-methodB-2026-09-03",
+   "note": "官方詳情圖由本人逐張讀出並逐句比對三語;因原稿寫成他作而依官方原文重新生成"
+  },
+  "그날들": {
+   "method": "B",
+   "date": "2026-09-03",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方逐字 1 段 + 獨立外部來源 6 個",
+   "external_multisource": true,
+   "external_source_count": 6,
+   "confidence": "high",
+   "errors_fixed": 2,
+   "batch": "kr-methodB-2026-09-03",
+   "note": "官方詳情圖由本人逐張讀出並逐句比對三語"
+  },
+  "김종욱 찾기": {
+   "method": "B",
+   "date": "2026-09-03",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方逐字 6 段 + 獨立外部來源 5 個",
+   "external_multisource": true,
+   "external_source_count": 5,
+   "confidence": "high",
+   "errors_fixed": 2,
+   "batch": "kr-methodB-2026-09-03",
+   "note": "官方詳情圖由本人逐張讀出並逐句比對三語"
+  },
+  "빨래": {
+   "method": "B",
+   "date": "2026-09-03",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方逐字 6 段 + 獨立外部來源 2 個",
+   "external_multisource": true,
+   "external_source_count": 2,
+   "confidence": "high",
+   "errors_fixed": 0,
+   "batch": "kr-methodB-2026-09-03",
+   "note": "官方詳情圖由本人逐張讀出並逐句比對三語"
+  },
+  "푸른 꽃": {
+   "method": "B",
+   "date": "2026-09-03",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方逐字 4 段 + 獨立外部來源 6 個",
+   "external_multisource": true,
+   "external_source_count": 6,
+   "confidence": "high",
+   "errors_fixed": 1,
+   "batch": "kr-methodB-2026-09-03",
+   "note": "官方詳情圖由本人逐張讀出並逐句比對三語"
+  },
+  "오셀로와 이아고": {
+   "method": "B",
+   "date": "2026-09-03",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方逐字 6 段 + 獨立外部來源 2 個",
+   "external_multisource": true,
+   "external_source_count": 2,
+   "confidence": "high",
+   "errors_fixed": 1,
+   "batch": "kr-methodB-2026-09-03",
+   "note": "官方詳情圖由本人逐張讀出並逐句比對三語"
+  },
+  "club seolhwa": {
+   "method": "B",
+   "date": "2026-09-03",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方逐字 8 段 + 獨立外部來源 3 個",
+   "external_multisource": true,
+   "external_source_count": 3,
+   "confidence": "high",
+   "errors_fixed": 6,
+   "batch": "kr-methodB-2026-09-03",
+   "note": "官方詳情圖由本人逐張讀出並逐句比對三語"
+  },
+  "hunky show": {
+   "method": "B",
+   "date": "2026-09-03",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方逐字 9 段 + 獨立外部來源 3 個",
+   "external_multisource": true,
+   "external_source_count": 3,
+   "confidence": "high",
+   "errors_fixed": 1,
+   "batch": "kr-methodB-2026-09-03",
+   "note": "官方詳情圖由本人逐張讀出並逐句比對三語;因原稿寫成他作而依官方原文重新生成"
+  },
+  "1457 소년 잠들다": {
+   "method": "B",
+   "date": "2026-09-03",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方逐字 8 段 + 獨立外部來源 5 個",
+   "external_multisource": true,
+   "external_source_count": 5,
+   "confidence": "high",
+   "errors_fixed": 1,
+   "batch": "kr-methodB-2026-09-03",
+   "note": "官方詳情圖由本人逐張讀出並逐句比對三語"
+  },
+  "7080 뮤지컬 목마와 숙녀": {
+   "method": "B",
+   "date": "2026-09-03",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方逐字 4 段 + 獨立外部來源 4 個",
+   "external_multisource": true,
+   "external_source_count": 4,
+   "confidence": "high",
+   "errors_fixed": 0,
+   "batch": "kr-methodB-2026-09-03",
+   "note": "官方詳情圖由本人逐張讀出並逐句比對三語;因原稿寫成他作而依官方原文重新生成"
+  },
+  "back to 1931": {
+   "method": "B",
+   "date": "2026-09-03",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方逐字 5 段 + 獨立外部來源 4 個",
+   "external_multisource": true,
+   "external_source_count": 4,
+   "confidence": "high",
+   "errors_fixed": 1,
+   "batch": "kr-methodB-2026-09-03",
+   "note": "官方詳情圖由本人逐張讀出並逐句比對三語"
+  },
+  "romeo and juliet": {
+   "method": "B",
+   "date": "2026-09-03",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方逐字 6 段 + 獨立外部來源 4 個",
+   "external_multisource": true,
+   "external_source_count": 4,
+   "confidence": "high",
+   "errors_fixed": 0,
+   "batch": "kr-methodB-2026-09-03",
+   "note": "官方詳情圖由本人逐張讀出並逐句比對三語;因原稿寫成他作而依官方原文重新生成"
+  },
+  "만천명월 격쟁을 허하라": {
+   "method": "B",
+   "date": "2026-09-03",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方逐字 9 段 + 獨立外部來源 3 個",
+   "external_multisource": true,
+   "external_source_count": 3,
+   "confidence": "high",
+   "errors_fixed": 0,
+   "batch": "kr-methodB-2026-09-03",
+   "note": "官方詳情圖由本人逐張讀出並逐句比對三語"
+  },
+  "음악극 소요유": {
+   "method": "B",
+   "date": "2026-09-03",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方逐字 8 段 + 獨立外部來源 2 個",
+   "external_multisource": true,
+   "external_source_count": 2,
+   "confidence": "high",
+   "errors_fixed": 0,
+   "batch": "kr-methodB-2026-09-03",
+   "note": "官方詳情圖由本人逐張讀出並逐句比對三語"
+  },
+  "이머시브 뮤지컬 좀비": {
+   "method": "B",
+   "date": "2026-09-03",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方逐字 4 段 + 獨立外部來源 2 個",
+   "external_multisource": true,
+   "external_source_count": 2,
+   "confidence": "high",
+   "errors_fixed": 6,
+   "batch": "kr-methodB-2026-09-03",
+   "note": "官方詳情圖由本人逐張讀出並逐句比對三語"
+  },
+  "생텍쥐페리": {
+   "method": "B",
+   "date": "2026-09-03",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方逐字 1 段 + 獨立外部來源 0 個",
+   "external_multisource": false,
+   "external_source_count": 0,
+   "confidence": "low",
+   "errors_fixed": 2,
+   "batch": "kr-methodB-2026-09-03",
+   "note": "官方詳情圖由本人逐張讀出並逐句比對三語;已實搜確認查無獨立外部來源(查詢字串記於 p4_ledger.external_search);因原稿寫成他作而依官方原文重新生成"
+  },
+  "가족뮤지컬 사랑해져라": {
+   "method": "B",
+   "date": "2026-09-03",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方逐字 8 段 + 獨立外部來源 1 個",
+   "external_multisource": false,
+   "external_source_count": 1,
+   "confidence": "medium",
+   "errors_fixed": 2,
+   "batch": "kr-methodB-2026-09-03",
+   "note": "官方詳情圖由本人逐張讀出並逐句比對三語"
+  },
+  "인사이드 미": {
+   "method": "B",
+   "date": "2026-09-03",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方逐字 5 段 + 獨立外部來源 6 個",
+   "external_multisource": true,
+   "external_source_count": 6,
+   "confidence": "high",
+   "errors_fixed": 0,
+   "batch": "kr-methodB-2026-09-03",
+   "note": "官方詳情圖由本人逐張讀出並逐句比對三語"
+  },
+  "제물포문화재단 창작뮤지컬 켈로": {
+   "method": "B",
+   "date": "2026-09-03",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方逐字 11 段 + 獨立外部來源 1 個",
+   "external_multisource": false,
+   "external_source_count": 1,
+   "confidence": "medium",
+   "errors_fixed": 3,
+   "batch": "kr-methodB-2026-09-03",
+   "note": "官方詳情圖由本人逐張讀出並逐句比對三語"
+  },
+  "창작 뮤지컬 늦봄의 길": {
+   "method": "B",
+   "date": "2026-09-03",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方逐字 8 段 + 獨立外部來源 2 個",
+   "external_multisource": true,
+   "external_source_count": 2,
+   "confidence": "high",
+   "errors_fixed": 6,
+   "batch": "kr-methodB-2026-09-03",
+   "note": "官方詳情圖由本人逐張讀出並逐句比對三語"
+  },
+  "쇼뮤지컬 드림하이": {
+   "method": "B",
+   "date": "2026-09-03",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方逐字 2 段 + 獨立外部來源 2 個",
+   "external_multisource": true,
+   "external_source_count": 2,
+   "confidence": "high",
+   "errors_fixed": 0,
+   "batch": "kr-methodB-2026-09-03",
+   "note": "官方詳情圖由本人逐張讀出並逐句比對三語;因原稿寫成他作而依官方原文重新生成"
+  },
+  "크리스마스 캐럴": {
+   "method": "B",
+   "date": "2026-09-03",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方逐字 6 段 + 獨立外部來源 2 個",
+   "external_multisource": true,
+   "external_source_count": 2,
+   "confidence": "high",
+   "errors_fixed": 0,
+   "batch": "kr-methodB-2026-09-03",
+   "note": "官方詳情圖由本人逐張讀出並逐句比對三語"
+  },
+  "미디어아트 뮤지컬 파랑새": {
+   "method": "B",
+   "date": "2026-09-03",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方逐字 5 段 + 獨立外部來源 5 個",
+   "external_multisource": true,
+   "external_source_count": 5,
+   "confidence": "high",
+   "errors_fixed": 1,
+   "batch": "kr-methodB-2026-09-03",
+   "note": "官方詳情圖由本人逐張讀出並逐句比對三語"
+  },
+  "벚꽃동산 하얀 집": {
+   "method": "B",
+   "date": "2026-09-03",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方逐字 4 段 + 獨立外部來源 1 個",
+   "external_multisource": false,
+   "external_source_count": 1,
+   "confidence": "medium",
+   "errors_fixed": 2,
+   "batch": "kr-methodB-2026-09-03",
+   "note": "官方詳情圖由本人逐張讀出並逐句比對三語;已實搜確認查無獨立外部來源(查詢字串記於 p4_ledger.external_search)"
+  },
+  "베어만 마지막잎새": {
+   "method": "B",
+   "date": "2026-09-03",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方逐字 6 段 + 獨立外部來源 4 個",
+   "external_multisource": true,
+   "external_source_count": 4,
+   "confidence": "high",
+   "errors_fixed": 1,
+   "batch": "kr-methodB-2026-09-03",
+   "note": "官方詳情圖由本人逐張讀出並逐句比對三語"
+  },
+  "빌의구둣방": {
+   "method": "B",
+   "date": "2026-09-03",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方逐字 6 段 + 獨立外部來源 1 個",
+   "external_multisource": false,
+   "external_source_count": 1,
+   "confidence": "medium",
+   "errors_fixed": 1,
+   "batch": "kr-methodB-2026-09-03",
+   "note": "官方詳情圖由本人逐張讀出並逐句比對三語"
+  },
+  "놐놐놐": {
+   "method": "B",
+   "date": "2026-09-03",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方逐字 7 段 + 獨立外部來源 1 個",
+   "external_multisource": false,
+   "external_source_count": 1,
+   "confidence": "medium",
+   "errors_fixed": 0,
+   "batch": "kr-methodB-2026-09-03",
+   "note": "官方詳情圖由本人逐張讀出並逐句比對三語"
+  },
+  "늦은 봄날": {
+   "method": "B",
+   "date": "2026-09-03",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方逐字 4 段 + 獨立外部來源 4 個",
+   "external_multisource": true,
+   "external_source_count": 4,
+   "confidence": "high",
+   "errors_fixed": 0,
+   "batch": "kr-methodB-2026-09-03",
+   "note": "官方詳情圖由本人逐張讀出並逐句比對三語"
+  },
+  "무대는 내 친구 시즌8 어린이 창작 뮤지컬 키사를 찾아서": {
+   "method": "B",
+   "date": "2026-09-03",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方逐字 6 段 + 獨立外部來源 5 個",
+   "external_multisource": true,
+   "external_source_count": 5,
+   "confidence": "high",
+   "errors_fixed": 1,
+   "batch": "kr-methodB-2026-09-03",
+   "note": "官方詳情圖由本人逐張讀出並逐句比對三語"
+  },
+  "런던레코드": {
+   "method": "B",
+   "date": "2026-09-03",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方逐字 5 段 + 獨立外部來源 5 個",
+   "external_multisource": true,
+   "external_source_count": 5,
+   "confidence": "high",
+   "errors_fixed": 0,
+   "batch": "kr-methodB-2026-09-03",
+   "note": "官方詳情圖由本人逐張讀出並逐句比對三語"
+  },
+  "바람으로의 여행": {
+   "method": "B",
+   "date": "2026-09-03",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方逐字 5 段 + 獨立外部來源 3 個",
+   "external_multisource": true,
+   "external_source_count": 3,
+   "confidence": "high",
+   "errors_fixed": 2,
+   "batch": "kr-methodB-2026-09-03",
+   "note": "官方詳情圖由本人逐張讀出並逐句比對三語"
+  },
+  "달콤한 위로 초코파이": {
+   "method": "B",
+   "date": "2026-09-03",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方逐字 7 段 + 獨立外部來源 2 個",
+   "external_multisource": true,
+   "external_source_count": 2,
+   "confidence": "high",
+   "errors_fixed": 0,
+   "batch": "kr-methodB-2026-09-03",
+   "note": "官方詳情圖由本人逐張讀出並逐句比對三語;因原稿寫成他作而依官方原文重新生成"
+  },
+  "말하지 못한 사랑": {
+   "method": "B",
+   "date": "2026-09-03",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方逐字 7 段 + 獨立外部來源 3 個",
+   "external_multisource": true,
+   "external_source_count": 3,
+   "confidence": "high",
+   "errors_fixed": 0,
+   "batch": "kr-methodB-2026-09-03",
+   "note": "官方詳情圖由本人逐張讀出並逐句比對三語;因原稿寫成他作而依官方原文重新生成"
+  },
+  "사랑을 노래하다": {
+   "method": "B",
+   "date": "2026-09-03",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方逐字 4 段 + 獨立外部來源 1 個",
+   "external_multisource": false,
+   "external_source_count": 1,
+   "confidence": "medium",
+   "errors_fixed": 0,
+   "batch": "kr-methodB-2026-09-03",
+   "note": "官方詳情圖由本人逐張讀出並逐句比對三語;已實搜確認查無獨立外部來源(查詢字串記於 p4_ledger.external_search);因原稿寫成他作而依官方原文重新生成"
+  },
+  "충분한 이별": {
+   "method": "B",
+   "date": "2026-09-03",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方逐字 1 段 + 獨立外部來源 0 個",
+   "external_multisource": false,
+   "external_source_count": 0,
+   "confidence": "low",
+   "errors_fixed": 0,
+   "batch": "kr-methodB-2026-09-03",
+   "note": "官方詳情圖由本人逐張讀出並逐句比對三語;已實搜確認查無獨立外部來源(查詢字串記於 p4_ledger.external_search);因原稿寫成他作而依官方原文重新生成"
+  },
+  "판타지 뮤지컬 오싹한 알바": {
+   "method": "B",
+   "date": "2026-09-03",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方逐字 6 段 + 獨立外部來源 4 個",
+   "external_multisource": true,
+   "external_source_count": 4,
+   "confidence": "high",
+   "errors_fixed": 0,
+   "batch": "kr-methodB-2026-09-03",
+   "note": "官方詳情圖由本人逐張讀出並逐句比對三語;因原稿寫成他作而依官方原文重新生成"
+  },
+  "헤어드레서": {
+   "method": "B",
+   "date": "2026-09-03",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方逐字 1 段 + 獨立外部來源 0 個",
+   "external_multisource": false,
+   "external_source_count": 0,
+   "confidence": "low",
+   "errors_fixed": 5,
+   "batch": "kr-methodB-2026-09-03",
+   "note": "官方詳情圖由本人逐張讀出並逐句比對三語;已實搜確認查無獨立外部來源(查詢字串記於 p4_ledger.external_search);因原稿寫成他作而依官方原文重新生成"
+  },
+  "someday": {
+   "method": "B",
+   "date": "2026-09-03",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方逐字 5 段 + 獨立外部來源 4 個",
+   "external_multisource": true,
+   "external_source_count": 4,
+   "confidence": "high",
+   "errors_fixed": 0,
+   "batch": "kr-methodB-2026-09-03",
+   "note": "官方詳情圖由本人逐張讀出並逐句比對三語"
+  },
+  "midnight knapman and wythe": {
+   "method": "B",
+   "date": "2026-09-03",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方逐字 5 段 + 獨立外部來源 5 個",
+   "external_multisource": true,
+   "external_source_count": 5,
+   "confidence": "high",
+   "errors_fixed": 3,
+   "batch": "kr-methodB-2026-09-03",
+   "note": "官方詳情圖由本人逐張讀出並逐句比對三語"
+  },
+  "million loves": {
+   "method": "B",
+   "date": "2026-09-03",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方逐字 4 段 + 獨立外部來源 3 個",
+   "external_multisource": true,
+   "external_source_count": 3,
+   "confidence": "high",
+   "errors_fixed": 0,
+   "batch": "kr-methodB-2026-09-03",
+   "note": "官方詳情圖由本人逐張讀出並逐句比對三語;因原稿寫成他作而依官方原文重新生成"
   }
  }
 }

@@ -177,15 +177,21 @@ def get_box(p):
     return None
 
 def ask_once(ctx,Q):
+    # 🚨 分頁一定要在 finally 裡關掉。2026-09-03 實測:goto/type 逾時拋出例外時分頁會留在
+    # 瀏覽器裡,累積幾個之後【下一次 connect_over_cdp 就會卡死】—— 症狀是 ws 明明
+    # 「<ws connected>」了卻仍 Timeout 180000ms,因為 Playwright 附加時要接管這些
+    # 永遠不靜止的 Perplexity SPA 分頁。清掉遺留分頁後立刻恢復正常。
     p=ctx.new_page()
-    p.goto("https://www.perplexity.ai/",wait_until="domcontentloaded",timeout=60000)
-    p.wait_for_timeout(2500)
-    box=get_box(p)
-    if not box:
-        p.close(); return ""   # 拿不到輸入框→回空,交由重試(不讓整批崩潰)
-    box.click(); p.keyboard.type(Q,delay=5); p.keyboard.press("Enter")
-    raw=wait_answer(p); p.close()
-    return clean(raw,Q)
+    try:
+        p.goto("https://www.perplexity.ai/",wait_until="domcontentloaded",timeout=60000)
+        p.wait_for_timeout(2500)
+        box=get_box(p)
+        if not box: return ""  # 拿不到輸入框→回空,交由重試(不讓整批崩潰)
+        box.click(); p.keyboard.type(Q,delay=5); p.keyboard.press("Enter")
+        return clean(wait_answer(p),Q)
+    finally:
+        try: p.close()
+        except Exception: pass
 
 SHOWS=json.load(open(LIST[1:],encoding="utf-8")) if LIST.startswith("@") else [LIST]
 # 續跑:OUT 已有且該筆已達標(有總結+落在字數區間)就跳過,避免崩潰後重跑
