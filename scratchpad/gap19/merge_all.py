@@ -44,11 +44,19 @@ def main():
         for tag, lf, of in [("R1", "regen_%s.json" % short, "regen_order.json"),
                             ("R2", "regen2_%s.json" % short, "regen2_order.json"),
                             ("R3", "regen3_%s.json" % short,
-                             "regen3_order_%s.json" % short)]:
+                             "regen3_order_%s.json" % short),
+                            # R4:英文 starzynski 在 R3 之後又犯了列名單,單獨補跑
+                            ("R4", "regen4_%s.json" % short,
+                             "regen4_order_%s.json" % short),
+                            # R5:簡中 piotrus pan 把迷失男孩寫成海盜,單獨補跑
+                            ("R5", "regen5_%s.json" % short,
+                             "regen5_order_%s.json" % short)]:
             rows, rorder = load(lf), load(of)
-            if rows is None or rorder is None:
-                print("   (%s %s 尚未產出,略過)" % (lang, tag))
-                ok = False          # 🚨 少一輪重生成就不算齊備,不可印「三語齊備」
+            if rorder is None:
+                continue            # 這一輪本來就不適用於這個語言(見 mk_regen3 的 PER_LANG),不是缺漏
+            if rows is None:
+                print("   (%s %s 尚未產出)" % (lang, tag))
+                ok = False          # 🚨 該跑而沒跑完就不算齊備,不可印「三語齊備」
                 continue
             if len(rows) < len(rorder):
                 print("   (%s %s 只跑到 %d/%d,尚未完成)" % (lang, tag, len(rows), len(rorder)))
@@ -61,6 +69,26 @@ def main():
                     continue
                 merged[order.index(g)]["synopsis"] = s
                 applied[g] = tag
+        # 最後套用【手動修正層】fixes.json。
+        # 🚨 修正必須寫在這裡,不可直接改 merged_*.json —— 那是本腳本的產物,重跑就被蓋掉。
+        fixes = load("fixes.json") or {}
+        nfix = 0
+        for g, per in fixes.items():
+            if g.startswith("_") or not isinstance(per, dict):
+                continue          # _note / _why 是說明欄,不是修正資料
+            for want_lang, pairs in per.items():
+                if want_lang != lang:
+                    continue
+                i = order.index(g)
+                t = merged[i].get("synopsis") or ""
+                for old, new in pairs:
+                    if old in t:
+                        t = t.replace(old, new)
+                        nfix += 1
+                merged[i]["synopsis"] = t
+        if nfix:
+            print("   (%s 手動修正 %d 處)" % (lang, nfix))
+
         empty = [order[i] for i, r in enumerate(merged) if not (r.get("synopsis") or "").strip()]
         json.dump(merged, io.open("%s/merged_%s.json" % (BASE, short), "w", encoding="utf-8"),
                   ensure_ascii=False, indent=1)

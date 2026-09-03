@@ -24,13 +24,16 @@ BASE = "scratchpad/gap19"
 FORBIDDEN = {
     "na prochach": ["Sackler", "Purdue", "OxyContin", "薩克勒", "萨克勒", "普渡"],
     "romeo i julia": ["Roméo et Juliette", "Presgurvic"],
-    # 以下幾齣官方只給泛稱,英文原版/原著角色名【未經本製作證實】,寫了就是推定
-    "blood brothers": ["Johnstone", "Mickey", "Eddie", "Lyons", "Linda", "Sammy"],
-    "carrie": ["Sue Snell", "Tommy Ross", "Chris Hargensen", "Billy Nolan", "Gardner",
-               "Margaret White"],
-    "charlie brown christmas": ["Sally", "Schroeder", "Pigpen", "Pig-Pen", "Peppermint Patty",
-                                "Marcie", "Woodstock"],
-    "on your feet": ["Consuelo", "Fajardo"],
+    # 🚨 2026-09-03 查證後【解除】三筆預防性攔截。這些原本是「官方只給泛稱、原版角色名尚未
+    #    證實」而先擋下來的,外部查證都已通過,再留著就是狼來了:
+    #    blood brothers —— El País Quadern 加泰語劇評明寫「els papers del Mickey i l'Eddie」,
+    #                      證實加泰語版沿用英文原版角色名。
+    #    carrie         —— 百老匯原卡司表列出 Margaret White / Sue Snell / Chris Hargensen /
+    #                      Tommy Ross / Mrs. Gardner / Billy,是本劇正典角色而非原著獨有。
+    #    on your feet   —— Consuelo(祖母)、José 與 Gloria Fajardo(雙親)、Nayib(兒子)
+    #                      均為 Estefan 家族真實成員且為本劇角色。
+    #    只保留 Peppermint Patty:她 1966 年才登場,1965 年原作沒有她,寫了就是錯。
+    "charlie brown christmas": ["Peppermint Patty", "Marcie", "Woodstock"],
 }
 GENERIC_ONLY = {"blood brothers", "carrie", "on your feet", "charlie brown christmas",
                 "caperucita roja", "天堂邊緣"}
