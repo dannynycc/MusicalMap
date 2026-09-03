@@ -1,12 +1,17 @@
 # -*- coding: utf-8 -*-
 """中國原創 82 組:抓官方詳情(文字 + 詳情長圖)。
 
-各來源的詳情放在哪裡(實測):
-  damai        —— 頁面內嵌 JSON 的 itemExtendInfo.itemExtend 是 URL-encoded HTML,
-                  裡面【文字只有購票須知】,真正的劇情簡介是【長圖】。與 Interpark 同模式。
-  shcstheatre  —— 一般 HTML,文字抓得到
-  polyt        —— 純 JS 前端,HTML 抓不到內容(需另尋 API 或瀏覽器)
-  juooo        —— 待測
+各來源的詳情放在哪裡(2026-09-04 全部實測完,前兩條原本寫錯,已更正):
+  damai        —— 頁面內嵌 JSON 的 itemExtendInfo.itemExtend 是 URL-encoded HTML。
+                  劇情【大多在長圖裡】,但至少 16 組在文字裡(有些連「劇情簡介」標題都沒有),
+                  兩邊都要看。
+  shcstheatre  —— ❌ 不是「一般 HTML 抓得到」:節目內容是【非同步塞進 DOM】的,
+                  純 HTTP 只會拿到全站共用版面(《宝玉》與《边城》曾抓到一字不差的 4781 字
+                  就是這個)。要打後端 /webapi.ashx?op=GettblprogramCache(見 fetch_shcs.py)。
+  polyt        —— ❌ 不是「抓不到」:有公開 JSON API。
+                  /good/search-products-data 找 productId,再打 /good/project/detail/{id}。
+                  ⚠ /good/product-info/{id} 是陷阱,它會【忽略 id】固定回傳同一筆。
+  juooo        —— 純前端渲染,HTML 抓不到,要 Playwright(見 fetch_js.py)。
 
 🚨 長圖必須【本人逐張看】,agent 與純文字管線都讀不到。這支只負責把圖抓下來。
 
@@ -69,12 +74,19 @@ def main():
     cn = {r["group"] for r in cov if r["tag"] == "中國原創"}
     shows = json.load(io.open("data/shows.json", encoding="utf-8"))
     shows = shows.get("shows") or shows
-    picked, seen = [], set()
+    # 🚨 每組要挑【有詳情頁】的那一筆,不能無腦取第一筆:
+    #    《男孩、鼹鼠、狐狸和马》第一筆(珠海場)的 ticket_url 是大麥【搜尋頁】,
+    #    整組因此抓不到任何素材 —— 但同組廈門場其實有正常的 detail.damai.cn 詳情頁。
+    picked, best = [], {}
     for s in shows:
         g = s.get("group")
-        if g in cn and g not in seen:
-            seen.add(g)
-            picked.append(s)
+        if g not in cn:
+            continue
+        u = s.get("ticket_url") or ""
+        rank = 0 if "detail.damai.cn" in u else (1 if "search." not in u else 2)
+        if g not in best or rank < best[g][0]:
+            best[g] = (rank, s)
+    picked = [v[1] for v in best.values()]
     print("目標 %d 組" % len(picked))
 
     out = {}
@@ -89,7 +101,11 @@ def main():
                 rec["text"], rec["imgs"] = damai(url)
             else:
                 rec["text"], rec["imgs"] = generic(url)
-            for j, u in enumerate(rec["imgs"][:6]):
+            # 🚨 這裡曾經寫 rec["imgs"][:6],造成 35/40 組靜默漏抓共 167 張圖
+            #    (《冈格尼尔》前 6 張全是卡司、劇情在第 7 張;《时光代理人》共 28 張)。
+            #    截斷不報錯、log 印「圖6」看起來完全正常,是最難發現的一種漏抓。
+            #    現在【全部下載】;要限量的話請同時把來源總數印出來對照。
+            for j, u in enumerate(rec["imgs"]):
                 if u.startswith("//"):
                     u = "https:" + u
                 try:
