@@ -20,8 +20,24 @@ def esc(t):
             .replace(">", "&gt;").replace('"', "&quot;"))
 
 
+def _opt(flag, default=""):
+    """讀 --flag value;沒給就回 default。"""
+    if flag in sys.argv:
+        i = sys.argv.index(flag)
+        if i + 1 < len(sys.argv):
+            return sys.argv[i + 1]
+    return default
+
+
 def main():
     src, out = sys.argv[1], sys.argv[2]
+    # 🚨 資料時間【不可寫死】。第一版把 2026-09-02 直接寫在模板裡,隔天重跑產出的檔
+    #    副標仍印著前一天 —— 拿去當 status update 會直接給出錯誤資訊。
+    date = _opt("--date") or __import__("datetime").date.today().isoformat()
+    # 變化區塊是一次性的對照文字(比較對象是上一次交付的那份檔),用外部 fragment 帶入,
+    # 不寫死在模板裡,避免下次重跑又印出過期的比較。
+    dfile = _opt("--delta")
+    delta = io.open(dfile, encoding="utf-8").read() if dfile else ""
     d = json.load(io.open(src, encoding="utf-8"))
     total = len(d)
 
@@ -138,7 +154,7 @@ code{background:var(--line);padding:1px 5px;border-radius:4px;font-size:12.5px}
 <body>
 <div class="wrap">
 <h1>MusicalMap 三語覆蓋率稽核</h1>
-<p class="sub">分母 = 目前在檔期的 __TOTAL__ 組作品(一齣戲算一組,非場次)&nbsp;·&nbsp;資料時間 2026-09-02&nbsp;·&nbsp;數字已對正式站重算驗證</p>
+<p class="sub">分母 = 目前在檔期的 __TOTAL__ 組作品(一齣戲算一組,非場次)&nbsp;·&nbsp;資料時間 __DATE__&nbsp;·&nbsp;數字已對正式站重算驗證</p>
 
 <div class="card">
 <div class="hd">
@@ -149,6 +165,7 @@ code{background:var(--line);padding:1px 5px;border-radius:4px;font-size:12.5px}
 </div>
 </div>
 
+__DELTA__
 <div class="grid">
 <div class="card"><h3 style="margin:0 0 10px;font-size:14px">標題</h3>__TBARS__</div>
 <div class="card"><h3 style="margin:0 0 10px;font-size:14px">劇情簡介</h3>__SBARS__</div>
@@ -228,6 +245,7 @@ btns.forEach(function(b){b.addEventListener('click',function(){
 
     rep = {
         "__TOTAL__": str(total),
+        "__DATE__": date, "__DELTA__": delta,
         "__ALLPCT__": "%.1f" % pct(allfull), "__ALLN__": str(allfull),
         "__ENP__": "%.1f" % pct(tcov["en"]),
         "__ZHP__": "%.1f" % pct(tcov["zh-hant"]),
