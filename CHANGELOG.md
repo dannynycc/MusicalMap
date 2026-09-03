@@ -11,9 +11,9 @@
 
 ---
 
-## [v2.113.2] - 2026-09-03 12:20
+## [v2.113.2] - 2026-09-03 12:34
 
-### 踢掉兩筆混進目錄的非敘事演出:泡泡秀與音樂電影精選音樂會
+### 踢掉五筆混進目錄的非敘事演出(泡泡秀/音樂會/致敬演唱會/聖誕綜藝秀)
 
 查「為什麼劇情覆蓋率不是 100%」時發現的。Broadway/West End 分類缺 6 組簡介,
 其中 2 組**根本不是音樂劇**,永遠不可能有劇情,留著只會讓分母虛胖:
@@ -29,6 +29,27 @@
 差值驗證(不看最終狀態、看移除前後的差):場次 2081 → 2079、組數 625 → 623,
 **消失的正好是這兩組,新出現 0 組**,沒有誤殺。
 Broadway/West End 劇情覆蓋 232/238 → **232/236 (98%)**。
+
+再查一輪又抓出三筆(同樣逐筆讀官方頁):
+
+- **80 Aniversario del INBAL, Concertistas de Bellas Artes**(Sala Manuel M. Ponce, 墨西哥城)
+  —— INBAL 官方新聞稿寫明「Concertistas de Bellas Artes」是音樂與歌劇司主辦的**演奏家音樂會系列**,
+  節目「destaca la diversidad y riqueza del repertorio de concierto」。
+- **Tania Ruzs - Voces que transforman**(Off La Latina, 馬德里)—— atrapalo 官方頁海報列出
+  EDITH PIAF / NINA SIMONE / ETTA JAMES / JANIS JOPLIN,60 分鐘,觀眾評論寫
+  「Tania 的歌聲讓史上四位最著名的女歌手活過來,還加上幽默與她們生平的趣事」→ **單人致敬演唱會**。
+- **ブロードウェイ クリスマス・ワンダーランド2026**(東急シアターオーブ)—— 官方頁逐字:
+  「歌とダンスと**スケート**が彩る、クリスマス・エンターテインメント」,內容是聖誕歌曲、舞蹈、
+  溜冰秀、聖誕老人登場 → **綜藝式聖誕秀**。
+
+**懷疑錯了一次,記下來**:Tania Ruzs 在聚合站 hoymadrid 的 JSON 是 `expired:true`、日期 2026-03-07,
+我一度以為是日期 bug。回查 atrapalo 官方頁:**Del 4 sept. 2026 al 30 oct. 2026**,
+與我方 2026-09-04→2026-10-30 完全一致 —— 聚合站那筆是同場館的**另一輪**演出,不是錯誤。
+
+**保留**:A Charlie Brown Christmas (Touring) —— Ticketmaster 分類路徑是
+Arts & Theater → **Theatre**(不是 Concerts)且用舞台版主視覺,是敘事舞台劇,該補簡介而不是踢掉。
+
+差值再驗:場次 2079 → 2076、組數 623 → 620,消失的正好是這三組、新出現 0 組。
 
 ### 順帶查清楚的:剩下的缺口是什麼
 
