@@ -42,14 +42,18 @@
   ]
  },
  "kajko i kokosz szkoa latania": {
-  "verdict": "verify",
-  "errors": [
-   "情節細節(城門被關、Łamignat 的魔笛、畢業證書+飛行藥膏+飛行箱、Mirmił Waleczny 封號)遠超官方文案 → 可能取自漫畫原著而非本製作,待查"
-  ],
+  "verdict": "pass",
+  "errors": [],
   "ok": [
    "Kajko/Kokosz/Mirmił/Lubawa/Jaga/Łamignat/Hegemon/Zbójcerze 全在官方角色表",
    "Łysa Góra 的 Wyższa Szkoła Latania na Miotle 符合官方"
-  ]
+  ],
+  "external": [
+   "polityka.pl 劇評 ——「Familijny musical Jakuba Szydłowskiego opiera się, także w warstwie wizualnej, na albumie Janusza Christy z początku lat 80.」→ 本製作【連視覺都以那本漫畫專輯為本】,因此取自專輯《Szkoła latania》的情節細節(城門、魔笛、禿山飛行學校、畢業證書/飛行藥膏/飛行箱、Mirmił Waleczny 封號)對本製作成立",
+   "e-teatr.pl 兩篇劇評 —— 導演為 Jakub Szydłowski(官方頁未列),2023-12 已有評論",
+   "showify.pl —— 轉載官方簡介,內容與 Teatr Syrena 官方頁一致"
+  ],
+  "tier": "A 多源交叉(官方 + Polityka + e-teatr)"
  },
  "wypior": {
   "verdict": "fix",
@@ -198,14 +202,19 @@
   "tier": "A 多源交叉(Teatre Condal 官方 + El País + Regió7)"
  },
  "on your feet": {
-  "verdict": "verify",
+  "verdict": "pass",
   "errors": [
-   "Nayib/José Fajardo/Gloria Fajardo/Consuelo 官方文案未點名 → 需確認確為本劇登場角色(均為真實人物,風險低但仍需查)"
+   "官方 Argyle Theatre 頁未逐一點名家族成員,但 Nayib(兒子)、José Fajardo(父)、Gloria Fajardo(母)、Consuelo(祖母)均為 Estefan 家族真實成員且為本劇正典角色;繁中另寫『照料罹患多發性硬化症的父親』,亦為史實(José Fajardo 越戰後罹患多發性硬化症)"
   ],
   "ok": [
    "Emilio 與 Gloria Estefan、Miami Sound Machine、官方點名的四首歌 全部符合",
    "1990 年 Syracuse 巴士車禍與脊椎重傷為史實"
-  ]
+  ],
+  "external": [
+   "Argyle Theatre 官方頁 —— 證實 Emilio 與 Gloria Estefan 真實故事、Miami Sound Machine、Rhythm Is Gonna Get You/1-2-3/Live For Loving You/Conga 四首曲目",
+   "1990-03 Syracuse 附近雪中巴士車禍與脊椎重傷為公開史實,與生成一致"
+  ],
+  "tier": "B 單一外部+官方"
  },
  "carrie": {
   "verdict": "pass",
@@ -228,6 +237,63 @@
   "ok": [
    "自己排一齣聖誕劇、最後領悟聖誕節真義 符合官方通稿",
    "Lucy 的五分錢心理諮詢攤、小樹、Linus 的演說 為 1965 年原作核心,本劇為其舞台改編"
+  ]
+ },
+ "_R1_regen_review": {
+  "date": "2026-09-03 16:15",
+  "note": "第一輪事實受限重生成(英文)結果逐篇複驗",
+  "fixed": {
+   "na prochach": "Barker✓ 鴉片女王✓ 無 Sackler/Purdue✓ 無自創職業✓ 無『電視』✓(改用官方的 Konferansjerka 開場)",
+   "romeo i julia": "Dealer✓ 毒品線✓ Rosalina✓ 無蒙太古家長✓ 官方框架(青少年愛情 vs 商業化成人世界)✓",
+   "piotrus pan": "Jaś/Miś✓ Nana✓ 五名迷失男孩全名✓ Tygrysica✓ Sznaps✓ Dorosła Wendy 與 Jane✓;不再出現 Nibywalencja 與 Dzwoneczek✓",
+   "caperucita roja": "改為『her friends and an unexpected hero』✓ 不再有 Cazador✓ 不再把外婆寫成比狼還瘋✓",
+   "edda musical a kor": "az Univerzum✓ Elmó 重音✓ 結局照 2024 修訂版(Frédi 中槍→暗場→十年後回想)✓",
+   "天堂邊緣": "29 年✓ 天使✓ 24 小時✓ 未自行分配各自的遺憾✓",
+   "wypior": "回到官方框架『他還有沒有力量幫這對 30 世代戀人找回彼此』✓ 未指名醫院/公園✓ 未寫公寓是誰的✓"
+  },
+  "new_problems": {
+   "天堂邊緣": "🚨 英文稿夾雜中文字:『秀燕、何智 and 菲菲』『震宇』『天使』。英文提示要求非拉丁字系一律羅馬拼音,此篇未照做 → 需第三輪修正(Xiuyan/Hezhi/Feifei/Zhenyu、天使→an Angel)",
+   "na prochach": "⚠ 餵角色表的副作用:開始【列名單】,把『Carole/Konferansjerka/Brenda』『Dennis Stone/dr van Hoff/dr Berkeley/Bob』連斜線寫進正文,讀起來像節目冊不像簡介",
+   "wypior": "⚠ 同上:『a shifting gallery of figures—including Syrenka, Pielęgniarka, Zofia Szymanowska, prof. Klicka, Matka, Detektyw, Stróż, Dyrektor muzeum, and Kot Eks』",
+   "precure colorful runway": "🚨 生成【7 次全部回傳空白】(size=0),不是長度不合格而是 Perplexity 沒有產出。推測原因:該提示幾乎全是否定句(不准編反派動機/性格/戰鬥),且官方公開資訊極少 → 需改用簡化的正面敘述提示重試"
+  }
+ },
+ "_R2_zht_review": {
+  "date": "2026-09-03 16:52",
+  "note": "繁中第二輪(事實受限重生成)複驗",
+  "ok": {
+   "romeo i julia": "毒販✓ 羅莎琳娜✓ 卡普萊特夫婦✓ 無蒙太古家長✓ 官方內容警告(謀殺/粗暴言語/哀悼)有反映✓",
+   "caperucita roja": "『朋友們』與『出人意料的英雄』✓ 不再有獵人✓",
+   "precure colorful runway": "不再編反派動機、性格與戰鬥✓ 只寫官方公布的前提與角色✓"
+  },
+  "new_problems": {
+   "precure colorful runway": "🚨 日文漢字名被改寫:官方【神白彩人】寫成神代彩人、【蜂針衣月】寫成蜂張樹(整個換掉)、【百瀬昭彦】寫成百瀨明彥。日文漢字名必須照抄(必要時繁化),不可音譯或重造。御厨王子→御廚王子 則是正確的繁化。",
+   "caperucita roja": "⚠ 片名/主角被音譯成『卡佩露西塔』,第一輪用的是通用的『小紅帽』—— 對中文讀者是退步,應回到小紅帽。"
+  }
+ },
+ "_overturned_suspicions": {
+  "note": "我懷疑生成寫錯、回查後【證明生成是對的】的案例。留著提醒自己:懷疑不等於有錯,刪改前一定要先查。",
+  "items": [
+   {
+    "show": "bitwa o tron",
+    "我以為": "Augustyn Kordecki、Piotr Skarga、Katarzyna Wielka 是捏造的角色",
+    "實際": "三個都在 Teatr Syrena 官方 Obsada 名單上(o. Augustyn Kordecki、ks. Piotr Skarga、Caryca Katarzyna Wielka)。是【我自己抽角色表時截斷】,不是生成的錯。"
+   },
+   {
+    "show": "deryne(簡中)",
+    "我以為": "斷言 Szécsi Pál『最終也結束了生命』是未經查證的自殺推定",
+    "實際": "匈牙利維基:『Szorongásai többször torkolltak öngyilkossági kísérletekbe… Végül 1974. április 30-án éjszaka az utolsó kísérletet már nem tudták megakadályozni.』→ 自殺屬實。同時證實 Domján Edit 十二月自盡、他終生無法釋懷,以及他『被寄養、母親移民美國』的童年。"
+   },
+   {
+    "show": "kajko i kokosz(簡中)",
+    "我以為": "把 Łamignat 寫成『强盗』是錯的(繁中寫他是雅加的丈夫)",
+    "實際": "波蘭維基:『czarownica Jaga i jej mąż – zbój Łamignat』→ 他【既是雅加的丈夫也是強盜】,兩個版本都對。"
+   },
+   {
+    "show": "tania ruzs(已踢除)",
+    "我以為": "聚合站顯示 expired 2026-03-07,懷疑我方日期有錯",
+    "實際": "atrapalo 官方頁 Del 4 sept. 2026 al 30 oct. 2026,與我方一致;聚合站那筆是同場館的另一輪。"
+   }
   ]
  }
 }
