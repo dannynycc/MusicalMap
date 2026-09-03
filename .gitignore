@@ -33,3 +33,10 @@ scratchpad/kr/img/
 # 🚨 中國批的官方詳情長圖:307MB 商業圖,絕不可進 public repo
 # (與 scratchpad/kr/img/ 同理;曾經一次誤入 803 檔 387MB)
 scratchpad/cn82/img/
+# 🚨 讀圖過程產生的【衍生圖】也一律不進 repo:
+#    sheet=接觸表、crop/zoom=裁切放大、seg=分段。都是商業圖的再製,同樣不可散布。
+#    (2026-09-04 抓到:只擋了 img/,這四個資料夾漏掉,已有 7 檔進入索引)
+scratchpad/cn82/sheet/
+scratchpad/cn82/crop/
+scratchpad/cn82/zoom/
+scratchpad/cn82/seg/
