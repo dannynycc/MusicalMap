@@ -11,7 +11,7 @@ SOP §1 說第一輪 prompt 只釘身份不餵劇情 —— 那是為了讓查�
    《亡灵之旅》寫成「登上冥河之舟」(冥河是希臘神話),並直接點破官方刻意保留的身份懸念。
    這些劇太冷門,Perplexity 沒有資料時會拿題材相近的通用想像頂替。
 
-用法: python scratchpad/cn82/mk_regen.py <lang> <只要這些組的清單.json|all>
+用法: python scratchpad/cn82/mk_regen.py <lang> <只要這些組的清單.json|all> [輸出後綴]
 輸出: scratchpad/cn82/regen_<lang>_list.json + regen_<lang>_order.json
 """
 import io
@@ -98,6 +98,12 @@ def build(g, e, idt, lang):
     """
     plot = (e.get("official_plot") or "").strip()
     ext = (e.get("external_plot") or {}).get("text", "").strip()
+    # 🚨 2026-09-04:少數組【官方沒有劇情簡介區塊,但官方角色頁本身載有情節】
+    #    (《画中人》:前尚書之子家道中落賣畫為生、捲入「魂約」…)。那是【官方物料】不是外部來源,
+    #    所以另存成 official_plot_from_characters,不可混進 external_plot 讓查證層級失真。
+    #    這裡把它當作可用事實,優先序排在官方劇情之後、外部之前。
+    if not plot:
+        plot = ((e.get("official_plot_from_characters") or {}).get("text") or "").strip()
     chars = (e.get("characters") or "").strip()
     if lang == "zh-hant":
         names = official_names(e)
@@ -194,13 +200,21 @@ def main():
     out_order, out_list, skipped = [], [], []
     for g in pick:
         e = led[g]
+        # 🚨 這個略過判斷必須跟 build() 讀的欄位【完全一致】,否則會靜默漏組:
+        #    我加了 official_plot_from_characters 卻忘了加進這裡,《画中人》就被默默跳過,
+        #    輸出 6 組而不是 7 組 —— 而且沒有任何錯誤訊息,是靠核對筆數才發現的。
         if not ((e.get("official_plot") or "").strip()
-                or (e.get("external_plot") or {}).get("text")):
+                or (e.get("external_plot") or {}).get("text")
+                or (e.get("official_plot_from_characters") or {}).get("text")):
             skipped.append(g)          # 沒有事實可約束就別重生成,交給人工外部查證
             continue
         out_order.append(g)
         out_list.append(build(g, e, ident[g]["identity"], lang))
-    suf = SUF[lang]
+    # 🚨 2026-09-04:第三個參數是【輸出後綴】。沒有它的時候,拿一份子集清單重跑會
+    #    【直接覆蓋主清單檔】—— 我就是這樣把 regen_en_list.json 換成新版 prompt,
+    #    害 keymap 與已生成結果的 show 欄對不上(實測英文 keymap 命中 0/69)。
+    #    補充批次一律指定不同後綴(例如 supp),主檔就動不到。
+    suf = SUF[lang] + (("_" + sys.argv[3]) if len(sys.argv) > 3 else "")
     json.dump(out_order, io.open("%s/regen_%s_order.json" % (BASE, suf), "w", encoding="utf-8"),
               ensure_ascii=False, indent=1)
     json.dump(out_list, io.open("%s/regen_%s_list.json" % (BASE, suf), "w", encoding="utf-8"),
