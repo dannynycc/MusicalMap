@@ -11,6 +11,41 @@
 
 ---
 
+## [v2.117.1] - 2026-09-04 20:05
+
+### 補完缺口:我說「有英文名」的 41 組也用主視覺重驗了——沒有一組是錯的
+
+v2.117.0 留下的待辦。重抓那 39 組(扣掉剛補的 4 組)共 **113 張主視覺**逐張比對,
+**全部與我記錄的英文名一致**:Borderline / NE ZHA THE MUSICAL / Savior / Anubis and Vita /
+Smash The Wall / BEYOND THE DESTINY / THE FOUR BEAUTIES / HARBIN ENVELOPED IN DARKNESS /
+CHIMERA / The Witch To Be / A HERSTORY MUSICAL / THE PIRATE QUEEN / THE STORY OF THE STONE /
+Spring in a Small Town / Heart Shake / BEAST / Worship The Wind / The Sound She Made /
+LINK CLICK / I MISS YOU, I MISS YOU VERY MUCH / REBIRTH OF DOLLS / MOBIUS /
+THE BUTTERFLY ON THE BUND / BORDER TOWN / HEAR ME / Gweilo / Qian ShiJinSheng /
+A STORY ABOUT ALBERO / THE MESSAGE MUSICAL / DU SHI NIANG / Santa Lucia / CATALPA BLOSSOM /
+THE LEGEND OF 1900 / THE WAVES GENTLY SWAY / LIGHT KEEPERS / Alice's Adventures in Wonderland /
+THE PEONY PAVILION / MUSICAL THE KNOCKOUT。
+
+**兩則要更正的記錄(結論不變,但我寫錯了依據):**
+- **《六个说谎的大学生》** 我寫「WHO IS LYING? 在官方**主視覺**左下角壓印」——**位置錯了**。
+  10 張主視覺上完全沒有英文題名;那個字樣其實在**製作名單頁的背景水印**。
+  ⚠ 因此它的性質存疑(問句、位在名單頁背景,像宣傳標語多於劇名),暫時保留但列進複查頁。
+- **《风声》** 主視覺是大字 THE MESSAGE + 下方小字 MUSICAL(分開兩行、字級差很多),
+  嚴格說劇名是 THE MESSAGE。目前記錄 THE MESSAGE MUSICAL 與《哪吒》同一處理,暫不動,記下觀察。
+
+### 桌面複查包 v2:把 v1 缺的主視覺放進去了
+
+`MusicalMap_33組無英文劇名_複查v2_2026-09-04/`(33 組 / 主視覺 94 張 + 詳情圖 238 張 / 256 MB)。
+**v1 那一份有嚴重缺陷**:它只放詳情圖,而使用者抓到的 5 個錯【全部】在主視覺上——
+等於我給的複查包裡沒有關鍵證據。v2 每組四區:售票連結、判定依據逐字照錄、
+**主視覺海報(排最前面、給最大版面)**、詳情圖。
+332 個原圖相對連結實測 0 個連不到,headless Chrome 截圖確認 render。
+
+⚠ 頁面上明確標示三組是**我的判斷而非官方陳述**(去你的夏天的 Back、嗜血博士的 doc/tor、
+邦尼帮你的裝飾關鍵字),以及觉醒年代的 LA JEUNESSE 是劇中道具《新青年》的法文刊名。
+
+---
+
 ## [v2.117.0] - 2026-09-04 19:40
 
 ### 🚨 使用者抓到 4 個錯,回查根因發現我【從來沒抓過主視覺海報】

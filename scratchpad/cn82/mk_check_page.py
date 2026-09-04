@@ -25,7 +25,11 @@ from PIL import Image
 sys_out = io.TextIOWrapper(__import__("sys").stdout.buffer, encoding="utf-8")
 B = "scratchpad/cn82"
 DEST = os.path.join(os.path.expanduser("~"), "Desktop",
-                    "MusicalMap_35組無英文劇名_2026-09-04")
+                    "MusicalMap_33組無英文劇名_複查v2_2026-09-04")
+
+# 🚨 v2 新增【主視覺】區。v1 只放詳情圖,而 2026-09-04 使用者抓到的 5 個錯【全部】在主視覺上
+#    ——我的抓圖從來沒收過大麥商品頁的主視覺(全批 608 張裡 /bao/uploaded/ 型 0 張),
+#    所以 v1 的複查頁根本沒把關鍵證據放進去。主視覺排在最前面、給最大版面。
 
 # 主視覺給大一點(英文劇名多半印在這張),其餘只要看得出有沒有拉丁字就夠
 # 一律同尺寸:實測 _0 不一定是主視覺(《0528》的 _0 是購票須知,主視覺在 _2),
@@ -67,7 +71,7 @@ def main():
     for idx, g in enumerate(groups, 1):
         e = led[g]
         safe = g.replace(" ", "_").replace("/", "_")
-        files = sorted(glob.glob(os.path.join(DEST, "圖", safe, "*")))
+        files = sorted(glob.glob(os.path.join(DEST, "詳情圖", safe, "*")))
         total_img += len(files)
 
         # 我當初的判定原文——攤開來讓人對照,不是要人相信結論
@@ -99,12 +103,30 @@ def main():
                        % (html.escape(u), plat_of(u), html.escape(u))
                        for _p, u, _t in rest)))
 
+        posters = sorted(glob.glob(os.path.join(DEST, "主視覺", safe, "*")))
+        if posters:
+            pshots = []
+            for f in posters:
+                uri, size = thumb(f, 560, 80)
+                rel = "主視覺/%s/%s" % (safe, os.path.basename(f))
+                name = html.escape(os.path.basename(f))
+                if uri:
+                    pshots.append('<figure class="poster"><a href="%s" target="_blank">'
+                                  '<img src="%s" loading="lazy" alt="%s"></a>'
+                                  '<figcaption>%s<br><span>%s</span></figcaption></figure>'
+                                  % (html.escape(rel), uri, name, name, html.escape(size)))
+            pblock = ('<h3 class="sec">主視覺海報 %d 張 <em>——使用者抓到的 5 個錯全部在這裡,'
+                      'v1 複查頁沒放這一區</em></h3><div class="shots">%s</div>'
+                      % (len(posters), "".join(pshots)))
+        else:
+            pblock = '<p class="warn">⚠ 這一組沒有主視覺海報(售票資料的 image 欄是空的)。</p>'
+
         if files:
             shots = []
             for i, f in enumerate(files):
                 uri, size = thumb(f, W_MAIN if i == 0 else W_REST,
                                   Q_MAIN if i == 0 else Q_REST)
-                rel = "圖/%s/%s" % (safe, os.path.basename(f))
+                rel = "詳情圖/%s/%s" % (safe, os.path.basename(f))
                 name = html.escape(os.path.basename(f))
                 if uri:
                     shots.append(
@@ -115,11 +137,12 @@ def main():
                            html.escape(size)))
                 else:
                     shots.append('<figure><div class="err">讀不到:%s</div></figure>' % name)
-            imgs = '<div class="shots">%s</div>' % "".join(shots)
+            imgs = (pblock + '<h3 class="sec">詳情圖 %d 張</h3><div class="shots">%s</div>'
+                    % (len(files), "".join(shots)))
             warn = ""
         else:
-            imgs = ""
-            warn = ('<p class="warn">🚨 <b>這一組我手上沒有存圖</b>——它不是大麥來源,'
+            imgs = pblock
+            warn = ('<p class="warn">⚠ <b>這一組沒有詳情圖存檔</b>——它不是大麥來源,'
                     '當初是讀該平台的<b>文字頁</b>做的判定,沒有逐張看過主視覺。'
                     '也就是說「官方沒給英文劇名」這個結論在這一組<b>證據較弱</b>,'
                     '請務必點開上面的連結親自看海報。</p>')
@@ -137,7 +160,7 @@ def main():
 
     doc = """<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>35 組「官方沒給英文劇名」複查</title>
+<title>33 組「官方沒給英文劇名」複查 v2</title>
 <style>
 :root{--bg:#faf8f3;--card:#fff;--ink:#23201b;--mut:#7a736a;--line:#e5ded1;--accent:#0f6b5c;--warn:#b3261e}
 *{box-sizing:border-box}
@@ -173,6 +196,9 @@ summary{cursor:pointer;font-size:12.5px;color:var(--mut)}
 .shots{display:flex;flex-wrap:wrap;gap:14px;margin-top:14px;align-items:flex-start}
 figure{margin:0;max-width:420px}
 figure.main{max-width:420px}
+figure.poster{max-width:560px}
+h3.sec{font-size:13px;color:var(--accent);margin:16px 0 2px;border-top:1px solid var(--line);padding-top:10px}
+h3.sec em{color:var(--mut);font-style:normal;font-weight:400}
 .more summary{margin:2px 0 4px}
 figure img{width:100%;display:block;border:1px solid var(--line);border-radius:6px;background:#fff}
 figcaption{font-size:11px;color:var(--mut);margin-top:4px;word-break:break-all}
@@ -187,20 +213,29 @@ figcaption span{opacity:.7}
  h2 code{background:#2a2419}
 }
 </style></head><body>
-<header><h1>35 組「官方沒給英文劇名」複查</h1>
+<header><h1>33 組「官方沒給英文劇名」複查 <span style="color:#b3261e">v2</span></h1>
 <p class="sub">MusicalMap 中國原創批次 · 2026-09-04 · 共 __NG__ 組 / __NI__ 張圖</p></header>
 
 <div class="note">
-<b>這一頁在確認什麼。</b>中國原創批次我逐張讀圖收集官方英文劇名,結論是 41 組有、
-<b>這 35 組官方確實沒給</b>,所以一律不收(絕不自創:《花木兰》不可拿迪士尼 Mulan、
-《黑旗令》不可自造 Black Flag Order)。<br>
-<b>但「讀圖」是整條鏈上最主觀、最沒有第二道把關的一步。</b>同一批裡《当你心动时》
-海報上明明印著 Heart Shake,我判定為「有」卻收集完沒接進管線,是你一眼看出來的。
-所以「判定為沒有」的這 35 組更需要你親自看,而不是相信我的結論。<br>
-<b>每一組都攤開三樣東西:</b>完整售票連結(可直接開官方頁)、我當初的判定依據逐字照錄、
-以及我手上全部的存圖。縮圖點下去會開<b>同資料夾裡的原圖</b>(可放大逐字看)。<br>
-<b>🚨 有 4 組我手上沒有存圖</b>(我那长乐塬、羊角尖、花木兰、貂蝉 你在想什么)——
-它們不是大麥來源,當初是讀文字頁做的判定,<b>證據較弱</b>,那幾組請務必點連結親自看海報。
+<b>v1 有嚴重缺陷,這是修正後的 v2。</b>使用者在 v1 之後指出四齣戲的海報上明明印著英文劇名。
+查下去發現根因:<b>我的抓圖從來沒收過大麥商品頁的【主視覺海報】</b>——只收了詳情圖,
+全批 82 組 608 張圖裡主視覺型<b>0 張</b>。而主視覺正是英文劇名最常印的地方,
+URL 其實一直躺在我們自己的售票資料的 image 欄裡。<b>v1 這一頁因此根本沒放關鍵證據。</b><br>
+重抓 35 組共 105 張主視覺逐張看完,<b>35 組裡我判錯 5 組</b>(錯誤率 14%):
+喜欢你 <b>I like you</b>(9 張主視覺每一張都有)、玉良 <b>Pan Yu Lin</b>、
+空中花园谋杀案 <b>THE MURDER OF HANGING GARDEN</b>、渡河 渡河 <b>The Other Shore</b>、
+花木兰 <b>Mu Lan</b>。前四組已上線;花木兰不收(那個英文名屬於已結束的另一個製作)。<br>
+<b>🚨 其中《玉良》最該檢討:</b>我帳本自己寫著「尚未逐張看主視覺 → 未確認」,
+我卻把它歸進「官方【確實】沒給」——明知沒查完卻當成查過。<br>
+<b>剩下這 33 組每一組都攤開四樣:</b>完整售票連結、我當初的判定依據逐字照錄、
+<b>主視覺海報(v1 沒有的那一區,排在最前面)</b>、以及全部詳情圖。
+縮圖點下去開同資料夾的原圖,可放大逐字看。<br>
+⚠ 我判定「有英文字但不是劇名」的三組請特別看:<b>去你的夏天</b>(手寫花體單字 Back)、
+<b>嗜血博士</b>(手寫小寫 doc/tor)、<b>邦尼帮你</b>(musical 標章與裝飾關鍵字邊框)——
+這些是<b>我的判斷,不是官方陳述</b>,你可以推翻。
+另外<b>觉醒年代</b>海報上的 LA JEUNESSE 是法文,且是劇中道具《新青年》雜誌的法文刊名,不是本劇英譯。
+</div>
+
 </div>
 
 <nav>__NAV__</nav>
