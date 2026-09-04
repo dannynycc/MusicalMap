@@ -36,6 +36,52 @@ except Exception:
         return x
 
 
+# 🚨 OpenCC 簡→繁在【專名】上會挑錯字。實測本批中招的:
+#    范·米格伦→範(范是姓氏)、马丁·布雷德乌斯→佈(音譯用布)、周会珍→週(姓周)、
+#    余永泽→餘(姓余)、于贝→於(姓于)、游亦→遊(姓游)、祝英台→祝英臺。
+#    這些在【一般文句】裡多半是對的(之後/發生/這裡),所以不能全域改;
+#    只能【在專名範圍內】把它們改回來。
+NAME_FIX = {"範": "范", "佈": "布", "週": "周", "餘": "余", "於": "于", "遊": "游", "臺": "台"}
+SKIP_NAME = re.compile(r"[《》「」:：;;、/]|民歌|題材|题材|版本|卡司|官方|角色|演員|演员|飾|饰"
+                       r"|沒有|没有|不可|絕不|绝不|的|身|稱|称|懸念|悬念|組織|组织|名字|月份"
+                       r"|人物|主角|配角|泛稱|泛称|設定|设定")
+
+
+def official_names(e):
+    out = set()
+    for blk in re.findall(r"【([^】]{1,300})】", e.get("characters") or ""):
+        for x in re.split(r"[、]", blk):
+            x = x.strip()
+            if x and 1 < len(x) <= 24 and not SKIP_NAME.search(x):
+                out.add(x)
+    return out
+
+
+def fix_name(converted):
+    for a, b in NAME_FIX.items():
+        converted = converted.replace(a, b)
+    return converted
+
+
+def s2tw_safe(text, names):
+    """轉繁體,但【專名先抽出來單獨處理】,避免 OpenCC 把姓氏/音譯字挑錯。
+
+    做法:長名字先換成佔位符 → 整段轉繁 → 佔位符換回「轉繁後再修正過的名字」。
+    先處理長名字,避免短名字是長名字的子字串時先被吃掉。
+    """
+    names = sorted((n for n in names if len(n) >= 2), key=len, reverse=True)
+    holder = {}
+    for i, n in enumerate(names):
+        if n in text:
+            key = "\x00%d\x00" % i
+            holder[key] = fix_name(_s2t(n))
+            text = text.replace(n, key)
+    text = _s2t(text)
+    for k, v in holder.items():
+        text = text.replace(k, v)
+    return text
+
+
 def build(g, e, idt, lang):
     """身份 + 官方事實。官方原文【原樣附上】,不改寫 —— 我改寫就等於我在編。
 
@@ -49,7 +95,10 @@ def build(g, e, idt, lang):
     ext = (e.get("external_plot") or {}).get("text", "").strip()
     chars = (e.get("characters") or "").strip()
     if lang == "zh-hant":
-        plot, ext, chars = _s2t(plot), _s2t(ext), _s2t(chars)
+        names = official_names(e)
+        plot = s2tw_safe(plot, names)
+        ext = s2tw_safe(ext, names)
+        chars = s2tw_safe(chars, names)
     # 🚨 2026-09-04 實測:把官方資料排成【標題+換行】的長 prompt,會讓 Perplexity 切換成
     #    「研究報告」模式 —— 產出 Markdown 表格、分節標題、巡演場次清單,完全不是簡介
     #    (《#0528》實測回了 1100~1400 字的報告)。改法:
@@ -59,11 +108,23 @@ def build(g, e, idt, lang):
     facts = (plot or ext).replace("\n", " ")
     warn = " ".join(x.strip() for x in re.split(r"[。\n]", chars)
                     if ("🚨" in x or "不可" in x or "絕不" in x or "绝不" in x))
+    # 🚨 「人名一字不改照抄」這句對中文稿是對的,對【英文稿】卻會把漢字原封不動留在英文正文裡
+    #    ——實測《三风一树》英文稿寫成「武耀 ekes out a living…德厚 and 子敬」,英語讀者讀不了。
+    #    它甚至蓋掉了 px_gen 英文 TAIL 本來就有的「非拉丁字系一律羅馬拼音」規則。
+    #    所以這句要跟著語言換:英文=羅馬拼音,中文=照抄。
+    if lang == "en":
+        name_rule = ("專有名詞若是漢字,請一律轉成【漢語拼音】並首字母大寫(例如 武耀 → Wu Yao、"
+                     "德厚 → De Hou),不要把漢字留在英文正文裡;但若資料裡本來就給了英文名或"
+                     "外文原名(例如 July、Van Meegeren、Göring),就直接用那個英文/原文寫法。"
+                     "普通名詞(不是人名的稱謂,如「老師」「爺爺」「當代畫家」)請意譯成英文,不要拼音。")
+    else:
+        name_rule = "人名與專有名詞一字不改照抄。"
     body = ("請把下面這段【已知資料】改寫成一段給觀眾看的劇情簡介,寫成通順的文章。"
             "只能用這段資料裡有的內容,不要補寫任何它沒說的情節、地點、人物關係或結局;"
-            "人名與專有名詞一字不改照抄。資料:" + facts)
+            + name_rule + "資料:" + facts)
     if warn:
-        body += " 另外這些限制務必遵守:" + warn.replace("\n", " ")
+        # 補上句號:限制句常以「…的卡司區」這種沒有標點的片段結尾,直接接下一段指示會黏成一句
+        body += " 另外這些限制務必遵守:" + warn.replace("\n", " ").rstrip("。 ") + "。"
     # 🚨 2026-09-04 設計衝突:px_gen 的 has_summary() 要求最後獨立一段做【主題性收束】
     #    (要出現「意義/主題/不只是/明白…」這類詞),但我上面說「不要補寫資料沒說的」——
     #    兩者互斥,實測第一次嘗試就 sum=N,再不處理會讓每一篇都跑滿 7 次重試。
@@ -72,10 +133,19 @@ def build(g, e, idt, lang):
     #    「全劇/主題/意義/叩問/道出/探討/不只是…」這類詞就會判 False,然後跑滿 7 次重試。
     #    實測《亡灵之旅》結尾寫「究竟意味著永生、重逢,還是更艱難的考驗?」——文意完全正確卻沒過。
     #    所以要直接告訴它可用的收尾詞,而不是讓它猜。
-    body += ("最後請獨立成段收束全劇,兩到三句,只能從上面資料已有的內容去點出主題,"
-             "【不可帶入任何新的人物、情節或結局】;這一段請用「全劇」開頭,"
-             "或在句中用到「主題」「意義」「叩問」「道出」「探討」「不只是」其中一個詞。"
-             " (不要提到這段資料本身,不要寫『根據官方』,不要用表格或小標題。)")
+    # ⚠ 收尾詞【必須跟著輸出語言】:英文稿的 has_summary() 檢查的是
+    #   ultimately / at its heart / the show / explores / is not only… 這些英文線索,
+    #   叫它用「全劇/主題/叩問」是中文詞,英文稿根本用不上 —— 實測英文第一篇就 sum=N。
+    if lang == "en":
+        body += ("最後請【用英文】獨立成段收束全劇,兩到三句,只能從上面資料已有的內容去點出主題,"
+                 "【不可帶入任何新的人物、情節或結局】;這一段請用 \"The show\" 或 \"Ultimately\" 開頭,"
+                 "或在句中用到 \"at its heart\"、\"explores\"、\"is not only ... but also\"、"
+                 "\"a story of\" 其中一個說法。")
+    else:
+        body += ("最後請獨立成段收束全劇,兩到三句,只能從上面資料已有的內容去點出主題,"
+                 "【不可帶入任何新的人物、情節或結局】;這一段請用「全劇」開頭,"
+                 "或在句中用到「主題」「意義」「叩問」「道出」「探討」「不只是」其中一個詞。")
+    body += " (不要提到這段資料本身,不要寫『根據官方』,不要用表格或小標題。)"
     return ident + " —— " + body
 
 

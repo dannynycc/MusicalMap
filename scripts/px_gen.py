@@ -255,7 +255,11 @@ import os
 if os.path.exists(OUT):
     try:
         for r in json.load(open(OUT,encoding="utf-8")):
-            if r.get("summary") and (LANG=='en' and LO<=r.get('size',0)<=HI or LANG!='en' and 400<=r.get('size',0)<=460):
+            # 🚨 2026-09-04:這一行中文那半原本寫死 400<=size<=460,沒有跟著 LO/HI 走。
+            #    我加 PX_LO/PX_HI 覆蓋時只改了收稿條件,漏了這裡 —— 結果用 PX_LO=180/PX_HI=420
+            #    跑出來的 180~400 字稿子在續跑時被判「未達標」,整批重跑,而 results 是從空的重建,
+            #    直接把已完成的 17 篇覆蓋掉。收稿與續跑【必須用同一個判準】,否則就是靜默資料遺失。
+            if r.get("summary") and LO <= r.get("size", 0) <= HI:
                 done[r["show"]]=r
     except Exception: pass
 with sync_playwright() as pw:

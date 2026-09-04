@@ -85,7 +85,12 @@ def main():
     #      英文稿 → 只比【官方本來就有拉丁寫法】的名字;純中文名標成「無法機械比對」交人工
     is_en = "_en" in path
     rows = json.load(io.open(path, encoding="utf-8"))
-    order = json.load(io.open("%s/order.json" % BASE, encoding="utf-8"))
+    # regen 檔的順序是 regen_*_order.json(69 組),不是 order.json(78 組)
+    import os
+    suf = "en" if is_en else "zht"
+    ro = "%s/regen_%s_order.json" % (BASE, suf)
+    order = json.load(io.open(ro if ("regen" in path and os.path.exists(ro))
+                              else "%s/order.json" % BASE, encoding="utf-8"))
     led = json.load(io.open("%s/ledger.json" % BASE, encoding="utf-8"))
     bad = 0
     print("稿 %d 筆 / 清單 %d 齣\n" % (len(rows), len(order)))
@@ -100,6 +105,23 @@ def main():
             bad += 1
             continue
         names = official_names(e)
+        # 🚨 2026-09-04:原本拿【整份卡司表】比對,誤報一堆。官方劇情本身多半【不點名角色】
+        #    (《0528》《六个说谎的大学生》官方梗概一個名字都沒有),簡介照著寫當然也沒有名字,
+        #    卻被報成「可能寫成別齣戲」。更糟的是《亡灵之旅》——帳本明令【不可寫出阿努比斯】
+        #    (那是官方刻意保留的身份懸念),稿子正確地沒寫,守門卻把它當缺漏。
+        #    正確基準是【官方劇情裡真的出現過的名字】:那些才是「應該出現」;
+        #    只在卡司表上的名字算 optional,不出現不是錯。
+        plot_txt = fold((e.get("official_plot") or "")
+                        + ((e.get("external_plot") or {}).get("text") or ""))
+        if names:
+            def _in_plot(n):
+                cn = "".join(re.findall(r"[一-鿿A-Za-z0-9#]+",
+                                        re.sub(r"[A-Za-z][A-Za-z .'Ā-ɏ-]*", " ", n))).strip()
+                m2 = re.search(r"[A-Za-z][A-Za-z .'Ā-ɏ-]*", n)
+                la = m2.group(0).strip() if m2 else ""
+                return (cn and fold(cn) in plot_txt) or (la and la in plot_txt)
+            optional = {n for n in names if not _in_plot(n)}
+            names = names - optional
         if names:
             # 🚨 帳本常寫成「中文 English」並列(「维塔 VITA」「李宁玉 Li Ningyu」),
             #    簡介裡只會出現其中一半 —— 整串比對必然落空,要拆開比。
@@ -119,11 +141,14 @@ def main():
             names = names - unchk
             # B:名字有拉丁寫法、且【中文部分在稿裡、拉丁部分不在】→ 官方英文名被中譯/被拿掉
             # B 只對【中文稿】有意義:官方給了英文名,中文稿卻整篇找不到 → 被中譯了
+            # 🚨 只有【官方純英文名】(Eggy / July / Doris)才適用:那種名字中文稿也必須保留英文。
+            #    官方寫成「中文 English」並列的(维塔 VITA、李宁玉 Li Ningyu),中文稿只寫中文是【正確的】
+            #    —— 那個英文是官方給的對照拼寫,不是中文正文該出現的東西。原本沒分,誤報《亡灵之旅》。
             latmiss = []
             if not is_en:
                 for n in names:
                     cn, la = parts(n)
-                    if la and la not in txt:
+                    if la and not cn and la not in txt:
                         latmiss.append(n)
             if unchk:
                 note.append("⚠英文稿:%d 個官方角色名只有中文寫法(%s),機械比對不了→必須人工看"
