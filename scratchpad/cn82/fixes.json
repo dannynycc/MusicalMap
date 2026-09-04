@@ -175,8 +175,8 @@
   "group": "新贵",
   "lang": "zh-hant",
   "old": "以及所有「新貴」的宿命。",
-  "new": "以及所有「新貴」的宿命;可命運對三人的安排,卻沒有那麼簡單。",
-  "why": "官方梗概的收尾鉤子「可命运对三人的安排,却没有那么简单……」繁中稿整句掉了(英文稿有:Yet the fate awaiting the three of them is more complex)"
+  "new": "以及所有「新貴」的宿命；可命運對三人的安排，卻沒有那麼簡單。",
+  "why": "官方梗概的收尾鉤子「可命运对三人的安排,却没有那么简单……」繁中稿整句掉了(英文稿有:Yet the fate awaiting the three of them is more complex)(⚠ 第一版我用了半形分號與逗號,與全篇全形標點不一致,已改)"
  },
  {
   "group": "日出渤海耀天山",
@@ -234,5 +234,341 @@
   "old": "Clark Hare",
   "new": "時鐘兔",
   "why": "同上:官方【Clark Hare 时钟兔】,繁中稿應寫「時鐘兔」(鐘=時鐘,非姓氏的鍾)"
+ },
+ {
+  "group": "狐说臣与仙",
+  "lang": "zh-hant",
+  "old": "留仙與柳泉可令人聯想到蒲松齡及其創作傳說，但這屬於典故背景上的推斷，並非劇中明說。",
+  "new": "",
+  "why": "🚨🚨【守門沒響 —— 而且錯的源頭又是我】我在帳本寫「寫簡介時可點出典故,但要標明這是【官方沒有明說的推斷/典故背景】」,模型把那個【編輯指示本身】整句寫進正文,產出「但這屬於典故背景上的推斷,並非劇中明說」。簡介正文不該出現這種編輯後設語言。官方自始至終沒寫出蒲松齡三個字,整句刪掉最乾淨,官方的收束「妖是人間妖,鬼是心中鬼」保留"
+ },
+ {
+  "group": "玉良",
+  "lang": "zh-hant",
+  "old": "閤中西於一冶",
+  "new": "合中西於一冶",
+  "why": "OpenCC 把官方「合中西于一冶」的【合】轉成罕用的【閤】。全站 zh-hant 閤 0 次、合 339 次。已加入 zht_glyph_norm 規則(並 PROTECT 閤家/閤第/閤府),此條為保險"
+ },
+ {
+  "group": "椒花颂声",
+  "lang": "en",
+  "old": "Shangguan Wan’er, born a slave convicted of crime, earns renown",
+  "new": "Shangguan Wan’er, born into penal servitude, earns renown",
+  "why": "🚨【守門沒響】「罪奴出身」是【因家族獲罪而沒入官奴】,罪不在她身上;英文寫成 born a slave convicted of crime 等於說【她被判了罪】,把罪安到主角頭上"
+ },
+ {
+  "group": "椒花颂声",
+  "lang": "en",
+  "old": "Shangguan protects Taiping with her life",
+  "new": "Shangguan gives her life in protection",
+  "why": "官方只寫「上官以命相護」【沒有寫護的是誰】;英文自行補上受詞 Taiping。兩人是知己雖可推,但那是填空不是官方陳述"
+ },
+ {
+  "group": "流星之绊",
+  "lang": "en",
+  "old": "Li Gongyi leads Tai Fu and Xiaojing",
+  "new": "Li Gongyi leads Taifu and Xiaojing",
+  "why": "拼音斷詞不一致:同一句裡【小静→Xiaojing】併寫、【泰辅→Tai Fu】卻拆開,拆開會被讀成「姓 Tai、名 Fu」。與《夜幕下的哈尔滨》Yu Zhi Yilang 同類"
+ },
+ {
+  "group": "海上钢琴师",
+  "lang": "zh-hant",
+  "old": "也從往返於大陸之間的旅客身上，聆聽並感受不同的故事、情緒與慾望。當他站上舷梯",
+  "new": "也從往返於大陸之間、來自不同國家與階層的旅客身上，聆聽並感受各自的故事、情緒與慾望。他並非沒有見過世界——透過音樂與觀察，他比許多人更早理解了世界的複雜。當他站上舷梯",
+  "why": "🚨 我先前判成「詮釋性省略、可接受」是判錯了。官方「他【並非沒有見過世界】,相反,他透過音樂與觀察,比許多人更早理解了世界的複雜性」是整段的【立論核心】——沒有它,簡介讀起來就是「一個沒下過船的人」,正好是官方要防的誤讀。英文稿有,繁中稿沒有。順帶補回被省掉的「不同國家與階層」"
+ },
+ {
+  "group": "拜风",
+  "lang": "zh-hant",
+  "old": "兩人如同兩條線，時而交會，時而分開；「阿江／阿風」之名，也映照著《拜風》與長江的意涵。",
+  "new": "兩人如同兩條線，時而交會，時而分開。",
+  "why": "「映照著《拜風》與長江的意涵」讀者根本讀不出在說什麼——這是我要求「可帶到雙關但不要過度演繹」之後,模型寫出的一句空話;而且英文稿正是在同一處把雙關寫錯成 Bai Feng。與其留一句無資訊的句子,不如拿掉"
+ },
+ {
+  "group": "拜风",
+  "lang": "zh-hant",
+  "old": "全劇以這對兄弟無懼風浪、在波濤中昂首前行的身影，道出人與江水相繫的情感。",
+  "new": "正如江豚頂風而出、迎接新生，這對兄弟也始終無懼風浪，在波濤裡昂首向前。全劇由此道出人與江水相繫的情感。",
+  "why": "官方「正如【江豚顶风而出、迎接新生】一样,这对渔民兄弟也始终无惧风浪」——江豚那半在繁中稿整個掉了(英文稿有)。而且「頂風」正是劇名《拜風》扣著的意象,掉了就失去題旨的支點"
+ },
+ {
+  "group": "女巫",
+  "lang": "zh-hant",
+  "old": "她們便可能被送上火刑架",
+  "new": "她們便將被送上火刑架",
+  "why": "官方是「被抬手指向的那个瞬间,她们【即将】被送上火刑架」——那是斬釘截鐵的必然。稿子寫「可能」把它降級成或然,削掉了整段最冷的那一下。我先前判「不構成事實錯誤,保留」是把該做的判斷讓給了模型"
+ },
+ {
+  "group": "月亮与六便士",
+  "lang": "zh-hant",
+  "old": "查爾斯·斯特里克蘭德原是家庭美滿、事業成功的知名股票證券經紀人",
+  "new": "改編自毛姆同名長篇小說。查爾斯·斯特里克蘭德原是家庭美滿、事業成功的知名股票證券經紀人",
+  "why": "我先前判「掉的只有改編出處,不改」。重判:官方原文第一句就是「由英國小說家威廉·薩默塞特·毛姆創作的長篇小說改編」,而且對讀者【有實質資訊】——一句話就說明這是什麼類型的故事。補回,但不照抄官方那串全名(簡介不需要),寫「毛姆同名長篇小說」"
+ },
+ {
+  "group": "牡丹亭",
+  "lang": "zh-hant",
+  "old": "上元佳節，杜麗娘驚鴻一瞥",
+  "new": "湯顯祖的《牡丹亭》是中國戲曲的壓卷之作。上元佳節，杜麗娘驚鴻一瞥",
+  "why": "我先前判「湯顯祖/莎士比亞那段屬文化定位,省略合理」。重判:【湯顯祖】是作者,對讀者有實質資訊,該留;至於「莎士比亞同期、同年去世、中西雙子星」那串是宣傳性比附,不該進簡介。所以只補作者、不補比附(⚠ 第一版我寫成「湯顯祖筆下的《牡丹亭》,由此展開。」——半形逗號與全篇的全形標點不一致,而且句子生硬。改用官方原有的說法「中國戲曲壓卷之作」)"
+ },
+ {
+  "group": "有一天我和祝英台去美术馆",
+  "lang": "en",
+  "old": "its collection is not made up of paintings alone. Each work holds another way in which he missed her during his life.",
+  "new": "its collection is not paintings at all: it holds every way in which he missed her across his life.",
+  "why": "我先前判「語氣稍弱但不構成事實錯誤,保留」。重判:官方「這座美術館收藏的【不是畫】,而是他一生裡錯過她的各種方式」是全篇最重的一個轉折,英文寫成 not made up of paintings alone(不只是畫)把否定改成了部分否定,那一下力道整個沒了。這是全文的題眼,不能讓它變鈍"
+ },
+ {
+  "group": "破墙",
+  "lang": "zh-hant",
+  "old": "叩問造物主與角色相見後，真相能否被說出口。",
+  "new": "叩問造物主與角色相見後，真相能否被說出口；知道真相之後，四個人又該如何同時修復兩個瀕臨癱瘓的世界。",
+  "why": "官方「知道了真相,【四个人又该如何同时修复两个濒临瘫痪的世界】?」整句掉了——那是全劇的賭注所在,不是可有可無的修飾"
+ },
+ {
+  "group": "羊角尖",
+  "lang": "zh-hant",
+  "old": "羊角尖阻擊戰的陰影之下，",
+  "new": "中原突圍中的羊角尖阻擊戰陰影之下，",
+  "why": "官方寫「以【中原突围】中的羊角尖阻击战为背景」,稿子只留下阻擊戰的名字、掉了它所屬的戰役。史實題材少了這個定位,讀者無從知道這是哪一場戰爭裡的事"
+ },
+ {
+  "group": "花木兰",
+  "lang": "zh-hant",
+  "old": "北魏時期，北方柔然連年南侵",
+  "new": "本劇以北魏民歌《木蘭詞》為藍本。北魏時期，北方柔然連年南侵",
+  "why": "官方第一句就寫「以【北魏民歌《木兰词》】为蓝本」,稿子掉了。這一句對這齣戲【特別重要】——它是把本劇跟迪士尼版區隔開的標記,帳本也專門記了『絕不可套用迪士尼版角色』。與《月亮与六便士》補毛姆、《牡丹亭》補湯顯祖是同一個判斷"
+ },
+ {
+  "group": "荒原",
+  "lang": "zh-hant",
+  "old": "復仇不只是終點之前的執念，也映照著被大火改變的人生。",
+  "new": "復仇並非終點，那場大火所改變的人生，仍橫在她眼前。",
+  "why": "「復仇不只是終點之前的執念」這句話讀不出意思——官方原文是「复仇并非终点」,稿子把它繞成了一個自相矛盾的說法。這不是語感問題是【讀者讀不懂】,改回官方的講法"
+ },
+ {
+  "group": "觉醒年代",
+  "lang": "zh-hant",
+  "old": "李大釗與陳獨秀投入傳播馬克思主義的道路",
+  "new": "本劇改編自同名電視劇。李大釗與陳獨秀投入傳播馬克思主義的道路",
+  "why": "官方第一句就寫「以【同名电视剧原版】作为改编底本」,稿子掉了。這對讀者是實質資訊——它說明這是那部知名電視劇的舞台版。與《月亮与六便士》補毛姆、《牡丹亭》補湯顯祖、《花木兰》補《木蘭詞》是同一個判斷"
+ },
+ {
+  "group": "日出渤海耀天山",
+  "lang": "zh-hant",
+  "old": "1947年，梅二月告別故土與戀人柳葉",
+  "new": "本劇以渤海軍區教導旅西進屯墾的史實為藍本。1947年，梅二月告別故土與戀人柳葉",
+  "why": "全批掃描發現的【系統性缺漏】:官方開頭的「以…為藍本/改編自…」在四組以上被一律刪掉,很可能是我 prompt 裡「不要提到這段資料本身」被模型擴大解讀。此組官方寫「以【渤海军区教导旅西进屯垦】史实为蓝本」——讀者若不知道這是真實史實,會把整段當虛構故事看"
+ },
+ {
+  "group": "日出渤海耀天山",
+  "lang": "en",
+  "old": "In 1947, Mei Eryue leaves his homeland",
+  "new": "Based on the real history of the Bohai Military Region Teaching Brigade’s westward march to reclaim and settle the frontier: in 1947, Mei Eryue leaves his homeland",
+  "why": "同上,英文稿也一樣掉了「以史實為藍本」這個定位"
+ },
+ {
+  "group": "灯塔",
+  "lang": "en",
+  "old": "Huo Pu",
+  "new": "Hope",
+  "n": 3,
+  "why": "🚨【守門沒響】劇本設定在【19 世紀 40 年代的英格蘭】,霍普是在修道院長大的孤兒——這是【西方名字的中文音譯】,不是漢字名。拼音化成 Huo Pu 會讓英語讀者以為他是中國人。⚠ 判斷依據與不確定性都記清楚:我已用 sheet.py 定位 + zoom.py 放大讀過官方卡司區(灯塔_2.jpg),官方【只印「-霍普-」,沒有給任何英文寫法】,所以 Hope 是【我的判斷】不是官方事實;依據是(a)霍普是英文名 Hope 的標準中譯(如鮑勃·霍普),(b)本批已建立同樣的處理:范·米格伦→Van Meegeren、拉乔·皮勒→Piller(後者另查 en.wikipedia 確認)。⚠ 另一角色【怀恩】英文稿沒有提到,不需處理"
+ },
+ {
+  "group": "渡河 渡河",
+  "lang": "en",
+  "old": "Four people stand at the centre of a reckoning shaped by the past, though only three figures are identified: a middle-aged mechanic",
+  "new": "Four people stand at the centre of a reckoning shaped by the past, among them a middle-aged mechanic",
+  "why": "🚨【守門沒響 —— 又是我的帳本註記漏進正文】帳本記著「官方寫『四个人的救赎』但只列出三種身分,第四人官方完全沒交代」,英文稿把這個【觀察】寫進了簡介:「though only three figures are identified」。那是我在評論官方文本,不是劇情。繁中稿處理得對(照官方寫四個人、描述三種身分,不加評論)"
+ },
+ {
+  "group": "金童子",
+  "lang": "zh-hant",
+  "old": "五十年代初，金髮小孩 Martin 隨著父親被英軍調駐來港",
+  "new": "本劇改編自英國作家馬丁·布斯(Martin Booth)的童年回憶錄《Gweilo》。五十年代初，金髮小孩 Martin 隨著父親被英軍調駐來港",
+  "why": "又一例【改編來源被刪掉】的系統性缺漏(第六組)。官方明寫「根據 Martin Booth 這本回憶錄改編而成」,而且這一組特別重要——稿子直接寫「金髮小孩 Martin」卻沒說 Martin 是誰、故事從哪來,讀者會以為是虛構人物。官方另提到 Gweilo 是廣東話「鬼佬」的英文寫法,那屬劇名注解,繁中頁看到的是《金童子》,不強加"
+ },
+ {
+  "group": "青春之歌",
+  "lang": "zh-hant",
+  "old": "【",
+  "new": "",
+  "n": 4,
+  "why": "🚨【第四次】我帳本標角色名用的方括號漏進正文:「女大學生【林道靜】」「【盧嘉川】走向信仰之路」等四處。官方文案沒有這種括號"
+ },
+ {
+  "group": "青春之歌",
+  "lang": "zh-hant",
+  "old": "】",
+  "new": "",
+  "n": 4,
+  "why": "同上,右括號四處"
+ },
+ {
+  "group": "青春之歌",
+  "lang": "zh-hant",
+  "old": "20世紀30年代的動盪時局中",
+  "new": "本劇以作家楊沫的同名經典小說為原型。20世紀30年代的動盪時局中",
+  "why": "【第七組】改編來源被刪:官方明寫「以已故著名作家【楊沫】同名經典文學作品為原型和史實而創制」。《青春之歌》是中國現代文學名著,不說出原著與作者,讀者會以為這是原創故事"
+ },
+ {
+  "group": "玉良",
+  "lang": "zh-hant",
+  "old": "潘玉良拜師洪野後進入上海美專求學",
+  "new": "中國首位女西洋畫家潘玉良拜師洪野後進入上海美專求學",
+  "why": "🚨 兩個語言【都】掉了官方第一句的「中國首位女西洋畫家」——那是潘玉良之所以重要的理由,也是全劇的立足點。沒有它讀者不知道這位畫家有什麼特別"
+ },
+ {
+  "group": "玉良",
+  "lang": "en",
+  "old": "Pan Yuliang begins her artistic journey by studying under Hong Ye",
+  "new": "Pan Yuliang, China’s first woman painter trained in Western art, begins her artistic journey by studying under Hong Ye",
+  "why": "同上,英文稿也一樣掉了「中國首位女西洋畫家」"
+ },
+ {
+  "group": "牡丹亭",
+  "lang": "en",
+  "old": "Du Liniang catches a fleeting glimpse during the Lantern Festival",
+  "new": "Adapted from Tang Xianzu’s classic of Chinese opera: Du Liniang catches a fleeting glimpse during the Lantern Festival",
+  "why": "與繁中稿同步補上作者【湯顯祖】。⚠ 官方那段「與莎士比亞同期、兩人同年去世、中西戲劇雙子星」是宣傳比附,兩語都不補"
+ },
+ {
+  "group": "狐说臣与仙",
+  "lang": "en",
+  "old": "By the Liǔquán, the downcast scholar",
+  "new": "By the Willow Spring, the downcast scholar",
+  "why": "🚨【柳泉】是地方(泉水),直接拼成 Liǔquán 英語讀者不知道那是什麼;譯成 Willow Spring 保留字面又讀得懂"
+ },
+ {
+  "group": "狐说臣与仙",
+  "lang": "en",
+  "old": "Liúxiān",
+  "new": "Liuxian",
+  "why": "🚨 全篇用了【聲調符號】,與全批其他英文稿的無聲調拼音(Chen Qiyao、Mei Eryue、Wu Yao、Pan Yuliang)不一致——同一個網站不該兩種拼法",
+  "n": 2
+ },
+ {
+  "group": "狐说臣与仙",
+  "lang": "en",
+  "old": "Jiànchén",
+  "new": "Jianchen",
+  "why": "同上,去掉聲調符號",
+  "n": 2
+ },
+ {
+  "group": "羊角尖",
+  "lang": "en",
+  "old": "the Yangjiajian defensive battle during the Central Plains Breakout",
+  "new": "the Yangjiaojian defensive battle during the Central Plains Breakout",
+  "why": "🚨 拼音漏字:羊角尖 = yang-jiao-jian(已用 pypinyin 核對),英文稿寫成 Yangjiajian 少了 o。這是劇名本身,拼錯等於劇名錯"
+ },
+ {
+  "group": "空中花园谋杀案",
+  "lang": "en",
+  "old": "Determined to find the person responsible for her husband’s disappearance",
+  "new": "Determined to find her husband’s killer",
+  "why": "官方是「為了找到【殺害丈夫的兇手】」——汪太找的是兇手,英文寫成「造成丈夫失蹤的人」是不同的事(失蹤未必等於被殺)。而且官方前一句已寫警方斷定為惡性謀殺"
+ },
+ {
+  "group": "破墙",
+  "lang": "en",
+  "old": "healing and completing each other as two worlds near paralysis.",
+  "new": "healing and completing each other. With the truth known, the four of them must find a way to repair two worlds on the verge of collapse.",
+  "why": "官方有兩個分開的節拍被英文稿併成一句:(a)孟潼與小月互相治癒彼此完整、(b)「知道了真相,【四個人】又該如何同時修復兩個瀕臨癱瘓的世界?」。併起來會讓「修復兩個世界」變成那兩個靈魂的事,但官方說的是四個人。繁中稿已補回同一段"
+ },
+ {
+  "group": "风声",
+  "lang": "zh-hant",
+  "old": "在戰爭硝煙籠罩的中國，一場圍繞情報展開的生死較量就此逼近，眾人穿越時空，走入危機四伏的時刻。",
+  "new": "在戰爭硝煙籠罩的中國，一場圍繞情報展開的生死較量就此逼近。",
+  "why": "🚨 官方是「引領【觀眾】穿越時空,重返那個被戰爭硝煙所籠罩的中國」——那是【帶觀眾回到那個年代】的敘事框架;稿子寫成「【眾人】穿越時空」,會被讀成劇中人物在時空穿越。《風聲》是諜戰劇不是穿越劇,這個誤讀很嚴重。刪掉該分句即可,重返那個中國的資訊前一句已有"
+ },
+ {
+  "group": "怪物",
+  "lang": "zh-hant",
+  "old": "美國康斯坦辛鎮第四區，高群間矗立著一棟搖搖欲墜的二層小樓",
+  "new": "美國康斯坦辛鎮第四區，矗立著一棟搖搖欲墜的二層小樓",
+  "why": "「高群中/高群間」在中文裡不成詞——來源(豆瓣)寫的就是「高群中矗立着」,推測是「高樓群」之類的脫字或誤植。照抄一個讀不通的詞會讓讀者卡住;既然無法確認原意,不如不寫(刪掉不損失任何可確認的資訊)"
+ },
+ {
+  "group": "花木兰",
+  "lang": "en",
+  "old": "As the Rouran invade southward year after year during the Northern Wei period",
+  "new": "Adapted from the Northern Wei folk ballad The Ballad of Mulan: as the Rouran invade southward year after year",
+  "why": "與繁中稿同步補上官方第一句「以北魏民歌《木蘭詞》為藍本」——這正是把本劇與迪士尼版區隔開的標記"
+ },
+ {
+  "group": "蓝关雪",
+  "lang": "en",
+  "old": "brothers Tian Qing and Xuan Qing",
+  "new": "brothers Tianqing and Xuanqing",
+  "why": "拼音斷詞:天青/玄青 是名字,應併寫 Tianqing / Xuanqing;拆成 Tian Qing / Xuan Qing 會被讀成「姓 Tian、名 Qing」。與《流星之绊》Tai Fu、《夜幕下的哈尔滨》Yu Zhi Yilang 同類"
+ },
+ {
+  "group": "貂蝉 你在想什么",
+  "lang": "en",
+  "old": "Wang Yun, a Grand Commandant troubled by Dong Zhuo’s growing power",
+  "new": "Wang Yun, Minister over the Masses, troubled by Dong Zhuo’s growing power",
+  "why": "🚨 官職譯錯:官方寫【司徒】王允,英文譯成 Grand Commandant——那是【太尉】不是司徒。已查 en.wikipedia『Wang Yun (Han dynasty)』條目 infobox,司徒 的對應英文是【Minister over the Masses】(在職 190–192),直接採用"
+ },
+ {
+  "group": "觉醒年代",
+  "lang": "en",
+  "old": "Li Dazhao and Chen Duxiu devote themselves to spreading Marxism",
+  "new": "Adapted from the television series of the same name: Li Dazhao and Chen Duxiu devote themselves to spreading Marxism",
+  "why": "與繁中稿同步:官方第一句「以同名電視劇原版作為改編底本」英文稿也掉了(全批第 N 例的系統性缺漏)"
+ },
+ {
+  "group": "辛吉路的画材店",
+  "lang": "en",
+  "old": "Saixiu Zhanji, the passionate youth comic he and Xinji created together",
+  "new": "The Chronicles of Saixiu, the passionate youth comic he and Xinji created together",
+  "why": "🚨 作品名整串音譯:《塞修戰紀》的【戰紀】是普通名詞(chronicles/war chronicle),依規則須意譯;整串拼成 Saixiu Zhanji 英語讀者讀不出那是一部漫畫。與《时光代理人》的 Shiguang Zhaoxiangguan 同一類"
+ },
+ {
+  "group": "边城",
+  "lang": "en",
+  "old": "Fate brings the four together, yet repeatedly carries them past one another.",
+  "new": "Fate brings them together, yet repeatedly carries them past one another.",
+  "why": "官方寫「緣分讓【大家】相遇」——沒有給人數;英文寫成 the four 等於指定了四個人,而且那第四人是誰不明(翠翠+兩兄弟+爺爺?爺爺並不在這段情感糾葛裡)。與《渡河 渡河》相反:那一組官方明寫「四個人」所以要照寫,這一組官方沒寫就不能自己數"
+ },
+ {
+  "group": "金童子",
+  "lang": "en",
+  "old": "A blond boy arrives in Hong Kong in the early 1950s after his father is posted there by the British Army.",
+  "new": "Adapted from Gweilo, the childhood memoir of British author Martin Booth (gweilo is Cantonese slang for a Westerner): a blond boy arrives in Hong Kong in the early 1950s after his father is posted there by the British Army.",
+  "why": "兩處與繁中稿同步再加一項:(1)【改編來源】官方明寫「根據 Martin Booth 這本回憶錄改編而成」,英文稿雖在文末提到 Martin Booth 卻沒說本劇改編自他的回憶錄;(2)英文版的劇名【就是 Gweilo】,官方特地解釋了「Gweilo 為廣東話『鬼佬』的英文寫法」——英語讀者看到劇名 Gweilo 更需要這個註解,繁中頁看到的是《金童子》所以那邊不加"
+ },
+ {
+  "group": "钱氏今生",
+  "lang": "zh-hant",
+  "old": "全劇叩問權勢榮華與天下蒼生之間的取捨，並道出一汪西湖所藏的千年仁心。",
+  "new": "全劇叩問權勢榮華與天下蒼生之間的取捨，並道出一汪西湖所藏的千年仁心、一冊家訓載滿的世代風骨。",
+  "why": "官方開頭是【對句】:「一汪西湖藏盡千年仁心,一冊家訓載滿世代風骨」——繁中稿只留了前半,後半的「家訓」整個掉了(英文稿有 a family precept preserves the character of generations)。而且家訓正是劇名《錢氏今生》所繫的東西(千年以降,一脈家風),掉了對句就破了"
+ },
+ {
+  "group": "青春之歌",
+  "lang": "en",
+  "old": "In the turbulent hardships of the 1930s, university student Lin Daojing",
+  "new": "Adapted from the classic novel of the same name by Yang Mo: in the turbulent hardships of the 1930s, university student Lin Daojing",
+  "why": "與繁中稿同步:官方第一句「以已故著名作家【楊沫】同名經典文學作品為原型」英文稿也掉了。《青春之歌》是中國現代文學名著,不說出原著與作者,英語讀者會以為是原創故事"
+ },
+ {
+  "group": "风声",
+  "lang": "en",
+  "old": "Lao Gui",
+  "new": "Old Ghost",
+  "n": 3,
+  "why": "🚨 官方自己的命名慣例就在角色表上:【老鳖 = Turtle】(意譯,不是拼音 Lao Bie)。「老鬼」是同一種代號構詞,依官方慣例應作 Old Ghost 而非音譯 Lao Gui。⚠ 這是【依官方既有慣例的推論】不是官方直接給的英文,如實記錄"
+ },
+ {
+  "group": "风声",
+  "lang": "en",
+  "old": "Qiu Zhuang",
+  "new": "Qiu Manor",
+  "n": 2,
+  "why": "【莊】是普通名詞(莊園/宅邸),依規則須意譯;而且 Qiu Zhuang 拆成兩個詞會被讀成人名。與《时光代理人》照相館、《辛吉路的画材店》戰紀同一類(⚠ 第一版我把 old 寫成『Qiu Zhuang in Hangzhou』卻把 n 設成『Qiu Zhuang』的出現次數 2,被 apply_fix 的斷言擋下——這正是那個斷言存在的理由)"
  }
 ]

@@ -1,0 +1,30 @@
+[
+ {
+  "group": "牡丹亭",
+  "lang": "zh-hant",
+  "old": "湯顯祖的《牡丹亭》是中國戲曲的壓卷之作。",
+  "new": "本劇改編自湯顯祖的《牡丹亭》——中國戲曲的壓卷之作。",
+  "why": "🚨【我自己的修正引入的問題】第一版寫成「湯顯祖的《牡丹亭》是中國戲曲的壓卷之作。」,讀起來像在介紹【原著戲曲】而不是這齣音樂劇,讀者會分不清這頁講的是崑曲還是音樂劇。其他幾組我都寫「本劇改編自/以…為藍本」,這組也要一致"
+ },
+ {
+  "group": "金童子",
+  "lang": "zh-hant",
+  "old": "金髮小孩 Martin 隨著父親",
+  "new": "金髮小孩馬丁隨著父親",
+  "why": "🚨【我自己的修正引入的問題】我在句首補了「英國作家馬丁·布斯(Martin Booth)」之後,同一篇裡同一個人先是「馬丁·布斯」後是「Martin」,中英兩種寫法並存。中文稿裡一個人只用一種寫法"
+ },
+ {
+  "group": "日出渤海耀天山",
+  "lang": "zh-hant",
+  "old": "本劇以渤海軍區教導旅西進屯墾的史實為藍本。",
+  "new": "本劇取材自真實史實。",
+  "why": "🚨【我自己的修正引入的問題】補完出處後,「渤海軍區教導旅」在相鄰兩句各出現一次(第二句本來就有「隨渤海軍區教導旅奔赴新疆」)。開頭不重複點名部隊,「取材自真實史實」這個要點仍在"
+ },
+ {
+  "group": "日出渤海耀天山",
+  "lang": "en",
+  "old": "Based on the real history of the Bohai Military Region Teaching Brigade’s westward march to reclaim and settle the frontier: in 1947",
+  "new": "Based on real events: in 1947",
+  "why": "同上,英文重複更嚴重——Bohai Military Region Teaching Brigade 與 westward 都在相鄰兩句各出現一次(下一句原本就是 join the westward journey of the Bohai Military Region Teaching Brigade toward Xinjiang)"
+ }
+]
