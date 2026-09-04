@@ -12,5 +12,19 @@
   "old": "until she rises to command six banners",
   "new": "until she rises to command six pirate fleets as a queen of the sea",
   "why": "🚨 三個語言都把「統領六旗」寫得讀者看不懂——【旗】是什麼、統領之後是什麼身分,通篇沒交代。官方角色卡明寫「從海盜巨梟之妻『鄭一嫂』蛻變為【威震四海的海盜之王】;率兩千艘船、【統六大旗幫】、擁八萬部眾」,而且英文劇名就是【THE PIRATE QUEEN】。官方劇情第一句也稱她【女海盜】。→ 補上官方原有的用語,不是新增資訊而是把已有的資訊講清楚。"
+ },
+ {
+  "group": "时光代理人",
+  "lang": "zh-hant",
+  "old": "在都市的某個角落，「時光照相館」看似門庭冷落",
+  "new": "本劇改編自 bilibili 原創動畫《時光代理人》。在都市的某個角落，「時光照相館」看似門庭冷落",
+  "why": "與繁中/英文其餘六組的判準一致:改編來源要寫進簡介。⚠ 這一組的來由要記清楚——簡中稿自己寫出了「改编自哔哩哔哩同名国产动画」,我原本【懷疑是幻覺】(那句不在官方劇情原文裡),查過之後推翻:prompt 的身份段本身就寫著它,而帳本 note 也記著「改編自 bilibili 原創動畫《时光代理人》」是我從官方物料讀來的。所以簡中是對的,反而是繁中與英文(在我改 prompt 規則【之前】生成)缺了這句,三語不一致。"
+ },
+ {
+  "group": "时光代理人",
+  "lang": "en",
+  "old": "In a quiet corner of the city, Cheng Xiaoshi and Lu Guang run a small shop",
+  "new": "Adapted from the bilibili original animation Link Click: in a quiet corner of the city, Cheng Xiaoshi and Lu Guang run a small shop",
+  "why": "與繁中/英文其餘六組的判準一致:改編來源要寫進簡介。⚠ 這一組的來由要記清楚——簡中稿自己寫出了「改编自哔哩哔哩同名国产动画」,我原本【懷疑是幻覺】(那句不在官方劇情原文裡),查過之後推翻:prompt 的身份段本身就寫著它,而帳本 note 也記著「改編自 bilibili 原創動畫《时光代理人》」是我從官方物料讀來的。所以簡中是對的,反而是繁中與英文(在我改 prompt 規則【之前】生成)缺了這句,三語不一致。"
  }
 ]
