@@ -40,6 +40,11 @@ scratchpad/cn82/sheet/
 scratchpad/cn82/crop/
 scratchpad/cn82/zoom/
 scratchpad/cn82/seg/
+# 2026-09-04 補:主視覺海報(從 china_damai.json 的 image 欄重抓)與重查用的暫存圖。
+# 🚨 這次是【先擋再抓】——上一次 kr 就是抓完才想到寫 .gitignore,而 .gitignore 對
+#    已被追蹤的檔案無效,結果 129 張 74MB 商業海報留在 public repo 的 HEAD 上近三天。
+scratchpad/cn82/poster/
+scratchpad/cn82/_recheck/
 
 # scratchpad 裡以 _ 開頭的 .txt 是一次性診斷輸出(字形統計、洩漏掃描、風險排序…),
 # 隨時可以重跑產生,不該進版控。結論都已寫進 ledger.json / verify_log.json。
