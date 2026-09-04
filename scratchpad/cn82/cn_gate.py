@@ -21,6 +21,22 @@ import sys
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
 BASE = "scratchpad/cn82"
 
+# 🚨 2026-09-04:帳本的官方角色名是【簡體】(抄自大陸官方物料),繁中稿當然寫【繁體】——
+#    不折疊簡繁就會整批誤報「官方角色名一個都沒出現 → 可能寫成別齣戲」。
+#    實例:《savior》生成稿寫「范·米格倫」,帳本是「范·米格伦」,一個字之差就判成寫錯戲。
+try:
+    from opencc import OpenCC
+    _t2s = OpenCC("t2s").convert
+except Exception:                      # 沒裝 opencc 就退回原字串,但要出聲,不可靜默
+    sys.stderr.write("::warning::opencc 不可用,簡繁不折疊,繁中稿會大量誤報\n")
+    def _t2s(x):
+        return x
+
+
+def fold(x):
+    """比對前一律折成簡體 + 去掉間隔號/空白,避免『范·米格伦』vs『范米格倫』對不上。"""
+    return _t2s(x or "").replace("·", "").replace("・", "").replace(" ", "")
+
 # 帳本 characters 欄的【】不只標角色名,也用來強調說明詞。沿用 leak_check 的過濾。
 # 帳本 characters 欄的【】既標角色名,也用來強調說明詞(「【狗头人身】」「【英文月份】」
 # 「【身份欺瞞/懸念】」)。名字裡不會出現這些字,拿來當否定條件。
@@ -63,6 +79,11 @@ def forbidden(e):
 
 def main():
     path = sys.argv[1]
+    # 🚨 語言決定比對方式。英文稿會把中文角色名【羅馬拼音化】(范·米格伦 → Van Meegeren),
+    #    拿中文名去比對必然全部落空,會誤報「寫成別齣戲」。所以:
+    #      中文稿 → 中文名與拉丁名都可比
+    #      英文稿 → 只比【官方本來就有拉丁寫法】的名字;純中文名標成「無法機械比對」交人工
+    is_en = "_en" in path
     rows = json.load(io.open(path, encoding="utf-8"))
     order = json.load(io.open("%s/order.json" % BASE, encoding="utf-8"))
     led = json.load(io.open("%s/ledger.json" % BASE, encoding="utf-8"))
@@ -86,18 +107,28 @@ def main():
                 cn = "".join(re.findall(r"[一-鿿A-Za-z0-9#]+", re.sub(r"[A-Za-z][A-Za-z .'Ā-ɏ-]*", " ", n))).strip()
                 m2 = re.search(r"[A-Za-z][A-Za-z .'Ā-ɏ-]*", n)
                 return cn, (m2.group(0).strip() if m2 else "")
-            hit = set()
+            hit, unchk = set(), set()
+            ftxt = fold(txt)
             for n in names:
                 cn, la = parts(n)
-                if (cn and cn in txt) or (la and la in txt):
+                if is_en and not la:
+                    unchk.add(n)          # 英文稿 + 純中文名 → 機械比對無意義
+                    continue
+                if (la and la in txt) or ((not is_en) and cn and fold(cn) in ftxt):
                     hit.add(n)
+            names = names - unchk
             # B:名字有拉丁寫法、且【中文部分在稿裡、拉丁部分不在】→ 官方英文名被中譯/被拿掉
+            # B 只對【中文稿】有意義:官方給了英文名,中文稿卻整篇找不到 → 被中譯了
             latmiss = []
-            for n in names:
-                cn, la = parts(n)
-                if la and la not in txt and (not cn or cn not in txt):
-                    latmiss.append(n)
-            if not hit:
+            if not is_en:
+                for n in names:
+                    cn, la = parts(n)
+                    if la and la not in txt:
+                        latmiss.append(n)
+            if unchk:
+                note.append("⚠英文稿:%d 個官方角色名只有中文寫法(%s),機械比對不了→必須人工看"
+                            % (len(unchk), sorted(unchk)[:5]))
+            if names and not hit:
                 note.append("🚨官方角色名【一個都沒出現】(%d 個:%s)→ 可能寫成別齣戲"
                             % (len(names), sorted(names)[:5]))
             elif len(hit) < len(names):
@@ -107,7 +138,7 @@ def main():
                 note.append("🚨官方英文名疑被中譯(整篇找不到):%s" % latmiss[:5])
         else:
             note.append("⚠ 帳本沒有官方角色表 → 這組只能靠人工外部查證")
-        fb = [w for w in forbidden(e) if w in txt]
+        fb = [w for w in forbidden(e) if fold(w) in fold(txt)]
         if fb:
             note.append("🚨帳本明令不可寫的詞出現了:%s" % fb)
         if not (e.get("official_plot") or "").strip():

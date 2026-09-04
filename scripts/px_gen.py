@@ -3,12 +3,22 @@
 不在此刪歷史(交給 px_del.py 用正確 aria-label『工作階段動作』收尾)。
 用法: python px_gen.py <en|zh-hant|zh-hans> <out.json> @<list.json>
 list.json = 英文劇名陣列(prompt 前綴);各語言靠 prompt 指示產生對應譯名。
+
+字數可用環境變數覆蓋(2026-09-04 加):PX_LO / PX_HI
+  🚨 為什麼需要:中國原創批的官方劇情原文多半只有 100~400 字梗概,而預設要求 400~450 字,
+     等於【逼 Perplexity 補它查不到的內容】——《#0528》官方只寫「曾經發生過一次火災」,
+     生成稿卻長出「十三年前火災死去的鬼魂、來自紐奧良、試鏡失敗」整套。
+     使用者裁定:這批【字數可以降低,能寫多少寫多少,但內容必須正確】。
+  例:  PX_LO=180 PX_HI=420 python scripts/px_gen.py zh-hant out.json @list.json
 """
 import sys, io, re, json, time, os
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))  # 同目錄找 polish.py
 from playwright.sync_api import sync_playwright
 LANG, OUT, LIST = sys.argv[1], sys.argv[2], sys.argv[3]
+
+_ENV_LO = int(os.environ["PX_LO"]) if os.environ.get("PX_LO") else None
+_ENV_HI = int(os.environ["PX_HI"]) if os.environ.get("PX_HI") else None
 
 if LANG == "en":
     # 250(不是 280):實測 Perplexity 一律超寫約 25%,寫 280 會穩定落在 340~370(超出 HI),
@@ -66,7 +76,13 @@ elif LANG == "zh-hans":
             "文章最后必须独立成段收束全剧，长度两到三句；这一段不要加任何小标题。"
             "开头第一句直接进入故事场景（人物、地点、动作），"
             "绝对不要用「《剧名》描写／讲述／以……为背景」这种书评口吻开场，也不要在正文里写出剧院名称。"
-            "只描述剧情本身，不要提到原著小说，也不要说明资料来源或版本比对。")
+            "只描述剧情本身，不要提到原著小说，也不要说明资料来源或版本比对。"
+            # 🚨 2026-09-04 中國批冒煙測試:官方只給英文名的角色會被中譯，讀者對不上台上的人。
+            #    《#0528》官方角色是 Eggy/Brandon/Doris → 生成稿寫成艾吉/朵莉絲/布蘭登；
+            #    《Borderline》官方要求保留英文月份 July/June/February → 寫成茱萊/六月/二月。
+            #    這是【通用命名規則】不是個別劇的事實，放在生成階段不違反「只釘身份不餵劇情」。
+            "如果官方给这个角色的名字本来就是外文（英文名、月份名、罗马字等），请【原样保留外文】，不要音译或意译成中文；官方给的是中文名才用中文。"
+            )
     LO, HI, CENTER = 400, 450, 425
     size = lambda t: len(t)
 else:  # zh-hant
@@ -77,9 +93,39 @@ else:  # zh-hant
             "文章最後必須獨立成段收束全劇，長度兩到三句；這一段不要加任何小標題。"
             "開頭第一句直接進入故事場景（人物、地點、動作），"
             "絕對不要用「《劇名》描寫／講述／以……為背景」這種書評口吻開場，也不要在正文裡寫出劇院名稱。"
-            "只描述劇情本身，不要提到原著小說，也不要說明資料來源或版本比對。")
+            "只描述劇情本身，不要提到原著小說，也不要說明資料來源或版本比對。"
+            # 🚨 同上(簡中那段的說明適用):官方只給英文名的角色會被中譯，讀者對不上台上的人。
+            "如果官方給這個角色的名字本來就是外文（英文名、月份名、羅馬字等），請【原樣保留外文】，不要音譯或意譯成中文；官方給的是中文名才用中文。"
+            )
     LO, HI, CENTER = 400, 450, 425
     size = lambda t: len(t)
+
+if _ENV_LO or _ENV_HI:
+    # 🚨 覆蓋字數時,【prompt 裡寫死的數字也必須一起換掉】,否則 prompt 還在叫它寫 400~450 字,
+    #    程式卻用新區間收稿 —— 會變成每一部都重試七次然後取一個不合格的 best。
+    #    用 assert 確保每個字串都真的被換到:漏換而靜默通過是這裡最危險的失敗。
+    _lo = _ENV_LO or LO
+    _hi = _ENV_HI or HI
+    _ctr = (_lo + _hi) // 2
+    _pairs = [(str(LO), str(_lo)), (str(HI), str(_hi))]
+    if LANG == "en":
+        # 🚨 英文 prompt 裡寫的數字【故意低於目標中心】(寫 250、目標 280),
+        #    因為 Perplexity 一律超寫約 25%。覆蓋時要保持同一個比例,不能直接填新的中心值。
+        _m = re.search(r"about (\d+) words", TAIL)
+        assert _m, "找不到英文 prompt 的字數字串"
+        _ask = max(int(round(_ctr * int(_m.group(1)) / CENTER)), 40)
+        TAIL = TAIL.replace(_m.group(0), "about %d words" % _ask)
+    else:
+        _ask = 390 if LANG == "zh-hant" else 380     # 原本「約X字」比下限低 10~20
+        _oldask = ("用約%d字" % _ask) if LANG == "zh-hant" else ("用约%d字" % _ask)
+        _newask = ("用約%d字" % max(_lo - 10, 60)) if LANG == "zh-hant" else ("用约%d字" % max(_lo - 10, 60))
+        assert _oldask in TAIL, _oldask
+        TAIL = TAIL.replace(_oldask, _newask)
+        for _o, _n in _pairs:
+            assert _o in TAIL, (_o, "字數字串沒找到,prompt 與程式會不一致")
+            TAIL = TAIL.replace(_o, _n)
+    LO, HI, CENTER = _lo, _hi, _ctr
+    print("字數覆蓋:LO=%d HI=%d CENTER=%d" % (LO, HI, CENTER), flush=True)
 
 MAX_TRY = 7
 END_OK = "。！？…」』）.!?\""
