@@ -195,7 +195,10 @@ def clean(text, q):
         try:
             from polish import normalize_tw
             out,_=normalize_tw(out)
-        except Exception: pass
+        except Exception as _ex:
+            # 🚨 原本是 pass。台灣定譯正規化整個沒跑,產出照樣被當成功收下——
+            #    這種「少做了一步但沒人知道」正是最難事後追查的失敗。至少要出聲。
+            sys.stderr.write("::warning::normalize_tw 失敗(%s),這篇沒套台灣定譯%s"%(_ex,chr(10)))
     return out
 
 def score(t):

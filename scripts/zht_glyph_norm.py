@@ -1,0 +1,169 @@
+# -*- coding: utf-8 -*-
+"""繁中簡介【字形慣例】正規化。
+
+為什麼需要:繁體有一批「同音同義、兩種寫法」的字(祕/秘、臺/台),
+OpenCC 的 s2tw 給一種、生成模型自己寫另一種,結果【同一批稿子內部就不一致】——
+2026-09-04 實測:《奇美拉》寫「祕密」、《入傩》寫「秘密」,兩篇同一天生成。
+
+慣例【不是我決定的,是從現有 zh-hant 簡介庫數出來的】:
+    祕 278 : 秘 31      (的祕密 48、神祕的 39 → 祕)
+    台 721 : 臺 53      (舞台上 97、舞台， 87 → 台)
+所以下面每一條映射都附上當時數到的比例;比例會變,改規則前請重跑 --stats。
+
+🚨 只改【明確是異體字選擇】的常用詞,不做全域字元替換:
+   - 秘魯(Peru)、便秘 的「秘」不可改成「祕」——那不是異體關係
+   - 青瓦臺、臺中、臺灣 是專有名詞,庫裡本來就寫「臺」,不可改成「台」
+   所以採【逐詞白名單】,不是逐字替換。
+
+用法:
+    python scripts/zht_glyph_norm.py --stats            # 重新統計全站慣例
+    python scripts/zht_glyph_norm.py <檔.json> --check  # 只報告不寫檔
+    python scripts/zht_glyph_norm.py <檔.json>          # 實際寫回
+    python scripts/zht_glyph_norm.py --test             # 正反向測試
+"""
+import glob
+import io
+import json
+import os
+import re
+import sys
+
+sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
+
+# 逐詞白名單:(錯的寫法, 慣例寫法, 當時數到的比例說明)
+WORD_MAP = [
+    ("秘密", "祕密", "祕密 124 : 秘密 20"),
+    ("神秘", "神祕", "神祕的 39+ : 神秘 少數"),
+    ("秘書", "祕書", "的祕書 5 : 的秘書 2"),
+    ("奧秘", "奧祕", "同上『祕』系"),
+    ("隱秘", "隱祕", "同上『祕』系"),
+    ("詭秘", "詭祕", "同上『祕』系"),
+    ("舞臺", "舞台", "舞台 522 : 舞臺 26"),
+    ("登臺", "登台", "登台 12+ : 登臺 8"),
+    # 🚨 戲曲量詞的「齣」只在【明確接著戲/劇】時才換。庫裡現有的 8 個「一出」
+    #    全部是 一出生 / 一出口 / 一出現 / 唯一出口 —— 一個都不是錯的,
+    #    整字替換「出→齣」會把這 4 種正確寫法全部改壞。
+    ("一出戲", "一齣戲", "一齣 47 : 一出 8(且那 8 個全是一出生/一出口等正確用法)"),
+    ("這出戲", "這齣戲", "這齣 36 : 這出 0"),
+    ("一出劇", "一齣劇", "同上『齣』系"),
+    # 🚨 OpenCC 把簡體「岳」一律轉成「嶽」,但那只有【山】的意思才對。
+    #    地名與姓氏在正繁體裡本來就寫「岳」:查 zh.wikipedia zh-tw『岳陽市』條目
+    #    岳州 23 次 / 嶽州 0 次、岳陽 186 次;而『五嶽』條目 五嶽 50 次。
+    #    實例:《流星之绊》官方寫「岳州府平江县」,轉繁後變成「嶽州府」。
+    ("嶽州", "岳州", "zh-tw 岳州 23 : 嶽州 0"),
+    ("嶽陽", "岳陽", "zh-tw 岳陽 186"),
+    ("嶽父", "岳父", "姻親稱謂用岳"),
+    ("嶽飛", "岳飛", "姓氏用岳"),
+]
+
+# 🚨 這些詞裡的字【長得一樣但不是異體關係】,必須先保護起來再做替換,
+#    否則「秘魯」會被改成「祕魯」、「青瓦臺」會被改成「青瓦台」。
+PROTECT = ["秘魯", "便秘", "青瓦臺", "臺中", "臺北", "臺南", "臺灣", "臺東", "臺鐵", "臺大"]
+
+
+def norm(text, tw=True):
+    """回傳 (正規化後文字, [(原詞, 新詞, 前後文), ...])。
+
+    tw=True 時【一併重跑台灣定譯表】(data/synopses_tw_terms.json)。
+    🚨 為什麼要在這裡再跑一次:px_gen 只在【生成當下】套用那張表,
+       表之後補了新詞,先前已產出的稿子不會回頭生效 —— 2026-09-04 就踩到:
+       補「阿爾茲海默→阿茲海默」時,已生成的 25 篇全都套不到。
+       這張表是「壞寫法→好寫法」的單向映射,重複套用是冪等的,再跑一次沒有風險。
+    """
+    holder = {}
+    for i, w in enumerate(PROTECT):
+        if w in text:
+            k = "\x00%d\x00" % i
+            holder[k] = w
+            text = text.replace(w, k)
+    changes = []
+    rules = list(WORD_MAP)
+    if tw:
+        sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+        from polish import _load_tw_map      # 載入失敗時 polish 會自己出聲警告
+        rules += [(a, b, "台灣定譯表") for a, b in _load_tw_map().items() if a != b]
+    for bad, good, _why in rules:
+        for m in re.finditer(re.escape(bad), text):
+            changes.append((bad, good, text[max(0, m.start() - 6):m.start() + len(bad) + 6]))
+        text = text.replace(bad, good)
+    for k, w in holder.items():
+        text = text.replace(k, w)
+    return text, changes
+
+
+def stats():
+    """重新統計全站 zh-hant 簡介的字形分布,規則要改就先看這個。"""
+    files = [p for p in glob.glob("data/synopses*/**/*.json", recursive=True)
+             if p.endswith("zh-hant.json")]
+    s = "".join(json.dumps(json.load(io.open(p, encoding="utf-8")), ensure_ascii=False)
+                for p in files)
+    print("來源:%s" % files)
+    for bad, good, why in WORD_MAP:
+        print("  %-6s %5d  vs  %-6s %5d    (規則寫的:%s)"
+              % (bad, s.count(bad), good, s.count(good), why))
+    return 0
+
+
+def test():
+    """正反向測試 —— 沒有反向測試的守門等於沒測。"""
+    cases = [
+        ("藏已久的殘酷秘密。", "藏已久的殘酷祕密。", "該改的要改"),
+        ("被困於神秘的放逐之地", "被困於神祕的放逐之地", "該改的要改"),
+        ("舞臺則以宋代美學", "舞台則以宋代美學", "該改的要改"),
+        ("十五年前的祕密開始浮現", "十五年前的祕密開始浮現", "已經對的不可動"),
+        ("他遠赴秘魯尋找線索", "他遠赴秘魯尋找線索", "🚨 秘魯不是異體字,不可改"),
+        ("青瓦臺前的抗議", "青瓦臺前的抗議", "🚨 專有名詞不可改"),
+        ("臺中國家歌劇院", "臺中國家歌劇院", "🚨 地名不可改"),
+        ("一見鍾情的那一刻", "一見鍾情的那一刻", "鍾/鐘不是異體關係,本來就不在表內"),
+        ("催眠鐘聲響起", "催眠鐘聲響起", "同上"),
+        ("上演一出戲之後", "上演一齣戲之後", "戲曲量詞該改"),
+        ("他從一出生就被排擠", "他從一出生就被排擠", "🚨 一出生不可改"),
+        ("話一出口就後悔", "話一出口就後悔", "🚨 一出口不可改"),
+        ("卡門一出現便吸引目光", "卡門一出現便吸引目光", "🚨 一出現不可改"),
+        ("脫離困境的唯一出口", "脫離困境的唯一出口", "🚨 唯一出口不可改"),
+        # 🚨 下面兩條是【證明台灣定譯表那條路徑真的有跑】的差異測試。
+        #    沒有這種測試,tw=True 的分支就算整段沒作用也會一路綠燈。
+        ("母親有阿爾茲海默症的跡象", "母親有阿茲海默症的跡象", "台灣定譯表:阿爾茲海默→阿茲海默"),
+        ("冉阿讓背著馬留斯", "尚萬強背著馬留斯", "台灣定譯表:冉阿讓→尚萬強"),
+        ("嶽州府平江縣的血案", "岳州府平江縣的血案", "地名用岳"),
+        ("他登上五嶽之首", "他登上五嶽之首", "🚨 山的意思要留嶽"),
+        ("連綿的山嶽之間", "連綿的山嶽之間", "🚨 山的意思要留嶽"),
+        ("嶽麓書院的鐘聲", "嶽麓書院的鐘聲", "🚨 嶽麓山是山名,要留嶽"),
+    ]
+    bad = 0
+    for src, want, why in cases:
+        got, _c = norm(src)
+        ok = got == want
+        bad += 0 if ok else 1
+        print("%s %-28s → %-28s  %s" % ("○" if ok else "❌", src, got, why))
+    print("\n%d/%d 通過" % (len(cases) - bad, len(cases)))
+    return 1 if bad else 0
+
+
+def main():
+    if "--stats" in sys.argv:
+        return stats()
+    if "--test" in sys.argv:
+        return test()
+    path = sys.argv[1]
+    rows = json.load(io.open(path, encoding="utf-8"))
+    total = 0
+    for i, r in enumerate(rows):
+        t = r.get("synopsis") or ""
+        if not t:
+            continue
+        new, ch = norm(t)
+        if ch:
+            total += len(ch)
+            for bad_w, good_w, ctx in ch:
+                print("  #%-3d %s → %s   …%s…" % (i, bad_w, good_w, ctx))
+        rows[i]["synopsis"] = new
+    if "--check" in sys.argv:
+        print("\n--check:共 %d 處要改,沒有寫檔" % total)
+        return 0
+    json.dump(rows, io.open(path, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+    print("\n已正規化 %d 處,寫回 %s" % (total, path))
+    return 0
+
+
+raise SystemExit(main())

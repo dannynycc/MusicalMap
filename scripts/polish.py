@@ -24,7 +24,11 @@ def _load_tw_map():
         try:
             _TW_MAP = json.load(open(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data", "synopses_tw_terms.json"),
                                      encoding="utf-8")).get("map", {})
-        except Exception:
+        except Exception as ex:
+            # 🚨 原本這裡是靜默吞掉的。表載不進來時 normalize_tw() 會變成【什麼都不做】,
+            #    而呼叫端只看到「回傳了文字」——中港譯名就這樣一路寫進庫裡而沒有任何跡象。
+            sys.stderr.write("::warning::台灣定譯表載入失敗(%s),normalize_tw 這輪不會做任何替換%s"
+                             % (ex, chr(10)))
             _TW_MAP = {}
     return _TW_MAP
 

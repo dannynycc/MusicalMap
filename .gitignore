@@ -40,3 +40,7 @@ scratchpad/cn82/sheet/
 scratchpad/cn82/crop/
 scratchpad/cn82/zoom/
 scratchpad/cn82/seg/
+
+# scratchpad 裡以 _ 開頭的 .txt 是一次性診斷輸出(字形統計、洩漏掃描、風險排序…),
+# 隨時可以重跑產生,不該進版控。結論都已寫進 ledger.json / verify_log.json。
+scratchpad/*/_*.txt
