@@ -1,5 +1,5 @@
 {
- "_note": "每部知識庫簡介(data/synopses_library)的驗證出處帳本,讓跨 session 可追溯。method: B=Perplexity 生成為主體 → 有經過 agent 逐語言語意查核+獨立多源交叉比對(只修錯不改文風,主客不倒);A=Perplexity 生成為主體,但「沒有」經過 agent 逐語言語意查核+多源交叉(即未嚴格驗證);legacy=早期入庫、驗證方式未明確標記、待以方法 B 重驗(多數應為 A);none=未經任何獨立事實查核。入庫或重驗時務必更新此檔。",
+ "_note": "每部知識庫簡介(data/synopses_library)的驗證出處帳本,讓跨 session 可追溯。method: B=Perplexity 生成為主體 → 有經過 agent 逐語言語意查核+獨立多源交叉比對(只修錯不改文風,主客不倒);A=Perplexity 生成為主體,但「沒有」經過 agent 逐語言語意查核+多源交叉(即未嚴格驗證);legacy=早期入庫、驗證方式未明確標記、待以方法 B 重驗(多數應為 A);none=未經任何獨立事實查核。入庫或重驗時務必更新此檔。  【2026-09-04 中國原創批次新增兩個 method 值】B-official / B-external —— 共通點是『Perplexity 生成為主體,再由【本人】逐語言【逐篇通讀】比對事實來源』(不是 agent 代讀,每一篇的判定與依據都留在 scratchpad/cn82/verify_log.json)。兩者差在【事實來源的層級】:B-official=事實來源是官方物料(售票平台官方演出詳情的長圖與文字欄),由本人以接觸表定位→裁切放大→逐字讀取建立帳本;這是【官方單一來源】,external_multisource 一律 false,不可當成多源交叉。B-external=官方沒有劇情簡介,事實來源是外部資料,實際強度逐組寫在 external_source_count 與 note。",
  "_schema": "verified[group]={method,date(YYYY-MM-DD),langs:[...],sources,errors_fixed,confidence,batch,external_multisource,external_source_count,note}。🚨【external_source_count 的定義,2026-09-03 韓國批次釐清】只數【獨立於主辦方】的來源:媒體報導、나무위키/wikipedia、PlayDB/KOPIS 等第三方資料庫、觀眾評論與部落格觀後感。同一張官方詳情圖的海報／SYNOPSIS／CAST／INFORMATION 是【一個】來源不是四個;售票通路的官方頁、製作公司自家官網與社群帳號也一律算官方同源(掛在通路上的【관람후기】除外)。external_multisource=true 需 external_source_count>=2。⚠ 外部來源還要看層級:只寫『開演日期/場地/卡司』的公演消息不構成劇情佐證,這類情形在 note 標明。",
  "verified": {
   "101 dalmatians": {
@@ -5937,6 +5937,1203 @@
    "errors_fixed": 0,
    "batch": "kr-methodB-2026-09-03",
    "note": "官方詳情圖由本人逐張讀出並逐句比對三語;因原稿寫成他作而依官方原文重新生成"
+  },
+  "0528": {
+   "method": "B-official",
+   "date": "2026-09-04",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方演出詳情頁物料(大麥/聚橙等售票平台的官方長圖與文字欄),由本人以接觸表定位→裁切放大→逐字讀取建立帳本;三語各自逐篇通讀比對官方原文。",
+   "external_multisource": false,
+   "external_source_count": 0,
+   "confidence": 0.85,
+   "batch": "cn-original-2026-09-04",
+   "errors_fixed": 1,
+   "note": "三語逐篇人工通讀,zh-hans 有修正;逐條依據見 scratchpad/cn82/verify_log.json。"
+  },
+  "borderline": {
+   "method": "B-official",
+   "date": "2026-09-04",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方演出詳情頁物料(大麥/聚橙等售票平台的官方長圖與文字欄),由本人以接觸表定位→裁切放大→逐字讀取建立帳本;三語各自逐篇通讀比對官方原文。",
+   "external_multisource": false,
+   "external_source_count": 0,
+   "confidence": 0.85,
+   "batch": "cn-original-2026-09-04",
+   "errors_fixed": 0
+  },
+  "ne zha": {
+   "method": "B-official",
+   "date": "2026-09-04",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方演出詳情長圖 10 張(本人逐張讀)。官方【沒有劇情簡介區塊】,最接近劇情的是官方頁面自己【轉載的新華社報導】(73 字)。",
+   "external_multisource": false,
+   "external_source_count": 0,
+   "confidence": 0.85,
+   "batch": "cn-original-2026-09-04",
+   "errors_fixed": 2,
+   "note": "🚨 這不是官方自撰的劇情簡介,而是官方選來介紹本劇的媒體描述,層級標為 official_quoted_media。官方只給了「靈珠轉世/鬧海抗爭/蓮花重生」三個情節座標,沒說本劇如何演繹;簡介只停在這三點,【沒有】把通行哪吒故事的剔骨還父、削肉還母當成本劇情節。⚠ 簡中稿初稿把繁體的「鬧海抗爭」「蓮花重生」照抄進去(帳本這組資料是繁體存的),已修並加做全批繁體字掃描(scripts/zhs_trad_scan.py)。"
+  },
+  "savior": {
+   "method": "B-official",
+   "date": "2026-09-04",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方演出詳情頁物料(大麥/聚橙等售票平台的官方長圖與文字欄),由本人以接觸表定位→裁切放大→逐字讀取建立帳本;三語各自逐篇通讀比對官方原文。",
+   "external_multisource": false,
+   "external_source_count": 0,
+   "confidence": 0.85,
+   "batch": "cn-original-2026-09-04",
+   "errors_fixed": 1,
+   "note": "三語逐篇人工通讀,en 有修正;逐條依據見 scratchpad/cn82/verify_log.json。"
+  },
+  "三风一树": {
+   "method": "B-official",
+   "date": "2026-09-04",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方演出詳情頁物料(大麥/聚橙等售票平台的官方長圖與文字欄),由本人以接觸表定位→裁切放大→逐字讀取建立帳本;三語各自逐篇通讀比對官方原文。",
+   "external_multisource": false,
+   "external_source_count": 0,
+   "confidence": 0.85,
+   "batch": "cn-original-2026-09-04",
+   "errors_fixed": 0
+  },
+  "东南望": {
+   "method": "B-official",
+   "date": "2026-09-04",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方演出詳情頁物料(大麥/聚橙等售票平台的官方長圖與文字欄),由本人以接觸表定位→裁切放大→逐字讀取建立帳本;三語各自逐篇通讀比對官方原文。",
+   "external_multisource": false,
+   "external_source_count": 0,
+   "confidence": 0.85,
+   "batch": "cn-original-2026-09-04",
+   "errors_fixed": 2,
+   "note": "三語逐篇人工通讀,en/zh-hans 有修正;逐條依據見 scratchpad/cn82/verify_log.json。"
+  },
+  "亡灵之旅 冥犬与少年": {
+   "method": "B-official",
+   "date": "2026-09-04",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方演出詳情頁物料(大麥/聚橙等售票平台的官方長圖與文字欄),由本人以接觸表定位→裁切放大→逐字讀取建立帳本;三語各自逐篇通讀比對官方原文。",
+   "external_multisource": false,
+   "external_source_count": 0,
+   "confidence": 0.85,
+   "batch": "cn-original-2026-09-04",
+   "errors_fixed": 0
+  },
+  "入傩": {
+   "method": "B-official",
+   "date": "2026-09-04",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方演出詳情頁物料(大麥/聚橙等售票平台的官方長圖與文字欄),由本人以接觸表定位→裁切放大→逐字讀取建立帳本;三語各自逐篇通讀比對官方原文。",
+   "external_multisource": false,
+   "external_source_count": 0,
+   "confidence": 0.85,
+   "batch": "cn-original-2026-09-04",
+   "errors_fixed": 0
+  },
+  "六个说谎的大学生": {
+   "method": "B-official",
+   "date": "2026-09-04",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方演出詳情頁物料(大麥/聚橙等售票平台的官方長圖與文字欄),由本人以接觸表定位→裁切放大→逐字讀取建立帳本;三語各自逐篇通讀比對官方原文。",
+   "external_multisource": false,
+   "external_source_count": 0,
+   "confidence": 0.85,
+   "batch": "cn-original-2026-09-04",
+   "errors_fixed": 3,
+   "note": "三語逐篇人工通讀,en/zh-hans/zh-hant 有修正;逐條依據見 scratchpad/cn82/verify_log.json。"
+  },
+  "南墙计划": {
+   "method": "B-external",
+   "date": "2026-09-04",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方演出詳情頁【只有 2 張圖】(卡司海報與排期),文字欄只有購票須知,官方【完全沒有劇情】。劇情取自百度百科『南墙计划』内容简介 + 搜狐報導 + 豆瓣劇評,三處說法一致。",
+   "external_multisource": true,
+   "external_source_count": 3,
+   "confidence": 0.9,
+   "batch": "cn-original-2026-09-04",
+   "errors_fixed": 1,
+   "note": "🚨【沒有】把我從卡司劇照觀察到的「下雪的青磚灰瓦老巷」「白老師」寫進簡介——那是我看圖的推測不是官方陳述。百度解開了官方卡司表的歧義:小六與張承藝是同一人(本名)。"
+  },
+  "博物馆奇遇记": {
+   "method": "B-official",
+   "date": "2026-09-04",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方演出詳情頁物料(大麥/聚橙等售票平台的官方長圖與文字欄),由本人以接觸表定位→裁切放大→逐字讀取建立帳本;三語各自逐篇通讀比對官方原文。",
+   "external_multisource": false,
+   "external_source_count": 0,
+   "confidence": 0.85,
+   "batch": "cn-original-2026-09-04",
+   "errors_fixed": 0
+  },
+  "去你的夏天": {
+   "method": "B-official",
+   "date": "2026-09-04",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方演出詳情頁物料(大麥/聚橙等售票平台的官方長圖與文字欄),由本人以接觸表定位→裁切放大→逐字讀取建立帳本;三語各自逐篇通讀比對官方原文。",
+   "external_multisource": false,
+   "external_source_count": 0,
+   "confidence": 0.85,
+   "batch": "cn-original-2026-09-04",
+   "errors_fixed": 2,
+   "note": "三語逐篇人工通讀,en/zh-hans 有修正;逐條依據見 scratchpad/cn82/verify_log.json。"
+  },
+  "命运之上": {
+   "method": "B-official",
+   "date": "2026-09-04",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方演出詳情頁物料(大麥/聚橙等售票平台的官方長圖與文字欄),由本人以接觸表定位→裁切放大→逐字讀取建立帳本;三語各自逐篇通讀比對官方原文。",
+   "external_multisource": false,
+   "external_source_count": 0,
+   "confidence": 0.85,
+   "batch": "cn-original-2026-09-04",
+   "errors_fixed": 2,
+   "note": "三語逐篇人工通讀,zh-hans/zh-hant 有修正;逐條依據見 scratchpad/cn82/verify_log.json。"
+  },
+  "喜欢你": {
+   "method": "B-official",
+   "date": "2026-09-04",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方演出詳情頁物料(大麥/聚橙等售票平台的官方長圖與文字欄),由本人以接觸表定位→裁切放大→逐字讀取建立帳本;三語各自逐篇通讀比對官方原文。",
+   "external_multisource": false,
+   "external_source_count": 0,
+   "confidence": 0.85,
+   "batch": "cn-original-2026-09-04",
+   "errors_fixed": 0
+  },
+  "嗜血博士": {
+   "method": "B-official",
+   "date": "2026-09-04",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方演出詳情頁物料(大麥/聚橙等售票平台的官方長圖與文字欄),由本人以接觸表定位→裁切放大→逐字讀取建立帳本;三語各自逐篇通讀比對官方原文。",
+   "external_multisource": false,
+   "external_source_count": 0,
+   "confidence": 0.85,
+   "batch": "cn-original-2026-09-04",
+   "errors_fixed": 1,
+   "note": "三語逐篇人工通讀,zh-hant 有修正;逐條依據見 scratchpad/cn82/verify_log.json。"
+  },
+  "四大美女": {
+   "method": "B-official",
+   "date": "2026-09-04",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方演出詳情頁物料(大麥/聚橙等售票平台的官方長圖與文字欄),由本人以接觸表定位→裁切放大→逐字讀取建立帳本;三語各自逐篇通讀比對官方原文。",
+   "external_multisource": false,
+   "external_source_count": 0,
+   "confidence": 0.85,
+   "batch": "cn-original-2026-09-04",
+   "errors_fixed": 1,
+   "note": "三語逐篇人工通讀,zh-hans 有修正;逐條依據見 scratchpad/cn82/verify_log.json。"
+  },
+  "夜幕下的哈尔滨": {
+   "method": "B-official",
+   "date": "2026-09-04",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方演出詳情頁物料(大麥/聚橙等售票平台的官方長圖與文字欄),由本人以接觸表定位→裁切放大→逐字讀取建立帳本;三語各自逐篇通讀比對官方原文。",
+   "external_multisource": false,
+   "external_source_count": 0,
+   "confidence": 0.85,
+   "batch": "cn-original-2026-09-04",
+   "errors_fixed": 1,
+   "note": "三語逐篇人工通讀,en 有修正;逐條依據見 scratchpad/cn82/verify_log.json。"
+  },
+  "大江东去": {
+   "method": "B-official",
+   "date": "2026-09-04",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方演出詳情頁物料(大麥/聚橙等售票平台的官方長圖與文字欄),由本人以接觸表定位→裁切放大→逐字讀取建立帳本;三語各自逐篇通讀比對官方原文。",
+   "external_multisource": false,
+   "external_source_count": 0,
+   "confidence": 0.85,
+   "batch": "cn-original-2026-09-04",
+   "errors_fixed": 0
+  },
+  "奇美拉": {
+   "method": "B-official",
+   "date": "2026-09-04",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方演出詳情頁物料(大麥/聚橙等售票平台的官方長圖與文字欄),由本人以接觸表定位→裁切放大→逐字讀取建立帳本;三語各自逐篇通讀比對官方原文。",
+   "external_multisource": false,
+   "external_source_count": 0,
+   "confidence": 0.85,
+   "batch": "cn-original-2026-09-04",
+   "errors_fixed": 1,
+   "note": "三語逐篇人工通讀,zh-hans 有修正;逐條依據見 scratchpad/cn82/verify_log.json。"
+  },
+  "女巫": {
+   "method": "B-official",
+   "date": "2026-09-04",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方演出詳情頁物料(大麥/聚橙等售票平台的官方長圖與文字欄),由本人以接觸表定位→裁切放大→逐字讀取建立帳本;三語各自逐篇通讀比對官方原文。",
+   "external_multisource": false,
+   "external_source_count": 0,
+   "confidence": 0.85,
+   "batch": "cn-original-2026-09-04",
+   "errors_fixed": 3,
+   "note": "三語逐篇人工通讀,en/zh-hans/zh-hant 有修正;逐條依據見 scratchpad/cn82/verify_log.json。"
+  },
+  "她对此感到厌烦": {
+   "method": "B-official",
+   "date": "2026-09-04",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方演出詳情頁物料(大麥/聚橙等售票平台的官方長圖與文字欄),由本人以接觸表定位→裁切放大→逐字讀取建立帳本;三語各自逐篇通讀比對官方原文。",
+   "external_multisource": false,
+   "external_source_count": 0,
+   "confidence": 0.85,
+   "batch": "cn-original-2026-09-04",
+   "errors_fixed": 0
+  },
+  "她的海": {
+   "method": "B-official",
+   "date": "2026-09-04",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方演出詳情頁物料(大麥/聚橙等售票平台的官方長圖與文字欄),由本人以接觸表定位→裁切放大→逐字讀取建立帳本;三語各自逐篇通讀比對官方原文。",
+   "external_multisource": false,
+   "external_source_count": 0,
+   "confidence": 0.85,
+   "batch": "cn-original-2026-09-04",
+   "errors_fixed": 3,
+   "note": "三語逐篇人工通讀,en/zh-hans/zh-hant 有修正;逐條依據見 scratchpad/cn82/verify_log.json。"
+  },
+  "宝玉": {
+   "method": "B-official",
+   "date": "2026-09-04",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方演出詳情頁物料(大麥/聚橙等售票平台的官方長圖與文字欄),由本人以接觸表定位→裁切放大→逐字讀取建立帳本;三語各自逐篇通讀比對官方原文。",
+   "external_multisource": false,
+   "external_source_count": 0,
+   "confidence": 0.85,
+   "batch": "cn-original-2026-09-04",
+   "errors_fixed": 2,
+   "note": "三語逐篇人工通讀,en/zh-hant 有修正;逐條依據見 scratchpad/cn82/verify_log.json。"
+  },
+  "寻找李二狗": {
+   "method": "B-external",
+   "date": "2026-09-04",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方詳情圖沒有劇情區塊。劇情取自百度百科『寻找李二狗』【剧情简介】段(2026-09-04 以 curl_cffi 重抓原文照引)+ 人民日報中央廚房·大有文化 + 騰訊新聞專訪導演樊沖。",
+   "external_multisource": true,
+   "external_source_count": 3,
+   "confidence": 0.9,
+   "batch": "cn-original-2026-09-04",
+   "errors_fixed": 3,
+   "note": "🚨【本組曾出錯並已修正】首次入帳時抓的是同頁的【艺术特色】段而非【剧情简介】段,導致主角常衛國、爺爺的回憶錄、1950 鴨綠江畔全部缺席,連劇名主角李二狗都寫不出來。通讀時由「劇名有李二狗、官方卡司也有李二狗、稿子卻整篇沒有他」這個內部矛盾發現,重抓補正後三語全部重新生成。補正後與【官方卡司排期表】互相印證:官方 12 個角色裡有常卫国、李二狗、爷爷,正好對上百度所述的三方關係。"
+  },
+  "小城之春": {
+   "method": "B-official",
+   "date": "2026-09-04",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方演出詳情頁物料(大麥/聚橙等售票平台的官方長圖與文字欄),由本人以接觸表定位→裁切放大→逐字讀取建立帳本;三語各自逐篇通讀比對官方原文。",
+   "external_multisource": false,
+   "external_source_count": 0,
+   "confidence": 0.85,
+   "batch": "cn-original-2026-09-04",
+   "errors_fixed": 3,
+   "note": "三語逐篇人工通讀,en/zh-hans/zh-hant 有修正;逐條依據見 scratchpad/cn82/verify_log.json。"
+  },
+  "当你心动时": {
+   "method": "B-external",
+   "date": "2026-09-04",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方詳情圖只有角色卡與主視覺文案,沒有劇情區塊。劇情取自百度百科『当你心动时』+ 豆瓣音樂劇條目劇情段。",
+   "external_multisource": true,
+   "external_source_count": 2,
+   "confidence": 0.9,
+   "batch": "cn-original-2026-09-04",
+   "errors_fixed": 2,
+   "note": "🚨【兩源有衝突】百度另提到魔女「莉莉絲」,但官方角色卡【只有葉白/露露/小白三個】——簡介【沒有】寫莉莉絲。⚠「第 99 號女客人」只出自豆瓣,官方物料未提。"
+  },
+  "心安东坡": {
+   "method": "B-official",
+   "date": "2026-09-04",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方演出詳情頁物料(大麥/聚橙等售票平台的官方長圖與文字欄),由本人以接觸表定位→裁切放大→逐字讀取建立帳本;三語各自逐篇通讀比對官方原文。",
+   "external_multisource": false,
+   "external_source_count": 0,
+   "confidence": 0.85,
+   "batch": "cn-original-2026-09-04",
+   "errors_fixed": 1,
+   "note": "三語逐篇人工通讀,zh-hant 有修正;逐條依據見 scratchpad/cn82/verify_log.json。"
+  },
+  "怨种闺蜜": {
+   "method": "B-official",
+   "date": "2026-09-04",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方演出詳情頁物料(大麥/聚橙等售票平台的官方長圖與文字欄),由本人以接觸表定位→裁切放大→逐字讀取建立帳本;三語各自逐篇通讀比對官方原文。",
+   "external_multisource": false,
+   "external_source_count": 0,
+   "confidence": 0.85,
+   "batch": "cn-original-2026-09-04",
+   "errors_fixed": 1,
+   "note": "三語逐篇人工通讀,zh-hant 有修正;逐條依據見 scratchpad/cn82/verify_log.json。"
+  },
+  "怪物": {
+   "method": "B-external",
+   "date": "2026-09-04",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方詳情頁只有兩張角色卡(里奥/韦恩)與官方台詞,【沒有劇情簡介】。劇情取自豆瓣條目單一來源。",
+   "external_multisource": false,
+   "external_source_count": 1,
+   "confidence": 0.85,
+   "batch": "cn-original-2026-09-04",
+   "errors_fixed": 2,
+   "note": "⚠【單一外部來源,不是多源交叉】。官方只給兩個角色,簡介沒有增補其他人物。🚨 全劇懸念(啄食靈魂的「怪物」是什麼)官方三個問句都沒答,簡介【沒有揭穿】。⚠ 豆瓣原文「高群中矗立着」在中文裡不成詞(疑為脫字),三語都選擇不照抄。"
+  },
+  "想把我唱给您听": {
+   "method": "B-official",
+   "date": "2026-09-04",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方演出詳情頁物料(大麥/聚橙等售票平台的官方長圖與文字欄),由本人以接觸表定位→裁切放大→逐字讀取建立帳本;三語各自逐篇通讀比對官方原文。",
+   "external_multisource": false,
+   "external_source_count": 0,
+   "confidence": 0.85,
+   "batch": "cn-original-2026-09-04",
+   "errors_fixed": 0
+  },
+  "我那长乐塬": {
+   "method": "B-official",
+   "date": "2026-09-04",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方演出詳情頁物料(大麥/聚橙等售票平台的官方長圖與文字欄),由本人以接觸表定位→裁切放大→逐字讀取建立帳本;三語各自逐篇通讀比對官方原文。",
+   "external_multisource": false,
+   "external_source_count": 0,
+   "confidence": 0.85,
+   "batch": "cn-original-2026-09-04",
+   "errors_fixed": 1,
+   "note": "三語逐篇人工通讀,en 有修正;逐條依據見 scratchpad/cn82/verify_log.json。"
+  },
+  "拜风": {
+   "method": "B-official",
+   "date": "2026-09-04",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方演出詳情頁物料(大麥/聚橙等售票平台的官方長圖與文字欄),由本人以接觸表定位→裁切放大→逐字讀取建立帳本;三語各自逐篇通讀比對官方原文。",
+   "external_multisource": false,
+   "external_source_count": 0,
+   "confidence": 0.85,
+   "batch": "cn-original-2026-09-04",
+   "errors_fixed": 2,
+   "note": "三語逐篇人工通讀,en/zh-hant 有修正;逐條依據見 scratchpad/cn82/verify_log.json。"
+  },
+  "新唐伯虎点秋香": {
+   "method": "B-official",
+   "date": "2026-09-04",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方演出詳情頁物料(大麥/聚橙等售票平台的官方長圖與文字欄),由本人以接觸表定位→裁切放大→逐字讀取建立帳本;三語各自逐篇通讀比對官方原文。",
+   "external_multisource": false,
+   "external_source_count": 0,
+   "confidence": 0.85,
+   "batch": "cn-original-2026-09-04",
+   "errors_fixed": 0
+  },
+  "新贵": {
+   "method": "B-official",
+   "date": "2026-09-04",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方演出詳情頁物料(大麥/聚橙等售票平台的官方長圖與文字欄),由本人以接觸表定位→裁切放大→逐字讀取建立帳本;三語各自逐篇通讀比對官方原文。",
+   "external_multisource": false,
+   "external_source_count": 0,
+   "confidence": 0.85,
+   "batch": "cn-original-2026-09-04",
+   "errors_fixed": 3,
+   "note": "三語逐篇人工通讀,en/zh-hans/zh-hant 有修正;逐條依據見 scratchpad/cn82/verify_log.json。"
+  },
+  "日出渤海耀天山": {
+   "method": "B-official",
+   "date": "2026-09-04",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方演出詳情頁物料(大麥/聚橙等售票平台的官方長圖與文字欄),由本人以接觸表定位→裁切放大→逐字讀取建立帳本;三語各自逐篇通讀比對官方原文。",
+   "external_multisource": false,
+   "external_source_count": 0,
+   "confidence": 0.85,
+   "batch": "cn-original-2026-09-04",
+   "errors_fixed": 2,
+   "note": "三語逐篇人工通讀,zh-hans/zh-hant 有修正;逐條依據見 scratchpad/cn82/verify_log.json。"
+  },
+  "旧讼": {
+   "method": "B-official",
+   "date": "2026-09-04",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方演出詳情頁物料(大麥/聚橙等售票平台的官方長圖與文字欄),由本人以接觸表定位→裁切放大→逐字讀取建立帳本;三語各自逐篇通讀比對官方原文。",
+   "external_multisource": false,
+   "external_source_count": 0,
+   "confidence": 0.85,
+   "batch": "cn-original-2026-09-04",
+   "errors_fixed": 0
+  },
+  "时光代理人": {
+   "method": "B-official",
+   "date": "2026-09-04",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方演出詳情頁物料(大麥/聚橙等售票平台的官方長圖與文字欄),由本人以接觸表定位→裁切放大→逐字讀取建立帳本;三語各自逐篇通讀比對官方原文。",
+   "external_multisource": false,
+   "external_source_count": 0,
+   "confidence": 0.85,
+   "batch": "cn-original-2026-09-04",
+   "errors_fixed": 1,
+   "note": "三語逐篇人工通讀,en 有修正;逐條依據見 scratchpad/cn82/verify_log.json。"
+  },
+  "昨日显影": {
+   "method": "B-official",
+   "date": "2026-09-04",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方演出詳情頁物料(大麥/聚橙等售票平台的官方長圖與文字欄),由本人以接觸表定位→裁切放大→逐字讀取建立帳本;三語各自逐篇通讀比對官方原文。",
+   "external_multisource": false,
+   "external_source_count": 0,
+   "confidence": 0.85,
+   "batch": "cn-original-2026-09-04",
+   "errors_fixed": 2,
+   "note": "三語逐篇人工通讀,zh-hans/zh-hant 有修正;逐條依據見 scratchpad/cn82/verify_log.json。"
+  },
+  "月亮与六便士": {
+   "method": "B-official",
+   "date": "2026-09-04",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方演出詳情頁物料(大麥/聚橙等售票平台的官方長圖與文字欄),由本人以接觸表定位→裁切放大→逐字讀取建立帳本;三語各自逐篇通讀比對官方原文。",
+   "external_multisource": false,
+   "external_source_count": 0,
+   "confidence": 0.85,
+   "batch": "cn-original-2026-09-04",
+   "errors_fixed": 3,
+   "note": "三語逐篇人工通讀,en/zh-hans/zh-hant 有修正;逐條依據見 scratchpad/cn82/verify_log.json。"
+  },
+  "有一天我和祝英台去美术馆": {
+   "method": "B-official",
+   "date": "2026-09-04",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方演出詳情頁物料(大麥/聚橙等售票平台的官方長圖與文字欄),由本人以接觸表定位→裁切放大→逐字讀取建立帳本;三語各自逐篇通讀比對官方原文。",
+   "external_multisource": false,
+   "external_source_count": 0,
+   "confidence": 0.85,
+   "batch": "cn-original-2026-09-04",
+   "errors_fixed": 2,
+   "note": "三語逐篇人工通讀,en/zh-hant 有修正;逐條依據見 scratchpad/cn82/verify_log.json。"
+  },
+  "杜十娘": {
+   "method": "B-external",
+   "date": "2026-09-04",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方詳情圖只有角色卡與宣傳頁,沒有劇情區塊。劇情取自百度百科『杜十娘(吴俊达执导的音乐剧)』【剧情简介】段(2026-09-04 重抓,與初次入帳逐字相符)。",
+   "external_multisource": false,
+   "external_source_count": 1,
+   "confidence": 0.85,
+   "batch": "cn-original-2026-09-04",
+   "errors_fixed": 2,
+   "note": "⚠【外部單一來源,但有官方物料佐證】:杜十娘/李甲/孫富/柳遇春四個人名與官方角色海報完全對得上,故 external_source_count 記 1 而非 0,但 external_multisource 仍為 false。⚠ 本篇寫出結局(攜萬金墜河殞命):重抓確認該段講的正是吳俊達這齣 2024 年首演的音樂劇而非僅原典,且結局即劇名典故本身。改編自馮夢龍《杜十娘怒沉百寶箱》經同頁再次印證。"
+  },
+  "桑塔露琪亚": {
+   "method": "B-official",
+   "date": "2026-09-04",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方演出詳情頁物料(大麥/聚橙等售票平台的官方長圖與文字欄),由本人以接觸表定位→裁切放大→逐字讀取建立帳本;三語各自逐篇通讀比對官方原文。",
+   "external_multisource": false,
+   "external_source_count": 0,
+   "confidence": 0.85,
+   "batch": "cn-original-2026-09-04",
+   "errors_fixed": 1,
+   "note": "三語逐篇人工通讀,zh-hans 有修正;逐條依據見 scratchpad/cn82/verify_log.json。"
+  },
+  "椒花颂声": {
+   "method": "B-official",
+   "date": "2026-09-04",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方演出詳情頁物料(大麥/聚橙等售票平台的官方長圖與文字欄),由本人以接觸表定位→裁切放大→逐字讀取建立帳本;三語各自逐篇通讀比對官方原文。",
+   "external_multisource": false,
+   "external_source_count": 0,
+   "confidence": 0.85,
+   "batch": "cn-original-2026-09-04",
+   "errors_fixed": 1,
+   "note": "三語逐篇人工通讀,en 有修正;逐條依據見 scratchpad/cn82/verify_log.json。"
+  },
+  "楸树花开": {
+   "method": "B-official",
+   "date": "2026-09-04",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方演出詳情頁物料(大麥/聚橙等售票平台的官方長圖與文字欄),由本人以接觸表定位→裁切放大→逐字讀取建立帳本;三語各自逐篇通讀比對官方原文。",
+   "external_multisource": false,
+   "external_source_count": 0,
+   "confidence": 0.85,
+   "batch": "cn-original-2026-09-04",
+   "errors_fixed": 0
+  },
+  "流星之绊": {
+   "method": "B-official",
+   "date": "2026-09-04",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方演出詳情頁物料(大麥/聚橙等售票平台的官方長圖與文字欄),由本人以接觸表定位→裁切放大→逐字讀取建立帳本;三語各自逐篇通讀比對官方原文。",
+   "external_multisource": false,
+   "external_source_count": 0,
+   "confidence": 0.85,
+   "batch": "cn-original-2026-09-04",
+   "errors_fixed": 2,
+   "note": "三語逐篇人工通讀,en/zh-hant 有修正;逐條依據見 scratchpad/cn82/verify_log.json。"
+  },
+  "海上钢琴师": {
+   "method": "B-official",
+   "date": "2026-09-04",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方演出詳情頁物料(大麥/聚橙等售票平台的官方長圖與文字欄),由本人以接觸表定位→裁切放大→逐字讀取建立帳本;三語各自逐篇通讀比對官方原文。",
+   "external_multisource": false,
+   "external_source_count": 0,
+   "confidence": 0.85,
+   "batch": "cn-original-2026-09-04",
+   "errors_fixed": 1,
+   "note": "三語逐篇人工通讀,zh-hant 有修正;逐條依據見 scratchpad/cn82/verify_log.json。"
+  },
+  "海浪你轻轻地摇": {
+   "method": "B-official",
+   "date": "2026-09-04",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方演出詳情頁物料(大麥/聚橙等售票平台的官方長圖與文字欄),由本人以接觸表定位→裁切放大→逐字讀取建立帳本;三語各自逐篇通讀比對官方原文。",
+   "external_multisource": false,
+   "external_source_count": 0,
+   "confidence": 0.85,
+   "batch": "cn-original-2026-09-04",
+   "errors_fixed": 0
+  },
+  "渡河 渡河": {
+   "method": "B-official",
+   "date": "2026-09-04",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方演出詳情頁物料(大麥/聚橙等售票平台的官方長圖與文字欄),由本人以接觸表定位→裁切放大→逐字讀取建立帳本;三語各自逐篇通讀比對官方原文。",
+   "external_multisource": false,
+   "external_source_count": 0,
+   "confidence": 0.85,
+   "batch": "cn-original-2026-09-04",
+   "errors_fixed": 1,
+   "note": "三語逐篇人工通讀,en 有修正;逐條依據見 scratchpad/cn82/verify_log.json。"
+  },
+  "灯塔": {
+   "method": "B-official",
+   "date": "2026-09-04",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方演出詳情頁物料(大麥/聚橙等售票平台的官方長圖與文字欄),由本人以接觸表定位→裁切放大→逐字讀取建立帳本;三語各自逐篇通讀比對官方原文。",
+   "external_multisource": false,
+   "external_source_count": 0,
+   "confidence": 0.85,
+   "batch": "cn-original-2026-09-04",
+   "errors_fixed": 1,
+   "note": "三語逐篇人工通讀,en 有修正;逐條依據見 scratchpad/cn82/verify_log.json。"
+  },
+  "爱丽丝奇境之旅": {
+   "method": "B-official",
+   "date": "2026-09-04",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方演出詳情頁物料(大麥/聚橙等售票平台的官方長圖與文字欄),由本人以接觸表定位→裁切放大→逐字讀取建立帳本;三語各自逐篇通讀比對官方原文。",
+   "external_multisource": false,
+   "external_source_count": 0,
+   "confidence": 0.85,
+   "batch": "cn-original-2026-09-04",
+   "errors_fixed": 1,
+   "note": "三語逐篇人工通讀,zh-hant 有修正;逐條依據見 scratchpad/cn82/verify_log.json。"
+  },
+  "牡丹亭": {
+   "method": "B-official",
+   "date": "2026-09-04",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方演出詳情頁物料(大麥/聚橙等售票平台的官方長圖與文字欄),由本人以接觸表定位→裁切放大→逐字讀取建立帳本;三語各自逐篇通讀比對官方原文。",
+   "external_multisource": false,
+   "external_source_count": 0,
+   "confidence": 0.85,
+   "batch": "cn-original-2026-09-04",
+   "errors_fixed": 3,
+   "note": "三語逐篇人工通讀,en/zh-hans/zh-hant 有修正;逐條依據見 scratchpad/cn82/verify_log.json。"
+  },
+  "狂飙": {
+   "method": "B-official",
+   "date": "2026-09-04",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方演出詳情頁物料(大麥/聚橙等售票平台的官方長圖與文字欄),由本人以接觸表定位→裁切放大→逐字讀取建立帳本;三語各自逐篇通讀比對官方原文。",
+   "external_multisource": false,
+   "external_source_count": 0,
+   "confidence": 0.85,
+   "batch": "cn-original-2026-09-04",
+   "errors_fixed": 0
+  },
+  "狐说臣与仙": {
+   "method": "B-official",
+   "date": "2026-09-04",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方演出詳情頁物料(大麥/聚橙等售票平台的官方長圖與文字欄),由本人以接觸表定位→裁切放大→逐字讀取建立帳本;三語各自逐篇通讀比對官方原文。",
+   "external_multisource": false,
+   "external_source_count": 0,
+   "confidence": 0.85,
+   "batch": "cn-original-2026-09-04",
+   "errors_fixed": 3,
+   "note": "三語逐篇人工通讀,en/zh-hans/zh-hant 有修正;逐條依據見 scratchpad/cn82/verify_log.json。"
+  },
+  "玉良": {
+   "method": "B-official",
+   "date": "2026-09-04",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方演出詳情頁物料(大麥/聚橙等售票平台的官方長圖與文字欄),由本人以接觸表定位→裁切放大→逐字讀取建立帳本;三語各自逐篇通讀比對官方原文。",
+   "external_multisource": false,
+   "external_source_count": 0,
+   "confidence": 0.85,
+   "batch": "cn-original-2026-09-04",
+   "errors_fixed": 3,
+   "note": "三語逐篇人工通讀,en/zh-hans/zh-hant 有修正;逐條依據見 scratchpad/cn82/verify_log.json。"
+  },
+  "玩偶": {
+   "method": "B-official",
+   "date": "2026-09-04",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方演出詳情頁物料(大麥/聚橙等售票平台的官方長圖與文字欄),由本人以接觸表定位→裁切放大→逐字讀取建立帳本;三語各自逐篇通讀比對官方原文。",
+   "external_multisource": false,
+   "external_source_count": 0,
+   "confidence": 0.85,
+   "batch": "cn-original-2026-09-04",
+   "errors_fixed": 0
+  },
+  "画中人": {
+   "method": "B-official",
+   "date": "2026-09-04",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方演出詳情長圖(男卡/女卡角色頁、卷首語、主視覺、排期),本人逐張讀。官方【沒有正式劇情簡介】,劇情由【官方角色卡文字】重建。",
+   "external_multisource": false,
+   "external_source_count": 0,
+   "confidence": 0.85,
+   "batch": "cn-original-2026-09-04",
+   "errors_fixed": 1,
+   "note": "🚨 三個雷都守住:(1)男女雙卡制,全篇統一用洛川/赤珣一套,沒有混入洛汐/赤翎;(2)「魂約」與「承諾」的具體內容官方沒說,沒有補;(3)靖元是哪一朝皇子官方沒說,沒有指定。"
+  },
+  "破墙": {
+   "method": "B-official",
+   "date": "2026-09-04",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方演出詳情頁物料(大麥/聚橙等售票平台的官方長圖與文字欄),由本人以接觸表定位→裁切放大→逐字讀取建立帳本;三語各自逐篇通讀比對官方原文。",
+   "external_multisource": false,
+   "external_source_count": 0,
+   "confidence": 0.85,
+   "batch": "cn-original-2026-09-04",
+   "errors_fixed": 3,
+   "note": "三語逐篇人工通讀,en/zh-hans/zh-hant 有修正;逐條依據見 scratchpad/cn82/verify_log.json。"
+  },
+  "空中花园谋杀案": {
+   "method": "B-official",
+   "date": "2026-09-04",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方演出詳情頁物料(大麥/聚橙等售票平台的官方長圖與文字欄),由本人以接觸表定位→裁切放大→逐字讀取建立帳本;三語各自逐篇通讀比對官方原文。",
+   "external_multisource": false,
+   "external_source_count": 0,
+   "confidence": 0.85,
+   "batch": "cn-original-2026-09-04",
+   "errors_fixed": 1,
+   "note": "三語逐篇人工通讀,en 有修正;逐條依據見 scratchpad/cn82/verify_log.json。"
+  },
+  "羊角尖": {
+   "method": "B-official",
+   "date": "2026-09-04",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方演出詳情頁物料(大麥/聚橙等售票平台的官方長圖與文字欄),由本人以接觸表定位→裁切放大→逐字讀取建立帳本;三語各自逐篇通讀比對官方原文。",
+   "external_multisource": false,
+   "external_source_count": 0,
+   "confidence": 0.85,
+   "batch": "cn-original-2026-09-04",
+   "errors_fixed": 2,
+   "note": "三語逐篇人工通讀,en/zh-hant 有修正;逐條依據見 scratchpad/cn82/verify_log.json。"
+  },
+  "花木兰": {
+   "method": "B-official",
+   "date": "2026-09-04",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方演出詳情頁物料(大麥/聚橙等售票平台的官方長圖與文字欄),由本人以接觸表定位→裁切放大→逐字讀取建立帳本;三語各自逐篇通讀比對官方原文。",
+   "external_multisource": false,
+   "external_source_count": 0,
+   "confidence": 0.85,
+   "batch": "cn-original-2026-09-04",
+   "errors_fixed": 3,
+   "note": "三語逐篇人工通讀,en/zh-hans/zh-hant 有修正;逐條依據見 scratchpad/cn82/verify_log.json。"
+  },
+  "荒原": {
+   "method": "B-official",
+   "date": "2026-09-04",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方演出詳情頁物料(大麥/聚橙等售票平台的官方長圖與文字欄),由本人以接觸表定位→裁切放大→逐字讀取建立帳本;三語各自逐篇通讀比對官方原文。",
+   "external_multisource": false,
+   "external_source_count": 0,
+   "confidence": 0.85,
+   "batch": "cn-original-2026-09-04",
+   "errors_fixed": 2,
+   "note": "三語逐篇人工通讀,zh-hans/zh-hant 有修正;逐條依據見 scratchpad/cn82/verify_log.json。"
+  },
+  "莫比乌斯": {
+   "method": "B-official",
+   "date": "2026-09-04",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方演出詳情頁物料(大麥/聚橙等售票平台的官方長圖與文字欄),由本人以接觸表定位→裁切放大→逐字讀取建立帳本;三語各自逐篇通讀比對官方原文。",
+   "external_multisource": false,
+   "external_source_count": 0,
+   "confidence": 0.85,
+   "batch": "cn-original-2026-09-04",
+   "errors_fixed": 0
+  },
+  "蓝关雪": {
+   "method": "B-official",
+   "date": "2026-09-04",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方演出詳情頁物料(大麥/聚橙等售票平台的官方長圖與文字欄),由本人以接觸表定位→裁切放大→逐字讀取建立帳本;三語各自逐篇通讀比對官方原文。",
+   "external_multisource": false,
+   "external_source_count": 0,
+   "confidence": 0.85,
+   "batch": "cn-original-2026-09-04",
+   "errors_fixed": 3,
+   "note": "三語逐篇人工通讀,en/zh-hans/zh-hant 有修正;逐條依據見 scratchpad/cn82/verify_log.json。"
+  },
+  "蝶变": {
+   "method": "B-official",
+   "date": "2026-09-04",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方演出詳情頁物料(大麥/聚橙等售票平台的官方長圖與文字欄),由本人以接觸表定位→裁切放大→逐字讀取建立帳本;三語各自逐篇通讀比對官方原文。",
+   "external_multisource": false,
+   "external_source_count": 0,
+   "confidence": 0.85,
+   "batch": "cn-original-2026-09-04",
+   "errors_fixed": 0
+  },
+  "觉醒年代": {
+   "method": "B-official",
+   "date": "2026-09-04",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方演出詳情頁物料(大麥/聚橙等售票平台的官方長圖與文字欄),由本人以接觸表定位→裁切放大→逐字讀取建立帳本;三語各自逐篇通讀比對官方原文。",
+   "external_multisource": false,
+   "external_source_count": 0,
+   "confidence": 0.85,
+   "batch": "cn-original-2026-09-04",
+   "errors_fixed": 2,
+   "note": "三語逐篇人工通讀,en/zh-hant 有修正;逐條依據見 scratchpad/cn82/verify_log.json。"
+  },
+  "貂蝉 你在想什么": {
+   "method": "B-official",
+   "date": "2026-09-04",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方演出詳情頁物料(大麥/聚橙等售票平台的官方長圖與文字欄),由本人以接觸表定位→裁切放大→逐字讀取建立帳本;三語各自逐篇通讀比對官方原文。",
+   "external_multisource": false,
+   "external_source_count": 0,
+   "confidence": 0.85,
+   "batch": "cn-original-2026-09-04",
+   "errors_fixed": 1,
+   "note": "三語逐篇人工通讀,en 有修正;逐條依據見 scratchpad/cn82/verify_log.json。"
+  },
+  "辛吉路的画材店": {
+   "method": "B-official",
+   "date": "2026-09-04",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方演出詳情頁物料(大麥/聚橙等售票平台的官方長圖與文字欄),由本人以接觸表定位→裁切放大→逐字讀取建立帳本;三語各自逐篇通讀比對官方原文。",
+   "external_multisource": false,
+   "external_source_count": 0,
+   "confidence": 0.85,
+   "batch": "cn-original-2026-09-04",
+   "errors_fixed": 1,
+   "note": "三語逐篇人工通讀,en 有修正;逐條依據見 scratchpad/cn82/verify_log.json。"
+  },
+  "边城": {
+   "method": "B-official",
+   "date": "2026-09-04",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方演出詳情頁物料(大麥/聚橙等售票平台的官方長圖與文字欄),由本人以接觸表定位→裁切放大→逐字讀取建立帳本;三語各自逐篇通讀比對官方原文。",
+   "external_multisource": false,
+   "external_source_count": 0,
+   "confidence": 0.85,
+   "batch": "cn-original-2026-09-04",
+   "errors_fixed": 3,
+   "note": "三語逐篇人工通讀,en/zh-hans/zh-hant 有修正;逐條依據見 scratchpad/cn82/verify_log.json。"
+  },
+  "那就返场": {
+   "method": "B-official",
+   "date": "2026-09-04",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方演出詳情頁物料(大麥/聚橙等售票平台的官方長圖與文字欄),由本人以接觸表定位→裁切放大→逐字讀取建立帳本;三語各自逐篇通讀比對官方原文。",
+   "external_multisource": false,
+   "external_source_count": 0,
+   "confidence": 0.85,
+   "batch": "cn-original-2026-09-04",
+   "errors_fixed": 1,
+   "note": "三語逐篇人工通讀,zh-hans 有修正;逐條依據見 scratchpad/cn82/verify_log.json。"
+  },
+  "邦尼帮你": {
+   "method": "B-official",
+   "date": "2026-09-04",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方演出詳情頁物料(大麥/聚橙等售票平台的官方長圖與文字欄),由本人以接觸表定位→裁切放大→逐字讀取建立帳本;三語各自逐篇通讀比對官方原文。",
+   "external_multisource": false,
+   "external_source_count": 0,
+   "confidence": 0.85,
+   "batch": "cn-original-2026-09-04",
+   "errors_fixed": 0
+  },
+  "金童子": {
+   "method": "B-official",
+   "date": "2026-09-04",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方演出詳情頁物料(大麥/聚橙等售票平台的官方長圖與文字欄),由本人以接觸表定位→裁切放大→逐字讀取建立帳本;三語各自逐篇通讀比對官方原文。",
+   "external_multisource": false,
+   "external_source_count": 0,
+   "confidence": 0.85,
+   "batch": "cn-original-2026-09-04",
+   "errors_fixed": 3,
+   "note": "三語逐篇人工通讀,en/zh-hans/zh-hant 有修正;逐條依據見 scratchpad/cn82/verify_log.json。"
+  },
+  "钱氏今生": {
+   "method": "B-official",
+   "date": "2026-09-04",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方演出詳情頁物料(大麥/聚橙等售票平台的官方長圖與文字欄),由本人以接觸表定位→裁切放大→逐字讀取建立帳本;三語各自逐篇通讀比對官方原文。",
+   "external_multisource": false,
+   "external_source_count": 0,
+   "confidence": 0.85,
+   "batch": "cn-original-2026-09-04",
+   "errors_fixed": 2,
+   "note": "三語逐篇人工通讀,zh-hans/zh-hant 有修正;逐條依據見 scratchpad/cn82/verify_log.json。"
+  },
+  "阿尔贝罗": {
+   "method": "B-official",
+   "date": "2026-09-04",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方演出詳情頁物料(大麥/聚橙等售票平台的官方長圖與文字欄),由本人以接觸表定位→裁切放大→逐字讀取建立帳本;三語各自逐篇通讀比對官方原文。",
+   "external_multisource": false,
+   "external_source_count": 0,
+   "confidence": 0.85,
+   "batch": "cn-original-2026-09-04",
+   "errors_fixed": 0
+  },
+  "青春之歌": {
+   "method": "B-official",
+   "date": "2026-09-04",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方演出詳情頁物料(大麥/聚橙等售票平台的官方長圖與文字欄),由本人以接觸表定位→裁切放大→逐字讀取建立帳本;三語各自逐篇通讀比對官方原文。",
+   "external_multisource": false,
+   "external_source_count": 0,
+   "confidence": 0.85,
+   "batch": "cn-original-2026-09-04",
+   "errors_fixed": 3,
+   "note": "三語逐篇人工通讀,en/zh-hans/zh-hant 有修正;逐條依據見 scratchpad/cn82/verify_log.json。"
+  },
+  "风声": {
+   "method": "B-official",
+   "date": "2026-09-04",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方演出詳情頁物料(大麥/聚橙等售票平台的官方長圖與文字欄),由本人以接觸表定位→裁切放大→逐字讀取建立帳本;三語各自逐篇通讀比對官方原文。",
+   "external_multisource": false,
+   "external_source_count": 0,
+   "confidence": 0.85,
+   "batch": "cn-original-2026-09-04",
+   "errors_fixed": 2,
+   "note": "三語逐篇人工通讀,en/zh-hant 有修正;逐條依據見 scratchpad/cn82/verify_log.json。"
+  },
+  "黑旗令": {
+   "method": "B-external",
+   "date": "2026-09-04",
+   "langs": [
+    "en",
+    "zh-hant",
+    "zh-hans"
+   ],
+   "sources": "官方詳情長圖 10 張(本人逐張讀)【沒有標準劇情簡介】,只有編號段落。劇情取自百度百科『黑旗令』【剧情简介】段(2026-09-04 重抓,與初次入帳逐字相符)+ 搜狐北京首演報導 + 中新網廣西。",
+   "external_multisource": true,
+   "external_source_count": 3,
+   "confidence": 0.9,
+   "batch": "cn-original-2026-09-04",
+   "errors_fixed": 2,
+   "note": "⚠ 官方主打的「兩岸同心」與導演李小平的官方稱謂沒有寫進簡介——那是製作面與官方用語,不是劇情。"
   }
  }
 }

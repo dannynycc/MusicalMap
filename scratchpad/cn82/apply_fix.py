@@ -31,30 +31,43 @@ def gen_running():
         out = subprocess.run(
             ["powershell", "-NoProfile", "-Command",
              "Get-CimInstance Win32_Process -Filter \"Name like 'python%'\" | "
-             "Where-Object { $_.CommandLine -like '*px_gen*' } | Measure-Object | "
-             "Select-Object -Expand Count"],
+             "Where-Object { $_.CommandLine -like '*px_gen*' } | "
+             "Select-Object -Expand CommandLine"],
             capture_output=True, text=True, timeout=60)
-        return int((out.stdout or "0").strip() or 0)
+        # 🚨 2026-09-04 改精準:原本擋【任何】px_gen,但一個 px_gen 只寫它自己的輸出檔
+        #    (檔名就在命令列裡)。簡中那支在跑的時候,繁中/英文的修正其實可以安全套用。
+        #    改成【只擋正在被那支 px_gen 寫的檔】——這是把守門變準,不是變寬:
+        #    比對不到命令列時仍然保守擋下(見 except)。
+        lines = [x.strip() for x in (out.stdout or "").splitlines() if x.strip()]
+        return lines
     except Exception as ex:                 # 查不到就當作【可能在跑】,寧可擋下來
-        sys.stderr.write("::warning::查不到 px_gen 行程(%s),保守起見視為仍在跑%s" % (ex, chr(10)))
-        return -1
+        sys.stderr.write("::warning::查不到 px_gen 行程(%s),保守起見視為【全部都在跑】%s" % (ex, chr(10)))
+        return ["<查詢失敗:保守視為全部在跑>"]
 
 
 def main():
     fixes = json.load(io.open(sys.argv[1], encoding="utf-8"))
+    targets = sorted({(f.get("suf") or SUF[f["lang"]]) for f in fixes if not f.get("_")})
     if "--dry" not in sys.argv:
-        n = gen_running()
-        if n != 0:
-            print("⛔ 偵測到 px_gen 仍在執行(%s 個),不寫檔 —— 寫了會被續跑覆蓋。" % n)
-            print("   請等生成收工後再跑一次(現在可以先用 --dry 檢查修正是否仍然命中)。")
+        cmds = gen_running()
+        # 只要有任何一支 px_gen 的命令列提到我要改的輸出檔,就擋下來
+        clash = [suf for suf in targets
+                 if any(("regen_%s.json" % suf) in c or "<查詢失敗" in c for c in cmds)]
+        if clash:
+            print("⛔ px_gen 正在寫 %s —— 不寫檔,否則修正會被續跑靜默覆蓋。" % clash)
+            print("   命令列:%s" % [c[:110] for c in cmds])
             return 2
+        if cmds:
+            print("ℹ 有 %d 支 px_gen 在跑,但都不是寫 %s,可以安全套用。" % (len(cmds), targets))
     dry = "--dry" in sys.argv
     touched = {}
     for f in fixes:
         if f.get("_"):                       # 以 _ 開頭的欄位是註記,不是修正
             continue
         lang, g = f["lang"], f["group"]
-        suf = SUF[lang]
+        # 補充批寫的是 regen_zht_supp.json 之類的檔;讓 fix 條目可用 "suf" 指定,
+        # 沒寫就沿用語言預設。🚨 不可讓它默默套到主批檔上——那會改錯篇。
+        suf = f.get("suf") or SUF[lang]
         if suf not in touched:
             rows = json.load(io.open("%s/regen_%s.json" % (B, suf), encoding="utf-8"))
             order = json.load(io.open("%s/regen_%s_order.json" % (B, suf), encoding="utf-8"))

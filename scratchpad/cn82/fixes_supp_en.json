@@ -1,0 +1,30 @@
+[
+ {"_":"補充 7 組的英文通讀。寻找李二狗 因帳本資料抓錯區塊,三語另行重生成,不在此。"},
+
+ {"group":"南墙计划","lang":"en","suf":"en_supp",
+  "old":"Against the backdrop of 2003, Xiao Liu seeks to answer his father’s expectations with rock music. While Zhang Zhongli prepares a farewell performance of Jingyun dagu, the teenager tries to resist the path arranged for him and hold on to his own musical aspirations.",
+  "new":"Against the backdrop of 2003, Xiao Liu turns to rock music to push back against the farewell performance of Jingyun dagu that his father has arranged for him, holding on to his own musical aspirations.",
+  "why":"🚨【事實變形,兩處】(1) 來源寫『少年試圖以搖滾樂【反抗】父親安排的封箱演出』,英文寫成 seeks to【answer】his father's expectations——反抗變成回應期待,方向相反。(2) 來源的『父親【安排的】京韻大鼓封箱演出』是父親【替兒子安排】的;英文寫成 Zhang Zhongli【prepares】a farewell performance,變成父親自己的告別演出——那是資料沒說的詮釋。改回來源語意。"},
+
+ {"group":"当你心动时","lang":"en","suf":"en_supp",
+  "old":"Ye Bai’s professional future is unsettined by the sudden arrival of the 99th female client, who insists that no one but the tarot blogger Lulu can solve her problem. The declaration casts a shadow over Ye Bai’s prospects and brings Lulu into direct contrast with him.",
+  "new":"Ye Bai’s professional future is unsettled by the sudden arrival of the 99th female client, who insists that no one but the tarot blogger Lulu can solve her problem. The declaration casts a shadow over his prospects and sets Lulu up as his rival.",
+  "why":"🚨【拼字錯誤】unsettined → unsettled。這種錯拼守門抓不到(不是專名、不是事實),只有逐字讀才會看到。順帶修兩處:『brings Lulu into direct contrast with him』意思不清(contrast 是對比不是對手),來源說的是葉白【想與露露一較高下】,改成 sets Lulu up as his rival;並把第二個 Ye Bai's 換成 his,同句裡不必重複人名。"},
+ {"group":"当你心动时","lang":"en","suf":"en_supp",
+  "old":"when Xiao Bai, the non-human embodiment of Ye Bai’s capacity for emotional excitement, falls in love with Lulu at first sight",
+  "new":"when Xiao Bai, that same capacity now walking beside him in human form, falls in love with Lulu at first sight",
+  "why":"🚨【與資料矛盾】寫成 non-human embodiment,但來源明說心動能力【化為人形】(took human form)——說它 non-human 剛好相反。另外前一段已經介紹過『the embodiment of that very capacity』,這裡整串再說一次也冗。改成呼應前文且符合『化為人形』的說法。"},
+
+ {"group":"杜十娘","lang":"en","suf":"en_supp",
+  "old":"Du Shiniang, reduced to entering the Bureau of Music after her family fortunes collapse,",
+  "new":"Adapted from Feng Menglong’s Du Shiniang Angrily Sinks Her Treasure Chest: Du Shiniang, reduced to entering the Bureau of Music after her family fortunes collapse,",
+  "why":"改編出處被放在第一段【最後一句】,像補記。本批所有有原著的組(边城/小城之春/新贵/六个说谎的大学生/月亮与六便士/牡丹亭/蓝关雪/时光代理人)英文都用 'Adapted from …:' 開頭,統一。"},
+ {"group":"杜十娘","lang":"en","suf":"en_supp",
+  "old":" Adapted from Feng Menglong’s Du Shiniang Angrily Sinks Her Treasure Chest.","new":"",
+  "why":"(承上)移到開頭後,刪掉原本在段尾的那一句。"},
+
+ {"group":"黑旗令","lang":"en","suf":"en_supp",
+  "old":"At the centre is Liu Yongfu and the force he commands, portrayed not as fixed historical types",
+  "new":"At the centre are Liu Yongfu and the force he commands, portrayed not as fixed historical types",
+  "why":"主謂數不一致:主語是 Liu Yongfu and the force(複數)卻用 is。"}
+]

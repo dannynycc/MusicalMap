@@ -32,6 +32,9 @@ def add(group, lang, verdict, basis, todo=""):
 
 def summary():
     d = load()
+    # 🚨 底線開頭的鍵是【註記】(例如 _overturned_suspicions),不是「某組某語的判定」,
+    #    值也不是 {verdict,basis,todo} 的形狀。不排除掉會在 v["verdict"] 當場炸掉。
+    d = {k: v for k, v in d.items() if not k.startswith("_")}
     from collections import Counter
     c = Counter(v["verdict"] for g in d.values() for v in g.values())
     print("查證紀錄:%d 組 / %d 篇 %s" % (len(d), sum(len(g) for g in d.values()), dict(c)))

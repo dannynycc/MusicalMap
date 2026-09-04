@@ -1,5 +1,12 @@
 # 中國原創批次 收尾步驟(照順序,每步都要驗)
 
+> **✅ 2026-09-04 17:27 全部執行完畢(v2.116.0)。** 實際跑起來與原本寫的有三處不同,
+> 已就地改正,下一批照改正後的版本走:
+> 1. 檔案不是 3 個而是 **9 個**(三語 × 主批 69 / 補充 6 / 單組重生成 1)。
+> 2. `kb_merge.py` **每次執行都會清空 log**(L62,所以叫 *last*.log),9 次只會留下最後一次
+>    —— 第 8 步「逐行讀 log」必須改成**每跑完一次立刻收集**,否則這道檢查形同虛設。
+> 3. 第 2 步的 px_gen 守門要能分辨檔名:`apply_fix.py` 已加 `suf` 欄位。
+
 > 寫下來是因為這條鏈有五個環節【失敗時不會報錯】,只會讓結果看起來成功但沒上線。
 
 ## 1. 等生成全部結束
@@ -44,7 +51,9 @@ diff before.txt after.txt
 
 ## 7. 重建 keymap(🚨 必須在生成全部結束【之後】)
 ```
-for s in zht en zhs: python scratchpad/cn82/mk_keymap.py $s
+for s in zht en zhs zht_supp en_supp zhs_supp zht_ldg en_ldg zhs_ldg; do
+  python scratchpad/cn82/mk_keymap.py $s
+done
 ```
 然後驗命中率:`{t:g for g,t in keymap}` 對 `regen_*.json` 的 `show` 欄,三語都要 **69/69**。
 🚨 keymap 從【結果檔】建不是從清單檔建——清單檔會被 mk_regen 重跑覆蓋,兩者一漂移就全毀
@@ -56,8 +65,13 @@ python scripts/kb_merge.py zh-hant scratchpad/cn82/regen_zht.json scratchpad/cn8
 python scripts/kb_merge.py en       scratchpad/cn82/regen_en.json  scratchpad/cn82/keymap_en.json
 python scripts/kb_merge.py zh-hans  scratchpad/cn82/regen_zhs.json scratchpad/cn82/keymap_zhs.json
 ```
-🚨 **逐行讀 `scripts/kb_merge.last.log`**:每一筆的 `<整段prompt> -> <group>` 都要是真 group,
-不可以有看起來像 prompt 開頭的垃圾鍵。新增數應為 69(+補充 7),覆蓋數應為 0。
+🚨 **`kb_merge.py` 每次執行都會清空 log**,所以要**每跑完一次立刻 `cat ... >> _merge/all.log`**,
+最後對合併檔驗四件事(2026-09-04 實測數字):
+- 對應行數 = 組數 × 語言數(76×3 = **228**);⚠ `grep -c " -> "` 會多算 9,因為摘要行的
+  「庫從 605 -> 674」也含箭頭,要只數**三格縮排開頭**的行。
+- 每一筆的目標鍵都是真 group(**76 個**),沒有長得像 prompt 的垃圾鍵(長度 >40 或含「請把」)。
+- 每個鍵剛好出現 **3** 次(三語各一)。
+- 每次執行的摘要行都是 `覆蓋 0`;三語各 605 → 681。
 
 ## 9. 前端過濾 + 建站
 ```

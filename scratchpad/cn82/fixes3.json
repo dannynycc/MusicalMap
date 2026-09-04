@@ -26,5 +26,82 @@
   "old": "In a quiet corner of the city, Cheng Xiaoshi and Lu Guang run a small shop",
   "new": "Adapted from the bilibili original animation Link Click: in a quiet corner of the city, Cheng Xiaoshi and Lu Guang run a small shop",
   "why": "與繁中/英文其餘六組的判準一致:改編來源要寫進簡介。⚠ 這一組的來由要記清楚——簡中稿自己寫出了「改编自哔哩哔哩同名国产动画」,我原本【懷疑是幻覺】(那句不在官方劇情原文裡),查過之後推翻:prompt 的身份段本身就寫著它,而帳本 note 也記著「改編自 bilibili 原創動畫《时光代理人》」是我從官方物料讀來的。所以簡中是對的,反而是繁中與英文(在我改 prompt 規則【之前】生成)缺了這句,三語不一致。"
+ },
+ {
+  "group": "六个说谎的大学生",
+  "lang": "zh-hant",
+  "old": "六名優秀大學生歷經激烈競逐",
+  "new": "本劇改編自淺倉秋成的同名小說。六名優秀大學生歷經激烈競逐",
+  "why": "🚨【系統性缺漏,第二批】我先前只掃了 official_plot 的改編來源,沒掃【身份段】——掃了才發現還有六組的原著在三語裡全缺。這些原著都在帳本裡有官方出處記載,而且都是讀者會在意的資訊(沈從文《邊城》尤其)。⚠ 一律只寫原著與作者,【不寫獎項】:《新贵》帳本兩處說法不同(note 寫小說獲銀河獎、recheck 寫作者獲星雲獎),兩件事都可能為真,但簡介不需要冒這個險。"
+ },
+ {
+  "group": "六个说谎的大学生",
+  "lang": "en",
+  "old": "Six outstanding university students, having survived fierce competition",
+  "new": "Adapted from the novel of the same name by Asakura Akinari: six outstanding university students, having survived fierce competition",
+  "why": "🚨【系統性缺漏,第二批】我先前只掃了 official_plot 的改編來源,沒掃【身份段】——掃了才發現還有六組的原著在三語裡全缺。這些原著都在帳本裡有官方出處記載,而且都是讀者會在意的資訊(沈從文《邊城》尤其)。⚠ 一律只寫原著與作者,【不寫獎項】:《新贵》帳本兩處說法不同(note 寫小說獲銀河獎、recheck 寫作者獲星雲獎),兩件事都可能為真,但簡介不需要冒這個險。"
+ },
+ {
+  "group": "小城之春",
+  "lang": "zh-hant",
+  "old": "春天遲遲未至，破壁殘垣的小城裡",
+  "new": "本劇原著為李天濟——1948 年費穆電影《小城之春》的編劇。春天遲遲未至，破壁殘垣的小城裡",
+  "why": "🚨【系統性缺漏,第二批】我先前只掃了 official_plot 的改編來源,沒掃【身份段】——掃了才發現還有六組的原著在三語裡全缺。這些原著都在帳本裡有官方出處記載,而且都是讀者會在意的資訊(沈從文《邊城》尤其)。⚠ 一律只寫原著與作者,【不寫獎項】:《新贵》帳本兩處說法不同(note 寫小說獲銀河獎、recheck 寫作者獲星雲獎),兩件事都可能為真,但簡介不需要冒這個險。"
+ },
+ {
+  "group": "小城之春",
+  "lang": "en",
+  "old": "In a small town of breached walls and crumbling ruins, spring has been absent for a long time.",
+  "new": "Adapted from the screenplay by Li Tianji, who wrote Fei Mu’s 1948 film Spring in a Small Town. In a small town of breached walls and crumbling ruins, spring has been absent for a long time.",
+  "why": "🚨【系統性缺漏,第二批】我先前只掃了 official_plot 的改編來源,沒掃【身份段】——掃了才發現還有六組的原著在三語裡全缺。這些原著都在帳本裡有官方出處記載,而且都是讀者會在意的資訊(沈從文《邊城》尤其)。⚠ 一律只寫原著與作者,【不寫獎項】:《新贵》帳本兩處說法不同(note 寫小說獲銀河獎、recheck 寫作者獲星雲獎),兩件事都可能為真,但簡介不需要冒這個險。"
+ },
+ {
+  "group": "新贵",
+  "lang": "zh-hant",
+  "old": "泥垢區出身的李K在未來社會",
+  "new": "本劇改編自科幻作家魯般的同名小說。泥垢區出身的李K在未來社會",
+  "why": "🚨【系統性缺漏,第二批】我先前只掃了 official_plot 的改編來源,沒掃【身份段】——掃了才發現還有六組的原著在三語裡全缺。這些原著都在帳本裡有官方出處記載,而且都是讀者會在意的資訊(沈從文《邊城》尤其)。⚠ 一律只寫原著與作者,【不寫獎項】:《新贵》帳本兩處說法不同(note 寫小說獲銀河獎、recheck 寫作者獲星雲獎),兩件事都可能為真,但簡介不需要冒這個險。"
+ },
+ {
+  "group": "新贵",
+  "lang": "en",
+  "old": "Li K, born in the Mud District, trades years of his own life",
+  "new": "Adapted from the science-fiction novel of the same name by Lu Ban: Li K, born in the Mud District, trades years of his own life",
+  "why": "🚨【系統性缺漏,第二批】我先前只掃了 official_plot 的改編來源,沒掃【身份段】——掃了才發現還有六組的原著在三語裡全缺。這些原著都在帳本裡有官方出處記載,而且都是讀者會在意的資訊(沈從文《邊城》尤其)。⚠ 一律只寫原著與作者,【不寫獎項】:《新贵》帳本兩處說法不同(note 寫小說獲銀河獎、recheck 寫作者獲星雲獎),兩件事都可能為真,但簡介不需要冒這個險。"
+ },
+ {
+  "group": "蓝关雪",
+  "lang": "zh-hant",
+  "old": "壽宴之上，一句含糊其辭的囑託揭開波瀾",
+  "new": "本劇改編自灰的小說《雪擁藍關》。壽宴之上，一句含糊其辭的囑託揭開波瀾",
+  "why": "🚨【系統性缺漏,第二批】我先前只掃了 official_plot 的改編來源,沒掃【身份段】——掃了才發現還有六組的原著在三語裡全缺。這些原著都在帳本裡有官方出處記載,而且都是讀者會在意的資訊(沈從文《邊城》尤其)。⚠ 一律只寫原著與作者,【不寫獎項】:《新贵》帳本兩處說法不同(note 寫小說獲銀河獎、recheck 寫作者獲星雲獎),兩件事都可能為真,但簡介不需要冒這個險。"
+ },
+ {
+  "group": "蓝关雪",
+  "lang": "en",
+  "old": "At a birthday banquet, an enigmatic request draws back the curtain",
+  "new": "Adapted from Hui’s novel Xue Yong Lan Guan: at a birthday banquet, an enigmatic request draws back the curtain",
+  "why": "🚨【系統性缺漏,第二批】我先前只掃了 official_plot 的改編來源,沒掃【身份段】——掃了才發現還有六組的原著在三語裡全缺。這些原著都在帳本裡有官方出處記載,而且都是讀者會在意的資訊(沈從文《邊城》尤其)。⚠ 一律只寫原著與作者,【不寫獎項】:《新贵》帳本兩處說法不同(note 寫小說獲銀河獎、recheck 寫作者獲星雲獎),兩件事都可能為真,但簡介不需要冒這個險。"
+ },
+ {
+  "group": "边城",
+  "lang": "zh-hant",
+  "old": "川湘交界的邊城小鎮裡",
+  "new": "本劇改編自沈從文的同名小說《邊城》。川湘交界的邊城小鎮裡",
+  "why": "🚨【系統性缺漏,第二批】我先前只掃了 official_plot 的改編來源,沒掃【身份段】——掃了才發現還有六組的原著在三語裡全缺。這些原著都在帳本裡有官方出處記載,而且都是讀者會在意的資訊(沈從文《邊城》尤其)。⚠ 一律只寫原著與作者,【不寫獎項】:《新贵》帳本兩處說法不同(note 寫小說獲銀河獎、recheck 寫作者獲星雲獎),兩件事都可能為真,但簡介不需要冒這個險。"
+ },
+ {
+  "group": "边城",
+  "lang": "en",
+  "old": "Cuicui lives with her grandfather, an ageing ferryman",
+  "new": "Adapted from Shen Congwen’s novel Border Town: Cuicui lives with her grandfather, an ageing ferryman",
+  "why": "🚨【系統性缺漏,第二批】我先前只掃了 official_plot 的改編來源,沒掃【身份段】——掃了才發現還有六組的原著在三語裡全缺。這些原著都在帳本裡有官方出處記載,而且都是讀者會在意的資訊(沈從文《邊城》尤其)。⚠ 一律只寫原著與作者,【不寫獎項】:《新贵》帳本兩處說法不同(note 寫小說獲銀河獎、recheck 寫作者獲星雲獎),兩件事都可能為真,但簡介不需要冒這個險。"
+ },
+ {
+  "group": "月亮与六便士",
+  "lang": "en",
+  "old": "Charles Strickland is a renowned stock and securities broker",
+  "new": "Adapted from Somerset Maugham’s novel of the same name: Charles Strickland is a renowned stock and securities broker",
+  "why": "🚨【系統性缺漏,第二批】我先前只掃了 official_plot 的改編來源,沒掃【身份段】——掃了才發現還有六組的原著在三語裡全缺。這些原著都在帳本裡有官方出處記載,而且都是讀者會在意的資訊(沈從文《邊城》尤其)。⚠ 一律只寫原著與作者,【不寫獎項】:《新贵》帳本兩處說法不同(note 寫小說獲銀河獎、recheck 寫作者獲星雲獎),兩件事都可能為真,但簡介不需要冒這個險。"
  }
 ]

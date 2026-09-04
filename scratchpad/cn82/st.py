@@ -4,6 +4,10 @@ import io, json, sys
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
 B = "scratchpad/cn82"
 log = json.load(io.open(B + "/verify_log.json", encoding="utf-8"))
+# 🚨 底線開頭的鍵是【註記】(_overturned_suspicions),值不是 {verdict,basis,todo} 的形狀。
+#    把註記混進「以組名為鍵」的集合裡,會讓每一個讀取端都炸掉(st.py 與 verify_log.summary
+#    兩支都中)。這裡與 summary() 用同一條排除規則。
+log = {k: v for k, v in log.items() if not k.startswith("_")}
 tot = {"ok": 0, "fix": 0, "reject": 0}
 for gg in log.values():
     for v in gg.values():
