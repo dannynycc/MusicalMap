@@ -160,6 +160,7 @@ function stateFor(bare, rec) {
 // 台陸譯名可不同:歌劇魅影 vs 剧院魅影)。只收有官方依據的名字,缺的照舊顯示英文。
 const ST_CN = maps.show_titles || {};
 const ST_TW = maps.show_titles_tw || {};
+const ST_EN = maps.show_titles_en || {};   // group → 官方英文題名(只印在海報上、爬蟲抓不到的那些)
 function zhTitle(s, variant) {
   if (variant === "zh-hant" && ST_TW[s.group]) return ST_TW[s.group];
   if (variant === "zh-hans" && ST_CN[s.group]) return ST_CN[s.group];
@@ -169,6 +170,11 @@ function zhTitle(s, variant) {
 // 在英文站顯示中文題名(2026-07-14 深稽核)。主辦方把機構/藝術節前綴、引號框寫進
 // title_en,抽核心名;title_en 本身是中文(源資料髒)則視為無效照舊顯示原題。
 function enTitle(s) {
+  // 亞洲製作常把官方英文題名【只印在海報美術裡】,詳情頁文字欄沒有,純文字爬蟲抓不到
+  // → scraper 給的 title_en 是空的。這類由 show_titles_en 人工補(逐張讀圖收集,出處
+  // 記在帳本)。放在 i18n_maps 而非 scraper 產物,是因為產物下次重抓就被洗掉。
+  // 人工表優先於 title_en:表裡的是我核對過官方物料的完整題名,source 欄的可能含前綴雜訊。
+  if (ST_EN[s.group]) return ST_EN[s.group];
   let t = (s.title_en || "").trim();
   if (!t) return null;
   t = t.replace(/^【[^】]*】\s*/, "");                     // 藝穗節【2026TFF】類前綴
@@ -190,7 +196,11 @@ function buildSearch(s) {
     parts.add(place("cities", s.city, v, s));
     parts.add(place("countries", s.country, v));
     parts.add(cjk(s.title, v));
-    if (s.title_en) { parts.add(s.title_en); const et = enTitle(s); if (et) parts.add(et); }
+    // 🚨 enTitle() 要【無條件】呼叫:它現在也會回傳 show_titles_en 的人工題名,而那些劇的
+    //    s.title_en 正好是空的(官方英文名只印在海報上,爬蟲抓不到)。若照舊只在 title_en
+    //    非空時才呼叫,題名會顯示得出來、卻【搜尋不到】——畫面看得到不等於操作得到。
+    if (s.title_en) parts.add(s.title_en);
+    { const et = enTitle(s); if (et) parts.add(et); }
     if (s.venue) parts.add(v === "en" ? venueEn(s.venue, s) : cjk(s.venue, v));
     if (s.tour_name) parts.add(cjk(s.tour_name, v));
   }
