@@ -2130,11 +2130,11 @@
       "canonical": "Borderline-边界线",
       "tradition": "韓國原創",
       "aliases": [
-        "Borderline",
+        "Borderline-邊界線",
         "边界线",
         "邊界線"
       ],
-      "_origin_note": "2026-09-04 新增。大麥標中國原創是錯的:官方【主创名单】(詳情圖第 10 張,zoom 逐字讀)明載【原版制作公司 WELCOMEFUNNY】、【原版制作公司代表 WOO YOUNG MOK】、【原版总制作人 YOU HWAN WOONG】、【编剧 YUMIN】、【作曲 PARK JIYOUNG】,另有【韩语校对】與【剧本翻译】兩職 → 韓國原版的中文版。中方為出品/製作方【缪时客】(廠牌 M²),導演 TOBIAS WEIS 為德國人。"
+      "_origin_note": "2026-09-04 新增。大麥標中國原創是錯的:官方【主创名单】(詳情圖第 10 張,zoom 逐字讀)由上而下依序是【出品方/制作方:缪时客】【执行制作厂牌:M²】【原版制作公司:WELCOMEFUNNY】【原版制作公司代表:WOO YOUNG MOK】【原版总制作人:YOU HWAN WOONG】【编剧:YUMIN】【作曲:PARK JIYOUNG】【版权运营:静国玲】,下段另有【导演:TOBIAS WEIS(德)】【音乐总监/剧本翻译:胡楚浩】【剧本翻译:DYLAN GOIKE(美)】【韩语校对:静国玲】。→ 繆時客是【中文版的中方製作方】,原創方是韓國 WELCOMEFUNNY;有『劇本翻譯』與『韓語校對』兩職。⚠ 二手摘要(含 AI 摘要)常只看到『繆時客出品』那一行就判成中國原創,務必看完整份名單。🚨【已知風險,尚未解決】:另有一部同名的美國原創音樂喜劇《BORDERLINE》(作曲 Benjamin Velez、編劇 Aryanna Garber,邊緣型人格障礙題材)。本條的 canonical『Borderline-边界线』經 group_key 正規化後就是 `borderline`,所以【就算不放裸的 \"Borderline\" 別名,那部美國劇一旦進目錄仍會被本條捕捉成韓國原創】——拿掉裸別名只少一條路徑,沒有真正關掉。works.json 目前沒有 not_musical.json 那種 title_venue 的場地限定機制。若日後美國版進了目錄:徵兆是出現 tag=韓國原創 但場館在英美的 borderline 場次,屆時要為兩部戲拆出可區分的 canonical(例如把中文版改成只認『Borderline 边界线』整串)。"
     }
   ]
 }
