@@ -58,8 +58,31 @@ ZH_MARKET = {"中國", "臺灣", "台灣", "香港", "澳門", "新加坡",
              "China", "Taiwan", "Hong Kong", "Macau", "Singapore"}
 
 
+def zh_local_title(t, countries):
+    """這個題名算不算「中文使用者看得懂的在地題名」。
+
+    🚨 不能直接用 script_of(t) == "han":script_of 只要看到【一個】假名就整串判成日文,
+    於是把中文圈常見的【の 當「的」用】的寫法一起誤殺。2026-09-05 使用者要求核對產生器
+    時抓到:台灣製作《無聲の海腳間仔》(漢字 6、假名 1,在臺灣演出)被判成「中文未覆蓋」,
+    害繁中/簡中標題覆蓋率各少算 1 組(389→390 / 388→389)。
+
+    判準:漢字【多於】假名,且在中文市場有場次。
+      • 全庫 18 組題名含假名,其中 17 組是日本的(不在中文市場)→ 市場檢查本來就擋掉了;
+        只有《無聲の海腳間仔》這一組是中文市場的,正是被假名短路誤殺的那筆。
+      • 保留「漢字 > 假名」這道比例護欄,是為了擋日後【日文題名巡演到中文市場】的情況
+        (テニスの王子様 漢3假名4 → 仍不算中文在地題名,走官方譯名表那條路)。
+    """
+    han = len(HAN.findall(t or ""))
+    kana = len(KANA.findall(t or ""))
+    return bool(han and han > kana and (countries & ZH_MARKET))
+
+
 def script_of(t):
-    """題名的書寫系統。回傳 latin / han / kana / hangul / cyrillic。"""
+    """題名的書寫系統。回傳 latin / han / kana / hangul / cyrillic。
+
+    ⚠ 這支只用來描述「這串字長什麼樣」(統計/顯示用),【不要】拿它直接判中文覆蓋
+      —— 判覆蓋請用 zh_local_title(),原因見該函式。
+    """
     t = t or ""
     if KANA.search(t):
         return "kana"
@@ -123,7 +146,7 @@ def main():
             if e["annot"][lang]:
                 e["title_cov"][lang] = True
                 e["title_src"][lang] = "官方譯名表"
-            elif script_of(e["title"][lang]) == "han" and (e["countries"] & ZH_MARKET):
+            elif zh_local_title(e["title"][lang], e["countries"]):
                 e["title_cov"][lang] = True
                 e["title_src"][lang] = "原生中文"
             else:

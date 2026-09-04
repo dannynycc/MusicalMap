@@ -192,20 +192,16 @@ __DELTA__
 <ul>
 <li><b>中文標題有 + 劇情有</b>：__Q11__ 組（完整）</li>
 <li><b>中文標題無 + 劇情有</b>：__Q01__ 組 → 只缺譯名，補 <code>i18n_maps</code> 即可，成本最低</li>
-<li><b>中文標題有 + 劇情無</b>：__Q10__ 組 → 多為中國原創，缺的是簡介</li>
+<li><b>中文標題有 + 劇情無</b>：__Q10__ 組 → 缺的是簡介__Q10TAGS__</li>
 <li><b>兩者都無</b>：__Q00__ 組 → 缺口最深</li>
 </ul>
 </div>
 
 <div class="note">
-<b>兩個查證時發現、必須講清楚的事</b><br>
-<b>1. 西葡批次的分母我先前講錯了。</b> 圈清單當天（2026-09-02 早上）目錄裡其實有 <b>60</b> 組西葡，
-清單只收了 55 組（+ urinetown 本來就有簡介），<b>另外 4 組被靜默漏掉</b>：
-<code>mariana</code>、<code>es navidad</code>、<code>monstruos</code>、<code>leyendas mexicanas de terror 2</code>。
-已用 git 確認這 4 組在圈清單<b>之前</b>就在目錄裡、標籤也是西葡音樂劇，不是後來新增的。
-所以「55 組全數完成」對<b>被圈進來的那 55 組</b>是真的，但西葡整體仍缺這 4 組。<br>
-<b>2. 中國原創 88 組的劇情簡介是 0%。</b> 已排除是 group key 對不上的問題
-（知識庫裡有 66 個中文 key，台灣原創的劇都對得上），是真的沒做。
+<b>缺口最深的分類(由本次資料算出,非寫死)</b><br>
+__GAPNOTE__
+<br><b>⚠ 這份報表的口徑</b>:分母是【目前在檔期】的作品組,所以會隨檔期進出而變動——
+不同日期的兩份報表數字不同是正常的,不代表資料變差。歷史批次的完成度請看 CHANGELOG。
 </div>
 
 <h2>逐組明細（__TOTAL__ 組）</h2>
@@ -260,6 +256,42 @@ btns.forEach(function(b){b.addEventListener('click',function(){
     }
     for k, v in rep.items():
         html = html.replace(k, v)
+    # 🚨 這段敘述【必須由資料算】。第一版把 2026-09-02 的查證結論寫死在模板裡
+    #    (「中國原創 88 組的劇情簡介是 0%」「西葡 4 組被靜默漏掉」),2026-09-05 重跑時
+    #    兩件事其實都已經做完了(中國原創 73/75=97%、那 4 組三語簡介都有),
+    #    寫死的結論就從「當時的事實」變成「現在的錯誤」。使用者要求核對產生器時抓到。
+    #    → 敘述一律從 per 重新算,寧可少講也不要講過期的話。
+    from collections import defaultdict as _dd
+    _by = _dd(list)
+    for _e in d:
+        _by[_e.get("tag") or "—"].append(_e)
+    _rank = []
+    for _tag, _rs in _by.items():
+        _miss = [r for r in _rs if not all(r["syn_cov"].values())]
+        if _miss:
+            _rank.append((len(_miss), _tag, len(_rs), _miss))
+    _rank.sort(reverse=True)
+    if _rank:
+        _li = []
+        for _n, _tag, _tot, _miss in _rank[:5]:
+            _names = "、".join("<code>%s</code>" % esc(m["group"]) for m in _miss[:6])
+            if len(_miss) > 6:
+                _names += " …等 %d 組" % len(_miss)
+            _li.append("<li><b>%s</b>：%d/%d 組缺劇情簡介 —— %s</li>"
+                       % (esc(_tag), _n, _tot, _names))
+        gapnote = "<ul>%s</ul>" % "".join(_li)
+    else:
+        gapnote = "<b>所有分類的劇情簡介都已補齊。</b>"
+    # 「多為中國原創」原本也是寫死的(2026-09-05 使用者要求核對產生器時一併改)。
+    # 那句當下剛好還成立(2 組都是中國原創),但只要缺口一換分類就會變成假話。
+    _q10 = [e for e in d if e["title_cov"]["zh-hant"] and not e["syn_cov"]["zh-hant"]]
+    if _q10:
+        _c = Counter(e.get("tag") or "—" for e in _q10)
+        _q10tags = "（%s）" % "、".join("%s %d" % (esc(t), n) for t, n in _c.most_common())
+    else:
+        _q10tags = ""
+    html = html.replace("__Q10TAGS__", _q10tags)
+    html = html.replace("__GAPNOTE__", gapnote)
     io.open(out, "w", encoding="utf-8").write(html)
     print("寫出 %s (%.0f KB)" % (out, len(html.encode("utf-8")) / 1024.0))
     return 0
