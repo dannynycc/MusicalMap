@@ -144,7 +144,14 @@ for (const s of src.shows) {
   const m = (s.city || "").match(/^(.*?),\s*([A-Z]{2})$/);
   if (m && typeof s.lat === "number") CITY_STATE.push({ city: m[1].trim(), lat: s.lat, lng: s.lng, st: m[2] });
 }
+// 🚨 州/省碼只對【美國與加拿大】有意義。座標防撞名只保護「學來的」CITY_STATE,
+//    靜態表 us_ca_state 的 fallback 原本毫無護欄——任何叫 Hamilton 的城市都被套上 ON,
+//    於是紐西蘭 Hamilton(BNZ Theatre,南緯 37 度)在英文站顯示成「Hamilton, ON」。
+//    2026-09-04 全庫掃描:119 個靜態表城市名中,只有 Hamilton 同時出現在加拿大與非美加,
+//    但護欄要對【所有】國家生效才不會下次又中(下一個同名城隨時可能進資料)。
+const US_CA = new Set(["USA", "Canada"]);
 function stateFor(bare, rec) {
+  if (rec && rec.country && !US_CA.has(rec.country)) return null;
   const cands = CITY_STATE.filter((c) => c.city === bare);
   if (!cands.length) return maps.us_ca_state[bare] || null;
   if (!rec || typeof rec.lat !== "number") return null;

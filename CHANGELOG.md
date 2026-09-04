@@ -11,6 +11,81 @@
 
 ---
 
+## [v2.119.0] - 2026-09-05 00:20
+
+### 修好每日 CI 的 `audit_dups` 失敗(自 9/3 起每班排程都紅燈)
+
+⚠ 先講清楚:**三個部署 job 一直都是成功的**,網站每天正常更新。失敗的是刻意排在部署
+之後的體檢閘門——設計上就是「資料照常上線,但這些要處理」。它抓到兩件事,而且**兩件的
+正確處置剛好相反**。
+
+### 1️⃣《CATS - Young Actors Edition》該合併沒合併 → 修了,而且順手修出一個更大的 bug
+
+Ticketmaster 把紐西蘭同一輪演出拆成兩個 event:
+`…(NZSL & Audio Performance)` 11/06 與 `Cats - Young Actors Edition` 11/07~08。
+同劇場、同城市、**ticket_url 完全相同**。`PERF_TYPE_RE` 本來就處理無障礙場次後綴,
+但只認「破折號/冒號後」的形式,遇到**括號形**就漏。已加進 `PERF_SUFFIX_RE`。
+🚨 只剝**含無障礙關鍵字**的括號——尾括號也可能是區辨同名異作的必要資訊
+(`Midnight (Knapman & Wythe)` 那個絕不能剝)。
+
+**🚨 但第一版修法會讓日期少兩天,退回重做。** 合併後檔期只剩 11/06,11/07~08 消失。
+挖下去發現是一個**比原問題更嚴重的既有 bug**:Ticketmaster 匯入時用 `(group, city)` 去重,
+第二筆直接 `continue` **整筆丟棄**——連同它的日期。其他去重路徑(`_merge_into`、
+same-coord)本來就會取 min/max 聯集,**只有這條沒有**。
+已補 `_absorb_span()`,並用**三道護欄**把影響收到最窄:
+
+| 護欄 | 為什麼 | 不設會怎樣(實測) |
+|---|---|---|
+| 只在 **TM 對 TM** 時併 | 跨來源的日期權威已有 `src_prio`/`booking_horizon` 負責 | 9 檔百老匯/西區長跑劇閉幕日被 TM 售票地平線延後(例 2027-01-03 → **2027-06-27**) |
+| 只在**同場館**時併 | 同城不同場館是不同演出 | 多 10 筆誤動 |
+| 只在**同一輪連續檔期**時併(`_same_run`,容許 7 天間隔) | 售票地平線不是閉幕日 | — |
+
+收窄後全庫差值:**11 筆改變,全是 TM 對 TM 同場館的小幅延長**,經抽驗都是**修正**——
+原本把同一輪演出其他 event 的日期整段丟掉了(例:Charlie 在 Amaturo Theater 有
+Sensory-Inclusive/Slow Burn/Smart Stage 三個 event,只留一個 → 12/12,實際到 12/27)。
+
+**✅ 外部 ground truth 驗證**(不只信自己的合併邏輯):用瀏覽器讀 Ticketmaster NZ 官方
+JSON-LD,該製作共 4 場——11/06 19:00(NZSL)、11/07 13:30、11/07 19:00、11/08 13:30,
+**實際檔期就是 11/06–11/08**,與修正後結果一致。
+
+### 2️⃣《Midnight》是**誤報**,兩齣真的是不同的戲 → 修稽核,不是修資料
+
+- `midnight` = **Todrick Hall** 的全唱型音樂劇(2025 倫敦 Sadler's Wells East 工作坊 →
+  2026/9–11 Off-Broadway,Daryl Roth Theatre)
+- `midnight knapman and wythe` = **Timothy Knapman & Laurence Mark Wythe** 的 *Midnight*
+  (首爾《MIDNIGHT : ANTLERS》)
+
+依據:[en.wikipedia「Midnight (musical)」](https://en.wikipedia.org/wiki/Midnight_(musical))
+明載前者是 Todrick Hall 作品,與那兩位創作者無關。
+⚠ 我先前只從「國別/場館/tour_name 不同」**推論**它們不同,使用者問「有確實親自用力查過嗎」
+——**沒有**。這次是真的查了。
+
+`works.json` 早就把兩齣註冊成兩個 canonical(Knapman & Wythe 那筆還有 7 個別名含
+미드나잇、MIDNIGHT : ANTLERS),連簡介都各自有一份;**只有 `audit_dups.py` 不知道**——
+它只認 `works_distinct.json`。已改成也認 `works.json` 的獨立註冊。
+**這是通用修法不是白名單**:日後任何同名異作只要照既有慣例註冊進 `works.json`,
+稽核就自動放行,不必再改這支(網站要長期無人值守就得這樣)。
+⚠ 只有「**兩個 group 都是**已註冊 canonical」才放行;一邊註冊一邊沒註冊仍會報,
+因為那通常正是「別名沒登進去」的真漏抓。
+
+### 3️⃣ 順手抓到:紐西蘭的 Hamilton 被標成「Hamilton, ON」
+
+英文站的城市標籤會補美加州/省碼。座標防撞名只保護「學來的」對照表,
+**靜態表 `us_ca_state` 的 fallback 毫無護欄**——任何叫 Hamilton 的城市都被套上安大略省,
+於是南緯 37 度的紐西蘭 Hamilton(BNZ Theatre)在英文站顯示成加拿大。
+已加國別護欄(非美加一律不補州碼)。全庫掃描:119 個靜態表城市名中只有 Hamilton 撞名,
+但護欄對**所有**國家生效才不會下次又中。差值:英文站城市標籤只動 2 筆(都是紐西蘭)。
+
+### 驗證
+
+- `audit_dups` 反向測試:**拿掉豁免 → Midnight 回來(exit 1);只註冊一邊 → 仍然報**。
+  不是恆真的空檢查,豁免也夠窄。
+- workflow 裡**全部 8 個稽核**(dates / dups / geo / manual / official / posters /
+  productions / sentinels)**全部通過**。
+- 全庫差值逐項檢視,沒有任何紀錄消失或被誤併。
+
+---
+
 ## [v2.118.1] - 2026-09-04 23:15
 
 ### 我「有英文字但不是劇名」的判斷,今天連錯 5 次

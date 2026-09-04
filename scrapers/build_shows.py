@@ -321,6 +321,16 @@ PERF_TYPE_RE = re.compile(
 PERF_SUFFIX_RE = re.compile(
     r"\s*(?:\((?:open|closed)\s+captions?(?:\s+performance)?\)|(?:open|closed)\s+captions?\s+performance|"
     r"\(18\+\s*event\)|18\+\s*event|asl[-\s]*interpreted\s+performance|bsl/cap\s+performance|"
+    # 括號裡【含】無障礙關鍵字的尾綴(2026-09-04 CI audit_dups 抓到)。PERF_TYPE_RE 只
+    # 處理破折號/冒號後的形式,遇到括號形就漏:Ticketmaster 把紐西蘭同一輪演出拆成
+    #   「CATS - Young Actors Edition (NZSL & Audio Performance)」11/06
+    #   「Cats - Young Actors Edition」                          11/07~08
+    # 同劇場、同城市、【ticket_url 完全相同】,是同一製作的無障礙場次。
+    # 🚨 只剝【含關鍵字】的括號,不是所有尾括號——尾括號也可能是區辨同名異作的必要
+    #    資訊(例如「Midnight (Knapman & Wythe)」與 Todrick Hall 的 Midnight 是兩齣戲,
+    #    那個括號絕不能剝)。
+    r"\([^)]*\b(?:nzsl|bsl|asl|auslan|audio[- ]?describ\w*|audio\s+performance|relaxed|"
+    r"captioned|signed|sensory|touch\s+tour)\b[^)]*\)|"
     r"[-–—:]?\s*for\s+ages\s+\d+\+?|\(ages\s+\d+\+?\))\s*$", re.I)
 
 # TM 售票系統的「非劇名註記」尾綴(2026-08-12)。這些字串永遠不會是劇名的一部分,
@@ -722,6 +732,52 @@ def main():
     }
     seen_show_city = {(s["group"], city_key(s.get("city")))
                       for s in by_id.values()}
+    # (group, city) → 已留下的那筆紀錄。被擋掉的重複筆要把【檔期】併進來,
+    # 不能整筆丟掉(2026-09-04:CATS 無障礙場次案,見下方 _absorb_span)。
+    kept_by_gc = {(s["group"], city_key(s.get("city"))): s for s in by_id.values()}
+
+    def _same_run(a, b, gap_days=7):
+        """兩段檔期是否屬於【同一輪連續演出】(重疊,或相隔不超過 gap_days 天)。
+
+        🚨 這道護欄是必要的:同 (group, city, venue) 的另一筆常常只是【售票地平線】更遠
+        (百老匯長跑劇在 TM 上票開到半年後),把它的 end 併進來等於憑空延長閉幕日。
+        2026-09-04 實測不設護欄會動到 9 檔百老匯/西區長跑劇(例:2027-01-03 → 2027-06-27)。
+        售票地平線有 booking_horizon.json 專責處理,不該由去重路徑順手改。
+        (memory: booking horizon ≠ 閉幕日;表演日期必須 100% 精準)
+        """
+        import datetime as _dt
+
+        def _d(x):
+            try:
+                return _dt.date.fromisoformat(x)
+            except Exception:
+                return None
+        a0, a1 = _d(a.get("start_date")), _d(a.get("end_date") or a.get("start_date"))
+        b0, b1 = _d(b.get("start_date")), _d(b.get("end_date") or b.get("start_date"))
+        if not (a0 and a1 and b0 and b1):
+            return False          # 日期不全就不動,寧可保守
+        g = _dt.timedelta(days=gap_days)
+        return a0 - g <= b1 and b0 - g <= a1
+
+    def _absorb_span(keep, drop):
+        """把被去重丟棄那筆的檔期併進留下來的那筆(min start / max end)。
+
+        🚨 為什麼需要:同一輪演出在 Ticketmaster 常被拆成多個 event(無障礙場次、
+        不同日期區段),清洗後 (group, city) 相同 → 第二筆在【匯入階段】就被 continue
+        丟掉,連同它的日期。2026-09-04 實測:紐西蘭 CATS - Young Actors Edition
+        11/06(NZSL 場)與 11/07~11/08(一般場)合併後只剩 11/06,少了兩天。
+        其他去重路徑(_merge_into / same-coord)本來就會取聯集,只有這條沒有。
+        ⚠ 完全相同的日期時 min/max 是 no-op,所以對「純多平台重複」零影響。
+        """
+        starts = [d for d in (keep.get("start_date"), drop.get("start_date")) if d]
+        ends = [d for d in (keep.get("end_date"), drop.get("end_date")) if d]
+        if starts:
+            keep["start_date"] = min(starts)
+        # 開放式長跑(resident/sit-down)的 end_date=None 是刻意的「長期上演」,
+        # 不可被另一筆的售票地平線蓋成假閉幕日——與 _merge_into 同一條護欄。
+        open_resident = keep.get("end_date") is None and keep.get("type") in ("resident", "sit-down")
+        if ends and not open_resident:
+            keep["end_date"] = max(ends)
     for tm_file in (TM_FILE, "tm_tours.json"):
         tm_path = DATA / tm_file
         if not tm_path.exists():
@@ -765,9 +821,28 @@ def main():
                 u = s.get("attraction_url") or s.get("ticket_url")
                 if u and not _rt:
                     tm_enrich.setdefault((gk, city), u)
+                prev = kept_by_gc.get((gk, city))
+                # 🚨 只在【同場館】時併檔期。放寬到「同城不同場館」實測會動到 30 筆,
+                #    多是百老匯/西區長跑劇的閉幕日被另一筆的售票地平線延後——
+                #    那屬於 booking_horizon.json 的職責,不該由這條去重路徑順手改。
+                #    (memory: booking horizon ≠ 閉幕日;表演日期必須 100% 精準)
+                # 🚨 只在【TM 對 TM、同場館、同一輪連續檔期】三個條件同時成立時才併檔期。
+                #    (1) 跨來源不併:哪個來源的日期算數,已經有 src_prio / booking_horizon
+                #        負責;讓 TM 的售票地平線去蓋 broadway.org 的檔期,實測會延長 9 檔
+                #        百老匯/西區長跑劇的閉幕日(例:2027-01-03 → 2027-06-27)。
+                #        而且長跑劇的兩筆檔期【本來就重疊】,_same_run 擋不住,只能靠來源判。
+                #    (2) 同場館:同城不同場館是不同演出。
+                #    (3) 同一輪:見 _same_run。
+                if prev is not None \
+                        and "ticketmaster" in (prev.get("source") or "") \
+                        and venue_key(s.get("venue"), s.get("city")) \
+                        == venue_key(prev.get("venue"), prev.get("city")) \
+                        and _same_run(prev, s):
+                    _absorb_span(prev, s)   # 丟這筆之前先把它的檔期併進留下來那筆
                 continue
             by_id[s["id"]] = s
             seen_show_city.add((gk, city))  # also dedup TM-vs-TM across the two files
+            kept_by_gc[(gk, city)] = s
             kept += 1
         print(f"  {tm_file}: +{kept}")
         sources.append({"file": tm_file, "count": kept})
