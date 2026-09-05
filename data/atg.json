@@ -1,24 +1,24 @@
 {
   "meta": {
     "source": "atgtickets.com",
-    "count": 198,
+    "count": 197,
     "tour_hubs": 28,
     "tour_stops": 190
   },
   "shows": [
     {
-      "id": "atg-shows-the-choir-of-man-aylesbury-waterside-theatre",
-      "title": "The Choir of Man",
+      "id": "atg-shows-paddington-the-musical-savoy-theatre",
+      "title": "Paddington The Musical",
       "type": "tour",
-      "venue": "Aylesbury Waterside Theatre",
-      "city": "Aylesbury Waterside Theatre",
+      "venue": "Savoy Theatre",
+      "city": "London",
       "country": "UK",
-      "lat": 51.814792,
-      "lng": -0.809475,
+      "lat": 51.51018,
+      "lng": -0.120933,
       "start_date": null,
-      "end_date": "2026-09-05",
-      "ticket_url": "https://www.atgtickets.com/shows/the-choir-of-man/aylesbury-waterside-theatre/",
-      "image": "https://res.cloudinary.com/dwzhqvxaz/image/upload/w_1280,q_auto,f_auto/v1774871027/Titles/The%20Choir%20of%20Man/COM26035_Water_version_social.jpg",
+      "end_date": "2028-02-13",
+      "ticket_url": "https://www.atgtickets.com/shows/paddington-the-musical/savoy-theatre/",
+      "image": "https://res.cloudinary.com/dwzhqvxaz/image/upload/w_1280,q_auto,f_auto/v1783343983/Titles/Paddington%20The%20Musical/ATG_1920x1080.jpg",
       "tour_name": null,
       "verified": true,
       "source": "atgtickets.com"
@@ -36,23 +36,6 @@
       "end_date": "2027-09-18",
       "ticket_url": "https://www.atgtickets.com/shows/cabaret/kit-kat-club-at-the-playhouse/",
       "image": "https://res.cloudinary.com/dwzhqvxaz/image/upload/w_1280,q_auto,f_auto/v1782385583/Titles/Cabaret%20(WEST%20END)/ALEX_HICARO_1920x1080px_V1.jpg",
-      "tour_name": null,
-      "verified": true,
-      "source": "atgtickets.com"
-    },
-    {
-      "id": "atg-shows-paddington-the-musical-savoy-theatre",
-      "title": "Paddington The Musical",
-      "type": "tour",
-      "venue": "Savoy Theatre",
-      "city": "London",
-      "country": "UK",
-      "lat": 51.51018,
-      "lng": -0.120933,
-      "start_date": null,
-      "end_date": "2028-02-13",
-      "ticket_url": "https://www.atgtickets.com/shows/paddington-the-musical/savoy-theatre/",
-      "image": "https://res.cloudinary.com/dwzhqvxaz/image/upload/w_1280,q_auto,f_auto/v1783343983/Titles/Paddington%20The%20Musical/ATG_1920x1080.jpg",
       "tour_name": null,
       "verified": true,
       "source": "atgtickets.com"
