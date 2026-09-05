@@ -1,9 +1,9 @@
 {
   "meta": {
     "source": "atgtickets.com",
-    "count": 200,
+    "count": 198,
     "tour_hubs": 28,
-    "tour_stops": 192
+    "tour_stops": 190
   },
   "shows": [
     {
@@ -24,23 +24,6 @@
       "source": "atgtickets.com"
     },
     {
-      "id": "atg-shows-paddington-the-musical-savoy-theatre",
-      "title": "Paddington The Musical",
-      "type": "tour",
-      "venue": "Savoy Theatre",
-      "city": "London",
-      "country": "UK",
-      "lat": 51.51018,
-      "lng": -0.120933,
-      "start_date": null,
-      "end_date": "2028-02-13",
-      "ticket_url": "https://www.atgtickets.com/shows/paddington-the-musical/savoy-theatre/",
-      "image": "https://res.cloudinary.com/dwzhqvxaz/image/upload/w_1280,q_auto,f_auto/v1783343983/Titles/Paddington%20The%20Musical/ATG_1920x1080.jpg",
-      "tour_name": null,
-      "verified": true,
-      "source": "atgtickets.com"
-    },
-    {
       "id": "atg-shows-cabaret-kit-kat-club-at-the-playhouse",
       "title": "Cabaret",
       "type": "tour",
@@ -53,6 +36,23 @@
       "end_date": "2027-09-18",
       "ticket_url": "https://www.atgtickets.com/shows/cabaret/kit-kat-club-at-the-playhouse/",
       "image": "https://res.cloudinary.com/dwzhqvxaz/image/upload/w_1280,q_auto,f_auto/v1782385583/Titles/Cabaret%20(WEST%20END)/ALEX_HICARO_1920x1080px_V1.jpg",
+      "tour_name": null,
+      "verified": true,
+      "source": "atgtickets.com"
+    },
+    {
+      "id": "atg-shows-paddington-the-musical-savoy-theatre",
+      "title": "Paddington The Musical",
+      "type": "tour",
+      "venue": "Savoy Theatre",
+      "city": "London",
+      "country": "UK",
+      "lat": 51.51018,
+      "lng": -0.120933,
+      "start_date": null,
+      "end_date": "2028-02-13",
+      "ticket_url": "https://www.atgtickets.com/shows/paddington-the-musical/savoy-theatre/",
+      "image": "https://res.cloudinary.com/dwzhqvxaz/image/upload/w_1280,q_auto,f_auto/v1783343983/Titles/Paddington%20The%20Musical/ATG_1920x1080.jpg",
       "tour_name": null,
       "verified": true,
       "source": "atgtickets.com"
@@ -1027,23 +1027,6 @@
       "source": "atgtickets.com"
     },
     {
-      "id": "atg-tour-dirty-dancing-liverpool-empire",
-      "title": "Dirty Dancing",
-      "type": "tour",
-      "venue": "Liverpool Empire",
-      "city": "Liverpool",
-      "country": "UK",
-      "lat": 53.408873,
-      "lng": -2.978285,
-      "start_date": null,
-      "end_date": "2026-09-05",
-      "ticket_url": "https://www.atgtickets.com/shows/dirty-dancing/liverpool-empire/",
-      "image": "https://res.cloudinary.com/dwzhqvxaz/image/upload/w_1280,q_auto,f_auto/v1758801293/Titles/Dirty%20Dancing/2025/DD26_Tour_ATG_onsale_1920x1080_social.jpg",
-      "tour_name": "Dirty Dancing — UK Tour",
-      "verified": true,
-      "source": "atgtickets.com"
-    },
-    {
       "id": "atg-tour-dirty-dancing-sunderland-empire",
       "title": "Dirty Dancing",
       "type": "tour",
@@ -1873,23 +1856,6 @@
       "ticket_url": "https://www.atgtickets.com/shows/heathers-the-musical/palace-theatre-manchester/",
       "image": "https://res.cloudinary.com/dwzhqvxaz/image/upload/w_1280,q_auto,f_auto/v1709544285/Titles/Heathers%20The%20Musical/Heathers_2024_ATG_Web_1920x1080_2.jpg",
       "tour_name": "Heathers the Musical — UK Tour",
-      "verified": true,
-      "source": "atgtickets.com"
-    },
-    {
-      "id": "atg-tour-high-society-kings-theatre-glasgow",
-      "title": "High Society",
-      "type": "tour",
-      "venue": "King's Theatre, Glasgow",
-      "city": "Glasgow",
-      "country": "UK",
-      "lat": 55.864993,
-      "lng": -4.268655,
-      "start_date": null,
-      "end_date": "2026-09-05",
-      "ticket_url": "https://www.atgtickets.com/shows/high-society/kings-theatre-glasgow/",
-      "image": "https://res.cloudinary.com/dwzhqvxaz/image/upload/w_1280,q_auto,f_auto/v1786724656/Titles/High%20Society%20(Tour)/HS_ATG_1920x1080_AUG26_AW_1920x1080.jpg",
-      "tour_name": "High Society — UK Tour",
       "verified": true,
       "source": "atgtickets.com"
     },
